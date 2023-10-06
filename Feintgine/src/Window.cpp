@@ -1,0 +1,193 @@
+
+
+#include "Window.h"
+#include "Error.h"
+//#include <api/GL/wglext.h>
+#include "feint_common.h"
+namespace Feintgine{
+
+	Window::Window()
+	{
+	}
+
+
+	Window::~Window()
+	{
+	}
+	int Window::create(const std::string &windowName, int screenWidth, int screenHeight, unsigned int windowFlag)
+	{
+
+
+		int i;
+
+		// Declare display mode structure to be filled in.
+		SDL_DisplayMode current;
+
+		SDL_Init(SDL_INIT_VIDEO);
+
+		// Get current display mode of all displays.
+		for (i = 0; i < SDL_GetNumVideoDisplays(); ++i) {
+
+			int should_be_zero = SDL_GetCurrentDisplayMode(i, &current);
+
+			if (should_be_zero != 0)
+			{
+				// In case of error...
+				SDL_Log("Could not get display mode for video display #%d: %s", i, SDL_GetError());
+			}
+
+			else
+			{
+				// On success, print the current display mode.
+				SDL_Log("Display #%d: current display mode is %dx%dpx @ %dhz.", i, current.w, current.h, current.refresh_rate);
+			}
+
+		}
+		int defaultDisplay = 0;
+		SDL_Log("Use display %d as main display", defaultDisplay);
+
+ 		
+
+
+		if (glContext)
+		{
+			std::cout << "destroy old context \n";
+			SDL_GL_DeleteContext(glContext);
+		}
+		SDL_DisplayMode DM;
+		SDL_GetDesktopDisplayMode(0, &DM);
+		//SDL_GetCurrentDisplayMode(0, &DM);
+		auto Width = DM.w;
+		auto Height = DM.h;
+		m_screenHeight = screenHeight;
+		m_screenWidth = screenWidth;
+		m_resolutionWidth = Width;
+		m_resolutionHeight = Height;
+		m_refreshRate = DM.refresh_rate;
+
+		feint_common::Instance()->setResolution(glm::vec2(m_screenWidth, m_screenHeight));
+// 		if (windowFlag & FULLSCREEN)
+// 		{
+// 			std::cout << "calculate new solution \n";
+// 			m_screenWidth = m_resolutionWidth;
+// 			m_screenHeight = m_resolutionHeight;
+// 		}
+		
+		m_aspectRatio =  (float)m_screenWidth /(float)m_resolutionWidth;
+		std::cout << "new aspect is " << m_aspectRatio << "\n";
+
+		Uint32 flags = SDL_WINDOW_OPENGL;
+		flags |= SDL_WINDOW_ALLOW_HIGHDPI;
+		if (windowFlag & INVISIBLE)
+		{
+			flags |= SDL_WINDOW_HIDDEN;
+
+		}
+		if (windowFlag & FULLSCREEN)
+		{
+			flags |= SDL_WINDOW_FULLSCREEN;
+		}
+
+		if (windowFlag & BORDERLESS)
+		{
+			flags |= SDL_WINDOW_BORDERLESS;
+		}
+		
+		_sdlWindow = SDL_CreateWindow(windowName.c_str(), 10, 30, m_screenWidth, m_screenHeight, flags);
+		int w;
+		int h;
+		//SDL_SetWindowSize(_sdlWindow, 1280, 720);
+		SDL_GetWindowSize(_sdlWindow, &w, &h);
+		std::cout << "created at " << w << " and " << h << "\n";
+		
+		
+		
+		if (_sdlWindow == nullptr)
+		{
+			fatalError("ko tao dc , chac thieu RAM !");
+		}
+	 
+		glContext = SDL_GL_CreateContext(_sdlWindow);
+		if (glContext == nullptr)
+		{
+			fatalError("ko tao dc context OPENGL , chac card cui` ! ");
+		}
+		GLenum error = glewInit();
+		if (error != GLEW_OK)
+		{
+			fatalError("glew co van de ");
+		}
+		std::cout << "context is " << glContext << "\n";
+
+		glClearColor(0, 0, 0, 0);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+// 		PFNWGLSWAPINTERVALEXTPROC       wglSwapIntervalEXT = NULL;
+// 		PFNWGLGETSWAPINTERVALEXTPROC    wglGetSwapIntervalEXT = NULL;
+// 		SDL_Log("Init Vsync for application");
+// 		if (WGLExtensionSupported("WGL_EXT_swap_control"))
+// 		{
+// 			SDL_Log("WGLExtensionSupported !");
+// 			// 			// Extension is supported, init pointers.
+// 			wglSwapIntervalEXT = (PFNWGLSWAPINTERVALEXTPROC)wglGetProcAddress("wglSwapIntervalEXT");
+// 			// 
+// 			// 			// this is another function from WGL_EXT_swap_control extension
+// 			wglGetSwapIntervalEXT = (PFNWGLGETSWAPINTERVALEXTPROC)wglGetProcAddress("wglGetSwapIntervalEXT");
+// 		}
+// 		wglSwapIntervalEXT(0);
+
+		return 0;
+	}
+	void Window::swapBuffer()
+	{
+
+		SDL_GL_SwapWindow(_sdlWindow);
+	}
+
+	void Window::loadContext(SDL_GLContext context)
+	{
+		glContext = context;
+		SDL_GL_MakeCurrent(_sdlWindow, glContext);
+		std::cout << "context load is " << glContext << "\n";
+	}
+
+	void Window::deleteWindow()
+	{
+		
+		SDL_DestroyWindow(_sdlWindow);
+	}
+
+
+ 	bool Window::WGLExtensionSupported(const char *extension_name)
+ 	{
+		SDL_Log("WGLExtensionSupported start ");
+		// this is pointer to function which returns pointer to string with list of all wgl extensions
+/*		PFNWGLGETEXTENSIONSSTRINGEXTPROC _wglGetExtensionsStringEXT = NULL;
+
+		// determine pointer to wglGetExtensionsStringEXT function
+		_wglGetExtensionsStringEXT = (PFNWGLGETEXTENSIONSSTRINGEXTPROC)wglGetProcAddress("wglGetExtensionsStringEXT");
+
+		if (strstr(_wglGetExtensionsStringEXT(), extension_name) == NULL)
+		{
+			// string was not found
+			return false;
+		}
+
+		// extension is supported
+		return true;*/
+		return false; // not support for now
+ 	}
+
+
+	void Window::saveContext(SDL_GLContext context)
+	{
+		m_savedContext = context;
+	}
+
+	void Window::storageCamPos(glm::vec2 pos)
+	{
+		m_cameraStorePos = pos;
+	}
+
+}
