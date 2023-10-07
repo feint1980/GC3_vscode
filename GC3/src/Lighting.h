@@ -6,6 +6,7 @@
 
 //The number of points to draw a circle
 #define NUM_POINTS 45
+#define M_PI 3.14159265358979323846
 
 class Scene;
 

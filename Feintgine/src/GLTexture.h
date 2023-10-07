@@ -1,7 +1,7 @@
 #ifndef _GLTEXTURE_H_
 #define _GLTEXTURE_H_
 
-#include <glew.h>
+#include <GL/glew.h>
 namespace Feintgine
 {
 

@@ -1,7 +1,7 @@
 #ifndef _SPRITE_H_
 #define _SPRITE_H_
 
-#include <glew.h>
+#include <GL/glew.h>
 #include "Vertex.h"
 #include "GLTexture.h"
 #include <cstddef>

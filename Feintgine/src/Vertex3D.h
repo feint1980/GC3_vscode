@@ -2,7 +2,7 @@
 #include <glm/glm.hpp>
 #include <string>
 #include <vector>
-#include <glew.h>
+#include <GL/glew.h>
 #include "GLSLProgram.h"
 #include <iostream>
 

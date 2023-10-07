@@ -2,7 +2,7 @@
 #define FREEIMAGE_LIB 
 
 #include <FreeImage.h>
-#include <glew.h>
+#include <GL/glew.h>
 
 #include <vector>
 

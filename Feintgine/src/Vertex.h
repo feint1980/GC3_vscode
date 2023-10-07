@@ -3,7 +3,7 @@
 #define _VERTEX_H_
 
 #include "Vector2.h"
-#include <glew.h>
+#include <GL/glew.h>
 #include <glm/glm.hpp>
 
 const int COLOR_CHANNEL_HAS_R = 1;

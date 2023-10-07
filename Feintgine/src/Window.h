@@ -6,7 +6,7 @@
 #ifndef _WINDOW_H_
 #define _WINDOW_H_
 #include <SDL2/SDL.h>
-#include <glew.h>
+#include <GL/glew.h>
 #include <string>
 #include <glm/glm.hpp>
 

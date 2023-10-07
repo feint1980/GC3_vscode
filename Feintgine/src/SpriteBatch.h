@@ -1,7 +1,7 @@
 #ifndef _SPRITEBATCH_H_
 #define _SPRITEBATCH_H_
 
-#include <glew.h>
+#include <GL/glew.h>
 #include <glm/glm.hpp>
 #include <vector>
 

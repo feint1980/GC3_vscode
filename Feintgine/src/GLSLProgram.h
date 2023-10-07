@@ -3,7 +3,7 @@
 #define _GLSLPROGRAM_H_
 
 #include <string>
-#include <glew.h>
+#include <GL/glew.h>
 #include <glm/glm.hpp>
 
 namespace Feintgine {
