@@ -21,9 +21,9 @@ namespace Feintgine
 
 		void drawBox_center(const glm::vec4 desRect, const Color & color, float angle);
 
-		void drawBox(const glm::vec2 & tl, const glm::vec2 & tr, const glm::vec2 & br, const glm::vec2 & bl, Feintgine::Color & color, float angle);
+		void drawBox(const glm::vec2 & tl, const glm::vec2 & tr, const glm::vec2 & br, const glm::vec2 & bl,const Feintgine::Color & color, float angle);
 
-		void drawRectCol(const glm::vec2 & tl, const glm::vec2 & tr, const glm::vec2 & br, const glm::vec2 & bl, Feintgine::Color & color, float angle);
+		void drawRectCol(const glm::vec2 & tl, const glm::vec2 & tr, const glm::vec2 & br, const glm::vec2 & bl,const Feintgine::Color & color, float angle);
 
 		void dispose();
 		void end();

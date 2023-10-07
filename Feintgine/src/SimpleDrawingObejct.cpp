@@ -17,7 +17,7 @@
 // {
 // 	//std::cout << "load prefab " << fobPath << "\n";
 
-// 	f_object object;
+// 	//f_object object;
 // 	std::fstream input(fobPath.c_str(), std::ios::in | std::ios::binary);
 // 	if (!object.ParseFromIstream(&input))
 // 	{

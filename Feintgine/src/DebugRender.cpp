@@ -152,7 +152,7 @@ namespace Feintgine
 
 	}
 
-	void DebugRender::drawBox(const glm::vec2 & tl, const glm::vec2 & tr, const glm::vec2 & br, const glm::vec2 & bl, Feintgine::Color & color, float angle)
+	void DebugRender::drawBox(const glm::vec2 & tl, const glm::vec2 & tr, const glm::vec2 & br, const glm::vec2 & bl,const Feintgine::Color & color, float angle)
 	{
 		int i = m_verts.size();
 		m_verts.resize(m_verts.size() + 4);
@@ -196,7 +196,7 @@ namespace Feintgine
 		m_indices.push_back(i);
 	}
 
-	void DebugRender::drawRectCol(const glm::vec2 & tl, const glm::vec2 & tr, const glm::vec2 & br, const glm::vec2 & bl, Feintgine::Color & color, float angle)
+	void DebugRender::drawRectCol(const glm::vec2 & tl, const glm::vec2 & tr, const glm::vec2 & br, const glm::vec2 & bl,const Feintgine::Color & color, float angle)
 	{
 		int i = m_verts.size();
 		m_verts.resize(m_verts.size() + 4);
