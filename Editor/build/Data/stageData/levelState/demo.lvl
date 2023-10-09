@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Level>
+	<Events>
+		<Event type = "turnLight">
+			<Prop value="1" time = "0" >
+			</Prop>
+		</Event>
+		<Event type = "showChapter">
+			<Prop text1="第1章: 彼岸への秘密の道" text2 ="Chương 1: Bỉ Ngạn mật lối" time = "5000" >
+			</Prop>
+		</Event>
+
+		<Event type = "showBGM">
+			<Prop text="♫ She wants me Judged【凋叶棕】♫" time = "7000" >
+			</Prop>
+		</Event>
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "30" state = "Type1_line_1" number = "10" interval = "350" time = "12000" drop = "power_small" drop_on = "2,3,7" >
+			</Prop>
+		</Event>
+		<Event type = "spawnEnemy">
+			<Prop pX = "0" pY = "600" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "100" state = "Type5_1"  time = "19000" >
+			</Prop>
+		</Event>
+	</Events>
+</Level>

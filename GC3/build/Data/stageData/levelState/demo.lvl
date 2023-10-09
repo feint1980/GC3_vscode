@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Level>
+	<Events>
+		<Event type = "turnLight">
+			<Prop value="1" time = "0" >
+			</Prop>
+		</Event>
+		<Event type = "showChapter">
+			<Prop text1="第1章: 彼岸への秘密の道" text2 ="Chương 1: Bỉ Ngạn mật lối" time = "5000" >
+			</Prop>
+		</Event>
+
+		<Event type = "showBGM">
+			<Prop text="♫ She wants me Judged【凋叶棕】♫" time = "6500" >
+			</Prop>
+		</Event>
+
+
+				<!-- Cloud Control  -->
+		<Event type = "changeShaderValue">
+			<Prop type="Vec3" name = "camVel" valueX = "2" valueY = "-1.0" valueZ = "0" duration = "1"  time = "0" >
+			</Prop>
+		</Event>
+
+			<Event type = "changeShaderValue">
+			<Prop type="Vec3" name = "lookDir" valueX = "1" valueY = "0.8" valueZ = "0" duration = "1" time = "1000" >
+			</Prop>
+		</Event> 
+
+
+		<Event type = "changeShaderValue">
+			<Prop type="Vec3" name = "camVel" valueX = "2" valueY = "0.2" valueZ = "0" duration = "10"  time = "2000" >
+			</Prop>
+		</Event>
+
+		<Event type = "changeShaderValue">
+			<Prop type="Float" name = "cloudAlpha" value = "0.2"  duration = "10"  time = "5500" >
+			</Prop>
+		</Event>
+
+
+		<Event type = "changeShaderValue">
+			<Prop type="Vec3" name = "camVel" valueX = "2" valueY = "0" valueZ = "0" duration = "10"  time = "4000" >
+			</Prop>
+		</Event>
+
+
+		<Event type = "changeShaderValue">
+			<Prop type="Float" name = "cloudAlpha" value = "1"  duration = "10"  time = "53000" >
+			</Prop>
+		</Event>
+
+		<Event type = "changeShaderValue">
+			<Prop type="Vec3" name = "camVel" valueX = "2" valueY = "-0.1" valueZ = "0" duration = "10"  time = "53000" >
+			</Prop>
+		</Event>
+
+
+			<Event type = "changeShaderValue">
+			<Prop type="Vec3" name = "camVel" valueX = "2" valueY = "0.05" valueZ = "0" duration = "10"  time = "58000" >
+			</Prop>
+		</Event>
+
+		<Event type = "changeShaderValue">
+			<Prop type="Vec3" name = "lookDir" valueX = "1" valueY = "0" valueZ = "0" duration = "5" time = "61000" >
+			</Prop>
+		</Event> 
+
+		<!-- Cloud End  -->
+
+
+
+ 		<Event type = "spawnEnemyLine">
+			<Prop pX = "100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "15" state = "Type1_line_1" number = "10" interval = "350" time = "13000" drop = "power_small" drop_on = "2,3,7" >
+			</Prop>
+		</Event>
+
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "-100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "15" state = "Type1_line_1_invert" number = "10" interval = "350" time = "14000" drop = "power_small" drop_on = "1,4,6" >
+			</Prop>
+		</Event>
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "200" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "15" state = "Type1_line_1" number = "10" interval = "350" time = "15000" drop = "power_small" drop_on = "2,3,7" >
+			</Prop>
+		</Event>
+
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "-200" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "15" state = "Type1_line_1_invert" number = "10" interval = "350" time = "16000" drop = "power_small" drop_on = "1,4,6" >
+			</Prop>
+		</Event>
+
+		<Event type = "spawnEnemy">
+			<Prop pX = "0" pY = "600" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "100" state = "Type5_1"  time = "20000"  drop = "power_big" >
+			</Prop>
+		</Event>
+
+
+		<Event type = "spawnGuardian">
+			<Prop pX = "0" pY = "600" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "5000" state = "Type5_1"  time = "20000"  drop = "power_big" >
+			</Prop>
+		</Event>
+
+
+			<Event type = "spawnEnemyLine">
+			<Prop pX = "250" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_pink.xml" health = "15" state = "Type2_A" number = "5" interval = "750" time = "16000" drop = "power_small" drop_on = "1,2,3" >
+			</Prop>
+		</Event> 
+
+
+			<Event type = "spawnEnemyLine">
+			<Prop pX = "-250" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_pink.xml" health = "15" state = "Type2_A_invert" number = "5" interval = "750" time = "16000" drop = "power_small" drop_on = "1,2,3" >
+			</Prop>
+		</Event> 
+
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "-100" pY = "400" w = "24" h = "34" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "30" state = "Type1_line_1_invert" number = "10" interval = "350" time = "13000" drop = "score" drop_on = "1,2,3,7" >
+			</Prop>
+		</Event>
+
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "50" pY = "400" w = "24" h = "34" asset = "Assets/F_AObjects/fairy_enemy_normal_pink.xml" health = "15" state = "Type1" number = "3" interval = "800" time = "28000" drop = "score" drop_on = "1,2" >
+			</Prop>
+		</Event>
+	
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "-50" pY = "400" w = "24" h = "34" asset = "Assets/F_AObjects/fairy_enemy_normal_pink.xml" health = "15" state = "Type1_invert" number = "3" interval = "800" time = "28000" drop = "score" drop_on = "1,2" >
+			</Prop>
+		</Event>
+ 		<Event type = "spawnEnemyLine">
+			<Prop pX = "-100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "15" state = "Type1_line_1_invert" number = "10" interval = "350" time = "33000" drop = "power_small" drop_on = "1,2,3,7" >
+			</Prop>
+		</Event> 
+
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "15" state = "Type1_line_1" number = "10" interval = "350" time = "33000" drop = "power_small" drop_on = "1,2,3,7" >
+			</Prop>
+		</Event>
+
+	
+ 		<Event type = "spawnEnemyLine">
+			<Prop pX = "-100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "20" state = "Type1_line_1_invert" number = "5" interval = "350" time = "49000" drop = "score" drop_on = "all" >
+			</Prop>
+		</Event> 
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "20" state = "Type1_line_1" number = "5" interval = "350" time = "49000" drop = "score" drop_on = "all" >
+			</Prop>
+		</Event>
+
+		<Event type = "spawnEnemy">
+			<Prop pX = "100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "100" state = "Type3_1_simple"  time = "54000"  drop = "power_big" >
+			</Prop>
+		</Event>
+
+		<Event type = "spawnEnemy">
+			<Prop pX = "-100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "100" state = "Type3_1_simple_invert"  time = "57000"  drop = "power_big" >
+			</Prop>
+		</Event>
+
+		<Event type = "spawnEnemy">
+			<Prop pX = "-120" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "100" state = "Type5_2"  time = "59000"  drop = "power_big" >
+			</Prop>
+		</Event>
+
+		<Event type = "spawnEnemy">
+			<Prop pX = "120" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "100" state = "Type5_2"  time = "59000"  drop = "power_big" >
+			</Prop>
+		</Event>
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "20" state = "Type2_A" number = "4" interval = "850" time = "62000" drop = "power_big" drop_on = "all" >
+			</Prop>
+		</Event> 
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "-100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "20" state = "Type2_A_invert" number = "4" interval = "850" time = "62000" drop = "power_big" drop_on = "all" >
+			</Prop>
+		</Event> 
+
+		<Event type = "spawnAmplifier">
+			<Prop pX = "100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "220" state = "Ghost_type1" time = "64000" >
+			</Prop>
+		</Event>
+
+		<Event type = "spawnAmplifier">
+			<Prop pX = "-100" pY = "400" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "220" state = "Ghost_type1" time = "64000" >
+			</Prop>
+		</Event>
+
+<!-- 		<Event type = "spawnAmplifier">
+			<Prop pX = "100" pY = "200" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "220" state = "Ghost_type1" time = "3000" >
+			</Prop>
+		</Event>
+
+		<Event type = "spawnAmplifier">
+			<Prop pX = "-100" pY = "200" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "220" state = "Ghost_type1" time = "3000" >
+			</Prop>
+		</Event> -->
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "-400" pY = "100" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "20" state = "Type2_B" number = "10" interval = "350" time = "68000" drop = "score" drop_on = "all" >
+			</Prop>
+		</Event> 
+
+		<Event type = "spawnEnemyLine">
+			<Prop pX = "400" pY = "100" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_normal_black.xml" health = "20" state = "Type2_B_invert" number = "10" interval = "350" time = "68000" drop = "score" drop_on = "all" >
+			</Prop>
+		</Event>
+		
+	</Events>
+</Level>

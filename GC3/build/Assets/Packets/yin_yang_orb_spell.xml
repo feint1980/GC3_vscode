@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:2d6351215b5cf243e612464440fd3a65:4f80ab368899caa02cdb8c28d2dce062:4e96a2f67666c5edc23bd98f964a96f4$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="yin_yang_orb_spell.png" width="512" height="1920">
+    <sprite n="spellBulletC000.png" x="0" y="0" w="256" h="256"/>
+    <sprite n="spellBulletC001.png" x="256" y="0" w="256" h="256"/>
+    <sprite n="spellBulletC002.png" x="512" y="0" w="256" h="256"/>
+    <sprite n="spellBulletC003.png" x="768" y="0" w="256" h="256"/>
+    <sprite n="spellBulletC004.png" x="0" y="256" w="256" h="256"/>
+    <sprite n="spellBulletC005.png" x="256" y="256" w="256" h="256"/>
+    <sprite n="spellBulletC006.png" x="512" y="256" w="256" h="256"/>
+    <sprite n="spellBulletC007.png" x="768" y="256" w="256" h="256"/>
+    <sprite n="spellBulletC008.png" x="0" y="512" w="256" h="256"/>
+    <sprite n="spellBulletC009.png" x="256" y="512" w="256" h="256"/>
+    <sprite n="spellBulletC010.png" x="512" y="512" w="256" h="256"/>
+    <sprite n="spellBulletC011.png" x="768" y="512" w="256" h="256"/>
+    <sprite n="spellBulletC012.png" x="0" y="768" w="256" h="256"/>
+    <sprite n="spellBulletC013.png" x="256" y="768" w="256" h="256"/>
+    <sprite n="spellBulletC014.png" x="512" y="768" w="256" h="256"/>
+    <sprite n="spellBulletC015.png" x="768" y="768" w="256" h="256"/>
+    <sprite n="spellBulletC016.png" x="0" y="1024" w="256" h="256"/>
+    <sprite n="spellBulletC017.png" x="256" y="1024" w="256" h="256"/>
+    <sprite n="spellBulletC018.png" x="512" y="1024" w="256" h="256"/>
+    <sprite n="spellBulletC019.png" x="768" y="1024" w="256" h="256"/>
+    <sprite n="spellBulletC020.png" x="0" y="1280" w="256" h="256"/>
+    <sprite n="spellBulletC021.png" x="256" y="1280" w="256" h="256"/>
+    <sprite n="spellBulletC022.png" x="512" y="1280" w="256" h="256"/>
+    <sprite n="spellBulletC023.png" x="768" y="1280" w="256" h="256"/>
+    <sprite n="spellBulletC024.png" x="0" y="1536" w="256" h="256"/>
+    <sprite n="spellBulletC025.png" x="256" y="1536" w="256" h="256"/>
+    <sprite n="spellBulletC026.png" x="512" y="1536" w="256" h="256"/>
+    <sprite n="spellBulletC027.png" x="768" y="1536" w="256" h="256"/>
+    <sprite n="spellBulletC028.png" x="0" y="1792" w="256" h="256"/>
+    <sprite n="spellBulletC029.png" x="256" y="1792" w="256" h="256"/>
+    <sprite n="spellBulletC030.png" x="512" y="1792" w="256" h="256"/>
+    <sprite n="spellBulletC031.png" x="768" y="1792" w="256" h="256"/>
+    <sprite n="spellBulletC032.png" x="0" y="2048" w="256" h="256"/>
+    <sprite n="spellBulletC033.png" x="256" y="2048" w="256" h="256"/>
+    <sprite n="spellBulletC034.png" x="512" y="2048" w="256" h="256"/>
+    <sprite n="spellBulletC035.png" x="768" y="2048" w="256" h="256"/>
+    <sprite n="spellBulletC036.png" x="0" y="2304" w="256" h="256"/>
+    <sprite n="spellBulletC037.png" x="256" y="2304" w="256" h="256"/>
+    <sprite n="spellBulletC038.png" x="512" y="2304" w="256" h="256"/>
+    <sprite n="spellBulletC039.png" x="768" y="2304" w="256" h="256"/>
+    <sprite n="spellBulletC040.png" x="0" y="2560" w="256" h="256"/>
+    <sprite n="spellBulletC041.png" x="256" y="2560" w="256" h="256"/>
+    <sprite n="spellBulletC042.png" x="512" y="2560" w="256" h="256"/>
+    <sprite n="spellBulletC043.png" x="768" y="2560" w="256" h="256"/>
+    <sprite n="spellBulletC044.png" x="0" y="2816" w="256" h="256"/>
+    <sprite n="spellBulletC045.png" x="256" y="2816" w="256" h="256"/>
+    <sprite n="spellBulletC046.png" x="512" y="2816" w="256" h="256"/>
+    <sprite n="spellBulletC047.png" x="768" y="2816" w="256" h="256"/>
+    <sprite n="spellBulletC048.png" x="0" y="3072" w="256" h="256"/>
+    <sprite n="spellBulletC049.png" x="256" y="3072" w="256" h="256"/>
+    <sprite n="spellBulletC050.png" x="512" y="3072" w="256" h="256"/>
+    <sprite n="spellBulletC051.png" x="768" y="3072" w="256" h="256"/>
+    <sprite n="spellBulletC052.png" x="0" y="3328" w="256" h="256"/>
+    <sprite n="spellBulletC053.png" x="256" y="3328" w="256" h="256"/>
+    <sprite n="spellBulletC054.png" x="512" y="3328" w="256" h="256"/>
+    <sprite n="spellBulletC055.png" x="768" y="3328" w="256" h="256"/>
+    <sprite n="spellBulletC056.png" x="0" y="3584" w="256" h="256"/>
+    <sprite n="spellBulletC057.png" x="256" y="3584" w="256" h="256"/>
+</TextureAtlas>

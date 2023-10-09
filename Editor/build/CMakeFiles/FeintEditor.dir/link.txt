@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\FeintEditor.dir/objects.a
+C:\SysGCC\mingw32\bin\ar.exe qc CMakeFiles\FeintEditor.dir/objects.a @CMakeFiles\FeintEditor.dir\objects1.rsp
+C:\SysGCC\mingw32\bin\c++.exe -fpermissive -std=c++14 -Wl,--whole-archive CMakeFiles\FeintEditor.dir/objects.a -Wl,--no-whole-archive -o FeintEditor.exe -Wl,--out-implib,libFeintEditor.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\FeintEditor.dir\linkLibs.rsp

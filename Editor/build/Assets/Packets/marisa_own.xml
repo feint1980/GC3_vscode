@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:8f98569e1afefdb73b611323d5866f14:0a181225f82357299e475fb6e0aac460:26f05cf8b344a474f472da14b350ee9f$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="marisa_own.png" width="468" height="674">
+    <sprite n="marisa_01.png" x="86" y="0" w="91" h="166"/>
+    <sprite n="marisa_02.png" x="0" y="334" w="93" h="168"/>
+    <sprite n="marisa_03.png" x="0" y="502" w="97" h="169"/>
+    <sprite n="marisa_04.png" x="282" y="502" w="97" h="171"/>
+    <sprite n="marisa_05.png" x="97" y="502" w="95" h="170"/>
+    <sprite n="marisa_06.png" x="379" y="502" w="89" h="172"/>
+    <sprite n="marisa_07.png" x="273" y="0" w="103" h="167"/>
+    <sprite n="marisa_08.png" x="0" y="167" w="99" h="167"/>
+    <sprite n="marisa_09.png" x="192" y="502" w="90" h="170"/>
+    <sprite n="marisa_10.png" x="93" y="334" w="93" h="168"/>
+    <sprite n="marisa_11.png" x="99" y="167" w="92" h="167"/>
+    <sprite n="marisa_12.png" x="186" y="334" w="94" h="168"/>
+    <sprite n="marisa_13.png" x="0" y="0" w="86" h="164"/>
+    <sprite n="marisa_14.png" x="177" y="0" w="96" h="166"/>
+    <sprite n="marisa_15.png" x="191" y="167" w="99" h="167"/>
+    <sprite n="marisa_16.png" x="290" y="167" w="103" h="167"/>
+    <sprite n="marisa_17.png" x="280" y="334" w="97" h="168"/>
+</TextureAtlas>

@@ -1,0 +1,75 @@
+<Scripts>
+	<Events name = "Type1_1">
+		<Event name = "atPlayer" speed = "4.2" time = "250"/>
+		<!--<Event name = "cos" startAngle = "0" endAngle = "400" angleStep = "0.2" time = "700"/>-->
+	</Events>
+	<Events name = "Circle_fly">
+		<Event name = "cos" startAngle = "0" endAngle = "4000" angleStep = "0.354" time = "100"/>
+	</Events>
+	<Events name = "Type6_1">
+		<Event name = "atPlayer" speed = "5.9" time = "1000"/>
+		<Event name = "cos" startAngle = "0" endAngle = "400" angleStep = "0.2" time = "700"/>
+	</Events>
+
+	<Events name = "atPlayerT1">
+		<Event name = "atPlayer" speed = "4.2" time = "1250"/>
+		<Event name = "atPlayer" speed = "5.2" time = "3250"/>
+	</Events>
+
+	<Events name = "Type6_1_a">
+		<Event name = "atPlayer" speed = "6.2" time = "1250"/>
+	</Events>
+
+	<Events name = "Type8_1_atPlayer">
+		<Event name = "atPlayer" speed = "6.2" time = "2250"/>
+	</Events>
+	<Events name = "slowdown">
+		<Event name = "speedChange" speed = "1.5" time = "650"/>
+	</Events>
+
+	<Events name = "slowdownA">
+		<Event name = "speedChange" speed = "5.5" transit_time = "10.0" time = "650"/>
+		<Event name = "speedChange" speed = "0.1" transit_time = "10.0" time = "1050"/>
+	</Events>
+
+	<Events name = "speedupA">
+		<Event name = "speedChange" speed = "2.2"  transit_time = "50.0" time = "1050"/>
+	</Events>
+
+	<Events name = "slowdownA1">
+		<Event name = "speedChange" speed = "0.2"  transit_time = "40.0" time = "100"/>
+		<Event name = "speedChange" speed = "1.2"  transit_time = "10.0" time = "4500"/>
+	</Events>
+ 	<Events name = "slowdownA2">
+		<Event name = "speedChange" speed = "0.1"  transit_time = "40.0" time = "1000"/>
+		<Event name = "speedChange" speed = "0.5"  transit_time = "70.0" time = "7000"/>
+	</Events>
+ 
+	<Events name = "slowdownB">
+		<Event name = "speedChange" speed = "3.5" time = "650"/>
+		<Event name = "speedChange" speed = "1.4" time = "1050"/>
+	</Events>
+	<Events name = "slowdownC">
+		<Event name = "maxSpeed" value = "1.9" time = "1" />
+	</Events>
+	<Events name = "slowdownD">
+		<Event name = "maxSpeed" value = "1.9" time = "2500" />
+	</Events>
+	<Events name = "speedCap">
+		<Event name = "maxSpeed" value = "1.5" time = "2500" />
+	</Events>
+
+	<Events name = "slowdownCustomF">
+		<Event name = "maxSpeed" value = "0.25" time = "650" />
+
+		<Event name = "maxSpeed" value = "0.015" time = "1400" />
+
+		<Event name = "maxSpeed" value = "2.25" time = "2000" />
+
+		<Event name = "cos" startAngle = "0" endAngle = "4000" angleStep = "0.25" time = "2200"/>
+	</Events>
+	<Events name = "slowdown_3_1">
+		<Event name = "speedChange" speed = "3.5" time = "1450"/>
+		<Event name = "speedChange" speed = "1.4" time = "1750"/>
+	</Events>
+</Scripts>

@@ -1,0 +1,17 @@
+<F_AObj name="komachi_effects">
+	<animations>
+		<animation name="souls_fly">
+			<anims>
+				<anim name="komachi_effect/komachi_effects_cut_92.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="komachi_effect/komachi_effects_cut_93.png" time="4.00" offset_x="-1.00ë%?Æ¹õ¸" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effects_cut_94.png" time="4.00" offset_x="-1.00ë%)ÆOõç¿" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effects_cut_95.png" time="4.00" offset_x="-1.00¯EýÆ{õžÙ" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effects_cut_96.png" time="4.00" offset_x="-1.00ë%Æwõ©Ó" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effects_cut_97.png" time="4.00" offset_x="-1.00ë%ÆaõòÌ" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effects_cut_98.png" time="0.00" offset_x="-1.00ë%%ÆSõ8Å" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effects_cut_99.png" time="4.00" offset_x="-1.00ë%Æ]õ_Æ" offset_y="0.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

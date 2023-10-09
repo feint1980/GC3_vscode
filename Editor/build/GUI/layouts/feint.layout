@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<GUILayout version="4" >
+    <Window type="DefaultWindow" name="root" >
+        <Property name="Area" value="{{0,1},{0,2},{1,1},{1,2}}" />
+        <Property name="MaxSize" value="{{1,0},{1,0}}" />
+        <Window type="TaharezLook/Menubar" name="Menubar" >
+            <Property name="Area" value="{{0,0},{0,0},{1,0},{0,32}}" />
+            <Window type="TaharezLook/MenuItem" name="Menu_Item_File" >
+                <Property name="Area" value="{{0,7},{0,0},{0,44},{0,26}}" />
+                <Property name="Font" value="DejaVuSans-12" />
+                <Property name="Text" value="File" />
+                <Property name="VerticalAlignment" value="Centre" />
+                <Window type="TaharezLook/PopupMenu" name="FIlePopup" >
+                    <Property name="Area" value="{{0,0},{0,0},{0,122.222},{0,89.3742}}" />
+                    <Property name="Visible" value="false" />
+                    <Property name="ItemSpacing" value="2" />
+                    <Property name="ClippedByParent" value="false" />
+                    <Property name="AutoResizeEnabled" value="true" />
+                    <Window type="TaharezLook/MenuItem" name="New_Scene" >
+                        <Property name="Area" value="{{0,2},{0,2},{0,117},{0,28}}" />
+                        <Property name="Text" value="New Scene" />
+                    </Window>
+                    <Window type="TaharezLook/MenuItem" name="Open_Scene" >
+                        <Property name="Area" value="{{0,2},{0,30},{0,117},{0,56}}" />
+                        <Property name="Text" value="Open Scene" />
+                    </Window>
+                    <Window type="TaharezLook/MenuItem" name="Save_Scene" >
+                        <Property name="Area" value="{{0,2},{0,58},{0,117},{0,84}}" />
+                        <Property name="Text" value="Save Scene" />
+                    </Window>
+                </Window>
+            </Window>
+            <Window type="TaharezLook/MenuItem" name="Menu_Item_Edit" >
+                <Property name="Area" value="{{0,53.5556},{0,0},{0,94.5556},{0,26}}" />
+                <Property name="Text" value="Edit" />
+                <Property name="VerticalAlignment" value="Centre" />
+                <Window type="TaharezLook/PopupMenu" name="EditPopup" >
+                    <Property name="Area" value="{{0,0},{0,0},{0,149.222},{0,61.1384}}" />
+                    <Property name="Visible" value="false" />
+                    <Property name="ItemSpacing" value="2" />
+                    <Property name="ClippedByParent" value="false" />
+                    <Property name="AutoResizeEnabled" value="true" />
+                    <Window type="TaharezLook/MenuItem" name="Scene_Editing" >
+                        <Property name="Area" value="{{0,2},{0,2},{0,144},{0,28}}" />
+                        <Property name="Text" value="Scene Editting" />
+                    </Window>
+                    <Window type="TaharezLook/MenuItem" name="Object_Editing" >
+                        <Property name="Area" value="{{0,2},{0,30},{0,144},{0,56}}" />
+                        <Property name="Text" value="Object Editting" />
+                    </Window>
+                </Window>
+            </Window>
+        </Window>
+    </Window>
+</GUILayout>

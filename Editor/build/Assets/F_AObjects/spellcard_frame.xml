@@ -1,0 +1,34 @@
+<F_AObj name="spellcard_frame">
+	<animations>
+		<animation name="ready">
+			<anims>
+				<anim name="spellFrame/spellcardFrame_01.png" time="3.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="spellFrame/spellcardFrame_02.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_03.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_04.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_05.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_06.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_07.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_08.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_09.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_10.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_11.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_12.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_13.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_14.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_15.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_16.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_17.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_18.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_19.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="spellFrame/spellcardFrame_20.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="idle">
+			<anims>
+				<anim name="spellFrame/spellcardFrame_21.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

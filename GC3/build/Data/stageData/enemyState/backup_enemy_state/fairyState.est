@@ -1,0 +1,447 @@
+<EnemyStates>
+	<ComboState name = "Type1">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-2.5" time = "1" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "4" start_range = "1" start_angle = "200" angle_step = "0.1" range_cover = "4"  count = "10"  time = "800" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "4" start_range = "1" start_angle = "200" angle_step = "0.1" range_cover = "4"  count = "10"  time = "900" />
+		<State name = "moveBerzier" inter_x = "0" inter_y = "-100" des_x = "400" 
+		des_y = "0" speed = "3" time = "1200" />
+
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "4" start_range = "1" start_angle = "180" angle_step = "0.1" range_cover = "4"  count = "10"  time = "2100" 
+		 interval = "50" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "5" start_range = "1" start_angle = "180" angle_step = "0.1" range_cover = "4"  count = "10"  time = "2200" event = "Type1_1" interval = "50" />
+		<State name = "selfDestroy" time = "10000"/>
+	</ComboState>
+	<ComboState name = "Type1_invert">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-2.5" time = "1" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "4" start_range = "1" start_angle = "0" angle_step = "-0.1" range_cover = "4"  count = "10"  time = "800" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "4" start_range = "1" start_angle = "0" angle_step = "-0.1" range_cover = "4"  count = "10"  time = "900"  />
+		<State name = "moveBerzier" inter_x = "0" inter_y = "-100" des_x = "-400" 
+		des_y = "0" speed = "3" time = "1200"  />
+
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "4" start_range = "1" start_angle = "-20" angle_step = "-0.1" range_cover = "4"  count = "10"  time = "2500" event = "Type1_1" interval = "50" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "4" start_range = "1" start_angle = "-20" angle_step = "-0.1" range_cover = "4"  count = "10"  time = "2600" interval = "50" />
+		<State name = "selfDestroy" time = "10000"/>
+	</ComboState>
+	<ComboState name = "Type1_line_1">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-2.5" time = "1" />
+		<State name = "moveBerzier" inter_x = "0" inter_y = "0" des_x = "-400" 
+		des_y = "0" speed = "3.7" time = "1000" />
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "4.5" randomness = "0.35" interval ="100" count = "2" time = "1000"  />
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "4.5" randomness = "0.75" interval ="100" count = "2" time = "2500" />
+		<State name = "selfDestroy" time = "15000"/>
+
+	</ComboState>
+
+	<ComboState name = "Type1_line_1_invert">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-2.5" time = "1" />
+		<State name = "moveBerzier" inter_x = "0" inter_y = "0" des_x = "400" 
+		des_y = "0" speed = "3.7" time = "1000" />
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "4.5" randomness = "0.35" interval ="100" count = "2" time = "1000" />
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "4.5" randomness = "0.75" interval ="100" count = "2" time = "2500"/>
+		<State name = "selfDestroy" time = "10000"/>
+	</ComboState>
+	<ComboState name = "Type2">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-2.5" time = "1" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_big_green.png" speed = "5" start_range = "1" start_angle = "200" angle_step = "0.1" range_cover = "4"  count = "10"  time = "800" interval = "50" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_big_green.png" speed = "5" start_range = "1" start_angle = "200" angle_step = "0.1" range_cover = "4"  count = "10" interval = "50" time = "900" />
+		<State name = "moveBerzier" inter_x = "-200" inter_y = "-400" des_x = "-400" 
+		des_y = "400" speed = "4" time = "1200" />
+
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_big_green.png" speed = "5" start_range = "1" start_angle = "180" angle_step = "0.1" range_cover = "4"   count = "10"  time = "2500" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_big_green.png" speed = "5" start_range = "1" start_angle = "180" angle_step = "0.1" range_cover = "4"   count = "10"  time = "2600" />
+		<State name = "selfDestroy" time = "10000"/>
+
+	</ComboState>
+	<ComboState name = "Type2_invert">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-2.5" time = "1" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_big_green.png" speed = "5" start_range = "1" start_angle = "0" angle_step = "-0.1" range_cover = "4"  count = "10"  time = "800" interval = "50" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_big_green.png" speed = "5" start_range = "1" start_angle = "0" angle_step = "-0.1" range_cover = "4"  count = "10"  time = "900" interval = "50" />
+		<State name = "moveBerzier" inter_x = "200" inter_y = "-400" des_x = "400" 
+		des_y = "400" speed = "4" time = "1200" />
+
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_big_green.png" speed = "5" start_range = "1" start_angle = "-20" angle_step = "-0.1" range_cover = "4"  count = "10"  time = "2500" interval = "50" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_big_green.png" speed = "5" start_range = "1" start_angle = "-20" angle_step = "-0.1" range_cover = "4"  count = "10"  time = "2600"  interval = "50"/>
+		<State name = "selfDestroy" time = "15000"/>
+	</ComboState>
+	<ComboState name = "Type2_A">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-2.5" time = "1" />
+		<State name = "moveBerzier" inter_x = "-400" inter_y = "-100" des_x = "0" 
+			des_y = "900" speed = "2.5" time = "500" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "1.5" start_range = "1" start_angle = "200" angle_step = "0.1" range_cover = "8"  count = "20"  time = "1300" interval = "50" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_yellow.png" speed = "1.5" start_range = "1" start_angle = "200" angle_step = "0.1" range_cover = "8"  count = "15" interval = "50" time = "1400" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_orange.png" speed = "1.5" start_range = "1" start_angle = "0" angle_step = "0.25" range_cover = "8"  count = "20"  time = "3300" interval = "50" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_white.png" speed = "1.5" start_range = "1" start_angle = "0" angle_step = "0.25" range_cover = "8"  count = "15" interval = "50" time = "3400" />
+
+		<State name = "selfDestroy" time = "20000"/>
+
+	</ComboState>
+	<ComboState name = "Type2_A_invert">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-2.5" time = "1" />
+		<State name = "moveBerzier" inter_x = "400" inter_y = "-100" des_x = "0" 
+			des_y = "900" speed = "2.5" time = "500" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "1.5" start_range = "1" start_angle = "-20" angle_step = "-0.1" range_cover = "8"  count = "20"  time = "1300" interval = "50" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_yellow.png" speed = "1.5" start_range = "1" start_angle = "-20" angle_step = "-0.1" range_cover = "8"  count = "15" interval = "50" time = "1400" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_orange.png" speed = "1.5" start_range = "1" start_angle = "0" angle_step = "0.25" range_cover = "8"  count = "20"  time = "3300" interval = "50" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_white.png" speed = "1.5" start_range = "1" start_angle = "0" angle_step = "0.25" range_cover = "8"  count = "15" interval = "50" time = "3400" />
+
+		<State name = "selfDestroy" time = "20000"/>
+
+	</ComboState>
+	<ComboState name = "Type2_B">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "3.5" vel_y = "0" time = "1" />
+		<State name = "move" vel_x = "-3.5" vel_y = "0" time = "3500" />
+		<State name = "move" vel_x = "3.5" vel_y = "1" time = "7000" />
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "1000" />
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "2500"/>
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "4000"/>
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "6000"/>
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "8000"/>
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "10000"/>
+		<State name = "selfDestroy" time = "25000"/>
+
+	</ComboState>
+		<ComboState name = "Type2_B_invert">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "-3.5" vel_y = "0" time = "1" />
+		<State name = "move" vel_x = "3.5" vel_y = "0" time = "3500" />
+		<State name = "move" vel_x = "-3.5" vel_y = "1" time = "7000" />
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "1000" />
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "2500"/>
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "4000"/>
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "6000"/>
+
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "8000"/>
+		<State name = "fire" pattern = "atPlayer_2" asset = "projectile/bullet_shard_blue.png" speed = "2.5" randomness = "0.35" interval ="100" count = "4" time = "10000"/>
+		<State name = "selfDestroy" time = "35000"/>
+
+	</ComboState>
+	<ComboState name = "Type3">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "moveBerzier" inter_x = "200" inter_y = "-600" des_x = "0" 
+			des_y = "900" speed = "4" time = "800" />
+
+	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_blue.png" speed = "3.5"  start_angle = "90" angle_step = "3400" a = "1" b = "2" r = "45"  n = "9" n2 = "9" l1 = "2" l2 = "3" life_time = "10" time = "1200" posneg = "-1" rotation = "0" interval = "60" event = "slowdown"   />
+
+	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_yellow.png" speed = "3.5"  start_angle = "90" angle_step = "3400" a = "1" b = "2" r = "45"  n = "9" n2 = "9" l1 = "2" l2 = "3" life_time = "10" time = "1700" posneg = "-1" rotation = "0" interval = "60" event = "slowdown"   />
+		<State name = "selfDestroy" time = "20000"/>
+	</ComboState>
+	<ComboState name = "Type3_invert">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "moveBerzier" inter_x = "-200" inter_y = "-600" des_x = "0" 
+			des_y = "900" speed = "4" time = "800" />
+
+	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_blue.png" speed = "3.5"  start_angle = "90" angle_step = "3400" a = "1" b = "2" r = "45"  n = "9" n2 = "9" l1 = "2" l2 = "3" life_time = "10" time = "1200" posneg = "-1" rotation = "0" interval = "60" event = "slowdown"   />
+
+	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_yellow.png" speed = "3.5"  start_angle = "90" angle_step = "3400" a = "1" b = "2" r = "45"  n = "9" n2 = "9" l1 = "2" l2 = "3" life_time = "10" time = "1700" posneg = "-1" rotation = "0" interval = "60" event = "slowdown"   />
+		<State name = "selfDestroy" time = "20000"/>
+	</ComboState>
+
+
+	<ComboState name = "Type3_1_simple">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "moveBerzier" inter_x = "200" inter_y = "-600" des_x = "0" 
+			des_y = "900" speed = "4" time = "800" />
+
+	 <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_green.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "4" b = "7" c = "4" r = "45"  count = "320" life_time = "10" time = "1000" interval = "10"  event = "slowdownC" />
+	<State name = "moveBerzier" inter_x = "-200" inter_y = "600" des_x = "0" des_y = "-200" speed = "4" time = "800" />
+		<State name = "selfDestroy" time = "20000"/>
+	</ComboState>
+
+<ComboState name = "Type3_1_simple_invert">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "moveBerzier" inter_x = "-200" inter_y = "-600" des_x = "0" 
+			des_y = "900" speed = "4" time = "800" />
+
+	 <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_green.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "4" b = "7" c = "4" r = "45"  count = "320" life_time = "10" time = "1000" interval = "10"  event = "slowdownC" />
+
+	<State name = "moveBerzier" inter_x = "200" inter_y = "600" des_x = "0" des_y = "-200" speed = "4" time = "800" />
+		<State name = "selfDestroy" time = "20000"/>
+	</ComboState>
+
+	<ComboState name = "Type3_1">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "moveBerzier" inter_x = "200" inter_y = "-600" des_x = "0" 
+			des_y = "900" speed = "4" time = "800" />
+
+	 <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_green.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "4" b = "7" c = "4" r = "45"  count = "320" life_time = "10" time = "1000" interval = "10"  event = "slowdownC" />
+
+
+	  <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_red.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "5" b = "6" c = "4" r = "45"  count = "180" life_time = "10" time = "1400" interval = "10"  event = "slowdown_3_1" />
+	<State name = "moveBerzier" inter_x = "-200" inter_y = "600" des_x = "0" 
+			des_y = "-200" speed = "4" time = "800" />
+		<State name = "selfDestroy" time = "20000"/>
+	</ComboState>
+
+	<ComboState name = "Type3_1_invert">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "moveBerzier" inter_x = "-200" inter_y = "-600" des_x = "0" 
+			des_y = "900" speed = "4" time = "800" />
+
+	 <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_green.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "4" b = "7" c = "4" r = "45"  count = "320" life_time = "10" time = "1000" interval = "10"  event = "slowdownC" />
+
+
+	  <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_red.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "5" b = "6" c = "4" r = "45"  count = "180" life_time = "10" time = "1400" interval = "10"  event = "slowdown_3_1" />
+	<State name = "moveBerzier" inter_x = "200" inter_y = "600" des_x = "0" 
+			des_y = "-200" speed = "4" time = "800" />
+		<State name = "selfDestroy" time = "20000"/>
+	</ComboState>
+	<ComboState name = "Type4">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-3.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1200" />
+  <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/bullet_shard_blue.png" speed = "0.2"  start_angle = "0" angle_step = "0.1" a = "9" b = "5" c = "6" r = "45"  count = "600" life_time = "10" time = "1200" event ="speedupA" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1200" />
+  <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/bullet_shard_orange.png" speed = "0.2"  start_angle = "0" rotation = "10" angle_step = "0.1" a = "9" b = "5" c = "6" r = "45"  count = "600" life_time = "10" time = "1200" event ="speedupA" />
+		<State name = "selfDestroy" time = "20000"/>
+	</ComboState>
+	<ComboState name = "Type4_1">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-3.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1200" />
+		<State name = "move" vel_x = "2.3" vel_y = "-2.3" time = "2600" />
+  <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/bullet_shard_blue.png" speed = "0.2"  start_angle = "0" angle_step = "0.11" a = "9" b = "5" c = "6" r = "45"  count = "300" life_time = "10" time = "1200" event ="speedupA" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1200" />
+  <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/bullet_shard_orange.png" speed = "0.2"  start_angle = "0" rotation = "20" angle_step = "0.11" a = "9" b = "5" c = "6" r = "45"  count = "300" life_time = "10" time = "1200" event ="speedupA" />
+		<State name = "selfDestroy" time = "20000"/>
+	</ComboState>
+	<ComboState name = "Type4_1_invert">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-3.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1200" />
+		<State name = "move" vel_x = "-2.3" vel_y = "-2.3" time = "2600" />
+  <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/bullet_shard_blue.png" speed = "0.2"  start_angle = "0" angle_step = "0.11" a = "9" b = "5" c = "6" r = "45"  count = "300" life_time = "10" time = "1200" event ="speedupA" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1200" />
+  <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/bullet_shard_orange.png" speed = "0.2"  start_angle = "0" rotation = "20" angle_step = "0.11" a = "9" b = "5" c = "6" r = "45"  count = "300" life_time = "10" time = "1200" event ="speedupA" />
+		<State name = "selfDestroy" time = "20000"/>
+	</ComboState>
+	<ComboState name = "Type5">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1250" />
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1700" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "1.2" start_range = "1" start_angle = "200" angle_step = "-0.1" range_cover = "4"  count = "80"  time = "1300" />
+
+		<State name = "fire" pattern = "PE_Rose_cos" asset = "projectile/bullet_big_red.png" speed = "1.5" start_range = "1" start_angle = "15"  range_cover = "8" angle_step = "-0.025" petal_count = "3"  count = "250"  time = "1500" /> 
+		<State name = "fire" pattern = "PE_Rose_cos" asset = "projectile/bullet_big_red.png" speed = "1.5" start_range = "1" start_angle = "90"  range_cover = "12" angle_step = "-0.025" petal_count = "4"  count = "150"  time = "1700" />
+		<State name = "selfDestroy" time = "10000"/>
+	</ComboState>
+	<ComboState name = "Type5_1">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1250" />
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1700" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "1.2" start_range = "1" start_angle = "200"  angle_step = "-0.1" range_cover = "4"  count = "68"  time = "1300" />
+
+	<!-- 	<State name = "fire" pattern = "PE_Rose_cos" asset = "projectile/bullet_big_red.png" speed = "1.2" start_range = "1" start_angle = "45"  range_cover = "15" angle_step = "-0.035" petal_count = "4" rotation = "70"  count = "100"  time = "1400" /> -->
+		<State name = "fire" pattern = "PE_Rose_cos" asset = "projectile/bullet_big_red.png" speed = "1.2" start_range = "1" start_angle = "0"  range_cover = "15" angle_step = "-0.035" petal_count = "4" rotation = "0"  count = "100"  time = "1400" />
+		<State name = "fire" pattern = "PE_Rose_cos" asset = "projectile/bullet_big_red.png" speed = "1.2" start_range = "1" start_angle = "45"  range_cover = "15" angle_step = "-0.035" petal_count = "4" rotation = "250"  count = "100"  time = "1500" />
+<!-- 		<State name = "fire" pattern = "PE_Rose_cos" asset = "projectile/bullet_big_red.png" speed = "1.2" start_range = "1" start_angle = "90"  range_cover = "15" angle_step = "-0.035" petal_count = "3" rotation = "270"  count = "200"  time = "1350" />
+		<State name = "fire" pattern = "PE_Rose_cos" asset = "projectile/bullet_big_red.png" speed = "1.2" start_range = "1" start_angle = "60"  range_cover = "15" angle_step = "-0.035" petal_count = "3" rotation = "270"  count = "200"  time = "1350" />
+		<State name = "selfDestroy" time = "22000"/> -->
+	</ComboState>
+		<ComboState name = "Type5_2">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1250" />
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1700" />
+		<State name = "fire" pattern = "PE_Rose_cos" asset = "projectile/bullet_shard_blue.png" speed = "1.2" start_range = "1" start_angle = "0"  range_cover = "15" angle_step = "-0.035" petal_count = "4" rotation = "0"  count = "100"  time = "1400" />
+		<State name = "fire" pattern = "PE_Rose_cos" asset = "projectile/bullet_shard_orange.png" speed = "1.2" start_range = "1" start_angle = "45"  range_cover = "15" angle_step = "-0.035" petal_count = "4" rotation = "250"  count = "100"  time = "1500" />
+	</ComboState>
+	<ComboState name = "Type6_line">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "-2.5" vel_y = "0" time = "1" />
+		<State name = "move" vel_x = "-1" vel_y = "-4.5" time = "1250" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "3.5" start_range = "1" start_angle = "0" angle_step = "-0.1" range_cover = "4"  count = "15"  time = "1600" event = "Type6_1_a" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_big_red.png" speed = "3.5" start_range = "1" start_angle = "0" angle_step = "-0.1" range_cover = "4"  count = "15"  time = "1600"  />
+		<State name = "selfDestroy" time = "25000"/>
+	</ComboState>
+	<ComboState name = "Type6_line_invert">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "2.5" vel_y = "0" time = "1" />
+		<State name = "move" vel_x = "1" vel_y = "-4.5" time = "1250" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_shard_blue.png" speed = "3.5" start_range = "1" start_angle = "270" angle_step = "-0.1" range_cover = "4"  count = "15"  time = "1600" event = "Type6_1_a" />
+		<State name = "selfDestroy" time = "10000"/>
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/bullet_big_red.png" speed = "3.5" start_range = "1" start_angle = "270" angle_step = "-0.1" range_cover = "4"  count = "15"  time = "1600"  />
+		<State name = "selfDestroy" time = "10000"/>
+	</ComboState>
+
+	<ComboState name = "Type7">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1100" />
+		
+	  	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_blue.png" speed = "3.5"  start_angle = "0" angle_step = "3400" a = "1" b = "2" r = "45"  n = "9" n2 = "9" l1 = "2" l2 = "3" life_time = "10" time = "1100" posneg = "1" rotation = "0" interval = "60" event = "slowdown" />
+
+	  	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_yellow.png" speed = "3.5"  start_angle = "90" angle_step = "3400" a = "1" b = "2" r = "45"  n = "9" n2 = "9" l1 = "2" l2 = "3" life_time = "10" time = "1700" posneg = "-1" rotation = "0" interval = "60" event = "slowdown"   />
+	  	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_green.png" speed = "3.5"  start_angle = "180" angle_step = "3400" a = "1" b = "2" r = "45"   n = "9" n2 = "9" l1 = "2" l2 = "3" life_time = "10" time = "2300" posneg = "1" rotation = "0" interval = "60" event = "slowdown"  />
+
+	  	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_orange.png" speed = "3.5"  start_angle = "270" angle_step = "3400" a = "1" b = "2" r = "45"  n = "9" n2 = "9" l1 = "2" l2 = "3" life_time = "10" time = "2900" posneg = "-1" rotation = "0" interval = "60"  event = "slowdown"  />
+ 
+		<State name = "selfDestroy" time = "15000"/>
+</ComboState>
+	<ComboState name = "Type7A">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1100" />
+		
+	  	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_blue.png" speed = "3.5"  start_angle = "0" angle_step = "3400" a = "1" b = "2" r = "45"  n = "7" n2 = "8" l1 = "2" l2 = "3" life_time = "10" time = "1100" posneg = "1" rotation = "0" interval = "60" event = "slowdownA" />
+
+	  	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_yellow.png" speed = "3.5"  start_angle = "90" angle_step = "3400" a = "1" b = "2" r = "45"  n = "7" n2 = "8" l1 = "2" l2 = "3" life_time = "10" time = "1700" posneg = "-1" rotation = "0" interval = "60" event = "slowdownA"   />
+<!-- event = "slowdown" -->
+	  	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_green.png" speed = "3.5"  start_angle = "180" angle_step = "3400" a = "1" b = "2" r = "45"   n = "7" n2 = "8" l1 = "2" l2 = "3" life_time = "10" time = "2300" posneg = "1" rotation = "0" interval = "60" event = "slowdownA"  />
+
+	  	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/bullet_shard_orange.png" speed = "3.5"  start_angle = "270" angle_step = "3400" a = "1" b = "2" r = "45"  n = "7" n2 = "8" l1 = "2" l2 = "3" life_time = "10" time = "2900" posneg = "-1" rotation = "0" interval = "60"  event = "slowdownA"  />
+ 
+	  	<!-- <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/bullet_shard_orange.png" speed = "3.5"  start_angle = "90" angle_step = "0.25" a = "1" b = "2" r = "45"  count = "300" life_time = "10" time = "1100"  rotation = "180" interval = "10" /> -->
+		<State name = "selfDestroy" time = "15000"/>
+</ComboState>
+
+<ComboState name = "Type7B">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1100" />
+		
+	  	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/knife_red.png" speed = "3.5"  start_angle = "0" angle_step = "1200" a = "1" b = "2" r = "45"  n = "9" n2 = "15" l1 = "2" l2 = "2" life_time = "10" time = "1100" posneg = "1" rotation = "0" interval = "100" event = "slowdownA"  />
+
+   <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_green.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "13" b = "15" c = "16" r = "45"  count = "250" life_time = "10" time = "1100"    />
+
+    <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_blue.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "13" b = "15" r = "45"  count = "250" life_time = "10" time = "1100"   />
+	  	<!-- <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/bullet_shard_orange.png" speed = "3.5"  start_angle = "90" angle_step = "0.25" a = "1" b = "2" r = "45"  count = "300" life_time = "10" time = "1100"  rotation = "180" interval = "10" /> -->
+		<State name = "selfDestroy" time = "15000"/>
+</ComboState>
+
+
+<ComboState name = "Type7C">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1100" />
+		
+<!-- 	  	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/knife_red.png" speed = "3.5"  start_angle = "0" angle_step = "1200" a = "1" b = "2" r = "45"  n = "9" n2 = "15" l1 = "2" l2 = "2" life_time = "10" time = "1100" posneg = "1" rotation = "0" interval = "100" event = "slowdownA"  /> -->
+
+<!--    <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_green.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "13" b = "15" c = "16" r = "45"  count = "250" life_time = "10" time = "1100"    />
+
+    <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_blue.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "13" b = "15" r = "45"  count = "250" life_time = "10" time = "1100"   /> -->
+
+      <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_blue.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "7" b = "22" r = "45"  count = "250" life_time = "10" time = "1100" interval = "10"    event = "slowdownC"/>
+
+       <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_red.png" speed = "0.25"  start_angle = "90" angle_step = "1.1" a = "7" b = "22" r = "45"  count = "250" life_time = "10" time = "1100" interval = "10"   event = "slowdownC" />
+
+        <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_green.png" speed = "0.25"  start_angle = "180" angle_step = "1.1" a = "7" b = "22" r = "45"  count = "250" life_time = "10" time = "1100" interval = "10"   event = "slowdownC" />
+
+         <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_purple.png" speed = "0.25"  start_angle = "270" angle_step = "1.1" a = "7" b = "22" r = "45"  count = "250" life_time = "10" time = "1100" interval = "10"   event = "slowdownC" />
+
+       <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_blue.png" speed = "0.25"  start_angle = "180" angle_step = "-1.1" a = "7" b = "22" r = "45"  count = "250" life_time = "10" time = "1100" interval = "1"    event = "slowdownC"/>
+
+       <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_red.png" speed = "0.25"  start_angle = "270" angle_step = "-1.1" a = "7" b = "22" r = "45"  count = "250" life_time = "10" time = "1100" interval = "10"   event = "slowdownC" />
+
+        <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_green.png" speed = "0.25"  start_angle = "90" angle_step = "-1.1" a = "7" b = "22" r = "45"  count = "250" life_time = "10" time = "1100" interval = "10"   event = "slowdownC" />
+
+         <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_purple.png" speed = "0.25"  start_angle = "0" angle_step = "-1.1" a = "7" b = "22" r = "45"  count = "250" life_time = "10" time = "1100" interval = "10"   event = "slowdownC" />
+
+	  	<!-- <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/bullet_shard_orange.png" speed = "3.5"  start_angle = "90" angle_step = "0.25" a = "1" b = "2" r = "45"  count = "300" life_time = "10" time = "1100"  rotation = "180" interval = "10" /> -->
+		<State name = "selfDestroy" time = "15000"/>
+</ComboState>
+
+
+<ComboState name = "CustomF">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1100" />
+		
+      <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_blue.png" speed = "0.25"  start_angle = "0" angle_step = "2.1" a = "17" b = "22" r = "45"  count = "300" life_time = "10" time = "1100" interval = "10"  event = "slowdownCustomF"   />
+
+       <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_red.png" speed = "0.25"  start_angle = "90" angle_step = "2.1" a = "17" b = "22" r = "45"  count = "300" life_time = "10" time = "1100" interval = "10" event = "slowdownCustomF"   />
+
+        <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_green.png" speed = "0.25"  start_angle = "180" angle_step = "2.1" a = "17" b = "22" r = "45"  count = "300" life_time = "10" time = "1100" interval = "10" event = "slowdownCustomF"   />
+
+         <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/knife_purple.png" speed = "0.25"  start_angle = "270" angle_step = "2.1" a = "17" b = "22" r = "45"  count = "300" life_time = "10" time = "1100" interval = "10" event = "slowdownCustomF"   />
+
+
+	  	<!-- <State name = "fire" pattern = "MA_hypocycloid" asset = "projectile/bullet_shard_orange.png" speed = "3.5"  start_angle = "90" angle_step = "0.25" a = "1" b = "2" r = "45"  count = "300" life_time = "10" time = "1100"  rotation = "180" interval = "10" /> -->
+		<State name = "selfDestroy" time = "15000"/>
+</ComboState>
+
+<ComboState name = "Type1A">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1100" />
+		
+	  	<State name = "fire" pattern = "MA_custom_aff" asset = "projectile/knife_red.png" speed = "3.5"  start_angle = "0" angle_step = "1200" a = "1" b = "2" r = "45"  n = "9" n2 = "10" l1 = "2" l2 = "2" life_time = "10" time = "1100" posneg = "1" rotation = "0" interval = "100" event = "slowdownA"  />
+
+   <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_green.png" speed = "0.55"  start_angle = "0" angle_step = "1.1" a = "16" b = "12" c = "24" r = "45"  count = "100" life_time = "10" time = "1500"  interval = "1" event = "slowdownC" />
+
+<!--     <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_green.png" speed = "0.55"  start_angle = "90" angle_step = "1.1" a = "22" b = "7" c = "24" r = "45"  count = "200" life_time = "10" time = "1100"  interval = "1" event = "slowdownC" /> -->
+
+
+
+      <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_blue.png" speed = "0.25"  start_angle = "0" angle_step = "1.1" a = "16" b = "12" c = "24" r = "20"  count = "100" life_time = "10" time = "1500" event = "slowdownD" />
+
+    <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_blue.png" speed = "0.25"  start_angle = "90" angle_step = "1.1" a = "22" b = "7" c = "24" r = "20"  count = "400" life_time = "10" time = "1500" event = "slowdownD" />
+
+      <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/knife_green.png" speed = "0.25"  start_angle = "180" angle_step = "1.1" a = "16" b = "12" c = "24" r = "15"  count = "100" life_time = "10" time = "1500" event = "slowdownD"   />
+
+
+
+		<State name = "selfDestroy" time = "15000"/>
+</ComboState>
+
+		<ComboState name = "Type8">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "-1.5" time = "1200" />
+		<State name = "move" vel_x = "0" vel_y = "0" time = "1350" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/knife_red.png" speed = "3.5" start_range = "1" start_angle = "0" angle_step = "-0.1" range_cover = "4"  count = "120"  time = "1300"  interval = "5"  />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/knife_green.png" speed = "3.5" start_range = "1" start_angle = "120" angle_step = "-0.1" range_cover = "4"  count = "120"  time = "1300"  interval = "5" />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/knife_blue.png" speed = "3.5" start_range = "1" start_angle = "240" angle_step = "-0.1" range_cover = "4"  count = "120"  time = "1300"   interval = "5" />
+
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/knife_red.png" speed = "3.5" start_range = "1" start_angle = "10" angle_step = "0.1" range_cover = "4"  count = "120"  time = "2000"  interval = "5"   />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/knife_green.png" speed = "3.5" start_range = "1" start_angle = "130" angle_step = "0.1" range_cover = "4"  count = "120"  time = "2000"  interval = "5"  />
+		<State name = "fire" pattern = "PE_Circle" asset = "projectile/knife_blue.png" speed = "3.5" start_range = "1" start_angle = "250" angle_step = "0.1" range_cover = "4"  count = "120"  time = "2000"   interval = "5" />
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "2950" />
+		<State name = "selfDestroy" time = "14000"/>
+	</ComboState>
+<ComboState name = "Type9">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "-4.5" time = "1" />
+		<State name = "move" vel_x = "0" vel_y = "-1.5" time = "900" />
+
+  <State name = "fire" pattern = "MA_hypotrochoid" asset = "projectile/bullet_shard_blue.png" speed = "1.5"  start_angle = "0" angle_step = "1.1" a = "4" b = "5" c = "4" r = "45"  count = "100" life_time = "10" time = "1000"  interval = "10" />
+		<State name = "selfDestroy" time = "10000"/>
+	</ComboState>
+	<ComboState name = "Ghost_type1">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "selfDestroy" time = "150000"/>
+	</ComboState>
+	<ComboState name = "Disabled_sealed">
+		<State name = "playAnim" value = "idle" time = "0"/> 
+		<State name = "move" vel_x = "0" vel_y = "0" time = "0" />
+		<State name = "move" vel_x = "0" vel_y = "4.5" time = "1500" />
+		<State name = "selfDestroy" time = "10000"/>
+	</ComboState>
+</EnemyStates>

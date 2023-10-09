@@ -1,0 +1,10 @@
+<Animations>
+    <AnimationDefinition autoStart="false" name="yoyoyo" duration="10" replayMode="once">
+        <Affector property="Alpha" interpolator="float">
+            <KeyFrame position="0" value="1" />
+            <KeyFrame position="0.3" value="0.66" progression="quadratic decelerating" />
+        </Affector>
+    </AnimationDefinition>
+
+</Animations>
+

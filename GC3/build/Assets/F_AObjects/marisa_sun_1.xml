@@ -1,0 +1,24 @@
+<F_AObj name="marisa_sun_1">
+	<animations>
+		<animation name="destroy">
+			<anims>
+				<anim name="marisa_effects/bulletJa000.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="marisa_effects/bulletJb000.png" time="0.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa017.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa023.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa029.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa035.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa041.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa047.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa053.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa059.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="idle">
+			<anims>
+				<anim name="marisa_effects_2/bulletFa000.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

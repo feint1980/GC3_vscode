@@ -1,0 +1,10 @@
+<Lights>
+	<Light name = "default_white">
+		<Prop cR = "1.0" cG = "1.0" cB = "1.0" aX = "0.085" aY = "0.045" aZ = "0.055" offsetX = "0" offsetY = "0">
+		</Prop>
+	</Light>
+	<Light name = "default_violet">
+		<Prop cR = "0.5" cG = "0.2" cB = "0.82" aX = "0.15" aY = "0.045" aZ = "0.055" offsetX = "0" offsetY = "0">
+		</Prop>
+	</Light>
+</Lights>

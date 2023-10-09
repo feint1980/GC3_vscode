@@ -1,0 +1,42 @@
+<F_AObj name="Marisa_own">
+	<animations>
+		<animation name="idle">
+			<anims>
+				<anim name="marisa_own/marisa_01.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_own/marisa_02.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="marisa_own/marisa_03.png" time="4.00" offset_x="-1.00—s" offset_y="-1.00—s"/>
+				<anim name="marisa_own/marisa_04.png" time="4.00" offset_x="2.00" offset_y="-2.00—s"/>
+				<anim name="marisa_own/marisa_05.png" time="4.00" offset_x="-2.00—s" offset_y="0.00"/>
+				<anim name="marisa_own/marisa_06.png" time="4.00" offset_x="-3.00" offset_y="-2.00"/>
+				<anim name="marisa_own/marisa_07.png" time="4.00" offset_x="-3.00" offset_y="0.00"/>
+				<anim name="marisa_own/marisa_08.png" time="4.00" offset_x="1.00" offset_y="0.00"/>
+				<anim name="marisa_own/marisa_09.png" time="4.00" offset_x="0.00" offset_y="-1.00—s"/>
+			</anims>
+		</animation>
+		<animation name="left">
+			<anims>
+				<anim name="marisa_own/marisa_10.png" time="4.00" offset_x="0.00" offset_y="0.00" />
+				<anim name="marisa_own/marisa_12.png" time="4.00" offset_x="0.00" offset_y="0.00" />
+				<anim name="marisa_own/marisa_11.png" time="4.00" offset_x="0.00" offset_y="0.00" />
+				<anim name="marisa_own/marisa_13.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_own/marisa_14.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="marisa_own/marisa_15.png" time="4.00" offset_x="0.00" offset_y="0.00" />
+				<anim name="marisa_own/marisa_16.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_own/marisa_17.png" time="4.00" offset_x="2.00" offset_y="0.00" />
+			</anims>
+		</animation>
+		<animation name="right">
+			<anims>
+				<anim name="marisa_own/marisa_10.png" time="4.00" offset_x="0.00" offset_y="0.00" inverted="1"/>
+				<anim name="marisa_own/marisa_12.png" time="4.00" offset_x="0.00" offset_y="0.00" inverted="1"/>
+				<anim name="marisa_own/marisa_11.png" time="4.00" offset_x="0.00" offset_y="0.00" inverted="1"/>
+				<anim name="marisa_own/marisa_13.png" time="4.00" offset_x="0.00" offset_y="0.00" inverted="1"/>
+				<anim name="marisa_own/marisa_14.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1" inverted="1"/>
+				<anim name="marisa_own/marisa_15.png" time="4.00" offset_x="0.00" offset_y="0.00" inverted="1"/>
+				<anim name="marisa_own/marisa_16.png" time="4.00" offset_x="0.00" offset_y="0.00" inverted="1"/>
+				<anim name="marisa_own/marisa_17.png" time="4.00" offset_x="-2.00" offset_y="0.00" inverted="1"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+
