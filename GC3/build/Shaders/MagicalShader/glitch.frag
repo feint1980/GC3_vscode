@@ -1,13 +1,11 @@
-/*
- * Original shader from: https://www.shadertoy.com/view/wdBGWD
- */
+#version 330
 
 #ifdef GL_ES
 precision mediump float;
 #endif
 
 // glslsandbox uniforms
-uniform float time;
+//uniform float utime;
 uniform vec2 resolution;
 
 // shadertoy globals
@@ -17,27 +15,6 @@ vec3  iResolution = vec3(0.0);
 // Protect glslsandbox uniform names
 #define time        stemu_time
 
-// --------[ Original ShaderToy begins here ]---------- //
-/*
-
-@lsdlive
-CC-BY-NC-SA
-
-This is my part for "Mist" by Ohno, a 4 kilobytes demo released at the Cookie 2018.
-
-pouet: http://www.pouet.net/prod.php?which=79350
-youtube: https://www.youtube.com/watch?v=UUtU3WVB144
-
-Code/Graphics: Flopine
-Code/Graphics: Lsdlive
-Music: Triace from Desire
-
-Part1 from Flopine here: https://www.shadertoy.com/view/tdBGWD
-
-Information about my process for making this demo here:
-https://twitter.com/lsdlive/status/1090627411379716096
-
-*/
 
 float time = 0.;
 
@@ -256,7 +233,7 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     vec2 uv = (q - .5) * iResolution.xx / iResolution.yx;
 
 	/* just code for the shadertoy port */
-	time = mod(iTime, 43. + 10.4);
+	time = mod(/*iTime*/ 1.0, 43. + 10.4);
 	time = time + 45.;
 	if (time > 88. && time <= 98.6) // 98.
 		time += 10.6;
@@ -298,9 +275,9 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
 
 void main(void)
 {
-    iTime = time;
+    //iTime = utime;
     iResolution = vec3(resolution, 0.0);
   
-    mainImage(gl_FragColor, vec2(gl_FragCoord.x + 250,gl_FragCoord.y));
+    mainImage(gl_FragColor, vec2(gl_FragCoord.x + 250.0,gl_FragCoord.y));
     gl_FragColor.a =  0.4;
 }
