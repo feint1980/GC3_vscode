@@ -1,6 +1,6 @@
 CMakeFiles/Feintgine.dir/src/ScreenList.cpp.obj: \
- E:\template\GC_port\Feintgine\src\ScreenList.cpp \
- E:\template\GC_port\Feintgine\src\ScreenList.h \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\ScreenList.cpp \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\ScreenList.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/vector \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
@@ -44,4 +44,4 @@ CMakeFiles/Feintgine.dir/src/ScreenList.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
- E:\template\GC_port\Feintgine\src\IGameScreen.h
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\IGameScreen.h

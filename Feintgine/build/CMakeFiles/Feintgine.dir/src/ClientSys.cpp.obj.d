@@ -1,6 +1,6 @@
 CMakeFiles/Feintgine.dir/src/ClientSys.cpp.obj: \
- E:\template\GC_port\Feintgine\src\ClientSys.cpp \
- E:\template\GC_port\Feintgine\src\ClientSys.h \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\ClientSys.cpp \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\ClientSys.h \
  C:/SysGCC/mingw32/include/winsock2.h \
  C:/SysGCC/mingw32/include/_mingw_unicode.h \
  C:/SysGCC/mingw32/include/windows.h C:/SysGCC/mingw32/include/_mingw.h \

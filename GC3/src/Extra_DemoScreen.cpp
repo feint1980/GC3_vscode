@@ -412,30 +412,30 @@ void Extra_DemoScreen::initShader()
 	m_whiteBlackShader.addAttribute("vertexUV");
 	m_whiteBlackShader.linkShaders();
 
-	m_magicalShader.compileShaders("Shaders/MagicalShader/star.vert", "Shaders/MagicalShader/star.frag");
-	m_magicalShader.addAttribute("vertexPosition");
-	m_magicalShader.addAttribute("vertexColor");
-	m_magicalShader.addAttribute("vertexUV");
-	m_magicalShader.linkShaders();
+	// m_magicalShader.compileShaders("Shaders/MagicalShader/star.vert", "Shaders/MagicalShader/star.frag");
+	// m_magicalShader.addAttribute("vertexPosition");
+	// m_magicalShader.addAttribute("vertexColor");
+	// m_magicalShader.addAttribute("vertexUV");
+	// m_magicalShader.linkShaders();
 
-	m_crystalShader.compileShaders("Shaders/MagicalShader/crystal.vert", "Shaders/MagicalShader/crystal.frag");
-	m_crystalShader.addAttribute("vertexPosition");
-	m_crystalShader.addAttribute("vertexColor");
-	m_crystalShader.addAttribute("vertexUV");
-	m_crystalShader.linkShaders();
+	// m_crystalShader.compileShaders("Shaders/MagicalShader/crystal.vert", "Shaders/MagicalShader/crystal.frag");
+	// m_crystalShader.addAttribute("vertexPosition");
+	// m_crystalShader.addAttribute("vertexColor");
+	// m_crystalShader.addAttribute("vertexUV");
+	// m_crystalShader.linkShaders();
 
 
-	m_glitchShader.compileShaders("Shaders/MagicalShader/glitch.vert", "Shaders/MagicalShader/glitch.frag");
-	m_glitchShader.addAttribute("vertexPosition");
-	m_glitchShader.addAttribute("vertexColor");
-	m_glitchShader.addAttribute("vertexUV");
-	m_glitchShader.linkShaders();
+	// m_glitchShader.compileShaders("Shaders/MagicalShader/glitch.vert", "Shaders/MagicalShader/glitch.frag");
+	// m_glitchShader.addAttribute("vertexPosition");
+	// m_glitchShader.addAttribute("vertexColor");
+	// m_glitchShader.addAttribute("vertexUV");
+	// m_glitchShader.linkShaders();
 
-// 	m_portalShader.compileShaders("Shaders/MagicalShader/crystal_fix.vert", "Shaders/MagicalShader/crystal_fix.frag");
-// 	m_portalShader.addAttribute("vertexPosition");
-// 	m_portalShader.addAttribute("vertexColor");
-// 	m_portalShader.addAttribute("vertexUV");
-// 	m_portalShader.linkShaders();
+	// m_portalShader.compileShaders("Shaders/MagicalShader/crystal_fix.vert", "Shaders/MagicalShader/crystal_fix.frag");
+	// m_portalShader.addAttribute("vertexPosition");
+	// m_portalShader.addAttribute("vertexColor");
+	// m_portalShader.addAttribute("vertexUV");
+	// m_portalShader.linkShaders();
 
 	
 	m_portalShader.compileShaders("Shaders/MagicalShader/cloud.vert", "Shaders/MagicalShader/cloud.frag");
@@ -459,7 +459,7 @@ void Extra_DemoScreen::initShader()
 
 	m_frameBufferScreen.initFrameTexture(tex_fb,768, 768);
 
-	//m_frameBufferScreen.initFrameTexture(tex_fb, m_window->getScreenWidth(), m_window->getScreenHeight());
+	m_frameBufferScreen.initFrameTexture(tex_fb, m_window->getScreenWidth(), m_window->getScreenHeight());
 
 	m_effectBatch.initEffectBatch(&m_frameBufferScreen, &m_camera);
 

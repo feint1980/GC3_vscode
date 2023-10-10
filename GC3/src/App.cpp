@@ -30,40 +30,40 @@ void App::addScreen()
 
 ///	m_selectScreen = std::make_unique<SelectScreen>(&m_window);
 
-	m_higanScreen = std::make_unique<HiganMainMenuScreen>(&m_window);
+//	m_higanScreen = std::make_unique<HiganMainMenuScreen>(&m_window);
 
-	m_shaderToy = std::make_unique<ShaderToy>(&m_window);
+//	m_shaderToy = std::make_unique<ShaderToy>(&m_window);
 
-	m_paternTest = std::make_unique<PaternTestScreen>(&m_window);
+//	m_paternTest = std::make_unique<PaternTestScreen>(&m_window);
 
-	m_testCharScreen = std::make_unique<CharacterTestScreen>(&m_window);
+//	m_testCharScreen = std::make_unique<CharacterTestScreen>(&m_window);
 
 
 	m_extraDemo = std::make_unique<Extra_DemoScreen>(&m_window);
 
-	m_testRenderScreen = std::make_unique<TestRenderScreen>(&m_window);
+//	m_testRenderScreen = std::make_unique<TestRenderScreen>(&m_window);
 
-	m_3dScreen = std::make_unique<TestRender3D>(&m_window);
+//	m_3dScreen = std::make_unique<TestRender3D>(&m_window);
 
 //	m_screenList->addScreen(m_selectScreen.get());
 
-	m_demo = std::make_unique <DemoScreen>(&m_window);
+//	m_demo = std::make_unique <DemoScreen>(&m_window);
 
-	m_replayScreen = std::make_unique<ReplayScreen>(&m_window);
+//	m_replayScreen = std::make_unique<ReplayScreen>(&m_window);
 
-	m_screenList->addScreen(m_testCharScreen.get());
+//	m_screenList->addScreen(m_testCharScreen.get());
 
-	m_screenList->addScreen(m_3dScreen.get());
+//	m_screenList->addScreen(m_3dScreen.get());
 	
-	m_screenList->addScreen(m_higanScreen.get());
+//	m_screenList->addScreen(m_higanScreen.get());
 
-	m_screenList->addScreen(m_shaderToy.get());
-	m_screenList->addScreen(m_paternTest.get());
+//	m_screenList->addScreen(m_shaderToy.get());
+//	m_screenList->addScreen(m_paternTest.get());
 
 	m_screenList->addScreen(m_extraDemo.get());
-	m_screenList->addScreen(m_replayScreen.get());
+//	m_screenList->addScreen(m_replayScreen.get());
 
-	m_screenList->addScreen(m_testRenderScreen.get());
+//	m_screenList->addScreen(m_testRenderScreen.get());
 
 	//m_screenList->addScreen(m_newModelScreen.get());
 	//m_screenList->addScreen(m_demo.get());

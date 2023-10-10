@@ -91,7 +91,7 @@ void main() {
 
 	     		vec2 aux= rayLightPos[i] - fragmentPosition;
 	     		float lapp = length(aux) * 0.25f;
-	     		float attenuation= 1/ (rayLightAtten[i].x + rayLightAtten[i].y * lapp  + rayLightAtten[i].z * lapp * (1.0f/lapp));	
+	     		float attenuation= 1.0f / (rayLightAtten[i].x + rayLightAtten[i].y * lapp  + rayLightAtten[i].z * lapp * (1.0f/lapp));	
 	     		finalColor+= vec4(attenuation,attenuation,attenuation,1.0)*vec4(rayLightColor[i]);	
 	     		finalColor.a = fragmentColor.a;
 	     	}
@@ -104,7 +104,7 @@ void main() {
      			//vec2 aux= (rayLightPos[i] - fragmentPosition) * 0.05f;
      			float lapp = length(aux) * 200/ distance(fragmentPosition.y,rayLightPos[i].y);
 
-	     		float attenuation= 1 / (rayLightAtten[i].x * 0.5f + rayLightAtten[i].y * 0.5f * lapp  + rayLightAtten[i].z * lapp * 0.5f * (1.0f/lapp) ) ;	
+	     		float attenuation= 1.0f / (rayLightAtten[i].x * 0.5f + rayLightAtten[i].y * 0.5f * lapp  + rayLightAtten[i].z * lapp * 0.5f * (1.0f/lapp) ) ;	
 	     		finalColor+= vec4(attenuation,attenuation,attenuation,1.0)*vec4(rayLightColor[i]);	
 	     		finalColor.a = fragmentColor.a;	
  			}
@@ -120,7 +120,7 @@ void main() {
 			if(distance(fragmentPosition,lightPos[i]) < radius)
 	     	{
 	     		float lapp = length(aux);
-	     		float attenuation= 1/ (lightAttenuation[i].x + lightAttenuation[i].y * lapp  + lightAttenuation[i].z * lapp * (1.0f/lapp));	
+	     		float attenuation= 1.0f / (lightAttenuation[i].x + lightAttenuation[i].y * lapp  + lightAttenuation[i].z * lapp * (1.0f/lapp));	
 	     		finalColor += vec4(attenuation,attenuation,attenuation,1.0)*vec4(lightColor[i]);	
 	     		finalColor.a = fragmentColor.a;
 	     	}
