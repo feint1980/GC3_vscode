@@ -43,7 +43,7 @@ void App::addScreen()
 
 //	m_testRenderScreen = std::make_unique<TestRenderScreen>(&m_window);
 
-//	m_3dScreen = std::make_unique<TestRender3D>(&m_window);
+	m_3dScreen = std::make_unique<TestRender3D>(&m_window);
 
 //	m_screenList->addScreen(m_selectScreen.get());
 
@@ -53,7 +53,7 @@ void App::addScreen()
 
 //	m_screenList->addScreen(m_testCharScreen.get());
 
-//	m_screenList->addScreen(m_3dScreen.get());
+	m_screenList->addScreen(m_3dScreen.get());
 	
 //	m_screenList->addScreen(m_higanScreen.get());
 
@@ -85,14 +85,14 @@ void App::addScreen()
 
 
 	// Demo screen
-	m_screenList->setScreen(m_extraDemo->getScreenIndex());
+	//m_screenList->setScreen(m_extraDemo->getScreenIndex());
 
 
 	// Replay screen
 	//m_screenList->setScreen(m_replayScreen->getScreenIndex());
 
 	// 3D screen
-	//m_screenList->setScreen(m_3dScreen->getScreenIndex());
+	m_screenList->setScreen(m_3dScreen->getScreenIndex());
 
 
 

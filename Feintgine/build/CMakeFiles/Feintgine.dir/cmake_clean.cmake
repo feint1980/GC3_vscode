@@ -197,6 +197,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj.d"
+  "CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj"
+  "CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj.d"
   "libFeintgine.a"
   "libFeintgine.pdb"
 )

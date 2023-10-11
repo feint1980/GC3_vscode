@@ -1,7 +1,7 @@
 #include "TestRender3D.h"
 //#define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
-
+#include <video_reader.h>
 
 TestRender3D::TestRender3D()
 {
@@ -45,6 +45,14 @@ void TestRender3D::onEntry()
 	//ourModel = Feintgine::Model("Assets/3D/eiki/eiki_5.obj");
 	ourModel = Feintgine::Model("Assets/3D/eiki/eiki_saved.fbx");
 	m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight(), 7);
+
+
+	VideoReaderState vr_state;
+
+	if (!video_reader_open(&vr_state, "Videos/test.mov"))
+	{
+		std::cout << "Could not open video file (make sure you set a video file that exists) \n";
+	}
 
 	glEnable(GL_DEPTH_TEST);
 }
