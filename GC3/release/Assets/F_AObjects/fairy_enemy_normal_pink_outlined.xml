@@ -1,0 +1,43 @@
+<F_AObj name="fairy_enemy_normal_pink_outlined">
+	<animations>
+		<animation name="death">
+			<anims>
+				<anim name="projectile/death_anim_1.png" time="3.00" loop="1"/>
+				<anim name="projectile/death_anim_2.png" time="3.00"/>
+				<anim name="projectile/death_anim_3.png" time="24.00"/>
+			</anims>
+		</animation>
+		<animation name="idle">
+			<anims>
+				<anim name="enemies/fairy_typeA_pink_outlined_01.png" time="7.00" loop="1"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_02.png" time="7.00"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_03.png" time="7.00"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_04.png" time="7.00"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_05.png" time="7.00"/>
+			</anims>
+		</animation>
+		<animation name="left">
+			<anims>
+				<anim name="enemies/fairy_typeA_pink_outlined_06.png" time="7.00" inverted="1" />
+				<anim name="enemies/fairy_typeA_pink_outlined_07.png" time="7.00" inverted="1" />
+				<anim name="enemies/fairy_typeA_pink_outlined_08.png" time="7.00" inverted="1" />
+				<anim name="enemies/fairy_typeA_pink_outlined_09.png" time="7.00" loop="1" inverted="1"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_10.png" time="7.00" inverted="1"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_11.png" time="7.00" inverted="1"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_12.png" time="7.00" inverted="1"/>
+			</anims>
+		</animation>
+		<animation name="right">
+			<anims>
+				<anim name="enemies/fairy_typeA_pink_outlined_06.png" time="7.00"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_07.png" time="7.00"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_08.png" time="7.00"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_09.png" time="7.00" loop="1"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_10.png" time="7.00"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_11.png" time="7.00"/>
+				<anim name="enemies/fairy_typeA_pink_outlined_12.png" time="7.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

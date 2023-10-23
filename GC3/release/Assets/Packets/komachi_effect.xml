@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:4a6d8291bf3bee0f3643bbc02588fbbc:74bb004bbdfc3319a2f2bf87b30c5a38:34b6e89092e54150ba1c0875350c5332$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="komachi_effect.png" width="1024" height="1696">
+    <sprite n="komachi_effects_cut_01.png" x="0" y="0" w="58" h="64"/>
+    <sprite n="komachi_effects_cut_02.png" x="58" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_03.png" x="384" y="160" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_04.png" x="512" y="160" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_05.png" x="640" y="160" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_06.png" x="768" y="160" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_07.png" x="896" y="160" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_08.png" x="122" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_09.png" x="186" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_10.png" x="448" y="1184" w="256" h="256"/>
+    <sprite n="komachi_effects_cut_11.png" x="0" y="288" w="122" h="128"/>
+    <sprite n="komachi_effects_cut_12.png" x="122" y="288" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_13.png" x="250" y="288" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_14.png" x="378" y="288" w="122" h="128"/>
+    <sprite n="komachi_effects_cut_15.png" x="500" y="288" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_16.png" x="628" y="288" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_17.png" x="756" y="288" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_18.png" x="884" y="288" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_19.png" x="0" y="416" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_20.png" x="128" y="416" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_21.png" x="256" y="416" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_22.png" x="384" y="416" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_23.png" x="512" y="416" w="122" h="128"/>
+    <sprite n="komachi_effects_cut_24.png" x="634" y="416" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_25.png" x="762" y="416" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_26.png" x="890" y="416" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_27.png" x="0" y="544" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_28.png" x="128" y="544" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_29.png" x="256" y="544" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_30.png" x="384" y="544" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_31.png" x="512" y="544" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_32.png" x="192" y="64" w="122" h="96"/>
+    <sprite n="komachi_effects_cut_33.png" x="314" y="64" w="128" h="96"/>
+    <sprite n="komachi_effects_cut_34.png" x="442" y="64" w="128" h="96"/>
+    <sprite n="komachi_effects_cut_35.png" x="570" y="64" w="128" h="96"/>
+    <sprite n="komachi_effects_cut_36.png" x="698" y="64" w="128" h="96"/>
+    <sprite n="komachi_effects_cut_37.png" x="826" y="64" w="128" h="96"/>
+    <sprite n="komachi_effects_cut_38.png" x="0" y="160" w="128" h="96"/>
+    <sprite n="komachi_effects_cut_39.png" x="128" y="160" w="128" h="96"/>
+    <sprite n="komachi_effects_cut_40.png" x="256" y="160" w="128" h="96"/>
+    <sprite n="komachi_effects_cut_41.png" x="250" y="0" w="58" h="64"/>
+    <sprite n="komachi_effects_cut_42.png" x="308" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_43.png" x="372" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_44.png" x="436" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_45.png" x="500" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_46.png" x="564" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_47.png" x="628" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_48.png" x="692" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_49.png" x="756" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_50.png" x="820" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_51.png" x="884" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_52.png" x="948" y="0" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_53.png" x="0" y="64" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_54.png" x="64" y="64" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_55.png" x="128" y="64" w="64" h="64"/>
+    <sprite n="komachi_effects_cut_56.png" x="640" y="544" w="122" h="128"/>
+    <sprite n="komachi_effects_cut_57.png" x="762" y="544" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_58.png" x="890" y="544" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_59.png" x="0" y="672" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_60.png" x="128" y="672" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_61.png" x="256" y="672" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_62.png" x="384" y="672" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_63.png" x="512" y="672" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_64.png" x="640" y="672" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_65.png" x="768" y="672" w="250" h="128"/>
+    <sprite n="komachi_effects_cut_66.png" x="0" y="800" w="256" h="128"/>
+    <sprite n="komachi_effects_cut_67.png" x="256" y="800" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_68.png" x="384" y="800" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_69.png" x="512" y="800" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_70.png" x="640" y="800" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_71.png" x="704" y="1184" w="250" h="256"/>
+    <sprite n="komachi_effects_cut_72.png" x="0" y="1440" w="256" h="256"/>
+    <sprite n="komachi_effects_cut_73.png" x="256" y="1440" w="256" h="256"/>
+    <sprite n="komachi_effects_cut_74.png" x="512" y="1440" w="256" h="256"/>
+    <sprite n="komachi_effects_cut_75.png" x="768" y="800" w="126" h="128"/>
+    <sprite n="komachi_effects_cut_76.png" x="894" y="800" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_77.png" x="0" y="928" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_78.png" x="128" y="928" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_79.png" x="256" y="928" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_80.png" x="384" y="928" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_81.png" x="512" y="928" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_82.png" x="640" y="928" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_83.png" x="768" y="928" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_84.png" x="896" y="928" w="126" h="128"/>
+    <sprite n="komachi_effects_cut_85.png" x="0" y="1056" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_86.png" x="128" y="1056" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_87.png" x="256" y="1056" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_88.png" x="384" y="1056" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_89.png" x="512" y="1056" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_90.png" x="640" y="1056" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_91.png" x="768" y="1056" w="128" h="128"/>
+    <sprite n="komachi_effects_cut_92.png" x="896" y="1056" w="62" h="128"/>
+    <sprite n="komachi_effects_cut_93.png" x="958" y="1056" w="64" h="128"/>
+    <sprite n="komachi_effects_cut_94.png" x="0" y="1184" w="64" h="128"/>
+    <sprite n="komachi_effects_cut_95.png" x="64" y="1184" w="64" h="128"/>
+    <sprite n="komachi_effects_cut_96.png" x="128" y="1184" w="64" h="128"/>
+    <sprite n="komachi_effects_cut_97.png" x="192" y="1184" w="64" h="128"/>
+    <sprite n="komachi_effects_cut_98.png" x="256" y="1184" w="64" h="128"/>
+    <sprite n="komachi_effects_cut_99.png" x="320" y="1184" w="64" h="128"/>
+    <sprite n="komachi_effects_cut_100.png" x="384" y="1184" w="64" h="128"/>
+    <sprite n="komachi_effects_cut_@v.png" x="768" y="1440" w="256" h="256"/>
+</TextureAtlas>

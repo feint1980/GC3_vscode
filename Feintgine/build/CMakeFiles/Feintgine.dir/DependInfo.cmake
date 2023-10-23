@@ -107,7 +107,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/template/GC_port/Feintgine/src/objectData.pb.cpp" "CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/picoPNGcpp.cpp" "CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/serverData.pb.cpp" "CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj.d"
-  "E:/template/GC_port/Feintgine/src/video_reader.cpp" "CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

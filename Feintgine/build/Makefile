@@ -2898,30 +2898,6 @@ src/serverData.pb.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.s
 .PHONY : src/serverData.pb.cpp.s
 
-src/video_reader.obj: src/video_reader.cpp.obj
-.PHONY : src/video_reader.obj
-
-# target to build an object file
-src/video_reader.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj
-.PHONY : src/video_reader.cpp.obj
-
-src/video_reader.i: src/video_reader.cpp.i
-.PHONY : src/video_reader.i
-
-# target to preprocess a source file
-src/video_reader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/video_reader.cpp.i
-.PHONY : src/video_reader.cpp.i
-
-src/video_reader.s: src/video_reader.cpp.s
-.PHONY : src/video_reader.s
-
-# target to generate assembly for a file
-src/video_reader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/video_reader.cpp.s
-.PHONY : src/video_reader.cpp.s
-
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -3259,9 +3235,6 @@ help:
 	@echo ... src/serverData.pb.obj
 	@echo ... src/serverData.pb.i
 	@echo ... src/serverData.pb.s
-	@echo ... src/video_reader.obj
-	@echo ... src/video_reader.i
-	@echo ... src/video_reader.s
 .PHONY : help
 
 

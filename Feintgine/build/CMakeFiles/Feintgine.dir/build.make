@@ -1553,21 +1553,6 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.s"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\template\GC_port\Feintgine\src\serverData.pb.cpp -o CMakeFiles\Feintgine.dir\src\serverData.pb.cpp.s
 
-CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
-CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
-CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj: E:/template/GC_port/Feintgine/src/video_reader.cpp
-CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Building CXX object CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj"
-	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj -MF CMakeFiles\Feintgine.dir\src\video_reader.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\video_reader.cpp.obj -c E:\template\GC_port\Feintgine\src\video_reader.cpp
-
-CMakeFiles/Feintgine.dir/src/video_reader.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Feintgine.dir/src/video_reader.cpp.i"
-	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\template\GC_port\Feintgine\src\video_reader.cpp > CMakeFiles\Feintgine.dir\src\video_reader.cpp.i
-
-CMakeFiles/Feintgine.dir/src/video_reader.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Feintgine.dir/src/video_reader.cpp.s"
-	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\template\GC_port\Feintgine\src\video_reader.cpp -o CMakeFiles\Feintgine.dir\src\video_reader.cpp.s
-
 # Object files for target Feintgine
 Feintgine_OBJECTS = \
 "CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj" \
@@ -1668,8 +1653,7 @@ Feintgine_OBJECTS = \
 "CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj" \
 "CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj" \
 "CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj" \
-"CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj" \
-"CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj"
+"CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj"
 
 # External object files for target Feintgine
 Feintgine_EXTERNAL_OBJECTS =
@@ -1773,10 +1757,9 @@ libFeintgine.a: CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj
 libFeintgine.a: CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj
 libFeintgine.a: CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj
 libFeintgine.a: CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj
-libFeintgine.a: CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj
 libFeintgine.a: CMakeFiles/Feintgine.dir/build.make
 libFeintgine.a: CMakeFiles/Feintgine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\template\GC_port\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_101) "Linking CXX static library libFeintgine.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\template\GC_port\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Linking CXX static library libFeintgine.a"
 	$(CMAKE_COMMAND) -P CMakeFiles\Feintgine.dir\cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Feintgine.dir\link.txt --verbose=$(VERBOSE)
 

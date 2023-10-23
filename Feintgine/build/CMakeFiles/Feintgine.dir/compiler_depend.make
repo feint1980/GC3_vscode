@@ -44199,84 +44199,6 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: E:/template/GC_port/Feintgin
   E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/wire_format_lite.h \
   E:/template/GC_port/Feintgine/src/serverData.pb.h
 
-CMakeFiles/Feintgine.dir/src/video_reader.cpp.obj: E:/template/GC_port/Feintgine/src/video_reader.cpp \
-  C:/SysGCC/mingw32/include/_mingw.h \
-  C:/SysGCC/mingw32/include/_mingw_mac.h \
-  C:/SysGCC/mingw32/include/_mingw_off_t.h \
-  C:/SysGCC/mingw32/include/_mingw_secapi.h \
-  C:/SysGCC/mingw32/include/_mingw_stdarg.h \
-  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
-  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
-  C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
-  C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
-  C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
-  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
-  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
-  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
-  C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
-  C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
-  C:/SysGCC/mingw32/include/corecrt.h \
-  C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
-  C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
-  C:/SysGCC/mingw32/include/crtdefs.h \
-  C:/SysGCC/mingw32/include/errno.h \
-  C:/SysGCC/mingw32/include/inttypes.h \
-  C:/SysGCC/mingw32/include/limits.h \
-  C:/SysGCC/mingw32/include/malloc.h \
-  C:/SysGCC/mingw32/include/math.h \
-  C:/SysGCC/mingw32/include/sdks/_mingw_ddk.h \
-  C:/SysGCC/mingw32/include/sec_api/stdio_s.h \
-  C:/SysGCC/mingw32/include/sec_api/stdlib_s.h \
-  C:/SysGCC/mingw32/include/sec_api/string_s.h \
-  C:/SysGCC/mingw32/include/stdarg.h \
-  C:/SysGCC/mingw32/include/stddef.h \
-  C:/SysGCC/mingw32/include/stdint.h \
-  C:/SysGCC/mingw32/include/stdio.h \
-  C:/SysGCC/mingw32/include/stdlib.h \
-  C:/SysGCC/mingw32/include/string.h \
-  C:/SysGCC/mingw32/include/swprintf.inl \
-  C:/SysGCC/mingw32/include/vadefs.h \
-  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mm_malloc.h \
-  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdarg.h \
-  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stddef.h \
-  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdint.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/avcodec.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/codec.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/codec_desc.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/codec_id.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/codec_par.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/defs.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/packet.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/version.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/version_major.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavformat/avformat.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavformat/avio.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavformat/version.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavformat/version_major.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/attributes.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/avconfig.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/avutil.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/buffer.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/channel_layout.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/common.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/dict.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/error.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/frame.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/hwcontext.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/intfloat.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/log.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/macros.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/mathematics.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/mem.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/pixfmt.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/rational.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/samplefmt.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libavutil/version.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libswscale/swscale.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libswscale/version.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/libswscale/version_major.h \
-  E:/template/GC_port/Feintgine/src/video_reader.h
-
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h:
 
@@ -45228,8 +45150,6 @@ C:/SysGCC/mingw32/include/mmsystem.h:
 
 C:/SysGCC/mingw32/include/msxml.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/common.h:
-
 C:/SysGCC/mingw32/include/namedpipeapi.h:
 
 C:/SysGCC/mingw32/include/namespaceapi.h:
@@ -45249,8 +45169,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/freetype/freetype.h:
 C:/SysGCC/mingw32/include/objbase.h:
 
 C:/SysGCC/mingw32/include/objidlbase.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/version_major.h:
 
 C:/SysGCC/mingw32/include/ole2.h:
 
@@ -45289,8 +45207,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/ftoption.h:
 E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_main.h:
 
 C:/SysGCC/mingw32/include/prsht.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/log.h:
 
 C:/SysGCC/mingw32/include/psdk_inc/_socket_types.h:
 
@@ -45389,8 +45305,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_vector_relational.
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/arena.h:
 
 C:/SysGCC/mingw32/include/sec_api/stdlib_s.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/channel_layout.h:
 
 C:/SysGCC/mingw32/include/sec_api/string_s.h:
 
@@ -45562,8 +45476,6 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512bitalgintrin.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/port.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/dict.h:
-
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512bwintrin.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vpopcntdqintrin.h:
@@ -45649,8 +45561,6 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mwaitintrin.h:
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mwaitxintrin.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/pkuintrin.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/pixfmt.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/pmmintrin.h:
 
@@ -45832,8 +45742,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/SystemKeys.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftstroke.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/macros.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/TextUtils.h:
 
 E:/template/GC_port/Feintgine/src/F_EmptyObject.h:
@@ -45934,8 +45842,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/ListHeaderSegment.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/ListboxTextItem.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/intfloat.h:
-
 E:/template/GC_port/Feintgine/src/Camera2D.cpp:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/MenuBase.h:
@@ -45943,8 +45849,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/MenuBase.h:
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/MultiColumnList.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/callback.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/frame.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/MultiLineEditbox.h:
 
@@ -46072,8 +45976,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_common.inl:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_exponential.inl:
 
-E:/template/GC_port/Feintgine_GC_deps/include/libswscale/version_major.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.hpp:
 
 E:/template/GC_port/Feintgine/src/F_ShaderEventBase.cpp:
@@ -46132,8 +46034,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/glm/glm.hpp:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/integer.hpp:
 
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/mem.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/glm/mat2x3.hpp:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/mat3x4.hpp:
@@ -46169,8 +46069,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/arenaz_sampler.h:
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/extension_set.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_enum_util.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/codec.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_message_reflection.h:
 
@@ -46229,8 +46127,6 @@ E:/template/GC_port/Feintgine/src/F_ShaderEventHandler.cpp:
 E:/template/GC_port/Feintgine/src/AfterImageParticle.h:
 
 E:/template/GC_port/Feintgine/src/Error.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/error.h:
 
 E:/template/GC_port/Feintgine/src/F_AnimatedObject.h:
 
@@ -46410,8 +46306,6 @@ E:/template/GC_port/Feintgine/src/FrameBuffer.cpp:
 
 E:/template/GC_port/Feintgine/src/FrameCounter.cpp:
 
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/rational.h:
-
 E:/template/GC_port/Feintgine/src/FrameCounter.h:
 
 E:/template/GC_port/Feintgine/src/IGameScreen.cpp:
@@ -46451,8 +46345,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/assimp/vector2.h:
 E:/template/GC_port/Feintgine_GC_deps/include/assimp/vector3.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/avutil.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/checked.h:
 
@@ -46498,8 +46390,6 @@ E:/template/GC_port/Feintgine/src/SpritePacket.cpp:
 
 E:/template/GC_port/Feintgine/src/T_Scene.cpp:
 
-E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/codec_desc.h:
-
 E:/template/GC_port/Feintgine/src/TextRenderer.cpp:
 
 E:/template/GC_port/Feintgine/src/TextureCache.cpp:
@@ -46523,45 +46413,3 @@ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/wire_format.h:
 E:/template/GC_port/Feintgine/src/serverData.pb.cpp:
 
 E:/template/GC_port/Feintgine/src/serverData.pb.h:
-
-E:/template/GC_port/Feintgine/src/video_reader.cpp:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/avcodec.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/codec_id.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/codec_par.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/defs.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/packet.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavcodec/version.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavformat/avformat.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavformat/avio.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavformat/version.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavformat/version_major.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/attributes.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/avconfig.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/buffer.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/hwcontext.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/mathematics.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/samplefmt.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libavutil/version.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libswscale/swscale.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/libswscale/version.h:
-
-E:/template/GC_port/Feintgine/src/video_reader.h:

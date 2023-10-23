@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Level>
+	<Events>
+
+		<Event type = "turnLight">
+			<Prop value="1" time = "0" >
+			</Prop>
+		</Event>
+		<Event type = "showChapter">
+			<Prop text1="第1章: 彼岸への秘密の道." text2 ="Chương 1: Bỉ Ngạn mật lối" time = "5000" >
+			</Prop>
+		</Event>
+
+		<Event type = "showBGM">
+			<Prop text="♫BGM : その正しき言葉のもとに【凋叶棕】♫" time = "7000" >
+			</Prop>
+		</Event>
+		<Event type = "turnLight">
+			<Prop value="0" time = "1" >
+			</Prop>
+		</Event>
+	
+		<Event type = "changeEnvLight">
+			<Prop maxVal="0" rate = "0.025" time = "10500" >
+			</Prop>
+		</Event>
+
+		<Event type = "turnLight">
+			<Prop value="1" time = "15000" >
+			</Prop>
+		</Event>
+
+	</Events>
+</Level>

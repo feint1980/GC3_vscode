@@ -1283,11 +1283,11 @@ void ShaderToy::initShader()
 	m_crystalShader.linkShaders();
 
 
-	m_glitchShader.compileShaders("Shaders/MagicalShader/glitch.vert", "Shaders/MagicalShader/glitch.frag");
-	m_glitchShader.addAttribute("vertexPosition");
-	m_glitchShader.addAttribute("vertexColor");
-	m_glitchShader.addAttribute("vertexUV");
-	m_glitchShader.linkShaders();
+	// m_glitchShader.compileShaders("Shaders/MagicalShader/glitch.vert", "Shaders/MagicalShader/glitch.frag");
+	// m_glitchShader.addAttribute("vertexPosition");
+	// m_glitchShader.addAttribute("vertexColor");
+	// m_glitchShader.addAttribute("vertexUV");
+	// m_glitchShader.linkShaders();
 
 	m_lightBatch.initShader(&m_shader);
 
@@ -1450,7 +1450,7 @@ void ShaderToy::drawCustomShader()
 	GLuint timeLoc;
 	GLuint resLoc;
 
-	m_currentEffect = &m_glitchShader;
+	m_currentEffect = & m_blackWhiteShader; // no longer use glitch shader //&m_glitchShader;
 	   
 	glm::mat4 projectionMatrix;
 	GLint pUniform;

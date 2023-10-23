@@ -2338,15 +2338,6 @@ GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libassimp.dll.a
 GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libbox2d.a
 GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libSDL2_mixer.dll.a
 GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libSDL2_ttf.dll.a
-GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libavcodec.dll.a
-GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libavdevice.dll.a
-GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libavfilter.dll.a
-GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libavformat.dll.a
-GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libavutil.dll.a
-GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libpostproc.dll.a
-GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libswresample.dll.a
-GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libswscale.dll.a
-GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/avcodec.lib
 GC3.exe: CMakeFiles/GC3.dir/linkLibs.rsp
 GC3.exe: CMakeFiles/GC3.dir/objects1.rsp
 GC3.exe: CMakeFiles/GC3.dir/link.txt

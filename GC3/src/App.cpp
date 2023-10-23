@@ -92,7 +92,7 @@ void App::addScreen()
 	//m_screenList->setScreen(m_replayScreen->getScreenIndex());
 
 	// 3D screen
-	m_screenList->setScreen(m_3dScreen->getScreenIndex());
+	m_screenList->setScreen(m_extraDemo->getScreenIndex());
 
 
 

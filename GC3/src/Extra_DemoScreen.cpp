@@ -105,7 +105,7 @@ void Extra_DemoScreen::onEntry()
 
 	GlobalValueClass::Instance()->savedCamera = &m_camera;
 
-	m_spriteFont = new Feintgine::SpriteFont("font/ARIALUNI.ttf", 30);
+	//m_spriteFont = new Feintgine::SpriteFont("font/ARIALUNI.ttf", 30);
 	m_audioEngine.init();
 	//m_audioEngine.setVolume(10); // turn off volume (
 
@@ -119,8 +119,8 @@ void Extra_DemoScreen::onEntry()
 	Feintgine::F_ScreenCapture::Instance()->init();
 	//m_capture.init();
 
-
-	
+	GlobalValueClass::Instance()->setLightBalance(false);
+	//toggleLight();
 	
 }
 
@@ -833,7 +833,7 @@ void Extra_DemoScreen::drawLoadingScreen()
 
 	sprintf_s(buffer2, "Loading ...");
 	m_timerSpriteBatch.begin();
-	m_spriteFont->draw(m_timerSpriteBatch, buffer2, glm::vec2(-100, 0), glm::vec2(1), 0, Feintgine::Color(255, 255, 255, 255));
+	//m_spriteFont->draw(m_timerSpriteBatch, buffer2, glm::vec2(-100, 0), glm::vec2(1), 0, Feintgine::Color(255, 255, 255, 255));
 	m_timerSpriteBatch.end();
 	m_timerSpriteBatch.renderBatch();
 
@@ -1214,7 +1214,7 @@ void Extra_DemoScreen::reloadLevel()
 
 	
 	//toggleBalanceLight();
-	GlobalValueClass::Instance()->setLightBalance(true);
+	GlobalValueClass::Instance()->setLightBalance(false);
 
 	m_lookDir = glm::vec3(1.0f, 0, 0.f);// glm::vec3(0, 0.0f, 0.0f); glm::vec3(1.f, -0.45f, 0.f);
 	m_camVel = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -1891,14 +1891,9 @@ void Extra_DemoScreen::drawHitboxes()
 
 void Extra_DemoScreen::toggleBalanceLight()
 {
-	if (GlobalValueClass::Instance()->isLightBalance())
-	{
-		GlobalValueClass::Instance()->setLightBalance(false);
-	}
-	else
-	{
-		GlobalValueClass::Instance()->setLightBalance(true);
-	}
+
+	GlobalValueClass::Instance()->setLightBalance(!GlobalValueClass::Instance()->isLightBalance());
+
 }
 
 void Extra_DemoScreen::updateShaderCamera(float deltaTime)

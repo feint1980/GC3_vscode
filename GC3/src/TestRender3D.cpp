@@ -1,7 +1,7 @@
 #include "TestRender3D.h"
 //#define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
-#include <video_reader.h>
+
 
 TestRender3D::TestRender3D()
 {
@@ -43,16 +43,13 @@ void TestRender3D::destroy()
 void TestRender3D::onEntry()
 {
 	//ourModel = Feintgine::Model("Assets/3D/eiki/eiki_5.obj");
-	ourModel = Feintgine::Model("Assets/3D/eiki/eiki_saved.fbx");
+	ourModel = Feintgine::Model("Assets/3D/fumo/source/fumo2-1/fumo2.obj");
+
+	//ourModel.
+
 	m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight(), 7);
 
-
-	VideoReaderState vr_state;
-
-	if (!video_reader_open(&vr_state, "Videos/test.mov"))
-	{
-		std::cout << "Could not open video file (make sure you set a video file that exists) \n";
-	}
+	
 
 	glEnable(GL_DEPTH_TEST);
 }
@@ -89,18 +86,21 @@ void TestRender3D::draw()
 	m_shader.setUniformMat4("projection", projection);
 	m_shader.setUniformMat4("view", view);
 
+
+	glm::mat4 model2 = glm::mat4(1.0f);
+
+	model2 = glm::rotate(model2,degreeToRad(90.0f), glm::vec3(1, 0, 0));
 	// render the loaded model
-	glm::mat4 model = glm::mat4(1.0f);
+	glm::mat4 model = model2;
 	model = glm::translate(model, glm::vec3(0.0f, -1.5f, 0.0f)); // translate it down so it's at the center of the scene
 	model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));	// it's a bit too big for our scene, so scale it down
-	model = glm::rotate(model, modelAngle, glm::vec3(0,1,0));
+	model = glm::rotate(model, modelAngle, glm::vec3(0,0,1));
+	
 	m_shader.setUniformMat4("model", model);
 	//ourModel.d
 	ourModel.Draw(m_shader);
 
 	m_shader.unuse();
-
-
 
 }
 

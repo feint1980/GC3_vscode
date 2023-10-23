@@ -29,8 +29,8 @@
 
 #define RANDOM_VALUE (_type_,t_lo,t_hi) t_lo + static_cast <_type_> (rand()) / (static_cast <_type_> (RAND_MAX / (t_hi - t_lo)))
 
-#define RAD_2_DEGREE (degreeValue) (degreeValue * 57.2957795f);
-#define DEGREE_2_RAD (radValue) (degreeValue / 57.2957795);
+#define RAD_2_DEGREE (value) (value * 57.2957795f)
+#define DEGREE_2_RAD (value) (value / 57.2957795f)
 
 static float radToDegree(float rad) 
 {
