@@ -180,19 +180,23 @@ namespace Feintgine
 					buffer2));
 
 
-				oXValue = feint_common::Instance()->convertPreciousFloatToString(it->second.getAnims()[i].offset.x);
-				oYValue = feint_common::Instance()->convertPreciousFloatToString(it->second.getAnims()[i].offset.y);
-				char *buffer3 = new char[size2 + 1];   //we need extra char for NUL
+				 oXValue = feint_common::Instance()->convertPreciousFloatToString(it->second.getAnims()[i].offset.x);
+				 oYValue = feint_common::Instance()->convertPreciousFloatToString(it->second.getAnims()[i].offset.y);
+				//oXValue = std::to_string(it->second.getAnims()[i].offset.x);
+				//oYValue = std::to_string(it->second.getAnims()[i].offset.y);
 
-				memcpy(buffer3, oXValue.c_str(), size2 + 1);
+				const std::string::size_type size3 = oXValue.size();
+				char *buffer3 = new char[size3 + 1];   //we need extra char for NUL
+
+				memcpy(buffer3, oXValue.c_str(), size3 + 1);
 				
 				anim_node->append_attribute(doc.allocate_attribute("offset_x",
 					buffer3));
 				
+				const std::string::size_type size4 = oYValue.size();
+				char *buffer4 = new char[size4 + 1];   //we need extra char for NUL
 
-				char *buffer4 = new char[size2 + 1];   //we need extra char for NUL
-
-				memcpy(buffer4, oYValue.c_str(), size2 + 1);
+				memcpy(buffer4, oYValue.c_str(), size4 + 1);
 
 				anim_node->append_attribute(doc.allocate_attribute("offset_y",
 					buffer4));

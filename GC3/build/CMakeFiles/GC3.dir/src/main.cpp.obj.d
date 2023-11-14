@@ -860,6 +860,15 @@ CMakeFiles/GC3.dir/src/main.cpp.obj: E:\template\GC_port\GC3\src\main.cpp \
  E:/template/GC_port/Feintgine/src/Camera2D.h \
  E:/template/GC_port/Feintgine/src/DebugRender.h \
  E:/template/GC_port/Feintgine/src/LightBatch.h \
+ E:/template/GC_port/Feintgine/src/f_uvobject.h \
+ E:/template/GC_port/Feintgine/src/F_Sprite.h \
+ E:/template/GC_port/Feintgine/src/ResourceManager.h \
+ E:/template/GC_port/Feintgine/src/SpriteManager.h \
+ E:/template/GC_port/Feintgine/src/SpritePacket.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/rapidxml_print.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/dirent.h \
+ C:/SysGCC/mingw32/include/sys/stat.h \
  E:\template\GC_port\GC3\src\DemoScreen.h \
  E:/template/GC_port/Feintgine/src/GLTexture.h \
  E:/template/GC_port/Feintgine/src/Window.h \
@@ -890,23 +899,17 @@ CMakeFiles/GC3.dir/src/main.cpp.obj: E:\template\GC_port\GC3\src\main.cpp \
  E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftglyph.h \
  E:\template\GC_port\GC3\src\F_Player.h \
  E:/template/GC_port/Feintgine/src/AnimatedObject.h \
- E:/template/GC_port/Feintgine/src/ResourceManager.h \
  E:\template\GC_port\GC3\src\F_PlayerAccessory.h \
  E:\template\GC_port\GC3\src\F_BulletStraight.h \
  E:\template\GC_port\GC3\src\F_BulletBase.h \
  E:\template\GC_port\GC3\src\F_EnemyBasic.h \
  E:\template\GC_port\GC3\src\F_BaseEnemy.h \
  E:/template/GC_port/Feintgine/src/F_AnimatedObject.h \
- E:/template/GC_port/Feintgine/src/F_Sprite.h \
  E:/template/GC_port/Feintgine/src/Error.h \
  E:/template/GC_port/Feintgine/src/F_Animation.h \
  E:/template/GC_port/Feintgine/src/f_anim.h \
  E:/template/GC_port/Feintgine/src/SpriteManager.h \
- E:/template/GC_port/Feintgine/src/SpritePacket.h \
- E:/template/GC_port/Feintgine_GC_deps/include/rapidxml_print.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/dirent.h \
- C:/SysGCC/mingw32/include/sys/stat.h C:/SysGCC/mingw32/include/memory.h \
+ C:/SysGCC/mingw32/include/memory.h \
  E:/template/GC_port/Feintgine/src/LightBatch.h \
  E:/template/GC_port/Feintgine/src/F_oEvent.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/queue \
@@ -975,7 +978,6 @@ CMakeFiles/GC3.dir/src/main.cpp.obj: E:\template\GC_port\GC3\src\main.cpp \
  E:/template/GC_port/Feintgine/src/EffectBatch.h \
  E:/template/GC_port/Feintgine/src/FrameBufferScreen.h \
  E:\template\GC_port\GC3\src\F_HomingBullet.h \
- E:/template/GC_port/Feintgine/src/SpriteManager.h \
  E:\template\GC_port\GC3\src\F_MarisaRocket_small.h \
  E:\template\GC_port\GC3\src\F_MarisaLaser.h \
  E:\template\GC_port\GC3\src\GC3_EmptyObject.h \

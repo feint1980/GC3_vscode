@@ -72,9 +72,9 @@ void App::addScreen()
 
 //	m_screenList->addScreen(m_test2.get());
 
- //	m_test = std::make_unique<TestScreeb>(&m_window);
+ 	m_test = std::make_unique<TestScreeb>(&m_window);
 // 
- 	//m_screenList->addScreen(m_test.get());
+ 	m_screenList->addScreen(m_test.get());
 	
 
 	// Main test screen
@@ -92,8 +92,11 @@ void App::addScreen()
 	//m_screenList->setScreen(m_replayScreen->getScreenIndex());
 
 	// 3D screen
-	m_screenList->setScreen(m_extraDemo->getScreenIndex());
+	//m_screenList->setScreen(m_extraDemo->getScreenIndex());
 
+
+	// Test the UV logic
+	m_screenList->setScreen(m_test->getScreenIndex());
 
 
 	//m_screenList->setScreen(m_selectScreen->getScreenIndex());

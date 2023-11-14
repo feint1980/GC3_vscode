@@ -1,15 +1,127 @@
 <F_AObj name="komachi_effects">
 	<animations>
+		<animation name="ball_explode">
+			<anims>
+				<anim name="komachi_effect/komachi_effect_p1_22.png" time="2.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="komachi_effect/komachi_effect_p1_23.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_27.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_01.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_26.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_27.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_28.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_29.png" time="1.00" offset_x="-4.00" offset_y="24.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_30.png" time="1.00" offset_x="1.50" offset_y="22.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_31.png" time="1.00" offset_x="4.00" offset_y="14.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_32.png" time="1.00" offset_x="5.00" offset_y="4.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_33.png" time="1.00" offset_x="8.00" offset_y="-2.50"/>
+				<anim name="komachi_effect/komachi_effect_p1_34.png" time="1.00" offset_x="8.00" offset_y="-5.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_35.png" time="1.00" offset_x="9.00" offset_y="-5.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_36.png" time="1.00" offset_x="9.00" offset_y="-7.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_37.png" time="1.00" offset_x="9.00" offset_y="-7.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_38.png" time="1.00" offset_x="9.00" offset_y="-7.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_39.png" time="1.00" offset_x="11.00" offset_y="-7.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_40.png" time="1.00" offset_x="14.00!•òÀÃ‹”¿
+" offset_y="-7.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_41.png" time="1.00" offset_x="17.00" offset_y="-7.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_42.png" time="1.00" offset_x="16.00" offset_y="-7.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_43.png" time="1.00" offset_x="14.00" offset_y="-7.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_44.png" time="1.00" offset_x="13.00ÿÿ¸Ñ¨—ÿK" offset_y="-8.00ÿÿÀ÷Ê—ÿZ"/>
+				<anim name="komachi_effect/komachi_effect_p1_45.png" time="1.00" offset_x="12.00ÿÿ'	œÀ—ÿ_" offset_y="-8.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_46.png" time="1.00" offset_x="11.00" offset_y="-8.00"/>
+				<anim name="komachi_effect/komachi_effect_p1_47.png" time="1.00" offset_x="10.00" offset_y="-8.00ÿÿ"/>
+				<anim name="komachi_effect/komachi_effect_p1_48.png" time="1.00" offset_x="9.50" offset_y="-9.00ÿÿÿù°—"/>
+				<anim name="komachi_effect/komachi_effect_p1_49.png" time="1.00" offset_x="9.50" offset_y="-10.0ÿÿ÷û¶—ÿX"/>
+				<anim name="komachi_effect/komachi_effect_p1_50.png" time="1.00" offset_x="10.00ÿÿ" offset_y="-11.0"/>
+				<anim name="komachi_effect/komachi_effect_p1_51.png" time="1.00" offset_x="10.00ÿÿ" offset_y="-11.0ÿÿ"/>
+				<anim name="komachi_effect/komachi_effect_p1_52.png" time="1.00" offset_x="9.00" offset_y="-11.0"/>
+				<anim name="komachi_effect/komachi_effect_p1_53.png" time="1.00" offset_x="9.00" offset_y="-10.0ÿÿÕ”—ÿI"/>
+				<anim name="komachi_effect/komachi_effect_p1_54.png" time="1.00" offset_x="9.00" offset_y="-12.0ÿÿ"/>
+				<anim name="komachi_effect/komachi_effect_p1_55.png" time="1.00" offset_x="9.00" offset_y="-16.0"/>
+				<anim name="komachi_effect/komachi_effect_p1_56.png" time="1.00" offset_x="9.00" offset_y="-26.0ÿÿgœÚ—"/>
+				<anim name="komachi_effect/komachi_effect_p1_57.png" time="1.00" offset_x="9.00" offset_y="-18.0"/>
+				<anim name="komachi_effect/komachi_effect_p1_58.png" time="1.00" offset_x="9.00" offset_y="-13.0"/>
+				<anim name="komachi_effect/komachi_effect_p1_59.png" time="1.00" offset_x="9.00" offset_y="-13.0ÿÿaœî—ÿl"/>
+				<anim name="komachi_effect/komachi_effect_p1_60.png" time="1.00" offset_x="9.00" offset_y="-13.0"/>
+				<anim name="komachi_effect/komachi_effect_p1_61.png" time="1.00" offset_x="9.00" offset_y="-14.0ÿÿlœÄ—ÿa"/>
+			</anims>
+		</animation>
+		<animation name="flame_ball">
+			<anims>
+				<anim name="komachi_effect/komachi_effect_p2_01.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="komachi_effect/komachi_effect_p2_02.png" time="4.00" offset_x="-1.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_03.png" time="0.00" offset_x="-1.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_04.png" time="4.00" offset_x="-1.00ÿÿ" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_05.png" time="0.00" offset_x="-1.00" offset_y="-0.50"/>
+				<anim name="komachi_effect/komachi_effect_p2_06.png" time="4.00" offset_x="-1.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_07.png" time="4.00" offset_x="-1.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_08.png" time="4.00" offset_x="-1.00ÿÿÿqœH–ÿ›" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_09.png" time="0.00" offset_x="-1.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_10.png" time="4.00" offset_x="-1.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_11.png" time="4.00" offset_x="-1.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_12.png" time="4.00" offset_x="-1.00ÿÿ8cœ&gt;–ÿ”" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_13.png" time="4.00" offset_x="-1.00ÿÿG{œ6–ÿ˜" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_14.png" time="4.00" offset_x="-1.00ÿÿÿƒœ^–ÿ¤" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p2_15.png" time="4.00" offset_x="-1.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="flame_explode">
+			<anims>
+				<anim name="komachi_effect/komachi_effect_p3_01.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="komachi_effect/komachi_effect_p3_02.png" time="2.00" offset_x="-1.00ÿÿ›œV–ÿ¨" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_03.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_04.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_05.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_06.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_07.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_08.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_09.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_10.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_11.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_12.png" time="4.00" offset_x="-3.00ÿÿÀûœ¶–ÿØ" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_13.png" time="4.00" offset_x="4.00" offset_y="2.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_14.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_15.png" time="4.00" offset_x="-1.00ÿÿ" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p3_16.png" time="4.00" offset_x="-1.00ÿÿÀ	ŸÀ–ÿß" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="slash_effect">
+			<anims>
+				<anim name="komachi_effect/komachi_effect_p6_01.png" time="2.00" offset_x="0.00" offset_y="-16.0ÿÿ˜Õœ”–ÿÉ" loop="1"/>
+				<anim name="komachi_effect/komachi_effect_p6_02.png" time="2.00" offset_x="0.00" offset_y="-1.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_03.png" time="2.00" offset_x="-2.00" offset_y="1.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_04.png" time="2.00" offset_x="-1.00" offset_y="2.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_05.png" time="2.00" offset_x="-5.00" offset_y="2.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_06.png" time="2.00" offset_x="-9.00ÿÿi#Ÿþ–ÿô" offset_y="1.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_07.png" time="2.00" offset_x="-10.0" offset_y="2.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_08.png" time="2.00" offset_x="-8.00" offset_y="2.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_09.png" time="2.00" offset_x="-9.00ÿÿ" offset_y="1.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_10.png" time="2.00" offset_x="-8.00ÿÿ" offset_y="1.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_11.png" time="2.00" offset_x="-8.50" offset_y="2.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_12.png" time="2.00" offset_x="-9.50ÿÿðŸÞ–ÿä" offset_y="2.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_13.png" time="2.00" offset_x="-14.0ÿÿgŸØ–ÿã" offset_y="2.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_14.png" time="2.00" offset_x="-14.0ÿÿ" offset_y="3.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_15.png" time="2.00" offset_x="-14.0" offset_y="3.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_16.png" time="2.00" offset_x="-15.0" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p6_17.png" time="2.00" offset_x="-15.0" offset_y="1.00"/>
+			</anims>
+		</animation>
 		<animation name="souls_fly">
 			<anims>
-				<anim name="komachi_effect/komachi_effects_cut_92.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
-				<anim name="komachi_effect/komachi_effects_cut_93.png" time="4.00" offset_x="-1.00ë%?Æ¹õ¸" offset_y="0.00"/>
-				<anim name="komachi_effect/komachi_effects_cut_94.png" time="4.00" offset_x="-1.00ë%)ÆOõç¿" offset_y="0.00"/>
-				<anim name="komachi_effect/komachi_effects_cut_95.png" time="4.00" offset_x="-1.00¯EýÆ{õžÙ" offset_y="0.00"/>
-				<anim name="komachi_effect/komachi_effects_cut_96.png" time="4.00" offset_x="-1.00ë%Æwõ©Ó" offset_y="0.00"/>
-				<anim name="komachi_effect/komachi_effects_cut_97.png" time="4.00" offset_x="-1.00ë%ÆaõòÌ" offset_y="0.00"/>
-				<anim name="komachi_effect/komachi_effects_cut_98.png" time="0.00" offset_x="-1.00ë%%ÆSõ8Å" offset_y="0.00"/>
-				<anim name="komachi_effect/komachi_effects_cut_99.png" time="4.00" offset_x="-1.00ë%Æ]õ_Æ" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p4_01.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p4_02.png" time="4.00" offset_x="0.00" offset_y="1.00"/>
+				<anim name="komachi_effect/komachi_effect_p4_03.png" time="4.00" offset_x="1.00" offset_y="0.00"/>
+				<anim name="komachi_effect/komachi_effect_p4_04.png" time="4.00" offset_x="1.00" offset_y="-2.00"/>
+				<anim name="komachi_effect/komachi_effect_p4_05.png" time="4.00" offset_x="1.00" offset_y="-2.50"/>
+				<anim name="komachi_effect/komachi_effect_p4_06.png" time="4.00" offset_x="1.00" offset_y="-3.00"/>
+				<anim name="komachi_effect/komachi_effect_p4_07.png" time="4.00" offset_x="0.50" offset_y="-3.00"/>
+				<anim name="komachi_effect/komachi_effect_p4_08.png" time="4.00" offset_x="0.50" offset_y="-3.00"/>
+				<anim name="komachi_effect/komachi_effect_p4_09.png" time="4.00" offset_x="1.00" offset_y="-2.00" loop="1"/>
+				<anim name="komachi_effect/komachi_effect_p4_10.png" time="4.00" offset_x="1.00" offset_y="-1.00ÿÿ.¯Ÿb•ÿ.‹"/>
+				<anim name="komachi_effect/komachi_effect_p4_11.png" time="4.00" offset_x="1.00" offset_y="-1.50"/>
+				<anim name="komachi_effect/komachi_effect_p4_12.png" time="4.00" offset_x="0.00" offset_y="-3.00"/>
+				<anim name="komachi_effect/komachi_effect_p4_13.png" time="4.00" offset_x="0.00" offset_y="-3.00ÿÿ"/>
+				<anim name="komachi_effect/komachi_effect_p4_14.png" time="4.00" offset_x="0.00" offset_y="-2.00"/>
+				<anim name="komachi_effect/komachi_effect_p4_15.png" time="4.00" offset_x="0.00" offset_y="-2.00"/>
 			</anims>
 		</animation>
 	</animations>

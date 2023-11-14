@@ -449,7 +449,7 @@ void Extra_DemoScreen::initShader()
 	m_lightBatch.initShader(&m_shader);
 
 
-	GLuint tex_fb  = m_frameBuffer.init(768, 768);
+	GLuint tex_fb  = m_frameBuffer.init(768, 768,false);
 
 
 	//GLuint tex_fb = m_frameBuffer.init(m_window->getScreenWidth(), m_window->getScreenHeight());

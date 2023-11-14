@@ -45,19 +45,20 @@ void TestScreeb::destroy()
 void TestScreeb::onEntry()
 {
 
-
+	//Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
 	m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight());
 
 	std::cout << " init with " << m_window->getScreenWidth() << " and " << m_window->getScreenHeight() << "\n";
-	m_camera.setScale(10.0f);
+	m_camera.setScale(1.0f);
 	m_spriteBatch.init();
 
 	testObj.init(Feintgine::ResourceManager::getTexture("Textures/bg.png"), 
 		glm::vec2(-10, 10), glm::vec2(80.0f, 100.0f), Feintgine::Color(255, 255, 255, 255));
 	testObj.setSPec(1);
-	m_camera.setPosition(testObj.getPos());
+	//m_camera.setPosition(testObj.getPos());
 	m_camera.update();
 
+	m_uvObj.init(Feintgine::ResourceManager::getTexture("Assets/Textures/items.png") , glm::vec2(0, 0), glm::vec2(0.125, 0.125), Feintgine::Color(255, 255, 255, 255));
 	std::cout << "camera pos is " << feint_common::Instance()->convertVec2toString(m_camera.getPosition()) << "\n";
 }
 
@@ -73,7 +74,7 @@ void TestScreeb::update(float deltaTime)
 	m_camera.update();
 	checkInput();
 	handleInput(m_game->m_inputManager);
-	
+	m_uvObj.update(deltaTime);
 }
 
 void TestScreeb::draw()
@@ -84,8 +85,6 @@ void TestScreeb::draw()
 
 
 	m_shader.use();
-
-
 
 	GLint alphaLocation = m_shader.getUniformLocation("time");
 	glUniform1f(alphaLocation, 1);
@@ -105,7 +104,8 @@ void TestScreeb::draw()
 
 	m_spriteBatch.begin();
 
-	testObj.draw(m_spriteBatch);
+	m_uvObj.draw(m_spriteBatch);
+	//testObj.draw(m_spriteBatch);
 	//m_player.draw(m_spriteBatch);
 
 	//drawHUD();

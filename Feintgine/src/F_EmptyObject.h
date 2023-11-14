@@ -12,15 +12,15 @@ namespace Feintgine {
 	{
 	public:
 
-		void init(F_Sprite sprite, glm::vec2 pos, glm::vec2 scalingFactor, Feintgine::Color color);
+		void init(const F_Sprite & sprite,const glm::vec2 & pos,const glm::vec2 & scalingFactor,const Feintgine::Color & color);
 
-		void setPos(glm::vec2 pos);
+		void setPos(const glm::vec2 & pos);
 
-		void setScaleWithActualSize(glm::vec2 dim);
+		void setScaleWithActualSize(const glm::vec2 & dim);
 
-		void setScale(glm::vec2 scale);
+		void setScale(const glm::vec2 & scale);
 
-		void setColor(Feintgine::Color color);
+		void setColor(const Feintgine::Color & color);
 
 		glm::vec2 getPos() const { return m_pos; }
 

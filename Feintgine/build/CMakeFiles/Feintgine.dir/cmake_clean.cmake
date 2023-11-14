@@ -187,6 +187,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Feintgine.dir/src/Window.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj.d"
+  "CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj"
+  "CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj"

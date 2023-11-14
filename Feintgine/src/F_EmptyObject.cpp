@@ -2,7 +2,7 @@
 
 namespace Feintgine {
 
-	void F_EmptyObject::init(F_Sprite sprite, glm::vec2 pos, glm::vec2 scalingFactor, Feintgine::Color color)
+	void F_EmptyObject::init(const F_Sprite & sprite,const glm::vec2 & pos,const glm::vec2 & scalingFactor, const Feintgine::Color & color)
 	{
 		m_sprite = sprite;
 		m_pos = pos;
@@ -11,12 +11,12 @@ namespace Feintgine {
 
 	}
 
-	void F_EmptyObject::setPos(glm::vec2 pos)
+	void F_EmptyObject::setPos(const glm::vec2 & pos)
 	{
 		m_pos = pos;
 	}
 
-	void F_EmptyObject::setScaleWithActualSize(glm::vec2 dim)
+	void F_EmptyObject::setScaleWithActualSize(const glm::vec2 & dim)
 	{
 		glm::vec2 scale = dim / m_sprite.getTextureDim();
 
@@ -24,12 +24,12 @@ namespace Feintgine {
 	}
 
 
-	void F_EmptyObject::setScale(glm::vec2 scale)
+	void F_EmptyObject::setScale(const glm::vec2 & scale)
 	{
 		m_scale = scale;
 	}
 
-	void F_EmptyObject::setColor(Feintgine::Color color)
+	void F_EmptyObject::setColor(const Feintgine::Color & color)
 	{
 		m_color = color;
 	}

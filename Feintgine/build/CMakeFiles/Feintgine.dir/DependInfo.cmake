@@ -102,6 +102,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/template/GC_port/Feintgine/src/Vertex3D.cpp" "CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/Window.cpp" "CMakeFiles/Feintgine.dir/src/Window.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/Window.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/XMLParser.cpp" "CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/f_uvobject.cpp" "CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/feint_common.cpp" "CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/lbwraptext.cpp" "CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/objectData.pb.cpp" "CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj.d"

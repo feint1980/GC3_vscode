@@ -2778,6 +2778,30 @@ src/XMLParser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/XMLParser.cpp.s
 .PHONY : src/XMLParser.cpp.s
 
+src/f_uvobject.obj: src/f_uvobject.cpp.obj
+.PHONY : src/f_uvobject.obj
+
+# target to build an object file
+src/f_uvobject.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj
+.PHONY : src/f_uvobject.cpp.obj
+
+src/f_uvobject.i: src/f_uvobject.cpp.i
+.PHONY : src/f_uvobject.i
+
+# target to preprocess a source file
+src/f_uvobject.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.i
+.PHONY : src/f_uvobject.cpp.i
+
+src/f_uvobject.s: src/f_uvobject.cpp.s
+.PHONY : src/f_uvobject.s
+
+# target to generate assembly for a file
+src/f_uvobject.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.s
+.PHONY : src/f_uvobject.cpp.s
+
 src/feint_common.obj: src/feint_common.cpp.obj
 .PHONY : src/feint_common.obj
 
@@ -3220,6 +3244,9 @@ help:
 	@echo ... src/XMLParser.obj
 	@echo ... src/XMLParser.i
 	@echo ... src/XMLParser.s
+	@echo ... src/f_uvobject.obj
+	@echo ... src/f_uvobject.i
+	@echo ... src/f_uvobject.s
 	@echo ... src/feint_common.obj
 	@echo ... src/feint_common.i
 	@echo ... src/feint_common.s

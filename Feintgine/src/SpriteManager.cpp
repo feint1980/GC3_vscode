@@ -76,7 +76,7 @@ namespace Feintgine {
 			}
 			else
 			{
-				printf("%*s- %s\n", level * 2, "", entry->d_name);
+				//printf("%*s- %s\n", level * 2, "", entry->d_name);
 				std::string texturePath = name;
 				texturePath.append("/");
 				texturePath.append(entry->d_name);

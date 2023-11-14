@@ -13,6 +13,8 @@
 
 
 #include "EmptyObject.h"
+#include <f_uvobject.h>
+#include <SpriteManager.h>
 
 class TestScreeb : public Feintgine::IGameScreen
 {
@@ -55,6 +57,6 @@ private:
 	Feintgine::Window * m_window;
 	Feintgine::Camera2D m_camera;
 
-
+	Feintgine::F_UVObject m_uvObj;
 };
 
