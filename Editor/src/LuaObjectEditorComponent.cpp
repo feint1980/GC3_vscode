@@ -21,7 +21,11 @@ void LuaObjectEditorComponent::loadGUI(Feintgine::GUI * gui)
 
 
 	m_movesetList = static_cast<CEGUI::Listbox*> (m_gui->createWidget("TaharezLook/Listbox",
-		glm::vec4(0.55, 0.08, 0.25, 0.6), glm::vec4(0), "movesetList"));
+		glm::vec4(0.77, 0.08, 0.2, 0.6), glm::vec4(0), "movesetList"));
+
+	m_bossList = static_cast<CEGUI::Listbox*> (m_gui->createWidget("TaharezLook/Listbox",
+		glm::vec4(0.55, 0.08, 0.2, 0.6), glm::vec4(0), "m_bossList"));
+	
 
 	m_toggleUpdate = static_cast<CEGUI::PushButton*>(m_gui->createWidget("TaharezLook/Button",
 		glm::vec4(0.75, 0.7, 0.04, 0.04), glm::vec4(0), "m_toggleUpdate"));
@@ -37,6 +41,11 @@ void LuaObjectEditorComponent::loadGUI(Feintgine::GUI * gui)
 			glm::vec4(0.85, 0.7, 0.1, 0.04), glm::vec4(0), "m_clearBullets"));
 	m_clearBullets->setText("Clear Bullets");
 
+	m_refreshData = static_cast<CEGUI::PushButton*>(m_gui->createWidget("TaharezLook/Button",
+		glm::vec4(0.65, 0.7, 0.04, 0.04), glm::vec4(0), "m_refreshData"));
+	m_refreshData->setText("Refresh");
+
+
 	m_toggleUpdate->subscribeEvent(CEGUI::PushButton::EventClicked,
 		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::toggleUpdate, this));
 
@@ -49,6 +58,42 @@ void LuaObjectEditorComponent::loadGUI(Feintgine::GUI * gui)
 	m_movesetList->subscribeEvent(CEGUI::Listbox::EventMouseDoubleClick,
 		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::pickMoveset, this));
 
+	m_refreshData->subscribeEvent(CEGUI::PushButton::EventClicked,
+		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::refreshData, this));
+
+	m_bossList->subscribeEvent(CEGUI::Listbox::EventMouseDoubleClick,
+		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::loadMovesetInternal, this));
+
+}
+
+bool LuaObjectEditorComponent::refreshData(const CEGUI::EventArgs &e)
+{
+	loadBosses(m_currentLuaDir);
+	return true;
+}
+
+bool LuaObjectEditorComponent::loadMovesetInternal(const CEGUI::EventArgs &e)
+{
+	if (m_bossList->getSelectedCount() > 0)
+	{
+		std::string t_fileName = m_bossList->getFirstSelectedItem()->getText().c_str();
+		std::string t_path = m_currentLuaDir;
+		t_path += t_fileName;
+		
+		loadMoveset(t_path);
+	//		m_luaObjectManager.loadLuaFile(t_path);
+		// m_luaObjectManager.callCreateFromLua(t_path, "CreateFromLua");
+		// m_luaObjectManager.resetEvent();
+		// m_movesetList->clearAllSelections();
+		// m_luaObjectManager.clearBullets();
+		// update(1.0f);
+		// if (m_isUpdate)
+		// {
+
+		// 	toggleUpdate(e);
+		// }
+	}
+	return true;
 }
 
 void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Camera2D * cam, const Feintgine::Camera2D & staticCam)
@@ -171,7 +216,10 @@ bool LuaObjectEditorComponent::clearBullets(const CEGUI::EventArgs &e)
 
 void LuaObjectEditorComponent::handleInput(Feintgine::InputManager & inputManager)
 {
-
+	if (inputManager.isKeyPressed(SDLK_F5))
+	{
+		loadBosses("Assets/LuaFiles/");	
+	}
 }
 
 void LuaObjectEditorComponent::showGUI(bool value)
@@ -184,6 +232,8 @@ void LuaObjectEditorComponent::showGUI(bool value)
 		m_movesetList->show();
 		m_clearButton->show();
 		m_clearBullets->show();
+		m_bossList->show();
+		m_refreshData->show();
 	}
 	else
 	{
@@ -192,15 +242,62 @@ void LuaObjectEditorComponent::showGUI(bool value)
 		m_movesetList->hide();
 		m_clearButton->hide();
 		m_clearBullets->hide();
+		m_bossList->hide();
+		m_refreshData->hide();
+
 	}
 
+
+	
 	m_bulletCount->setVisible(value);
 	m_toggleUpdate->setVisible(value);
 	m_movesetList->setVisible(value);
 	m_clearButton->setVisible(value);
 	m_clearBullets->setVisible(value);
-
+	m_bossList->setVisible(value);
+	m_refreshData->setVisible(value);
 }
+
+void LuaObjectEditorComponent::loadBosses(const std::string & path)
+{
+	DIR * dir;
+	struct dirent * entry;
+	
+	if(!(dir = opendir(path.c_str())))
+	{
+		std::cout << "dir failed \n";
+		return;
+	}
+	if(!(entry = readdir(dir)))
+	{
+		std::cout << "entry failed \n";
+		return;
+	}
+	m_currentLuaDir = path;
+	m_bossList->resetList();
+	m_movesetList->resetList();
+	const CEGUI::Image* sel_img = &CEGUI::ImageManager::getSingleton().get("TaharezLook/MultiListSelectionBrush");
+	do
+	{
+
+		std::string t_path = path;
+		std::string t_fileName = entry->d_name;
+		std::string t_ext = t_fileName.substr(t_fileName.find_last_of(".") + 1);
+		
+		if (t_ext == "lua")
+		{
+			//std::cout << "found " << t_fileName << "\n";
+			CEGUI::ListboxTextItem * item;
+			item = new CEGUI::ListboxTextItem(t_fileName);
+			item->setSelectionBrushImage(sel_img);
+			
+			m_bossList->addItem(item);
+		}
+
+	} while (entry = readdir(dir));
+	closedir(dir);
+}
+
 
 void LuaObjectEditorComponent::update(float deltaTime)
 {
@@ -217,10 +314,13 @@ void LuaObjectEditorComponent::update(float deltaTime)
 
 void LuaObjectEditorComponent::loadMoveset(const std::string & path)
 {
+	
+	//std::cout << " function called with path " << path << "\n";
 	std::fstream t_file;
 	t_file.open(path.c_str(), std::ios::in);
 	if (t_file.is_open())
 	{
+		m_lines.clear();
 		std::string t_line;
 		while (std::getline(t_file, t_line))
 		{
@@ -230,7 +330,12 @@ void LuaObjectEditorComponent::loadMoveset(const std::string & path)
 		t_file.close();
 	}
 
-
+	m_movesetList->resetList();
+	m_movesetList->clearAllSelections();
+	m_movesetList->setMultiselectEnabled(false);
+	m_movesetList->setShowVertScrollbar(true);
+	m_luaObjectManager.clearBosses();
+	//m_movesetList->clear)
 	for (int i = 0; i < m_lines.size(); i++)
 	{
 		if (m_lines[i].find("function moveset_") != std::string::npos)
@@ -249,11 +354,13 @@ void LuaObjectEditorComponent::loadMoveset(const std::string & path)
 				m_movesetList->addItem(item);
 			
 		}
+	
 	}
+	m_luaObjectManager.callCreateFromLua(path, "CreateFromLua");
 }
 
 bool LuaObjectEditorComponent::pickMoveset(const CEGUI::EventArgs &e)
-{
+{	
 	
 	//m_luaObjectManager.callFunctionFromLua("resetFunction");
 	if (m_movesetList->getSelectedCount() > 0)

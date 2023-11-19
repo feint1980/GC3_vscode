@@ -38,7 +38,7 @@ public:
 	bool pickEnemy(const CEGUI::EventArgs &e);
 	
 	void showGUI(bool value);
-	void loadEnemy(const std::string & path);
+	void loadEnemies(const std::string & path);
 
 	int getEnemyNodeIndexByName(const std::string & name);
 

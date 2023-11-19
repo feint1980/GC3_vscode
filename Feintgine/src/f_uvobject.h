@@ -52,7 +52,7 @@ private :
 	glm::vec2 m_scale;
 
 	glm::vec4 m_uv;
-	glm::vec4 m_trackUV;
+	// glm::vec4 m_trackUV;
 
 	GLTexture m_texture;
 

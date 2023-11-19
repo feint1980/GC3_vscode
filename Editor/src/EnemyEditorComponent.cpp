@@ -120,7 +120,7 @@ void EnemyEditorComponent::handleInput(Feintgine::InputManager & inputManager)
 {
 	if (inputManager.isKeyPressed(SDLK_F5))
 	{
-		loadEnemy(savedLocation);
+		loadEnemies(savedLocation);
 	}
 }
 
@@ -160,7 +160,7 @@ void EnemyEditorComponent::showGUI(bool value)
 	
 }
 
-void EnemyEditorComponent::loadEnemy(const std::string & path)
+void EnemyEditorComponent::loadEnemies(const std::string & path)
 {
 	//enemyList.clear();
 	savedLocation = path;

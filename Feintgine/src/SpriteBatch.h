@@ -21,7 +21,7 @@ namespace Feintgine{
 	public:
 		Glyph() {};
 		Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const Color& color);
-		Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const Color& color, float angle,glm::vec4 UVmod = glm::vec4(0)); // why UVmod use glm::vec4 ? because there already a function exist using glm::vec2
+		Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const Color& color, float angle); // why UVmod use glm::vec4 ? because there already a function exist using glm::vec2
 		
 		Glyph(vector2f *quads);
 		Glyph(const glm::vec4& destRect, const glm::vec4& uvRect,  float depth, const Color& color, float angle,float spec, float lightPoint);
@@ -115,7 +115,7 @@ namespace Feintgine{
 		// Adds a glyph to the spritebatch
 		void draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color);
 		// Adds a glyph to the spritebatch with rotation
-		void draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color, float angle, glm::vec4 UVmod = glm::vec4(0));
+		void draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color, float angle);
 		
 		void draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color, float angle,const glm::vec2 & option);
 		// Adds a glyph to the spritebatch with rotation

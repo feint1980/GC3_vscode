@@ -58,7 +58,7 @@ void TestScreeb::onEntry()
 	//m_camera.setPosition(testObj.getPos());
 	m_camera.update();
 
-	m_uvObj.init(Feintgine::ResourceManager::getTexture("Assets/Textures/items.png") , glm::vec2(0, 0), glm::vec2(0.125, 0.125), Feintgine::Color(255, 255, 255, 255));
+	m_uvObj.init(Feintgine::ResourceManager::getTexture("Assets/Textures/komachi_effect_p1_20.png") , glm::vec2(0, 0), glm::vec2(2, 4), Feintgine::Color(255, 255, 255, 255));
 	std::cout << "camera pos is " << feint_common::Instance()->convertVec2toString(m_camera.getPosition()) << "\n";
 }
 

@@ -354,15 +354,16 @@ void EditorScreen::onEntry()
 		m_editLuaCamera_static);
 
 	m_enemyEditor.loadGUI(&m_gui);
-	m_enemyEditor.loadEnemy("./Data/stageData/enemyState/fairyState.est");
+	m_enemyEditor.loadEnemies("./Data/stageData/enemyState/fairyState.est");
 	//m_enemyEditor.loadEnemy("./Data/stageData/enemyState/fairyState.est");
 	m_enemyEditor.showGUI(false);
 
 	m_luaEditor.loadGUI(&m_gui);
 	m_luaEditor.showGUI(false);
 
-	m_luaEditor.loadMoveset("Assets/LuaFiles/test.lua");
+	m_luaEditor.loadBosses("Assets/LuaFiles/");
 
+	
 	__int64 end = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 	std::cout << "End load " << end << std::endl;
 	__int64 elapsed = end - now;

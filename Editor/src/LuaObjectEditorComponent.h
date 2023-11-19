@@ -49,6 +49,11 @@ public:
 
 	void loadMoveset(const std::string & path);
 
+	bool loadMovesetInternal(const CEGUI::EventArgs &e);
+
+	void loadBosses(const std::string & path);
+
+	bool refreshData(const CEGUI::EventArgs &e);
 
 private:
 	
@@ -73,9 +78,18 @@ private:
 
 	CEGUI::PushButton * m_clearBullets = nullptr;
 
+	CEGUI::PushButton * m_refreshData = nullptr;
+
+	
 	CEGUI::Listbox * m_movesetList = nullptr;
 
+	CEGUI::Listbox * m_bossList = nullptr;
+
 	F_Lua_Boss_Manager m_luaObjectManager;
+
+
+	std::string m_currentLuaDir = "";
+
 
 	std::vector<std::string> m_lines;
 	//Feintgine::F_LuaObjectManager m_luaObjectManager;

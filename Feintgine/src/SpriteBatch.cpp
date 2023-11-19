@@ -1,7 +1,7 @@
 ﻿#include "SpriteBatch.h"
 #include <iostream>
 #include <algorithm>
-
+#include <iostream>
 namespace Feintgine {
 
 
@@ -32,7 +32,7 @@ namespace Feintgine {
 
 	}
 
-	Glyph::Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const Color& color, float angle,glm::vec4 UVmod) :
+	Glyph::Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const Color& color, float angle) :
 		texture(Texture),
 		depth(Depth) {
 	
@@ -54,47 +54,24 @@ namespace Feintgine {
 		
 
 
-		
-		float totalUVY = uvRect.y +UVmod.y;
-	
-		
-		//uvRect.y += UVmod.y;
-		float maxUVY = totalUVY + uvRect.w ;
-
-		//float saveValue = 0;
-		if(maxUVY > UVmod.w )
-		{
-			maxUVY = uvRect.y;
-		}	
-		if(totalUVY > maxUVY)
-		{
-			float tempValue = totalUVY;
-			totalUVY = maxUVY;
-			maxUVY = tempValue;
-		}
-		// if(maxUVY  > UVmod.y)
-		// {
-		// 	maxUVY =  uvRect.y - 0.01f;
-		// }
-
 		topLeft.setPosition(destRect.x + tl.x, destRect.y + tl.y);
 
-		topLeft.setUV(uvRect.x, maxUVY );
+		topLeft.setUV(uvRect.x, uvRect.y + uvRect.w);
 
 		bottomLeft.color = color;
 		
 		bottomLeft.setPosition(destRect.x + bl.x, destRect.y + bl.y);
-		bottomLeft.setUV(uvRect.x, totalUVY);
+		bottomLeft.setUV(uvRect.x, uvRect.y);
 
 		bottomRight.color = color;
 		
 		bottomRight.setPosition(destRect.x + br.x, destRect.y + br.y);
-		bottomRight.setUV(uvRect.x + uvRect.z, totalUVY);
+		bottomRight.setUV(uvRect.x + uvRect.z, uvRect.y);
 
 		topRight.color = color;
 		
 		topRight.setPosition(destRect.x + tr.x, destRect.y + tr.y);
-		topRight.setUV(uvRect.x + uvRect.z, maxUVY);
+		topRight.setUV(uvRect.x + uvRect.z, uvRect.y + uvRect.w);
 		
 	}
 	Glyph::Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const Color& color, float angle,const glm::vec2 & angleOption) :
@@ -348,8 +325,8 @@ namespace Feintgine {
 		_glyphs.emplace_back(destRect, uvRect, texture, depth, color, 0);
 	}
 
-	void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color, float angle, glm::vec4 UVmod ) {
-		_glyphs.emplace_back(destRect, uvRect, texture, depth, color, angle,UVmod);
+	void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color, float angle) {
+		_glyphs.emplace_back(destRect, uvRect, texture, depth, color, angle);
 	}
 
 	void SpriteBatch::draw(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint texture, float depth, const Color& color, const glm::vec2& dir) {

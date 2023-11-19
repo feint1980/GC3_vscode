@@ -50,6 +50,8 @@ public:
 	bool loadLuaFile(const std::string & filePath);
 
 
+	void clearBosses();
+
 	F_Lua_Boss * createBoss(const glm::vec2 & pos,
 		const Feintgine::F_AnimatedObject & t_animation,
 		const glm::vec2 & scale, float depth, float angle = 0.0f);
@@ -69,6 +71,7 @@ protected:
 	lua_State * m_script;
 	//std::vector<F_Lua_Boss *> m_dynamicObjects;
 	std::vector<F_Lua_Boss *> m_luaBosses;
+
 
 	float f_angle;
 	//std::vector<F_Lua_GC3_Boss *> m_bossObjects;

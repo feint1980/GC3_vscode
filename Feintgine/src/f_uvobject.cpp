@@ -10,8 +10,8 @@ namespace Feintgine {
             m_scale = scalingFactor;
             m_color = color;
             m_uv = m_sprite.getUV();    
-            m_trackUV = m_uv;
-            m_trackUV.w = m_trackUV.w / m_trackUVYCrop;
+            //m_trackUV = m_uv;
+            //m_trackUV.w = m_trackUV.w / m_trackUVYCrop;
         }
         void F_UVObject::init(const GLTexture & texture, const glm::vec2 & pos, const glm::vec2 & scalingFactor, const Feintgine::Color & color)
         {
@@ -19,8 +19,8 @@ namespace Feintgine {
             m_pos = pos;
             m_scale = scalingFactor;
             m_color = color;
-            m_uv = glm::vec4( 0.0f,0.0f, 0.125f, 0.125f);
-            m_trackUV = glm::vec4( 0.0f,0.0f, 0, 0.125f);
+            m_uv = glm::vec4( 0.0f,0.0f, 1.0f, 1.0f);
+            //m_trackUV = glm::vec4( 0.0f,0.0f, 0, 0.125f);
            
         }
     
@@ -55,22 +55,18 @@ namespace Feintgine {
             desRect.z = m_scale.x * m_texture.width;
             desRect.w = m_scale.y * m_texture.height;
         
-            spriteBatch.draw(desRect, m_uv, m_texture.id, m_depth, m_color, m_angle,m_trackUV);
+            spriteBatch.draw(desRect, m_uv, m_texture.id, m_depth, m_color, m_angle);
     
         }
 
         void F_UVObject::update(float deltaTime)
         {
 
-            m_trackUV.y += 0.001f * deltaTime;
-            // if(m_trackUV.y > m_trackUV.w)
-            // {
-            //     m_trackUV.y = 0;
-            // }
+            
            // timer = 0.1f* + deltaTime;
 
            // std::cout << "update \n";
-            // m_uv.y += 0.001f * deltaTime;
+             m_uv.y -= 0.01f * deltaTime;
             // if(m_uv.y > 0.125)
             // {
             //     m_uv.y =0;

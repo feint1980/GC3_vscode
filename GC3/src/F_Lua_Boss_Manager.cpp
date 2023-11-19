@@ -41,19 +41,25 @@ float sinCosCalCulator(int type, float val)
 
 int lua_CreateFromLua(lua_State * L)
 {
-	if (lua_gettop(L) != 1)
+	if (lua_gettop(L) != 7)
 	{
 		std::cout << "gettop failed \n";
 		return -1;
 	}
 	//std::cout << "[C++] lua_CreateFromLua called \n";
 	glm::vec2 pos(0);
-	std::string animationPath = "./Assets/F_AObjects/boss_eiki.xml";
+	
 	F_Lua_Boss_Manager * object = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1));
-
+	std::string animationPath = lua_tostring(L, 2);
+	float posX = (float)lua_tonumber(L, 3);
+	float posY = (float)lua_tonumber(L, 4);
+	pos = glm::vec2(posX, posY);
+	float scale = (float)lua_tonumber(L, 5);
+	int depth = (int)lua_tonumber(L, 6);
+	float angle = (float)lua_tonumber(L, 7);
 
 	
-	F_Lua_Boss * createdDynamicObj = object->createBoss(pos, animationPath, glm::vec2(1), 15, 0);// createObject(pos, animationPath, 1, 15, 0);
+	F_Lua_Boss * createdDynamicObj = object->createBoss(pos, animationPath, glm::vec2(scale), depth, angle);// createObject(pos, animationPath, 1, 15, 0);
 																										   //moveOb
 																										   //std::cout << "create object " << createdDynamicObj << "\n";
 	lua_pushlightuserdata(L, createdDynamicObj);
@@ -362,6 +368,16 @@ F_Lua_Boss * F_Lua_Boss_Manager::createBoss(const glm::vec2 & pos, const std::st
 	return m_object;
 }
 
+void F_Lua_Boss_Manager::clearBosses()
+{
+	for(auto i = 0; i < m_luaBosses.size(); i++)
+	{	
+		m_luaBosses.erase(m_luaBosses.begin() + i);
+		delete m_luaBosses[i];
+	}
+	m_luaBosses.clear();
+}
+
 bool F_Lua_Boss_Manager::loadLuaFile(const std::string & filePath)
 {
 	if (LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, filePath.c_str())))
@@ -416,8 +432,8 @@ bool F_Lua_Boss_Manager::loadLuaFile(const std::string & filePath)
 			angle = lua_tonumber(m_script, -1);
 			lua_pop(m_script, 1);
 
-			// note : this version is to cause object init animation from file path, please add 
-			// a copy version if you have time
+			/* note : this version is to cause object init animation from file path, please add 
+			 a copy version if you have time */
 			// Feint~ 
 
 			createBoss(pos, animationPath, scale, depth, angle);
