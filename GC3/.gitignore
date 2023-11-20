@@ -1,3 +1,8 @@
 *.o
 *.rar
 *.exe
+*.obj
+CMakeCache.txt
+cmake_install.cmake
+CEGUI.log
+Makefile
