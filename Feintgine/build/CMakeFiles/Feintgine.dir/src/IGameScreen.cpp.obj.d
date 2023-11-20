@@ -1,6 +1,6 @@
 CMakeFiles/Feintgine.dir/src/IGameScreen.cpp.obj: \
- E:\template\GC_port\Feintgine\src\IGameScreen.cpp \
- E:\template\GC_port\Feintgine\src\IGameScreen.h \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\IGameScreen.cpp \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\IGameScreen.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \

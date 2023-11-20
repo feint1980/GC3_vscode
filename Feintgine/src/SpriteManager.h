@@ -4,6 +4,8 @@
 #include "SpritePacket.h"
 #include <iostream>
 #include <dirent.h>
+#include <thread>
+#include <vector>
 namespace Feintgine {
 
 	class SpriteManager
@@ -36,12 +38,16 @@ namespace Feintgine {
 
 		std::map<std::string, SpritePacket > getPacketMap() const { return m_SpritePackets; }
 
+		void executeReadData();
+
 
 	private:
 
 		static SpriteManager *p_Instance;
 
 		std::map<std::string, SpritePacket > m_SpritePackets;
+		std::vector<std::thread> m_Threads;
+		std::mutex m_Mutex;
 
 	};
 }

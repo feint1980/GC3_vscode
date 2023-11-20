@@ -1,9 +1,9 @@
 CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: \
- E:\template\GC_port\Editor\src\DisplaySample.cpp \
- E:\template\GC_port\Editor\src\DisplaySample.h \
- E:/template/GC_port/Feintgine/src/SimpleDrawingObejct.h \
- E:/template/GC_port/Feintgine/src/F_EmptyObject.h \
- E:/template/GC_port/Feintgine/src/F_Sprite.h \
+ D:\VS_Code_prj\GC3_vscode\Editor\src\DisplaySample.cpp \
+ D:\VS_Code_prj\GC3_vscode\Editor\src\DisplaySample.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/SimpleDrawingObejct.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_EmptyObject.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Sprite.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/string \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
@@ -88,8 +88,8 @@ CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/glm.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/_fixes.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/glm.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/_fixes.hpp \
  C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
  C:/SysGCC/mingw32/include/math.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/climits \
@@ -99,82 +99,82 @@ CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
  C:/SysGCC/mingw32/include/assert.h \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/fwd.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_int.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/setup.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/fwd.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_int.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/setup.hpp \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_float.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_vec.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/precision.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/vec2.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_vec2.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_vec2.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/vec3.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_vec3.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_vec3.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/vec4.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_vec4.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_vec4.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/mat2x2.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat2x2.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat2x2.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/mat2x3.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat2x3.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat2x3.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/mat2x4.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat2x4.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat2x4.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/mat3x2.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat3x2.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat3x2.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/mat3x3.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat3x3.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat3x3.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/mat3x4.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat3x4.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat3x4.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/mat4x2.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat4x2.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat4x2.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/mat4x3.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat4x3.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat4x3.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/mat4x4.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat4x4.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat4x4.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/trigonometric.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_trigonometric.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_trigonometric.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/_vectorize.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_vec1.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_vec1.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/exponential.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_exponential.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_exponential.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_vector_relational.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_vector_relational.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/common.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_common.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/_fixes.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_common.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/packing.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_packing.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_packing.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_half.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_half.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/geometric.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_geometric.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_geometric.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/matrix.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_matrix.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_matrix.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/vector_relational.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/integer.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.inl \
- E:/template/GC_port/Feintgine/src/SpriteBatch.h \
- E:/template/GC_port/Feintgine_GC_deps/include/GL/glew.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_float.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_vec.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/precision.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/vec2.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_vec2.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_vec2.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/vec3.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_vec3.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_vec3.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/vec4.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_vec4.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_vec4.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat2x2.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat2x2.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat2x2.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat2x3.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat2x3.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat2x3.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat2x4.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat2x4.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat2x4.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat3x2.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat3x2.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat3x2.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat3x3.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat3x3.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat3x3.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat3x4.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat3x4.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat3x4.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat4x2.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat4x2.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat4x2.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat4x3.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat4x3.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat4x3.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat4x4.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat4x4.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat4x4.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/trigonometric.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_trigonometric.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_trigonometric.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/_vectorize.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_vec1.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_vec1.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/exponential.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_exponential.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_exponential.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_vector_relational.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_vector_relational.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/common.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_common.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/_fixes.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_common.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/packing.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_packing.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_packing.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_half.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_half.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/geometric.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_geometric.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_geometric.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/matrix.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_matrix.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_matrix.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/vector_relational.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/integer.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_integer.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_integer.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/SpriteBatch.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/GL/glew.h \
  C:/SysGCC/mingw32/include/inttypes.h C:/SysGCC/mingw32/include/GL/glu.h \
  C:/SysGCC/mingw32/include/GL/gl.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -182,12 +182,12 @@ CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
- E:/template/GC_port/Feintgine/src/Vertex.h \
- E:/template/GC_port/Feintgine/src/Vector2.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/Vertex.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/Vector2.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
- E:/template/GC_port/Feintgine/src/GLTexture.h \
- E:/template/GC_port/Feintgine/src/ResourceManager.h \
- E:/template/GC_port/Feintgine/src/TextureCache.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/GLTexture.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/ResourceManager.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/TextureCache.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/map \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
@@ -245,12 +245,12 @@ CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
- E:/template/GC_port/Feintgine/src/IOFileCache.h \
- E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp \
- E:/template/GC_port/Feintgine/src/objectData.pb.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/port_def.inc \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/port_undef.inc \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/io/coded_stream.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/IOFileCache.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/rapidxml.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/objectData.pb.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/port_def.inc \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/port_undef.inc \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/io/coded_stream.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_base.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_lockfree_defines.h \
@@ -259,7 +259,7 @@ CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: \
  C:/SysGCC/mingw32/include/sec_api/string_s.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/utility \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_relops.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/common.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/common.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/algorithmfwd.h \
@@ -280,11 +280,11 @@ CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/set \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_set.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multiset.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/macros.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/platform_macros.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/port.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/stringpiece.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/hash.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/macros.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/platform_macros.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/port.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/stringpiece.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/hash.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
@@ -292,17 +292,17 @@ CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/unordered_set \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_set.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/logging.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/status.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/strutil.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/port.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/arena.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/arena_impl.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/arenaz_sampler.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/arenastring.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/explicitly_constructed.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_message_util.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/once.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/logging.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/status.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/strutil.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/port.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/arena.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/arena_impl.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/arenaz_sampler.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/arenastring.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/explicitly_constructed.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/generated_message_util.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/once.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/chrono.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
@@ -310,33 +310,33 @@ CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_mutex.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/any.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/message_lite.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/metadata_lite.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/has_bits.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/implicit_weak_message.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/repeated_field.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/any.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/message_lite.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/metadata_lite.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/has_bits.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/implicit_weak_message.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/repeated_field.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iterator \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/repeated_ptr_field.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/wire_format_lite.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/casts.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_message_reflection.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/descriptor.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/mutex.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_enum_reflection.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_enum_util.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/unknown_field_set.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/io/zero_copy_stream_impl_lite.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/callback.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/io/zero_copy_stream.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/stl_util.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/parse_context.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/endian.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/inlined_string_field.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/message.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/repeated_ptr_field.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/wire_format_lite.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/casts.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/generated_message_reflection.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/descriptor.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/mutex.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/generated_enum_reflection.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/generated_enum_util.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/unknown_field_set.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/io/zero_copy_stream_impl_lite.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/callback.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/io/zero_copy_stream.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/stl_util.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/parse_context.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/endian.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/inlined_string_field.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/message.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/functional \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map_type_handler.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/extension_set.h
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/map_type_handler.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/extension_set.h

@@ -25,12 +25,15 @@ namespace Feintgine {
 
 	void SpriteManager::loadSpritePacket(const std::string & filePath)
 	{
+		m_Mutex.lock();
 		SpritePacket spritePacket;
 		//spritePacket = new SpritePacket();
 		spritePacket.loadPacket(filePath);
 		std::string packetKey = filePath;
 		packetKey = feint_common::Instance()->getFileNameFromPath(packetKey);
+		
 		m_SpritePackets.insert(std::make_pair(packetKey.c_str(), spritePacket));
+		m_Mutex.unlock();
 		//std::cout << "loaded packet !!!!!!!! " << packetKey << "\n";
 	}
 
@@ -43,6 +46,14 @@ namespace Feintgine {
 // 			std::cout << it->first << "\n";
 // 			std::cout << "with " << it->second.getSpriteMap().size() << "\n";
 // 		}
+	}
+
+	void SpriteManager::executeReadData()
+	{
+		for(int i = 0; i < m_Threads.size(); i++)
+		{
+			m_Threads[i].join();
+		}
 	}
 
 	int SpriteManager::loadFromDirectory(const char * name, int level)
@@ -86,6 +97,8 @@ namespace Feintgine {
 					if (texturePath.find(".xml") != std::string::npos)
 					{
 						//std::cout << "packet " << entry->d_name << " found \n";
+
+						//m_Threads.push_back(std::thread(&SpriteManager::loadSpritePacket, this, texturePath.c_str()));
 						loadSpritePacket(texturePath.c_str());
 					}
 				}
