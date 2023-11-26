@@ -170,23 +170,26 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	debug.render(Static_Edit_projectionMatrix, 2.0f);
 }
 
-bool LuaObjectEditorComponent::toggleUpdate(const CEGUI::EventArgs &e)
+void LuaObjectEditorComponent::internalToggleUpdate()
 {
-	
 	if (m_isUpdate)
 	{
-		
 		m_isUpdate = false;
 		m_toggleUpdate->setText("  >  ");
 		//std::cout << "started \n";
 	}
 	else
 	{
-		m_isUpdate = true;	
+		m_isUpdate = true;
 		m_toggleUpdate->setText("  ||  ");
 		//std::cout << "started \n";
 	}
+}
 
+bool LuaObjectEditorComponent::toggleUpdate(const CEGUI::EventArgs &e)
+{
+	
+	internalToggleUpdate();
 
 	return true;
 }
@@ -220,6 +223,11 @@ void LuaObjectEditorComponent::handleInput(Feintgine::InputManager & inputManage
 	{
 		loadBosses("Assets/LuaFiles/");	
 	}
+	if(inputManager.isKeyPressed(SDLK_SPACE))
+	{
+		internalToggleUpdate();
+	}
+
 }
 
 void LuaObjectEditorComponent::showGUI(bool value)

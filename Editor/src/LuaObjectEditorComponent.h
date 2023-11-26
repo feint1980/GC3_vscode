@@ -33,6 +33,8 @@ public:
 
 	bool toggleUpdate(const CEGUI::EventArgs &e);
 
+	void internalToggleUpdate();
+
 	bool resetEvent(const CEGUI::EventArgs &e);
 
 	bool clearBullets(const CEGUI::EventArgs &e);

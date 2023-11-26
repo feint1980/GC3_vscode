@@ -366,8 +366,16 @@ void EditorScreen::onEntry()
 	
 	__int64 end = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 	std::cout << "End load " << end << std::endl;
+
+	glEnable(GL_BLEND);
+	//glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
+	
+
 	__int64 elapsed = end - now;
 	std::cout << "total " << (float)elapsed / 1000.0f << "\n";
+
+
+
 }
 
 void EditorScreen::onExit()
@@ -554,8 +562,8 @@ void EditorScreen::draw()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 	
 	switch (objectiveMode)
 	{
@@ -616,7 +624,7 @@ void EditorScreen::draw()
 	glm::mat4 previewMatrix = m_fullCam.getCameraMatrix();
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &previewMatrix[0][0]);
 
-	m_spriteBatch.begin();
+	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 	if (drawMode == edit_scene_mode)
 	{
 		m_sceneManager.drawIcons(m_spriteBatch);
@@ -774,7 +782,7 @@ void EditorScreen::checkInput()
 
 void EditorScreen::handleInput(Feintgine::InputManager & inputManager)
 {
-
+	m_luaEditor.handleInput(inputManager);
 	m_tileStack.handleInput(inputManager);
 	m_spriteListDisplayer.handleInput(inputManager, m_spriteListCamera.convertScreenToWorldViewPort(inputManager.getMouseCoords(),
 		glm::vec2(SpriteListScreen.x, SpriteListScreen.y),glm::vec2(m_window->getScreenWidth(),m_window->getScreenHeight())));
@@ -1906,7 +1914,7 @@ void EditorScreen::drawSampleScreen()
 	glm::mat4 sampleMatrix = m_sampleCam.getCameraMatrix();
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &sampleMatrix[0][0]);
 
-	m_spriteBatch.begin();
+	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 	
 	if (m_spriteListDisplayer.getDisplaySample())
 	{
@@ -2119,7 +2127,7 @@ void EditorScreen::drawObjectsScreen()
 	glm::mat4 objectsMatrix = m_objectsCamera.getCameraMatrix();
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &objectsMatrix[0][0]);
 
-	m_spriteBatch.begin();
+	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 
 
 	m_objectHolder.draw(m_spriteBatch);

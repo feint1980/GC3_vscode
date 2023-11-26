@@ -563,21 +563,38 @@ void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_Boss * dynamicObject, const std::s
 	ArcFunction * arc = nullptr;
 	switch (arcType)
 	{
-	case 1:
+	case ArcType::arcHypocycloid:
 		arc = new ArcFunction_hypocycloid();
 		factor.push_back(fA);
 		factor.push_back(fB);
-	case 2:
+		break;
+	case ArcType::arcHypotrochoid:
 		arc = new ArcFunction_hypotrochoid();
 		factor.push_back(fA);
 		factor.push_back(fB);
 		factor.push_back(fC);
+		break;
+	case ArcType::arcFeintCustom1:
+		arc = new ArcFunction_feint_custom1();
+		factor.push_back(fA);
+		factor.push_back(fB);
+		factor.push_back(fC);
+		break;
 	default:
 		break;
 	}
-	arc->init(fR, factor);
+	if(arc)
+	{
+		arc->init(fR, factor);	
+	}
+	else
+	{
+		std::cout << "arc is null \n";
+		return;
+	}
+	
 	float angle = 0;
-
+	
 	for (int i = 0; i < count; i++)
 	{
 

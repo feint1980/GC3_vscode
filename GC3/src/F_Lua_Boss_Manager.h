@@ -5,6 +5,16 @@
 #include "F_Lua_Boss_State_MoveObject.h"
 #include "ArcFunction_hypocycloid.h"
 #include "ArcFunction_hypotrochoid.h"
+#include "ArcFunction_feint_custom1.h"
+
+
+enum ArcType
+{
+	arcHypocycloid = 1,
+	arcHypotrochoid = 2,
+	arcFeintCustom1 = 3
+};
+
 
 class F_Lua_Boss_Manager //: public Feintgine::F_LuaObjectManager
 {

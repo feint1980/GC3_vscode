@@ -848,7 +848,11 @@ CMakeFiles/GC3.dir/src/F_Reimu_Demon_Binding.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/rapidxml_print.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/dirent.h \
- C:/SysGCC/mingw32/include/sys/stat.h C:/SysGCC/mingw32/include/memory.h \
+ C:/SysGCC/mingw32/include/sys/stat.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
+ C:/SysGCC/mingw32/include/memory.h \
  E:/template/GC_port/Feintgine/src/AudioEngine.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_mixer.h \
  E:/template/GC_port/Feintgine/src/Camera2D.h \

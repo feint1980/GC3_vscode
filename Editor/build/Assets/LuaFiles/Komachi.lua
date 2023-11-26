@@ -29,7 +29,62 @@ function moveset_normal_1( host )
 	isMovesetSelected = true
 end
 
+function moveset_normal_2(host)
+    dynamics[movingObject] = {behavior = coroutine.create(DynamicBehavior2,host,movingObject)}
+    IssueNextTask(host,movingObject)
+    isMovesetSelected = true
+end
 
+
+function DynamicBehavior2(host,dynob)
+    while true do 
+        cppMoveObject(host,dynob,200,300,50)
+        coroutine.yield()
+       
+        -- ftest_ma_custom_aff (host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
+        -- example bc.ftest_ma_custom_aff(host,dynob,"projectile/bullet_shard_yellow.png",0.95,7.0,1,2,2,4,6,1,90,10,90,10,0)
+        cppHoldPosition(host,dynob,10,"idle")
+        coroutine.yield()
+        cppHoldPosition(host,dynob,170,"cast")
+        
+        bc.ftest_ma_custom_aff(host,dynob,"projectile/bullet_shard_white.png",0.925,10.0,4,2,2,2,3,1,90,10,45,2,0)
+        --coroutine.yield()
+        --bc.ftest_ma_custom_aff(host,dynob,"projectile/bullet_shard_white.png",0.925,10.0,4,2,2,2,3,-1,90,10,45,2,100)
+        coroutine.yield()
+        cppHoldPosition(host,dynob,150,"idle")
+        coroutine.yield()
+
+        cppMoveObject(host,dynob,-200,300,50)
+        coroutine.yield()
+
+        cppHoldPosition(host,dynob,10,"idle")
+        coroutine.yield()
+        cppHoldPosition(host,dynob,170,"cast")
+        
+        bc.ftest_ma_custom_aff(host,dynob,"projectile/bullet_shard_white.png",0.925,10.0,4,2,2,2,3,1,90,10,45,2,0)
+        --coroutine.yield()
+        --bc.ftest_ma_custom_aff(host,dynob,"projectile/bullet_shard_white.png",0.925,10.0,4,2,2,2,3,-1,90,10,45,2,100)
+        coroutine.yield()
+        cppHoldPosition(host,dynob,150,"idle")
+        coroutine.yield()
+
+        cppMoveObject(host,dynob,0,200,50)
+        coroutine.yield()
+        --coroutine.yield()
+        --bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,1.3,0,0,5,900,0)
+        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",5.25,10.0,4,12,7,45,1.3,0,0,5,450,0)
+        coroutine.yield()
+        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",5.25,10.0,4,12,7,45,-1.3,0,30,5,450,0)
+        coroutine.yield()
+        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",5.25,10.0,4,12,7,45,1.8,0,70,5,450,0)
+        coroutine.yield()
+        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",5.25,10.0,4,12,7,45,-1.8,0,-70,5,450,0)
+        coroutine.yield()
+
+        cppHoldPosition(host,dynob,350,"cast")
+        coroutine.yield()
+    end
+end
 
 function  DynamicBehavior1( host, dynob )
 	while true do 
@@ -53,17 +108,6 @@ function  DynamicBehavior1( host, dynob )
 
     cppHoldPosition(host,dynob,100,"idle")
     coroutine.yield()
-    -- bc.cppSetFire_MA_custom_aff(host,dynob, "projectile/bullet_shard_blue.png", 1.5, 5.0, 1, 6,9,2,3,-1, 90,3400, 0,120,100)
-    -- coroutine.yield()
-    -- bc.cppSetFire_MA_custom_aff(host,dynob, "projectile/bullet_shard_yellow.png", 1.5, 5.0, 1, 6,9,2,3,1, 90,3400, 0,12,1100)
-    -- coroutine.yield()
-
-    -- bc.cppSetFire_MA_custom_aff(host,dynob, "projectile/bullet_shard_blue.png", 1.5, 5.0, 1, 6,9,2,3,-1, 90,3400, 90,120,100)
-    -- coroutine.yield()
-    -- bc.cppSetFire_MA_custom_aff(host,dynob, "projectile/bullet_shard_yellow.png", 1.5, 5.0, 1, 6,9,2,3,1, 90,3400, 90,120,1100)
-    -- coroutine.yield()
-    -- cppHoldPosition(host,dynob,100,"cast")
-    -- coroutine.yield()
     end
 end
 

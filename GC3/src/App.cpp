@@ -85,7 +85,7 @@ void App::addScreen()
 
 
 	// Demo screen
-	//m_screenList->setScreen(m_extraDemo->getScreenIndex());
+	m_screenList->setScreen(m_extraDemo->getScreenIndex());
 
 
 	// Replay screen
@@ -96,7 +96,7 @@ void App::addScreen()
 
 
 	// Test the UV logic
-	m_screenList->setScreen(m_test->getScreenIndex());
+	//m_screenList->setScreen(m_test->getScreenIndex());
 
 
 	//m_screenList->setScreen(m_selectScreen->getScreenIndex());

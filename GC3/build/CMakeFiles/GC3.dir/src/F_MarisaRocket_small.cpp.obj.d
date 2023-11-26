@@ -849,7 +849,11 @@ CMakeFiles/GC3.dir/src/F_MarisaRocket_small.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/rapidxml_print.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/dirent.h \
- C:/SysGCC/mingw32/include/sys/stat.h C:/SysGCC/mingw32/include/memory.h \
+ C:/SysGCC/mingw32/include/sys/stat.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
+ C:/SysGCC/mingw32/include/memory.h \
  E:/template/GC_port/Feintgine/src/LightBatch.h \
  E:/template/GC_port/Feintgine/src/GLSLProgram.h \
  E:/template/GC_port/Feintgine/src/feint_common.h \
