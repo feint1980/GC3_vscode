@@ -913,4 +913,10 @@ CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj: \
  E:/template/GC_port/Feintgine/src/ArcFunction_hypocycloid.h \
  E:/template/GC_port/Feintgine/src/ArcFunction.h \
  E:/template/GC_port/Feintgine/src/ArcFunction_hypotrochoid.h \
+ E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom1.h \
+ E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom2.h \
+ E:/template/GC_port/Feintgine/src/F_BaseObject.h \
+ E:/template/GC_port/Feintgine/src/LightBatch.h \
+ E:/template/GC_port/Feintgine/src/AfterImageParticle.h \
+ E:\template\GC_port\GC3\src\F_Komachi_Souls_Object.h \
  E:/template/GC_port/Feintgine/src/EngineSetting.h

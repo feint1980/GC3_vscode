@@ -77,6 +77,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/GC3.dir/src/F_EnemyBasic.cpp.obj.d"
   "CMakeFiles/GC3.dir/src/F_HomingBullet.cpp.obj"
   "CMakeFiles/GC3.dir/src/F_HomingBullet.cpp.obj.d"
+  "CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj"
+  "CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj.d"
   "CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj"
   "CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj.d"
   "CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj"

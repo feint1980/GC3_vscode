@@ -238,7 +238,6 @@ public:
 
 	bool onAmbientLightChanged(const CEGUI::EventArgs &e);
 
-
 	void readFile();
 
 	bool destroyObjectPannel(const CEGUI::EventArgs & e);
@@ -315,6 +314,12 @@ public:
 
 	bool changeToEditAnimate(const CEGUI::EventArgs &e);
 
+	bool changeToEditDamaku(const CEGUI::EventArgs &e);
+
+	bool changeToEditEnemy(const CEGUI::EventArgs &e);
+
+	bool changeToEditLua(const CEGUI::EventArgs &e);
+	
 	bool layout(const CEGUI::EventArgs &e);
 
 	bool selectAction(const CEGUI::EventArgs &e);
@@ -369,6 +374,7 @@ public:
 
 	void hideEditEnemyEditor();
 
+	void togglePlayAnimation();
 
 	void handleEditScreen(Feintgine::InputManager & inputManager);
 
@@ -800,12 +806,16 @@ private :
 	Feintgine::F_TileStack m_tileStack;
 	Feintgine::F_TileManager m_tileManager;
 
+	bool m_isAnimationPlaying = false;
 
 	bool debugTiles = true;
 	void toggetDebugTiles();
 	//B_Object m_selectObject = nullptr;
 
 	// Edit Enemy Mode here
+
+	
+
 
 	EnemyEditorComponent m_enemyEditor;
 

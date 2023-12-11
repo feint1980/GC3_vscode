@@ -292,13 +292,14 @@ namespace Feintgine
 			m_currentAnimation = &it->second;
 			if (m_currentAnimation)
 			{
-				std::cout << "animation found \n";
+				//std::cout << "animation found \n";
 				m_currentAnimation->setAnimation();
 			}
 			else
 			{
+			
 				m_currentAnimation = nullptr;
-				std::cout << "not play \n";
+				std::cout << "setAnimation failed, cannot find the animation " + name << "\n";
 			}
 		}
 		else

@@ -5,18 +5,23 @@ M = {}
 
 -- cppSetFire_Type1 arcType belike   |1 hypocycloid | 2 hypotrochoid| 3 feint_custom1
 M.patern_MA_hypocycloid =  function (host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
-	cppSetFire_Type1(host,dynob,asset,speed,lifeTime,1,a,b,0,r,angleStep,startAngle,rotation,interval,count,eventTime)
+	cppSetFire_Type1(host,dynob,asset,speed,lifeTime,1,a,b,0,0,r,angleStep,startAngle,rotation,interval,count,eventTime)
 
 
 end
 
 M.patern_MA_hypotrochoid= function (host, dynob, asset, speed, lifeTime, a, b,c, r,angleStep,startAngle, rotation,interval,count, eventTime )
-	cppSetFire_Type1(host,dynob,asset,speed,lifeTime,2,a,b,c,r,angleStep,startAngle,rotation,interval,count,eventTime)
+	cppSetFire_Type1(host,dynob,asset,speed,lifeTime,2,a,b,c,0,r,angleStep,startAngle,rotation,interval,count,eventTime)
 
 end
 
 M.patern_Feint_custom1 = function (host, dynob, asset, speed, lifeTime, a, b,c, r,angleStep,startAngle, rotation,interval,count, eventTime )
-	cppSetFire_Type1(host,dynob,asset,speed,lifeTime,3,a,b,c,r,angleStep,startAngle,rotation,interval,count,eventTime)
+	cppSetFire_Type1(host,dynob,asset,speed,lifeTime,3,a,b,c,0,r,angleStep,startAngle,rotation,interval,count,eventTime)
+
+end
+
+M.patern_Feint_custom2 = function (host, dynob, asset, speed, lifeTime, a, b,c,d,r,angleStep,startAngle, rotation,interval,count, eventTime )
+	cppSetFire_Type1(host,dynob,asset,speed,lifeTime,4,a,b,c,d,r,angleStep,startAngle,rotation,interval,count,eventTime)
 
 end
 

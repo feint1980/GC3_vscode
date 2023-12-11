@@ -9439,6 +9439,7 @@ CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_Boss_Manager.cpp.ob
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/xtestintrin.h
  E:/template/GC_port/Feintgine/src/ArcFunction.h
  E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom1.h
+ E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom2.h
  E:/template/GC_port/Feintgine/src/ArcFunction_hypocycloid.h
  E:/template/GC_port/Feintgine/src/ArcFunction_hypotrochoid.h
  E:/template/GC_port/Feintgine/src/DebugRender.h
@@ -52854,6 +52855,8 @@ CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/xsavesintrin.h
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/xtestintrin.h
  E:/template/GC_port/Feintgine/src/ArcFunction.h
+ E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom1.h
+ E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom2.h
  E:/template/GC_port/Feintgine/src/ArcFunction_hypocycloid.h
  E:/template/GC_port/Feintgine/src/ArcFunction_hypotrochoid.h
  E:/template/GC_port/Feintgine/src/AudioEngine.h

@@ -63,6 +63,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj.d"
+  "CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj"
+  "CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj"

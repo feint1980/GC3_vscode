@@ -460,6 +460,11 @@ void EditorScreen::update(float deltaTime)
 	if (m_fAnimatedObject.isInited())
 	{
 		m_fAnimatedObject.update(deltaTime);
+
+		if(!m_fAnimatedObject.isPlaying())
+		{
+			m_isAnimationPlaying = false;
+		}
 		//m_animatedObject.update();
 	}
 	if (drawMode == edit_enemy_mode)
@@ -818,17 +823,25 @@ void EditorScreen::handleInput(Feintgine::InputManager & inputManager)
 		//m_buildObjectTool.loadObject(&m_buildingObject);
 	}
 
-	if (!animation_anim_offset_textbox_x->hasInputFocus() && !animation_anim_offset_textbox_y->hasInputFocus())
+	if(drawMode == edit_animate_mode)
 	{
 
+		if (!animation_anim_offset_textbox_x->hasInputFocus() && !animation_anim_offset_textbox_y->hasInputFocus())
+		{
 
-		if (inputManager.isKeyPressed(SDLK_LEFT))
-		{
-			animation_slide->scrollBackwardsByStep();
-		}
-		if (inputManager.isKeyPressed(SDLK_RIGHT))
-		{
-			animation_slide->scrollForwardsByStep();
+			if (inputManager.isKeyPressed(SDLK_LEFT))
+			{
+				animation_slide->scrollBackwardsByStep();
+			}
+			if (inputManager.isKeyPressed(SDLK_RIGHT))
+			{
+				animation_slide->scrollForwardsByStep();
+			}
+		
+			if(inputManager.isKeyPressed(SDLK_SPACE))
+			{
+				togglePlayAnimation();
+			}
 		}
 	}
 	if (inputManager.isKeyPressed(SDLK_TAB))
@@ -1239,11 +1252,26 @@ void EditorScreen::initMenuBar()
 	CEGUI::MenuItem * edit_animate = static_cast<CEGUI::MenuItem*> (CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/MenuItem", "Edit_Animate"));
 	edit_animate->setText("Edit Animate Object");
 
+
+	CEGUI::MenuItem * edit_danmaku = static_cast<CEGUI::MenuItem*> (CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/MenuItem", "Edit_Danmaku"));
+	edit_danmaku->setText("Edit Danmaku");
+
+	CEGUI::MenuItem * edit_enemies = static_cast<CEGUI::MenuItem*> (CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/MenuItem", "Edit_Enemies"));
+	edit_enemies->setText("Edit Enemies");
+
+
+	CEGUI::MenuItem * edit_lua_bosses = static_cast<CEGUI::MenuItem*> (CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/MenuItem", "Edit_Bosses"));
+	edit_lua_bosses->setText("Edit Bosses");
+
 	//------------------------
 
 	Edit_Popup->addItem(edit_scene);
 	Edit_Popup->addItem(edit_object);
 	Edit_Popup->addItem(edit_animate);
+	Edit_Popup->addItem(edit_danmaku);
+	Edit_Popup->addItem(edit_enemies);
+	Edit_Popup->addItem(edit_lua_bosses);
+	
 	//=======================
 
 	//Object Menu 
@@ -1295,6 +1323,12 @@ void EditorScreen::initMenuBar()
 	edit_object->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::changeToEditObject, this));
 	edit_animate->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::changeToEditAnimate, this));
 	edit_scene->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::changeToEditScene, this));
+	edit_danmaku->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::changeToEditDamaku, this));
+	edit_enemies->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::changeToEditEnemy, this));
+	edit_lua_bosses->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::changeToEditLua, this));
+
+
+
 }
 
 bool EditorScreen::exitEditor(const CEGUI::EventArgs &e)
@@ -2648,7 +2682,6 @@ bool EditorScreen::changeToEditObject(const CEGUI::EventArgs &e)
 {
 	
 	switchScreen(T_EDIT_OJECT_MODE);
-	//sssssssssssss
 	return true;
 }
 
@@ -2656,10 +2689,31 @@ bool EditorScreen::changeToEditScene(const CEGUI::EventArgs & e)
 {
 	
 	switchScreen(T_EDIT_SCREEN_MODE);
-	//sssssssssss
-	
+
 	return true;
 }
+
+bool EditorScreen::changeToEditDamaku(const CEGUI::EventArgs & e)
+{
+	
+	switchScreen(T_EDIT_DAMAKU_MODE);
+	return true;
+}
+
+bool EditorScreen::changeToEditEnemy(const CEGUI::EventArgs & e)
+{
+	
+	switchScreen(T_EDIT_ENEMY_MODE);
+	return true;
+}
+
+bool EditorScreen::changeToEditLua(const CEGUI::EventArgs & e)
+{
+	
+	switchScreen(T_EDIT_LUA_MODE);
+	return true;
+}
+
 
 int EditorScreen::getLastestPage()
 {
@@ -3932,12 +3986,13 @@ bool EditorScreen::updateAnimation(const CEGUI::EventArgs &e)
 
 bool EditorScreen::playAnimation(const CEGUI::EventArgs &e)
 {
+	
 	if (m_fAnimatedObject.getCurrentAnimation())
 	{
+		m_fAnimatedObject.getCurrentAnimation()->playAnimation(loopCount,m_fAnimatedObject.getCurrentAnimation()->getCurrentIndex());
 		updateAnimation(e);
-		m_fAnimatedObject.getCurrentAnimation()->playAnimation(loopCount);
 	}
-
+	m_isAnimationPlaying = true;
 	return true;
 }
 
@@ -3979,8 +4034,27 @@ bool EditorScreen::pauseAnimation(const CEGUI::EventArgs &e)
 	{
 		m_fAnimatedObject.getCurrentAnimation()->stop();
 	}
+	m_isAnimationPlaying = false;
 	return true;
 }
+
+void EditorScreen::togglePlayAnimation()
+{
+	
+	CEGUI::EventArgs e;
+	m_isAnimationPlaying = !m_isAnimationPlaying;
+
+	if(m_isAnimationPlaying)
+	{	
+		playAnimation(e);
+	}
+	else
+	{
+		pauseAnimation(e);
+	
+	}
+}
+
 
 bool EditorScreen::stopAnimation(const CEGUI::EventArgs &e)
 {

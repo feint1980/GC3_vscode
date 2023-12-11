@@ -1290,6 +1290,30 @@ src/F_Animation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_Animation.cpp.s
 .PHONY : src/F_Animation.cpp.s
 
+src/F_BaseObject.obj: src/F_BaseObject.cpp.obj
+.PHONY : src/F_BaseObject.obj
+
+# target to build an object file
+src/F_BaseObject.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj
+.PHONY : src/F_BaseObject.cpp.obj
+
+src/F_BaseObject.i: src/F_BaseObject.cpp.i
+.PHONY : src/F_BaseObject.i
+
+# target to preprocess a source file
+src/F_BaseObject.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.i
+.PHONY : src/F_BaseObject.cpp.i
+
+src/F_BaseObject.s: src/F_BaseObject.cpp.s
+.PHONY : src/F_BaseObject.s
+
+# target to generate assembly for a file
+src/F_BaseObject.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.s
+.PHONY : src/F_BaseObject.cpp.s
+
 src/F_Dialouge_Handler.obj: src/F_Dialouge_Handler.cpp.obj
 .PHONY : src/F_Dialouge_Handler.obj
 
@@ -3058,6 +3082,9 @@ help:
 	@echo ... src/F_Animation.obj
 	@echo ... src/F_Animation.i
 	@echo ... src/F_Animation.s
+	@echo ... src/F_BaseObject.obj
+	@echo ... src/F_BaseObject.i
+	@echo ... src/F_BaseObject.s
 	@echo ... src/F_Dialouge_Handler.obj
 	@echo ... src/F_Dialouge_Handler.i
 	@echo ... src/F_Dialouge_Handler.s

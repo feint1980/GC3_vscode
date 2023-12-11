@@ -933,4 +933,5 @@ CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj: \
  E:/template/GC_port/Feintgine/src/ArcFunction_hypocycloid.h \
  E:/template/GC_port/Feintgine/src/ArcFunction.h \
  E:/template/GC_port/Feintgine/src/ArcFunction_hypotrochoid.h \
- E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom1.h
+ E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom1.h \
+ E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom2.h

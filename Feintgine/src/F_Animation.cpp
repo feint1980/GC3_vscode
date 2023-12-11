@@ -155,11 +155,12 @@ namespace Feintgine
 		}
 	}
 
-	void F_Animation::playAnimation(int time)
+	void F_Animation::playAnimation(int time, int index)
 	{
 		m_time = time;
 		m_playing = true;
 		//resetAnim();
+		m_curIndex = index;
 		if (m_curIndex < 0)
 		{
 			return;

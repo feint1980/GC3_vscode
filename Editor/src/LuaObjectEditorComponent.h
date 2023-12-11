@@ -15,7 +15,7 @@
 #include <F_LuaDynamicObject.h>
 #include <F_LuaObjectManager.h>
 #include "../../GC3/src/F_Lua_Boss_Manager.h"
-#include "../../GC3/src/F_Lua_Boss.h"
+#include "../../GC3/src/F_Lua_Boss.h" 
 #include <fstream>
 
 class LuaObjectEditorComponent

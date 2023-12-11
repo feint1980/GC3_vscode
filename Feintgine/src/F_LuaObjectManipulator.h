@@ -15,6 +15,8 @@ namespace Feintgine
 
 		void moveObject(F_LuaDynamicObject *dynamicObject, const glm::vec2 & target, float time);
 
+		void teleportObject(F_LuaDynamicObject *dynamicObject, const glm::vec2 & target);
+
 		virtual bool update(float deltaTime);
 
 		F_LuaDynamicObject * m_dynamicObject;

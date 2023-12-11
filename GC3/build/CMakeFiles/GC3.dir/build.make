@@ -653,11 +653,26 @@ CMakeFiles/GC3.dir/src/F_HomingBullet.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GC3.dir/src/F_HomingBullet.cpp.s"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\template\GC_port\GC3\src\F_HomingBullet.cpp -o CMakeFiles\GC3.dir\src\F_HomingBullet.cpp.s
 
+CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj: CMakeFiles/GC3.dir/flags.make
+CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
+CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj: E:/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp
+CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Komachi_Souls_Object.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Komachi_Souls_Object.cpp.obj -c E:\template\GC_port\GC3\src\F_Komachi_Souls_Object.cpp
+
+CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.i"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E E:\template\GC_port\GC3\src\F_Komachi_Souls_Object.cpp > CMakeFiles\GC3.dir\src\F_Komachi_Souls_Object.cpp.i
+
+CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.s"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S E:\template\GC_port\GC3\src\F_Komachi_Souls_Object.cpp -o CMakeFiles\GC3.dir\src\F_Komachi_Souls_Object.cpp.s
+
 CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj: E:/template/GC_port/GC3/src/F_Lua_Boss.cpp
 CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Lua_Boss.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Lua_Boss.cpp.obj -c E:\template\GC_port\GC3\src\F_Lua_Boss.cpp
 
 CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.i: cmake_force
@@ -672,7 +687,7 @@ CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj: E:/template/GC_port/GC3/src/F_Lua_Boss_Manager.cpp
 CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Lua_Boss_Manager.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Lua_Boss_Manager.cpp.obj -c E:\template\GC_port\GC3\src\F_Lua_Boss_Manager.cpp
 
 CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.i: cmake_force
@@ -687,7 +702,7 @@ CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj: E:/template/GC_port/GC3/src/F_Lua_Boss_State.cpp
 CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Lua_Boss_State.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Lua_Boss_State.cpp.obj -c E:\template\GC_port\GC3\src\F_Lua_Boss_State.cpp
 
 CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.i: cmake_force
@@ -702,7 +717,7 @@ CMakeFiles/GC3.dir/src/F_Lua_Boss_State_MoveObject.cpp.obj: CMakeFiles/GC3.dir/f
 CMakeFiles/GC3.dir/src/F_Lua_Boss_State_MoveObject.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Lua_Boss_State_MoveObject.cpp.obj: E:/template/GC_port/GC3/src/F_Lua_Boss_State_MoveObject.cpp
 CMakeFiles/GC3.dir/src/F_Lua_Boss_State_MoveObject.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/GC3.dir/src/F_Lua_Boss_State_MoveObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/GC3.dir/src/F_Lua_Boss_State_MoveObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Lua_Boss_State_MoveObject.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Lua_Boss_State_MoveObject.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Lua_Boss_State_MoveObject.cpp.obj -c E:\template\GC_port\GC3\src\F_Lua_Boss_State_MoveObject.cpp
 
 CMakeFiles/GC3.dir/src/F_Lua_Boss_State_MoveObject.cpp.i: cmake_force
@@ -717,7 +732,7 @@ CMakeFiles/GC3.dir/src/F_MarisaLaser.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_MarisaLaser.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_MarisaLaser.cpp.obj: E:/template/GC_port/GC3/src/F_MarisaLaser.cpp
 CMakeFiles/GC3.dir/src/F_MarisaLaser.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/GC3.dir/src/F_MarisaLaser.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/GC3.dir/src/F_MarisaLaser.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_MarisaLaser.cpp.obj -MF CMakeFiles\GC3.dir\src\F_MarisaLaser.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_MarisaLaser.cpp.obj -c E:\template\GC_port\GC3\src\F_MarisaLaser.cpp
 
 CMakeFiles/GC3.dir/src/F_MarisaLaser.cpp.i: cmake_force
@@ -732,7 +747,7 @@ CMakeFiles/GC3.dir/src/F_MarisaRocket_small.cpp.obj: CMakeFiles/GC3.dir/flags.ma
 CMakeFiles/GC3.dir/src/F_MarisaRocket_small.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_MarisaRocket_small.cpp.obj: E:/template/GC_port/GC3/src/F_MarisaRocket_small.cpp
 CMakeFiles/GC3.dir/src/F_MarisaRocket_small.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/GC3.dir/src/F_MarisaRocket_small.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/GC3.dir/src/F_MarisaRocket_small.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_MarisaRocket_small.cpp.obj -MF CMakeFiles\GC3.dir\src\F_MarisaRocket_small.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_MarisaRocket_small.cpp.obj -c E:\template\GC_port\GC3\src\F_MarisaRocket_small.cpp
 
 CMakeFiles/GC3.dir/src/F_MarisaRocket_small.cpp.i: cmake_force
@@ -747,7 +762,7 @@ CMakeFiles/GC3.dir/src/F_MarisaStar.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_MarisaStar.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_MarisaStar.cpp.obj: E:/template/GC_port/GC3/src/F_MarisaStar.cpp
 CMakeFiles/GC3.dir/src/F_MarisaStar.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/GC3.dir/src/F_MarisaStar.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/GC3.dir/src/F_MarisaStar.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_MarisaStar.cpp.obj -MF CMakeFiles\GC3.dir\src\F_MarisaStar.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_MarisaStar.cpp.obj -c E:\template\GC_port\GC3\src\F_MarisaStar.cpp
 
 CMakeFiles/GC3.dir/src/F_MarisaStar.cpp.i: cmake_force
@@ -762,7 +777,7 @@ CMakeFiles/GC3.dir/src/F_MarisaStarSpawner.cpp.obj: CMakeFiles/GC3.dir/flags.mak
 CMakeFiles/GC3.dir/src/F_MarisaStarSpawner.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_MarisaStarSpawner.cpp.obj: E:/template/GC_port/GC3/src/F_MarisaStarSpawner.cpp
 CMakeFiles/GC3.dir/src/F_MarisaStarSpawner.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/GC3.dir/src/F_MarisaStarSpawner.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/GC3.dir/src/F_MarisaStarSpawner.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_MarisaStarSpawner.cpp.obj -MF CMakeFiles\GC3.dir\src\F_MarisaStarSpawner.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_MarisaStarSpawner.cpp.obj -c E:\template\GC_port\GC3\src\F_MarisaStarSpawner.cpp
 
 CMakeFiles/GC3.dir/src/F_MarisaStarSpawner.cpp.i: cmake_force
@@ -777,7 +792,7 @@ CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: CMakeFiles/GC3.dir/flags.ma
 CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: E:/template/GC_port/GC3/src/F_Marisa_Laser_trail.cpp
 CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Marisa_Laser_trail.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Marisa_Laser_trail.cpp.obj -c E:\template\GC_port\GC3\src\F_Marisa_Laser_trail.cpp
 
 CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.i: cmake_force
@@ -792,7 +807,7 @@ CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Charge.cpp.obj: CMakeFiles/GC3.dir/flag
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Charge.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Charge.cpp.obj: E:/template/GC_port/GC3/src/F_Marisa_Luminous_Charge.cpp
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Charge.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Charge.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Charge.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Charge.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Marisa_Luminous_Charge.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Marisa_Luminous_Charge.cpp.obj -c E:\template\GC_port\GC3\src\F_Marisa_Luminous_Charge.cpp
 
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Charge.cpp.i: cmake_force
@@ -807,7 +822,7 @@ CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike.cpp.obj: CMakeFiles/GC3.dir/flag
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike.cpp.obj: E:/template/GC_port/GC3/src/F_Marisa_Luminous_Strike.cpp
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Marisa_Luminous_Strike.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Marisa_Luminous_Strike.cpp.obj -c E:\template\GC_port\GC3\src\F_Marisa_Luminous_Strike.cpp
 
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike.cpp.i: cmake_force
@@ -822,7 +837,7 @@ CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike_Launcher.cpp.obj: CMakeFiles/GC3
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike_Launcher.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike_Launcher.cpp.obj: E:/template/GC_port/GC3/src/F_Marisa_Luminous_Strike_Launcher.cpp
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike_Launcher.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike_Launcher.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike_Launcher.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike_Launcher.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Marisa_Luminous_Strike_Launcher.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Marisa_Luminous_Strike_Launcher.cpp.obj -c E:\template\GC_port\GC3\src\F_Marisa_Luminous_Strike_Launcher.cpp
 
 CMakeFiles/GC3.dir/src/F_Marisa_Luminous_Strike_Launcher.cpp.i: cmake_force
@@ -837,7 +852,7 @@ CMakeFiles/GC3.dir/src/F_Marisa_MasterSpark.cpp.obj: CMakeFiles/GC3.dir/flags.ma
 CMakeFiles/GC3.dir/src/F_Marisa_MasterSpark.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Marisa_MasterSpark.cpp.obj: E:/template/GC_port/GC3/src/F_Marisa_MasterSpark.cpp
 CMakeFiles/GC3.dir/src/F_Marisa_MasterSpark.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_MasterSpark.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_MasterSpark.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Marisa_MasterSpark.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Marisa_MasterSpark.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Marisa_MasterSpark.cpp.obj -c E:\template\GC_port\GC3\src\F_Marisa_MasterSpark.cpp
 
 CMakeFiles/GC3.dir/src/F_Marisa_MasterSpark.cpp.i: cmake_force
@@ -852,7 +867,7 @@ CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail.cpp.obj: CMakeFiles/GC3.dir/flags.mak
 CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail.cpp.obj: E:/template/GC_port/GC3/src/F_Marisa_Star_Trail.cpp
 CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Marisa_Star_Trail.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Marisa_Star_Trail.cpp.obj -c E:\template\GC_port\GC3\src\F_Marisa_Star_Trail.cpp
 
 CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail.cpp.i: cmake_force
@@ -867,7 +882,7 @@ CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail_Manager.cpp.obj: CMakeFiles/GC3.dir/f
 CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail_Manager.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail_Manager.cpp.obj: E:/template/GC_port/GC3/src/F_Marisa_Star_Trail_Manager.cpp
 CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail_Manager.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail_Manager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail_Manager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail_Manager.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Marisa_Star_Trail_Manager.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Marisa_Star_Trail_Manager.cpp.obj -c E:\template\GC_port\GC3\src\F_Marisa_Star_Trail_Manager.cpp
 
 CMakeFiles/GC3.dir/src/F_Marisa_Star_Trail_Manager.cpp.i: cmake_force
@@ -882,7 +897,7 @@ CMakeFiles/GC3.dir/src/F_MasterSpark_Wave.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_MasterSpark_Wave.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_MasterSpark_Wave.cpp.obj: E:/template/GC_port/GC3/src/F_MasterSpark_Wave.cpp
 CMakeFiles/GC3.dir/src/F_MasterSpark_Wave.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/GC3.dir/src/F_MasterSpark_Wave.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/GC3.dir/src/F_MasterSpark_Wave.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_MasterSpark_Wave.cpp.obj -MF CMakeFiles\GC3.dir\src\F_MasterSpark_Wave.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_MasterSpark_Wave.cpp.obj -c E:\template\GC_port\GC3\src\F_MasterSpark_Wave.cpp
 
 CMakeFiles/GC3.dir/src/F_MasterSpark_Wave.cpp.i: cmake_force
@@ -897,7 +912,7 @@ CMakeFiles/GC3.dir/src/F_Non_Direction_Laser.cpp.obj: CMakeFiles/GC3.dir/flags.m
 CMakeFiles/GC3.dir/src/F_Non_Direction_Laser.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Non_Direction_Laser.cpp.obj: E:/template/GC_port/GC3/src/F_Non_Direction_Laser.cpp
 CMakeFiles/GC3.dir/src/F_Non_Direction_Laser.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/GC3.dir/src/F_Non_Direction_Laser.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object CMakeFiles/GC3.dir/src/F_Non_Direction_Laser.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Non_Direction_Laser.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Non_Direction_Laser.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Non_Direction_Laser.cpp.obj -c E:\template\GC_port\GC3\src\F_Non_Direction_Laser.cpp
 
 CMakeFiles/GC3.dir/src/F_Non_Direction_Laser.cpp.i: cmake_force
@@ -912,7 +927,7 @@ CMakeFiles/GC3.dir/src/F_Orreries_Sun.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_Orreries_Sun.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Orreries_Sun.cpp.obj: E:/template/GC_port/GC3/src/F_Orreries_Sun.cpp
 CMakeFiles/GC3.dir/src/F_Orreries_Sun.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object CMakeFiles/GC3.dir/src/F_Orreries_Sun.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object CMakeFiles/GC3.dir/src/F_Orreries_Sun.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Orreries_Sun.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Orreries_Sun.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Orreries_Sun.cpp.obj -c E:\template\GC_port\GC3\src\F_Orreries_Sun.cpp
 
 CMakeFiles/GC3.dir/src/F_Orreries_Sun.cpp.i: cmake_force
@@ -927,7 +942,7 @@ CMakeFiles/GC3.dir/src/F_Player.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_Player.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Player.cpp.obj: E:/template/GC_port/GC3/src/F_Player.cpp
 CMakeFiles/GC3.dir/src/F_Player.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object CMakeFiles/GC3.dir/src/F_Player.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building CXX object CMakeFiles/GC3.dir/src/F_Player.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Player.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Player.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Player.cpp.obj -c E:\template\GC_port\GC3\src\F_Player.cpp
 
 CMakeFiles/GC3.dir/src/F_Player.cpp.i: cmake_force
@@ -942,7 +957,7 @@ CMakeFiles/GC3.dir/src/F_PlayerAccessory.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_PlayerAccessory.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_PlayerAccessory.cpp.obj: E:/template/GC_port/GC3/src/F_PlayerAccessory.cpp
 CMakeFiles/GC3.dir/src/F_PlayerAccessory.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building CXX object CMakeFiles/GC3.dir/src/F_PlayerAccessory.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building CXX object CMakeFiles/GC3.dir/src/F_PlayerAccessory.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_PlayerAccessory.cpp.obj -MF CMakeFiles\GC3.dir\src\F_PlayerAccessory.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_PlayerAccessory.cpp.obj -c E:\template\GC_port\GC3\src\F_PlayerAccessory.cpp
 
 CMakeFiles/GC3.dir/src/F_PlayerAccessory.cpp.i: cmake_force
@@ -957,7 +972,7 @@ CMakeFiles/GC3.dir/src/F_PlayerRecorder.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_PlayerRecorder.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_PlayerRecorder.cpp.obj: E:/template/GC_port/GC3/src/F_PlayerRecorder.cpp
 CMakeFiles/GC3.dir/src/F_PlayerRecorder.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building CXX object CMakeFiles/GC3.dir/src/F_PlayerRecorder.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building CXX object CMakeFiles/GC3.dir/src/F_PlayerRecorder.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_PlayerRecorder.cpp.obj -MF CMakeFiles\GC3.dir\src\F_PlayerRecorder.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_PlayerRecorder.cpp.obj -c E:\template\GC_port\GC3\src\F_PlayerRecorder.cpp
 
 CMakeFiles/GC3.dir/src/F_PlayerRecorder.cpp.i: cmake_force
@@ -972,7 +987,7 @@ CMakeFiles/GC3.dir/src/F_Player_Reimu.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_Player_Reimu.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Player_Reimu.cpp.obj: E:/template/GC_port/GC3/src/F_Player_Reimu.cpp
 CMakeFiles/GC3.dir/src/F_Player_Reimu.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building CXX object CMakeFiles/GC3.dir/src/F_Player_Reimu.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building CXX object CMakeFiles/GC3.dir/src/F_Player_Reimu.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Player_Reimu.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Player_Reimu.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Player_Reimu.cpp.obj -c E:\template\GC_port\GC3\src\F_Player_Reimu.cpp
 
 CMakeFiles/GC3.dir/src/F_Player_Reimu.cpp.i: cmake_force
@@ -987,7 +1002,7 @@ CMakeFiles/GC3.dir/src/F_Player_Sun_Manager.cpp.obj: CMakeFiles/GC3.dir/flags.ma
 CMakeFiles/GC3.dir/src/F_Player_Sun_Manager.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Player_Sun_Manager.cpp.obj: E:/template/GC_port/GC3/src/F_Player_Sun_Manager.cpp
 CMakeFiles/GC3.dir/src/F_Player_Sun_Manager.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building CXX object CMakeFiles/GC3.dir/src/F_Player_Sun_Manager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building CXX object CMakeFiles/GC3.dir/src/F_Player_Sun_Manager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Player_Sun_Manager.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Player_Sun_Manager.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Player_Sun_Manager.cpp.obj -c E:\template\GC_port\GC3\src\F_Player_Sun_Manager.cpp
 
 CMakeFiles/GC3.dir/src/F_Player_Sun_Manager.cpp.i: cmake_force
@@ -1002,7 +1017,7 @@ CMakeFiles/GC3.dir/src/F_RecordPlayer.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_RecordPlayer.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_RecordPlayer.cpp.obj: E:/template/GC_port/GC3/src/F_RecordPlayer.cpp
 CMakeFiles/GC3.dir/src/F_RecordPlayer.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building CXX object CMakeFiles/GC3.dir/src/F_RecordPlayer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building CXX object CMakeFiles/GC3.dir/src/F_RecordPlayer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_RecordPlayer.cpp.obj -MF CMakeFiles\GC3.dir\src\F_RecordPlayer.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_RecordPlayer.cpp.obj -c E:\template\GC_port\GC3\src\F_RecordPlayer.cpp
 
 CMakeFiles/GC3.dir/src/F_RecordPlayer.cpp.i: cmake_force
@@ -1017,7 +1032,7 @@ CMakeFiles/GC3.dir/src/F_ReimuWave.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_ReimuWave.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_ReimuWave.cpp.obj: E:/template/GC_port/GC3/src/F_ReimuWave.cpp
 CMakeFiles/GC3.dir/src/F_ReimuWave.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building CXX object CMakeFiles/GC3.dir/src/F_ReimuWave.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object CMakeFiles/GC3.dir/src/F_ReimuWave.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_ReimuWave.cpp.obj -MF CMakeFiles\GC3.dir\src\F_ReimuWave.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_ReimuWave.cpp.obj -c E:\template\GC_port\GC3\src\F_ReimuWave.cpp
 
 CMakeFiles/GC3.dir/src/F_ReimuWave.cpp.i: cmake_force
@@ -1032,7 +1047,7 @@ CMakeFiles/GC3.dir/src/F_Reimu_Demon_Binding.cpp.obj: CMakeFiles/GC3.dir/flags.m
 CMakeFiles/GC3.dir/src/F_Reimu_Demon_Binding.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Reimu_Demon_Binding.cpp.obj: E:/template/GC_port/GC3/src/F_Reimu_Demon_Binding.cpp
 CMakeFiles/GC3.dir/src/F_Reimu_Demon_Binding.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object CMakeFiles/GC3.dir/src/F_Reimu_Demon_Binding.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object CMakeFiles/GC3.dir/src/F_Reimu_Demon_Binding.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Reimu_Demon_Binding.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Reimu_Demon_Binding.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Reimu_Demon_Binding.cpp.obj -c E:\template\GC_port\GC3\src\F_Reimu_Demon_Binding.cpp
 
 CMakeFiles/GC3.dir/src/F_Reimu_Demon_Binding.cpp.i: cmake_force
@@ -1047,7 +1062,7 @@ CMakeFiles/GC3.dir/src/F_Reimu_Fantasy_Seal_Obj.cpp.obj: CMakeFiles/GC3.dir/flag
 CMakeFiles/GC3.dir/src/F_Reimu_Fantasy_Seal_Obj.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_Reimu_Fantasy_Seal_Obj.cpp.obj: E:/template/GC_port/GC3/src/F_Reimu_Fantasy_Seal_Obj.cpp
 CMakeFiles/GC3.dir/src/F_Reimu_Fantasy_Seal_Obj.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object CMakeFiles/GC3.dir/src/F_Reimu_Fantasy_Seal_Obj.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object CMakeFiles/GC3.dir/src/F_Reimu_Fantasy_Seal_Obj.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_Reimu_Fantasy_Seal_Obj.cpp.obj -MF CMakeFiles\GC3.dir\src\F_Reimu_Fantasy_Seal_Obj.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_Reimu_Fantasy_Seal_Obj.cpp.obj -c E:\template\GC_port\GC3\src\F_Reimu_Fantasy_Seal_Obj.cpp
 
 CMakeFiles/GC3.dir/src/F_Reimu_Fantasy_Seal_Obj.cpp.i: cmake_force
@@ -1062,7 +1077,7 @@ CMakeFiles/GC3.dir/src/F_ShotType.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_ShotType.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_ShotType.cpp.obj: E:/template/GC_port/GC3/src/F_ShotType.cpp
 CMakeFiles/GC3.dir/src/F_ShotType.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object CMakeFiles/GC3.dir/src/F_ShotType.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object CMakeFiles/GC3.dir/src/F_ShotType.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_ShotType.cpp.obj -MF CMakeFiles\GC3.dir\src\F_ShotType.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_ShotType.cpp.obj -c E:\template\GC_port\GC3\src\F_ShotType.cpp
 
 CMakeFiles/GC3.dir/src/F_ShotType.cpp.i: cmake_force
@@ -1077,7 +1092,7 @@ CMakeFiles/GC3.dir/src/F_SpriteObject.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/F_SpriteObject.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/F_SpriteObject.cpp.obj: E:/template/GC_port/GC3/src/F_SpriteObject.cpp
 CMakeFiles/GC3.dir/src/F_SpriteObject.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object CMakeFiles/GC3.dir/src/F_SpriteObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object CMakeFiles/GC3.dir/src/F_SpriteObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/F_SpriteObject.cpp.obj -MF CMakeFiles\GC3.dir\src\F_SpriteObject.cpp.obj.d -o CMakeFiles\GC3.dir\src\F_SpriteObject.cpp.obj -c E:\template\GC_port\GC3\src\F_SpriteObject.cpp
 
 CMakeFiles/GC3.dir/src/F_SpriteObject.cpp.i: cmake_force
@@ -1092,7 +1107,7 @@ CMakeFiles/GC3.dir/src/FairyBase.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/FairyBase.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/FairyBase.cpp.obj: E:/template/GC_port/GC3/src/FairyBase.cpp
 CMakeFiles/GC3.dir/src/FairyBase.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object CMakeFiles/GC3.dir/src/FairyBase.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object CMakeFiles/GC3.dir/src/FairyBase.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/FairyBase.cpp.obj -MF CMakeFiles\GC3.dir\src\FairyBase.cpp.obj.d -o CMakeFiles\GC3.dir\src\FairyBase.cpp.obj -c E:\template\GC_port\GC3\src\FairyBase.cpp
 
 CMakeFiles/GC3.dir/src/FairyBase.cpp.i: cmake_force
@@ -1107,7 +1122,7 @@ CMakeFiles/GC3.dir/src/GC3_EmptyObject.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/GC3_EmptyObject.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/GC3_EmptyObject.cpp.obj: E:/template/GC_port/GC3/src/GC3_EmptyObject.cpp
 CMakeFiles/GC3.dir/src/GC3_EmptyObject.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object CMakeFiles/GC3.dir/src/GC3_EmptyObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object CMakeFiles/GC3.dir/src/GC3_EmptyObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/GC3_EmptyObject.cpp.obj -MF CMakeFiles\GC3.dir\src\GC3_EmptyObject.cpp.obj.d -o CMakeFiles\GC3.dir\src\GC3_EmptyObject.cpp.obj -c E:\template\GC_port\GC3\src\GC3_EmptyObject.cpp
 
 CMakeFiles/GC3.dir/src/GC3_EmptyObject.cpp.i: cmake_force
@@ -1122,7 +1137,7 @@ CMakeFiles/GC3.dir/src/GameTownScreen.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/GameTownScreen.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/GameTownScreen.cpp.obj: E:/template/GC_port/GC3/src/GameTownScreen.cpp
 CMakeFiles/GC3.dir/src/GameTownScreen.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object CMakeFiles/GC3.dir/src/GameTownScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object CMakeFiles/GC3.dir/src/GameTownScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/GameTownScreen.cpp.obj -MF CMakeFiles\GC3.dir\src\GameTownScreen.cpp.obj.d -o CMakeFiles\GC3.dir\src\GameTownScreen.cpp.obj -c E:\template\GC_port\GC3\src\GameTownScreen.cpp
 
 CMakeFiles/GC3.dir/src/GameTownScreen.cpp.i: cmake_force
@@ -1137,7 +1152,7 @@ CMakeFiles/GC3.dir/src/GameplayScreen.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/GameplayScreen.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/GameplayScreen.cpp.obj: E:/template/GC_port/GC3/src/GameplayScreen.cpp
 CMakeFiles/GC3.dir/src/GameplayScreen.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object CMakeFiles/GC3.dir/src/GameplayScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building CXX object CMakeFiles/GC3.dir/src/GameplayScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/GameplayScreen.cpp.obj -MF CMakeFiles\GC3.dir\src\GameplayScreen.cpp.obj.d -o CMakeFiles\GC3.dir\src\GameplayScreen.cpp.obj -c E:\template\GC_port\GC3\src\GameplayScreen.cpp
 
 CMakeFiles/GC3.dir/src/GameplayScreen.cpp.i: cmake_force
@@ -1152,7 +1167,7 @@ CMakeFiles/GC3.dir/src/GlobalValueClass.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/GlobalValueClass.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/GlobalValueClass.cpp.obj: E:/template/GC_port/GC3/src/GlobalValueClass.cpp
 CMakeFiles/GC3.dir/src/GlobalValueClass.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building CXX object CMakeFiles/GC3.dir/src/GlobalValueClass.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building CXX object CMakeFiles/GC3.dir/src/GlobalValueClass.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/GlobalValueClass.cpp.obj -MF CMakeFiles\GC3.dir\src\GlobalValueClass.cpp.obj.d -o CMakeFiles\GC3.dir\src\GlobalValueClass.cpp.obj -c E:\template\GC_port\GC3\src\GlobalValueClass.cpp
 
 CMakeFiles/GC3.dir/src/GlobalValueClass.cpp.i: cmake_force
@@ -1167,7 +1182,7 @@ CMakeFiles/GC3.dir/src/Gohei_Rod.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Gohei_Rod.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Gohei_Rod.cpp.obj: E:/template/GC_port/GC3/src/Gohei_Rod.cpp
 CMakeFiles/GC3.dir/src/Gohei_Rod.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building CXX object CMakeFiles/GC3.dir/src/Gohei_Rod.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building CXX object CMakeFiles/GC3.dir/src/Gohei_Rod.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Gohei_Rod.cpp.obj -MF CMakeFiles\GC3.dir\src\Gohei_Rod.cpp.obj.d -o CMakeFiles\GC3.dir\src\Gohei_Rod.cpp.obj -c E:\template\GC_port\GC3\src\Gohei_Rod.cpp
 
 CMakeFiles/GC3.dir/src/Gohei_Rod.cpp.i: cmake_force
@@ -1182,7 +1197,7 @@ CMakeFiles/GC3.dir/src/GuardianShield.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/GuardianShield.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/GuardianShield.cpp.obj: E:/template/GC_port/GC3/src/GuardianShield.cpp
 CMakeFiles/GC3.dir/src/GuardianShield.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building CXX object CMakeFiles/GC3.dir/src/GuardianShield.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object CMakeFiles/GC3.dir/src/GuardianShield.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/GuardianShield.cpp.obj -MF CMakeFiles\GC3.dir\src\GuardianShield.cpp.obj.d -o CMakeFiles\GC3.dir\src\GuardianShield.cpp.obj -c E:\template\GC_port\GC3\src\GuardianShield.cpp
 
 CMakeFiles/GC3.dir/src/GuardianShield.cpp.i: cmake_force
@@ -1197,7 +1212,7 @@ CMakeFiles/GC3.dir/src/HiganMainMenuScreen.cpp.obj: CMakeFiles/GC3.dir/flags.mak
 CMakeFiles/GC3.dir/src/HiganMainMenuScreen.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/HiganMainMenuScreen.cpp.obj: E:/template/GC_port/GC3/src/HiganMainMenuScreen.cpp
 CMakeFiles/GC3.dir/src/HiganMainMenuScreen.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object CMakeFiles/GC3.dir/src/HiganMainMenuScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object CMakeFiles/GC3.dir/src/HiganMainMenuScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/HiganMainMenuScreen.cpp.obj -MF CMakeFiles\GC3.dir\src\HiganMainMenuScreen.cpp.obj.d -o CMakeFiles\GC3.dir\src\HiganMainMenuScreen.cpp.obj -c E:\template\GC_port\GC3\src\HiganMainMenuScreen.cpp
 
 CMakeFiles/GC3.dir/src/HiganMainMenuScreen.cpp.i: cmake_force
@@ -1212,7 +1227,7 @@ CMakeFiles/GC3.dir/src/IceWall.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/IceWall.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/IceWall.cpp.obj: E:/template/GC_port/GC3/src/IceWall.cpp
 CMakeFiles/GC3.dir/src/IceWall.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object CMakeFiles/GC3.dir/src/IceWall.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object CMakeFiles/GC3.dir/src/IceWall.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/IceWall.cpp.obj -MF CMakeFiles\GC3.dir\src\IceWall.cpp.obj.d -o CMakeFiles\GC3.dir\src\IceWall.cpp.obj -c E:\template\GC_port\GC3\src\IceWall.cpp
 
 CMakeFiles/GC3.dir/src/IceWall.cpp.i: cmake_force
@@ -1227,7 +1242,7 @@ CMakeFiles/GC3.dir/src/IcedObject.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/IcedObject.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/IcedObject.cpp.obj: E:/template/GC_port/GC3/src/IcedObject.cpp
 CMakeFiles/GC3.dir/src/IcedObject.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object CMakeFiles/GC3.dir/src/IcedObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object CMakeFiles/GC3.dir/src/IcedObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/IcedObject.cpp.obj -MF CMakeFiles\GC3.dir\src\IcedObject.cpp.obj.d -o CMakeFiles\GC3.dir\src\IcedObject.cpp.obj -c E:\template\GC_port\GC3\src\IcedObject.cpp
 
 CMakeFiles/GC3.dir/src/IcedObject.cpp.i: cmake_force
@@ -1242,7 +1257,7 @@ CMakeFiles/GC3.dir/src/IlluminateLight.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/IlluminateLight.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/IlluminateLight.cpp.obj: E:/template/GC_port/GC3/src/IlluminateLight.cpp
 CMakeFiles/GC3.dir/src/IlluminateLight.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object CMakeFiles/GC3.dir/src/IlluminateLight.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building CXX object CMakeFiles/GC3.dir/src/IlluminateLight.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/IlluminateLight.cpp.obj -MF CMakeFiles\GC3.dir\src\IlluminateLight.cpp.obj.d -o CMakeFiles\GC3.dir\src\IlluminateLight.cpp.obj -c E:\template\GC_port\GC3\src\IlluminateLight.cpp
 
 CMakeFiles/GC3.dir/src/IlluminateLight.cpp.i: cmake_force
@@ -1257,7 +1272,7 @@ CMakeFiles/GC3.dir/src/InGameScreen.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/InGameScreen.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/InGameScreen.cpp.obj: E:/template/GC_port/GC3/src/InGameScreen.cpp
 CMakeFiles/GC3.dir/src/InGameScreen.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building CXX object CMakeFiles/GC3.dir/src/InGameScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building CXX object CMakeFiles/GC3.dir/src/InGameScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/InGameScreen.cpp.obj -MF CMakeFiles\GC3.dir\src\InGameScreen.cpp.obj.d -o CMakeFiles\GC3.dir\src\InGameScreen.cpp.obj -c E:\template\GC_port\GC3\src\InGameScreen.cpp
 
 CMakeFiles/GC3.dir/src/InGameScreen.cpp.i: cmake_force
@@ -1272,7 +1287,7 @@ CMakeFiles/GC3.dir/src/Item.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Item.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Item.cpp.obj: E:/template/GC_port/GC3/src/Item.cpp
 CMakeFiles/GC3.dir/src/Item.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building CXX object CMakeFiles/GC3.dir/src/Item.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building CXX object CMakeFiles/GC3.dir/src/Item.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Item.cpp.obj -MF CMakeFiles\GC3.dir\src\Item.cpp.obj.d -o CMakeFiles\GC3.dir\src\Item.cpp.obj -c E:\template\GC_port\GC3\src\Item.cpp
 
 CMakeFiles/GC3.dir/src/Item.cpp.i: cmake_force
@@ -1287,7 +1302,7 @@ CMakeFiles/GC3.dir/src/ItemInfo.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/ItemInfo.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/ItemInfo.cpp.obj: E:/template/GC_port/GC3/src/ItemInfo.cpp
 CMakeFiles/GC3.dir/src/ItemInfo.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building CXX object CMakeFiles/GC3.dir/src/ItemInfo.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building CXX object CMakeFiles/GC3.dir/src/ItemInfo.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/ItemInfo.cpp.obj -MF CMakeFiles\GC3.dir\src\ItemInfo.cpp.obj.d -o CMakeFiles\GC3.dir\src\ItemInfo.cpp.obj -c E:\template\GC_port\GC3\src\ItemInfo.cpp
 
 CMakeFiles/GC3.dir/src/ItemInfo.cpp.i: cmake_force
@@ -1302,7 +1317,7 @@ CMakeFiles/GC3.dir/src/ItemSlot.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/ItemSlot.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/ItemSlot.cpp.obj: E:/template/GC_port/GC3/src/ItemSlot.cpp
 CMakeFiles/GC3.dir/src/ItemSlot.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building CXX object CMakeFiles/GC3.dir/src/ItemSlot.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building CXX object CMakeFiles/GC3.dir/src/ItemSlot.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/ItemSlot.cpp.obj -MF CMakeFiles\GC3.dir\src\ItemSlot.cpp.obj.d -o CMakeFiles\GC3.dir\src\ItemSlot.cpp.obj -c E:\template\GC_port\GC3\src\ItemSlot.cpp
 
 CMakeFiles/GC3.dir/src/ItemSlot.cpp.i: cmake_force
@@ -1317,7 +1332,7 @@ CMakeFiles/GC3.dir/src/Iventory.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Iventory.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Iventory.cpp.obj: E:/template/GC_port/GC3/src/Iventory.cpp
 CMakeFiles/GC3.dir/src/Iventory.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building CXX object CMakeFiles/GC3.dir/src/Iventory.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building CXX object CMakeFiles/GC3.dir/src/Iventory.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Iventory.cpp.obj -MF CMakeFiles\GC3.dir\src\Iventory.cpp.obj.d -o CMakeFiles\GC3.dir\src\Iventory.cpp.obj -c E:\template\GC_port\GC3\src\Iventory.cpp
 
 CMakeFiles/GC3.dir/src/Iventory.cpp.i: cmake_force
@@ -1332,7 +1347,7 @@ CMakeFiles/GC3.dir/src/KanjiEffect.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/KanjiEffect.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/KanjiEffect.cpp.obj: E:/template/GC_port/GC3/src/KanjiEffect.cpp
 CMakeFiles/GC3.dir/src/KanjiEffect.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building CXX object CMakeFiles/GC3.dir/src/KanjiEffect.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building CXX object CMakeFiles/GC3.dir/src/KanjiEffect.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/KanjiEffect.cpp.obj -MF CMakeFiles\GC3.dir\src\KanjiEffect.cpp.obj.d -o CMakeFiles\GC3.dir\src\KanjiEffect.cpp.obj -c E:\template\GC_port\GC3\src\KanjiEffect.cpp
 
 CMakeFiles/GC3.dir/src/KanjiEffect.cpp.i: cmake_force
@@ -1347,7 +1362,7 @@ CMakeFiles/GC3.dir/src/KanjiEffectManager.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/KanjiEffectManager.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/KanjiEffectManager.cpp.obj: E:/template/GC_port/GC3/src/KanjiEffectManager.cpp
 CMakeFiles/GC3.dir/src/KanjiEffectManager.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building CXX object CMakeFiles/GC3.dir/src/KanjiEffectManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building CXX object CMakeFiles/GC3.dir/src/KanjiEffectManager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/KanjiEffectManager.cpp.obj -MF CMakeFiles\GC3.dir\src\KanjiEffectManager.cpp.obj.d -o CMakeFiles\GC3.dir\src\KanjiEffectManager.cpp.obj -c E:\template\GC_port\GC3\src\KanjiEffectManager.cpp
 
 CMakeFiles/GC3.dir/src/KanjiEffectManager.cpp.i: cmake_force
@@ -1362,7 +1377,7 @@ CMakeFiles/GC3.dir/src/KanjiEffectrObject.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/KanjiEffectrObject.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/KanjiEffectrObject.cpp.obj: E:/template/GC_port/GC3/src/KanjiEffectrObject.cpp
 CMakeFiles/GC3.dir/src/KanjiEffectrObject.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building CXX object CMakeFiles/GC3.dir/src/KanjiEffectrObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building CXX object CMakeFiles/GC3.dir/src/KanjiEffectrObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/KanjiEffectrObject.cpp.obj -MF CMakeFiles\GC3.dir\src\KanjiEffectrObject.cpp.obj.d -o CMakeFiles\GC3.dir\src\KanjiEffectrObject.cpp.obj -c E:\template\GC_port\GC3\src\KanjiEffectrObject.cpp
 
 CMakeFiles/GC3.dir/src/KanjiEffectrObject.cpp.i: cmake_force
@@ -1377,7 +1392,7 @@ CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: E:/template/GC_port/GC3/src/LabelItem.cpp
 CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building CXX object CMakeFiles/GC3.dir/src/LabelItem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building CXX object CMakeFiles/GC3.dir/src/LabelItem.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/LabelItem.cpp.obj -MF CMakeFiles\GC3.dir\src\LabelItem.cpp.obj.d -o CMakeFiles\GC3.dir\src\LabelItem.cpp.obj -c E:\template\GC_port\GC3\src\LabelItem.cpp
 
 CMakeFiles/GC3.dir/src/LabelItem.cpp.i: cmake_force
@@ -1392,7 +1407,7 @@ CMakeFiles/GC3.dir/src/Level.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Level.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Level.cpp.obj: E:/template/GC_port/GC3/src/Level.cpp
 CMakeFiles/GC3.dir/src/Level.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building CXX object CMakeFiles/GC3.dir/src/Level.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building CXX object CMakeFiles/GC3.dir/src/Level.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Level.cpp.obj -MF CMakeFiles\GC3.dir\src\Level.cpp.obj.d -o CMakeFiles\GC3.dir\src\Level.cpp.obj -c E:\template\GC_port\GC3\src\Level.cpp
 
 CMakeFiles/GC3.dir/src/Level.cpp.i: cmake_force
@@ -1407,7 +1422,7 @@ CMakeFiles/GC3.dir/src/Lighting.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Lighting.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Lighting.cpp.obj: E:/template/GC_port/GC3/src/Lighting.cpp
 CMakeFiles/GC3.dir/src/Lighting.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building CXX object CMakeFiles/GC3.dir/src/Lighting.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building CXX object CMakeFiles/GC3.dir/src/Lighting.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Lighting.cpp.obj -MF CMakeFiles\GC3.dir\src\Lighting.cpp.obj.d -o CMakeFiles\GC3.dir\src\Lighting.cpp.obj -c E:\template\GC_port\GC3\src\Lighting.cpp
 
 CMakeFiles/GC3.dir/src/Lighting.cpp.i: cmake_force
@@ -1422,7 +1437,7 @@ CMakeFiles/GC3.dir/src/LinkAmplifier.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/LinkAmplifier.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/LinkAmplifier.cpp.obj: E:/template/GC_port/GC3/src/LinkAmplifier.cpp
 CMakeFiles/GC3.dir/src/LinkAmplifier.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building CXX object CMakeFiles/GC3.dir/src/LinkAmplifier.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building CXX object CMakeFiles/GC3.dir/src/LinkAmplifier.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/LinkAmplifier.cpp.obj -MF CMakeFiles\GC3.dir\src\LinkAmplifier.cpp.obj.d -o CMakeFiles\GC3.dir\src\LinkAmplifier.cpp.obj -c E:\template\GC_port\GC3\src\LinkAmplifier.cpp
 
 CMakeFiles/GC3.dir/src/LinkAmplifier.cpp.i: cmake_force
@@ -1437,7 +1452,7 @@ CMakeFiles/GC3.dir/src/LinkCreator.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/LinkCreator.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/LinkCreator.cpp.obj: E:/template/GC_port/GC3/src/LinkCreator.cpp
 CMakeFiles/GC3.dir/src/LinkCreator.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building CXX object CMakeFiles/GC3.dir/src/LinkCreator.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building CXX object CMakeFiles/GC3.dir/src/LinkCreator.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/LinkCreator.cpp.obj -MF CMakeFiles\GC3.dir\src\LinkCreator.cpp.obj.d -o CMakeFiles\GC3.dir\src\LinkCreator.cpp.obj -c E:\template\GC_port\GC3\src\LinkCreator.cpp
 
 CMakeFiles/GC3.dir/src/LinkCreator.cpp.i: cmake_force
@@ -1452,7 +1467,7 @@ CMakeFiles/GC3.dir/src/LivingLabel.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/LivingLabel.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/LivingLabel.cpp.obj: E:/template/GC_port/GC3/src/LivingLabel.cpp
 CMakeFiles/GC3.dir/src/LivingLabel.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building CXX object CMakeFiles/GC3.dir/src/LivingLabel.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building CXX object CMakeFiles/GC3.dir/src/LivingLabel.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/LivingLabel.cpp.obj -MF CMakeFiles\GC3.dir\src\LivingLabel.cpp.obj.d -o CMakeFiles\GC3.dir\src\LivingLabel.cpp.obj -c E:\template\GC_port\GC3\src\LivingLabel.cpp
 
 CMakeFiles/GC3.dir/src/LivingLabel.cpp.i: cmake_force
@@ -1467,7 +1482,7 @@ CMakeFiles/GC3.dir/src/MainGUI.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/MainGUI.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/MainGUI.cpp.obj: E:/template/GC_port/GC3/src/MainGUI.cpp
 CMakeFiles/GC3.dir/src/MainGUI.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building CXX object CMakeFiles/GC3.dir/src/MainGUI.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building CXX object CMakeFiles/GC3.dir/src/MainGUI.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/MainGUI.cpp.obj -MF CMakeFiles\GC3.dir\src\MainGUI.cpp.obj.d -o CMakeFiles\GC3.dir\src\MainGUI.cpp.obj -c E:\template\GC_port\GC3\src\MainGUI.cpp
 
 CMakeFiles/GC3.dir/src/MainGUI.cpp.i: cmake_force
@@ -1482,7 +1497,7 @@ CMakeFiles/GC3.dir/src/MainMenuScreen.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/MainMenuScreen.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/MainMenuScreen.cpp.obj: E:/template/GC_port/GC3/src/MainMenuScreen.cpp
 CMakeFiles/GC3.dir/src/MainMenuScreen.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building CXX object CMakeFiles/GC3.dir/src/MainMenuScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building CXX object CMakeFiles/GC3.dir/src/MainMenuScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/MainMenuScreen.cpp.obj -MF CMakeFiles\GC3.dir\src\MainMenuScreen.cpp.obj.d -o CMakeFiles\GC3.dir\src\MainMenuScreen.cpp.obj -c E:\template\GC_port\GC3\src\MainMenuScreen.cpp
 
 CMakeFiles/GC3.dir/src/MainMenuScreen.cpp.i: cmake_force
@@ -1497,7 +1512,7 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/NPC.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:/template/GC_port/GC3/src/NPC.cpp
 CMakeFiles/GC3.dir/src/NPC.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building CXX object CMakeFiles/GC3.dir/src/NPC.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building CXX object CMakeFiles/GC3.dir/src/NPC.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/NPC.cpp.obj -MF CMakeFiles\GC3.dir\src\NPC.cpp.obj.d -o CMakeFiles\GC3.dir\src\NPC.cpp.obj -c E:\template\GC_port\GC3\src\NPC.cpp
 
 CMakeFiles/GC3.dir/src/NPC.cpp.i: cmake_force
@@ -1512,7 +1527,7 @@ CMakeFiles/GC3.dir/src/OtherPlayer.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/OtherPlayer.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/OtherPlayer.cpp.obj: E:/template/GC_port/GC3/src/OtherPlayer.cpp
 CMakeFiles/GC3.dir/src/OtherPlayer.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building CXX object CMakeFiles/GC3.dir/src/OtherPlayer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building CXX object CMakeFiles/GC3.dir/src/OtherPlayer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/OtherPlayer.cpp.obj -MF CMakeFiles\GC3.dir\src\OtherPlayer.cpp.obj.d -o CMakeFiles\GC3.dir\src\OtherPlayer.cpp.obj -c E:\template\GC_port\GC3\src\OtherPlayer.cpp
 
 CMakeFiles/GC3.dir/src/OtherPlayer.cpp.i: cmake_force
@@ -1527,7 +1542,7 @@ CMakeFiles/GC3.dir/src/OutsideGrid.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/OutsideGrid.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/OutsideGrid.cpp.obj: E:/template/GC_port/GC3/src/OutsideGrid.cpp
 CMakeFiles/GC3.dir/src/OutsideGrid.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building CXX object CMakeFiles/GC3.dir/src/OutsideGrid.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Building CXX object CMakeFiles/GC3.dir/src/OutsideGrid.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/OutsideGrid.cpp.obj -MF CMakeFiles\GC3.dir\src\OutsideGrid.cpp.obj.d -o CMakeFiles\GC3.dir\src\OutsideGrid.cpp.obj -c E:\template\GC_port\GC3\src\OutsideGrid.cpp
 
 CMakeFiles/GC3.dir/src/OutsideGrid.cpp.i: cmake_force
@@ -1542,7 +1557,7 @@ CMakeFiles/GC3.dir/src/Patchouli.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Patchouli.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Patchouli.cpp.obj: E:/template/GC_port/GC3/src/Patchouli.cpp
 CMakeFiles/GC3.dir/src/Patchouli.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Building CXX object CMakeFiles/GC3.dir/src/Patchouli.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Building CXX object CMakeFiles/GC3.dir/src/Patchouli.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Patchouli.cpp.obj -MF CMakeFiles\GC3.dir\src\Patchouli.cpp.obj.d -o CMakeFiles\GC3.dir\src\Patchouli.cpp.obj -c E:\template\GC_port\GC3\src\Patchouli.cpp
 
 CMakeFiles/GC3.dir/src/Patchouli.cpp.i: cmake_force
@@ -1557,7 +1572,7 @@ CMakeFiles/GC3.dir/src/PaternBehaviorBase.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/PaternBehaviorBase.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/PaternBehaviorBase.cpp.obj: E:/template/GC_port/GC3/src/PaternBehaviorBase.cpp
 CMakeFiles/GC3.dir/src/PaternBehaviorBase.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Building CXX object CMakeFiles/GC3.dir/src/PaternBehaviorBase.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_101) "Building CXX object CMakeFiles/GC3.dir/src/PaternBehaviorBase.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/PaternBehaviorBase.cpp.obj -MF CMakeFiles\GC3.dir\src\PaternBehaviorBase.cpp.obj.d -o CMakeFiles\GC3.dir\src\PaternBehaviorBase.cpp.obj -c E:\template\GC_port\GC3\src\PaternBehaviorBase.cpp
 
 CMakeFiles/GC3.dir/src/PaternBehaviorBase.cpp.i: cmake_force
@@ -1572,7 +1587,7 @@ CMakeFiles/GC3.dir/src/PaternBehavior_Test.cpp.obj: CMakeFiles/GC3.dir/flags.mak
 CMakeFiles/GC3.dir/src/PaternBehavior_Test.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/PaternBehavior_Test.cpp.obj: E:/template/GC_port/GC3/src/PaternBehavior_Test.cpp
 CMakeFiles/GC3.dir/src/PaternBehavior_Test.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_101) "Building CXX object CMakeFiles/GC3.dir/src/PaternBehavior_Test.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_102) "Building CXX object CMakeFiles/GC3.dir/src/PaternBehavior_Test.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/PaternBehavior_Test.cpp.obj -MF CMakeFiles\GC3.dir\src\PaternBehavior_Test.cpp.obj.d -o CMakeFiles\GC3.dir\src\PaternBehavior_Test.cpp.obj -c E:\template\GC_port\GC3\src\PaternBehavior_Test.cpp
 
 CMakeFiles/GC3.dir/src/PaternBehavior_Test.cpp.i: cmake_force
@@ -1587,7 +1602,7 @@ CMakeFiles/GC3.dir/src/PaternTestScreen.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/PaternTestScreen.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/PaternTestScreen.cpp.obj: E:/template/GC_port/GC3/src/PaternTestScreen.cpp
 CMakeFiles/GC3.dir/src/PaternTestScreen.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_102) "Building CXX object CMakeFiles/GC3.dir/src/PaternTestScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_103) "Building CXX object CMakeFiles/GC3.dir/src/PaternTestScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/PaternTestScreen.cpp.obj -MF CMakeFiles\GC3.dir\src\PaternTestScreen.cpp.obj.d -o CMakeFiles\GC3.dir\src\PaternTestScreen.cpp.obj -c E:\template\GC_port\GC3\src\PaternTestScreen.cpp
 
 CMakeFiles/GC3.dir/src/PaternTestScreen.cpp.i: cmake_force
@@ -1602,7 +1617,7 @@ CMakeFiles/GC3.dir/src/PauseMenu.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/PauseMenu.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/PauseMenu.cpp.obj: E:/template/GC_port/GC3/src/PauseMenu.cpp
 CMakeFiles/GC3.dir/src/PauseMenu.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_103) "Building CXX object CMakeFiles/GC3.dir/src/PauseMenu.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_104) "Building CXX object CMakeFiles/GC3.dir/src/PauseMenu.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/PauseMenu.cpp.obj -MF CMakeFiles\GC3.dir\src\PauseMenu.cpp.obj.d -o CMakeFiles\GC3.dir\src\PauseMenu.cpp.obj -c E:\template\GC_port\GC3\src\PauseMenu.cpp
 
 CMakeFiles/GC3.dir/src/PauseMenu.cpp.i: cmake_force
@@ -1617,7 +1632,7 @@ CMakeFiles/GC3.dir/src/Philosopher.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Philosopher.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Philosopher.cpp.obj: E:/template/GC_port/GC3/src/Philosopher.cpp
 CMakeFiles/GC3.dir/src/Philosopher.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_104) "Building CXX object CMakeFiles/GC3.dir/src/Philosopher.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_105) "Building CXX object CMakeFiles/GC3.dir/src/Philosopher.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Philosopher.cpp.obj -MF CMakeFiles\GC3.dir\src\Philosopher.cpp.obj.d -o CMakeFiles\GC3.dir\src\Philosopher.cpp.obj -c E:\template\GC_port\GC3\src\Philosopher.cpp
 
 CMakeFiles/GC3.dir/src/Philosopher.cpp.i: cmake_force
@@ -1632,7 +1647,7 @@ CMakeFiles/GC3.dir/src/Player.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Player.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Player.cpp.obj: E:/template/GC_port/GC3/src/Player.cpp
 CMakeFiles/GC3.dir/src/Player.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_105) "Building CXX object CMakeFiles/GC3.dir/src/Player.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_106) "Building CXX object CMakeFiles/GC3.dir/src/Player.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Player.cpp.obj -MF CMakeFiles\GC3.dir\src\Player.cpp.obj.d -o CMakeFiles\GC3.dir\src\Player.cpp.obj -c E:\template\GC_port\GC3\src\Player.cpp
 
 CMakeFiles/GC3.dir/src/Player.cpp.i: cmake_force
@@ -1647,7 +1662,7 @@ CMakeFiles/GC3.dir/src/PowerItem.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/PowerItem.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/PowerItem.cpp.obj: E:/template/GC_port/GC3/src/PowerItem.cpp
 CMakeFiles/GC3.dir/src/PowerItem.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_106) "Building CXX object CMakeFiles/GC3.dir/src/PowerItem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_107) "Building CXX object CMakeFiles/GC3.dir/src/PowerItem.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/PowerItem.cpp.obj -MF CMakeFiles\GC3.dir\src\PowerItem.cpp.obj.d -o CMakeFiles\GC3.dir\src\PowerItem.cpp.obj -c E:\template\GC_port\GC3\src\PowerItem.cpp
 
 CMakeFiles/GC3.dir/src/PowerItem.cpp.i: cmake_force
@@ -1662,7 +1677,7 @@ CMakeFiles/GC3.dir/src/Profile.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Profile.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Profile.cpp.obj: E:/template/GC_port/GC3/src/Profile.cpp
 CMakeFiles/GC3.dir/src/Profile.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_107) "Building CXX object CMakeFiles/GC3.dir/src/Profile.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_108) "Building CXX object CMakeFiles/GC3.dir/src/Profile.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Profile.cpp.obj -MF CMakeFiles\GC3.dir\src\Profile.cpp.obj.d -o CMakeFiles\GC3.dir\src\Profile.cpp.obj -c E:\template\GC_port\GC3\src\Profile.cpp
 
 CMakeFiles/GC3.dir/src/Profile.cpp.i: cmake_force
@@ -1677,7 +1692,7 @@ CMakeFiles/GC3.dir/src/QuickSlot.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/QuickSlot.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/QuickSlot.cpp.obj: E:/template/GC_port/GC3/src/QuickSlot.cpp
 CMakeFiles/GC3.dir/src/QuickSlot.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_108) "Building CXX object CMakeFiles/GC3.dir/src/QuickSlot.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_109) "Building CXX object CMakeFiles/GC3.dir/src/QuickSlot.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/QuickSlot.cpp.obj -MF CMakeFiles\GC3.dir\src\QuickSlot.cpp.obj.d -o CMakeFiles\GC3.dir\src\QuickSlot.cpp.obj -c E:\template\GC_port\GC3\src\QuickSlot.cpp
 
 CMakeFiles/GC3.dir/src/QuickSlot.cpp.i: cmake_force
@@ -1692,7 +1707,7 @@ CMakeFiles/GC3.dir/src/QuickSlotBar.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/QuickSlotBar.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/QuickSlotBar.cpp.obj: E:/template/GC_port/GC3/src/QuickSlotBar.cpp
 CMakeFiles/GC3.dir/src/QuickSlotBar.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_109) "Building CXX object CMakeFiles/GC3.dir/src/QuickSlotBar.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_110) "Building CXX object CMakeFiles/GC3.dir/src/QuickSlotBar.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/QuickSlotBar.cpp.obj -MF CMakeFiles\GC3.dir\src\QuickSlotBar.cpp.obj.d -o CMakeFiles\GC3.dir\src\QuickSlotBar.cpp.obj -c E:\template\GC_port\GC3\src\QuickSlotBar.cpp
 
 CMakeFiles/GC3.dir/src/QuickSlotBar.cpp.i: cmake_force
@@ -1707,7 +1722,7 @@ CMakeFiles/GC3.dir/src/ReplayScreen.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/ReplayScreen.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/ReplayScreen.cpp.obj: E:/template/GC_port/GC3/src/ReplayScreen.cpp
 CMakeFiles/GC3.dir/src/ReplayScreen.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_110) "Building CXX object CMakeFiles/GC3.dir/src/ReplayScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_111) "Building CXX object CMakeFiles/GC3.dir/src/ReplayScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/ReplayScreen.cpp.obj -MF CMakeFiles\GC3.dir\src\ReplayScreen.cpp.obj.d -o CMakeFiles\GC3.dir\src\ReplayScreen.cpp.obj -c E:\template\GC_port\GC3\src\ReplayScreen.cpp
 
 CMakeFiles/GC3.dir/src/ReplayScreen.cpp.i: cmake_force
@@ -1722,7 +1737,7 @@ CMakeFiles/GC3.dir/src/ScoreItem.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/ScoreItem.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/ScoreItem.cpp.obj: E:/template/GC_port/GC3/src/ScoreItem.cpp
 CMakeFiles/GC3.dir/src/ScoreItem.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_111) "Building CXX object CMakeFiles/GC3.dir/src/ScoreItem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_112) "Building CXX object CMakeFiles/GC3.dir/src/ScoreItem.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/ScoreItem.cpp.obj -MF CMakeFiles\GC3.dir\src\ScoreItem.cpp.obj.d -o CMakeFiles\GC3.dir\src\ScoreItem.cpp.obj -c E:\template\GC_port\GC3\src\ScoreItem.cpp
 
 CMakeFiles/GC3.dir/src/ScoreItem.cpp.i: cmake_force
@@ -1737,7 +1752,7 @@ CMakeFiles/GC3.dir/src/SealingAmulet.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/SealingAmulet.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/SealingAmulet.cpp.obj: E:/template/GC_port/GC3/src/SealingAmulet.cpp
 CMakeFiles/GC3.dir/src/SealingAmulet.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_112) "Building CXX object CMakeFiles/GC3.dir/src/SealingAmulet.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_113) "Building CXX object CMakeFiles/GC3.dir/src/SealingAmulet.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/SealingAmulet.cpp.obj -MF CMakeFiles\GC3.dir\src\SealingAmulet.cpp.obj.d -o CMakeFiles\GC3.dir\src\SealingAmulet.cpp.obj -c E:\template\GC_port\GC3\src\SealingAmulet.cpp
 
 CMakeFiles/GC3.dir/src/SealingAmulet.cpp.i: cmake_force
@@ -1752,7 +1767,7 @@ CMakeFiles/GC3.dir/src/SelectScreen.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/SelectScreen.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/SelectScreen.cpp.obj: E:/template/GC_port/GC3/src/SelectScreen.cpp
 CMakeFiles/GC3.dir/src/SelectScreen.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_113) "Building CXX object CMakeFiles/GC3.dir/src/SelectScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_114) "Building CXX object CMakeFiles/GC3.dir/src/SelectScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/SelectScreen.cpp.obj -MF CMakeFiles\GC3.dir\src\SelectScreen.cpp.obj.d -o CMakeFiles\GC3.dir\src\SelectScreen.cpp.obj -c E:\template\GC_port\GC3\src\SelectScreen.cpp
 
 CMakeFiles/GC3.dir/src/SelectScreen.cpp.i: cmake_force
@@ -1767,7 +1782,7 @@ CMakeFiles/GC3.dir/src/ShaderToy.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/ShaderToy.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/ShaderToy.cpp.obj: E:/template/GC_port/GC3/src/ShaderToy.cpp
 CMakeFiles/GC3.dir/src/ShaderToy.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_114) "Building CXX object CMakeFiles/GC3.dir/src/ShaderToy.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_115) "Building CXX object CMakeFiles/GC3.dir/src/ShaderToy.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/ShaderToy.cpp.obj -MF CMakeFiles\GC3.dir\src\ShaderToy.cpp.obj.d -o CMakeFiles\GC3.dir\src\ShaderToy.cpp.obj -c E:\template\GC_port\GC3\src\ShaderToy.cpp
 
 CMakeFiles/GC3.dir/src/ShaderToy.cpp.i: cmake_force
@@ -1782,7 +1797,7 @@ CMakeFiles/GC3.dir/src/Shop.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Shop.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Shop.cpp.obj: E:/template/GC_port/GC3/src/Shop.cpp
 CMakeFiles/GC3.dir/src/Shop.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_115) "Building CXX object CMakeFiles/GC3.dir/src/Shop.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_116) "Building CXX object CMakeFiles/GC3.dir/src/Shop.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Shop.cpp.obj -MF CMakeFiles\GC3.dir\src\Shop.cpp.obj.d -o CMakeFiles\GC3.dir\src\Shop.cpp.obj -c E:\template\GC_port\GC3\src\Shop.cpp
 
 CMakeFiles/GC3.dir/src/Shop.cpp.i: cmake_force
@@ -1797,7 +1812,7 @@ CMakeFiles/GC3.dir/src/SimpleObject.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/SimpleObject.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/SimpleObject.cpp.obj: E:/template/GC_port/GC3/src/SimpleObject.cpp
 CMakeFiles/GC3.dir/src/SimpleObject.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_116) "Building CXX object CMakeFiles/GC3.dir/src/SimpleObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_117) "Building CXX object CMakeFiles/GC3.dir/src/SimpleObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/SimpleObject.cpp.obj -MF CMakeFiles\GC3.dir\src\SimpleObject.cpp.obj.d -o CMakeFiles\GC3.dir\src\SimpleObject.cpp.obj -c E:\template\GC_port\GC3\src\SimpleObject.cpp
 
 CMakeFiles/GC3.dir/src/SimpleObject.cpp.i: cmake_force
@@ -1812,7 +1827,7 @@ CMakeFiles/GC3.dir/src/SpellcardIcon.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/SpellcardIcon.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/SpellcardIcon.cpp.obj: E:/template/GC_port/GC3/src/SpellcardIcon.cpp
 CMakeFiles/GC3.dir/src/SpellcardIcon.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_117) "Building CXX object CMakeFiles/GC3.dir/src/SpellcardIcon.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_118) "Building CXX object CMakeFiles/GC3.dir/src/SpellcardIcon.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/SpellcardIcon.cpp.obj -MF CMakeFiles\GC3.dir\src\SpellcardIcon.cpp.obj.d -o CMakeFiles\GC3.dir\src\SpellcardIcon.cpp.obj -c E:\template\GC_port\GC3\src\SpellcardIcon.cpp
 
 CMakeFiles/GC3.dir/src/SpellcardIcon.cpp.i: cmake_force
@@ -1827,7 +1842,7 @@ CMakeFiles/GC3.dir/src/SpellcardSelector.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/SpellcardSelector.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/SpellcardSelector.cpp.obj: E:/template/GC_port/GC3/src/SpellcardSelector.cpp
 CMakeFiles/GC3.dir/src/SpellcardSelector.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_118) "Building CXX object CMakeFiles/GC3.dir/src/SpellcardSelector.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_119) "Building CXX object CMakeFiles/GC3.dir/src/SpellcardSelector.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/SpellcardSelector.cpp.obj -MF CMakeFiles\GC3.dir\src\SpellcardSelector.cpp.obj.d -o CMakeFiles\GC3.dir\src\SpellcardSelector.cpp.obj -c E:\template\GC_port\GC3\src\SpellcardSelector.cpp
 
 CMakeFiles/GC3.dir/src/SpellcardSelector.cpp.i: cmake_force
@@ -1842,7 +1857,7 @@ CMakeFiles/GC3.dir/src/Stamina.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Stamina.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Stamina.cpp.obj: E:/template/GC_port/GC3/src/Stamina.cpp
 CMakeFiles/GC3.dir/src/Stamina.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_119) "Building CXX object CMakeFiles/GC3.dir/src/Stamina.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_120) "Building CXX object CMakeFiles/GC3.dir/src/Stamina.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Stamina.cpp.obj -MF CMakeFiles\GC3.dir\src\Stamina.cpp.obj.d -o CMakeFiles\GC3.dir\src\Stamina.cpp.obj -c E:\template\GC_port\GC3\src\Stamina.cpp
 
 CMakeFiles/GC3.dir/src/Stamina.cpp.i: cmake_force
@@ -1857,7 +1872,7 @@ CMakeFiles/GC3.dir/src/TestObject.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/TestObject.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/TestObject.cpp.obj: E:/template/GC_port/GC3/src/TestObject.cpp
 CMakeFiles/GC3.dir/src/TestObject.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_120) "Building CXX object CMakeFiles/GC3.dir/src/TestObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_121) "Building CXX object CMakeFiles/GC3.dir/src/TestObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/TestObject.cpp.obj -MF CMakeFiles\GC3.dir\src\TestObject.cpp.obj.d -o CMakeFiles\GC3.dir\src\TestObject.cpp.obj -c E:\template\GC_port\GC3\src\TestObject.cpp
 
 CMakeFiles/GC3.dir/src/TestObject.cpp.i: cmake_force
@@ -1872,7 +1887,7 @@ CMakeFiles/GC3.dir/src/TestRender3D.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/TestRender3D.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/TestRender3D.cpp.obj: E:/template/GC_port/GC3/src/TestRender3D.cpp
 CMakeFiles/GC3.dir/src/TestRender3D.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_121) "Building CXX object CMakeFiles/GC3.dir/src/TestRender3D.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_122) "Building CXX object CMakeFiles/GC3.dir/src/TestRender3D.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/TestRender3D.cpp.obj -MF CMakeFiles\GC3.dir\src\TestRender3D.cpp.obj.d -o CMakeFiles\GC3.dir\src\TestRender3D.cpp.obj -c E:\template\GC_port\GC3\src\TestRender3D.cpp
 
 CMakeFiles/GC3.dir/src/TestRender3D.cpp.i: cmake_force
@@ -1887,7 +1902,7 @@ CMakeFiles/GC3.dir/src/TestRenderScreen.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/TestRenderScreen.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/TestRenderScreen.cpp.obj: E:/template/GC_port/GC3/src/TestRenderScreen.cpp
 CMakeFiles/GC3.dir/src/TestRenderScreen.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_122) "Building CXX object CMakeFiles/GC3.dir/src/TestRenderScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_123) "Building CXX object CMakeFiles/GC3.dir/src/TestRenderScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/TestRenderScreen.cpp.obj -MF CMakeFiles\GC3.dir\src\TestRenderScreen.cpp.obj.d -o CMakeFiles\GC3.dir\src\TestRenderScreen.cpp.obj -c E:\template\GC_port\GC3\src\TestRenderScreen.cpp
 
 CMakeFiles/GC3.dir/src/TestRenderScreen.cpp.i: cmake_force
@@ -1902,7 +1917,7 @@ CMakeFiles/GC3.dir/src/TestRender_ControllableObject.cpp.obj: CMakeFiles/GC3.dir
 CMakeFiles/GC3.dir/src/TestRender_ControllableObject.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/TestRender_ControllableObject.cpp.obj: E:/template/GC_port/GC3/src/TestRender_ControllableObject.cpp
 CMakeFiles/GC3.dir/src/TestRender_ControllableObject.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_123) "Building CXX object CMakeFiles/GC3.dir/src/TestRender_ControllableObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_124) "Building CXX object CMakeFiles/GC3.dir/src/TestRender_ControllableObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/TestRender_ControllableObject.cpp.obj -MF CMakeFiles\GC3.dir\src\TestRender_ControllableObject.cpp.obj.d -o CMakeFiles\GC3.dir\src\TestRender_ControllableObject.cpp.obj -c E:\template\GC_port\GC3\src\TestRender_ControllableObject.cpp
 
 CMakeFiles/GC3.dir/src/TestRender_ControllableObject.cpp.i: cmake_force
@@ -1917,7 +1932,7 @@ CMakeFiles/GC3.dir/src/TestScreeb.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/TestScreeb.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/TestScreeb.cpp.obj: E:/template/GC_port/GC3/src/TestScreeb.cpp
 CMakeFiles/GC3.dir/src/TestScreeb.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_124) "Building CXX object CMakeFiles/GC3.dir/src/TestScreeb.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_125) "Building CXX object CMakeFiles/GC3.dir/src/TestScreeb.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/TestScreeb.cpp.obj -MF CMakeFiles\GC3.dir\src\TestScreeb.cpp.obj.d -o CMakeFiles\GC3.dir\src\TestScreeb.cpp.obj -c E:\template\GC_port\GC3\src\TestScreeb.cpp
 
 CMakeFiles/GC3.dir/src/TestScreeb.cpp.i: cmake_force
@@ -1932,7 +1947,7 @@ CMakeFiles/GC3.dir/src/TestScreen.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/TestScreen.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/TestScreen.cpp.obj: E:/template/GC_port/GC3/src/TestScreen.cpp
 CMakeFiles/GC3.dir/src/TestScreen.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_125) "Building CXX object CMakeFiles/GC3.dir/src/TestScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_126) "Building CXX object CMakeFiles/GC3.dir/src/TestScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/TestScreen.cpp.obj -MF CMakeFiles\GC3.dir\src\TestScreen.cpp.obj.d -o CMakeFiles\GC3.dir\src\TestScreen.cpp.obj -c E:\template\GC_port\GC3\src\TestScreen.cpp
 
 CMakeFiles/GC3.dir/src/TestScreen.cpp.i: cmake_force
@@ -1947,7 +1962,7 @@ CMakeFiles/GC3.dir/src/TitleLabel.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/TitleLabel.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/TitleLabel.cpp.obj: E:/template/GC_port/GC3/src/TitleLabel.cpp
 CMakeFiles/GC3.dir/src/TitleLabel.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_126) "Building CXX object CMakeFiles/GC3.dir/src/TitleLabel.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_127) "Building CXX object CMakeFiles/GC3.dir/src/TitleLabel.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/TitleLabel.cpp.obj -MF CMakeFiles\GC3.dir\src\TitleLabel.cpp.obj.d -o CMakeFiles\GC3.dir\src\TitleLabel.cpp.obj -c E:\template\GC_port\GC3\src\TitleLabel.cpp
 
 CMakeFiles/GC3.dir/src/TitleLabel.cpp.i: cmake_force
@@ -1962,7 +1977,7 @@ CMakeFiles/GC3.dir/src/TownTile.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/TownTile.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/TownTile.cpp.obj: E:/template/GC_port/GC3/src/TownTile.cpp
 CMakeFiles/GC3.dir/src/TownTile.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_127) "Building CXX object CMakeFiles/GC3.dir/src/TownTile.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_128) "Building CXX object CMakeFiles/GC3.dir/src/TownTile.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/TownTile.cpp.obj -MF CMakeFiles\GC3.dir\src\TownTile.cpp.obj.d -o CMakeFiles\GC3.dir\src\TownTile.cpp.obj -c E:\template\GC_port\GC3\src\TownTile.cpp
 
 CMakeFiles/GC3.dir/src/TownTile.cpp.i: cmake_force
@@ -1977,7 +1992,7 @@ CMakeFiles/GC3.dir/src/TraceObject.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/TraceObject.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/TraceObject.cpp.obj: E:/template/GC_port/GC3/src/TraceObject.cpp
 CMakeFiles/GC3.dir/src/TraceObject.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_128) "Building CXX object CMakeFiles/GC3.dir/src/TraceObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_129) "Building CXX object CMakeFiles/GC3.dir/src/TraceObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/TraceObject.cpp.obj -MF CMakeFiles\GC3.dir\src\TraceObject.cpp.obj.d -o CMakeFiles\GC3.dir\src\TraceObject.cpp.obj -c E:\template\GC_port\GC3\src\TraceObject.cpp
 
 CMakeFiles/GC3.dir/src/TraceObject.cpp.i: cmake_force
@@ -1992,7 +2007,7 @@ CMakeFiles/GC3.dir/src/Yin_Yang_Orb.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Yin_Yang_Orb.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Yin_Yang_Orb.cpp.obj: E:/template/GC_port/GC3/src/Yin_Yang_Orb.cpp
 CMakeFiles/GC3.dir/src/Yin_Yang_Orb.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_129) "Building CXX object CMakeFiles/GC3.dir/src/Yin_Yang_Orb.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_130) "Building CXX object CMakeFiles/GC3.dir/src/Yin_Yang_Orb.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Yin_Yang_Orb.cpp.obj -MF CMakeFiles\GC3.dir\src\Yin_Yang_Orb.cpp.obj.d -o CMakeFiles\GC3.dir\src\Yin_Yang_Orb.cpp.obj -c E:\template\GC_port\GC3\src\Yin_Yang_Orb.cpp
 
 CMakeFiles/GC3.dir/src/Yin_Yang_Orb.cpp.i: cmake_force
@@ -2007,7 +2022,7 @@ CMakeFiles/GC3.dir/src/Yin_Yang_Orb_Ex.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/Yin_Yang_Orb_Ex.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/Yin_Yang_Orb_Ex.cpp.obj: E:/template/GC_port/GC3/src/Yin_Yang_Orb_Ex.cpp
 CMakeFiles/GC3.dir/src/Yin_Yang_Orb_Ex.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_130) "Building CXX object CMakeFiles/GC3.dir/src/Yin_Yang_Orb_Ex.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_131) "Building CXX object CMakeFiles/GC3.dir/src/Yin_Yang_Orb_Ex.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/Yin_Yang_Orb_Ex.cpp.obj -MF CMakeFiles\GC3.dir\src\Yin_Yang_Orb_Ex.cpp.obj.d -o CMakeFiles\GC3.dir\src\Yin_Yang_Orb_Ex.cpp.obj -c E:\template\GC_port\GC3\src\Yin_Yang_Orb_Ex.cpp
 
 CMakeFiles/GC3.dir/src/Yin_Yang_Orb_Ex.cpp.i: cmake_force
@@ -2022,7 +2037,7 @@ CMakeFiles/GC3.dir/src/block.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/block.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/block.cpp.obj: E:/template/GC_port/GC3/src/block.cpp
 CMakeFiles/GC3.dir/src/block.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_131) "Building CXX object CMakeFiles/GC3.dir/src/block.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_132) "Building CXX object CMakeFiles/GC3.dir/src/block.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/block.cpp.obj -MF CMakeFiles\GC3.dir\src\block.cpp.obj.d -o CMakeFiles\GC3.dir\src\block.cpp.obj -c E:\template\GC_port\GC3\src\block.cpp
 
 CMakeFiles/GC3.dir/src/block.cpp.i: cmake_force
@@ -2037,7 +2052,7 @@ CMakeFiles/GC3.dir/src/main.cpp.obj: CMakeFiles/GC3.dir/flags.make
 CMakeFiles/GC3.dir/src/main.cpp.obj: CMakeFiles/GC3.dir/includes_CXX.rsp
 CMakeFiles/GC3.dir/src/main.cpp.obj: E:/template/GC_port/GC3/src/main.cpp
 CMakeFiles/GC3.dir/src/main.cpp.obj: CMakeFiles/GC3.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_132) "Building CXX object CMakeFiles/GC3.dir/src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_133) "Building CXX object CMakeFiles/GC3.dir/src/main.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GC3.dir/src/main.cpp.obj -MF CMakeFiles\GC3.dir\src\main.cpp.obj.d -o CMakeFiles\GC3.dir\src\main.cpp.obj -c E:\template\GC_port\GC3\src\main.cpp
 
 CMakeFiles/GC3.dir/src/main.cpp.i: cmake_force
@@ -2089,6 +2104,7 @@ GC3_OBJECTS = \
 "CMakeFiles/GC3.dir/src/F_CollectableItem.cpp.obj" \
 "CMakeFiles/GC3.dir/src/F_EnemyBasic.cpp.obj" \
 "CMakeFiles/GC3.dir/src/F_HomingBullet.cpp.obj" \
+"CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj" \
 "CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj" \
 "CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj" \
 "CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj" \
@@ -2225,6 +2241,7 @@ GC3.exe: CMakeFiles/GC3.dir/src/F_BulletStraight.cpp.obj
 GC3.exe: CMakeFiles/GC3.dir/src/F_CollectableItem.cpp.obj
 GC3.exe: CMakeFiles/GC3.dir/src/F_EnemyBasic.cpp.obj
 GC3.exe: CMakeFiles/GC3.dir/src/F_HomingBullet.cpp.obj
+GC3.exe: CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj
 GC3.exe: CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj
 GC3.exe: CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj
 GC3.exe: CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj
@@ -2341,7 +2358,7 @@ GC3.exe: E:/template/GC_port/GC3/../Feintgine_GC_deps/lib/libSDL2_ttf.dll.a
 GC3.exe: CMakeFiles/GC3.dir/linkLibs.rsp
 GC3.exe: CMakeFiles/GC3.dir/objects1.rsp
 GC3.exe: CMakeFiles/GC3.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_133) "Linking CXX executable GC3.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=E:\template\GC_port\GC3\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_134) "Linking CXX executable GC3.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\GC3.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

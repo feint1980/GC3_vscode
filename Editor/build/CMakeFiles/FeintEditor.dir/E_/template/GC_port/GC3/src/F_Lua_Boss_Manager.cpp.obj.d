@@ -914,4 +914,5 @@ CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_Boss_Manager.cpp.ob
  E:/template/GC_port/Feintgine/src/ArcFunction.h \
  E:/template/GC_port/Feintgine/src/ArcFunction_hypotrochoid.h \
  E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom1.h \
+ E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom2.h \
  E:/template/GC_port/Feintgine/src/EngineSetting.h

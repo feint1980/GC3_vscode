@@ -150,7 +150,7 @@ int lua_setFireTypePE(lua_State * L)
 }
 int lua_setFireType1(lua_State * L)
 {
-	if (lua_gettop(L) != 16)
+	if (lua_gettop(L) != 17)
 	{
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
@@ -165,18 +165,19 @@ int lua_setFireType1(lua_State * L)
 	float fA = lua_tonumber(L, 7); // a
 	float fB = lua_tonumber(L, 8); // b
 	float fC = lua_tonumber(L, 9); // c
-	float fR = lua_tonumber(L, 10); // r
-	float angleStep = lua_tonumber(L, 11); // angleStep 
-	float startAngle = lua_tonumber(L, 12); //startAngle
-	float rotation = lua_tonumber(L, 13); // rotation
-	int interval = lua_tonumber(L, 14); // interval
-	int count = lua_tonumber(L, 15); // count;
-	double time = lua_tonumber(L, 16);
+	float fD = lua_tonumber(L, 10); // d
+	float fR = lua_tonumber(L, 11); // r
+	float angleStep = lua_tonumber(L, 12); // angleStep 
+	float startAngle = lua_tonumber(L, 13); //startAngle
+	float rotation = lua_tonumber(L, 14); // rotation
+	int interval = lua_tonumber(L, 15); // interval
+	int count = lua_tonumber(L, 16); // count;
+	double time = lua_tonumber(L, 17);
 
 	fR = fR * 0.01f;
 
 	int totalInterval = 0;
-	objectManager->rw_addEvent_T1(dynamicObject, asset, speed, lifeTime, arcType, fA, fB, fC, fR,
+	objectManager->rw_addEvent_T1(dynamicObject, asset, speed, lifeTime, arcType, fA, fB, fC,fD, fR,
 		angleStep, startAngle, rotation, interval, count, time);
 		
 	return 0;
@@ -245,6 +246,9 @@ int lua_setFireBase(lua_State * L)
 
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 {
+
+	// Init Map 
+	m_objectMap.insert(std::make_pair("komachi_souls", ObjectType::komachi_souls));
 
 	m_script = luaL_newstate();
 	luaL_openlibs(m_script);
@@ -548,7 +552,7 @@ void F_Lua_Boss_Manager::rw_addEvent_PE(F_Lua_Boss * dynamicObject,\
 }
 
 void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_Boss * dynamicObject, const std::string & asset,
-	float speed, float lifeTime,int arcType, float fA, float fB, float fC, float fR,
+	float speed, float lifeTime,int arcType, float fA, float fB, float fC, float fD, float fR,
 	float angleStep, float startAngle, float rotation, int interval, int count, double time)
 {
 	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
@@ -579,6 +583,13 @@ void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_Boss * dynamicObject, const std::s
 		factor.push_back(fA);
 		factor.push_back(fB);
 		factor.push_back(fC);
+		break;
+	case ArcType::arcFeintCustom2:
+		arc = new ArcFunction_feint_custom2();
+		factor.push_back(fA);
+		factor.push_back(fB);
+		factor.push_back(fC);
+		factor.push_back(fD);
 		break;
 	default:
 		break;
@@ -699,6 +710,31 @@ void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_Boss * dynamicObject, const std:
 
 }
 
+void F_Lua_Boss_Manager::createObject(F_Lua_Boss * dynamicObject, const std::string & objectName,
+	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, double time)
+{
+
+	ObjectType type = m_objectMap.find(objectName)->second;
+	switch (type)
+	{
+	case ObjectType::komachi_souls:
+	{
+
+		
+
+		Feintgine::F_BaseObject * object = new F_Komachi_Souls_Object();
+		object->init(glm::vec2(scaleX, scaleY),asset,Feintgine::Color(255,255,255,255),glm::vec2(velX,velY),glm::vec2(x,y) , depth, afterImageCount,afterImageRate);
+		dynamicObject->addEvent([=]
+		{
+			m_objects.push_back(object);
+		}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time));
+	}
+		break;
+	default:
+		break;
+	}	
+}
+
 void F_Lua_Boss_Manager::callFunctionFromLua(const std::string functionName)
 {
 
@@ -738,8 +774,7 @@ void F_Lua_Boss_Manager::resetEvent()
 		for (int i = 0; i < m_luaBosses.size(); i++)
 		{
 			m_luaBosses.erase(m_luaBosses.begin() + i);
-			//m_luaBosses[i]->t_editor_reset();
-			//m_luaBosses[i]->setPos(glm::vec2(0));
+
 		}
 		//update(0.001f);
 	}

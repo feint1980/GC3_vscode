@@ -1064,6 +1064,30 @@ src/F_HomingBullet.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/F_HomingBullet.cpp.s
 .PHONY : src/F_HomingBullet.cpp.s
 
+src/F_Komachi_Souls_Object.obj: src/F_Komachi_Souls_Object.cpp.obj
+.PHONY : src/F_Komachi_Souls_Object.obj
+
+# target to build an object file
+src/F_Komachi_Souls_Object.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj
+.PHONY : src/F_Komachi_Souls_Object.cpp.obj
+
+src/F_Komachi_Souls_Object.i: src/F_Komachi_Souls_Object.cpp.i
+.PHONY : src/F_Komachi_Souls_Object.i
+
+# target to preprocess a source file
+src/F_Komachi_Souls_Object.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.i
+.PHONY : src/F_Komachi_Souls_Object.cpp.i
+
+src/F_Komachi_Souls_Object.s: src/F_Komachi_Souls_Object.cpp.s
+.PHONY : src/F_Komachi_Souls_Object.s
+
+# target to generate assembly for a file
+src/F_Komachi_Souls_Object.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.s
+.PHONY : src/F_Komachi_Souls_Object.cpp.s
+
 src/F_Lua_Boss.obj: src/F_Lua_Boss.cpp.obj
 .PHONY : src/F_Lua_Boss.obj
 
@@ -3422,6 +3446,9 @@ help:
 	@echo ... src/F_HomingBullet.obj
 	@echo ... src/F_HomingBullet.i
 	@echo ... src/F_HomingBullet.s
+	@echo ... src/F_Komachi_Souls_Object.obj
+	@echo ... src/F_Komachi_Souls_Object.i
+	@echo ... src/F_Komachi_Souls_Object.s
 	@echo ... src/F_Lua_Boss.obj
 	@echo ... src/F_Lua_Boss.i
 	@echo ... src/F_Lua_Boss.s

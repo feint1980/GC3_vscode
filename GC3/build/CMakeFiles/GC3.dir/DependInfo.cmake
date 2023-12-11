@@ -47,6 +47,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/template/GC_port/GC3/src/F_CollectableItem.cpp" "CMakeFiles/GC3.dir/src/F_CollectableItem.cpp.obj" "gcc" "CMakeFiles/GC3.dir/src/F_CollectableItem.cpp.obj.d"
   "E:/template/GC_port/GC3/src/F_EnemyBasic.cpp" "CMakeFiles/GC3.dir/src/F_EnemyBasic.cpp.obj" "gcc" "CMakeFiles/GC3.dir/src/F_EnemyBasic.cpp.obj.d"
   "E:/template/GC_port/GC3/src/F_HomingBullet.cpp" "CMakeFiles/GC3.dir/src/F_HomingBullet.cpp.obj" "gcc" "CMakeFiles/GC3.dir/src/F_HomingBullet.cpp.obj.d"
+  "E:/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp" "CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj" "gcc" "CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj.d"
   "E:/template/GC_port/GC3/src/F_Lua_Boss.cpp" "CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj" "gcc" "CMakeFiles/GC3.dir/src/F_Lua_Boss.cpp.obj.d"
   "E:/template/GC_port/GC3/src/F_Lua_Boss_Manager.cpp" "CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj" "gcc" "CMakeFiles/GC3.dir/src/F_Lua_Boss_Manager.cpp.obj.d"
   "E:/template/GC_port/GC3/src/F_Lua_Boss_State.cpp" "CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj" "gcc" "CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj.d"

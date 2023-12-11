@@ -78,9 +78,6 @@ void F_MarisaStar::loadEndSound(const std::string & filePath)
 
 void F_MarisaStar::draw(Feintgine::SpriteBatch & spriteBatch)
 {
-	m_animation.setPos(m_pos);
-	m_animation.setColor(m_color);
-	m_animation.setAngle(m_angle);
 	m_animation.draw(spriteBatch);
 	m_afterImageParticle.draw(spriteBatch);
 }
@@ -106,6 +103,8 @@ void F_MarisaStar::drawLight(Feintgine::LightBatch & lightBatch)
 void F_MarisaStar::update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
 	std::vector<EnemyBulletBase * > bullets)
 {
+
+
 	m_lifeTime -= 0.1f * deltaTime;
 	m_angle += 0.125f * deltaTime;
 	m_acce += 0.025f * deltaTime;
@@ -114,7 +113,12 @@ void F_MarisaStar::update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
 	m_pos += m_vel * m_acce * deltaTime;
 	m_animation.update(deltaTime);
 	m_animation.setScale(m_scale);
+	m_animation.setPos(m_pos);
+	m_animation.setColor(m_color);
+	m_animation.setAngle(m_angle);
+
 	updateColor(deltaTime);
+	
 	m_afterImageParticle.update(deltaTime, m_animation.getCurrentAnimation()->getCurrentIndex(), m_angle);
 	if (m_lifeTime < 0.0f)
 	{
@@ -130,7 +134,6 @@ void F_MarisaStar::update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
 			if (checkColliderWithEnemyBullet(*bullets[i]))
 			{
 				bullets[i]->setLifeTime(-1.0f);
-
 			}
 		}
 
@@ -139,9 +142,7 @@ void F_MarisaStar::update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
 
 			if (checkColliderWithEnemy(*enemy[i]))
 			{
-				//std::cout << "deal dmg \n";
 				enemy[i]->takeDamage(1.25f *deltaTime, false);
-
 			}
 		}
 
