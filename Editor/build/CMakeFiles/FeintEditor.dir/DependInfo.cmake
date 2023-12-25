@@ -61,6 +61,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/template/GC_port/Editor/src/DisplaySample.cpp" "CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj" "gcc" "CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj.d"
   "E:/template/GC_port/Editor/src/EditLayer.cpp" "CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.obj" "gcc" "CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.obj.d"
   "E:/template/GC_port/Editor/src/EditObject.cpp" "CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj" "gcc" "CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj.d"
+  "E:/template/GC_port/Editor/src/EditRenderedObjectComponent.cpp" "CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj" "gcc" "CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj.d"
   "E:/template/GC_port/Editor/src/EditorMain.cpp" "CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj" "gcc" "CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj.d"
   "E:/template/GC_port/Editor/src/EditorProperty.cpp" "CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.obj" "gcc" "CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.obj.d"
   "E:/template/GC_port/Editor/src/EditorScreen.cpp" "CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj" "gcc" "CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj.d"

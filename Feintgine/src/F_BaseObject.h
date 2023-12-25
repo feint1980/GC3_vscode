@@ -22,8 +22,9 @@ namespace Feintgine
                 const Feintgine::Color & color,const glm::vec2 & vel,const glm::vec2 & pos,float depth,int afterImageCount, float afterImageRate);
 
         void draw(Feintgine::SpriteBatch & spriteBatch);
-        
+
         void update(float deltaTime);
+
     protected:
 
         glm::vec2 m_pos;

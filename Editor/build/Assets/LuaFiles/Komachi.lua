@@ -35,6 +35,12 @@ function moveset_normal_2(host)
     isMovesetSelected = true
 end
 
+function moveset_normal_3(host)
+    dynamics[movingObject] = {behavior = coroutine.create(DynamicBehavior3,host,movingObject)}
+    IssueNextTask(host,movingObject)
+    isMovesetSelected = true
+end
+
 -- function movset_spellcard_1(host)
 --     dynamics[movingObject] = {behavior = coroutine.create(DynamicBehavior3,host,movingObject)}
 --     IssueNextTask(host,movingObject)
@@ -42,6 +48,19 @@ end
 -- end
 
 
+function DynamicBehavior3(host, dynob)
+    while true do
+        cppMoveObject(host,dynob,0,300,50)
+        coroutine.yield()
+        cppHoldPosition(host,dynob,10,"cast")
+        coroutine.yield()
+        cppCreateHelper(host,dynob,"komachi_souls","Assets/F_AObjects/komachi_souls.xml" ,
+        100 , 200, 1,1,14,-10,0,5,0.025,10)
+        cppMoveObject(host,dynob,0,0,50)
+        coroutine.yield()
+    end
+
+end
 
 function DynamicBehavior2(host,dynob)
     while true do 

@@ -60,7 +60,7 @@ public:
 
 	void rw_addEvent_base(F_Lua_Boss * dynamicObject, const std::string & asset, float speed, float lifeTime, float x, float y, float currentAngle, double time);
 
-	void createObject(F_Lua_Boss * dynamicObject, const std::string & objectName,
+	void createHelper(F_Lua_Boss * dynamicObject, const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, double time);
 
 	void addEvent(F_Lua_Boss * dynamicObject, const Feintgine::oEvent::f_callback & cb, double when);

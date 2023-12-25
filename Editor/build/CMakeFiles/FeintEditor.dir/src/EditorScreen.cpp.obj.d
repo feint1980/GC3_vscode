@@ -1064,4 +1064,6 @@ CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj: \
  E:/template/GC_port/GC3/src/F_Lua_Boss_Manager.h \
  E:/template/GC_port/GC3/src/F_Lua_Boss.h \
  E:/template/GC_port/GC3/src/F_Lua_Boss_State.h \
- E:/template/GC_port/GC3/src/F_Lua_Boss_State_MoveObject.h
+ E:/template/GC_port/GC3/src/F_Lua_Boss_State_MoveObject.h \
+ E:/template/GC_port/Feintgine/src/F_BaseObject.h \
+ E:/template/GC_port/GC3/src/F_Komachi_Souls_Object.h

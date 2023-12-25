@@ -18,6 +18,7 @@ namespace Feintgine
 
     }
 
+
     void F_BaseObject::init(const glm::vec2 & scale, const Feintgine::F_AnimatedObject & animation,
         const Feintgine::Color & color, const glm::vec2 & vel, const glm::vec2 & pos, float depth, int afterImageCount, float afterImageRate)
     {

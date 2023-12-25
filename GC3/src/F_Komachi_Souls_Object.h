@@ -2,10 +2,6 @@
 #define _F_KOMACHI_SOULS_OBJECT_H_
 
 #include <F_BaseObject.h>
-
-
-
-
 class F_Komachi_Souls_Object : public Feintgine::F_BaseObject
 {
 public:

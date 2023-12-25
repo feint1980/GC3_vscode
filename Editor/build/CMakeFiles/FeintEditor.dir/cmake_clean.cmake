@@ -105,6 +105,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj"
   "CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj.d"
+  "CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj"
+  "CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj"
   "CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.obj"

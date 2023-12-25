@@ -1400,6 +1400,30 @@ src/EditObject.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/src/EditObject.cpp.s
 .PHONY : src/EditObject.cpp.s
 
+src/EditRenderedObjectComponent.obj: src/EditRenderedObjectComponent.cpp.obj
+.PHONY : src/EditRenderedObjectComponent.obj
+
+# target to build an object file
+src/EditRenderedObjectComponent.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj
+.PHONY : src/EditRenderedObjectComponent.cpp.obj
+
+src/EditRenderedObjectComponent.i: src/EditRenderedObjectComponent.cpp.i
+.PHONY : src/EditRenderedObjectComponent.i
+
+# target to preprocess a source file
+src/EditRenderedObjectComponent.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.i
+.PHONY : src/EditRenderedObjectComponent.cpp.i
+
+src/EditRenderedObjectComponent.s: src/EditRenderedObjectComponent.cpp.s
+.PHONY : src/EditRenderedObjectComponent.s
+
+# target to generate assembly for a file
+src/EditRenderedObjectComponent.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.s
+.PHONY : src/EditRenderedObjectComponent.cpp.s
+
 src/EditorMain.obj: src/EditorMain.cpp.obj
 .PHONY : src/EditorMain.obj
 
@@ -2144,6 +2168,9 @@ help:
 	@echo ... src/EditObject.obj
 	@echo ... src/EditObject.i
 	@echo ... src/EditObject.s
+	@echo ... src/EditRenderedObjectComponent.obj
+	@echo ... src/EditRenderedObjectComponent.i
+	@echo ... src/EditRenderedObjectComponent.s
 	@echo ... src/EditorMain.obj
 	@echo ... src/EditorMain.i
 	@echo ... src/EditorMain.s

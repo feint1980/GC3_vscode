@@ -1,5 +1,7 @@
 #include "F_Lua_Boss_Manager.h"
 #include "EngineSetting.h"
+#include "F_Komachi_Souls_Object.cpp" // I am sorry, Feint   | -  Belai
+
 
 int wrap_createDynamicObject(lua_State * L)
 {
@@ -243,6 +245,37 @@ int lua_setFireBase(lua_State * L)
 
 }
 
+int lua_createHelper(lua_State * L)
+{
+	//createObject(F_Lua_Boss * dynamicObject, const std::string & objectName,
+	//const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, double time);
+
+	if(lua_gettop(L) != 14)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	std::cout << "lua create helper called \n";
+	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
+	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2)); // dynob
+	std::string objectName = lua_tostring(L, 3); //
+	std::string asset = lua_tostring(L, 4); //
+	float x = lua_tonumber(L, 5); //
+	float y = lua_tonumber(L, 6); //
+	float scaleX = lua_tonumber(L, 7); //
+	float scaleY = lua_tonumber(L, 8); //
+	float depth = lua_tonumber(L, 9); //
+	float velX = lua_tonumber(L, 10); //
+	float velY = lua_tonumber(L, 11); //
+	int afterImageCount = lua_tonumber(L, 12); //
+	float afterImageRate = lua_tonumber(L, 13); //
+	double time = lua_tonumber(L, 14); //
+
+	objectManager->createHelper(dynamicObject, objectName, asset, x, y, scaleX, scaleY, depth, velX, velY, afterImageCount, afterImageRate, time);
+	
+	return 0 ;
+}
+
 
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 {
@@ -262,6 +295,7 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppSetFire_TypePE", lua_setFireTypePE);
 	lua_register(m_script, "cppSetFire_MA_custom_aff", lua_setFireMACustomAFF);
 	lua_register(m_script, "cppSetFire_Base", lua_setFireBase);
+	lua_register(m_script, "cppCreateHelper", lua_createHelper);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 }
 
@@ -275,14 +309,21 @@ F_Lua_Boss_Manager::~F_Lua_Boss_Manager()
 void F_Lua_Boss_Manager::update(float deltaTime)
 {
 	//std::cout << "update \n";
-	for (auto i = 0; i < m_luaBosses.size(); i++)
+	for (size_t i = 0; i < m_luaBosses.size(); i++)
 	{
 		if (m_luaBosses[i])
 		{
 			m_luaBosses[i]->update(deltaTime);
 		}
 	}
-	for (auto i = 0; i < m_luaBossStates.size(); i++)
+	for(size_t i = 0 ; i < m_objects.size() ; i++)
+	{
+		if (m_objects[i])
+		{
+			m_objects[i]->update(deltaTime);
+		}
+	}
+	for (size_t i = 0; i < m_luaBossStates.size(); i++)
 	{
 		if (m_luaBossStates[i])
 		{
@@ -453,6 +494,11 @@ void F_Lua_Boss_Manager::draw(Feintgine::SpriteBatch & spriteBatch)
 	for (int i = 0; i < m_luaBosses.size(); i++)
 	{
 		m_luaBosses[i]->draw(spriteBatch);
+	}
+
+	for(int i = 0 ; i < m_objects.size() ; i++)
+	{
+		m_objects[i]->draw(spriteBatch);
 	}
 
 	for (auto i = 0; i < m_bullets.size(); i++)
@@ -710,7 +756,7 @@ void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_Boss * dynamicObject, const std:
 
 }
 
-void F_Lua_Boss_Manager::createObject(F_Lua_Boss * dynamicObject, const std::string & objectName,
+void F_Lua_Boss_Manager::createHelper(F_Lua_Boss * dynamicObject, const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, double time)
 {
 
@@ -720,9 +766,7 @@ void F_Lua_Boss_Manager::createObject(F_Lua_Boss * dynamicObject, const std::str
 	case ObjectType::komachi_souls:
 	{
 
-		
-
-		Feintgine::F_BaseObject * object = new F_Komachi_Souls_Object();
+		Feintgine::F_BaseObject * object =  new F_Komachi_Souls_Object();//new Feintgine::F_BaseObject();
 		object->init(glm::vec2(scaleX, scaleY),asset,Feintgine::Color(255,255,255,255),glm::vec2(velX,velY),glm::vec2(x,y) , depth, afterImageCount,afterImageRate);
 		dynamicObject->addEvent([=]
 		{
