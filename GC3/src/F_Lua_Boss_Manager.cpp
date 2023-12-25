@@ -1,6 +1,6 @@
 #include "F_Lua_Boss_Manager.h"
 #include "EngineSetting.h"
-#include "F_Komachi_Souls_Object.cpp" // I am sorry, Feint   | -  Belai
+//#include "F_Komachi_Souls_Object.cpp" // I am sorry, Feint   | -  Belai
 
 
 int wrap_createDynamicObject(lua_State * L)

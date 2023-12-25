@@ -10,8 +10,12 @@ F_Marisa_Luminous_Strike::F_Marisa_Luminous_Strike()
 
 	m_attentionua = glm::vec3(45.0f, 30.5f, 60.0f);
 
+	m_pos = glm::vec2(-1000.0f);
+
 	//glm::vec3(23.0f, 40.0f, 50.0f)
 	m_sparkAttenua = glm::vec3(15.0f, 22.5f, 15.0f);
+
+	m_color = glm::vec4(1.0f, 1.0f, 1.0f, 0.0f);
 	
 }
 Feintgine::Color F_Marisa_Luminous_Strike::getStarColor(int index)

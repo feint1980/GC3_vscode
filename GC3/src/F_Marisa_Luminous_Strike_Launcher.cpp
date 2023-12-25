@@ -5,6 +5,16 @@
 F_Marisa_Luminous_Strike_Launcher::F_Marisa_Luminous_Strike_Launcher()
 {
 	m_mainStrike = new F_Marisa_Luminous_Strike();
+	m_count = 0;
+
+	m_totalCount;
+
+	m_spawnCounter = 0.0f;
+
+	m_launchCounter = 0.0f;
+	m_launchTime = 0.0f;
+
+	m_launched = false;
 }
 
 

@@ -55,7 +55,7 @@ function DynamicBehavior3(host, dynob)
         cppHoldPosition(host,dynob,10,"cast")
         coroutine.yield()
         cppCreateHelper(host,dynob,"komachi_souls","Assets/F_AObjects/komachi_souls.xml" ,
-        100 , 200, 1,1,14,-10,0,5,0.025,10)
+        100 , 200, 1,1,14,-10,0,5,0.0125,100)
         cppMoveObject(host,dynob,0,0,50)
         coroutine.yield()
     end
