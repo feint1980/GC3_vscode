@@ -16,18 +16,18 @@ public :
 
 	void init(const Feintgine::F_Sprite & sprite,
 		const glm::vec2 & pos, const glm::vec2 & scale, const Feintgine::Color & color,
-		float lifeTime,float angle);
+		float lifeTime,float angle,float scaleRate = 0.0f);
 
 	void init(const Feintgine::GLTexture & texture,
 		const glm::vec2 & pos, const glm::vec2 & scale, const Feintgine::Color & color,
-		float lifeTime, float angle);
+		float lifeTime, float angle,float scaleRate = 0.0f);
 
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 	void update(float deltaTime);
 
 	void setScale(const glm::vec2 & scale);
-
 	void setAlphaRate(float value);
+	void setScaleRate(float value);
 	
 	float getLifeTime() const { return m_lifeTime; }
 
@@ -40,6 +40,8 @@ private:
 	glm::vec2 m_scale = glm::vec2(1.0f);
 	float m_alphaRate;
 	float m_angle;
+	float m_scaleRate;
+	bool m_isShrink = false;
 	Feintgine::GLTexture m_texture;
 };
 
@@ -49,8 +51,8 @@ public :
 	AfterImageObject();
 	~AfterImageObject();
 	
-	void init(glm::vec2 * pos,Feintgine::F_AnimatedObject * animatedObject, Feintgine::Color * color, float traceInterval,int numberOfTrace);
-	void init(glm::vec2 * pos,const Feintgine::F_Sprite & sprite,Feintgine::Color * color , float traceInterval, int numberOfTrace);
+	void init(glm::vec2 * pos,Feintgine::F_AnimatedObject * animatedObject, Feintgine::Color * color, float traceInterval,int numberOfTrace,float scaleRate = 0.0f);
+	void init(glm::vec2 * pos,const Feintgine::F_Sprite & sprite,Feintgine::Color * color , float traceInterval, int numberOfTrace, float scaleRate = 0.0f);
 	void init(glm::vec2 * pos, Feintgine::Color * color, float traceInterval, int numberOfTrace);
 
 	void setTraceLifeTime(float val);
@@ -65,6 +67,7 @@ public :
 
 	void update(const glm::vec2 pos ,float deltaTime, const Feintgine::GLTexture  & sprite,float angle, bool isDone);
 	void setAlphaRate(float value);
+	void setScaleRate(float value);	
 	bool isAnimated() { return (m_animatedObj != nullptr); }
 
 	void setScale(const glm::vec2 & scale);
@@ -90,10 +93,9 @@ private:
 	float m_traceInterval;
 	int m_numberOfTrace;
 
+	float m_scaleRate;
 	//float m_angle;
 	float m_alphaRate;
-
-
 	std::vector<AfterImageTrace> m_traces;
 
 

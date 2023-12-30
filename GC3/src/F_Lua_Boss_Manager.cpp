@@ -250,7 +250,7 @@ int lua_createHelper(lua_State * L)
 	//createObject(F_Lua_Boss * dynamicObject, const std::string & objectName,
 	//const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, double time);
 
-	if(lua_gettop(L) != 14)
+	if(lua_gettop(L) != 15)
 	{
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
@@ -269,9 +269,10 @@ int lua_createHelper(lua_State * L)
 	float velY = lua_tonumber(L, 11); //
 	int afterImageCount = lua_tonumber(L, 12); //
 	float afterImageRate = lua_tonumber(L, 13); //
-	double time = lua_tonumber(L, 14); //
+	float scaleRate = lua_tonumber(L, 14); //
+	double time = lua_tonumber(L, 15); //
 
-	objectManager->createHelper(dynamicObject, objectName, asset, x, y, scaleX, scaleY, depth, velX, velY, afterImageCount, afterImageRate, time);
+	objectManager->createHelper(dynamicObject, objectName, asset, x, y, scaleX, scaleY, depth, velX, velY, afterImageCount, afterImageRate,scaleRate, time);
 	
 	return 0 ;
 }
@@ -757,7 +758,7 @@ void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_Boss * dynamicObject, const std:
 }
 
 void F_Lua_Boss_Manager::createHelper(F_Lua_Boss * dynamicObject, const std::string & objectName,
-	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, double time)
+	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time)
 {
 
 	ObjectType type = m_objectMap.find(objectName)->second;
@@ -768,6 +769,7 @@ void F_Lua_Boss_Manager::createHelper(F_Lua_Boss * dynamicObject, const std::str
 
 		Feintgine::F_BaseObject * object =  new F_Komachi_Souls_Object();//new Feintgine::F_BaseObject();
 		object->init(glm::vec2(scaleX, scaleY),asset,Feintgine::Color(255,255,255,255),glm::vec2(velX,velY),glm::vec2(x,y) , depth, afterImageCount,afterImageRate);
+		object->setAfterImageScaleRate(scaleRate);
 		dynamicObject->addEvent([=]
 		{
 			m_objects.push_back(object);

@@ -55,16 +55,21 @@ namespace Feintgine
         m_afterImagesParticle.init(p_pos, &m_animation, &m_animation.getColor(), afterImageRate, afterImageCount);
     }
 
-    void F_BaseObject::update(float deltaTime)
+    void F_BaseObject::setAfterImageScaleRate(float value)
     {
-        m_pos += m_vel * deltaTime;
-        m_animation.setPos(m_pos);
-        m_animation.update(deltaTime);
-        m_animation.setAngle(m_angle);
-        //m_animation.setColor
-        m_animation.setScale(m_scale);
-        m_afterImagesParticle.update(deltaTime, m_animation.getCurrentAnimation()->getCurrentIndex(),m_angle);
+        m_afterImagesParticle.setScaleRate(value);
     }
+
+    // void F_BaseObject::update(float deltaTime)
+    // {
+    //     m_pos += m_vel * deltaTime;
+    //     m_animation.setPos(m_pos);
+    //     m_animation.update(deltaTime);
+    //     m_animation.setAngle(m_angle);
+    //     //m_animation.setColor
+    //     m_animation.setScale(m_scale);
+    //     m_afterImagesParticle.update(deltaTime, m_animation.getCurrentAnimation()->getCurrentIndex(),m_angle);
+    // }
     void F_BaseObject::draw(Feintgine::SpriteBatch & spriteBatch)
     {
         m_animation.draw(spriteBatch);

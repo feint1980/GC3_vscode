@@ -24,7 +24,7 @@ AfterImageObject::~AfterImageObject()
 
 
 void AfterImageObject::init(glm::vec2 * pos, Feintgine::F_AnimatedObject * animatedObject, Feintgine::Color * color,
-	float traceInterval, int numberOfTrace)
+	float traceInterval, int numberOfTrace,float scaleRate)
 {
 	m_pos = pos;
 	m_animatedObj = animatedObject;
@@ -32,6 +32,7 @@ void AfterImageObject::init(glm::vec2 * pos, Feintgine::F_AnimatedObject * anima
 	m_currentTraceTrack = 0.0f;
 	m_numberOfTrace = numberOfTrace;
 	m_color = color;
+	m_scaleRate = scaleRate;
 	for (int i = 0; i < m_traces.size(); i++)
 	{		
 		m_traces.erase(m_traces.begin() + i);		
@@ -40,7 +41,7 @@ void AfterImageObject::init(glm::vec2 * pos, Feintgine::F_AnimatedObject * anima
 }
 
 void AfterImageObject::init(glm::vec2 * pos,const Feintgine::F_Sprite &sprite, Feintgine::Color * color,
-	float traceInterval , int numberOfTrace)
+	float traceInterval , int numberOfTrace,float scaleRate)
 {
 	m_pos = pos;
 	m_sprite = sprite;
@@ -48,6 +49,7 @@ void AfterImageObject::init(glm::vec2 * pos,const Feintgine::F_Sprite &sprite, F
 	m_currentTraceTrack = 0.0f;
 	m_numberOfTrace = numberOfTrace;
 	m_color = color;
+	m_scaleRate = scaleRate;
 
 	for (int i = 0; i < m_traces.size(); i++)
 	{
@@ -128,6 +130,7 @@ void AfterImageObject::update(float deltaTime, int animationIndex,float angle)
 			, m_animatedObj->getColor(), m_traceLifeTime, angle);
 		trace.setAlphaRate(m_alphaRate);
 		trace.setScale(m_animatedObj->getScale());
+		trace.setScaleRate(m_scaleRate);
 		m_traces.push_back(trace);
 //		}
 		
@@ -157,6 +160,7 @@ void AfterImageObject::update(float deltaTime, const Feintgine::F_Sprite & sprit
 		trace.init(sprite, *m_pos - (m_sprite.getDim() * 0.5f * m_scale), m_scale
 			, Feintgine::Color(255, 255, 255, 255), m_traceLifeTime, 0.0f);
 		trace.setAlphaRate(m_alphaRate);
+		trace.setScaleRate(m_scaleRate);
 		m_traces.push_back(trace);
 		//		}
 
@@ -189,6 +193,7 @@ void AfterImageObject::update(const glm::vec2 pos , float deltaTime, const Feint
 			trace.init(texture, pos - (glm::vec2(texture.width, texture.height) * 0.5f), m_scale
 				, Feintgine::Color(255, 255, 255, 255), 4.0f, angle);
 			trace.setAlphaRate(m_alphaRate);
+			trace.setScaleRate(m_scaleRate);
 			m_traces.push_back(trace);
 			//		}
 
@@ -226,6 +231,11 @@ void AfterImageObject::setScale(const glm::vec2 & scale)
 	m_scale = scale;
 }
 
+void AfterImageObject::setScaleRate(float value)
+{
+	m_scaleRate = value;
+}
+
 void AfterImageObject::setOffsetPos(const glm::vec2 & pos)
 {
 	m_offsetPos = pos;
@@ -250,7 +260,26 @@ void AfterImageObject::addTrace(const AfterImageTrace & trace)
 // 	}
 	m_traces.push_back(trace);
 }
+// --------------------- AfterImage Object End ---------------------
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// --------------------- AfterImageTrace ---------------------
 AfterImageTrace::AfterImageTrace()
 {
 	m_alphaRate = .5f;
@@ -262,7 +291,7 @@ AfterImageTrace::~AfterImageTrace()
 }
 
 void AfterImageTrace::init(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos,
-	const glm::vec2 & scale, const Feintgine::Color & color, float lifeTime, float angle)
+	const glm::vec2 & scale, const Feintgine::Color & color, float lifeTime, float angle, float scaleRate)
 {
 	m_sprite = sprite;
 	m_pos = pos;
@@ -271,9 +300,10 @@ void AfterImageTrace::init(const Feintgine::F_Sprite & sprite, const glm::vec2 &
 	m_lifeTime = lifeTime;
 	m_angle = angle;
 	drawMode = DRAW_MODE_F_SPRITE;
+	m_scaleRate = scaleRate;
 }
 
-void AfterImageTrace::init(const Feintgine::GLTexture & texture, const glm::vec2 & pos, const glm::vec2 & scale, const Feintgine::Color & color, float lifeTime, float angle)
+void AfterImageTrace::init(const Feintgine::GLTexture & texture, const glm::vec2 & pos, const glm::vec2 & scale, const Feintgine::Color & color, float lifeTime, float angle, float scaleRate)
 {
 	m_texture = texture;
 	m_pos = pos;
@@ -282,6 +312,7 @@ void AfterImageTrace::init(const Feintgine::GLTexture & texture, const glm::vec2
 	m_lifeTime = lifeTime;
 	m_angle = angle;
 	drawMode = DRAW_MODE_GL_TEXTURE;
+	m_scaleRate = scaleRate;
 }
 
 void AfterImageTrace::draw(Feintgine::SpriteBatch & spriteBatch)
@@ -328,6 +359,17 @@ void AfterImageTrace::update(float deltaTime)
 	{
 		alphaRate = m_lifeTime;
 	}
+	if(m_isShrink)
+	{
+		m_scale.x -= m_scaleRate * deltaTime;
+		m_scale.y -= m_scaleRate * deltaTime;
+		if (m_scale.x <= 0.0f || m_scale.y <= 0.0f)
+		{
+			m_scale.x = 0.0f;
+			m_scale.y = 0.0f;
+			m_isShrink = false;
+		}
+	}
 
 	m_color.a = alphaRate * m_alphaRate;
 }
@@ -340,4 +382,14 @@ void AfterImageTrace::setScale(const glm::vec2 & scale)
 void AfterImageTrace::setAlphaRate(float value)
 {
 	m_alphaRate = value;
+}
+void AfterImageTrace::setScaleRate(float value)
+{
+
+	m_scaleRate = value;
+	if(m_scaleRate != 0.0f)
+	{
+		m_isShrink = true;
+	}
+	
 }

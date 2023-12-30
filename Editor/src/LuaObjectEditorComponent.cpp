@@ -106,7 +106,7 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 
 	//m_luaObjectManager.loadLuaFile("Assets/LuaFiles/test.lua");
 	//m_luaObjectManager.callLuaFunction("Assets/LuaFiles/test.lua","TestFunc");
-	m_luaObjectManager.callCreateFromLua("Assets/LuaFiles/test.lua", "CreateFromLua");
+	//m_luaObjectManager.callCreateFromLua("Assets/LuaFiles/test.lua", "CreateFromLua");
 	//m_luaObjectManager.
 	//loadMoveset("Assets/LuaFiles/test.lua");
 	//m_luaObjectManager.callLuaFunction("Assets/LuaFiles/test.lua", "CreateFromLua");

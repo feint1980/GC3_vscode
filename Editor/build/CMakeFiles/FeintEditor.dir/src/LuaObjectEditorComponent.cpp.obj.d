@@ -937,4 +937,5 @@ CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj: \
  E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom2.h \
  E:/template/GC_port/Feintgine/src/F_BaseObject.h \
  E:/template/GC_port/Feintgine/src/AfterImageParticle.h \
- E:/template/GC_port/GC3/src/F_Komachi_Souls_Object.h
+ E:/template/GC_port/GC3/src/F_Komachi_Souls_Object.h \
+ E:/template/GC_port/Feintgine/src/feint_common.h

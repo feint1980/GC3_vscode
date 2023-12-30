@@ -344,6 +344,30 @@ E_/template/GC_port/GC3/src/F_HomingBullet.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_HomingBullet.cpp.s
 .PHONY : E_/template/GC_port/GC3/src/F_HomingBullet.cpp.s
 
+E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.obj: E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.obj
+.PHONY : E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.obj
+
+# target to build an object file
+E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.obj
+.PHONY : E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.obj
+
+E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.i: E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.i
+.PHONY : E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.i
+
+# target to preprocess a source file
+E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.i
+.PHONY : E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.i
+
+E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.s: E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.s
+.PHONY : E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.s
+
+# target to generate assembly for a file
+E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.s
+.PHONY : E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.s
+
 E_/template/GC_port/GC3/src/F_Lua_Boss.obj: E_/template/GC_port/GC3/src/F_Lua_Boss.cpp.obj
 .PHONY : E_/template/GC_port/GC3/src/F_Lua_Boss.obj
 
@@ -2036,6 +2060,9 @@ help:
 	@echo ... E_/template/GC_port/GC3/src/F_HomingBullet.obj
 	@echo ... E_/template/GC_port/GC3/src/F_HomingBullet.i
 	@echo ... E_/template/GC_port/GC3/src/F_HomingBullet.s
+	@echo ... E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.obj
+	@echo ... E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.i
+	@echo ... E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.s
 	@echo ... E_/template/GC_port/GC3/src/F_Lua_Boss.obj
 	@echo ... E_/template/GC_port/GC3/src/F_Lua_Boss.i
 	@echo ... E_/template/GC_port/GC3/src/F_Lua_Boss.s

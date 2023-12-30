@@ -54,8 +54,11 @@ function DynamicBehavior3(host, dynob)
         coroutine.yield()
         cppHoldPosition(host,dynob,10,"cast")
         coroutine.yield()
+        --create helper param (F_Lua_Boss dynamicObject,string  objectName,
+	    --string  asset, float x, float y, float scaleX, float scaleY, float depth,
+        --float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time)
         cppCreateHelper(host,dynob,"komachi_souls","Assets/F_AObjects/komachi_souls.xml" ,
-        100 , 200, 1,1,14,-10,0,5,0.0125,100)
+        100 , 200, 1,1,14,-10,0,25,0.0125,0.035,100)
         cppMoveObject(host,dynob,0,0,50)
         coroutine.yield()
     end

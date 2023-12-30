@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_CollectableItem.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_HomingBullet.cpp.obj"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_HomingBullet.cpp.obj.d"
+  "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.obj"
+  "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Komachi_Souls_Object.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_Boss.cpp.obj"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_Boss.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_Boss_Manager.cpp.obj"
