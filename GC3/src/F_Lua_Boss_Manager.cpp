@@ -250,7 +250,7 @@ int lua_createHelper(lua_State * L)
 	//createObject(F_Lua_Boss * dynamicObject, const std::string & objectName,
 	//const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, double time);
 
-	if(lua_gettop(L) != 15)
+	if(lua_gettop(L) != 16)
 	{
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
@@ -258,21 +258,22 @@ int lua_createHelper(lua_State * L)
 	std::cout << "lua create helper called \n";
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
 	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2)); // dynob
-	std::string objectName = lua_tostring(L, 3); //
-	std::string asset = lua_tostring(L, 4); //
-	float x = lua_tonumber(L, 5); //
-	float y = lua_tonumber(L, 6); //
-	float scaleX = lua_tonumber(L, 7); //
-	float scaleY = lua_tonumber(L, 8); //
-	float depth = lua_tonumber(L, 9); //
-	float velX = lua_tonumber(L, 10); //
-	float velY = lua_tonumber(L, 11); //
-	int afterImageCount = lua_tonumber(L, 12); //
-	float afterImageRate = lua_tonumber(L, 13); //
-	float scaleRate = lua_tonumber(L, 14); //
-	double time = lua_tonumber(L, 15); //
+	unsigned int id = lua_tonumber(L, 3); //
+	std::string objectName = lua_tostring(L, 4); //
+	std::string asset = lua_tostring(L, 5); //
+	float x = lua_tonumber(L, 6); //
+	float y = lua_tonumber(L, 7); //
+	float scaleX = lua_tonumber(L, 8); //
+	float scaleY = lua_tonumber(L, 9); //
+	float depth = lua_tonumber(L, 10); //
+	float velX = lua_tonumber(L, 11); //
+	float velY = lua_tonumber(L, 12); //
+	int afterImageCount = lua_tonumber(L, 13); //
+	float afterImageRate = lua_tonumber(L, 14); //
+	float scaleRate = lua_tonumber(L, 15); //
+	double time = lua_tonumber(L, 16); //
 
-	objectManager->createHelper(dynamicObject, objectName, asset, x, y, scaleX, scaleY, depth, velX, velY, afterImageCount, afterImageRate,scaleRate, time);
+	objectManager->createHelper(dynamicObject,id, objectName, asset, x, y, scaleX, scaleY, depth, velX, velY, afterImageCount, afterImageRate,scaleRate, time);
 	
 	return 0 ;
 }
@@ -757,7 +758,7 @@ void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_Boss * dynamicObject, const std:
 
 }
 
-void F_Lua_Boss_Manager::createHelper(F_Lua_Boss * dynamicObject, const std::string & objectName,
+void F_Lua_Boss_Manager::createHelper(F_Lua_Boss * dynamicObject,unsigned int id , const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time)
 {
 
@@ -768,7 +769,7 @@ void F_Lua_Boss_Manager::createHelper(F_Lua_Boss * dynamicObject, const std::str
 	{
 
 		Feintgine::F_BaseObject * object =  new F_Komachi_Souls_Object();//new Feintgine::F_BaseObject();
-		object->init(glm::vec2(scaleX, scaleY),asset,Feintgine::Color(255,255,255,255),glm::vec2(velX,velY),glm::vec2(x,y) , depth, afterImageCount,afterImageRate);
+		object->init(id,glm::vec2(scaleX, scaleY),asset,Feintgine::Color(255,255,255,255),glm::vec2(velX,velY),glm::vec2(x,y) , depth, afterImageCount,afterImageRate);
 		object->setAfterImageScaleRate(scaleRate);
 		dynamicObject->addEvent([=]
 		{

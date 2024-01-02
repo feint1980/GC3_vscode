@@ -3,6 +3,7 @@
 
 #include <F_BaseObject.h>
 #include <feint_common.h>
+
 class F_Komachi_Souls_Object : public Feintgine::F_BaseObject
 {
 public:
@@ -18,8 +19,6 @@ private :
     glm::vec2 m_destination = glm::vec2(0.0f);
 
 };
-
-
 
 
 

@@ -100,8 +100,6 @@ const float DEFAULT_OBJECT_CAM_SCALE = 2.5f;
 const int OBJECTIVE_OBJECT = 0;
 const int OBJECTIVE_BRUSH = 1;
 
-
-
 using namespace rapidxml;
 
 class EditorScreen : public Feintgine::IGameScreen
@@ -412,11 +410,7 @@ public:
 
 	bool saveAnimation(const CEGUI::EventArgs &e);
 
-
-
 	void pushMassive(int col, int row);
-
-
 
 	void deleteCurrentLayer();
 
@@ -468,8 +462,6 @@ private :
 
 	Feintgine::Camera2D m_spriteListCamera;
 
-	
-
 	Feintgine::Camera2D m_previewCamera;
 	Feintgine::Camera2D m_previewCamera_static;
 
@@ -479,10 +471,8 @@ private :
 	Feintgine::Camera2D m_editDamakuCamera;
 	Feintgine::Camera2D m_editDamakuCamera_static;
 
-
 	Feintgine::Camera2D m_editEnemyCamera;
 	Feintgine::Camera2D m_editEnemyCamera_static;
-
 
 	Feintgine::Camera2D m_editLuaCamera;
 	Feintgine::Camera2D m_editLuaCamera_static;
@@ -813,10 +803,6 @@ private :
 	//B_Object m_selectObject = nullptr;
 
 	// Edit Enemy Mode here
-
-	
-
-
 	EnemyEditorComponent m_enemyEditor;
 
 	LuaObjectEditorComponent m_luaEditor;

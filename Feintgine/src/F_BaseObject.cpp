@@ -19,10 +19,11 @@ namespace Feintgine
     }
 
 
-    void F_BaseObject::init(const glm::vec2 & scale, const Feintgine::F_AnimatedObject & animation,
+    void F_BaseObject::init(unsigned int id,const glm::vec2 & scale, const Feintgine::F_AnimatedObject & animation,
         const Feintgine::Color & color, const glm::vec2 & vel, const glm::vec2 & pos, float depth, int afterImageCount, float afterImageRate)
     {
         m_pos = pos;
+        m_id = id;
         m_scale = scale;
         m_color = color;
         m_animation = animation;
@@ -37,10 +38,11 @@ namespace Feintgine
         m_afterImagesParticle.init(p_pos, &m_animation, &m_animation.getColor(), afterImageRate, afterImageCount);
     }
 
-    void F_BaseObject::init(const glm::vec2 & scale, const std::string & animationPath,
+    void F_BaseObject::init(unsigned int id,const glm::vec2 & scale, const std::string & animationPath,
             const Feintgine::Color & color,const glm::vec2 & vel,const glm::vec2 & pos,float depth,int afterImageCount, float afterImageRate)
     {
         m_pos = pos;
+        m_id = id;
         m_scale = scale;
         m_color = color;
         m_animation.init(animationPath);

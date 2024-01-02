@@ -89,8 +89,6 @@ public:
 
 	glm::vec2 getVel() const { return m_vel; }
 
-
-
 protected:
 
 	GuardianShield * m_shield = nullptr;
@@ -123,7 +121,6 @@ protected:
 	Feintgine::F_AnimatedObject m_animation;
 
 	int m_priority = 0;
-	
 
 };
 

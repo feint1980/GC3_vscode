@@ -27,8 +27,6 @@ namespace Feintgine
 		F_LuaDynamicObject();
 		~F_LuaDynamicObject();
 
-
-
 		void createObject(const glm::vec2 & pos,
 			const Feintgine::F_AnimatedObject & t_animation,
 			const glm::vec2 & scale, float depth, float angle = 0.0f);

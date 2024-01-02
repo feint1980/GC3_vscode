@@ -14,7 +14,6 @@ public:
 
 	void addPatern(int ID, int type);
 
-
 	void init(std::vector<EnemyBulletBase *> *bullets);
 
 private : 

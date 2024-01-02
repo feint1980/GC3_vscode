@@ -62,7 +62,10 @@ void F_EnemyBasic::setVel(const glm::vec2 & vel)
 void F_EnemyBasic::loadState(const std::string & name, bool preloaded)
 {
 	xml_document<> doc;
-
+	// if(name == "Disabled_sealed")
+	// {
+	// 	std::cout << "disabled sealed \n";
+	// }
 	std::string fileLocation = "./Data/stageData/enemyState/fairyState.est";
 	std::vector<char> buffer;
 	if (preloaded)

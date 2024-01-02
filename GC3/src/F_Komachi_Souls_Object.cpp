@@ -18,6 +18,7 @@ F_Komachi_Souls_Object::~F_Komachi_Souls_Object()
 
 }
 
+
 void F_Komachi_Souls_Object::randomlyDecide()
 {
    // range

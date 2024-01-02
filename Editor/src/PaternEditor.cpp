@@ -16,6 +16,7 @@ void PaternEditor::init(Feintgine::GUI * gui,SpriteListHolder * spriteHolder)
 	m_gui = gui;
 	m_spriteListHolder = spriteHolder;
 
+	// Default Danmaku
 	m_damakuTest.init(Feintgine::SpriteManager::Instance()->getSprite("character/reimu_accessory_3.png"), glm::vec2(0)\
 		, glm::vec2(1), Feintgine::Color(255, 255, 255, 255));
 	m_damakuTest.setTrace(0.5, 2.0f);
@@ -24,10 +25,8 @@ void PaternEditor::init(Feintgine::GUI * gui,SpriteListHolder * spriteHolder)
 		glm::vec4(0.605, 0.28, 0.1, 0.04), glm::vec4(0), "damaku_applySprite"));
 	damaku_applySprite->setText("Apply to Damaku");
 		
-
 	patern_combolist = static_cast<CEGUI::Combobox*>
 		(m_gui->createWidget("TaharezLook/Combobox", glm::vec4(0.55, 0.4, 0.14, 0.22), glm::vec4(0), "patern_combolist"));
-
 
 	patern_combolist->setSortingEnabled(false);
 	patern_combolist->setReadOnly(true);
@@ -46,7 +45,6 @@ void PaternEditor::init(Feintgine::GUI * gui,SpriteListHolder * spriteHolder)
 	item = new CEGUI::ListboxTextItem("astroid", packetId++);
 	item->setSelectionBrushImage(sel_img);
 	patern_combolist->addItem(item);
-
 
 	item = new CEGUI::ListboxTextItem("fourier", packetId++);
 	item->setSelectionBrushImage(sel_img);
@@ -138,7 +136,6 @@ void PaternEditor::init(Feintgine::GUI * gui,SpriteListHolder * spriteHolder)
 	patern_traceTime->subscribeEvent(CEGUI::Editbox::EventTextChanged,
 		CEGUI::Event::Subscriber(&PaternEditor::onTraceValueChange, this));
 
-
 	patern_factor_a_label = static_cast<CEGUI::DefaultWindow*>
 		(m_gui->createWidget("TaharezLook/Label", glm::vec4(0.565, 0.463, 0.08, 0.02), glm::vec4(0), "patern_factor_a_label"));
 	patern_factor_a_label->setText("a");
@@ -165,8 +162,6 @@ void PaternEditor::init(Feintgine::GUI * gui,SpriteListHolder * spriteHolder)
 	patern_factor_r_label->setProperty("HorzFormatting", "LeftAligned");
 
 	//0.568
-
-
 	patern_totalClone_label = static_cast<CEGUI::DefaultWindow*>
 		(m_gui->createWidget("TaharezLook/Label", glm::vec4(0.565, 0.735, 0.08, 0.02), glm::vec4(0), "patern_totalClone_label"));
 	patern_totalClone_label->setText("total danmaku");
@@ -202,13 +197,9 @@ void PaternEditor::init(Feintgine::GUI * gui,SpriteListHolder * spriteHolder)
 	patern_factor_d->setValidationString("^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+){0,10}$");
 	patern_factor_r->setValidationString("^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+){0,10}$");
 
-
 	patern_traceTime->setValidationString("^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+){0,10}$");
 
-
 	patern_totalClone->setValidationString("^[0-9]*$"); // only int
-
-
 
 	m_widgetFactors.emplace_back(patern_factor_a, patern_factor_a_label);
 	m_widgetFactors.emplace_back(patern_factor_b, patern_factor_b_label);
@@ -250,8 +241,6 @@ void PaternEditor::update(float deltaTime)
 
 	if (m_isPlay)
 	{
-		//m_damakuTest.update(deltaTime);
-
 		for (int i = 0; i < m_damakuTests.size(); i++)
 		{
 			m_damakuTests[i].update(deltaTime);
@@ -416,7 +405,7 @@ bool PaternEditor::onParamChanged(const CEGUI::EventArgs &e)
 		factors.push_back(std::stoi(patern_factor_b->getText().c_str()));
 		factors.push_back(std::stoi(patern_factor_c->getText().c_str()));
 		factors.push_back(std::stoi(patern_factor_d->getText().c_str()));
-		m_damakuTest.setParam(factors, std::stoi(patern_factor_r->getText().c_str()));
+		//m_damakuTest.setParam(factors, std::stoi(patern_factor_r->getText().c_str()));
 		for (int i = 0; i < m_damakuTests.size(); i++)
 		{
 			m_damakuTests[i].setParam(factors, std::stoi(patern_factor_r->getText().c_str()));

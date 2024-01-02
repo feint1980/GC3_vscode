@@ -58,8 +58,7 @@ public:
 
 private : 
 	F_DamakuBase m_damakuTest;
-
-
+	
 	std::vector<F_DamakuBase> m_damakuTests;
 
 	Feintgine::GUI * m_gui;

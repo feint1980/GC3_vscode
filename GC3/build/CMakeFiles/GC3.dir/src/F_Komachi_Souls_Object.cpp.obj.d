@@ -851,4 +851,5 @@ CMakeFiles/GC3.dir/src/F_Komachi_Souls_Object.cpp.obj: \
  C:/SysGCC/mingw32/include/memory.h \
  E:/template/GC_port/Feintgine/src/LightBatch.h \
  E:/template/GC_port/Feintgine/src/GLSLProgram.h \
- E:/template/GC_port/Feintgine/src/AfterImageParticle.h
+ E:/template/GC_port/Feintgine/src/AfterImageParticle.h \
+ E:/template/GC_port/Feintgine/src/feint_common.h

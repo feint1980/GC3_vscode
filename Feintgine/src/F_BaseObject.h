@@ -15,10 +15,10 @@ namespace Feintgine
         F_BaseObject();
         ~F_BaseObject();
 
-        void init(const glm::vec2 & scale, const Feintgine::F_AnimatedObject & animation,
+        void init(unsigned int id,  const glm::vec2 & scale, const Feintgine::F_AnimatedObject & animation,
                 const Feintgine::Color & color,const glm::vec2 & vel,const glm::vec2 & pos,float depth,int afterImageCount, float afterImageRate);
 
-        void init(const glm::vec2 & scale, const std::string & animationPath,
+        void init(unsigned int id, const glm::vec2 & scale, const std::string & animationPath,
                 const Feintgine::Color & color,const glm::vec2 & vel,const glm::vec2 & pos,float depth,int afterImageCount, float afterImageRate);
 
         void draw(Feintgine::SpriteBatch & spriteBatch);
@@ -26,6 +26,8 @@ namespace Feintgine
         void setAfterImageScaleRate(float scaleRate); // scale rate for the after image trace
 
         virtual void update(float deltaTime) = 0;
+
+        unsigned int getID() const { return m_id; }
 
     protected:
 
@@ -38,7 +40,7 @@ namespace Feintgine
         glm::vec2 m_vel;
         float m_angle;
         float m_depth;
-
+        unsigned int m_id;
 
     };
 }
