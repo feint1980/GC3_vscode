@@ -59,8 +59,7 @@ namespace Feintgine {
 			for (int i = 0; i < m_refab.lightlist_size(); i++)
 			{
 				//std::cout << " layer index " << i << "has " << s_scence.layers(i).objects_size() << "object \n";
-
-				
+	
 				glm::vec2 pos = feint_common::Instance()->convertProcVec2ToVec2(m_refab.lightlist(i).pos());
 				pos += m_pos;
 				glm::vec3 attenuation = feint_common::Instance()->convertProcVec3ToVec3(m_refab.lightlist(i).atenuation());
@@ -87,7 +86,6 @@ namespace Feintgine {
 
 			}
 
-			
 			std::cout << "read file ok \n";
 
 

@@ -277,6 +277,37 @@ int lua_createHelper(lua_State * L)
 	
 	return 0 ;
 }
+int lua_createFLObject(lua_State * L)
+{
+	if(lua_gettop(L) != 16)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	std::cout << "lua create helper called \n";
+	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
+	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2)); // dynob
+	unsigned int id = lua_tonumber(L, 3); //
+	std::string objectName = lua_tostring(L, 4); //
+	std::string asset = lua_tostring(L, 5); //
+	float x = lua_tonumber(L, 6); //
+	float y = lua_tonumber(L, 7); //
+	float scaleX = lua_tonumber(L, 8); //
+	float scaleY = lua_tonumber(L, 9); //
+	float depth = lua_tonumber(L, 10); //
+	float velX = lua_tonumber(L, 11); //
+	float velY = lua_tonumber(L, 12); //
+	int afterImageCount = lua_tonumber(L, 13); //
+	float afterImageRate = lua_tonumber(L, 14); //
+	float scaleRate = lua_tonumber(L, 15); //
+	double time = lua_tonumber(L, 16); //
+
+	objectManager->createFLObject(dynamicObject, id, asset, x, y, scaleX, scaleY, depth, velX, velY, time);
+
+	return 0;
+}
+
+
 
 
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
@@ -298,6 +329,7 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppSetFire_MA_custom_aff", lua_setFireMACustomAFF);
 	lua_register(m_script, "cppSetFire_Base", lua_setFireBase);
 	lua_register(m_script, "cppCreateHelper", lua_createHelper);
+	lua_register(m_script, "cppCreateFLObject", lua_createFLObject);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 }
 
@@ -307,6 +339,38 @@ F_Lua_Boss_Manager::~F_Lua_Boss_Manager()
 }
 
 
+Feintgine::FL_OBject * F_Lua_Boss_Manager::createObject(const glm::vec2 & pos, const glm::vec2 & scale, const std::string & assetString)
+{
+
+	bool isAnimated = false;
+	std::string subStr = assetString.substr(assetString.size() - 3, 3);
+	if (subStr == "xml")
+	{
+		isAnimated = true;
+	}
+	else
+	{
+		if(subStr != "png")
+		{
+			std::cout << "Warning : asset string is not png or xml \n";
+		}
+	}
+	Feintgine::FL_OBject * object = new Feintgine::FL_OBject();
+
+	if(isAnimated)
+	{
+		Feintgine::F_AnimatedObject animObj;
+		animObj.init(assetString);
+		object->init(animObj, pos, scale);
+	}
+	else
+	{
+		object->init(Feintgine::SpriteManager::Instance()->getSprite(assetString), pos, scale);
+	}
+		
+	m_fl_object.push_back(object);
+	return object;
+}
 
 void F_Lua_Boss_Manager::update(float deltaTime)
 {
@@ -323,6 +387,13 @@ void F_Lua_Boss_Manager::update(float deltaTime)
 		if (m_objects[i])
 		{
 			m_objects[i]->update(deltaTime);
+		}
+	}
+	for (size_t i = 0; i < m_fl_object.size(); i++)
+	{
+		if (m_fl_object[i])
+		{
+			m_fl_object[i]->update(deltaTime);
 		}
 	}
 	for (size_t i = 0; i < m_luaBossStates.size(); i++)
@@ -351,8 +422,6 @@ void F_Lua_Boss_Manager::update(float deltaTime)
 				// After Issued next task
 				m_luaBossStates.erase(m_luaBossStates.begin() + i);
 			}
-
-
 		}
 	}
 
@@ -493,20 +562,25 @@ bool F_Lua_Boss_Manager::loadLuaFile(const std::string & filePath)
 
 void F_Lua_Boss_Manager::draw(Feintgine::SpriteBatch & spriteBatch)
 {
-	for (int i = 0; i < m_luaBosses.size(); i++)
+	for (size_t i = 0; i < m_luaBosses.size(); i++)
 	{
 		m_luaBosses[i]->draw(spriteBatch);
 	}
 
-	for(int i = 0 ; i < m_objects.size() ; i++)
+	for(size_t i = 0 ; i < m_objects.size() ; i++)
 	{
 		m_objects[i]->draw(spriteBatch);
 	}
 
-	for (auto i = 0; i < m_bullets.size(); i++)
+	for (size_t i = 0; i < m_bullets.size(); i++)
 	{
 		m_bullets[i]->draw(spriteBatch);
 	}
+	for(size_t i = 0 ; i < m_fl_object.size() ; i++)
+	{
+		m_fl_object[i]->draw(spriteBatch);
+	}
+
 }
 
 void F_Lua_Boss_Manager::init()
@@ -757,6 +831,13 @@ void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_Boss * dynamicObject, const std:
 	}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time ));
 
 }
+
+void F_Lua_Boss_Manager::createFLObject(F_Lua_Boss * dynamicObject, unsigned int id, 
+		const std::string & asset, float x, float y, float scaleX, float scaleY, float depth, float velX, float velY, double time)
+{
+	
+}
+
 
 void F_Lua_Boss_Manager::createHelper(F_Lua_Boss * dynamicObject,unsigned int id , const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time)

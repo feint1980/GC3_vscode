@@ -81,10 +81,6 @@ public:
 			break;
 		}
 		
-		
-
-		
-		
 		m_lifeTime -= m_decayTime * deltaTime;
 	}
 

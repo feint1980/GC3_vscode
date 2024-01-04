@@ -1,5 +1,6 @@
 #pragma once
 #include <F_LuaObjectManager.h>
+#include <ResourceManager.h>
 #include "F_Lua_Boss.h"
 #include "F_Lua_Boss_State.h"
 #include "F_Lua_Boss_State_MoveObject.h"
@@ -10,7 +11,7 @@
 
 #include <F_BaseObject.h>
 #include "F_Komachi_Souls_Object.h"
-
+#include <FL_Object.h>
 
 
 
@@ -43,7 +44,6 @@ public:
 
 	void standIdle(F_Lua_Boss * dynamicObject, float time, const std::string & animName);
 
-
 	void resetEvent();
 
 	void clearBullets();
@@ -63,6 +63,9 @@ public:
 	void createHelper(F_Lua_Boss * dynamicObject, unsigned int id, const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time);
 
+	void createFLObject(F_Lua_Boss * dynamicObject, unsigned int id, 
+		const std::string & asset, float x, float y, float scaleX, float scaleY, float depth, float velX, float velY, double time);
+
 	void addEvent(F_Lua_Boss * dynamicObject, const Feintgine::oEvent::f_callback & cb, double when);
 
 	F_Lua_Boss * createBoss(const std::string & animationPath, glm::vec2 pos);
@@ -74,7 +77,6 @@ public:
 	void callFunctionFromLua(const std::string functionName);
 
 	bool loadLuaFile(const std::string & filePath);
-
 
 	void clearBosses();
 
@@ -88,6 +90,8 @@ public:
 
 	int getTotalBullets() const { return m_bullets.size(); }
 
+	Feintgine::FL_OBject * createObject(const glm::vec2 & pos, const glm::vec2 & scale, const std::string & assetString);
+
 protected:
 
 	std::vector<EnemyBulletBase *> m_bullets;
@@ -97,6 +101,8 @@ protected:
 	lua_State * m_script;
 	//std::vector<F_Lua_Boss *> m_dynamicObjects;
 	std::vector<F_Lua_Boss *> m_luaBosses;
+
+	std::vector<Feintgine::FL_OBject*> m_fl_object; 
 
 	std::vector<Feintgine::F_BaseObject *> m_objects;
 

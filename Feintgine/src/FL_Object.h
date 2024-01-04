@@ -39,7 +39,9 @@ public:
 	{
 		m_destination = destination;
 		m_isReachDestination = false;
+		m_hasTarget = true;
 	}
+
 
 	void setDepth(float depth)
 	{
@@ -55,7 +57,22 @@ public:
 	float getAngle() const { return m_angle; }
 	bool isReachDestination() const { return m_isReachDestination; }
 
-	virtual void update(float deltaTime) = 0;
+	void defaultUpdate(float deltaTime);
+	void setID(unsigned int id)
+	{
+		m_id = id;
+	}
+
+//	virtual void update(float deltaTime) = 0; this was my plan but i changed my mind
+
+	void setUpdateFunc(std::function<void(float)> func)
+	{
+		m_updateFunc = func;
+	}
+
+	void setManipulatedFunc(std::function<void(float)> func, float duration, float delayTime);
+
+	void update(float deltaTime);
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 
 
@@ -75,10 +92,16 @@ protected:
 	float m_depth = 0.0f;
 	float m_angle = 0.0f;
 
+	float m_speed = 2.5;
+
 	unsigned int m_id = 0;
 	bool m_isReachDestination = true;
+	bool m_hasTarget = false;
 
-
+	std::function<void(float)> m_updateFunc  = nullptr;
+	std::function<void(float)> m_malipulatedFunc = nullptr;
+	float m_manipulateDuration = 0.0f;
+	float m_manipulateDelayTime = 0.0f;
 
 };
 
