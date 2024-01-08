@@ -63,8 +63,8 @@ public:
 	void createHelper(F_Lua_Boss * dynamicObject, unsigned int id, const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time);
 
-	void createFLObject(F_Lua_Boss * dynamicObject, unsigned int id, 
-		const std::string & asset, float x, float y, float scaleX, float scaleY, float depth, float velX, float velY, double time);
+	Feintgine::FL_Object * createFLObject(F_Lua_Boss * dynamicObject, unsigned int id, 
+		const std::string & asset, float x, float y, float scaleX, float scaleY, float depth, float destinationX, float destinationY);
 
 	void addEvent(F_Lua_Boss * dynamicObject, const Feintgine::oEvent::f_callback & cb, double when);
 
@@ -90,7 +90,7 @@ public:
 
 	int getTotalBullets() const { return m_bullets.size(); }
 
-	Feintgine::FL_OBject * createObject(const glm::vec2 & pos, const glm::vec2 & scale, const std::string & assetString);
+	Feintgine::FL_Object * createObject(const glm::vec2 & pos, const glm::vec2 & scale, const std::string & assetString);
 
 protected:
 
@@ -102,7 +102,7 @@ protected:
 	//std::vector<F_Lua_Boss *> m_dynamicObjects;
 	std::vector<F_Lua_Boss *> m_luaBosses;
 
-	std::vector<Feintgine::FL_OBject*> m_fl_object; 
+	std::vector<Feintgine::FL_Object*> m_fl_object; 
 
 	std::vector<Feintgine::F_BaseObject *> m_objects;
 

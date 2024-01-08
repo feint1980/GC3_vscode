@@ -10,12 +10,12 @@
 namespace Feintgine
 {
 
-class FL_OBject
+class FL_Object
 {
 public:
-	FL_OBject();
+	FL_Object();
 
-	~FL_OBject();
+	~FL_Object();
 
 	void init(const Feintgine::F_Sprite & sprite ,const glm::vec2 & pos, const glm::vec2 & scale);
 	void init(const Feintgine::F_AnimatedObject & animObj, const glm::vec2 & pos, const glm::vec2 & scale);
@@ -63,6 +63,8 @@ public:
 		m_id = id;
 	}
 
+	unsigned int getID() const { return m_id; }
+
 //	virtual void update(float deltaTime) = 0; this was my plan but i changed my mind
 
 	void setUpdateFunc(std::function<void(float)> func)
@@ -104,8 +106,6 @@ protected:
 	float m_manipulateDelayTime = 0.0f;
 
 };
-
-
 
 }
 #endif

@@ -9,9 +9,6 @@ int wrap_createDynamicObject(lua_State * L)
 	{
 		return -1;
 	}
-
-
-
 }
 int lua_HostFunction(lua_State *L)
 {
@@ -65,7 +62,7 @@ int lua_CreateFromLua(lua_State * L)
 																										   //moveOb
 																										   //std::cout << "create object " << createdDynamicObj << "\n";
 	lua_pushlightuserdata(L, createdDynamicObj);
-	return 1; // no return needed
+	return 1; // this host function return 1 number 
 }
 
 int lua_MoveObject(lua_State * L)
@@ -279,31 +276,27 @@ int lua_createHelper(lua_State * L)
 }
 int lua_createFLObject(lua_State * L)
 {
-	if(lua_gettop(L) != 16)
+	if(lua_gettop(L) != 11)
 	{
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
 	}
-	std::cout << "lua create helper called \n";
+	std::cout << "lua create FLObject called \n";
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
 	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2)); // dynob
 	unsigned int id = lua_tonumber(L, 3); //
-	std::string objectName = lua_tostring(L, 4); //
-	std::string asset = lua_tostring(L, 5); //
-	float x = lua_tonumber(L, 6); //
-	float y = lua_tonumber(L, 7); //
-	float scaleX = lua_tonumber(L, 8); //
-	float scaleY = lua_tonumber(L, 9); //
-	float depth = lua_tonumber(L, 10); //
-	float velX = lua_tonumber(L, 11); //
-	float velY = lua_tonumber(L, 12); //
-	int afterImageCount = lua_tonumber(L, 13); //
-	float afterImageRate = lua_tonumber(L, 14); //
-	float scaleRate = lua_tonumber(L, 15); //
-	double time = lua_tonumber(L, 16); //
+	std::string asset = lua_tostring(L, 4); //
+	float x = lua_tonumber(L, 5); //
+	float y = lua_tonumber(L, 6); //
+	float scaleX = lua_tonumber(L, 7); //
+	float scaleY = lua_tonumber(L, 8); //
+	float depth = lua_tonumber(L, 9); //
+	float destinationX = lua_tonumber(L, 10); //
+	float destinationY = lua_tonumber(L, 11); //
 
-	objectManager->createFLObject(dynamicObject, id, asset, x, y, scaleX, scaleY, depth, velX, velY, time);
-
+    Feintgine::FL_Object * object =	objectManager->createFLObject(dynamicObject, id, asset, x, y, scaleX, scaleY, depth, destinationX, destinationY);
+	
+	lua_pushlightuserdata(L, object);
 	return 0;
 }
 
@@ -339,7 +332,7 @@ F_Lua_Boss_Manager::~F_Lua_Boss_Manager()
 }
 
 
-Feintgine::FL_OBject * F_Lua_Boss_Manager::createObject(const glm::vec2 & pos, const glm::vec2 & scale, const std::string & assetString)
+Feintgine::FL_Object * F_Lua_Boss_Manager::createObject(const glm::vec2 & pos, const glm::vec2 & scale, const std::string & assetString)
 {
 
 	bool isAnimated = false;
@@ -355,7 +348,7 @@ Feintgine::FL_OBject * F_Lua_Boss_Manager::createObject(const glm::vec2 & pos, c
 			std::cout << "Warning : asset string is not png or xml \n";
 		}
 	}
-	Feintgine::FL_OBject * object = new Feintgine::FL_OBject();
+	Feintgine::FL_Object * object = new Feintgine::FL_Object();
 
 	if(isAnimated)
 	{
@@ -832,10 +825,39 @@ void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_Boss * dynamicObject, const std:
 
 }
 
-void F_Lua_Boss_Manager::createFLObject(F_Lua_Boss * dynamicObject, unsigned int id, 
-		const std::string & asset, float x, float y, float scaleX, float scaleY, float depth, float velX, float velY, double time)
+Feintgine::FL_Object * F_Lua_Boss_Manager::createFLObject(F_Lua_Boss * dynamicObject, unsigned int id, 
+		const std::string & asset, float x, float y, float scaleX, float scaleY, float depth, float destinationX, float destinationY)
 {
+	Feintgine::FL_Object * object = new Feintgine::FL_Object();
+
+	//std::cout << "create FLObject step 1 \n";
+	std::string subStr = asset.substr(asset.size() - 3, 3);
+	if (subStr == "xml")
+	{
+		//std::cout << "is animated \n";
+		Feintgine::F_AnimatedObject animObj;
+		animObj.init(asset);
+		object->init(animObj, glm::vec2(x, y), glm::vec2(scaleX, scaleY));
+	}
+	else
+	{
+		if (subStr != "png")
+		{
+			std::cout << "Warning : asset string is neither png or xml \n";
+		}
+		object->init(Feintgine::SpriteManager::Instance()->getSprite(asset), glm::vec2(x, y), glm::vec2(scaleX, scaleY));
+
+	}
+
 	
+	object->setDestination(glm::vec2(destinationX, destinationY));
+	object->setDepth(depth);
+	object->setID(id);
+	m_fl_object.push_back(object);
+
+	//std::cout << "done creating FLObject, returning ... \n";
+
+	return object;
 }
 
 
@@ -872,10 +894,11 @@ void F_Lua_Boss_Manager::callFunctionFromLua(const std::string functionName)
 		//std::cout << "host is " << this << "\n";
 		lua_pushlightuserdata(m_script, this);
 		//std::cout << "C++ called " + functionName << "\n";
-		if (LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 1, 1, 0)))
+		const int argCount = 1;
+		const int returnCount =1;
+		if (LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argCount, returnCount, 0)))
 		{
 			
-
 		}
 
 

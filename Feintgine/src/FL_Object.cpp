@@ -3,16 +3,17 @@
 
 namespace Feintgine
 {
-    FL_OBject::FL_OBject()
+    FL_Object::FL_Object()
     {
         //ctor
+        m_color = Feintgine::Color(255, 255, 255, 255);
     }
 
-    FL_OBject::~FL_OBject()
+    FL_Object::~FL_Object()
     {
         //dtor
     }
-    void FL_OBject::init(const Feintgine::F_Sprite & sprite ,const glm::vec2 & pos, const glm::vec2 & scale)
+    void FL_Object::init(const Feintgine::F_Sprite & sprite ,const glm::vec2 & pos, const glm::vec2 & scale)
     {
         m_sprite = sprite;
         m_pos = pos;
@@ -20,17 +21,22 @@ namespace Feintgine
         m_dim = sprite.getDim() * m_scale;
         m_isAnimated = false;
     }
-    void FL_OBject::init(const Feintgine::F_AnimatedObject & animObj, const glm::vec2 & pos, const glm::vec2 & scale)
+    void FL_Object::init(const Feintgine::F_AnimatedObject & animObj, const glm::vec2 & pos, const glm::vec2 & scale)
     {
         m_animation = animObj;
         m_animation.playAnimation("idle");
         m_pos = pos;
         m_scale = scale;
         m_dim = m_animation.getCurrentAnimation()->getCurrentAnim()->sprite.getDim() * m_scale;
+        m_animation.setPos(m_pos);
+        m_animation.setScale(m_scale);
+        m_animation.setAngle(m_angle);
+        m_animation.setColor(m_color);
+
         m_isAnimated = true;
     }
 
-    void FL_OBject::draw(Feintgine::SpriteBatch & spriteBatch)
+    void FL_Object::draw(Feintgine::SpriteBatch & spriteBatch)
     {
         if(m_isAnimated)
         {
@@ -40,6 +46,7 @@ namespace Feintgine
             m_animation.setColor(m_color);
             m_animation.setDepth(m_depth);
             m_animation.draw(spriteBatch);
+           //std::cout << "draw" << std::endl;
         }
         else
         {
@@ -48,7 +55,7 @@ namespace Feintgine
         }
     }
 
-    void FL_OBject:: defaultUpdate(float deltaTime)
+    void FL_Object:: defaultUpdate(float deltaTime)
     {
         m_pos += m_vel * deltaTime;
         if(m_hasTarget)
@@ -68,7 +75,7 @@ namespace Feintgine
         }
     }
 
-    void FL_OBject::setManipulatedFunc(std::function<void(float)> func, float duration, float delayTime)
+    void FL_Object::setManipulatedFunc(std::function<void(float)> func, float duration, float delayTime)
 	{
 		m_malipulatedFunc = func;
 		m_manipulateDuration = duration;
@@ -76,7 +83,7 @@ namespace Feintgine
 	}
 	
 
-    void FL_OBject::update(float deltaTime)
+    void FL_Object::update(float deltaTime)
     {
         if(m_malipulatedFunc)
         { 

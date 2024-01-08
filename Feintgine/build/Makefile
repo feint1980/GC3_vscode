@@ -1218,6 +1218,54 @@ src/Error.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/Error.cpp.s
 .PHONY : src/Error.cpp.s
 
+src/FL_Manipulator.obj: src/FL_Manipulator.cpp.obj
+.PHONY : src/FL_Manipulator.obj
+
+# target to build an object file
+src/FL_Manipulator.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj
+.PHONY : src/FL_Manipulator.cpp.obj
+
+src/FL_Manipulator.i: src/FL_Manipulator.cpp.i
+.PHONY : src/FL_Manipulator.i
+
+# target to preprocess a source file
+src/FL_Manipulator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.i
+.PHONY : src/FL_Manipulator.cpp.i
+
+src/FL_Manipulator.s: src/FL_Manipulator.cpp.s
+.PHONY : src/FL_Manipulator.s
+
+# target to generate assembly for a file
+src/FL_Manipulator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.s
+.PHONY : src/FL_Manipulator.cpp.s
+
+src/FL_Object.obj: src/FL_Object.cpp.obj
+.PHONY : src/FL_Object.obj
+
+# target to build an object file
+src/FL_Object.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj
+.PHONY : src/FL_Object.cpp.obj
+
+src/FL_Object.i: src/FL_Object.cpp.i
+.PHONY : src/FL_Object.i
+
+# target to preprocess a source file
+src/FL_Object.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/FL_Object.cpp.i
+.PHONY : src/FL_Object.cpp.i
+
+src/FL_Object.s: src/FL_Object.cpp.s
+.PHONY : src/FL_Object.s
+
+# target to generate assembly for a file
+src/FL_Object.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/FL_Object.cpp.s
+.PHONY : src/FL_Object.cpp.s
+
 src/FTimer.obj: src/FTimer.cpp.obj
 .PHONY : src/FTimer.obj
 
@@ -1313,6 +1361,30 @@ src/F_BaseObject.s: src/F_BaseObject.cpp.s
 src/F_BaseObject.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.s
 .PHONY : src/F_BaseObject.cpp.s
+
+src/F_BaseObjectManipulator.obj: src/F_BaseObjectManipulator.cpp.obj
+.PHONY : src/F_BaseObjectManipulator.obj
+
+# target to build an object file
+src/F_BaseObjectManipulator.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.obj
+.PHONY : src/F_BaseObjectManipulator.cpp.obj
+
+src/F_BaseObjectManipulator.i: src/F_BaseObjectManipulator.cpp.i
+.PHONY : src/F_BaseObjectManipulator.i
+
+# target to preprocess a source file
+src/F_BaseObjectManipulator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.i
+.PHONY : src/F_BaseObjectManipulator.cpp.i
+
+src/F_BaseObjectManipulator.s: src/F_BaseObjectManipulator.cpp.s
+.PHONY : src/F_BaseObjectManipulator.s
+
+# target to generate assembly for a file
+src/F_BaseObjectManipulator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.s
+.PHONY : src/F_BaseObjectManipulator.cpp.s
 
 src/F_Dialouge_Handler.obj: src/F_Dialouge_Handler.cpp.obj
 .PHONY : src/F_Dialouge_Handler.obj
@@ -3073,6 +3145,12 @@ help:
 	@echo ... src/Error.obj
 	@echo ... src/Error.i
 	@echo ... src/Error.s
+	@echo ... src/FL_Manipulator.obj
+	@echo ... src/FL_Manipulator.i
+	@echo ... src/FL_Manipulator.s
+	@echo ... src/FL_Object.obj
+	@echo ... src/FL_Object.i
+	@echo ... src/FL_Object.s
 	@echo ... src/FTimer.obj
 	@echo ... src/FTimer.i
 	@echo ... src/FTimer.s
@@ -3085,6 +3163,9 @@ help:
 	@echo ... src/F_BaseObject.obj
 	@echo ... src/F_BaseObject.i
 	@echo ... src/F_BaseObject.s
+	@echo ... src/F_BaseObjectManipulator.obj
+	@echo ... src/F_BaseObjectManipulator.i
+	@echo ... src/F_BaseObjectManipulator.s
 	@echo ... src/F_Dialouge_Handler.obj
 	@echo ... src/F_Dialouge_Handler.i
 	@echo ... src/F_Dialouge_Handler.s

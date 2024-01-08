@@ -3,6 +3,9 @@ bc =  require("./Assets/Luafiles/common/boss_common")
 
 local dynamics = {}
 
+local souls = {}
+local soulsCount = 0
+
 movingObject = nil
 
 
@@ -57,12 +60,23 @@ function DynamicBehavior3(host, dynob)
         --create helper param (F_Lua_Boss dynamicObject,string  objectName,
 	    --string  asset, float x, float y, float scaleX, float scaleY, float depth,
         --float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time)
-        cppCreateHelper(host,dynob,1,"komachi_souls","Assets/F_AObjects/komachi_souls.xml" ,
-        100 , 200, 1,1,14,-10,0,25,0.0125,0.035,100)
+        souls[soulsCount + 1] = cppCreateFLObject(host,dynob,1,"Assets/F_AObjects/komachi_souls.xml" ,
+        100 , 200, 1,1,14,-10,0)
+        soulsCount = soulsCount + 1
+        print("print from lua ")
+        manipulateSouls()
         cppMoveObject(host,dynob,0,0,50)
+
         coroutine.yield()
     end
+end
 
+function manipulateSouls()
+    for i = 1, soulsCount do
+        print(i)
+        --souls[i].
+       --cppMoveObject(host,souls[i],0,0,50)
+    end
 end
 
 function DynamicBehavior2(host,dynob)
