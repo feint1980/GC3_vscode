@@ -3,30 +3,31 @@
 #include "EGUI_DrawElement.h"
 
 
+
+
 class CEGUI_TextRenderer
 {
 public:
 	CEGUI_TextRenderer();
 	~CEGUI_TextRenderer();
 
-	void initFont(const std::string & fontName);
+	//void init()
 
-	void addTextObject(const std::string & name,
-		const glm::vec2 pos, const glm::vec2 dim, const std::string & content);
+	void addFont(const std::string & fontPath);
 
-	void addTextObject(const std::string & name,
-		const glm::vec2 pos, const glm::vec2 dim, const std::wstring & content);
+	void addTextObject(const std::string & name, const std::string & text,
+		const glm::vec2 & pos);
+
+	void addTextObject(const std::string & name,const std::wstring & text,
+		const glm::vec2 &pos);
 
 	void draw();
-
-	Feintgine::GUI getGUI() const { return m_gui; }
-	Feintgine::GUI getGUI_non_const() { return m_gui; }
-	Feintgine::GUI m_gui;
+	void update(float deltaTime);
 private:
 
 	
 	//Feintgine::GUI m_gui2;
-	std::vector<EGUI_DrawElement * > m_textobjects;
+	std::map<std::string,EGUI_DrawElement > m_textMap;
 
 
 

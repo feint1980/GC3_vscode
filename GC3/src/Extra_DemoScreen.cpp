@@ -78,6 +78,10 @@ void Extra_DemoScreen::destroy()
 
 void Extra_DemoScreen::onEntry()
 {
+	//auto task = async::spawn([&]() {
+	
+	//});
+	TTF_Init();
 	m_debug.init();
 	m_camera.init(720, 720, 7);
 
@@ -89,6 +93,9 @@ void Extra_DemoScreen::onEntry()
 
 	m_camera.setScale(1.0f);
 	m_camera.setPosition(glm::vec2(0));
+
+	m_sideCam.setScale(1.0f);
+	m_sideCam.setPosition(glm::vec2(0));
 	
 	bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Spider_lily_edited.png"), glm::vec2(0), glm::vec2(1366, 1366),
 		Feintgine::Color(255, 255, 255, 255));
@@ -116,12 +123,53 @@ void Extra_DemoScreen::onEntry()
 	SDL_GL_SetSwapInterval(1);
 
 
-	Feintgine::F_ScreenCapture::Instance()->init();
+	//Feintgine::F_ScreenCapture::Instance()->init();
 	//m_capture.init();
 
 	GlobalValueClass::Instance()->setLightBalance(false);
+
+	//m_imgui.init(m_window->getWindow(), m_window->getGLContext());
+	// m_text_test.init("test", glm::vec2(250, 250));
+
+	// m_text_fps.init("m_text_fps", glm::vec2(920, 690));
+
+	// m_text_realTime.init("m_text_realTime", glm::vec2(800, 0));
+
 	//toggleLight();
+
 	
+	m_tgui = new tgui::Gui(m_window->getWindow());
+	//std::cout << "font is " << m_tgui->getFont().ge << "\n";
+
+
+	//tgui::BackendText text;
+	
+	//m_tgui->add(text);
+
+	//tgui::Font font("Assets/fonts/Roboto-Bold.ttf");
+	//m_tgui->setFont(font);
+	//m_tgui->setAbsoluteView
+
+	m_text_realTime_tgui = tgui::Label::create();
+	m_text_fps_tgui = tgui::Label::create();
+						
+	m_text_realTime_tgui->setPosition(800, 50);
+	m_text_realTime_tgui->setTextSize(32);
+	m_text_realTime_tgui->setTextColor(tgui::Color::White);
+	tgui::Color tColor = tgui::Color::Black;
+	tColor.setAlpha(0.7f);
+	m_text_realTime_tgui->setBackGroundColor(tColor);
+
+	m_text_fps_tgui->setPosition(800, 250);
+	m_text_fps_tgui->setTextSize(32);
+	m_text_fps_tgui->setTextColor(tgui::Color::White);
+	tgui::Color tColor2 = tgui::Color::Black;
+	tColor2.setAlpha(0.7f);
+	m_text_fps_tgui->setBackGroundColor(tColor2);
+
+	m_tgui->add(m_text_realTime_tgui);
+	m_tgui->add(m_text_fps_tgui);
+
 }
 
 void Extra_DemoScreen::onExit()
@@ -131,15 +179,15 @@ void Extra_DemoScreen::onExit()
 
 void Extra_DemoScreen::update(float deltaTime)
 {
-	if (!loaded && !startLoad)
+
+	if(!startLoad)
 	{
 		startLoad = true;
-		firstCheckPoint();
-		//std::thread load(&Extra_DemoScreen::firstCheckPoint, this);
-		//load.join();
 
+		firstCheckPoint();
 		return;
 	}
+
 
 	m_camera.update();
 
@@ -252,8 +300,8 @@ void Extra_DemoScreen::update(float deltaTime)
 			Feintgine::F_oEvent::getInstance()->timer();
 
 			updateShader(deltaTime);
-			m_chapterLabel.update(deltaTime);
-			m_bmLabel.update(deltaTime);
+			// m_chapterLabel.update(deltaTime);
+			// m_bmLabel.update(deltaTime);
 			m_linkCreator.update(deltaTime, m_amplifiers, m_bullets, m_player);
 
 		}
@@ -294,14 +342,20 @@ void Extra_DemoScreen::update(float deltaTime)
 
 	// Update FPS
 	t_duration = (SDL_GetTicks() - t_start) / (double)CLOCKS_PER_SEC;
-	m_text_realTime.setText(L" Real time(s) : " + feint_common::Instance()->convertPreciousFloatToWString(t_duration));
-	m_text_eventTime.setText(L"Event time(s): " + feint_common::Instance()->convertPreciousFloatToWString(ENGINE_current_tick));
+//	m_text_realTime.setText(L" Real time(s) : " + feint_common::Instance()->convertPreciousFloatToWString(t_duration));
 
-	m_text_fps.setText(L"Fps: " + std::to_wstring((int) m_game->getFps()));
+	// m_text_eventTime.setText(L"Event time(s): " + feint_common::Instance()->convertPreciousFloatToWString(ENGINE_current_tick));
 
-	int tIndex = m_player.getSpellSelector().getCurrentSelection();
-	m_text_spellSign.setText(m_player.getSpellSelector().getSpellcards()[tIndex]->getSignName());
-	m_text_spellName.setText(m_player.getSpellSelector().getSpellcards()[tIndex]->getSpellName());
+	std::string fps = "Fps: " + std::to_string((int) m_game->getFps());
+	//std::cout << fps << "\n";
+	//m_text_fps.setText(fps);
+	m_text_fps_tgui->setText(fps);
+	std::string realTime = "Real time(s) : " + std::to_string(t_duration);
+	m_text_realTime_tgui->setText(realTime);
+
+	// int tIndex = m_player.getSpellSelector().getCurrentSelection();
+	// m_text_spellSign.setText(m_player.getSpellSelector().getSpellcards()[tIndex]->getSignName());
+	// m_text_spellName.setText(m_player.getSpellSelector().getSpellcards()[tIndex]->getSpellName());
 
 	// Update reach timer
 
@@ -310,7 +364,8 @@ void Extra_DemoScreen::update(float deltaTime)
 	m_recorder.update(deltaTime);
 	m_effectBatch.update(deltaTime);
 
-
+	
+	//m_tgui->updateTime(deltaTime);
 	//Feintgine::F_ScreenCapture::Instance()->saveData();
 	
 
@@ -318,11 +373,11 @@ void Extra_DemoScreen::update(float deltaTime)
 
 void Extra_DemoScreen::draw()
 {
+
 	if (!loaded)
 	{
-
+		
 		drawLoadingScreen();
-	
 		return;
 	}
 	
@@ -330,7 +385,7 @@ void Extra_DemoScreen::draw()
 	m_frameBuffer.bind();
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//drawCustomShader();
-
+	
 
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -339,12 +394,13 @@ void Extra_DemoScreen::draw()
 	//drawBackup(); // was for debug
 
 
-	if (GlobalValueClass::Instance()->isLightBalance())
-	{
-		drawCustomShader();
-	}
+	// if (GlobalValueClass::Instance()->isLightBalance())
+	// {
+	// 	drawCustomShader();
+	// }
 
 	drawGameplay();
+
 
 	m_frameBuffer.unbind();
 
@@ -354,7 +410,11 @@ void Extra_DemoScreen::draw()
  	m_frameBufferScreen.draw();
 
  	m_frameBufferScreen.unuse();
+
+	
 	drawTimer();
+
+	
 
 	t_currentTick = SDL_GetTicks();
 	Uint32 frameTime = t_currentTick - t_prevTick;
@@ -368,6 +428,29 @@ void Extra_DemoScreen::draw()
 		//Feintgine::F_ScreenCapture::Instance()->captureScreen(1, 1);
 		t_counter = 0;
 	}
+	drawGUIText();
+}
+
+void Extra_DemoScreen::drawGUIText()
+{
+	m_tgui->draw();
+	// glViewport(0, 0, 1366, 768);
+
+	// m_imgui.begin( ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoBackground );
+
+	// m_text_realTime.update(0.1f);
+	// m_text_realTime.render();
+
+	// m_text_spellName.update(0.1f);
+	// m_text_spellName.render();
+
+	// m_text_spellSign.update(0.1f);
+	// m_text_spellSign.render();
+
+	// m_text_fps.update(0.1f);
+	// m_text_fps.render();
+
+	// m_imgui.render();
 }
 
 void Extra_DemoScreen::checkInput()
@@ -438,11 +521,11 @@ void Extra_DemoScreen::initShader()
 	// m_portalShader.linkShaders();
 
 	
-	m_portalShader.compileShaders("Shaders/MagicalShader/cloud.vert", "Shaders/MagicalShader/cloud.frag");
-	m_portalShader.addAttribute("vertexPosition");
-	m_portalShader.addAttribute("vertexColor");
-	m_portalShader.addAttribute("vertexUV");
-	m_portalShader.linkShaders();
+	// m_portalShader.compileShaders("Shaders/MagicalShader/cloud.vert", "Shaders/MagicalShader/cloud.frag");
+	// m_portalShader.addAttribute("vertexPosition");
+	// m_portalShader.addAttribute("vertexColor");
+	// m_portalShader.addAttribute("vertexUV");
+	// m_portalShader.linkShaders();
 
 
 
@@ -497,10 +580,12 @@ void Extra_DemoScreen::handleInput(Feintgine::InputManager & inputManager)
 		toggleLight();
 
 	}
-	if (inputManager.isKeyPressed(SDLK_p))
-	{
-		Feintgine::F_ScreenCapture::Instance()->manualSave();
-	}
+	// if (inputManager.isKeyPressed(SDLK_p))
+	// {
+	// 	Feintgine::F_ScreenCapture::Instance()->manualSave();
+	// }
+
+	
 
 	if (inputManager.isKeyPressed(SDLK_HOME))
 	{
@@ -672,11 +757,11 @@ void Extra_DemoScreen::handleInput(Feintgine::InputManager & inputManager)
 
 void Extra_DemoScreen::firstCheckPoint()
 {
+
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
 	
-
 	m_player.setCharacterSpell(1);
-	//m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
+	// m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
 	m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
 	
 	//m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png");
@@ -684,7 +769,7 @@ void Extra_DemoScreen::firstCheckPoint()
 	//reimu_normal_projectile   | reimu_double_projectile
 
 	m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
-	//m_player.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
+	// m_player.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
 	
 
 	// 1 HOMING, 2 Missle , 3 needles, 4 laser
@@ -722,34 +807,33 @@ void Extra_DemoScreen::firstCheckPoint()
 
 	m_pauseMenu.init();
 
-	m_CEGUI_textRenderer.initFont("ARIALUNI-18");
-
-	m_CEGUI_textRenderer2.initFont("craftmincho-20");
-
-	m_player.registerTextCEGUI(m_CEGUI_textRenderer.m_gui);
-
-	m_text_fps.init(m_CEGUI_textRenderer.m_gui, "m_text_fps", 
-		glm::vec2(glm::vec2(0.6f, 0.9f)), glm::vec2(0.15, 0.1));
-	m_text_realTime.init(m_CEGUI_textRenderer.m_gui, "m_text_realTime",
-		glm::vec2(glm::vec2(0.6f, 0.05f)), glm::vec2(0.2, 0.1));
-
-	m_text_eventTime.init(m_CEGUI_textRenderer.m_gui, "m_text_eventTime",
-		glm::vec2(glm::vec2(0.6f, 0.1f)), glm::vec2(0.2, 0.1));
 	
 
-	m_text_spellSign.init(m_CEGUI_textRenderer.m_gui, "m_text_spellSign",
-		glm::vec2(glm::vec2(0.57f, 0.7f)), glm::vec2(0.24, 0.1));
+	// m_CEGUI_textRenderer.initFont("ARIALUNI-18");
 
-	m_text_spellName.init(m_CEGUI_textRenderer.m_gui, "m_text_spellName",
-		glm::vec2(glm::vec2(0.57f, 0.75f)), glm::vec2(0.24, 0.1));
+	// m_CEGUI_textRenderer2.initFont("craftmincho-20");
+
+	//m_player.registerTextCEGUI(m_CEGUI_textRenderer.m_gui);
+
+
+
+	// m_text_eventTime.init(m_CEGUI_textRenderer.m_gui, "m_text_eventTime",
+	// 	glm::vec2(glm::vec2(0.6f, 0.1f)), glm::vec2(0.2, 0.1));
+	
+
+	// m_text_spellSign.init("m_text_spellSign",
+	// 	glm::vec2(800,500));
+
+	// m_text_spellName.init("m_text_spellSign",
+	// 	glm::vec2(800,550));
 
 	//m_text_fps.setText(L"this is a test text ");
-	m_text_fps.setAlignment(0);
-	m_text_realTime.setAlignment(0);
-	m_text_eventTime.setAlignment(0);
+	// m_text_fps.setAlignment(0);
+	// m_text_realTime.setAlignment(0);
+	// m_text_eventTime.setAlignment(0);
 
-	m_text_spellSign.setAlignment(2);
-	m_text_spellName.setAlignment(2);
+	// m_text_spellSign.setAlignment(2);
+	// m_text_spellName.setAlignment(2);
 
 	m_player.setPos(glm::vec2(25, -100));
 	m_player.reset();
@@ -767,15 +851,15 @@ void Extra_DemoScreen::firstCheckPoint()
 	m_shaderTime = 0.0;
 	//switchShader();
 
-	m_chapterLabel.initGUI(m_CEGUI_textRenderer2.m_gui,
-		m_CEGUI_textRenderer.m_gui, glm::vec2(0.1f, 0.37f));
+	// m_chapterLabel.initGUI(m_CEGUI_textRenderer2.m_gui,
+	// 	m_CEGUI_textRenderer.m_gui, glm::vec2(0.1f, 0.37f));
 
-	m_bmLabel.initGUI(m_CEGUI_textRenderer.m_gui,
-		glm::vec2(0.17f, 0.85f));
+	// m_bmLabel.initGUI(m_CEGUI_textRenderer.m_gui,
+	// 	glm::vec2(0.17f, 0.85f));
 
 	//m_chapterLabel.setText(L"Test", L"Test",2);
 
-	loaded = true;
+	
 	m_recorder.init(&m_player, &ENGINE_current_tick);
 	//startCount = true;
 
@@ -801,6 +885,10 @@ void Extra_DemoScreen::firstCheckPoint()
 	m_shaderEventHandler.addEvent(m_shaderVel);
 	m_shaderEventHandler.addEvent(m_cloudAlpha);
 	reloadLevel();
+
+	loaded = true;
+	
+
 }
 
 void Extra_DemoScreen::addExplosion(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos, const glm::vec2 & scale, const glm::vec2 & explosionRate, const Feintgine::Color & color, float depth, float liveRate /*= 0.1f*/)
@@ -810,34 +898,19 @@ void Extra_DemoScreen::addExplosion(const Feintgine::F_Sprite & sprite, const gl
 
 void Extra_DemoScreen::drawLoadingScreen()
 {
-	glViewport(0, 0, 1366, 768);
-	glm::mat4 projectionMatrix;
-	GLint pUniform;
+	// glViewport(0, 0, 1366, 768);
+	// glm::mat4 projectionMatrix;
+	// GLint pUniform;
 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	// m_imgui.begin(ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoBringToFrontOnFocus);
 
-	m_shaderNormal.use();
+	// m_text_test.render();
 
-	GLint textureUniform = m_shaderNormal.getUniformLocation("mySampler");
-	glUniform1i(textureUniform, 0);
-	glActiveTexture(GL_TEXTURE0);
+	// m_imgui.render();
 
-	projectionMatrix = m_sideCam.getCameraMatrix();
-	pUniform = m_shaderNormal.getUniformLocation("P");
-	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
-
-	char buffer2[256];
-
-	sprintf_s(buffer2, "Loading ...");
-	m_timerSpriteBatch.begin();
-	//m_spriteFont->draw(m_timerSpriteBatch, buffer2, glm::vec2(-100, 0), glm::vec2(1), 0, Feintgine::Color(255, 255, 255, 255));
-	m_timerSpriteBatch.end();
-	m_timerSpriteBatch.renderBatch();
-
-	m_shaderNormal.unuse();
 }
 
 
@@ -978,8 +1051,8 @@ void Extra_DemoScreen::drawTimer()
 
 	m_shaderNormal.unuse();
 
-	m_CEGUI_textRenderer.draw();
-	m_CEGUI_textRenderer2.draw();
+	// m_CEGUI_textRenderer.draw();
+	// m_CEGUI_textRenderer2.draw();
 }
 
 void Extra_DemoScreen::togglePause()
@@ -1186,7 +1259,7 @@ void Extra_DemoScreen::reloadLevel()
 	loadLevel("Data/stageData/levelState/demo.lvl");
 	
 	dayLight = 1.0f;
-	loaded = true;
+
 	ENGINE_current_tick = 0.0;
 
 	auto now = std::chrono::system_clock::now();
@@ -1214,7 +1287,7 @@ void Extra_DemoScreen::reloadLevel()
 
 	
 	//toggleBalanceLight();
-	GlobalValueClass::Instance()->setLightBalance(false);
+	//GlobalValueClass::Instance()->setLightBalance(false);
 
 	m_lookDir = glm::vec3(1.0f, 0, 0.f);// glm::vec3(0, 0.0f, 0.0f); glm::vec3(1.f, -0.45f, 0.f);
 	m_camVel = glm::vec3(0.0f, 0.0f, 0.0f);
@@ -1302,17 +1375,17 @@ void Extra_DemoScreen::loadLevel(const std::string & levelPath)
 			if (Prop_node)
 			{
 
-				//std::string bgm = Prop_node->first_attribute("text")->value();
-				std::wstring wbgm = feint_common::Instance()->convertStringtoWstring(Prop_node->first_attribute("text")->value());
-				unsigned time = std::stoi(Prop_node->first_attribute("time")->value());
-				m_bmLabel.setText(wbgm, 0.0f);
-				Feintgine::F_oEvent::getInstance()->add([=] {
+// 				//std::string bgm = Prop_node->first_attribute("text")->value();
+// 				std::wstring wbgm = feint_common::Instance()->convertStringtoWstring(Prop_node->first_attribute("text")->value());
+// 				unsigned time = std::stoi(Prop_node->first_attribute("time")->value());
+// 				m_bmLabel.setText(wbgm, 0.0f);
+// 				Feintgine::F_oEvent::getInstance()->add([=] {
 
-					//LivingLabel *bgml = new BGMLabel();
-					m_bmLabel.setLifeTime(5.0f);
-// 		
+// 					//LivingLabel *bgml = new BGMLabel();
+// 					m_bmLabel.setLifeTime(5.0f);
+// // 		
 
-				}, ENGINE_current_tick + time);
+// 				}, ENGINE_current_tick + time);
 			}
 
 		}
@@ -1394,20 +1467,20 @@ void Extra_DemoScreen::loadLevel(const std::string & levelPath)
 			{
 
 		
-				std::wstring wbgm = feint_common::Instance()->convertStringtoWstring(Prop_node->first_attribute("text1")->value());
-				std::wstring wbgm2 = feint_common::Instance()->convertStringtoWstring(Prop_node->first_attribute("text2")->value());
-				unsigned time = std::stoi(Prop_node->first_attribute("time")->value());
-				m_chapterLabel.setText(wbgm, wbgm2, 0.0f);
-				Feintgine::F_oEvent::getInstance()->add([=] {
+// 				std::wstring wbgm = feint_common::Instance()->convertStringtoWstring(Prop_node->first_attribute("text1")->value());
+// 				std::wstring wbgm2 = feint_common::Instance()->convertStringtoWstring(Prop_node->first_attribute("text2")->value());
+// 				unsigned time = std::stoi(Prop_node->first_attribute("time")->value());
+// 				m_chapterLabel.setText(wbgm, wbgm2, 0.0f);
+// 				Feintgine::F_oEvent::getInstance()->add([=] {
 
 
-					m_chapterLabel.setLifeTime(5.0f);
-// 					m_chapterLabel.setText(feint_common::Instance()->convertStringtoWstring(Prop_node->first_attribute("text1")->value()),
-// 						feint_common::Instance()->convertStringtoWstring(Prop_node->first_attribute("text2")->value()), 5);
+// 					m_chapterLabel.setLifeTime(5.0f);
+// // 					m_chapterLabel.setText(feint_common::Instance()->convertStringtoWstring(Prop_node->first_attribute("text1")->value()),
+// // 						feint_common::Instance()->convertStringtoWstring(Prop_node->first_attribute("text2")->value()), 5);
 
-					//std::cout << "should have seen something \n";
+// 					//std::cout << "should have seen something \n";
 
-				}, ENGINE_current_tick + time);
+// 				}, ENGINE_current_tick + time);
 			}
 
 		}

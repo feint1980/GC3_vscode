@@ -9,6 +9,7 @@ CMakeFiles/GC3.dir/src/DemoScreen2.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
@@ -99,6 +100,8 @@ CMakeFiles/GC3.dir/src/DemoScreen2.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_base.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_lockfree_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
  E:/template/GC_port/Feintgine/src/ScreenList.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/vector \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
@@ -133,6 +136,20 @@ CMakeFiles/GC3.dir/src/DemoScreen2.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
  C:/SysGCC/mingw32/include/math.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/limits \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_assert.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_atomic.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_audio.h \
@@ -278,6 +295,8 @@ CMakeFiles/GC3.dir/src/DemoScreen2.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/string_conversions.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
@@ -289,7 +308,6 @@ CMakeFiles/GC3.dir/src/DemoScreen2.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/cfloat \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/float.h \
  C:/SysGCC/mingw32/include/float.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/limits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
  C:/SysGCC/mingw32/include/assert.h \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/fwd.hpp \
@@ -366,30 +384,7 @@ CMakeFiles/GC3.dir/src/DemoScreen2.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/integer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.inl \
- E:/template/GC_port/Feintgine/src/Feintgine.h \
- E:/template/GC_port/Feintgine/src/IGameScreen.h \
- E:/template/GC_port/Feintgine/src/InputManager.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
- E:/template/GC_port/Feintgine/src/EngineSetting.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/thread \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/chrono.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
- C:/SysGCC/mingw32/include/c++/12.2.0/ctime \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/chrono \
- E:/template/GC_port/Feintgine/src/InputManager.h \
- E:/template/GC_port/Feintgine/src/Camera2D.h \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/matrix_transform.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/constants.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/constants.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/matrix_transform.inl \
+ E:/template/GC_port/Feintgine/src/F_Logger.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
@@ -413,6 +408,36 @@ CMakeFiles/GC3.dir/src/DemoScreen2.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/istream \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
+ E:/template/GC_port/Feintgine/src/Feintgine.h \
+ E:/template/GC_port/Feintgine/src/IGameScreen.h \
+ E:/template/GC_port/Feintgine/src/InputManager.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
+ E:/template/GC_port/Feintgine/src/EngineSetting.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/chrono.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ctime \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/chrono \
+ E:/template/GC_port/Feintgine/src/InputManager.h \
+ E:/template/GC_port/Feintgine/src/Camera2D.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/matrix_transform.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/constants.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/constants.inl \
+ E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/matrix_transform.inl \
  E:/template/GC_port/Feintgine/src/feint_common.h \
  C:/SysGCC/mingw32/include/fcntl.h C:/SysGCC/mingw32/include/io.h \
  C:/SysGCC/mingw32/include/windows.h \
@@ -517,7 +542,6 @@ CMakeFiles/GC3.dir/src/DemoScreen2.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/time_members.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/messages_members.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_conv.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
@@ -539,6 +563,7 @@ CMakeFiles/GC3.dir/src/DemoScreen2.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/algorithmfwd.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_heap.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/map \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
@@ -595,12 +620,10 @@ CMakeFiles/GC3.dir/src/DemoScreen2.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/functional \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/array \
+ C:/SysGCC/mingw32/include/c++/12.2.0/compare \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map_type_handler.h \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/extension_set.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
  E:/template/GC_port/Feintgine/src/GUI.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/CEGUI.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Affector.h \

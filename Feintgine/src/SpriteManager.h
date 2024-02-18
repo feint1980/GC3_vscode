@@ -6,6 +6,7 @@
 #include <dirent.h>
 #include <thread>
 #include <vector>
+#include <async++.h>
 namespace Feintgine {
 
 	class SpriteManager
@@ -39,7 +40,6 @@ namespace Feintgine {
 		std::map<std::string, SpritePacket > getPacketMap() const { return m_SpritePackets; }
 
 		void executeReadData();
-
 
 	private:
 

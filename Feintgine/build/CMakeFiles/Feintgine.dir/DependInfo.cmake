@@ -47,6 +47,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/template/GC_port/Feintgine/src/F_Dialouge_Handler.cpp" "CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/F_EmptyObject.cpp" "CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/F_Event.cpp" "CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/F_IMGUI.cpp" "CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/F_Logger.cpp" "CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/F_LuaDynamicObject.cpp" "CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/F_LuaObjectManager.cpp" "CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/F_LuaObjectManipulator.cpp" "CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj.d"
@@ -108,6 +110,14 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/template/GC_port/Feintgine/src/XMLParser.cpp" "CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/f_uvobject.cpp" "CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/feint_common.cpp" "CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/imgui.cpp" "CMakeFiles/Feintgine.dir/src/imgui.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/imgui.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/imgui_demo.cpp" "CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/imgui_draw.cpp" "CMakeFiles/Feintgine.dir/src/imgui_draw.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/imgui_draw.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/imgui_freetype.cpp" "CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/imgui_impl_opengl3.cpp" "CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/imgui_impl_sdl2.cpp" "CMakeFiles/Feintgine.dir/src/imgui_impl_sdl2.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/imgui_impl_sdl2.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/imgui_tables.cpp" "CMakeFiles/Feintgine.dir/src/imgui_tables.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/imgui_tables.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/imgui_widgets.cpp" "CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/lbwraptext.cpp" "CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/objectData.pb.cpp" "CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/picoPNGcpp.cpp" "CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj.d"
@@ -116,6 +126,10 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
 
 # Targets to which this target links which contain Fortran sources.
 set(CMAKE_Fortran_TARGET_LINKED_INFO_FILES
+  )
+
+# Targets to which this target links which contain Fortran sources.
+set(CMAKE_Fortran_TARGET_FORWARD_LINKED_INFO_FILES
   )
 
 # Fortran module output directory.

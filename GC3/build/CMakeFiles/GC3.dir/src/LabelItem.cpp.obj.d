@@ -30,6 +30,7 @@ CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
  C:/SysGCC/mingw32/include/stdlib.h \
  C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
  C:/SysGCC/mingw32/include/sec_api/stdlib_s.h \
@@ -63,18 +64,46 @@ CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
  C:/SysGCC/mingw32/include/math.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/limits \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/climits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cfloat \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/float.h \
  C:/SysGCC/mingw32/include/float.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/limits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
  C:/SysGCC/mingw32/include/assert.h \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/fwd.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_int.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/setup.hpp \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
- C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_float.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_vec.hpp \
@@ -151,21 +180,6 @@ CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/map \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocator.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++allocator.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
@@ -178,6 +192,7 @@ CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/initializer_list \
  C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
@@ -232,11 +247,13 @@ CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/string_conversions.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/charconv.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
@@ -257,6 +274,12 @@ CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/istream \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
  E:/template/GC_port/Feintgine/src/GLSLProgram.h \
+ E:/template/GC_port/Feintgine/src/F_Logger.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
  E:/template/GC_port/Feintgine/src/Camera2D.h \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/matrix_transform.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/constants.hpp \
@@ -513,7 +536,6 @@ CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/ctime \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/time_members.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/messages_members.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_conv.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
@@ -538,6 +560,8 @@ CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_heap.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/memory \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_uninitialized.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_raw_storage_iter.h \
@@ -550,6 +574,7 @@ CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/concurrence.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/set \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_set.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multiset.h \
@@ -609,12 +634,10 @@ CMakeFiles/GC3.dir/src/LabelItem.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/functional \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/array \
+ C:/SysGCC/mingw32/include/c++/12.2.0/compare \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map_type_handler.h \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/extension_set.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
  E:/template/GC_port/Feintgine/src/GUI.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/CEGUI.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Affector.h \

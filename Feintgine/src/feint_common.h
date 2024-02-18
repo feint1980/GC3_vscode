@@ -89,6 +89,8 @@ public:
 
 	std::string convertVec3toString(const glm::vec3 & t_value);
 
+	std::string convertVec4toString(const glm::vec4 & t_value);
+
 	std::string convertiVec2toString(const glm::ivec2 & t_value);
 
 	CEGUI::String WCharToUTF8(std::wstring const &s);

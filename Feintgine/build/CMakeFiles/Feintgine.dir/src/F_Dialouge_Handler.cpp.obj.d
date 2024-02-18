@@ -841,6 +841,7 @@ CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: \
  E:\template\GC_port\Feintgine\src\InputManager.h \
  E:\template\GC_port\Feintgine\src\EmptyObject.h \
  E:\template\GC_port\Feintgine\src\GLSLProgram.h \
+ E:\template\GC_port\Feintgine\src\F_Logger.h \
  E:\template\GC_port\Feintgine\src\Camera2D.h \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/matrix_transform.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/constants.hpp \
@@ -848,4 +849,9 @@ CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/matrix_transform.inl \
  E:\template\GC_port\Feintgine\src\DebugRender.h \
  E:\template\GC_port\Feintgine\src\LightBatch.h \
- E:\template\GC_port\Feintgine\src\EGUI_DrawElement.h
+ E:\template\GC_port\Feintgine\src\EGUI_DrawElement.h \
+ E:\template\GC_port\Feintgine\src\imgui.h \
+ E:\template\GC_port\Feintgine\src\imconfig.h \
+ E:\template\GC_port\Feintgine\src\imgui_impl_sdl2.h \
+ E:\template\GC_port\Feintgine\src\imgui_impl_opengl3.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/stb_image.h

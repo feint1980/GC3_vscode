@@ -323,7 +323,7 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/integer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.inl \
- E:\template\GC_port\Feintgine\src\Error.h \
+ E:\template\GC_port\Feintgine\src\F_Logger.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
@@ -364,6 +364,12 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/istream \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
+ E:\template\GC_port\Feintgine\src\Error.h \
  E:\template\GC_port\Feintgine\src\feint_common.h \
  C:/SysGCC/mingw32/include/fcntl.h C:/SysGCC/mingw32/include/io.h \
  C:/SysGCC/mingw32/include/windows.h \
@@ -469,7 +475,6 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/ctime \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/time_members.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/messages_members.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_conv.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
@@ -580,10 +585,6 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map_type_handler.h \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/extension_set.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
  E:\template\GC_port\Feintgine\src\GUI.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/CEGUI.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Affector.h \

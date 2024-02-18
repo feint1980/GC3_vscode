@@ -105,19 +105,24 @@ namespace Feintgine{
 		if (_sdlWindow == nullptr)
 		{
 			fatalError("ko tao dc , chac thieu RAM !");
+			F_Logger::Instance()->writeLog("ko tao dc , chac thieu RAM !");
 		}
 	 
 		glContext = SDL_GL_CreateContext(_sdlWindow);
 		if (glContext == nullptr)
 		{
 			fatalError("ko tao dc context OPENGL , chac card cui` ! ");
+			F_Logger::Instance()->writeLog("ko tao dc context OPENGL , chac card cui` ! ");
 		}
 		GLenum error = glewInit();
 		if (error != GLEW_OK)
 		{
 			fatalError("glew co van de ");
+			F_Logger::Instance()->writeLog("glew co van de ");
 		}
 		std::cout << "context is " << glContext << "\n";
+		F_Logger::Instance()->writeLog("context is " + std::to_string((int)glContext));
+		F_Logger::Instance()->writeLog("Window create has no problem");
 
 		glClearColor(0, 0, 0, 0);
 		glEnable(GL_BLEND);

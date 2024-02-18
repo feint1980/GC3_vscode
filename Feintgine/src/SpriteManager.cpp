@@ -26,13 +26,13 @@ namespace Feintgine {
 	void SpriteManager::loadSpritePacket(const std::string & filePath)
 	{
 		//m_Mutex.lock();
+
 		SpritePacket spritePacket;
 		//spritePacket = new SpritePacket();
 		//m_Mutex.lock();
 		spritePacket.loadPacket(filePath);
 		std::string packetKey = filePath;
 		packetKey = feint_common::Instance()->getFileNameFromPath(packetKey);
-		
 		
 		m_SpritePackets.insert(std::make_pair(packetKey.c_str(), spritePacket));
 		//m_Mutex.unlock();
@@ -101,7 +101,14 @@ namespace Feintgine {
 					{
 
 						// m_Threads.push_back(std::thread(&SpriteManager::loadSpritePacket, this, texturePath.c_str()));
-						 loadSpritePacket(texturePath.c_str());
+						 loadSpritePacket(texturePath.c_str()); // sync
+
+						//  auto task = async::spawn([&]
+						//  {
+						// 	 loadSpritePacket(texturePath.c_str());
+						//  }
+						//  );
+						//  task.get();
 						 //std::thread t(&SpriteManager::loadSpritePacket, this, texturePath.c_str());
 						 //t.detach();
 					}

@@ -857,4 +857,10 @@ CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/freetype/fterrdef.h \
  E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftglyph.h \
  E:\template\GC_port\Feintgine\src\GLSLProgram.h \
- E:\template\GC_port\Feintgine\src\EGUI_DrawElement.h
+ E:\template\GC_port\Feintgine\src\F_Logger.h \
+ E:\template\GC_port\Feintgine\src\EGUI_DrawElement.h \
+ E:\template\GC_port\Feintgine\src\imgui.h \
+ E:\template\GC_port\Feintgine\src\imconfig.h \
+ E:\template\GC_port\Feintgine\src\imgui_impl_sdl2.h \
+ E:\template\GC_port\Feintgine\src\imgui_impl_opengl3.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/stb_image.h

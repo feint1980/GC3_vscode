@@ -9,6 +9,7 @@
 #include <GL/glew.h>
 #include <string>
 #include <glm/glm.hpp>
+#include "F_Logger.h"
 
 namespace Feintgine{
 

@@ -64,6 +64,9 @@
 #include "F_PlayerRecorder.h"
 #include "F_RecordPlayer.h"
 
+
+#include <EGUI_DrawElement.h>	
+
 #include "GlobalValueClass.h"
 
 #include "BulletManupilator.h"
@@ -71,6 +74,13 @@
 #include <F_ShaderEventHandler.h>
 
 #include <F_ScreenCapture.h>
+
+#include <F_IMGUI.h>
+
+#include <async++.h>
+
+#include <TGUI/TGUI.hpp>
+#include <TGUI/Backend/SDL-TTF-OpenGL3.hpp>
 
 
 enum ShaderValueType
@@ -81,9 +91,6 @@ enum ShaderValueType
 	T_Vec3,
 	T_Undefined
 };
-
-
-
 
 
 class Extra_DemoScreen : public Feintgine::IGameScreen
@@ -124,6 +131,8 @@ public:
 	void drawBackground();
 
 	void drawTimer();
+
+	void drawGUIText();
 
 	void drawCustomShader();
 
@@ -289,26 +298,30 @@ protected :
 
 	Feintgine::F_ScreenCapture m_capture;
 
-	CEGUI_TextRenderer m_CEGUI_textRenderer;
-	CEGUI_TextRenderer m_CEGUI_textRenderer2;
+	//CEGUI_TextRenderer m_CEGUI_textRenderer;
+	//CEGUI_TextRenderer m_CEGUI_textRenderer2;
 	KanjiEffectManager m_kanjiEffectManager;
 
 
-	// text render fix
-	EGUI_DrawElement m_text_realTime;
-	EGUI_DrawElement m_text_fps;
-	EGUI_DrawElement m_text_eventTime;
 
-	EGUI_DrawElement m_text_spellName;
-	EGUI_DrawElement m_text_spellSign;
+	// text render fix
+	// EGUI_DrawElement m_text_realTime;
+	tgui::Label::Ptr m_text_realTime_tgui;
+	// EGUI_DrawElement m_text_fps;
+	tgui::Label::Ptr m_text_fps_tgui;
+	// EGUI_DrawElement m_text_eventTime;
+	// EGUI_DrawElement m_text_test;
+
+	// EGUI_DrawElement m_text_spellName;
+	// EGUI_DrawElement m_text_spellSign;
 
 	// portal shader effect
 	float m_reachTimer = 0.0f;
 	int m_reach = 100;
 	float m_portalAlpha = 0.0f;
 
-	CEGUI_ChapterLabel m_chapterLabel;
-	CEGUI_BGMLabel m_bmLabel;
+	// CEGUI_ChapterLabel m_chapterLabel;
+	// CEGUI_BGMLabel m_bmLabel;
 
 	LinkCreator m_linkCreator;
 
@@ -364,5 +377,11 @@ protected :
 	Feintgine::EffectBatch m_effectBatch;
 
 	BulletManupilator bulletManipulator;
+
+	tgui::Gui * m_tgui;
+
+
+	//Feintgine::F_IMGUI m_imgui;
+	
 };
 

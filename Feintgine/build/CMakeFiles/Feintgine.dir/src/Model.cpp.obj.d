@@ -261,6 +261,7 @@ CMakeFiles/Feintgine.dir/src/Model.cpp.obj: \
  C:/SysGCC/mingw32/include/inttypes.h C:/SysGCC/mingw32/include/GL/glu.h \
  C:/SysGCC/mingw32/include/GL/gl.h \
  E:\template\GC_port\Feintgine\src\GLSLProgram.h \
+ E:\template\GC_port\Feintgine\src\F_Logger.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ios \

@@ -735,6 +735,10 @@ CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_locale.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_misc.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
+ E:\template\GC_port\Feintgine\src\imgui.h \
+ E:\template\GC_port\Feintgine\src\imconfig.h \
+ E:\template\GC_port\Feintgine\src\imgui_impl_sdl2.h \
+ E:\template\GC_port\Feintgine\src\imgui_impl_opengl3.h \
  E:\template\GC_port\Feintgine\src\feint_common.h \
  C:/SysGCC/mingw32/include/fcntl.h C:/SysGCC/mingw32/include/io.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/locale \
@@ -824,4 +828,5 @@ CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/functional \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map_type_handler.h \
- E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/extension_set.h
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/extension_set.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/stb_image.h

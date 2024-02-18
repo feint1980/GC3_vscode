@@ -6,6 +6,7 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/memoryfwd.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/char_traits.h \
@@ -71,6 +72,10 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/string_conversions.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
  C:/SysGCC/mingw32/include/stdlib.h C:/SysGCC/mingw32/include/limits.h \
@@ -83,8 +88,6 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/charconv.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc \
  E:/template/GC_port/Feintgine_GC_deps/include/GL/glew.h \
  C:/SysGCC/mingw32/include/inttypes.h C:/SysGCC/mingw32/include/GL/glu.h \
@@ -93,11 +96,24 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/_fixes.hpp \
  C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
  C:/SysGCC/mingw32/include/math.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/limits \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/climits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cfloat \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/float.h \
  C:/SysGCC/mingw32/include/float.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/limits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
  C:/SysGCC/mingw32/include/assert.h \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/fwd.hpp \
@@ -174,11 +190,7 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/integer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.inl \
- E:/template/GC_port/Feintgine/src/Camera2D.h \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/matrix_transform.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/constants.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/constants.inl \
- E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/matrix_transform.inl \
+ E:/template/GC_port/Feintgine/src/F_Logger.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
@@ -223,6 +235,16 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/istream \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
+ E:/template/GC_port/Feintgine/src/Camera2D.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/matrix_transform.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/constants.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/constants.inl \
+ E:/template/GC_port/Feintgine_GC_deps/include/glm/gtc/matrix_transform.inl \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_main.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_stdinc.h \
@@ -377,6 +399,7 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
  E:/template/GC_port/Feintgine/src/feint_common.h \
@@ -484,7 +507,6 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/ctime \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/time_members.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/messages_members.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_conv.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
@@ -509,6 +531,8 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_heap.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/map \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
@@ -525,6 +549,7 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/concurrence.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/set \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_set.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multiset.h \
@@ -584,12 +609,10 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/functional \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/array \
+ C:/SysGCC/mingw32/include/c++/12.2.0/compare \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map_type_handler.h \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/extension_set.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
  E:/template/GC_port/Feintgine/src/GUI.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/CEGUI.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Affector.h \
@@ -902,7 +925,24 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/rapidxml_print.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/dirent.h \
- C:/SysGCC/mingw32/include/sys/stat.h C:/SysGCC/mingw32/include/memory.h \
+ C:/SysGCC/mingw32/include/sys/stat.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/traits.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/aligned_alloc.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/ref_count.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/scheduler_fwd.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/continuation_vector.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/task_base.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/scheduler.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/task.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/when_all_any.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/cancel.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/range.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/partitioner.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_invoke.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_for.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_reduce.h \
+ C:/SysGCC/mingw32/include/memory.h \
  E:/template/GC_port/Feintgine/src/LightBatch.h \
  E:/template/GC_port/Feintgine/src/F_oEvent.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/queue \
@@ -981,6 +1021,11 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  E:/template/GC_port/Feintgine/src/F_SpellcardBase.h \
  E:/template/GC_port/Feintgine/src/AudioEngine.h \
  E:/template/GC_port/Feintgine/src/EGUI_DrawElement.h \
+ E:/template/GC_port/Feintgine/src/imgui.h \
+ E:/template/GC_port/Feintgine/src/imconfig.h \
+ E:/template/GC_port/Feintgine/src/imgui_impl_sdl2.h \
+ E:/template/GC_port/Feintgine/src/imgui_impl_opengl3.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/stb_image.h \
  E:\template\GC_port\GC3\src\F_Reimu_Fantasy_Seal_Obj.h \
  E:\template\GC_port\GC3\src\ExplosionRing.h \
  E:\template\GC_port\GC3\src\SpellcardSelector.h \
@@ -1043,4 +1088,187 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  E:/template/GC_port/Feintgine/src/F_ShaderEventBase.h \
  E:/template/GC_port/Feintgine/src/F_ShaderEvent_Vec3.h \
  E:/template/GC_port/Feintgine/src/F_ScreenCapture.h \
- E:/template/GC_port/Feintgine_GC_deps/include/FreeImage.h
+ E:/template/GC_port/Feintgine_GC_deps/include/FreeImage.h \
+ E:/template/GC_port/Feintgine/src/F_IMGUI.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_opengl.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/TGUI.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Core.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Animation.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Layout.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Config.hpp \
+ C:/SysGCC/mingw32/include/c++/12.2.0/version \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Vector2.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/String.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/StringView.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Utf.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Duration.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Cursor.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Timer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Optional.hpp \
+ C:/SysGCC/mingw32/include/c++/12.2.0/optional \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widget.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Signal.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Global.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Exception.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Font.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Rect.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Filesystem.hpp \
+ C:/SysGCC/mingw32/include/c++/12.2.0/filesystem \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_fwd.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_path.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_dir.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_ops.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Color.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Vertex.hpp \
+ C:/SysGCC/mingw32/include/c++/12.2.0/typeindex \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Sprite.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Texture.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/TextureData.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/SvgImage.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Renderer/BackendTexture.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/RenderStates.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Transform.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Event.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Any.hpp \
+ C:/SysGCC/mingw32/include/c++/12.2.0/any \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Renderer/BackendRenderTarget.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Text.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/TextStyle.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Outline.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/AbsoluteOrRelativeValue.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Loading/Theme.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Loading/ThemeLoader.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Loading/DataIO.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/WidgetRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/ObjectConverter.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Variant.hpp \
+ C:/SysGCC/mingw32/include/c++/12.2.0/variant \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Loading/Serializer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Loading/Deserializer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/SmartPtr/CopiedPtr.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/SmartPtr/ClonersAndDeleters.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/Meta/Templates.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/Config.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/SmartPtr/Detail/PtrOwner.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/Tools/NonCopyable.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/Tools/SafeBool.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/Tools/Swap.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/Tools/Downcast.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/ToolTip.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Container.hpp \
+ C:/SysGCC/mingw32/include/c++/12.2.0/list \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_list.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/list.tcc \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/SubwidgetContainer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/Group.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/GroupRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/CopiedSharedPtr.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Window/Backend.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Font/BackendFont.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Font/BackendFontFactory.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Renderer/BackendText.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Renderer/BackendRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Window/BackendGui.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/RelFloatRect.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/TwoFingerScrollDetect.hpp \
+ C:/SysGCC/mingw32/include/c++/12.2.0/stack \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_stack.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Loading/WidgetFactory.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/AllWidgets.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/BitmapButton.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/Button.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/ButtonBase.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/ButtonRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/ClickableWidget.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Components.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/ChatBox.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/Scrollbar.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/ScrollbarRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/ChatBoxRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/CheckBox.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/CheckBoxRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/RadioButtonRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/RadioButton.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/ChildWindow.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/ChildWindowRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/ColorPicker.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/Slider.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/SliderRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/Panel.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/PanelRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/ColorPickerRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/ComboBox.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/ListBox.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/ListBoxRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/ComboBoxRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/EditBox.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/EditBoxRenderer.hpp \
+ C:/SysGCC/mingw32/include/c++/12.2.0/regex \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bitset \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_constants.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_error.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_automaton.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_automaton.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_scanner.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_scanner.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_compiler.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_compiler.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_executor.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_executor.tcc \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/FileDialog.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/Label.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/LabelRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/ListView.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/ListViewRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/FileDialogRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/Grid.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/HorizontalLayout.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/BoxLayoutRatios.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/BoxLayout.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/BoxLayoutRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/HorizontalWrap.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/Knob.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/KnobRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/MenuBar.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/MenuBarRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/MessageBox.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/MessageBoxRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/PanelListBox.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/ScrollablePanel.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/ScrollablePanelRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/PanelListBoxRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/Picture.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/PictureRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/ProgressBar.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/ProgressBarRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/RadioButtonGroup.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/RangeSlider.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/RangeSliderRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/RichTextLabel.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/SeparatorLine.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/SeparatorLineRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/SpinButton.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/SpinButtonRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/SpinControl.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/Tabs.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/TabsRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/TabContainer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/TextArea.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/TextAreaRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/ToggleButton.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/TreeView.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/TreeViewRenderer.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/VerticalLayout.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/SDL-TTF-OpenGL3.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Window/SDL/BackendSDL.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/extlibs/IncludeSDL.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Window/SDL/BackendGuiSDL.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_touch.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Renderer/OpenGL3/BackendRendererOpenGL3.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Renderer/OpenGL3/BackendTextureOpenGL3.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Renderer/OpenGL3/BackendRenderTargetOpenGL3.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Renderer/OpenGL3/CanvasOpenGL3.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/CanvasBase.hpp \
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Font/SDL_ttf/BackendFontSDLttf.hpp

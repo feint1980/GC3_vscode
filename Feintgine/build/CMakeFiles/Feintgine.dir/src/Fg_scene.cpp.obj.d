@@ -326,6 +326,12 @@ CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/GL/glew.h \
  C:/SysGCC/mingw32/include/inttypes.h C:/SysGCC/mingw32/include/GL/glu.h \
  C:/SysGCC/mingw32/include/GL/gl.h \
+ E:\template\GC_port\Feintgine\src\F_Logger.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
  E:\template\GC_port\Feintgine\src\F_Object.h \
  E:\template\GC_port\Feintgine\src\F_Sprite.h \
  E:\template\GC_port\Feintgine\src\SpriteBatch.h \
@@ -335,11 +341,6 @@ CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: \
  E:\template\GC_port\Feintgine\src\GLTexture.h \
  E:\template\GC_port\Feintgine\src\ResourceManager.h \
  E:\template\GC_port\Feintgine\src\TextureCache.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
  E:\template\GC_port\Feintgine\src\IOFileCache.h \
  E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp \
  E:\template\GC_port\Feintgine\src\ColiderBox.h \
@@ -850,6 +851,22 @@ CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/thread \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/traits.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/aligned_alloc.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/ref_count.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/scheduler_fwd.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/continuation_vector.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/task_base.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/scheduler.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/task.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/when_all_any.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/cancel.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/range.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/partitioner.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_invoke.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_for.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_reduce.h \
  E:\template\GC_port\Feintgine\src\TextRenderer.h \
  E:\template\GC_port\Feintgine\src\Feintgine.h \
  E:/template/GC_port/Feintgine_GC_deps/include/ft2build.h \

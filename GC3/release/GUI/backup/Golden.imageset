@@ -1,5 +1,0 @@
-<Imageset autoScaled="true" imagefile="Golden_UI.png" name="Unknown" nativeHorzRes="800" nativeVertRes="600" version="2">
-    <Image height="26" name="ButtonLeft" width="40" xPos="633" yPos="24" />
-    <Image height="24" name="ButtonMiddle" width="40" xPos="675" yPos="25" />
-    <Image height="23" name="ButtonRight" width="40" xPos="716" yPos="25" />
-</Imageset>

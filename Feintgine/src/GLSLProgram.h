@@ -5,7 +5,7 @@
 #include <string>
 #include <GL/glew.h>
 #include <glm/glm.hpp>
-
+#include "F_Logger.h"
 namespace Feintgine {
 
 	//This class handles the compilation, linking, and usage of a GLSL shader program.

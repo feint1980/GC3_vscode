@@ -407,14 +407,12 @@ void F_Player::handleInput(Feintgine::InputManager & inputmanager)
 
 			m_vel.y = 0;
 		}
-
-
 		else
 		{
 
-			m_leftAccessory.setBoolFocus(false);
-			m_rightAccessory.setBoolFocus(false);
-			m_suns.setFocus(false);
+			// m_leftAccessory.setBoolFocus(false);
+			// m_rightAccessory.setBoolFocus(false);
+			// m_suns.setFocus(false);
 
 		}
 

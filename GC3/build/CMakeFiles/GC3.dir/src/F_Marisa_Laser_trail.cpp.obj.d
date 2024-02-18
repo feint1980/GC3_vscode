@@ -7,6 +7,7 @@ CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
@@ -63,11 +64,24 @@ CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: \
  C:/SysGCC/mingw32/include/malloc.h \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mm_malloc.h \
  C:/SysGCC/mingw32/include/errno.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/limits \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/climits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cfloat \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/float.h \
  C:/SysGCC/mingw32/include/float.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/limits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
  C:/SysGCC/mingw32/include/assert.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
@@ -173,6 +187,8 @@ CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/string_conversions.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
@@ -181,26 +197,7 @@ CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/GL/glew.h \
  C:/SysGCC/mingw32/include/inttypes.h C:/SysGCC/mingw32/include/GL/glu.h \
  C:/SysGCC/mingw32/include/GL/gl.h \
- E:\template\GC_port\GC3\src\F_BaseEnemy.h \
- E:/template/GC_port/Feintgine/src/SpriteBatch.h \
- E:/template/GC_port/Feintgine/src/Vertex.h \
- E:/template/GC_port/Feintgine/src/Vector2.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
- E:/template/GC_port/Feintgine/src/GLTexture.h \
- E:/template/GC_port/Feintgine/src/F_AnimatedObject.h \
- E:/template/GC_port/Feintgine/src/F_Sprite.h \
- E:/template/GC_port/Feintgine/src/SpriteBatch.h \
- E:/template/GC_port/Feintgine/src/GLTexture.h \
- E:/template/GC_port/Feintgine/src/ResourceManager.h \
- E:/template/GC_port/Feintgine/src/TextureCache.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/map \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multimap.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
+ E:/template/GC_port/Feintgine/src/F_Logger.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
@@ -250,6 +247,27 @@ CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
+ E:\template\GC_port\GC3\src\F_BaseEnemy.h \
+ E:/template/GC_port/Feintgine/src/SpriteBatch.h \
+ E:/template/GC_port/Feintgine/src/Vertex.h \
+ E:/template/GC_port/Feintgine/src/Vector2.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+ E:/template/GC_port/Feintgine/src/GLTexture.h \
+ E:/template/GC_port/Feintgine/src/F_AnimatedObject.h \
+ E:/template/GC_port/Feintgine/src/F_Sprite.h \
+ E:/template/GC_port/Feintgine/src/SpriteBatch.h \
+ E:/template/GC_port/Feintgine/src/GLTexture.h \
+ E:/template/GC_port/Feintgine/src/ResourceManager.h \
+ E:/template/GC_port/Feintgine/src/TextureCache.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/map \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multimap.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
  E:/template/GC_port/Feintgine/src/IOFileCache.h \
  E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp \
  E:/template/GC_port/Feintgine/src/objectData.pb.h \
@@ -271,6 +289,8 @@ CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_heap.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/memory \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_raw_storage_iter.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/align.h \
@@ -282,6 +302,7 @@ CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/concurrence.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/set \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_set.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multiset.h \
@@ -343,6 +364,8 @@ CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/functional \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/array \
+ C:/SysGCC/mingw32/include/c++/12.2.0/compare \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map_type_handler.h \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/extension_set.h \
  E:/template/GC_port/Feintgine/src/Error.h \
@@ -852,6 +875,22 @@ CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/thread \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/traits.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/aligned_alloc.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/ref_count.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/scheduler_fwd.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/continuation_vector.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/task_base.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/scheduler.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/task.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/when_all_any.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/cancel.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/range.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/partitioner.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_invoke.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_for.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_reduce.h \
  C:/SysGCC/mingw32/include/memory.h \
  E:/template/GC_port/Feintgine/src/feint_common.h \
  E:/template/GC_port/Feintgine/src/F_oEvent.h \
@@ -971,6 +1010,11 @@ CMakeFiles/GC3.dir/src/F_Marisa_Laser_trail.cpp.obj: \
  E:/template/GC_port/Feintgine/src/F_SpellcardBase.h \
  E:/template/GC_port/Feintgine/src/AudioEngine.h \
  E:/template/GC_port/Feintgine/src/EGUI_DrawElement.h \
+ E:/template/GC_port/Feintgine/src/imgui.h \
+ E:/template/GC_port/Feintgine/src/imconfig.h \
+ E:/template/GC_port/Feintgine/src/imgui_impl_sdl2.h \
+ E:/template/GC_port/Feintgine/src/imgui_impl_opengl3.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/stb_image.h \
  E:\template\GC_port\GC3\src\F_Reimu_Fantasy_Seal_Obj.h \
  E:\template\GC_port\GC3\src\ExplosionRing.h \
  E:\template\GC_port\GC3\src\SpellcardSelector.h \

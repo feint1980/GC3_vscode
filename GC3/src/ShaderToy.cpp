@@ -1398,12 +1398,12 @@ void ShaderToy::firstCheckPoint()
 
 	//m_sdlTextrenderer.init("font/ARIALUNI.ttf", 30);
 	m_pauseMenu.init();
- 	m_CEGUI_textRenderer.initFont("DejaVuSans-12_a");
+ 	m_CEGUI_textRenderer.addFont("DejaVuSans-12_a");
 //  	m_CEGUI_textRenderer.addTextObject("Score",
 //  		glm::vec2(0.6, 0.2), glm::vec2(0.4,0.1), L"[colour='FF51F0FF'] Thật không thể tin được");
 
 
-	m_player.registerTextCEGUI(m_CEGUI_textRenderer.m_gui);
+//	m_player.registerTextCEGUI(m_CEGUI_textRenderer.m_gui);
 	
 // 	m_boss.init("Assets/F_AObjects/boss_eiki.xml", "", "Data/stageData/dialouges/testDialouge.dlg");
 // 	m_boss.registerTextGUI(m_CEGUI_textRenderer.m_gui, "m_bosssadsadasdasd",

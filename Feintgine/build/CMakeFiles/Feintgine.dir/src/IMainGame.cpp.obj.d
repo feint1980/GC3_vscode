@@ -462,25 +462,7 @@ CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/integer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.inl \
- E:\template\GC_port\Feintgine\src\Feintgine.h \
- E:\template\GC_port\Feintgine\src\IGameScreen.h \
- E:\template\GC_port\Feintgine\src\InputManager.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
- E:\template\GC_port\Feintgine\src\EngineSetting.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/thread \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/chrono.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
- C:/SysGCC/mingw32/include/c++/12.2.0/ctime \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/chrono \
- E:\template\GC_port\Feintgine\src\Timing.h \
+ E:\template\GC_port\Feintgine\src\F_Logger.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
@@ -504,6 +486,30 @@ CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/istream \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
+ E:\template\GC_port\Feintgine\src\Feintgine.h \
+ E:\template\GC_port\Feintgine\src\IGameScreen.h \
+ E:\template\GC_port\Feintgine\src\InputManager.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
+ E:\template\GC_port\Feintgine\src\EngineSetting.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/chrono.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ctime \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/chrono \
+ E:\template\GC_port\Feintgine\src\Timing.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/algorithmfwd.h \
@@ -518,9 +524,4 @@ CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/deque.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_queue.h \
  E:\template\GC_port\Feintgine\src\F_ScreenCapture.h \
- E:/template/GC_port/Feintgine_GC_deps/include/FreeImage.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc
+ E:/template/GC_port/Feintgine_GC_deps/include/FreeImage.h

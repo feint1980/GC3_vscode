@@ -180,6 +180,7 @@ CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj: \
  C:/SysGCC/mingw32/include/inttypes.h C:/SysGCC/mingw32/include/GL/glu.h \
  C:/SysGCC/mingw32/include/GL/gl.h \
  E:\template\GC_port\Feintgine\src\GLSLProgram.h \
+ E:\template\GC_port\Feintgine\src\F_Logger.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
@@ -223,4 +224,9 @@ CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/istream \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc

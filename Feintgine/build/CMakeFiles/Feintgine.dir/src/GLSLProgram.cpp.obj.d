@@ -173,6 +173,56 @@ CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/integer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.inl \
+ E:\template\GC_port\Feintgine\src\F_Logger.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ios \
+ C:/SysGCC/mingw32/include/c++/12.2.0/exception \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/ios_base.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr-default.h \
+ C:/SysGCC/mingw32/include/pthread.h \
+ C:/SysGCC/mingw32/include/sys/types.h \
+ C:/SysGCC/mingw32/include/process.h \
+ C:/SysGCC/mingw32/include/corecrt_startup.h \
+ C:/SysGCC/mingw32/include/signal.h \
+ C:/SysGCC/mingw32/include/pthread_signal.h \
+ C:/SysGCC/mingw32/include/time.h C:/SysGCC/mingw32/include/sys/timeb.h \
+ C:/SysGCC/mingw32/include/sec_api/sys/timeb_s.h \
+ C:/SysGCC/mingw32/include/_timeval.h \
+ C:/SysGCC/mingw32/include/pthread_time.h \
+ C:/SysGCC/mingw32/include/pthread_compat.h \
+ C:/SysGCC/mingw32/include/pthread_unistd.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/atomic_word.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/error_constants.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
+ C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/cwctype \
+ C:/SysGCC/mingw32/include/wctype.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_base.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_inline.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
  E:\template\GC_port\Feintgine\src\Error.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_main.h \
@@ -181,7 +231,6 @@ CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_platform.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/begin_code.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/close_code.h \
- C:/SysGCC/mingw32/include/sys/types.h \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdarg.h \
  C:/SysGCC/mingw32/include/stdarg.h \
  C:/SysGCC/mingw32/include/_mingw_stdarg.h \
@@ -196,8 +245,6 @@ CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_endian.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_mutex.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_thread.h \
- C:/SysGCC/mingw32/include/process.h \
- C:/SysGCC/mingw32/include/corecrt_startup.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_rwops.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_clipboard.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_cpuinfo.h \
@@ -323,54 +370,9 @@ CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_version.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_locale.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_misc.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
- C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
- C:/SysGCC/mingw32/include/c++/12.2.0/ios \
- C:/SysGCC/mingw32/include/c++/12.2.0/exception \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/ios_base.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr-default.h \
- C:/SysGCC/mingw32/include/pthread.h C:/SysGCC/mingw32/include/signal.h \
- C:/SysGCC/mingw32/include/pthread_signal.h \
- C:/SysGCC/mingw32/include/time.h C:/SysGCC/mingw32/include/sys/timeb.h \
- C:/SysGCC/mingw32/include/sec_api/sys/timeb_s.h \
- C:/SysGCC/mingw32/include/_timeval.h \
- C:/SysGCC/mingw32/include/pthread_time.h \
- C:/SysGCC/mingw32/include/pthread_compat.h \
- C:/SysGCC/mingw32/include/pthread_unistd.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/atomic_word.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.tcc \
- C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/error_constants.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
- C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/cwctype \
- C:/SysGCC/mingw32/include/wctype.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_base.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_inline.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.tcc \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.tcc \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
- C:/SysGCC/mingw32/include/c++/12.2.0/istream \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
  E:\template\GC_port\Feintgine\src\IOManager.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/vector \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_uninitialized.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
- C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc

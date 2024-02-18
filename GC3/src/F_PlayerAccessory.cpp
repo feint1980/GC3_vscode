@@ -156,7 +156,7 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<F_BaseEnemy *>  enem
 	if (m_isFocus)
 	{
 		
-		
+		//std::cout << "focus \n";
 		if (m_type == 2)
 		{
 			offsetX = 0;
@@ -186,10 +186,8 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<F_BaseEnemy *>  enem
 	}
 	else
 	{
-		
-		
-		
-		
+		//std::cout << "not focus \n";
+
 		if (m_type == 2)
 		{
 			offsetX = savedOffset;

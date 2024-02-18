@@ -8,6 +8,7 @@ CMakeFiles/GC3.dir/src/EGUI_ChapterLabel.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
  C:/SysGCC/mingw32/include/math.h C:/SysGCC/mingw32/include/crtdefs.h \
@@ -25,11 +26,40 @@ CMakeFiles/GC3.dir/src/EGUI_ChapterLabel.cpp.obj: \
  C:/SysGCC/mingw32/include/malloc.h \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mm_malloc.h \
  C:/SysGCC/mingw32/include/errno.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/limits \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/climits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cfloat \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/float.h \
  C:/SysGCC/mingw32/include/float.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/limits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
  C:/SysGCC/mingw32/include/assert.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
@@ -39,7 +69,6 @@ CMakeFiles/GC3.dir/src/EGUI_ChapterLabel.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stddef.h \
  C:/SysGCC/mingw32/include/stddef.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdint.h \
  C:/SysGCC/mingw32/include/stdint.h \
@@ -121,21 +150,6 @@ CMakeFiles/GC3.dir/src/EGUI_ChapterLabel.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Config.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Version.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/algorithmfwd.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/initializer_list \
@@ -145,6 +159,8 @@ CMakeFiles/GC3.dir/src/EGUI_ChapterLabel.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/new \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/string \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/memoryfwd.h \
@@ -178,12 +194,14 @@ CMakeFiles/GC3.dir/src/EGUI_ChapterLabel.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/string_conversions.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/charconv.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/ForwardRefs.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/MemoryAllocation.h \
@@ -202,6 +220,7 @@ CMakeFiles/GC3.dir/src/EGUI_ChapterLabel.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/map \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
@@ -735,4 +754,102 @@ CMakeFiles/GC3.dir/src/EGUI_ChapterLabel.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_version.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_locale.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_misc.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/iostream
+ C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
+ E:/template/GC_port/Feintgine/src/imgui.h \
+ E:/template/GC_port/Feintgine/src/imconfig.h \
+ E:/template/GC_port/Feintgine/src/imgui_impl_sdl2.h \
+ E:/template/GC_port/Feintgine/src/imgui_impl_opengl3.h \
+ E:/template/GC_port/Feintgine/src/feint_common.h \
+ C:/SysGCC/mingw32/include/fcntl.h C:/SysGCC/mingw32/include/io.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/locale \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ctime \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/time_members.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/messages_members.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_conv.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+ C:/SysGCC/mingw32/include/c++/12.2.0/iomanip \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/quoted_string.h \
+ E:/template/GC_port/Feintgine/src/objectData.pb.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/port_def.inc \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/port_undef.inc \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/io/coded_stream.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_base.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_lockfree_defines.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/common.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/memory \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_raw_storage_iter.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/align.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bit \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_ptr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocated_ptr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ext/concurrence.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/macros.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/platform_macros.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/port.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/stringpiece.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/hash.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/unordered_set \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_set.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/logging.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/status.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/strutil.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/port.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/arena.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/arena_impl.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/arenaz_sampler.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/arenastring.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/explicitly_constructed.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_message_util.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/once.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/chrono.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_mutex.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/any.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/message_lite.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/metadata_lite.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/has_bits.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/implicit_weak_message.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/repeated_field.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/iterator \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/repeated_ptr_field.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/wire_format_lite.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/casts.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_message_reflection.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/descriptor.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/mutex.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_enum_reflection.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_enum_util.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/unknown_field_set.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/io/zero_copy_stream_impl_lite.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/callback.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/io/zero_copy_stream.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/stl_util.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/parse_context.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/endian.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/inlined_string_field.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/message.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/functional \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/array \
+ C:/SysGCC/mingw32/include/c++/12.2.0/compare \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map_type_handler.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/extension_set.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/stb_image.h

@@ -320,8 +320,8 @@ void Feintgine::F_Dialouge_Handler::registerTextGUI(Feintgine::GUI & gui,
 	const glm::vec2 & dim)
 {
 
-	m_drawElement.init(gui, name, pos, dim);
-	m_drawElement.setAlignment(0);
+	m_drawElement.init(name.c_str(), pos);
+	//m_drawElement.setAlignment(0);
 
 	m_drawElement.setPos(glm::vec2(-400, 200));
 
@@ -332,7 +332,7 @@ void Feintgine::F_Dialouge_Handler::setText(const std::string & msg)
 	m_drawElement.setText(msg);
 	float rasSize = 0.012f;
 	rasSize *= msg.size();
-	m_drawElement.setDim(glm::vec2(rasSize, 0.1f));
+	//m_drawElement.setDim(glm::vec2(rasSize, 0.1f));
 }
 
 void Feintgine::F_Dialouge_Handler::setText(const std::wstring & msg)
@@ -340,5 +340,5 @@ void Feintgine::F_Dialouge_Handler::setText(const std::wstring & msg)
 	m_drawElement.setText(msg);
 	float rasSize = 0.012f;
 	rasSize *= msg.size();
-	m_drawElement.setDim(glm::vec2(rasSize, 0.1f));
+	//m_drawElement.setDim(glm::vec2(rasSize, 0.1f));
 }

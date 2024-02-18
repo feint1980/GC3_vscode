@@ -197,6 +197,19 @@ std::string feint_common::convertVec2toString(const glm::vec2 & t_value)
 }
 
 
+std::string feint_common::convertVec4toString(const glm::vec4 & t_value)
+{
+	std::string result = "";
+	result.append(std::to_string(t_value.x));
+	result.append(",");
+	result.append(std::to_string(t_value.y));
+	result.append(",");
+	result.append(std::to_string(t_value.z));
+	result.append(",");
+	result.append(std::to_string(t_value.w));
+	return result;
+}
+
 std::string feint_common::convertVec3toString(const glm::vec3 & t_value)
 {
 	std::string result = "";

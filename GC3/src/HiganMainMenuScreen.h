@@ -29,6 +29,7 @@
 
 #include "AvatarSelection.h"
 #include "BulletTypeDemo.h"
+#include <F_Logger.h>
 static float Higan_startupRate = 0.05f;
 static float Higan_startdownRate = 0.05f;
 static float Higan_textUpRate = 0.025f;

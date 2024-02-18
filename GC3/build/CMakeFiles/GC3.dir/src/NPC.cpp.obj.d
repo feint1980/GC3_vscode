@@ -7,6 +7,7 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:\template\GC_port\GC3\src\NPC.cpp \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
  C:/SysGCC/mingw32/include/math.h C:/SysGCC/mingw32/include/crtdefs.h \
@@ -24,11 +25,40 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:\template\GC_port\GC3\src\NPC.cpp \
  C:/SysGCC/mingw32/include/malloc.h \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mm_malloc.h \
  C:/SysGCC/mingw32/include/errno.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/limits \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/climits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cfloat \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/float.h \
  C:/SysGCC/mingw32/include/float.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/limits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
  C:/SysGCC/mingw32/include/assert.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
@@ -38,7 +68,6 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:\template\GC_port\GC3\src\NPC.cpp \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stddef.h \
  C:/SysGCC/mingw32/include/stddef.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdint.h \
  C:/SysGCC/mingw32/include/stdint.h \
@@ -124,21 +153,6 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:\template\GC_port\GC3\src\NPC.cpp \
  E:/template/GC_port/Feintgine/src/GLTexture.h \
  E:/template/GC_port/Feintgine/src/SpriteBatch.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/vector \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocator.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++allocator.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
@@ -185,11 +199,63 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:\template\GC_port\GC3\src\NPC.cpp \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/string_conversions.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/charconv.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc \
+ E:/template/GC_port/Feintgine/src/F_Logger.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ios \
+ C:/SysGCC/mingw32/include/c++/12.2.0/exception \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/ios_base.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr-default.h \
+ C:/SysGCC/mingw32/include/pthread.h \
+ C:/SysGCC/mingw32/include/sys/types.h \
+ C:/SysGCC/mingw32/include/process.h \
+ C:/SysGCC/mingw32/include/corecrt_startup.h \
+ C:/SysGCC/mingw32/include/signal.h \
+ C:/SysGCC/mingw32/include/pthread_signal.h \
+ C:/SysGCC/mingw32/include/time.h C:/SysGCC/mingw32/include/sys/timeb.h \
+ C:/SysGCC/mingw32/include/sec_api/sys/timeb_s.h \
+ C:/SysGCC/mingw32/include/_timeval.h \
+ C:/SysGCC/mingw32/include/pthread_time.h \
+ C:/SysGCC/mingw32/include/pthread_compat.h \
+ C:/SysGCC/mingw32/include/pthread_unistd.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/atomic_word.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/error_constants.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
+ C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/cwctype \
+ C:/SysGCC/mingw32/include/wctype.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_base.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_inline.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
  E:/template/GC_port/Feintgine/src/GUI.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/CEGUI.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Affector.h \
@@ -203,6 +269,8 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:\template\GC_port\GC3\src\NPC.cpp \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_heap.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/ForwardRefs.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/MemoryAllocation.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/MemoryAllocatedObject.h \
@@ -210,16 +278,11 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:\template\GC_port\GC3\src\NPC.cpp \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstring \
  C:/SysGCC/mingw32/include/string.h \
  C:/SysGCC/mingw32/include/sec_api/string_s.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
- C:/SysGCC/mingw32/include/c++/12.2.0/exception \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/KeyFrame.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/map \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
@@ -250,41 +313,6 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:\template\GC_port\GC3\src\NPC.cpp \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Rect.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Vector.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/UDim.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
- C:/SysGCC/mingw32/include/c++/12.2.0/ios \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/ios_base.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr-default.h \
- C:/SysGCC/mingw32/include/pthread.h \
- C:/SysGCC/mingw32/include/sys/types.h \
- C:/SysGCC/mingw32/include/process.h \
- C:/SysGCC/mingw32/include/corecrt_startup.h \
- C:/SysGCC/mingw32/include/signal.h \
- C:/SysGCC/mingw32/include/pthread_signal.h \
- C:/SysGCC/mingw32/include/time.h C:/SysGCC/mingw32/include/sys/timeb.h \
- C:/SysGCC/mingw32/include/sec_api/sys/timeb_s.h \
- C:/SysGCC/mingw32/include/_timeval.h \
- C:/SysGCC/mingw32/include/pthread_time.h \
- C:/SysGCC/mingw32/include/pthread_compat.h \
- C:/SysGCC/mingw32/include/pthread_unistd.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/atomic_word.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.tcc \
- C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/error_constants.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/cwctype \
- C:/SysGCC/mingw32/include/wctype.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_base.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_inline.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.tcc \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.tcc \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Size.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/BasicRenderedStringParser.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/RenderedStringParser.h \
@@ -296,8 +324,6 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:\template\GC_port\GC3\src\NPC.cpp \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Quaternion.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Interpolator.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
- C:/SysGCC/mingw32/include/c++/12.2.0/istream \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/BidiVisualMapping.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/CentredRenderedString.h \
@@ -307,11 +333,6 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:\template\GC_port\GC3\src\NPC.cpp \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/DataContainer.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/DefaultLogger.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Logger.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/DefaultRenderedStringParser.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/DefaultResourceProvider.h \
  E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/ResourceProvider.h \
@@ -744,5 +765,4 @@ CMakeFiles/GC3.dir/src/NPC.cpp.obj: E:\template\GC_port\GC3\src\NPC.cpp \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_timer.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_version.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_locale.h \
- E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_misc.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/iostream
+ E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_misc.h

@@ -181,31 +181,14 @@ CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/GL/glew.h \
  C:/SysGCC/mingw32/include/inttypes.h C:/SysGCC/mingw32/include/GL/glu.h \
  C:/SysGCC/mingw32/include/GL/gl.h \
- E:\template\GC_port\Feintgine\src\SpriteBatch.h \
- E:\template\GC_port\Feintgine\src\Vertex.h \
- E:\template\GC_port\Feintgine\src\Vector2.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
- E:\template\GC_port\Feintgine\src\ParticleBatch2D.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/functional \
- C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
- E:\template\GC_port\Feintgine\src\GLTexture.h \
- E:\template\GC_port\Feintgine\src\TextureCache.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/map \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multimap.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
- E:\template\GC_port\Feintgine\src\ResourceManager.h \
+ E:\template\GC_port\Feintgine\src\F_Logger.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
  C:/SysGCC/mingw32/include/c++/12.2.0/exception \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ios_base.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h \
@@ -248,6 +231,24 @@ CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
+ E:\template\GC_port\Feintgine\src\SpriteBatch.h \
+ E:\template\GC_port\Feintgine\src\Vertex.h \
+ E:\template\GC_port\Feintgine\src\Vector2.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+ E:\template\GC_port\Feintgine\src\ParticleBatch2D.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/functional \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+ E:\template\GC_port\Feintgine\src\GLTexture.h \
+ E:\template\GC_port\Feintgine\src\TextureCache.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/map \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multimap.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
+ E:\template\GC_port\Feintgine\src\ResourceManager.h \
  E:\template\GC_port\Feintgine\src\IOFileCache.h \
  E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp \
  E:\template\GC_port\Feintgine\src\F_Sprite.h \
@@ -850,4 +851,20 @@ CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/thread \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/traits.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/aligned_alloc.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/ref_count.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/scheduler_fwd.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/continuation_vector.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/task_base.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/scheduler.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/task.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/when_all_any.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/cancel.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/range.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/partitioner.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_invoke.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_for.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_reduce.h \
  C:/SysGCC/mingw32/include/memory.h

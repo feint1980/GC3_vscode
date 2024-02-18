@@ -41,7 +41,7 @@ void CharacterTestScreen::destroy()
 void CharacterTestScreen::onEntry()
 {
 
-	m_CEGUI_textRenderer.initFont("DejaVuSans-14");
+	m_CEGUI_textRenderer.addFont("DejaVuSans-14");
 // 	m_CEGUI_textRenderer.addTextObject("Score",
 // 		glm::vec2(0.6, 0.2), glm::vec2(0.4, 0.1), L"[colour='FF51F0FF'] Thật không thể tin được\
 // 		[colour='FFFF0000'] \" Kinh đấy \"");
@@ -346,7 +346,7 @@ void CharacterTestScreen::firstCheckpoint()
 
 	m_lightBatch.initShader(&m_shader);
 	m_player.registerLogicCamera(&m_camera);
-	m_player.registerTextCEGUI(m_CEGUI_textRenderer.m_gui);
+//	m_player.registerTextCEGUI(m_CEGUI_textRenderer.m_gui);
 
 	m_camera_static = m_camera;
 	m_camera_static.update();

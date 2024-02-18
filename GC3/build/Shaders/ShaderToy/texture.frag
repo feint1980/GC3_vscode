@@ -1,4 +1,4 @@
-#version 330
+#version 130
 //The fragment shader operates on each pixel in a given polygon
 
 // get input from vertext shader

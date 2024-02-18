@@ -367,7 +367,9 @@ void HiganMainMenuScreen::initGUI()
 		[&](const CEGUI::EventArgs & e) {
 
 		std::cout << "Exit \n";
+		Feintgine::F_Logger::Instance()->closeLog();
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
+	
 		return true;
 	});
 

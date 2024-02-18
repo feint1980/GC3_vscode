@@ -80,6 +80,10 @@ namespace Feintgine {
 			glDeleteShader(_fragmentShaderID);
 
 			//print the error log and quit
+			F_Logger::Instance()->writeLog("Shader failed to link");
+			F_Logger::Instance()->writeLog("Shader log : \n");
+			F_Logger::Instance()->writeLog(&(errorLog[0]));
+			F_Logger::Instance()->writeLog("Shader log stoped \n");
 			std::printf("%s\n", &(errorLog[0]));
 			fatalError("Shaders failed to link!");
 		}
@@ -89,6 +93,7 @@ namespace Feintgine {
 		glDetachShader(_programID, _fragmentShaderID);
 		glDeleteShader(_vertexShaderID);
 		glDeleteShader(_fragmentShaderID);
+		F_Logger::Instance()->writeLog("Compile shader success !!!");
 	}
 
 	//Adds an attribute to our shader. SHould be called between compiling and linking.

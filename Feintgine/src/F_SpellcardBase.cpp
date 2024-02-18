@@ -46,7 +46,7 @@ void F_SpellcardBase::loadDesciption(const std::string & signName,
 	m_cegui_text.setText(totalString);
 	float rasSize = 0.012f;
 	rasSize *= m_signName.size() + m_spellName.size() + 2;
-	m_cegui_text.setDim(glm::vec2(rasSize, 0.1f));
+	//m_cegui_text.setDim(glm::vec2(rasSize, 0.1f));
 
 }
 
@@ -64,15 +64,15 @@ void F_SpellcardBase::loadDesciption(const std::wstring & signName,
 	m_cegui_text.setText(totalString);
 	float rasSize = 0.012f;
 	rasSize *= m_signName.size() + m_spellName.size() + 2;
-	m_cegui_text.setDim(glm::vec2(rasSize, 0.1f));
+	//m_cegui_text.setDim(glm::vec2(rasSize, 0.1f));
 	//std::cout << "called id " << (int)id << "\n";
 }
 
 void F_SpellcardBase::registerText(Feintgine::GUI & gui, const std::string & name, const glm::vec2 & pos, const glm::vec2 & dim)
 {
-	m_cegui_text.init(gui, name, pos, dim);
+	m_cegui_text.init(name.c_str(), pos);
 	// m_cegui_text.setText("sajdsajhdashdsa");
-	m_cegui_text.setAlignment(5);
+	//m_cegui_text.setAlignment(5);
 }
 
 void F_SpellcardBase::loadSound(Feintgine::AudioEngine * audioEngine,

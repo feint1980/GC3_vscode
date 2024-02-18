@@ -33,9 +33,6 @@ namespace Feintgine {
 
 		if (!theFile.fail())
 		{
-
-
-
 			std::vector<char> buffer((std::istreambuf_iterator<char>(theFile)), std::istreambuf_iterator<char>());
 			buffer.push_back('\0');
 			// Parse the buffer using the xml file parsing library into doc 
@@ -204,7 +201,6 @@ namespace Feintgine {
 		{
 			returnone = it->second;
 			//std::cout << "Found Sprite : " << filePath << '\n';
-			
 		}
 		else
 		{

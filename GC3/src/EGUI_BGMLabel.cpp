@@ -13,9 +13,9 @@ CEGUI_BGMLabel::~CEGUI_BGMLabel()
 
 void CEGUI_BGMLabel::initGUI(Feintgine::GUI & t_gui, const glm::vec2 & pos)
 {
-	m_text.init(t_gui, "CEGUI_ChapterLabel_m_text1",
-		pos, glm::vec2(0.4, 0.2));
-	m_text.setAlignment(1);
+	m_text.init("CEGUI_ChapterLabel_m_text1",
+		pos);
+	
 }
 
 void CEGUI_BGMLabel::setText(const std::wstring & songName, float t_lifeTime)

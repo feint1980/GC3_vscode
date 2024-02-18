@@ -13,15 +13,15 @@ CEGUI_ChapterLabel::~CEGUI_ChapterLabel()
 
 void CEGUI_ChapterLabel::initGUI(Feintgine::GUI & t_gui, Feintgine::GUI & t_gui2, const glm::vec2 & pos)
 {
-	m_text1.init(t_gui, "CEGUI_ChapterLabel_m_text1",
-		pos, glm::vec2(0.4, 0.2));
+	m_text1.init("CEGUI_ChapterLabel_m_text1",
+		pos);
 
-	m_text2.init(t_gui2, "CEGUI_ChapterLabel_m_text2",
-		glm::vec2(pos.x, pos.y + 0.05f), glm::vec2(0.4, 0.2));
+	m_text2.init( "CEGUI_ChapterLabel_m_text2",
+		glm::vec2(pos.x, pos.y + 0.05f));
 
 
-	m_text1.setAlignment(2);
-	m_text2.setAlignment(2);
+	//m_text1.setAlignment(2);
+	//m_text2.setAlignment(2);
 }
 
 void CEGUI_ChapterLabel::update(float deltaTime)
