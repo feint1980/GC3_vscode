@@ -32,8 +32,11 @@ void F_LuaBridgeObject::init()
     .addFunction ("davai", +[] (int x) { return x * 3; })
     .endNamespace();
 
+<<<<<<< HEAD
 
     
+=======
+>>>>>>> e23e623dd5732ec27a84111c0e42fa118bfd5f60
     // std::string cmd = "print(\"Hello world \")";
 
     std::cout << "reading file \n";
