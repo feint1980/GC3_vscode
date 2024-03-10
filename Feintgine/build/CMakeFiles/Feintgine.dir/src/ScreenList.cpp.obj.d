@@ -6,6 +6,7 @@ CMakeFiles/Feintgine.dir/src/ScreenList.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \

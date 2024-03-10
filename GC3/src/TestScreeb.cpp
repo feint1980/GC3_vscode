@@ -58,8 +58,8 @@ void TestScreeb::onEntry()
 	//m_camera.setPosition(testObj.getPos());
 	m_camera.update();
 
-	m_uvObj.init(Feintgine::ResourceManager::getTexture("Assets/Textures/komachi_effect_p1_20.png") , glm::vec2(0, 0), glm::vec2(2, 4), Feintgine::Color(255, 255, 255, 255));
 	std::cout << "camera pos is " << feint_common::Instance()->convertVec2toString(m_camera.getPosition()) << "\n";
+	testObject.init();
 }
 
 void TestScreeb::onExit()
@@ -74,7 +74,7 @@ void TestScreeb::update(float deltaTime)
 	m_camera.update();
 	checkInput();
 	handleInput(m_game->m_inputManager);
-	m_uvObj.update(deltaTime);
+	
 }
 
 void TestScreeb::draw()
@@ -104,7 +104,7 @@ void TestScreeb::draw()
 
 	m_spriteBatch.begin();
 
-	m_uvObj.draw(m_spriteBatch);
+	
 	//testObj.draw(m_spriteBatch);
 	//m_player.draw(m_spriteBatch);
 
@@ -112,9 +112,6 @@ void TestScreeb::draw()
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
-
-
-	
 
 
 	//SDL_GL_SetSwapInterval(1);

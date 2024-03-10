@@ -1271,4 +1271,6 @@ CMakeFiles/GC3.dir/src/Extra_DemoScreen.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Renderer/OpenGL3/BackendRenderTargetOpenGL3.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Renderer/OpenGL3/CanvasOpenGL3.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/CanvasBase.hpp \
- E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Font/SDL_ttf/BackendFontSDLttf.hpp
+ E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Font/SDL_ttf/BackendFontSDLttf.hpp \
+ E:\template\GC_port\GC3\src\BGM_Label.h \
+ E:\template\GC_port\GC3\src\Chapter_Label.h

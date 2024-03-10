@@ -1506,6 +1506,30 @@ src/F_Logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_Logger.cpp.s
 .PHONY : src/F_Logger.cpp.s
 
+src/F_LuaBridgeObject.obj: src/F_LuaBridgeObject.cpp.obj
+.PHONY : src/F_LuaBridgeObject.obj
+
+# target to build an object file
+src/F_LuaBridgeObject.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj
+.PHONY : src/F_LuaBridgeObject.cpp.obj
+
+src/F_LuaBridgeObject.i: src/F_LuaBridgeObject.cpp.i
+.PHONY : src/F_LuaBridgeObject.i
+
+# target to preprocess a source file
+src/F_LuaBridgeObject.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.i
+.PHONY : src/F_LuaBridgeObject.cpp.i
+
+src/F_LuaBridgeObject.s: src/F_LuaBridgeObject.cpp.s
+.PHONY : src/F_LuaBridgeObject.s
+
+# target to generate assembly for a file
+src/F_LuaBridgeObject.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.s
+.PHONY : src/F_LuaBridgeObject.cpp.s
+
 src/F_LuaDynamicObject.obj: src/F_LuaDynamicObject.cpp.obj
 .PHONY : src/F_LuaDynamicObject.obj
 
@@ -3421,6 +3445,9 @@ help:
 	@echo ... src/F_Logger.obj
 	@echo ... src/F_Logger.i
 	@echo ... src/F_Logger.s
+	@echo ... src/F_LuaBridgeObject.obj
+	@echo ... src/F_LuaBridgeObject.i
+	@echo ... src/F_LuaBridgeObject.s
 	@echo ... src/F_LuaDynamicObject.obj
 	@echo ... src/F_LuaDynamicObject.i
 	@echo ... src/F_LuaDynamicObject.s

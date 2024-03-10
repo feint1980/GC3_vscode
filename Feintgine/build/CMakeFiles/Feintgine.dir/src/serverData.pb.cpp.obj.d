@@ -5,6 +5,7 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/string \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/memoryfwd.h \
@@ -71,6 +72,10 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/string_conversions.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
  C:/SysGCC/mingw32/include/stdlib.h C:/SysGCC/mingw32/include/limits.h \
@@ -83,8 +88,6 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/charconv.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/port_def.inc \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/port_undef.inc \
@@ -107,6 +110,8 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_heap.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
@@ -154,6 +159,7 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/map \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
@@ -171,6 +177,7 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/concurrence.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/set \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_set.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multiset.h \
@@ -236,6 +243,8 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/functional \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/array \
+ C:/SysGCC/mingw32/include/c++/12.2.0/compare \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map_type_handler.h \
  E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/extension_set.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \

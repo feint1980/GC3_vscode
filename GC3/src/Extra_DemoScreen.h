@@ -82,6 +82,8 @@
 #include <TGUI/TGUI.hpp>
 #include <TGUI/Backend/SDL-TTF-OpenGL3.hpp>
 
+#include "BGM_Label.h"
+#include "Chapter_Label.h"
 
 enum ShaderValueType
 {
@@ -310,10 +312,14 @@ protected :
 	// EGUI_DrawElement m_text_fps;
 	tgui::Label::Ptr m_text_fps_tgui;
 	// EGUI_DrawElement m_text_eventTime;
-	// EGUI_DrawElement m_text_test;
+	tgui::Label::Ptr m_text_eventTime_tgui;
+
+
 
 	// EGUI_DrawElement m_text_spellName;
+	tgui::Label::Ptr m_text_spellName;
 	// EGUI_DrawElement m_text_spellSign;
+	tgui::Label::Ptr m_text_spellSign;
 
 	// portal shader effect
 	float m_reachTimer = 0.0f;
@@ -322,6 +328,10 @@ protected :
 
 	// CEGUI_ChapterLabel m_chapterLabel;
 	// CEGUI_BGMLabel m_bmLabel;
+	BGM_Label m_bgmLabel;
+
+	Chapter_Label m_chapterLabel;
+	
 
 	LinkCreator m_linkCreator;
 
@@ -380,8 +390,6 @@ protected :
 
 	tgui::Gui * m_tgui;
 
-
-	//Feintgine::F_IMGUI m_imgui;
 	
 };
 

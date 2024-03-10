@@ -20,6 +20,7 @@ CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -69,6 +70,7 @@ CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -81,6 +83,7 @@ CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -109,6 +112,7 @@ CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -127,6 +131,7 @@ CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -177,6 +182,10 @@ CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -184,8 +193,21 @@ CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -909,6 +931,7 @@ CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -916,6 +939,7 @@ CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -932,6 +956,7 @@ CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
@@ -982,11 +1007,25 @@ CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -1162,6 +1201,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -1175,6 +1215,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -1218,11 +1259,25 @@ CMakeFiles/Feintgine.dir/src/ArcFunction.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -1387,6 +1442,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Custom_aff.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -1400,6 +1456,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Custom_aff.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -1443,11 +1500,25 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Custom_aff.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -1613,6 +1684,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Epicycloid.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -1626,6 +1698,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Epicycloid.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -1669,11 +1742,25 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Epicycloid.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -1839,6 +1926,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Fourier_test.cpp.obj: E:/template/GC_po
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -1852,6 +1940,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Fourier_test.cpp.obj: E:/template/GC_po
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -1895,11 +1984,25 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Fourier_test.cpp.obj: E:/template/GC_po
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -2065,6 +2168,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom1.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -2078,6 +2182,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom1.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -2121,11 +2226,25 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom1.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -2291,6 +2410,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom2.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -2304,6 +2424,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom2.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -2347,11 +2468,25 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom2.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -2517,6 +2652,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_hypocycloid.cpp.obj: E:/template/GC_por
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -2530,6 +2666,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_hypocycloid.cpp.obj: E:/template/GC_por
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -2573,11 +2710,25 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_hypocycloid.cpp.obj: E:/template/GC_por
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -2743,6 +2894,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_hypotrochoid.cpp.obj: E:/template/GC_po
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -2756,6 +2908,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_hypotrochoid.cpp.obj: E:/template/GC_po
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -2799,11 +2952,25 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_hypotrochoid.cpp.obj: E:/template/GC_po
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -2942,6 +3109,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -2991,6 +3159,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -3003,6 +3172,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -3030,6 +3200,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -3047,6 +3218,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -3097,6 +3269,10 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -3104,7 +3280,20 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj: E:/template/GC_p
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -3768,6 +3957,7 @@ CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -3817,6 +4007,7 @@ CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -3829,6 +4020,7 @@ CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -3856,6 +4048,7 @@ CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -3873,6 +4066,7 @@ CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -3923,6 +4117,10 @@ CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -3930,7 +4128,20 @@ CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -4615,6 +4826,7 @@ CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -4622,6 +4834,7 @@ CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -4635,6 +4848,7 @@ CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
@@ -4672,15 +4886,30 @@ CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
   C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/map \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -4890,6 +5119,7 @@ CMakeFiles/Feintgine.dir/src/Brush.cpp.obj: E:/template/GC_port/Feintgine/src/Br
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -4939,6 +5169,7 @@ CMakeFiles/Feintgine.dir/src/Brush.cpp.obj: E:/template/GC_port/Feintgine/src/Br
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -4951,6 +5182,7 @@ CMakeFiles/Feintgine.dir/src/Brush.cpp.obj: E:/template/GC_port/Feintgine/src/Br
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -4978,6 +5210,7 @@ CMakeFiles/Feintgine.dir/src/Brush.cpp.obj: E:/template/GC_port/Feintgine/src/Br
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -4995,6 +5228,7 @@ CMakeFiles/Feintgine.dir/src/Brush.cpp.obj: E:/template/GC_port/Feintgine/src/Br
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -5045,6 +5279,10 @@ CMakeFiles/Feintgine.dir/src/Brush.cpp.obj: E:/template/GC_port/Feintgine/src/Br
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -5052,7 +5290,20 @@ CMakeFiles/Feintgine.dir/src/Brush.cpp.obj: E:/template/GC_port/Feintgine/src/Br
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -5724,6 +5975,7 @@ CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -5773,6 +6025,7 @@ CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -5785,6 +6038,7 @@ CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -5812,6 +6066,7 @@ CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -5829,6 +6084,7 @@ CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -5879,6 +6135,10 @@ CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -5886,7 +6146,20 @@ CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -6564,6 +6837,7 @@ CMakeFiles/Feintgine.dir/src/Camera3D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -6597,7 +6871,20 @@ CMakeFiles/Feintgine.dir/src/Camera3D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
   C:/SysGCC/mingw32/include/corecrt.h \
@@ -6922,6 +7209,7 @@ CMakeFiles/Feintgine.dir/src/ClientSys.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
@@ -6958,10 +7246,12 @@ CMakeFiles/Feintgine.dir/src/ClientSys.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -7155,6 +7445,7 @@ CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -7204,6 +7495,7 @@ CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -7216,6 +7508,7 @@ CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -7243,6 +7536,7 @@ CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -7260,6 +7554,7 @@ CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -7310,6 +7605,10 @@ CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -7317,7 +7616,20 @@ CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -8018,6 +8330,7 @@ CMakeFiles/Feintgine.dir/src/DebugRender.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -8031,6 +8344,7 @@ CMakeFiles/Feintgine.dir/src/DebugRender.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -8078,11 +8392,25 @@ CMakeFiles/Feintgine.dir/src/DebugRender.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -8226,6 +8554,7 @@ CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -8275,6 +8604,7 @@ CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -8287,6 +8617,7 @@ CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -8314,6 +8645,7 @@ CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -8331,6 +8663,7 @@ CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -8381,6 +8714,10 @@ CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -8388,7 +8725,20 @@ CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -9094,6 +9444,7 @@ CMakeFiles/Feintgine.dir/src/DragVertex.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -9107,6 +9458,7 @@ CMakeFiles/Feintgine.dir/src/DragVertex.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -9154,11 +9506,25 @@ CMakeFiles/Feintgine.dir/src/DragVertex.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -9303,6 +9669,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -9352,6 +9719,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -9364,6 +9732,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -9391,6 +9760,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -9408,6 +9778,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -9458,6 +9829,10 @@ CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -9465,7 +9840,20 @@ CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -10134,6 +10522,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -10183,6 +10572,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -10195,6 +10585,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -10222,6 +10613,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -10239,6 +10631,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -10289,6 +10682,10 @@ CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -10296,7 +10693,20 @@ CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -10966,6 +11376,7 @@ CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -11015,6 +11426,7 @@ CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -11027,6 +11439,7 @@ CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -11054,6 +11467,7 @@ CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -11071,6 +11485,7 @@ CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -11121,6 +11536,10 @@ CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -11128,7 +11547,20 @@ CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -11801,6 +12233,7 @@ CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -11850,6 +12283,7 @@ CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -11862,6 +12296,7 @@ CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -11889,6 +12324,7 @@ CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -11906,6 +12342,7 @@ CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -11956,6 +12393,10 @@ CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -11963,7 +12404,20 @@ CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -12673,6 +13127,7 @@ CMakeFiles/Feintgine.dir/src/Error.cpp.obj: E:/template/GC_port/Feintgine/src/Er
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -12683,6 +13138,7 @@ CMakeFiles/Feintgine.dir/src/Error.cpp.obj: E:/template/GC_port/Feintgine/src/Er
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
@@ -12718,14 +13174,29 @@ CMakeFiles/Feintgine.dir/src/Error.cpp.obj: E:/template/GC_port/Feintgine/src/Er
   C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
   C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/corecrt.h \
@@ -12932,6 +13403,7 @@ CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -12981,6 +13453,7 @@ CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -12993,6 +13466,7 @@ CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -13021,6 +13495,7 @@ CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -13039,6 +13514,7 @@ CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -13089,6 +13565,10 @@ CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -13096,8 +13576,21 @@ CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -13797,6 +14290,7 @@ CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -13846,6 +14340,7 @@ CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -13858,6 +14353,7 @@ CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -13886,6 +14382,7 @@ CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -13904,6 +14401,7 @@ CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -13954,6 +14452,10 @@ CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -13961,8 +14463,21 @@ CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -14649,16 +15164,47 @@ CMakeFiles/Feintgine.dir/src/FTimer.cpp.obj: E:/template/GC_port/Feintgine/src/F
   C:/SysGCC/mingw32/include/_mingw_secapi.h \
   C:/SysGCC/mingw32/include/_mingw_stat64.h \
   C:/SysGCC/mingw32/include/_mingw_stdarg.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_startup.h \
   C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
@@ -14852,6 +15398,7 @@ CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -14901,6 +15448,7 @@ CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -14913,6 +15461,7 @@ CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -14941,6 +15490,7 @@ CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -14959,6 +15509,7 @@ CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -15009,6 +15560,10 @@ CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -15016,8 +15571,21 @@ CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -15707,6 +16275,7 @@ CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/_timeval.h \
   C:/SysGCC/mingw32/include/assert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -15753,6 +16322,7 @@ CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -15764,6 +16334,7 @@ CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_mutex.h \
@@ -15790,6 +16361,7 @@ CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -15806,6 +16378,7 @@ CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/climits \
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -15852,13 +16425,30 @@ CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -16061,6 +16651,7 @@ CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -16110,6 +16701,7 @@ CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -16122,6 +16714,7 @@ CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -16150,6 +16743,7 @@ CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -16168,6 +16762,7 @@ CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -16218,6 +16813,10 @@ CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -16225,8 +16824,21 @@ CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -16931,6 +17543,7 @@ CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -16980,6 +17593,7 @@ CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -16992,6 +17606,7 @@ CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -17019,6 +17634,7 @@ CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -17036,6 +17652,7 @@ CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -17086,6 +17703,10 @@ CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -17093,7 +17714,20 @@ CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -17778,6 +18412,7 @@ CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/_timeval.h \
   C:/SysGCC/mingw32/include/assert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -17824,6 +18459,7 @@ CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -17835,6 +18471,7 @@ CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_mutex.h \
@@ -17861,6 +18498,7 @@ CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -17877,6 +18515,7 @@ CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/climits \
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -17923,13 +18562,30 @@ CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -18119,7 +18775,9 @@ CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/_mingw_secapi.h \
   C:/SysGCC/mingw32/include/_mingw_stat64.h \
   C:/SysGCC/mingw32/include/_timeval.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/algorithmfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h \
@@ -18134,12 +18792,16 @@ CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/deque.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/invoke.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ios_base.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
@@ -18152,6 +18814,7 @@ CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -18162,6 +18825,7 @@ CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -18173,11 +18837,15 @@ CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_queue.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_uninitialized.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -18185,6 +18853,7 @@ CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
   C:/SysGCC/mingw32/include/c++/12.2.0/chrono \
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
@@ -18195,6 +18864,7 @@ CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/deque \
   C:/SysGCC/mingw32/include/c++/12.2.0/exception \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
@@ -18220,16 +18890,19 @@ CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/queue \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
+  C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_startup.h \
@@ -18315,6 +18988,7 @@ CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -18322,6 +18996,7 @@ CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -18335,6 +19010,7 @@ CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
@@ -18372,15 +19048,30 @@ CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj: E:/template/GC_port/Feintgine/src/
   C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
   C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/map \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -18702,6 +19393,7 @@ CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
@@ -18741,10 +19433,12 @@ CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -18786,6 +19480,231 @@ CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdint.h \
   E:/template/GC_port/Feintgine/src/F_Logger.h
 
+CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj: E:/template/GC_port/Feintgine/src/F_LuaBridgeObject.cpp \
+  C:/SysGCC/mingw32/include/_mingw.h \
+  C:/SysGCC/mingw32/include/_mingw_mac.h \
+  C:/SysGCC/mingw32/include/_mingw_off_t.h \
+  C:/SysGCC/mingw32/include/_mingw_secapi.h \
+  C:/SysGCC/mingw32/include/_mingw_stat64.h \
+  C:/SysGCC/mingw32/include/_mingw_stdarg.h \
+  C:/SysGCC/mingw32/include/_timeval.h \
+  C:/SysGCC/mingw32/include/assert.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
+  C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bit \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/algorithmfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/align.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocated_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_lockfree_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/char_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/charconv.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/invoke.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ios_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/localefwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/memoryfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_function.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_heap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multimap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_raw_storage_iter.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_relops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_uninitialized.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
+  C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cwchar \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cwctype \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/exception \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/concurrence.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/string_conversions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/functional \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/atomic_word.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++locale.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_inline.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/error_constants.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr-default.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/initializer_list \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
+  C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
+  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
+  C:/SysGCC/mingw32/include/c++/12.2.0/map \
+  C:/SysGCC/mingw32/include/c++/12.2.0/memory \
+  C:/SysGCC/mingw32/include/c++/12.2.0/new \
+  C:/SysGCC/mingw32/include/c++/12.2.0/optional \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
+  C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+  C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
+  C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
+  C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
+  C:/SysGCC/mingw32/include/c++/12.2.0/utility \
+  C:/SysGCC/mingw32/include/c++/12.2.0/variant \
+  C:/SysGCC/mingw32/include/c++/12.2.0/vector \
+  C:/SysGCC/mingw32/include/corecrt.h \
+  C:/SysGCC/mingw32/include/corecrt_startup.h \
+  C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
+  C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
+  C:/SysGCC/mingw32/include/crtdefs.h \
+  C:/SysGCC/mingw32/include/ctype.h \
+  C:/SysGCC/mingw32/include/errno.h \
+  C:/SysGCC/mingw32/include/limits.h \
+  C:/SysGCC/mingw32/include/locale.h \
+  C:/SysGCC/mingw32/include/malloc.h \
+  C:/SysGCC/mingw32/include/process.h \
+  C:/SysGCC/mingw32/include/pthread.h \
+  C:/SysGCC/mingw32/include/pthread_compat.h \
+  C:/SysGCC/mingw32/include/pthread_signal.h \
+  C:/SysGCC/mingw32/include/pthread_time.h \
+  C:/SysGCC/mingw32/include/pthread_unistd.h \
+  C:/SysGCC/mingw32/include/sdks/_mingw_ddk.h \
+  C:/SysGCC/mingw32/include/sec_api/stdio_s.h \
+  C:/SysGCC/mingw32/include/sec_api/stdlib_s.h \
+  C:/SysGCC/mingw32/include/sec_api/sys/timeb_s.h \
+  C:/SysGCC/mingw32/include/sec_api/wchar_s.h \
+  C:/SysGCC/mingw32/include/signal.h \
+  C:/SysGCC/mingw32/include/stdarg.h \
+  C:/SysGCC/mingw32/include/stddef.h \
+  C:/SysGCC/mingw32/include/stdint.h \
+  C:/SysGCC/mingw32/include/stdio.h \
+  C:/SysGCC/mingw32/include/stdlib.h \
+  C:/SysGCC/mingw32/include/swprintf.inl \
+  C:/SysGCC/mingw32/include/sys/timeb.h \
+  C:/SysGCC/mingw32/include/sys/types.h \
+  C:/SysGCC/mingw32/include/time.h \
+  C:/SysGCC/mingw32/include/vadefs.h \
+  C:/SysGCC/mingw32/include/wchar.h \
+  C:/SysGCC/mingw32/include/wctype.h \
+  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mm_malloc.h \
+  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdarg.h \
+  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stddef.h \
+  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdint.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/LuaBridge.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/CFunctions.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/ClassInfo.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Config.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Enum.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Errors.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Expected.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/FlagSet.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/FuncTraits.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Globals.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Invoke.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Iterator.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaException.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaHelpers.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaRef.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Namespace.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Options.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Overload.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Result.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/ScopeGuard.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Stack.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/TypeTraits.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Userdata.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/lauxlib.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/lua.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/luaconf.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/lualib.h \
+  E:/template/GC_port/Feintgine/src/F_LuaBridgeObject.h
+
 CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: E:/template/GC_port/Feintgine/src/F_LuaDynamicObject.cpp \
   C:/SysGCC/mingw32/include/GL/gl.h \
   C:/SysGCC/mingw32/include/GL/glu.h \
@@ -18805,6 +19724,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -18854,6 +19774,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -18866,6 +19787,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -18894,6 +19816,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -18912,6 +19835,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -18962,6 +19886,10 @@ CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -18969,8 +19897,21 @@ CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -19674,6 +20615,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -19723,6 +20665,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -19735,6 +20678,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -19763,6 +20707,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -19781,6 +20726,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -19831,6 +20777,10 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -19838,8 +20788,21 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -20546,6 +21509,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -20595,6 +21559,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -20607,6 +21572,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -20635,6 +21601,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -20653,6 +21620,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -20703,6 +21671,10 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -20710,8 +21682,21 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj: E:/template/GC_port
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -21416,6 +22401,7 @@ CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -21465,6 +22451,7 @@ CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -21477,6 +22464,7 @@ CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -21505,6 +22493,7 @@ CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -21523,6 +22512,7 @@ CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -21573,6 +22563,10 @@ CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -21580,8 +22574,21 @@ CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -22286,6 +23293,7 @@ CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -22335,6 +23343,7 @@ CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -22347,6 +23356,7 @@ CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -22375,6 +23385,7 @@ CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -22393,6 +23404,7 @@ CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -22443,6 +23455,10 @@ CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -22450,8 +23466,21 @@ CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -23212,6 +24241,7 @@ CMakeFiles/Feintgine.dir/src/F_ScreenCapture.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
@@ -23229,6 +24259,7 @@ CMakeFiles/Feintgine.dir/src/F_ScreenCapture.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -23281,13 +24312,29 @@ CMakeFiles/Feintgine.dir/src/F_ScreenCapture.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -23460,6 +24507,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEventBase.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -23470,6 +24518,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEventBase.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
@@ -23515,11 +24564,25 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEventBase.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/corecrt.h \
@@ -23691,6 +24754,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEventHandler.cpp.obj: E:/template/GC_port/F
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -23704,6 +24768,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEventHandler.cpp.obj: E:/template/GC_port/F
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -23750,11 +24815,25 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEventHandler.cpp.obj: E:/template/GC_port/F
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -23930,6 +25009,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Float.cpp.obj: E:/template/GC_port/Fe
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -23940,6 +25020,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Float.cpp.obj: E:/template/GC_port/Fe
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
@@ -23985,11 +25066,25 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Float.cpp.obj: E:/template/GC_port/Fe
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/corecrt.h \
@@ -24162,6 +25257,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Vec3.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -24172,6 +25268,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Vec3.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
@@ -24217,11 +25314,25 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Vec3.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/corecrt.h \
@@ -24363,6 +25474,7 @@ CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -24412,6 +25524,7 @@ CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -24424,6 +25537,7 @@ CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -24451,6 +25565,7 @@ CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -24468,6 +25583,7 @@ CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -24518,6 +25634,10 @@ CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -24525,7 +25645,20 @@ CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -25221,6 +26354,7 @@ CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/_timeval.h \
   C:/SysGCC/mingw32/include/assert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -25267,6 +26401,7 @@ CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -25278,6 +26413,7 @@ CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_mutex.h \
@@ -25304,6 +26440,7 @@ CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -25320,6 +26457,7 @@ CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/climits \
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -25366,13 +26504,30 @@ CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -25573,6 +26728,7 @@ CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -25622,6 +26778,7 @@ CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -25634,6 +26791,7 @@ CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -25661,6 +26819,7 @@ CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -25678,6 +26837,7 @@ CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -25728,6 +26888,10 @@ CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -25735,7 +26899,20 @@ CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -26432,6 +27609,7 @@ CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -26481,6 +27659,7 @@ CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -26493,6 +27672,7 @@ CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -26520,6 +27700,7 @@ CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -26537,6 +27718,7 @@ CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -26587,6 +27769,10 @@ CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -26594,7 +27780,20 @@ CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -27290,6 +28489,7 @@ CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -27339,6 +28539,7 @@ CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -27351,6 +28552,7 @@ CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -27378,6 +28580,7 @@ CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -27395,6 +28598,7 @@ CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -27445,6 +28649,10 @@ CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -27452,7 +28660,20 @@ CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -28149,6 +29370,7 @@ CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -28198,6 +29420,7 @@ CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -28210,6 +29433,7 @@ CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -28237,6 +29461,7 @@ CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -28254,6 +29479,7 @@ CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -28304,6 +29530,10 @@ CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -28311,7 +29541,20 @@ CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -28998,7 +30241,9 @@ CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/_mingw_secapi.h \
   C:/SysGCC/mingw32/include/_mingw_stat64.h \
   C:/SysGCC/mingw32/include/_timeval.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/algorithmfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h \
@@ -29012,12 +30257,16 @@ CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/deque.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/invoke.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ios_base.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
@@ -29030,6 +30279,7 @@ CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -29039,6 +30289,7 @@ CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -29050,17 +30301,22 @@ CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_queue.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_uninitialized.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
   C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
@@ -29070,6 +30326,7 @@ CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/deque \
   C:/SysGCC/mingw32/include/c++/12.2.0/exception \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
@@ -29094,15 +30351,18 @@ CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/queue \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
+  C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_startup.h \
@@ -29150,7 +30410,9 @@ CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/_mingw_secapi.h \
   C:/SysGCC/mingw32/include/_mingw_stat64.h \
   C:/SysGCC/mingw32/include/_timeval.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/algorithmfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h \
@@ -29164,12 +30426,16 @@ CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/deque.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/invoke.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ios_base.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
@@ -29182,6 +30448,7 @@ CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -29191,6 +30458,7 @@ CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -29202,17 +30470,22 @@ CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_queue.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_uninitialized.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
   C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
@@ -29222,6 +30495,7 @@ CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/deque \
   C:/SysGCC/mingw32/include/c++/12.2.0/exception \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
@@ -29246,15 +30520,18 @@ CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/queue \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
+  C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_startup.h \
@@ -29301,16 +30578,47 @@ CMakeFiles/Feintgine.dir/src/Feintgine.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/_mingw_secapi.h \
   C:/SysGCC/mingw32/include/_mingw_stat64.h \
   C:/SysGCC/mingw32/include/_mingw_stdarg.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_startup.h \
   C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
@@ -29504,6 +30812,7 @@ CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -29553,6 +30862,7 @@ CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -29565,6 +30875,7 @@ CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -29593,6 +30904,7 @@ CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -29611,6 +30923,7 @@ CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -29661,6 +30974,10 @@ CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -29668,8 +30985,21 @@ CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -30397,6 +31727,7 @@ CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -30446,6 +31777,7 @@ CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -30458,6 +31790,7 @@ CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -30486,6 +31819,7 @@ CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -30504,6 +31838,7 @@ CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -30554,6 +31889,10 @@ CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -30561,8 +31900,21 @@ CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -31329,6 +32681,7 @@ CMakeFiles/Feintgine.dir/src/FrameBuffer.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
@@ -31365,10 +32718,12 @@ CMakeFiles/Feintgine.dir/src/FrameBuffer.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -31462,6 +32817,7 @@ CMakeFiles/Feintgine.dir/src/FrameBufferScreen.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -31472,6 +32828,7 @@ CMakeFiles/Feintgine.dir/src/FrameBufferScreen.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
@@ -31517,11 +32874,25 @@ CMakeFiles/Feintgine.dir/src/FrameBufferScreen.cpp.obj: E:/template/GC_port/Fein
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/corecrt.h \
@@ -31689,6 +33060,7 @@ CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
@@ -31700,6 +33072,7 @@ CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
@@ -31735,15 +33108,30 @@ CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
   C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/corecrt.h \
@@ -31983,6 +33371,7 @@ CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -31996,6 +33385,7 @@ CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -32043,11 +33433,25 @@ CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -32370,6 +33774,7 @@ CMakeFiles/Feintgine.dir/src/GUI.cpp.obj: E:/template/GC_port/Feintgine/src/GUI.
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -32377,6 +33782,7 @@ CMakeFiles/Feintgine.dir/src/GUI.cpp.obj: E:/template/GC_port/Feintgine/src/GUI.
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
@@ -32400,6 +33806,7 @@ CMakeFiles/Feintgine.dir/src/GUI.cpp.obj: E:/template/GC_port/Feintgine/src/GUI.
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
@@ -32452,13 +33859,29 @@ CMakeFiles/Feintgine.dir/src/GUI.cpp.obj: E:/template/GC_port/Feintgine/src/GUI.
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -33105,6 +34528,7 @@ CMakeFiles/Feintgine.dir/src/IGameScreen.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
@@ -33141,10 +34565,12 @@ CMakeFiles/Feintgine.dir/src/IGameScreen.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -33205,6 +34631,7 @@ CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bit \
@@ -33251,6 +34678,7 @@ CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -33262,6 +34690,7 @@ CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
@@ -33283,6 +34712,7 @@ CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -33299,6 +34729,7 @@ CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/climits \
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -33342,14 +34773,31 @@ CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/memory \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/queue \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -33792,6 +35240,7 @@ CMakeFiles/Feintgine.dir/src/IOFileCache.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -33815,6 +35264,7 @@ CMakeFiles/Feintgine.dir/src/IOFileCache.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
@@ -33859,10 +35309,12 @@ CMakeFiles/Feintgine.dir/src/IOFileCache.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/map \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
@@ -33967,6 +35419,7 @@ CMakeFiles/Feintgine.dir/src/IOManager.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -34007,10 +35460,12 @@ CMakeFiles/Feintgine.dir/src/IOManager.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -34103,6 +35558,7 @@ CMakeFiles/Feintgine.dir/src/ImageLoader.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -34116,6 +35572,7 @@ CMakeFiles/Feintgine.dir/src/ImageLoader.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -34155,14 +35612,29 @@ CMakeFiles/Feintgine.dir/src/ImageLoader.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
   C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -34379,9 +35851,11 @@ CMakeFiles/Feintgine.dir/src/InputManager.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/memoryfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -34413,7 +35887,20 @@ CMakeFiles/Feintgine.dir/src/InputManager.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/initializer_list \
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
@@ -34561,6 +36048,7 @@ CMakeFiles/Feintgine.dir/src/LightBatch.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -34574,6 +36062,7 @@ CMakeFiles/Feintgine.dir/src/LightBatch.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -34620,11 +36109,25 @@ CMakeFiles/Feintgine.dir/src/LightBatch.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -34803,6 +36306,7 @@ CMakeFiles/Feintgine.dir/src/LuaManager.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
@@ -34839,10 +36343,12 @@ CMakeFiles/Feintgine.dir/src/LuaManager.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -34937,6 +36443,7 @@ CMakeFiles/Feintgine.dir/src/Model.cpp.obj: E:/template/GC_port/Feintgine/src/Mo
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -34944,6 +36451,7 @@ CMakeFiles/Feintgine.dir/src/Model.cpp.obj: E:/template/GC_port/Feintgine/src/Mo
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
@@ -34965,6 +36473,7 @@ CMakeFiles/Feintgine.dir/src/Model.cpp.obj: E:/template/GC_port/Feintgine/src/Mo
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
@@ -35018,12 +36527,28 @@ CMakeFiles/Feintgine.dir/src/Model.cpp.obj: E:/template/GC_port/Feintgine/src/Mo
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -35106,7 +36631,7 @@ CMakeFiles/Feintgine.dir/src/Model.cpp.obj: E:/template/GC_port/Feintgine/src/Mo
   E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8.h \
   E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/checked.h \
   E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/core.h \
-  E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/cpp11.h \
+  E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/cpp17.h \
   E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/unchecked.h \
   E:/template/GC_port/Feintgine_GC_deps/include/glm/common.hpp \
   E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/_fixes.hpp \
@@ -35211,6 +36736,7 @@ CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -35260,6 +36786,7 @@ CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -35272,6 +36799,7 @@ CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -35299,6 +36827,7 @@ CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -35316,6 +36845,7 @@ CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -35366,6 +36896,10 @@ CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -35373,7 +36907,20 @@ CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -36042,6 +37589,7 @@ CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -36091,6 +37639,7 @@ CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -36103,6 +37652,7 @@ CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -36131,6 +37681,7 @@ CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -36149,6 +37700,7 @@ CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -36199,6 +37751,10 @@ CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -36206,8 +37762,21 @@ CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -36909,6 +38478,7 @@ CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -36958,6 +38528,7 @@ CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -36970,6 +38541,7 @@ CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -36998,6 +38570,7 @@ CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -37016,6 +38589,7 @@ CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -37066,6 +38640,10 @@ CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -37073,8 +38651,21 @@ CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -37802,6 +39393,7 @@ CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -37825,6 +39417,7 @@ CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
@@ -37869,10 +39462,12 @@ CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/c++/12.2.0/map \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
@@ -37968,6 +39563,7 @@ CMakeFiles/Feintgine.dir/src/SDL_TextRenderer.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -37978,6 +39574,7 @@ CMakeFiles/Feintgine.dir/src/SDL_TextRenderer.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
@@ -38013,14 +39610,29 @@ CMakeFiles/Feintgine.dir/src/SDL_TextRenderer.cpp.obj: E:/template/GC_port/Feint
   C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
   C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/corecrt.h \
@@ -38228,6 +39840,7 @@ CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -38277,6 +39890,7 @@ CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -38289,6 +39903,7 @@ CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -38317,6 +39932,7 @@ CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -38335,6 +39951,7 @@ CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -38385,6 +40002,10 @@ CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -38392,8 +40013,21 @@ CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -39088,6 +40722,7 @@ CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -39137,6 +40772,7 @@ CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -39149,6 +40785,7 @@ CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -39177,6 +40814,7 @@ CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -39195,6 +40833,7 @@ CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -39245,6 +40884,10 @@ CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -39252,8 +40895,21 @@ CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -39970,6 +41626,7 @@ CMakeFiles/Feintgine.dir/src/ScreenList.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/initializer_list \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
   E:/template/GC_port/Feintgine/src/IGameScreen.h \
@@ -40025,6 +41682,7 @@ CMakeFiles/Feintgine.dir/src/ShaderUpdater.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -40035,6 +41693,7 @@ CMakeFiles/Feintgine.dir/src/ShaderUpdater.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
@@ -40080,11 +41739,25 @@ CMakeFiles/Feintgine.dir/src/ShaderUpdater.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/corecrt.h \
@@ -40252,6 +41925,7 @@ CMakeFiles/Feintgine.dir/src/Sprite.cpp.obj: E:/template/GC_port/Feintgine/src/S
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -40259,6 +41933,7 @@ CMakeFiles/Feintgine.dir/src/Sprite.cpp.obj: E:/template/GC_port/Feintgine/src/S
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -40275,6 +41950,7 @@ CMakeFiles/Feintgine.dir/src/Sprite.cpp.obj: E:/template/GC_port/Feintgine/src/S
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
@@ -40325,11 +42001,25 @@ CMakeFiles/Feintgine.dir/src/Sprite.cpp.obj: E:/template/GC_port/Feintgine/src/S
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -40508,6 +42198,7 @@ CMakeFiles/Feintgine.dir/src/SpriteBatch.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
@@ -40524,6 +42215,7 @@ CMakeFiles/Feintgine.dir/src/SpriteBatch.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
@@ -40569,11 +42261,27 @@ CMakeFiles/Feintgine.dir/src/SpriteBatch.cpp.obj: E:/template/GC_port/Feintgine/
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -40739,6 +42447,7 @@ CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -40746,6 +42455,7 @@ CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -40762,6 +42472,7 @@ CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
@@ -40810,11 +42521,25 @@ CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -41104,6 +42829,7 @@ CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -41153,6 +42879,7 @@ CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -41165,6 +42892,7 @@ CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -41193,6 +42921,7 @@ CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
@@ -41211,6 +42940,7 @@ CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -41261,6 +42991,10 @@ CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -41268,8 +43002,21 @@ CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/thread \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -41962,6 +43709,7 @@ CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -42011,6 +43759,7 @@ CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -42023,6 +43772,7 @@ CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -42050,6 +43800,7 @@ CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -42067,6 +43818,7 @@ CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -42117,6 +43869,10 @@ CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -42124,7 +43880,20 @@ CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -42802,6 +44571,7 @@ CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -42851,6 +44621,7 @@ CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -42863,6 +44634,7 @@ CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -42890,6 +44662,7 @@ CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -42907,6 +44680,7 @@ CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -42957,6 +44731,10 @@ CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -42964,7 +44742,20 @@ CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -43683,6 +45474,7 @@ CMakeFiles/Feintgine.dir/src/TextureCache.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -43690,6 +45482,7 @@ CMakeFiles/Feintgine.dir/src/TextureCache.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -43706,6 +45499,7 @@ CMakeFiles/Feintgine.dir/src/TextureCache.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
@@ -43747,15 +45541,30 @@ CMakeFiles/Feintgine.dir/src/TextureCache.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
   C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/map \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -43958,16 +45767,47 @@ CMakeFiles/Feintgine.dir/src/Timing.cpp.obj: E:/template/GC_port/Feintgine/src/T
   C:/SysGCC/mingw32/include/_mingw_secapi.h \
   C:/SysGCC/mingw32/include/_mingw_stat64.h \
   C:/SysGCC/mingw32/include/_mingw_stdarg.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_startup.h \
   C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
@@ -44197,6 +46037,7 @@ CMakeFiles/Feintgine.dir/src/TransLabel.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
@@ -44204,6 +46045,7 @@ CMakeFiles/Feintgine.dir/src/TransLabel.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
@@ -44227,6 +46069,7 @@ CMakeFiles/Feintgine.dir/src/TransLabel.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
@@ -44271,16 +46114,33 @@ CMakeFiles/Feintgine.dir/src/TransLabel.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/ios \
   C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
   C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/map \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -44706,6 +46566,7 @@ CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
@@ -44719,6 +46580,7 @@ CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
@@ -44765,11 +46627,25 @@ CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj: E:/template/GC_port/Feintgine/src
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector \
@@ -44911,6 +46787,7 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: E:/template/GC_port/Feintgine/src/W
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -44960,6 +46837,7 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: E:/template/GC_port/Feintgine/src/W
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -44972,6 +46850,7 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: E:/template/GC_port/Feintgine/src/W
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -44999,6 +46878,7 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: E:/template/GC_port/Feintgine/src/W
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -45016,6 +46896,7 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: E:/template/GC_port/Feintgine/src/W
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -45066,6 +46947,10 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: E:/template/GC_port/Feintgine/src/W
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -45073,7 +46958,20 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: E:/template/GC_port/Feintgine/src/W
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -45753,6 +47651,7 @@ CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
@@ -45761,6 +47660,7 @@ CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
@@ -45790,8 +47690,22 @@ CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj: E:/template/GC_port/Feintgine/sr
   C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
   C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
@@ -45906,6 +47820,7 @@ CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/_timeval.h \
   C:/SysGCC/mingw32/include/assert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -45952,6 +47867,7 @@ CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -45963,6 +47879,7 @@ CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_mutex.h \
@@ -45989,6 +47906,7 @@ CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -46005,6 +47923,7 @@ CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/climits \
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -46051,13 +47970,30 @@ CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -46259,6 +48195,7 @@ CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -46308,6 +48245,7 @@ CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -46320,6 +48258,7 @@ CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -46347,6 +48286,7 @@ CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -46364,6 +48304,7 @@ CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -46414,6 +48355,10 @@ CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -46421,7 +48366,20 @@ CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -47077,16 +49035,47 @@ CMakeFiles/Feintgine.dir/src/imgui.cpp.obj: E:/template/GC_port/Feintgine/src/im
   C:/SysGCC/mingw32/include/assert.h \
   C:/SysGCC/mingw32/include/basetsd.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/concurrencysal.h \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
@@ -47195,16 +49184,47 @@ CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/_mingw_secapi.h \
   C:/SysGCC/mingw32/include/_mingw_stdarg.h \
   C:/SysGCC/mingw32/include/assert.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
   C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
@@ -47243,16 +49263,47 @@ CMakeFiles/Feintgine.dir/src/imgui_draw.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/_mingw_secapi.h \
   C:/SysGCC/mingw32/include/_mingw_stdarg.h \
   C:/SysGCC/mingw32/include/assert.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
   C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
@@ -47291,16 +49342,47 @@ CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj: E:/template/GC_port/Feintgi
   C:/SysGCC/mingw32/include/_mingw_secapi.h \
   C:/SysGCC/mingw32/include/_mingw_stdarg.h \
   C:/SysGCC/mingw32/include/assert.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
   C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
@@ -47370,6 +49452,7 @@ CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.obj: E:/template/GC_port/Fei
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/concurrencysal.h \
   C:/SysGCC/mingw32/include/corecrt.h \
@@ -47484,16 +49567,47 @@ CMakeFiles/Feintgine.dir/src/imgui_impl_sdl2.cpp.obj: E:/template/GC_port/Feintg
   C:/SysGCC/mingw32/include/assert.h \
   C:/SysGCC/mingw32/include/basetsd.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/concurrencysal.h \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_startup.h \
@@ -47748,16 +49862,47 @@ CMakeFiles/Feintgine.dir/src/imgui_tables.cpp.obj: E:/template/GC_port/Feintgine
   C:/SysGCC/mingw32/include/_mingw_secapi.h \
   C:/SysGCC/mingw32/include/_mingw_stdarg.h \
   C:/SysGCC/mingw32/include/assert.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
   C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
@@ -47796,16 +49941,47 @@ CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/_mingw_secapi.h \
   C:/SysGCC/mingw32/include/_mingw_stdarg.h \
   C:/SysGCC/mingw32/include/assert.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
   C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/corecrt.h \
   C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
   C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
@@ -47856,6 +50032,7 @@ CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/bcrypt.h \
   C:/SysGCC/mingw32/include/bemapiset.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -47905,6 +50082,7 @@ CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -47917,6 +50095,7 @@ CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
@@ -47944,6 +50123,7 @@ CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -47961,6 +50141,7 @@ CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
   C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
   C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -48011,6 +50192,10 @@ CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
@@ -48018,7 +50203,20 @@ CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
@@ -48672,6 +50870,7 @@ CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/_timeval.h \
   C:/SysGCC/mingw32/include/assert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -48716,6 +50915,7 @@ CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -48753,6 +50953,7 @@ CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -48767,6 +50968,7 @@ CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
   C:/SysGCC/mingw32/include/c++/12.2.0/climits \
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -48809,12 +51011,17 @@ CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
@@ -48953,6 +51160,7 @@ CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj: E:/template/GC_port/Feintgine/s
   C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/initializer_list \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
   C:/SysGCC/mingw32/include/c++/12.2.0/vector
 
@@ -48965,6 +51173,7 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/_timeval.h \
   C:/SysGCC/mingw32/include/assert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/algorithm \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
   C:/SysGCC/mingw32/include/c++/12.2.0/atomic \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
@@ -49009,6 +51218,7 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
@@ -49046,6 +51256,7 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_lock.h \
@@ -49060,6 +51271,7 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
   C:/SysGCC/mingw32/include/c++/12.2.0/climits \
   C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
   C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
@@ -49102,12 +51314,17 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: E:/template/GC_port/Feintgin
   C:/SysGCC/mingw32/include/c++/12.2.0/mutex \
   C:/SysGCC/mingw32/include/c++/12.2.0/new \
   C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
   C:/SysGCC/mingw32/include/c++/12.2.0/set \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
   C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
   C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
   C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
   C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
   C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
   C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
@@ -49219,6 +51436,8 @@ C:/SysGCC/mingw32/include/c++/12.2.0/bits/charconv.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat3x3.hpp:
 
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc:
+
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_vec3.inl:
@@ -49245,9 +51464,11 @@ C:/SysGCC/mingw32/include/c++/12.2.0/cerrno:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/Tree.h:
 
+E:/template/GC_port/Feintgine/src/F_TileManager.h:
+
 C:/SysGCC/mingw32/include/GL/gl.h:
 
-E:/template/GC_port/Feintgine/src/F_TileManager.h:
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Invoke.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_packing.hpp:
 
@@ -49273,13 +51494,11 @@ C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h:
 
 C:/SysGCC/mingw32/include/float.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/localefwd.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/type_traits:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_mouse.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/LuaBridge.h:
 
 C:/SysGCC/mingw32/include/_mingw_off_t.h:
 
@@ -49291,15 +51510,19 @@ C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h:
 
 E:/template/GC_port/Feintgine/src/AnimatedObject.cpp:
 
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc:
+
 C:/SysGCC/mingw32/include/c++/12.2.0/cctype:
 
 C:/SysGCC/mingw32/include/_mingw_stat64.h:
 
+C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h:
+
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat4x2.hpp:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++allocator.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/atomic:
 
@@ -49361,17 +51584,25 @@ E:/template/GC_port/Feintgine_GC_deps/include/lualib.h:
 
 C:/SysGCC/mingw32/include/mcx.h:
 
+C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_algorithm_defs.h:
+
 C:/SysGCC/mingw32/include/bcrypt.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat2x3.hpp:
 
+C:/SysGCC/mingw32/include/c++/12.2.0/array:
+
 C:/SysGCC/mingw32/include/c++/12.2.0/algorithm:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/invoke.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/string_view:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc:
 
@@ -49406,8 +51637,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/assimp/vector2.inl:
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocated_ptr.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_base.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/ImageManager.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_render.h:
 
@@ -49509,6 +51738,10 @@ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.h:
 
 C:/SysGCC/mingw32/include/combaseapi.h:
 
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/localefwd.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/type_traits:
+
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Font.h:
 
 E:/template/GC_port/Feintgine/src/GLSLProgram.cpp:
@@ -49531,6 +51764,14 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/ItemListBase.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h:
 
+E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/unchecked.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/fmaintrin.h:
+
+E:/template/GC_port/Feintgine/src/Feintgine.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h:
+
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc:
 
 E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp:
@@ -49538,6 +51779,8 @@ E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp:
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h:
 
 E:/template/GC_port/Feintgine/src/EGUI_DrawElement.cpp:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Expected.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h:
 
@@ -49585,7 +51828,11 @@ C:/SysGCC/mingw32/include/nb30.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/LeftAlignedRenderedString.h:
+E:/template/GC_port/Feintgine/src/F_LuaBridgeObject.cpp:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h:
+
+E:/template/GC_port/Feintgine/src/F_IMGUI.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc:
 
@@ -49601,9 +51848,9 @@ E:/template/GC_port/Feintgine/src/F_BaseObject.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_mutex.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_locale.h:
-
 E:/template/GC_port/Feintgine/src/F_ShaderEvent_Float.cpp:
+
+E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_locale.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/lzcntintrin.h:
 
@@ -49621,9 +51868,9 @@ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h:
 
-C:/SysGCC/mingw32/include/rpcsal.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/FunctorCopySlot.h:
+
+C:/SysGCC/mingw32/include/rpcsal.h:
 
 E:/template/GC_port/Feintgine/src/AnimatedObject.h:
 
@@ -49651,6 +51898,8 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/LayoutCell.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/DefaultRenderedStringParser.h:
 
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc:
+
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/MenuItem.h:
@@ -49659,11 +51908,13 @@ E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_matrix.inl:
 
 C:/SysGCC/mingw32/include/winspool.h:
 
+E:/template/GC_port/Feintgine/src/F_TileSet.cpp:
+
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/lwpintrin.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h:
 
-E:/template/GC_port/Feintgine/src/F_TileSet.cpp:
+C:/SysGCC/mingw32/include/c++/12.2.0/compare:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vldqintrin.h:
 
@@ -49689,6 +51940,8 @@ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/arenastring.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_raw_storage_iter.h:
 
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Userdata.h:
+
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/CEGUI.h:
 
 E:/template/GC_port/Feintgine/src/imgui_impl_opengl3.h:
@@ -49711,21 +51964,17 @@ C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_uninitialized.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/JustifiedRenderedString.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/glm/mat3x3.hpp:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_keyboard.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/lauxlib.h:
 
-E:/template/GC_port/Feintgine/src/F_ShaderEvent_Float.h:
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h:
 
-E:/template/GC_port/Feintgine/src/F_Sprite.cpp:
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/JustifiedRenderedString.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/glm/mat3x3.hpp:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h:
 
@@ -49765,6 +52014,8 @@ C:/SysGCC/mingw32/include/string.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_ptr.h:
 
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Errors.h:
+
 C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h:
@@ -49779,13 +52030,15 @@ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/inlined_string_fie
 
 E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/core.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/GeometryBuffer.h:
-
 C:/SysGCC/mingw32/include/jobapi.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/GeometryBuffer.h:
 
 E:/template/GC_port/Feintgine/src/Timing.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h:
 
@@ -49815,6 +52068,8 @@ C:/SysGCC/mingw32/include/c++/12.2.0/sstream:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/FunctorReferenceSlot.h:
 
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc:
+
 C:/SysGCC/mingw32/include/c++/12.2.0/clocale:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/unordered_set:
@@ -49839,9 +52094,11 @@ E:/template/GC_port/Feintgine/src/F_sEvent.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/cstdint:
 
-E:/template/GC_port/Feintgine/src/F_TileManager.cpp:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/cstdio:
+
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/TplWRFactoryRegisterer.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/ctime:
 
@@ -49882,8 +52139,6 @@ C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h:
 C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h:
 
 C:/SysGCC/mingw32/include/sys/types.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/ft2build.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/ratio:
 
@@ -49969,13 +52224,13 @@ C:/SysGCC/mingw32/include/c++/12.2.0/math.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/Titlebar.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/memory:
-
-E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftmoderr.h:
-
 C:/SysGCC/mingw32/include/urlmon.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/async++/traits.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftmoderr.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/memory:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/new:
 
@@ -49987,12 +52242,6 @@ C:/SysGCC/mingw32/include/errhandlingapi.h:
 
 E:/template/GC_port/Feintgine/src/ArcFunction_Fourier_test.cpp:
 
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/GUIContext.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/ostream:
-
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/SlotFunctorBase.h:
-
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/amxbf16intrin.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/SDL2/close_code.h:
@@ -50002,6 +52251,26 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/FactoryModule.h:
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/falagard/ImagerySection.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_config.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/ostream:
+
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/GUIContext.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/SlotFunctorBase.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/pconfigintrin.h:
+
+C:/SysGCC/mingw32/include/sal.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_rwops.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/assimp/Compiler/poppack1.h:
+
+E:/template/GC_port/Feintgine/src/ArcFunction_hypocycloid.cpp:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept:
 
@@ -50025,13 +52294,27 @@ E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat2x2.hpp:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/streambuf:
 
-E:/template/GC_port/Feintgine/src/F_Lua_GC3_Boss.cpp:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/string:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/system_error:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/thread:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/movdirintrin.h:
+
+C:/SysGCC/mingw32/include/ktmtypes.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/x86intrin.h:
 
@@ -50059,11 +52342,11 @@ C:/SysGCC/mingw32/include/specstrings.h:
 
 C:/SysGCC/mingw32/include/malloc.h:
 
-C:/SysGCC/mingw32/include/cderr.h:
+E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_reduce.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/mac-support.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_reduce.h:
+C:/SysGCC/mingw32/include/cderr.h:
 
 C:/SysGCC/mingw32/include/cguid.h:
 
@@ -50091,9 +52374,9 @@ C:/SysGCC/mingw32/include/dde.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/TabControl.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/PopupMenu.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/freetype/fterrdef.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/PopupMenu.h:
 
 C:/SysGCC/mingw32/include/ddeml.h:
 
@@ -50163,10 +52446,6 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vpopcntdqvlintri
 
 C:/SysGCC/mingw32/include/ioapiset.h:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/movdirintrin.h:
-
-C:/SysGCC/mingw32/include/ktmtypes.h:
-
 C:/SysGCC/mingw32/include/limits.h:
 
 C:/SysGCC/mingw32/include/locale.h:
@@ -50197,13 +52476,9 @@ C:/SysGCC/mingw32/include/sec_api/stralign_s.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/gfniintrin.h:
 
-E:/template/GC_port/Feintgine/src/F_Object.cpp:
-
 C:/SysGCC/mingw32/include/ncrypt.h:
 
 C:/SysGCC/mingw32/include/oaidl.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/freetype/freetype.h:
 
 C:/SysGCC/mingw32/include/objbase.h:
 
@@ -50237,13 +52512,13 @@ C:/SysGCC/mingw32/include/processtopologyapi.h:
 
 C:/SysGCC/mingw32/include/profileapi.h:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/xmmintrin.h:
-
-C:/SysGCC/mingw32/include/propidl.h:
+E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_main.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/ftoption.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_main.h:
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/xmmintrin.h:
+
+C:/SysGCC/mingw32/include/propidl.h:
 
 C:/SysGCC/mingw32/include/prsht.h:
 
@@ -50315,19 +52590,13 @@ E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_thread.h:
 
 C:/SysGCC/mingw32/include/rpcnsi.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/InputEvent.h:
-
 C:/SysGCC/mingw32/include/rpcnsip.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/InputEvent.h:
 
 C:/SysGCC/mingw32/include/utilapiset.h:
 
 C:/SysGCC/mingw32/include/rpcnterr.h:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/pconfigintrin.h:
-
-C:/SysGCC/mingw32/include/sal.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_rwops.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vlbwintrin.h:
 
@@ -50369,6 +52638,8 @@ C:/SysGCC/mingw32/include/wtypesbase.h:
 
 C:/SysGCC/mingw32/include/winnetwk.h:
 
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaRef.h:
+
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/prfchwintrin.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/ComboDropList.h:
@@ -50409,9 +52680,9 @@ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/macros.h:
 
 C:/SysGCC/mingw32/include/strings.h:
 
-C:/SysGCC/mingw32/include/synchapi.h:
-
 E:/template/GC_port/Feintgine/src/F_TileStack.cpp:
+
+C:/SysGCC/mingw32/include/synchapi.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/_vectorize.hpp:
 
@@ -50483,21 +52754,21 @@ C:/SysGCC/mingw32/include/winuser.h:
 
 C:/SysGCC/mingw32/include/winver.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/FontManager.h:
-
-C:/SysGCC/mingw32/include/wow64apiset.h:
+E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat3x2.inl:
 
 E:/template/GC_port/Feintgine/src/F_LuaObjectManipulator.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat3x2.inl:
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/FontManager.h:
+
+C:/SysGCC/mingw32/include/wow64apiset.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/falagard/EventLinkDefinition.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/ammintrin.h:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx5124fmapsintrin.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/LinkedEvent.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx5124fmapsintrin.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx5124vnniwintrin.h:
 
@@ -50563,19 +52834,15 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/clflushoptintrin.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/emmintrin.h:
 
+E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/public-macros.h:
+
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/enqcmdintrin.h:
 
 C:/SysGCC/mingw32/include/winsock2.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/public-macros.h:
-
-E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/unchecked.h:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/fmaintrin.h:
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/fxsrintrin.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/FreeFunctionSlot.h:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/fxsrintrin.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/XMLParser.h:
 
@@ -50596,6 +52863,8 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mwaitintrin.h:
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mwaitxintrin.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/pkuintrin.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/FuncTraits.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/pmmintrin.h:
 
@@ -50634,8 +52903,6 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/x86gprintrin.h:
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/xopintrin.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/async++/partitioner.h:
-
-E:/template/GC_port/Feintgine/src/F_ScreenCapture.cpp:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/xsaveintrin.h:
 
@@ -50681,6 +52948,8 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Image.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/ImageFactory.h:
 
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/ImageManager.h:
+
 E:/template/GC_port/Feintgine/src/ArcFunction_Epicycloid.cpp:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/InjectedInputReceiver.h:
@@ -50690,6 +52959,8 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Interpolator.h:
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_matrix.hpp:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/IteratorBase.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/LeftAlignedRenderedString.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Logger.h:
 
@@ -50767,6 +53038,8 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/ResourceProvider.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/RightAlignedRenderedString.h:
 
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/ClassInfo.h:
+
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Scheme.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Scheme_xmlHandler.h:
@@ -50783,9 +53056,9 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/SubscriberSlot.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/System.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/SystemKeys.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftstroke.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/SystemKeys.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/TextUtils.h:
 
@@ -50797,13 +53070,13 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/falagard/WidgetLookFeel.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/TplInterpolators.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/TplProperty.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftglyph.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/TplWRFactoryRegisterer.h:
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/TplProperty.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/TplWindowFactory.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaException.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/TplWindowProperty.h:
 
@@ -50824,6 +53097,10 @@ E:/template/GC_port/Feintgine/src/imconfig.h:
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Vertex.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/Window.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/checked.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Stack.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/WindowFactory.h:
 
@@ -50848,8 +53125,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/falagard/FrameComponent.h:
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/falagard/ImageryComponent.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/falagard/LayerSpecification.h:
-
-E:/template/GC_port/Feintgine/src/F_Lua_GC3_Boss.h:
 
 E:/template/GC_port/Feintgine/src/IMainGame.cpp:
 
@@ -50879,9 +53154,9 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/GroupBox.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/HorizontalLayoutContainer.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/ItemEntry.h:
-
 E:/template/GC_port/Feintgine/src/F_ScreenCapture.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/ItemEntry.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/ListHeader.h:
 
@@ -50912,8 +53187,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/RadioButton.h:
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/ScrollablePane.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_half.hpp:
-
-E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/ftstdlib.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/CEGUI/widgets/Scrollbar.h:
 
@@ -50967,8 +53240,6 @@ E:/template/GC_port/Feintgine/src/ArcFunction_hypotrochoid.cpp:
 
 E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_events.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/FreeImage.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_filesystem.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_gesture.h:
@@ -51009,9 +53280,9 @@ E:/template/GC_port/Feintgine_GC_deps/include/async++/when_all_any.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_sensor.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftoutln.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_shape.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Namespace.h:
 
 E:/template/GC_port/Feintgine/src/XMLParser.cpp:
 
@@ -51051,15 +53322,13 @@ E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_exponential.inl:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_integer.hpp:
 
-E:/template/GC_port/Feintgine/src/F_ShaderEventBase.cpp:
-
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_trigonometric.hpp:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_trigonometric.inl:
 
-E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_vector_relational.inl:
-
 E:/template/GC_port/Feintgine/src/F_LuaObjectManager.cpp:
+
+E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/func_vector_relational.inl:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/setup.hpp:
 
@@ -51078,6 +53347,8 @@ E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat2x4.inl:
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat3x2.hpp:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat3x3.inl:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Result.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/glm/detail/type_mat4x2.inl:
 
@@ -51139,15 +53410,13 @@ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_enum_uti
 
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/generated_message_reflection.h:
 
-E:/template/GC_port/Feintgine/src/F_TileSet.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/has_bits.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/implicit_weak_message.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/io/zero_copy_stream.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/ftconfig.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/io/zero_copy_stream.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/map.h:
 
@@ -51157,8 +53426,6 @@ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/metadata_lite.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/parse_context.h:
 
-E:/template/GC_port/Feintgine/src/F_LuaObjectManager.h:
-
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/port.h:
 
 E:/template/GC_port/Feintgine/src/imgui_impl_opengl3_loader.h:
@@ -51166,6 +53433,8 @@ E:/template/GC_port/Feintgine/src/imgui_impl_opengl3_loader.h:
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/port_def.inc:
 
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/port_undef.inc:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaHelpers.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/repeated_field.h:
 
@@ -51185,13 +53454,15 @@ E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/status.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/stubs/stl_util.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/wire_format_lite.h:
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/FlagSet.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/freetype/fterrors.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/rapidxml_print.hpp:
+E:/template/GC_port/Feintgine_GC_deps/include/google/protobuf/wire_format_lite.h:
 
 E:/template/GC_port/Feintgine/src/F_ShaderEventHandler.cpp:
+
+E:/template/GC_port/Feintgine_GC_deps/include/rapidxml_print.hpp:
 
 E:/template/GC_port/Feintgine/src/AfterImageParticle.h:
 
@@ -51231,10 +53502,6 @@ E:/template/GC_port/Feintgine/src/ArcFunction_feint_custom1.cpp:
 
 E:/template/GC_port/Feintgine/src/FL_Manipulator.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/assimp/Compiler/poppack1.h:
-
-E:/template/GC_port/Feintgine/src/ArcFunction_hypocycloid.cpp:
-
 E:/template/GC_port/Feintgine/src/ArcFunction_hypocycloid.h:
 
 E:/template/GC_port/Feintgine/src/ArcFunction_hypotrochoid.h:
@@ -51271,6 +53538,8 @@ C:/SysGCC/mingw32/include/ws2def.h:
 
 E:/template/GC_port/Feintgine/src/ClientSys.h:
 
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Options.h:
+
 E:/template/GC_port/Feintgine/src/ColiderBox.cpp:
 
 E:/template/GC_port/Feintgine/src/DebugRender.h:
@@ -51301,9 +53570,9 @@ E:/template/GC_port/Feintgine/src/Enet_UDP.cpp:
 
 E:/template/GC_port/Feintgine/src/FTimer.h:
 
-E:/template/GC_port/Feintgine/src/F_AnimatedObject.cpp:
-
 E:/template/GC_port/Feintgine/src/F_ShaderEvent_Vec3.h:
+
+E:/template/GC_port/Feintgine/src/F_AnimatedObject.cpp:
 
 E:/template/GC_port/Feintgine/src/F_BaseObjectManipulator.cpp:
 
@@ -51315,29 +53584,65 @@ E:/template/GC_port/Feintgine/src/F_EmptyObject.cpp:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_deque.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/chrono:
-
 E:/template/GC_port/Feintgine/src/F_TilePart.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/chrono:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/deque:
 
-E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/ftheader.h:
-
 E:/template/GC_port/Feintgine/src/F_IMGUI.cpp:
 
-E:/template/GC_port/Feintgine/src/F_IMGUI.h:
+C:/SysGCC/mingw32/include/c++/12.2.0/optional:
 
-E:/template/GC_port/Feintgine/src/F_LuaDynamicObject.cpp:
+C:/SysGCC/mingw32/include/c++/12.2.0/variant:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/CFunctions.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Config.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Enum.h:
+
+E:/template/GC_port/Feintgine/src/FrameCounter.cpp:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Globals.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Iterator.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Overload.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/ScopeGuard.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/TypeTraits.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/luaconf.h:
 
+E:/template/GC_port/Feintgine/src/F_LuaBridgeObject.h:
+
+E:/template/GC_port/Feintgine/src/F_LuaDynamicObject.cpp:
+
 E:/template/GC_port/Feintgine/src/F_LuaDynamicObject.h:
+
+E:/template/GC_port/Feintgine/src/F_LuaObjectManager.h:
+
+E:/template/GC_port/Feintgine/src/F_Lua_GC3_Boss.h:
 
 E:/template/GC_port/Feintgine/src/F_LuaObjectManipulator.cpp:
 
+E:/template/GC_port/Feintgine/src/F_Lua_GC3_Boss.cpp:
+
+E:/template/GC_port/Feintgine/src/F_Object.cpp:
+
+E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/ftheader.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/ftstdlib.h:
+
 E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/integer-types.h:
 
+E:/template/GC_port/Feintgine_GC_deps/include/freetype/freetype.h:
+
 E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftimage.h:
+
+E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftoutln.h:
 
 E:/template/GC_port/Feintgine/src/IMainGame.h:
 
@@ -51345,17 +53650,27 @@ E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftsystem.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/freetype/fttypes.h:
 
-E:/template/GC_port/Feintgine/src/F_Object.h:
+E:/template/GC_port/Feintgine_GC_deps/include/ft2build.h:
 
-E:/template/GC_port/Feintgine/src/Feintgine.h:
+E:/template/GC_port/Feintgine/src/F_Object.h:
 
 E:/template/GC_port/Feintgine/src/picoPNGcpp.cpp:
 
 E:/template/GC_port/Feintgine/src/TextRenderer.h:
 
+E:/template/GC_port/Feintgine/src/F_ScreenCapture.cpp:
+
+E:/template/GC_port/Feintgine_GC_deps/include/FreeImage.h:
+
+E:/template/GC_port/Feintgine/src/F_ShaderEventBase.cpp:
+
 E:/template/GC_port/Feintgine/src/F_ShaderEventBase.h:
 
 E:/template/GC_port/Feintgine/src/F_ShaderEventHandler.h:
+
+E:/template/GC_port/Feintgine/src/F_Sprite.cpp:
+
+E:/template/GC_port/Feintgine/src/F_ShaderEvent_Float.h:
 
 E:/template/GC_port/Feintgine/src/F_ShaderEvent_Vec3.cpp:
 
@@ -51365,7 +53680,11 @@ E:/template/GC_port/Feintgine_GC_deps/include/assimp/matrix3x3.inl:
 
 E:/template/GC_port/Feintgine/src/F_SpellcardBase.h:
 
+E:/template/GC_port/Feintgine/src/F_TileManager.cpp:
+
 E:/template/GC_port/Feintgine/src/F_TilePart.cpp:
+
+E:/template/GC_port/Feintgine/src/F_TileSet.h:
 
 E:/template/GC_port/Feintgine/src/F_oEvent.cpp:
 
@@ -51382,8 +53701,6 @@ E:/template/GC_port/Feintgine/src/Fg_scene.cpp:
 E:/template/GC_port/Feintgine/src/Fg_scene.h:
 
 E:/template/GC_port/Feintgine/src/FrameBuffer.cpp:
-
-E:/template/GC_port/Feintgine/src/FrameCounter.cpp:
 
 E:/template/GC_port/Feintgine/src/FrameCounter.h:
 
@@ -51433,9 +53750,9 @@ E:/template/GC_port/Feintgine_GC_deps/include/assimp/vector3.h:
 
 E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8.h:
 
-E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/checked.h:
+E:/template/GC_port/Feintgine/src/f_uvobject.cpp:
 
-E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/cpp11.h:
+E:/template/GC_port/Feintgine_GC_deps/include/contrib/utf8cpp/source/utf8/cpp17.h:
 
 E:/template/GC_port/Feintgine/src/Model.h:
 
@@ -51486,8 +53803,6 @@ E:/template/GC_port/Feintgine/src/Timing.cpp:
 E:/template/GC_port/Feintgine/src/Vertex3D.cpp:
 
 E:/template/GC_port/Feintgine/src/XMLParser.h:
-
-E:/template/GC_port/Feintgine/src/f_uvobject.cpp:
 
 E:/template/GC_port/Feintgine/src/f_uvobject.h:
 

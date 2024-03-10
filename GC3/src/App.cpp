@@ -72,9 +72,9 @@ void App::addScreen()
 
 //	m_screenList->addScreen(m_test2.get());
 
- //	m_test = std::make_unique<TestScreeb>(&m_window);
+ 	m_test = std::make_unique<TestScreeb>(&m_window);
 // 
- 	//m_screenList->addScreen(m_test.get());
+ 	m_screenList->addScreen(m_test.get());
 	
 
 	// Main test screen
@@ -84,8 +84,11 @@ void App::addScreen()
 	//m_screenList->setScreen(m_testRenderScreen->getScreenIndex());
 
 	
-	// Demo screen
-	m_screenList->setScreen(m_extraDemo->getScreenIndex());
+	// Demo screen | Current working scene
+	//m_screenList->setScreen(m_extraDemo->getScreenIndex());
+
+	// use test screen
+	m_screenList->setScreen(m_test->getScreenIndex());
 
 
 	// Replay screen

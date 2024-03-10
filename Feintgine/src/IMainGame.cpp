@@ -131,7 +131,7 @@ namespace Feintgine
 		// 1366 x 768
 		// 1920 x 1080
 
-		m_window.create("Gensokyo Adventure", 1366, 768, 0);
+		m_window.create("GC3", 1366, 768, 0);
 
 		return true;
 	}
