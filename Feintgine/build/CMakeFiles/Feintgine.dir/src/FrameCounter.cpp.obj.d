@@ -25,6 +25,7 @@ CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
  C:/SysGCC/mingw32/include/stdlib.h \
  C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
  C:/SysGCC/mingw32/include/limits.h \
@@ -51,6 +52,36 @@ CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
  C:/SysGCC/mingw32/include/math.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/specfun.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/limits \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/gamma.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/special_function_util.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/bessel_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/beta_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/exp_integral.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/hypergeometric.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/legendre_function.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/modified_bessel_func.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_assert.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_atomic.h \
  E:/template/GC_port/Feintgine_GC_deps/include/SDL2/SDL_audio.h \
@@ -197,13 +228,10 @@ CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/exception \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/new \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/char_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
@@ -230,23 +258,10 @@ CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocator.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++allocator.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_function.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/invoke.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
@@ -255,11 +270,13 @@ CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/ext/string_conversions.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/charconv.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/system_error \

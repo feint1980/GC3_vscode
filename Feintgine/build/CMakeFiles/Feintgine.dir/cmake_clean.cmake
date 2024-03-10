@@ -81,6 +81,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj.d"
+  "CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj"
+  "CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj"

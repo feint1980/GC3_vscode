@@ -16,6 +16,8 @@
 #include <f_uvobject.h>
 #include <SpriteManager.h>
 
+#include <F_LuaBridgeObject.h>
+
 class TestScreeb : public Feintgine::IGameScreen
 {
 public:
@@ -57,6 +59,7 @@ private:
 	Feintgine::Window * m_window;
 	Feintgine::Camera2D m_camera;
 
-	Feintgine::F_UVObject m_uvObj;
+	F_LuaBridgeObject testObject;
+	
 };
 

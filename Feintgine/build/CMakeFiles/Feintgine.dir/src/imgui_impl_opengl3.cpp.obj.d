@@ -21,6 +21,7 @@ CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
  C:/SysGCC/mingw32/include/stdlib.h \
  C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
  C:/SysGCC/mingw32/include/limits.h \

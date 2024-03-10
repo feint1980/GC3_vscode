@@ -224,6 +224,30 @@ src/BGMLabel.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/BGMLabel.cpp.s
 .PHONY : src/BGMLabel.cpp.s
 
+src/BGM_Label.obj: src/BGM_Label.cpp.obj
+.PHONY : src/BGM_Label.obj
+
+# target to build an object file
+src/BGM_Label.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/BGM_Label.cpp.obj
+.PHONY : src/BGM_Label.cpp.obj
+
+src/BGM_Label.i: src/BGM_Label.cpp.i
+.PHONY : src/BGM_Label.i
+
+# target to preprocess a source file
+src/BGM_Label.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/BGM_Label.cpp.i
+.PHONY : src/BGM_Label.cpp.i
+
+src/BGM_Label.s: src/BGM_Label.cpp.s
+.PHONY : src/BGM_Label.s
+
+# target to generate assembly for a file
+src/BGM_Label.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/BGM_Label.cpp.s
+.PHONY : src/BGM_Label.cpp.s
+
 src/BackGroundMap.obj: src/BackGroundMap.cpp.obj
 .PHONY : src/BackGroundMap.obj
 
@@ -415,6 +439,30 @@ src/BulletTypeDemo.s: src/BulletTypeDemo.cpp.s
 src/BulletTypeDemo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/BulletTypeDemo.cpp.s
 .PHONY : src/BulletTypeDemo.cpp.s
+
+src/Chapter_Label.obj: src/Chapter_Label.cpp.obj
+.PHONY : src/Chapter_Label.obj
+
+# target to build an object file
+src/Chapter_Label.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/Chapter_Label.cpp.obj
+.PHONY : src/Chapter_Label.cpp.obj
+
+src/Chapter_Label.i: src/Chapter_Label.cpp.i
+.PHONY : src/Chapter_Label.i
+
+# target to preprocess a source file
+src/Chapter_Label.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/Chapter_Label.cpp.i
+.PHONY : src/Chapter_Label.cpp.i
+
+src/Chapter_Label.s: src/Chapter_Label.cpp.s
+.PHONY : src/Chapter_Label.s
+
+# target to generate assembly for a file
+src/Chapter_Label.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GC3.dir\build.make CMakeFiles/GC3.dir/src/Chapter_Label.cpp.s
+.PHONY : src/Chapter_Label.cpp.s
 
 src/CharacterAvatar.obj: src/CharacterAvatar.cpp.obj
 .PHONY : src/CharacterAvatar.obj
@@ -3341,6 +3389,9 @@ help:
 	@echo ... src/BGMLabel.obj
 	@echo ... src/BGMLabel.i
 	@echo ... src/BGMLabel.s
+	@echo ... src/BGM_Label.obj
+	@echo ... src/BGM_Label.i
+	@echo ... src/BGM_Label.s
 	@echo ... src/BackGroundMap.obj
 	@echo ... src/BackGroundMap.i
 	@echo ... src/BackGroundMap.s
@@ -3365,6 +3416,9 @@ help:
 	@echo ... src/BulletTypeDemo.obj
 	@echo ... src/BulletTypeDemo.i
 	@echo ... src/BulletTypeDemo.s
+	@echo ... src/Chapter_Label.obj
+	@echo ... src/Chapter_Label.i
+	@echo ... src/Chapter_Label.s
 	@echo ... src/CharacterAvatar.obj
 	@echo ... src/CharacterAvatar.i
 	@echo ... src/CharacterAvatar.s

@@ -908,6 +908,37 @@ CMakeFiles/GC3.dir/src/App.cpp.obj: E:\template\GC_port\GC3\src\App.cpp \
  E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_invoke.h \
  E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_for.h \
  E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_reduce.h \
+ E:/template/GC_port/Feintgine/src/F_LuaBridgeObject.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/lua.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/luaconf.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/lauxlib.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/lua.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/lualib.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/LuaBridge.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Config.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/CFunctions.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Errors.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/FuncTraits.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaHelpers.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Options.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/FlagSet.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Stack.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Expected.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Result.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Userdata.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaException.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/ClassInfo.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/TypeTraits.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/optional \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Enum.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Globals.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Invoke.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaRef.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/variant \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Iterator.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Namespace.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Overload.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/ScopeGuard.h \
  E:\template\GC_port\GC3\src\DemoScreen.h \
  E:/template/GC_port/Feintgine/src/GLTexture.h \
  E:/template/GC_port/Feintgine/src/Window.h \
@@ -1123,7 +1154,6 @@ CMakeFiles/GC3.dir/src/App.cpp.obj: E:\template\GC_port\GC3\src\App.cpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Cursor.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Timer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Optional.hpp \
- C:/SysGCC/mingw32/include/c++/12.2.0/optional \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widget.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Signal.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Global.hpp \
@@ -1160,7 +1190,6 @@ CMakeFiles/GC3.dir/src/App.cpp.obj: E:\template\GC_port\GC3\src\App.cpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Renderers/WidgetRenderer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/ObjectConverter.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Variant.hpp \
- C:/SysGCC/mingw32/include/c++/12.2.0/variant \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Loading/Serializer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Loading/Deserializer.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/SmartPtr/CopiedPtr.hpp \
@@ -1290,6 +1319,8 @@ CMakeFiles/GC3.dir/src/App.cpp.obj: E:\template\GC_port\GC3\src\App.cpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Renderer/OpenGL3/CanvasOpenGL3.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Widgets/CanvasBase.hpp \
  E:/template/GC_port/Feintgine_GC_deps/include/TGUI/Backend/Font/SDL_ttf/BackendFontSDLttf.hpp \
+ E:\template\GC_port\GC3\src\BGM_Label.h \
+ E:\template\GC_port\GC3\src\Chapter_Label.h \
  E:\template\GC_port\GC3\src\ReplayScreen.h \
  E:\template\GC_port\GC3\src\TestRenderScreen.h \
  E:/template/GC_port/Feintgine_GC_deps/include/rapidxml_utils.hpp \

@@ -906,4 +906,35 @@ CMakeFiles/GC3.dir/src/TestScreeb.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/async++/partitioner.h \
  E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_invoke.h \
  E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_for.h \
- E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_reduce.h
+ E:/template/GC_port/Feintgine_GC_deps/include/async++/parallel_reduce.h \
+ E:/template/GC_port/Feintgine/src/F_LuaBridgeObject.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/lua.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/luaconf.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/lauxlib.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/lua.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/lualib.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/LuaBridge.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Config.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/CFunctions.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Errors.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/FuncTraits.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaHelpers.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Options.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/FlagSet.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Stack.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Expected.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Result.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Userdata.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaException.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/ClassInfo.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/TypeTraits.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/optional \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Enum.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Globals.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Invoke.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/LuaRef.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/variant \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Iterator.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Namespace.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/Overload.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/LuaBridge/detail/ScopeGuard.h

@@ -49,6 +49,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "E:/template/GC_port/Feintgine/src/F_Event.cpp" "CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/F_IMGUI.cpp" "CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/F_Logger.cpp" "CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj.d"
+  "E:/template/GC_port/Feintgine/src/F_LuaBridgeObject.cpp" "CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/F_LuaDynamicObject.cpp" "CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/F_LuaObjectManager.cpp" "CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj.d"
   "E:/template/GC_port/Feintgine/src/F_LuaObjectManipulator.cpp" "CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj" "gcc" "CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj.d"

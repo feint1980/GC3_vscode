@@ -185,14 +185,14 @@ void DemoScreen::switchScreen()
 	if (!full)
 	{
 		//SDL_GLContext context = m_game->getWindow().getGLContext();
-		m_game->configureScreen("Gensokyo Adventure", 1366, 768, 0x2,true);
+		m_game->configureScreen("GHT", 1366, 768, 0x2,true);
 		//m_game->getWindow().loadContext(context);
 		full = true;
 	}
 	else
 	{
 	//	SDL_GLContext context = m_game->getWindow().getGLContext();
-		m_game->configureScreen("Gensokyo Adventure", 1366, 768, 0,true);
+		m_game->configureScreen("FF#", 1366, 768, 0,true);
 	//	m_game->getWindow().loadContext(context);
 		full = false;
 	}
