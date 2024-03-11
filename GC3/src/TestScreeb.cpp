@@ -45,7 +45,8 @@ void TestScreeb::destroy()
 void TestScreeb::onEntry()
 {
 
-	//Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
+
+	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
 	m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight());
 
 	std::cout << " init with " << m_window->getScreenWidth() << " and " << m_window->getScreenHeight() << "\n";
@@ -59,7 +60,8 @@ void TestScreeb::onEntry()
 	m_camera.update();
 
 	std::cout << "camera pos is " << feint_common::Instance()->convertVec2toString(m_camera.getPosition()) << "\n";
-	testObject.init();
+	m_luaManager.init();
+	m_luaManager.readFile("Assets/Lua/test.lua");
 }
 
 void TestScreeb::onExit()
@@ -74,6 +76,8 @@ void TestScreeb::update(float deltaTime)
 	m_camera.update();
 	checkInput();
 	handleInput(m_game->m_inputManager);
+
+	m_luaManager.update(deltaTime);
 	
 }
 
@@ -104,6 +108,7 @@ void TestScreeb::draw()
 
 	m_spriteBatch.begin();
 
+	m_luaManager.draw(m_spriteBatch);
 	
 	//testObj.draw(m_spriteBatch);
 	//m_player.draw(m_spriteBatch);

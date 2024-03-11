@@ -3,6 +3,7 @@
 *.exe
 *.obj
 *.py
+*.obj.d
 CMakeCache.txt
 cmake_install.cmake
 CEGUI.log

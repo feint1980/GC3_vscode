@@ -59,7 +59,7 @@ private:
 	Feintgine::Window * m_window;
 	Feintgine::Camera2D m_camera;
 
-	F_LuaBridgeObject testObject;
+	Feintgine::F_LuaBridgeObject m_luaManager;
 	
 };
 

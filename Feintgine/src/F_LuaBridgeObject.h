@@ -16,28 +16,43 @@ extern "C"
 #include <LuaBridge/LuaBridge.h>
 #include <glm/glm.hpp>  
 
+#include "F_LuaObject.h"
+
 
 // prefer link : 
 // https://www.youtube.com/watch?v=mtjCgqyZ5wk
 
 // https://www.youtube.com/watch?v=-E_L6-Yo8yQ
 
-class F_LuaBridgeObject
+
+namespace Feintgine
 {
-public:
+    class F_LuaBridgeObject
+    {
+    public:
 
-    F_LuaBridgeObject();
-    ~F_LuaBridgeObject();
+        F_LuaBridgeObject();
+        ~F_LuaBridgeObject();
 
-    void init();
+        void init();
 
-    private:
-    int m_id;
-    lua_State * m_LuaState = nullptr;
+        void test();
+
+        void addObject(const std::string & tableName);
+        void readFile(const std::string & filePath);
+
+        void draw(Feintgine::SpriteBatch & spriteBatch);
+        void update(float deltaTime);
+
+        private:
+        
+        lua_State * m_LuaState = nullptr;
+
+        std::vector<F_LuaObject> m_luaObjects; // decide to use pointer or not
 
 
-};
+    };
 
-
+}
 
 #endif

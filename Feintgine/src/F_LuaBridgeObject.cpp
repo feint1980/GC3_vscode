@@ -1,6 +1,12 @@
 
 #include "F_LuaBridgeObject.h"
 
+
+namespace Feintgine
+{
+
+
+
 F_LuaBridgeObject::F_LuaBridgeObject()
 {
 
@@ -18,8 +24,9 @@ int davai(int x)
     return x * 2;
 }
 
-int getIntField(lua_State* L, const char* key)
+int getIntField(lua_State* L, const char * tableName, const char* key)
 {
+    lua_getglobal(L, tableName);
     lua_pushstring(L, key);
     lua_gettable(L, -2);  // get table[key]
  
@@ -28,8 +35,9 @@ int getIntField(lua_State* L, const char* key)
     return result;
 }
 
-std::string getStringField(lua_State* L, const char* key)
+std::string getStringField(lua_State* L, const char * tableName,const char* key)
 {
+    lua_getglobal(L, tableName);
     lua_pushstring(L, key);
     lua_gettable(L, -2);  // get table[key]
  
@@ -63,48 +71,104 @@ glm::vec2 GetVec2FromTable(lua_State* L, const char* outerTableName, const char*
 }
 
 
-void F_LuaBridgeObject::init()
+void F_LuaBridgeObject::addObject(const std::string & tableName)
 {
 
-    std::cout << "init lua \n";
+    std::cout << "add object called \n";
+
+    glm::vec2 pos = GetVec2FromTable(m_LuaState, tableName.c_str(), "pos");
+    std::cout << "C++ side pos: " << pos.x << " " << pos.y <<  "\n";
+    glm::vec2 scale = GetVec2FromTable(m_LuaState, tableName.c_str(), "scale");
+    std::cout << "C++ side scale: " << scale.x << " " << scale.y << "\n";
+    const std::string assetPath = getStringField(m_LuaState, tableName.c_str(),"assetPath");
+    std::cout << "C++ side assetPath: " << assetPath << "\n";
+    const std::string name = getStringField(m_LuaState, tableName.c_str(), "name");
+    std::cout << "C++ side name: " << name << "\n";
+    int id = getIntField(m_LuaState, tableName.c_str(), "id");
+    std::cout << "C++ side id: " << id << "\n";
+    glm::vec2 vel = GetVec2FromTable(m_LuaState, tableName.c_str(), "vel");
+    std::cout << "C++ side vel: " << vel.x << " " << vel.y << "\n";
+
+   F_LuaObject luaObject;
+   luaObject.init(pos, scale, assetPath, name, id, vel);
+   m_luaObjects.push_back(luaObject);
+}
+
+void F_LuaBridgeObject::init()
+{
     m_LuaState = luaL_newstate();
     luaL_openlibs(m_LuaState);
     luaopen_base(m_LuaState);
 
-    // Test 
+    luabridge::getGlobalNamespace(m_LuaState).beginNamespace("main")
+    .addFunction("createObject", [&](const std::string & tableName) {
+        addObject(tableName);
+         })
+    .endNamespace();
+
+}
+
+void F_LuaBridgeObject::readFile(const std::string & filePath)
+{
+    int resultDofile = luaL_dofile(m_LuaState, filePath.c_str());
+
+    if(resultDofile != LUA_OK)
+    {
+        std::cout << lua_tostring(m_LuaState, -1) << "\n";
+        return;
+    }
+
+}
+
+void F_LuaBridgeObject::draw(Feintgine::SpriteBatch & spriteBatch)
+{
+    for(int i = 0; i < m_luaObjects.size(); i++)
+    {
+        //m_luaObjects[i].draw(spriteBatch);  <-- this cause crash
+    }
+}
+
+void F_LuaBridgeObject::update(float deltaTime)
+{
+    for(int i = 0; i < m_luaObjects.size(); i++)
+    {
+       // m_luaObjects[i].update(deltaTime);
+    }
+}
+
+void F_LuaBridgeObject::test()
+{
+    std::cout << "init lua \n";
+    init(); 
     luabridge::getGlobalNamespace(m_LuaState)
     .beginNamespace("test")
     .addFunction ("davai", +[] (int x) { return x * 3; })
     .endNamespace();
 
-    // std::string cmd = "print(\"Hello world \")";
-
     std::cout << "reading file \n";
-
-    // int resultDostring = luaL_dostring(m_LuaState, cmd.c_str());
-    // if(resultDostring != LUA_OK)
-    // {
-    //     std::cout << lua_tostring(m_LuaState, -1) << "\n";
-    //     return;
-    // }
 
     int resultDofile = luaL_dofile(m_LuaState, "Assets/Lua/test.lua");
 
-    lua_getglobal(m_LuaState, "boss_komachi");
+    if(resultDofile != LUA_OK)
+    {
+        std::cout << lua_tostring(m_LuaState, -1) << "\n";
+        return;
+    }
 
-    int id = getIntField(m_LuaState, "id");
+
+   // lua_getglobal(m_LuaState, "boss_komachi");
+
+    int id = getIntField(m_LuaState, "boss_komachi","id");
 
     std::cout << "from C++ : " << id << "\n";
 
-    std::cout << "from C++ : " << getStringField(m_LuaState, "name") << "\n";
+    std::cout << "from C++ : " << getStringField(m_LuaState , "boss_komachi", "name") << "\n";
 
     glm::vec2 position = GetVec2FromTable(m_LuaState, "boss_komachi", "pos");
 
     glm::vec2 scale = GetVec2FromTable(m_LuaState, "boss_komachi", "scale");
-    //float y = lua_tonumber(m_LuaState, -2);
 
     std::cout << "from C++ : " << position.x << " " << position.y << "\n";
-
     std::cout << "from C++ : " << scale.x << " " << scale.y << "\n";
     
     if(resultDofile != LUA_OK)
@@ -112,11 +176,7 @@ void F_LuaBridgeObject::init()
         std::cout << "unable to read file \n";
         std::cout << lua_tostring(m_LuaState, -1) << "\n";
     }
-
     std::cout << "test end \n";
-
-
     // run file Lua
-
-
+}
 }

@@ -27,7 +27,7 @@ boss_komachi = {
     id = 4, -- 1: ID 
     name = "Komachi", -- 2: Name  
     assetPath = "./Assets/F_AObjects/boss_komachi.xml", -- 3: Animation Path
-    pos = {50.0,25.3}, -- 4: Position
+    pos = {0.0,0.0}, -- 4: Position
     scale = {1.0, 1.0}, -- 5: Scale
     depth = 15.0, -- 6: Depth
     angle =  0.0, -- 7: Angle
@@ -37,9 +37,7 @@ boss_komachi = {
 }
 
 
-f = test.davai(7)
 
-print(f)
 
 print(boss_komachi["name"])
 
@@ -48,9 +46,8 @@ boss_eiki = table.shallow_copy(boss_komachi)
 boss_eiki.id = 7
 boss_eiki.name = "Eiki"
 
-
-print(test.davai(boss_komachi["id"]))
-print(test.davai(boss_eiki["id"]))
 print(boss_eiki["name"])
+
+main.createObject("boss_komachi")
 
 print("end ")
