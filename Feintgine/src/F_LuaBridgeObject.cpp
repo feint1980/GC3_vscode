@@ -18,6 +18,51 @@ int davai(int x)
     return x * 2;
 }
 
+int getIntField(lua_State* L, const char* key)
+{
+    lua_pushstring(L, key);
+    lua_gettable(L, -2);  // get table[key]
+ 
+    int result = (int)lua_tonumber(L, -1);
+    lua_pop(L, 1);  // remove number from stack
+    return result;
+}
+
+std::string getStringField(lua_State* L, const char* key)
+{
+    lua_pushstring(L, key);
+    lua_gettable(L, -2);  // get table[key]
+ 
+    std::string result = lua_tostring(L, -1);
+    lua_pop(L, 1);  // remove string from stack
+    return result;
+}
+
+glm::vec2 GetVec2FromTable(lua_State* L, const char* outerTableName, const char* innerTableName) {
+    double x = 0.0;
+    double y = 0.0;
+
+    lua_getglobal(L, outerTableName); // Push the outer table onto the stack
+    lua_getfield(L, -1, innerTableName); // Push the inner table onto the stack
+
+    if (lua_istable(L, -1)) { // Check if the top of the stack is a table
+        lua_rawgeti(L, -1, 1); // Get the value at index 1 within the inner table
+        x = lua_tonumber(L, -1); // Get the value as a number
+        lua_pop(L, 1); // Pop the value off the stack
+
+        lua_rawgeti(L, -1, 2); // Get the value at index 2 within the inner table
+        y = lua_tonumber(L, -1); // Get the value as a number
+        lua_pop(L, 1); // Pop the value off the stack
+    } else {
+        // Handle error if the inner table is not found
+    }
+
+    lua_pop(L, 2); // Pop the outer table and inner table off the stack
+
+    return glm::vec2(x, y); // Return the glm::vec2
+}
+
+
 void F_LuaBridgeObject::init()
 {
 
@@ -32,18 +77,11 @@ void F_LuaBridgeObject::init()
     .addFunction ("davai", +[] (int x) { return x * 3; })
     .endNamespace();
 
-<<<<<<< HEAD
-
-    
-=======
->>>>>>> e23e623dd5732ec27a84111c0e42fa118bfd5f60
     // std::string cmd = "print(\"Hello world \")";
 
     std::cout << "reading file \n";
 
     // int resultDostring = luaL_dostring(m_LuaState, cmd.c_str());
-
-
     // if(resultDostring != LUA_OK)
     // {
     //     std::cout << lua_tostring(m_LuaState, -1) << "\n";
@@ -52,7 +90,23 @@ void F_LuaBridgeObject::init()
 
     int resultDofile = luaL_dofile(m_LuaState, "Assets/Lua/test.lua");
 
+    lua_getglobal(m_LuaState, "boss_komachi");
 
+    int id = getIntField(m_LuaState, "id");
+
+    std::cout << "from C++ : " << id << "\n";
+
+    std::cout << "from C++ : " << getStringField(m_LuaState, "name") << "\n";
+
+    glm::vec2 position = GetVec2FromTable(m_LuaState, "boss_komachi", "pos");
+
+    glm::vec2 scale = GetVec2FromTable(m_LuaState, "boss_komachi", "scale");
+    //float y = lua_tonumber(m_LuaState, -2);
+
+    std::cout << "from C++ : " << position.x << " " << position.y << "\n";
+
+    std::cout << "from C++ : " << scale.x << " " << scale.y << "\n";
+    
     if(resultDofile != LUA_OK)
     {
         std::cout << "unable to read file \n";

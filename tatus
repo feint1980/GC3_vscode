@@ -1,0 +1,71 @@
+[33mcommit e807948b16e9560018dea5009cfb3777a3cf85e7[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Feint <lyminhhoang1301@gmail.com>
+Date:   Tue Nov 21 00:07:41 2023 +0700
+
+    update gitignore
+
+[33mcommit 843060d129ae596274cf637e6936fedf2163d0ed[m
+Author: Hoang <hoang@studiowa.com>
+Date:   Mon Nov 20 20:20:11 2023 +0700
+
+    attemp to add multi-thread load
+
+[33mcommit 133014471102790f95c86fb624e0745aa1b7187f[m
+Author: Feint <lyminhhoang1301@gmail.com>
+Date:   Mon Nov 20 01:26:08 2023 +0700
+
+     added Komachi lua file, added feature to demo multiple lua file with refresh feature in editor
+
+[33mcommit 63a9134bf21f73cba01c450ce3bfb651e4730162[m
+Author: Feint <lyminhhoang1301@gmail.com>
+Date:   Wed Nov 15 01:08:07 2023 +0700
+
+    in the middle of fixing UV problem
+
+[33mcommit c0881f01dffa283b58556c31633a536dc29ba3f5[m
+Author: Feint <lyminhhoang1301@gmail.com>
+Date:   Mon Oct 23 09:32:59 2023 +0700
+
+    fixed 3d model loading ( UV )
+
+[33mcommit 251c55d523d3cdf0675ea6b5eff9612b3d6abb0a[m
+Author: Feint <lyminhhoang1301@gmail.com>
+Date:   Wed Oct 11 09:20:02 2023 +0700
+
+    added ffmpeg library, added example, need to resolve link issue
+
+[33mcommit 60a24ef30a820a559087d5a83c1e69f236ef151b[m
+Author: Hoang <hoang@studiowa.com>
+Date:   Tue Oct 10 14:22:05 2023 +0700
+
+    the glitch shader has problem
+
+[33mcommit 349c1dcbbd0cc6d7a4d54f98681014f7292eb415[m
+Author: Hoang <hoang@studiowa.com>
+Date:   Tue Oct 10 14:01:43 2023 +0700
+
+    fixed nvidia driver problem
+
+[33mcommit 55d91dfa8a67fa51b4937c137f6252371146a136[m
+Author: Feint <lyminhhoang1301@gmail.com>
+Date:   Mon Oct 9 23:35:08 2023 +0700
+
+    fixed the Cmake to relative path, change gitignore, now added assets
+
+[33mcommit 128499f5972785db7cf2d1ccb9b662ba8d918532[m
+Author: Feint <lyminhhoang1301@gmail.com>
+Date:   Sat Oct 7 23:55:28 2023 +0700
+
+    added Editor
+
+[33mcommit 775238bc8eeb968f9e545ad147db8d90311d97cb[m
+Author: Feint <lyminhhoang1301@gmail.com>
+Date:   Sat Oct 7 16:53:25 2023 +0700
+
+    added dependencies
+
+[33mcommit 651d87f1e16d40746829f92ab24e73eb0837bea6[m
+Author: Feint <lyminhhoang1301@gmail.com>
+Date:   Sat Oct 7 02:09:33 2023 +0700
+
+    first port stage, no editor yet

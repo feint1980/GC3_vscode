@@ -14,6 +14,8 @@ extern "C"
 #endif
 //#include <Lua/LuaLibrary.h>
 #include <LuaBridge/LuaBridge.h>
+#include <glm/glm.hpp>  
+
 
 // prefer link : 
 // https://www.youtube.com/watch?v=mtjCgqyZ5wk
