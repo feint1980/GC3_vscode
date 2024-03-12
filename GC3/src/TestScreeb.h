@@ -61,5 +61,7 @@ private:
 
 	Feintgine::F_LuaBridgeObject m_luaManager;
 	
+	Feintgine::F_AnimatedObject m_anim;
+
 };
 

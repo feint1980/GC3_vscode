@@ -18,7 +18,7 @@ namespace Feintgine
     {
         m_pos = pos;
         m_scale = scale;
-        m_animation.init(filePath);
+        m_animation.init("./Assets/F_AObjects/boss_komachi.xml");
         m_animation.playAnimation("idle");
         m_name = name;
         m_id = id;

@@ -181,26 +181,7 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Laser_trai
  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/GL/glew.h \
  C:/SysGCC/mingw32/include/inttypes.h C:/SysGCC/mingw32/include/GL/glu.h \
  C:/SysGCC/mingw32/include/GL/gl.h \
- D:\VS_Code_prj\GC3_vscode\GC3\src\F_BaseEnemy.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/SpriteBatch.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/Vertex.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/Vector2.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/GLTexture.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_AnimatedObject.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Sprite.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/SpriteBatch.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/GLTexture.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/ResourceManager.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/TextureCache.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/map \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multimap.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Logger.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
@@ -250,6 +231,26 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Laser_trai
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
+ D:\VS_Code_prj\GC3_vscode\GC3\src\F_BaseEnemy.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/SpriteBatch.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/Vertex.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/Vector2.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/GLTexture.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_AnimatedObject.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Sprite.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/SpriteBatch.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/GLTexture.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/ResourceManager.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/TextureCache.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/map \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multimap.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/IOFileCache.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/rapidxml.hpp \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/objectData.pb.h \
@@ -852,6 +853,22 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Laser_trai
  C:/SysGCC/mingw32/include/c++/12.2.0/thread \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/traits.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/aligned_alloc.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/ref_count.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/scheduler_fwd.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/continuation_vector.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/task_base.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/scheduler.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/task.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/when_all_any.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/cancel.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/range.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/partitioner.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/parallel_invoke.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/parallel_for.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/parallel_reduce.h \
  C:/SysGCC/mingw32/include/memory.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/feint_common.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_oEvent.h \
@@ -971,6 +988,11 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Laser_trai
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_SpellcardBase.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/AudioEngine.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/EGUI_DrawElement.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/imconfig.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui_impl_sdl2.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui_impl_opengl3.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/stb_image.h \
  D:\VS_Code_prj\GC3_vscode\GC3\src\F_Reimu_Fantasy_Seal_Obj.h \
  D:\VS_Code_prj\GC3_vscode\GC3\src\ExplosionRing.h \
  D:\VS_Code_prj\GC3_vscode\GC3\src\SpellcardSelector.h \

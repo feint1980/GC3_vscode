@@ -108,7 +108,8 @@ void F_LuaBridgeObject::init()
 
 }
 
-void F_LuaBridgeObject::readFile(const std::string & filePath)
+void F_LuaBridgeObject::
+readFile(const std::string & filePath)
 {
     int resultDofile = luaL_dofile(m_LuaState, filePath.c_str());
 
@@ -118,13 +119,30 @@ void F_LuaBridgeObject::readFile(const std::string & filePath)
         return;
     }
 
+
+    glm::vec2 pos = glm::vec2(0,0);
+   
+
+    glm::vec2 scale = glm::vec2(1,1);
+    const std::string assetPath = "./Assets/F_AObjects/boss_komachi.xml";
+    const std::string name = "komachi";
+    
+    int id = 7;
+    
+    glm::vec2 vel = glm::vec2(0,0);
+
+    F_LuaObject luaObject;
+    luaObject.init(pos, scale, assetPath, name, id, vel);
+    m_luaObjects.push_back(luaObject);
+
+
 }
 
 void F_LuaBridgeObject::draw(Feintgine::SpriteBatch & spriteBatch)
 {
     for(int i = 0; i < m_luaObjects.size(); i++)
     {
-        //m_luaObjects[i].draw(spriteBatch);  <-- this cause crash
+        m_luaObjects[i].draw(spriteBatch); // <-- this cause crash
     }
 }
 

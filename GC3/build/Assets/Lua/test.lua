@@ -48,6 +48,6 @@ boss_eiki.name = "Eiki"
 
 print(boss_eiki["name"])
 
-main.createObject("boss_komachi")
+--main.createObject("boss_komachi")
 
 print("end ")

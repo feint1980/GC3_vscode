@@ -62,6 +62,9 @@ void TestScreeb::onEntry()
 	std::cout << "camera pos is " << feint_common::Instance()->convertVec2toString(m_camera.getPosition()) << "\n";
 	m_luaManager.init();
 	m_luaManager.readFile("Assets/Lua/test.lua");
+	// m_anim.init("./Assets/F_AObjects/boss_komachi.xml");
+	// m_anim.setPos(glm::vec2(0, 0));
+	// m_anim.playAnimation("idle");
 }
 
 void TestScreeb::onExit()
@@ -77,7 +80,8 @@ void TestScreeb::update(float deltaTime)
 	checkInput();
 	handleInput(m_game->m_inputManager);
 
-	m_luaManager.update(deltaTime);
+	m_anim.update(deltaTime);
+	//m_luaManager.update(deltaTime);
 	
 }
 
@@ -90,8 +94,8 @@ void TestScreeb::draw()
 
 	m_shader.use();
 
-	GLint alphaLocation = m_shader.getUniformLocation("time");
-	glUniform1f(alphaLocation, 1);
+	// GLint alphaLocation = m_shader.getUniformLocation("time");
+	// glUniform1f(alphaLocation, 1);
 		
 	// Upload texture uniform
 	GLint textureUniform = m_shader.getUniformLocation("mySampler");
@@ -100,6 +104,8 @@ void TestScreeb::draw()
 
 
 
+	GLint dayLightIndex = m_shader.getUniformLocation("dayLight");
+	glUniform3f(dayLightIndex, 1, 1, 1);
 
 	// Camera matrix
 	glm::mat4 projectionMatrix = m_camera.getCameraMatrix();
@@ -110,6 +116,7 @@ void TestScreeb::draw()
 
 	m_luaManager.draw(m_spriteBatch);
 	
+	//m_anim.draw(m_spriteBatch);
 	//testObj.draw(m_spriteBatch);
 	//m_player.draw(m_spriteBatch);
 
@@ -127,7 +134,12 @@ void TestScreeb::draw()
 void TestScreeb::initShader()
 {
 
-	m_shader.compileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
+	// m_shader.compileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
+	// m_shader.addAttribute("vertexPosition");
+	// m_shader.addAttribute("vertexColor");
+	// m_shader.addAttribute("vertexUV");
+
+	m_shader.compileShaders("Shaders/ShaderToy/normal.vert", "Shaders/ShaderToy/normal.frag");
 	m_shader.addAttribute("vertexPosition");
 	m_shader.addAttribute("vertexColor");
 	m_shader.addAttribute("vertexUV");

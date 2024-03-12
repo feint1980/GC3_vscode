@@ -185,11 +185,7 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaLaser.cpp.o
  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/charconv.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/Camera2D.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/gtc/matrix_transform.hpp \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/gtc/constants.hpp \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/gtc/constants.inl \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/gtc/matrix_transform.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Logger.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
@@ -234,6 +230,16 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaLaser.cpp.o
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/istream \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/Camera2D.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/gtc/matrix_transform.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/gtc/constants.hpp \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/gtc/constants.inl \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/gtc/matrix_transform.inl \
  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_main.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_stdinc.h \
@@ -494,7 +500,6 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaLaser.cpp.o
  C:/SysGCC/mingw32/include/c++/12.2.0/ctime \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/time_members.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/messages_members.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_conv.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
@@ -591,10 +596,6 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaLaser.cpp.o
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/map_type_handler.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/extension_set.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/fstream \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
- C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/GUI.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/CEGUI.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/Affector.h \
@@ -864,6 +865,22 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaLaser.cpp.o
  C:/SysGCC/mingw32/include/c++/12.2.0/thread \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/traits.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/aligned_alloc.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/ref_count.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/scheduler_fwd.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/continuation_vector.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/task_base.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/scheduler.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/task.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/when_all_any.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/cancel.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/range.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/partitioner.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/parallel_invoke.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/parallel_for.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/parallel_reduce.h \
  C:/SysGCC/mingw32/include/memory.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/LightBatch.h \
  D:\VS_Code_prj\GC3_vscode\GC3\src\F_BaseEnemy.h \
@@ -970,6 +987,11 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaLaser.cpp.o
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_SpellcardBase.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/AudioEngine.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/EGUI_DrawElement.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/imconfig.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui_impl_sdl2.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui_impl_opengl3.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/stb_image.h \
  D:\VS_Code_prj\GC3_vscode\GC3\src\F_Reimu_Fantasy_Seal_Obj.h \
  D:\VS_Code_prj\GC3_vscode\GC3\src\ExplosionRing.h \
  D:\VS_Code_prj\GC3_vscode\GC3\src\SpellcardSelector.h \

@@ -114,6 +114,12 @@ namespace Feintgine
 //  			}
 		}
 		m_isInited = true;
+
+		// if(m_animations.size() > 0)
+		// {
+		// 	std::string animName = m_animations.begin()->first;
+		// 	playAnimation(animName);
+		// }
 		//std::cout << "loaded " << m_name << "with " << m_testAnims.size() << " anims \n";
 		//m_currentAnimation = &m_animations.begin()->second;
 
@@ -310,12 +316,16 @@ namespace Feintgine
 	
 	void F_AnimatedObject::draw(Feintgine::SpriteBatch & spriteBatch)
 	{
+		//std::cout << "step 1 \n";
 		if (m_currentAnimation)
 		{
+			//std::cout << "step 2 \n";
 			if (m_currentAnimation->getCurrentIndex() != -1)
 			{
+				//std::cout << "step 3 \n";
 				if (&m_currentAnimation->getAnims()[m_currentAnimation->getCurrentIndex()])
 				{
+					//std::cout << "step 4 \n";
 					glm::vec4 desRect;// (0, 0, 50, 50);
 
 					int t_index = m_currentAnimation->getCurrentIndex();

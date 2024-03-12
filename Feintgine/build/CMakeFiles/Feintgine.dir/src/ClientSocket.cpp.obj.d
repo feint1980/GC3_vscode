@@ -1,3 +1,3 @@
 CMakeFiles/Feintgine.dir/src/ClientSocket.cpp.obj: \
- E:\template\GC_port\Feintgine\src\ClientSocket.cpp \
- E:\template\GC_port\Feintgine\src\ClientSocket.h
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\ClientSocket.cpp \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\ClientSocket.h

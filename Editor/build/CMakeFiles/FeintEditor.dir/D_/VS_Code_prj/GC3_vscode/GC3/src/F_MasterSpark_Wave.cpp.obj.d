@@ -340,6 +340,7 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MasterSpark_Wave.
  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/extension_set.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/LightBatch.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/GLSLProgram.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Logger.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/feint_common.h \
  C:/SysGCC/mingw32/include/fcntl.h C:/SysGCC/mingw32/include/io.h \
  C:/SysGCC/mingw32/include/windows.h \
