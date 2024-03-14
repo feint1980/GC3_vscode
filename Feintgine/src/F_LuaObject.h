@@ -34,6 +34,9 @@ namespace Feintgine
                 m_targetPos = target;
             }
 
+            void handleMoveToTargetPos(float deltaTime);
+            
+
             void setColor(const Feintgine::Color & color)
             {
                 m_animation.setColor(color);
