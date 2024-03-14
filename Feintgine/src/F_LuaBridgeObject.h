@@ -48,7 +48,7 @@ namespace Feintgine
         
         lua_State * m_LuaState = nullptr;
 
-        std::vector<F_LuaObject> m_luaObjects; // decide to use pointer or not
+        std::vector<F_LuaObject *> m_luaObjects; // decide to use pointer or not
 
 
     };

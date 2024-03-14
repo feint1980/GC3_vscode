@@ -29,12 +29,18 @@ namespace Feintgine
                 m_depth = depth;
             }
 
+            void setTargetPos(const glm::vec2 & target)
+            {
+                m_targetPos = target;
+            }
+
             void setColor(const Feintgine::Color & color)
             {
                 m_animation.setColor(color);
             }
 
-        private:
+        protected:
+            glm::vec2 m_targetPos; 
             glm::vec2 m_pos;
             glm::vec2 m_scale;
             F_AnimatedObject m_animation;

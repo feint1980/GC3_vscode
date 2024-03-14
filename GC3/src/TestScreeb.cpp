@@ -62,6 +62,8 @@ void TestScreeb::onEntry()
 	std::cout << "camera pos is " << feint_common::Instance()->convertVec2toString(m_camera.getPosition()) << "\n";
 	m_luaManager.init();
 	m_luaManager.readFile("Assets/Lua/test.lua");
+
+	// m_luaObj.init(glm::vec2(0, 0), glm::vec2(1.0f, 1.0f), "Assets/F_AObjects/boss_komachi.xml", "name", 1, glm::vec2(0, 0));
 	// m_anim.init("./Assets/F_AObjects/boss_komachi.xml");
 	// m_anim.setPos(glm::vec2(0, 0));
 	// m_anim.playAnimation("idle");
@@ -81,8 +83,8 @@ void TestScreeb::update(float deltaTime)
 	handleInput(m_game->m_inputManager);
 
 	m_anim.update(deltaTime);
-	//m_luaManager.update(deltaTime);
-	
+	m_luaManager.update(deltaTime);
+	//m_luaObj.update(deltaTime);
 }
 
 void TestScreeb::draw()
@@ -116,6 +118,7 @@ void TestScreeb::draw()
 
 	m_luaManager.draw(m_spriteBatch);
 	
+	//m_luaObj.draw(m_spriteBatch);
 	//m_anim.draw(m_spriteBatch);
 	//testObj.draw(m_spriteBatch);
 	//m_player.draw(m_spriteBatch);

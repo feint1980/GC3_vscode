@@ -26,7 +26,7 @@ function table.shallow_copy(t)
 boss_komachi = {
     id = 4, -- 1: ID 
     name = "Komachi", -- 2: Name  
-    assetPath = "./Assets/F_AObjects/boss_komachi.xml", -- 3: Animation Path
+    assetPath = "./Assets/F_AObjects/boss_eiki.xml", -- 3: Animation Path
     pos = {0.0,0.0}, -- 4: Position
     scale = {1.0, 1.0}, -- 5: Scale
     depth = 15.0, -- 6: Depth
@@ -48,6 +48,6 @@ boss_eiki.name = "Eiki"
 
 print(boss_eiki["name"])
 
---main.createObject("boss_komachi")
+main.createObject("boss_komachi")
 
 print("end ")

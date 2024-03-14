@@ -60,7 +60,9 @@ private:
 	Feintgine::Camera2D m_camera;
 
 	Feintgine::F_LuaBridgeObject m_luaManager;
-	
+
+	//Feintgine::F_LuaObject m_luaObj;
+
 	Feintgine::F_AnimatedObject m_anim;
 
 };

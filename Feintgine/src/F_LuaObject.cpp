@@ -18,7 +18,7 @@ namespace Feintgine
     {
         m_pos = pos;
         m_scale = scale;
-        m_animation.init("./Assets/F_AObjects/boss_komachi.xml");
+        m_animation.init(filePath);
         m_animation.playAnimation("idle");
         m_name = name;
         m_id = id;
@@ -29,6 +29,19 @@ namespace Feintgine
         m_animation.draw(spriteBatch);
     }
 
+    void F_LuaObject::handleMoveToTargetPos(float deltaTime)
+    {
+        float dist = glm::distance(m_pos, m_targetPos);
+        if (dist > 0.1f)
+        {
+            m_vel = glm::normalize(m_targetPos - m_pos) * 10.0f;
+        }
+        else
+        {
+            m_pos = m_targetPos;
+        }
+    }
+
     void F_LuaObject::update(float deltaTime)
     {
         m_animation.update(deltaTime);
@@ -37,6 +50,7 @@ namespace Feintgine
         m_animation.setPos(m_pos);
         m_animation.setScale(m_scale);
         m_animation.setAngle(0.0);
+        handleMoveToTargetPos(deltaTime);
 
     }
     
