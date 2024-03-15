@@ -32,13 +32,14 @@ namespace Feintgine
     void F_LuaObject::handleMoveToTargetPos(float deltaTime)
     {
         float dist = glm::distance(m_pos, m_targetPos);
-        if (dist > 0.1f)
+        if (dist > 1.0f)
         {
-            m_vel = glm::normalize(m_targetPos - m_pos) * 10.0f;
+            m_vel = glm::normalize(m_targetPos - m_pos) * 2.2f;
         }
         else
         {
             m_pos = m_targetPos;
+            m_vel = glm::vec2(0, 0);
         }
     }
 

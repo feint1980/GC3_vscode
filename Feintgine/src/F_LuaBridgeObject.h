@@ -41,8 +41,12 @@ namespace Feintgine
         void addObject(const std::string & tableName);
         void readFile(const std::string & filePath);
 
+        void setObjectToMoveToTargetPos(int id, float x, float y);
+
         void draw(Feintgine::SpriteBatch & spriteBatch);
         void update(float deltaTime);
+
+        F_LuaObject * getObjectByID(int id );
 
         private:
         

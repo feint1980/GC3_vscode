@@ -29,6 +29,11 @@ namespace Feintgine
                 m_depth = depth;
             }
 
+            int getID() 
+            {
+                return m_id;
+            }
+            
             void setTargetPos(const glm::vec2 & target)
             {
                 m_targetPos = target;

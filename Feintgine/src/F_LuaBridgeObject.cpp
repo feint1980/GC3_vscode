@@ -104,12 +104,14 @@ void F_LuaBridgeObject::init()
     .addFunction("createObject", [&](const std::string & tableName) {
         addObject(tableName);
          })
+    .addFunction("setTargetPos", [&](int id, float x, float y) {
+        setObjectToMoveToTargetPos(id, x, y);
+        })
     .endNamespace();
 
 }
 
-void F_LuaBridgeObject::
-readFile(const std::string & filePath)
+void F_LuaBridgeObject::readFile(const std::string & filePath)
 {
     int resultDofile = luaL_dofile(m_LuaState, filePath.c_str());
 
@@ -119,24 +121,19 @@ readFile(const std::string & filePath)
         return;
     }
 
-
-    // glm::vec2 pos = glm::vec2(0,0);
-   
-
-    // glm::vec2 scale = glm::vec2(1,1);
-    // const std::string assetPath = "./Assets/F_AObjects/boss_komachi.xml";
-    // const std::string name = "komachi";
-    
-    // int id = 7;
-    
-    // glm::vec2 vel = glm::vec2(0,0);
-
-    // F_LuaObject luaObject;
-    // luaObject.init(pos, scale, assetPath, name, id, vel);
-    // m_luaObjects.push_back(luaObject);
-
-
 }
+
+void F_LuaBridgeObject::setObjectToMoveToTargetPos(int id, float x, float y)
+{
+
+    glm::vec2 targetPos(x, y);
+    F_LuaObject * luaObject = getObjectByID(id);
+    if(luaObject != nullptr)
+    {
+        luaObject->setTargetPos(targetPos);
+    }
+}
+
 
 void F_LuaBridgeObject::draw(Feintgine::SpriteBatch & spriteBatch)
 {
@@ -153,6 +150,20 @@ void F_LuaBridgeObject::update(float deltaTime)
         m_luaObjects[i]->update(deltaTime);
     }
 }
+
+F_LuaObject * F_LuaBridgeObject::getObjectByID(int id)
+{
+
+    for(int i = 0; i < m_luaObjects.size(); i++)
+    {
+        if(m_luaObjects[i]->getID() == id)
+        {
+            return m_luaObjects[i];
+        }
+    }
+    return nullptr;
+}
+
 
 void F_LuaBridgeObject::test()
 {

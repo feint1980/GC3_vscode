@@ -50,4 +50,11 @@ print(boss_eiki["name"])
 
 main.createObject("boss_komachi")
 
-print("end ")
+
+coroutine.yield(main.setTargetPos(boss_komachi["id"], 50,200))
+
+coroutine.yield(main.setTargetPos(boss_komachi["id"], 0,0))
+
+-- coroutine.yield()
+-- main.setTargetPos(boss_komachi["id"], -250,-200)
+-- print("end ")
