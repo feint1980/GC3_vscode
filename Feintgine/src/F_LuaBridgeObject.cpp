@@ -71,7 +71,7 @@ glm::vec2 GetVec2FromTable(lua_State* L, const char* outerTableName, const char*
 }
 
 
-void F_LuaBridgeObject::addObject(const std::string & tableName)
+int F_LuaBridgeObject::addObject(const std::string & tableName)
 {
 
     std::cout << "add object called \n";
@@ -89,9 +89,13 @@ void F_LuaBridgeObject::addObject(const std::string & tableName)
     glm::vec2 vel = GetVec2FromTable(m_LuaState, tableName.c_str(), "vel");
     std::cout << "C++ side vel: " << vel.x << " " << vel.y << "\n";
 
-   F_LuaObject * luaObject = new F_LuaObject();
-   luaObject->init(pos, scale, assetPath, name, id, vel);
-   m_luaObjects.push_back(luaObject);
+    F_LuaObject * luaObject = new F_LuaObject();
+    luaObject->init(pos, scale, assetPath, name, id, vel);
+    m_luaObjects.push_back(luaObject);
+    lua_pushlightuserdata(m_LuaState, luaObject);
+
+    //lua_ps
+    return 1;
 }
 
 void F_LuaBridgeObject::init()

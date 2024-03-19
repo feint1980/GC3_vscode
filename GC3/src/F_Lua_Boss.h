@@ -5,7 +5,6 @@
 
 //#include <>
 
-
 #define ANIM_LEFT 0
 #define ANIM_RIGHT 1
 #define ANIM_CENTER 2
