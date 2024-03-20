@@ -111,6 +111,9 @@ void F_LuaBridgeObject::init()
     .addFunction("setTargetPos", [&](int id, float x, float y) {
         setObjectToMoveToTargetPos(id, x, y);
         })
+    .addFunction("sleep", [&](int microseconds) {
+        Sleep(microseconds);
+    })
     .endNamespace();
 
 }

@@ -15,6 +15,8 @@ print("Helloooooo ")
 --     "dialogue_path.xml" -- 10: Dialogue
 -- }
 
+local dynamics = {}
+
 function table.shallow_copy(t)
     local t2 = {}
     for k,v in pairs(t) do
@@ -38,7 +40,6 @@ boss_komachi = {
 
 
 
-
 print(boss_komachi["name"])
 
 boss_eiki = table.shallow_copy(boss_komachi)
@@ -48,12 +49,92 @@ boss_eiki.name = "Eiki"
 
 print(boss_eiki["name"])
 
-main.createObject("boss_komachi")
+
+komachi = nil
 
 
-coroutine.yield(main.setTargetPos(boss_komachi["id"], 50,200))
 
-coroutine.yield(main.setTargetPos(boss_komachi["id"], 0,0))
+function test_ttt(host,dynob)
+  while true do 
+    print("test")
+    main.setTargetPos(boss_komachi["id"], -250,-200)
+    coroutine.yield()
+    main.setTargetPos(boss_komachi["id"], -250,200)
+    coroutine.yield()
+  end
+end
+
+
+function createBoss(host, name)
+  komachi = main.createObject(name)
+end
+function test(host)
+ 
+  dynamics[komachi] = {behavior = coroutine.create(test_ttt,host,komachi)}
+  IssueNextTask(host,komachi)
+end
+
+
+function IssueNextTask(host,dynob)
+  if coroutine.status(dynamics[komachi].behavior) ~= 'dead' then
+      coroutine.resume(dynamics[komachi].behavior, host,dynob)
+  else
+      print(coroutine.status(dynamics[komachi].behavior))
+  end
+end
+
+komachi = main.createObject("boss_komachi")
+
+co = coroutine.create(function() 
+  print("!!!!!!!!!!!!!!!!!test corona")
+end)
+
+coroutine.resume(co)
+
+
+function test_coroutine2(name)
+  while true do
+    print("cung manh")
+    main.sleep(1000)
+    coroutine.yield()
+    print("cung dc")
+    main.sleep(1000)
+    coroutine.yield()
+    print("cung dep")
+    main.sleep(1000)
+    coroutine.yield()
+  end
+
+end
+
+co2  = coroutine.create(test_coroutine2,"test name")
+
+
+function issueTask()
+  print("issue task")
+  if coroutine.status(co2) ~= 'dead' then
+    coroutine.resume(co2,"test")
+  else
+    print(coroutine.status(co2))
+  end
+end
+
+function helloTest()
+  print("hello test")
+end
+
+helloTest()
+
+function mainTask()
+  while true do
+    issueTask()
+  end
+
+end
+
+
+mainTask()
+
 
 -- coroutine.yield()
 -- main.setTargetPos(boss_komachi["id"], -250,-200)
