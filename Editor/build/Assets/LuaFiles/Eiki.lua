@@ -291,16 +291,11 @@ object = { posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/boss_eik
 
 
 function IssueNextTask2( host, dynob)
-	--print("host is ", host)
-	--print("dynob is ", dynob)
-	--print("IssueNextTask2 ")
+
 	if coroutine.status(dynamics[movingObject]) ~= 'dead' then
-		--print("coroutine not dead status ")
-		--print(coroutine.status(dynamics[movingObject]))
 		coroutine.resume(dynamics[movingObject],host,dynob)
 	else
-		--print(coroutine.status(dynamics[movingObject]))
-		--coroutine.resume(dynamics[dynob].behavior, host, dynob)
+		print(coroutine.status(dynamics[movingObject]))
 	end
 end
 

@@ -17,6 +17,8 @@ print("Helloooooo ")
 
 local dynamics = {}
 
+komachi = nils
+
 function table.shallow_copy(t)
     local t2 = {}
     for k,v in pairs(t) do

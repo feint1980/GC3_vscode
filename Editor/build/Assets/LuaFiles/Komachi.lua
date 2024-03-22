@@ -27,9 +27,12 @@ function CreateFromLua(host,path)
 end
 
 function moveset_normal_1( host )
+    print("create")
 	dynamics[movingObject] = {behavior = coroutine.create(DynamicBehavior1,host,movingObject)}
+    print("half")
 	IssueNextTask(host,movingObject)
 	isMovesetSelected = true
+    print("end")
 end
 
 function moveset_normal_2(host)
@@ -171,10 +174,20 @@ end
 
 -- main update of the boss
 function IssueNextTask(host, dynob)
-	if coroutine.status(dynamics[movingObject].behavior) ~= 'dead' then
-		coroutine.resume(dynamics[movingObject].behavior, host, dynob)
-	else
-		print(coroutine.status(dynamics[movingObject].behavior))
-	end
 
+    for k, v in pairs(dynamics) do
+        print(coroutine.status(v.behavior))
+        if coroutine.status(v.behavior) ~= 'dead' then
+            coroutine.resume(v.behavior, host, dynob)
+        else
+            print(coroutine.status(v.behavior))
+        end
+    end
+    --print(coroutine.status(dynamics[movingObject].behavior))
+	-- if coroutine.status(dynamics[movingObject].behavior) ~= 'dead' then
+	-- 	coroutine.resume(dynamics[movingObject].behavior, host, dynob)
+	-- else
+	-- 	print(coroutine.status(dynamics[movingObject].behavior))
+	-- end
 end
+

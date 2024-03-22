@@ -900,8 +900,6 @@ void F_Lua_Boss_Manager::callFunctionFromLua(const std::string functionName)
 		{
 			
 		}
-
-
 	}
 	
 }
