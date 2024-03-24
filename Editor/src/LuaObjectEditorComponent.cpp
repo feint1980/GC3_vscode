@@ -349,8 +349,6 @@ void LuaObjectEditorComponent::loadMoveset(const std::string & path)
 		if (m_lines[i].find("function moveset_") != std::string::npos)
 		{
 			const CEGUI::Image* sel_img = &CEGUI::ImageManager::getSingleton().get("TaharezLook/MultiListSelectionBrush");
-			
-
 				CEGUI::ListboxTextItem * item;
 				// strip functions
 				int tFound = m_lines[i].find("(");
@@ -364,6 +362,7 @@ void LuaObjectEditorComponent::loadMoveset(const std::string & path)
 		}
 	
 	}
+	std::cout << "load path  ||||| " << path << "\n";
 	m_luaObjectManager.callCreateFromLua(path, "CreateFromLua");
 }
 

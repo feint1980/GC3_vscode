@@ -57,10 +57,9 @@ int lua_CreateFromLua(lua_State * L)
 	int depth = (int)lua_tonumber(L, 6);
 	float angle = (float)lua_tonumber(L, 7);
 
-	
 	F_Lua_Boss * createdDynamicObj = object->createBoss(pos, animationPath, glm::vec2(scale), depth, angle);// createObject(pos, animationPath, 1, 15, 0);
-																										   //moveOb
-																										   //std::cout << "create object " << createdDynamicObj << "\n";
+																										//moveOb
+																										//std::cout << "create object " << createdDynamicObj << "\n";
 	lua_pushlightuserdata(L, createdDynamicObj);
 	return 1; // this host function return 1 number 
 }

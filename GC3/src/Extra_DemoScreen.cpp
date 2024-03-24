@@ -222,6 +222,10 @@ void Extra_DemoScreen::update(float deltaTime)
 	{
 		startLoad = true;
 
+		// auto task1 = async::spawn([&] {
+        
+		// 	firstCheckPoint();
+    	// });
 		firstCheckPoint();
 		return;
 	}
@@ -813,7 +817,9 @@ void Extra_DemoScreen::handleInput(Feintgine::InputManager & inputManager)
 void Extra_DemoScreen::firstCheckPoint()
 {
 
+	
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
+  
 	
 	m_player.setCharacterSpell(1);
 	// m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
@@ -953,18 +959,14 @@ void Extra_DemoScreen::addExplosion(const Feintgine::F_Sprite & sprite, const gl
 
 void Extra_DemoScreen::drawLoadingScreen()
 {
-	// glViewport(0, 0, 1366, 768);
-	// glm::mat4 projectionMatrix;
-	// GLint pUniform;
+	glViewport(0, 0, 1366, 768);
+	glm::mat4 projectionMatrix;
+	GLint pUniform;
 
-	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	// glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-	// m_imgui.begin(ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoBringToFrontOnFocus);
-
-	// m_text_test.render();
-
-	// m_imgui.render();
+	std::cout << "loading screen \n";
 
 }
 

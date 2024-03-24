@@ -6,50 +6,51 @@ local dynamics = {}
 local souls = {}
 local soulsCount = 0
 
-movingObject = nil
+komachi = nil
 
 
-object = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/boss_komachi.xml",scaleX = 1.0, scaleY = 1.0, depth = 15, angle = 30 }
-
+object = {posX = 0.0, posY = 0.0,
+ animationPath = "./Assets/F_AObjects/boss_komachi.xml",
+ scale = 1.0, depth = 15, angle = 0 }
 
 -- init
 function CreateFromLua(host,path)
 	print("[LUA] create from LUA called \n")
 
-	--movingObject = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/boss_eiki.xml", scaleX = 1.0, scaleY = 1.0, depth = 15.0, angle = 0.0 }
+	--komachi = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/boss_eiki.xml", scaleX = 1.0, scaleY = 1.0, depth = 15.0, angle = 0.0 }
 	--cppCreateFromLua(host)
-	movingObject = cppCreateFromLua(host,"./Assets/F_AObjects/boss_komachi.xml",0,0,0.72,15.0,0.0)
-	--dynamics[movingObject].behavior  = nil
-	--dynamics[movingObject] = {}
-	--dynamics[movingObject] = {behavior = coroutine.create(DynamicBehavior5,host,movingObject)}
-	--IssueNextTask(host,movingObject)
+	komachi = cppCreateFromLua(host,object.animationPath,object.posX,object.posY,object.scale,object.depth,object.angle)
+	--dynamics[komachi].behavior  = nil
+	--dynamics[komachi] = {}
+	--dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior5,host,komachi)}
+	--IssueNextTask(host,komachi)
 
 end
 
 function moveset_normal_1( host )
     print("create")
-	dynamics[movingObject] = {behavior = coroutine.create(DynamicBehavior1,host,movingObject)}
+	dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior1,host,komachi)}
     print("half")
-	IssueNextTask(host,movingObject)
+	IssueNextTask(host,komachi)
 	isMovesetSelected = true
     print("end")
 end
 
 function moveset_normal_2(host)
-    dynamics[movingObject] = {behavior = coroutine.create(DynamicBehavior2,host,movingObject)}
-    IssueNextTask(host,movingObject)
+    dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior2,host,komachi)}
+    IssueNextTask(host,komachi)
     isMovesetSelected = true
 end
 
 function moveset_normal_3(host)
-    dynamics[movingObject] = {behavior = coroutine.create(DynamicBehavior3,host,movingObject)}
-    IssueNextTask(host,movingObject)
+    dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior3,host,komachi)}
+    IssueNextTask(host,komachi)
     isMovesetSelected = true
 end
 
 -- function movset_spellcard_1(host)
---     dynamics[movingObject] = {behavior = coroutine.create(DynamicBehavior3,host,movingObject)}
---     IssueNextTask(host,movingObject)
+--     dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior3,host,komachi)}
+--     IssueNextTask(host,komachi)
 --     isMovesetSelected = true
 -- end
 
@@ -183,11 +184,11 @@ function IssueNextTask(host, dynob)
             print(coroutine.status(v.behavior))
         end
     end
-    --print(coroutine.status(dynamics[movingObject].behavior))
-	-- if coroutine.status(dynamics[movingObject].behavior) ~= 'dead' then
-	-- 	coroutine.resume(dynamics[movingObject].behavior, host, dynob)
+    --print(coroutine.status(dynamics[komachi].behavior))
+	-- if coroutine.status(dynamics[komachi].behavior) ~= 'dead' then
+	-- 	coroutine.resume(dynamics[komachi].behavior, host, dynob)
 	-- else
-	-- 	print(coroutine.status(dynamics[movingObject].behavior))
+	-- 	print(coroutine.status(dynamics[komachi].behavior))
 	-- end
 end
 

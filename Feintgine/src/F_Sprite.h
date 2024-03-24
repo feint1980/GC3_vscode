@@ -8,8 +8,17 @@
 #include "ResourceManager.h"
 #include "objectData.pb.h"
 
+#include <atomic>
+
 namespace Feintgine {
 	
+
+	struct a_vec2
+	{
+		std::atomic<float> x;
+		float y;
+	};
+
 	class F_Sprite
 	{
 	public:
@@ -73,6 +82,7 @@ namespace Feintgine {
 
 	private:
 
+		//Feintgine::GLTexture m_texture;
 		Feintgine::GLTexture m_texture;
 
 		bool m_isInverted = false;

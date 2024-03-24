@@ -74,7 +74,7 @@ void App::addScreen()
 
  	m_test = std::make_unique<TestScreeb>(&m_window);
 // 
- 	m_screenList->addScreen(m_test.get());
+ 	m_screenList->addScreen(m_extraDemo.get());
 	
 
 	// Main test screen

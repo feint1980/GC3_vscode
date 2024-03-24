@@ -275,8 +275,8 @@ void SpriteListHolder::loadList()
 	item = new CEGUI::ListboxTextItem("All", 0);
 	item->setSelectionBrushImage(sel_img);
 	filer_packet->addItem(item);
-	std::map<std::string, Feintgine::SpritePacket > packetMap = Feintgine::SpriteManager::Instance()->getPacketMap();
-	for (std::map<std::string, Feintgine::SpritePacket >::iterator it = packetMap.begin(); it != packetMap.end(); ++it)
+	std::unordered_map<std::string, Feintgine::SpritePacket > packetMap = Feintgine::SpriteManager::Instance()->getPacketMap();
+	for (std::unordered_map<std::string, Feintgine::SpritePacket >::iterator it = packetMap.begin(); it != packetMap.end(); ++it)
 	{
 	
 		
@@ -403,12 +403,12 @@ void SpriteListHolder::updatePacket()
 		if (item->getText() == "All")
 		{
 			std::cout << "reach\n";
-			std::map<std::string, Feintgine::SpritePacket > packetMap = Feintgine::SpriteManager::Instance()->getPacketMap();
-			for (std::map<std::string, Feintgine::SpritePacket >::iterator it = packetMap.begin(); it != packetMap.end(); ++it)
+			std::unordered_map<std::string, Feintgine::SpritePacket > packetMap = Feintgine::SpriteManager::Instance()->getPacketMap();
+			for (std::unordered_map<std::string, Feintgine::SpritePacket >::iterator it = packetMap.begin(); it != packetMap.end(); ++it)
 			{
 
-				std::map<std::string, Feintgine::F_Sprite > packetSpriteMap = it->second.getSpriteMap();
-				for (std::map<std::string, Feintgine::F_Sprite >::iterator sprite_it = packetSpriteMap.begin(); sprite_it != packetSpriteMap.end(); ++sprite_it)
+				std::unordered_map<std::string, Feintgine::F_Sprite > packetSpriteMap = it->second.getSpriteMap();
+				for (std::unordered_map<std::string, Feintgine::F_Sprite >::iterator sprite_it = packetSpriteMap.begin(); sprite_it != packetSpriteMap.end(); ++sprite_it)
 				{
 					SpriteProperty spriteProp;
 					spriteProp.packetName = it->first;
@@ -425,8 +425,8 @@ void SpriteListHolder::updatePacket()
 
 			if (packetMap.getName() != "")
 			{
-				std::map<std::string, Feintgine::F_Sprite > packetSpriteMap = packetMap.getSpriteMap();
-				for (std::map<std::string, Feintgine::F_Sprite >::iterator sprite_it = packetSpriteMap.begin(); sprite_it != packetSpriteMap.end(); ++sprite_it)
+				std::unordered_map<std::string, Feintgine::F_Sprite > packetSpriteMap = packetMap.getSpriteMap();
+				for (std::unordered_map<std::string, Feintgine::F_Sprite >::iterator sprite_it = packetSpriteMap.begin(); sprite_it != packetSpriteMap.end(); ++sprite_it)
 				{
 					SpriteProperty spriteProp;
 					spriteProp.packetName = packetMap.getName();

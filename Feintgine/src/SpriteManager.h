@@ -7,6 +7,10 @@
 #include <thread>
 #include <vector>
 #include <async++.h>
+#include <unordered_map> // replace map with hash table to test if it's faster
+#include <atomic>
+#include <mutex>
+
 namespace Feintgine {
 
 	class SpriteManager
@@ -18,6 +22,7 @@ namespace Feintgine {
 		void loadSpritePacket(const std::string & filePath);
 
 		void printPacketList();
+
 
 		int loadFromDirectory(const char * name, int level);
 
@@ -37,7 +42,8 @@ namespace Feintgine {
 			return p_Instance;
 		}
 
-		std::map<std::string, SpritePacket > getPacketMap() const { return m_SpritePackets; }
+
+		std::unordered_map<std::string, SpritePacket > getPacketMap() const { return m_SpritePackets; }
 
 		void executeReadData();
 
@@ -45,7 +51,7 @@ namespace Feintgine {
 
 		static SpriteManager *p_Instance;
 
-		std::map<std::string, SpritePacket > m_SpritePackets;
+		std::unordered_map<std::string, SpritePacket > m_SpritePackets;
 		std::vector<std::thread> m_Threads;
 		std::mutex m_Mutex;
 

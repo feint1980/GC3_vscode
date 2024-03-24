@@ -31,8 +31,8 @@ namespace Feintgine {
 		//spritePacket = new SpritePacket();
 		//m_Mutex.lock();
 		spritePacket.loadPacket(filePath);
-		std::string packetKey = filePath;
-		packetKey = feint_common::Instance()->getFileNameFromPath(packetKey);
+		//std::string packetKey = filePath;
+		std::string packetKey = feint_common::Instance()->getFileNameFromPath(filePath);
 		
 		m_SpritePackets.insert(std::make_pair(packetKey.c_str(), spritePacket));
 		//m_Mutex.unlock();
@@ -42,7 +42,7 @@ namespace Feintgine {
 	void SpriteManager::printPacketList()
 	{
 		//std::cout << "************** PRINT SPRITE PACKET LIST ******************\n";
-		std::map<std::string, SpritePacket>::iterator it;
+		//std::map<std::string, SpritePacket>::iterator it;
 // 		for (it = m_SpritePackets.begin(); it != m_SpritePackets.end(); it++)
 // 		{
 // 			std::cout << it->first << "\n";
@@ -85,12 +85,12 @@ namespace Feintgine {
 				path[len] = 0;
 				if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
 					continue;
-				//	printf("%*s[%s]\n", level * 2, "", entry->d_name);
+					printf("%*s[%s]\n", level * 2, "", entry->d_name);
 				loadFromDirectory(path, level + 1);
 			}
 			else
 			{
-				//printf("%*s- %s\n", level * 2, "", entry->d_name);
+				printf("%*s- %s\n", level * 2, "", entry->d_name);
 				std::string texturePath = name;
 				texturePath.append("/");
 				texturePath.append(entry->d_name);
@@ -101,7 +101,7 @@ namespace Feintgine {
 					{
 
 						// m_Threads.push_back(std::thread(&SpriteManager::loadSpritePacket, this, texturePath.c_str()));
-						 loadSpritePacket(texturePath.c_str()); // sync
+						loadSpritePacket(texturePath.c_str()); // sync
 
 						//  auto task = async::spawn([&]
 						//  {
@@ -125,7 +125,7 @@ namespace Feintgine {
 
 	SpritePacket SpriteManager::getSpritePacketByFilePath(const std::string & filePath)
 	{
-		std::map<std::string, SpritePacket >::iterator it;
+		std::unordered_map<std::string, SpritePacket >::iterator it;
 
 		it = m_SpritePackets.find(filePath);
 		if (it != m_SpritePackets.end())
@@ -144,20 +144,26 @@ namespace Feintgine {
 
 	Feintgine::SpritePacket SpriteManager::getSpritePacketByName( std::string name)
 	{
-		std::map<std::string, SpritePacket >::iterator it;
+		std::unordered_map<std::string, SpritePacket >::iterator it;
 		//std::cout << "data input " << name.c_str() << "\n ";
 
 		it = m_SpritePackets.find(name);
 
 		//std::cout << "look in " << m_SpritePackets.size() << " packet(s) \n";
 
-		for (std::map<std::string, Feintgine::SpritePacket >::iterator sprite_it = m_SpritePackets.begin(); sprite_it != m_SpritePackets.end(); ++sprite_it)
+		if (it != m_SpritePackets.end())
 		{
-			if (sprite_it->first == name)
-			{
-				return sprite_it->second;
-			}
+			//std::cout << "Found Packet : " << name << '\n';
+			return m_SpritePackets.find(name)->second;
 		}
+	
+		// for (std::map<std::string, Feintgine::SpritePacket >::iterator sprite_it = m_SpritePackets.begin(); sprite_it != m_SpritePackets.end(); ++sprite_it)
+		// {
+		// 	if (sprite_it->first == name)
+		// 	{
+		// 		return sprite_it->second;
+		// 	}
+		// }
 		std::cout << "unable to find Packet " << name << " return null packet \n";			
 		SpritePacket pa;
 

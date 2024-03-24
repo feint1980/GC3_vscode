@@ -8,6 +8,7 @@
 #include "feint_common.h"
 #include <rapidxml_print.hpp>
 #include <sstream>
+#include <unordered_map>
 using namespace rapidxml;
 
 namespace Feintgine {
@@ -28,7 +29,7 @@ namespace Feintgine {
 
 		Feintgine::F_Sprite getSpriteByName(const std::string & filePath);
 
-		std::map<std::string, Feintgine::F_Sprite> getSpriteMap() const { return m_spriteMap; }
+		std::unordered_map<std::string, Feintgine::F_Sprite> getSpriteMap() const { return m_spriteMap; }
 
 	private:
 
@@ -36,7 +37,7 @@ namespace Feintgine {
 
 		std::string m_name;
 		std::string m_texturePath;
-		std::map<std::string, Feintgine::F_Sprite> m_spriteMap;
+		std::unordered_map<std::string, Feintgine::F_Sprite> m_spriteMap;
 		bool isLoaded = false;
 
 	};
