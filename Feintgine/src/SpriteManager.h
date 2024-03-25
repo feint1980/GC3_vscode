@@ -28,7 +28,7 @@ namespace Feintgine {
 
 		SpritePacket getSpritePacketByFilePath(const std::string & filePath);
 
-		SpritePacket getSpritePacketByName( std::string  name);
+		SpritePacket getSpritePacketByName(const std::string  & name);
 
 		F_Sprite getSprite(const std::string & spritePacket_tt_name);
 

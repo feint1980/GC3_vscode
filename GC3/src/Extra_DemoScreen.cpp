@@ -817,10 +817,8 @@ void Extra_DemoScreen::handleInput(Feintgine::InputManager & inputManager)
 void Extra_DemoScreen::firstCheckPoint()
 {
 
-	
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
-  
-	
+
 	m_player.setCharacterSpell(1);
 	// m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
 	m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);

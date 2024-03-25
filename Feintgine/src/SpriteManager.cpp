@@ -65,6 +65,8 @@ namespace Feintgine {
 		DIR *dir;
 		struct dirent *entry;
 
+
+		
 		if (!(dir = opendir(name)))
 		{
 			std::cout << "dir failed \n";
@@ -76,7 +78,6 @@ namespace Feintgine {
 			std::cout << "entry failed \n";
 			return 0;
 		}
-
 
 		do {
 			if (entry->d_type == DT_DIR) {
@@ -99,18 +100,7 @@ namespace Feintgine {
 				{
 					if (texturePath.find(".xml") != std::string::npos)
 					{
-
-						// m_Threads.push_back(std::thread(&SpriteManager::loadSpritePacket, this, texturePath.c_str()));
-						loadSpritePacket(texturePath.c_str()); // sync
-
-						//  auto task = async::spawn([&]
-						//  {
-						// 	 loadSpritePacket(texturePath.c_str());
-						//  }
-						//  );
-						//  task.get();
-						 //std::thread t(&SpriteManager::loadSpritePacket, this, texturePath.c_str());
-						 //t.detach();
+						loadSpritePacket(texturePath.c_str()); // sync`
 					}
 				}
 
@@ -142,7 +132,7 @@ namespace Feintgine {
 
 	}
 
-	Feintgine::SpritePacket SpriteManager::getSpritePacketByName( std::string name)
+	Feintgine::SpritePacket SpriteManager::getSpritePacketByName(const std::string & name)
 	{
 		std::unordered_map<std::string, SpritePacket >::iterator it;
 		//std::cout << "data input " << name.c_str() << "\n ";
@@ -154,10 +144,10 @@ namespace Feintgine {
 		if (it != m_SpritePackets.end())
 		{
 			//std::cout << "Found Packet : " << name << '\n';
-			return m_SpritePackets.find(name)->second;
+			return it->second;
 		}
 	
-		// for (std::map<std::string, Feintgine::SpritePacket >::iterator sprite_it = m_SpritePackets.begin(); sprite_it != m_SpritePackets.end(); ++sprite_it)
+		// for (std::unordered_map<std::string, Feintgine::SpritePacket >::iterator sprite_it = m_SpritePackets.begin(); sprite_it != m_SpritePackets.end(); ++sprite_it)
 		// {
 		// 	if (sprite_it->first == name)
 		// 	{
