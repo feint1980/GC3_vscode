@@ -47,13 +47,26 @@ namespace Feintgine {
 
 		void executeReadData();
 
+		bool isLoadingDone();
+
+		bool isDoneBatch();
+
 	private:
 
 		static SpriteManager *p_Instance;
 
 		std::unordered_map<std::string, SpritePacket > m_SpritePackets;
 		std::vector<std::thread> m_Threads;
-		std::mutex m_Mutex;
+		static std::mutex m_Mutex;
+		std::atomic<bool> m_isDones[2000]; // let just cache 2000 packets
+		int m_packetCount = 0;
+
+		// test ||
+		int fileCount = 0;
+
+		int limited_thread = 8;
+		int resolved_files = 0;
+		int total_result = 0;
 
 	};
 }

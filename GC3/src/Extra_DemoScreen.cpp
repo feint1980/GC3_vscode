@@ -819,6 +819,13 @@ void Extra_DemoScreen::firstCheckPoint()
 
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
 
+	std::cout << "wait \n";
+	while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
+	{
+		//std::cout << "loading \n";
+	}
+	std::cout << "loaded \n";
+
 	m_player.setCharacterSpell(1);
 	// m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
 	m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);

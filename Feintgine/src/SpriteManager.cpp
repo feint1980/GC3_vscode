@@ -10,9 +10,11 @@
 #endif
 
 
+
 namespace Feintgine {
 
 	SpriteManager *SpriteManager::p_Instance = 0;
+	std::mutex SpriteManager::m_Mutex;
 
 	SpriteManager::SpriteManager()
 	{
@@ -26,16 +28,18 @@ namespace Feintgine {
 	void SpriteManager::loadSpritePacket(const std::string & filePath)
 	{
 		//m_Mutex.lock();
-
+		m_Mutex.lock();
 		SpritePacket spritePacket;
 		//spritePacket = new SpritePacket();
-		//m_Mutex.lock();
+		
 		spritePacket.loadPacket(filePath);
 		//std::string packetKey = filePath;
 		std::string packetKey = feint_common::Instance()->getFileNameFromPath(filePath);
 		
 		m_SpritePackets.insert(std::make_pair(packetKey.c_str(), spritePacket));
-		//m_Mutex.unlock();
+		std::cout << "inserted " << packetKey << "\n";
+		std::cout << "size " << m_SpritePackets.size() << "\n";
+		m_Mutex.unlock();
 		//std::cout << "loaded packet !!!!!!!! " << packetKey << "\n";
 	}
 
@@ -100,7 +104,16 @@ namespace Feintgine {
 				{
 					if (texturePath.find(".xml") != std::string::npos)
 					{
-						loadSpritePacket(texturePath.c_str()); // sync`
+
+						m_isDones[m_packetCount] = false;
+						std::thread t = std::thread([&](){
+							loadSpritePacket(texturePath.c_str());
+							m_isDones[m_packetCount] = true;
+						});
+						m_packetCount++;
+						m_Threads.push_back(std::move(t));
+
+						//loadSpritePacket(texturePath.c_str()); // sync`
 					}
 				}
 
@@ -109,8 +122,72 @@ namespace Feintgine {
 
 		} while (entry = readdir(dir));
 
+
+
+		if(level == 0) // end of stack
+        {
+            std::cout << "call \n";
+            while(resolved_files < fileCount -1 )
+            {
+                for (int i = resolved_files ; i < resolved_files + limited_thread; ++i)
+                {
+                    if (i < m_Threads.size())
+                    {
+                        // std::cout <<"thread " << i << "\n";
+                        if(m_Threads[i].joinable())
+                        {
+                            m_Threads[i].join();
+                            //std::cout << "join thread " << i << "\n";
+                        }
+                    }
+                }
+                int result = 0;
+                while (!isDoneBatch())
+                {
+                    std::cout << "wait \n";
+                    std::cout << "resolved file \n";
+                }
+
+                resolved_files += limited_thread;
+                if(resolved_files >= fileCount)
+                {
+                    resolved_files = fileCount -1;
+                }
+                
+
+            // std::cout << "call \n";
+            // for(int i = 0; i < m_Threads.size() -1; ++i)
+            // {
+            //     if(m_Threads[i].joinable())
+            //     {
+            //         m_Threads[i].join();
+            //     }
+            // }
+            std::cout << "total threads " << m_Threads.size() << "\n";
+        }
+
 		closedir(dir);
 		return 0;
+	}
+	}
+
+
+	bool SpriteManager::isDoneBatch()
+	{
+		if(m_SpritePackets.size() >= resolved_files)
+        {
+            return true;
+        }
+        return false;
+	}
+
+	bool SpriteManager::isLoadingDone()
+	{
+		if(m_SpritePackets.size() >= m_Threads.size())
+		{
+			return true;
+		}
+		return false;
 	}
 
 	SpritePacket SpriteManager::getSpritePacketByFilePath(const std::string & filePath)
