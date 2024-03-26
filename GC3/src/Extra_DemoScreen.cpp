@@ -435,7 +435,7 @@ void Extra_DemoScreen::draw()
 
 	if (!loaded)
 	{
-		
+		std::cout << "test \n";
 		drawLoadingScreen();
 		return;
 	}
@@ -817,6 +817,14 @@ void Extra_DemoScreen::handleInput(Feintgine::InputManager & inputManager)
 void Extra_DemoScreen::firstCheckPoint()
 {
 
+
+	
+	m_bg.init(Feintgine::ResourceManager::getTexture(
+		"Assets/Lazy/bg.png"), glm::vec2(-0,0), glm::vec2(768, 768));
+
+	m_bg2.init(Feintgine::ResourceManager::getTexture(
+		"Assets/Lazy/mountains.png"), glm::vec2(-50, 0), glm::vec2(768  , 768));
+
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
 
 	std::cout << "wait \n";
@@ -824,7 +832,17 @@ void Extra_DemoScreen::firstCheckPoint()
 	{
 		//std::cout << "loading \n";
 	}
-	std::cout << "loaded \n";
+	std::cout << "loaded !!!!!!! \n";
+
+	auto data = Feintgine::SpriteManager::Instance()->getPacketMap();
+
+	for(auto it = data.begin(); it != data.end(); it++)
+	{
+		
+		std::cout << "check data |" <<  it->first << "|\n";
+		//std::cout << "with " << it->second.getSpriteMap().size() << "\n";
+	}
+
 
 	m_player.setCharacterSpell(1);
 	// m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
@@ -841,11 +859,6 @@ void Extra_DemoScreen::firstCheckPoint()
 	// 1 HOMING, 2 Missle , 3 needles, 4 laser
 	m_player.setAccessoryShot(1);
 
-	m_bg.init(Feintgine::ResourceManager::getTexture(
-		"Assets/Lazy/bg.png"), glm::vec2(-0,0), glm::vec2(768, 768));
-
-	m_bg2.init(Feintgine::ResourceManager::getTexture(
-		"Assets/Lazy/mountains.png"), glm::vec2(-50, 0), glm::vec2(768  , 768));
 
 	m_bg2.setColor(Feintgine::Color(255, 255, 255, 100));
 

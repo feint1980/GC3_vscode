@@ -1,7 +1,7 @@
 CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.obj: \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_demo.cpp \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui.h \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\imconfig.h \
+ E:\template\GC_port\Feintgine\src\imgui_demo.cpp \
+ E:\template\GC_port\Feintgine\src\imgui.h \
+ E:\template\GC_port\Feintgine\src\imconfig.h \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/float.h \
  C:/SysGCC/mingw32/include/float.h C:/SysGCC/mingw32/include/crtdefs.h \
  C:/SysGCC/mingw32/include/corecrt.h C:/SysGCC/mingw32/include/_mingw.h \

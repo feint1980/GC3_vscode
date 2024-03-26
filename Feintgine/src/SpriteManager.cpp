@@ -28,14 +28,16 @@ namespace Feintgine {
 	void SpriteManager::loadSpritePacket(const std::string & filePath)
 	{
 		//m_Mutex.lock();
-		m_Mutex.lock();
+		
 		SpritePacket spritePacket;
 		//spritePacket = new SpritePacket();
+		
+
 		
 		spritePacket.loadPacket(filePath);
 		//std::string packetKey = filePath;
 		std::string packetKey = feint_common::Instance()->getFileNameFromPath(filePath);
-		
+		m_Mutex.lock();
 		m_SpritePackets.insert(std::make_pair(packetKey.c_str(), spritePacket));
 		std::cout << "inserted " << packetKey << "\n";
 		std::cout << "size " << m_SpritePackets.size() << "\n";
@@ -109,6 +111,7 @@ namespace Feintgine {
 						std::thread t = std::thread([&](){
 							loadSpritePacket(texturePath.c_str());
 							m_isDones[m_packetCount] = true;
+						//	std::cout << "hahahaha \n";
 						});
 						m_packetCount++;
 						m_Threads.push_back(std::move(t));
@@ -122,8 +125,6 @@ namespace Feintgine {
 
 		} while (entry = readdir(dir));
 
-
-
 		if(level == 0) // end of stack
         {
             std::cout << "call \n";
@@ -134,11 +135,12 @@ namespace Feintgine {
                     if (i < m_Threads.size())
                     {
                         // std::cout <<"thread " << i << "\n";
-                        if(m_Threads[i].joinable())
-                        {
-                            m_Threads[i].join();
-                            //std::cout << "join thread " << i << "\n";
-                        }
+                        // if(m_Threads[i].joinable())
+                        // {
+                        //     m_Threads[i].join();
+                        //     //std::cout << "join thread " << i << "\n";
+                        // }
+						m_Threads[i].detach();
                     }
                 }
                 int result = 0;
@@ -154,7 +156,6 @@ namespace Feintgine {
                     resolved_files = fileCount -1;
                 }
                 
-
             // std::cout << "call \n";
             // for(int i = 0; i < m_Threads.size() -1; ++i)
             // {
@@ -185,6 +186,8 @@ namespace Feintgine {
 	{
 		if(m_SpritePackets.size() >= m_Threads.size())
 		{
+			// std::cout << "thread size " << m_Threads.size() << "\n";
+			// std::cout << "packet size " << m_SpritePackets.size() << "\n";
 			return true;
 		}
 		return false;
