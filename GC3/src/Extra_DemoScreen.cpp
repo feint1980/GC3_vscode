@@ -452,6 +452,9 @@ void Extra_DemoScreen::draw()
 	if (!loaded)
 	{
 		// std::cout << "test \n";
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		m_tgui_load->draw();
 		// drawLoadingScreen();
 		return;
@@ -469,7 +472,7 @@ void Extra_DemoScreen::draw()
 	// m_shaderNormal.use();
 	// m_shaderNormal.unuse();
 
-	m_frameBuffer.bind();
+	//m_frameBuffer.bind();
 	//drawBackup(); // was for debug
 
 	// if (GlobalValueClass::Instance()->isLightBalance())
@@ -477,11 +480,11 @@ void Extra_DemoScreen::draw()
 	// 	drawCustomShader();
 	// }
 	drawGameplay();
-	m_frameBuffer.unbind();
-	m_frameBufferScreen.use();
-	m_effectBatch.draw();
- 	m_frameBufferScreen.draw();
- 	m_frameBufferScreen.unuse();
+	// m_frameBuffer.unbind();
+	// m_frameBufferScreen.use();
+	// m_effectBatch.draw();
+ 	// m_frameBufferScreen.draw();
+ 	// m_frameBufferScreen.unuse();
 
 	drawTimer();
 	//drawGameplay();

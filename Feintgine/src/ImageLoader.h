@@ -9,6 +9,10 @@
 
 #include "Error.h"
 
+#include "Window.h"
+#include "A_Context_saver.h"
+
+
 namespace Feintgine
 {
 

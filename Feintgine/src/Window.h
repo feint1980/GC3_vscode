@@ -11,6 +11,9 @@
 #include <glm/glm.hpp>
 #include "F_Logger.h"
 
+
+
+
 namespace Feintgine{
 
 	enum WindowFlags{ INVISIBLE = 0x1, FULLSCREEN = 0x2, BORDERLESS = 0x4 };

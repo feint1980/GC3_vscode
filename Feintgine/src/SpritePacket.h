@@ -29,12 +29,16 @@ namespace Feintgine {
 
 		Feintgine::F_Sprite getSpriteByName(const std::string & filePath);
 
+		void selfLoad();
+
 		std::unordered_map<std::string, Feintgine::F_Sprite> getSpriteMap() const { return m_spriteMap; }
 
 	private:
 
 		Feintgine::F_Sprite templateSprite;
 
+
+		std::string m_filePath;
 		std::string m_name;
 		std::string m_texturePath;
 		std::unordered_map<std::string, Feintgine::F_Sprite> m_spriteMap;

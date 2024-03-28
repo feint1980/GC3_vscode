@@ -1,7 +1,7 @@
 CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj: \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\ResourceManager.cpp \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\ResourceManager.h \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\TextureCache.h \
+ E:\template\GC_port\Feintgine\src\ResourceManager.cpp \
+ E:\template\GC_port\Feintgine\src\ResourceManager.h \
+ E:\template\GC_port\Feintgine\src\TextureCache.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/map \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
@@ -47,8 +47,8 @@ CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multimap.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\GLTexture.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/GL/glew.h \
+ E:\template\GC_port\Feintgine\src\GLTexture.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/GL/glew.h \
  C:/SysGCC/mingw32/include/inttypes.h C:/SysGCC/mingw32/include/crtdefs.h \
  C:/SysGCC/mingw32/include/corecrt.h C:/SysGCC/mingw32/include/_mingw.h \
  C:/SysGCC/mingw32/include/_mingw_mac.h \
@@ -167,8 +167,8 @@ CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++io.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\IOFileCache.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/rapidxml.hpp \
+ E:\template\GC_port\Feintgine\src\IOFileCache.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/rapidxml.hpp \
  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
  C:/SysGCC/mingw32/include/assert.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/vector \

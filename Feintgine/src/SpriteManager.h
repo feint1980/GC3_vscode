@@ -23,8 +23,9 @@ namespace Feintgine {
 
 		void printPacketList();
 
-
 		int loadFromDirectory(const char * name, int level);
+
+
 
 		SpritePacket getSpritePacketByFilePath(const std::string & filePath);
 
@@ -42,6 +43,7 @@ namespace Feintgine {
 			return p_Instance;
 		}
 
+		int scan_dir(const std::string & path, int level);
 
 		std::unordered_map<std::string, SpritePacket > getPacketMap() const { return m_SpritePackets; }
 
@@ -56,6 +58,7 @@ namespace Feintgine {
 		static SpriteManager *p_Instance;
 
 		std::unordered_map<std::string, SpritePacket > m_SpritePackets;
+		std::vector<std::string> m_storedKey;
 		std::vector<std::thread> m_Threads;
 		static std::mutex m_Mutex;
 		std::atomic<bool> m_isDones[2000]; // let just cache 2000 packets
@@ -67,6 +70,8 @@ namespace Feintgine {
 		std::atomic_int limited_thread = 8;
 		std::atomic_int resolved_files = 0;
 		std::atomic_int total_result = 0;
+
+		int max_threads = 8;
 
 		std::vector<std::string> m_texturePaths;
 		std::vector<bool> m_isLoaded;

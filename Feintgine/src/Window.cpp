@@ -4,8 +4,12 @@
 #include "Error.h"
 //#include <api/GL/wglext.h>
 #include "feint_common.h"
+#include "A_Context_saver.h"
 namespace Feintgine{
 
+
+
+	
 	Window::Window()
 	{
 	}
@@ -128,6 +132,9 @@ namespace Feintgine{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+		A_Context_saver::getContext_saver()->saveContext(_sdlWindow,glContext);
+		
+
 // 		PFNWGLSWAPINTERVALEXTPROC       wglSwapIntervalEXT = NULL;
 // 		PFNWGLGETSWAPINTERVALEXTPROC    wglGetSwapIntervalEXT = NULL;
 // 		SDL_Log("Init Vsync for application");
@@ -155,6 +162,7 @@ namespace Feintgine{
 		glContext = context;
 		SDL_GL_MakeCurrent(_sdlWindow, glContext);
 		std::cout << "context load is " << glContext << "\n";
+		
 	}
 
 	void Window::deleteWindow()

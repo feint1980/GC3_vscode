@@ -9,13 +9,23 @@ namespace Feintgine{
 	GLTexture ImageLoader::loadPNG(const std::string & filePath)
 	{
 		
-		m_mutex_t.lock();
+		//m_mutex_t.lock();
+
+		// SDL_GL_MakeCurrent(A_Context_saver::getContext_saver()->getWindow(), A_Context_saver::getContext_saver()->getContext());
+
+		// std::cout << "context is " << std::to_string((int)A_Context_saver::getContext_saver()->getContext()) << "\n";
+
 		GLTexture texture = {};
 		std::vector <unsigned char> in;
 		std::vector <unsigned char> out;
 		unsigned long width, height;
 
+
 		
+		
+		std::cout << "load PNG called \n";
+		std::cout << "filePath " << filePath << "\n";
+
 		if (IOManager::readFileToBuffer(filePath, in) == false)
 		{
 			fatalError(" ko load dc PNG " + filePath );
@@ -27,9 +37,12 @@ namespace Feintgine{
 			fatalError("decode that bai " + std::to_string(errorCode));
 		}
 		
+
 		
 		
 		glGenTextures(1, &(texture.id));
+
+		std::cout << "generated texture ID : " << texture.id << "\n";
 		glBindTexture(GL_TEXTURE_2D, texture.id);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &(out[0]));
 
@@ -44,7 +57,7 @@ namespace Feintgine{
 
 		texture.width = width;
 		texture.height = height;
-		m_mutex_t.unlock();
+		//m_mutex_t.unlock();
 
 		return texture;
 

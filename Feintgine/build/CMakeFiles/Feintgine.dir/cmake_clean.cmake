@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.obj"
+  "CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj"

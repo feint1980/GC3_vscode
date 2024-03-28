@@ -22,9 +22,10 @@ namespace Feintgine{
 		if (map_interator == _textureMap.end())
 		{
 			GLTexture generator = ImageLoader::loadPNG(filePath);
-			m_mutex_s.lock();
+			std::cout << "genrated texture : " << generator.id << "\n";
+			//m_mutex_s.lock();
 			_textureMap.insert(std::make_pair(filePath, generator));
-			m_mutex_s.unlock();
+			//m_mutex_s.unlock();
 			return generator;
 		}
 
