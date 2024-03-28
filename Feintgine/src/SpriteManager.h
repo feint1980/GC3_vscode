@@ -59,14 +59,17 @@ namespace Feintgine {
 		std::vector<std::thread> m_Threads;
 		static std::mutex m_Mutex;
 		std::atomic<bool> m_isDones[2000]; // let just cache 2000 packets
-		int m_packetCount = 0;
+		std::atomic_int m_packetCount = 0;
 
 		// test ||
-		int fileCount = 0;
+		std::atomic_int fileCount = 0;
 
-		int limited_thread = 8;
-		int resolved_files = 0;
-		int total_result = 0;
+		std::atomic_int limited_thread = 8;
+		std::atomic_int resolved_files = 0;
+		std::atomic_int total_result = 0;
+
+		std::vector<std::string> m_texturePaths;
+		std::vector<bool> m_isLoaded;
 
 	};
 }

@@ -31,7 +31,9 @@ namespace Feintgine {
 			{
 				std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 				buffer.push_back('\0');
+				m_mutex.lock();
 				m_xmlPreload.insert(std::make_pair(filePath, buffer));
+				m_mutex.unlock();
 				return buffer;
 			}	
 		}
@@ -57,7 +59,9 @@ namespace Feintgine {
 			{
 				std::vector<wchar_t> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 				buffer.push_back(L'\0');
+				m_mutex.lock();
 				m_xmlwCharPreload.insert(std::make_pair(filePath, buffer));
+				m_mutex.unlock();
 				return buffer;
 			}
 		}

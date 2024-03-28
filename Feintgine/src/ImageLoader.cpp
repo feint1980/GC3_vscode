@@ -4,23 +4,31 @@
 #include <string>
 namespace Feintgine{
 
+
+	std::mutex ImageLoader::m_mutex_t;
 	GLTexture ImageLoader::loadPNG(const std::string & filePath)
 	{
+		
+		m_mutex_t.lock();
 		GLTexture texture = {};
 		std::vector <unsigned char> in;
 		std::vector <unsigned char> out;
 		unsigned long width, height;
 
+		
 		if (IOManager::readFileToBuffer(filePath, in) == false)
 		{
 			fatalError(" ko load dc PNG " + filePath );
 		}
-
+		
 		int errorCode = decodePNG(out, width, height, &(in[0]), in.size());
 		if (errorCode != 0)
 		{
 			fatalError("decode that bai " + std::to_string(errorCode));
 		}
+		
+		
+		
 		glGenTextures(1, &(texture.id));
 		glBindTexture(GL_TEXTURE_2D, texture.id);
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &(out[0]));
@@ -36,7 +44,7 @@ namespace Feintgine{
 
 		texture.width = width;
 		texture.height = height;
-	
+		m_mutex_t.unlock();
 
 		return texture;
 

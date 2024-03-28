@@ -4,17 +4,21 @@
 #include <map>
 #include "GLTexture.h"
 #include <string>
+#include <mutex>
+#include <unordered_map>
 namespace Feintgine{
 
-
+	
 	class TextureCache
 	{
 	public:
 		TextureCache();
 		~TextureCache();
-		GLTexture getTexture(std::string filePath);
+		GLTexture getTexture(const std::string & filePath);
 	private:
-		std::map<std::string, GLTexture> _textureMap;
+		static std::mutex m_mutex_s;
+		std::unordered_map<std::string, GLTexture> _textureMap;
+		
 	};
 }
 #endif

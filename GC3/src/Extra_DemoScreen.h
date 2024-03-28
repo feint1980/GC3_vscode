@@ -315,6 +315,8 @@ protected :
 	tgui::Label::Ptr m_text_eventTime_tgui;
 
 
+	tgui::Label::Ptr m_text_load;
+
 
 	// EGUI_DrawElement m_text_spellName;
 	tgui::Label::Ptr m_text_spellName;
@@ -389,6 +391,8 @@ protected :
 	BulletManupilator bulletManipulator;
 
 	tgui::Gui * m_tgui;
+	tgui::Gui * m_tgui_load;
+
 
 	
 };

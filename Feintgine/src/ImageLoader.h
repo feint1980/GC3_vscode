@@ -5,6 +5,7 @@
 #include <string>
 #include "IOManager.h"
 #include "picoPNG.h"
+#include <mutex>
 
 #include "Error.h"
 
@@ -15,6 +16,8 @@ namespace Feintgine
 	{
 	public:
 		static GLTexture loadPNG(const std::string & filePath);
+		private:
+		static std::mutex m_mutex_t;
 	};
 }
 

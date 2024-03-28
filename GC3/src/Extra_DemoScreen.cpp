@@ -139,6 +139,7 @@ void Extra_DemoScreen::onEntry()
 
 	
 	m_tgui = new tgui::Gui(m_window->getWindow());
+	m_tgui_load = new tgui::Gui(m_window->getWindow());
 	//std::cout << "font is " << m_tgui->getFont().ge << "\n";
 
 	//m_tgui->setP
@@ -148,7 +149,10 @@ void Extra_DemoScreen::onEntry()
 	//m_tgui->add(text);
 
 	tgui::Font font("font/ARIALUNI.ttf");
+	tgui::Font font_load("font/Chronicle.ttf");
 	m_tgui->setFont(font);
+	m_tgui_load->setFont(font_load);
+	
 	//m_tgui->setAbsoluteView
 
 	m_text_realTime_tgui = tgui::Label::create();
@@ -156,8 +160,16 @@ void Extra_DemoScreen::onEntry()
 	m_text_eventTime_tgui = tgui::Label::create();
 	m_text_spellName = tgui::Label::create();
 	m_text_spellSign = tgui::Label::create();
+	m_text_load = tgui::Label::create();
 	
 
+
+	m_text_load->setPosition(m_window->getScreenWidth() / 2, m_window->getScreenHeight() / 2);
+	m_text_load->setTextSize(32);
+	m_text_load->getRenderer()->setTextColor(tgui::Color::White);
+	m_text_load->getRenderer()->setBorderColor(tgui::Color::Black);
+	m_text_load->getRenderer()->setTextOutlineThickness(4);
+	m_text_load->setText("Loading");
 
 
 	m_text_realTime_tgui->setPosition(800, 50);
@@ -205,6 +217,8 @@ void Extra_DemoScreen::onEntry()
 	m_tgui->add(m_text_spellName);
 	m_tgui->add(m_text_spellSign);
 
+	m_tgui_load->add(m_text_load);
+
 	m_bgmLabel.init(m_tgui, glm::vec2(-400,700), L"",0.0f);
 	m_chapterLabel.init(m_tgui, glm::vec2(280, 300), L"", L"",0.0f);
 
@@ -218,16 +232,18 @@ void Extra_DemoScreen::onExit()
 void Extra_DemoScreen::update(float deltaTime)
 {
 
-	if(!startLoad)
+	if(!loaded)
 	{
-		startLoad = true;
-
-		// auto task1 = async::spawn([&] {
-        
-		// 	firstCheckPoint();
-    	// });
-		firstCheckPoint();
-		return;
+		if(!startLoad)
+		{
+			startLoad = true;
+			// auto task1 = async::spawn([&] {
+			
+			// 	firstCheckPoint();
+			// });
+			firstCheckPoint();
+			return;
+		}
 	}
 
 	m_camera.update();
@@ -435,45 +451,44 @@ void Extra_DemoScreen::draw()
 
 	if (!loaded)
 	{
-		std::cout << "test \n";
-		drawLoadingScreen();
+		// std::cout << "test \n";
+		m_tgui_load->draw();
+		// drawLoadingScreen();
 		return;
 	}
 	
  	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	m_frameBuffer.bind();
+	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	//drawCustomShader();
 	
-
+	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	// m_shaderNormal.use();
+	// m_shaderNormal.unuse();
 
+	m_frameBuffer.bind();
 	//drawBackup(); // was for debug
-
 
 	// if (GlobalValueClass::Instance()->isLightBalance())
 	// {
 	// 	drawCustomShader();
 	// }
-
 	drawGameplay();
-
-
 	m_frameBuffer.unbind();
-
 	m_frameBufferScreen.use();
-
 	m_effectBatch.draw();
  	m_frameBufferScreen.draw();
-
  	m_frameBufferScreen.unuse();
 
-	
 	drawTimer();
-
+	//drawGameplay();
 	
+	//drawGameplay();
+
+	//drawBackup();
 
 	t_currentTick = SDL_GetTicks();
 	Uint32 frameTime = t_currentTick - t_prevTick;
@@ -587,10 +602,6 @@ void Extra_DemoScreen::initShader()
 	// m_portalShader.linkShaders();
 
 
-
-	m_lightBatch.initShader(&m_shader);
-
-
 	GLuint tex_fb  = m_frameBuffer.init(768, 768,false);
 
 
@@ -604,6 +615,10 @@ void Extra_DemoScreen::initShader()
 	m_frameBufferScreen.initFrameTexture(tex_fb, m_window->getScreenWidth(), m_window->getScreenHeight());
 
 	m_effectBatch.initEffectBatch(&m_frameBufferScreen, &m_camera);
+
+
+	m_lightBatch.initShader(&m_shader);
+
 
 	std::cout << " init shader called \n";
 }
@@ -817,32 +832,28 @@ void Extra_DemoScreen::handleInput(Feintgine::InputManager & inputManager)
 void Extra_DemoScreen::firstCheckPoint()
 {
 
+	// auto taskLoad = async([&]()
+	// {
+	// 	reloadLevel();
+	// });
 
-	
 	m_bg.init(Feintgine::ResourceManager::getTexture(
-		"Assets/Lazy/bg.png"), glm::vec2(-0,0), glm::vec2(768, 768));
+	"Assets/Lazy/bg.png"), glm::vec2(-0,0), glm::vec2(768, 768));
 
 	m_bg2.init(Feintgine::ResourceManager::getTexture(
-		"Assets/Lazy/mountains.png"), glm::vec2(-50, 0), glm::vec2(768  , 768));
+	"Assets/Lazy/mountains.png"), glm::vec2(-50, 0), glm::vec2(768  , 768));
+	
+
 
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
 
 	std::cout << "wait \n";
 	while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
 	{
+		checkInput();
 		//std::cout << "loading \n";
 	}
 	std::cout << "loaded !!!!!!! \n";
-
-	auto data = Feintgine::SpriteManager::Instance()->getPacketMap();
-
-	for(auto it = data.begin(); it != data.end(); it++)
-	{
-		
-		std::cout << "check data |" <<  it->first << "|\n";
-		//std::cout << "with " << it->second.getSpriteMap().size() << "\n";
-	}
-
 
 	m_player.setCharacterSpell(1);
 	// m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
@@ -854,11 +865,9 @@ void Extra_DemoScreen::firstCheckPoint()
 
 	m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
 	// m_player.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
-	
 
 	// 1 HOMING, 2 Missle , 3 needles, 4 laser
 	m_player.setAccessoryShot(1);
-
 
 	m_bg2.setColor(Feintgine::Color(255, 255, 255, 100));
 
@@ -868,7 +877,6 @@ void Extra_DemoScreen::firstCheckPoint()
 			m_player.getPos(), glm::vec2(1), glm::vec2(0.56), Feintgine::Color(255, 255, 255, 255), 4, 0.02f);
 	});
 
-	GlobalValueClass::Instance()->savePlayer(&m_player);
 	m_player.registerExplosionRing(&m_exlosions);
 
 	m_particleEngine.addParticleBatch(m_player.getHitParticle());
@@ -887,36 +895,9 @@ void Extra_DemoScreen::firstCheckPoint()
 	m_pauseMenu.init();
 
 	
-
-	// m_CEGUI_textRenderer.initFont("ARIALUNI-18");
-
-	// m_CEGUI_textRenderer2.initFont("craftmincho-20");
-
-	//m_player.registerTextCEGUI(m_CEGUI_textRenderer.m_gui);
-
-
-
-	// m_text_eventTime.init(m_CEGUI_textRenderer.m_gui, "m_text_eventTime",
-	// 	glm::vec2(glm::vec2(0.6f, 0.1f)), glm::vec2(0.2, 0.1));
-	
-
-	// m_text_spellSign.init("m_text_spellSign",
-	// 	glm::vec2(800,500));
-
-	// m_text_spellName.init("m_text_spellSign",
-	// 	glm::vec2(800,550));
-
-	//m_text_fps.setText(L"this is a test text ");
-	// m_text_fps.setAlignment(0);
-	// m_text_realTime.setAlignment(0);
-	// m_text_eventTime.setAlignment(0);
-
-	// m_text_spellSign.setAlignment(2);
-	// m_text_spellName.setAlignment(2);
-
 	m_player.setPos(glm::vec2(25, -100));
 	m_player.reset();
-
+	GlobalValueClass::Instance()->savePlayer(&m_player);
 
 	auto now = std::chrono::system_clock::now();
 	Feintgine::F_Event::Instance()->add([=] {
@@ -928,15 +909,6 @@ void Extra_DemoScreen::firstCheckPoint()
 	m_showHitBox = false;
 	is_lightOn = true;
 	m_shaderTime = 0.0;
-	//switchShader();
-
-	// m_chapterLabel.initGUI(m_CEGUI_textRenderer2.m_gui,
-	// 	m_CEGUI_textRenderer.m_gui, glm::vec2(0.1f, 0.37f));
-
-	// m_bmLabel.initGUI(m_CEGUI_textRenderer.m_gui,
-	// 	glm::vec2(0.17f, 0.85f));
-
-	//m_chapterLabel.setText(L"Test", L"Test",2);
 
 	
 	m_recorder.init(&m_player, &ENGINE_current_tick);
@@ -963,8 +935,8 @@ void Extra_DemoScreen::firstCheckPoint()
 	m_shaderEventHandler.addEvent(m_shaderDirection);
 	m_shaderEventHandler.addEvent(m_shaderVel);
 	m_shaderEventHandler.addEvent(m_cloudAlpha);
-	reloadLevel();
 
+	reloadLevel();
 	loaded = true;
 	
 
@@ -1090,6 +1062,7 @@ void Extra_DemoScreen::drawGameplay()
 		m_foregroundShader->unuse();
 
 	}
+
 }
 
 void Extra_DemoScreen::drawTimer()
@@ -2000,7 +1973,7 @@ void Extra_DemoScreen::drawBackup()
 		{
 			m_pauseMenu.drawBG(m_spriteBatch);
 		}
-		//m_player.draw(m_spriteBatch);
+		m_player.draw(m_spriteBatch);
 		m_bg.draw(m_spriteBatch);
 		bg2.draw(m_spriteBatch);
 

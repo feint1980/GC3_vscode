@@ -8,6 +8,7 @@
 #include <map>
 #include <rapidxml.hpp>
 #include <vector>
+#include <mutex>
 
 using namespace rapidxml;
 namespace Feintgine {
@@ -22,6 +23,7 @@ namespace Feintgine {
 		std::vector<char> getBuffer(const std::string &filePath);
 		std::vector<wchar_t> getBuffer(const std::string &filePath,bool isWchar);
 	private:
+		std::mutex m_mutex;
 		std::map<std::string, std::vector<char> > m_xmlPreload;
 		std::map<std::string, std::vector<wchar_t> > m_xmlwCharPreload;
 
