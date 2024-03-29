@@ -13,6 +13,11 @@ namespace Feintgine{
 	}
 
 
+	void ResourceManager::rewriteTexture(const std::string & filePath, const GLTexture & texture)
+	{
+		_textureCache.uploadBuffer(filePath, texture);
+	}
+
 	std::vector<char> ResourceManager::getPreloadedFile(const std::string & filePath)
 	{
 		return m_IOCache.getBuffer(filePath);

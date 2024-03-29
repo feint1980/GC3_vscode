@@ -1,4 +1,4 @@
-# Install script for directory: E:/template/GC_port/GC3
+# Install script for directory: D:/VS_Code_prj/GC3_vscode/GC3
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "E:/template/GC_port/GC3/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/VS_Code_prj/GC3_vscode/GC3/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

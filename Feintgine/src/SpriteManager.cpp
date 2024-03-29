@@ -14,7 +14,7 @@
 namespace Feintgine {
 
 	SpriteManager *SpriteManager::p_Instance = 0;
-	std::mutex SpriteManager::m_Mutex;
+	//std::mutex SpriteManager::m_Mutex;
 
 	SpriteManager::SpriteManager()
 	{
@@ -29,7 +29,7 @@ namespace Feintgine {
 	int SpriteManager::scan_dir(const std::string & path, int level)
 	{
         std::cout << "scan on " << path << "\n";
-        std::cout << "level start -----" << level << "\n";
+        //std::cout << "level start -----" << level << "\n";
         DIR *dir;
         struct dirent *entry;
 
@@ -55,7 +55,7 @@ namespace Feintgine {
                 }
 
                 printf("%*s[%s]\n", level * 2, "", entry->d_name);
-                std::cout << "path -> " << sub_path << "\n";
+                //std::cout << "path -> " << sub_path << "\n";
 
                 scan_dir(sub_path, level + 1);
             }
@@ -71,14 +71,14 @@ namespace Feintgine {
 						m_SpritePackets.insert(std::make_pair(packetKey.c_str(), std::move(spritePacket)));
 						m_storedKey.push_back(packetKey);
                 		//files.push_back(file(texturePath));
-               	 		std::cout << "||||: " << texturePath << "\n";
+               	 		//std::cout << "||||: " << texturePath << "\n";
 					}
 				}
             }
         } while (entry = readdir(dir));
 
         closedir(dir);
-        std::cout << "level end -----" << level << "\n";
+       // std::cout << "level end -----" << level << "\n";
         return 0;
     }
 	
@@ -138,10 +138,13 @@ namespace Feintgine {
 		for (int i = 0; i < std::min(max_threads, total_files); ++i)
         {
             end = begin + chunk - 1 + (remain_files + (i + 1) * chunk == total_files ? remain_files : 0);
+			
             std::thread t = std::thread([this, begin, end](){
 			for(int i = begin; i <= end; ++i) 
 			{
                 m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+				//std::cout << "thread " << i << " " << m_storedKey[i].c_str() <<  " done \n";
+				//m_packetCount++;
 			}
             });
             m_Threads.push_back(std::move(t));
@@ -152,8 +155,39 @@ namespace Feintgine {
 			if(m_Threads[i].joinable())
 			{
 				m_Threads[i].join();
-			}
+			}			
 		}
+
+		// back to main thread
+		auto textureBuffers = A_Context_saver::getContext_saver()->getTextureBuffers();
+		for(int i = 0; i < textureBuffers.size(); i++)
+		{
+			GLTexture t_texture =  ResourceManager::getTexture(textureBuffers[i].filePath);
+
+			glGenTextures(1, &t_texture.id);
+			auto out = textureBuffers[i].buffer;
+			glBindTexture(GL_TEXTURE_2D, t_texture.id);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,t_texture.width, t_texture.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &(out[0]));
+
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+
+			glGenerateMipmap(GL_TEXTURE_2D);
+
+			glBindTexture(GL_TEXTURE_2D, 0);
+
+			ResourceManager::rewriteTexture(textureBuffers[i].filePath, t_texture);
+		}
+
+		//loop in m_SpritePackets
+		for(auto it = m_SpritePackets.begin(); it != m_SpritePackets.end(); it++)
+		{
+
+			it->second.updateTexture();
+		}
+		std::cout << "loaded using " << max_threads << " thread(s) \n";
 
 		return 0;
 		
@@ -279,25 +313,23 @@ namespace Feintgine {
 	}
 
 
-	bool SpriteManager::isDoneBatch()
-	{
-		if(m_SpritePackets.size() >= resolved_files)
-        {
-            return true;
-        }
-        return false;
-	}
+	// bool SpriteManager::isDoneBatch()
+	// {
+	// 	if(m_SpritePackets.size() >= resolved_files)
+    //     {
+    //         return true;
+    //     }
+    //     return false;
+	// }
 
-	bool SpriteManager::isLoadingDone()
-	{
-		if(m_SpritePackets.size() >= m_packetCount)
-		{
-			// std::cout << "thread size " << m_Threads.size() << "\n";
-			// std::cout << "packet size " << m_SpritePackets.size() << "\n";
-			return true;
-		}
-		return false;
-	}
+	// bool SpriteManager::isLoadingDone()
+	// {
+	// 	if( m_packetCount >= m_SpritePackets.size())
+	// 	{
+	// 		return true;
+	// 	}
+	// 	return false;
+	// }
 
 	SpritePacket SpriteManager::getSpritePacketByFilePath(const std::string & filePath)
 	{
@@ -356,7 +388,7 @@ namespace Feintgine {
 		{
 			packetName.append(".xml");
 		}
-		std::cout << "><><><><>< looking for sprite "<< spriteName << " in packet " << packetName << "\n";
+		//std::cout << "><><><><>< looking for sprite "<< spriteName << " in packet " << packetName << "\n";
 		return getSpritePacketByName(packetName).getSpriteByName(spriteName);
 	}
 

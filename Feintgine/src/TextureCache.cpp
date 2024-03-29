@@ -14,6 +14,17 @@ namespace Feintgine{
 	{
 	}
 
+	void TextureCache::uploadBuffer(const std::string & filePath, const GLTexture & texture)
+	{
+		auto it = _textureMap.find(filePath);
+		if(it != _textureMap.end())
+		{
+			it->second = texture;
+		}
+		
+
+	}
+
 	GLTexture TextureCache::getTexture(const std::string & filePath)
 	{
 
@@ -22,8 +33,7 @@ namespace Feintgine{
 		if (map_interator == _textureMap.end())
 		{
 			GLTexture generator = ImageLoader::loadPNG(filePath);
-			std::cout << "genrated texture : " << generator.id << "\n";
-			//m_mutex_s.lock();
+	
 			_textureMap.insert(std::make_pair(filePath, generator));
 			//m_mutex_s.unlock();
 			return generator;

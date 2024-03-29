@@ -9,22 +9,13 @@ namespace Feintgine{
 	GLTexture ImageLoader::loadPNG(const std::string & filePath)
 	{
 		
-		//m_mutex_t.lock();
 
-		// SDL_GL_MakeCurrent(A_Context_saver::getContext_saver()->getWindow(), A_Context_saver::getContext_saver()->getContext());
 
-		// std::cout << "context is " << std::to_string((int)A_Context_saver::getContext_saver()->getContext()) << "\n";
+		GLTexture *texture =  new GLTexture();
 
-		GLTexture texture = {};
 		std::vector <unsigned char> in;
 		std::vector <unsigned char> out;
 		unsigned long width, height;
-
-
-		
-		
-		std::cout << "load PNG called \n";
-		std::cout << "filePath " << filePath << "\n";
 
 		if (IOManager::readFileToBuffer(filePath, in) == false)
 		{
@@ -37,29 +28,39 @@ namespace Feintgine{
 			fatalError("decode that bai " + std::to_string(errorCode));
 		}
 		
+		glGenTextures(1, &(texture->id));
 
+		if(texture->id ==0)
+		{
+
+			
+			m_mutex_t.lock();
+
+			A_Context_saver::getContext_saver()->addOut(out);
+			A_Context_saver::getContext_saver()->addTextureBuffer(filePath,out);
+			m_mutex_t.unlock();
+		}
+		else
+		{
 		
-		
-		glGenTextures(1, &(texture.id));
+			glBindTexture(GL_TEXTURE_2D, texture->id);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &(out[0]));
 
-		std::cout << "generated texture ID : " << texture.id << "\n";
-		glBindTexture(GL_TEXTURE_2D, texture.id);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &(out[0]));
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			glGenerateMipmap(GL_TEXTURE_2D);
 
-		glGenerateMipmap(GL_TEXTURE_2D);
+			glBindTexture(GL_TEXTURE_2D, 0);
+			
+		}
+	
+		texture->width = width;
+		texture->height = height;
 
-		glBindTexture(GL_TEXTURE_2D, 0);
-
-		texture.width = width;
-		texture.height = height;
-		//m_mutex_t.unlock();
-
-		return texture;
+		return *texture;
 
 
 	}

@@ -99,6 +99,10 @@ namespace Feintgine {
 		updateUV();
 
 	}
+	void F_Sprite::updateTextureBuffers()
+	{
+		m_texture = Feintgine::ResourceManager::getTexture(m_texturePath);
+	}
 	
 
 	void F_Sprite::createFromProc(const Proc_Sprite & sprite)

@@ -48,20 +48,19 @@ namespace Feintgine {
 			packetTexturePath.append("/");
 
 
-
 			t_TextureAtlas = t_packet.first_node("TextureAtlas");
 			packetTexturePath.append(t_TextureAtlas->first_attribute("imagePath")->value());
 			//std::cout << "Image path is " << packetTexturePath << "\n";
 			m_texturePath = packetTexturePath;
 			for (xml_node<> * sprite_node = t_TextureAtlas->first_node("sprite"); sprite_node; sprite_node = sprite_node->next_sibling())
 			{
-				std::cout << "creating sprite ..... \n";
+				//std::cout << "creating sprite ..... \n";
 
 				Feintgine::F_Sprite t_sprite;
 				//t_sprite = new F_Sprite();
-				std::cout << "loading sprite " << sprite_node->first_attribute("n")->value() << "\n";
-				std::cout << "pos X " << sprite_node->first_attribute("x")->value() << "\n";
-				std::cout << "pos Y " << sprite_node->first_attribute("y")->value() << "\n";
+				// std::cout << "loading sprite " << sprite_node->first_attribute("n")->value() << "\n";
+				// std::cout << "pos X " << sprite_node->first_attribute("x")->value() << "\n";
+				// std::cout << "pos Y " << sprite_node->first_attribute("y")->value() << "\n";
 				//std::cout << "total " << feint_common::Instance()->convertVec2toString(feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("x")->value(), sprite_node->first_attribute("y")->value()));
 				glm::vec2 anchor = glm::vec2(0.5f);
 				if (sprite_node->first_attribute("pX") && sprite_node->first_attribute("pX"))
@@ -69,12 +68,11 @@ namespace Feintgine {
 					anchor = feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("pX")->value(), sprite_node->first_attribute("pY")->value());
 				}
 
-				 
 				t_sprite.init(feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("x")->value(), sprite_node->first_attribute("y")->value()),
 					feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("w")->value(), sprite_node->first_attribute("h")->value()),
 					anchor,
 					packetTexturePath.c_str(), m_name, sprite_node->first_attribute("n")->value());
-				std::cout << "sprite ID -----" << t_sprite.getTexture().id << "\n";
+				//std::cout << "sprite ID -----" << t_sprite.getTexture().id << "\n";
 				m_spriteMap.insert(std::make_pair(sprite_node->first_attribute("n")->value(), t_sprite));
 				// 		m_sprites.push_back(t_sprite);
 			}
@@ -214,6 +212,14 @@ namespace Feintgine {
 			std::cout << "Warning : unable to find sprite " << filePath << " return null sprite ";
 		}
 		return returnone;
+	}
+
+	void SpritePacket::updateTexture()
+	{
+		for(std::unordered_map<std::string, Feintgine::F_Sprite >::iterator it = m_spriteMap.begin(); it != m_spriteMap.end(); it++)
+		{
+			it->second.updateTextureBuffers();
+		}
 	}
 
 }

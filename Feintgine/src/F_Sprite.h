@@ -26,6 +26,8 @@ namespace Feintgine {
 		~F_Sprite();
 		F_Sprite(const glm::vec2 & pos,const glm::vec2 & dim,const glm::vec2 & anchor, const std::string & texture_path, const std::string & packetName, const std::string & name);
 
+		void updateTextureBuffers();
+
 		void setDim(const glm::vec2 & dim);
 
 		void setAnchor(const glm::vec2 & anchor);

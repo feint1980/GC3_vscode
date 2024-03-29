@@ -63,7 +63,7 @@ int EditorScreen::listdir(const char *name, int level)
 			{
 				if (texturePath.find(".xml") != std::string::npos)
 				{
-					std::cout << "packet " << entry->d_name << " found \n";
+					// std::cout << "packet " << entry->d_name << " found \n";
 					loadPacket(texturePath.c_str());
 				}
 			}		
@@ -72,7 +72,7 @@ int EditorScreen::listdir(const char *name, int level)
 			{
 				if (texturePath.find(".xml") != std::string::npos)
 				{
-					std::cout << "packet " << entry->d_name << " found \n";
+					// std::cout << "packet " << entry->d_name << " found \n";
 					const CEGUI::Image* sel_img = &CEGUI::ImageManager::getSingleton().get("TaharezLook/MultiListSelectionBrush");
 					 
 					CEGUI::ListboxTextItem * item;

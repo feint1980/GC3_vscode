@@ -33,6 +33,10 @@ namespace Feintgine {
 
 		std::unordered_map<std::string, Feintgine::F_Sprite> getSpriteMap() const { return m_spriteMap; }
 
+		std::string getFilePath() const { return m_filePath; }
+
+		void updateTexture();
+
 	private:
 
 		Feintgine::F_Sprite templateSprite;

@@ -73,7 +73,7 @@ namespace Feintgine
 				{
 					f_anim anim;
 					anim.sprite = SpriteManager::Instance()->getSprite(anim_node->first_attribute("name")->value());
-					std::cout << "anim "  << anim.sprite.getTexture().id << "\n";
+					//std::cout << "anim "  << anim.sprite.getTexture().id << "\n";
 					anim.time = std::stof(anim_node->first_attribute("time")->value());
 					glm::vec2 offset;
 					bool isLoop = false;

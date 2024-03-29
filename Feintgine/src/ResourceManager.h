@@ -20,6 +20,8 @@ namespace Feintgine
 		static std::vector<wchar_t> getPreloadedFile(const std::string & filePath,bool isWchar);
 
 
+		static void rewriteTexture(const std::string & filePath, const GLTexture & texture);
+
 		static GLuint boundTexture;
 
 	private:

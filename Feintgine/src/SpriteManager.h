@@ -10,6 +10,8 @@
 #include <unordered_map> // replace map with hash table to test if it's faster
 #include <atomic>
 #include <mutex>
+#include "A_Context_saver.h"
+
 
 namespace Feintgine {
 
@@ -49,7 +51,7 @@ namespace Feintgine {
 
 		void executeReadData();
 
-		bool isLoadingDone();
+		//bool isLoadingDone();
 
 		bool isDoneBatch();
 
@@ -60,21 +62,21 @@ namespace Feintgine {
 		std::unordered_map<std::string, SpritePacket > m_SpritePackets;
 		std::vector<std::string> m_storedKey;
 		std::vector<std::thread> m_Threads;
-		static std::mutex m_Mutex;
-		std::atomic<bool> m_isDones[2000]; // let just cache 2000 packets
-		std::atomic_int m_packetCount = 0;
+		//static std::mutex m_Mutex;
+		//std::atomic<bool> m_isDones[2000]; // let just cache 2000 packets
+		// std::atomic_int m_packetCount = 0;
 
-		// test ||
-		std::atomic_int fileCount = 0;
+		// // test ||
+		// std::atomic_int fileCount = 0;
 
-		std::atomic_int limited_thread = 8;
-		std::atomic_int resolved_files = 0;
-		std::atomic_int total_result = 0;
+		// std::atomic_int limited_thread = 8;
+		// std::atomic_int resolved_files = 0;
+		// std::atomic_int total_result = 0;
 
-		int max_threads = 8;
+		int max_threads = std::thread::hardware_concurrency() ;
 
 		std::vector<std::string> m_texturePaths;
-		std::vector<bool> m_isLoaded;
+	//	std::vector<bool> m_isLoaded;
 
 	};
 }

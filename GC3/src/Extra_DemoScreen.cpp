@@ -850,12 +850,11 @@ void Extra_DemoScreen::firstCheckPoint()
 
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
 
-	std::cout << "wait \n";
-	while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
-	{
-		checkInput();
-		//std::cout << "loading \n";
-	}
+	// while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
+	// {
+	// 	checkInput();
+	// 	//std::cout << "loading \n";
+	// }
 	std::cout << "loaded !!!!!!! \n";
 
 	m_player.setCharacterSpell(1);
