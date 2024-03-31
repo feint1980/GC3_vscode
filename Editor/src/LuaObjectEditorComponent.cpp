@@ -21,30 +21,29 @@ void LuaObjectEditorComponent::loadGUI(Feintgine::GUI * gui)
 
 
 	m_movesetList = static_cast<CEGUI::Listbox*> (m_gui->createWidget("TaharezLook/Listbox",
-		glm::vec4(0.77, 0.08, 0.2, 0.6), glm::vec4(0), "movesetList"));
+		glm::vec4(0.77, 0.39, 0.2, 0.3), glm::vec4(0), "movesetList"));
+	// 0.77, 0.08, 0.2, 0.6
+
 
 	m_bossList = static_cast<CEGUI::Listbox*> (m_gui->createWidget("TaharezLook/Listbox",
-		glm::vec4(0.55, 0.08, 0.2, 0.6), glm::vec4(0), "m_bossList"));
+		glm::vec4(0.77, 0.08, 0.2, 0.3), glm::vec4(0), "m_bossList"));
 	
 
 	m_toggleUpdate = static_cast<CEGUI::PushButton*>(m_gui->createWidget("TaharezLook/Button",
-		glm::vec4(0.75, 0.7, 0.04, 0.04), glm::vec4(0), "m_toggleUpdate"));
+		glm::vec4(0.765, 0.71, 0.04, 0.04), glm::vec4(0), "m_toggleUpdate"));
 	m_toggleUpdate->setText("  >  ");
 
 	m_clearButton = static_cast<CEGUI::PushButton*>(m_gui->createWidget("TaharezLook/Button",
-		glm::vec4(0.8, 0.7, 0.04, 0.04), glm::vec4(0), "m_clearButton"));
+		glm::vec4(0.815, 0.71, 0.04, 0.04), glm::vec4(0), "m_clearButton"));
 	m_clearButton->setText("Reset");
 
-
-
 	m_clearBullets = static_cast<CEGUI::PushButton*>(m_gui->createWidget("TaharezLook/Button",
-			glm::vec4(0.85, 0.7, 0.1, 0.04), glm::vec4(0), "m_clearBullets"));
+			glm::vec4(0.865, 0.71, 0.1, 0.04), glm::vec4(0), "m_clearBullets"));
 	m_clearBullets->setText("Clear Bullets");
 
 	m_refreshData = static_cast<CEGUI::PushButton*>(m_gui->createWidget("TaharezLook/Button",
-		glm::vec4(0.65, 0.7, 0.04, 0.04), glm::vec4(0), "m_refreshData"));
+		glm::vec4(0.865, 0.03, 0.04, 0.04), glm::vec4(0), "m_refreshData"));
 	m_refreshData->setText("Refresh");
-
 
 	m_toggleUpdate->subscribeEvent(CEGUI::PushButton::EventClicked,
 		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::toggleUpdate, this));
@@ -104,6 +103,10 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 
 	m_audioEngine.init();
 
+
+
+	
+
 	//m_luaObjectManager.loadLuaFile("Assets/LuaFiles/test.lua");
 	//m_luaObjectManager.callLuaFunction("Assets/LuaFiles/test.lua","TestFunc");
 	//m_luaObjectManager.callCreateFromLua("Assets/LuaFiles/test.lua", "CreateFromLua");
@@ -112,10 +115,37 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	//m_luaObjectManager.callLuaFunction("Assets/LuaFiles/test.lua", "CreateFromLua");
 	//m_luaObjectManager.initDummy();
 
-	bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/__inubashiri_momiji_touhou_drawn_by_ryosios__a76f3b1a0e54bb60a93727e460fe5e60.png"), glm::vec2(0), glm::vec2(1366, 768),
-		Feintgine::Color(255, 255, 255, 255));
+	// bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/__inubashiri_momiji_touhou_drawn_by_ryosios__a76f3b1a0e54bb60a93727e460fe5e60.png"), glm::vec2(0), glm::vec2(1366, 768),
+	// 	Feintgine::Color(255, 255, 255, 255));
+
+
+
 	update(1);
 	//loadMoveset("");
+}
+
+void LuaObjectEditorComponent::reloadPlayer(int val)
+{
+	switch(val)
+	{
+		case 0:
+			{
+				
+				m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
+				m_player.setCharacterSpell(val);
+				m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
+				m_player.setAccessoryShot(m_shotType);
+
+			}
+			break;
+		
+		default:
+
+		break;
+	}
+	m_player.setDeathCallback([&] {
+		m_player.die();
+	});
 
 }
 

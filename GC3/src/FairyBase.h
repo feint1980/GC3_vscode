@@ -3,9 +3,9 @@
 #include "F_EnemyBasic.h"
 
 
-const int ANIM_LEFT = 0;
-const int ANIM_RIGHT = 1;
-const int ANIM_CENTER = 2;
+#define ANIM_LEFT 0
+#define ANIM_RIGHT 1
+#define ANIM_CENTER 2
 class FairyBase : public F_EnemyBasic
 { 
 public:

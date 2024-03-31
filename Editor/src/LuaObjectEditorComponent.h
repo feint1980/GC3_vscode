@@ -16,7 +16,9 @@
 #include <F_LuaObjectManager.h>
 #include "../../GC3/src/F_Lua_Boss_Manager.h"
 #include "../../GC3/src/F_Lua_Boss.h" 
+#include "../../GC3/src/F_Player.h"
 #include <fstream>
+
 
 class LuaObjectEditorComponent
 {
@@ -57,6 +59,9 @@ public:
 
 	bool refreshData(const CEGUI::EventArgs &e);
 
+	void reloadPlayer(int val);
+	
+
 private:
 	
 	bool m_isUpdate = false;
@@ -71,6 +76,7 @@ private:
 	Feintgine::AudioEngine m_audioEngine;
 
 	F_Lua_Boss m_testLuaObject;
+	int m_shotType;
 
 	CEGUI::DefaultWindow * m_bulletCount;
 
@@ -91,6 +97,8 @@ private:
 
 
 	std::string m_currentLuaDir = "";
+
+	F_Player m_player;
 
 
 	std::vector<std::string> m_lines;
