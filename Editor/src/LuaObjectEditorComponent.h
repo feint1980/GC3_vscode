@@ -88,10 +88,12 @@ private:
 
 	CEGUI::PushButton * m_refreshData = nullptr;
 
+	CEGUI::ToggleButton * m_playerEnableTogger = nullptr;
 	
 	CEGUI::Listbox * m_movesetList = nullptr;
 
 	CEGUI::Listbox * m_bossList = nullptr;
+
 
 	F_Lua_Boss_Manager m_luaObjectManager;
 
@@ -99,6 +101,8 @@ private:
 	std::string m_currentLuaDir = "";
 
 	F_Player m_player;
+
+	std::vector<CEGUI::DefaultWindow *> m_widgets;
 
 
 	std::vector<std::string> m_lines;

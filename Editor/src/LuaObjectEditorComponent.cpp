@@ -23,12 +23,10 @@ void LuaObjectEditorComponent::loadGUI(Feintgine::GUI * gui)
 	m_movesetList = static_cast<CEGUI::Listbox*> (m_gui->createWidget("TaharezLook/Listbox",
 		glm::vec4(0.77, 0.39, 0.2, 0.3), glm::vec4(0), "movesetList"));
 	// 0.77, 0.08, 0.2, 0.6
-
-
 	m_bossList = static_cast<CEGUI::Listbox*> (m_gui->createWidget("TaharezLook/Listbox",
 		glm::vec4(0.77, 0.08, 0.2, 0.3), glm::vec4(0), "m_bossList"));
 	
-
+	
 	m_toggleUpdate = static_cast<CEGUI::PushButton*>(m_gui->createWidget("TaharezLook/Button",
 		glm::vec4(0.765, 0.71, 0.04, 0.04), glm::vec4(0), "m_toggleUpdate"));
 	m_toggleUpdate->setText("  >  ");
@@ -44,6 +42,10 @@ void LuaObjectEditorComponent::loadGUI(Feintgine::GUI * gui)
 	m_refreshData = static_cast<CEGUI::PushButton*>(m_gui->createWidget("TaharezLook/Button",
 		glm::vec4(0.865, 0.03, 0.04, 0.04), glm::vec4(0), "m_refreshData"));
 	m_refreshData->setText("Refresh");
+
+	m_playerEnableTogger = static_cast<CEGUI::ToggleButton *>
+		(m_gui->createWidget("TaharezLook/Checkbox", glm::vec4(0.115, 0.775, 0.05, 0.05),
+			glm::vec4(0), "enableLoop_toggle"));
 
 	m_toggleUpdate->subscribeEvent(CEGUI::PushButton::EventClicked,
 		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::toggleUpdate, this));

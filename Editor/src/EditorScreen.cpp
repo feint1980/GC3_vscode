@@ -1530,7 +1530,6 @@ void EditorScreen::initAObjList()
 	animation_isSpriteInverted->setText("Is Inverted");
 
 
-
 	animation_markAsLoop_toggle->subscribeEvent(CEGUI::ToggleButton::EventMouseLeavesSurface,
 		CEGUI::Event::Subscriber(&EditorScreen::onMarkAsStop, this));
 
