@@ -31,7 +31,14 @@ namespace Feintgine
 
 		//std::vector<Fg_layer> getLayers() const { return m_layers; }
 
-		Fg_layer * getCurrentLayer() const { return m_currentLayer; }
+		Fg_layer * getCurrentLayer()
+		{ 
+			if(m_currentLayer)
+			{
+				return m_currentLayer;
+			}  
+			return nullptr;	
+		}
 
 		Proc_Scene getProtoSer();
 
@@ -50,7 +57,7 @@ namespace Feintgine
 
  		void findAndSetCurrentLayer(const std::string & layerName);
 // 
- 		void addLayer(const Fg_layer & newLayer);
+ 		void addLayer(Fg_layer * newLayer);
 // 
  		void saveScene(const std::string & savePath);
 // 
@@ -66,7 +73,7 @@ namespace Feintgine
 
 		std::string getName() const { return m_name; }
 
-		std::vector<Fg_layer> m_layers;
+		std::vector<Fg_layer *> m_layers;
 		
 	private:
 	

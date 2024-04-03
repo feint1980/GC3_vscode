@@ -591,13 +591,13 @@ void EditorScreen::draw()
 
 		if (drawMode == edit_object_mode)
 		{
-			// drawEditScreen();
-			// drawSampleScreen();
-			// drawSpriteList();
+			drawEditScreen();
+			drawSampleScreen();
+			drawSpriteList();
 		}
 		if (drawMode == edit_scene_mode)
 		{
-			//drawSceneScreen();
+			drawSceneScreen();
 		}
 		if (drawMode == edit_animate_mode)
 		{
@@ -652,14 +652,14 @@ void EditorScreen::draw()
 
 		SDL_GL_SetSwapInterval(1);
 		
-		// m_textRenderer.renderText(m_fullCam, 
-		// 	L"FPS :" + 
-		// 	feint_common::Instance()->convertStringtoWstring(feint_common::
-		// 		Instance()->convertPreciousFloatToString(m_game->getFps())),
-		// 	glm::vec2(720, -400), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
+		m_textRenderer.renderText(m_fullCam, 
+			L"FPS :" + 
+			feint_common::Instance()->convertStringtoWstring(feint_common::
+				Instance()->convertPreciousFloatToString(m_game->getFps())),
+			glm::vec2(720, -400), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
 
-		// glm::vec2 curPos = m_sceneCamera.convertScreenToWorld(m_game->getInputManager().getMouseCoords(),
-		// 	glm::vec2(SceneScreen.x, SceneScreen.y), glm::vec2(m_window->getScreenWidth(), m_window->getScreenHeight()));
+		glm::vec2 curPos = m_sceneCamera.convertScreenToWorld(m_game->getInputManager().getMouseCoords(),
+			glm::vec2(SceneScreen.x, SceneScreen.y), glm::vec2(m_window->getScreenWidth(), m_window->getScreenHeight()));
 
 
 		
@@ -674,7 +674,7 @@ void EditorScreen::draw()
 	// 	m_textRenderer.renderText(m_fullCam, L"Y :" + l_y
 	// 		, glm::vec2(150, -430), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_LEFT);
 
-		//m_gui.draw();
+		m_gui.draw();
 
 	}
 
@@ -2959,8 +2959,8 @@ bool EditorScreen::addLayer(const CEGUI::EventArgs &e)
 		
 	}
 
-	Feintgine::Fg_layer layer;
-	layer.create(m_layerName->getText().c_str(), std::stof(m_layerDepth->getText().c_str()));
+	Feintgine::Fg_layer *layer = new Feintgine::Fg_layer();
+	layer->create(m_layerName->getText().c_str(), std::stof(m_layerDepth->getText().c_str()));
 	m_sceneManager.getCurrentScene()->addLayer(layer);
 
 	m_addLayerWindow->destroy();
@@ -3669,13 +3669,8 @@ bool EditorScreen::layer_delete_protocol(const CEGUI::EventArgs & e)
 	if (m_layers->getFirstSelectedItem())
 	{
 
-		if (m_sceneManager.getCurrentScene()->getCurrentLayer())
-		{
-			m_sceneManager.getCurrentScene()->removeCurrentLayer();
-			//m_sceneManager.getCurrentScene()->getCurrentLayer()->clearObject();
-			//m_sceneManager.getCurrentScene()->deselectCurrentLayer();
-		}
 
+		m_sceneManager.getCurrentScene()->removeCurrentLayer();
 		//deleteCurrentLayer();
 		m_layers->removeRow(m_layers->getItemRowIndex(m_layers->getFirstSelectedItem()));
 		std::cout << "protocol claled \n";

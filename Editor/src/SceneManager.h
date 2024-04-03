@@ -102,7 +102,7 @@ private:
 
 	Feintgine::Camera2D * m_sceneCam;
 
-	Feintgine::Fg_scene * m_currentScene;
+	Feintgine::Fg_scene * m_currentScene = nullptr;
 	std::string m_name;
 
 	Feintgine::GUI * m_gui;

@@ -8,9 +8,7 @@ namespace Feintgine
 
 	Fg_scene::Fg_scene()
 	{
-		m_currentLayer = nullptr;
-		m_layers = std::vector<Fg_layer>();
-		std::cout << "FG_SCENE init |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n";
+		deselectCurrentLayer();
 	}
 
 
@@ -24,7 +22,7 @@ namespace Feintgine
 		if (m_currentLayer)
 		{
 			m_currentLayer->getObjects().clear();
-			m_currentLayer = nullptr;
+			deselectCurrentLayer();
 		}
 		if (list)
 		{
@@ -52,12 +50,12 @@ namespace Feintgine
 			for (int i = 0; i < s_scence.layerlist_size(); i++)
 			{
 				std::cout << " layer index " << i << "has " << s_scence.layerlist(i).objectlist_size()  << "object \n";
-				Fg_layer re_layer;
+				Fg_layer * re_layer = new Fg_layer();
 				
-				re_layer.load(s_scence.layerlist(i));
+				re_layer->load(s_scence.layerlist(i));
 
-				int i_layerDepth = re_layer.getDepth();
-				CEGUI::ListboxTextItem * firstRowItem1 = new CEGUI::ListboxTextItem(re_layer.getName());
+				int i_layerDepth = re_layer->getDepth();
+				CEGUI::ListboxTextItem * firstRowItem1 = new CEGUI::ListboxTextItem(re_layer->getName());
 				CEGUI::ListboxTextItem * firstRowItem2 = new CEGUI::ListboxTextItem(std::to_string(i_layerDepth).c_str());
 				CEGUI::ListboxTextItem * firstRowItem3 = new CEGUI::ListboxTextItem("v");
 
@@ -74,7 +72,7 @@ namespace Feintgine
 					list->setItem(firstRowItem3, 3, firstRow);
 				}
 				
-				m_layers.push_back(re_layer);
+				m_layers.push_back(std::move(re_layer));
 				
 			}
 			std::cout << "total layer " << m_layers.size() << "\n";
@@ -96,9 +94,9 @@ namespace Feintgine
 	void Fg_scene::newLayer(const std::string & layerName, float depth)
 	{
 		m_currentLayer = nullptr;
-		Fg_layer re_layer;
-		re_layer.create(layerName, depth);
-		m_layers.push_back(re_layer);
+		Fg_layer *re_layer = new Fg_layer();
+		re_layer->create(layerName, depth);
+		m_layers.push_back(std::move(re_layer));
 	}
 
 	Proc_Scene Fg_scene::getProtoSer()
@@ -109,8 +107,8 @@ namespace Feintgine
 
 		for (int i = 0; i < m_layers.size(); i++)
 		{
-			std::cout << "layer " << m_layers[i].getName() << " with " << m_layers[i].getObjects().size() << " object \n";
-			Proc_Layer layer = m_layers[i].getProtoSer();
+			std::cout << "layer " << m_layers[i]->getName() << " with " << m_layers[i]->getObjects().size() << " object \n";
+			Proc_Layer layer = m_layers[i]->getProtoSer();
 			setLayer(layer, *returnScene.add_layerlist());
 		}
 
@@ -122,7 +120,7 @@ namespace Feintgine
 	{
 		for (int i = 0; i < m_layers.size(); i++)
 		{
-			m_layers[i].draw(spriteBatch);
+			m_layers[i]->draw(spriteBatch);
 		}
 	}
 
@@ -130,7 +128,7 @@ namespace Feintgine
 	{
 		for (int i = 0; i < m_layers.size(); i++)
 		{
-			m_layers[i].drawLight(lightBatch);
+			m_layers[i]->drawLight(lightBatch);
 		}
 	}
 
@@ -141,9 +139,9 @@ namespace Feintgine
 			for (int i = 0; i < m_layers.size(); i++)
 			{
 
-				if (&m_layers[i] == m_currentLayer)
+				if (m_layers[i] == m_currentLayer)
 				{
-					m_layers[i].clearObject();
+					m_layers[i]->clearObject();
 					m_layers.erase(m_layers.begin() + i);
 					deselectCurrentLayer();
 				}
@@ -158,13 +156,13 @@ namespace Feintgine
 		std::cout << "size " << m_layers.size() << "\n";
 		for (int i = 0; i < m_layers.size(); i++)
 		{
-			std::cout << "compare " + m_layers[i].getName() + " with " + m_currentLayer->getName() << "\n";
-			if (m_layers[i].getName() == name)
+			std::cout << "compare " + m_layers[i]->getName() + " with " + m_currentLayer->getName() << "\n";
+			if (m_layers[i]->getName() == name)
 			{
-				m_layers[i].clearObject();
+				m_layers[i]->clearObject();
 				m_layers.erase(m_layers.begin() + i);
 				std::cout << "hit \n";
-				//m_currentLayer = nullptr;
+				deselectCurrentLayer();
 			}
 		}
 	}
@@ -200,21 +198,23 @@ namespace Feintgine
 	{
 		for (int i = 0; i < m_layers.size(); i++)
 		{
-			if (m_layers[i].getName() == layerName)
+			if(m_layers[i])
 			{
-				m_currentLayer = &m_layers[i];
-				std::cout << "select layer " << m_layers[i].getName() << "\n";
-				return;
+				if (m_layers[i]->getName().c_str() == layerName.c_str())
+				{
+					m_currentLayer = m_layers[i];
+					return;
+				}
 			}
 		}
 		std::cout << "layer " << layerName << " can not be found \n";
-		m_currentLayer = nullptr;
+		deselectCurrentLayer();
 	}
 
-	void Fg_scene::addLayer(const Fg_layer & newLayer)
+	void Fg_scene::addLayer(Fg_layer * newLayer)
 	{
-		m_currentLayer = nullptr;
-		Fg_layer layer = newLayer;
+		deselectCurrentLayer();
+		Fg_layer * layer = newLayer;
 		m_layers.push_back(layer);
 	}
 

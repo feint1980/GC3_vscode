@@ -4,6 +4,7 @@
 
 SceneManager::SceneManager()
 {
+	 m_currentScene = nullptr;
 }
 
 
@@ -214,7 +215,7 @@ void SceneManager::loadSceneFromFile(const std::string & filePath, CEGUI::MultiC
 		m_currentLayer = m_currentScene->getCurrentLayer();
 		if (m_currentLayer)
 		{
-			m_currentScene->findAndSetCurrentLayer(m_currentLayer->getName());
+			 m_currentScene->findAndSetCurrentLayer(m_currentLayer->getName());
 		}
 		else
 		{
@@ -265,9 +266,6 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 		return;
 	}
 	else
-	{
-
-	}
 	{
 
 		m_currentLayer = m_currentScene->getCurrentLayer();
@@ -712,7 +710,7 @@ bool SceneManager::addBrushOnCurrentLayer(const CEGUI::EventArgs &e)
 		brush.init(destination, pos, glm::vec2(texture.width * collum, texture.height * row), glm::vec2(collum,row),
 			Feintgine::Color(255, 255, 255, 255), std::stoi(m_brushDepth->getText().c_str()));
 
-		m_currentScene->getCurrentLayer()->addBrush(brush);
+		m_currentLayer->addBrush(brush);
 		if (m_addBrushWindow)
 		{
 			m_addBrushWindow->destroy();
