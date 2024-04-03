@@ -17,6 +17,9 @@
 #include "../../GC3/src/F_Lua_Boss_Manager.h"
 #include "../../GC3/src/F_Lua_Boss.h" 
 #include "../../GC3/src/F_Player.h"
+#include "../../GC3/src/EnemyGuardian.h"
+#include "../../GC3/src/EnemyAmplifier.h"
+
 #include <fstream>
 
 
@@ -94,6 +97,7 @@ private:
 
 	CEGUI::Listbox * m_bossList = nullptr;
 
+	std::vector<EnemyBulletBase *> m_bullets;
 
 	F_Lua_Boss_Manager m_luaObjectManager;
 
@@ -102,7 +106,10 @@ private:
 
 	F_Player m_player;
 
-	std::vector<CEGUI::DefaultWindow *> m_widgets;
+
+	std::vector<F_BaseEnemy *> m_enemies;
+	std::vector<EnemyGuardian *> m_guardians;
+	std::vector<EnemyAmplifier *> m_amplifiers;
 
 
 	std::vector<std::string> m_lines;

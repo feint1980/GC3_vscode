@@ -1090,4 +1090,5 @@ CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj: \
  D:/VS_Code_prj/GC3_vscode/GC3/src/F_Lua_Boss_State_MoveObject.h \
  D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_BaseObject.h \
  D:/VS_Code_prj/GC3_vscode/GC3/src/F_Komachi_Souls_Object.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine/src/FL_Object.h
+ D:/VS_Code_prj/GC3_vscode/Feintgine/src/FL_Object.h \
+ D:/VS_Code_prj/GC3_vscode/GC3/src/EnemyGuardian.h

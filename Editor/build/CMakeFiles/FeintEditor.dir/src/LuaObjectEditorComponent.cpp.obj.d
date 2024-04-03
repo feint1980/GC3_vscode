@@ -1040,4 +1040,5 @@ CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj: \
  D:/VS_Code_prj/GC3_vscode/GC3/src/F_Non_Direction_Laser.h \
  D:/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Star_Trail_Manager.h \
  D:/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Star_Trail.h \
- D:/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Laser_trail.h
+ D:/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Laser_trail.h \
+ D:/VS_Code_prj/GC3_vscode/GC3/src/EnemyGuardian.h

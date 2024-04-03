@@ -211,12 +211,12 @@ void SceneManager::loadSceneFromFile(const std::string & filePath, CEGUI::MultiC
 	}
 	else
 	{
-		if (m_currentScene->getCurrentLayer())
+		m_currentLayer = m_currentScene->getCurrentLayer();
+		if (m_currentLayer)
 		{
-			m_currentScene->findAndSetCurrentLayer("!!!!");
+			m_currentScene->findAndSetCurrentLayer(m_currentLayer->getName());
 		}
-
-		if (!m_currentScene->getCurrentLayer())
+		else
 		{
 			std::cout << "now no more selected layer \n";
 		}
@@ -260,13 +260,22 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 		
 	}
 
-	if (m_currentScene)
+	if (!m_currentScene)
 	{
-		if (m_currentScene->getCurrentLayer())
+		return;
+	}
+	else
+	{
+
+	}
+	{
+
+		m_currentLayer = m_currentScene->getCurrentLayer();
+		if (m_currentLayer)
 		{
 			if (inputManager.isKeyPressed(SDLK_ESCAPE))
 			{
-				m_currentScene->getCurrentLayer()->clearAllSelectedObject();
+				m_currentLayer->clearAllSelectedObject();
 			}
 			if (m_currentMode == SELECT_MODE)
 			{
@@ -275,7 +284,7 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 					if (inputManager.isKeyPressed(SDL_BUTTON_LEFT))
 					{
 
-						m_currentScene->getCurrentLayer()->addObjectToLayer(object);
+						m_currentLayer->addObjectToLayer(object);
 						std::cout << "added " << object.getName() << " \n";
 					}
 					if (isGrid)
@@ -289,7 +298,7 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 								
 								if (savedPos != object.getPos())
 								{
-									m_currentScene->getCurrentLayer()->addObjectToLayer(object);
+									m_currentLayer->addObjectToLayer(object);
 									savedPos = object.getPos();
 								}
 								
@@ -301,26 +310,26 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 				}
 
 
-				if (m_currentScene->getCurrentLayer())
+				if (m_currentLayer)
 				{
 
 					if (inputManager.isKeyPressed(SDLK_DELETE))
 					{
-						m_currentScene->getCurrentLayer()->removeSelectedObjects();
+						m_currentLayer->removeSelectedObjects();
 
 					}
 					if (inputManager.isKeyDown(SDLK_LCTRL))
 					{
 						if (inputManager.isKeyPressed(SDL_BUTTON_LEFT))
 						{
-							m_currentScene->getCurrentLayer()->handleDeselectObject();
+							m_currentLayer->handleDeselectObject();
 						}
 					}
 					else
 					{
 						if (inputManager.isKeyPressed(SDL_BUTTON_LEFT))
 						{
-							m_currentScene->getCurrentLayer()->handleSelectObject();
+							m_currentLayer->handleSelectObject();
 						}
 					}
 				}
@@ -328,55 +337,58 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 			}
 			if (m_currentMode == EDIT_MODE)
 			{
-				if (inputManager.isKeyDown(SDL_BUTTON_LEFT))
+				if (m_currentLayer)
 				{
-					if (!i_move)
+					if (inputManager.isKeyDown(SDL_BUTTON_LEFT))
 					{
-						i_move = true;
-						firstClick = curMousePos;
-						
-						//std::cout << "get first click " << feint_common::Instance()->convertVec2toString(firstClick) << "\n";
-						m_currentScene->getCurrentLayer()->moveSelectedObject(firstClick, true);
-						m_currentScene->getCurrentLayer()->updateDepth();
-					}
-					if (i_move)
-					{
-						if (isGrid)
+						if (!i_move)
 						{
+							i_move = true;
+							firstClick = curMousePos;
+							
+							//std::cout << "get first click " << feint_common::Instance()->convertVec2toString(firstClick) << "\n";
+							m_currentLayer->moveSelectedObject(firstClick, true);
+							m_currentLayer->updateDepth();
+						}
+						if (i_move)
+						{
+							if (isGrid)
+							{
 
-							glm::vec2 SpacingOffset = EditorProperty::Instance()->getSpacingOffset();
-							float standardX = 64.0f;
-							float standardY = 64.0f;
-							float xbalanceVal = 0.0f;
-							float ybalanceVal = 0.0f;
-							if (curMousePos.x < 0)
-							{
-								xbalanceVal = SpacingOffset.x;
+								glm::vec2 SpacingOffset = EditorProperty::Instance()->getSpacingOffset();
+								float standardX = 64.0f;
+								float standardY = 64.0f;
+								float xbalanceVal = 0.0f;
+								float ybalanceVal = 0.0f;
+								if (curMousePos.x < 0)
+								{
+									xbalanceVal = SpacingOffset.x;
+								}
+								if (curMousePos.y < 0)
+								{
+									ybalanceVal = SpacingOffset.y;
+								}
+								int xVal = (curMousePos.x - xbalanceVal) / SpacingOffset.x;
+								int yVal = (curMousePos.y - ybalanceVal) / SpacingOffset.y;
+								glm::vec2 gridedPos = glm::vec2((xVal* SpacingOffset.x) + 32, (yVal*SpacingOffset.y) + 32);
+								m_currentLayer->moveSelectedObject(gridedPos, false);
 							}
-							if (curMousePos.y < 0)
+							else
 							{
-								ybalanceVal = SpacingOffset.y;
+								glm::vec2 secondClick = curMousePos;
+								glm::vec2 offset = secondClick - firstClick;// -secondClick;
+								glm::vec2 finalPos = secondClick + offset;
+								m_currentLayer->moveSelectedObject(finalPos, false);
 							}
-							int xVal = (curMousePos.x - xbalanceVal) / SpacingOffset.x;
-							int yVal = (curMousePos.y - ybalanceVal) / SpacingOffset.y;
-							glm::vec2 gridedPos = glm::vec2((xVal* SpacingOffset.x) + 32, (yVal*SpacingOffset.y) + 32);
-							m_currentScene->getCurrentLayer()->moveSelectedObject(gridedPos, false);
+							m_currentLayer->updateDepth();
+							//i_move = false;
 						}
-						else
-						{
-							glm::vec2 secondClick = curMousePos;
-							glm::vec2 offset = secondClick - firstClick;// -secondClick;
-							glm::vec2 finalPos = secondClick + offset;
-							m_currentScene->getCurrentLayer()->moveSelectedObject(finalPos, false);
-						}
-						m_currentScene->getCurrentLayer()->updateDepth();
-						//i_move = false;
 					}
-				}
-				else
-				{
-					i_move = false;
-					m_currentScene->getCurrentLayer()->clearObjectOffset();
+					else
+					{
+						i_move = false;
+						m_currentLayer->clearObjectOffset();
+					}
 				}
 			}
 		}
@@ -394,8 +406,8 @@ void SceneManager::update(const glm::vec2 & mousePos)
 	if (m_currentScene)
 	{
 		//std::cout << "second  " << feint_common::Instance()->convertVec2toString(mousePos) << "\n";
-		curMousePos = mousePos;
-		m_currentScene->editorUpdate(mousePos);
+		// curMousePos = mousePos;
+		// m_currentScene->editorUpdate(mousePos);
 		
 	}
 }
@@ -498,7 +510,7 @@ bool SceneManager::onAddBurshClick(const CEGUI::EventArgs &e)
 	{
 
 
-		if (m_currentScene->getCurrentLayer())
+		if (m_currentLayer)
 		{
 			m_addBrushWindow = static_cast<CEGUI::Window*>
 				(m_gui->createWidget("TaharezLook/FrameWindow", glm::vec4(0.5, 0.5, 0.4, 0.4), glm::vec4(0), "m_addBrushWindow"));
@@ -682,8 +694,8 @@ bool SceneManager::onCloseBrushProtocol(const CEGUI::EventArgs &e)
 
 bool SceneManager::addBrushOnCurrentLayer(const CEGUI::EventArgs &e)
 {
-
-	if (m_currentScene->getCurrentLayer())
+	m_currentLayer = m_currentScene->getCurrentLayer();
+	if (m_currentLayer)
 	{
 
 		Feintgine::Brush brush;

@@ -8,6 +8,9 @@ namespace Feintgine
 
 	Fg_scene::Fg_scene()
 	{
+		m_currentLayer = nullptr;
+		m_layers = std::vector<Fg_layer>();
+		std::cout << "FG_SCENE init |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||\n";
 	}
 
 

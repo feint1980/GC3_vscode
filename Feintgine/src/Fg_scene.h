@@ -29,7 +29,7 @@ namespace Feintgine
 
 		void newLayer(const std::string & layerName, float depth);
 
-		std::vector<Fg_layer> getLayers() const { return m_layers; }
+		//std::vector<Fg_layer> getLayers() const { return m_layers; }
 
 		Fg_layer * getCurrentLayer() const { return m_currentLayer; }
 
@@ -65,9 +65,11 @@ namespace Feintgine
 // 		void updateScreenPriority();
 
 		std::string getName() const { return m_name; }
+
+		std::vector<Fg_layer> m_layers;
 		
 	private:
-		std::vector<Fg_layer> m_layers;
+	
 
 		std::string m_name;
 

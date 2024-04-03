@@ -44,8 +44,8 @@ void LuaObjectEditorComponent::loadGUI(Feintgine::GUI * gui)
 	m_refreshData->setText("Refresh");
 
 	m_playerEnableTogger = static_cast<CEGUI::ToggleButton *>
-		(m_gui->createWidget("TaharezLook/Checkbox", glm::vec4(0.115, 0.775, 0.05, 0.05),
-			glm::vec4(0), "enableLoop_toggle"));
+		(m_gui->createWidget("TaharezLook/Checkbox", glm::vec4(0.75, 0.05, 0.05, 0.05),
+			glm::vec4(0), "m_playerEnableTogger"));
 
 	m_toggleUpdate->subscribeEvent(CEGUI::PushButton::EventClicked,
 		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::toggleUpdate, this));
@@ -104,9 +104,6 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	m_staticCam = staticCam;
 
 	m_audioEngine.init();
-
-
-
 	
 
 	//m_luaObjectManager.loadLuaFile("Assets/LuaFiles/test.lua");
@@ -130,21 +127,25 @@ void LuaObjectEditorComponent::reloadPlayer(int val)
 {
 	switch(val)
 	{
-		case 0:
-			{
-				
-				m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
-				m_player.setCharacterSpell(val);
-				m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
-				m_player.setAccessoryShot(m_shotType);
-
-			}
-			break;
+		case PLAYER_CHARACTER_REIMU:
+		{\
+			m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
+			m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);	
+		}
+		break;
+		case PLAYER_CHARACTER_MARISA:
+		{
+			m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
+			m_player.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
+		}
+		break;
 		
 		default:
-
+			std::cout << "wrong player ID value \n";
 		break;
 	}
+	m_player.setCharacterSpell(val);
+	m_player.setAccessoryShot(m_shotType);
 	m_player.setDeathCallback([&] {
 		m_player.die();
 	});
@@ -185,7 +186,16 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 
 	spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 
+	if(m_playerEnableTogger->isSelected())
+	{
+		m_player.draw(spriteBatch);
+	}
+	
+	
 	m_luaObjectManager.draw(spriteBatch);
+
+	
+	
 	//bg.draw(spriteBatch);
 
 	spriteBatch.end();
@@ -349,6 +359,12 @@ void LuaObjectEditorComponent::update(float deltaTime)
 		ENGINE_current_tick += (ENGINE_tick_speed * deltaTime);
 
 		m_bulletCount->setText("bullet(s) : " + std::to_string(m_luaObjectManager.getTotalBullets()));
+
+		if(m_playerEnableTogger->isSelected())
+		{
+			m_player.update(deltaTime,m_enemies, m_bullets  , m_guardians, m_amplifiers);
+		}
+
 	}
 }
 

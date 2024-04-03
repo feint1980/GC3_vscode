@@ -87,6 +87,8 @@ private:
 	EmptyObject m_selectIcon;
 	EmptyObject m_moveIcon;
 
+	Feintgine::Fg_layer * m_currentLayer = nullptr;
+
 	int m_currentMode = SELECT_MODE;
 
 	glm::vec2 curMousePos;

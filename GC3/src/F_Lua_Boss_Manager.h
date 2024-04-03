@@ -92,6 +92,8 @@ public:
 
 	Feintgine::FL_Object * createObject(const glm::vec2 & pos, const glm::vec2 & scale, const std::string & assetString);
 
+	std::vector<EnemyBulletBase *> * getBullets() { return &m_bullets; }
+
 protected:
 
 	std::vector<EnemyBulletBase *> m_bullets;

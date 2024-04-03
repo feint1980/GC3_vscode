@@ -33,7 +33,6 @@
 #include "SpriteListHolder.h"
 
 #include <chrono>
-#include <thread>
 #include <T_Scene.h>
 #include <Fg_scene.h>
 #include <iostream>
@@ -720,7 +719,7 @@ private :
 
 	bool is_ObjectInside = false;
 
-	Feintgine::Fg_scene * m_scene;
+	//Feintgine::Fg_scene * m_scene;
 
 	bool is_hold_CTRL = false;
 
@@ -806,6 +805,8 @@ private :
 	EnemyEditorComponent m_enemyEditor;
 
 	LuaObjectEditorComponent m_luaEditor;
+
+	bool m_isLoaded = false;
 
 };
 

@@ -116,10 +116,6 @@ void EditorScreen::destroy()
 }
 
 
-static void loadAsync()
-{
-
-}
 void EditorScreen::onEntry()
 {
 	
@@ -376,6 +372,8 @@ void EditorScreen::onEntry()
 
 
 
+	m_isLoaded = true;
+
 }
 
 void EditorScreen::onExit()
@@ -393,169 +391,170 @@ void EditorScreen::onExit()
 void EditorScreen::update(float deltaTime)
 {
 	//checkInput();
-	
-	m_camera.update();
-	
-	staticCam_Editing.update();
-	staticCam_Animating.update();
-	staticCam_Sample.update();
-	m_sampleCam.update();
-	m_animatingCamera.update();
-	//m_objectsCamera.update();
-	m_previewCamera.update();
-	m_sceneCamera.update();
-	m_spriteListCamera.update();
-	m_editDamakuCamera_static.update();
-	m_editDamakuCamera.update();
-	m_editEnemyCamera.update();
-	m_editLuaCamera.update();
-	m_editLuaCamera_static.update();
-
-	m_tileset.update(deltaTime);
-	m_tileManager.update(deltaTime);
-	m_tileStack.update(deltaTime);
-	if (m_objectSelected && drawMode == T_EDIT_SCREEN_MODE)
+	if(m_isLoaded)
 	{
-		if (m_sceneManager.isGrided())
+
+		
+		m_camera.update();
+		staticCam_Editing.update();
+		staticCam_Animating.update();
+		staticCam_Sample.update();
+		m_sampleCam.update();
+		m_animatingCamera.update();
+		//m_objectsCamera.update();
+		m_previewCamera.update();
+		m_sceneCamera.update();
+		m_spriteListCamera.update();
+		m_editDamakuCamera_static.update();
+		m_editDamakuCamera.update();
+		m_editEnemyCamera.update();
+		m_editLuaCamera.update();
+		m_editLuaCamera_static.update();
+
+		m_tileset.update(deltaTime);
+		m_tileManager.update(deltaTime);
+		m_tileStack.update(deltaTime);
+		if (m_objectSelected && drawMode == T_EDIT_SCREEN_MODE)
 		{
-			glm::vec2 curMousePos = m_sceneCamera.convertScreenToWorld(m_game->getInputManager().getMouseCoords(),
-				glm::vec2(SceneScreen.x, SceneScreen.y), glm::vec2(m_window->getScreenWidth(), m_window->getScreenHeight()));
-			glm::vec2 SpacingOffset = EditorProperty::Instance()->getSpacingOffset();
-			
-			float xbalanceVal = 0.0f;
-			float ybalanceVal = 0.0f;
-			if (curMousePos.x < 0)
+			if (m_sceneManager.isGrided())
 			{
-				xbalanceVal = SpacingOffset.x;
+				glm::vec2 curMousePos = m_sceneCamera.convertScreenToWorld(m_game->getInputManager().getMouseCoords(),
+					glm::vec2(SceneScreen.x, SceneScreen.y), glm::vec2(m_window->getScreenWidth(), m_window->getScreenHeight()));
+				glm::vec2 SpacingOffset = EditorProperty::Instance()->getSpacingOffset();
+				
+				float xbalanceVal = 0.0f;
+				float ybalanceVal = 0.0f;
+				if (curMousePos.x < 0)
+				{
+					xbalanceVal = SpacingOffset.x;
+				}
+				if (curMousePos.y < 0)
+				{
+					ybalanceVal = SpacingOffset.y;
+				}
+				int xVal = (curMousePos.x - xbalanceVal) / SpacingOffset.x;
+				int yVal = (curMousePos.y - ybalanceVal) / SpacingOffset.y;
+				glm::vec2 gridedPos = glm::vec2((xVal* SpacingOffset.x) + 32, (yVal*SpacingOffset.y) + 32);
+				m_selectedObject.setPos(gridedPos);
 			}
-			if (curMousePos.y < 0)
+			else
 			{
-				ybalanceVal = SpacingOffset.y;
+				m_selectedObject.setPos(m_sceneCamera.convertScreenToWorld(m_game->getInputManager().getMouseCoords(),
+					glm::vec2(SceneScreen.x, SceneScreen.y), glm::vec2(m_window->getScreenWidth(), m_window->getScreenHeight())));
 			}
-			int xVal = (curMousePos.x - xbalanceVal) / SpacingOffset.x;
-			int yVal = (curMousePos.y - ybalanceVal) / SpacingOffset.y;
-			glm::vec2 gridedPos = glm::vec2((xVal* SpacingOffset.x) + 32, (yVal*SpacingOffset.y) + 32);
-			m_selectedObject.setPos(gridedPos);
+		
 		}
-		else
+		if (drawMode == edit_scene_mode)
 		{
-			m_selectedObject.setPos(m_sceneCamera.convertScreenToWorld(m_game->getInputManager().getMouseCoords(),
+			m_sceneManager.update(m_sceneCamera.convertScreenToWorld(m_game->getInputManager().getMouseCoords(),
 				glm::vec2(SceneScreen.x, SceneScreen.y), glm::vec2(m_window->getScreenWidth(), m_window->getScreenHeight())));
 		}
-	
-	}
-	if (drawMode == edit_scene_mode)
-	{
-		m_sceneManager.update(m_sceneCamera.convertScreenToWorld(m_game->getInputManager().getMouseCoords(),
-			glm::vec2(SceneScreen.x, SceneScreen.y), glm::vec2(m_window->getScreenWidth(), m_window->getScreenHeight())));
-	}
 
-	
-	if (drawMode == edit_object_mode)
-	{
-		m_buildObjectTool.update();
-		//m_camera.update();
-	}
-
-	if (m_fAnimatedObject.isInited())
-	{
-		m_fAnimatedObject.update(deltaTime);
-
-		if(!m_fAnimatedObject.isPlaying())
+		
+		if (drawMode == edit_object_mode)
 		{
-			m_isAnimationPlaying = false;
+			m_buildObjectTool.update();
+			//m_camera.update();
 		}
-		//m_animatedObject.update();
-	}
-	if (drawMode == edit_enemy_mode)
-	{
-		m_enemyEditor.update(deltaTime);
-	}
-	if (drawMode == edit_lua_mode)
-	{
-		m_luaEditor.update(deltaTime);
-	}
 
-	if (m_fAnimatedObject.getCurrentAnimation())
-	{
-		if (m_spriteListDisplayer.getDisplaySample())
+		if (m_fAnimatedObject.isInited())
 		{
-			animation_applySprite->setEnabled(true);
-			
-		}
-		else
-		{
-			animation_applySprite->setEnabled(false);
-			
-		}
-		animation_enableLoop_toggle->setEnabled(true);
-		animation_isSpriteInverted->setEnabled(true);
-		animation_markAsLoop_toggle->setEnabled(true);
+			m_fAnimatedObject.update(deltaTime);
 
-		animation_anim_offset_textbox_x->setEnabled(true);
-		animation_anim_offset_textbox_y->setEnabled(true);
-
-
-		if (m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim())
-		{
-			//std::cout << "offset is " << m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim()->offset.x << "\n";
-
-			//std::cout << m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim()->sprite.getName() << " !!!!!\n";
-			if (!animation_anim_offset_textbox_x->hasInputFocus())
+			if(!m_fAnimatedObject.isPlaying())
 			{
+				m_isAnimationPlaying = false;
+			}
+			//m_animatedObject.update();
+		}
+		if (drawMode == edit_enemy_mode)
+		{
+			m_enemyEditor.update(deltaTime);
+		}
+		if (drawMode == edit_lua_mode)
+		{
+			m_luaEditor.update(deltaTime);
+		}
+
+		if (m_fAnimatedObject.getCurrentAnimation())
+		{
+			if (m_spriteListDisplayer.getDisplaySample())
+			{
+				animation_applySprite->setEnabled(true);
 				
-				animation_anim_offset_textbox_x->setText(
-						feint_common::Instance()->convertPreciousFloatToString(
-							m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim()->offset.x));
 			}
-			if (!animation_anim_offset_textbox_y->hasInputFocus())
+			else
 			{
-				animation_anim_offset_textbox_y->setText(
-					feint_common::Instance()->convertPreciousFloatToString(m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim()->offset.y));
+				animation_applySprite->setEnabled(false);
+				
 			}
+			animation_enableLoop_toggle->setEnabled(true);
+			animation_isSpriteInverted->setEnabled(true);
+			animation_markAsLoop_toggle->setEnabled(true);
+
+			animation_anim_offset_textbox_x->setEnabled(true);
+			animation_anim_offset_textbox_y->setEnabled(true);
+
+
+			if (m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim())
+			{
+				//std::cout << "offset is " << m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim()->offset.x << "\n";
+
+				//std::cout << m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim()->sprite.getName() << " !!!!!\n";
+				if (!animation_anim_offset_textbox_x->hasInputFocus())
+				{
+					
+					animation_anim_offset_textbox_x->setText(
+							feint_common::Instance()->convertPreciousFloatToString(
+								m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim()->offset.x));
+				}
+				if (!animation_anim_offset_textbox_y->hasInputFocus())
+				{
+					animation_anim_offset_textbox_y->setText(
+						feint_common::Instance()->convertPreciousFloatToString(m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim()->offset.y));
+				}
+			}
+			else
+			{
+				animation_anim_offset_textbox_x->setText(
+					feint_common::Instance()->convertPreciousFloatToString(0));
+
+				animation_anim_offset_textbox_y->setText(
+					feint_common::Instance()->convertPreciousFloatToString(0));
+			
+			}
+
 		}
 		else
 		{
-			animation_anim_offset_textbox_x->setText(
-				feint_common::Instance()->convertPreciousFloatToString(0));
+			animation_enableLoop_toggle->setEnabled(false);
+			animation_isSpriteInverted->setEnabled(false);
+			animation_markAsLoop_toggle->setEnabled(false);
 
-			animation_anim_offset_textbox_y->setText(
-				feint_common::Instance()->convertPreciousFloatToString(0));
-		
+			animation_anim_offset_textbox_x->setEnabled(false);
+			animation_anim_offset_textbox_y->setEnabled(false);
 		}
 
-	}
-	else
-	{
-		animation_enableLoop_toggle->setEnabled(false);
-		animation_isSpriteInverted->setEnabled(false);
-		animation_markAsLoop_toggle->setEnabled(false);
+		if (m_actionList->getFirstSelectedItem())
+		{
 
-		animation_anim_offset_textbox_x->setEnabled(false);
-		animation_anim_offset_textbox_y->setEnabled(false);
-	}
-
-	if (m_actionList->getFirstSelectedItem())
-	{
-
-		animation_addAnim->setEnabled(true);
-		animation_removeAnim->setEnabled(true);
-	
+			animation_addAnim->setEnabled(true);
+			animation_removeAnim->setEnabled(true);
 		
+			
+		}
+		else
+		{
+			animation_addAnim->setEnabled(false);
+			animation_removeAnim->setEnabled(false);
+			
+		}
+		updateAnimationLabel();
+		if (drawMode == edit_damaku_mode)
+		{
+			m_paternEditor.update(deltaTime);
+		}
 	}
-	else
-	{
-		animation_addAnim->setEnabled(false);
-		animation_removeAnim->setEnabled(false);
-		
-	}
-	updateAnimationLabel();
-	if (drawMode == edit_damaku_mode)
-	{
-		m_paternEditor.update(deltaTime);
-	}
-
-
 
 	//
 }
@@ -564,121 +563,122 @@ void EditorScreen::draw()
 {
 	// SpriteSheet / Map Editing Camera
 	
-
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glEnable(GL_BLEND);
-	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
-	switch (objectiveMode)
+	if(m_isLoaded)
 	{
-	case OBJECTIVE_OBJECT: 
+
 		
-		break;
-	case OBJECTIVE_BRUSH:
-		break;
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+		
+		switch (objectiveMode)
+		{
+		case OBJECTIVE_OBJECT: 
+			
+			break;
+		case OBJECTIVE_BRUSH:
+			break;
 
-	default:
-		break;
+		default:
+			break;
+		}
+		if (m_currentMode == T_EDIT_OJECT_MODE || m_currentMode == T_EDIT_SCREEN_MODE)
+		{
+			drawPreviewScreen();
+			drawObjectsScreen();
+		}
+
+		if (drawMode == edit_object_mode)
+		{
+			// drawEditScreen();
+			// drawSampleScreen();
+			// drawSpriteList();
+		}
+		if (drawMode == edit_scene_mode)
+		{
+			//drawSceneScreen();
+		}
+		if (drawMode == edit_animate_mode)
+		{
+			drawSpriteList();
+			drawAnimateObject();
+			drawSampleScreen();
+		}
+		if (drawMode == edit_damaku_mode)
+		{
+			drawDamaKuScreen();
+			drawSpriteList();
+			drawSampleScreen();
+		}
+		if (drawMode == edit_enemy_mode)
+		{
+			m_enemyEditor.draw(m_spriteBatch,m_debug);
+		}
+		if (drawMode == edit_lua_mode)
+		{
+			m_luaEditor.draw(m_spriteBatch, m_debug);
+		}
+
+		glViewport(0, 0, 1600, 900);
+		m_spriteListShader.use();
+
+		GLint textureUniform = m_spriteListShader.getUniformLocation("mySampler");
+		glUniform1i(textureUniform, 0);
+		glActiveTexture(GL_TEXTURE0);
+
+		GLint pUniform = m_spriteListShader.getUniformLocation("P");
+		glm::mat4 previewMatrix = m_fullCam.getCameraMatrix();
+		glUniformMatrix4fv(pUniform, 1, GL_FALSE, &previewMatrix[0][0]);
+
+		m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
+		if (drawMode == edit_scene_mode)
+		{
+			m_sceneManager.drawIcons(m_spriteBatch);
+		}
+
+		m_spriteBatch.end();
+		m_spriteBatch.renderBatch();
+
+		m_spriteListShader.unuse();
+		
+
+		if (drawMode == edit_scene_mode)
+		{
+			m_sceneManager.drawIconsBorder(m_debug);
+		}
+		m_debug.end();
+		m_debug.render(previewMatrix, 2.0f);
+
+		SDL_GL_SetSwapInterval(1);
+		
+		// m_textRenderer.renderText(m_fullCam, 
+		// 	L"FPS :" + 
+		// 	feint_common::Instance()->convertStringtoWstring(feint_common::
+		// 		Instance()->convertPreciousFloatToString(m_game->getFps())),
+		// 	glm::vec2(720, -400), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
+
+		// glm::vec2 curPos = m_sceneCamera.convertScreenToWorld(m_game->getInputManager().getMouseCoords(),
+		// 	glm::vec2(SceneScreen.x, SceneScreen.y), glm::vec2(m_window->getScreenWidth(), m_window->getScreenHeight()));
+
+
+		
+		//std::string narrow = converter.to_bytes(wide_utf16_source_string);
+		//feint_common::Instance()->con	
+		//std::wstring l_x = feint_common::Instance()->convertStringtoWstring(feint_common::Instance()->convertPreciousFloatToString(curPos.x));
+		//std::wstring l_y = feint_common::Instance()->convertStringtoWstring(feint_common::Instance()->convertPreciousFloatToString(curPos.y));
+
+	// 	m_textRenderer.renderText(m_fullCam, L"X :" + l_x
+	// 		, glm::vec2(0, -430), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_LEFT);
+	// 
+	// 	m_textRenderer.renderText(m_fullCam, L"Y :" + l_y
+	// 		, glm::vec2(150, -430), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_LEFT);
+
+		//m_gui.draw();
+
 	}
-	if (m_currentMode == T_EDIT_OJECT_MODE || m_currentMode == T_EDIT_SCREEN_MODE)
-	{
-		drawPreviewScreen();
-		drawObjectsScreen();
-	}
 
-	if (drawMode == edit_object_mode)
-	{
-		drawEditScreen();
-		drawSampleScreen();
-		drawSpriteList();
-	}
-	if (drawMode == edit_scene_mode)
-	{
-		drawSceneScreen();
-	}
-	if (drawMode == edit_animate_mode)
-	{
-		drawSpriteList();
-		drawAnimateObject();
-		drawSampleScreen();
-	}
-	if (drawMode == edit_damaku_mode)
-	{
-		drawDamaKuScreen();
-		drawSpriteList();
-		drawSampleScreen();
-	}
-	if (drawMode == edit_enemy_mode)
-	{
-		m_enemyEditor.draw(m_spriteBatch,m_debug);
-	}
-	if (drawMode == edit_lua_mode)
-	{
-		m_luaEditor.draw(m_spriteBatch, m_debug);
-	}
-
-	glViewport(0, 0, 1600, 900);
-	m_spriteListShader.use();
-
-	GLint textureUniform = m_spriteListShader.getUniformLocation("mySampler");
-	glUniform1i(textureUniform, 0);
-	glActiveTexture(GL_TEXTURE0);
-
-	GLint pUniform = m_spriteListShader.getUniformLocation("P");
-	glm::mat4 previewMatrix = m_fullCam.getCameraMatrix();
-	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &previewMatrix[0][0]);
-
-	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
-	if (drawMode == edit_scene_mode)
-	{
-		m_sceneManager.drawIcons(m_spriteBatch);
-	}
-
-	m_spriteBatch.end();
-	m_spriteBatch.renderBatch();
-
-	m_spriteListShader.unuse();
-	
-
-	if (drawMode == edit_scene_mode)
-	{
-		m_sceneManager.drawIconsBorder(m_debug);
-	}
-	m_debug.end();
-	m_debug.render(previewMatrix, 2.0f);
-
-	SDL_GL_SetSwapInterval(1);
-	
-	
-
-	m_textRenderer.renderText(m_fullCam, 
-		L"FPS :" + 
-		feint_common::Instance()->convertStringtoWstring(feint_common::
-			Instance()->convertPreciousFloatToString(m_game->getFps())),
-		glm::vec2(720, -400), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
-
-	glm::vec2 curPos = m_sceneCamera.convertScreenToWorld(m_game->getInputManager().getMouseCoords(),
-		glm::vec2(SceneScreen.x, SceneScreen.y), glm::vec2(m_window->getScreenWidth(), m_window->getScreenHeight()));
-
-
-	
-	//std::string narrow = converter.to_bytes(wide_utf16_source_string);
-	//feint_common::Instance()->con	
-	//std::wstring l_x = feint_common::Instance()->convertStringtoWstring(feint_common::Instance()->convertPreciousFloatToString(curPos.x));
-	//std::wstring l_y = feint_common::Instance()->convertStringtoWstring(feint_common::Instance()->convertPreciousFloatToString(curPos.y));
-
-// 	m_textRenderer.renderText(m_fullCam, L"X :" + l_x
-// 		, glm::vec2(0, -430), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_LEFT);
-// 
-// 	m_textRenderer.renderText(m_fullCam, L"Y :" + l_y
-// 		, glm::vec2(150, -430), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_LEFT);
-
-	m_gui.draw();
-
-
-
-	
+		
 
 }
 
@@ -1164,11 +1164,14 @@ void EditorScreen::showFilePicker()
 		std::cout << "You chose the file \"" << filename << "\"\n";
 		std::string c_filePath = filename;
 		//std::cout << c_filePath.find("Editor") << " con \n";
-		//m_scene.loadSceneFromFile(c_filePath);		
-		for (int i = 0; i < m_scene->getLayers().size(); i++)
-		{
-			//addLayerFunc(m_scene.getLayers()[i].getName(), m_scene.getLayers()[i]. ());
-		}
+		//m_scene.loadSceneFromFile(c_filePath);	
+		// if(m_scene)
+		// {
+		// 	for (int i = 0; i < m_scene->m_layers.size(); i++)
+		// 	{
+		// 		//addLayerFunc(m_scene.getLayers()[i].getName(), m_scene.getLayers()[i]. ());
+		// 	}
+		// }
 
 	}
 	else
@@ -2847,12 +2850,10 @@ void EditorScreen::handleEditScreen(Feintgine::InputManager & inputManager)
 				//EDIT MODE ===================================
 				if (m_actionCombo->getSelectedItem()->getID() == EDIT_MODE)
 				{
-					if (m_scene->getCurrentLayer())
-					{
-						
-				
-											
-					}
+					// if (m_scene->getCurrentLayer())
+					// {
+					
+					// }
 				}
 
 			}
@@ -3264,8 +3265,8 @@ void EditorScreen::pushMassive(int col, int row)
 
 void EditorScreen::toggleHide_ShowLayer()
 {
-	if (m_scene->getCurrentLayer())
-	{
+	//if (m_scene->getCurrentLayer())
+	//{
 // 		if (m_scene.getCurrentLayer()->isHidden())
 // 		{
 // 			//m_scene.getCurrentLayer()->setHide(false);
@@ -3274,7 +3275,7 @@ void EditorScreen::toggleHide_ShowLayer()
 // 		{
 // 			//m_scene.getCurrentLayer()->setHide(true);
 // 		}
-	}
+	//}
 }
 
 void EditorScreen::toggleGridMode()
@@ -3850,7 +3851,7 @@ bool EditorScreen::addSpriteToObject(const CEGUI::EventArgs &e)
 
 void EditorScreen::deleteCurrentLayer()
 {
-	m_scene->removeLayerByName(m_layers->getFirstSelectedItem()->getText().c_str());
+	//m_scene->removeLayerByName(m_layers->getFirstSelectedItem()->getText().c_str());
 }
 
 void EditorScreen::initAmbientTool()
