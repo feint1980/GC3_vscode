@@ -32,8 +32,6 @@ namespace Feintgine
 			}
 		}
 
-		
-
 		std::cout << "start loading scene \n";
 
 		Proc_Scene s_scence;

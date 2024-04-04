@@ -65,6 +65,20 @@ void LuaObjectEditorComponent::loadGUI(Feintgine::GUI * gui)
 	m_bossList->subscribeEvent(CEGUI::Listbox::EventMouseDoubleClick,
 		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::loadMovesetInternal, this));
 
+	m_playerEnableTogger->subscribeEvent(CEGUI::ToggleButton::EventMouseClick, 
+		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::togglePlayer, this));
+
+}
+
+bool LuaObjectEditorComponent::togglePlayer(const CEGUI::EventArgs &e)
+{
+
+	if(m_playerEnableTogger->isSelected())
+	{
+		reloadPlayer(PLAYER_CHARACTER_REIMU);
+	}
+
+	return true;
 }
 
 bool LuaObjectEditorComponent::refreshData(const CEGUI::EventArgs &e)
@@ -284,6 +298,7 @@ void LuaObjectEditorComponent::showGUI(bool value)
 		m_clearBullets->show();
 		m_bossList->show();
 		m_refreshData->show();
+		m_playerEnableTogger->show();
 	}
 	else
 	{
@@ -294,6 +309,7 @@ void LuaObjectEditorComponent::showGUI(bool value)
 		m_clearBullets->hide();
 		m_bossList->hide();
 		m_refreshData->hide();
+		m_playerEnableTogger->hide();
 
 	}
 
@@ -306,6 +322,7 @@ void LuaObjectEditorComponent::showGUI(bool value)
 	m_clearBullets->setVisible(value);
 	m_bossList->setVisible(value);
 	m_refreshData->setVisible(value);
+	m_playerEnableTogger->setVisible(value);
 }
 
 void LuaObjectEditorComponent::loadBosses(const std::string & path)

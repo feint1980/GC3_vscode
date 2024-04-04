@@ -1,3 +1,3 @@
 CMakeFiles/FeintEditor.dir/src/DamakuEditor.cpp.obj: \
- E:\template\GC_port\Editor\src\DamakuEditor.cpp \
- E:\template\GC_port\Editor\src\DamakuEditor.h
+ D:\VS_Code_prj\GC3_vscode\Editor\src\DamakuEditor.cpp \
+ D:\VS_Code_prj\GC3_vscode\Editor\src\DamakuEditor.h

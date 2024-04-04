@@ -62,6 +62,8 @@ public:
 
 	bool refreshData(const CEGUI::EventArgs &e);
 
+	bool togglePlayer(const CEGUI::EventArgs &e);
+
 	void reloadPlayer(int val);
 	
 

@@ -73,7 +73,7 @@ namespace Feintgine {
 		// std::atomic_int resolved_files = 0;
 		// std::atomic_int total_result = 0;
 
-		int max_threads = std::thread::hardware_concurrency() /2 ;
+		int max_threads = std::thread::hardware_concurrency() ;
 
 		std::vector<std::string> m_texturePaths;
 	//	std::vector<bool> m_isLoaded;
