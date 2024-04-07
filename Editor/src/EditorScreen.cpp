@@ -116,9 +116,8 @@ void EditorScreen::destroy()
 }
 
 
-void EditorScreen::onEntry()
+void EditorScreen::entryRuntime()
 {
-	
 	__int64 now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 	std::cout << "Start loading " << now << "\n";
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
@@ -130,19 +129,12 @@ void EditorScreen::onEntry()
 	// 
 
 	m_debug.init();
-
 	m_coliderRenderer.init();
 	m_editorCrosshair.init();
 
 	m_textRenderer.init(24,128, "font/ARIALUNI.ttf");
 	m_sceneManager.loadIcons();
-	
-
-//	EditScreen = glm::vec4((float)m_window->getScreenWidth() / 4.57142857f, m_window->getScreenHeight()/18, m_window->getScreenWidth()/2, m_window->getScreenHeight()/1.125f);
-//	SampleSceen = glm::vec4((float)m_window->getScreenWidth() / 1.32231404958, m_window->getScreenHeight() / 2.1686746f, m_window->getScreenWidth() / 10.666f, m_window->getScreenHeight() / 6);
-//	ObjectsScreen = glm::vec4((float)m_window->getScreenWidth() / 160, m_window->getScreenHeight() / 1.6071428f, m_window->getScreenWidth() / 5.3333f, m_window->getScreenHeight() /3);
-//	PreviewScreen = glm::vec4((float)m_window->getScreenWidth() / 32, m_window->getScreenHeight() / 6, m_window->getScreenWidth() / 7.27272f, m_window->getScreenHeight() / 4.090909);
- 	
+	 	
 	SceneScreen = glm::vec4(350, 50, 800, 800);
 	EditScreen = glm::vec4(350, 450,400,400);
 	AnimateScreen = glm::vec4(225, 410, 450, 450);
@@ -157,11 +149,6 @@ void EditorScreen::onEntry()
 
 	EditLua = glm::vec4(50, 50, 800, 800);
 
-	//m_brushTest.init(Feintgine::ResourceManager::getTexture("./Assets/Brush/grass.png"),glm::vec2(0),glm::vec2(1250),glm::vec2(50),Feintgine::Color(255,255,255,255),-1);
-
-	//m_brushTest.init(Feintgine::ResourceManager::getTexture("./Assets/Brush/grass.png"), glm::vec2(0), glm::vec2(32000), glm::vec2(500), Feintgine::Color(255, 255, 255, 255), -1);
-
-
 	staticCam_Editing.init(EditScreen.z, EditScreen.w);
 	staticCam_Editing.setPosition(glm::vec2(0));
 	staticCam_Editing.setScale(1.0f);
@@ -171,13 +158,6 @@ void EditorScreen::onEntry()
 
 	m_sampleCam.update();
 	//staticCam_Editing.loadAspect(m_window->getAspect());
-
-	m_fullCam.init(1600, 900);
-	m_fullCam.setPosition(glm::vec2(0));
-
-	m_fullCam.setScale(1.0f);
-	m_fullCam.update();
-
 	
 	m_spriteListCamera.init(SpriteListScreen.z, SpriteListScreen.w);
 	m_spriteListCamera.setScale(1.0f);
@@ -277,7 +257,6 @@ void EditorScreen::onEntry()
 	m_camera.setScale(DEFAULT_OBJECT_CAM_SCALE);
 	m_spriteListCamera.update();
 
-	m_spriteBatch.init();
 	
 	m_camera.setPosition(glm::vec2(0));
 	//readFile();
@@ -320,12 +299,6 @@ void EditorScreen::onEntry()
 	m_deleteLayerButton->show();
 
 	refresh();
-// 	initSlot();
-// 	listdir("./Assets", 0);
-// 	sortObject();
-// 	updatePage();
-
-
 
 	//Load Sprite Packets
 	
@@ -346,9 +319,17 @@ void EditorScreen::onEntry()
 	m_enemyEditor.init(EditEnemy, &m_editEnemyCamera,
 		m_editEnemyCamera_static);
 
+
+	m_audioEngine.init();
 	m_luaEditor.init(EditEnemy, &m_editLuaCamera,
 		m_editLuaCamera_static);
 
+
+
+	m_luaEditor.initPlayer(1,&m_audioEngine,&m_kanjiEffectManager,&m_effectBatch);
+
+
+	
 	m_enemyEditor.loadGUI(&m_gui);
 	m_enemyEditor.loadEnemies("./Data/stageData/enemyState/fairyState.est");
 	//m_enemyEditor.loadEnemy("./Data/stageData/enemyState/fairyState.est");
@@ -373,6 +354,21 @@ void EditorScreen::onEntry()
 
 
 	m_isLoaded = true;
+}
+
+void EditorScreen::onEntry()
+{
+	
+	
+	m_spriteBatch.init();
+	m_fullCam.init(1600, 900);
+	m_fullCam.setPosition(glm::vec2(0));
+
+	m_fullCam.setScale(1.0f);
+	m_fullCam.update();
+	bg.init(Feintgine::ResourceManager::getTexture("Assets/Textures/loading.png"), 
+		glm::vec2(0), glm::vec2(673.0f, 169.0f), Feintgine::Color(255, 255, 255, 255));
+
 
 }
 
@@ -390,6 +386,12 @@ void EditorScreen::onExit()
 
 void EditorScreen::update(float deltaTime)
 {
+
+	if(!m_firstFrame)
+	{
+		m_firstFrame = true;
+		entryRuntime();
+	}
 	//checkInput();
 	if(m_isLoaded)
 	{
@@ -559,19 +561,43 @@ void EditorScreen::update(float deltaTime)
 	//
 }
 
+
+void EditorScreen::drawLoadingScene()
+{
+		glViewport(0, 0, 1600, 900);
+		m_spriteListShader.use();
+		GLint textureUniform = m_spriteListShader.getUniformLocation("mySampler");
+		glUniform1i(textureUniform, 0);
+		glActiveTexture(GL_TEXTURE0);
+
+		GLint pUniform = m_spriteListShader.getUniformLocation("P");
+		glm::mat4 previewMatrix = m_fullCam.getCameraMatrix();
+		glUniformMatrix4fv(pUniform, 1, GL_FALSE, &previewMatrix[0][0]);
+
+		m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
+		bg.draw(m_spriteBatch);
+
+		m_spriteBatch.end();
+		m_spriteBatch.renderBatch();
+
+		m_spriteListShader.unuse();
+}
+
 void EditorScreen::draw()
 {
-	// SpriteSheet / Map Editing Camera
-	
-	if(m_isLoaded)
-	{
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-		
+	if(!m_isLoaded)
+	{
+		drawLoadingScene();
+		return;
+	}
+
+	if(m_isLoaded)
+	{		
 		switch (objectiveMode)
 		{
 		case OBJECTIVE_OBJECT: 
@@ -594,63 +620,60 @@ void EditorScreen::draw()
 			drawEditScreen();
 			drawSampleScreen();
 			drawSpriteList();
+			//return;
 		}
 		if (drawMode == edit_scene_mode)
 		{
 			drawSceneScreen();
+			glViewport(0, 0, 1600, 900);
+			m_spriteListShader.use();
+
+			GLint textureUniform = m_spriteListShader.getUniformLocation("mySampler");
+			glUniform1i(textureUniform, 0);
+			glActiveTexture(GL_TEXTURE0);
+
+			GLint pUniform = m_spriteListShader.getUniformLocation("P");
+			glm::mat4 previewMatrix = m_fullCam.getCameraMatrix();
+			glUniformMatrix4fv(pUniform, 1, GL_FALSE, &previewMatrix[0][0]);
+
+			m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
+			m_sceneManager.drawIcons(m_spriteBatch);
+			m_spriteBatch.end();
+			m_spriteBatch.renderBatch();
+
+			m_spriteListShader.unuse();
+		
+			m_sceneManager.drawIconsBorder(m_debug);
+			m_debug.end();
+			m_debug.render(previewMatrix, 2.0f);
+			//return;
 		}
 		if (drawMode == edit_animate_mode)
 		{
 			drawSpriteList();
 			drawAnimateObject();
 			drawSampleScreen();
+			//return;
 		}
 		if (drawMode == edit_damaku_mode)
 		{
 			drawDamaKuScreen();
 			drawSpriteList();
 			drawSampleScreen();
+			//return;
 		}
 		if (drawMode == edit_enemy_mode)
 		{
 			m_enemyEditor.draw(m_spriteBatch,m_debug);
+			
 		}
 		if (drawMode == edit_lua_mode)
 		{
 			m_luaEditor.draw(m_spriteBatch, m_debug);
+			
 		}
 
 		glViewport(0, 0, 1600, 900);
-		m_spriteListShader.use();
-
-		GLint textureUniform = m_spriteListShader.getUniformLocation("mySampler");
-		glUniform1i(textureUniform, 0);
-		glActiveTexture(GL_TEXTURE0);
-
-		GLint pUniform = m_spriteListShader.getUniformLocation("P");
-		glm::mat4 previewMatrix = m_fullCam.getCameraMatrix();
-		glUniformMatrix4fv(pUniform, 1, GL_FALSE, &previewMatrix[0][0]);
-
-		m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
-		if (drawMode == edit_scene_mode)
-		{
-			m_sceneManager.drawIcons(m_spriteBatch);
-		}
-
-		m_spriteBatch.end();
-		m_spriteBatch.renderBatch();
-
-		m_spriteListShader.unuse();
-		
-
-		if (drawMode == edit_scene_mode)
-		{
-			m_sceneManager.drawIconsBorder(m_debug);
-		}
-		m_debug.end();
-		m_debug.render(previewMatrix, 2.0f);
-
-		SDL_GL_SetSwapInterval(1);
 		
 		m_textRenderer.renderText(m_fullCam, 
 			L"FPS :" + 
@@ -711,7 +734,7 @@ void EditorScreen::initShader()
 	m_editDamakuShader.linkShaders();
 
 	m_enemyEditor.loadShader("Shaders/textureShading.vert", "Shaders/textureShading.frag");
-	m_luaEditor.loadShader("Shaders/textureShading.vert", "Shaders/textureShading.frag");
+	m_luaEditor.loadShader("Shaders/ShaderToy/normal.vert", "Shaders/ShaderToy/normal.frag");
 
 // 	m_sceneShader.compileShaders("Shaders/textureShading.vert", "Shaders/textureShading.frag");
 // 	m_sceneShader.addAttribute("vertexPosition");
@@ -787,7 +810,7 @@ void EditorScreen::checkInput()
 
 void EditorScreen::handleInput(Feintgine::InputManager & inputManager)
 {
-	m_luaEditor.handleInput(inputManager);
+	//m_luaEditor.handleInput(inputManager);
 	m_tileStack.handleInput(inputManager);
 	m_spriteListDisplayer.handleInput(inputManager, m_spriteListCamera.convertScreenToWorldViewPort(inputManager.getMouseCoords(),
 		glm::vec2(SpriteListScreen.x, SpriteListScreen.y),glm::vec2(m_window->getScreenWidth(),m_window->getScreenHeight())));
@@ -844,11 +867,19 @@ void EditorScreen::handleInput(Feintgine::InputManager & inputManager)
 			}
 		}
 	}
-	if (inputManager.isKeyPressed(SDLK_TAB))
+	if(drawMode == edit_lua_mode)
+	{
+		m_luaEditor.handleInput(inputManager);
+	}
+	if(m_currentMode == T_EDIT_SCREEN_MODE)
+	{
+		if (inputManager.isKeyPressed(SDLK_TAB))
 	{
 		toggetDebugTiles();
 		
 	}
+	}
+	
 
 	//m_buildObjectTool.handleInput(inputManager, m_camera.convertScreenToWorld(inputManager.getMouseCoords()) + object_screen_offset);
 	if (inputManager.isKeyDown(SDLK_LCTRL))
@@ -1246,22 +1277,18 @@ void EditorScreen::initMenuBar()
 	
 	CEGUI::MenuItem *edit_scene = static_cast<CEGUI::MenuItem*> (CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/MenuItem", "Edit_Scene"));
 	edit_scene->setText("Edit Scene");
-
 	
 	CEGUI::MenuItem * edit_object = static_cast<CEGUI::MenuItem*> (CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/MenuItem", "Edit_Object"));
 	edit_object->setText("Edit Object");
 
-
 	CEGUI::MenuItem * edit_animate = static_cast<CEGUI::MenuItem*> (CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/MenuItem", "Edit_Animate"));
 	edit_animate->setText("Edit Animate Object");
-
 
 	CEGUI::MenuItem * edit_danmaku = static_cast<CEGUI::MenuItem*> (CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/MenuItem", "Edit_Danmaku"));
 	edit_danmaku->setText("Edit Danmaku");
 
 	CEGUI::MenuItem * edit_enemies = static_cast<CEGUI::MenuItem*> (CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/MenuItem", "Edit_Enemies"));
 	edit_enemies->setText("Edit Enemies");
-
 
 	CEGUI::MenuItem * edit_lua_bosses = static_cast<CEGUI::MenuItem*> (CEGUI::WindowManager::getSingleton().createWindow("TaharezLook/MenuItem", "Edit_Bosses"));
 	edit_lua_bosses->setText("Edit Bosses");
@@ -1292,7 +1319,6 @@ void EditorScreen::initMenuBar()
 
 	Animate_Popup->addItem(new_animate_obj);
 
-
 	//==========
 
 	m_MenuItem_File->setText("File");
@@ -1313,9 +1339,6 @@ void EditorScreen::initMenuBar()
 
 	//-------------------------
 
-
-
-
 	new_scene->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::scene_create_protocol, this));
 	open_scene->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::scene_select_protocol, this));
 	save_as->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::save_as, this));
@@ -1329,8 +1352,6 @@ void EditorScreen::initMenuBar()
 	edit_danmaku->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::changeToEditDamaku, this));
 	edit_enemies->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::changeToEditEnemy, this));
 	edit_lua_bosses->subscribeEvent(CEGUI::DefaultWindow::EventMouseClick, CEGUI::Event::Subscriber(&EditorScreen::changeToEditLua, this));
-
-
 
 }
 
@@ -1484,13 +1505,11 @@ void EditorScreen::initAObjList()
 	animation_slide->subscribeEvent(CEGUI::Scrollbar::EventScrollPositionChanged, 
 		CEGUI::Event::Subscriber(&EditorScreen::updateAnimation, this));
 
-
 	animation_saveAnimation->subscribeEvent(CEGUI::PushButton::EventClicked,
 		CEGUI::Event::Subscriber(&EditorScreen::saveAnimation, this));
 
 	animation_newAction->subscribeEvent(CEGUI::PushButton::EventClicked,
 			CEGUI::Event::Subscriber(&EditorScreen::action_new_protocol, this));
-
 
 	animation_deleteAction->subscribeEvent(CEGUI::PushButton::EventClicked,
 		CEGUI::Event::Subscriber(&EditorScreen::onDeleteActionButtonClicked, this));
@@ -1590,8 +1609,6 @@ void EditorScreen::initAObjList()
 		glm::vec4(0.73, 0.675, 0.04, 0.04), glm::vec4(0), "animation_anim_offset_button_right"));
 	animation_anim_offset_button_right->setText(feint_common::Instance()->WCharToUTF8(L"►"));
 
-
-
 	animation_anim_offset_button_up->subscribeEvent(CEGUI::PushButton::EventClicked,
 		CEGUI::Event::Subscriber(&EditorScreen::onOffsetPosChangedUp, this));
 
@@ -1605,7 +1622,6 @@ void EditorScreen::initAObjList()
 		CEGUI::Event::Subscriber(&EditorScreen::onOffsetPosChangedRight, this));
 
 	//
-
 
 }
 

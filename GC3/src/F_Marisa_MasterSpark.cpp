@@ -156,7 +156,12 @@ void F_Marisa_MasterSpark::init(const glm::vec2 & scale, const Feintgine::F_Spri
 
 void F_Marisa_MasterSpark::registerAudioEngine(Feintgine::AudioEngine * audioEngine)
 {
+	std::cout << "start sound created \n";
 	m_startSound = audioEngine->loadSoundEffect("Sounds/sfx/master_spark.wav");
+	if(m_startSound.getChunk())
+	{
+		std::cout << "created chunk OK \n";
+	}
 }
 
 bool F_Marisa_MasterSpark::checkColliderWithEnemyBullet(const EnemyBulletBase & bullet)
@@ -286,7 +291,12 @@ void F_Marisa_MasterSpark::updateState(float deltaTime)
 		//t_lifeTime -= 0.2f * deltaTime;
 		if (m_lifeTime < 5.0f)
 		{
-			m_startSound.setVolume(m_lifeTime);
+			if(m_startSound.getChunk())
+			{
+				m_startSound.setVolume(m_lifeTime);
+				//m_startSound.getChunk()->volume = m_lifeTime;
+			}
+			//
 		}
 	}
 	else

@@ -166,8 +166,7 @@ void F_Player::init(const std::string & animationPath,
 			icon->setID(static_cast<SPELL_ID>(index));
 			icon->setCD(getCDFromTextureList(index, 0));
 			m_spellSelector.addSpell(icon);
-
-
+			
 			m_fantasy_seal.init(Feintgine::ResourceManager::getTexture("Assets/Textures/Marisa-00_sd.png"),
 				glm::vec2(-400, 100), glm::vec2(-100, 100), glm::vec2(386, 360), Feintgine::Color(255, 255, 255, 255),
 				10);
@@ -179,9 +178,7 @@ void F_Player::init(const std::string & animationPath,
 		break;
 	}
 	
-	
 	// MarisaSpell
-	
 	
 	m_spellSelector.arrangeSpellcard(false);
 
@@ -205,10 +202,10 @@ void F_Player::init(const std::string & animationPath,
 
 	m_yin_yang_orb_ex = new Yin_Yang_Orb_Ex();
 	m_yin_yang_orb_ex->init("Assets/F_AObjects/yin_yang_orb_ex.xml", Feintgine::Color(500, 500, 500, 255), 1.3f);
-// 	m_yin_yang_orb_ex->setDeathCallback([&] {
-// 		m_logicCamera->startShake(4.3, 11.0f, 11.0f);
-// 
-// 	});
+	m_yin_yang_orb_ex->setDeathCallback([&] {
+		m_logicCamera->startShake(4.3, 8.0f, 8.0f);
+
+	});
 	
 	m_yin_yang_orb_ex->setDMG(3.5f);
 	m_sealingAmulet.setIsDone(true);
@@ -413,7 +410,6 @@ void F_Player::handleInput(Feintgine::InputManager & inputmanager)
 			// m_leftAccessory.setBoolFocus(false);
 			// m_rightAccessory.setBoolFocus(false);
 			// m_suns.setFocus(false);
-
 		}
 
 		if (inputmanager.isKeyPressed(SDLK_1))
@@ -875,9 +871,6 @@ void F_Player::update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
 		m_leftAccessory.update(deltaTime, enemy,guardians,amplifiers);
 		m_rightAccessory.update(deltaTime, enemy,guardians,amplifiers);	
 
-		
-		
-
 		for (auto i = 0; i < enemy.size(); i++)
 		{
 			if (!m_isInvinsible )
@@ -1183,7 +1176,6 @@ void F_Player::update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
 		m_starParticleBatch2->update(deltaTime);
 	}
 	
-
 	m_masterSpark->update(deltaTime, enemy, bullets);
 	updateMasterSparkMode(deltaTime);
 	updateEscapeVelocity(deltaTime);
@@ -1335,7 +1327,6 @@ void F_Player::drawScore(TextRenderer & textRenderer, const Feintgine::Camera2D 
 		
 	}
 
-	
 }
 
 void F_Player::drawText(TextRenderer & textRenderer, const Feintgine::Camera2D & cam)
@@ -1363,6 +1354,7 @@ void F_Player::initSound()
 {
 	if (m_audioEngine)
 	{
+		std::cout << "init sound called \n";
 		m_fireSoundEffect = m_audioEngine->loadSoundEffect("Sounds/sfx/fire_sound.wav");
 		m_deadSoundEffect = m_audioEngine->loadSoundEffect("Sounds/sfx/pldead00.wav");
 		m_dashSoundEffect = m_audioEngine->loadSoundEffect("Sounds/sfx/se_tan00.wav");
@@ -2243,7 +2235,10 @@ void F_Player::activeSpell()
 			Feintgine::SpriteManager::Instance()->getSprite("reimu_projectile/reimu_57.png"),
 			m_pos, glm::vec2(42, 42), Feintgine::Color(255, 255, 255, 255));
 		int spawnCount = 8;
-		m_logicCamera->startShake(10, 2, 2);
+		if(m_logicCamera)
+		{
+			m_logicCamera->startShake(10, 2, 2);
+		}
 		//m_afterImageTime = 20.0f;
 		obj.registerParticleBatch(m_leftAccessory.getParticleBatch());
 		obj.registerExplosionRing(m_exlosions);
@@ -2253,8 +2248,8 @@ void F_Player::activeSpell()
 		obj.setAttenuation(glm::vec3(9, 16, 22));
 		obj.registerEffectBatch(m_effectBatch);
 		obj.setDeathCallback([&] {
-			//m_logicCamera->startShake(4.0, 3.0f, 3.0f);
-			//m_effectBatch->addRippleEffectContinuos(&obj.getPos(), .5f, 15.5f, 0.0f, 0.001f, 0.001f);
+			m_logicCamera->startShake(4.0, 3.0f, 3.0f);
+			m_effectBatch->addRippleEffectContinuos(&obj.getPos(), .5f, 15.5f, 0.0f, 0.001f, 0.001f);
 		});
 		for (int i = 0; i < spawnCount; i++)
 		{
@@ -2273,7 +2268,10 @@ void F_Player::activeSpell()
 			Feintgine::SpriteManager::Instance()->getSprite("reimu_projectile/reimu_57.png"),
 			m_pos, glm::vec2(42, 42), Feintgine::Color(255, 255, 255, 255));
 		int spawnCount = 12;
-		m_logicCamera->startShake(10, 2, 2);
+		if(m_logicCamera)
+		{
+			m_logicCamera->startShake(10, 2, 2);
+		}
 		//m_afterImageTime = 20.0f;
 		obj.registerParticleBatch(m_leftAccessory.getParticleBatch());
 		obj.registerExplosionRing(m_exlosions);
@@ -2283,8 +2281,8 @@ void F_Player::activeSpell()
 		obj.setAttenuation(glm::vec3(14, 22, 22));
 		obj.registerEffectBatch(m_effectBatch);
 		obj.setDeathCallback([&] {
-			//m_logicCamera->startShake(4.0, 3.0f, 3.0f);
-			//m_effectBatch->addRippleEffect(obj.getPos(), .6f, 5.5f, 0.0f, 0.125f, 0.125f);
+			m_logicCamera->startShake(4.0, 3.0f, 3.0f);
+			m_effectBatch->addRippleEffect(obj.getPos(), .6f, 5.5f, 0.0f, 0.125f, 0.125f);
 
 		});
 		for (int i = 0; i < spawnCount; i++)
@@ -2318,18 +2316,7 @@ void F_Player::activeSpell()
 		m_afterImageParticle.setTotalTrace(10);
 		m_afterImageParticle.setTraceInterval(0.3f);
 		m_afterImageTime = 5.0f;
-		//m_logicCamera->startShake(4.0, 2.0f, 2.0f);
-
-		//glm::vec2 targetPos = m_pos;
-			
-//  		GlobalValueClass::Instance()->getGameplayCamera()->convertScreenToWorldViewPort(m_pos,
-//  			glm::vec2(0), glm::vec2(1366, 768));
-		//std::cout << feint_common::Instance()->convertVec2toString(targetPos) << "\n";
-		//addDistorionEffect(m_pos, .8f, 9.5f, -5.0f, 0.01f, 0.01f);
-
-		//glm::vec2 * tPos = new glm::vec2(0);
-		//tPos = &m_pos;
-
+		m_logicCamera->startShake(4.0, 2.0f, 2.0f);
 		addDistorionFollowEffect(&m_pos, .8f, 9.5f, -5.0f,0.01f, 0.01f);
 	}
 	break;
@@ -2339,12 +2326,9 @@ void F_Player::activeSpell()
 		if (m_yin_yang_orb)
 		{
 			m_yin_yang_orb->spawn(m_pos, 32.0f, glm::vec2(0, 1.2f));
-			//addDistorionEffect(m_pos, .8f, 9.5f, -5.0f);
 		}
-		//m_logicCamera->startShake(23.0, 2.0f, 1.0f);
+		m_logicCamera->startShake(30.0, 2.0f, 1.0f);
 		addDistorionFollowEffect(m_yin_yang_orb->getPosPointer(), .4f, 6.5f, -150.0f, 0.0011f, 0.0005f);
-
-		
 
 	}
 	break;
@@ -2357,7 +2341,7 @@ void F_Player::activeSpell()
 		}
 
 		addDistorionFollowEffect(m_yin_yang_orb_ex->getPosPointer(), .3f, 7.5f, -300.0f, 0.0011f, 0.0005f);
-		//m_logicCamera->startShake(23.0, 2.0f, 1.0f);
+		m_logicCamera->startShake(99.0, 2.0f, 1.0f);
 	}
 	break;
 

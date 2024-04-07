@@ -463,8 +463,6 @@ void Extra_DemoScreen::draw()
  	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	//drawCustomShader();
-	
 	
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -472,7 +470,7 @@ void Extra_DemoScreen::draw()
 	// m_shaderNormal.use();
 	// m_shaderNormal.unuse();
 
-	//m_frameBuffer.bind();
+	m_frameBuffer.bind();
 	//drawBackup(); // was for debug
 
 	// if (GlobalValueClass::Instance()->isLightBalance())
@@ -480,18 +478,13 @@ void Extra_DemoScreen::draw()
 	// 	drawCustomShader();
 	// }
 	drawGameplay();
-	// m_frameBuffer.unbind();
-	// m_frameBufferScreen.use();
-	// m_effectBatch.draw();
- 	// m_frameBufferScreen.draw();
- 	// m_frameBufferScreen.unuse();
+	m_frameBuffer.unbind();
+	m_frameBufferScreen.use();
+	m_effectBatch.draw();
+	m_frameBufferScreen.draw();
+	m_frameBufferScreen.unuse();
 
 	drawTimer();
-	//drawGameplay();
-	
-	//drawGameplay();
-
-	//drawBackup();
 
 	t_currentTick = SDL_GetTicks();
 	Uint32 frameTime = t_currentTick - t_prevTick;
@@ -615,7 +608,7 @@ void Extra_DemoScreen::initShader()
 
 	m_frameBufferScreen.initFrameTexture(tex_fb,768, 768);
 
-	m_frameBufferScreen.initFrameTexture(tex_fb, m_window->getScreenWidth(), m_window->getScreenHeight());
+	// m_frameBufferScreen.initFrameTexture(tex_fb, m_window->getScreenWidth(), m_window->getScreenHeight());
 
 	m_effectBatch.initEffectBatch(&m_frameBufferScreen, &m_camera);
 

@@ -19,7 +19,9 @@
 #include "../../GC3/src/F_Player.h"
 #include "../../GC3/src/EnemyGuardian.h"
 #include "../../GC3/src/EnemyAmplifier.h"
-
+#include <FrameBuffer.h>
+#include <FrameBufferScreen.h>
+#include <Camera2D.h>
 #include <fstream>
 
 
@@ -64,6 +66,9 @@ public:
 
 	bool togglePlayer(const CEGUI::EventArgs &e);
 
+	void initPlayer(int val,Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager, Feintgine::EffectBatch * effectBatch);
+
+	void addExplosion(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos, const glm::vec2 & scale, const glm::vec2 & explosionRate, const Feintgine::Color & color, float depth, float liveRate /*= 0.1f*/);
 	void reloadPlayer(int val);
 	
 
@@ -78,7 +83,8 @@ private:
 	std::string savedLocation;
 	Feintgine::LightBatch m_lightBatch;
 
-	Feintgine::AudioEngine m_audioEngine;
+
+	std::vector<ExplosionRing> m_exlosions;
 
 	F_Lua_Boss m_testLuaObject;
 	int m_shotType;
@@ -113,8 +119,13 @@ private:
 	std::vector<EnemyGuardian *> m_guardians;
 	std::vector<EnemyAmplifier *> m_amplifiers;
 
+	Feintgine::FrameBuffer m_frameBuffer;
+	Feintgine::FrameBufferScreen m_frameBufferScreen;
+
+	Feintgine::EffectBatch m_effectBatch;
 
 	std::vector<std::string> m_lines;
+	KanjiEffectManager  * m_kanjiEffectManager;
 	//Feintgine::F_LuaObjectManager m_luaObjectManager;
 	EmptyObject bg;
 };

@@ -306,7 +306,7 @@ public:
 	//Feintgine::Color getColor() const { return m_colo}
 protected:
 
-	Feintgine::EffectBatch * m_effectBatch;
+	Feintgine::EffectBatch * m_effectBatch = nullptr;
 
 	bool moveHor = true;
 	bool moveVer = false;
@@ -419,24 +419,24 @@ protected:
 
 	std::vector<F_Reimu_Fantasy_Seal_Obj> m_flyOrb;
 
-	F_Reimu_Demon_Binding * m_binding_circle;
+	F_Reimu_Demon_Binding * m_binding_circle = nullptr;
 
-	Feintgine::Camera2D * m_logicCamera;
+	Feintgine::Camera2D * m_logicCamera = nullptr;
 
-	std::vector<ExplosionRing> * m_exlosions;
+	std::vector<ExplosionRing> * m_exlosions ;
 
 	float m_afterImageTime = 0.0f;
 
 	Gohei_Rod m_rod;
 
-	Yin_Yang_Orb * m_yin_yang_orb;
-	Yin_Yang_Orb_Ex * m_yin_yang_orb_ex;
+	Yin_Yang_Orb * m_yin_yang_orb = nullptr;
+	Yin_Yang_Orb_Ex * m_yin_yang_orb_ex = nullptr;
 
 	SealingAmulet m_sealingAmulet;
 
-	F_Marisa_MasterSpark * m_masterSpark;
+	F_Marisa_MasterSpark * m_masterSpark = nullptr;
 
-	KanjiEffectManager * m_kanjiEffectManager_p;
+	KanjiEffectManager * m_kanjiEffectManager_p = nullptr;
 
 	F_MarisaStarSpawner m_starSpawner;
 

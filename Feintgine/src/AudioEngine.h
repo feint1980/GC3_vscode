@@ -22,6 +22,7 @@ namespace Feintgine
 		void playInChannel(int loop, int channel);
 		void stahp(); // stahp the sound :))
 		void setVolume(int val);
+		Mix_Chunk * getChunk() { return m_chunk; }
 	private:
 		int AUD_VOLUME_SFX = 10;
 

@@ -33,8 +33,6 @@ void F_Marisa_Luminous_Strike_Launcher::chargeStar(int count)
 
 	if (m_audioEngine)
 	{
-
-
 		m_chargeSound.setVolume(10);
 		m_chargeSound.playInChannel(0,2);
 	}

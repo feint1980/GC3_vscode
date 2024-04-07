@@ -22,24 +22,8 @@ namespace Feintgine
 
 	void EffectBatch::addRippleEffect(const glm::vec2 & pos, float size, float freq, float lifeTime, float sizeRate, float freqRate)
 	{
-
-// 		glm::vec2 convertPos =  m_camera->converWorldToScreen(pos);
-// 
-// 		glm::vec2 total = glm::vec2(pos.x / (float)m_frameBufferScreen->getWidth(), pos.y / (float)m_frameBufferScreen->getHeight());
-// 		
-// 		convertPos = glm::vec2( (1.0f  - total.x - 0.5f ) * m_camera->getScale() ,(1.0f - total.y - 0.5f)  *m_camera->getScale());
 	
 		glm::vec2 * tPos = new glm::vec2(0);
-
-		 // Unsed stuff
-		//std::cout << feint_common::Instance()->convertVec2toString(convertPos) << "\n";
-		//glm::vec4 total = glm::vec4(convertPos.x, convertPos.y, 0, 1.0f) *m_camera->getCameraMatrix();
-		//std::cout << m_camera->getScale() << "\n";
-
-		//m_ripples.emplace_back(convertPos, size, freq, lifeTime);
-		//convertPos.x = 1.0f - (convertPos.x / (float)m_frameBufferScreen->getWidth());
-		//convertPos.y = 0.5f * m_camera->getScale() + (convertPos.y / (float)m_frameBufferScreen->getWidth())  ;
-
 
 		m_ripplePos.push_back(tPos);
 		//m_ripplePos.push_back(convertPos);

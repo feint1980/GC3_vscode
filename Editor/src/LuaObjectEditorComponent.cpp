@@ -117,7 +117,7 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	m_cam = cam;
 	m_staticCam = staticCam;
 
-	m_audioEngine.init();
+	
 	
 
 	//m_luaObjectManager.loadLuaFile("Assets/LuaFiles/test.lua");
@@ -131,18 +131,34 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	// bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/__inubashiri_momiji_touhou_drawn_by_ryosios__a76f3b1a0e54bb60a93727e460fe5e60.png"), glm::vec2(0), glm::vec2(1366, 768),
 	// 	Feintgine::Color(255, 255, 255, 255));
 
+	m_lightBatch.initShader(&m_shader);
 
+
+	GLuint tex_fb  = m_frameBuffer.init( m_drawScreen.z, m_drawScreen.w,true);
+	m_frameBufferScreen.initShader("Shaders/FBO/defaultshader_FBO.vert", "Shaders/FBO/defaultshader_FBO.frag");
+
+	m_frameBufferScreen.initFrameTexture(tex_fb, m_drawScreen.z, m_drawScreen.w);
+
+	m_effectBatch.initEffectBatch(&m_frameBufferScreen, m_cam);
+	m_lightBatch.initShader(&m_shader);
 
 	update(1);
 	//loadMoveset("");
 }
+
+void LuaObjectEditorComponent::addExplosion(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos, const glm::vec2 & scale, const glm::vec2 & explosionRate, const Feintgine::Color & color, float depth, float liveRate /*= 0.1f*/)
+{
+	m_exlosions.emplace_back(sprite, pos, scale, explosionRate, color, depth, liveRate);
+}
+
+
 
 void LuaObjectEditorComponent::reloadPlayer(int val)
 {
 	switch(val)
 	{
 		case PLAYER_CHARACTER_REIMU:
-		{\
+		{
 			m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
 			m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);	
 		}
@@ -160,9 +176,36 @@ void LuaObjectEditorComponent::reloadPlayer(int val)
 	}
 	m_player.setCharacterSpell(val);
 	m_player.setAccessoryShot(m_shotType);
+}
+
+void LuaObjectEditorComponent::initPlayer(int val, Feintgine::AudioEngine * audioEngine,KanjiEffectManager * kanjiEffectManager,Feintgine::EffectBatch * effectBatch)
+{
+	m_player.registerAudioEngine(audioEngine);
+	m_kanjiEffectManager = kanjiEffectManager;
+	m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
+	m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);	
+	for(int i =1 ; i < 2; i++)
+	{
+		m_player.setCharacterSpell(i);
+	}
+	m_player.setAccessoryShot(m_shotType);
+
 	m_player.setDeathCallback([&] {
-		m_player.die();
+		addExplosion(
+			Feintgine::SpriteManager::Instance()->getSprite("projectile/death_anim_2.png"),
+			m_player.getPos(), glm::vec2(1), glm::vec2(0.56), Feintgine::Color(255, 255, 255, 255), 4, 0.02f);
 	});
+	m_player.registerExplosionRing(&m_exlosions);
+
+	m_player.registerLogicCamera(m_cam);
+	m_player.registerKanjiEffect(kanjiEffectManager);
+	
+	m_player.initSound();
+	m_player.setPos(glm::vec2(25, -100));
+	m_player.reset();
+
+	m_player.registerEffectBatch(effectBatch);
+
 
 }
 
@@ -174,15 +217,20 @@ void LuaObjectEditorComponent::loadShader(const std::string & vertexPath, const 
 	m_shader.addAttribute("vertexUV");
 	m_shader.linkShaders();
 
-	m_lightBatch.initShader(&m_shader);
+
 }
 
 void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintgine::DebugRender & debug)
 {
+
+	// glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	// glEnable(GL_BLEND);
+	// glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	//m_frameBuffer.bind();
 	glViewport(m_drawScreen.x, m_drawScreen.y, m_drawScreen.z, m_drawScreen.w);
-
 	m_shader.use();
-
 	GLint textureUniform = m_shader.getUniformLocation("mySampler");
 	glUniform1i(textureUniform, 0);
 	glActiveTexture(GL_TEXTURE0);
@@ -196,6 +244,9 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	glUniform3f(dayLightIndex, 1.0f, 1.0f, 1.0f);
 
 	m_lightBatch.begin();
+	
+	m_player.drawLight(m_lightBatch);
+
 	m_lightBatch.renderLight();
 
 	spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
@@ -203,13 +254,12 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	if(m_playerEnableTogger->isSelected())
 	{
 		m_player.draw(spriteBatch);
+		m_kanjiEffectManager->draw(spriteBatch);
+		//m_kanjiEffectManager.draw(m_spriteBatch);
 	}
-	
 	
 	m_luaObjectManager.draw(spriteBatch);
 
-	
-	
 	//bg.draw(spriteBatch);
 
 	spriteBatch.end();
@@ -217,13 +267,27 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 
 	m_shader.unuse();
 
+
 	glm::mat4 Static_Edit_projectionMatrix = m_staticCam.getCameraMatrix();
 
 	debug.drawBox(glm::vec4(-(m_drawScreen.z / 2.0f), -(m_drawScreen.w / 2.0f),
 		m_drawScreen.z, m_drawScreen.w), Feintgine::Color(100, 250, 100, 255), 0);
-
 	debug.end();
 	debug.render(Static_Edit_projectionMatrix, 2.0f);
+
+	// glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	// glEnable(GL_BLEND);
+	// glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	// m_frameBuffer.unbind();
+	// m_frameBufferScreen.use();
+	// m_effectBatch.draw();
+	// m_frameBufferScreen.draw();
+	// m_frameBufferScreen.unuse();
+
+
+
 }
 
 void LuaObjectEditorComponent::internalToggleUpdate()
@@ -283,6 +347,7 @@ void LuaObjectEditorComponent::handleInput(Feintgine::InputManager & inputManage
 	{
 		internalToggleUpdate();
 	}
+	m_player.handleInput(inputManager);
 
 }
 

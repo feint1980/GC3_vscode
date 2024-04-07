@@ -31,6 +31,10 @@
 #include <AnimatedObject.h>
 #include <F_Sprite.h>
 #include "SpriteListHolder.h"
+#include <AudioEngine.h>
+
+#include "EmptyObject.h"
+
 
 #include <chrono>
 #include <T_Scene.h>
@@ -182,8 +186,10 @@ public:
 
 	void drawSpriteList();
 
+	void drawLoadingScene();
 
 	void drawDamaKuScreen();
+
 
 	//***********************************
 	
@@ -439,12 +445,16 @@ public:
 	std::string getFrameDataFromAnim(const Feintgine::F_AnimatedObject & obj);
 
 	void updateAnimationLabel();
+
+	void entryRuntime();
 	//
 
 
 private :
 
 	bool m_isMouseLeftHold = false;
+
+	bool m_firstFrame = false;
 
 	std::string m_sceneFileName;
 
@@ -791,6 +801,8 @@ private :
 
 	PaternEditor m_paternEditor;
 
+	EmptyObject bg;
+
 
 	Feintgine::F_TileStack m_tileStack;
 	Feintgine::F_TileManager m_tileManager;
@@ -805,6 +817,9 @@ private :
 	EnemyEditorComponent m_enemyEditor;
 
 	LuaObjectEditorComponent m_luaEditor;
+	Feintgine::AudioEngine m_audioEngine;
+	KanjiEffectManager m_kanjiEffectManager;
+	Feintgine::EffectBatch m_effectBatch;
 
 	bool m_isLoaded = false;
 
