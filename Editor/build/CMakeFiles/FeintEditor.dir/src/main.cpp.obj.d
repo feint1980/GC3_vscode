@@ -1094,6 +1094,7 @@ CMakeFiles/FeintEditor.dir/src/main.cpp.obj: \
  E:/template/GC_port/GC3/src/F_Komachi_Souls_Object.h \
  E:/template/GC_port/Feintgine/src/FL_Object.h \
  E:/template/GC_port/GC3/src/EnemyGuardian.h \
+ E:/template/GC_port/GC3/src/BackGroundMap.h \
  E:/template/GC_port/Feintgine/src/FrameBuffer.h \
  E:\template\GC_port\Editor\src\TestCEGUIScreen.h \
  E:\template\GC_port\Editor\src\NewRenderModel.h \

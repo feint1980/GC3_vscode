@@ -30,6 +30,7 @@ file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_Player_Sun_Manager.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/SpellcardIcon.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/Yin_Yang_Orb.cpp
+    ${PROJECT_SOURCE_DIR}/../GC3/src/BackGroundMap.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_Marisa_MasterSpark.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_MasterSpark_Wave.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_Reimu_Demon_Binding.cpp

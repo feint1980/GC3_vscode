@@ -37,6 +37,12 @@ public:
 
 	bool checkColliderWithEnemy(const F_BaseEnemy & bullet);
 
+	glm::vec2 getPos() const { return m_pos; }
+
+	glm::vec2 * getPosPointer()
+	{
+		return &m_offsetPos;
+	}
 
 	void registerCamera(Feintgine::Camera2D * camera);
 	
@@ -44,6 +50,7 @@ public:
 private :
 
 	glm::vec2 m_pos;
+	glm::vec2 m_offsetPos;
 	//glm::vec2 m_vel;
 	glm::vec2 m_dim;
 	//Feintgine::F_Sprite m_sprite;

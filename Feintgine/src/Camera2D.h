@@ -37,7 +37,7 @@ namespace Feintgine
 		void cam_rotate(const float t_angle){ _angle = t_angle; }
 
 		glm::vec2 getPosition(){ return _position; } // get the position of the camera
-		float getScale(){ return _scale; } // get the scale of the camera	
+		float getScale() { return _scale; } // get the scale of the camera	
 		glm::mat4 getCameraMatrix()const { return _cameraMatrix; } // get camera's matrix 
 		glm::vec2 convertScreenToWorld(glm::vec2 screenCoords); // convert the pos of mouse in camera to current world 
 		glm::vec2 convertScreenToWorld(glm::vec2 screenCoords, glm::vec2 viewPort, glm::vec2 resolution);

@@ -70,9 +70,11 @@ namespace Feintgine
 		else
 		{
 			// found it get from cache
+			std::cout << "return cached " << filePath << "\n";
 			effect.m_chunk = it->second;
 		}
 
+		std::cout << "return new " << filePath << "\n";
 		return effect;
 	}
 	Music AudioEngine::loadMusic(const std::string & filePath)

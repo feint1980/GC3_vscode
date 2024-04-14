@@ -19,6 +19,7 @@
 #include "../../GC3/src/F_Player.h"
 #include "../../GC3/src/EnemyGuardian.h"
 #include "../../GC3/src/EnemyAmplifier.h"
+#include "../../GC3/src/BackGroundMap.h"
 #include <FrameBuffer.h>
 #include <FrameBufferScreen.h>
 #include <Camera2D.h>
@@ -37,6 +38,8 @@ public:
 		Feintgine::Camera2D & staticCam);
 	void loadShader(const std::string & vertexPath, const std::string &fragmentPath);
 	void draw(Feintgine::SpriteBatch & spriteBatch, Feintgine::DebugRender & debug);
+
+	void drawSpellcard(Feintgine::SpriteBatch & spriteBatch, Feintgine::GLSLProgram & shader, Feintgine::Camera2D & targetCamera);
 
 	bool toggleUpdate(const CEGUI::EventArgs &e);
 
@@ -66,7 +69,7 @@ public:
 
 	bool togglePlayer(const CEGUI::EventArgs &e);
 
-	void initPlayer(int val,Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager, Feintgine::EffectBatch * effectBatch);
+	void initPlayer(int val,Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager);
 
 	void addExplosion(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos, const glm::vec2 & scale, const glm::vec2 & explosionRate, const Feintgine::Color & color, float depth, float liveRate /*= 0.1f*/);
 	void reloadPlayer(int val);
@@ -127,6 +130,6 @@ private:
 	std::vector<std::string> m_lines;
 	KanjiEffectManager  * m_kanjiEffectManager;
 	//Feintgine::F_LuaObjectManager m_luaObjectManager;
-	EmptyObject bg;
+	BackGroundMap bg;
 };
 

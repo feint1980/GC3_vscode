@@ -143,11 +143,16 @@ void EditorScreen::entryRuntime()
  	PreviewScreen = glm::vec4(50, 50, 220, 220);
 	SpriteListScreen = glm::vec4(1160, 570, 300, 300);
 
+	m_sideCam.init(1366, 768);
+	m_sideCam.setScale(1.0f);
+	m_sideCam.setPosition(glm::vec2(0));
+	m_sideCam.update();
+
 	EditDamaku = glm::vec4(50, 50, 800, 800);
 
-	EditEnemy = glm::vec4(50, 50, 800, 800);
+	EditEnemy = glm::vec4(50, 50, 802, 802);
 
-	EditLua = glm::vec4(50, 50, 800, 800);
+	EditLua = glm::vec4(82, 82, 768, 768);
 
 	staticCam_Editing.init(EditScreen.z, EditScreen.w);
 	staticCam_Editing.setPosition(glm::vec2(0));
@@ -320,13 +325,10 @@ void EditorScreen::entryRuntime()
 		m_editEnemyCamera_static);
 
 
-	m_audioEngine.init();
+	
 	m_luaEditor.init(EditEnemy, &m_editLuaCamera,
 		m_editLuaCamera_static);
-
-
-
-	m_luaEditor.initPlayer(1,&m_audioEngine,&m_kanjiEffectManager,&m_effectBatch);
+	m_luaEditor.initPlayer(1,m_audioEngine,&m_kanjiEffectManager);
 
 
 	
@@ -352,7 +354,7 @@ void EditorScreen::entryRuntime()
 	std::cout << "total " << (float)elapsed / 1000.0f << "\n";
 
 
-
+	std::cout << "load end !!!!!";
 	m_isLoaded = true;
 }
 
@@ -369,6 +371,10 @@ void EditorScreen::onEntry()
 	bg.init(Feintgine::ResourceManager::getTexture("Assets/Textures/loading.png"), 
 		glm::vec2(0), glm::vec2(673.0f, 169.0f), Feintgine::Color(255, 255, 255, 255));
 
+
+	m_audioEngine = new Feintgine::AudioEngine();
+	m_audioEngine->init();
+	//entryRuntime();
 
 }
 
@@ -395,8 +401,6 @@ void EditorScreen::update(float deltaTime)
 	//checkInput();
 	if(m_isLoaded)
 	{
-
-		
 		m_camera.update();
 		staticCam_Editing.update();
 		staticCam_Animating.update();
@@ -670,7 +674,8 @@ void EditorScreen::draw()
 		if (drawMode == edit_lua_mode)
 		{
 			m_luaEditor.draw(m_spriteBatch, m_debug);
-			
+			m_luaEditor.drawSpellcard(m_spriteBatch,m_editDamakuShader,m_sideCam);
+		
 		}
 
 		glViewport(0, 0, 1600, 900);

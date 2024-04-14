@@ -18,7 +18,6 @@ public:
 	F_Reimu_Fantasy_Seal_Obj();
 	~F_Reimu_Fantasy_Seal_Obj();
 
-
 	void init(const Feintgine::F_Sprite & sprite , const glm::vec2 & pos, 
 		const glm::vec2 dim, const Feintgine::Color & color);
 
@@ -111,9 +110,9 @@ private:
 
 	std::function <void(void)> m_deathCallback;
 
-	Feintgine::EffectBatch * m_effectBatch;
+	Feintgine::EffectBatch * m_effectBatch = nullptr;
 
-	std::vector<ExplosionRing> * m_exlosions;
+	std::vector<ExplosionRing> * m_exlosions = nullptr;
 	//float m_depth;
 };
 

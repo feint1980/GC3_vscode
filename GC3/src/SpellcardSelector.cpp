@@ -18,6 +18,18 @@ void SpellcardSelector::addSpell( SpellcardIcon * spellcard)
 	float m_circleAngleRate = 360.0f / m_spellscards.size();
 }
 
+
+void SpellcardSelector::clearAllSpells()
+{
+
+	for (int i = 0; i < m_spellscards.size(); i++)
+	{
+		m_spellscards.erase(m_spellscards.begin() + i);
+		delete m_spellscards[i];
+	}
+	m_spellscards.clear();
+}
+
 void SpellcardSelector::draw(Feintgine::SpriteBatch & spriteBatch)
 {
 	for (int i = 0; i < m_spellscards.size(); i++)

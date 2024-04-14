@@ -24,6 +24,7 @@ void F_Reimu_Demon_Binding::init(const std::string & animationPath, const std::s
 	m_helper.init(animationSupportPath);
 	m_pos = pos;
 	m_dim = dim;
+	m_offsetPos = glm::vec2(m_pos.x, m_pos.y - m_dim.y / 2);
 	m_color = color;
 	m_animObj.playAnimation("idle");
 	m_animObj2.playAnimation("idle2");

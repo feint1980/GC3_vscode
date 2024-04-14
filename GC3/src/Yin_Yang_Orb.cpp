@@ -52,7 +52,7 @@ void Yin_Yang_Orb::spawn(const glm::vec2 & pos, float lifeTime, const glm::vec2 
 	m_animationFront.setColor(Feintgine::Color(255,255,255,255));
 	isFinished = false;
 	m_loopSound.playInChannel(0, 2);
-	
+
 }
 
 void Yin_Yang_Orb::draw(Feintgine::SpriteBatch & spriteBatch)
@@ -289,12 +289,13 @@ void Yin_Yang_Orb::setDeathCallback(const std::function <void(void)>& f)
 
 void Yin_Yang_Orb::registerAudioEngine(Feintgine::AudioEngine * audioEngine)
 {
+	std::cout << "Yin_Yang_Orb init sound called\n"; 
 	//m_castSound = audioEngine->loadSoundEffect("Sounds/sfx/se_tan00.wav");
 	m_loopSound = audioEngine->loadSoundEffect("Sounds/sfx/hover.wav");
 	m_loopSound.setVolume(24);
 	m_endSound = audioEngine->loadSoundEffect("Sounds/sfx/demon_binding_end.wav");
 	m_endSound.setVolume(20);
-	//std::cout << "Yin_Yang_Orb \n";
+	
 }
 
 void Yin_Yang_Orb::setOffsetNoLight(const glm::vec2 & offset)

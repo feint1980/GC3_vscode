@@ -128,6 +128,30 @@ FeintEditor/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/build
 .PHONY : FeintEditor/fast
 
+E_/template/GC_port/GC3/src/BackGroundMap.obj: E_/template/GC_port/GC3/src/BackGroundMap.cpp.obj
+.PHONY : E_/template/GC_port/GC3/src/BackGroundMap.obj
+
+# target to build an object file
+E_/template/GC_port/GC3/src/BackGroundMap.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/BackGroundMap.cpp.obj
+.PHONY : E_/template/GC_port/GC3/src/BackGroundMap.cpp.obj
+
+E_/template/GC_port/GC3/src/BackGroundMap.i: E_/template/GC_port/GC3/src/BackGroundMap.cpp.i
+.PHONY : E_/template/GC_port/GC3/src/BackGroundMap.i
+
+# target to preprocess a source file
+E_/template/GC_port/GC3/src/BackGroundMap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/BackGroundMap.cpp.i
+.PHONY : E_/template/GC_port/GC3/src/BackGroundMap.cpp.i
+
+E_/template/GC_port/GC3/src/BackGroundMap.s: E_/template/GC_port/GC3/src/BackGroundMap.cpp.s
+.PHONY : E_/template/GC_port/GC3/src/BackGroundMap.s
+
+# target to generate assembly for a file
+E_/template/GC_port/GC3/src/BackGroundMap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/BackGroundMap.cpp.s
+.PHONY : E_/template/GC_port/GC3/src/BackGroundMap.cpp.s
+
 E_/template/GC_port/GC3/src/EnemyAmplifier.obj: E_/template/GC_port/GC3/src/EnemyAmplifier.cpp.obj
 .PHONY : E_/template/GC_port/GC3/src/EnemyAmplifier.obj
 
@@ -2033,6 +2057,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... FeintEditor
+	@echo ... E_/template/GC_port/GC3/src/BackGroundMap.obj
+	@echo ... E_/template/GC_port/GC3/src/BackGroundMap.i
+	@echo ... E_/template/GC_port/GC3/src/BackGroundMap.s
 	@echo ... E_/template/GC_port/GC3/src/EnemyAmplifier.obj
 	@echo ... E_/template/GC_port/GC3/src/EnemyAmplifier.i
 	@echo ... E_/template/GC_port/GC3/src/EnemyAmplifier.s

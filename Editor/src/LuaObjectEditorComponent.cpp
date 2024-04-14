@@ -75,7 +75,8 @@ bool LuaObjectEditorComponent::togglePlayer(const CEGUI::EventArgs &e)
 
 	if(m_playerEnableTogger->isSelected())
 	{
-		reloadPlayer(PLAYER_CHARACTER_REIMU);
+		//m_player.clearData();
+		//reloadPlayer(PLAYER_CHARACTER_REIMU);
 	}
 
 	return true;
@@ -128,8 +129,8 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	//m_luaObjectManager.callLuaFunction("Assets/LuaFiles/test.lua", "CreateFromLua");
 	//m_luaObjectManager.initDummy();
 
-	// bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/__inubashiri_momiji_touhou_drawn_by_ryosios__a76f3b1a0e54bb60a93727e460fe5e60.png"), glm::vec2(0), glm::vec2(1366, 768),
-	// 	Feintgine::Color(255, 255, 255, 255));
+	bg.init(Feintgine::ResourceManager::getTexture(
+	"Assets/Lazy/bg.png"), glm::vec2(-0,0), glm::vec2(768, 768));
 
 	m_lightBatch.initShader(&m_shader);
 
@@ -178,34 +179,40 @@ void LuaObjectEditorComponent::reloadPlayer(int val)
 	m_player.setAccessoryShot(m_shotType);
 }
 
-void LuaObjectEditorComponent::initPlayer(int val, Feintgine::AudioEngine * audioEngine,KanjiEffectManager * kanjiEffectManager,Feintgine::EffectBatch * effectBatch)
+void LuaObjectEditorComponent::initPlayer(int val, Feintgine::AudioEngine * audioEngine,KanjiEffectManager * kanjiEffectManager)
 {
-	m_player.registerAudioEngine(audioEngine);
-	m_kanjiEffectManager = kanjiEffectManager;
+	m_player.setCharacterSpell(1);
 	m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
-	m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);	
-	for(int i =1 ; i < 2; i++)
-	{
-		m_player.setCharacterSpell(i);
-	}
+	m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
 	m_player.setAccessoryShot(m_shotType);
-
 	m_player.setDeathCallback([&] {
 		addExplosion(
 			Feintgine::SpriteManager::Instance()->getSprite("projectile/death_anim_2.png"),
 			m_player.getPos(), glm::vec2(1), glm::vec2(0.56), Feintgine::Color(255, 255, 255, 255), 4, 0.02f);
-	});
+	});	
 	m_player.registerExplosionRing(&m_exlosions);
 
 	m_player.registerLogicCamera(m_cam);
 	m_player.registerKanjiEffect(kanjiEffectManager);
-	
+
+	m_player.registerAudioEngine(audioEngine);
 	m_player.initSound();
+	m_kanjiEffectManager = kanjiEffectManager;
+	
+	
+	// for(int i =1 ; i < 2; i++)
+	// {
+	// 	m_player.setCharacterSpell(i);
+	// }
+
+
+	
 	m_player.setPos(glm::vec2(25, -100));
 	m_player.reset();
 
-	m_player.registerEffectBatch(effectBatch);
+	m_player.registerEffectBatch(&m_effectBatch);
 
+	m_player.setSpellSelectorPos(glm::vec2(330, 0));
 
 }
 
@@ -228,7 +235,7 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	// glEnable(GL_BLEND);
 	// glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	//m_frameBuffer.bind();
+	m_frameBuffer.bind();
 	glViewport(m_drawScreen.x, m_drawScreen.y, m_drawScreen.z, m_drawScreen.w);
 	m_shader.use();
 	GLint textureUniform = m_shader.getUniformLocation("mySampler");
@@ -250,7 +257,7 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	m_lightBatch.renderLight();
 
 	spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
-
+	bg.draw(spriteBatch);
 	if(m_playerEnableTogger->isSelected())
 	{
 		m_player.draw(spriteBatch);
@@ -259,14 +266,16 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	}
 	
 	m_luaObjectManager.draw(spriteBatch);
-
-	//bg.draw(spriteBatch);
+	//m_player.drawSpellSelector(spriteBatch);
+	for(int i = 0 ; i < m_exlosions.size(); i++)
+	{
+		m_exlosions[i].draw(spriteBatch);
+	}
 
 	spriteBatch.end();
 	spriteBatch.renderBatch();
 
 	m_shader.unuse();
-
 
 	glm::mat4 Static_Edit_projectionMatrix = m_staticCam.getCameraMatrix();
 
@@ -275,18 +284,42 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	debug.end();
 	debug.render(Static_Edit_projectionMatrix, 2.0f);
 
-	// glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	// glEnable(GL_BLEND);
-	// glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	m_frameBuffer.unbind();
+	m_frameBufferScreen.use();
+	m_effectBatch.draw();
+	m_frameBufferScreen.draw();
+	m_frameBufferScreen.unuse();
+}
+void LuaObjectEditorComponent::drawSpellcard(Feintgine::SpriteBatch & spriteBatch,Feintgine::GLSLProgram & shader,Feintgine::Camera2D & targetCamera)
+{
+	glViewport(0,0,1366,768);
+	glm::mat4 projectionMatrix;
+	GLint pUniform;
+	shader.use();
 
-	// m_frameBuffer.unbind();
-	// m_frameBufferScreen.use();
-	// m_effectBatch.draw();
-	// m_frameBufferScreen.draw();
-	// m_frameBufferScreen.unuse();
+	GLint textureUniform = shader.getUniformLocation("mySampler");
+	glUniform1i(textureUniform, 0);
 
+	glActiveTexture(GL_TEXTURE0);
 
+	// Camera matrix
+	projectionMatrix = targetCamera.getCameraMatrix();
+	pUniform = shader.getUniformLocation("P");
+	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
+
+	spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
+	
+	if(m_playerEnableTogger->isSelected())
+	{
+		m_player.drawSpellSelector(spriteBatch);
+	}
+	
+	//m_pauseMenu.drawContext()
+	spriteBatch.end();
+	spriteBatch.renderBatch();
+	//glEnable(GL_BLEND);
+
+	shader.unuse();
 
 }
 
@@ -316,14 +349,11 @@ bool LuaObjectEditorComponent::toggleUpdate(const CEGUI::EventArgs &e)
 
 bool LuaObjectEditorComponent::resetEvent(const CEGUI::EventArgs &e)
 {
-
-
 	m_movesetList->clearAllSelections();
 	m_luaObjectManager.resetEvent();
 	update(1.0f);
 	if (m_isUpdate)
 	{
-		
 		toggleUpdate(e);
 	}
 	
@@ -378,8 +408,6 @@ void LuaObjectEditorComponent::showGUI(bool value)
 
 	}
 
-
-	
 	m_bulletCount->setVisible(value);
 	m_toggleUpdate->setVisible(value);
 	m_movesetList->setVisible(value);
@@ -447,6 +475,13 @@ void LuaObjectEditorComponent::update(float deltaTime)
 			m_player.update(deltaTime,m_enemies, m_bullets  , m_guardians, m_amplifiers);
 		}
 
+
+		for (int i = 0; i < m_exlosions.size(); i++)
+		{
+			m_exlosions[i].update(deltaTime);
+		}
+		bg.update(deltaTime);
+		m_effectBatch.update(deltaTime);
 	}
 }
 

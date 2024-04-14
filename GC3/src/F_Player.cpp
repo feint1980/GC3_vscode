@@ -242,6 +242,11 @@ void F_Player::init(const std::string & animationPath,
 	//m_fireSoundEffect = 
 }
 
+void F_Player::setSpellSelectorPos(const glm::vec2 & pos)
+{
+
+	m_spellSelector.setPos(pos);
+}
 
 
 void F_Player::registerEffectBatch(Feintgine::EffectBatch * effectBatch)
@@ -249,6 +254,7 @@ void F_Player::registerEffectBatch(Feintgine::EffectBatch * effectBatch)
 	m_effectBatch = effectBatch;
 	m_yin_yang_orb_ex->registerEffectBatch(m_effectBatch);
 	m_sealingAmulet.registerEffectBatch(m_effectBatch);
+	//m_yin_yang_orb->registerEffectBatch(m_effectBatch);
 
 }
 
@@ -2202,8 +2208,36 @@ void F_Player::updateEscapeVelocity(float deltaTime)
 		m_afterImageParticle.setTotalTrace(10);
 		m_afterImageParticle.setTraceInterval(0.3);
 		
-		
 	}
+}
+
+
+
+void F_Player::clearData()
+{
+
+	if(m_yin_yang_orb)
+	{
+		delete m_yin_yang_orb;
+		m_yin_yang_orb = nullptr;
+	}
+	if(m_yin_yang_orb_ex)
+	{
+		delete m_yin_yang_orb_ex;
+		m_yin_yang_orb_ex = nullptr;
+	}
+	if(m_masterSpark)
+	{
+		delete m_masterSpark;
+		m_masterSpark = nullptr;
+	}
+
+	for(int i =0 ; i < m_spells.size(); i++)
+	{
+		m_spells.erase(m_spells.begin() + i);
+	}
+	m_spells.clear();
+	m_spellSelector.clearAllSpells();
 }
 
 void F_Player::spawnTrail(float deltaTime)
@@ -2230,6 +2264,7 @@ void F_Player::activeSpell()
 	{
 	case SPELL_ID::Fantasy_Orb: 
 	{
+		std::cout << "Fantasy Orb \n";
 		F_Reimu_Fantasy_Seal_Obj obj;
 		obj.init(
 			Feintgine::SpriteManager::Instance()->getSprite("reimu_projectile/reimu_57.png"),
@@ -2248,6 +2283,7 @@ void F_Player::activeSpell()
 		obj.setAttenuation(glm::vec3(9, 16, 22));
 		obj.registerEffectBatch(m_effectBatch);
 		obj.setDeathCallback([&] {
+			//std::cout << "end \n";
 			m_logicCamera->startShake(4.0, 3.0f, 3.0f);
 			m_effectBatch->addRippleEffectContinuos(&obj.getPos(), .5f, 15.5f, 0.0f, 0.001f, 0.001f);
 		});
@@ -2303,6 +2339,7 @@ void F_Player::activeSpell()
 			"Assets/F_AObjects/evil_sealing_circle_support.xml",
 			glm::vec2(m_pos.x, 0), glm::vec2(400, 800), Feintgine::Color(255, 255, 255, 200));
 		m_binding_circle->setLifeTime(27.0f);
+		addDistorionFollowEffect(m_binding_circle->getPosPointer(), .7f, 8.5f, -135.0f, 0.001f, 0.0007f);
 		//m_afterImageTime = 20.0f;
 	}
 	break;

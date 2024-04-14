@@ -1042,4 +1042,5 @@ CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj: \
  E:/template/GC_port/GC3/src/F_Marisa_Star_Trail.h \
  E:/template/GC_port/GC3/src/F_Marisa_Laser_trail.h \
  E:/template/GC_port/GC3/src/EnemyGuardian.h \
+ E:/template/GC_port/GC3/src/BackGroundMap.h \
  E:/template/GC_port/Feintgine/src/FrameBuffer.h

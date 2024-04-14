@@ -83,9 +83,9 @@ protected:
 	glm::vec3 m_attentionua;
 	glm::vec3 t_attentionua;
 
-	Feintgine::SoundEffect m_castSound;
-	Feintgine::SoundEffect m_loopSound;
-	Feintgine::SoundEffect m_endSound;
+	Feintgine::SoundEffect  m_castSound;
+	Feintgine::SoundEffect  m_loopSound;
+	Feintgine::SoundEffect  m_endSound ;
 
 	std::function <void(void)> m_deathCallback;
 

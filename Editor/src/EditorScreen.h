@@ -462,6 +462,7 @@ private :
 
 	// Basic Screen components
 	Feintgine::Camera2D m_camera;
+	Feintgine::Camera2D m_sideCam; 
 	Feintgine::Camera2D staticCam_Editing;
 	Feintgine::Camera2D staticCam_Animating;
 	Feintgine::Camera2D staticCam_Sample;
@@ -645,7 +646,6 @@ private :
 	glm::vec4 EditDamaku;
 
 	glm::vec4 EditEnemy;
-
 	glm::vec4 EditLua;
 
 	glm::vec4 SceneScreen;
@@ -817,7 +817,7 @@ private :
 	EnemyEditorComponent m_enemyEditor;
 
 	LuaObjectEditorComponent m_luaEditor;
-	Feintgine::AudioEngine m_audioEngine;
+	Feintgine::AudioEngine * m_audioEngine;
 	KanjiEffectManager m_kanjiEffectManager;
 	Feintgine::EffectBatch m_effectBatch;
 

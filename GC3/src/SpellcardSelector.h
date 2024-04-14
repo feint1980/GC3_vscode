@@ -36,6 +36,8 @@ public:
 
 	SpellcardIcon * getCurrentSelectCard() { return m_spellscards[m_currentSelection]; }
 
+	void clearAllSpells();
+
 	int getCurrentSelection() const {
 		return m_currentSelection;
 	}

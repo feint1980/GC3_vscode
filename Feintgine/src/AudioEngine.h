@@ -4,7 +4,7 @@
 
 #include <string>
 #include <SDL2/SDL_mixer.h>
-#include <map>
+#include <unordered_map>
 
 namespace Feintgine
 {
@@ -69,8 +69,8 @@ namespace Feintgine
 		
 	private:
 		bool m_isInitialized = false;
-		std::map <std::string, Mix_Chunk * > m_soundEffectMap;
-		std::map <std::string, Mix_Music * > m_musicMap;
+		std::unordered_map <std::string, Mix_Chunk * > m_soundEffectMap;
+		std::unordered_map <std::string, Mix_Music * > m_musicMap;
 		static AudioEngine * p_Instance ;
 		
 	};

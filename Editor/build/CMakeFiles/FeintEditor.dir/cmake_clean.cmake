@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/BackGroundMap.cpp.obj"
+  "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/BackGroundMap.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyAmplifier.cpp.obj"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyAmplifier.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyBulletBase.cpp.obj"

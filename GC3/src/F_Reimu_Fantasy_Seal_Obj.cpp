@@ -203,8 +203,6 @@ void F_Reimu_Fantasy_Seal_Obj::update(float deltaTime,
 
 	if (!m_isExplode)
 	{
-
-
 		if (m_lifeTime <= 1.0f)
 		{
 			if (m_effectBatch)
@@ -239,7 +237,6 @@ void F_Reimu_Fantasy_Seal_Obj::update(float deltaTime,
 				float ranX = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
 				float ranY = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
 
-				
 				glm::vec2 halfDim = glm::vec2(25);
 				m_hitParticleBatch->addParticle(m_pos - halfDim,
 					glm::vec2(ranX,ranY), Feintgine::Color(255, 255, 255, 0), 1.4f, glm::vec3(9.0f, 9.0f, 9.0f));

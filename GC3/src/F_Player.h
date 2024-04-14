@@ -210,6 +210,8 @@ public:
 
 	int getScore() const { return m_score; }
 
+	void setSpellSelectorPos(const glm::vec2 & pos);
+
 	SpellcardSelector getSpellSelector() const { return m_spellSelector; }
 
 	void reset();
@@ -302,6 +304,8 @@ public:
 	void addDistorionFollowEffect(glm::vec2 * pos, float size, float freq, float lifeTime, float sizeRate, float freqRate);
 
 	void setCharacterSpell(unsigned int value);
+
+	void clearData();
 
 	//Feintgine::Color getColor() const { return m_colo}
 protected:
