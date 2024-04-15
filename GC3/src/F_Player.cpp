@@ -2339,8 +2339,9 @@ void F_Player::activeSpell()
 			"Assets/F_AObjects/evil_sealing_circle_support.xml",
 			glm::vec2(m_pos.x, 0), glm::vec2(400, 800), Feintgine::Color(255, 255, 255, 200));
 		m_binding_circle->setLifeTime(27.0f);
-		addDistorionFollowEffect(m_binding_circle->getPosPointer(), .7f, 8.5f, -135.0f, 0.001f, 0.0007f);
-		//m_afterImageTime = 20.0f;
+		addDistorionFollowEffect(m_binding_circle->getOffsetPosPointer(), .7f, 8.5f, -135.0f, 0.001f, 0.0007f);
+		addDistorionFollowEffect(m_binding_circle->getPosPointer(), .6f, 9.5f, -135.0f, 0.001f, 0.0007f);
+		
 	}
 	break;
 

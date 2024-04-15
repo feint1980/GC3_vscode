@@ -150,9 +150,9 @@ void EditorScreen::entryRuntime()
 
 	EditDamaku = glm::vec4(50, 50, 800, 800);
 
-	EditEnemy = glm::vec4(50, 50, 802, 802);
+	EditEnemy = glm::vec4(50, 50, 800, 800);
 
-	EditLua = glm::vec4(82, 82, 768, 768);
+	EditLua = glm::vec4(50, 50, 800, 800);
 
 	staticCam_Editing.init(EditScreen.z, EditScreen.w);
 	staticCam_Editing.setPosition(glm::vec2(0));
@@ -205,6 +205,7 @@ void EditorScreen::entryRuntime()
 	m_editEnemyCamera.init(EditEnemy.z, EditEnemy.w);
 	m_editEnemyCamera.setScale(1.0f);
 	m_editEnemyCamera.setPosition(glm::vec2(0));
+	m_editEnemyCamera.update();
 	
 	m_editEnemyCamera_static.init(EditEnemy.z, EditEnemy.w);
 	m_editEnemyCamera_static.setScale(1.0f);
@@ -215,8 +216,9 @@ void EditorScreen::entryRuntime()
 	m_editLuaCamera.init(EditLua.z, EditLua.w);
 	m_editLuaCamera.setScale(1.0f);
 	m_editLuaCamera.setPosition(glm::vec2(0));
+	m_editLuaCamera.update();
 
-	m_editLuaCamera_static.init(EditEnemy.z, EditEnemy.w);
+	m_editLuaCamera_static.init(EditLua.z, EditLua.w);
 	m_editLuaCamera_static.setScale(1.0f);
 	m_editLuaCamera_static.setPosition(glm::vec2(0));
 	m_editLuaCamera_static.update();
@@ -326,7 +328,7 @@ void EditorScreen::entryRuntime()
 
 
 	
-	m_luaEditor.init(EditEnemy, &m_editLuaCamera,
+	m_luaEditor.init(EditLua, &m_editLuaCamera,
 		m_editLuaCamera_static);
 	m_luaEditor.initPlayer(1,m_audioEngine,&m_kanjiEffectManager);
 

@@ -130,7 +130,7 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	//m_luaObjectManager.initDummy();
 
 	bg.init(Feintgine::ResourceManager::getTexture(
-	"Assets/Lazy/bg.png"), glm::vec2(-0,0), glm::vec2(768, 768));
+	"Assets/Lazy/bg.png"), glm::vec2(0), glm::vec2(m_drawScreen.z, m_drawScreen.w));
 
 	m_lightBatch.initShader(&m_shader);
 
@@ -138,7 +138,7 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	GLuint tex_fb  = m_frameBuffer.init( m_drawScreen.z, m_drawScreen.w,true);
 	m_frameBufferScreen.initShader("Shaders/FBO/defaultshader_FBO.vert", "Shaders/FBO/defaultshader_FBO.frag");
 
-	m_frameBufferScreen.initFrameTexture(tex_fb, m_drawScreen.z, m_drawScreen.w);
+	m_frameBufferScreen.initFrameTexture(tex_fb, m_drawScreen.z + 2, m_drawScreen.w + 2);
 
 	m_effectBatch.initEffectBatch(&m_frameBufferScreen, m_cam);
 	m_lightBatch.initShader(&m_shader);
@@ -200,13 +200,6 @@ void LuaObjectEditorComponent::initPlayer(int val, Feintgine::AudioEngine * audi
 	m_kanjiEffectManager = kanjiEffectManager;
 	
 	
-	// for(int i =1 ; i < 2; i++)
-	// {
-	// 	m_player.setCharacterSpell(i);
-	// }
-
-
-	
 	m_player.setPos(glm::vec2(25, -100));
 	m_player.reset();
 
@@ -237,6 +230,7 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 
 	m_frameBuffer.bind();
 	glViewport(m_drawScreen.x, m_drawScreen.y, m_drawScreen.z, m_drawScreen.w);
+
 	m_shader.use();
 	GLint textureUniform = m_shader.getUniformLocation("mySampler");
 	glUniform1i(textureUniform, 0);
@@ -279,16 +273,19 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 
 	glm::mat4 Static_Edit_projectionMatrix = m_staticCam.getCameraMatrix();
 
-	debug.drawBox(glm::vec4(-(m_drawScreen.z / 2.0f), -(m_drawScreen.w / 2.0f),
-		m_drawScreen.z, m_drawScreen.w), Feintgine::Color(100, 250, 100, 255), 0);
+	debug.drawBox(glm::vec4(-(m_drawScreen.z * 0.5f) , -(m_drawScreen.w * 0.5f),
+	m_drawScreen.z -40, m_drawScreen.w -40), Feintgine::Color(0, 200, 0, 255), 0);
+
 	debug.end();
 	debug.render(Static_Edit_projectionMatrix, 2.0f);
-
+	
 	m_frameBuffer.unbind();
 	m_frameBufferScreen.use();
 	m_effectBatch.draw();
 	m_frameBufferScreen.draw();
 	m_frameBufferScreen.unuse();
+
+	
 }
 void LuaObjectEditorComponent::drawSpellcard(Feintgine::SpriteBatch & spriteBatch,Feintgine::GLSLProgram & shader,Feintgine::Camera2D & targetCamera)
 {

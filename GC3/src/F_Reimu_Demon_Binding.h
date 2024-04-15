@@ -39,9 +39,14 @@ public:
 
 	glm::vec2 getPos() const { return m_pos; }
 
-	glm::vec2 * getPosPointer()
+	glm::vec2 * getOffsetPosPointer()
 	{
 		return &m_offsetPos;
+	}
+
+	glm::vec2 * getPosPointer()
+	{
+		return &m_pos;
 	}
 
 	void registerCamera(Feintgine::Camera2D * camera);
