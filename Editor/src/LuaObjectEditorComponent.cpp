@@ -130,12 +130,12 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	//m_luaObjectManager.initDummy();
 
 	bg.init(Feintgine::ResourceManager::getTexture(
-	"Assets/Lazy/bg.png"), glm::vec2(0), glm::vec2(m_drawScreen.z, m_drawScreen.w));
+	"Assets/Lazy/bg.png"), glm::vec2(0), glm::vec2(m_drawScreen.z * 0.99f, m_drawScreen.w * 0.99f));
 
 	m_lightBatch.initShader(&m_shader);
 
 
-	GLuint tex_fb  = m_frameBuffer.init( m_drawScreen.z, m_drawScreen.w,true);
+	GLuint tex_fb  = m_frameBuffer.init( m_drawScreen.z , m_drawScreen.w ,false);
 	m_frameBufferScreen.initShader("Shaders/FBO/defaultshader_FBO.vert", "Shaders/FBO/defaultshader_FBO.frag");
 
 	m_frameBufferScreen.initFrameTexture(tex_fb, m_drawScreen.z + 2, m_drawScreen.w + 2);
@@ -273,8 +273,9 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 
 	glm::mat4 Static_Edit_projectionMatrix = m_staticCam.getCameraMatrix();
 
+	float tScale = 0.935f;
 	debug.drawBox(glm::vec4(-(m_drawScreen.z * 0.5f) , -(m_drawScreen.w * 0.5f),
-	m_drawScreen.z -40, m_drawScreen.w -40), Feintgine::Color(0, 200, 0, 255), 0);
+	m_drawScreen.z * tScale, m_drawScreen.w * tScale), Feintgine::Color(0, 200, 0, 255), 0);
 
 	debug.end();
 	debug.render(Static_Edit_projectionMatrix, 2.0f);

@@ -1,7 +1,7 @@
 CMakeFiles/GC3.dir/src/Lighting.cpp.obj: \
- E:\template\GC_port\GC3\src\Lighting.cpp \
- E:\template\GC_port\GC3\src\Lighting.h \
- E:\template\GC_port\GC3\src\Vector2.h \
+ D:\VS_Code_prj\GC3_vscode\GC3\src\Lighting.cpp \
+ D:\VS_Code_prj\GC3_vscode\GC3\src\Lighting.h \
+ D:\VS_Code_prj\GC3_vscode\GC3\src\Vector2.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/math.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/cmath \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
@@ -55,7 +55,7 @@ CMakeFiles/GC3.dir/src/Lighting.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
- E:/template/GC_port/Feintgine_GC_deps/include/GL/glew.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/GL/glew.h \
  C:/SysGCC/mingw32/include/inttypes.h \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdint.h \
  C:/SysGCC/mingw32/include/stdint.h \
