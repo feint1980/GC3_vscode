@@ -246,6 +246,7 @@ void F_Player::setSpellSelectorPos(const glm::vec2 & pos)
 {
 
 	m_spellSelector.setPos(pos);
+	m_spellSelector.update(1.0f);
 }
 
 

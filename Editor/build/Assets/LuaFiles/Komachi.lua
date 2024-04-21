@@ -1,4 +1,4 @@
-
+    
 bc =  require("./Assets/Luafiles/common/boss_common")
 
 local dynamics = {}
@@ -7,12 +7,15 @@ local souls = {}
 local soulsCount = 0
 
 komachi = nil
+soul_1 = nil
 
 
 object = {posX = 0.0, posY = 0.0,
  animationPath = "./Assets/F_AObjects/boss_komachi.xml",
  scale = 1.0, depth = 15, angle = 0 }
 
+
+soul = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/souls_white.xml", scale = 1.0, depth = 15.0, angle = 0.0 }
 -- init
 function CreateFromLua(host,path)
 	print("[LUA] create from LUA called \n")
@@ -25,6 +28,12 @@ function CreateFromLua(host,path)
 	--dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior5,host,komachi)}
 	--IssueNextTask(host,komachi)
 
+end
+
+function moveset_summon(host)
+    soul_1  = cppCreateFromLua(host,soul.animationPath,soul.posX,soul.posY,soul.scale,soul.depth,soul.angle)
+    dynamics[soul_1] = {behavior = coroutine.create(DynamicBehavior1,host,soul_1)}
+    IssueNextTask(host,soul_1)
 end
 
 function moveset_normal_1( host )

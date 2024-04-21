@@ -20,6 +20,7 @@
 #include "../../GC3/src/EnemyGuardian.h"
 #include "../../GC3/src/EnemyAmplifier.h"
 #include "../../GC3/src/BackGroundMap.h"
+#include <ParticleEngine2D.h>
 #include <FrameBuffer.h>
 #include <FrameBufferScreen.h>
 #include <Camera2D.h>
@@ -131,5 +132,8 @@ private:
 	KanjiEffectManager  * m_kanjiEffectManager;
 	//Feintgine::F_LuaObjectManager m_luaObjectManager;
 	BackGroundMap bg;
+
+	Feintgine::ParticleEngine2D m_particleEngine;
+
 };
 

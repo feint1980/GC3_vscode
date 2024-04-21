@@ -42,7 +42,8 @@ int lua_CreateFromLua(lua_State * L)
 {
 	if (lua_gettop(L) != 7)
 	{
-		std::cout << "gettop failed \n";
+		std::cout << "gettop failed (lua_CreateFromLua) \n";
+		std::cout << lua_gettop(L) << "\n";
 		return -1;
 	}
 	//std::cout << "[C++] lua_CreateFromLua called \n";

@@ -130,12 +130,12 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	//m_luaObjectManager.initDummy();
 
 	bg.init(Feintgine::ResourceManager::getTexture(
-	"Assets/Lazy/bg.png"), glm::vec2(0), glm::vec2(m_drawScreen.z * 0.99f, m_drawScreen.w * 0.99f));
+	"Assets/Lazy/bg.png"), glm::vec2(0), glm::vec2(m_drawScreen.z, m_drawScreen.w));
 
 	m_lightBatch.initShader(&m_shader);
 
 
-	GLuint tex_fb  = m_frameBuffer.init( m_drawScreen.z , m_drawScreen.w ,false);
+	GLuint tex_fb  = m_frameBuffer.init( m_drawScreen.z  , m_drawScreen.w ,false);
 	m_frameBufferScreen.initShader("Shaders/FBO/defaultshader_FBO.vert", "Shaders/FBO/defaultshader_FBO.frag");
 
 	m_frameBufferScreen.initFrameTexture(tex_fb, m_drawScreen.z + 2, m_drawScreen.w + 2);
@@ -206,6 +206,12 @@ void LuaObjectEditorComponent::initPlayer(int val, Feintgine::AudioEngine * audi
 	m_player.registerEffectBatch(&m_effectBatch);
 
 	m_player.setSpellSelectorPos(glm::vec2(330, 0));
+	m_particleEngine.addParticleBatch(m_player.getHitParticle());
+	m_particleEngine.addParticleBatch(m_player.getLeftAccessosry().getParticleBatch());
+	m_particleEngine.addParticleBatch(m_player.getRightAccesory().getParticleBatch());
+
+
+	//m_player.registerParticleEngine(&m_particleEngine);
 
 }
 
@@ -247,11 +253,13 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	m_lightBatch.begin();
 	
 	m_player.drawLight(m_lightBatch);
+	m_particleEngine.drawLight(m_lightBatch);
 
 	m_lightBatch.renderLight();
 
 	spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 	bg.draw(spriteBatch);
+
 	if(m_playerEnableTogger->isSelected())
 	{
 		m_player.draw(spriteBatch);
@@ -269,11 +277,13 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	spriteBatch.end();
 	spriteBatch.renderBatch();
 
+	m_particleEngine.draw(&spriteBatch);
+
 	m_shader.unuse();
 
 	glm::mat4 Static_Edit_projectionMatrix = m_staticCam.getCameraMatrix();
 
-	float tScale = 0.935f;
+	float tScale = 0.936f;
 	debug.drawBox(glm::vec4(-(m_drawScreen.z * 0.5f) , -(m_drawScreen.w * 0.5f),
 	m_drawScreen.z * tScale, m_drawScreen.w * tScale), Feintgine::Color(0, 200, 0, 255), 0);
 
@@ -286,7 +296,6 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	m_frameBufferScreen.draw();
 	m_frameBufferScreen.unuse();
 
-	
 }
 void LuaObjectEditorComponent::drawSpellcard(Feintgine::SpriteBatch & spriteBatch,Feintgine::GLSLProgram & shader,Feintgine::Camera2D & targetCamera)
 {
@@ -462,6 +471,7 @@ void LuaObjectEditorComponent::update(float deltaTime)
 	if (m_isUpdate)
 	{
 
+		m_particleEngine.update(deltaTime);
 		m_luaObjectManager.update(deltaTime);
 
 		ENGINE_current_tick += (ENGINE_tick_speed * deltaTime);

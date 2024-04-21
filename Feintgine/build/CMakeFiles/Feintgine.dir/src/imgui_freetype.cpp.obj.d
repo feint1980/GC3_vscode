@@ -1,7 +1,7 @@
 CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj: \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_freetype.cpp \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui.h \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\imconfig.h \
+ E:\template\GC_port\Feintgine\src\imgui_freetype.cpp \
+ E:\template\GC_port\Feintgine\src\imgui.h \
+ E:\template\GC_port\Feintgine\src\imconfig.h \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/float.h \
  C:/SysGCC/mingw32/include/float.h C:/SysGCC/mingw32/include/crtdefs.h \
  C:/SysGCC/mingw32/include/corecrt.h C:/SysGCC/mingw32/include/_mingw.h \
@@ -30,8 +30,8 @@ CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj: \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mm_malloc.h \
  C:/SysGCC/mingw32/include/errno.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_freetype.h \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_internal.h \
+ E:\template\GC_port\Feintgine\src\imgui_freetype.h \
+ E:\template\GC_port\Feintgine\src\imgui_internal.h \
  C:/SysGCC/mingw32/include/stdio.h \
  C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
  C:/SysGCC/mingw32/include/_mingw_off_t.h \
@@ -72,26 +72,26 @@ CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\imstb_textedit.h \
+ E:\template\GC_port\Feintgine\src\imstb_textedit.h \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdint.h \
  C:/SysGCC/mingw32/include/stdint.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/ft2build.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/config/ftheader.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/freetype.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/config/ftconfig.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/config/ftoption.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/config/ftstdlib.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/ft2build.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/ftheader.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/freetype.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/ftconfig.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/ftoption.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/ftstdlib.h \
  C:/SysGCC/mingw32/include/setjmp.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/config/integer-types.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/config/public-macros.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/config/mac-support.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/fttypes.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/ftsystem.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/ftimage.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/fterrors.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/ftmoderr.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/fterrdef.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/ftmodapi.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/ftglyph.h \
- D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/freetype/ftsynth.h \
- D:\VS_Code_prj\GC3_vscode\Feintgine\src\imstb_rectpack.h
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/integer-types.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/public-macros.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/config/mac-support.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/fttypes.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftsystem.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftimage.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/fterrors.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftmoderr.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/fterrdef.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftmodapi.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftglyph.h \
+ E:/template/GC_port/Feintgine_GC_deps/include/freetype/ftsynth.h \
+ E:\template\GC_port\Feintgine\src\imstb_rectpack.h
