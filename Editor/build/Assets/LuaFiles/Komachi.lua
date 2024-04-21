@@ -32,8 +32,11 @@ end
 
 function moveset_summon(host)
     soul_1  = cppCreateFromLua(host,soul.animationPath,soul.posX,soul.posY,soul.scale,soul.depth,soul.angle)
-    dynamics[soul_1] = {behavior = coroutine.create(DynamicBehavior1,host,soul_1)}
+    dynamics[soul_1] = {behavior = coroutine.create(DynamicBehavior1_invert,host,soul_1)}
     IssueNextTask(host,soul_1)
+    dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior1,host,komachi)}
+    IssueNextTask(host,komachi)
+    isMovesetSelected = true
 end
 
 function moveset_normal_1( host )
@@ -77,7 +80,7 @@ function DynamicBehavior3(host, dynob)
         100 , 200, 1,1,14,-10,0)
         soulsCount = soulsCount + 1
         print("print from lua ")
-        manipulateSouls()
+        --manipulateSouls()
         cppMoveObject(host,dynob,0,0,50)
 
         coroutine.yield()
@@ -158,7 +161,7 @@ end
 
 function  DynamicBehavior1( host, dynob )
 	while true do 
-    cppMoveObject(host,dynob,10,300,50)
+    cppMoveObject(host,dynob,200,300,50)
     coroutine.yield()
     --function bc.patern_MA_hypocycloid(host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
     bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",0.25,10.0,17,22,45,2.1,0,0,10,300,100)
@@ -182,22 +185,37 @@ function  DynamicBehavior1( host, dynob )
 end
 
 
--- main update of the boss
-function IssueNextTask(host, dynob)
+function  DynamicBehavior1_invert( host, dynob )
+	while true do 
+    cppMoveObject(host,dynob,-200,300,50)
+    coroutine.yield()
+    --function bc.patern_MA_hypocycloid(host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
+    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",0.25,10.0,17,22,45,2.1,0,0,10,300,100)
+    coroutine.yield()
+    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,2.1,90,90,10,300,100)
+    coroutine.yield()
+    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,2.1,180,180,10,300,100)
+    coroutine.yield()
+    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,2.1,270,270,10,300,100)
+    coroutine.yield()
+  
+    cppHoldPosition(host,dynob,250,"cast")
+    coroutine.yield()
 
-    for k, v in pairs(dynamics) do
-        print(coroutine.status(v.behavior))
-        if coroutine.status(v.behavior) ~= 'dead' then
-            coroutine.resume(v.behavior, host, dynob)
-        else
-            print(coroutine.status(v.behavior))
-        end
+    cppMoveObject(host,dynob,0,0,50)
+    coroutine.yield()
+
+    cppHoldPosition(host,dynob,100,"idle")
+    coroutine.yield()
     end
-    --print(coroutine.status(dynamics[komachi].behavior))
-	-- if coroutine.status(dynamics[komachi].behavior) ~= 'dead' then
-	-- 	coroutine.resume(dynamics[komachi].behavior, host, dynob)
-	-- else
-	-- 	print(coroutine.status(dynamics[komachi].behavior))
-	-- end
+end
+
+
+function IssueNextTask(host, dynob)
+    if coroutine.status(dynamics[dynob].behavior) ~= 'dead' then
+		coroutine.resume(dynamics[dynob].behavior, host, dynob)
+	else
+		print(coroutine.status(dynamics[dynob].behavior))
+	end
 end
 
