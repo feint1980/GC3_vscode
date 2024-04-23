@@ -51,9 +51,10 @@ namespace Feintgine {
 
 		void executeReadData();
 
-		//bool isLoadingDone();
+		// Needed this function to wait all the multithread loadng is done
+		bool isLoadingDone();
 
-		bool isDoneBatch();
+		//bool isDoneBatch();
 
 	private:
 
@@ -64,7 +65,7 @@ namespace Feintgine {
 		std::vector<std::thread> m_Threads;
 		//static std::mutex m_Mutex;
 		//std::atomic<bool> m_isDones[2000]; // let just cache 2000 packets
-		// std::atomic_int m_packetCount = 0;
+		std::atomic_int m_packetCount = std::atomic_int(0);
 
 		// // test ||
 		// std::atomic_int fileCount = 0;

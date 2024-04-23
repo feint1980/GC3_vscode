@@ -23,7 +23,7 @@ public:
 
 	void standIdle(F_Lua_Boss *dynamicObject, float time,const std::string & animName);
 
-	void telePort(F_Lua_Boss *dynamicObject, const glm::vec2 & target);
+	void teleport(F_Lua_Boss *dynamicObject, const glm::vec2 & target);
 
 	void addDelayedEvent(F_Lua_Boss * dynamicObject, const Feintgine::oEvent::f_callback & cb, double when);
 

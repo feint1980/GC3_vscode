@@ -116,13 +116,13 @@ namespace Feintgine
 		}
 		m_isInited = true;
 
-		// if(m_animations.size() > 0)
-		// {
-		// 	std::string animName = m_animations.begin()->first;
-		// 	playAnimation(animName);
-		// }
+		if(m_animations.size() > 0)
+		{
+			std::string animName = m_animations.begin()->first;
+			playAnimation(animName);
+		}
 		//std::cout << "loaded " << m_name << "with " << m_testAnims.size() << " anims \n";
-		//m_currentAnimation = &m_animations.begin()->second;
+		m_currentAnimation = &m_animations.begin()->second;
 
 	}
 

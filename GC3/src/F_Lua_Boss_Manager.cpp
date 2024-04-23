@@ -719,7 +719,7 @@ void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_Boss * dynamicObject, const std::s
 		return;
 	}
 	
-	float angle = 0;
+	float angle = startAngle;
 	
 	for (int i = 0; i < count; i++)
 	{

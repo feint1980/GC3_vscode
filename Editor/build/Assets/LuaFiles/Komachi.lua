@@ -164,13 +164,57 @@ function  DynamicBehavior1( host, dynob )
     cppMoveObject(host,dynob,200,300,50)
     coroutine.yield()
     --function bc.patern_MA_hypocycloid(host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",0.25,10.0,17,22,45,2.1,0,0,10,300,100)
+    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",
+        0.25, -- speed
+        10.0, -- lifeTime 
+        17,   -- a
+        22,   -- b 
+        45,   -- r
+        2.1,  -- angleStep
+        0,    -- startAngle
+        0,    -- rotation
+        10,   -- interval
+        300,  -- count
+        100)  -- eventTime
     coroutine.yield()
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,2.1,90,90,10,300,100)
+    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
+        0.25, -- speed
+        10.0, -- lifeTime
+        17,   -- a
+        22,   -- b
+        45,   -- r
+        2.1,  -- angleStep
+        90,   -- startAngle
+        90,   -- rotation
+        10,   -- interval
+        300,  -- count
+        100)  -- eventTime
     coroutine.yield()
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,2.1,180,180,10,300,100)
+    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
+        0.25, -- speed
+        10.0, -- lifeTime
+        17,   -- a
+        22,   -- b
+        45,   -- r
+        2.1,  -- angleStep
+        180,  -- startAngle
+        180,  -- rotation
+        10,   -- interval
+        300,  -- count
+        100)  -- eventTime
     coroutine.yield()
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,2.1,270,270,10,300,100)
+    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
+        0.25, -- speed
+        10.0, -- lifeTime
+        17,   -- a
+        22,   -- b
+        45,   -- r
+        2.1,   -- angleStep
+        270,  -- startAngle
+        270,  -- rotation
+        10,   -- interval
+        300,  -- count
+        100)   -- eventTime
     coroutine.yield()
   
     cppHoldPosition(host,dynob,250,"cast")
@@ -190,13 +234,57 @@ function  DynamicBehavior1_invert( host, dynob )
     cppMoveObject(host,dynob,-200,300,50)
     coroutine.yield()
     --function bc.patern_MA_hypocycloid(host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",0.25,10.0,17,22,45,2.1,0,0,10,300,100)
+   bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",
+        0.25, -- speed
+        10.0, -- lifeTime 
+        17,   -- a
+        22,   -- b 
+        45,   -- r
+        2.1,  -- angleStep
+        0,    -- startAngle
+        0,    -- rotation
+        10,   -- interval
+        300,  -- count
+        100)  -- eventTime
     coroutine.yield()
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,2.1,90,90,10,300,100)
+    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
+        0.25, -- speed
+        10.0, -- lifeTime
+        17,   -- a
+        22,   -- b
+        45,   -- r
+        2.1,  -- angleStep
+        90,   -- startAngle
+        0,   -- rotation
+        10,   -- interval
+        300,  -- count
+        100)  -- eventTime
     coroutine.yield()
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,2.1,180,180,10,300,100)
+    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
+        0.25, -- speed
+        10.0, -- lifeTime
+        17,   -- a
+        22,   -- b
+        45,   -- r
+        2.1,  -- angleStep
+        180,  -- startAngle
+        0,  -- rotation
+        10,   -- interval
+        300,  -- count
+        100)  -- eventTime
     coroutine.yield()
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,2.1,270,270,10,300,100)
+    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
+        0.25, -- speed
+        10.0, -- lifeTime
+        17,   -- a
+        22,   -- b
+        45,   -- r
+        2.1,   -- angleStep
+        270,  -- startAngle
+        0,  -- rotation
+        10,   -- interval
+        300,  -- count
+        100)   -- eventTime
     coroutine.yield()
   
     cppHoldPosition(host,dynob,250,"cast")

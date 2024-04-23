@@ -144,7 +144,7 @@ namespace Feintgine {
 			{
                 m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
 				//std::cout << "thread " << i << " " << m_storedKey[i].c_str() <<  " done \n";
-				//m_packetCount++;
+				m_packetCount++;
 			}
             });
             m_Threads.push_back(std::move(t));
@@ -322,14 +322,11 @@ namespace Feintgine {
     //     return false;
 	// }
 
-	// bool SpriteManager::isLoadingDone()
-	// {
-	// 	if( m_packetCount >= m_SpritePackets.size())
-	// 	{
-	// 		return true;
-	// 	}
-	// 	return false;
-	// }
+	bool SpriteManager::isLoadingDone()
+	{
+		return m_packetCount >= m_SpritePackets.size();
+
+	}
 
 	SpritePacket SpriteManager::getSpritePacketByFilePath(const std::string & filePath)
 	{
