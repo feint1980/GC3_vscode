@@ -15,7 +15,7 @@ object = {posX = 0.0, posY = 0.0,
  scale = 1.0, depth = 15, angle = 0 }
 
 
-soul = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/souls_white.xml", scale = 1.0, depth = 15.0, angle = 0.0 }
+soul = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/komachi_souls.xml", scale = 1.0, depth = 15.0, angle = 0.0 }
 -- init
 function CreateFromLua(host,path)
 	print("[LUA] create from LUA called \n")

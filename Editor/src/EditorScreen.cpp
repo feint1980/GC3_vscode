@@ -121,7 +121,7 @@ void EditorScreen::entryRuntime()
 	__int64 now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 	std::cout << "Start loading " << now << "\n";
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
-	if(!Feintgine::SpriteManager::Instance()->isDoneBatch())
+	if(!Feintgine::SpriteManager::Instance()->isLoadingDone())
 	{
 		std::cout << "waiting ...\n";
 	}

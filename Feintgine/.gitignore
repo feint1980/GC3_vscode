@@ -5,7 +5,9 @@
 *.py
 *.obj.d
 *.log
-CMakeCache.txt
-cmake_install.cmake
-CEGUI.log
-Makefile
+*CMakeCache.txt
+*cmake_install.cmake
+*CEGUI.log
+*Makefile
+build/CMakeFiles/*
+build/CMakeCache.txt
