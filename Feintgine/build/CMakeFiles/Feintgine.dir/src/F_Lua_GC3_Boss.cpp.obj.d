@@ -893,4 +893,10 @@ CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/luaconf.h \
  E:/template/GC_port/Feintgine_GC_deps/include/lauxlib.h \
  E:/template/GC_port/Feintgine_GC_deps/include/lua.h \
- E:/template/GC_port/Feintgine_GC_deps/include/lualib.h
+ E:/template/GC_port/Feintgine_GC_deps/include/lualib.h \
+ E:\template\GC_port\Feintgine\src\F_oEvent.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/queue \
+ C:/SysGCC/mingw32/include/c++/12.2.0/deque \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_deque.h \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/deque.tcc \
+ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_queue.h

@@ -1,4 +1,5 @@
 #include "F_LuaDynamicObject.h"
+#include "EngineSetting.h"
 
 namespace Feintgine
 {
@@ -29,6 +30,22 @@ namespace Feintgine
 		m_isAnimated = true;
 	}
 
+
+
+	void F_LuaDynamicObject::clearEvent()
+	{
+		while (!event_queue.empty())
+		{
+			event_queue.pop();
+		}	
+	}
+
+	void F_LuaDynamicObject::addEvent(const Feintgine::oEvent::f_callback & cb, double when)
+	{
+		event_queue.emplace(cb, when);
+	}
+
+
 	void F_LuaDynamicObject::createObject(const glm::vec2 & pos, const std::string & t_animationPath, const glm::vec2 & scale, float depth, float angle /*= 0.0f*/)
 	{
 		m_pos = pos;
@@ -40,6 +57,75 @@ namespace Feintgine
 		//setMoveLinear(glm::vec2(0, -400), 1.0f);
 		m_isAnimated = true;
 	}
+
+	void F_LuaDynamicObject::eventTimer()
+	{
+		while (!event_queue.empty() &&
+			(event_queue.top().when < ENGINE_current_tick))
+		{
+			//std::cout << "exccute event at " << event_queue.top().when << "\n";
+			event_queue.top()();
+			event_queue.pop();
+		}
+	}
+
+	void F_LuaDynamicObject::setMovementAnim(int val)
+	{
+
+		switch (val)
+		{
+		case ANIM_LEFT:
+		{
+			m_animation.playAnimation(m_animation_left_name);
+
+		}
+		break;
+		case ANIM_RIGHT:
+		{
+			m_animation.playAnimation(m_animation_right_name);
+
+		}
+		break;
+		case ANIM_CENTER:
+		{
+			m_animation.playAnimation(m_animation_center_name);
+		}
+		break;
+		default:
+			break;
+		}
+		
+	}
+
+
+	void F_LuaDynamicObject::decideAnimation(const glm::vec2 & pos)
+	{
+		if (!m_isDeath)
+		{
+			if (pos.x < oldPos.x)
+			{
+				state = ANIM_LEFT;
+			}
+			else if (pos.x > oldPos.x)
+			{
+
+				state = ANIM_RIGHT;
+			}
+			else if (pos.x == oldPos.x)
+			{
+
+				state = ANIM_CENTER;
+			}
+			oldPos = pos;
+			if (currentState != state)
+			{
+
+				currentState = state;
+				setMovementAnim(currentState);
+			}
+		}
+	}
+
 
 	void F_LuaDynamicObject::draw(Feintgine::SpriteBatch & spriteBatch)
 	{

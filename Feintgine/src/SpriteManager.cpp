@@ -117,14 +117,7 @@ namespace Feintgine {
 // 		}
 	}
 
-	void SpriteManager::executeReadData()
-	{
-		//std::cout << "thread size " << m_Threads.size() << "\n";
-		// for(int i = 0; i < m_Threads.size(); i++)
-		// {
-		// 	m_Threads[i].join();
-		// }
-	}
+
 
 	int SpriteManager::loadFromDirectory(const char * name, int level)
 	{

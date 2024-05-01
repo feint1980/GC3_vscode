@@ -464,6 +464,30 @@ E_/template/GC_port/GC3/src/F_Lua_Boss_State.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_Boss_State.cpp.s
 .PHONY : E_/template/GC_port/GC3/src/F_Lua_Boss_State.cpp.s
 
+E_/template/GC_port/GC3/src/F_Lua_GenericObject.obj: E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.obj
+.PHONY : E_/template/GC_port/GC3/src/F_Lua_GenericObject.obj
+
+# target to build an object file
+E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.obj
+.PHONY : E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.obj
+
+E_/template/GC_port/GC3/src/F_Lua_GenericObject.i: E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.i
+.PHONY : E_/template/GC_port/GC3/src/F_Lua_GenericObject.i
+
+# target to preprocess a source file
+E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.i
+.PHONY : E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.i
+
+E_/template/GC_port/GC3/src/F_Lua_GenericObject.s: E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.s
+.PHONY : E_/template/GC_port/GC3/src/F_Lua_GenericObject.s
+
+# target to generate assembly for a file
+E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.s
+.PHONY : E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.s
+
 E_/template/GC_port/GC3/src/F_MarisaLaser.obj: E_/template/GC_port/GC3/src/F_MarisaLaser.cpp.obj
 .PHONY : E_/template/GC_port/GC3/src/F_MarisaLaser.obj
 
@@ -2099,6 +2123,9 @@ help:
 	@echo ... E_/template/GC_port/GC3/src/F_Lua_Boss_State.obj
 	@echo ... E_/template/GC_port/GC3/src/F_Lua_Boss_State.i
 	@echo ... E_/template/GC_port/GC3/src/F_Lua_Boss_State.s
+	@echo ... E_/template/GC_port/GC3/src/F_Lua_GenericObject.obj
+	@echo ... E_/template/GC_port/GC3/src/F_Lua_GenericObject.i
+	@echo ... E_/template/GC_port/GC3/src/F_Lua_GenericObject.s
 	@echo ... E_/template/GC_port/GC3/src/F_MarisaLaser.obj
 	@echo ... E_/template/GC_port/GC3/src/F_MarisaLaser.i
 	@echo ... E_/template/GC_port/GC3/src/F_MarisaLaser.s

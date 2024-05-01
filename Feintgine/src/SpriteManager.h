@@ -27,8 +27,6 @@ namespace Feintgine {
 
 		int loadFromDirectory(const char * name, int level);
 
-
-
 		SpritePacket getSpritePacketByFilePath(const std::string & filePath);
 
 		SpritePacket getSpritePacketByName(const std::string  & name);
@@ -49,12 +47,10 @@ namespace Feintgine {
 
 		std::unordered_map<std::string, SpritePacket > getPacketMap() const { return m_SpritePackets; }
 
-		void executeReadData();
-
 		// Needed this function to wait all the multithread loadng is done
 		bool isLoadingDone();
 
-		//bool isDoneBatch();
+
 
 	private:
 

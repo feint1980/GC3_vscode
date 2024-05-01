@@ -11,7 +11,7 @@ F_Lua_Boss_State::~F_Lua_Boss_State()
 {
 }
 
-void F_Lua_Boss_State::moveObject(F_Lua_Boss *dynamicObject, const glm::vec2 & target, float time)
+void F_Lua_Boss_State::moveObject(F_Lua_GenericObject * dynamicObject, const glm::vec2 & target, float time)
 {
 	m_luaBoss = dynamicObject;
 	m_startPos = m_luaBoss->getPos();
@@ -63,7 +63,7 @@ bool F_Lua_Boss_State::update(float deltaTime)
 	return m_isComplete;
 }
 
-void F_Lua_Boss_State::standIdle(F_Lua_Boss *dynamicObject, float time, const std::string & animName)
+void F_Lua_Boss_State::standIdle(F_Lua_GenericObject * dynamicObject, float time, const std::string & animName)
 {
 	m_completionTime = time;
 	m_elaspedTime = 0;
@@ -77,7 +77,7 @@ void F_Lua_Boss_State::standIdle(F_Lua_Boss *dynamicObject, float time, const st
 
 }
 
-void F_Lua_Boss_State::addDelayedEvent(F_Lua_Boss * dynamicObject, const Feintgine::oEvent::f_callback & cb, double when)
+void F_Lua_Boss_State::addDelayedEvent(F_Lua_GenericObject *  dynamicObject, const Feintgine::oEvent::f_callback & cb, double when)
 {
 	m_luaBoss = dynamicObject;
 	//m_luaBoss->addEvent(cb, when);

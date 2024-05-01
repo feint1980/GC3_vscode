@@ -3,6 +3,7 @@
 #include "F_Sprite.h"
 #include "F_AnimatedObject.h"
 #include "LuaManager.h"
+#include "F_oEvent.h"
 
 // move table define
 /*
@@ -13,6 +14,10 @@
 #define MOVE_STATE_LINEAR 1
 #define MOVE_STATE_BERZIER 2
 
+
+#define ANIM_LEFT 0
+#define ANIM_RIGHT 1
+#define ANIM_CENTER 2
 
 
 namespace Feintgine
@@ -51,12 +56,24 @@ namespace Feintgine
 
 		glm::vec2 getPos() const { return m_pos; }
 
+		void setAnimOverRide(bool val) { m_isAnimationOverride = val; }
 
 		void setPos(const glm::vec2 & pos);
-		
+
+		void decideAnimation(const glm::vec2 & pos);
+
+		void clearEvent();
+
+		void addEvent(const Feintgine::oEvent::f_callback & cb, double when);
+
+		void eventTimer();
 
 	protected:
 
+
+		// protected functions
+
+		void setMovementAnim(int val);
 
 		// Custom states declare below 
 		// move table 
@@ -64,15 +81,19 @@ namespace Feintgine
 			1 -> straight 
 			2 -> berzier
 		*/
+
+		// protected variables
+
 		int m_moveState;
 
 		// move variable declare bellow
+
+		bool m_isAnimationOverride = false;
 		
 		glm::vec2 m_moveDestination; //
 		glm::vec2 m_currentDirection;
 
 		// Custom state declare above 
-
 
 		glm::vec2 m_pos;
 		glm::vec2 m_scale;
@@ -84,12 +105,23 @@ namespace Feintgine
 		glm::vec2 m_direction;
 
 		float m_speed;
-
 		lua_State * m_script;
-
 		F_Sprite m_sprite;
 		Color m_color;
 		F_AnimatedObject m_animation;
+		
+		int currentState = ANIM_CENTER;
+		int state = ANIM_CENTER;
+		bool m_isDeath;
+
+		std::string m_animation_left_name;
+		std::string m_animation_right_name;
+		std::string m_animation_center_name;
+		glm::vec2 oldPos;
+
+		std::priority_queue<Feintgine::oEvent,
+			std::vector<Feintgine::oEvent>, Feintgine::oEvent_less> event_queue;
+
 
 	};
 }

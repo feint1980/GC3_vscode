@@ -1,5 +1,6 @@
 #pragma once
 #include <F_LuaObjectManipulator.h>
+#include "F_Lua_GenericObject.h"
 #include "F_Lua_Boss.h"
 
 
@@ -17,15 +18,15 @@ public:
 	F_Lua_Boss_State();
 	~F_Lua_Boss_State();
 
-	F_Lua_Boss * m_luaBoss;
+	F_Lua_GenericObject *  m_luaBoss;
 
-	void moveObject(F_Lua_Boss *dynamicObject, const glm::vec2 & target, float time);
+	void moveObject(F_Lua_GenericObject * dynamicObject, const glm::vec2 & target, float time);
 
-	void standIdle(F_Lua_Boss *dynamicObject, float time,const std::string & animName);
+	void standIdle(F_Lua_GenericObject * dynamicObject, float time,const std::string & animName);
 
-	void teleport(F_Lua_Boss *dynamicObject, const glm::vec2 & target);
+	void teleport(F_Lua_GenericObject * dynamicObject, const glm::vec2 & target);
 
-	void addDelayedEvent(F_Lua_Boss * dynamicObject, const Feintgine::oEvent::f_callback & cb, double when);
+	void addDelayedEvent(F_Lua_GenericObject *  dynamicObject, const Feintgine::oEvent::f_callback & cb, double when);
 
 
 	virtual bool update(float deltaTime);

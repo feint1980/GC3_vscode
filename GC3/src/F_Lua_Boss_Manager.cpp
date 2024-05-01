@@ -58,11 +58,25 @@ int lua_CreateFromLua(lua_State * L)
 	int depth = (int)lua_tonumber(L, 6);
 	float angle = (float)lua_tonumber(L, 7);
 
-	F_Lua_Boss * createdDynamicObj = object->createBoss(pos, animationPath, glm::vec2(scale), depth, angle);// createObject(pos, animationPath, 1, 15, 0);
+	F_Lua_GenericObject * createdDynamicObj = object->createBoss(pos, animationPath, glm::vec2(scale), depth, angle);// createObject(pos, animationPath, 1, 15, 0);
 																										//moveOb
 																										//std::cout << "create object " << createdDynamicObj << "\n";
 	lua_pushlightuserdata(L, createdDynamicObj);
 	return 1; // this host function return 1 number 
+}
+
+int lua_removeFromLua(lua_State * L)
+{
+	if (lua_gettop(L) != 2)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	//std::cout << "[C++] lua_RemoveFromLua called \n";
+	F_Lua_Boss_Manager * object = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1));
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2));
+	object->removeObject(dynamicObject);
+	return 0;
 }
 
 int lua_MoveObject(lua_State * L)
@@ -75,7 +89,7 @@ int lua_MoveObject(lua_State * L)
 	//std::cout << "[C++] lua_MoveObject called \n";
 	//F_Lua_Boss_Manager
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1));
-	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2));
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2));
 	float x = lua_tonumber(L, 3);
 	float y = lua_tonumber(L, 4);
 	float time = lua_tonumber(L, 5);
@@ -92,7 +106,7 @@ int lua_HoldPosition(lua_State * L)
 	}
 
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1));
-	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2));
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2));
 	float time = lua_tonumber(L, 3);
 	std::string t_anim = lua_tostring(L, 4);
 	//std::cout << "t_anim " << t_anim << "\n";
@@ -109,7 +123,7 @@ int lua_setFireTypePE(lua_State * L)
 	}
 	//std::cout << "lua_AddEvent called \n";
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
-	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2)); // dynob
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
 	std::string asset = lua_tostring(L, 3); // asset
 	float speed = lua_tonumber(L, 4); // speed
 	float lifeTime = lua_tonumber(L, 5); // lifeTime
@@ -156,7 +170,7 @@ int lua_setFireType1(lua_State * L)
 	}
 	//std::cout << "lua_AddEvent called \n";
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
-	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2)); // dynob
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
 	std::string asset = lua_tostring(L, 3); // asset
 	float speed = lua_tonumber(L, 4); // speed
 	float lifeTime = lua_tonumber(L, 5); // lifeTime
@@ -191,7 +205,7 @@ int lua_setFireMACustomAFF(lua_State * L)
 	}
 	//std::cout << "lua_AddEvent called \n";
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
-	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2)); // dynob
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
 	std::string asset = lua_tostring(L, 3); // asset
 	float speed = lua_tonumber(L, 4); // speed
 	float lifeTime = lua_tonumber(L, 5); // lifeTime
@@ -223,11 +237,11 @@ int lua_setFireBase(lua_State * L)
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
 	}
-	//	void rw_addEvent_base(F_Lua_Boss * dynamicObject, 
+	//	void rw_addEvent_base(F_Lua_GenericObject * dynamicObject, 
 	//const std::string & asset, float speed, float lifeTime, 
 	//float x, float y, float currentAngle, double time);
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
-	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2)); // dynob
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
 	std::string asset = lua_tostring(L, 3); // 
 	float speed = lua_tonumber(L, 4); // 
 	float lifeTime = lua_tonumber(L, 5); // 
@@ -244,7 +258,7 @@ int lua_setFireBase(lua_State * L)
 
 int lua_createHelper(lua_State * L)
 {
-	//createObject(F_Lua_Boss * dynamicObject, const std::string & objectName,
+	//createObject(F_Lua_GenericObject * dynamicObject, const std::string & objectName,
 	//const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, double time);
 
 	if(lua_gettop(L) != 16)
@@ -254,7 +268,7 @@ int lua_createHelper(lua_State * L)
 	}
 	std::cout << "lua create helper called \n";
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
-	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2)); // dynob
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
 	unsigned int id = lua_tonumber(L, 3); //
 	std::string objectName = lua_tostring(L, 4); //
 	std::string asset = lua_tostring(L, 5); //
@@ -273,31 +287,6 @@ int lua_createHelper(lua_State * L)
 	objectManager->createHelper(dynamicObject,id, objectName, asset, x, y, scaleX, scaleY, depth, velX, velY, afterImageCount, afterImageRate,scaleRate, time);
 	
 	return 0 ;
-}
-int lua_createFLObject(lua_State * L)
-{
-	if(lua_gettop(L) != 11)
-	{
-		std::cout << "bad gettop " << lua_gettop(L) << " \n";
-		return -1;
-	}
-	std::cout << "lua create FLObject called \n";
-	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
-	F_Lua_Boss * dynamicObject = static_cast<F_Lua_Boss*>(lua_touserdata(L, 2)); // dynob
-	unsigned int id = lua_tonumber(L, 3); //
-	std::string asset = lua_tostring(L, 4); //
-	float x = lua_tonumber(L, 5); //
-	float y = lua_tonumber(L, 6); //
-	float scaleX = lua_tonumber(L, 7); //
-	float scaleY = lua_tonumber(L, 8); //
-	float depth = lua_tonumber(L, 9); //
-	float destinationX = lua_tonumber(L, 10); //
-	float destinationY = lua_tonumber(L, 11); //
-
-    Feintgine::FL_Object * object =	objectManager->createFLObject(dynamicObject, id, asset, x, y, scaleX, scaleY, depth, destinationX, destinationY);
-	
-	lua_pushlightuserdata(L, object);
-	return 0;
 }
 
 
@@ -322,7 +311,7 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppSetFire_MA_custom_aff", lua_setFireMACustomAFF);
 	lua_register(m_script, "cppSetFire_Base", lua_setFireBase);
 	lua_register(m_script, "cppCreateHelper", lua_createHelper);
-	lua_register(m_script, "cppCreateFLObject", lua_createFLObject);
+	lua_register(m_script, "cppRemoveFromLua", lua_removeFromLua);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 }
 
@@ -332,37 +321,17 @@ F_Lua_Boss_Manager::~F_Lua_Boss_Manager()
 }
 
 
-Feintgine::FL_Object * F_Lua_Boss_Manager::createObject(const glm::vec2 & pos, const glm::vec2 & scale, const std::string & assetString)
-{
 
-	bool isAnimated = false;
-	std::string subStr = assetString.substr(assetString.size() - 3, 3);
-	if (subStr == "xml")
+void F_Lua_Boss_Manager::removeObject(F_Lua_GenericObject * object)
+{
+	for (size_t i = 0; i < m_luaBosses.size(); i++)
 	{
-		isAnimated = true;
-	}
-	else
-	{
-		if(subStr != "png")
+		if (m_luaBosses[i] == object)
 		{
-			std::cout << "Warning : asset string is not png or xml \n";
+			m_luaBosses.erase(m_luaBosses.begin() + i);
+			break;
 		}
 	}
-	Feintgine::FL_Object * object = new Feintgine::FL_Object();
-
-	if(isAnimated)
-	{
-		Feintgine::F_AnimatedObject animObj;
-		animObj.init(assetString);
-		object->init(animObj, pos, scale);
-	}
-	else
-	{
-		object->init(Feintgine::SpriteManager::Instance()->getSprite(assetString), pos, scale);
-	}
-		
-	m_fl_object.push_back(object);
-	return object;
 }
 
 void F_Lua_Boss_Manager::update(float deltaTime)
@@ -382,13 +351,6 @@ void F_Lua_Boss_Manager::update(float deltaTime)
 			m_objects[i]->update(deltaTime);
 		}
 	}
-	for (size_t i = 0; i < m_fl_object.size(); i++)
-	{
-		if (m_fl_object[i])
-		{
-			m_fl_object[i]->update(deltaTime);
-		}
-	}
 	for (size_t i = 0; i < m_luaBossStates.size(); i++)
 	{
 		if (m_luaBossStates[i])
@@ -401,7 +363,7 @@ void F_Lua_Boss_Manager::update(float deltaTime)
 				if (lua_isfunction(m_script, -1))
 				{
 					//m_luaBossStates[i]->m_luaBoss;
-					F_Lua_Boss * object = m_luaBossStates[i]->m_luaBoss;
+					F_Lua_GenericObject * object = m_luaBossStates[i]->m_luaBoss;
 					//lua_pushlightuserdata(m_script, pThread);
 					lua_pushlightuserdata(m_script, this); // host
 
@@ -443,35 +405,35 @@ void F_Lua_Boss_Manager::update(float deltaTime)
 	}
 }
 
-void F_Lua_Boss_Manager::MoveObject(F_Lua_Boss * dynamicObject, float x, float y, float time)
+void F_Lua_Boss_Manager::MoveObject(F_Lua_GenericObject * dynamicObject, float x, float y, float time)
 {
  	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
  	manipulator->moveObject(dynamicObject, glm::vec2(x, y), time);
  	m_luaBossStates.push_back(manipulator);
 }
 
-F_Lua_Boss * F_Lua_Boss_Manager::createBoss(const std::string & animationPath, glm::vec2 pos)
+F_Lua_GenericObject * F_Lua_Boss_Manager::createBoss(const std::string & animationPath, glm::vec2 pos)
 {
 	std::cout << "createBoss 1 called \n";
-	F_Lua_Boss * dynamicObject = new F_Lua_Boss();
+	F_Lua_GenericObject * dynamicObject = new F_Lua_Boss();
 	dynamicObject->createObject(pos, animationPath, glm::vec2(1), 15, 0);
 	m_luaBosses.push_back(dynamicObject);
 	return dynamicObject;
 }
 
-F_Lua_Boss * F_Lua_Boss_Manager::createBoss(const glm::vec2 & pos, const Feintgine::F_AnimatedObject & t_animation, const glm::vec2 & scale, float depth, float angle /*= 0.0f*/)
+F_Lua_GenericObject * F_Lua_Boss_Manager::createBoss(const glm::vec2 & pos, const Feintgine::F_AnimatedObject & t_animation, const glm::vec2 & scale, float depth, float angle /*= 0.0f*/)
 {
 	std::cout << "createBoss 2 called \n";
-	F_Lua_Boss * m_object = new F_Lua_Boss();
+	F_Lua_GenericObject * m_object = new F_Lua_Boss();
 	m_object->createObject(pos, t_animation, scale, depth, angle);
 	m_luaBosses.push_back(m_object);
 	return m_object;
 }
 
-F_Lua_Boss * F_Lua_Boss_Manager::createBoss(const glm::vec2 & pos, const std::string & t_animationPath, const glm::vec2 & scale, float depth, float angle /*= 0.0f*/)
+F_Lua_GenericObject * F_Lua_Boss_Manager::createBoss(const glm::vec2 & pos, const std::string & t_animationPath, const glm::vec2 & scale, float depth, float angle /*= 0.0f*/)
 {
 	std::cout << "createBoss 3 called \n";
-	F_Lua_Boss * m_object = new F_Lua_Boss();
+	F_Lua_GenericObject * m_object = new F_Lua_Boss();
 	m_object->createObject(pos, t_animationPath, scale, depth, angle);
 	m_luaBosses.push_back(m_object);
 	return m_object;
@@ -569,10 +531,10 @@ void F_Lua_Boss_Manager::draw(Feintgine::SpriteBatch & spriteBatch)
 	{
 		m_bullets[i]->draw(spriteBatch);
 	}
-	for(size_t i = 0 ; i < m_fl_object.size() ; i++)
-	{
-		m_fl_object[i]->draw(spriteBatch);
-	}
+	// for(size_t i = 0 ; i < m_fl_object.size() ; i++)
+	// {
+	// 	m_fl_object[i]->draw(spriteBatch);
+	// }
 
 }
 
@@ -605,7 +567,7 @@ void F_Lua_Boss_Manager::callCreateFromLua(const std::string & filePath, const s
 	}
 }
 
-void F_Lua_Boss_Manager::standIdle(F_Lua_Boss * dynamicObject,
+void F_Lua_Boss_Manager::standIdle(F_Lua_GenericObject * dynamicObject,
 	float time, const std::string & animName)
 {
 	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
@@ -613,7 +575,7 @@ void F_Lua_Boss_Manager::standIdle(F_Lua_Boss * dynamicObject,
 	m_luaBossStates.push_back(manipulator);
 }
 
-void F_Lua_Boss_Manager::addEvent(F_Lua_Boss * dynamicObject, 
+void F_Lua_Boss_Manager::addEvent(F_Lua_GenericObject * dynamicObject, 
 	const Feintgine::oEvent::f_callback & cb, double when)
 {
 	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
@@ -621,7 +583,7 @@ void F_Lua_Boss_Manager::addEvent(F_Lua_Boss * dynamicObject,
 	m_luaBossStates.push_back(manipulator);
 }
 
-void F_Lua_Boss_Manager::rw_addEvent_PE(F_Lua_Boss * dynamicObject,\
+void F_Lua_Boss_Manager::rw_addEvent_PE(F_Lua_GenericObject * dynamicObject,\
 	const std::string & asset, float speed, float lifeTime,\
 	int peType, float startRange, float rangeCover, float angleStep,\
 	float startAngle, int petalCount, int interval, float rotation, int count, double time)
@@ -666,7 +628,7 @@ void F_Lua_Boss_Manager::rw_addEvent_PE(F_Lua_Boss * dynamicObject,\
 		//
 }
 
-void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_Boss * dynamicObject, const std::string & asset,
+void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_GenericObject * dynamicObject, const std::string & asset,
 	float speed, float lifeTime,int arcType, float fA, float fB, float fC, float fD, float fR,
 	float angleStep, float startAngle, float rotation, int interval, int count, double time)
 {
@@ -745,7 +707,7 @@ void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_Boss * dynamicObject, const std::s
 }
 
 
-void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff(F_Lua_Boss * dynamicObject,
+void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff(F_Lua_GenericObject * dynamicObject,
 	const std::string & asset, float speed, float lifeTime, int k, int n, int n2,
 	int l1, int l2, int posneg, float startAngle, float angleStep, float rotation, int interval, double time)
 {
@@ -803,7 +765,7 @@ void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff(F_Lua_Boss * dynamicObject,
 	m_luaBossStates.push_back(manipulator);
 }
 
-void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_Boss * dynamicObject, const std::string & asset,
+void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_GenericObject * dynamicObject, const std::string & asset,
 	float speed, float lifeTime, float x, float y, float currentAngle, double time)
 {
 
@@ -825,43 +787,9 @@ void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_Boss * dynamicObject, const std:
 
 }
 
-Feintgine::FL_Object * F_Lua_Boss_Manager::createFLObject(F_Lua_Boss * dynamicObject, unsigned int id, 
-		const std::string & asset, float x, float y, float scaleX, float scaleY, float depth, float destinationX, float destinationY)
-{
-	Feintgine::FL_Object * object = new Feintgine::FL_Object();
-
-	//std::cout << "create FLObject step 1 \n";
-	std::string subStr = asset.substr(asset.size() - 3, 3);
-	if (subStr == "xml")
-	{
-		//std::cout << "is animated \n";
-		Feintgine::F_AnimatedObject animObj;
-		animObj.init(asset);
-		object->init(animObj, glm::vec2(x, y), glm::vec2(scaleX, scaleY));
-	}
-	else
-	{
-		if (subStr != "png")
-		{
-			std::cout << "Warning : asset string is neither png or xml \n";
-		}
-		object->init(Feintgine::SpriteManager::Instance()->getSprite(asset), glm::vec2(x, y), glm::vec2(scaleX, scaleY));
-
-	}
-
-	
-	object->setDestination(glm::vec2(destinationX, destinationY));
-	object->setDepth(depth);
-	object->setID(id);
-	m_fl_object.push_back(object);
-
-	//std::cout << "done creating FLObject, returning ... \n";
-
-	return object;
-}
 
 
-void F_Lua_Boss_Manager::createHelper(F_Lua_Boss * dynamicObject,unsigned int id , const std::string & objectName,
+void F_Lua_Boss_Manager::createHelper(F_Lua_GenericObject * dynamicObject,unsigned int id , const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time)
 {
 

@@ -27,6 +27,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_Boss_Manager.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_Boss_State.cpp.obj"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_Boss_State.cpp.obj.d"
+  "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.obj"
+  "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_Lua_GenericObject.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_MarisaLaser.cpp.obj"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_MarisaLaser.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/F_MarisaRocket_small.cpp.obj"

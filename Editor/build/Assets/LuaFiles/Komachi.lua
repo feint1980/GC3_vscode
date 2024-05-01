@@ -37,6 +37,8 @@ function moveset_summon(host)
     dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior1,host,komachi)}
     IssueNextTask(host,komachi)
     isMovesetSelected = true
+    
+
 end
 
 function moveset_normal_1( host )
@@ -279,12 +281,12 @@ function  DynamicBehavior1_invert( host, dynob )
         17,   -- a
         22,   -- b
         45,   -- r
-        2.1,   -- angleStep
+        2.1,  -- angleStep
         270,  -- startAngle
-        0,  -- rotation
+        0,    -- rotation
         10,   -- interval
         300,  -- count
-        100)   -- eventTime
+        100)  -- eventTime
     coroutine.yield()
   
     cppHoldPosition(host,dynob,250,"cast")
@@ -295,6 +297,7 @@ function  DynamicBehavior1_invert( host, dynob )
 
     cppHoldPosition(host,dynob,100,"idle")
     coroutine.yield()
+    cppRemoveFromLua(host,dynob)
     end
 end
 

@@ -375,8 +375,7 @@ void EditorScreen::onEntry()
 	m_fullCam.setScale(1.0f);
 	m_fullCam.update();
 	bg.init(Feintgine::ResourceManager::getTexture("Assets/Textures/loading.png"), 
-		glm::vec2(0), glm::vec2(673.0f, 169.0f), Feintgine::Color(255, 255, 255, 255));
-
+		glm::vec2(0), glm::vec2(224.0f, 56.0f), Feintgine::Color(255, 255, 255, 255));
 
 	m_audioEngine = new Feintgine::AudioEngine();
 	m_audioEngine->init();

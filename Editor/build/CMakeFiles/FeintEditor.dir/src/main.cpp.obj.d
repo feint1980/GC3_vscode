@@ -1109,10 +1109,12 @@ CMakeFiles/FeintEditor.dir/src/main.cpp.obj: \
  E:/template/GC_port/Feintgine_GC_deps/include/lauxlib.h \
  E:/template/GC_port/Feintgine_GC_deps/include/lua.h \
  E:/template/GC_port/Feintgine_GC_deps/include/lualib.h \
+ E:/template/GC_port/Feintgine/src/F_oEvent.h \
  E:/template/GC_port/Feintgine/src/F_LuaObjectManager.h \
  E:/template/GC_port/Feintgine/src/F_LuaObjectManipulator.h \
  E:/template/GC_port/Feintgine/src/F_Lua_GC3_Boss.h \
  E:/template/GC_port/GC3/src/F_Lua_Boss_Manager.h \
+ E:/template/GC_port/GC3/src/F_Lua_GenericObject.h \
  E:/template/GC_port/GC3/src/F_Lua_Boss.h \
  E:/template/GC_port/GC3/src/F_Lua_Boss_State.h \
  E:/template/GC_port/GC3/src/F_Lua_Boss_State_MoveObject.h \
