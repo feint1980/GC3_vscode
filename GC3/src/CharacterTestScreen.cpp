@@ -301,7 +301,7 @@ void CharacterTestScreen::handleInput(Feintgine::InputManager & inputManager)
 
 void CharacterTestScreen::spawnEnemy()
 {
-	F_EnemyBasic*  enemy = new F_EnemyBasic();
+	FairyBase*  enemy = new FairyBase();
 	enemy->init(glm::vec2(0, 200),
 		glm::vec2(24), "Assets/F_AObjects/fairy_enemy_normal_black.xml",
 		100);

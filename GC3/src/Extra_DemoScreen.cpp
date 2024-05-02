@@ -1583,7 +1583,7 @@ void Extra_DemoScreen::loadLevel(const std::string & levelPath)
 
 				}
 				Feintgine::F_oEvent::getInstance()->add([=] {
-					F_EnemyBasic*  enemy = new FairyBase();
+					FairyBase*  enemy = new FairyBase();
 					enemy->init(pos,
 						dim, asset,
 						heath);
@@ -1670,7 +1670,7 @@ void Extra_DemoScreen::loadLevel(const std::string & levelPath)
 
 				}
 				Feintgine::F_oEvent::getInstance()->add([=] {
-					EnemyGuardian*  enemy = new EnemyGuardian();
+					FairyBase*  enemy = new EnemyGuardian();
 					enemy->initShield("Assets/F_AObjects/shield.xml", pos, .7f);
 					enemy->init(pos,
 						dim, asset,
@@ -1694,7 +1694,8 @@ void Extra_DemoScreen::loadLevel(const std::string & levelPath)
 
 
 					//enemy->registerWorld(m_world.get());
-					m_guardians.push_back(enemy);
+					//m_guardians.push_back(enemy);
+					m_enemies.push_back(enemy);
 					//delete enemy;
 				}, ENGINE_current_tick + time);
 

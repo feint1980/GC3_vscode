@@ -13,7 +13,7 @@ SealingAmulet::~SealingAmulet()
 {
 }
 
-void SealingAmulet::update(float deltaTime, std::vector<F_BaseEnemy *> enemies, 
+void SealingAmulet::update(float deltaTime, std::vector<FairyBase *> enemies, 
 	std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers)
 {
 

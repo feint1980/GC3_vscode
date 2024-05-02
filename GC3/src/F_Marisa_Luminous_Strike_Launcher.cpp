@@ -69,7 +69,7 @@ void F_Marisa_Luminous_Strike_Launcher::draw(Feintgine::SpriteBatch & spriteBatc
 	}
 }
 
-void F_Marisa_Luminous_Strike_Launcher::update(float deltaTime,std::vector<F_BaseEnemy *> enemy, std::vector<EnemyBulletBase * > bullets)
+void F_Marisa_Luminous_Strike_Launcher::update(float deltaTime,std::vector<FairyBase *> enemy, std::vector<EnemyBulletBase * > bullets)
 {
  	//m_mainStrike.update(deltaTime, enemy, bullets);
 // 

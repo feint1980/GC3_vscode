@@ -11,7 +11,7 @@ public:
 
 	void drawLight(Feintgine::LightBatch & lightBatch);
 
-	void update(const glm::vec2 & pos,float deltaTime, std::vector<F_BaseEnemy *>  enemy,
+	void update(const glm::vec2 & pos,float deltaTime, std::vector<FairyBase *>  enemy,
 		std::vector<EnemyBulletBase * > bullets);
 
 	void init(const Feintgine::F_AnimatedObject & starAnim,float trailThreshold);

@@ -95,7 +95,7 @@ void Yin_Yang_Orb::drawLight(Feintgine::LightBatch & lightBatch)
 	
 }
 
-void Yin_Yang_Orb::update(float deltaTime ,std::vector<F_BaseEnemy *>  enemy, std::vector<EnemyBulletBase * > bullets)
+void Yin_Yang_Orb::update(float deltaTime ,std::vector<FairyBase *>  enemy, std::vector<EnemyBulletBase * > bullets)
 {
 	m_lifeTime -= LIFE_TIME_RATE * deltaTime;
 	

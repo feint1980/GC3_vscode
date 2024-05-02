@@ -16,7 +16,7 @@ public:
 // 		const std::string & animationPath, float depth, float dmg,
 // 		Feintgine::ParticleBatch2D * hitParticleBatch = nullptr);
 
-	virtual void update(float deltaTime, std::vector<F_BaseEnemy *> enemy, std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers) override;
+	virtual void update(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers) override;
 	void setIsFocus(bool val);
 	void setScale(float val);
 

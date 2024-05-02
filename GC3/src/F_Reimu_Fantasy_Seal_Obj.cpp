@@ -84,7 +84,7 @@ void F_Reimu_Fantasy_Seal_Obj::drawLight(Feintgine::LightBatch & lightBatch)
 }
 
 void F_Reimu_Fantasy_Seal_Obj::update(float deltaTime, 
-	std::vector<F_BaseEnemy *>  enemy, std::vector<EnemyBulletBase * > bullets)
+	std::vector<FairyBase *>  enemy, std::vector<EnemyBulletBase * > bullets)
 {
 
 	if (isLocked)
@@ -300,7 +300,7 @@ void F_Reimu_Fantasy_Seal_Obj::setDeathCallback(const std::function <void(void)>
 	m_deathCallback = f;
 }
 
-F_BaseEnemy * F_Reimu_Fantasy_Seal_Obj::getNearstEnemy(const glm::vec2 & pos, std::vector<F_BaseEnemy *> enemy)
+F_BaseEnemy * F_Reimu_Fantasy_Seal_Obj::getNearstEnemy(const glm::vec2 & pos, std::vector<FairyBase *> enemy)
 {
 	F_BaseEnemy * nearstEnemy = nullptr;
 

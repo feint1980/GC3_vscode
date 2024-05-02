@@ -38,7 +38,7 @@ public:
 
 	void drawDebug(Feintgine::DebugRender & renderer);
 
-	void update(float deltaTime, std::vector<F_BaseEnemy *>  enemies,
+	void update(float deltaTime, std::vector<FairyBase *>  enemies,
 		std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers);
 
 	void setBoolRotate(bool val);
@@ -86,14 +86,14 @@ public:
 
 	float getLaserEnergy();
 
-	glm::vec2 getRocketDirection(std::vector<F_BaseEnemy *> enemies, std::vector<EnemyAmplifier *> amplifiers);
+	glm::vec2 getRocketDirection(std::vector<FairyBase *> enemies, std::vector<EnemyAmplifier *> amplifiers);
 
 	//void setEnemyPointer(F_EnemyBasic * emeny);
 
 	protected:
 
 
-	F_BaseEnemy * getNearstEnemy(const glm::vec2 & pos, std::vector<F_BaseEnemy *> enemy);
+	F_BaseEnemy * getNearstEnemy(const glm::vec2 & pos, std::vector<FairyBase *> enemy);
 
 	EnemyAmplifier * getNearstAmplifier(const glm::vec2 & pos, std::vector<EnemyAmplifier *> enemy);
 

@@ -815,7 +815,7 @@ void F_Player::setSpellPos(const glm::vec2 & pos)
 	m_spellSelector.update(1.0f);
 }
 
-void F_Player::update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
+void F_Player::update(float deltaTime, std::vector<FairyBase *>  enemy,
 	std::vector<EnemyBulletBase * > bullets, std::vector<EnemyGuardian *> guardians, 
 	std::vector<EnemyAmplifier *> amplifiers)
 {
@@ -2319,7 +2319,7 @@ void F_Player::activeSpell()
 		obj.registerEffectBatch(m_effectBatch);
 		obj.setDeathCallback([&] {
 			m_logicCamera->startShake(4.0, 3.0f, 3.0f);
-			m_effectBatch->addRippleEffect(obj.getPos(), .6f, 5.5f, 0.0f, 0.125f, 0.125f);
+			m_effectBatch->addRippleEffect(obj.getPos(), .6f, 2.5f, -15.0f, 0.0025f, 0.0025f);
 
 		});
 		for (int i = 0; i < spawnCount; i++)

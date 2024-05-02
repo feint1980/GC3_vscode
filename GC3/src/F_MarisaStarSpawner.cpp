@@ -76,7 +76,7 @@ void F_MarisaStarSpawner::draw(Feintgine::SpriteBatch & spriteBatch)
 	}
 }
 
-void F_MarisaStarSpawner::update(float deltaTime ,std::vector<F_BaseEnemy *>  enemy,
+void F_MarisaStarSpawner::update(float deltaTime ,std::vector<FairyBase *>  enemy,
 	std::vector<EnemyBulletBase * > bullets)
 {
 	updateSpawn(deltaTime);

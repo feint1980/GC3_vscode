@@ -213,7 +213,7 @@ bool F_Marisa_MasterSpark::checkColliderWithEnemy(const F_BaseEnemy & enemy)
 	return false;
 }
 
-void F_Marisa_MasterSpark::update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
+void F_Marisa_MasterSpark::update(float deltaTime, std::vector<FairyBase *>  enemy,
 	std::vector<EnemyBulletBase * > bullets)
 {
 

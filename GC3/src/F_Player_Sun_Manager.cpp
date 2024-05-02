@@ -20,7 +20,7 @@ F_Player_Sun_Manager::~F_Player_Sun_Manager()
 }
 
 void F_Player_Sun_Manager::update(const glm::vec2 &  pos,float deltaTime,
-	std::vector<F_BaseEnemy *> enemies, std::vector<EnemyGuardian *> guardians, 
+	std::vector<FairyBase *> enemies, std::vector<EnemyGuardian *> guardians, 
 	std::vector<EnemyAmplifier *> amplifiers, std::vector<EnemyBulletBase * > bullets)
 {
 

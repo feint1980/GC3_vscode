@@ -211,7 +211,7 @@ private:
 	Feintgine::F_AnimatedObject m_animatObj; // eiki effect
 
 
-	std::vector<F_BaseEnemy *> m_enemies;
+	std::vector<FairyBase *> m_enemies;
 	std::vector<EnemyGuardian *> m_guardians;
 	std::vector<EnemyAmplifier *> m_amplifiers;
 	Uint32 t_start;

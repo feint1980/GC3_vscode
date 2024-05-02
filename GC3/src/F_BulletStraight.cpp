@@ -44,7 +44,7 @@ F_BulletStraight::~F_BulletStraight()
 // 	m_vel = vel;
 // }
 
-void F_BulletStraight::update(float deltaTime, std::vector<F_BaseEnemy * >  enemy,
+void F_BulletStraight::update(float deltaTime, std::vector<FairyBase * >  enemy,
 	std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers)
 {
 

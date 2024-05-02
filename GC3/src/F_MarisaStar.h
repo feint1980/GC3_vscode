@@ -7,7 +7,7 @@
 #include "AfterImageParticle.h"
 
 #include "F_BaseEnemy.h"
-
+#include "FairyBase.h"
 #include <AudioEngine.h>
 class F_MarisaStar
 {
@@ -28,7 +28,7 @@ public:
 
 	void drawLight(Feintgine::LightBatch & lightBatch);
 
-	void update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
+	void update(float deltaTime, std::vector<FairyBase *>  enemy,
 		std::vector<EnemyBulletBase * > bullets);
 
 	void updateColor(float deltaTime);

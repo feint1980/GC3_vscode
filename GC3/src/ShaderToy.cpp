@@ -907,7 +907,7 @@ void ShaderToy::loadLevel(const std::string & levelPath)
 					
 				}
 				Feintgine::F_oEvent::getInstance()->add([=] {
-				F_EnemyBasic*  enemy = new FairyBase();
+				FairyBase *  enemy = new FairyBase();
 				enemy->init(pos,
 						dim, asset,
 						heath);

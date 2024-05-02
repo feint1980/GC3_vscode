@@ -1,2 +1,2 @@
 CMakeFiles/GC3.dir/src/MainMenuScreen.cpp.obj: \
- D:\VS_Code_prj\GC3_vscode\GC3\src\MainMenuScreen.cpp
+ E:\template\GC_port\GC3\src\MainMenuScreen.cpp

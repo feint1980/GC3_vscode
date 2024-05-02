@@ -1,12 +1,13 @@
 #pragma once
 #include "F_MarisaStar.h"
+
 class F_Marisa_Luminous_Strike : public F_MarisaStar
 {
 public:
 	F_Marisa_Luminous_Strike();
 	~F_Marisa_Luminous_Strike();
 
-	void update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
+	void update(float deltaTime, std::vector<FairyBase *>  enemy,
 		std::vector<EnemyBulletBase * > bullets);
 
 	Feintgine::Color getStarColor(int index);

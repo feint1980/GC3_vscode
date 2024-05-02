@@ -234,7 +234,7 @@ protected :
 
 	Feintgine::LightBatch m_lightBatch;
 
-	std::vector<F_BaseEnemy *> m_enemies;
+	std::vector<FairyBase *> m_enemies;
 	std::vector<EnemyGuardian *> m_guardians;
 	std::vector<EnemyAmplifier *> m_amplifiers;
 

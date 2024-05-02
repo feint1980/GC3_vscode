@@ -20,7 +20,7 @@ void Yin_Yang_Orb_Ex::registerEffectBatch(Feintgine::EffectBatch * effectBatch)
 	m_effectBatch = effectBatch;
 }
 
-void Yin_Yang_Orb_Ex::update(float deltaTime, std::vector<F_BaseEnemy *>  enemy, std::vector<EnemyBulletBase * > bullets)
+void Yin_Yang_Orb_Ex::update(float deltaTime, std::vector<FairyBase *>  enemy, std::vector<EnemyBulletBase * > bullets)
 {
 	m_lifeTime -= LIFE_TIME_RATE * deltaTime;
 

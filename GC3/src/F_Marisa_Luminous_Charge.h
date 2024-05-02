@@ -9,7 +9,7 @@ public:
 
 
 
-	void update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
+	void update(float deltaTime, std::vector<FairyBase *>  enemy,
 		std::vector<EnemyBulletBase * > bullets);
 
 	void destroy();

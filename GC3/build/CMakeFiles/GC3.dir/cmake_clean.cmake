@@ -91,6 +91,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/GC3.dir/src/F_Lua_Boss_State.cpp.obj.d"
   "CMakeFiles/GC3.dir/src/F_Lua_Boss_State_MoveObject.cpp.obj"
   "CMakeFiles/GC3.dir/src/F_Lua_Boss_State_MoveObject.cpp.obj.d"
+  "CMakeFiles/GC3.dir/src/F_Lua_GenericObject.cpp.obj"
+  "CMakeFiles/GC3.dir/src/F_Lua_GenericObject.cpp.obj.d"
   "CMakeFiles/GC3.dir/src/F_MarisaLaser.cpp.obj"
   "CMakeFiles/GC3.dir/src/F_MarisaLaser.cpp.obj.d"
   "CMakeFiles/GC3.dir/src/F_MarisaRocket_small.cpp.obj"

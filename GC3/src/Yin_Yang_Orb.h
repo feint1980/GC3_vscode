@@ -9,7 +9,7 @@
 
 #include "EnemyBulletBase.h"
 #include "F_EnemyBasic.h"
-
+#include "FairyBase.h"
 class Yin_Yang_Orb
 {
 public:
@@ -27,7 +27,7 @@ public:
 
 	void drawLight(Feintgine::LightBatch & lightBatch);
 
-	void update(float deltaTime, std::vector<F_BaseEnemy *>  enemy, std::vector<EnemyBulletBase * > bullets);
+	void update(float deltaTime, std::vector<FairyBase *>  enemy, std::vector<EnemyBulletBase * > bullets);
 
 	void setDeathCallback(const std::function <void(void)>& f);
 

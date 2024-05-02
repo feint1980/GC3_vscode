@@ -6,7 +6,7 @@
 #include "EnemyBulletBase.h"
 
 #include "F_BaseEnemy.h"
-
+#include "FairyBase.h"
 #include <AudioEngine.h>
 
 class F_Non_Direction_Laser
@@ -24,7 +24,7 @@ public:
 	void drawRayLight(Feintgine::LightBatch & lightBatch);
 
 
-	void update(const glm::vec2 &pos, float angle, float deltaTime, std::vector<F_BaseEnemy *>  enemy,
+	void update(const glm::vec2 &pos, float angle, float deltaTime, std::vector<FairyBase *>  enemy,
 		std::vector<EnemyBulletBase * > bullets);
 
 	//void setAngle(float angle);

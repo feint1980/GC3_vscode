@@ -123,7 +123,7 @@ private:
 
 	Feintgine::AudioEngine m_audioEngine;
 
-	std::vector<F_BaseEnemy *> m_enemies;
+	std::vector<FairyBase *> m_enemies;
 
 	std::vector<EnemyBulletBase *> m_bullets;
 

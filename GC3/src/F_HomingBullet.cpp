@@ -11,7 +11,7 @@ F_HomingBullet::~F_HomingBullet()
 {
 }
 
-F_BaseEnemy * F_HomingBullet::getNearstEnemy(const glm::vec2 & pos,  std::vector<F_BaseEnemy *> enemy)
+F_BaseEnemy * F_HomingBullet::getNearstEnemy(const glm::vec2 & pos,  std::vector<FairyBase *> enemy)
 {
 	F_BaseEnemy * nearstEnemy = nullptr;
 	
@@ -60,7 +60,7 @@ EnemyAmplifier * F_HomingBullet::getNearstAmplifier(const glm::vec2 & pos, std::
 	return nearstEnemy;
 }
 
-void F_HomingBullet::update(float deltaTime, std::vector<F_BaseEnemy *>  enemies,
+void F_HomingBullet::update(float deltaTime, std::vector<FairyBase *>  enemies,
 	std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers)
 {
 	

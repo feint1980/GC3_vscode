@@ -34,7 +34,7 @@ void F_Marisa_Star_Trail_Manager::drawLight(Feintgine::LightBatch & lightBatch)
 	}
 }
 
-void F_Marisa_Star_Trail_Manager::update(const glm::vec2 & pos, float deltaTime, std::vector<F_BaseEnemy *> enemy, std::vector<EnemyBulletBase * > bullets)
+void F_Marisa_Star_Trail_Manager::update(const glm::vec2 & pos, float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyBulletBase * > bullets)
 {
 
 	if (m_isLeaveTrail)

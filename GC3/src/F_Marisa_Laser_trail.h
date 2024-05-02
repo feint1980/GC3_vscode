@@ -2,6 +2,7 @@
 #include "LightBatch.h"
 #include "F_BaseEnemy.h"
 #include "EnemyBulletBase.h"
+#include "FairyBase.h"
 class F_Marisa_Laser_trail
 {
 public:
@@ -11,7 +12,7 @@ public:
 
 	void drawLight(Feintgine::LightBatch & lightBatch);
 
-	void update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
+	void update(float deltaTime, std::vector<FairyBase *>  enemy,
 		std::vector<EnemyBulletBase * > bullets);
 	void updateState(float deltaTime);
 

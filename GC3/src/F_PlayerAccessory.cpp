@@ -116,7 +116,7 @@ void F_PlayerAccessory::drawDebug(Feintgine::DebugRender & renderer)
 	m_laserFocus.drawHitbox(renderer);
 }
 
-void F_PlayerAccessory::update(float deltaTime, std::vector<F_BaseEnemy *>  enemies,
+void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemies,
 	std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers)
 {
 
@@ -681,7 +681,7 @@ float F_PlayerAccessory::getLaserEnergy()
 	 return m_laser.getEnergy(); 
 }
 
-glm::vec2 F_PlayerAccessory::getRocketDirection(std::vector<F_BaseEnemy *> enemies, std::vector<EnemyAmplifier *> amplifiers)
+glm::vec2 F_PlayerAccessory::getRocketDirection(std::vector<FairyBase *> enemies, std::vector<EnemyAmplifier *> amplifiers)
 {
 	glm::vec2 returnVec = glm::vec2(0, 1.0f);
 	F_BaseEnemy * enemy = getNearstEnemy(m_pos, enemies);
@@ -720,7 +720,7 @@ glm::vec2 F_PlayerAccessory::getRocketDirection(std::vector<F_BaseEnemy *> enemi
 	return returnVec;
 }
 
-F_BaseEnemy * F_PlayerAccessory::getNearstEnemy(const glm::vec2 & pos, std::vector<F_BaseEnemy *> enemy)
+F_BaseEnemy * F_PlayerAccessory::getNearstEnemy(const glm::vec2 & pos, std::vector<FairyBase *> enemy)
 {
 	F_BaseEnemy * nearstEnemy = nullptr;
 

@@ -9,7 +9,7 @@
 #include <AudioEngine.h>
 #include "EnemyBulletBase.h"
 #include "F_EnemyBasic.h"
-
+#include "FairyBase.h"
 #include <EffectBatch.h>
 const int FANTASY_SEAL_BORDER = 350;
 class F_Reimu_Fantasy_Seal_Obj
@@ -28,7 +28,7 @@ public:
 
 	void drawLight(Feintgine::LightBatch & lightBatch);	
 
-	void update(float deltaTime, std::vector<F_BaseEnemy *>  enemy, std::vector<EnemyBulletBase * > bullets);
+	void update(float deltaTime, std::vector<FairyBase *>  enemy, std::vector<EnemyBulletBase * > bullets);
 
 	bool isAlive() const { return  m_isAlive; }
 
@@ -44,7 +44,7 @@ public:
 
 	void setDeathCallback(const std::function <void(void)>& f);
 
-	F_BaseEnemy * getNearstEnemy(const glm::vec2 & pos, std::vector<F_BaseEnemy *> enemy);
+	F_BaseEnemy * getNearstEnemy(const glm::vec2 & pos, std::vector<FairyBase *> enemy);
 
 	bool checkColliderWithEnemyBullet(const EnemyBulletBase & bullet);
 

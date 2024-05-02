@@ -100,7 +100,7 @@ void F_MarisaStar::drawLight(Feintgine::LightBatch & lightBatch)
 	}
 }
 
-void F_MarisaStar::update(float deltaTime, std::vector<F_BaseEnemy *>  enemy,
+void F_MarisaStar::update(float deltaTime, std::vector<FairyBase *>  enemy,
 	std::vector<EnemyBulletBase * > bullets)
 {
 

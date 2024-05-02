@@ -6,7 +6,7 @@
 class F_BaseEnemy;
 class EnemyGuardian;
 class EnemyAmplifier;
-
+class FairyBase;
 
 //class Feintgine::ParticleBatch2D;
 
@@ -22,7 +22,7 @@ public:
 
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 
-	void update(float deltaTime, const glm::vec2 pos, std::vector<F_BaseEnemy *>  enemies,
+	void update(float deltaTime, const glm::vec2 pos, std::vector<FairyBase *>  enemies,
 		std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers, bool updateColor = true);
 
 

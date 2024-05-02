@@ -1,5 +1,6 @@
 #include "F_MarisaLaser.h"
 #include "F_BaseEnemy.h"
+#include "FairyBase.h"
 #include "EnemyAmplifier.h"
 #include "EnemyGuardian.h"
 #include "GlobalValueClass.h"
@@ -57,7 +58,7 @@ void F_MarisaLaser::draw(Feintgine::SpriteBatch & spriteBatch)
 
 }
 
-void F_MarisaLaser::update(float deltaTime, const glm::vec2 pos, std::vector<F_BaseEnemy *>  enemies,
+void F_MarisaLaser::update(float deltaTime, const glm::vec2 pos, std::vector<FairyBase *>  enemies,
 	std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers, bool updateColor )
 {
 

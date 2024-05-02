@@ -41,7 +41,7 @@ private :
 	BackGroundMap m_bg;
 	int m_selection = -1;
 
-	std::vector<F_BaseEnemy *> m_enemies;
+	std::vector<FairyBase *> m_enemies;
 
 	std::vector<EnemyGuardian *> m_guardians;
 

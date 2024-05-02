@@ -26,7 +26,7 @@ F_MarisaRocket_small::~F_MarisaRocket_small()
 
 }
 
-void F_MarisaRocket_small::update(float deltaTime, std::vector<F_BaseEnemy *> enemy,
+void F_MarisaRocket_small::update(float deltaTime, std::vector<FairyBase *> enemy,
 	std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers)
 {
 	if (!m_isDone)

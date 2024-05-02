@@ -9,7 +9,7 @@
 #include <AfterImageParticle.h>
 #include "EnemyBulletBase.h"
 #include "F_EnemyBasic.h"
-
+#include "FairyBase.h"
 class F_Reimu_Demon_Binding
 {
 public:
@@ -27,7 +27,7 @@ public:
 
 	void drawLight(Feintgine::LightBatch & lightBatch);
 
-	void update(float deltaTime, std::vector<F_BaseEnemy *>  enemy, std::vector<EnemyBulletBase * > bullets);
+	void update(float deltaTime, std::vector<FairyBase *>  enemy, std::vector<EnemyBulletBase * > bullets);
 
 	bool isAlive() const { return  m_isAlive; }
 

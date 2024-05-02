@@ -59,7 +59,7 @@ void F_Orreries_Sun::init(const std::string & animationPath, int id)
 
 }
 
-void F_Orreries_Sun::update(float deltaTime, std::vector<F_BaseEnemy *> enemies,
+void F_Orreries_Sun::update(float deltaTime, std::vector<FairyBase *> enemies,
 	std::vector<EnemyGuardian *> guardians,
 	std::vector<EnemyAmplifier *> amplifiers,
 	std::vector<EnemyBulletBase * > bullets)

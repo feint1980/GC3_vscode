@@ -18,7 +18,7 @@ F_Marisa_Luminous_Charge::~F_Marisa_Luminous_Charge()
 {
 }
 
-void F_Marisa_Luminous_Charge::update(float deltaTime, std::vector<F_BaseEnemy *> enemy,
+void F_Marisa_Luminous_Charge::update(float deltaTime, std::vector<FairyBase *> enemy,
 	std::vector<EnemyBulletBase * > bullets)
 {
 	glm::vec2 targetPos = GlobalValueClass::Instance()->getPlayer()->getPos();

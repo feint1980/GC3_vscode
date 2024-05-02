@@ -14,7 +14,7 @@ EnemyGuardian::~EnemyGuardian()
 
 
 
-void EnemyGuardian::update(float deltaTime, std::vector<F_BaseEnemy *> enemy, std::vector<EnemyAmplifier *> amplifier, const F_Player & player)
+void EnemyGuardian::update(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyAmplifier *> amplifier, const F_Player & player)
 {
 	m_pos += m_vel * deltaTime;
 
@@ -112,7 +112,7 @@ void EnemyGuardian::update(float deltaTime, std::vector<F_BaseEnemy *> enemy, st
 
 
 
-void EnemyGuardian::decideStrat(float deltaTime, std::vector<F_BaseEnemy *> enemy, std::vector<EnemyAmplifier *> amplifier, const F_Player & player)
+void EnemyGuardian::decideStrat(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyAmplifier *> amplifier, const F_Player & player)
 {
 	protectingTarget = nullptr;//getHighestPriorityEnemy(enemy,player);
 
@@ -174,7 +174,7 @@ void EnemyGuardian::decideStrat(float deltaTime, std::vector<F_BaseEnemy *> enem
 	//handleShieldFormation(deltaTime);
 }
 
-F_BaseEnemy * EnemyGuardian::getHighestPriorityEnemy(std::vector<F_BaseEnemy *> enemy, const F_Player & player)
+F_BaseEnemy * EnemyGuardian::getHighestPriorityEnemy(std::vector<FairyBase *> enemy, const F_Player & player)
 {
 	F_BaseEnemy * returnVal = nullptr;
 	//int maxPrio = 0;

@@ -99,7 +99,7 @@ void F_Reimu_Demon_Binding::drawLight(Feintgine::LightBatch & lightBatch)
 }
 
 void F_Reimu_Demon_Binding::update(float deltaTime,
-	std::vector<F_BaseEnemy *>  enemy,
+	std::vector<FairyBase *>  enemy,
 	std::vector<EnemyBulletBase * > bullets)
 {
 	m_lifeTime -= LIFE_TIME_RATE * deltaTime;

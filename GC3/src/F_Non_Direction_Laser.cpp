@@ -49,7 +49,7 @@ void F_Non_Direction_Laser::drawRayLight(Feintgine::LightBatch & lightBatch)
 
 }
 
-void F_Non_Direction_Laser::update(const glm::vec2 &pos,float angle, float deltaTime, std::vector<F_BaseEnemy *> enemy, std::vector<EnemyBulletBase * > bullets)
+void F_Non_Direction_Laser::update(const glm::vec2 &pos,float angle, float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyBulletBase * > bullets)
 {
 	m_pos = pos;
 	m_angle = angle;

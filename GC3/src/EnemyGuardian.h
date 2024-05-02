@@ -11,11 +11,11 @@ public:
 	EnemyGuardian();
 	~EnemyGuardian();
 
-	void update(float deltaTime, std::vector<F_BaseEnemy *> enemy, std::vector<EnemyAmplifier *> amplifier, const F_Player & player );
+	void update(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyAmplifier *> amplifier, const F_Player & player );
 
-	void decideStrat(float deltaTime, std::vector<F_BaseEnemy *> enemy, std::vector<EnemyAmplifier *> amplifier,  const F_Player & player);
+	void decideStrat(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyAmplifier *> amplifier,  const F_Player & player);
 
-	F_BaseEnemy * getHighestPriorityEnemy(std::vector<F_BaseEnemy *> enemy, const F_Player & player);
+	F_BaseEnemy * getHighestPriorityEnemy(std::vector<FairyBase *> enemy, const F_Player & player);
 
 	EnemyAmplifier * getHighestPriorityAmplifier(std::vector<EnemyAmplifier *> amplifier, const F_Player & player);
 

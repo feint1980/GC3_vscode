@@ -34,7 +34,7 @@ void F_Marisa_Laser_trail::drawLight(Feintgine::LightBatch & lightBatch)
 		, 1.0f / t_attenuation, m_angle - degreeToRad(90));
 }
 
-void F_Marisa_Laser_trail::update(float deltaTime, std::vector<F_BaseEnemy *> enemy, std::vector<EnemyBulletBase * > bullets)
+void F_Marisa_Laser_trail::update(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyBulletBase * > bullets)
 {
 	//m_angle += 0.05f;
 	updateState(deltaTime);
