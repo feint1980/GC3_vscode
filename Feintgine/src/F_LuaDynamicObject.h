@@ -4,6 +4,7 @@
 #include "F_AnimatedObject.h"
 #include "LuaManager.h"
 #include "F_oEvent.h"
+#include "AfterImageParticle.h"
 
 // move table define
 /*
@@ -68,6 +69,9 @@ namespace Feintgine
 
 		void eventTimer();
 
+		void setTrace(float interval, float lifeTime, int maxTrace ,float scaleRate,float alphaRate);
+
+
 	protected:
 
 
@@ -95,6 +99,7 @@ namespace Feintgine
 
 		// Custom state declare above 
 
+		glm::vec2 * p_pos;
 		glm::vec2 m_pos;
 		glm::vec2 m_scale;
 		float m_angle;
@@ -122,6 +127,9 @@ namespace Feintgine
 		std::priority_queue<Feintgine::oEvent,
 			std::vector<Feintgine::oEvent>, Feintgine::oEvent_less> event_queue;
 
+		float m_afterImageTime = 0.0f;
+
+		AfterImageObject m_afterImageParticle;
 
 	};
 }

@@ -24,13 +24,17 @@ namespace Feintgine
 		m_pos = pos;
 		m_animation = t_animation;
 		m_scale = scale;
+		m_animation.setScale(m_scale);
 		m_depth = depth;
 		m_angle = angle;
 		m_animation.playAnimation("idle");
 		m_isAnimated = true;
+
+		p_pos = &m_pos;
+		m_afterImageParticle.init(p_pos,&m_animation ,&m_animation.getColor(),
+		.3f, 10);
+		m_afterImageParticle.setScale(m_scale);
 	}
-
-
 
 	void F_LuaDynamicObject::clearEvent()
 	{
@@ -51,11 +55,17 @@ namespace Feintgine
 		m_pos = pos;
 		m_animation.init(t_animationPath);
 		m_scale = scale;
+		m_animation.setScale(m_scale);
 		m_depth = depth;
 		m_angle = angle;
 		m_animation.playAnimation("idle");
 		//setMoveLinear(glm::vec2(0, -400), 1.0f);
 		m_isAnimated = true;
+
+		p_pos = &m_pos;
+		m_afterImageParticle.init(p_pos,&m_animation ,&m_animation.getColor(),
+		.3f, 10);
+		m_afterImageParticle.setScale(m_scale);
 	}
 
 	void F_LuaDynamicObject::eventTimer()
@@ -67,6 +77,15 @@ namespace Feintgine
 			event_queue.top()();
 			event_queue.pop();
 		}
+	}
+
+	void F_LuaDynamicObject::setTrace(float interval, float lifeTime, int maxTrace,float scaleRate,float alphaRate)
+	{
+		m_afterImageTime = lifeTime;
+		m_afterImageParticle.setTraceInterval(interval);
+		m_afterImageParticle.setTotalTrace(maxTrace);
+		m_afterImageParticle.setScaleRate(scaleRate);
+		m_afterImageParticle.setAlphaRate(alphaRate);
 	}
 
 	void F_LuaDynamicObject::setMovementAnim(int val)
@@ -146,6 +165,10 @@ namespace Feintgine
 			desRect.w = m_sprite.getDim().y  * m_scale.y;
 			spriteBatch.draw(desRect, m_sprite.getUV(), m_sprite.getTexture().id, m_depth, m_color, m_angle);
 		}
+		if (m_afterImageTime > 0.0f)
+		{
+			m_afterImageParticle.draw(spriteBatch);
+		}
 	}
 
 	void F_LuaDynamicObject::update(float deltaTime)
@@ -155,6 +178,12 @@ namespace Feintgine
 		if (m_isAnimated)
 		{
 			m_animation.update(deltaTime);
+		}
+		eventTimer();
+		if(m_afterImageTime > 0.0f)
+		{
+			m_afterImageTime -=  0.1f * deltaTime;
+			m_afterImageParticle.update(deltaTime, m_animation.getCurrentAnimation()->getCurrentIndex(),m_angle);
 		}
 	}
 

@@ -36,6 +36,8 @@ function moveset_summon(host)
     IssueNextTask(host,soul_1)
     dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior1,host,komachi)}
     IssueNextTask(host,komachi)
+    cppSetAfterImage(host,komachi,0.2,10.0)
+    
     isMovesetSelected = true
     
 
@@ -164,6 +166,7 @@ end
 function  DynamicBehavior1( host, dynob )
 	while true do 
     cppMoveObject(host,dynob,200,300,50)
+    cppSetAfterImage(host,soul_1,0.01,10.0,25,0.05)
     coroutine.yield()
     --function bc.patern_MA_hypocycloid(host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
     bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",
@@ -223,6 +226,7 @@ function  DynamicBehavior1( host, dynob )
     coroutine.yield()
 
     cppMoveObject(host,dynob,0,0,50)
+    cppSetAfterImage(host,soul_1,0.01,10.0,25,0.05)
     coroutine.yield()
 
     cppHoldPosition(host,dynob,100,"idle")

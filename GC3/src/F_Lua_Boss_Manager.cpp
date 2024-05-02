@@ -289,7 +289,35 @@ int lua_createHelper(lua_State * L)
 	return 0 ;
 }
 
-
+int lua_setAfterImage(lua_State * L)
+{
+	if (lua_gettop(L) <4 ||  lua_gettop(L) > 7)
+	{
+		std::cout << "(lua_setAfterImage) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
+	float interval = lua_tonumber(L, 3);
+	float lifeTime = lua_tonumber(L, 4);
+	int maxNum = 10;
+	float scaleRate = 0.0f;
+	float alphaRate = 0.5f;
+	if(lua_gettop(L) >= 5)
+	{
+		maxNum = lua_tonumber(L, 5);
+	}
+	if(lua_gettop(L) >= 6)
+	{
+		scaleRate = lua_tonumber(L, 6);
+	}
+	if(lua_gettop(L) == 7)
+	{
+		alphaRate = lua_tonumber(L, 7);
+	}
+	dynamicObject->setTrace(interval, lifeTime, maxNum, scaleRate, alphaRate);
+	return 0;
+}
 
 
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
@@ -312,6 +340,7 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppSetFire_Base", lua_setFireBase);
 	lua_register(m_script, "cppCreateHelper", lua_createHelper);
 	lua_register(m_script, "cppRemoveFromLua", lua_removeFromLua);
+	lua_register(m_script, "cppSetAfterImage", lua_setAfterImage);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 }
 

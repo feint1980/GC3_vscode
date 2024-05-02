@@ -1,6 +1,9 @@
 #pragma once
 #include <F_LuaDynamicObject.h>
 #include "EnemyBulletBase.h"
+#include "TraceObject.h"
+#include <AfterImageParticle.h>
+
 
 class F_Lua_GenericObject : public Feintgine::F_LuaDynamicObject
 {
@@ -12,10 +15,18 @@ public:
 
     virtual void draw(Feintgine::SpriteBatch & spriteBatch) override;
 
+    virtual void update(float deltaTime) override;
+
     std::vector<EnemyBulletBase *> m_bullets;
+
+
 
 protected:
 
+	float m_t;
     
-    
+
+
+  
+
 };

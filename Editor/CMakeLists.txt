@@ -53,6 +53,7 @@ file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_Lua_Boss_State.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_Lua_Boss.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_Lua_GenericObject.cpp
+    ${PROJECT_SOURCE_DIR}/../GC3/src/TraceObject.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/FairyBase.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/KanjiEffectrObject.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_EnemyBasic.pp

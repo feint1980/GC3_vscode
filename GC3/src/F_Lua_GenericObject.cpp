@@ -3,6 +3,11 @@
 
 F_Lua_GenericObject::F_Lua_GenericObject()
 {
+	m_isDeath = false;
+	m_animation_left_name = "left";
+	m_animation_right_name = "right";
+	m_animation_center_name = "idle";
+
 
 }
 
@@ -23,11 +28,36 @@ void F_Lua_GenericObject::t_editor_reset()
 
 
 void F_Lua_GenericObject::draw(Feintgine::SpriteBatch & spriteBatch)
+{
+	F_LuaDynamicObject::draw(spriteBatch);
+	for (int i = 0; i < m_bullets.size(); i++)
 	{
-		F_LuaDynamicObject::draw(spriteBatch);
-		for (int i = 0; i < m_bullets.size(); i++)
-		{
-			
-			m_bullets[i]->draw(spriteBatch);
-		}
+		
+		m_bullets[i]->draw(spriteBatch);
 	}
+}
+
+void F_Lua_GenericObject::update(float deltaTime)
+{
+	//std::cout << "updated 121212121 \n";
+	F_LuaDynamicObject::update(deltaTime);
+	
+	if (!m_isAnimationOverride)
+	{
+		decideAnimation(m_pos);
+	}
+	
+	//	m_pos += m_vel  * deltaTime;
+
+	// if (m_isAnimated)
+	// {
+	// 	m_animation.update(deltaTime);
+	// }
+
+	for (int i = 0; i < m_bullets.size(); i++)
+	{
+		m_bullets[i]->update(deltaTime);
+	}
+	
+
+}
