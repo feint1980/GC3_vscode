@@ -44,8 +44,7 @@ F_BulletStraight::~F_BulletStraight()
 // 	m_vel = vel;
 // }
 
-void F_BulletStraight::update(float deltaTime, std::vector<FairyBase * >  enemy,
-	std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers)
+void F_BulletStraight::update(float deltaTime, std::vector<FairyBase * >  enemy)
 {
 
 	//std::cout << m_animation.getName() << "\n";
@@ -141,145 +140,145 @@ void F_BulletStraight::update(float deltaTime, std::vector<FairyBase * >  enemy,
 			}
 		}
 			
-		for (int i = 0; i < guardians.size(); i++)
-		{
-			if (!guardians[i]->isDeath())
-			{
-				if (checkColiderWithGuardian(*guardians[i]))
-				{
-					guardians[i]->takeDamage(m_damage);
-					if (m_isAnimated)
-					{
-						destroy();
-						if (m_particleBatch)
-						{
-							switch (m_particleType)
-							{
-							case 0:
-							{
-								break;
-							}
-							case 1:
-							{
-								float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
-								glm::vec2 t_pos = m_pos;
-								t_pos.x += ranX;
-								glm::vec2 halfDim = enemy[i]->getDim() * 0.5f;
-								for (int f = 0; f < m_particleNum; f++)
-								{
-									m_particleBatch->addParticle(true,t_pos - halfDim, glm::vec2(ranX, 3.15f), Feintgine::Color(100, 255, 100, 255), 0.7f, 2.2f, glm::vec3(12, 10, 15));
-								}
-							}
-							break;
-							case 2:
-							{
-								float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
-								glm::vec2 t_pos = m_pos;
-								t_pos.x += ranX;
-								glm::vec2 halfDim = enemy[i]->getDim() * 0.5f;
-								for (int f = 0; f < m_particleNum; f++)
-								{
-									m_particleBatch->addParticle(true,t_pos - halfDim, glm::vec2(ranX, 4.15f), Feintgine::Color(255, 100, 100, 255), 0.7f, 2.2f, glm::vec3(8, 12, 17));
-								}
-							}
-							break;
+		// for (int i = 0; i < guardians.size(); i++)
+		// {
+		// 	if (!guardians[i]->isDeath())
+		// 	{
+		// 		if (checkColiderWithGuardian(*guardians[i]))
+		// 		{
+		// 			guardians[i]->takeDamage(m_damage);
+		// 			if (m_isAnimated)
+		// 			{
+		// 				destroy();
+		// 				if (m_particleBatch)
+		// 				{
+		// 					switch (m_particleType)
+		// 					{
+		// 					case 0:
+		// 					{
+		// 						break;
+		// 					}
+		// 					case 1:
+		// 					{
+		// 						float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
+		// 						glm::vec2 t_pos = m_pos;
+		// 						t_pos.x += ranX;
+		// 						glm::vec2 halfDim = enemy[i]->getDim() * 0.5f;
+		// 						for (int f = 0; f < m_particleNum; f++)
+		// 						{
+		// 							m_particleBatch->addParticle(true,t_pos - halfDim, glm::vec2(ranX, 3.15f), Feintgine::Color(100, 255, 100, 255), 0.7f, 2.2f, glm::vec3(12, 10, 15));
+		// 						}
+		// 					}
+		// 					break;
+		// 					case 2:
+		// 					{
+		// 						float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
+		// 						glm::vec2 t_pos = m_pos;
+		// 						t_pos.x += ranX;
+		// 						glm::vec2 halfDim = enemy[i]->getDim() * 0.5f;
+		// 						for (int f = 0; f < m_particleNum; f++)
+		// 						{
+		// 							m_particleBatch->addParticle(true,t_pos - halfDim, glm::vec2(ranX, 4.15f), Feintgine::Color(255, 100, 100, 255), 0.7f, 2.2f, glm::vec3(8, 12, 17));
+		// 						}
+		// 					}
+		// 					break;
 
-							default:
-								break;
-							}
+		// 					default:
+		// 						break;
+		// 					}
 
-						}
-					}
-					else
-					{
-						m_isAlive = false;
-						if (m_particleBatch)
-						{
-							float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
-							glm::vec2 t_pos = m_pos;
-							t_pos.x += ranX;
-							glm::vec2 halfDim = guardians[i]->getDim() * 0.5f;
-							for (int f = 0; f < m_particleNum; f++)
-							{
-								//std::cout << "created \n";
-								m_particleBatch->addParticle(t_pos - halfDim, glm::vec2(0, 1.15f), Feintgine::Color(255, 255, 255, 120), 0.7f);
-							}
-						}
-					}
+		// 				}
+		// 			}
+		// 			else
+		// 			{
+		// 				m_isAlive = false;
+		// 				if (m_particleBatch)
+		// 				{
+		// 					float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
+		// 					glm::vec2 t_pos = m_pos;
+		// 					t_pos.x += ranX;
+		// 					glm::vec2 halfDim = guardians[i]->getDim() * 0.5f;
+		// 					for (int f = 0; f < m_particleNum; f++)
+		// 					{
+		// 						//std::cout << "created \n";
+		// 						m_particleBatch->addParticle(t_pos - halfDim, glm::vec2(0, 1.15f), Feintgine::Color(255, 255, 255, 120), 0.7f);
+		// 					}
+		// 				}
+		// 			}
 
-				}
-			}
-		}
+		// 		}
+		// 	}
+		// }
 
-		for (int i = 0; i < amplifiers.size(); i++)
-		{
-			if (!amplifiers[i]->isDeath())
-			{
-				if (checkColiderWithAmplifier(*amplifiers[i]))
-				{
-					amplifiers[i]->takeDamage(m_damage);
-					if (m_isAnimated)
-					{
-						destroy();
-						if (m_particleBatch)
-						{
-							switch (m_particleType)
-							{
-							case 0:
-							{
-								break;
-							}
-							case 1:
-							{
-								float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
-								glm::vec2 t_pos = m_pos;
-								t_pos.x += ranX;
-								glm::vec2 halfDim = enemy[i]->getDim() * 0.5f;
-								for (int f = 0; f < m_particleNum; f++)
-								{
-									m_particleBatch->addParticle(true,t_pos - halfDim, glm::vec2(ranX, 3.15f), Feintgine::Color(100, 255, 100, 255), 0.7f, 2.2f, glm::vec3(8, 12, 17));
-								}
-							}
-							break;
-							case 2:
-							{
-								float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
-								glm::vec2 t_pos = m_pos;
-								t_pos.x += ranX;
-								glm::vec2 halfDim = enemy[i]->getDim() * 0.5f;
-								for (int f = 0; f < m_particleNum; f++)
-								{
-									m_particleBatch->addParticle(true,t_pos - halfDim, glm::vec2(ranX, 4.15f), Feintgine::Color(255, 100, 100, 255), 0.7f, 2.2f, glm::vec3(12, 15, 22));
-								}
-							}
-							break;
+		// for (int i = 0; i < amplifiers.size(); i++)
+		// {
+		// 	if (!amplifiers[i]->isDeath())
+		// 	{
+		// 		if (checkColiderWithAmplifier(*amplifiers[i]))
+		// 		{
+		// 			amplifiers[i]->takeDamage(m_damage);
+		// 			if (m_isAnimated)
+		// 			{
+		// 				destroy();
+		// 				if (m_particleBatch)
+		// 				{
+		// 					switch (m_particleType)
+		// 					{
+		// 					case 0:
+		// 					{
+		// 						break;
+		// 					}
+		// 					case 1:
+		// 					{
+		// 						float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
+		// 						glm::vec2 t_pos = m_pos;
+		// 						t_pos.x += ranX;
+		// 						glm::vec2 halfDim = enemy[i]->getDim() * 0.5f;
+		// 						for (int f = 0; f < m_particleNum; f++)
+		// 						{
+		// 							m_particleBatch->addParticle(true,t_pos - halfDim, glm::vec2(ranX, 3.15f), Feintgine::Color(100, 255, 100, 255), 0.7f, 2.2f, glm::vec3(8, 12, 17));
+		// 						}
+		// 					}
+		// 					break;
+		// 					case 2:
+		// 					{
+		// 						float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
+		// 						glm::vec2 t_pos = m_pos;
+		// 						t_pos.x += ranX;
+		// 						glm::vec2 halfDim = enemy[i]->getDim() * 0.5f;
+		// 						for (int f = 0; f < m_particleNum; f++)
+		// 						{
+		// 							m_particleBatch->addParticle(true,t_pos - halfDim, glm::vec2(ranX, 4.15f), Feintgine::Color(255, 100, 100, 255), 0.7f, 2.2f, glm::vec3(12, 15, 22));
+		// 						}
+		// 					}
+		// 					break;
 
-							default:
-								break;
-							}
+		// 					default:
+		// 						break;
+		// 					}
 
-						}
-					}
-					else
-					{
-						m_isAlive = false;
-						if (m_particleBatch)
-						{
-							float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
-							glm::vec2 t_pos = m_pos;
-							t_pos.x += ranX;
-							glm::vec2 halfDim = amplifiers[i]->getDim() * 0.5f;
-							for (int f = 0; f < m_particleNum; f++)
-							{
-								std::cout << "created \n";
-								m_particleBatch->addParticle(t_pos - halfDim, glm::vec2(0, 1.15f), Feintgine::Color(255, 255, 255, 120), 0.7f);
-							}
-						}
-					}
+		// 				}
+		// 			}
+		// 			else
+		// 			{
+		// 				m_isAlive = false;
+		// 				if (m_particleBatch)
+		// 				{
+		// 					float ranX = feint_common::Instance()->getRandomNum(-1.5, 1.5);
+		// 					glm::vec2 t_pos = m_pos;
+		// 					t_pos.x += ranX;
+		// 					glm::vec2 halfDim = amplifiers[i]->getDim() * 0.5f;
+		// 					for (int f = 0; f < m_particleNum; f++)
+		// 					{
+		// 						std::cout << "created \n";
+		// 						m_particleBatch->addParticle(t_pos - halfDim, glm::vec2(0, 1.15f), Feintgine::Color(255, 255, 255, 120), 0.7f);
+		// 					}
+		// 				}
+		// 			}
 
-				}
-			}
-		}
+		// 		}
+		// 	}
+		// }
 	}
 }
 

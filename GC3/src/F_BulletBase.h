@@ -50,8 +50,7 @@ public:
 
 	void setScale(const glm::vec2 & scale);
 
-	virtual void update(float deltaTime, std::vector<FairyBase *> enemy,
-		std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers) = 0;
+	virtual void update(float deltaTime, std::vector<FairyBase *> enemy) = 0;
 
 	bool isAlive() const { return m_isAlive; }
 

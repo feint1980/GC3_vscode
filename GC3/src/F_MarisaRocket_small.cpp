@@ -26,8 +26,7 @@ F_MarisaRocket_small::~F_MarisaRocket_small()
 
 }
 
-void F_MarisaRocket_small::update(float deltaTime, std::vector<FairyBase *> enemy,
-	std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers)
+void F_MarisaRocket_small::update(float deltaTime, std::vector<FairyBase *> enemy)
 {
 	if (!m_isDone)
 	{
@@ -44,7 +43,7 @@ void F_MarisaRocket_small::update(float deltaTime, std::vector<FairyBase *> enem
 	}
 	m_lightPos = m_pos + t_additionPos;// globalRotatePoint(m_pos - (m_dims * 0.5f * m_scale.x), m_animation.getAngle() - RAD_90_DEGREE);
 
-	F_BulletStraight::update(deltaTime, enemy,guardians,amplifiers);
+	F_BulletStraight::update(deltaTime, enemy);
 
 }
 

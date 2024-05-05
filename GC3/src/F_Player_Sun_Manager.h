@@ -12,7 +12,7 @@ public:
 
 
 	void update(const glm::vec2 &  pos, float deltaTime, std::vector<FairyBase *>  enemies,
-		std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers, std::vector<EnemyBulletBase * > bullets);
+		 std::vector<EnemyBulletBase * > bullets);
 
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 

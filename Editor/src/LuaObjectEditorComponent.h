@@ -119,7 +119,7 @@ private:
 	F_Player m_player;
 
 
-	std::vector<F_BaseEnemy *> m_enemies;
+	std::vector<FairyBase *> m_enemies;
 	std::vector<EnemyGuardian *> m_guardians;
 	std::vector<EnemyAmplifier *> m_amplifiers;
 

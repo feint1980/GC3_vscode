@@ -22,8 +22,7 @@ public:
 
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 
-	void update(float deltaTime, const glm::vec2 pos, std::vector<FairyBase *>  enemies,
-		std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers, bool updateColor = true);
+	void update(float deltaTime, const glm::vec2 pos, std::vector<FairyBase *>  enemies, bool updateColor = true);
 
 
 	bool checkColiderWithEmeny(const F_BaseEnemy & enemy);

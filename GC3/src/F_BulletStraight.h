@@ -12,8 +12,7 @@ public:
 		const std::string & animationPath, float depth, float dmg,
 		Feintgine::ParticleBatch2D * hitParticleBatch = nullptr);
 
-	virtual void update(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyGuardian *> guardians,
-		std::vector<EnemyAmplifier *> amplifiers) override;
+	virtual void update(float deltaTime, std::vector<FairyBase *> enemy) override;
 
 	virtual void draw(Feintgine::SpriteBatch & spriteBatch);
 

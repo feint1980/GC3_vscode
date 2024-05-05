@@ -120,7 +120,7 @@ namespace Feintgine {
 		Imageset_node->append_attribute(doc.allocate_attribute("autoScaled", "vertical"));
 
 
-		std::unordered_map<std::string, Feintgine::F_Sprite>::iterator it;
+		std::map<std::string, Feintgine::F_Sprite>::iterator it;
 		for (it = m_spriteMap.begin(); it != m_spriteMap.end(); it++)
 		{
 
@@ -199,7 +199,7 @@ namespace Feintgine {
 	Feintgine::F_Sprite  SpritePacket::getSpriteByName(const std::string & filePath)
 	{
 
-		std::unordered_map<std::string, Feintgine::F_Sprite >::iterator it;
+		std::map<std::string, Feintgine::F_Sprite >::iterator it;
 		Feintgine::F_Sprite returnone;
 		it = m_spriteMap.find(filePath);
 		if (it != m_spriteMap.end())
@@ -216,7 +216,7 @@ namespace Feintgine {
 
 	void SpritePacket::updateTexture()
 	{
-		for(std::unordered_map<std::string, Feintgine::F_Sprite >::iterator it = m_spriteMap.begin(); it != m_spriteMap.end(); it++)
+		for(std::map<std::string, Feintgine::F_Sprite >::iterator it = m_spriteMap.begin(); it != m_spriteMap.end(); it++)
 		{
 			it->second.updateTextureBuffers();
 		}

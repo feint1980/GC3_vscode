@@ -121,7 +121,7 @@ void ShaderToy::update(float deltaTime)
 	m_shaderTime += 0.01075f* deltaTime;
 	if (loaded)
 	{		
-		m_player.update(deltaTime, m_enemies, m_bullets,m_guardians,m_amplifiers);
+		m_player.update(deltaTime, m_enemies, m_bullets);
 			
 		m_bg.update(deltaTime);
 		m_animatObj.update(deltaTime);
@@ -148,7 +148,30 @@ void ShaderToy::update(float deltaTime)
 			m_particleEngine.update(deltaTime);
 			for (auto it = m_enemies.begin(); it != m_enemies.end(); )
 			{
-				(*it)->update(deltaTime);
+				int internalID = (*it)->getInternalID();
+				switch (internalID)
+				{
+				case FAIRY_BASE:
+				{
+					(*it)->update(deltaTime);
+				}
+					break;
+
+				case AMPLIFIER:
+				{
+					dynamic_cast<EnemyAmplifier *>(*it)->update(deltaTime,m_enemies , m_player);
+				}		
+					break;
+
+				case GUARDIAN:
+				{
+					dynamic_cast<EnemyGuardian *>(*it)->update(deltaTime, m_enemies, m_player);
+				}
+					break;
+				
+				default:
+					break;
+				}
 
 				if (!(*it)->isAlive())
 				{
@@ -160,35 +183,35 @@ void ShaderToy::update(float deltaTime)
 					++it;
 				}
 			}
-			for (auto it = m_guardians.begin(); it != m_guardians.end(); )
-			{
-				(*it)->update(deltaTime,m_enemies,m_amplifiers, m_player);
+			// for (auto it = m_guardians.begin(); it != m_guardians.end(); )
+			// {
+			// 	(*it)->update(deltaTime,m_enemies,m_amplifiers, m_player);
 
-				if (!(*it)->isAlive())
-				{
-					delete * it;
-					it = m_guardians.erase(it);
-				}
-				else
-				{
-					++it;
-				}
-			}
+			// 	if (!(*it)->isAlive())
+			// 	{
+			// 		delete * it;
+			// 		it = m_guardians.erase(it);
+			// 	}
+			// 	else
+			// 	{
+			// 		++it;
+			// 	}
+			// }
 
-			for (auto it = m_amplifiers.begin(); it != m_amplifiers.end(); )
-			{
-				(*it)->update(deltaTime, m_amplifiers, m_player);
+			// for (auto it = m_amplifiers.begin(); it != m_amplifiers.end(); )
+			// {
+			// 	(*it)->update(deltaTime, m_amplifiers, m_player);
 
-				if (!(*it)->isAlive())
-				{
-					delete * it;
-					it = m_amplifiers.erase(it);
-				}
-				else
-				{
-					++it;
-				}
-			}
+			// 	if (!(*it)->isAlive())
+			// 	{
+			// 		delete * it;
+			// 		it = m_amplifiers.erase(it);
+			// 	}
+			// 	else
+			// 	{
+			// 		++it;
+			// 	}
+			// }
 			for (int i = 0; i < m_enemies.size(); i++)
 			{
 				if (m_enemies[i]->m_bullets.size() > 0)
@@ -256,7 +279,7 @@ void ShaderToy::update(float deltaTime)
 		
 		m_kanjiEffectManager.update(deltaTime);
 
-		m_linkCreator.update(deltaTime, m_amplifiers, m_bullets,m_player);
+		m_linkCreator.update(deltaTime, m_enemies, m_bullets,m_player);
 		m_boss.update(deltaTime,m_player);
 
 		Feintgine::F_Event::Instance()->timer();
@@ -512,14 +535,14 @@ void ShaderToy::draw()
 				{
 					m_enemies[i]->drawLight(m_lightBatch);
 				}
-				for (auto i = 0; i < m_guardians.size(); i++)
-				{
-					m_guardians[i]->drawLight(m_lightBatch);
-				}
-				for (auto i = 0; i < m_amplifiers.size(); i++)
-				{
-					m_amplifiers[i]->drawLight(m_lightBatch);
-				}
+				// for (auto i = 0; i < m_guardians.size(); i++)
+				// {
+				// 	m_guardians[i]->drawLight(m_lightBatch);
+				// }
+				// for (auto i = 0; i < m_amplifiers.size(); i++)
+				// {
+				// 	m_amplifiers[i]->drawLight(m_lightBatch);
+				// }
 			}
 
 			m_lightBatch.renderLight();
@@ -553,14 +576,14 @@ void ShaderToy::draw()
 			{
 				m_enemies[i]->draw(m_spriteBatch);
 			}
-			for (int i = 0; i < m_guardians.size(); i++)
-			{
-				m_guardians[i]->draw(m_spriteBatch);
-			}
-			for (int i = 0; i < m_amplifiers.size(); i++)
-			{
-				m_amplifiers[i]->draw(m_spriteBatch);
-			}
+			// for (int i = 0; i < m_guardians.size(); i++)
+			// {
+			// 	m_guardians[i]->draw(m_spriteBatch);
+			// }
+			// for (int i = 0; i < m_amplifiers.size(); i++)
+			// {
+			// 	m_amplifiers[i]->draw(m_spriteBatch);
+			// }
 
 			m_linkCreator.draw(m_spriteBatch);
 
@@ -1001,8 +1024,10 @@ void ShaderToy::loadLevel(const std::string & levelPath)
 						heath);
 					
 					
-					enemy->registerAudio(&m_audioEngine);
+					
 					enemy->loadState(state);
+
+					enemy->registerAudio(&m_audioEngine);
 					//enemy->playAnim("idle");
 					if (dropable)
 					{
@@ -1018,7 +1043,7 @@ void ShaderToy::loadLevel(const std::string & levelPath)
 
 
 					//enemy->registerWorld(m_world.get());
-					m_guardians.push_back(enemy);
+					m_enemies.push_back(enemy);
 					//delete enemy;
 				}, ENGINE_current_tick + time);
 
@@ -1098,7 +1123,7 @@ void ShaderToy::loadLevel(const std::string & levelPath)
 					}
 
 					//enemy->registerWorld(m_world.get());
-					m_amplifiers.push_back(enemy);
+					m_enemies.push_back(enemy);
 					//delete enemy;
 				}, ENGINE_current_tick + time);
 
@@ -1517,23 +1542,23 @@ void ShaderToy::reloadLevel()
 	{	
 		m_enemies.erase(m_enemies.begin() + i);		
 	}
-	for (auto i = 0; i < m_guardians.size(); i++)
-	{
-		m_guardians.erase(m_guardians.begin() + i);
-	}
+	// for (auto i = 0; i < m_guardians.size(); i++)
+	// {
+	// 	m_guardians.erase(m_guardians.begin() + i);
+	// }
 
-	for (auto i = 0; i < m_amplifiers.size(); i++)
-	{
-		m_amplifiers.erase(m_amplifiers.begin() + i);
-	}
+	// for (auto i = 0; i < m_amplifiers.size(); i++)
+	// {
+	// 	m_amplifiers.erase(m_amplifiers.begin() + i);
+	// }
 	for (auto i = 0; i < m_bullets.size(); i++)
 	{
 		m_bullets.erase(m_bullets.begin() + i);
 	}
 	m_bullets.clear();
 	m_enemies.clear();
-	m_guardians.clear();
-	m_amplifiers.clear();
+	//m_guardians.clear();
+	//m_amplifiers.clear();
 	m_linkCreator.clearList();
 
 	loadLevel("Data/stageData/levelState/testLvl.lvl");

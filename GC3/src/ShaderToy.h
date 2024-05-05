@@ -212,8 +212,8 @@ private:
 
 
 	std::vector<FairyBase *> m_enemies;
-	std::vector<EnemyGuardian *> m_guardians;
-	std::vector<EnemyAmplifier *> m_amplifiers;
+	//std::vector<EnemyGuardian *> m_guardians;
+	//std::vector<EnemyAmplifier *> m_amplifiers;
 	Uint32 t_start;
 	double t_duration;
 	Uint32 t_now;

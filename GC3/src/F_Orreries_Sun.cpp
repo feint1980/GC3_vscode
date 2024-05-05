@@ -60,8 +60,6 @@ void F_Orreries_Sun::init(const std::string & animationPath, int id)
 }
 
 void F_Orreries_Sun::update(float deltaTime, std::vector<FairyBase *> enemies,
-	std::vector<EnemyGuardian *> guardians,
-	std::vector<EnemyAmplifier *> amplifiers,
 	std::vector<EnemyBulletBase * > bullets)
 {
 
@@ -135,7 +133,7 @@ void F_Orreries_Sun::update(float deltaTime, std::vector<FairyBase *> enemies,
 // 		m_bullets[i]->update(deltaTime, enemies,guardians,amplifiers);
 // 	}
 
-	m_laser.update(deltaTime, m_pos, enemies, guardians, amplifiers,false);
+	m_laser.update(deltaTime, m_pos, enemies,false);
 	m_nonDirectionLaser.update(m_pos, m_angle,deltaTime, enemies, bullets);
 	//updateMovement(deltaTime);
 }

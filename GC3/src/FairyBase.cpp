@@ -7,13 +7,15 @@ FairyBase::FairyBase()
 	m_animation_left_name  = "left";
 	m_animation_right_name = "right";
 	m_animation_center_name = "idle";
-
+	m_internal_ID = FAIRY_BASE;
+	m_pos = glm::vec2(0.0f, 1200.0f);
 
 }
 
 
 FairyBase::~FairyBase()
 {
+	m_pos = glm::vec2(0.0f, 1200.0f);
 }
 
 void FairyBase::decideAnimation(const glm::vec2 & pos)

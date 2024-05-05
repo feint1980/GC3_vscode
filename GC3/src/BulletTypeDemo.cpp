@@ -71,8 +71,8 @@ void BulletTypeDemo::update(float deltaTime)
 		m_counter = 0.0f;
 		break;
 	}
-	m_reimu.update(deltaTime, m_enemies, m_bullets, m_guardians, m_amplifiers);
-	m_marisa.update(deltaTime, m_enemies, m_bullets, m_guardians, m_amplifiers);
+	m_reimu.update(deltaTime, m_enemies, m_bullets);
+	m_marisa.update(deltaTime, m_enemies, m_bullets);
 	m_reimu.setFocus(isFocus);
 	m_marisa.setFocus(isFocus);
 

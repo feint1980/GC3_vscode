@@ -11,13 +11,13 @@ public:
 	EnemyGuardian();
 	~EnemyGuardian();
 
-	void update(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyAmplifier *> amplifier, const F_Player & player );
+	void update(float deltaTime, std::vector<FairyBase *> enemy, const F_Player & player );
 
-	void decideStrat(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyAmplifier *> amplifier,  const F_Player & player);
+	void decideStrat(float deltaTime, std::vector<FairyBase *> enemy,   const F_Player & player);
 
-	F_BaseEnemy * getHighestPriorityEnemy(std::vector<FairyBase *> enemy, const F_Player & player);
+	FairyBase * getHighestPriorityEnemy(std::vector<FairyBase *> enemy, const F_Player & player);
 
-	EnemyAmplifier * getHighestPriorityAmplifier(std::vector<EnemyAmplifier *> amplifier, const F_Player & player);
+	FairyBase * getHighestPriorityAmplifier(std::vector<FairyBase *> amplifier, const F_Player & player);
 
 	void handleShieldFormation(float deltaTime);
 
@@ -37,7 +37,7 @@ protected:
 
 	glm::vec2 direction;
 
-	F_BaseEnemy * protectingTarget = nullptr;
+	FairyBase * protectingTarget = nullptr;
 	
 
 };

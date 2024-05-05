@@ -323,7 +323,7 @@ namespace Feintgine {
 
 	SpritePacket SpriteManager::getSpritePacketByFilePath(const std::string & filePath)
 	{
-		std::unordered_map<std::string, SpritePacket >::iterator it;
+		std::map<std::string, SpritePacket >::iterator it;
 
 		it = m_SpritePackets.find(filePath);
 		if (it != m_SpritePackets.end())
@@ -342,7 +342,7 @@ namespace Feintgine {
 
 	Feintgine::SpritePacket SpriteManager::getSpritePacketByName(const std::string & name)
 	{
-		std::unordered_map<std::string, SpritePacket >::iterator it;
+		std::map<std::string, SpritePacket >::iterator it;
 		//std::cout << "data input " << name.c_str() << "\n ";
 
 		it = m_SpritePackets.find(name);

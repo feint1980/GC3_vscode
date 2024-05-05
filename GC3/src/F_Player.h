@@ -166,7 +166,7 @@ public:
 	void setSpellPos(const glm::vec2 & pos);
 
 	void update(float deltaTime , std::vector<FairyBase *>  m_enemies, 
-		std::vector<EnemyBulletBase * > bullets, std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers);
+		std::vector<EnemyBulletBase * > bullets);
 
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 

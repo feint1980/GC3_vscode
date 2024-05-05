@@ -8,6 +8,7 @@ EnemyAmplifier::EnemyAmplifier()
 	m_typeID = 5;
 
 	m_isLeft = true;
+	m_internal_ID = AMPLIFIER;
 }
 
 
@@ -81,7 +82,7 @@ void EnemyAmplifier::setCreateFlag(bool val)
 	m_createFlag = val;
 }
 
-void EnemyAmplifier::update(float deltaTime, std::vector<EnemyAmplifier *> enemy, const F_Player & player)
+void EnemyAmplifier::update(float deltaTime, std::vector<FairyBase *> enemy, const F_Player & player)
 {
 
 	if (animationLimitCounter <= 0)
@@ -175,7 +176,7 @@ void EnemyAmplifier::update(float deltaTime, std::vector<EnemyAmplifier *> enemy
 }
 
 
-EnemyAmplifier * EnemyAmplifier::getNearestPartner(std::vector<EnemyAmplifier * > enemy)
+EnemyAmplifier * EnemyAmplifier::getNearestPartner(std::vector<FairyBase * > enemy)
 {
 
 	EnemyAmplifier * nearstEnemy = nullptr;
@@ -184,7 +185,7 @@ EnemyAmplifier * EnemyAmplifier::getNearestPartner(std::vector<EnemyAmplifier * 
 
 	for (int i = 0; i < enemy.size(); i++)
 	{
-		if (enemy[i] != this && m_typeID == 5)
+		if (enemy[i] != this && enemy[i]->getInternalID() == AMPLIFIER)
 		{
 			//std::cout << "looking for linking partner \n";
 			glm::vec2 disVec = enemy[i]->getPos() - m_pos;
@@ -194,7 +195,7 @@ EnemyAmplifier * EnemyAmplifier::getNearestPartner(std::vector<EnemyAmplifier * 
 				if (distance < nearest)
 				{
 					nearest = distance;
-					nearstEnemy = enemy[i];
+					nearstEnemy =  dynamic_cast<EnemyAmplifier *>(enemy[i]);;
 
 				}
 			}
@@ -205,7 +206,7 @@ EnemyAmplifier * EnemyAmplifier::getNearestPartner(std::vector<EnemyAmplifier * 
 
 }
 
-void EnemyAmplifier::handleAI(float deltaTime, std::vector<EnemyAmplifier *> enemy)
+void EnemyAmplifier::handleAI(float deltaTime, std::vector<FairyBase *> enemy)
 {
 	//std::cout << "handling AI \n";
 	EnemyAmplifier * partnerP = nullptr;

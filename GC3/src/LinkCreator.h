@@ -12,7 +12,7 @@ public:
 
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 
-	void update(float deltaTime, std::vector<EnemyAmplifier *> & amplifiers, std::vector<EnemyBulletBase *> enemy_bullets,  F_Player & player);
+	void update(float deltaTime, std::vector<FairyBase *> & amplifiers, std::vector<EnemyBulletBase *> enemy_bullets,  F_Player & player);
 
 	void registerAudioEngine(Feintgine::AudioEngine * audioEngine);
 	

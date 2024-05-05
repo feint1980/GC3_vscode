@@ -4,20 +4,25 @@
 //const int BORDER = 350;
 EnemyGuardian::EnemyGuardian()
 {
+
+	m_internal_ID = GUARDIAN;
+	m_pos = glm::vec2(0.0f, 1200.0f);
 }
 
 
 EnemyGuardian::~EnemyGuardian()
 {
-
+	
 }
 
 
 
-void EnemyGuardian::update(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyAmplifier *> amplifier, const F_Player & player)
+void EnemyGuardian::update(float deltaTime, std::vector<FairyBase *> enemy, const F_Player & player)
 {
-	m_pos += m_vel * deltaTime;
+//	
 
+
+// 	//std::cout << "update called \n";
 	if (animationLimitCounter <= 0)
 	{
 		
@@ -45,14 +50,14 @@ void EnemyGuardian::update(float deltaTime, std::vector<FairyBase *> enemy, std:
 		}
 	}
 
-	if (m_isMoveBerzier)
-	{
+// 	if (m_isMoveBerzier)
+// 	{
 
-// 		m_perc = berzierRate;
-// 		berzierRate += 0.01f * deltaTime;
-// 		m_vel = glm::normalize(getBerzierPos(m_start, m_inter, m_des, m_perc)) * m_berzierSpeed;
-// 		m_vel.y = -m_vel.y;
-	}
+// // 		m_perc = berzierRate;
+// // 		berzierRate += 0.01f * deltaTime;
+// // 		m_vel = glm::normalize(getBerzierPos(m_start, m_inter, m_des, m_perc)) * m_berzierSpeed;
+// // 		m_vel.y = -m_vel.y;
+// 	}
 
 	if (m_shield)
 	{
@@ -68,11 +73,12 @@ void EnemyGuardian::update(float deltaTime, std::vector<FairyBase *> enemy, std:
 		if (m_intervalTime > m_intervalValue)
 		{
 			m_intervalTime = 0.0f;
-			decideStrat(deltaTime, enemy,amplifier, player);
+			decideStrat(deltaTime, enemy, player);
 		}
 		glm::vec2 speed;
 		if (protectingTarget)
 		{
+			//std::cout << "protecting target is " << protectingTarget->getInternalID() << "\n";
 			glm::vec2 offsetPos = glm::vec2(0, 60);
 			//m_pos = protectingTarget->getPos() + offsetPos;
 			direction = glm::normalize(protectingTarget->getPos() - m_pos - offsetPos);
@@ -95,66 +101,72 @@ void EnemyGuardian::update(float deltaTime, std::vector<FairyBase *> enemy, std:
 		}
 		else
 		{
+			//std::cout << "no target \n";
 			direction = glm::normalize(glm::vec2(0, 0) - m_pos);
 			speed = glm::vec2(2.5f);
 
 		}
+		//std::cout << "speed " << feint_common::Instance()->convertVec2toString(speed) << "\n";
+		//std::cout << "direction " << feint_common::Instance()->convertVec2toString(direction) << "\n";
 		m_vel = direction * speed;
+		//std::cout << "mvel " << feint_common::Instance()->convertVec2toString(m_vel) << "\n";
 
-	}
-	//std::cout << abs(m_vel.x) << "\n";
-	//m_pos +=  direction * speed * deltaTime;// * (1 / (m_dims.x/14))  ; 	
+		m_pos += m_vel * deltaTime;
+
+ 	}
+// 	//std::cout << abs(m_vel.x) << "\n";
+// 	//m_pos +=  direction * speed * deltaTime;// * (1 / (m_dims.x/14))  ; 	
 	
+// 	std::cout << "mpos " << feint_common::Instance()->convertVec2toString(m_pos) << "\n";
 
-	timer();
+ 	timer();
 }
 
 
 
 
-void EnemyGuardian::decideStrat(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyAmplifier *> amplifier, const F_Player & player)
+void EnemyGuardian::decideStrat(float deltaTime, std::vector<FairyBase *> enemy
+, const F_Player & player)
 {
 	protectingTarget = nullptr;//getHighestPriorityEnemy(enemy,player);
 
 
 
-	F_BaseEnemy * p_enemy = getHighestPriorityEnemy(enemy, player);
+	FairyBase * p_enemy = getHighestPriorityEnemy(enemy, player);
 
 
-	EnemyAmplifier * p_amplifier = getHighestPriorityAmplifier(amplifier, player);
+//	EnemyAmplifier * p_amplifier = getHighestPriorityAmplifier(enemy, player);
 
 	if (p_enemy)
 	{
 		protectingTarget = p_enemy;
-		//direction = glm::normalize(p_enemy->getPos() - m_pos);
+		//std::cout << "foudn protecting target \n";
+		direction = glm::normalize(p_enemy->getPos() - m_pos);
 	}
-// 	else
-// 	{
-// 		direction = glm::vec2(0, 0.9f);
-// 	}
-	if (p_amplifier)
+	else
 	{
-		if (p_enemy)
-		{
-			if (glm::length(p_enemy->getPos() - player.getPos()) < glm::length(p_amplifier->getPos() - player.getPos()))
-			{
-				protectingTarget = p_enemy;
-				//direction = glm::normalize(p_enemy->getPos() - m_pos);
-			}
-			else
-			{
-				protectingTarget = p_amplifier;
-				//direction = glm::normalize(p_amplifier->getPos() - m_pos);
-			}
-
-		}
-		else
-		{
-			protectingTarget = p_amplifier;
-			//direction = glm::normalize(p_amplifier->getPos() - m_pos);
-		}
-
+		direction =glm::vec2(0);
 	}
+
+	// if (p_enemy)
+	// {
+	// 	if (glm::length(p_enemy->getPos() - player.getPos()) < glm::length(p_amplifier->getPos() - player.getPos()))
+	// 	{
+	// 		protectingTarget = p_enemy;
+	// 		//direction = glm::normalize(p_enemy->getPos() - m_pos);
+	// 	}
+	// 	else
+	// 	{
+	// 		protectingTarget = p_amplifier;
+	// 		//direction = glm::normalize(p_amplifier->getPos() - m_pos);
+	// 	}
+
+	// }
+	// else
+	// {
+	// 	protectingTarget = p_amplifier;
+	// 	//direction = glm::normalize(p_amplifier->getPos() - m_pos);
+	// }
 
 
 	//protectingTarget = 
@@ -174,37 +186,41 @@ void EnemyGuardian::decideStrat(float deltaTime, std::vector<FairyBase *> enemy,
 	//handleShieldFormation(deltaTime);
 }
 
-F_BaseEnemy * EnemyGuardian::getHighestPriorityEnemy(std::vector<FairyBase *> enemy, const F_Player & player)
+FairyBase * EnemyGuardian::getHighestPriorityEnemy(std::vector<FairyBase *> enemy, const F_Player & player)
 {
-	F_BaseEnemy * returnVal = nullptr;
+	FairyBase * returnVal = nullptr;
 	//int maxPrio = 0;
 	int selectCount = 0;
 	float nearest = 1000.0f;
 	for (int i = 0; i < enemy.size(); i++)
 	{
-		glm::vec2 targetPos = enemy[i]->getPos();
-		if (targetPos.x > -BORDER && targetPos.x < BORDER
-			&& targetPos.y > -BORDER && targetPos.y < BORDER)
+		if(enemy[i]->getInternalID() == FAIRY_BASE || enemy[i]->getInternalID() == AMPLIFIER)
 		{
-			glm::vec2 disVec = enemy[i]->getPos() - player.getPos();
-			float distance = glm::length(disVec);
-			if (!enemy[i]->isDeath())
+			
+			glm::vec2 targetPos = enemy[i]->getPos();
+			if (targetPos.x > -BORDER && targetPos.x < BORDER
+				&& targetPos.y > -BORDER && targetPos.y < BORDER)
 			{
-				if (distance < nearest)
+				glm::vec2 disVec = enemy[i]->getPos() - player.getPos();
+				float distance = glm::length(disVec);
+				if (!enemy[i]->isDeath())
 				{
-					nearest = distance;
-					returnVal = enemy[i];
+					if (distance < nearest)
+					{
+						nearest = distance;
+						returnVal = enemy[i];
+					}
 				}
+						
 			}
-					
+			selectCount = i;
 		}
-		selectCount = i;
 	}
 	//std::cout << "selected " << selectCount << "\n";
 	return returnVal;
 }
 
-EnemyAmplifier * EnemyGuardian::getHighestPriorityAmplifier(std::vector<EnemyAmplifier *> amplifier, const F_Player & player)
+FairyBase * EnemyGuardian::getHighestPriorityAmplifier(std::vector<FairyBase *> amplifier, const F_Player & player)
 {
 	EnemyAmplifier * returnVal = nullptr;
 	//int maxPrio = 0;
@@ -212,23 +228,28 @@ EnemyAmplifier * EnemyGuardian::getHighestPriorityAmplifier(std::vector<EnemyAmp
 	float nearest = 1000.0f;
 	for (int i = 0; i < amplifier.size(); i++)
 	{
-		glm::vec2 targetPos = amplifier[i]->getPos();
-		if (targetPos.x > -BORDER && targetPos.x < BORDER
-			&& targetPos.y > -BORDER && targetPos.y < BORDER)
+		if(amplifier[i]->getInternalID() == AMPLIFIER)
 		{
-			glm::vec2 disVec = amplifier[i]->getPos() - player.getPos();
-			float distance = glm::length(disVec);
-			if (!amplifier[i]->isDeath())
-			{
-				if (distance < nearest)
-				{
-					nearest = distance;
-					returnVal = amplifier[i];
-				}
-			}
 
+		
+			glm::vec2 targetPos = amplifier[i]->getPos();
+			if (targetPos.x > -BORDER && targetPos.x < BORDER
+				&& targetPos.y > -BORDER && targetPos.y < BORDER)
+			{
+				glm::vec2 disVec = amplifier[i]->getPos() - player.getPos();
+				float distance = glm::length(disVec);
+				if (!amplifier[i]->isDeath())
+				{
+					if (distance < nearest)
+					{
+						nearest = distance;
+						returnVal = dynamic_cast<EnemyAmplifier *>(amplifier[i]);
+					}
+				}
+
+			}
+			selectCount = i;
 		}
-		selectCount = i;
 	}
 	//std::cout << "selected " << selectCount << "\n";
 	return returnVal;

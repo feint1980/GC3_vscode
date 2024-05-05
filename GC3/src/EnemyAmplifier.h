@@ -10,11 +10,11 @@ public:
 	EnemyAmplifier();
 	~EnemyAmplifier();
 
-	void update(float deltaTime, std::vector<EnemyAmplifier *> enemy, const F_Player & player);
+	void update(float deltaTime, std::vector<FairyBase *> enemy, const F_Player & player);
 
-	EnemyAmplifier * getNearestPartner(std::vector<EnemyAmplifier * > enemy);
+	EnemyAmplifier * getNearestPartner(std::vector<FairyBase * > enemy);
 
-	void handleAI(float deltaTime, std::vector<EnemyAmplifier *> enemy);
+	void handleAI(float deltaTime, std::vector<FairyBase *> enemy);
 
 	void executeLink(float deltaTime);
 

@@ -816,8 +816,7 @@ void F_Player::setSpellPos(const glm::vec2 & pos)
 }
 
 void F_Player::update(float deltaTime, std::vector<FairyBase *>  enemy,
-	std::vector<EnemyBulletBase * > bullets, std::vector<EnemyGuardian *> guardians, 
-	std::vector<EnemyAmplifier *> amplifiers)
+	std::vector<EnemyBulletBase * > bullets)
 {
 	m_starSpawner.update(deltaTime,enemy,bullets);
 	m_luminousLauncher.update(deltaTime, enemy, bullets);
@@ -875,8 +874,8 @@ void F_Player::update(float deltaTime, std::vector<FairyBase *>  enemy,
 		m_animation.setPos(m_pos);
 		m_leftAccessory.setPos(m_pos);
 		m_rightAccessory.setPos(m_pos);
-		m_leftAccessory.update(deltaTime, enemy,guardians,amplifiers);
-		m_rightAccessory.update(deltaTime, enemy,guardians,amplifiers);	
+		m_leftAccessory.update(deltaTime, enemy);
+		m_rightAccessory.update(deltaTime, enemy);	
 
 		for (auto i = 0; i < enemy.size(); i++)
 		{
@@ -904,32 +903,32 @@ void F_Player::update(float deltaTime, std::vector<FairyBase *>  enemy,
 
 		}
 
-		for (auto i = 0; i < guardians.size(); i++)
-		{
-			if (!m_isInvinsible)
-			{
-				if (m_afterImageTime <= 0.0f)
-				{
-
-					if (checkColliderWithEnemy(*guardians[i]))
-					{
-						die();
-// 						m_deathCallback();
-// 						m_isDeath = true;
-// 						m_deadSoundEffect.playInChannel(0, 1);
-					}
-				}
-// 				if (m_velocitySegment > 0)
+// 		 for (auto i = 0; i < guardians.size(); i++)
+// 		{
+// 			if (!m_isInvinsible)
+// 			{
+// 				if (m_afterImageTime <= 0.0f)
 // 				{
+
 // 					if (checkColliderWithEnemy(*guardians[i]))
 // 					{
-// 						guardians[i]->takeDamage(7.5f);
+// 						die();
+// // 						m_deathCallback();
+// // 						m_isDeath = true;
+// // 						m_deadSoundEffect.playInChannel(0, 1);
 // 					}
 // 				}
+// // 				if (m_velocitySegment > 0)
+// // 				{
+// // 					if (checkColliderWithEnemy(*guardians[i]))
+// // 					{
+// // 						guardians[i]->takeDamage(7.5f);
+// // 					}
+// // 				}
 
-			}
+// 			}
 
-		}
+// 		}
 		for (auto i = 0; i < bullets.size(); i++)
 		{
 
@@ -1120,7 +1119,7 @@ void F_Player::update(float deltaTime, std::vector<FairyBase *>  enemy,
 
 	for (auto i = 0; i < m_bullets.size(); i++)
 	{
-		m_bullets[i]->update(deltaTime, enemy,guardians,amplifiers);
+		m_bullets[i]->update(deltaTime, enemy);
 		if (!m_bullets[i]->isAlive())
 		{
 			delete m_bullets[i];
@@ -1171,7 +1170,7 @@ void F_Player::update(float deltaTime, std::vector<FairyBase *>  enemy,
 
 	if (m_sealingAmulet.isAlive())
 	{
-		m_sealingAmulet.update(deltaTime,enemy,guardians,amplifiers);
+		m_sealingAmulet.update(deltaTime,enemy);
 	}
 
 	if (m_starParticleBatch1)
@@ -1186,7 +1185,7 @@ void F_Player::update(float deltaTime, std::vector<FairyBase *>  enemy,
 	m_masterSpark->update(deltaTime, enemy, bullets);
 	updateMasterSparkMode(deltaTime);
 	updateEscapeVelocity(deltaTime);
-	m_suns.update(m_pos, deltaTime, enemy, guardians, amplifiers, bullets);
+	m_suns.update(m_pos, deltaTime, enemy, bullets);
 	//m_starTrails.update(m_trailPos, deltaTime, enemy, bullets);
 	m_starTrails.update(m_pos, deltaTime, enemy, bullets);
 

@@ -20,8 +20,7 @@ F_Player_Sun_Manager::~F_Player_Sun_Manager()
 }
 
 void F_Player_Sun_Manager::update(const glm::vec2 &  pos,float deltaTime,
-	std::vector<FairyBase *> enemies, std::vector<EnemyGuardian *> guardians, 
-	std::vector<EnemyAmplifier *> amplifiers, std::vector<EnemyBulletBase * > bullets)
+	std::vector<FairyBase *> enemies,  std::vector<EnemyBulletBase * > bullets)
 {
 
 	
@@ -42,7 +41,7 @@ void F_Player_Sun_Manager::update(const glm::vec2 &  pos,float deltaTime,
 	{
 		if (m_suns[i]->isAlive())
 		{
-			m_suns[i]->update(deltaTime, enemies, guardians, amplifiers, bullets);
+			m_suns[i]->update(deltaTime, enemies, bullets);
 		}
 		else
 		{
@@ -56,7 +55,7 @@ void F_Player_Sun_Manager::update(const glm::vec2 &  pos,float deltaTime,
 		{
 			m_bullets.erase(m_bullets.begin() + i);
 		}
-		m_bullets[i]->update(deltaTime, enemies, guardians, amplifiers);
+		m_bullets[i]->update(deltaTime, enemies);
 	}
 
 	for (int i = 0; i < m_refSuns.size(); i++)

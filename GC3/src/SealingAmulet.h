@@ -11,8 +11,7 @@ public:
 	SealingAmulet();
 	~SealingAmulet();
 
-	virtual void update(float deltaTime, std::vector<FairyBase *> enemy, std::vector<EnemyGuardian *> guardians,
-		std::vector<EnemyAmplifier *> amplifiers) override;
+	virtual void update(float deltaTime, std::vector<FairyBase *> enemy) override;
 	
 	void initParticle();
 

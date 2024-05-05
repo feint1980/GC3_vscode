@@ -116,8 +116,7 @@ void F_PlayerAccessory::drawDebug(Feintgine::DebugRender & renderer)
 	m_laserFocus.drawHitbox(renderer);
 }
 
-void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemies,
-	std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers)
+void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemies)
 {
 
 
@@ -148,8 +147,8 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemie
 	}
 	if (m_bulletType == BULLET_TYPE_MARISA_LASER)
 	{
-		m_laser.update(deltaTime, getOffsetedPos(), enemies, guardians, amplifiers);
-		m_laserFocus.update(deltaTime, getOffsetPosFocus(),enemies,guardians,amplifiers);
+		m_laser.update(deltaTime, getOffsetedPos(), enemies);
+		m_laserFocus.update(deltaTime, getOffsetPosFocus(),enemies);
 		
 			
 	}
@@ -267,7 +266,7 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemie
 						Feintgine::Color(255, 255, 255, 200),
 						"Assets/F_AObjects/marisa_rocket_small.xml", 2, 4.0, m_particleBatch);
 					t_bullet->setBulletAnimationAction("default");
-					t_bullet->setDirection(getRocketDirection(enemies, amplifiers));
+					t_bullet->setDirection(getRocketDirection(enemies));
 					t_bullet->setLightColoFlag(0);
 					m_bullets_a.push_back(t_bullet);
 				}
@@ -353,7 +352,7 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemie
 								"Assets/F_AObjects/marisa_rocket_big.xml", 2, 10.0f, m_particleBatch);
 							t_bullet->setBulletAnimationAction("default");
 							t_bullet->setLightColoFlag(1);
-							t_bullet->setDirection(getRocketDirection(enemies, amplifiers));
+							t_bullet->setDirection(getRocketDirection(enemies));
 							t_bullet->setScale(1.3f);
 							t_bullet->setParticleType(2);
 							m_bullets_a.push_back(t_bullet);
@@ -421,7 +420,7 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemie
 								"Assets/F_AObjects/marisa_rocket_small.xml", 2, 4.0, m_particleBatch);
 							t_bullet->setBulletAnimationAction("default");
 							t_bullet->setLightColoFlag(0);
-							t_bullet->setDirection(getRocketDirection(enemies, amplifiers));
+							t_bullet->setDirection(getRocketDirection(enemies));
 							//t_bullet->setBulletAnimationAngle(degreeToRad(90));
 							m_bullets_a.push_back(t_bullet);
 						}
@@ -480,7 +479,7 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemie
 	}
 	for (auto i = 0; i < m_bullets.size(); i++)
 	{
-		m_bullets[i]->update(deltaTime,enemies,guardians,amplifiers);
+		m_bullets[i]->update(deltaTime,enemies);
 		if (!m_bullets[i]->isAlive())
 		{
 			delete m_bullets[i];
@@ -489,7 +488,7 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemie
 	}
 	for (auto i = 0; i < m_bullets_a.size(); i++)
 	{
-		m_bullets_a[i]->update(deltaTime, enemies,guardians,amplifiers);
+		m_bullets_a[i]->update(deltaTime, enemies);
 		if (!m_bullets_a[i]->isAlive())
 		{
 			delete m_bullets_a[i];
@@ -498,7 +497,7 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemie
 	}
 	for (auto i = 0; i < m_bullets_b.size(); i++)
 	{
-		m_bullets_b[i]->update(deltaTime, enemies,guardians,amplifiers);
+		m_bullets_b[i]->update(deltaTime, enemies);
 		if (!m_bullets_b[i]->isAlive())
 		{
 			delete m_bullets_b[i];
@@ -681,42 +680,16 @@ float F_PlayerAccessory::getLaserEnergy()
 	 return m_laser.getEnergy(); 
 }
 
-glm::vec2 F_PlayerAccessory::getRocketDirection(std::vector<FairyBase *> enemies, std::vector<EnemyAmplifier *> amplifiers)
+glm::vec2 F_PlayerAccessory::getRocketDirection(std::vector<FairyBase *> enemies)
 {
 	glm::vec2 returnVec = glm::vec2(0, 1.0f);
 	F_BaseEnemy * enemy = getNearstEnemy(m_pos, enemies);
 
-	EnemyAmplifier * amplifier = getNearstAmplifier(m_pos, amplifiers);
-
-	//F_BaseEnemy * enemy2 = getNearstEnemy(m_pos, gua);
 	if (enemy)
 	{
 		returnVec = glm::normalize(enemy->getPos() - m_pos);
 	}
-	else
-	{
-		returnVec = glm::vec2(0, 0.9f);
-	}
-	if (amplifier)
-	{
-		if (enemy)
-		{
-			if (glm::length(enemy->getPos() - m_pos) < glm::length(amplifier->getPos() - m_pos))
-			{
-				returnVec = glm::normalize(enemy->getPos() - m_pos);
-			}
-			else
-			{
-				returnVec = glm::normalize(amplifier->getPos() - m_pos);
-			}
-
-		}
-		else
-		{
-			returnVec = glm::normalize(amplifier->getPos() - m_pos);
-		}
-
-	}
+	
 	return returnVec;
 }
 

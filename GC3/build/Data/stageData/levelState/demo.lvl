@@ -99,7 +99,7 @@
 
 
 		<Event type = "spawnGuardian">
-			<Prop pX = "0" pY = "600" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "5000" state = "Type5_1"  time = "20000"  drop = "power_big" >
+			<Prop pX = "100" pY = "600" w = "24" h = "30" asset = "Assets/F_AObjects/fairy_enemy_elite_1.xml" health = "5000" state = "Type5_1"  time = "20000"  drop = "power_big" >
 			</Prop>
 		</Event>
 

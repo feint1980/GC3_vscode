@@ -21,7 +21,6 @@ public:
 	void init(const std::string & animationPath, int id);
 
 	void update(float deltaTime, std::vector<FairyBase *>  enemies,
-		std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers,
 		std::vector<EnemyBulletBase * > bullets);
 
 	void initLaser(const Feintgine::GLTexture & texture, const glm::vec2 & pos,

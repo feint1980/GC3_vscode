@@ -5,11 +5,13 @@ int def = 0;
 int daf = 0;
 EnemyBulletBase::EnemyBulletBase()
 {
+	m_pos = glm::vec2(0.0f, 1200.0f);
 }
 
 
 EnemyBulletBase::~EnemyBulletBase()
 {
+	m_pos = glm::vec2(0.0f, 1200.0f);
 }
 
 void EnemyBulletBase::setLifeTime(float lifeTime)

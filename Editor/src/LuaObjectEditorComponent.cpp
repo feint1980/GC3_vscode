@@ -480,7 +480,7 @@ void LuaObjectEditorComponent::update(float deltaTime)
 
 		if(m_playerEnableTogger->isSelected())
 		{
-			m_player.update(deltaTime,m_enemies, m_bullets  , m_guardians, m_amplifiers);
+			m_player.update(deltaTime,m_enemies, m_bullets );
 		}
 
 

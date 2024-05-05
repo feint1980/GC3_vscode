@@ -45,7 +45,7 @@ namespace Feintgine {
 
 		int scan_dir(const std::string & path, int level);
 
-		std::unordered_map<std::string, SpritePacket > getPacketMap() const { return m_SpritePackets; }
+		std::map<std::string, SpritePacket > getPacketMap() const { return m_SpritePackets; }
 
 		// Needed this function to wait all the multithread loadng is done
 		bool isLoadingDone();
@@ -56,7 +56,7 @@ namespace Feintgine {
 
 		static SpriteManager *p_Instance;
 
-		std::unordered_map<std::string, SpritePacket > m_SpritePackets;
+		std::map<std::string, SpritePacket > m_SpritePackets;
 		std::vector<std::string> m_storedKey;
 		std::vector<std::thread> m_Threads;
 		//static std::mutex m_Mutex;

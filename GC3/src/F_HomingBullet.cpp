@@ -60,8 +60,7 @@ EnemyAmplifier * F_HomingBullet::getNearstAmplifier(const glm::vec2 & pos, std::
 	return nearstEnemy;
 }
 
-void F_HomingBullet::update(float deltaTime, std::vector<FairyBase *>  enemies,
-	std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers)
+void F_HomingBullet::update(float deltaTime, std::vector<FairyBase *>  enemies)
 {
 	
 	if (m_isAlive)
@@ -90,8 +89,6 @@ void F_HomingBullet::update(float deltaTime, std::vector<FairyBase *>  enemies,
 		}
 		F_BaseEnemy * enemy = getNearstEnemy(m_pos, enemies);
 
-		EnemyAmplifier * amplifier = getNearstAmplifier(m_pos, amplifiers);
-
 		//F_BaseEnemy * enemy2 = getNearstEnemy(m_pos, gua);
 		if (enemy)
 		{
@@ -102,35 +99,7 @@ void F_HomingBullet::update(float deltaTime, std::vector<FairyBase *>  enemies,
 		{
 			direction = glm::vec2(0, 0.9f);
 		}
-		if (amplifier)
-		{
-			if (enemy)
-			{
-				if (glm::length(enemy->getPos() - m_pos) < glm::length(amplifier->getPos() - m_pos))
-				{
-					direction = glm::normalize(enemy->getPos() - m_pos);
-				}
-				else
-				{
-					direction = glm::normalize(amplifier->getPos() - m_pos);
-				}
-
-			}
-			else
-			{
-				direction = glm::normalize(amplifier->getPos() - m_pos);
-			}
-
-		}
-		else
-		{
-			if (!enemy)
-			{
-				direction = glm::vec2(0, 0.9f);
-			}
-			
-		}
-
+		
 		m_pos += direction * 20.5f * deltaTime;// * (1 / (m_dims.x/14))  ; 	
 		for (int i = 0; i < enemies.size(); i++)
 		{
@@ -148,38 +117,38 @@ void F_HomingBullet::update(float deltaTime, std::vector<FairyBase *>  enemies,
 			}
 		}
 		// end of for loop
-		for (int i = 0; i < guardians.size(); i++)
-		{
-			if (checkColiderWithGuardian(*guardians[i]))
-			{
-				guardians[i]->takeDamage(m_damage);
-				destroy();
-				if (m_particleBatch)
-				{
-					float ranX = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
-					float ranY = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
-					glm::vec2 halfDim = guardians[i]->getDim() * 0.5f;
-					m_particleBatch->addParticle(guardians[i]->getPos() - halfDim, glm::vec2(ranX, ranY), Feintgine::Color(255, 255, 255, 120), 1.4f);
-				}
-			}
-		}
-		// end of for loop
+		// for (int i = 0; i < guardians.size(); i++)
+		// {
+		// 	if (checkColiderWithGuardian(*guardians[i]))
+		// 	{
+		// 		guardians[i]->takeDamage(m_damage);
+		// 		destroy();
+		// 		if (m_particleBatch)
+		// 		{
+		// 			float ranX = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
+		// 			float ranY = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
+		// 			glm::vec2 halfDim = guardians[i]->getDim() * 0.5f;
+		// 			m_particleBatch->addParticle(guardians[i]->getPos() - halfDim, glm::vec2(ranX, ranY), Feintgine::Color(255, 255, 255, 120), 1.4f);
+		// 		}
+		// 	}
+		// }
+		// // end of for loop
 
-		for (int i = 0; i < amplifiers.size(); i++)
-		{
-			if (checkColiderWithAmplifier(*amplifiers[i]))
-			{
-				amplifiers[i]->takeDamage(m_damage);
-				destroy();
-				if (m_particleBatch)
-				{
-					float ranX = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
-					float ranY = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
-					glm::vec2 halfDim = amplifiers[i]->getDim() * 0.5f;
-					m_particleBatch->addParticle(amplifiers[i]->getPos() - halfDim, glm::vec2(ranX, ranY), Feintgine::Color(255, 255, 255, 120), 1.4f);
-				}
-			}
-		}
+		// for (int i = 0; i < amplifiers.size(); i++)
+		// {
+		// 	if (checkColiderWithAmplifier(*amplifiers[i]))
+		// 	{
+		// 		amplifiers[i]->takeDamage(m_damage);
+		// 		destroy();
+		// 		if (m_particleBatch)
+		// 		{
+		// 			float ranX = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
+		// 			float ranY = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
+		// 			glm::vec2 halfDim = amplifiers[i]->getDim() * 0.5f;
+		// 			m_particleBatch->addParticle(amplifiers[i]->getPos() - halfDim, glm::vec2(ranX, ranY), Feintgine::Color(255, 255, 255, 120), 1.4f);
+		// 		}
+		// 	}
+		// }
 		// end of for loop
 	}
 	

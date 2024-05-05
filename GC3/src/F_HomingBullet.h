@@ -16,8 +16,7 @@ public:
 	F_BaseEnemy * getNearstEnemy(const glm::vec2 & pos, std::vector<FairyBase *> enemy);
 
 	EnemyAmplifier * getNearstAmplifier(const glm::vec2 & pos, std::vector<EnemyAmplifier *> enemy);
-	virtual void update(float deltaTime, std::vector<FairyBase *> enemy,
-		std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers) override;
+	virtual void update(float deltaTime, std::vector<FairyBase *> enemy) override;
 
 	virtual void draw(Feintgine::SpriteBatch & spriteBatch);
 

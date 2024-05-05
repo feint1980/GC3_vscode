@@ -13,6 +13,7 @@
 #include <InputManager.h>
 #include "EventManager.h"
 #include <unordered_map>
+#include <map>
 
 class SpriteListHolder
 {

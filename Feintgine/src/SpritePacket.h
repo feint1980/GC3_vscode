@@ -31,7 +31,7 @@ namespace Feintgine {
 
 		void selfLoad();
 
-		std::unordered_map<std::string, Feintgine::F_Sprite> getSpriteMap() const { return m_spriteMap; }
+		std::map<std::string, Feintgine::F_Sprite> getSpriteMap() const { return m_spriteMap; }
 
 		std::string getFilePath() const { return m_filePath; }
 
@@ -45,7 +45,7 @@ namespace Feintgine {
 		std::string m_filePath;
 		std::string m_name;
 		std::string m_texturePath;
-		std::unordered_map<std::string, Feintgine::F_Sprite> m_spriteMap;
+		std::map<std::string, Feintgine::F_Sprite> m_spriteMap;
 		bool isLoaded = false;
 
 	};

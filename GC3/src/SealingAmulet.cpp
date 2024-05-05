@@ -13,8 +13,7 @@ SealingAmulet::~SealingAmulet()
 {
 }
 
-void SealingAmulet::update(float deltaTime, std::vector<FairyBase *> enemies, 
-	std::vector<EnemyGuardian *> guardians, std::vector<EnemyAmplifier *> amplifiers)
+void SealingAmulet::update(float deltaTime, std::vector<FairyBase *> enemies)
 {
 
 	if (m_animation.getCurrentAnimation())
@@ -54,59 +53,32 @@ void SealingAmulet::update(float deltaTime, std::vector<FairyBase *> enemies,
 		
 		F_BaseEnemy * enemy = getNearstEnemy(m_pos, enemies);
 
-		EnemyGuardian * guardian = getNearstGuardians(m_pos, guardians);
 
-		EnemyAmplifier * amplifier = getNearstAmplifier(m_pos, amplifiers);
-
-
-// 		if (enemy)
-// 		{
-// 			direction = glm::normalize(enemy->getPos() - m_pos);
-// 		}
-// 		else
-// 		{
-// 			direction = glm::vec2(0, 0.9f);
-// 		}
-// 		if (guardian)
-// 		{
-// 			if (enemy)
-// 			{
-// 				if (glm::length(enemy->getPos() - m_pos) < glm::length(guardian->getPos() - m_pos))
-// 				{
-// 					direction = glm::normalize(enemy->getPos() - m_pos);
-// 				}
-// 				else
-// 				{
-// 					direction = glm::normalize(guardian->getPos() - m_pos);
-// 				}
-// 				
-// 			}
-// 			else
-// 			{
-// 				direction = glm::normalize(guardian->getPos() - m_pos);
-// 			}
-// 			
-// 		}
-// 		else
-// 		{
-// 			direction = glm::vec2(0, 0.9f);
-// 		}
-
-		switch (getNearestTypeID(enemy, guardian, amplifier))
+		if (enemy)
 		{
-		case 0 : 
-			direction = glm::vec2(0, 0.9f);
-			break;
-		case 1:
-			direction = direction = glm::normalize(enemy->getPos() - m_pos);
-			break;
-		case 2:
-			direction = glm::normalize(guardian->getPos() - m_pos);
-			break;
-		case 3:
-			direction = glm::normalize(amplifier->getPos() - m_pos);
-			break;
+			direction = glm::normalize(enemy->getPos() - m_pos);
 		}
+		else
+		{
+			direction = glm::vec2(0, 0.9f);
+		}
+	
+
+		// switch (getNearestTypeID(enemy, guardian, amplifier))
+		// {
+		// case 0 : 
+		// 	direction = glm::vec2(0, 0.9f);
+		// 	break;
+		// case 1:
+		// 	direction = direction = glm::normalize(enemy->getPos() - m_pos);
+		// 	break;
+		// case 2:
+		// 	direction = glm::normalize(guardian->getPos() - m_pos);
+		// 	break;
+		// case 3:
+		// 	direction = glm::normalize(amplifier->getPos() - m_pos);
+		// 	break;
+		// }
 
 		//direction = glm::vec2(0, 1.0f);
 		m_angle = atan2(direction.y, direction.x) + degreeToRad(90);
@@ -152,78 +124,78 @@ void SealingAmulet::update(float deltaTime, std::vector<FairyBase *> enemies,
 		}
 	// end of for loop
 
-		for (int i = 0; i < guardians.size(); i++)
-		{
-			if (checkColiderWithGuardian(*guardians[i]))
-			{
-				//guardians[i]->takeDamage(m_damage);
-				KanjiEffect kanjiEffect;
-				kanjiEffect.init(Feintgine::SpriteManager::Instance()->getSprite("Amulet_effect/effect_disabled_prisoned.png"),
-					guardians[i]->getPos(), m_color);
-				m_kanjiEffectManager_p->addKanjiEffect(kanjiEffect);
-				destroy();
-				if (m_effectBatch)
-				{
-					m_effectBatch->addRippleEffectContinuos(&m_pos, .1f, 2.5f, -7.0f, 0.02f, 0.1f);
-				}
-				else
-				{
-					std::cout << "no effect batch registered (SealingAmulet) \n";
-				}
-				guardians[i]->setDisabled(true);
-				guardians[i]->clearEvent();
-				guardians[i]->loadState("Disabled_sealed");
-				if (m_particleBatch)
-				{
-					glm::vec2 halfDim = guardians[i]->getDim() * 0.5f;
-					for (int f = 0; f < 3; f++)
-					{
-						float ranX = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
-						float ranY = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
+		// for (int i = 0; i < guardians.size(); i++)
+		// {
+		// 	if (checkColiderWithGuardian(*guardians[i]))
+		// 	{
+		// 		//guardians[i]->takeDamage(m_damage);
+		// 		KanjiEffect kanjiEffect;
+		// 		kanjiEffect.init(Feintgine::SpriteManager::Instance()->getSprite("Amulet_effect/effect_disabled_prisoned.png"),
+		// 			guardians[i]->getPos(), m_color);
+		// 		m_kanjiEffectManager_p->addKanjiEffect(kanjiEffect);
+		// 		destroy();
+		// 		if (m_effectBatch)
+		// 		{
+		// 			m_effectBatch->addRippleEffectContinuos(&m_pos, .1f, 2.5f, -7.0f, 0.02f, 0.1f);
+		// 		}
+		// 		else
+		// 		{
+		// 			std::cout << "no effect batch registered (SealingAmulet) \n";
+		// 		}
+		// 		guardians[i]->setDisabled(true);
+		// 		guardians[i]->clearEvent();
+		// 		guardians[i]->loadState("Disabled_sealed");
+		// 		if (m_particleBatch)
+		// 		{
+		// 			glm::vec2 halfDim = guardians[i]->getDim() * 0.5f;
+		// 			for (int f = 0; f < 3; f++)
+		// 			{
+		// 				float ranX = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
+		// 				float ranY = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
 
-						m_particleBatch->addParticle(guardians[i]->getPos() - halfDim,
-							glm::vec2(ranX, ranY), Feintgine::Color(255, 255, 255, 120), 1.4f);
-					}
-				}
-			}
-		}
+		// 				m_particleBatch->addParticle(guardians[i]->getPos() - halfDim,
+		// 					glm::vec2(ranX, ranY), Feintgine::Color(255, 255, 255, 120), 1.4f);
+		// 			}
+		// 		}
+		// 	}
+		// }
 		// end of for loop
 
-		for (int i = 0; i < amplifiers.size(); i++)
-		{
-			if (checkColiderWithAmplifier(*amplifiers[i]))
-			{
-				//guardians[i]->takeDamage(m_damage);
-				KanjiEffect kanjiEffect;
-				kanjiEffect.init(Feintgine::SpriteManager::Instance()->getSprite("Amulet_effect/effect_disabled_prisoned.png"),
-					amplifiers[i]->getPos(), m_color);
-				m_kanjiEffectManager_p->addKanjiEffect(kanjiEffect);
-				destroy();
-				if (m_effectBatch)
-				{
-					m_effectBatch->addRippleEffectContinuos(&m_pos, .1f, 2.5f, -7.0f, 0.02f, 0.1f);
-				}
-				else
-				{
-					std::cout << "no effect batch registered (SealingAmulet) \n";
-				}
-				amplifiers[i]->setDisabled(true);
-				amplifiers[i]->clearEvent();
-				amplifiers[i]->loadState("Disabled_sealed");
-				if (m_particleBatch)
-				{
-					glm::vec2 halfDim = amplifiers[i]->getDim() * 0.5f;
-					for (int f = 0; f < 3; f++)
-					{
-						float ranX = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
-						float ranY = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
+		// for (int i = 0; i < amplifiers.size(); i++)
+		// {
+		// 	if (checkColiderWithAmplifier(*amplifiers[i]))
+		// 	{
+		// 		//guardians[i]->takeDamage(m_damage);
+		// 		KanjiEffect kanjiEffect;
+		// 		kanjiEffect.init(Feintgine::SpriteManager::Instance()->getSprite("Amulet_effect/effect_disabled_prisoned.png"),
+		// 			amplifiers[i]->getPos(), m_color);
+		// 		m_kanjiEffectManager_p->addKanjiEffect(kanjiEffect);
+		// 		destroy();
+		// 		if (m_effectBatch)
+		// 		{
+		// 			m_effectBatch->addRippleEffectContinuos(&m_pos, .1f, 2.5f, -7.0f, 0.02f, 0.1f);
+		// 		}
+		// 		else
+		// 		{
+		// 			std::cout << "no effect batch registered (SealingAmulet) \n";
+		// 		}
+		// 		amplifiers[i]->setDisabled(true);
+		// 		amplifiers[i]->clearEvent();
+		// 		amplifiers[i]->loadState("Disabled_sealed");
+		// 		if (m_particleBatch)
+		// 		{
+		// 			glm::vec2 halfDim = amplifiers[i]->getDim() * 0.5f;
+		// 			for (int f = 0; f < 3; f++)
+		// 			{
+		// 				float ranX = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
+		// 				float ranY = feint_common::Instance()->getRandomNum(-3.5f, 3.5f);
 
-						m_particleBatch->addParticle(amplifiers[i]->getPos() - halfDim,
-							glm::vec2(ranX, ranY), Feintgine::Color(255, 255, 255, 120), 1.4f);
-					}
-				}
-			}
-		}
+		// 				m_particleBatch->addParticle(amplifiers[i]->getPos() - halfDim,
+		// 					glm::vec2(ranX, ranY), Feintgine::Color(255, 255, 255, 120), 1.4f);
+		// 			}
+		// 		}
+		// 	}
+		// }
 		// end of for loop
 	}
 }

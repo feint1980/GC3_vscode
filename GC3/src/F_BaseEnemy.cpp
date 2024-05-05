@@ -25,6 +25,8 @@ void F_BaseEnemy::init(const glm::vec2 & pos, const glm::vec2 & dim, const std::
 	isAnimated = true;
 	m_animation.init(animationPath);
 	m_heath = heath;
+	m_animation.setPos(m_pos);
+	m_animation.update(1.0f);
 
 }
 

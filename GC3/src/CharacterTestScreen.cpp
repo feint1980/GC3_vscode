@@ -81,7 +81,7 @@ void CharacterTestScreen::update(float deltaTime)
 	{
 
 
-		m_player.update(deltaTime, m_enemies, m_bullets,m_guardians, m_amplifiers);
+		m_player.update(deltaTime, m_enemies, m_bullets);
 		m_bg.update(deltaTime);
 		m_camera.update();
 		m_particleEngine.update(deltaTime);

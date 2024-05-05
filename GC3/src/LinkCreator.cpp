@@ -39,27 +39,52 @@ void LinkCreator::draw(Feintgine::SpriteBatch & spriteBatch)
 
 }
 
-void LinkCreator::update(float deltaTime, std::vector<EnemyAmplifier *> & amplifiers, std::vector<EnemyBulletBase *> enemy_bullets, F_Player & player)
+void LinkCreator::update(float deltaTime, std::vector<FairyBase *> & amplifiers, std::vector<EnemyBulletBase *> enemy_bullets, F_Player & player)
 {
 
-	for (int i = 0; i < amplifiers.size(); i++)
+
+	for(auto i = 0; i < amplifiers.size(); i++)
 	{
-		if (amplifiers[i]->getLinkPartner())
+		if((amplifiers[i])->getInternalID() == AMPLIFIER)
 		{
-			if (amplifiers[i]->isLeft())
+			auto t2 = dynamic_cast<EnemyAmplifier *>(amplifiers[i]);
 			{
-				if (amplifiers[i]->getLinkingStatus() == 1)
+				if (t2->getLinkPartner())
 				{
-					if (!amplifiers[i]->getCreateFlag())
+					if (t2->isLeft())
 					{
-						createLink(amplifiers[i]);
-						amplifiers[i]->setCreateFlag(true);
+						if (t2->getLinkingStatus() == 1)
+						{
+							if (!t2->getCreateFlag())
+							{
+								createLink(t2);
+								t2->setCreateFlag(true);
+							}
+							
+						}
 					}
-					
 				}
 			}
 		}
 	}
+	// for (int i = 0; i < amplifiers.size(); i++)
+	// {
+	// 	if (amplifiers[i]->getLinkPartner())
+	// 	{
+	// 		if (amplifiers[i]->isLeft())
+	// 		{
+	// 			if (amplifiers[i]->getLinkingStatus() == 1)
+	// 			{
+	// 				if (!amplifiers[i]->getCreateFlag())
+	// 				{
+	// 					createLink(amplifiers[i]);
+	// 					amplifiers[i]->setCreateFlag(true);
+	// 				}
+					
+	// 			}
+	// 		}
+	// 	}
+	// }
 
 // 	for (int i = 0; i < m_amplifiers.size(); i++)
 // 	{
