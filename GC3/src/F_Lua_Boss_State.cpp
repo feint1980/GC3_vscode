@@ -63,7 +63,7 @@ bool F_Lua_Boss_State::update(float deltaTime)
 	return m_isComplete;
 }
 
-void F_Lua_Boss_State::standIdle(F_Lua_GenericObject * dynamicObject, float time, const std::string & animName)
+void F_Lua_Boss_State::standIdle(F_Lua_GenericObject * dynamicObject, float time, const std::string & animName, bool isOverRide /*= false*/) 
 {
 	m_completionTime = time;
 	m_elaspedTime = 0;
@@ -71,7 +71,7 @@ void F_Lua_Boss_State::standIdle(F_Lua_GenericObject * dynamicObject, float time
 	//m_luaBoss = dynamicObject;
 	//std::cout << "use animation  " << animName << "\n";
 	//m_luaBoss->playAnimation(animName,99);
-	m_luaBoss->setAnimOverRide(true);
+	m_luaBoss->setAnimOverRide(isOverRide);
 	m_luaBoss->playAnimation(animName);
 	m_state = LuaBossState::StandIdle;
 

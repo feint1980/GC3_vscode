@@ -9,6 +9,7 @@
 #include "ArcFunction_hypotrochoid.h"
 #include "ArcFunction_feint_custom1.h"
 #include "ArcFunction_feint_custom2.h"
+#include "ArcFunction_Epicycloid.h"
 
 #include <F_BaseObject.h>
 #include "F_Komachi_Souls_Object.h"
@@ -23,6 +24,7 @@ enum ArcType
 	arcHypotrochoid = 2,
 	arcFeintCustom1 = 3,
 	arcFeintCustom2 = 4,
+	arcEpicycloid = 5,
 };
 
 enum ObjectType
@@ -43,7 +45,7 @@ public:
 
 	void MoveObject(F_Lua_GenericObject * dynamicObject, float x, float y, float time);
 
-	void standIdle(F_Lua_GenericObject * dynamicObject, float time, const std::string & animName);
+	void standIdle(F_Lua_GenericObject * dynamicObject, float time, const std::string & animName, bool isOverRide = false);
 
 	void resetEvent();
 

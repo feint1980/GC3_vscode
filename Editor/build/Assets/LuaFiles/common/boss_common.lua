@@ -3,11 +3,29 @@ M = {}
 
 
 
--- cppSetFire_Type1 arcType belike   |1 hypocycloid | 2 hypotrochoid| 3 feint_custom1
+-- cppSetFire_Type1 arcType belike   
+-- 1 hypocycloid 
+-- 2 hypotrochoid 
+-- 3 feint_custom1 
+
 M.patern_MA_hypocycloid =  function (host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
-	cppSetFire_Type1(host,dynob,asset,speed,lifeTime,1,a,b,0,0,r,angleStep,startAngle,rotation,interval,count,eventTime)
-
-
+	cppSetFire_Type1(host, -- host 
+	dynob,                 -- dynob
+	asset,				   -- asset ( animated object / sprite) 
+	speed,                 -- speed
+	lifeTime,              -- lifeTime
+	1,                     -- arcType 
+	a,                     -- a
+	b,                     -- b
+	0,                     -- c ( unused )
+	0,                     -- d ( unused )
+	r,                     -- r radius
+	angleStep,             -- angleStep
+	startAngle,            -- startAngle
+	rotation,              -- rotation
+	interval,              -- interval
+	count,                 -- count
+	eventTime)             -- eventTime
 end
 
 M.patern_MA_hypotrochoid= function (host, dynob, asset, speed, lifeTime, a, b,c, r,angleStep,startAngle, rotation,interval,count, eventTime )
@@ -23,6 +41,26 @@ end
 M.patern_Feint_custom2 = function (host, dynob, asset, speed, lifeTime, a, b,c,d,r,angleStep,startAngle, rotation,interval,count, eventTime )
 	cppSetFire_Type1(host,dynob,asset,speed,lifeTime,4,a,b,c,d,r,angleStep,startAngle,rotation,interval,count,eventTime)
 
+end
+
+M.patern_MA_epicycloid =  function (host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
+	cppSetFire_Type1(host, -- host 
+	dynob,                 -- dynob
+	asset,				   -- asset ( animated object / sprite) 
+	speed,                 -- speed
+	lifeTime,              -- lifeTime
+	5,                     -- arcType 
+	a,                     -- a
+	b,                     -- b
+	0,                     -- c ( unused )
+	0,                     -- d ( unused )
+	r,                     -- r radius
+	angleStep,             -- angleStep
+	startAngle,            -- startAngle
+	rotation,              -- rotation
+	interval,              -- interval
+	count,                 -- count
+	eventTime)             -- eventTime
 end
 
 

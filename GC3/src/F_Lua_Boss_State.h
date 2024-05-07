@@ -22,7 +22,7 @@ public:
 
 	void moveObject(F_Lua_GenericObject * dynamicObject, const glm::vec2 & target, float time);
 
-	void standIdle(F_Lua_GenericObject * dynamicObject, float time,const std::string & animName);
+	void standIdle(F_Lua_GenericObject * dynamicObject, float time,const std::string & animName,bool isOverRide = false);
 
 	void teleport(F_Lua_GenericObject * dynamicObject, const glm::vec2 & target);
 

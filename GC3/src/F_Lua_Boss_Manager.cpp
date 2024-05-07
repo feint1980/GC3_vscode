@@ -99,7 +99,7 @@ int lua_MoveObject(lua_State * L)
 
 int lua_HoldPosition(lua_State * L)
 {
-	if (lua_gettop(L) != 4)
+	if (lua_gettop(L) < 4 || lua_gettop(L) > 5)
 	{
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
@@ -109,8 +109,13 @@ int lua_HoldPosition(lua_State * L)
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2));
 	float time = lua_tonumber(L, 3);
 	std::string t_anim = lua_tostring(L, 4);
+	bool isOverRide = true;
+	if(lua_gettop(L) == 5)
+	{
+		isOverRide = lua_toboolean(L, 5);
+	}
 	//std::cout << "t_anim " << t_anim << "\n";
-	objectManager->standIdle(dynamicObject,time,t_anim);
+	objectManager->standIdle(dynamicObject,time,t_anim,isOverRide);
 
 	return 0;
 }
@@ -597,10 +602,10 @@ void F_Lua_Boss_Manager::callCreateFromLua(const std::string & filePath, const s
 }
 
 void F_Lua_Boss_Manager::standIdle(F_Lua_GenericObject * dynamicObject,
-	float time, const std::string & animName)
+	float time, const std::string & animName, bool isOverRide /*= false*/)
 {
 	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
-	manipulator->standIdle(dynamicObject,time,animName);
+	manipulator->standIdle(dynamicObject,time,animName,isOverRide);
 	m_luaBossStates.push_back(manipulator);
 }
 
@@ -696,6 +701,11 @@ void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_GenericObject * dynamicObject, con
 		factor.push_back(fB);
 		factor.push_back(fC);
 		factor.push_back(fD);
+		break;
+	case ArcType::arcEpicycloid:
+		arc = new ArcFunction_Epicycloid();
+		factor.push_back(fA);
+		factor.push_back(fB);
 		break;
 	default:
 		break;

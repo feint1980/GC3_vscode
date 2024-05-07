@@ -163,74 +163,86 @@ function DynamicBehavior2(host,dynob)
     end
 end
 
-function  DynamicBehavior1( host, dynob )
-	while true do 
-    cppMoveObject(host,dynob,200,300,50)
-    cppSetAfterImage(host,soul_1,0.01,10.0,25,0.05)
+
+function DynamicBehavior1_base( host, dynob, direction)
+   
+    cppMoveObject(host,dynob,100 * direction,100,50)
     coroutine.yield()
     --function bc.patern_MA_hypocycloid(host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",
-        0.25, -- speed
+    bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_white.png",
+        0.5, -- speed
         10.0, -- lifeTime 
-        17,   -- a
-        22,   -- b 
-        45,   -- r
-        2.1,  -- angleStep
+        7,   -- a
+        5,   -- b 
+        3,    -- c
+        100,   -- r
+        0.3,  -- angleStep
         0,    -- startAngle
         0,    -- rotation
-        10,   -- interval
-        300,  -- count
+        1,   -- interval
+        340,  -- count
         100)  -- eventTime
     coroutine.yield()
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
-        0.25, -- speed
-        10.0, -- lifeTime
-        17,   -- a
-        22,   -- b
-        45,   -- r
-        2.1,  -- angleStep
-        90,   -- startAngle
-        90,   -- rotation
-        10,   -- interval
-        300,  -- count
-        100)  -- eventTime
-    coroutine.yield()
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
-        0.25, -- speed
-        10.0, -- lifeTime
-        17,   -- a
-        22,   -- b
-        45,   -- r
-        2.1,  -- angleStep
-        180,  -- startAngle
-        180,  -- rotation
-        10,   -- interval
-        300,  -- count
-        100)  -- eventTime
-    coroutine.yield()
-    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
-        0.25, -- speed
-        10.0, -- lifeTime
-        17,   -- a
-        22,   -- b
-        45,   -- r
-        2.1,   -- angleStep
-        270,  -- startAngle
-        270,  -- rotation
-        10,   -- interval
-        300,  -- count
-        100)   -- eventTime
-    coroutine.yield()
+    -- bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
+    --     0.5, -- speed
+    --     10.0, -- lifeTime
+    --     7,   -- a
+    --     8,   -- b
+    --     45,   -- r
+    --     2.1,  -- angleStep
+    --     90,   -- startAngle
+    --     90,   -- rotation
+    --     10,   -- interval
+    --     300,  -- count
+    --     100)  -- eventTime
+    -- coroutine.yield()
+    -- bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
+    --     0.5, -- speed
+    --     10.0, -- lifeTime
+    --     7,   -- a
+    --     8,   -- b
+    --     45,   -- r
+    --     2.1,  -- angleStep
+    --     180,  -- startAngle
+    --     180,  -- rotation
+    --     10,   -- interval
+    --     300,  -- count
+    --     100)  -- eventTime
+    -- coroutine.yield()
+    -- bc.patern_MA_epicycloid(host,dynob,"projectile/bullet_shard_blue.png",
+    --     0.5, -- speed
+    --     10.0, -- lifeTime
+    --     10,   -- a
+    --     13,   -- b
+    --     45,   -- r
+    --     15.1,   -- angleStep
+    --     0,  -- startAngle
+    --     0,  -- rotation
+    --     1,   -- interval
+    --     300,  -- count
+    --     100)   -- eventTime
+    -- coroutine.yield()
   
     cppHoldPosition(host,dynob,250,"cast")
     coroutine.yield()
 
     cppMoveObject(host,dynob,0,0,50)
-    cppSetAfterImage(host,soul_1,0.01,10.0,25,0.05)
     coroutine.yield()
 
-    cppHoldPosition(host,dynob,100,"idle")
+    cppHoldPosition(host,dynob,50,"idle",false )
     coroutine.yield()
+end
+
+
+function  DynamicBehavior1( host, dynob )
+    direct = {1,-1}
+    i = 1
+	while true do 
+        DynamicBehavior1_base( host, dynob, direct[i])
+        i = i + 1
+        if i > 2 then
+            i = 1
+        end
     end
 end
 
@@ -238,13 +250,14 @@ end
 function  DynamicBehavior1_invert( host, dynob )
 	while true do 
     cppMoveObject(host,dynob,-200,300,50)
+    cppSetAfterImage(host,dynob,0.01,10.0,25,0.05)
     coroutine.yield()
     --function bc.patern_MA_hypocycloid(host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",
-        0.25, -- speed
+        0.55, -- speed
         10.0, -- lifeTime 
-        17,   -- a
-        22,   -- b 
+        15,   -- a
+        16,   -- b 
         45,   -- r
         2.1,  -- angleStep
         0,    -- startAngle
@@ -254,10 +267,10 @@ function  DynamicBehavior1_invert( host, dynob )
         100)  -- eventTime
     coroutine.yield()
     bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
-        0.25, -- speed
+        0.55, -- speed
         10.0, -- lifeTime
-        17,   -- a
-        22,   -- b
+        15,   -- a
+        16,   -- b
         45,   -- r
         2.1,  -- angleStep
         90,   -- startAngle
@@ -297,6 +310,7 @@ function  DynamicBehavior1_invert( host, dynob )
     coroutine.yield()
 
     cppMoveObject(host,dynob,0,0,50)
+    cppSetAfterImage(host,dynob,0.01,10.0,25,0.05)
     coroutine.yield()
 
     cppHoldPosition(host,dynob,100,"idle")
