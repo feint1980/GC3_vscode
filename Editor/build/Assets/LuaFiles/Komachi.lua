@@ -173,14 +173,14 @@ function DynamicBehavior1_base( host, dynob, direction)
         0.5, -- speed
         10.0, -- lifeTime 
         7,   -- a
-        5,   -- b 
-        3,    -- c
+        9,   -- b 
+        4,    -- c
         100,   -- r
         0.3,  -- angleStep
         0,    -- startAngle
         0,    -- rotation
         1,   -- interval
-        340,  -- count
+        900,  -- count
         100)  -- eventTime
     coroutine.yield()
     -- bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
