@@ -2285,7 +2285,7 @@ void F_Player::activeSpell()
 		obj.setDeathCallback([&] {
 			//std::cout << "end \n";
 			m_logicCamera->startShake(4.0, 3.0f, 3.0f);
-			m_effectBatch->addRippleEffectContinuos(&obj.getPos(), .5f, 15.5f, 0.0f, 0.001f, 0.001f);
+			m_effectBatch->addRippleEffectContinuos(&obj.getPos(), .5f, 15.5f, 0.0f, 0.001f, 0.01f);
 		});
 		for (int i = 0; i < spawnCount; i++)
 		{
@@ -2318,7 +2318,8 @@ void F_Player::activeSpell()
 		obj.registerEffectBatch(m_effectBatch);
 		obj.setDeathCallback([&] {
 			m_logicCamera->startShake(4.0, 3.0f, 3.0f);
-			m_effectBatch->addRippleEffect(obj.getPos(), .6f, 2.5f, -15.0f, 0.0025f, 0.0025f);
+			//m_effectBatch->addRippleEffect(obj.getPos(), .6f, 2.5f, -15.0f, 0.0025f, 0.0025f);
+			m_effectBatch->addRippleEffectContinuos(&obj.getPos(), .5f, 15.5f, 0.0f, 0.002f, 0.02f);
 
 		});
 		for (int i = 0; i < spawnCount; i++)

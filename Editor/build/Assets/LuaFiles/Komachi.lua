@@ -12,7 +12,7 @@ soul_1 = nil
 
 object = {posX = 0.0, posY = 0.0,
  animationPath = "./Assets/F_AObjects/boss_komachi.xml",
- scale = 1.0, depth = 15, angle = 0 }
+ scale = 0.6, depth = 15, angle = 0 }
 
 
 soul = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/komachi_souls.xml", scale = 1.0, depth = 15.0, angle = 0.0 }
@@ -166,23 +166,11 @@ end
 
 function DynamicBehavior1_base( host, dynob, direction)
    
-    cppMoveObject(host,dynob,100 * direction,100,50)
+
+    cppMoveObject(host,dynob,150 * direction,150,25)
     coroutine.yield()
     --function bc.patern_MA_hypocycloid(host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
-    bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_white.png",
-        0.5, -- speed
-        10.0, -- lifeTime 
-        7,   -- a
-        9,   -- b 
-        4,    -- c
-        100,   -- r
-        0.3,  -- angleStep
-        0,    -- startAngle
-        0,    -- rotation
-        1,   -- interval
-        900,  -- count
-        100)  -- eventTime
-    coroutine.yield()
+
     -- bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",
     --     0.5, -- speed
     --     10.0, -- lifeTime
@@ -209,27 +197,28 @@ function DynamicBehavior1_base( host, dynob, direction)
     --     300,  -- count
     --     100)  -- eventTime
     -- coroutine.yield()
-    -- bc.patern_MA_epicycloid(host,dynob,"projectile/bullet_shard_blue.png",
-    --     0.5, -- speed
-    --     10.0, -- lifeTime
-    --     10,   -- a
-    --     13,   -- b
-    --     45,   -- r
-    --     15.1,   -- angleStep
-    --     0,  -- startAngle
-    --     0,  -- rotation
-    --     1,   -- interval
-    --     300,  -- count
-    --     100)   -- eventTime
-    -- coroutine.yield()
-  
-    cppHoldPosition(host,dynob,250,"cast")
+    --total_line = 12
+   -- for i = 1, total_line do
+        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
+            4.5 + (-1.0 * direction), -- speed
+            10.0, -- lifeTime
+            4,   -- a
+            6,   -- b
+            7,   -- c
+            100,   -- r
+            1.2,   -- angleStep
+            0,  -- startAngle
+            180 + (180 * direction),  -- rotation
+            0,   -- interval
+            100,  -- count
+            100)   -- eventTime
+        coroutine.yield()
+  --  end
+   
+    cppHoldPosition(host,dynob,30,"cast")
     coroutine.yield()
 
-    cppMoveObject(host,dynob,0,0,50)
-    coroutine.yield()
-
-    cppHoldPosition(host,dynob,50,"idle",false )
+    cppHoldPosition(host,dynob,10,"idle",false )
     coroutine.yield()
 end
 
@@ -238,11 +227,44 @@ function  DynamicBehavior1( host, dynob )
     direct = {1,-1}
     i = 1
 	while true do 
-        DynamicBehavior1_base( host, dynob, direct[i])
-        i = i + 1
-        if i > 2 then
-            i = 1
+        for i = 1, 2 do
+            DynamicBehavior1_base( host, dynob, direct[i])
         end
+        cppMoveObject(host,dynob,0,50,50)
+        coroutine.yield()
+        bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_white.png",
+        0.5, -- speed
+        10.0, -- lifeTime 
+        7,   -- a
+        9,   -- b 
+        4,    -- c
+        100,   -- r
+        0.3,  -- angleStep
+        0,    -- startAngle
+        0,    -- rotation
+        1,   -- interval
+        900,  -- count
+        100)  -- eventTime
+        coroutine.yield()
+        total_line = 12
+        for i = 1, total_line do
+            bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
+            4.5, -- speed
+            10.0, -- lifeTime
+            4,   -- a
+            6,   -- b
+            7,   -- c
+            100,   -- r
+            1.2,   -- angleStep
+            0,  -- startAngle
+            0 + (360/total_line * i),  -- rotation
+            0,   -- interval
+            100,  -- count
+            100)   -- eventTime
+            coroutine.yield()
+        end
+        cppHoldPosition(host,dynob,200,"cast")
+        coroutine.yield()
     end
 end
 
