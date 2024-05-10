@@ -9,6 +9,8 @@ local soulsCount = 0
 komachi = nil
 soul_1 = nil
 
+math.randomseed(os.time())
+
 
 object = {posX = 0.0, posY = 0.0,
  animationPath = "./Assets/F_AObjects/boss_komachi.xml",
@@ -52,6 +54,16 @@ function moveset_normal_1( host )
     print("end")
 end
 
+
+function moveset_spell_1(host)
+    local tPosX = 50
+    for i = 1, 5 do 
+        local soul = cppCreateFromLua (host,soul.animationPath,tPosX * i,0,soul.scale,soul.depth,soul.angle)
+        name = "soul_" .. i
+        souls.[name] = soul
+    end
+end
+
 function moveset_normal_2(host)
     dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior2,host,komachi)}
     IssueNextTask(host,komachi)
@@ -71,6 +83,14 @@ end
 -- end
 
 
+
+
+function Spell_1(host, dynob)
+
+
+
+end
+
 function DynamicBehavior3(host, dynob)
     while true do
         cppMoveObject(host,dynob,0,300,50)
@@ -80,10 +100,10 @@ function DynamicBehavior3(host, dynob)
         --create helper param (F_Lua_Boss dynamicObject,string  objectName,
 	    --string  asset, float x, float y, float scaleX, float scaleY, float depth,
         --float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time)
-        souls[soulsCount + 1] = cppCreateFLObject(host,dynob,1,"Assets/F_AObjects/komachi_souls.xml" ,
-        100 , 200, 1,1,14,-10,0)
-        soulsCount = soulsCount + 1
-        print("print from lua ")
+        -- souls[soulsCount + 1] = cppCreateFLObject(host,dynob,1,"Assets/F_AObjects/komachi_souls.xml" ,
+        -- 100 , 200, 1,1,14,-10,0)
+        -- soulsCount = soulsCount + 1
+        -- print("print from lua ")
         --manipulateSouls()
         cppMoveObject(host,dynob,0,0,50)
 

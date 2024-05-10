@@ -1,6 +1,6 @@
 CMakeFiles/Feintgine.dir/src/LuaManager.cpp.obj: \
- E:\template\GC_port\Feintgine\src\LuaManager.cpp \
- E:\template\GC_port\Feintgine\src\LuaManager.h \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\LuaManager.cpp \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\LuaManager.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/string \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
@@ -132,11 +132,11 @@ CMakeFiles/Feintgine.dir/src/LuaManager.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/istream \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
- E:/template/GC_port/Feintgine_GC_deps/include/lua.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/lua.h \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdarg.h \
  C:/SysGCC/mingw32/include/stdarg.h \
  C:/SysGCC/mingw32/include/_mingw_stdarg.h \
- E:/template/GC_port/Feintgine_GC_deps/include/luaconf.h \
- E:/template/GC_port/Feintgine_GC_deps/include/lauxlib.h \
- E:/template/GC_port/Feintgine_GC_deps/include/lua.h \
- E:/template/GC_port/Feintgine_GC_deps/include/lualib.h
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/luaconf.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/lauxlib.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/lua.h \
+ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/lualib.h
