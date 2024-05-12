@@ -47,11 +47,13 @@ void F_Lua_GenericObject::update(float deltaTime)
 		decideAnimation(m_pos);
 	}
 	
-	//	m_pos += m_vel  * deltaTime;
+	//m_pos += m_vel  * deltaTime;
+
 
 	// if (m_isAnimated)
 	// {
 	// 	m_animation.update(deltaTime);
+	// 	m_animation.setPos(m_pos);
 	// }
 
 	for (int i = 0; i < m_bullets.size(); i++)

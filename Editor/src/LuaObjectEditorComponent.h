@@ -132,6 +132,7 @@ private:
 	KanjiEffectManager  * m_kanjiEffectManager;
 	//Feintgine::F_LuaObjectManager m_luaObjectManager;
 	BackGroundMap bg;
+	EmptyObject shadowing ;
 
 	Feintgine::ParticleEngine2D m_particleEngine;
 

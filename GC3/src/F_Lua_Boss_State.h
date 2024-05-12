@@ -8,7 +8,9 @@ enum LuaBossState {
 
 	Move, 
 	StandIdle,
-	AddEvent
+	AddEvent,
+	Wait,
+	None
 };
 
 
@@ -22,9 +24,13 @@ public:
 
 	void moveObject(F_Lua_GenericObject * dynamicObject, const glm::vec2 & target, float time);
 
+	void setObjectVel(F_Lua_GenericObject * dynamicObject, const glm::vec2 & vel);
+
 	void standIdle(F_Lua_GenericObject * dynamicObject, float time,const std::string & animName,bool isOverRide = false);
 
 	void teleport(F_Lua_GenericObject * dynamicObject, const glm::vec2 & target);
+
+	void waitFor(F_Lua_GenericObject * dynamicObject, float time);
 
 	void addDelayedEvent(F_Lua_GenericObject *  dynamicObject, const Feintgine::oEvent::f_callback & cb, double when);
 
@@ -34,6 +40,8 @@ protected:
 
 	LuaBossState m_state;
 	bool m_isComplete = false;
+
+	bool m_waitDone = false;
 
 	glm::vec2 m_startPos;
 

@@ -132,6 +132,9 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	bg.init(Feintgine::ResourceManager::getTexture(
 	"Assets/Lazy/bg.png"), glm::vec2(0), glm::vec2(m_drawScreen.z, m_drawScreen.w));
 
+	shadowing.init(Feintgine::ResourceManager::getTexture(
+	"Textures/shadowing.png"), glm::vec2(0), glm::vec2(2000),Feintgine::Color(0, 0, 0, 255));
+	
 	m_lightBatch.initShader(&m_shader);
 
 
@@ -259,6 +262,7 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 
 	spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 	bg.draw(spriteBatch);
+	shadowing.draw(spriteBatch);
 
 	if(m_playerEnableTogger->isSelected())
 	{

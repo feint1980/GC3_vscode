@@ -7,8 +7,8 @@ namespace Feintgine
 	F_LuaDynamicObject::F_LuaDynamicObject()
 	{
 		m_moveState = 0;
-		glm::vec2 m_vel = glm::vec2(0);
-		glm::vec2 m_direction = glm::vec2(0);
+		m_vel = glm::vec2(0);
+		m_direction = glm::vec2(0);
 	}
 
 
@@ -68,6 +68,13 @@ namespace Feintgine
 		m_afterImageParticle.setScale(m_scale);
 	}
 
+	void F_LuaDynamicObject::setVel(const glm::vec2 & vel)
+	{
+	
+		m_vel = vel;
+		
+	}
+
 	void F_LuaDynamicObject::eventTimer()
 	{
 		while (!event_queue.empty() &&
@@ -79,13 +86,14 @@ namespace Feintgine
 		}
 	}
 
-	void F_LuaDynamicObject::setTrace(float interval, float lifeTime, int maxTrace,float scaleRate,float alphaRate)
+	void F_LuaDynamicObject::setTrace(float interval, float lifeTime, int maxTrace,float scaleRate,float alphaRate,float traceLifeTime)
 	{
 		m_afterImageTime = lifeTime;
 		m_afterImageParticle.setTraceInterval(interval);
 		m_afterImageParticle.setTotalTrace(maxTrace);
 		m_afterImageParticle.setScaleRate(scaleRate);
 		m_afterImageParticle.setAlphaRate(alphaRate);
+		m_afterImageParticle.setTraceLifeTime(traceLifeTime);
 	}
 
 	void F_LuaDynamicObject::setMovementAnim(int val)
@@ -173,10 +181,17 @@ namespace Feintgine
 
 	void F_LuaDynamicObject::update(float deltaTime)
 	{
-		m_pos += m_vel  * deltaTime;
+		m_pos += m_vel * deltaTime;
+		
+		// if(m_vel.x != 0.0f || m_vel.y != 0.0f)
+		// {
+			
+		// }
+		//std::cout << "vel " << m_vel.x << " , " << m_vel.y << "\n";
 		//updateMovement(deltaTime);
 		if (m_isAnimated)
 		{
+			
 			m_animation.update(deltaTime);
 		}
 		eventTimer();

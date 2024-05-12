@@ -1,13 +1,14 @@
     
 bc =  require("./Assets/Luafiles/common/boss_common")
 
-local dynamics = {}
+dynamics = {}
 
-local souls = {}
-local soulsCount = 0
+souls = {}
+soulsCount = 0
 
 komachi = nil
 soul_1 = nil
+t_soul = nil
 
 math.randomseed(os.time())
 
@@ -17,7 +18,7 @@ object = {posX = 0.0, posY = 0.0,
  scale = 0.6, depth = 15, angle = 0 }
 
 
-soul = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/komachi_souls.xml", scale = 1.0, depth = 15.0, angle = 0.0 }
+soulData = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/komachi_souls.xml", scale = 1.0, depth = 15.0, angle = 0.0 }
 -- init
 function CreateFromLua(host,path)
 	print("[LUA] create from LUA called \n")
@@ -38,7 +39,7 @@ function moveset_summon(host)
     IssueNextTask(host,soul_1)
     dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior1,host,komachi)}
     IssueNextTask(host,komachi)
-    cppSetAfterImage(host,komachi,0.2,10.0)
+    cppSetAfterImage(komachi,0.2,10.0)
     
     isMovesetSelected = true
     
@@ -54,14 +55,166 @@ function moveset_normal_1( host )
     print("end")
 end
 
+-- function DynamicBehavior_boat_move(host, dynob, targetX, targetY)
+
+--     cppSetObjectVel(host, dynob, targetX, targetY)
+   
+-- end
+
+
+function souls_fire(host, dynob)
+    -- is_in_map = true
+
+    --pos = cppGetObjectPos(dynob)
+
+    angle = cppGetObjectAngle(dynob)
+    -- change radiant to degree
+    angle = angle * 180 / 3.1415
+    -- if pos[1] > 300 or pos[1] < -300 then
+    --     is_in_map = false
+    -- end
+    --print(pos[1])
+    --while true do 
+    --print("attack ")
+    addon_angle = 30
+    fire_angle = angle + addon_angle
+    --while true do 
+        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
+        4.5, -- speed
+        10.0, -- lifeTime
+        4,   -- a
+        6,   -- b
+        7,   -- c
+        100,   -- r
+        0.1,   -- angleStep
+        angle +90 ,  -- startAngle
+        0,  -- rotation
+        150,   -- interval
+        100,  -- count
+        100)   -- eventTime
+        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
+        4.5 , -- speed
+        10.0, -- lifeTime
+        4,   -- a
+        6,   -- b
+        7,   -- c
+        100,   -- r
+        -0.1,   -- angleStep
+        angle  +90,  -- startAngle
+        180,  -- rotation
+        150,   -- interval
+        100,  -- count
+        100)   -- eventTime
+        coroutine.yield()
+
+        -- x,y = cppGetObjectPos(dynob)
+        -- if(x > 200 or x < -200) then
+        --     cppRemoveFromLua(host,dynob)
+        -- end
+        -- coroutine.yield()
+
+   -- end 
+    --cppMoveObject(host,dynob,0,0,1000)
+    --cppWaitFor(host,dynob,4000)
+    --coroutine.yield()
+    --cppHoldPosition(host,dynob,10000,"idle")
+    --coroutine.yield()
+    --print("end ||||||")
+       -- cppRemoveFromLua(host,dynob)
+    --end
+    
+    --cppRemoveFromLua(host,dynob)
+end
+
+function spell_1_boss_movement(host, dynob)
+
+    thresholdValue = 50
+    while true do
+        xMultiply = math.random(-4,4)
+        yMultiply = math.random(0,3)
+        
+        cppMoveObject(host,dynob,xMultiply * thresholdValue ,yMultiply * thresholdValue,yMultiply + 1 * thresholdValue)
+        coroutine.yield()
+        cppHoldPosition(host,dynob,20,"idle",false)
+        spawn_souls(host)
+        coroutine.yield()
+        handle_souls(host)
+        --coroutine.yield()
+    end
+
+end
+
+function handle_souls(host)
+    -- for k in souls do
+    --     --if(souls[k] ~= nil) then
+    --     x,y = cppGetObjectPos(souls[k])
+    --     print(x)
+    --     --coroutine.yield()
+    --    -- end
+    -- end
+    for i = 1 , soulsCount 
+    do 
+        x,y = cppGetObjectPos(souls[i])
+        print(x)
+        if (x > 200 or x < -200) then
+            cppRemoveFromLua(host,souls[i])
+        end
+    end
+end
+
+function randomFloat(lower, greater)
+    return lower + math.random()  * (greater - lower);
+end
+
+function spawn_souls(host)
+    spawn_number = math.random(1,3)
+    pos_x_dif = 50
+    pos_y_dif = 400
+    x_vel_max = 2.2
+    x_vel_min = 0.5
+    for i = 1, spawn_number do
+        x_multiplier = math.random(-7,7)
+        x_location = x_multiplier * pos_x_dif
+       
+        local t_soul = cppCreateFromLua (host,soulData.animationPath,x_location  ,pos_y_dif,soulData.scale,soulData.depth,soulData.angle)
+        x_vel = randomFloat(x_vel_min,x_vel_max)
+        y_vel = randomFloat(-3,-1.5)
+        if(x_location > 0) then
+            x_vel = x_vel * -1
+        end
+        cppSetObjectVel(t_soul,x_vel,y_vel)
+        cppSetAfterImage(t_soul,0.075,500.0,30,0.0125,0.05,10.2)
+
+        dynamics[t_soul] = {behavior = coroutine.create(souls_fire,host,t_soul)}
+        IssueNextTask(host,t_soul)
+        souls[soulsCount + 1] = t_soul
+        soulsCount = soulsCount + 1
+       
+    end
+end 
 
 function moveset_spell_1(host)
-    local tPosX = 50
-    for i = 1, 5 do 
-        local soul = cppCreateFromLua (host,soul.animationPath,tPosX * i,0,soul.scale,soul.depth,soul.angle)
-        name = "soul_" .. i
-        souls.[name] = soul
-    end
+   local tPosX = 150
+
+
+   dynamics[komachi] = {behavior = coroutine.create(spell_1_boss_movement,host,komachi)}
+   IssueNextTask(host,komachi)
+--    for i = 1, 5 do 
+--         name = "soul_" .. i
+--         local soul = cppCreateFromLua (host,soul.animationPath,tPosX * (i-2),600,soul.scale,soul.depth,soul.angle)
+--         --table.insert(souls,soul)
+--         souls[name] = soul
+--        -- for k,v in pairs(souls) do
+--        --     IssueNextTask(host,v)
+--         --end
+--     end
+--     index = 0
+--     for k,v in pairs(souls) do
+--         --dynamics[v] = {behavior = coroutine.create(DynamicBehavior_boat_move,host,v,30,30)}
+--         cppSetObjectVel(v,-2.5,-3)
+--         --IssueNextTask(host,v)
+--         --index = index + 1
+--     end
 end
 
 function moveset_normal_2(host)
@@ -82,14 +235,6 @@ end
 --     isMovesetSelected = true
 -- end
 
-
-
-
-function Spell_1(host, dynob)
-
-
-
-end
 
 function DynamicBehavior3(host, dynob)
     while true do
@@ -292,7 +437,7 @@ end
 function  DynamicBehavior1_invert( host, dynob )
 	while true do 
     cppMoveObject(host,dynob,-200,300,50)
-    cppSetAfterImage(host,dynob,0.01,10.0,25,0.05)
+    cppSetAfterImage(dynob,0.01,10.0,25,0.05)
     coroutine.yield()
     --function bc.patern_MA_hypocycloid(host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime )
    bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",
@@ -352,7 +497,7 @@ function  DynamicBehavior1_invert( host, dynob )
     coroutine.yield()
 
     cppMoveObject(host,dynob,0,0,50)
-    cppSetAfterImage(host,dynob,0.01,10.0,25,0.05)
+    cppSetAfterImage(dynob,0.01,10.0,25,0.05)
     coroutine.yield()
 
     cppHoldPosition(host,dynob,100,"idle")

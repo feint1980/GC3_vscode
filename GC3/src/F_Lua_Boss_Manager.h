@@ -45,6 +45,8 @@ public:
 
 	void MoveObject(F_Lua_GenericObject * dynamicObject, float x, float y, float time);
 
+	void setObjectVel(F_Lua_GenericObject * dynamicObject, const glm::vec2 & vel);
+
 	void standIdle(F_Lua_GenericObject * dynamicObject, float time, const std::string & animName, bool isOverRide = false);
 
 	void resetEvent();
@@ -66,6 +68,8 @@ public:
 	void createHelper(F_Lua_GenericObject * dynamicObject, unsigned int id, const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time);
 
+	void waitFor(F_Lua_GenericObject * dynamicObject, float time);
+	
 	Feintgine::FL_Object * createFLObject(F_Lua_GenericObject * dynamicObject, unsigned int id, 
 		const std::string & asset, float x, float y, float scaleX, float scaleY, float depth, float destinationX, float destinationY);
 

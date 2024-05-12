@@ -3,16 +3,6 @@
 
 namespace Feintgine
 {
-	static int wrap_createDynamicObject(lua_State * L)
-	{
-		if (lua_gettop(L) != 4)
-		{
-			return -1;
-		}
-
-
-		
-	}
 	int lua_HostFunction(lua_State *L)
 	{
 		float a = (float)lua_tonumber(L, 1); // get arg 1 
@@ -220,18 +210,19 @@ namespace Feintgine
 
 			
 		}
-		for (auto i = 0; i < m_manipulators.size(); i++)
+
+
+		for(auto it = m_manipulators.begin(); it != m_manipulators.end(); it++)
 		{
-			if (m_manipulators[i])
+			if (*it)
 			{
-				if (m_manipulators[i]->update(deltaTime))
+				if((*it)->update(deltaTime))
 				{
-					//std::cout << "Issue Next Task [C++] \n";
 					lua_getglobal(m_script, "IssueNextTask");
 					if (lua_isfunction(m_script, -1))
 					{
 						
-						F_LuaDynamicObject * object = m_manipulators[i]->m_dynamicObject;
+						F_LuaDynamicObject * object = (*it)->m_dynamicObject;
 						//lua_pushlightuserdata(m_script, pThread);
 						lua_pushlightuserdata(m_script, this); // host
 						
@@ -243,12 +234,37 @@ namespace Feintgine
 					}
 					
 					// After Issued next task
-					m_manipulators.erase(m_manipulators.begin() + i);
+					m_manipulators.erase(it);
 				}
-				
-
 			}
 		}
+		// for (auto i = 0; i < m_manipulators.size(); i++)
+		// {
+		// 	if (m_manipulators[i])
+		// 	{
+		// 		if (m_manipulators[i]->update(deltaTime))
+		// 		{
+		// 			//std::cout << "Issue Next Task [C++] \n";
+		// 			lua_getglobal(m_script, "IssueNextTask");
+		// 			if (lua_isfunction(m_script, -1))
+		// 			{
+						
+		// 				F_LuaDynamicObject * object = m_manipulators[i]->m_dynamicObject;
+		// 				//lua_pushlightuserdata(m_script, pThread);
+		// 				lua_pushlightuserdata(m_script, this); // host
+						
+		// 				lua_pushlightuserdata(m_script, object);
+		// 				if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 2, 1, 0)))
+		// 				{
+		// 					std::cout << "script failed \n";
+		// 				}
+		// 			}
+					
+		// 			// After Issued next task
+		// 			m_manipulators.erase(m_manipulators.begin() + i);
+		// 		}
+		// 	}
+		// }
 	}
 
 

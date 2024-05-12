@@ -4,6 +4,7 @@
 
 F_Lua_Boss_State::F_Lua_Boss_State()
 {
+	m_state = LuaBossState::None;
 }
 
 
@@ -18,11 +19,31 @@ void F_Lua_Boss_State::moveObject(F_Lua_GenericObject * dynamicObject, const glm
 	m_endPos = target;
 	m_completionTime = time;
 	m_state = LuaBossState::Move;
+	m_waitDone = true;
+}
+
+void  F_Lua_Boss_State::waitFor(F_Lua_GenericObject * dynamicObject, float time)
+{
+	std::cout << "wait for " << time << "\n";
+	m_luaBoss = dynamicObject;
+	m_elaspedTime = 0;
+	m_completionTime = time;
+	m_state = LuaBossState::Wait;
+	m_isComplete = false;
+	m_waitDone = false;
+}
+
+void F_Lua_Boss_State::setObjectVel(F_Lua_GenericObject * dynamicObject, const glm::vec2 & vel)
+{
+	m_luaBoss = dynamicObject;
+	m_luaBoss->setVel(vel);
+	//m_isComplete = true;
 }
 
 bool F_Lua_Boss_State::update(float deltaTime)
 {
 	m_elaspedTime += deltaTime;
+
 
 	if (m_elaspedTime >= m_completionTime)
 	{
@@ -32,7 +53,7 @@ bool F_Lua_Boss_State::update(float deltaTime)
 	///
 	switch (m_state)
 	{
-	case Move:
+	case LuaBossState::Move:
 	{
 		glm::vec2 tPos = (m_endPos - m_startPos) * (m_elaspedTime / m_completionTime) + m_startPos;
 		if (m_luaBoss)
@@ -46,21 +67,34 @@ bool F_Lua_Boss_State::update(float deltaTime)
 		}
 	}
 	break;
-	case StandIdle:
+	case LuaBossState::StandIdle:
 		if (m_isComplete)
 		{
 			m_luaBoss->setAnimOverRide(false);
 		}
 		break;
-	case AddEvent:
+	case LuaBossState::AddEvent:
 	{
 
 	}
+	break;
+	case LuaBossState::Wait:
+	{
+		//std::cout << "elapsed time " << m_elaspedTime << "\n";
+		if(m_isComplete)
+		{
+			m_waitDone = true;
+			std::cout << "real wait done \n";
+		}
+		
+		//std::cout << "waiting \n";
+	}
+	break;
 	default:
 		break;
 	}
 
-	return m_isComplete;
+	return m_isComplete && m_waitDone ;
 }
 
 void F_Lua_Boss_State::standIdle(F_Lua_GenericObject * dynamicObject, float time, const std::string & animName, bool isOverRide /*= false*/) 
@@ -74,6 +108,7 @@ void F_Lua_Boss_State::standIdle(F_Lua_GenericObject * dynamicObject, float time
 	m_luaBoss->setAnimOverRide(isOverRide);
 	m_luaBoss->playAnimation(animName);
 	m_state = LuaBossState::StandIdle;
+	m_waitDone = true;
 
 }
 
@@ -84,4 +119,5 @@ void F_Lua_Boss_State::addDelayedEvent(F_Lua_GenericObject *  dynamicObject, con
 	m_state = LuaBossState::AddEvent;
 	m_completionTime = 1;
 	m_isComplete = true;
+	m_waitDone = true;
 }

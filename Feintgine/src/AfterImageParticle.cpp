@@ -252,13 +252,13 @@ void AfterImageObject::clear()
 
 void AfterImageObject::addTrace(const AfterImageTrace & trace)
 {
-// 	if (m_traces.size() > m_numberOfTrace -1)
-// 	{
-// 		std::swap(m_traces.front(), m_traces.back());
-// 		m_traces.pop_back();
-// 		//m_traces.swap(m_traces.begin(), m_traces[m_traces.size() -1])
-// 	}
-	m_traces.push_back(trace);
+	if (m_traces.size() > m_numberOfTrace -1)
+	{
+		std::swap(m_traces.front(), m_traces.back());
+		m_traces.pop_back();
+		//m_traces.swap(m_traces.begin(), m_traces[m_traces.size() -1])
+	}
+	//m_traces.push_back(trace);
 }
 // --------------------- AfterImage Object End ---------------------
 

@@ -3,13 +3,7 @@
 //#include "F_Komachi_Souls_Object.cpp" // I am sorry, Feint   | -  Belai
 
 
-int wrap_createDynamicObject(lua_State * L)
-{
-	if (lua_gettop(L) != 4)
-	{
-		return -1;
-	}
-}
+
 int lua_HostFunction(lua_State *L)
 {
 	float a = (float)lua_tonumber(L, 1); // get arg 1 
@@ -61,6 +55,7 @@ int lua_CreateFromLua(lua_State * L)
 	F_Lua_GenericObject * createdDynamicObj = object->createBoss(pos, animationPath, glm::vec2(scale), depth, angle);// createObject(pos, animationPath, 1, 15, 0);
 																										//moveOb
 																										//std::cout << "create object " << createdDynamicObj << "\n";
+																						//std::cout << "create |||| " << createdDynamicObj << "\n";
 	lua_pushlightuserdata(L, createdDynamicObj);
 	return 1; // this host function return 1 number 
 }
@@ -78,7 +73,19 @@ int lua_removeFromLua(lua_State * L)
 	object->removeObject(dynamicObject);
 	return 0;
 }
-
+int lua_setObjectVel(lua_State * L)
+{
+	std::cout << "lua_setObjectVel called \n";
+	if (lua_gettop(L) != 3)
+	{
+		std::cout << "(lua_setObjectVel) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
+	glm::vec2 vel = glm::vec2(lua_tonumber(L, 2), lua_tonumber(L, 3));
+	dynamicObject->setVel(vel);
+	return 0;
+}
 int lua_MoveObject(lua_State * L)
 {
 	if (lua_gettop(L) != 5)
@@ -301,29 +308,80 @@ int lua_setAfterImage(lua_State * L)
 		std::cout << "(lua_setAfterImage) bad gettop " << lua_gettop(L) << " \n";
 		return;
 	}
-	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
-	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
-	float interval = lua_tonumber(L, 3);
-	float lifeTime = lua_tonumber(L, 4);
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
+	float interval = lua_tonumber(L, 2);
+	float lifeTime = lua_tonumber(L, 3);
 	int maxNum = 10;
 	float scaleRate = 0.0f;
 	float alphaRate = 0.5f;
+	float traceLifeTime = 2.0f;
+	if(lua_gettop(L) >= 4)
+	{
+		maxNum = lua_tonumber(L, 4);
+	}
 	if(lua_gettop(L) >= 5)
 	{
-		maxNum = lua_tonumber(L, 5);
+		scaleRate = lua_tonumber(L, 5);
 	}
-	if(lua_gettop(L) >= 6)
+	if(lua_gettop(L) == 6)
 	{
-		scaleRate = lua_tonumber(L, 6);
+		alphaRate = lua_tonumber(L, 6);
 	}
 	if(lua_gettop(L) == 7)
 	{
-		alphaRate = lua_tonumber(L, 7);
+		traceLifeTime = lua_tonumber(L, 7);
 	}
-	dynamicObject->setTrace(interval, lifeTime, maxNum, scaleRate, alphaRate);
+
+	dynamicObject->setTrace(interval, lifeTime, maxNum, scaleRate, alphaRate,traceLifeTime);
 	return 0;
 }
 
+
+int lua_getObjectPos(lua_State * L)
+{
+	if (lua_gettop(L) != 1)
+	{
+		std::cout << "(lua_getObjectPos) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
+	glm::vec2 pos = dynamicObject->getPos();
+	//std::cout << "get pos " << pos.x << " " << pos.y << "\n";
+	//lua_newtable(L);
+	lua_pushnumber(L, pos.x);
+	lua_pushnumber(L, pos.y);
+	//lua_settable(L, -3);
+	return 2;
+}
+
+int lua_getObjectAngle(lua_State * L)
+{
+	if (lua_gettop(L) != 1)
+	{
+		std::cout << "(lua_getObjectAngle) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
+	float angle = dynamicObject->getAngle();
+	lua_pushnumber(L, angle);
+	return 1;
+}
+
+int lua_waitFor(lua_State * L)
+{
+	if (lua_gettop(L) != 3)
+	{
+		std::cout << "(lua_waitFor) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
+	float time = lua_tonumber(L, 3);
+	objectManager->waitFor(dynamicObject, time);
+	return 0;
+
+	
+}
 
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 {
@@ -346,6 +404,10 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppCreateHelper", lua_createHelper);
 	lua_register(m_script, "cppRemoveFromLua", lua_removeFromLua);
 	lua_register(m_script, "cppSetAfterImage", lua_setAfterImage);
+	lua_register(m_script, "cppGetObjectPos", lua_getObjectPos);
+	lua_register(m_script, "cppSetObjectVel", lua_setObjectVel);
+	lua_register(m_script, "cppGetObjectAngle", lua_getObjectAngle);
+	lua_register(m_script, "cppWaitFor", lua_waitFor);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 }
 
@@ -401,6 +463,8 @@ void F_Lua_Boss_Manager::update(float deltaTime)
 					//lua_pushlightuserdata(m_script, pThread);
 					lua_pushlightuserdata(m_script, this); // host
 
+					//std::cout << "Issue next task pointer " << object << "\n";
+
 					lua_pushlightuserdata(m_script, object);
 					if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 2, 1, 0)))
 					{
@@ -446,6 +510,30 @@ void F_Lua_Boss_Manager::MoveObject(F_Lua_GenericObject * dynamicObject, float x
  	m_luaBossStates.push_back(manipulator);
 }
 
+void F_Lua_Boss_Manager::waitFor(F_Lua_GenericObject * dynamicObject, float time)
+{
+	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
+ 	manipulator->waitFor(dynamicObject, time);
+ 	m_luaBossStates.push_back(manipulator);
+
+	// dynamicObject->addEvent([=] 
+	// {
+
+	// 	std::cout << "this end \n";
+
+	// }, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time ));
+
+}
+
+
+void F_Lua_Boss_Manager::setObjectVel(F_Lua_GenericObject * dynamicObject, const glm::vec2 & vel)
+{
+
+	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
+	manipulator->setObjectVel(dynamicObject, vel);
+	m_luaBossStates.push_back(manipulator);
+
+}
 F_Lua_GenericObject * F_Lua_Boss_Manager::createBoss(const std::string & animationPath, glm::vec2 pos)
 {
 	std::cout << "createBoss 1 called \n";

@@ -69,7 +69,11 @@ namespace Feintgine
 
 		void eventTimer();
 
-		void setTrace(float interval, float lifeTime, int maxTrace ,float scaleRate,float alphaRate);
+		void setVel(const glm::vec2 & vel);
+
+		void setTrace(float interval, float lifeTime, int maxTrace ,float scaleRate,float alphaRate,float traceLifeTime);
+
+		float getAngle() const { return m_angle; }
 
 
 	protected:
