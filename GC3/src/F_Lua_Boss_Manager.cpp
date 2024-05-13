@@ -268,6 +268,34 @@ int lua_setFireBase(lua_State * L)
 
 }
 
+int lua_setFireKomachiCoin(lua_State * L)
+{
+
+	//std::cout << "here \n";
+	if (lua_gettop(L) != 9)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	//	void rw_addEvent_base(F_Lua_GenericObject * dynamicObject, 
+	//const std::string & asset, float speed, float lifeTime, 
+	//float x, float y, float currentAngle, double time);
+	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
+	std::string asset = lua_tostring(L, 3); // 
+	float speed = lua_tonumber(L, 4); // 
+	float lifeTime = lua_tonumber(L, 5); // 
+	float x = lua_tonumber(L, 6); // 
+	float y = lua_tonumber(L, 7); // 
+	float currentAngle = lua_tonumber(L, 8); // 
+	double time = lua_tonumber(L, 9); // 
+
+	objectManager->rw_addEvent_base(dynamicObject, asset, speed, lifeTime, x, y, currentAngle, time);
+
+	return 0;
+
+}
+
 int lua_createHelper(lua_State * L)
 {
 	//createObject(F_Lua_GenericObject * dynamicObject, const std::string & objectName,
@@ -427,6 +455,7 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppSetFire_MA_custom_aff", lua_setFireMACustomAFF);
 	lua_register(m_script, "cppSetFire_Base", lua_setFireBase);
 	lua_register(m_script, "cppCreateHelper", lua_createHelper);
+	lua_register(m_script, "cppSetFireKomachiCoin", lua_setFireKomachiCoin);
 	lua_register(m_script, "cppRemoveFromLua", lua_removeFromLua);
 	lua_register(m_script, "cppSetAfterImage", lua_setAfterImage);
 	lua_register(m_script, "cppGetObjectPos", lua_getObjectPos);
@@ -916,6 +945,15 @@ void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff(F_Lua_GenericObject * dynamic
 		}
 	}
 	m_luaBossStates.push_back(manipulator);
+}
+
+
+void F_Lua_Boss_Manager::rw_addEvent_fire_coin(F_Lua_GenericObject * dynamicObject, const std::vector<std::string> & assets,int tier, float speed, float lifeTime, float x, float y, float currentAngle, double time)
+{
+	dynamicObject->addEvent([=]
+	{
+		// create new type of enemybulletbase
+	}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time ));
 }
 
 void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_GenericObject * dynamicObject, const std::string & asset,

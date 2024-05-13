@@ -217,9 +217,50 @@ function manipulateSouls()
     end
 end
 
+
+function replicate_ftest_ma_custom_aff(host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
+    local f_angle = startAngle 
+	local f_count = 0;
+  
+    t_x, t_y = cppGetObjectPos(dynob)
+
+    --local coin = cppCreateFromLua (host,asset,0  ,0 ,soulData.scale,soulData.depth,soulData.angle)
+
+  
+    --cppSetObjectVel(coin,10,20)
+
+	for t_k = 0,k
+	do
+	f_angle = f_angle +angleStep
+		for t_l1 = 0,l1
+		do
+			f_angle = f_angle +angleStep
+			for t_l2 = 0,l2
+			do
+				f_angle = f_angle +angleStep
+				for t_n2 = 0,n2
+				do
+					f_angle = f_angle +angleStep
+					for t_n = 0,n
+					do 
+						x = math.cos(f_angle * posneg) * speed
+						y = math.sin(f_angle * posneg) * speed
+						f_angle = f_angle + math.rad(360/n)
+
+						--coroutine.create(cppSetFire_Base,host,dynob,asset,speed,lifeTime,x,y,f_angle,time)
+						--cppSetFire_Base(host,dynob,asset,speed,lifeTime,x,y,f_angle,time + (interval  * f_count) )
+                        local coin = cppCreateFromLua (host,asset,t_x  ,t_y ,soulData.scale,soulData.depth,soulData.angle)
+                        cppSetObjectVel(coin,x,y)
+						f_count = f_count + 1
+					end -- n
+				end -- n2
+			end -- l2
+		end -- l1
+	end -- k
+
+end 
+
 function DynamicBehavior2(host,dynob)
-
-
     count = 2
     xthresHold = 125
     while true do 
@@ -243,6 +284,8 @@ function DynamicBehavior2(host,dynob)
             45,    -- rotation
             7,     -- interval
             100)     -- time
+            
+            --(host,dynob,asset,speed,lifeTime,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
             coroutine.yield()
 
             cppHoldPosition(host,dynob,1,"idle",false)
@@ -254,6 +297,7 @@ function DynamicBehavior2(host,dynob)
         cppHoldPosition(host,dynob,85,"cast")
         --cppPlayAnimation(dynob,"cast",1)
         
+       
         bc.ftest_ma_custom_aff(host,dynob,"komachi/komachi_11.png",
         1.9, -- speed 
         10.0,  -- lifeTime
@@ -268,6 +312,7 @@ function DynamicBehavior2(host,dynob)
         45,    -- rotation
         4,     -- interval
         100)     -- time
+        --(host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
         coroutine.yield()
         cppHoldPosition(host,dynob,1,"cast",false)
         coroutine.yield()
