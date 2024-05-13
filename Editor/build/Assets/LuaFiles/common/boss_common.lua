@@ -82,8 +82,6 @@ M.patern_PE_circle = function (host,dynob, asset, speed, lifeTime, startRange, r
 end
 
 
-
-
 M.ftest_ma_custom_aff = function (host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
 	local f_angle = startAngle 
 	local f_count = 0;

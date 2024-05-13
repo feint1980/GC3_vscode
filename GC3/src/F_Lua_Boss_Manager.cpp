@@ -323,7 +323,7 @@ int lua_setAfterImage(lua_State * L)
 	{
 		scaleRate = lua_tonumber(L, 5);
 	}
-	if(lua_gettop(L) == 6)
+	if(lua_gettop(L) >= 6)
 	{
 		alphaRate = lua_tonumber(L, 6);
 	}
@@ -363,6 +363,7 @@ int lua_getObjectAngle(lua_State * L)
 	}
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
 	float angle = dynamicObject->getAngle();
+	//std::cout << "angle return " << angle << "\n";
 	lua_pushnumber(L, angle);
 	return 1;
 }
@@ -382,6 +383,30 @@ int lua_waitFor(lua_State * L)
 
 	
 }
+
+int lua_playAnimation(lua_State * L)
+{
+	if (lua_gettop(L) < 2 && lua_gettop(L) > 4)
+	{
+		std::cout << "(lua_playAnimation) bad gettop " << lua_gettop(L) << " \n";
+	}
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
+	std::string animationName = lua_tostring(L, 2);
+	int loopTime = 0;
+	bool isOverride = false;
+	if(lua_gettop(L) >= 3)
+	{
+		loopTime = lua_tonumber(L, 3);
+	}
+	if(lua_gettop(L) == 4)
+	{
+		isOverride = lua_toboolean(L, 4);
+	}
+	dynamicObject->playAnimation(animationName, loopTime);
+	dynamicObject->setAnimOverRide(isOverride);
+
+}
+
 
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 {
@@ -408,6 +433,7 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppSetObjectVel", lua_setObjectVel);
 	lua_register(m_script, "cppGetObjectAngle", lua_getObjectAngle);
 	lua_register(m_script, "cppWaitFor", lua_waitFor);
+	lua_register(m_script, "cppPlayAnimation", lua_playAnimation);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 }
 

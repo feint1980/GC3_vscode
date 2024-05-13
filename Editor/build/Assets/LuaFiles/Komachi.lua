@@ -18,7 +18,7 @@ object = {posX = 0.0, posY = 0.0,
  scale = 0.6, depth = 15, angle = 0 }
 
 
-soulData = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/komachi_souls.xml", scale = 1.0, depth = 15.0, angle = 0.0 }
+soulData = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/komachi_effects.xml", scale = 1.0, depth = 15.0, angle = 0.0 }
 -- init
 function CreateFromLua(host,path)
 	print("[LUA] create from LUA called \n")
@@ -63,67 +63,40 @@ end
 
 
 function souls_fire(host, dynob)
-    -- is_in_map = true
-
-    --pos = cppGetObjectPos(dynob)
 
     angle = cppGetObjectAngle(dynob)
-    -- change radiant to degree
-    angle = angle * 180 / 3.1415
-    -- if pos[1] > 300 or pos[1] < -300 then
-    --     is_in_map = false
-    -- end
-    --print(pos[1])
+    addon_angle = 190 * 0.0174532925
+    fire_angle = angle - addon_angle
+    invert_fire_angle = angle - 10 * 0.0174532925
+
+    x = math.cos(fire_angle)
+    y = math.sin(fire_angle)
+    mX = math.cos(invert_fire_angle)
+    mY = math.sin(invert_fire_angle)
+    interval = 85 --*  math.abs( x + y)
+    time = 300
     --while true do 
-    --print("attack ")
-    addon_angle = 30
-    fire_angle = angle + addon_angle
-    --while true do 
-        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
-        4.5, -- speed
-        10.0, -- lifeTime
-        4,   -- a
-        6,   -- b
-        7,   -- c
-        100,   -- r
-        0.1,   -- angleStep
-        angle +90 ,  -- startAngle
-        0,  -- rotation
-        150,   -- interval
-        100,  -- count
-        100)   -- eventTime
-        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
-        4.5 , -- speed
-        10.0, -- lifeTime
-        4,   -- a
-        6,   -- b
-        7,   -- c
-        100,   -- r
-        -0.1,   -- angleStep
-        angle  +90,  -- startAngle
-        180,  -- rotation
-        150,   -- interval
-        100,  -- count
-        100)   -- eventTime
+        bullet_count = math.random(30,75)
+        for t = 0, bullet_count do
+            speed = randomFloat(0.5,4.5)
+            cppSetFire_Base(host,dynob,"projectile/bullet_shard_blue.png",
+            speed, -- speed
+            5.0, -- lifeTime
+            x, -- x 
+            y, -- y
+            angle, -- angle
+            time + (t  * interval) )
+            cppSetFire_Base(host,dynob,"projectile/bullet_shard_blue.png",
+            speed, -- speed
+            5.0, -- lifeTime
+            mX, -- x 
+            mY, -- y
+            0, -- angle
+            time + (t  * interval) )
+        end 
         coroutine.yield()
 
-        -- x,y = cppGetObjectPos(dynob)
-        -- if(x > 200 or x < -200) then
-        --     cppRemoveFromLua(host,dynob)
-        -- end
-        -- coroutine.yield()
 
-   -- end 
-    --cppMoveObject(host,dynob,0,0,1000)
-    --cppWaitFor(host,dynob,4000)
-    --coroutine.yield()
-    --cppHoldPosition(host,dynob,10000,"idle")
-    --coroutine.yield()
-    --print("end ||||||")
-       -- cppRemoveFromLua(host,dynob)
-    --end
-    
-    --cppRemoveFromLua(host,dynob)
 end
 
 function spell_1_boss_movement(host, dynob)
@@ -145,18 +118,14 @@ function spell_1_boss_movement(host, dynob)
 end
 
 function handle_souls(host)
-    -- for k in souls do
-    --     --if(souls[k] ~= nil) then
-    --     x,y = cppGetObjectPos(souls[k])
-    --     print(x)
-    --     --coroutine.yield()
-    --    -- end
-    -- end
+    x_border = 350
     for i = 1 , soulsCount 
     do 
         x,y = cppGetObjectPos(souls[i])
-        print(x)
-        if (x > 200 or x < -200) then
+        if (x > x_border or x < -x_border) then
+            cppRemoveFromLua(host,souls[i])
+        end
+        if ( y < -600) then
             cppRemoveFromLua(host,souls[i])
         end
     end
@@ -178,12 +147,13 @@ function spawn_souls(host)
        
         local t_soul = cppCreateFromLua (host,soulData.animationPath,x_location  ,pos_y_dif,soulData.scale,soulData.depth,soulData.angle)
         x_vel = randomFloat(x_vel_min,x_vel_max)
-        y_vel = randomFloat(-3,-1.5)
+        y_vel = randomFloat(-4.5,-3.0)
         if(x_location > 0) then
             x_vel = x_vel * -1
         end
         cppSetObjectVel(t_soul,x_vel,y_vel)
-        cppSetAfterImage(t_soul,0.075,500.0,30,0.0125,0.05,10.2)
+        cppSetAfterImage(t_soul,0.1,100.0,20,0.0125,0.125,4.2)
+        cppPlayAnimation(t_soul,"idle",-1,true)
 
         dynamics[t_soul] = {behavior = coroutine.create(souls_fire,host,t_soul)}
         IssueNextTask(host,t_soul)
@@ -194,28 +164,11 @@ function spawn_souls(host)
 end 
 
 function moveset_spell_1(host)
-   local tPosX = 150
-
-
    dynamics[komachi] = {behavior = coroutine.create(spell_1_boss_movement,host,komachi)}
    IssueNextTask(host,komachi)
---    for i = 1, 5 do 
---         name = "soul_" .. i
---         local soul = cppCreateFromLua (host,soul.animationPath,tPosX * (i-2),600,soul.scale,soul.depth,soul.angle)
---         --table.insert(souls,soul)
---         souls[name] = soul
---        -- for k,v in pairs(souls) do
---        --     IssueNextTask(host,v)
---         --end
---     end
---     index = 0
---     for k,v in pairs(souls) do
---         --dynamics[v] = {behavior = coroutine.create(DynamicBehavior_boat_move,host,v,30,30)}
---         cppSetObjectVel(v,-2.5,-3)
---         --IssueNextTask(host,v)
---         --index = index + 1
---     end
 end
+
+
 
 function moveset_normal_2(host)
     dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior2,host,komachi)}
@@ -265,66 +218,64 @@ function manipulateSouls()
 end
 
 function DynamicBehavior2(host,dynob)
+
+
+    count = 2
+    xthresHold = 125
     while true do 
-        cppMoveObject(host,dynob,200,300,50)
-        coroutine.yield()
+        if (count > 1) then
+            count = -1
+            cppMoveObject(host,dynob,0,170,25)
+            coroutine.yield()
+            cppHoldPosition(host,dynob,350,"cast")
+
+            bc.ftest_ma_custom_aff(host,dynob,"komachi/komachi_13.png",
+            3.425, -- speed 
+            10.0,  -- lifeTime
+            2,     -- k
+            6,     -- n
+            4,     -- n2
+            2,     -- l1
+            1,     -- l2
+            -1,     -- posneg
+            0,    -- startAngle
+            2.5,    -- angleStep
+            45,    -- rotation
+            7,     -- interval
+            100)     -- time
+            coroutine.yield()
+
+            cppHoldPosition(host,dynob,1,"idle",false)
+            coroutine.yield()
+        end
        
-        -- ftest_ma_custom_aff (host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
-        -- example bc.ftest_ma_custom_aff(host,dynob,"projectile/bullet_shard_yellow.png",0.95,7.0,1,2,2,4,6,1,90,10,90,10,0)
-        cppHoldPosition(host,dynob,10,"idle")
+        cppMoveObject(host,dynob,count * xthresHold,100,65)
         coroutine.yield()
-        cppHoldPosition(host,dynob,50,"cast")
+        cppHoldPosition(host,dynob,85,"cast")
+        --cppPlayAnimation(dynob,"cast",1)
         
-        bc.ftest_ma_custom_aff(host,dynob,"projectile/bullet_shard_white.png",0.925,10.0,4,2,2,2,3,1,90,10,45,1,0)
-        --coroutine.yield()
-        --bc.ftest_ma_custom_aff(host,dynob,"projectile/bullet_shard_white.png",0.925,10.0,4,2,2,2,3,-1,90,10,45,2,100)
+        bc.ftest_ma_custom_aff(host,dynob,"komachi/komachi_11.png",
+        1.9, -- speed 
+        10.0,  -- lifeTime
+        3,     -- k
+        2,     -- n
+        2,     -- n2
+        2,     -- l1
+        1,     -- l2
+        1,     -- posneg
+        0,    -- startAngle
+        1.2,    -- angleStep
+        45,    -- rotation
+        4,     -- interval
+        100)     -- time
         coroutine.yield()
-        cppHoldPosition(host,dynob,70,"idle")
+        cppHoldPosition(host,dynob,1,"cast",false)
         coroutine.yield()
+        count = count + 1
+       
 
-        cppMoveObject(host,dynob,-200,300,50)
-        coroutine.yield()
-
-        cppHoldPosition(host,dynob,10,"idle")
-        coroutine.yield()
-        cppHoldPosition(host,dynob,50,"cast")
-        
-        bc.ftest_ma_custom_aff(host,dynob,"projectile/bullet_shard_white.png",0.925,10.0,4,2,2,2,3,1,90,10,45,1,0)
-        --coroutine.yield()
-        --bc.ftest_ma_custom_aff(host,dynob,"projectile/bullet_shard_white.png",0.925,10.0,4,2,2,2,3,-1,90,10,45,2,100)
-        coroutine.yield()
-        cppHoldPosition(host,dynob,70,"idle")
-        coroutine.yield()
-
-        cppMoveObject(host,dynob,0,200,50)
-        coroutine.yield()
-        --coroutine.yield()
-        --bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,1.3,0,0,5,900,0)
-        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",5.25,10.0,4,12,7,45,1.3,0,0,5,450,0)
-        coroutine.yield()
-        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",5.25,10.0,4,12,7,45,-1.3,0,30,5,450,0)
-        coroutine.yield()
-        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",5.25,10.0,4,12,7,45,1.8,0,70,5,450,0)
-        coroutine.yield()
-        bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",5.25,10.0,4,12,7,45,-1.8,0,-70,5,450,0)
-        coroutine.yield()
-        cppHoldPosition(host,dynob,220,"cast")
-        coroutine.yield()
-
-        cppMoveObject(host,dynob,-200,0,50)
-        coroutine.yield()
-        --coroutine.yield()
-        --bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_blue.png",0.25,10.0,17,22,45,1.3,0,0,5,900,0)
-        bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_blue.png",1.25,10.0,3,7,2,45,5,0,0,5,450,0)
-        coroutine.yield()
-        bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_blue.png",1.25,10.0,3,7,2,45,-5,0,90,5,450,0)
-        coroutine.yield()
-        bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_white.png",1.25,10.0,3,7,2,45,3.3,0,180,3,900,0)
-        coroutine.yield()
-        bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_white.png",1.25,10.0,3,7,2,45,3.3,0,0,3,900,0)
-        coroutine.yield()
-        cppHoldPosition(host,dynob,270,"cast")
-        coroutine.yield()
+        --cppPlayAnimation(dynob,"idle",0)
+       
     end
 end
 

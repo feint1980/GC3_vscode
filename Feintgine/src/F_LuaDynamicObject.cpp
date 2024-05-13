@@ -72,6 +72,7 @@ namespace Feintgine
 	{
 	
 		m_vel = vel;
+		m_angle = atan2(m_vel.y, m_vel.x) + degreeToRad(90.0f);
 		
 	}
 
@@ -143,13 +144,14 @@ namespace Feintgine
 
 				state = ANIM_CENTER;
 			}
-			oldPos = pos;
+			
 			if (currentState != state)
 			{
 
 				currentState = state;
 				setMovementAnim(currentState);
 			}
+			oldPos = pos;
 		}
 	}
 
@@ -191,7 +193,7 @@ namespace Feintgine
 		//updateMovement(deltaTime);
 		if (m_isAnimated)
 		{
-			
+
 			m_animation.update(deltaTime);
 		}
 		eventTimer();

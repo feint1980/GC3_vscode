@@ -28,33 +28,35 @@ namespace Feintgine
 		}
 	}
 
-	void F_Lua_GC3_Boss::decideAnimation(const glm::vec2 & pos)
-	{
-		if (!m_isDeath)
-		{
-			if (pos.x < oldPos.x)
-			{
-				state = ANIM_LEFT;
-			}
-			else if (pos.x > oldPos.x)
-			{
+	// void F_Lua_GC3_Boss::decideAnimation(const glm::vec2 & pos)
+	// {
+	// 	if (!m_isDeath)
+	// 	{
+	// 		if (pos.x < oldPos.x)
+	// 		{
+	// 			state = ANIM_LEFT;
+	// 		}
+	// 		else if (pos.x > oldPos.x)
+	// 		{
 
-				state = ANIM_RIGHT;
-			}
-			else if (pos.x == oldPos.x)
-			{
+	// 			state = ANIM_RIGHT;
+	// 		}
+	// 		else if (pos.x == oldPos.x)
+	// 		{
 
-				state = ANIM_CENTER;
-			}
-			oldPos = pos;
-			if (currentState != state)
-			{
+	// 			state = ANIM_CENTER;
+	// 		}
+			
+	// 		if (currentState != state)
+	// 		{
 
-				currentState = state;
-				setMovementAnim(currentState);
-			}
-		}
-	}
+	// 			currentState = state;
+	// 			setMovementAnim(currentState);
+	// 		}
+	// 		oldPos = pos;
+
+	// 	}
+	// }
 
 	void F_Lua_GC3_Boss::setMovementAnim(int val)
 	{

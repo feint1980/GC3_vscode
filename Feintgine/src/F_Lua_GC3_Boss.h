@@ -15,7 +15,7 @@ namespace Feintgine
 		virtual void update(float deltaTime)override;
 
 	protected: 
-		void decideAnimation(const glm::vec2 & pos);
+		//void decideAnimation(const glm::vec2 & pos);
 
 		void setMovementAnim(int val);
 
