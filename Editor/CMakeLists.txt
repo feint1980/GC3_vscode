@@ -61,6 +61,7 @@ file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/ScoreItem.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/PowerItem.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_Komachi_Souls_Object.cpp
+    ${PROJECT_SOURCE_DIR}/../GC3/src/EnemyBullet_KomachiCoin.cpp
 
 )
 

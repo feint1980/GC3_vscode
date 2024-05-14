@@ -14,7 +14,7 @@
 #include <F_BaseObject.h>
 #include "F_Komachi_Souls_Object.h"
 #include <FL_Object.h>
-
+#include "EnemyBullet_KomachiCoin.h"
 
 
 
@@ -65,8 +65,7 @@ public:
 
 	void rw_addEvent_base(F_Lua_GenericObject * dynamicObject, const std::string & asset, float speed, float lifeTime, float x, float y, float currentAngle, double time);
 
-	
-	void rw_addEvent_fire_coin(F_Lua_GenericObject * dynamicObject, const std::vector<std::string> & assets, float speed, float lifeTime, float x, float y, float currentAngle, double time);
+	void rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dynamicObject, const std::vector<std::string> & assets, int tier, float speed, float lifeTime, float x, float y, float currentAngle, double time);
 
 	void createHelper(F_Lua_GenericObject * dynamicObject, unsigned int id, const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time);

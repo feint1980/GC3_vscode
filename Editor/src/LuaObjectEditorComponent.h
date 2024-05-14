@@ -134,6 +134,9 @@ private:
 	BackGroundMap bg;
 	EmptyObject shadowing ;
 
+
+	bool toogleDrawLight = false;
+
 	Feintgine::ParticleEngine2D m_particleEngine;
 
 };

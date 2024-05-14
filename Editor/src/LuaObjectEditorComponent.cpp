@@ -253,13 +253,16 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	GLint dayLightIndex = m_shader.getUniformLocation("dayLight");
 	glUniform3f(dayLightIndex, 1.0f, 1.0f, 1.0f);
 
-	m_lightBatch.begin();
+
+
+	if(toogleDrawLight)
+	{
+		m_lightBatch.begin();
+		m_player.drawLight(m_lightBatch);
+		m_particleEngine.drawLight(m_lightBatch);
+		m_lightBatch.renderLight();
+	}
 	
-	m_player.drawLight(m_lightBatch);
-	m_particleEngine.drawLight(m_lightBatch);
-
-	m_lightBatch.renderLight();
-
 	spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 	bg.draw(spriteBatch);
 	shadowing.draw(spriteBatch);

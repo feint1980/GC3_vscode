@@ -200,6 +200,30 @@ E_/template/GC_port/GC3/src/EnemyBulletBase.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyBulletBase.cpp.s
 .PHONY : E_/template/GC_port/GC3/src/EnemyBulletBase.cpp.s
 
+E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.obj: E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.obj
+.PHONY : E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.obj
+
+# target to build an object file
+E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.obj
+.PHONY : E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.obj
+
+E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.i: E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.i
+.PHONY : E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.i
+
+# target to preprocess a source file
+E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.i
+.PHONY : E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.i
+
+E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.s: E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.s
+.PHONY : E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.s
+
+# target to generate assembly for a file
+E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.s
+.PHONY : E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.s
+
 E_/template/GC_port/GC3/src/EnemyGuardian.obj: E_/template/GC_port/GC3/src/EnemyGuardian.cpp.obj
 .PHONY : E_/template/GC_port/GC3/src/EnemyGuardian.obj
 
@@ -2114,6 +2138,9 @@ help:
 	@echo ... E_/template/GC_port/GC3/src/EnemyBulletBase.obj
 	@echo ... E_/template/GC_port/GC3/src/EnemyBulletBase.i
 	@echo ... E_/template/GC_port/GC3/src/EnemyBulletBase.s
+	@echo ... E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.obj
+	@echo ... E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.i
+	@echo ... E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.s
 	@echo ... E_/template/GC_port/GC3/src/EnemyGuardian.obj
 	@echo ... E_/template/GC_port/GC3/src/EnemyGuardian.i
 	@echo ... E_/template/GC_port/GC3/src/EnemyGuardian.s

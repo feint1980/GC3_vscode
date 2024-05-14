@@ -984,6 +984,7 @@ CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj: \
  E:/template/GC_port/GC3/src/F_Komachi_Souls_Object.h \
  E:/template/GC_port/Feintgine/src/feint_common.h \
  E:/template/GC_port/Feintgine/src/FL_Object.h \
+ E:/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.h \
  E:/template/GC_port/GC3/src/F_Player.h \
  E:/template/GC_port/Feintgine/src/AnimatedObject.h \
  E:/template/GC_port/Feintgine/src/InputManager.h \

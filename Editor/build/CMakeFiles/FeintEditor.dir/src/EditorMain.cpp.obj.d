@@ -1122,6 +1122,7 @@ CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj: \
  E:/template/GC_port/Feintgine/src/F_BaseObject.h \
  E:/template/GC_port/GC3/src/F_Komachi_Souls_Object.h \
  E:/template/GC_port/Feintgine/src/FL_Object.h \
+ E:/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.h \
  E:/template/GC_port/GC3/src/EnemyGuardian.h \
  E:/template/GC_port/GC3/src/BackGroundMap.h \
  E:/template/GC_port/Feintgine/src/ParticleEngine2D.h \

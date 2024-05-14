@@ -13,6 +13,8 @@ t_soul = nil
 math.randomseed(os.time())
 
 
+komachi_coins = {"komachi/komachi_12.png","komachi/komachi_11.png","komachi/komachi_13.png"}
+
 object = {posX = 0.0, posY = 0.0,
  animationPath = "./Assets/F_AObjects/boss_komachi.xml",
  scale = 0.6, depth = 15, angle = 0 }
@@ -76,9 +78,9 @@ function souls_fire(host, dynob)
     interval = 85 --*  math.abs( x + y)
     time = 300
     --while true do 
-        bullet_count = math.random(30,75)
+        bullet_count = math.random(30,50)
         for t = 0, bullet_count do
-            speed = randomFloat(0.5,4.5)
+            speed = randomFloat(0.5,1.7)
             cppSetFire_Base(host,dynob,"projectile/bullet_shard_blue.png",
             speed, -- speed
             5.0, -- lifeTime
@@ -106,9 +108,9 @@ function spell_1_boss_movement(host, dynob)
         xMultiply = math.random(-4,4)
         yMultiply = math.random(0,3)
         
-        cppMoveObject(host,dynob,xMultiply * thresholdValue ,yMultiply * thresholdValue,yMultiply + 1 * thresholdValue)
+        cppMoveObject(host,dynob,xMultiply * thresholdValue ,yMultiply * thresholdValue,50)
         coroutine.yield()
-        cppHoldPosition(host,dynob,20,"idle",false)
+        cppHoldPosition(host,dynob,70,"idle",false)
         spawn_souls(host)
         coroutine.yield()
         handle_souls(host)
@@ -217,50 +219,9 @@ function manipulateSouls()
     end
 end
 
-
-function replicate_ftest_ma_custom_aff(host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
-    local f_angle = startAngle 
-	local f_count = 0;
-  
-    t_x, t_y = cppGetObjectPos(dynob)
-
-    --local coin = cppCreateFromLua (host,asset,0  ,0 ,soulData.scale,soulData.depth,soulData.angle)
-
-  
-    --cppSetObjectVel(coin,10,20)
-
-	for t_k = 0,k
-	do
-	f_angle = f_angle +angleStep
-		for t_l1 = 0,l1
-		do
-			f_angle = f_angle +angleStep
-			for t_l2 = 0,l2
-			do
-				f_angle = f_angle +angleStep
-				for t_n2 = 0,n2
-				do
-					f_angle = f_angle +angleStep
-					for t_n = 0,n
-					do 
-						x = math.cos(f_angle * posneg) * speed
-						y = math.sin(f_angle * posneg) * speed
-						f_angle = f_angle + math.rad(360/n)
-
-						--coroutine.create(cppSetFire_Base,host,dynob,asset,speed,lifeTime,x,y,f_angle,time)
-						--cppSetFire_Base(host,dynob,asset,speed,lifeTime,x,y,f_angle,time + (interval  * f_count) )
-                        local coin = cppCreateFromLua (host,asset,t_x  ,t_y ,soulData.scale,soulData.depth,soulData.angle)
-                        cppSetObjectVel(coin,x,y)
-						f_count = f_count + 1
-					end -- n
-				end -- n2
-			end -- l2
-		end -- l1
-	end -- k
-
-end 
-
 function DynamicBehavior2(host,dynob)
+
+
     count = 2
     xthresHold = 125
     while true do 
@@ -268,13 +229,13 @@ function DynamicBehavior2(host,dynob)
             count = -1
             cppMoveObject(host,dynob,0,170,25)
             coroutine.yield()
-            cppHoldPosition(host,dynob,350,"cast")
+            cppHoldPosition(host,dynob,200,"cast")
 
             bc.ftest_ma_custom_aff(host,dynob,"komachi/komachi_13.png",
             3.425, -- speed 
             10.0,  -- lifeTime
             2,     -- k
-            6,     -- n
+            4,     -- n
             4,     -- n2
             2,     -- l1
             1,     -- l2
@@ -282,27 +243,25 @@ function DynamicBehavior2(host,dynob)
             0,    -- startAngle
             2.5,    -- angleStep
             45,    -- rotation
-            7,     -- interval
+            3,     -- interval
             100)     -- time
-            
-            --(host,dynob,asset,speed,lifeTime,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
             coroutine.yield()
 
             cppHoldPosition(host,dynob,1,"idle",false)
             coroutine.yield()
         end
        
-        cppMoveObject(host,dynob,count * xthresHold,100,65)
+        cppMoveObject(host,dynob,count * xthresHold,150,30)
         coroutine.yield()
         cppHoldPosition(host,dynob,85,"cast")
         --cppPlayAnimation(dynob,"cast",1)
         
-       
-        bc.ftest_ma_custom_aff(host,dynob,"komachi/komachi_11.png",
-        1.9, -- speed 
+        bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
+        1, -- tier
+        2.9, -- speed 
         10.0,  -- lifeTime
-        3,     -- k
-        2,     -- n
+        2,     -- k
+        1,     -- n
         2,     -- n2
         2,     -- l1
         1,     -- l2
@@ -312,7 +271,8 @@ function DynamicBehavior2(host,dynob)
         45,    -- rotation
         4,     -- interval
         100)     -- time
-        --(host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
+
+        --ftest_ma_custom_coin = function (host,dynob,tableName,tableAssets,tier,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
         coroutine.yield()
         cppHoldPosition(host,dynob,1,"cast",false)
         coroutine.yield()
@@ -367,11 +327,11 @@ function DynamicBehavior1_base( host, dynob, direction)
             6,   -- b
             7,   -- c
             100,   -- r
-            1.2,   -- angleStep
+            1.6,   -- angleStep
             0,  -- startAngle
             180 + (180 * direction),  -- rotation
             0,   -- interval
-            100,  -- count
+            50,  -- count
             100)   -- eventTime
         coroutine.yield()
   --  end
@@ -399,7 +359,7 @@ function  DynamicBehavior1( host, dynob )
         7,   -- a
         9,   -- b 
         4,    -- c
-        100,   -- r
+        50,   -- r
         0.3,  -- angleStep
         0,    -- startAngle
         0,    -- rotation
@@ -410,7 +370,7 @@ function  DynamicBehavior1( host, dynob )
         total_line = 12
         for i = 1, total_line do
             bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
-            4.5, -- speed
+            2.5, -- speed
             10.0, -- lifeTime
             4,   -- a
             6,   -- b
@@ -420,7 +380,7 @@ function  DynamicBehavior1( host, dynob )
             0,  -- startAngle
             0 + (360/total_line * i),  -- rotation
             0,   -- interval
-            100,  -- count
+            50,  -- count
             100)   -- eventTime
             coroutine.yield()
         end

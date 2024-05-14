@@ -268,11 +268,10 @@ int lua_setFireBase(lua_State * L)
 
 }
 
-int lua_setFireKomachiCoin(lua_State * L)
+int lua_setKomachiCoin(lua_State * L)
 {
-
 	//std::cout << "here \n";
-	if (lua_gettop(L) != 9)
+	if (lua_gettop(L) != 11)
 	{
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
@@ -282,20 +281,47 @@ int lua_setFireKomachiCoin(lua_State * L)
 	//float x, float y, float currentAngle, double time);
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
-	std::string asset = lua_tostring(L, 3); // 
-	float speed = lua_tonumber(L, 4); // 
-	float lifeTime = lua_tonumber(L, 5); // 
-	float x = lua_tonumber(L, 6); // 
-	float y = lua_tonumber(L, 7); // 
-	float currentAngle = lua_tonumber(L, 8); // 
-	double time = lua_tonumber(L, 9); // 
 
-	objectManager->rw_addEvent_base(dynamicObject, asset, speed, lifeTime, x, y, currentAngle, time);
+	std::string tableName = lua_tostring(L,3);
+
+	int type = lua_type(L,4);
+	if(type != LUA_TTABLE)
+	{
+		std::cout << "lua_setKomachiCoin : arg 3 is not a table\n";
+	}
+
+	lua_getglobal(L,tableName.c_str());
+	lua_pushnil(L);
+	std::vector<std::string> tAssets;
+	while(lua_next(L,-2))
+	{
+		if(lua_isstring(L,-1))
+		{
+			std::string name = lua_tostring(L,-1);
+			tAssets.push_back(name);
+			//std::cout << "name " << name << "\n";
+		}
+		lua_pop(L,1);
+		
+	}
+	lua_pop(L,1);
+	//std::string asset = lua_tostring(L, 3); // 
+	int tier = lua_tonumber(L,5);
+	float speed = lua_tonumber(L, 6); // 
+	float lifeTime = lua_tonumber(L, 7); // 
+	float x = lua_tonumber(L, 8); // 
+	float y = lua_tonumber(L, 9); // 
+	float currentAngle = lua_tonumber(L, 10); // 
+	double time = lua_tonumber(L, 11); // 
+
+	objectManager->rw_addEvent_fire_komachi_coin(dynamicObject,tAssets,tier,speed,lifeTime,x,y,currentAngle,time);
+
+	// rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dynamicObject, const std::vector<std::string> & assets, int tier, float speed, float lifeTime, float x, float y, float currentAngle, double time)
+
+	// objectManager->rw_addEvent_base(dynamicObject, asset, speed, lifeTime, x, y, currentAngle, time);
 
 	return 0;
-
 }
-
 int lua_createHelper(lua_State * L)
 {
 	//createObject(F_Lua_GenericObject * dynamicObject, const std::string & objectName,
@@ -408,8 +434,6 @@ int lua_waitFor(lua_State * L)
 	float time = lua_tonumber(L, 3);
 	objectManager->waitFor(dynamicObject, time);
 	return 0;
-
-	
 }
 
 int lua_playAnimation(lua_State * L)
@@ -455,8 +479,8 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppSetFire_MA_custom_aff", lua_setFireMACustomAFF);
 	lua_register(m_script, "cppSetFire_Base", lua_setFireBase);
 	lua_register(m_script, "cppCreateHelper", lua_createHelper);
-	lua_register(m_script, "cppSetFireKomachiCoin", lua_setFireKomachiCoin);
 	lua_register(m_script, "cppRemoveFromLua", lua_removeFromLua);
+	lua_register(m_script, "cppSetFire_KomachiCoin",lua_setKomachiCoin);
 	lua_register(m_script, "cppSetAfterImage", lua_setAfterImage);
 	lua_register(m_script, "cppGetObjectPos", lua_getObjectPos);
 	lua_register(m_script, "cppSetObjectVel", lua_setObjectVel);
@@ -947,15 +971,6 @@ void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff(F_Lua_GenericObject * dynamic
 	m_luaBossStates.push_back(manipulator);
 }
 
-
-void F_Lua_Boss_Manager::rw_addEvent_fire_coin(F_Lua_GenericObject * dynamicObject, const std::vector<std::string> & assets,int tier, float speed, float lifeTime, float x, float y, float currentAngle, double time)
-{
-	dynamicObject->addEvent([=]
-	{
-		// create new type of enemybulletbase
-	}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time ));
-}
-
 void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_GenericObject * dynamicObject, const std::string & asset,
 	float speed, float lifeTime, float x, float y, float currentAngle, double time)
 {
@@ -966,12 +981,35 @@ void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_GenericObject * dynamicObject, c
 		bullet->m_lifeTime = lifeTime;
 
 
-		glm::vec2 tVel = globalRotatePoint(glm::vec2(x, y), f_angle );
+		glm::vec2 tVel = globalRotatePoint(glm::vec2(x, y), f_angle ); // investigate this 
+																	   // f_angle || currentAngle
 
 		glm::vec2 vel = tVel * speed;
 		bullet->init(dynamicObject->getPos(), glm::vec2(1),
 			Feintgine::SpriteManager::Instance()->getSprite(asset), vel, nullptr, 5);
 		bullet->setDirection(tVel);
+
+		m_bullets.push_back(bullet);
+	}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time ));
+
+}
+
+void F_Lua_Boss_Manager::rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dynamicObject, const std::vector<std::string> & assets, int tier, float speed, float lifeTime, float x, float y, float currentAngle, double time)
+{
+	dynamicObject->addEvent([=]
+	{
+		EnemyBulletBase * bullet = new EnemyBullet_KomachiCoin();
+		bullet->m_lifeTime = lifeTime;
+
+		glm::vec2 tVel = globalRotatePoint(glm::vec2(x, y), f_angle ); // same thing with rw_addEvent_base                                                                                           
+		glm::vec2 vel = tVel * speed;
+		bullet->init(dynamicObject->getPos(), glm::vec2(1),
+			Feintgine::SpriteManager::Instance()->getSprite(assets[tier]), vel, nullptr, 5);
+		bullet->setDirection(tVel);
+		EnemyBullet_KomachiCoin * casted_bullet = dynamic_cast<EnemyBullet_KomachiCoin*>(bullet);  
+		dynamic_cast<EnemyBullet_KomachiCoin*>(bullet)->initTierSetting(assets);
+		dynamic_cast<EnemyBullet_KomachiCoin*>(bullet)->setTier(tier);
+		
 
 		m_bullets.push_back(bullet);
 	}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time ));

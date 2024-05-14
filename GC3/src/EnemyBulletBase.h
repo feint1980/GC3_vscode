@@ -13,9 +13,6 @@ extern int daf;
 
 #define DISTANCE_THRESHOLD  3.5f
 
-
-
-
 class EnemyBulletBase
 {
 	enum destinationState
@@ -28,7 +25,7 @@ class EnemyBulletBase
 
 public:
 	EnemyBulletBase();
-	~EnemyBulletBase();
+	virtual ~EnemyBulletBase();
 
 	void defaultUpdate(float deltaTime) 
 	{
@@ -104,7 +101,7 @@ public:
 	void setRotateVec(float angleStart, float angleEnd, float step);
 
 	void updateRotateVec(float deltaTime);
-	void update(float deltaTime);
+	virtual void update(float deltaTime);
 	void setAngle(float angle);
 	void rotate(float angle);
 	void setPos(const glm::vec2 & pos);

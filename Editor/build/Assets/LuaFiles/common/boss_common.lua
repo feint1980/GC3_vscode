@@ -111,8 +111,42 @@ M.ftest_ma_custom_aff = function (host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,p
 			end -- l2
 		end -- l1
 	end -- k
-
 end
+
+M.ftest_ma_custom_coin = function (host,dynob,tableName,tableAssets,tier,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
+	local f_angle = startAngle 
+	local f_count = 0;
+	for t_k = 0,k
+	do
+	f_angle = f_angle +angleStep
+		for t_l1 = 0,l1
+		do
+			f_angle = f_angle +angleStep
+			for t_l2 = 0,l2
+			do
+				f_angle = f_angle +angleStep
+				for t_n2 = 0,n2
+				do
+					f_angle = f_angle +angleStep
+					for t_n = 0,n
+					do 
+						x = math.cos(f_angle * posneg)
+						y = math.sin(f_angle * posneg)
+						f_angle = f_angle + math.rad(360/n)
+
+						cppSetFire_KomachiCoin(host,dynob,tableName,tableAssets,tier,
+						speed,lifeTime,x,y,f_angle,time + (interval  * f_count))
+
+						--coroutine.create(cppSetFire_Base,host,dynob,asset,speed,lifeTime,x,y,f_angle,time)
+						--cppSetFire_Base(host,dynob,asset,speed,lifeTime,x,y,f_angle,time + (interval  * f_count) )
+						f_count = f_count + 1
+					end -- n
+				end -- n2
+			end -- l2
+		end -- l1
+	end -- k
+end
+
 
 
 M.ftest_ma_custom_aff2 =function(host,dynob,asset,speed,lifeTime,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)

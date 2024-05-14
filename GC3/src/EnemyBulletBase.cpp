@@ -12,6 +12,7 @@ EnemyBulletBase::EnemyBulletBase()
 EnemyBulletBase::~EnemyBulletBase()
 {
 	m_pos = glm::vec2(0.0f, 1200.0f);
+	m_updateFunc = nullptr;
 }
 
 void EnemyBulletBase::setLifeTime(float lifeTime)

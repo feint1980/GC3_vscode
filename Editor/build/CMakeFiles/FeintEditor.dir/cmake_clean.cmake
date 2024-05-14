@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyAmplifier.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyBulletBase.cpp.obj"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyBulletBase.cpp.obj.d"
+  "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.obj"
+  "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyBullet_KomachiCoin.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyGuardian.cpp.obj"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/EnemyGuardian.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/E_/template/GC_port/GC3/src/ExplosionRing.cpp.obj"
