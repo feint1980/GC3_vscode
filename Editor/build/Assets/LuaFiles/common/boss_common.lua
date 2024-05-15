@@ -137,8 +137,6 @@ M.ftest_ma_custom_coin = function (host,dynob,tableName,tableAssets,tier,speed,l
 						cppSetFire_KomachiCoin(host,dynob,tableName,tableAssets,tier,
 						speed,lifeTime,x,y,f_angle,time + (interval  * f_count))
 
-						--coroutine.create(cppSetFire_Base,host,dynob,asset,speed,lifeTime,x,y,f_angle,time)
-						--cppSetFire_Base(host,dynob,asset,speed,lifeTime,x,y,f_angle,time + (interval  * f_count) )
 						f_count = f_count + 1
 					end -- n
 				end -- n2

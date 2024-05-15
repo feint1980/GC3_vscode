@@ -27,7 +27,17 @@ void EnemyBullet_KomachiCoin::update(float deltaTime)
             {
                     m_tier++;
                     m_sprite = m_tierSprites[m_tier];
-                    m_vel = m_vel * -0.8f;
+                    if(abs(m_vel.x) > abs(m_vel.y))
+                    {
+                         m_vel.x = m_vel.x * -0.8f;
+                         m_vel.y = m_vel.y * 0.8f;
+                    }
+                    else
+                    {
+                         m_vel.x = m_vel.x * 0.8f;
+                         m_vel.y = m_vel.y * -0.8f;
+                    }
+                    
                     m_lifeTime = 10.0f;
             }
         }
