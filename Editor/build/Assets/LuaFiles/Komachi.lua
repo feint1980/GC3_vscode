@@ -59,7 +59,8 @@ end
 -- Belong to moveset_normal_1
 function  DynamicBehavior1( host, dynob )
     direct = {1,-1}
-    i = 1
+    angle_count = 0
+    t_angle = 12 * 0.0174532925
 	while true do 
         for i = 1, 2 do
             DynamicBehavior1_base( host, dynob, direct[i])
@@ -75,7 +76,7 @@ function  DynamicBehavior1( host, dynob )
         50,   -- r
         0.3,  -- angleStep
         0,    -- startAngle
-        0,    -- rotation
+        angle_count * t_angle,    -- rotation
         1,   -- interval
         900,  -- count
         100)  -- eventTime
@@ -90,7 +91,7 @@ function  DynamicBehavior1( host, dynob )
             7,   -- c
             100,   -- r
             1.2,   -- angleStep
-            0,  -- startAngle
+            angle_count * t_angle,  -- startAngle
             0 + (360/total_line * i),  -- rotation
             0,   -- interval
             50,  -- count
@@ -99,6 +100,7 @@ function  DynamicBehavior1( host, dynob )
         end
         cppHoldPosition(host,dynob,200,"cast")
         coroutine.yield()
+        angle_count = angle_count + 1
     end
 end
 
