@@ -1,3 +1,3 @@
 CMakeFiles/Feintgine.dir/src/EngineSetting.cpp.obj: \
- E:\template\GC_port\Feintgine\src\EngineSetting.cpp \
- E:\template\GC_port\Feintgine\src\EngineSetting.h
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\EngineSetting.cpp \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\EngineSetting.h

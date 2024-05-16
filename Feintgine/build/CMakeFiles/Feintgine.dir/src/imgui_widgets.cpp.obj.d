@@ -1,7 +1,7 @@
 CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj: \
- E:\template\GC_port\Feintgine\src\imgui_widgets.cpp \
- E:\template\GC_port\Feintgine\src\imgui.h \
- E:\template\GC_port\Feintgine\src\imconfig.h \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_widgets.cpp \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui.h \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\imconfig.h \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/float.h \
  C:/SysGCC/mingw32/include/float.h C:/SysGCC/mingw32/include/crtdefs.h \
  C:/SysGCC/mingw32/include/corecrt.h C:/SysGCC/mingw32/include/_mingw.h \
@@ -30,7 +30,7 @@ CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj: \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mm_malloc.h \
  C:/SysGCC/mingw32/include/errno.h \
  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
- E:\template\GC_port\Feintgine\src\imgui_internal.h \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_internal.h \
  C:/SysGCC/mingw32/include/stdio.h \
  C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
  C:/SysGCC/mingw32/include/_mingw_off_t.h \
@@ -71,6 +71,6 @@ CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj: \
  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_hermite.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/poly_laguerre.tcc \
  C:/SysGCC/mingw32/include/c++/12.2.0/tr1/riemann_zeta.tcc \
- E:\template\GC_port\Feintgine\src\imstb_textedit.h \
+ D:\VS_Code_prj\GC3_vscode\Feintgine\src\imstb_textedit.h \
  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdint.h \
  C:/SysGCC/mingw32/include/stdint.h

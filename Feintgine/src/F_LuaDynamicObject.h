@@ -47,6 +47,10 @@ namespace Feintgine
 
 		void updateMovement(float deltaTime);
 
+		void updateCharging(float deltaTime);
+
+		void setCharging(bool val);
+
 		void setMoveLinear(const glm::vec2 & destination, float speed);
 
 		void playAnimation(const std::string & animationName, int time = -1);
@@ -134,6 +138,15 @@ namespace Feintgine
 		float m_afterImageTime = 0.0f;
 
 		AfterImageObject m_afterImageParticle;
+
+
+		// todo: put it in other class
+		// std::vector<Feintgine::F_Sprite> m_chargingSprites;
+		// float m_chargeTime;
+		// float m_chargeRadius;
+		// int m_chargeMaxCount;
+		// float m_chargeMoveSpeed;
+		
 
 	};
 }

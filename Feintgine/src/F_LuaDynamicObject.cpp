@@ -217,6 +217,7 @@ namespace Feintgine
 		}
 	}
 
+
 	void F_LuaDynamicObject::setMoveLinear(const glm::vec2 & destination,
 		float speed)
 	{
