@@ -9,6 +9,7 @@ namespace Feintgine
 		m_moveState = 0;
 		m_vel = glm::vec2(0);
 		m_direction = glm::vec2(0);
+		m_chargingHandler.registerTargetPos(&m_pos);
 	}
 
 

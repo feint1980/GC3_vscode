@@ -1,21 +1,5 @@
-#include "F_Sprite.h"
-
-
-struct ChargeParticle
-{
-    glm::vec2 pos;
-    Feintgine::F_Sprite sprite;
-    float m_angle;
-    float m_scale;
-    float m_scaleRate;
-    float m_lifeTime;
-
-    void draw(Feintgine::SpriteBatch & spriteBatch);
-    void update(float deltaTime);
-
-    void init(const glm::vec2 & t_pos, const Feintgine::F_Sprite & t_sprite, float t_angle, float t_scale, float t_scaleRate, float t_lifeTime);
-    
-};
+#include "ChargeParticle.h"
+#include "feint_common.h"
 
 
 class ChargingHandler
@@ -25,6 +9,8 @@ public:
     ~ChargingHandler();
 
 
+    void registerTargetPos(glm::vec2 * t_targetPos);
+
     void draw(Feintgine::SpriteBatch & spriteBatch);
     void update(float deltaTime);
 
@@ -32,11 +18,13 @@ public:
 
 
     private:
-    // todo: put it in other class
+
     std::vector<ChargeParticle> m_chargingParticles;
     float m_chargeTime;
     float m_chargeRadius;
     int m_chargeMaxCount;
     float m_chargeMoveSpeed;
 
-}
+    glm::vec2 * mp_targetPos;
+
+};

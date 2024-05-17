@@ -5,6 +5,8 @@
 #include "LuaManager.h"
 #include "F_oEvent.h"
 #include "AfterImageParticle.h"
+#include "ChargingHandler.h"
+
 
 // move table define
 /*
@@ -139,15 +141,7 @@ namespace Feintgine
 
 		AfterImageObject m_afterImageParticle;
 
-
-		// todo: put it in other class
-		// std::vector<Feintgine::F_Sprite> m_chargingSprites;
-		// float m_chargeTime;
-		// float m_chargeRadius;
-		// int m_chargeMaxCount;
-		// float m_chargeMoveSpeed;
-		
-
+		ChargingHandler m_chargingHandler;
 	};
 }
 
