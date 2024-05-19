@@ -36,7 +36,7 @@ void ChargingHandler::registerTargetPos(glm::vec2 * t_targetPos)
     mp_targetPos = t_targetPos;
 }
 
-void ChargingHandler::setChargingSprites(const std::vector<Feintgine::F_Sprite> & t_chargingSprites, float t_chargeTime, float t_chargeRadius, int t_chargeMaxCount)
+void ChargingHandler::setCharging(const std::vector<Feintgine::F_Sprite> & t_chargingSprites, float t_chargeTime, float t_chargeRadius, int t_chargeMaxCount)
 {
     if(mp_targetPos)
     {

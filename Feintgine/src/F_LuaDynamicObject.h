@@ -49,9 +49,8 @@ namespace Feintgine
 
 		void updateMovement(float deltaTime);
 
-		void updateCharging(float deltaTime);
+		void setCharging(const std::vector<Feintgine::F_Sprite> & t_chargingSprites, float t_chargeTime, float t_chargeRadius, int t_chargeMaxCount);
 
-		void setCharging(bool val);
 
 		void setMoveLinear(const glm::vec2 & destination, float speed);
 
@@ -81,14 +80,11 @@ namespace Feintgine
 
 		float getAngle() const { return m_angle; }
 
-
 	protected:
-
 
 		// protected functions
 
 		void setMovementAnim(int val);
-
 		// Custom states declare below 
 		// move table 
 		/*

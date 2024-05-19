@@ -33,6 +33,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/Camera3D.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/Camera3D.cpp.obj.d"
+  "CMakeFiles/Feintgine.dir/src/ChargeParticle.cpp.obj"
+  "CMakeFiles/Feintgine.dir/src/ChargeParticle.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/ChargingHandler.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/ChargingHandler.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/ClientSocket.cpp.obj"

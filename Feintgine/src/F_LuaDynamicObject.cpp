@@ -77,6 +77,14 @@ namespace Feintgine
 		
 	}
 
+
+	void F_LuaDynamicObject::setCharging(const std::vector<Feintgine::F_Sprite> & t_chargingSprites, float t_chargeTime, float t_chargeRadius, int t_chargeMaxCount)
+	{
+
+		m_chargingHandler.setCharging(t_chargingSprites, t_chargeTime, t_chargeRadius, t_chargeMaxCount);
+	}
+
+
 	void F_LuaDynamicObject::eventTimer()
 	{
 		while (!event_queue.empty() &&
@@ -180,6 +188,7 @@ namespace Feintgine
 		{
 			m_afterImageParticle.draw(spriteBatch);
 		}
+		m_chargingHandler.draw(spriteBatch);
 	}
 
 	void F_LuaDynamicObject::update(float deltaTime)
@@ -203,6 +212,8 @@ namespace Feintgine
 			m_afterImageTime -=  0.1f * deltaTime;
 			m_afterImageParticle.update(deltaTime, m_animation.getCurrentAnimation()->getCurrentIndex(),m_angle);
 		}
+
+		m_chargingHandler.update(deltaTime);
 	}
 
 	void F_LuaDynamicObject::updateMovement(float deltaTime)
