@@ -6,6 +6,7 @@ F_Lua_Boss::F_Lua_Boss()
 	m_animation_left_name = "left";
 	m_animation_right_name = "right";
 	m_animation_center_name = "idle";
+	m_chargingHandler.registerTargetPos(&m_pos);
 }
 
 

@@ -3,11 +3,12 @@
 
 F_Lua_GenericObject::F_Lua_GenericObject()
 {
+	
 	m_isDeath = false;
 	m_animation_left_name = "left";
 	m_animation_right_name = "right";
 	m_animation_center_name = "idle";
-
+	m_chargingHandler.registerTargetPos(&m_pos);
 
 }
 

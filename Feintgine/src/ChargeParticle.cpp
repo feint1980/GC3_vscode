@@ -4,6 +4,7 @@
 ChargeParticle::ChargeParticle(const glm::vec2 & t_pos, const Feintgine::F_Sprite & t_sprite, float t_angle, float t_scale, float t_scaleRate, float t_lifeTime)
 {
     init(t_pos, t_sprite, t_angle, t_scale, t_scaleRate, t_lifeTime);
+    m_color = Feintgine::Color(255, 255, 255, 255);
 }
 
 ChargeParticle::ChargeParticle()
@@ -36,14 +37,17 @@ void ChargeParticle::update(float deltaTime)
 {
     if(mp_targetPos)
     {
+        //std::cout << "has target \n";
         if(m_lifeTime > 0)
         {
-
+           // std::cout << "here ! \n";
             m_lifeTime -= deltaTime;
             float distance = (*mp_targetPos - m_pos).length();
             if(distance > DISTANCE_THRESHOLD)
             {
-                m_pos += glm::normalize(*mp_targetPos - m_pos) * m_chargeMoveSpeed * deltaTime;
+
+                m_pos = *mp_targetPos + glm::vec2(100); 
+                //m_pos += glm::normalize(*mp_targetPos - m_pos) * m_chargeMoveSpeed * deltaTime;
             }
             {
                 m_pos = *mp_targetPos;
@@ -64,4 +68,7 @@ void ChargeParticle::init(const glm::vec2 & t_pos, const Feintgine::F_Sprite & t
     m_angle = t_angle;
     m_scale = t_scale;
     m_scaleRate = t_scaleRate;
+    m_lifeTime = t_lifeTime;
+    m_color = Feintgine::Color(255, 255, 255, 255);
+    m_depth = 0.1f;
 }

@@ -436,7 +436,7 @@ int lua_waitFor(lua_State * L)
 	return 0;
 }
 
-int lua_playAnimation(lua_State * L)
+int lua_playObjectAnimation(lua_State * L)
 {
 	if (lua_gettop(L) < 2 && lua_gettop(L) > 4)
 	{
@@ -456,6 +456,54 @@ int lua_playAnimation(lua_State * L)
 	}
 	dynamicObject->playAnimation(animationName, loopTime);
 	dynamicObject->setAnimOverRide(isOverride);
+
+}
+
+int lua_setObjectChargingEffect(lua_State * L)
+{
+	std::cout << "set charging effect called \n";
+	if(lua_gettop(L) != 6)
+	{
+		std::cout << "(lua_setChargingEffect) bad gettop " << lua_gettop(L) << " \n";
+	}
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
+	std::string tableName = lua_tostring(L, 2); // table name
+
+	int type = lua_type(L,3);
+	if(type != LUA_TTABLE)
+	{
+		std::cout << "lua_setObjectChargingEffect : arg 3 is not a table\n";
+	}
+
+	lua_getglobal(L,tableName.c_str());
+	lua_pushnil(L);
+	std::vector<std::string> tAssets;
+	while(lua_next(L,-2))
+	{
+		if(lua_isstring(L,-1))
+		{
+			std::string name = lua_tostring(L,-1);
+			tAssets.push_back(name);
+			//std::cout << "name " << name << "\n";
+		}
+		lua_pop(L,1);
+		
+	}
+	lua_pop(L,1);
+
+	std::vector<Feintgine::F_Sprite> tSprites;
+	for (int i = 0; i < tAssets.size(); i++)
+	{
+		tSprites.emplace_back(Feintgine::SpriteManager::Instance()->getSprite(tAssets[i]));
+	}
+	float time = lua_tonumber(L,4);
+	float radius = lua_tonumber(L,5);
+	int maxCount = lua_tonumber(L,6);
+
+	dynamicObject->setCharging(tSprites, time, radius, maxCount);
+
+
+	return 0;
 
 }
 
@@ -486,7 +534,8 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppSetObjectVel", lua_setObjectVel);
 	lua_register(m_script, "cppGetObjectAngle", lua_getObjectAngle);
 	lua_register(m_script, "cppWaitFor", lua_waitFor);
-	lua_register(m_script, "cppPlayAnimation", lua_playAnimation);
+	lua_register(m_script, "cppOjbectPlayAnimation", lua_playObjectAnimation);
+	lua_register(m_script, "cppObjectSetChargingEffect", lua_setObjectChargingEffect);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 }
 

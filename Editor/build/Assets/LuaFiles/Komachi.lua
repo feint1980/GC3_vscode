@@ -61,11 +61,13 @@ function  DynamicBehavior1( host, dynob )
     direct = {1,-1}
     angle_count = 0
     t_angle = 12 * 0.0174532925
+    cppObjectSetChargingEffect(dynob,"komachi_coins",komachi_coins,50,50,20)
 	while true do 
         for i = 1, 2 do
             DynamicBehavior1_base( host, dynob, direct[i])
         end
         cppMoveObject(host,dynob,0,50,50)
+        
         coroutine.yield()
         bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_white.png",
         0.5, -- speed
@@ -225,7 +227,7 @@ function spawn_souls(host)
         end
         cppSetObjectVel(t_soul,x_vel,y_vel)
         cppSetAfterImage(t_soul,0.1,100.0,20,0.0125,0.125,4.2)
-        cppPlayAnimation(t_soul,"idle",-1,true)
+        cppOjbectPlayAnimation(t_soul,"idle",-1,true)
 
         dynamics[t_soul] = {behavior = coroutine.create(souls_fire,host,t_soul)}
         IssueNextTask(host,t_soul)
@@ -328,7 +330,7 @@ function spell_2_behavior(host,dynob)
         cppMoveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,10 + reset_time )
         coroutine.yield()
         if (start) then
-            cppPlayAnimation(dynob,"cast",1,true)
+            cppOjbectPlayAnimation(dynob,"cast",1,true)
         end
         cppHoldPosition(host,dynob,10,"cast",false)
         coroutine.yield()

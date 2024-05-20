@@ -16,7 +16,6 @@ public:
 
     void setCharging(const std::vector<Feintgine::F_Sprite> & t_chargingSprites, float t_chargeTime, float t_chargeRadius, int t_chargeMaxCount);
 
-
     private:
 
     std::vector<ChargeParticle> m_chargingParticles;
