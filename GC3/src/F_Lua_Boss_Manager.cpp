@@ -438,7 +438,7 @@ int lua_waitFor(lua_State * L)
 
 int lua_playObjectAnimation(lua_State * L)
 {
-	if (lua_gettop(L) < 2 && lua_gettop(L) > 4)
+	if (lua_gettop(L) < 2 && lua_gettop(L) > 5)
 	{
 		std::cout << "(lua_playAnimation) bad gettop " << lua_gettop(L) << " \n";
 	}
@@ -446,23 +446,29 @@ int lua_playObjectAnimation(lua_State * L)
 	std::string animationName = lua_tostring(L, 2);
 	int loopTime = 0;
 	bool isOverride = false;
+	float playSpeed = 1.0f;
 	if(lua_gettop(L) >= 3)
 	{
 		loopTime = lua_tonumber(L, 3);
 	}
-	if(lua_gettop(L) == 4)
+	if(lua_gettop(L) >= 4)
 	{
 		isOverride = lua_toboolean(L, 4);
 	}
+	if(lua_gettop(L) == 5)
+	{
+		playSpeed = lua_tonumber(L, 5);
+	}
 	dynamicObject->playAnimation(animationName, loopTime);
 	dynamicObject->setAnimOverRide(isOverride);
+	dynamicObject->setAnimationSpeed(playSpeed);
 
 }
 
 int lua_setObjectChargingEffect(lua_State * L)
 {
 	std::cout << "set charging effect called \n";
-	if(lua_gettop(L) != 6)
+	if(lua_gettop(L) != 8)
 	{
 		std::cout << "(lua_setChargingEffect) bad gettop " << lua_gettop(L) << " \n";
 	}
@@ -501,7 +507,7 @@ int lua_setObjectChargingEffect(lua_State * L)
 	int maxCount = lua_tonumber(L,6);
 
 	dynamicObject->setCharging(tSprites, time, radius, maxCount);
-
+	
 
 	return 0;
 

@@ -24,6 +24,7 @@ namespace Feintgine {
 
 		void removeAnimAt(int index);
 
+		void setAnimationSpeed(float speed);
 
 		void playAnimation(int time, int index = 0);
 

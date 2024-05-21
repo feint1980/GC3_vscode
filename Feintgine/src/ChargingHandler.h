@@ -16,14 +16,17 @@ public:
 
     void setCharging(const std::vector<Feintgine::F_Sprite> & t_chargingSprites, float t_chargeTime, float t_chargeRadius, int t_chargeMaxCount);
 
+    void setPos(const glm::vec2 & pos);
+
     private:
 
-    std::vector<ChargeParticle> m_chargingParticles;
+    std::vector<ChargeParticle *> m_chargingParticles;
     float m_chargeTime;
     float m_chargeRadius;
     int m_chargeMaxCount;
     float m_chargeMoveSpeed;
 
+    glm::vec2 m_pos;
     glm::vec2 * mp_targetPos;
 
 };

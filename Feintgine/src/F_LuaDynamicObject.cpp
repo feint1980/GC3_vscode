@@ -6,10 +6,12 @@ namespace Feintgine
 
 	F_LuaDynamicObject::F_LuaDynamicObject()
 	{
+		p_pos = &m_pos;
 		m_moveState = 0;
 		m_vel = glm::vec2(0);
 		m_direction = glm::vec2(0);
-		m_chargingHandler.registerTargetPos(&m_pos);
+		m_chargingHandler.registerTargetPos(p_pos);
+
 	}
 
 
@@ -35,6 +37,7 @@ namespace Feintgine
 		m_afterImageParticle.init(p_pos,&m_animation ,&m_animation.getColor(),
 		.3f, 10);
 		m_afterImageParticle.setScale(m_scale);
+		m_chargingHandler.registerTargetPos(p_pos);
 	}
 
 	void F_LuaDynamicObject::clearEvent()
@@ -195,6 +198,7 @@ namespace Feintgine
 	{
 		m_pos += m_vel * deltaTime;
 		
+//		m_chargingHandler.setPos(m_pos);
 		// if(m_vel.x != 0.0f || m_vel.y != 0.0f)
 		// {
 			
@@ -242,6 +246,11 @@ namespace Feintgine
 	void F_LuaDynamicObject::playAnimation(const std::string & animationName, int time /*= -1*/)
 	{
 		m_animation.playAnimation(animationName, time);
+	}
+
+	void F_LuaDynamicObject::setAnimationSpeed(float speed)
+	{
+		//m_animation.setSp
 	}
 
 	bool F_LuaDynamicObject::Lua_createObject(const std::string & luaPath)

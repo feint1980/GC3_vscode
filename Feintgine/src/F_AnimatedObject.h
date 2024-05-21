@@ -283,6 +283,8 @@ namespace Feintgine
 
 		void setAngle(float angle);
 
+		void setSpeed(float speed);
+
 		void rotate(float angle);
 
 		float getAngle() const { return m_angle; }

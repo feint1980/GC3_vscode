@@ -234,6 +234,14 @@ namespace Feintgine
 		std::cout << "process done\n";
 	}
 
+	void F_AnimatedObject::setSpeed(float speed)
+	{
+		if(m_currentAnimation)
+		{
+			m_currentAnimation->setAnimationSpeed(speed);
+		}
+	}
+
 	void F_AnimatedObject::addNewAnimation(const std::string & name)
 	{
 		F_Animation t_animation;

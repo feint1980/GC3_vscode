@@ -4,7 +4,7 @@
 ChargeParticle::ChargeParticle(const glm::vec2 & t_pos, const Feintgine::F_Sprite & t_sprite, float t_angle, float t_scale, float t_scaleRate, float t_lifeTime)
 {
     init(t_pos, t_sprite, t_angle, t_scale, t_scaleRate, t_lifeTime);
-    m_color = Feintgine::Color(255, 255, 255, 255);
+    m_color = Feintgine::Color(255, 255, 255, 140);
 }
 
 ChargeParticle::ChargeParticle()
@@ -30,7 +30,11 @@ void ChargeParticle::draw(Feintgine::SpriteBatch & spriteBatch)
 
 void ChargeParticle::setTargetPos(glm::vec2 * t_targetPos)
 {
+    //std::cout << "set target \n";
+    //std::cout << t_targetPos << "\n";
+  
     mp_targetPos = t_targetPos;
+    //std::cout << mp_targetPos << "\n";
 }
 
 void ChargeParticle::update(float deltaTime)
@@ -40,19 +44,31 @@ void ChargeParticle::update(float deltaTime)
         //std::cout << "has target \n";
         if(m_lifeTime > 0)
         {
-           // std::cout << "here ! \n";
             m_lifeTime -= deltaTime;
-            float distance = (*mp_targetPos - m_pos).length();
-            if(distance > DISTANCE_THRESHOLD)
-            {
+            m_direction = glm::normalize(*mp_targetPos - m_pos);
+            //std::cout << "lifeTime " << m_lifeTime << "\n";
+            //std::cout << "x " << mp_targetPos->x << " y " << mp_targetPos->y << "\n";
+            m_lifeTime -= deltaTime;
+            m_vel = m_direction * m_chargeMoveSpeed;
+            float distance = glm::length(*mp_targetPos - m_pos);
+            m_pos += m_vel * deltaTime;
 
-                m_pos = *mp_targetPos + glm::vec2(100); 
-                //m_pos += glm::normalize(*mp_targetPos - m_pos) * m_chargeMoveSpeed * deltaTime;
-            }
+            //std::cout << "distance " << distance << "\n";
+            if(abs(distance) < DISTANCE_THRESHOLD)
             {
-                m_pos = *mp_targetPos;
                 m_lifeTime = 0.0f;
+                m_pos = *mp_targetPos;
             }
+            
+            // {
+
+            //     //m_pos = *mp_targetPos + glm::vec2(100); 
+            //     m_pos += m_vel * deltaTime;
+            // }
+            // {
+            //     m_pos = *mp_targetPos;
+            //     m_lifeTime = 0.0f;
+            // }
 
         }
     }
@@ -70,5 +86,5 @@ void ChargeParticle::init(const glm::vec2 & t_pos, const Feintgine::F_Sprite & t
     m_scaleRate = t_scaleRate;
     m_lifeTime = t_lifeTime;
     m_color = Feintgine::Color(255, 255, 255, 255);
-    m_depth = 0.1f;
+    m_depth = 20.1f;
 }

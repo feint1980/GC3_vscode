@@ -32,6 +32,10 @@ end
 -- coin table
 komachi_coins = {"komachi/komachi_12.png","komachi/komachi_11.png","komachi/komachi_13.png"}
 
+-- charge table 
+
+charge_table = {"projectile/fire_1.png","projectile/fire_2.png","projectile/fire_3.png","projectile/fire_4.png"}
+
 -- Komachi param
 object = {posX = 0.0, posY = 0.0,
  animationPath = "./Assets/F_AObjects/boss_komachi.xml",
@@ -61,7 +65,7 @@ function  DynamicBehavior1( host, dynob )
     direct = {1,-1}
     angle_count = 0
     t_angle = 12 * 0.0174532925
-    cppObjectSetChargingEffect(dynob,"komachi_coins",komachi_coins,50,50,20)
+    
 	while true do 
         for i = 1, 2 do
             DynamicBehavior1_base( host, dynob, direct[i])
@@ -256,8 +260,11 @@ function DynamicBehavior2(host,dynob)
             count = -1
             cppMoveObject(host,dynob,0,170,25)
             coroutine.yield()
-            cppHoldPosition(host,dynob,200,"cast")
-
+            cppOjbectPlayAnimation(dynob,"charging",1,false)
+            cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120)
+            cppHoldPosition(host,dynob,80,"charging")
+            coroutine.yield()
+            cppOjbectPlayAnimation(dynob,"cast",1,true)
             bc.ftest_ma_custom_aff(host,dynob,"komachi/komachi_13.png",
             3.425, -- speed 
             10.0,  -- lifeTime
@@ -272,9 +279,8 @@ function DynamicBehavior2(host,dynob)
             45,    -- rotation
             3,     -- interval
             100)     -- time
-            coroutine.yield()
 
-            cppHoldPosition(host,dynob,1,"idle",false)
+            cppHoldPosition(host,dynob,150,"cast",false)
             coroutine.yield()
         end
         cppMoveObject(host,dynob,count * xthresHold,150,30)
@@ -377,8 +383,14 @@ function spell_2_behavior(host,dynob)
                     coroutine.yield()
                     y_index = y_index - 1
                 end
-                cppHoldPosition(host,dynob,350,"cast")
-        
+               
+                cppOjbectPlayAnimation(dynob,"charging",1,false)
+                cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120)
+                cppHoldPosition(host,dynob,80,"charging")
+                coroutine.yield()
+
+              
+                
                 bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
                 1, -- tier
                 1.7, -- speed 
@@ -410,7 +422,7 @@ function spell_2_behavior(host,dynob)
                 45,    -- rotation
                 10,     -- interval
                 1)     -- time
-
+                cppHoldPosition(host,dynob,270,"cast")
                 --cppHoldPosition(host,dynob,400,"cast")
                 coroutine.yield()
                 y_index = 2

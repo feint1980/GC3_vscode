@@ -2,8 +2,13 @@
 	<animations>
 		<animation name="cast">
 			<anims>
-				<anim name="komachi/komachi_09.png" time="12.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="komachi/komachi_09.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
 				<anim name="komachi/komachi_10.png" time="7.00" offset_x="10.00" offset_y="-8.00" loop="1"/>
+			</anims>
+		</animation>
+		<animation name="charging">
+			<anims>
+				<anim name="komachi/komachi_09.png" time="12.00" offset_x="0.00" offset_y="0.00" loop="1"/>
 			</anims>
 		</animation>
 		<animation name="idle">

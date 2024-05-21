@@ -54,6 +54,12 @@ namespace Feintgine
 		}
 	}
 
+
+	void F_Animation::setAnimationSpeed(float speed)
+	{
+		m_animSpeed = speed;
+	}
+
 	void F_Animation::updateAnim(float deltaTime)
 	{
 		if (m_anims.size() > 1)

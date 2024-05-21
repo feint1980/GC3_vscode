@@ -56,6 +56,8 @@ namespace Feintgine
 
 		void playAnimation(const std::string & animationName, int time = -1);
 
+		void setAnimationSpeed(float speed);
+
 		bool Lua_createObject(const std::string & luaPath);
 
 		int wrap_CreateObject(lua_State * L); // all lua handler must be int 
