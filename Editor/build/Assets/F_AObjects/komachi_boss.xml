@@ -11,6 +11,11 @@
 				<anim name="komachi/komachi_09.png" time="12.00" offset_x="0.00" offset_y="0.00" loop="1"/>
 			</anims>
 		</animation>
+		<animation name="charge_end">
+			<anims>
+				<anim name="komachi/komachi_10.png" time="12.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
 		<animation name="idle">
 			<anims>
 				<anim name="komachi/komachi_01.png" time="5.00" offset_x="0.00" offset_y="0.00" loop="1"/>

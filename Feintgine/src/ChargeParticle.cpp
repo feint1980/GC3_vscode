@@ -45,6 +45,7 @@ void ChargeParticle::update(float deltaTime)
         if(m_lifeTime > 0)
         {
             m_lifeTime -= deltaTime;
+            m_angle += deltaTime;
             m_direction = glm::normalize(*mp_targetPos - m_pos);
             //std::cout << "lifeTime " << m_lifeTime << "\n";
             //std::cout << "x " << mp_targetPos->x << " y " << mp_targetPos->y << "\n";

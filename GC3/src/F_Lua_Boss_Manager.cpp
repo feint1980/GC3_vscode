@@ -467,7 +467,7 @@ int lua_playObjectAnimation(lua_State * L)
 
 int lua_setObjectChargingEffect(lua_State * L)
 {
-	std::cout << "set charging effect called \n";
+	//std::cout << "set charging effect called \n";
 	if(lua_gettop(L) != 8)
 	{
 		std::cout << "(lua_setChargingEffect) bad gettop " << lua_gettop(L) << " \n";
@@ -505,8 +505,11 @@ int lua_setObjectChargingEffect(lua_State * L)
 	float time = lua_tonumber(L,4);
 	float radius = lua_tonumber(L,5);
 	int maxCount = lua_tonumber(L,6);
+	float minSpeed = lua_tonumber(L,7);
+	float maxSpeed = lua_tonumber(L,8);
 
-	dynamicObject->setCharging(tSprites, time, radius, maxCount);
+
+	dynamicObject->setCharging(tSprites, time, radius, maxCount, minSpeed, maxSpeed);
 	
 
 	return 0;

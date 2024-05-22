@@ -19,11 +19,13 @@ void EnemyBullet_KomachiCoin::update(float deltaTime)
     
     if(m_tier < m_tierSprites.size() -1)
     {
+        float centerX = m_pos.x + m_sprite.getDim().x * m_scale.x / 2.0f;
+        float centerY = m_pos.y + m_sprite.getDim().y * m_scale.y / 2.0f;
         if(m_lifeTime < 9.5f)
         {
         
-            if(m_pos.x > 320  || m_pos.x < -380 ||
-            m_pos.y > 320 || m_pos.y < -400)
+            if(centerX > 320  || centerX < -400 ||
+            centerY > 320 || centerY < -380)
             {
                     m_tier++;
                     m_sprite = m_tierSprites[m_tier];

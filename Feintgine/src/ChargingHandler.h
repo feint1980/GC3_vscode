@@ -14,7 +14,7 @@ public:
     void draw(Feintgine::SpriteBatch & spriteBatch);
     void update(float deltaTime);
 
-    void setCharging(const std::vector<Feintgine::F_Sprite> & t_chargingSprites, float t_chargeTime, float t_chargeRadius, int t_chargeMaxCount);
+    void setCharging(const std::vector<Feintgine::F_Sprite> & t_chargingSprites, float t_chargeTime, float t_chargeRadius, int t_chargeMaxCount,float minSpeed, float maxSpeed);
 
     void setPos(const glm::vec2 & pos);
 
