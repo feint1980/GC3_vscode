@@ -507,10 +507,8 @@ int lua_setObjectChargingEffect(lua_State * L)
 	int maxCount = lua_tonumber(L,6);
 	float minSpeed = lua_tonumber(L,7);
 	float maxSpeed = lua_tonumber(L,8);
-
-
-	dynamicObject->setCharging(tSprites, time, radius, maxCount, minSpeed, maxSpeed);
 	
+	dynamicObject->setCharging(tSprites, time, radius, maxCount, minSpeed, maxSpeed);
 
 	return 0;
 

@@ -497,7 +497,53 @@ end
 
 
 function DynamicBehavior3(host,dynob)
+
     while true do
+
+        cppMoveObject(host,dynob,-150,150,20)
+        coroutine.yield()
+
+        cppHoldPosition(host,dynob,10,"charging")
+
+        coroutine.yield()
+        
+
+        cppHoldPosition(host,dynob,250,"charge_end")
+        bc.ftest_ma_custom_aff2(host,dynob,
+        "projectile/bullet_shard_yellow.png",
+        1.0,    -- speed
+        10.0,   -- lifeTime
+        4,      -- n
+        6,      -- n2 
+        3,      -- l1
+        3,      -- l2
+        1,      -- posneg
+        3,      -- startAngle
+        -1.5,     -- angleStep
+        0,      -- rotation
+        7,      -- interval
+        0)      -- time)
+
+        bc.ftest_ma_custom_aff2(host,dynob,
+        "projectile/bullet_shard_blue.png",
+        1.0,    -- speed
+        10.0,   -- lifeTime
+        4,      -- n
+        6,      -- n2 
+        3,      -- l1
+        3,      -- l2
+        -1,      -- posneg
+        3,      -- startAngle
+        -1.5,     -- angleStep
+        0,      -- rotation
+        7,      -- interval
+        0)      -- time)
+
+
+
+        coroutine.yield()
+
+        cppMoveObject(host,dynob,0,0,150)
         coroutine.yield()
     end
 end
