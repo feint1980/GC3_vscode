@@ -68,6 +68,26 @@
 
 		<Event name = "cos" startAngle = "0" endAngle = "4000" angleStep = "0.25" time = "2200"/>
 	</Events>
+
+	
+	<Events name = "slowdownCustomF2">
+		<Event name = "maxSpeed" value = "0.25" time = "3150" />
+
+		<Event name = "maxSpeed" value = "-0.15" time = "4000" />
+
+		<Event name = "maxSpeed" value = "2.25" time = "5500" />
+	</Events>
+
+
+	<Events name = "slowdownCustomF3">
+		<Event name = "maxSpeed" value = "0.5" time = "6150" />
+
+		<Event name = "maxSpeed" value = "-0.3" time = "7000" />
+
+		<Event name = "maxSpeed" value = "3.25" time = "8500" />
+	</Events>
+
+
 	<Events name = "slowdown_3_1">
 		<Event name = "speedChange" speed = "3.5" time = "1450"/>
 		<Event name = "speedChange" speed = "1.4" time = "1750"/>

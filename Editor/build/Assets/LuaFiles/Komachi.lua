@@ -488,62 +488,96 @@ function spell_2_side_coin(host,dynob,direction,tier,tableName,tableAssets,speed
     end
 end
 
-function moveset_normal_3(host)
+function moveset_spell_3(host)
     dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior3,host,komachi)}
     IssueNextTask(host,komachi)
     isMovesetSelected = true
 end
 
 
-
 function DynamicBehavior3(host,dynob)
 
     while true do
-
-        cppMoveObject(host,dynob,-150,150,20)
+        cppMoveObject(host,dynob,0,150,20)
         coroutine.yield()
 
-        cppHoldPosition(host,dynob,10,"charging")
-
+        cppHoldPosition(host,dynob,100,"charging")
+        cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.5,15.5)
         coroutine.yield()
-        
-
-        cppHoldPosition(host,dynob,250,"charge_end")
+        cppHoldPosition(host,dynob,750,"charge_end")
         bc.ftest_ma_custom_aff2(host,dynob,
-        "projectile/bullet_shard_yellow.png",
-        1.0,    -- speed
+        "projectile/knife_red.png",
+        0.85,    -- speed
         10.0,   -- lifeTime
         4,      -- n
         6,      -- n2 
         3,      -- l1
-        3,      -- l2
+        6,      -- l2
         1,      -- posneg
         3,      -- startAngle
-        -1.5,     -- angleStep
+        200,     -- angleStep
         0,      -- rotation
-        7,      -- interval
-        0)      -- time)
+        10,      -- interval
+        0,      -- time
+        0,      -- id
+        "slowdownCustomF2")      -- event)
+
+        bc.ftest_ma_custom_aff2(host,dynob,
+        "projectile/knife_yellow.png",
+        0.85,    -- speed
+        10.0,   -- lifeTime
+        4,      -- n
+        6,      -- n2 
+        3,      -- l1
+        6,      -- l2
+        -1,      -- posneg
+        3,      -- startAngle
+        200,     -- angleStep
+        0,      -- rotation
+        10,      -- interval
+        0,      -- time
+        0,      -- id
+        "slowdownCustomF2")      -- event)
+
 
         bc.ftest_ma_custom_aff2(host,dynob,
         "projectile/bullet_shard_blue.png",
-        1.0,    -- speed
+        0.85,    -- speed
         10.0,   -- lifeTime
         4,      -- n
         6,      -- n2 
         3,      -- l1
-        3,      -- l2
+        6,      -- l2
+        1,      -- posneg
+        3,      -- startAngle
+        200,     -- angleStep
+        45,      -- rotation
+        10,      -- interval
+        0,      -- time
+        0,      -- id
+        "slowdownCustomF3")      -- event)
+
+        bc.ftest_ma_custom_aff2(host,dynob,
+        "projectile/bullet_shard_yellow.png",
+        0.85,    -- speed
+        10.0,   -- lifeTime
+        4,      -- n
+        6,      -- n2 
+        3,      -- l1
+        6,      -- l2
         -1,      -- posneg
         3,      -- startAngle
-        -1.5,     -- angleStep
-        0,      -- rotation
-        7,      -- interval
-        0)      -- time)
-
+        200,     -- angleStep
+        45,      -- rotation
+        10,      -- interval
+        0,      -- time
+        0,      -- id
+        "slowdownCustomF3")      -- event)
 
 
         coroutine.yield()
 
-        cppMoveObject(host,dynob,0,0,150)
-        coroutine.yield()
+        -- cppMoveObject(host,dynob,1,0,150)
+        -- coroutine.yield()
     end
 end

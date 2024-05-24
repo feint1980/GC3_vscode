@@ -147,9 +147,12 @@ end
 
 
 
-M.ftest_ma_custom_aff2 =function(host,dynob,asset,speed,lifeTime,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
+M.ftest_ma_custom_aff2 =function(host,dynob,asset,speed,lifeTime,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time,id,eventName)
+
 	local f_angle =  startAngle
 	local f_count = 0;
+	id = id or 0
+	eventName = eventName or ""
 	for t_l1 = 0,l1
 	do
 		f_angle = f_angle + angleStep + math.random(0,360)
@@ -166,7 +169,7 @@ M.ftest_ma_custom_aff2 =function(host,dynob,asset,speed,lifeTime,n,n2,l1,l2,posn
 					f_angle = f_angle + math.rad(360/n)
 
 					--coroutine.create(cppSetFire_Base,host,dynob,asset,speed,lifeTime,x,y,f_angle,time)
-					cppSetFire_Base(host,dynob,asset,speed,lifeTime,x,y,f_angle,time + (interval  * f_count) )
+					cppSetFire_Base(host,dynob,asset,speed,lifeTime,x,y,f_angle,time + (interval  * f_count),id,eventName) 
 					f_count = f_count + 1
 				end -- n
 			

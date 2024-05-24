@@ -244,7 +244,8 @@ int lua_setFireBase(lua_State * L)
 {
 
 	//std::cout << "here \n";
-	if (lua_gettop(L) != 9)
+	if (lua_gettop(L) < 9 || lua_gettop(L) > 11)
+
 	{
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
@@ -261,8 +262,20 @@ int lua_setFireBase(lua_State * L)
 	float y = lua_tonumber(L, 7); // 
 	float currentAngle = lua_tonumber(L, 8); // 
 	double time = lua_tonumber(L, 9); // 
+	
+	int id = 0;
+	std::string eventName = "";
+	if(lua_gettop(L) >= 10)
+	{
+		id = lua_tonumber(L, 10);
+	}
 
-	objectManager->rw_addEvent_base(dynamicObject, asset, speed, lifeTime, x, y, currentAngle, time);
+	if(lua_gettop(L) == 11)
+	{
+		eventName = lua_tostring(L, 11);
+	}
+
+	objectManager->rw_addEvent_base(dynamicObject, asset, speed, lifeTime, x, y, currentAngle, time, id, eventName);
 
 	return 0;
 
@@ -1028,14 +1041,13 @@ void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff(F_Lua_GenericObject * dynamic
 }
 
 void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_GenericObject * dynamicObject, const std::string & asset,
-	float speed, float lifeTime, float x, float y, float currentAngle, double time)
+	float speed, float lifeTime, float x, float y, float currentAngle, double time,int id , const std::string & eventName )
 {
 
 	dynamicObject->addEvent([=]
 	{
 		EnemyBulletBase * bullet = new EnemyBulletBase();
 		bullet->m_lifeTime = lifeTime;
-
 
 		glm::vec2 tVel = globalRotatePoint(glm::vec2(x, y), f_angle ); // investigate this 
 																	   // f_angle || currentAngle
@@ -1044,7 +1056,11 @@ void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_GenericObject * dynamicObject, c
 		bullet->init(dynamicObject->getPos(), glm::vec2(1),
 			Feintgine::SpriteManager::Instance()->getSprite(asset), vel, nullptr, 5);
 		bullet->setDirection(tVel);
-
+		bullet->setSpecialID(id);
+		if(eventName != "")
+		{
+			bullet->loadEvent(eventName);
+		}
 		m_bullets.push_back(bullet);
 	}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time ));
 
