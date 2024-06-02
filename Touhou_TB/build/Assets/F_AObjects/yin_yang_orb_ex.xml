@@ -1,0 +1,126 @@
+<F_AObj name="yin_yang_orb_ex">
+	<animations>
+		<animation name="end">
+			<anims>
+				<anim name="yin_yang_orb_ex/spellBulletE025.png" time="2.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="yin_yang_orb_ex/spellBulletE024.png" time="2.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="yin_yang_orb_ex/spellBulletE023.png" time="2.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+<!-- 				<anim name="yin_yang_orb_ex/spellBulletE055.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE054.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE053.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE052.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE051.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE050.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE049.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE048.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE047.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE046.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE045.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE044.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE043.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE042.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE041.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE040.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE039.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE038.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE037.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE036.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE035.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE034.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE033.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE032.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE031.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE030.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE029.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE028.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE027.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE026.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE025.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE024.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE023.png" time="2.00" offset_x="0.00" offset_y="0.00"/> -->
+				<anim name="yin_yang_orb_ex/spellBulletE022.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE021.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE020.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE019.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE018.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE017.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE016.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE015.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE014.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE013.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE012.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE011.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE010.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE009.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE008.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE007.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE006.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE005.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE004.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE003.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE002.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="idle">
+			<anims>
+				<anim name="yin_yang_orb_ex/spellBulletE002.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE003.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE004.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE005.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE006.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE007.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE008.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE009.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE010.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE011.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE012.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE013.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE014.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE015.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE016.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE017.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE018.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE019.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE020.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE021.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE022.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE023.png" time="2.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="yin_yang_orb_ex/spellBulletE024.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE025.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE026.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE027.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE028.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE029.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE030.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE031.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE032.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE033.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE034.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE035.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE036.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE037.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE038.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE039.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE040.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE041.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE042.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE043.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE044.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE045.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE046.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE047.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE048.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE049.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE050.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE051.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE052.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE053.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE054.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE055.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE056.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="yin_yang_orb_ex/spellBulletE057.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

@@ -39,9 +39,10 @@ namespace Feintgine{
 		SDL_GLContext getGLContext() const { return glContext; }
 		void storageCamPos(glm::vec2 pos);
 		glm::vec2 getStoragedCam() const { return m_cameraStorePos; }
-		SDL_Window *getWindow() const { return _sdlWindow; }
+		void setPos(int x, int y);
+		SDL_Window *getWindow() const { return m_sdlWindow; }
 	private:
-		SDL_Window *_sdlWindow;
+		SDL_Window *m_sdlWindow;
 		int m_screenWidth;
 		int m_screenHeight;
 		int m_resolutionWidth;

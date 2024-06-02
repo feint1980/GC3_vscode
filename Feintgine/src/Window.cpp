@@ -18,6 +18,10 @@ namespace Feintgine{
 	Window::~Window()
 	{
 	}
+	void Window::setPos(int x, int y)
+	{
+		SDL_SetWindowPosition(m_sdlWindow, x, y);
+	}
 	int Window::create(const std::string &windowName, int screenWidth, int screenHeight, unsigned int windowFlag)
 	{
 
@@ -97,22 +101,22 @@ namespace Feintgine{
 			flags |= SDL_WINDOW_BORDERLESS;
 		}
 		
-		_sdlWindow = SDL_CreateWindow(windowName.c_str(), 10, 30, m_screenWidth, m_screenHeight, flags);
+		m_sdlWindow = SDL_CreateWindow(windowName.c_str(), 10, 30, m_screenWidth, m_screenHeight, flags);
 		int w;
 		int h;
-		//SDL_SetWindowSize(_sdlWindow, 1280, 720);
-		SDL_GetWindowSize(_sdlWindow, &w, &h);
+		//SDL_SetWindowSize(m_sdlWindow, 1280, 720);
+		SDL_GetWindowSize(m_sdlWindow, &w, &h);
 		std::cout << "created at " << w << " and " << h << "\n";
 		
 		
 		
-		if (_sdlWindow == nullptr)
+		if (m_sdlWindow == nullptr)
 		{
 			fatalError("ko tao dc , chac thieu RAM !");
 			F_Logger::Instance()->writeLog("ko tao dc , chac thieu RAM !");
 		}
 	 
-		glContext = SDL_GL_CreateContext(_sdlWindow);
+		glContext = SDL_GL_CreateContext(m_sdlWindow);
 		if (glContext == nullptr)
 		{
 			fatalError("ko tao dc context OPENGL , chac card cui` ! ");
@@ -132,7 +136,7 @@ namespace Feintgine{
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		A_Context_saver::getContext_saver()->saveContext(_sdlWindow,glContext);
+		A_Context_saver::getContext_saver()->saveContext(m_sdlWindow,glContext);
 		
 
 // 		PFNWGLSWAPINTERVALEXTPROC       wglSwapIntervalEXT = NULL;
@@ -154,13 +158,13 @@ namespace Feintgine{
 	void Window::swapBuffer()
 	{
 
-		SDL_GL_SwapWindow(_sdlWindow);
+		SDL_GL_SwapWindow(m_sdlWindow);
 	}
 
 	void Window::loadContext(SDL_GLContext context)
 	{
 		glContext = context;
-		SDL_GL_MakeCurrent(_sdlWindow, glContext);
+		SDL_GL_MakeCurrent(m_sdlWindow, glContext);
 		std::cout << "context load is " << glContext << "\n";
 		
 	}
@@ -168,7 +172,7 @@ namespace Feintgine{
 	void Window::deleteWindow()
 	{
 		
-		SDL_DestroyWindow(_sdlWindow);
+		SDL_DestroyWindow(m_sdlWindow);
 	}
 
 

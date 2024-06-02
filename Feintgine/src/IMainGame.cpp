@@ -253,8 +253,12 @@ namespace Feintgine
 		{
 			m_window.loadContext(context);
 		}
+	//	m_window.setPos( SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 		
-		
+	}
+	void IMainGame::setScreenInMiddle()
+	{
+		m_window.setPos( SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
 	}
 
 }

@@ -186,6 +186,9 @@ M.arc_hypocycloid =  function (a,b,r,t)
 	return retX, retY
 end
 
+M.add_bullet_event = function(id,eventName)
+	
+end
 
 
 return M

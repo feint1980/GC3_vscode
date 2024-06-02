@@ -188,7 +188,7 @@ protected :
 
 
 
-	Feintgine::Window * m_window;
+	Feintgine::Window * m_window = nullptr;
 	Feintgine::Camera2D m_camera;
 	Feintgine::Camera2D m_sideCam;
 

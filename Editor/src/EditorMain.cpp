@@ -25,6 +25,9 @@ void EditorMain::onInit()
 		std::cout << w << "\t" << h << "\b";
 	}
 	configureScreen("Feint Editor", 1600, 900, 0,false);
+	
+
+	setScreenInMiddle();
 
 }
 

@@ -527,7 +527,21 @@ int lua_setObjectChargingEffect(lua_State * L)
 
 }
 
+int lua_addBulletEvent(lua_State * L)
+{
 
+	if (lua_gettop(L) != 3)
+	{
+		std::cout << "(lua_addBulletEvent) bad gettop " << lua_gettop(L) << " \n";
+		return 0;
+	}
+	
+
+	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
+
+
+	return 0;
+}
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 {
 
@@ -556,6 +570,7 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppWaitFor", lua_waitFor);
 	lua_register(m_script, "cppOjbectPlayAnimation", lua_playObjectAnimation);
 	lua_register(m_script, "cppObjectSetChargingEffect", lua_setObjectChargingEffect);
+	lua_register(m_script, "cppAddBulletEvent", lua_addBulletEvent);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 }
 

@@ -46,6 +46,7 @@ namespace Feintgine
 		void updateTimer(float deltaTime);
 
 		void configureScreen(std::string name, int screenWidth, int screenHeight, int t_flag ,bool saveContext = false);
+		void setScreenInMiddle();
 		bool init();
 
 		InputManager m_inputManager;

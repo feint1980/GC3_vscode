@@ -116,9 +116,6 @@ void Extra_DemoScreen::onEntry()
 	m_audioEngine.init();
 	//m_audioEngine.setVolume(10); // turn off volume (
 
-
-
-
 	GlobalValueClass::Instance()->setAmbientLight(glm::vec3(dayLight));
 	SDL_GL_SetSwapInterval(1);
 
@@ -703,9 +700,6 @@ void Extra_DemoScreen::handleInput(Feintgine::InputManager & inputManager)
 		toggleCTRL();
 	}
 	
-
-
-
 
 // 	if (inputManager.isKeyDown(SDLK_4))
 // 	{

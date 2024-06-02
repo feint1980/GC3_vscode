@@ -64,7 +64,7 @@ public:
 		float angleStep, float rotation, int interval, double time);
 
 	void rw_addEvent_base(F_Lua_GenericObject * dynamicObject, const std::string & asset, float speed, float lifeTime, float x, float y, float currentAngle, double time,int id = 0, const std::string & eventName = "");
-
+	
 	void rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dynamicObject, const std::vector<std::string> & assets, int tier, float speed, float lifeTime, float x, float y, float currentAngle, double time);
 
 	void createHelper(F_Lua_GenericObject * dynamicObject, unsigned int id, const std::string & objectName,
