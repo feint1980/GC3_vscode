@@ -32,7 +32,7 @@ public:
 
 		switch (m_destinationState)
 		{
-		case EnemyBulletBase::NotDefined:
+		case EnemyBulletBase::NotDefined:	
 		{
 			updateRotateVec(deltaTime);
 			if (m_isRotate)

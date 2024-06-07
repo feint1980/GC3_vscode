@@ -17,9 +17,10 @@ TH_TB_App::~TH_TB_App()
 
 void TH_TB_App::onInit()
 {
-    // todo
-
+    // todos
     configureScreen("TH TB", 1600, 900, 0,false);
+    setScreenInMiddle();
+    
 }
 
 
@@ -29,8 +30,6 @@ void TH_TB_App::addScreen()
     m_screenList->addScreen(m_test.get());
 
     m_screenList->setScreen(m_test->getScreenIndex());
-
-
 }
 
 void TH_TB_App::onExit()
