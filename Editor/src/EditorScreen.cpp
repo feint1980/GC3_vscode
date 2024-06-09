@@ -3625,7 +3625,7 @@ bool EditorScreen::pickAobj(const CEGUI::EventArgs &e)
 	{
 		std::string fullPath = "Assets/F_AObjects/";
 		fullPath += m_AObjList->getFirstSelectedItem()->getText().c_str();
-		m_fAnimatedObject.init(fullPath);
+		m_fAnimatedObject.init(fullPath,glm::vec2(1), false);
 		
 		m_actionList->resetList();
 		animation_sprite_label->setText("None");

@@ -263,7 +263,7 @@ namespace Feintgine
 		F_AnimatedObject();
 		~F_AnimatedObject();
 
-		void init(const std::string & filePath, const glm::vec2 & scaleFactor = glm::vec2(1));
+		void init(const std::string & filePath, const glm::vec2 & scaleFactor = glm::vec2(1),bool loadOnce = true);
 
 		void saveToFile(const std::string & name);
 		

@@ -36,14 +36,16 @@ void TestTBScreen::onEntry()
 {
     
     m_camera.init(m_window->getResolutionWidth(), m_window->getResolutionHeight() , 7);
+	std::cout << "resolution : " << m_window->getResolutionWidth() << ", " << m_window->getResolutionHeight() << "\n";
     m_camera.setPosition(glm::vec2(0, 0));
-    m_camera.setScale(1.0f);
+    m_camera.setScale(1.5f);
 
     m_camera.update();
 
     m_spriteBatch.init();
     
-    m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0), glm::vec2(1280.0f, 720.0f),Feintgine::Color(255, 255, 255, 255));
+    float tempScale = 0.85f;
+	m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0), glm::vec2(1800 * tempScale, 900 * tempScale),Feintgine::Color(255, 255, 255, 255));
 
 }
 

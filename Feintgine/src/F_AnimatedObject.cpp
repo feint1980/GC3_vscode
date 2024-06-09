@@ -23,7 +23,7 @@ namespace Feintgine
 		m_currentAnimation = nullptr;
 	}
 
-	void F_AnimatedObject::init(const std::string & filePath,const glm::vec2 & scaleFactor)
+	void F_AnimatedObject::init(const std::string & filePath,const glm::vec2 & scaleFactor,bool loadOnce )
 	{
 		//std::cout << "init animate object " << filePath << " \n";
 		m_filePath = filePath;
@@ -44,7 +44,20 @@ namespace Feintgine
 		//std::ifstream file(filePath.c_str());
 		//std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 		//buffer.push_back('\0');
-		std::vector<char> buffer = ResourceManager::getPreloadedFile(m_filePath.c_str());  //((std::istreambuf_iterator<char>(filePath)), std::istreambuf_iterator<char>());
+		std::vector<char> buffer;
+		if(loadOnce)
+		{
+			buffer = ResourceManager::getPreloadedFile(m_filePath.c_str());  
+		}
+		else
+		{
+			std::ifstream file(m_filePath.c_str());
+			buffer = std::vector<char>((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+			file.close();
+			//buffer.push_back('\0');
+		}
+
+		//std::vector<char> buffer = ResourceManager::getPreloadedFile(m_filePath.c_str());  //((std::istreambuf_iterator<char>(filePath)), std::istreambuf_iterator<char>());
 		buffer.push_back('\0');
 
 		//ResourceManager::getPreloadedFile(m_filePath.c_str());
