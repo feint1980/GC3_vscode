@@ -68,6 +68,7 @@ public:
 
 protected:
 
+    
     Feintgine::Window * m_window = nullptr;
 
     Feintgine::Camera2D m_camera;

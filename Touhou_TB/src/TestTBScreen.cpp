@@ -46,6 +46,7 @@ void TestTBScreen::onEntry()
     
     float tempScale = 0.85f;
 	m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0), glm::vec2(1280, 720),Feintgine::Color(255, 255, 255, 255));
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 }
 
@@ -108,7 +109,7 @@ void TestTBScreen::draw()
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
+	
 
 	m_shader.use();
 
@@ -131,25 +132,11 @@ void TestTBScreen::draw()
 	m_spriteBatch.begin();
 
     m_bg.draw(m_spriteBatch);
-	//m_luaManager.draw(m_spriteBatch);
-	
-	//m_luaObj.draw(m_spriteBatch);
-	//m_anim.draw(m_spriteBatch);
-	//testObj.draw(m_spriteBatch);
-	//m_player.draw(m_spriteBatch);
-
-	//drawHUD();
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
-
-
-	//SDL_GL_SetSwapInterval(1);
-	//
-	//glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
-
-   //drawGameplay();
+	
+	SDL_GL_SetSwapInterval(1);	
 }
 
 void TestTBScreen::drawGameplay()
@@ -160,6 +147,7 @@ void TestTBScreen::drawGameplay()
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
     m_shader.use();
+
 
     glm::mat4 projectionMatrix;
 	GLint pUniform;
@@ -173,22 +161,10 @@ void TestTBScreen::drawGameplay()
 
     glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
-
     m_spriteBatch.begin();
-    //std::cout << "draw \n";
     m_bg.draw(m_spriteBatch);
     m_spriteBatch.end();
     m_spriteBatch.renderBatch();
 
     m_shader.unuse();
 }
-
-
-
-
-
-
-
-
-
-

@@ -566,7 +566,6 @@ void EditorScreen::update(float deltaTime)
 			m_paternEditor.update(deltaTime);
 		}
 	}
-
 	//
 }
 
