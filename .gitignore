@@ -12,3 +12,6 @@
 */CMakeFiles/*
 */CMakeCache.txt
 *.d
+*.make
+*.Makefile*
+*.rsp

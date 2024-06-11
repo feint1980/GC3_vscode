@@ -19,14 +19,8 @@ public:
 
     std::vector<EnemyBulletBase *> m_bullets;
 
-
-
 protected:
 
 	float m_t;
     
-
-
-  
-
 };

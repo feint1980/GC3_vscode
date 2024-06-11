@@ -1,7 +1,7 @@
 {
   "workbench.colorCustomizations": {
-    "editor.background": "#09010a",
-    "editor.inactiveSelectionBackground": "#ff0000",
+    "editor.background": "#181818db",
+    //"editor.inactiveSelectionBackground": "#ff0000",
     "C_Cpp.enhancedColorization": "Enabled",
     
    // "editor.selectionBackground": "#ac2323",
@@ -12,23 +12,19 @@
 "editor.semanticTokenColorCustomizations": {
   
         "rules": {
-            "property:c": {
-                "foreground": "#FF0000", // TODO
-            },
+
             "type:cpp": {
                 "foreground": "#2bdfd6",
             },
             "variable:cpp":{
-                "foreground": "#fcac18",
+                "foreground": "#99D7F8",
             },
             "property:cpp": {
-                "foreground": "#24cc56e3", // TODO
+                "foreground": "#99D7F8", // TODO
             },
             "namespace:cpp":{
-                "foreground": "#bbbbbb",
-            },
-            "comment":{
-              "foreground": "#383838",
+                "foreground": "#2bdfd6",
+                "fontStyle": "italic bold underline"
             }
         },
 
@@ -39,10 +35,10 @@
 "editor.tokenColorCustomizations": {
    
       
-        "strings": "#f7a179",
-        //"comments": "#029c17"
-  
-   
+        "strings": "#ff5100",
+        "comments": "#66bf0cc6",
+        "keywords": "#fdf624da",
+        "functions": "#e38820",
 },
 
 
