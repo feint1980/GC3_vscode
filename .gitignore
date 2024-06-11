@@ -1,0 +1,14 @@
+*.o
+*.rar
+*.exe
+*.obj
+*.py
+*.obj.d
+*.log
+*/CMakeCache.txt
+*/cmake_install.cmake
+*/CEGUI.log
+*/Makefile
+*/CMakeFiles/*
+*/CMakeCache.txt
+*.d

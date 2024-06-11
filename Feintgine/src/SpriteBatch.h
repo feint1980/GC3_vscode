@@ -7,6 +7,7 @@
 
 #include "Vertex.h"
 
+
 namespace Feintgine{
 
 	enum class GlyphSortType {

@@ -1,4 +1,51 @@
 {
+  "workbench.colorCustomizations": {
+    "editor.background": "#09010a",
+    "editor.inactiveSelectionBackground": "#ff0000",
+    "C_Cpp.enhancedColorization": "Enabled",
+    
+   // "editor.selectionBackground": "#ac2323",
+    
+},
+
+
+"editor.semanticTokenColorCustomizations": {
+  
+        "rules": {
+            "property:c": {
+                "foreground": "#FF0000", // TODO
+            },
+            "type:cpp": {
+                "foreground": "#2bdfd6",
+            },
+            "variable:cpp":{
+                "foreground": "#fcac18",
+            },
+            "property:cpp": {
+                "foreground": "#24cc56e3", // TODO
+            },
+            "namespace:cpp":{
+                "foreground": "#bbbbbb",
+            },
+            "comment":{
+              "foreground": "#383838",
+            }
+        },
+
+        
+    
+},
+
+"editor.tokenColorCustomizations": {
+   
+      
+        "strings": "#f7a179",
+        //"comments": "#029c17"
+  
+   
+},
+
+
   "C_Cpp_Runner.cCompilerPath": "gcc",
   "C_Cpp_Runner.cppCompilerPath": "g++",
   "C_Cpp_Runner.debuggerPath": "gdb",
