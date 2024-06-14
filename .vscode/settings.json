@@ -8,6 +8,7 @@
     
 },
 
+"editor.wordWrap": "on",
 
 "editor.semanticTokenColorCustomizations": {
   
@@ -156,6 +157,21 @@
     "streambuf": "cpp",
     "thread": "cpp",
     "cinttypes": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "any": "cpp",
+    "bitset": "cpp",
+    "charconv": "cpp",
+    "condition_variable": "cpp",
+    "forward_list": "cpp",
+    "list": "cpp",
+    "set": "cpp",
+    "unordered_set": "cpp",
+    "optional": "cpp",
+    "regex": "cpp",
+    "future": "cpp",
+    "mutex": "cpp",
+    "span": "cpp",
+    "typeindex": "cpp",
+    "variant": "cpp"
   }
 }

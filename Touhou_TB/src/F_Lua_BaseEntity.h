@@ -12,6 +12,8 @@ public:
 
     virtual void update(float deltaTime) override;
 
+    void initStat();
+
 protected:
 
     float m_strength;
