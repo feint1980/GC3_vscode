@@ -10,7 +10,7 @@
 
 
 % Feintgine list 
-    - add lua method to add event
+    x add lua method to add event
     - add lua method to add manipulate  
 
 % GC3 list 
