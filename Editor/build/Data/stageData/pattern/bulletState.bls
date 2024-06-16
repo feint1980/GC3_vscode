@@ -87,6 +87,9 @@
 		<Event name = "maxSpeed" value = "3.25" time = "8500" />
 	</Events>
 
+	<Events name = "max_1_5">
+		<Event name = "maxSpeed" value = "1.5" time = "3000" />
+	</Events>	
 
 	<Events name = "slowdown_3_1">
 		<Event name = "speedChange" speed = "3.5" time = "1450"/>

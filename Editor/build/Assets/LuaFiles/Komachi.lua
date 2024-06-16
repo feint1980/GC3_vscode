@@ -65,30 +65,31 @@ function  DynamicBehavior1( host, dynob )
     direct = {1,-1}
     angle_count = 0
     t_angle = 12 * 0.0174532925
-    
 	while true do 
         for i = 1, 2 do
             DynamicBehavior1_base( host, dynob, direct[i])
         end
-        cppMoveObject(host,dynob,0,50,50)
-        
+        cppMoveObject(host,dynob,0,150,50)
         coroutine.yield()
+
         bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_white.png",
         0.5, -- speed
         10.0, -- lifeTime 
-        7,   -- a
-        9,   -- b 
-        4,    -- c
-        50,   -- r
-        0.3,  -- angleStep
-        0,    -- startAngle
-        angle_count * t_angle,    -- rotation
-        1,   -- interval
-        900,  -- count
-        100)  -- eventTime
+        3,   -- a
+        7,   -- b 
+        12,    -- c
+        25,   -- r
+        0.75,  -- angleStep
+        0 ,    -- startAngle
+        0,    -- rotation
+        0,   -- interval
+        155,  -- count
+        100,4)  -- eventTime
         coroutine.yield()
+
+
         total_line = 12
-        for i = 1, total_line do
+        for i = 0, total_line do
             bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
             2.5, -- speed
             10.0, -- lifeTime
@@ -96,16 +97,17 @@ function  DynamicBehavior1( host, dynob )
             6,   -- b
             7,   -- c
             100,   -- r
-            1.2,   -- angleStep
-            angle_count * t_angle,  -- startAngle
-            0 + (360/total_line * i),  -- rotation
-            0,   -- interval
-            50,  -- count
-            100)   -- eventTime
+            .2,   -- angleStep
+            0 ,  -- startAngle
+            (360/total_line * i) * 0.0174532925,  -- rotation
+            1,   -- interval
+            25,  -- count
+            100,4)   -- eventTime
             coroutine.yield()
         end
         cppHoldPosition(host,dynob,200,"cast")
         coroutine.yield()
+        cppSetBulletEvent(host,4,"max_1_5")
         angle_count = angle_count + 1
     end
 end
@@ -484,6 +486,95 @@ function spell_2_side_coin(host,dynob,direction,tier,tableName,tableAssets,speed
             y = math.sin((t_current_angle + i * (angle_step) ))
             cppSetFire_KomachiCoin(host,dynob,tableName,tableAssets,tier,
                             speed + additional_speed * f,lifeTime,x,y,f_angle,time + (interval  * (f * 25) ))
+        end
+    end
+end
+
+
+function moveset_normal_3(host)
+    dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior3_normal,host,komachi)}
+    IssueNextTask(host,komachi)
+    isMovesetSelected = true
+end
+
+
+function DynamicBehavior3_normal(host,dynob)
+
+    x_index = 0
+    y_index = 2
+    x_pos_threshold = 75 
+    y_pos_threshold = 100
+    t_angle = 30 * 0.0174532925
+
+
+    while true do
+
+
+        cppMoveObject(host,dynob,0,100,20)
+        coroutine.yield()
+        cppHoldPosition(host,dynob,10,"charging")
+    
+        coroutine.yield()
+        cppHoldPosition(host,dynob,100,"charge_end")
+        for angle_count = 1, 5 do
+            bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",
+            0.65, -- speed
+            10.0, -- lifeTime 
+            5,   -- a
+            4,   -- b 
+            50,   -- r
+            2.5,  -- angleStep
+            0,    -- startAngle
+            angle_count * 360/5 * 0.0174532925,    -- rotation
+            2,   -- interval
+            120,  -- count
+            100)  -- eventTime
+            coroutine.yield()
+        end
+        coroutine.yield()
+        for i = 1, 3 do
+            x_index = math.random( -2,2 )
+            y_index = math.random( 1,2 )
+            cppMoveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,40)
+            coroutine.yield()
+            cppHoldPosition(host,dynob,10,"charging")
+            coroutine.yield()
+            cppHoldPosition(host,dynob,300,"charge_end")
+            for angle_count = 1, 4 do
+                bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_blue.png",
+                0.65, -- speed
+                7.0, -- lifeTime 
+                9,   -- a
+                7,   -- b 
+                3,    -- c
+                50,   -- r
+                0.5,  -- angleStep
+                0,    -- startAngle
+                angle_count * 90 * 0.0174532925,    -- rotation
+                10,   -- interval
+                125,  -- count
+                100)  -- eventTime
+                coroutine.yield()
+            end
+            for angle_count = 1, 3 do
+                bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_medium_red.png",
+                0.5, -- speed
+                10.0, -- lifeTime 
+                2,   -- a
+                3,   -- b 
+                5,    -- c
+                50,   -- r
+                0.33,  -- angleStep
+                0,    -- startAngle
+                angle_count * 120 * 0.0174532925,    -- rotation
+                0,   -- interval
+                100,  -- count
+                100)  -- eventTime
+                coroutine.yield()
+            end
+            coroutine.yield()
+            cppHoldPosition(host,dynob,1,"charge_end",false)
+            coroutine.yield()
         end
     end
 end

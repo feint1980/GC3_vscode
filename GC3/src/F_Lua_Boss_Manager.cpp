@@ -60,6 +60,22 @@ int lua_CreateFromLua(lua_State * L)
 	return 1; // this host function return 1 number 
 }
 
+
+int lua_addBulletEvent(lua_State * L)
+{
+	if (lua_gettop(L) != 3)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	//std::cout << "[C++] lua_SetBulletEvent called \n";
+	F_Lua_Boss_Manager * object = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1));
+	int bulletId = (int)lua_tonumber(L, 2);
+	std::string eventName = lua_tostring(L, 3); 
+	object->addBulletEvent(bulletId, eventName);
+	return 0;
+}
+
 int lua_removeFromLua(lua_State * L)
 {
 	if (lua_gettop(L) != 2)
@@ -175,7 +191,7 @@ int lua_setFireTypePE(lua_State * L)
 }
 int lua_setFireType1(lua_State * L)
 {
-	if (lua_gettop(L) != 17)
+	if (lua_gettop(L) < 17 || lua_gettop(L) > 19)
 	{
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
@@ -199,11 +215,24 @@ int lua_setFireType1(lua_State * L)
 	int count = lua_tonumber(L, 16); // count;
 	double time = lua_tonumber(L, 17);
 
+	int id = 0;
+	std::string eventName = "";
+	if(lua_gettop(L) >= 18)
+	{
+		id = lua_tonumber(L, 18);
+	}
+
+	if(lua_gettop(L) == 19)
+	{
+		eventName = lua_tostring(L, 19);
+	}
+
 	fR = fR * 0.01f;
 
-	int totalInterval = 0;
+	//std::cout << "parse value :" << id << " eventName: " << eventName << " \n";
+
 	objectManager->rw_addEvent_T1(dynamicObject, asset, speed, lifeTime, arcType, fA, fB, fC,fD, fR,
-		angleStep, startAngle, rotation, interval, count, time);
+		angleStep, startAngle, rotation, interval, count, time, id, eventName);
 		
 	return 0;
 }
@@ -527,21 +556,6 @@ int lua_setObjectChargingEffect(lua_State * L)
 
 }
 
-int lua_addBulletEvent(lua_State * L)
-{
-
-	if (lua_gettop(L) != 3)
-	{
-		std::cout << "(lua_addBulletEvent) bad gettop " << lua_gettop(L) << " \n";
-		return 0;
-	}
-	
-
-	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
-
-
-	return 0;
-}
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 {
 
@@ -570,7 +584,7 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppWaitFor", lua_waitFor);
 	lua_register(m_script, "cppOjbectPlayAnimation", lua_playObjectAnimation);
 	lua_register(m_script, "cppObjectSetChargingEffect", lua_setObjectChargingEffect);
-	lua_register(m_script, "cppAddBulletEvent", lua_addBulletEvent);
+	lua_register(m_script, "cppSetBulletEvent", lua_addBulletEvent);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 }
 
@@ -580,6 +594,18 @@ F_Lua_Boss_Manager::~F_Lua_Boss_Manager()
 }
 
 
+
+void F_Lua_Boss_Manager::addBulletEvent(int bulletID, const std::string & eventName)
+{
+	for(auto i = 0 ;i < m_bullets.size() ;i++)
+	{
+		if(m_bullets[i]->getSpecialID() == bulletID)
+		{
+			m_bullets[i]->loadEvent(eventName);
+		}
+
+	}
+}
 
 void F_Lua_Boss_Manager::removeObject(F_Lua_GenericObject * object)
 {
@@ -723,6 +749,7 @@ F_Lua_GenericObject * F_Lua_Boss_Manager::createBoss(const glm::vec2 & pos, cons
 	m_luaBosses.push_back(m_object);
 	return m_object;
 }
+
 
 void F_Lua_Boss_Manager::clearBosses()
 {
@@ -914,8 +941,7 @@ void F_Lua_Boss_Manager::rw_addEvent_PE(F_Lua_GenericObject * dynamicObject,\
 }
 
 void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_GenericObject * dynamicObject, const std::string & asset,
-	float speed, float lifeTime,int arcType, float fA, float fB, float fC, float fD, float fR,
-	float angleStep, float startAngle, float rotation, int interval, int count, double time)
+	float speed, float lifeTime,int arcType, float fA, float fB, float fC, float fD, float fR, float angleStep, float startAngle, float rotation, int interval, int count, double time,int id /*= 0*/, const std::string & eventName /*= ""*/)
 {
 	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
 	manipulator->addDelayedEvent(dynamicObject, [=] 
@@ -972,6 +998,9 @@ void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_GenericObject * dynamicObject, con
 	}
 	
 	float angle = startAngle;
+
+	// std::cout << "bullet ID " << id << "\n";
+	// std::cout << "eventName " << eventName << "\n";
 	
 	for (int i = 0; i < count; i++)
 	{
@@ -985,7 +1014,13 @@ void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_GenericObject * dynamicObject, con
 			glm::vec2 vel = tVel * speed;
 			bullet->init(dynamicObject->getPos(), glm::vec2(1),
 				Feintgine::SpriteManager::Instance()->getSprite(asset), vel, nullptr, 5);
+			bullet->setSpecialID(id);
+			if(eventName != "")
+			{
+				bullet->loadEvent(eventName);
+			}
 			dynamicObject->m_bullets.push_back(bullet);
+
 
 
 		}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time + (interval *i)));

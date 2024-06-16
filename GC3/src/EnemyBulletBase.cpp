@@ -421,6 +421,26 @@ void EnemyBulletBase::loadEvent(const std::string & eventName, bool preloaded)
 								
 						}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time));
 					}
+					// if(t_name == "minSpeed")
+					// {
+					// 	//std::cout << "minSpeed time is " << time << "\n";
+					// 	float value = 0.0f;
+					// 	if (Event_node->first_attribute("value"))
+					// 	{
+					// 		value = std::stof(Event_node->first_attribute("value")->value());
+					// 	}
+					// 	addEvent([=]
+					// 	{
+					// 		//	std::cout << "add Event " << daf++ << "\n";
+					// 		//glm::vec2 direction = glm::normalize(GlobalValueClass::Instance()->getPlayer()->getPos() - m_pos);
+					// 		//glm::vec2 vel = glm::vec2(speed);
+					// 		//m_vel = m_direction* vel;
+											
+					// 		m_vel = glm::normalize(m_vel) * value;
+			
+								
+					// 	}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time));
+					// }
 					if (t_name == "cos")
 					{
 						float startAngle = 0.0f;

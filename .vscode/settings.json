@@ -1,45 +1,95 @@
 {
   "workbench.colorCustomizations": {
     "editor.background": "#181818db",
-    //"editor.inactiveSelectionBackground": "#ff0000",
-    "C_Cpp.enhancedColorization": "Enabled",
-    
-   // "editor.selectionBackground": "#ac2323",
-    
-},
+    "C_Cpp.enhancedColorization": "Enabled"
+  },
+  "editor.wordWrap": "on",
+  "editor.semanticTokenColorCustomizations": {
+    "rules": {
+      "type:cpp": {
+        "foreground": "#2bdfd6"
+      },
+      "variable:cpp": {
+        "foreground": "#99D7F8"
+      },
+      "property:cpp": {
+        "foreground": "#99D7F8"
+      },
+      "namespace:cpp": {
+        "foreground": "#2bdfd6",
+        "fontStyle": "italic bold underline"
+      }
+    }
+  },
+  "editor.tokenColorCustomizations": {
+    "strings": "#ff5100",
+    "comments": "#66bf0cc6",
+    "keywords": "#fdf624da",
+    "functions": "#e38820"
+  },
 
-"editor.wordWrap": "on",
-
-"editor.semanticTokenColorCustomizations": {
-  
-        "rules": {
-
-            "type:cpp": {
-                "foreground": "#2bdfd6",
-            },
-            "variable:cpp":{
-                "foreground": "#99D7F8",
-            },
-            "property:cpp": {
-                "foreground": "#99D7F8", // TODO
-            },
-            "namespace:cpp":{
-                "foreground": "#2bdfd6",
-                "fontStyle": "italic bold underline"
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+        // Note
+        {
+            // #
+            "scope": "source.note comment",
+            "settings": {
+                "foreground": "#88846f"
             }
         },
-
-        
-    
-},
-
-"editor.tokenColorCustomizations": {
-   
-      
-        "strings": "#ff5100",
-        "comments": "#66bf0cc6",
-        "keywords": "#fdf624da",
-        "functions": "#e38820",
+        {
+            // %
+            "scope": "source.note string",
+            "settings": {
+                "foreground": "#E6DB74"
+            }
+        },
+        {
+            // x
+            "scope": "source.note entity.name.function",
+            "settings": {
+                "foreground": "#A6E22E"
+            }
+        },
+        {
+            // -
+            "scope": "source.note variable.parameter",
+            "settings": {
+                "foreground": "#FD971F",
+                "fontStyle": ""
+            }
+        },
+        {
+            // ?
+            "scope": "source.note support.function",
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            // ~
+            "scope": "source.note support.constant",
+            "settings": {
+                "foreground": "#66D9EF"
+            }
+        },
+        {
+            // !
+            "scope": "source.note keyword",
+            "settings": {
+                "foreground": "#F92672"
+            }
+        },
+        {
+            // !!
+            "scope": "source.note invalid",
+            "settings": {
+                "foreground": "#F92672",
+                "fontStyle": "bold underline"
+            }
+        }
+    ]
 },
 
 

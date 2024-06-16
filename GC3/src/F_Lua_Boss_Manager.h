@@ -57,7 +57,7 @@ public:
 		int peType, float startRange, float rangeCover, float angleStep, float startAngle, int petalCount, int interval, float rotation, int count, double time);
 
 	void rw_addEvent_T1(F_Lua_GenericObject  * dynamicObject, const std::string & asset, float speed, float lifeTime, \
-		int arcType, float fA, float fB, float fC, float fD,float fR, float angleStep, float startAngle, float rotation, int interval, int count, double time);
+		int arcType, float fA, float fB, float fC, float fD,float fR, float angleStep, float startAngle, float rotation, int interval, int count, double time,int id = 0, const std::string & eventName = "");
 	
 	void rw_addEvent_MA_custom_aff(F_Lua_GenericObject * dynamicObject, const std::string & asset, float speed,
 		float lifeTime, int k, int n, int n2, int l1, int l2,int posneg, float startAngle, 
@@ -86,6 +86,8 @@ public:
 	void callFunctionFromLua(const std::string functionName);
 
 	bool loadLuaFile(const std::string & filePath);
+
+	void addBulletEvent(int bulletID, const std::string & eventName);
 
 	void clearBosses();
 
