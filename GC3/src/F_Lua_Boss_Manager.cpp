@@ -827,6 +827,19 @@ bool F_Lua_Boss_Manager::loadLuaFile(const std::string & filePath)
 	return false;
 }
 
+void F_Lua_Boss_Manager::drawLight(Feintgine::LightBatch & lightBatch)
+{
+	m_player.drawLight(lightBatch);
+	m_particleEngine.drawLight(lightBatch);
+		
+}
+
+void F_Lua_Boss_Manager::drawPlayer(Feintgine::SpriteBatch & spriteBatch)
+{
+	m_player.draw(spriteBatch);
+	m_particleEngine.draw(&spriteBatch);	
+}
+
 void F_Lua_Boss_Manager::draw(Feintgine::SpriteBatch & spriteBatch)
 {
 	for (size_t i = 0; i < m_luaBosses.size(); i++)
@@ -843,12 +856,80 @@ void F_Lua_Boss_Manager::draw(Feintgine::SpriteBatch & spriteBatch)
 	{
 		m_bullets[i]->draw(spriteBatch);
 	}
-	// for(size_t i = 0 ; i < m_fl_object.size() ; i++)
-	// {
-	// 	m_fl_object[i]->draw(spriteBatch);
-	// }
+	
+}
+
+void F_Lua_Boss_Manager::drawPlayerSpellcard(Feintgine::SpriteBatch & spriteBatch)
+{
+	m_player.drawSpellSelector(spriteBatch);
+}
+
+
+void F_Lua_Boss_Manager::reloadPlayer(int val)
+{
+	switch(val)
+	{
+		case PLAYER_CHARACTER_REIMU:
+		{
+			m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
+			m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);	
+		}
+		break;
+		case PLAYER_CHARACTER_MARISA:
+		{
+			m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
+			m_player.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
+		}
+		break;
+		
+		default:
+			std::cout << "wrong player ID value \n";
+		break;
+	}
+	m_player.setCharacterSpell(val);
+	m_player.setAccessoryShot(0);
+}
+
+
+void F_Lua_Boss_Manager::addExplosion(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos, const glm::vec2 & scale, const glm::vec2 & explosionRate, const Feintgine::Color & color, float depth, float liveRate /*= 0.1f*/)
+{
+	m_exlosions.emplace_back(sprite, pos, scale, explosionRate, color, depth, liveRate);
+}
+
+void F_Lua_Boss_Manager::initPlayer(int val, Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager,Feintgine::Camera2D * cam)
+{
+	m_player.setCharacterSpell(1);
+	m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
+	m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
+	m_player.setAccessoryShot(0);
+	m_player.setDeathCallback([&] {
+		addExplosion(
+			Feintgine::SpriteManager::Instance()->getSprite("projectile/death_anim_2.png"),
+			m_player.getPos(), glm::vec2(1), glm::vec2(0.56), Feintgine::Color(255, 255, 255, 255), 4, 0.02f);
+	});	
+	m_player.registerExplosionRing(&m_exlosions);
+
+	m_player.registerLogicCamera(cam);
+	m_player.registerKanjiEffect(kanjiEffectManager);
+
+	m_player.registerAudioEngine(audioEngine);
+	m_player.initSound();
+	m_kanjiEffectManager = kanjiEffectManager;
+	
+	
+	m_player.setPos(glm::vec2(25, -100));
+	m_player.reset();
+
+	m_player.registerEffectBatch(&m_effectBatch);
+
+	m_player.setSpellSelectorPos(glm::vec2(330, 0));
+	m_particleEngine.addParticleBatch(m_player.getHitParticle());
+	m_particleEngine.addParticleBatch(m_player.getLeftAccessosry().getParticleBatch());
+	m_particleEngine.addParticleBatch(m_player.getRightAccesory().getParticleBatch());
 
 }
+
+
 
 void F_Lua_Boss_Manager::init()
 {

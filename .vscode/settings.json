@@ -1,4 +1,8 @@
 {
+  "files.associations": {
+    "*.todo": "note"
+},
+
   "workbench.colorCustomizations": {
     "editor.background": "#181818db",
     "C_Cpp.enhancedColorization": "Enabled"
@@ -42,7 +46,7 @@
             // %
             "scope": "source.note string",
             "settings": {
-                "foreground": "#E6DB74"
+                "foreground": "#66D9EF"
             }
         },
         {
@@ -64,14 +68,14 @@
             // ?
             "scope": "source.note support.function",
             "settings": {
-                "foreground": "#66D9EF"
+                "foreground": "#E6DB74"
             }
         },
         {
             // ~
             "scope": "source.note support.constant",
             "settings": {
-                "foreground": "#66D9EF"
+                "foreground": "#E6DB74"
             }
         },
         {

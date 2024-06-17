@@ -113,11 +113,9 @@ private:
 
 	F_Lua_Boss_Manager m_luaObjectManager;
 
-
 	std::string m_currentLuaDir = "";
 
 	F_Player m_player;
-
 
 	std::vector<FairyBase *> m_enemies;
 	std::vector<EnemyGuardian *> m_guardians;

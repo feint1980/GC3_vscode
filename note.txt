@@ -1,7 +1,7 @@
 
 % syntax list
     % list name
-    - thing haven't done
+    - todo
     x thing that's done 
     ? questions
     ! urgent 
@@ -12,6 +12,9 @@
 % Feintgine list 
     x add lua method to add event
     - add lua method to add manipulate  
+    
+
 
 % GC3 list 
+    
     

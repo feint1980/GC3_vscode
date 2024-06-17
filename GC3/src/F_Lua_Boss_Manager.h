@@ -11,10 +11,12 @@
 #include "ArcFunction_feint_custom2.h"
 #include "ArcFunction_Epicycloid.h"
 
+#include "F_Player.h"
 #include <F_BaseObject.h>
 #include "F_Komachi_Souls_Object.h"
 #include <FL_Object.h>
 #include "EnemyBullet_KomachiCoin.h"
+#include <ParticleEngine2D.h>
 
 
 
@@ -81,6 +83,12 @@ public:
 
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 
+	void drawLight(Feintgine::LightBatch & lightBatch);
+
+	void drawPlayer(Feintgine::SpriteBatch & spriteBatch);
+
+	void drawPlayerSpellcard(Feintgine::SpriteBatch & spriteBatch);
+
 	void callCreateFromLua(const std::string & filePath, const std::string & functionName);
 
 	void callFunctionFromLua(const std::string functionName);
@@ -107,7 +115,21 @@ public:
 
 	std::vector<EnemyBulletBase *> * getBullets() { return &m_bullets; }
 
+
+	// move the player part into F_Lua_Boss_Manager
+	void addExplosion(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos, const glm::vec2 & scale, const glm::vec2 & explosionRate, const Feintgine::Color & color, float depth, float liveRate /*= 0.1f*/);
+
+	void reloadPlayer(int val);
+	void initPlayer(int val, Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager, Feintgine::Camera2D * cam);
+
 protected:
+
+	F_Player m_player;
+	Feintgine::Camera2D * m_cam;
+	KanjiEffectManager  * m_kanjiEffectManager;
+	Feintgine::EffectBatch m_effectBatch;
+	Feintgine::ParticleEngine2D m_particleEngine;
+
 
 	std::vector<EnemyBulletBase *> m_bullets;
 
@@ -124,7 +146,8 @@ protected:
 	std::map<std::string, ObjectType > m_objectMap;
 
 	float f_angle;
-	//std::vector<F_Lua_GC3_Boss *> m_bossObjects;
+
+	std::vector<ExplosionRing> m_exlosions;
 
 };
 
