@@ -12,6 +12,7 @@
 #include "ArcFunction_Epicycloid.h"
 
 #include "F_Player.h"
+#include "BulletManupilator.h"
 #include <F_BaseObject.h>
 #include "F_Komachi_Souls_Object.h"
 #include <FL_Object.h>
@@ -127,6 +128,9 @@ public:
 	// move the player part into F_Lua_Boss_Manager
 	void addExplosion(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos, const glm::vec2 & scale, const glm::vec2 & explosionRate, const Feintgine::Color & color, float depth, float liveRate /*= 0.1f*/);
 
+
+	//void manipulateBullet()
+
 	void reloadPlayer(int val);
 	void initPlayer(int val, Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager, Feintgine::Camera2D * cam,Feintgine::EffectBatch * effectBatch);
 
@@ -156,6 +160,9 @@ protected:
 	float f_angle;
 
 	std::vector<ExplosionRing> m_exlosions;
+
+	BulletManupilator bulletManipulator;
+
 
 };
 

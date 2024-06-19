@@ -3,6 +3,13 @@
 #include "PaternBehaviorBase.h"
 #include "PaternBehavior_Test.h"
 
+
+
+enum PaternType
+{
+	PaternType_Test = 1
+};
+
 class BulletManupilator
 {
 public:

@@ -586,6 +586,10 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppObjectSetChargingEffect", lua_setObjectChargingEffect);
 	lua_register(m_script, "cppSetBulletEvent", lua_addBulletEvent);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
+
+
+
+	bulletManipulator.init(&m_bullets);
 }
 
 
@@ -619,8 +623,11 @@ void F_Lua_Boss_Manager::removeObject(F_Lua_GenericObject * object)
 	}
 }
 
+
 void F_Lua_Boss_Manager::update(float deltaTime)
 {
+
+	bulletManipulator.update(deltaTime);
 	//std::cout << "update \n";
 	for (size_t i = 0; i < m_luaBosses.size(); i++)
 	{
