@@ -45,9 +45,14 @@ public:
 
 	void update(float deltaTime);
 
+	void updatePlayer(float deltaTime, std::vector<FairyBase *>  enemy,
+	std::vector<EnemyBulletBase * > bullets);
+
 	void MoveObject(F_Lua_GenericObject * dynamicObject, float x, float y, float time);
 
 	void setObjectVel(F_Lua_GenericObject * dynamicObject, const glm::vec2 & vel);
+
+	void handleInput(Feintgine::InputManager & inputManager);
 
 	void standIdle(F_Lua_GenericObject * dynamicObject, float time, const std::string & animName, bool isOverRide = false);
 
@@ -87,6 +92,9 @@ public:
 
 	void drawPlayer(Feintgine::SpriteBatch & spriteBatch);
 
+	void drawParticle(Feintgine::SpriteBatch * spriteBatch);
+
+
 	void drawPlayerSpellcard(Feintgine::SpriteBatch & spriteBatch);
 
 	void callCreateFromLua(const std::string & filePath, const std::string & functionName);
@@ -120,14 +128,14 @@ public:
 	void addExplosion(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos, const glm::vec2 & scale, const glm::vec2 & explosionRate, const Feintgine::Color & color, float depth, float liveRate /*= 0.1f*/);
 
 	void reloadPlayer(int val);
-	void initPlayer(int val, Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager, Feintgine::Camera2D * cam);
+	void initPlayer(int val, Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager, Feintgine::Camera2D * cam,Feintgine::EffectBatch * effectBatch);
 
 protected:
 
 	F_Player m_player;
 	Feintgine::Camera2D * m_cam;
 	KanjiEffectManager  * m_kanjiEffectManager;
-	Feintgine::EffectBatch m_effectBatch;
+	//Feintgine::EffectBatch m_effectBatch;
 	Feintgine::ParticleEngine2D m_particleEngine;
 
 

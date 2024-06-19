@@ -486,6 +486,8 @@ private :
 
 	Feintgine::Camera2D m_editLuaCamera;
 	Feintgine::Camera2D m_editLuaCamera_static;
+	Feintgine::Camera2D * p_editorLuaCamera = &m_editLuaCamera; 
+
 
 	Feintgine::Camera2D * currentCam = nullptr;
 

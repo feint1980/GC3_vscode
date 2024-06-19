@@ -237,6 +237,7 @@ void F_Player::init(const std::string & animationPath,
 	m_sealingAmulet.setScale(glm::vec2(0.6f));
 
 
+
 	//m_masterSpark->spawn();
 	
 	//m_fireSoundEffect = 
@@ -1345,9 +1346,16 @@ void F_Player::drawText(TextRenderer & textRenderer, const Feintgine::Camera2D &
 
 void F_Player::registerLogicCamera(Feintgine::Camera2D * camera)
 {
+
+	//std::cout << "finally register " << camera << "\n";
 	m_logicCamera = camera;
+
 	m_binding_circle->registerCamera(m_logicCamera);
-	m_rod.registerCamera(camera);
+	m_rod.registerCamera(m_logicCamera);
+
+	
+
+	//std::cout << "after register " << m_logicCamera << "\n";
 }
 
 void F_Player::registerAudioEngine(Feintgine::AudioEngine * audioEngine)

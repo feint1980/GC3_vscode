@@ -125,6 +125,9 @@ void EditorScreen::entryRuntime()
 	{
 		std::cout << "waiting ...\n";
 	}
+
+	m_audioEngine = new Feintgine::AudioEngine();
+	m_audioEngine->init();
 	//Feintgine::SpriteManager::Instance()->executeReadData();
 	// tileset 
 	m_tileset.initData(Feintgine::ResourceManager::getTexture("Assets/Tilesets/test.png"));
@@ -332,9 +335,14 @@ void EditorScreen::entryRuntime()
 
 
 	
+
+	std::cout << "m_editorLuaCamera " << &m_editLuaCamera << "\n";
+	std::cout << "p_editorLuaCamera " << p_editorLuaCamera << "\n";
+	
 	m_luaEditor.init(EditLua, &m_editLuaCamera,
 		m_editLuaCamera_static);
-	m_luaEditor.initPlayer(1,m_audioEngine,&m_kanjiEffectManager);
+	
+	m_luaEditor.initPlayer(1,m_audioEngine,&m_kanjiEffectManager,&m_editLuaCamera);
 
 
 	
@@ -377,8 +385,7 @@ void EditorScreen::onEntry()
 	bg.init(Feintgine::ResourceManager::getTexture("Assets/Textures/loading.png"), 
 		glm::vec2(0), glm::vec2(224.0f, 56.0f), Feintgine::Color(255, 255, 255, 255));
 
-	m_audioEngine = new Feintgine::AudioEngine();
-	m_audioEngine->init();
+
 	//entryRuntime();
 
 }
@@ -668,7 +675,7 @@ void EditorScreen::draw()
 			drawDamaKuScreen();
 			drawSpriteList();
 			drawSampleScreen();
-			//return;
+			//return;2
 		}
 		if (drawMode == edit_enemy_mode)
 		{

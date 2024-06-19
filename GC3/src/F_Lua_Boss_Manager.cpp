@@ -834,11 +834,36 @@ void F_Lua_Boss_Manager::drawLight(Feintgine::LightBatch & lightBatch)
 		
 }
 
+void F_Lua_Boss_Manager::handleInput(Feintgine::InputManager & inputManager)
+{
+	m_player.handleInput(inputManager);
+}
+
 void F_Lua_Boss_Manager::drawPlayer(Feintgine::SpriteBatch & spriteBatch)
 {
+	
+	//std::cout << "call \n";
+//	m_particleEngine.draw(&spriteBatch);	
 	m_player.draw(spriteBatch);
-	m_particleEngine.draw(&spriteBatch);	
+	m_kanjiEffectManager->draw(spriteBatch);
+	for (int i = 0; i < m_exlosions.size(); i++)
+	{
+		m_exlosions[i].draw(spriteBatch);
+	}
 }
+
+void F_Lua_Boss_Manager::updatePlayer(float deltaTime, std::vector<FairyBase *>  enemy,
+	std::vector<EnemyBulletBase * > bullets)
+{
+	m_player.update(deltaTime,enemy,m_bullets);
+	m_particleEngine.update(deltaTime);
+	m_kanjiEffectManager->update(deltaTime);
+	for (int i = 0; i < m_exlosions.size(); i++)
+	{
+		m_exlosions[i].update(deltaTime);
+	}
+}
+
 
 void F_Lua_Boss_Manager::draw(Feintgine::SpriteBatch & spriteBatch)
 {
@@ -856,6 +881,11 @@ void F_Lua_Boss_Manager::draw(Feintgine::SpriteBatch & spriteBatch)
 	{
 		m_bullets[i]->draw(spriteBatch);
 	}
+
+	//m_player.draw(spriteBatch);
+	// //std::cout << "call \n";
+	// m_particleEngine.draw(&spriteBatch);	
+	// m_kanjiEffectManager->draw(spriteBatch);
 	
 }
 
@@ -896,9 +926,12 @@ void F_Lua_Boss_Manager::addExplosion(const Feintgine::F_Sprite & sprite, const 
 	m_exlosions.emplace_back(sprite, pos, scale, explosionRate, color, depth, liveRate);
 }
 
-void F_Lua_Boss_Manager::initPlayer(int val, Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager,Feintgine::Camera2D * cam)
+void F_Lua_Boss_Manager::initPlayer(int val, Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager,Feintgine::Camera2D * cam,Feintgine::EffectBatch * effectBatch)
 {
+
+	
 	m_player.setCharacterSpell(1);
+
 	m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
 	m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
 	m_player.setAccessoryShot(0);
@@ -909,6 +942,8 @@ void F_Lua_Boss_Manager::initPlayer(int val, Feintgine::AudioEngine * audioEngin
 	});	
 	m_player.registerExplosionRing(&m_exlosions);
 
+
+	//std::cout << "incoming register logic camera " << cam << "\n";
 	m_player.registerLogicCamera(cam);
 	m_player.registerKanjiEffect(kanjiEffectManager);
 
@@ -916,19 +951,28 @@ void F_Lua_Boss_Manager::initPlayer(int val, Feintgine::AudioEngine * audioEngin
 	m_player.initSound();
 	m_kanjiEffectManager = kanjiEffectManager;
 	
-	
 	m_player.setPos(glm::vec2(25, -100));
 	m_player.reset();
 
-	m_player.registerEffectBatch(&m_effectBatch);
+	//m_player.setDepth(40);
+
+	m_player.registerEffectBatch(effectBatch);
 
 	m_player.setSpellSelectorPos(glm::vec2(330, 0));
 	m_particleEngine.addParticleBatch(m_player.getHitParticle());
 	m_particleEngine.addParticleBatch(m_player.getLeftAccessosry().getParticleBatch());
 	m_particleEngine.addParticleBatch(m_player.getRightAccesory().getParticleBatch());
 
+	//m_player.update(1.0f, {}, {});
+	//m_player.registerP
+	//m_player.registerParticleEngine(&m_particleEngine);
+
 }
 
+void F_Lua_Boss_Manager::drawParticle(Feintgine::SpriteBatch * spriteBatch)
+{
+	m_particleEngine.draw(spriteBatch);
+}
 
 
 void F_Lua_Boss_Manager::init()

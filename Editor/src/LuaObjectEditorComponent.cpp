@@ -118,9 +118,6 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	m_cam = cam;
 	m_staticCam = staticCam;
 
-	
-	
-
 	//m_luaObjectManager.loadLuaFile("Assets/LuaFiles/test.lua");
 	//m_luaObjectManager.callLuaFunction("Assets/LuaFiles/test.lua","TestFunc");
 	//m_luaObjectManager.callCreateFromLua("Assets/LuaFiles/test.lua", "CreateFromLua");
@@ -131,10 +128,9 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 
 	bg.init(Feintgine::ResourceManager::getTexture(
 	"Assets/Lazy/bg.png"), glm::vec2(0), glm::vec2(m_drawScreen.z, m_drawScreen.w));
-
 	shadowing.init(Feintgine::ResourceManager::getTexture(
 	"Textures/shadowing.png"), glm::vec2(0), glm::vec2(2000),Feintgine::Color(0, 0, 0, 255));
-	
+	shadowing.setDepth(-16);
 	m_lightBatch.initShader(&m_shader);
 
 
@@ -159,59 +155,64 @@ void LuaObjectEditorComponent::addExplosion(const Feintgine::F_Sprite & sprite, 
 
 void LuaObjectEditorComponent::reloadPlayer(int val)
 {
-	switch(val)
-	{
-		case PLAYER_CHARACTER_REIMU:
-		{
-			m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
-			m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);	
-		}
-		break;
-		case PLAYER_CHARACTER_MARISA:
-		{
-			m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
-			m_player.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
-		}
-		break;
+	m_luaObjectManager.reloadPlayer(val);
+	// switch(val)
+	// {
+	// 	case PLAYER_CHARACTER_REIMU:
+	// 	{
+	// 		m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
+	// 		m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);	
+	// 	}
+	// 	break;
+	// 	case PLAYER_CHARACTER_MARISA:
+	// 	{
+	// 		m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
+	// 		m_player.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
+	// 	}
+	// 	break;
 		
-		default:
-			std::cout << "wrong player ID value \n";
-		break;
-	}
-	m_player.setCharacterSpell(val);
-	m_player.setAccessoryShot(m_shotType);
+	// 	default:
+	// 		std::cout << "wrong player ID value \n";
+	// 	break;
+	// }
+	// m_player.setCharacterSpell(val);
+	// m_player.setAccessoryShot(m_shotType);
 }
 
-void LuaObjectEditorComponent::initPlayer(int val, Feintgine::AudioEngine * audioEngine,KanjiEffectManager * kanjiEffectManager)
+void LuaObjectEditorComponent::initPlayer(int val, Feintgine::AudioEngine * audioEngine,KanjiEffectManager * kanjiEffectManager, Feintgine::Camera2D * cam)
 {
-	m_player.setCharacterSpell(1);
-	m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
-	m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
-	m_player.setAccessoryShot(m_shotType);
-	m_player.setDeathCallback([&] {
-		addExplosion(
-			Feintgine::SpriteManager::Instance()->getSprite("projectile/death_anim_2.png"),
-			m_player.getPos(), glm::vec2(1), glm::vec2(0.56), Feintgine::Color(255, 255, 255, 255), 4, 0.02f);
-	});	
-	m_player.registerExplosionRing(&m_exlosions);
 
-	m_player.registerLogicCamera(m_cam);
-	m_player.registerKanjiEffect(kanjiEffectManager);
+	//std::cout << "rep call : cam " << cam  << "\n";
+	m_luaObjectManager.initPlayer(val, audioEngine, kanjiEffectManager, cam,&m_effectBatch);
 
-	m_player.registerAudioEngine(audioEngine);
-	m_player.initSound();
-	m_kanjiEffectManager = kanjiEffectManager;
+	// m_player.setCharacterSpell(1);
+	// m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
+	// m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
+	// m_player.setAccessoryShot(m_shotType);
+	// m_player.setDeathCallback([&] {
+	// 	addExplosion(
+	// 		Feintgine::SpriteManager::Instance()->getSprite("projectile/death_anim_2.png"),
+	// 		m_player.getPos(), glm::vec2(1), glm::vec2(0.56), Feintgine::Color(255, 255, 255, 255), 4, 0.02f);
+	// });	
+	// m_player.registerExplosionRing(&m_exlosions);
+
+	// m_player.registerLogicCamera(m_cam);
+	// m_player.registerKanjiEffect(kanjiEffectManager);
+
+	// m_player.registerAudioEngine(audioEngine);
+	// m_player.initSound();
+	// m_kanjiEffectManager = kanjiEffectManager;
 	
 	
-	m_player.setPos(glm::vec2(25, -100));
-	m_player.reset();
+	// m_player.setPos(glm::vec2(25, -100));
+	// m_player.reset();
 
-	m_player.registerEffectBatch(&m_effectBatch);
+	// m_player.registerEffectBatch(&m_effectBatch);
 
-	m_player.setSpellSelectorPos(glm::vec2(330, 0));
-	m_particleEngine.addParticleBatch(m_player.getHitParticle());
-	m_particleEngine.addParticleBatch(m_player.getLeftAccessosry().getParticleBatch());
-	m_particleEngine.addParticleBatch(m_player.getRightAccesory().getParticleBatch());
+	// m_player.setSpellSelectorPos(glm::vec2(330, 0));
+	// m_particleEngine.addParticleBatch(m_player.getHitParticle());
+	// m_particleEngine.addParticleBatch(m_player.getLeftAccessosry().getParticleBatch());
+	// m_particleEngine.addParticleBatch(m_player.getRightAccesory().getParticleBatch());
 
 
 	//m_player.registerParticleEngine(&m_particleEngine);
@@ -232,8 +233,8 @@ void LuaObjectEditorComponent::loadShader(const std::string & vertexPath, const 
 void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintgine::DebugRender & debug)
 {
 
-	// glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	// glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	 //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	 //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 	// glEnable(GL_BLEND);
 	// glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -253,13 +254,12 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	GLint dayLightIndex = m_shader.getUniformLocation("dayLight");
 	glUniform3f(dayLightIndex, 1.0f, 1.0f, 1.0f);
 
-
-
 	if(toogleDrawLight)
 	{
 		m_lightBatch.begin();
-		m_player.drawLight(m_lightBatch);
-		m_particleEngine.drawLight(m_lightBatch);
+		//m_player.drawLight(m_lightBatch);
+		m_luaObjectManager.drawLight(m_lightBatch);
+		//m_particleEngine.drawLight(m_lightBatch);
 		m_lightBatch.renderLight();
 	}
 	
@@ -267,14 +267,18 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	bg.draw(spriteBatch);
 	shadowing.draw(spriteBatch);
 
-	if(m_playerEnableTogger->isSelected())
-	{
-		m_player.draw(spriteBatch);
-		m_kanjiEffectManager->draw(spriteBatch);
-		//m_kanjiEffectManager.draw(m_spriteBatch);
-	}
+	
 	
 	m_luaObjectManager.draw(spriteBatch);
+	if(m_playerEnableTogger->isSelected())
+	{
+		m_luaObjectManager.drawPlayer(spriteBatch);
+		//m_player.draw(spriteBatch);
+		//m_kanjiEffectManager->draw(spriteBatch);
+		//m_kanjiEffectManager.draw(m_spriteBatch);
+		
+		//m_luaObjectManager.drawPlayerSpellcard(spriteBatch);
+	}
 	//m_player.drawSpellSelector(spriteBatch);
 	for(int i = 0 ; i < m_exlosions.size(); i++)
 	{
@@ -284,7 +288,8 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	spriteBatch.end();
 	spriteBatch.renderBatch();
 
-	m_particleEngine.draw(&spriteBatch);
+	//m_particleEngine.draw(&spriteBatch);
+	m_luaObjectManager.drawParticle(&spriteBatch);
 
 	m_shader.unuse();
 
@@ -325,7 +330,8 @@ void LuaObjectEditorComponent::drawSpellcard(Feintgine::SpriteBatch & spriteBatc
 	
 	if(m_playerEnableTogger->isSelected())
 	{
-		m_player.drawSpellSelector(spriteBatch);
+		m_luaObjectManager.drawPlayerSpellcard(spriteBatch);
+		//m_player.drawSpellSelector(spriteBatch);
 	}
 	
 	//m_pauseMenu.drawContext()
@@ -391,7 +397,8 @@ void LuaObjectEditorComponent::handleInput(Feintgine::InputManager & inputManage
 	{
 		internalToggleUpdate();
 	}
-	m_player.handleInput(inputManager);
+	m_luaObjectManager.handleInput(inputManager);
+	//m_player.handleInput(inputManager);
 
 }
 
@@ -478,7 +485,7 @@ void LuaObjectEditorComponent::update(float deltaTime)
 	if (m_isUpdate)
 	{
 
-		m_particleEngine.update(deltaTime);
+		//m_particleEngine.update(deltaTime);
 		m_luaObjectManager.update(deltaTime);
 
 		ENGINE_current_tick += (ENGINE_tick_speed * deltaTime);
@@ -487,16 +494,17 @@ void LuaObjectEditorComponent::update(float deltaTime)
 
 		if(m_playerEnableTogger->isSelected())
 		{
-			m_player.update(deltaTime,m_enemies, m_bullets );
+			m_luaObjectManager.updatePlayer(deltaTime, m_enemies, m_bullets);
+			//m_player.update(deltaTime,m_enemies, m_bullets );
 		}
 
 
-		for (int i = 0; i < m_exlosions.size(); i++)
-		{
-			m_exlosions[i].update(deltaTime);
-		}
+		// for (int i = 0; i < m_exlosions.size(); i++)
+		// {
+		// 	m_exlosions[i].update(deltaTime);
+		// }
 		bg.update(deltaTime);
-		m_effectBatch.update(deltaTime);
+		//m_effectBatch.update(deltaTime);
 	}
 }
 

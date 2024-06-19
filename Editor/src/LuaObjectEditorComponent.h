@@ -70,7 +70,7 @@ public:
 
 	bool togglePlayer(const CEGUI::EventArgs &e);
 
-	void initPlayer(int val,Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager);
+	void initPlayer(int val,Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager,Feintgine::Camera2D * cam);
 
 	void addExplosion(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos, const glm::vec2 & scale, const glm::vec2 & explosionRate, const Feintgine::Color & color, float depth, float liveRate /*= 0.1f*/);
 	void reloadPlayer(int val);
@@ -81,7 +81,7 @@ private:
 	bool m_isUpdate = false;
 	glm::vec4 m_drawScreen;
 	Feintgine::GLSLProgram m_shader;
-	Feintgine::Camera2D * m_cam;
+	Feintgine::Camera2D * m_cam = nullptr;
 	Feintgine::Camera2D m_staticCam;
 	Feintgine::GUI * m_gui;
 	std::string savedLocation;
