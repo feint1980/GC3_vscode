@@ -10,6 +10,8 @@ file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp
     
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_Player.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/BulletManupilator.cpp
+    ${PROJECT_SOURCE_DIR}/../GC3/src/PaternBehaviorBase.cpp
+    ${PROJECT_SOURCE_DIR}/../GC3/src/PaternBehavior_Test.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_MarisaRocket_small.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/F_BaseEnemy.cpp
     ${PROJECT_SOURCE_DIR}/../GC3/src/GuardianShield.cpp

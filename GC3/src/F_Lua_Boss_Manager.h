@@ -20,7 +20,6 @@
 #include <ParticleEngine2D.h>
 
 
-
 enum ArcType
 {
 	arcHypocycloid = 1,
