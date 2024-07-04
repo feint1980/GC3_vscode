@@ -14,10 +14,16 @@
 #define C 2
 
 
+
+#define HAS_A = 1
+#define HAS_B = 2
+#define HAS_C = 4
+#define HAS_D = 8
+#define HAS_E = 16
+#define HAS_T = 32
+
 namespace Feintgine
 {
-
-
 
 enum Operator{
     NONE,
@@ -29,6 +35,7 @@ enum Operator{
     COS, 
     SIN
 };
+
 
 
 struct clause
@@ -60,9 +67,24 @@ struct Node {
     Node * left;
     Node * right;
     Operator op = NONE;
+    void setFactors(const std::vector<float> & factors)
+    {
+        m_factors = factors;
+    }
+
+    int getFactorIndex(char character);
 
     float getValue() const;
 
+    std::vector<float> m_factors ;
+
+    void setTvalue(float * t_t_value);
+
+    void setValue(char varName, float value);
+
+    float * t_value;
+
 };
+
 
 }

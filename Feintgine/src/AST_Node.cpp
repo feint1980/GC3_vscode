@@ -8,8 +8,8 @@ namespace Feintgine
     void Node::parseData(const std::string & data)
     {
         // data is a string of a fomula defined by user
-        // from the data string 
-        
+        // from the data string
+
         std::string processData = data;
         std::vector<int> removeIndicies;
         // remove whitespace
@@ -30,13 +30,13 @@ namespace Feintgine
         bool isSpecialMath = false;
         for(int i = 0; i < processData.size(); ++i)
         {
-            
+
             if(processData[i] == '(')
             {
                 int foundIndex = i ;
                 if(i > 3 )
                 {
-                    // check if before the '(' is cos or sin 
+                    // check if before the '(' is cos or sin
                     // if yes, then pushback the letter c(cos) or s(sin)
                     std::string cutprocessData = processData.substr(i - 3, 3);
                     if(cutprocessData == "cos" || cutprocessData == "sin")
@@ -44,7 +44,7 @@ namespace Feintgine
                         foundIndex = i - 3;
                         isSpecialMath = true;
                     }
-                    
+
                 }
                 bracketStack.push(foundIndex);
                 openCracketCount++;
@@ -53,7 +53,7 @@ namespace Feintgine
             else if(processData[i] == ')')
             {
                 std::string tClause = processData.substr(bracketStack.top(), i - bracketStack.top() + 1);
-                
+
                 bracketStack.pop();
                 clauseStack.push(clause(tClause, i));
                 closeCracketCount++;
@@ -76,7 +76,7 @@ namespace Feintgine
 
         int middleOperator = 0;
         if(clauses.size() >= 2)
-        {    
+        {
             auto copyClauseStack = clauses;
 
             for(int i = 0; i < copyClauseStack.size(); ++i)
@@ -87,13 +87,12 @@ namespace Feintgine
                     copyClauseStack[i].pop();
                     tab++;
                 }
-                
+
             }
             // find the operators among the clauses
-          
 
             std::vector<operationSign> operatorSignsLocation;
-            
+
             for(int i = 0; i < clauses.size() -1; ++i)
             {
                 clause firstClause = clauses[i].top();
@@ -120,7 +119,7 @@ namespace Feintgine
                     break;
                 }
             }
-            
+
             char middleOperatorChar = processData[middleOperator];
             if(middleOperatorChar == '+')
             {
@@ -141,7 +140,7 @@ namespace Feintgine
 
             std::string leftClause = processData.substr(0, middleOperator);
             std::string rightClause = processData.substr(middleOperator + 1, processData.size() - middleOperator );
-            
+
             left = new Node();
             right = new Node();
             left->parseData(leftClause);
@@ -149,11 +148,11 @@ namespace Feintgine
         }
         else
         {
-           
+
             std::vector<operationSign> operatorSignsLocation;
-            
+
             std::string singleClause = clauses[0].top().data;
-            
+
             for(int i = 0; i < singleClause.size(); ++i)
             {
                 // find * and / first
@@ -161,7 +160,7 @@ namespace Feintgine
                 {
                     middleOperator = i;
                     break;
-                    
+
                 }
                 if(singleClause[i] == '+' || singleClause[i] == '-')
                 {
@@ -176,10 +175,7 @@ namespace Feintgine
                 if(!isSpecialMath)
                 {
 
-                
-                   
                     std::string strValue = singleClause.substr(1, singleClause.size() - 2);
-                   
                     if(strValue == "a")
                     {
                         value = A;
@@ -189,13 +185,11 @@ namespace Feintgine
                     {
                         value = B;
                         std::cout << "b value found \n";
-                       
                     }
                     else if(strValue == "c")
                     {
                         value = C;
                         std::cout << "c value found \n";
-                       
                     }
                     else
                     {
@@ -210,7 +204,7 @@ namespace Feintgine
                     {
                         is_cos_sin = 1;
 
-                      
+
                     }
                     else if(singleClause.find("sin") != std::string::npos)
                     {
@@ -221,25 +215,32 @@ namespace Feintgine
                         is_cos_sin = 3;
                     }
                     std::string strValue = singleClause.substr(5, singleClause.size() - 7);
-                    
+
                     if(strValue == "a")
                     {
-                        
-                        value = A;
+
+                        //value = getFactorIndex('a');
+                        value = m_factors[0];
                         std::cout << "a value found \n";
-                        
+
                     }
                     else if(strValue == "b")
                     {
-                        value = B;
-                        std::cout << "b value found \n";
-                        
+                        value = m_factors[1];
                     }
                     else if(strValue == "c")
                     {
-                        value = C;
-                        std::cout << "c value found \n";
-                        
+                        value = m_factors[2];
+
+                    }
+                    else if(strValue == "d")
+                    {
+
+                        value = m_factors[3];
+                    }
+                    else if(strValue == "t")
+                    {
+                        value = * t_value;
                     }
                     else
                     {
@@ -249,12 +250,12 @@ namespace Feintgine
                     if(is_cos_sin == 1)
                     {
                         value = std::cos(value);
-                        
+
                     }
                     else if(is_cos_sin == 2)
                     {
                         value = std::sin(value);
-                        
+
                     }
                     else if(is_cos_sin == 3)
                     {
@@ -264,11 +265,11 @@ namespace Feintgine
                     //value = std::stof(strValue);
                 }
             }
-            else 
+            else
             {
 
                 char middleOperatorChar = singleClause[middleOperator];
-                
+
                 if(middleOperatorChar == '+')
                 {
                     op = ADD;
@@ -294,44 +295,86 @@ namespace Feintgine
                 {
                     leftClause = leftClause.substr(0, leftClause.size() - 1);
                 }
-               
-                left = new Node();  
+
+                left = new Node();
                 left->parseData( "(" + leftClause + ")");
                 if(!isLast)
                 {
                     right = new Node();
                     right->parseData("("+rightClause +")");
                 }
-              
+
             }
-         
+
         }
 
     }
 
+    int Node::getFactorIndex(char character)
+    {
+        if(character == 'a')
+        {
+            return 0;
+        }
+        else if(character == 'b')
+        {
+            return 1;
+        }
+        else if(character == 'c')
+        {
+            return 2;
+        }
+        else if(character == 'd')
+        {
+            return 3;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
+    void Node::setValue(char varName, float value)
+    {
+        int index = getFactorIndex(varName);
+        if(index != -1)
+        {
+            m_factors[index] = value;
+        }
+        else
+        {
+            std::cout << "Waning:  variable not found \n";
+        }
+    }
+
+
+    void Node::setTvalue(float * t_t_value)
+    {
+        t_value = t_t_value;
+    }
 
     float Node::getValue() const
     {
         //std::cout << "get value called \n";
-        
+
         switch (op) {
             case ADD:
-                
+
                 return value + (left->getValue() + right->getValue());
             case SUB:
-                
+
                 return value +  (left->getValue() - right->getValue());
-            case MUL: 
-                
+            case MUL:
+
                 return value +  (left->getValue() * right->getValue());
-            case DIV:   
-                
+            case DIV:
+
                 return value +  (left->getValue() / right->getValue());
             default:
-                
+
                 return value;
         }
        // std::cout << "value after add : " << value << "\n";
-    }   
+    }
 
 }
