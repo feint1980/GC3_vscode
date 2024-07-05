@@ -4,8 +4,7 @@
 namespace Feintgine
 {
 
-
-    void Node::parseData(const std::string & data)
+    void AST_Node::parseData(const std::string & data)
     {
         // data is a string of a fomula defined by user
         // from the data string
@@ -141,8 +140,8 @@ namespace Feintgine
             std::string leftClause = processData.substr(0, middleOperator);
             std::string rightClause = processData.substr(middleOperator + 1, processData.size() - middleOperator );
 
-            left = new Node();
-            right = new Node();
+            left = new AST_Node();
+            right = new AST_Node();
             left->parseData(leftClause);
             right->parseData(rightClause);
         }
@@ -296,11 +295,11 @@ namespace Feintgine
                     leftClause = leftClause.substr(0, leftClause.size() - 1);
                 }
 
-                left = new Node();
+                left = new AST_Node();
                 left->parseData( "(" + leftClause + ")");
                 if(!isLast)
                 {
-                    right = new Node();
+                    right = new AST_Node();
                     right->parseData("("+rightClause +")");
                 }
 
@@ -310,7 +309,7 @@ namespace Feintgine
 
     }
 
-    int Node::getFactorIndex(char character)
+    int AST_Node::getFactorIndex(char character)
     {
         if(character == 'a')
         {
@@ -334,7 +333,13 @@ namespace Feintgine
         }
     }
 
-    void Node::setValue(char varName, float value)
+    void AST_Node::setRvalue(float * r_t_value)
+    {
+        r_value = r_t_value;
+    }
+
+
+    void AST_Node::setValue(char varName, float value)
     {
         int index = getFactorIndex(varName);
         if(index != -1)
@@ -348,12 +353,12 @@ namespace Feintgine
     }
 
 
-    void Node::setTvalue(float * t_t_value)
+    void AST_Node::setTvalue(float * t_t_value)
     {
         t_value = t_t_value;
     }
 
-    float Node::getValue() const
+    float AST_Node::getValue() const
     {
         //std::cout << "get value called \n";
 

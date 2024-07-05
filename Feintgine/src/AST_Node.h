@@ -54,7 +54,7 @@ struct operationSign
 };
 
 
-struct Node {
+struct AST_Node {
 
     void parseData(const std::string & data);
    
@@ -64,8 +64,8 @@ struct Node {
     std::vector<std::stack<clause>> clauses;
     
     float value = 0.0;
-    Node * left;
-    Node * right;
+    AST_Node * left;
+    AST_Node * right;
     Operator op = NONE;
     void setFactors(const std::vector<float> & factors)
     {
@@ -80,9 +80,13 @@ struct Node {
 
     void setTvalue(float * t_t_value);
 
+    void setRvalue(float * r_t_value);
+
     void setValue(char varName, float value);
 
     float * t_value;
+
+    float * r_value;
 
 };
 
