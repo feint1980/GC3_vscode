@@ -327,6 +327,14 @@ namespace Feintgine
         {
             return 3;
         }
+        else if (character == 't')
+        {
+            return 10;
+        }
+        else if (character == 'r')
+        {
+            return 11;
+        }
         else
         {
             return -1;
@@ -342,13 +350,21 @@ namespace Feintgine
     void AST_Node::setValue(char varName, float value)
     {
         int index = getFactorIndex(varName);
-        if(index != -1)
+        if(index == 10) // t
+        {
+            *t_value = value;
+        }
+        else if(index == 11) // r
+        {
+            *r_value = value;
+        }
+        else if(index != -1 && index < m_factors.size())
         {
             m_factors[index] = value;
         }
         else
         {
-            std::cout << "Waning:  variable not found \n";
+            std::cout << "Waning:  variable not found or out of reach " << index << " \n";
         }
     }
 

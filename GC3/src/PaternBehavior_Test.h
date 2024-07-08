@@ -11,7 +11,6 @@ public:
 
 	void randomizeValue();
 
-
 private:
 
 	glm::vec2 calculatePos(float t,float additionalAngle);

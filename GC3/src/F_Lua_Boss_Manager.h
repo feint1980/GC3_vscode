@@ -18,7 +18,7 @@
 #include <FL_Object.h>
 #include "EnemyBullet_KomachiCoin.h"
 #include <ParticleEngine2D.h>
-
+#include "PaternBehavior_from_lua.h"
 
 enum ArcType
 {
@@ -162,6 +162,7 @@ protected:
 
 	BulletManupilator bulletManipulator;
 
+	std::vector<PaternBehaviorBase *> m_paternBehaviors;
 
 };
 
