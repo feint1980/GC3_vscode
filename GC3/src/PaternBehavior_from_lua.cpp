@@ -8,20 +8,24 @@ PaternBehavior_from_lua::PaternBehavior_from_lua()
         // init all the values to 1 ( not 0 because it may have division)
         m_factors.push_back(1);
     }
-
+    m_xNode = new Feintgine::AST_Node();
+    m_yNode = new Feintgine::AST_Node();
 
 }
 
-void PaternBehavior_from_lua::init(const std::string & xNodeEquation, const std::string & yNodeEquation, float radius)
+void PaternBehavior_from_lua::create(const std::string & xNodeEquation, const std::string & yNodeEquation, float radius)
 {
+
     m_rad = radius;
 
-    m_xNode = new Feintgine::AST_Node();
-
-    m_yNode = new Feintgine::AST_Node();
+    m_xNode->setTvalue(&m_t);
+    m_yNode->setTvalue(&m_t);
+    m_xNode->setRvalue(&m_rad);
+    m_yNode->setRvalue(&m_rad);
 
     m_xNode->parseData(xNodeEquation);
     m_yNode->parseData(yNodeEquation);
+
 
 }
 
@@ -48,15 +52,17 @@ PaternBehavior_from_lua::~PaternBehavior_from_lua()
 
 }
 
-void PaternBehavior_from_lua::update(float deltaTime)
-{
-
-}
 
 void PaternBehavior_from_lua::update(float deltaTime)
 {
-    m_t += m_rate * deltaTime ;    
-    
+    m_t += m_rate * deltaTime ;  
+
+    float calculateAngle = degreeToRad(360.0f / m_bullets.size());
+    for (int i = 0; i < m_bullets.size(); i++)
+    {
+        m_bullets[i]->setDestination(calculatePos( m_t + (float) i, calculateAngle * i));
+    }  
+
 }
 
 
@@ -67,5 +73,6 @@ glm::vec2 PaternBehavior_from_lua::calculatePos(float t,float additionalAngle)
     returnVal.x = m_xNode->getValue();
     returnVal.y = m_yNode->getValue();
 
+    std::cout << "calculate value x : " << returnVal.x << " y : " << returnVal.y << "\n";
     return returnVal;
 }

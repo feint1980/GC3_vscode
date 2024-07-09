@@ -1280,6 +1280,30 @@ D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.cpp.s
 .PHONY : D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.cpp.s
 
+D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.obj: D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj
+.PHONY : D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.obj
+
+# target to build an object file
+D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj
+.PHONY : D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj
+
+D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.i: D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.i
+.PHONY : D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.i
+
+# target to preprocess a source file
+D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.i
+.PHONY : D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.i
+
+D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.s: D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.s
+.PHONY : D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.s
+
+# target to generate assembly for a file
+D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\FeintEditor.dir\build.make CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.s
+.PHONY : D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.s
+
 D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.obj: D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj
 .PHONY : D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.obj
 
@@ -2345,6 +2369,9 @@ help:
 	@echo ... D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.obj
 	@echo ... D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.i
 	@echo ... D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.s
+	@echo ... D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.obj
+	@echo ... D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.i
+	@echo ... D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.s
 	@echo ... D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.obj
 	@echo ... D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.i
 	@echo ... D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.s

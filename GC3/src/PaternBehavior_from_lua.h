@@ -12,7 +12,7 @@ public:
 
     void setRadius(float radius);
 
-    void init(const std::string & xNodeEquation, const std::string & yNodeEquation, float radius);
+    void create(const std::string & xNodeEquation, const std::string & yNodeEquation, float radius);
 
     void setFactor(const std::vector<float> & factors);
 

@@ -2,6 +2,7 @@
 
 #include "PaternBehaviorBase.h"
 #include "PaternBehavior_Test.h"
+#include "PaternBehavior_from_lua.h"
 
 
 
@@ -20,6 +21,8 @@ public:
 	void update(float deltaTime);
 
 	void addPatern(int ID, int type);
+
+	void addPatern(PaternBehaviorBase * pattern, int ID);
 
 	void init(std::vector<EnemyBulletBase *> *bullets);
 

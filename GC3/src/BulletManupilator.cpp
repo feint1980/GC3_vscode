@@ -34,7 +34,6 @@ void BulletManupilator::addPatern(int ID, int type)
 			{
 				bullets.push_back(m_bullets->operator[](i));
 
-				//std::cout << "got " << i << "\n";
 			}
 
 		}
@@ -45,6 +44,21 @@ void BulletManupilator::addPatern(int ID, int type)
 	default:
 		break;
 	}
+}
+
+void BulletManupilator::addPatern(PaternBehaviorBase * pattern, int ID)
+{
+	std::vector<EnemyBulletBase * > bullets;
+	for (int i = 0; i < m_bullets->size(); i++)
+	{
+		if (m_bullets->operator[](i)->getSpecialID() == ID)
+		{
+			bullets.push_back(m_bullets->operator[](i));
+		}
+	}
+
+	pattern->init(bullets);
+	m_pattern.push_back(pattern);
 }
 
 void BulletManupilator::init(std::vector<EnemyBulletBase *> *bullets)

@@ -68,11 +68,26 @@ include CMakeFiles/Feintgine.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/Feintgine.dir/flags.make
 
+CMakeFiles/Feintgine.dir/src/AST_Node.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
+CMakeFiles/Feintgine.dir/src/AST_Node.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
+CMakeFiles/Feintgine.dir/src/AST_Node.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/AST_Node.cpp
+CMakeFiles/Feintgine.dir/src/AST_Node.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Feintgine.dir/src/AST_Node.cpp.obj"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/AST_Node.cpp.obj -MF CMakeFiles\Feintgine.dir\src\AST_Node.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\AST_Node.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\AST_Node.cpp
+
+CMakeFiles/Feintgine.dir/src/AST_Node.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Feintgine.dir/src/AST_Node.cpp.i"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\VS_Code_prj\GC3_vscode\Feintgine\src\AST_Node.cpp > CMakeFiles\Feintgine.dir\src\AST_Node.cpp.i
+
+CMakeFiles/Feintgine.dir/src/AST_Node.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Feintgine.dir/src/AST_Node.cpp.s"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\VS_Code_prj\GC3_vscode\Feintgine\src\AST_Node.cpp -o CMakeFiles\Feintgine.dir\src\AST_Node.cpp.s
+
 CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
 CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/A_Context_save.cpp
 CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.obj -MF CMakeFiles\Feintgine.dir\src\A_Context_save.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\A_Context_save.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\A_Context_save.cpp
 
 CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.i: cmake_force
@@ -87,7 +102,7 @@ CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj: CMakeFiles/Feintgine.di
 CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/AfterImageParticle.cpp
 CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj -MF CMakeFiles\Feintgine.dir\src\AfterImageParticle.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\AfterImageParticle.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\AfterImageParticle.cpp
 
 CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.i: cmake_force
@@ -102,7 +117,7 @@ CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj: CMakeFiles/Feintgine.dir/fl
 CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/AnimatedObject.cpp
 CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj -MF CMakeFiles\Feintgine.dir\src\AnimatedObject.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\AnimatedObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\AnimatedObject.cpp
 
 CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.i: cmake_force
@@ -117,7 +132,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/ArcFunction.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ArcFunction.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ArcFunction.cpp
 CMakeFiles/Feintgine.dir/src/ArcFunction.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ArcFunction.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ArcFunction.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ArcFunction.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ArcFunction.cpp
 
 CMakeFiles/Feintgine.dir/src/ArcFunction.cpp.i: cmake_force
@@ -132,7 +147,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Custom_aff.cpp.obj: CMakeFiles/Feintgin
 CMakeFiles/Feintgine.dir/src/ArcFunction_Custom_aff.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ArcFunction_Custom_aff.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ArcFunction_Custom_aff.cpp
 CMakeFiles/Feintgine.dir/src/ArcFunction_Custom_aff.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_Custom_aff.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_Custom_aff.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ArcFunction_Custom_aff.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ArcFunction_Custom_aff.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ArcFunction_Custom_aff.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ArcFunction_Custom_aff.cpp
 
 CMakeFiles/Feintgine.dir/src/ArcFunction_Custom_aff.cpp.i: cmake_force
@@ -147,7 +162,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Epicycloid.cpp.obj: CMakeFiles/Feintgin
 CMakeFiles/Feintgine.dir/src/ArcFunction_Epicycloid.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ArcFunction_Epicycloid.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ArcFunction_Epicycloid.cpp
 CMakeFiles/Feintgine.dir/src/ArcFunction_Epicycloid.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_Epicycloid.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_Epicycloid.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ArcFunction_Epicycloid.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ArcFunction_Epicycloid.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ArcFunction_Epicycloid.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ArcFunction_Epicycloid.cpp
 
 CMakeFiles/Feintgine.dir/src/ArcFunction_Epicycloid.cpp.i: cmake_force
@@ -162,7 +177,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_Fourier_test.cpp.obj: CMakeFiles/Feintg
 CMakeFiles/Feintgine.dir/src/ArcFunction_Fourier_test.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ArcFunction_Fourier_test.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ArcFunction_Fourier_test.cpp
 CMakeFiles/Feintgine.dir/src/ArcFunction_Fourier_test.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_Fourier_test.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_Fourier_test.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ArcFunction_Fourier_test.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ArcFunction_Fourier_test.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ArcFunction_Fourier_test.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ArcFunction_Fourier_test.cpp
 
 CMakeFiles/Feintgine.dir/src/ArcFunction_Fourier_test.cpp.i: cmake_force
@@ -177,7 +192,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom1.cpp.obj: CMakeFiles/Feint
 CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom1.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom1.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ArcFunction_feint_custom1.cpp
 CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom1.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom1.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom1.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom1.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ArcFunction_feint_custom1.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ArcFunction_feint_custom1.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ArcFunction_feint_custom1.cpp
 
 CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom1.cpp.i: cmake_force
@@ -192,7 +207,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom2.cpp.obj: CMakeFiles/Feint
 CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom2.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom2.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ArcFunction_feint_custom2.cpp
 CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom2.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom2.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom2.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom2.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ArcFunction_feint_custom2.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ArcFunction_feint_custom2.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ArcFunction_feint_custom2.cpp
 
 CMakeFiles/Feintgine.dir/src/ArcFunction_feint_custom2.cpp.i: cmake_force
@@ -207,7 +222,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_hypocycloid.cpp.obj: CMakeFiles/Feintgi
 CMakeFiles/Feintgine.dir/src/ArcFunction_hypocycloid.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ArcFunction_hypocycloid.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ArcFunction_hypocycloid.cpp
 CMakeFiles/Feintgine.dir/src/ArcFunction_hypocycloid.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_hypocycloid.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_hypocycloid.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ArcFunction_hypocycloid.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ArcFunction_hypocycloid.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ArcFunction_hypocycloid.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ArcFunction_hypocycloid.cpp
 
 CMakeFiles/Feintgine.dir/src/ArcFunction_hypocycloid.cpp.i: cmake_force
@@ -222,7 +237,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_hypotrochoid.cpp.obj: CMakeFiles/Feintg
 CMakeFiles/Feintgine.dir/src/ArcFunction_hypotrochoid.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ArcFunction_hypotrochoid.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ArcFunction_hypotrochoid.cpp
 CMakeFiles/Feintgine.dir/src/ArcFunction_hypotrochoid.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_hypotrochoid.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_hypotrochoid.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ArcFunction_hypotrochoid.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ArcFunction_hypotrochoid.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ArcFunction_hypotrochoid.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ArcFunction_hypotrochoid.cpp
 
 CMakeFiles/Feintgine.dir/src/ArcFunction_hypotrochoid.cpp.i: cmake_force
@@ -237,7 +252,7 @@ CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj: CMakeFiles/Feint
 CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ArcFunction_scripted_base.cpp
 CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ArcFunction_scripted_base.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ArcFunction_scripted_base.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ArcFunction_scripted_base.cpp
 
 CMakeFiles/Feintgine.dir/src/ArcFunction_scripted_base.cpp.i: cmake_force
@@ -252,7 +267,7 @@ CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Arc_fourier.cpp
 CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Arc_fourier.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Arc_fourier.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Arc_fourier.cpp
 
 CMakeFiles/Feintgine.dir/src/Arc_fourier.cpp.i: cmake_force
@@ -267,7 +282,7 @@ CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/AudioEngine.cpp
 CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.obj -MF CMakeFiles\Feintgine.dir\src\AudioEngine.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\AudioEngine.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\AudioEngine.cpp
 
 CMakeFiles/Feintgine.dir/src/AudioEngine.cpp.i: cmake_force
@@ -282,7 +297,7 @@ CMakeFiles/Feintgine.dir/src/Brush.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
 CMakeFiles/Feintgine.dir/src/Brush.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Brush.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Brush.cpp
 CMakeFiles/Feintgine.dir/src/Brush.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/Feintgine.dir/src/Brush.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Feintgine.dir/src/Brush.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Brush.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Brush.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Brush.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Brush.cpp
 
 CMakeFiles/Feintgine.dir/src/Brush.cpp.i: cmake_force
@@ -297,7 +312,7 @@ CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj: CMakeFiles/Feintgine.dir/flags.ma
 CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Camera2D.cpp
 CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Camera2D.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Camera2D.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Camera2D.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Camera2D.cpp
 
 CMakeFiles/Feintgine.dir/src/Camera2D.cpp.i: cmake_force
@@ -312,7 +327,7 @@ CMakeFiles/Feintgine.dir/src/Camera3D.cpp.obj: CMakeFiles/Feintgine.dir/flags.ma
 CMakeFiles/Feintgine.dir/src/Camera3D.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Camera3D.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Camera3D.cpp
 CMakeFiles/Feintgine.dir/src/Camera3D.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/Feintgine.dir/src/Camera3D.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Feintgine.dir/src/Camera3D.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Camera3D.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Camera3D.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Camera3D.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Camera3D.cpp
 
 CMakeFiles/Feintgine.dir/src/Camera3D.cpp.i: cmake_force
@@ -327,7 +342,7 @@ CMakeFiles/Feintgine.dir/src/ChargeParticle.cpp.obj: CMakeFiles/Feintgine.dir/fl
 CMakeFiles/Feintgine.dir/src/ChargeParticle.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ChargeParticle.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ChargeParticle.cpp
 CMakeFiles/Feintgine.dir/src/ChargeParticle.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/Feintgine.dir/src/ChargeParticle.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Feintgine.dir/src/ChargeParticle.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ChargeParticle.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ChargeParticle.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ChargeParticle.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ChargeParticle.cpp
 
 CMakeFiles/Feintgine.dir/src/ChargeParticle.cpp.i: cmake_force
@@ -342,7 +357,7 @@ CMakeFiles/Feintgine.dir/src/ChargingHandler.cpp.obj: CMakeFiles/Feintgine.dir/f
 CMakeFiles/Feintgine.dir/src/ChargingHandler.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ChargingHandler.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ChargingHandler.cpp
 CMakeFiles/Feintgine.dir/src/ChargingHandler.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/Feintgine.dir/src/ChargingHandler.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Feintgine.dir/src/ChargingHandler.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ChargingHandler.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ChargingHandler.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ChargingHandler.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ChargingHandler.cpp
 
 CMakeFiles/Feintgine.dir/src/ChargingHandler.cpp.i: cmake_force
@@ -357,7 +372,7 @@ CMakeFiles/Feintgine.dir/src/ClientSocket.cpp.obj: CMakeFiles/Feintgine.dir/flag
 CMakeFiles/Feintgine.dir/src/ClientSocket.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ClientSocket.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ClientSocket.cpp
 CMakeFiles/Feintgine.dir/src/ClientSocket.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/Feintgine.dir/src/ClientSocket.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Feintgine.dir/src/ClientSocket.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ClientSocket.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ClientSocket.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ClientSocket.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ClientSocket.cpp
 
 CMakeFiles/Feintgine.dir/src/ClientSocket.cpp.i: cmake_force
@@ -372,7 +387,7 @@ CMakeFiles/Feintgine.dir/src/ClientSys.cpp.obj: CMakeFiles/Feintgine.dir/flags.m
 CMakeFiles/Feintgine.dir/src/ClientSys.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ClientSys.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ClientSys.cpp
 CMakeFiles/Feintgine.dir/src/ClientSys.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/Feintgine.dir/src/ClientSys.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Feintgine.dir/src/ClientSys.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ClientSys.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ClientSys.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ClientSys.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ClientSys.cpp
 
 CMakeFiles/Feintgine.dir/src/ClientSys.cpp.i: cmake_force
@@ -387,7 +402,7 @@ CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ColiderBox.cpp
 CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ColiderBox.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ColiderBox.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ColiderBox.cpp
 
 CMakeFiles/Feintgine.dir/src/ColiderBox.cpp.i: cmake_force
@@ -402,7 +417,7 @@ CMakeFiles/Feintgine.dir/src/DebugRender.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/DebugRender.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/DebugRender.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/DebugRender.cpp
 CMakeFiles/Feintgine.dir/src/DebugRender.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/Feintgine.dir/src/DebugRender.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Feintgine.dir/src/DebugRender.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/DebugRender.cpp.obj -MF CMakeFiles\Feintgine.dir\src\DebugRender.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\DebugRender.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\DebugRender.cpp
 
 CMakeFiles/Feintgine.dir/src/DebugRender.cpp.i: cmake_force
@@ -417,7 +432,7 @@ CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj: CMakeFiles/Feintgine.dir/f
 CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Dialouge_Avatar.cpp
 CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Dialouge_Avatar.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Dialouge_Avatar.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Dialouge_Avatar.cpp
 
 CMakeFiles/Feintgine.dir/src/Dialouge_Avatar.cpp.i: cmake_force
@@ -432,7 +447,7 @@ CMakeFiles/Feintgine.dir/src/DragVertex.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/DragVertex.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/DragVertex.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/DragVertex.cpp
 CMakeFiles/Feintgine.dir/src/DragVertex.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/Feintgine.dir/src/DragVertex.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Feintgine.dir/src/DragVertex.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/DragVertex.cpp.obj -MF CMakeFiles\Feintgine.dir\src\DragVertex.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\DragVertex.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\DragVertex.cpp
 
 CMakeFiles/Feintgine.dir/src/DragVertex.cpp.i: cmake_force
@@ -447,7 +462,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: CMakeFiles/Feintgine.dir/
 CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/EGUI_DrawElement.cpp
 CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.obj -MF CMakeFiles\Feintgine.dir\src\EGUI_DrawElement.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\EGUI_DrawElement.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\EGUI_DrawElement.cpp
 
 CMakeFiles/Feintgine.dir/src/EGUI_DrawElement.cpp.i: cmake_force
@@ -462,7 +477,7 @@ CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj: CMakeFiles/Feintgine.dir
 CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/EGUI_TextRenderer.cpp
 CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.obj -MF CMakeFiles\Feintgine.dir\src\EGUI_TextRenderer.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\EGUI_TextRenderer.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\EGUI_TextRenderer.cpp
 
 CMakeFiles/Feintgine.dir/src/EGUI_TextRenderer.cpp.i: cmake_force
@@ -477,7 +492,7 @@ CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/EffectBatch.cpp
 CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.obj -MF CMakeFiles\Feintgine.dir\src\EffectBatch.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\EffectBatch.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\EffectBatch.cpp
 
 CMakeFiles/Feintgine.dir/src/EffectBatch.cpp.i: cmake_force
@@ -492,7 +507,7 @@ CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/EmptyObject.cpp
 CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.obj -MF CMakeFiles\Feintgine.dir\src\EmptyObject.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\EmptyObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\EmptyObject.cpp
 
 CMakeFiles/Feintgine.dir/src/EmptyObject.cpp.i: cmake_force
@@ -507,7 +522,7 @@ CMakeFiles/Feintgine.dir/src/Enet_UDP.cpp.obj: CMakeFiles/Feintgine.dir/flags.ma
 CMakeFiles/Feintgine.dir/src/Enet_UDP.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Enet_UDP.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Enet_UDP.cpp
 CMakeFiles/Feintgine.dir/src/Enet_UDP.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Building CXX object CMakeFiles/Feintgine.dir/src/Enet_UDP.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/Feintgine.dir/src/Enet_UDP.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Enet_UDP.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Enet_UDP.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Enet_UDP.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Enet_UDP.cpp
 
 CMakeFiles/Feintgine.dir/src/Enet_UDP.cpp.i: cmake_force
@@ -522,7 +537,7 @@ CMakeFiles/Feintgine.dir/src/EngineSetting.cpp.obj: CMakeFiles/Feintgine.dir/fla
 CMakeFiles/Feintgine.dir/src/EngineSetting.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/EngineSetting.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/EngineSetting.cpp
 CMakeFiles/Feintgine.dir/src/EngineSetting.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_31) "Building CXX object CMakeFiles/Feintgine.dir/src/EngineSetting.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/Feintgine.dir/src/EngineSetting.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/EngineSetting.cpp.obj -MF CMakeFiles\Feintgine.dir\src\EngineSetting.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\EngineSetting.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\EngineSetting.cpp
 
 CMakeFiles/Feintgine.dir/src/EngineSetting.cpp.i: cmake_force
@@ -537,7 +552,7 @@ CMakeFiles/Feintgine.dir/src/Error.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
 CMakeFiles/Feintgine.dir/src/Error.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Error.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Error.cpp
 CMakeFiles/Feintgine.dir/src/Error.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_32) "Building CXX object CMakeFiles/Feintgine.dir/src/Error.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/Feintgine.dir/src/Error.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Error.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Error.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Error.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Error.cpp
 
 CMakeFiles/Feintgine.dir/src/Error.cpp.i: cmake_force
@@ -552,7 +567,7 @@ CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj: CMakeFiles/Feintgine.dir/fl
 CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/FL_Manipulator.cpp
 CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_33) "Building CXX object CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.obj -MF CMakeFiles\Feintgine.dir\src\FL_Manipulator.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\FL_Manipulator.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\FL_Manipulator.cpp
 
 CMakeFiles/Feintgine.dir/src/FL_Manipulator.cpp.i: cmake_force
@@ -567,7 +582,7 @@ CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj: CMakeFiles/Feintgine.dir/flags.m
 CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/FL_Object.cpp
 CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_34) "Building CXX object CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/FL_Object.cpp.obj -MF CMakeFiles\Feintgine.dir\src\FL_Object.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\FL_Object.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\FL_Object.cpp
 
 CMakeFiles/Feintgine.dir/src/FL_Object.cpp.i: cmake_force
@@ -582,7 +597,7 @@ CMakeFiles/Feintgine.dir/src/FTimer.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
 CMakeFiles/Feintgine.dir/src/FTimer.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/FTimer.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/FTimer.cpp
 CMakeFiles/Feintgine.dir/src/FTimer.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_35) "Building CXX object CMakeFiles/Feintgine.dir/src/FTimer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/Feintgine.dir/src/FTimer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/FTimer.cpp.obj -MF CMakeFiles\Feintgine.dir\src\FTimer.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\FTimer.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\FTimer.cpp
 
 CMakeFiles/Feintgine.dir/src/FTimer.cpp.i: cmake_force
@@ -597,7 +612,7 @@ CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj: CMakeFiles/Feintgine.dir/
 CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_AnimatedObject.cpp
 CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_36) "Building CXX object CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_AnimatedObject.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_AnimatedObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_AnimatedObject.cpp
 
 CMakeFiles/Feintgine.dir/src/F_AnimatedObject.cpp.i: cmake_force
@@ -612,7 +627,7 @@ CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Animation.cpp
 CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_37) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_Animation.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_Animation.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_Animation.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_Animation.cpp
 
 CMakeFiles/Feintgine.dir/src/F_Animation.cpp.i: cmake_force
@@ -627,7 +642,7 @@ CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj: CMakeFiles/Feintgine.dir/flag
 CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_BaseObject.cpp
 CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_38) "Building CXX object CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_BaseObject.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_BaseObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_BaseObject.cpp
 
 CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.i: cmake_force
@@ -642,7 +657,7 @@ CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.obj: CMakeFiles/Feintgi
 CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_BaseObjectManipulator.cpp
 CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_39) "Building CXX object CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_BaseObjectManipulator.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_BaseObjectManipulator.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_BaseObjectManipulator.cpp
 
 CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.i: cmake_force
@@ -657,7 +672,7 @@ CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: CMakeFiles/Feintgine.di
 CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Dialouge_Handler.cpp
 CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_40) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_Dialouge_Handler.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_Dialouge_Handler.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_Dialouge_Handler.cpp
 
 CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.i: cmake_force
@@ -672,7 +687,7 @@ CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj: CMakeFiles/Feintgine.dir/fla
 CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_EmptyObject.cpp
 CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_41) "Building CXX object CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_EmptyObject.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_EmptyObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_EmptyObject.cpp
 
 CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.i: cmake_force
@@ -687,7 +702,7 @@ CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: CMakeFiles/Feintgine.dir/flags.mak
 CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Event.cpp
 CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_42) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_Event.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_Event.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_Event.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_Event.cpp
 
 CMakeFiles/Feintgine.dir/src/F_Event.cpp.i: cmake_force
@@ -702,7 +717,7 @@ CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj: CMakeFiles/Feintgine.dir/flags.mak
 CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_IMGUI.cpp
 CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_43) "Building CXX object CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_IMGUI.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_IMGUI.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_IMGUI.cpp
 
 CMakeFiles/Feintgine.dir/src/F_IMGUI.cpp.i: cmake_force
@@ -717,7 +732,7 @@ CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj: CMakeFiles/Feintgine.dir/flags.ma
 CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Logger.cpp
 CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_44) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_Logger.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_Logger.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_Logger.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_Logger.cpp
 
 CMakeFiles/Feintgine.dir/src/F_Logger.cpp.i: cmake_force
@@ -732,7 +747,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj: CMakeFiles/Feintgine.dir
 CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_LuaBridgeObject.cpp
 CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_45) "Building CXX object CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_LuaBridgeObject.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_LuaBridgeObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_LuaBridgeObject.cpp
 
 CMakeFiles/Feintgine.dir/src/F_LuaBridgeObject.cpp.i: cmake_force
@@ -747,7 +762,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: CMakeFiles/Feintgine.di
 CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_LuaDynamicObject.cpp
 CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_46) "Building CXX object CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_LuaDynamicObject.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_LuaDynamicObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_LuaDynamicObject.cpp
 
 CMakeFiles/Feintgine.dir/src/F_LuaDynamicObject.cpp.i: cmake_force
@@ -762,7 +777,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObject.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/F_LuaObject.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_LuaObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_LuaObject.cpp
 CMakeFiles/Feintgine.dir/src/F_LuaObject.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_47) "Building CXX object CMakeFiles/Feintgine.dir/src/F_LuaObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/Feintgine.dir/src/F_LuaObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_LuaObject.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_LuaObject.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_LuaObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_LuaObject.cpp
 
 CMakeFiles/Feintgine.dir/src/F_LuaObject.cpp.i: cmake_force
@@ -777,7 +792,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj: CMakeFiles/Feintgine.di
 CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_LuaObjectManager.cpp
 CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_48) "Building CXX object CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_LuaObjectManager.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_LuaObjectManager.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_LuaObjectManager.cpp
 
 CMakeFiles/Feintgine.dir/src/F_LuaObjectManager.cpp.i: cmake_force
@@ -792,7 +807,7 @@ CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj: CMakeFiles/Feintgin
 CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_LuaObjectManipulator.cpp
 CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_LuaObjectManipulator.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_LuaObjectManipulator.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_LuaObjectManipulator.cpp
 
 CMakeFiles/Feintgine.dir/src/F_LuaObjectManipulator.cpp.i: cmake_force
@@ -807,7 +822,7 @@ CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: CMakeFiles/Feintgine.dir/fl
 CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Lua_GC3_Boss.cpp
 CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_Lua_GC3_Boss.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_Lua_GC3_Boss.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_Lua_GC3_Boss.cpp
 
 CMakeFiles/Feintgine.dir/src/F_Lua_GC3_Boss.cpp.i: cmake_force
@@ -822,7 +837,7 @@ CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj: CMakeFiles/Feintgine.dir/flags.ma
 CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Object.cpp
 CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_Object.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_Object.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_Object.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_Object.cpp
 
 CMakeFiles/Feintgine.dir/src/F_Object.cpp.i: cmake_force
@@ -837,7 +852,7 @@ CMakeFiles/Feintgine.dir/src/F_ScreenCapture.cpp.obj: CMakeFiles/Feintgine.dir/f
 CMakeFiles/Feintgine.dir/src/F_ScreenCapture.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_ScreenCapture.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_ScreenCapture.cpp
 CMakeFiles/Feintgine.dir/src/F_ScreenCapture.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/Feintgine.dir/src/F_ScreenCapture.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/Feintgine.dir/src/F_ScreenCapture.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_ScreenCapture.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_ScreenCapture.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_ScreenCapture.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_ScreenCapture.cpp
 
 CMakeFiles/Feintgine.dir/src/F_ScreenCapture.cpp.i: cmake_force
@@ -852,7 +867,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEventBase.cpp.obj: CMakeFiles/Feintgine.dir
 CMakeFiles/Feintgine.dir/src/F_ShaderEventBase.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_ShaderEventBase.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_ShaderEventBase.cpp
 CMakeFiles/Feintgine.dir/src/F_ShaderEventBase.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/Feintgine.dir/src/F_ShaderEventBase.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/Feintgine.dir/src/F_ShaderEventBase.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_ShaderEventBase.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_ShaderEventBase.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_ShaderEventBase.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_ShaderEventBase.cpp
 
 CMakeFiles/Feintgine.dir/src/F_ShaderEventBase.cpp.i: cmake_force
@@ -867,7 +882,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEventHandler.cpp.obj: CMakeFiles/Feintgine.
 CMakeFiles/Feintgine.dir/src/F_ShaderEventHandler.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_ShaderEventHandler.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_ShaderEventHandler.cpp
 CMakeFiles/Feintgine.dir/src/F_ShaderEventHandler.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/Feintgine.dir/src/F_ShaderEventHandler.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/Feintgine.dir/src/F_ShaderEventHandler.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_ShaderEventHandler.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_ShaderEventHandler.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_ShaderEventHandler.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_ShaderEventHandler.cpp
 
 CMakeFiles/Feintgine.dir/src/F_ShaderEventHandler.cpp.i: cmake_force
@@ -882,7 +897,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Float.cpp.obj: CMakeFiles/Feintgine.d
 CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Float.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Float.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_ShaderEvent_Float.cpp
 CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Float.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Float.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Float.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Float.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_ShaderEvent_Float.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_ShaderEvent_Float.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_ShaderEvent_Float.cpp
 
 CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Float.cpp.i: cmake_force
@@ -897,7 +912,7 @@ CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Vec3.cpp.obj: CMakeFiles/Feintgine.di
 CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Vec3.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Vec3.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_ShaderEvent_Vec3.cpp
 CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Vec3.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Vec3.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Vec3.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Vec3.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_ShaderEvent_Vec3.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_ShaderEvent_Vec3.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_ShaderEvent_Vec3.cpp
 
 CMakeFiles/Feintgine.dir/src/F_ShaderEvent_Vec3.cpp.i: cmake_force
@@ -912,7 +927,7 @@ CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: CMakeFiles/Feintgine.dir/f
 CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_SpellcardBase.cpp
 CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_SpellcardBase.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_SpellcardBase.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_SpellcardBase.cpp
 
 CMakeFiles/Feintgine.dir/src/F_SpellcardBase.cpp.i: cmake_force
@@ -927,7 +942,7 @@ CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj: CMakeFiles/Feintgine.dir/flags.ma
 CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Sprite.cpp
 CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building CXX object CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_Sprite.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_Sprite.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_Sprite.cpp
 
 CMakeFiles/Feintgine.dir/src/F_Sprite.cpp.i: cmake_force
@@ -942,7 +957,7 @@ CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj: CMakeFiles/Feintgine.dir/fla
 CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_TileManager.cpp
 CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building CXX object CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building CXX object CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_TileManager.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_TileManager.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_TileManager.cpp
 
 CMakeFiles/Feintgine.dir/src/F_TileManager.cpp.i: cmake_force
@@ -957,7 +972,7 @@ CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_TilePart.cpp
 CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building CXX object CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building CXX object CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_TilePart.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_TilePart.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_TilePart.cpp
 
 CMakeFiles/Feintgine.dir/src/F_TilePart.cpp.i: cmake_force
@@ -972,7 +987,7 @@ CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj: CMakeFiles/Feintgine.dir/flags.m
 CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_TileSet.cpp
 CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building CXX object CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building CXX object CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_TileSet.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_TileSet.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_TileSet.cpp
 
 CMakeFiles/Feintgine.dir/src/F_TileSet.cpp.i: cmake_force
@@ -987,7 +1002,7 @@ CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_TileStack.cpp
 CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building CXX object CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building CXX object CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_TileStack.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_TileStack.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_TileStack.cpp
 
 CMakeFiles/Feintgine.dir/src/F_TileStack.cpp.i: cmake_force
@@ -1002,7 +1017,7 @@ CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj: CMakeFiles/Feintgine.dir/flags.ma
 CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_oEvent.cpp
 CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building CXX object CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building CXX object CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_oEvent.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_oEvent.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_oEvent.cpp
 
 CMakeFiles/Feintgine.dir/src/F_oEvent.cpp.i: cmake_force
@@ -1017,7 +1032,7 @@ CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj: CMakeFiles/Feintgine.dir/flags.ma
 CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_sEvent.cpp
 CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building CXX object CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.obj -MF CMakeFiles\Feintgine.dir\src\F_sEvent.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\F_sEvent.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\F_sEvent.cpp
 
 CMakeFiles/Feintgine.dir/src/F_sEvent.cpp.i: cmake_force
@@ -1032,7 +1047,7 @@ CMakeFiles/Feintgine.dir/src/Feintgine.cpp.obj: CMakeFiles/Feintgine.dir/flags.m
 CMakeFiles/Feintgine.dir/src/Feintgine.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Feintgine.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Feintgine.cpp
 CMakeFiles/Feintgine.dir/src/Feintgine.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object CMakeFiles/Feintgine.dir/src/Feintgine.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object CMakeFiles/Feintgine.dir/src/Feintgine.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Feintgine.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Feintgine.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Feintgine.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Feintgine.cpp
 
 CMakeFiles/Feintgine.dir/src/Feintgine.cpp.i: cmake_force
@@ -1047,7 +1062,7 @@ CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj: CMakeFiles/Feintgine.dir/flags.ma
 CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Fg_layer.cpp
 CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Fg_layer.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Fg_layer.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Fg_layer.cpp
 
 CMakeFiles/Feintgine.dir/src/Fg_layer.cpp.i: cmake_force
@@ -1062,7 +1077,7 @@ CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: CMakeFiles/Feintgine.dir/flags.ma
 CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Fg_scene.cpp
 CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Fg_scene.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Fg_scene.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Fg_scene.cpp
 
 CMakeFiles/Feintgine.dir/src/Fg_scene.cpp.i: cmake_force
@@ -1077,7 +1092,7 @@ CMakeFiles/Feintgine.dir/src/FrameBuffer.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/FrameBuffer.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/FrameBuffer.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/FrameBuffer.cpp
 CMakeFiles/Feintgine.dir/src/FrameBuffer.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object CMakeFiles/Feintgine.dir/src/FrameBuffer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object CMakeFiles/Feintgine.dir/src/FrameBuffer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/FrameBuffer.cpp.obj -MF CMakeFiles\Feintgine.dir\src\FrameBuffer.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\FrameBuffer.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\FrameBuffer.cpp
 
 CMakeFiles/Feintgine.dir/src/FrameBuffer.cpp.i: cmake_force
@@ -1092,7 +1107,7 @@ CMakeFiles/Feintgine.dir/src/FrameBufferScreen.cpp.obj: CMakeFiles/Feintgine.dir
 CMakeFiles/Feintgine.dir/src/FrameBufferScreen.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/FrameBufferScreen.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/FrameBufferScreen.cpp
 CMakeFiles/Feintgine.dir/src/FrameBufferScreen.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object CMakeFiles/Feintgine.dir/src/FrameBufferScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object CMakeFiles/Feintgine.dir/src/FrameBufferScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/FrameBufferScreen.cpp.obj -MF CMakeFiles\Feintgine.dir\src\FrameBufferScreen.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\FrameBufferScreen.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\FrameBufferScreen.cpp
 
 CMakeFiles/Feintgine.dir/src/FrameBufferScreen.cpp.i: cmake_force
@@ -1107,7 +1122,7 @@ CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: CMakeFiles/Feintgine.dir/flag
 CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/FrameCounter.cpp
 CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.obj -MF CMakeFiles\Feintgine.dir\src\FrameCounter.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\FrameCounter.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\FrameCounter.cpp
 
 CMakeFiles/Feintgine.dir/src/FrameCounter.cpp.i: cmake_force
@@ -1122,7 +1137,7 @@ CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/GLSLProgram.cpp
 CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.obj -MF CMakeFiles\Feintgine.dir\src\GLSLProgram.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\GLSLProgram.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\GLSLProgram.cpp
 
 CMakeFiles/Feintgine.dir/src/GLSLProgram.cpp.i: cmake_force
@@ -1137,7 +1152,7 @@ CMakeFiles/Feintgine.dir/src/GUI.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
 CMakeFiles/Feintgine.dir/src/GUI.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/GUI.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/GUI.cpp
 CMakeFiles/Feintgine.dir/src/GUI.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object CMakeFiles/Feintgine.dir/src/GUI.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building CXX object CMakeFiles/Feintgine.dir/src/GUI.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/GUI.cpp.obj -MF CMakeFiles\Feintgine.dir\src\GUI.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\GUI.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\GUI.cpp
 
 CMakeFiles/Feintgine.dir/src/GUI.cpp.i: cmake_force
@@ -1152,7 +1167,7 @@ CMakeFiles/Feintgine.dir/src/IGameScreen.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/IGameScreen.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/IGameScreen.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/IGameScreen.cpp
 CMakeFiles/Feintgine.dir/src/IGameScreen.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building CXX object CMakeFiles/Feintgine.dir/src/IGameScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building CXX object CMakeFiles/Feintgine.dir/src/IGameScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/IGameScreen.cpp.obj -MF CMakeFiles\Feintgine.dir\src\IGameScreen.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\IGameScreen.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\IGameScreen.cpp
 
 CMakeFiles/Feintgine.dir/src/IGameScreen.cpp.i: cmake_force
@@ -1167,7 +1182,7 @@ CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: CMakeFiles/Feintgine.dir/flags.m
 CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/IMainGame.cpp
 CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building CXX object CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building CXX object CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/IMainGame.cpp.obj -MF CMakeFiles\Feintgine.dir\src\IMainGame.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\IMainGame.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\IMainGame.cpp
 
 CMakeFiles/Feintgine.dir/src/IMainGame.cpp.i: cmake_force
@@ -1182,7 +1197,7 @@ CMakeFiles/Feintgine.dir/src/IOFileCache.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/IOFileCache.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/IOFileCache.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/IOFileCache.cpp
 CMakeFiles/Feintgine.dir/src/IOFileCache.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building CXX object CMakeFiles/Feintgine.dir/src/IOFileCache.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object CMakeFiles/Feintgine.dir/src/IOFileCache.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/IOFileCache.cpp.obj -MF CMakeFiles\Feintgine.dir\src\IOFileCache.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\IOFileCache.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\IOFileCache.cpp
 
 CMakeFiles/Feintgine.dir/src/IOFileCache.cpp.i: cmake_force
@@ -1197,7 +1212,7 @@ CMakeFiles/Feintgine.dir/src/IOManager.cpp.obj: CMakeFiles/Feintgine.dir/flags.m
 CMakeFiles/Feintgine.dir/src/IOManager.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/IOManager.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/IOManager.cpp
 CMakeFiles/Feintgine.dir/src/IOManager.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object CMakeFiles/Feintgine.dir/src/IOManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object CMakeFiles/Feintgine.dir/src/IOManager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/IOManager.cpp.obj -MF CMakeFiles\Feintgine.dir\src\IOManager.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\IOManager.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\IOManager.cpp
 
 CMakeFiles/Feintgine.dir/src/IOManager.cpp.i: cmake_force
@@ -1212,7 +1227,7 @@ CMakeFiles/Feintgine.dir/src/ImageLoader.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/ImageLoader.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ImageLoader.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ImageLoader.cpp
 CMakeFiles/Feintgine.dir/src/ImageLoader.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object CMakeFiles/Feintgine.dir/src/ImageLoader.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object CMakeFiles/Feintgine.dir/src/ImageLoader.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ImageLoader.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ImageLoader.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ImageLoader.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ImageLoader.cpp
 
 CMakeFiles/Feintgine.dir/src/ImageLoader.cpp.i: cmake_force
@@ -1227,7 +1242,7 @@ CMakeFiles/Feintgine.dir/src/InputManager.cpp.obj: CMakeFiles/Feintgine.dir/flag
 CMakeFiles/Feintgine.dir/src/InputManager.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/InputManager.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/InputManager.cpp
 CMakeFiles/Feintgine.dir/src/InputManager.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object CMakeFiles/Feintgine.dir/src/InputManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object CMakeFiles/Feintgine.dir/src/InputManager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/InputManager.cpp.obj -MF CMakeFiles\Feintgine.dir\src\InputManager.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\InputManager.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\InputManager.cpp
 
 CMakeFiles/Feintgine.dir/src/InputManager.cpp.i: cmake_force
@@ -1242,7 +1257,7 @@ CMakeFiles/Feintgine.dir/src/LightBatch.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/LightBatch.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/LightBatch.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/LightBatch.cpp
 CMakeFiles/Feintgine.dir/src/LightBatch.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object CMakeFiles/Feintgine.dir/src/LightBatch.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building CXX object CMakeFiles/Feintgine.dir/src/LightBatch.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/LightBatch.cpp.obj -MF CMakeFiles\Feintgine.dir\src\LightBatch.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\LightBatch.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\LightBatch.cpp
 
 CMakeFiles/Feintgine.dir/src/LightBatch.cpp.i: cmake_force
@@ -1257,7 +1272,7 @@ CMakeFiles/Feintgine.dir/src/LuaManager.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/LuaManager.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/LuaManager.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/LuaManager.cpp
 CMakeFiles/Feintgine.dir/src/LuaManager.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building CXX object CMakeFiles/Feintgine.dir/src/LuaManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building CXX object CMakeFiles/Feintgine.dir/src/LuaManager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/LuaManager.cpp.obj -MF CMakeFiles\Feintgine.dir\src\LuaManager.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\LuaManager.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\LuaManager.cpp
 
 CMakeFiles/Feintgine.dir/src/LuaManager.cpp.i: cmake_force
@@ -1272,7 +1287,7 @@ CMakeFiles/Feintgine.dir/src/Model.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
 CMakeFiles/Feintgine.dir/src/Model.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Model.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Model.cpp
 CMakeFiles/Feintgine.dir/src/Model.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building CXX object CMakeFiles/Feintgine.dir/src/Model.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building CXX object CMakeFiles/Feintgine.dir/src/Model.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Model.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Model.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Model.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Model.cpp
 
 CMakeFiles/Feintgine.dir/src/Model.cpp.i: cmake_force
@@ -1287,7 +1302,7 @@ CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj: CMakeFiles/Feintgine.dir/fla
 CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ObjectColider.cpp
 CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building CXX object CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building CXX object CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ObjectColider.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ObjectColider.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ObjectColider.cpp
 
 CMakeFiles/Feintgine.dir/src/ObjectColider.cpp.i: cmake_force
@@ -1302,7 +1317,7 @@ CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj: CMakeFiles/Feintgine.dir/f
 CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ParticleBatch2D.cpp
 CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building CXX object CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building CXX object CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ParticleBatch2D.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ParticleBatch2D.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ParticleBatch2D.cpp
 
 CMakeFiles/Feintgine.dir/src/ParticleBatch2D.cpp.i: cmake_force
@@ -1317,7 +1332,7 @@ CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: CMakeFiles/Feintgine.dir/
 CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ParticleEngine2D.cpp
 CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building CXX object CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building CXX object CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ParticleEngine2D.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ParticleEngine2D.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ParticleEngine2D.cpp
 
 CMakeFiles/Feintgine.dir/src/ParticleEngine2D.cpp.i: cmake_force
@@ -1332,7 +1347,7 @@ CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj: CMakeFiles/Feintgine.dir/f
 CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ResourceManager.cpp
 CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building CXX object CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building CXX object CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ResourceManager.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ResourceManager.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ResourceManager.cpp
 
 CMakeFiles/Feintgine.dir/src/ResourceManager.cpp.i: cmake_force
@@ -1347,7 +1362,7 @@ CMakeFiles/Feintgine.dir/src/SDL_TextRenderer.cpp.obj: CMakeFiles/Feintgine.dir/
 CMakeFiles/Feintgine.dir/src/SDL_TextRenderer.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/SDL_TextRenderer.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/SDL_TextRenderer.cpp
 CMakeFiles/Feintgine.dir/src/SDL_TextRenderer.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building CXX object CMakeFiles/Feintgine.dir/src/SDL_TextRenderer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building CXX object CMakeFiles/Feintgine.dir/src/SDL_TextRenderer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/SDL_TextRenderer.cpp.obj -MF CMakeFiles\Feintgine.dir\src\SDL_TextRenderer.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\SDL_TextRenderer.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\SDL_TextRenderer.cpp
 
 CMakeFiles/Feintgine.dir/src/SDL_TextRenderer.cpp.i: cmake_force
@@ -1362,7 +1377,7 @@ CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ScalableGUI.cpp
 CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building CXX object CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building CXX object CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ScalableGUI.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ScalableGUI.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ScalableGUI.cpp
 
 CMakeFiles/Feintgine.dir/src/ScalableGUI.cpp.i: cmake_force
@@ -1377,7 +1392,7 @@ CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj: CMakeFiles/Feintgine.dir/flag
 CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ScalablePart.cpp
 CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Building CXX object CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building CXX object CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ScalablePart.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ScalablePart.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ScalablePart.cpp
 
 CMakeFiles/Feintgine.dir/src/ScalablePart.cpp.i: cmake_force
@@ -1392,7 +1407,7 @@ CMakeFiles/Feintgine.dir/src/ScreenList.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/ScreenList.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ScreenList.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ScreenList.cpp
 CMakeFiles/Feintgine.dir/src/ScreenList.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_89) "Building CXX object CMakeFiles/Feintgine.dir/src/ScreenList.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building CXX object CMakeFiles/Feintgine.dir/src/ScreenList.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ScreenList.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ScreenList.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ScreenList.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ScreenList.cpp
 
 CMakeFiles/Feintgine.dir/src/ScreenList.cpp.i: cmake_force
@@ -1407,7 +1422,7 @@ CMakeFiles/Feintgine.dir/src/ShaderUpdater.cpp.obj: CMakeFiles/Feintgine.dir/fla
 CMakeFiles/Feintgine.dir/src/ShaderUpdater.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/ShaderUpdater.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/ShaderUpdater.cpp
 CMakeFiles/Feintgine.dir/src/ShaderUpdater.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_90) "Building CXX object CMakeFiles/Feintgine.dir/src/ShaderUpdater.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building CXX object CMakeFiles/Feintgine.dir/src/ShaderUpdater.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/ShaderUpdater.cpp.obj -MF CMakeFiles\Feintgine.dir\src\ShaderUpdater.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\ShaderUpdater.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\ShaderUpdater.cpp
 
 CMakeFiles/Feintgine.dir/src/ShaderUpdater.cpp.i: cmake_force
@@ -1422,7 +1437,7 @@ CMakeFiles/Feintgine.dir/src/SimpleDrawingObejct.cpp.obj: CMakeFiles/Feintgine.d
 CMakeFiles/Feintgine.dir/src/SimpleDrawingObejct.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/SimpleDrawingObejct.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/SimpleDrawingObejct.cpp
 CMakeFiles/Feintgine.dir/src/SimpleDrawingObejct.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_91) "Building CXX object CMakeFiles/Feintgine.dir/src/SimpleDrawingObejct.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building CXX object CMakeFiles/Feintgine.dir/src/SimpleDrawingObejct.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/SimpleDrawingObejct.cpp.obj -MF CMakeFiles\Feintgine.dir\src\SimpleDrawingObejct.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\SimpleDrawingObejct.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\SimpleDrawingObejct.cpp
 
 CMakeFiles/Feintgine.dir/src/SimpleDrawingObejct.cpp.i: cmake_force
@@ -1437,7 +1452,7 @@ CMakeFiles/Feintgine.dir/src/Sprite.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
 CMakeFiles/Feintgine.dir/src/Sprite.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Sprite.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Sprite.cpp
 CMakeFiles/Feintgine.dir/src/Sprite.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_92) "Building CXX object CMakeFiles/Feintgine.dir/src/Sprite.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building CXX object CMakeFiles/Feintgine.dir/src/Sprite.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Sprite.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Sprite.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Sprite.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Sprite.cpp
 
 CMakeFiles/Feintgine.dir/src/Sprite.cpp.i: cmake_force
@@ -1452,7 +1467,7 @@ CMakeFiles/Feintgine.dir/src/SpriteBatch.cpp.obj: CMakeFiles/Feintgine.dir/flags
 CMakeFiles/Feintgine.dir/src/SpriteBatch.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/SpriteBatch.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/SpriteBatch.cpp
 CMakeFiles/Feintgine.dir/src/SpriteBatch.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_93) "Building CXX object CMakeFiles/Feintgine.dir/src/SpriteBatch.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building CXX object CMakeFiles/Feintgine.dir/src/SpriteBatch.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/SpriteBatch.cpp.obj -MF CMakeFiles\Feintgine.dir\src\SpriteBatch.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\SpriteBatch.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\SpriteBatch.cpp
 
 CMakeFiles/Feintgine.dir/src/SpriteBatch.cpp.i: cmake_force
@@ -1467,7 +1482,7 @@ CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/SpriteFont.cpp
 CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_94) "Building CXX object CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building CXX object CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.obj -MF CMakeFiles\Feintgine.dir\src\SpriteFont.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\SpriteFont.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\SpriteFont.cpp
 
 CMakeFiles/Feintgine.dir/src/SpriteFont.cpp.i: cmake_force
@@ -1482,7 +1497,7 @@ CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj: CMakeFiles/Feintgine.dir/fla
 CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/SpriteManager.cpp
 CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_95) "Building CXX object CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building CXX object CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.obj -MF CMakeFiles\Feintgine.dir\src\SpriteManager.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\SpriteManager.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\SpriteManager.cpp
 
 CMakeFiles/Feintgine.dir/src/SpriteManager.cpp.i: cmake_force
@@ -1497,7 +1512,7 @@ CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj: CMakeFiles/Feintgine.dir/flag
 CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/SpritePacket.cpp
 CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_96) "Building CXX object CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building CXX object CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.obj -MF CMakeFiles\Feintgine.dir\src\SpritePacket.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\SpritePacket.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\SpritePacket.cpp
 
 CMakeFiles/Feintgine.dir/src/SpritePacket.cpp.i: cmake_force
@@ -1512,7 +1527,7 @@ CMakeFiles/Feintgine.dir/src/T_Layer.cpp.obj: CMakeFiles/Feintgine.dir/flags.mak
 CMakeFiles/Feintgine.dir/src/T_Layer.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/T_Layer.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/T_Layer.cpp
 CMakeFiles/Feintgine.dir/src/T_Layer.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_97) "Building CXX object CMakeFiles/Feintgine.dir/src/T_Layer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building CXX object CMakeFiles/Feintgine.dir/src/T_Layer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/T_Layer.cpp.obj -MF CMakeFiles\Feintgine.dir\src\T_Layer.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\T_Layer.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\T_Layer.cpp
 
 CMakeFiles/Feintgine.dir/src/T_Layer.cpp.i: cmake_force
@@ -1527,7 +1542,7 @@ CMakeFiles/Feintgine.dir/src/T_Scene.cpp.obj: CMakeFiles/Feintgine.dir/flags.mak
 CMakeFiles/Feintgine.dir/src/T_Scene.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/T_Scene.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/T_Scene.cpp
 CMakeFiles/Feintgine.dir/src/T_Scene.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_98) "Building CXX object CMakeFiles/Feintgine.dir/src/T_Scene.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Building CXX object CMakeFiles/Feintgine.dir/src/T_Scene.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/T_Scene.cpp.obj -MF CMakeFiles\Feintgine.dir\src\T_Scene.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\T_Scene.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\T_Scene.cpp
 
 CMakeFiles/Feintgine.dir/src/T_Scene.cpp.i: cmake_force
@@ -1542,7 +1557,7 @@ CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj: CMakeFiles/Feintgine.dir/flag
 CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/TextRenderer.cpp
 CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_99) "Building CXX object CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Building CXX object CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.obj -MF CMakeFiles\Feintgine.dir\src\TextRenderer.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\TextRenderer.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\TextRenderer.cpp
 
 CMakeFiles/Feintgine.dir/src/TextRenderer.cpp.i: cmake_force
@@ -1557,7 +1572,7 @@ CMakeFiles/Feintgine.dir/src/TextureCache.cpp.obj: CMakeFiles/Feintgine.dir/flag
 CMakeFiles/Feintgine.dir/src/TextureCache.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/TextureCache.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/TextureCache.cpp
 CMakeFiles/Feintgine.dir/src/TextureCache.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_100) "Building CXX object CMakeFiles/Feintgine.dir/src/TextureCache.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_101) "Building CXX object CMakeFiles/Feintgine.dir/src/TextureCache.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/TextureCache.cpp.obj -MF CMakeFiles\Feintgine.dir\src\TextureCache.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\TextureCache.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\TextureCache.cpp
 
 CMakeFiles/Feintgine.dir/src/TextureCache.cpp.i: cmake_force
@@ -1572,7 +1587,7 @@ CMakeFiles/Feintgine.dir/src/Timing.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
 CMakeFiles/Feintgine.dir/src/Timing.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Timing.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Timing.cpp
 CMakeFiles/Feintgine.dir/src/Timing.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_101) "Building CXX object CMakeFiles/Feintgine.dir/src/Timing.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_102) "Building CXX object CMakeFiles/Feintgine.dir/src/Timing.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Timing.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Timing.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Timing.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Timing.cpp
 
 CMakeFiles/Feintgine.dir/src/Timing.cpp.i: cmake_force
@@ -1587,7 +1602,7 @@ CMakeFiles/Feintgine.dir/src/TransLabel.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/TransLabel.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/TransLabel.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/TransLabel.cpp
 CMakeFiles/Feintgine.dir/src/TransLabel.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_102) "Building CXX object CMakeFiles/Feintgine.dir/src/TransLabel.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_103) "Building CXX object CMakeFiles/Feintgine.dir/src/TransLabel.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/TransLabel.cpp.obj -MF CMakeFiles\Feintgine.dir\src\TransLabel.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\TransLabel.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\TransLabel.cpp
 
 CMakeFiles/Feintgine.dir/src/TransLabel.cpp.i: cmake_force
@@ -1602,7 +1617,7 @@ CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj: CMakeFiles/Feintgine.dir/flags.ma
 CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Vertex3D.cpp
 CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_103) "Building CXX object CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_104) "Building CXX object CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Vertex3D.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Vertex3D.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Vertex3D.cpp
 
 CMakeFiles/Feintgine.dir/src/Vertex3D.cpp.i: cmake_force
@@ -1617,7 +1632,7 @@ CMakeFiles/Feintgine.dir/src/Window.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
 CMakeFiles/Feintgine.dir/src/Window.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/Window.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/Window.cpp
 CMakeFiles/Feintgine.dir/src/Window.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_104) "Building CXX object CMakeFiles/Feintgine.dir/src/Window.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_105) "Building CXX object CMakeFiles/Feintgine.dir/src/Window.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/Window.cpp.obj -MF CMakeFiles\Feintgine.dir\src\Window.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\Window.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\Window.cpp
 
 CMakeFiles/Feintgine.dir/src/Window.cpp.i: cmake_force
@@ -1632,7 +1647,7 @@ CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj: CMakeFiles/Feintgine.dir/flags.m
 CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/XMLParser.cpp
 CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_105) "Building CXX object CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_106) "Building CXX object CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/XMLParser.cpp.obj -MF CMakeFiles\Feintgine.dir\src\XMLParser.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\XMLParser.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\XMLParser.cpp
 
 CMakeFiles/Feintgine.dir/src/XMLParser.cpp.i: cmake_force
@@ -1647,7 +1662,7 @@ CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/f_uvobject.cpp
 CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_106) "Building CXX object CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_107) "Building CXX object CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.obj -MF CMakeFiles\Feintgine.dir\src\f_uvobject.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\f_uvobject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\f_uvobject.cpp
 
 CMakeFiles/Feintgine.dir/src/f_uvobject.cpp.i: cmake_force
@@ -1662,7 +1677,7 @@ CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj: CMakeFiles/Feintgine.dir/flag
 CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/feint_common.cpp
 CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_107) "Building CXX object CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_108) "Building CXX object CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/feint_common.cpp.obj -MF CMakeFiles\Feintgine.dir\src\feint_common.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\feint_common.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\feint_common.cpp
 
 CMakeFiles/Feintgine.dir/src/feint_common.cpp.i: cmake_force
@@ -1677,7 +1692,7 @@ CMakeFiles/Feintgine.dir/src/imgui.cpp.obj: CMakeFiles/Feintgine.dir/flags.make
 CMakeFiles/Feintgine.dir/src/imgui.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/imgui.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui.cpp
 CMakeFiles/Feintgine.dir/src/imgui.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_108) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_109) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/imgui.cpp.obj -MF CMakeFiles\Feintgine.dir\src\imgui.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\imgui.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui.cpp
 
 CMakeFiles/Feintgine.dir/src/imgui.cpp.i: cmake_force
@@ -1692,7 +1707,7 @@ CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui_demo.cpp
 CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_109) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_110) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.obj -MF CMakeFiles\Feintgine.dir\src\imgui_demo.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\imgui_demo.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_demo.cpp
 
 CMakeFiles/Feintgine.dir/src/imgui_demo.cpp.i: cmake_force
@@ -1707,7 +1722,7 @@ CMakeFiles/Feintgine.dir/src/imgui_draw.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/imgui_draw.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/imgui_draw.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui_draw.cpp
 CMakeFiles/Feintgine.dir/src/imgui_draw.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_110) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_draw.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_111) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_draw.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/imgui_draw.cpp.obj -MF CMakeFiles\Feintgine.dir\src\imgui_draw.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\imgui_draw.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_draw.cpp
 
 CMakeFiles/Feintgine.dir/src/imgui_draw.cpp.i: cmake_force
@@ -1722,7 +1737,7 @@ CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj: CMakeFiles/Feintgine.dir/fl
 CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui_freetype.cpp
 CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_111) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_112) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.obj -MF CMakeFiles\Feintgine.dir\src\imgui_freetype.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\imgui_freetype.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_freetype.cpp
 
 CMakeFiles/Feintgine.dir/src/imgui_freetype.cpp.i: cmake_force
@@ -1737,7 +1752,7 @@ CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.obj: CMakeFiles/Feintgine.di
 CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui_impl_opengl3.cpp
 CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_112) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_113) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.obj -MF CMakeFiles\Feintgine.dir\src\imgui_impl_opengl3.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\imgui_impl_opengl3.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_impl_opengl3.cpp
 
 CMakeFiles/Feintgine.dir/src/imgui_impl_opengl3.cpp.i: cmake_force
@@ -1752,7 +1767,7 @@ CMakeFiles/Feintgine.dir/src/imgui_impl_sdl2.cpp.obj: CMakeFiles/Feintgine.dir/f
 CMakeFiles/Feintgine.dir/src/imgui_impl_sdl2.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/imgui_impl_sdl2.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui_impl_sdl2.cpp
 CMakeFiles/Feintgine.dir/src/imgui_impl_sdl2.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_113) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_impl_sdl2.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_114) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_impl_sdl2.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/imgui_impl_sdl2.cpp.obj -MF CMakeFiles\Feintgine.dir\src\imgui_impl_sdl2.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\imgui_impl_sdl2.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_impl_sdl2.cpp
 
 CMakeFiles/Feintgine.dir/src/imgui_impl_sdl2.cpp.i: cmake_force
@@ -1767,7 +1782,7 @@ CMakeFiles/Feintgine.dir/src/imgui_tables.cpp.obj: CMakeFiles/Feintgine.dir/flag
 CMakeFiles/Feintgine.dir/src/imgui_tables.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/imgui_tables.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui_tables.cpp
 CMakeFiles/Feintgine.dir/src/imgui_tables.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_114) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_tables.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_115) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_tables.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/imgui_tables.cpp.obj -MF CMakeFiles\Feintgine.dir\src\imgui_tables.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\imgui_tables.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_tables.cpp
 
 CMakeFiles/Feintgine.dir/src/imgui_tables.cpp.i: cmake_force
@@ -1782,7 +1797,7 @@ CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj: CMakeFiles/Feintgine.dir/fla
 CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/imgui_widgets.cpp
 CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_115) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_116) "Building CXX object CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.obj -MF CMakeFiles\Feintgine.dir\src\imgui_widgets.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\imgui_widgets.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\imgui_widgets.cpp
 
 CMakeFiles/Feintgine.dir/src/imgui_widgets.cpp.i: cmake_force
@@ -1797,7 +1812,7 @@ CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/lbwraptext.cpp
 CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_116) "Building CXX object CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_117) "Building CXX object CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.obj -MF CMakeFiles\Feintgine.dir\src\lbwraptext.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\lbwraptext.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\lbwraptext.cpp
 
 CMakeFiles/Feintgine.dir/src/lbwraptext.cpp.i: cmake_force
@@ -1812,7 +1827,7 @@ CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj: CMakeFiles/Feintgine.dir/fla
 CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/objectData.pb.cpp
 CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_117) "Building CXX object CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_118) "Building CXX object CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.obj -MF CMakeFiles\Feintgine.dir\src\objectData.pb.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\objectData.pb.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\objectData.pb.cpp
 
 CMakeFiles/Feintgine.dir/src/objectData.pb.cpp.i: cmake_force
@@ -1827,7 +1842,7 @@ CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj: CMakeFiles/Feintgine.dir/flags.
 CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/picoPNGcpp.cpp
 CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_118) "Building CXX object CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_119) "Building CXX object CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj -MF CMakeFiles\Feintgine.dir\src\picoPNGcpp.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\picoPNGcpp.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\picoPNGcpp.cpp
 
 CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.i: cmake_force
@@ -1842,7 +1857,7 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: CMakeFiles/Feintgine.dir/fla
 CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: CMakeFiles/Feintgine.dir/includes_CXX.rsp
 CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: D:/VS_Code_prj/GC3_vscode/Feintgine/src/serverData.pb.cpp
 CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj: CMakeFiles/Feintgine.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_119) "Building CXX object CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_120) "Building CXX object CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj -MF CMakeFiles\Feintgine.dir\src\serverData.pb.cpp.obj.d -o CMakeFiles\Feintgine.dir\src\serverData.pb.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Feintgine\src\serverData.pb.cpp
 
 CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.i: cmake_force
@@ -1855,6 +1870,7 @@ CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.s: cmake_force
 
 # Object files for target Feintgine
 Feintgine_OBJECTS = \
+"CMakeFiles/Feintgine.dir/src/AST_Node.cpp.obj" \
 "CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.obj" \
 "CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj" \
 "CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj" \
@@ -1978,6 +1994,7 @@ Feintgine_OBJECTS = \
 # External object files for target Feintgine
 Feintgine_EXTERNAL_OBJECTS =
 
+libFeintgine.a: CMakeFiles/Feintgine.dir/src/AST_Node.cpp.obj
 libFeintgine.a: CMakeFiles/Feintgine.dir/src/A_Context_save.cpp.obj
 libFeintgine.a: CMakeFiles/Feintgine.dir/src/AfterImageParticle.cpp.obj
 libFeintgine.a: CMakeFiles/Feintgine.dir/src/AnimatedObject.cpp.obj
@@ -2099,7 +2116,7 @@ libFeintgine.a: CMakeFiles/Feintgine.dir/src/picoPNGcpp.cpp.obj
 libFeintgine.a: CMakeFiles/Feintgine.dir/src/serverData.pb.cpp.obj
 libFeintgine.a: CMakeFiles/Feintgine.dir/build.make
 libFeintgine.a: CMakeFiles/Feintgine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_120) "Linking CXX static library libFeintgine.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\VS_Code_prj\GC3_vscode\Feintgine\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_121) "Linking CXX static library libFeintgine.a"
 	$(CMAKE_COMMAND) -P CMakeFiles\Feintgine.dir\cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Feintgine.dir\link.txt --verbose=$(VERBOSE)
 

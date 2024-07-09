@@ -211,6 +211,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/GC3.dir/src/PaternBehaviorBase.cpp.obj.d"
   "CMakeFiles/GC3.dir/src/PaternBehavior_Test.cpp.obj"
   "CMakeFiles/GC3.dir/src/PaternBehavior_Test.cpp.obj.d"
+  "CMakeFiles/GC3.dir/src/PaternBehavior_from_lua.cpp.obj"
+  "CMakeFiles/GC3.dir/src/PaternBehavior_from_lua.cpp.obj.d"
   "CMakeFiles/GC3.dir/src/PaternTestScreen.cpp.obj"
   "CMakeFiles/GC3.dir/src/PaternTestScreen.cpp.obj.d"
   "CMakeFiles/GC3.dir/src/PauseMenu.cpp.obj"

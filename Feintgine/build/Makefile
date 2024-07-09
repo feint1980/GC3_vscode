@@ -522,6 +522,30 @@ Feintgine/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/build
 .PHONY : Feintgine/fast
 
+src/AST_Node.obj: src/AST_Node.cpp.obj
+.PHONY : src/AST_Node.obj
+
+# target to build an object file
+src/AST_Node.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/AST_Node.cpp.obj
+.PHONY : src/AST_Node.cpp.obj
+
+src/AST_Node.i: src/AST_Node.cpp.i
+.PHONY : src/AST_Node.i
+
+# target to preprocess a source file
+src/AST_Node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/AST_Node.cpp.i
+.PHONY : src/AST_Node.cpp.i
+
+src/AST_Node.s: src/AST_Node.cpp.s
+.PHONY : src/AST_Node.s
+
+# target to generate assembly for a file
+src/AST_Node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Feintgine.dir\build.make CMakeFiles/Feintgine.dir/src/AST_Node.cpp.s
+.PHONY : src/AST_Node.cpp.s
+
 src/A_Context_save.obj: src/A_Context_save.cpp.obj
 .PHONY : src/A_Context_save.obj
 
@@ -3418,6 +3442,9 @@ help:
 	@echo ... NightlyTest
 	@echo ... NightlyUpdate
 	@echo ... Feintgine
+	@echo ... src/AST_Node.obj
+	@echo ... src/AST_Node.i
+	@echo ... src/AST_Node.s
 	@echo ... src/A_Context_save.obj
 	@echo ... src/A_Context_save.i
 	@echo ... src/A_Context_save.s

@@ -70,5 +70,4 @@ glm::vec2 PaternBehavior_Test::calculatePos(float t, float additionalAngle)
 		- (m_factors[2] * sin((m_factors[0] / m_factors[1] - 1)*t))) *m_rad;
 	return returnVal;
 
-
 }

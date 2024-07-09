@@ -9,18 +9,14 @@
 #include <vector>
 
 
-#define A 3
-#define B 4
-#define C 2
 
 
-
-#define HAS_A = 1
-#define HAS_B = 2
-#define HAS_C = 4
-#define HAS_D = 8
-#define HAS_E = 16
-#define HAS_T = 32
+#define HAS_A 1
+#define HAS_B 2
+#define HAS_C 4
+#define HAS_D 8
+#define HAS_E 16
+#define HAS_T 32
 
 namespace Feintgine
 {

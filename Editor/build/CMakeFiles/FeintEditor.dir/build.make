@@ -788,11 +788,26 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.cpp.s"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\VS_Code_prj\GC3_vscode\GC3\src\PaternBehavior_Test.cpp -o CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\PaternBehavior_Test.cpp.s
 
+CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj: CMakeFiles/FeintEditor.dir/flags.make
+CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
+CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj: D:/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp
+CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj -MF CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\PaternBehavior_from_lua.cpp.obj.d -o CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\PaternBehavior_from_lua.cpp.obj -c D:\VS_Code_prj\GC3_vscode\GC3\src\PaternBehavior_from_lua.cpp
+
+CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.i"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\VS_Code_prj\GC3_vscode\GC3\src\PaternBehavior_from_lua.cpp > CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\PaternBehavior_from_lua.cpp.i
+
+CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.s"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\VS_Code_prj\GC3_vscode\GC3\src\PaternBehavior_from_lua.cpp -o CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\PaternBehavior_from_lua.cpp.s
+
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj: CMakeFiles/FeintEditor.dir/flags.make
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj: D:/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_49) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj -MF CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\PowerItem.cpp.obj.d -o CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\PowerItem.cpp.obj -c D:\VS_Code_prj\GC3_vscode\GC3\src\PowerItem.cpp
 
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.i: cmake_force
@@ -807,7 +822,7 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.obj: 
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.obj: D:/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_50) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.obj -MF CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\ScoreItem.cpp.obj.d -o CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\ScoreItem.cpp.obj -c D:\VS_Code_prj\GC3_vscode\GC3\src\ScoreItem.cpp
 
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.i: cmake_force
@@ -822,7 +837,7 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp.o
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp.obj: D:/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_51) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp.obj -MF CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\SealingAmulet.cpp.obj.d -o CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\SealingAmulet.cpp.obj -c D:\VS_Code_prj\GC3_vscode\GC3\src\SealingAmulet.cpp
 
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp.i: cmake_force
@@ -837,7 +852,7 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardIcon.cpp.o
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardIcon.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardIcon.cpp.obj: D:/VS_Code_prj/GC3_vscode/GC3/src/SpellcardIcon.cpp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardIcon.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_52) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardIcon.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardIcon.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardIcon.cpp.obj -MF CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\SpellcardIcon.cpp.obj.d -o CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\SpellcardIcon.cpp.obj -c D:\VS_Code_prj\GC3_vscode\GC3\src\SpellcardIcon.cpp
 
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardIcon.cpp.i: cmake_force
@@ -852,7 +867,7 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardSelector.c
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardSelector.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardSelector.cpp.obj: D:/VS_Code_prj/GC3_vscode/GC3/src/SpellcardSelector.cpp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardSelector.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_53) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardSelector.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardSelector.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardSelector.cpp.obj -MF CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\SpellcardSelector.cpp.obj.d -o CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\SpellcardSelector.cpp.obj -c D:\VS_Code_prj\GC3_vscode\GC3\src\SpellcardSelector.cpp
 
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardSelector.cpp.i: cmake_force
@@ -867,7 +882,7 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/TraceObject.cpp.obj
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/TraceObject.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/TraceObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/GC3/src/TraceObject.cpp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/TraceObject.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_54) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/TraceObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/TraceObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/TraceObject.cpp.obj -MF CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\TraceObject.cpp.obj.d -o CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\TraceObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\GC3\src\TraceObject.cpp
 
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/TraceObject.cpp.i: cmake_force
@@ -882,7 +897,7 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb.cpp.ob
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb.cpp.obj: D:/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb.cpp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_55) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb.cpp.obj -MF CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\Yin_Yang_Orb.cpp.obj.d -o CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\Yin_Yang_Orb.cpp.obj -c D:\VS_Code_prj\GC3_vscode\GC3\src\Yin_Yang_Orb.cpp
 
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb.cpp.i: cmake_force
@@ -897,7 +912,7 @@ CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb_Ex.cpp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb_Ex.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb_Ex.cpp.obj: D:/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb_Ex.cpp
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb_Ex.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_56) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb_Ex.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb_Ex.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb_Ex.cpp.obj -MF CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\Yin_Yang_Orb_Ex.cpp.obj.d -o CMakeFiles\FeintEditor.dir\D_\VS_Code_prj\GC3_vscode\GC3\src\Yin_Yang_Orb_Ex.cpp.obj -c D:\VS_Code_prj\GC3_vscode\GC3\src\Yin_Yang_Orb_Ex.cpp
 
 CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb_Ex.cpp.i: cmake_force
@@ -912,7 +927,7 @@ CMakeFiles/FeintEditor.dir/src/BuildObjectTool.cpp.obj: CMakeFiles/FeintEditor.d
 CMakeFiles/FeintEditor.dir/src/BuildObjectTool.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/BuildObjectTool.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/BuildObjectTool.cpp
 CMakeFiles/FeintEditor.dir/src/BuildObjectTool.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_57) "Building CXX object CMakeFiles/FeintEditor.dir/src/BuildObjectTool.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object CMakeFiles/FeintEditor.dir/src/BuildObjectTool.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/BuildObjectTool.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\BuildObjectTool.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\BuildObjectTool.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\BuildObjectTool.cpp
 
 CMakeFiles/FeintEditor.dir/src/BuildObjectTool.cpp.i: cmake_force
@@ -927,7 +942,7 @@ CMakeFiles/FeintEditor.dir/src/DamakuEditor.cpp.obj: CMakeFiles/FeintEditor.dir/
 CMakeFiles/FeintEditor.dir/src/DamakuEditor.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/DamakuEditor.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/DamakuEditor.cpp
 CMakeFiles/FeintEditor.dir/src/DamakuEditor.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_58) "Building CXX object CMakeFiles/FeintEditor.dir/src/DamakuEditor.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building CXX object CMakeFiles/FeintEditor.dir/src/DamakuEditor.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/DamakuEditor.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\DamakuEditor.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\DamakuEditor.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\DamakuEditor.cpp
 
 CMakeFiles/FeintEditor.dir/src/DamakuEditor.cpp.i: cmake_force
@@ -942,7 +957,7 @@ CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: CMakeFiles/FeintEditor.dir
 CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/DisplaySample.cpp
 CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_59) "Building CXX object CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building CXX object CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\DisplaySample.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\DisplaySample.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\DisplaySample.cpp
 
 CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.i: cmake_force
@@ -957,7 +972,7 @@ CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.obj: CMakeFiles/FeintEditor.dir/fla
 CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/EditLayer.cpp
 CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_60) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\EditLayer.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\EditLayer.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\EditLayer.cpp
 
 CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.i: cmake_force
@@ -972,7 +987,7 @@ CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj: CMakeFiles/FeintEditor.dir/fl
 CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/EditObject.cpp
 CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_61) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\EditObject.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\EditObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\EditObject.cpp
 
 CMakeFiles/FeintEditor.dir/src/EditObject.cpp.i: cmake_force
@@ -987,7 +1002,7 @@ CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj: CMakeFiles/F
 CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/EditRenderedObjectComponent.cpp
 CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_62) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\EditRenderedObjectComponent.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\EditRenderedObjectComponent.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\EditRenderedObjectComponent.cpp
 
 CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.i: cmake_force
@@ -1002,7 +1017,7 @@ CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj: CMakeFiles/FeintEditor.dir/fl
 CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/EditorMain.cpp
 CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_63) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\EditorMain.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\EditorMain.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\EditorMain.cpp
 
 CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.i: cmake_force
@@ -1017,7 +1032,7 @@ CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.obj: CMakeFiles/FeintEditor.di
 CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/EditorProperty.cpp
 CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_64) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\EditorProperty.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\EditorProperty.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\EditorProperty.cpp
 
 CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.i: cmake_force
@@ -1032,7 +1047,7 @@ CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj: CMakeFiles/FeintEditor.dir/
 CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/EditorScreen.cpp
 CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_65) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\EditorScreen.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\EditorScreen.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\EditorScreen.cpp
 
 CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.i: cmake_force
@@ -1047,7 +1062,7 @@ CMakeFiles/FeintEditor.dir/src/EnemyEditorComponent.cpp.obj: CMakeFiles/FeintEdi
 CMakeFiles/FeintEditor.dir/src/EnemyEditorComponent.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/EnemyEditorComponent.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/EnemyEditorComponent.cpp
 CMakeFiles/FeintEditor.dir/src/EnemyEditorComponent.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_66) "Building CXX object CMakeFiles/FeintEditor.dir/src/EnemyEditorComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object CMakeFiles/FeintEditor.dir/src/EnemyEditorComponent.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/EnemyEditorComponent.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\EnemyEditorComponent.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\EnemyEditorComponent.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\EnemyEditorComponent.cpp
 
 CMakeFiles/FeintEditor.dir/src/EnemyEditorComponent.cpp.i: cmake_force
@@ -1062,7 +1077,7 @@ CMakeFiles/FeintEditor.dir/src/EventManager.cpp.obj: CMakeFiles/FeintEditor.dir/
 CMakeFiles/FeintEditor.dir/src/EventManager.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/EventManager.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/EventManager.cpp
 CMakeFiles/FeintEditor.dir/src/EventManager.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_67) "Building CXX object CMakeFiles/FeintEditor.dir/src/EventManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object CMakeFiles/FeintEditor.dir/src/EventManager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/EventManager.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\EventManager.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\EventManager.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\EventManager.cpp
 
 CMakeFiles/FeintEditor.dir/src/EventManager.cpp.i: cmake_force
@@ -1077,7 +1092,7 @@ CMakeFiles/FeintEditor.dir/src/F_DamakuBase.cpp.obj: CMakeFiles/FeintEditor.dir/
 CMakeFiles/FeintEditor.dir/src/F_DamakuBase.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/F_DamakuBase.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/F_DamakuBase.cpp
 CMakeFiles/FeintEditor.dir/src/F_DamakuBase.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_68) "Building CXX object CMakeFiles/FeintEditor.dir/src/F_DamakuBase.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object CMakeFiles/FeintEditor.dir/src/F_DamakuBase.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/F_DamakuBase.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\F_DamakuBase.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\F_DamakuBase.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\F_DamakuBase.cpp
 
 CMakeFiles/FeintEditor.dir/src/F_DamakuBase.cpp.i: cmake_force
@@ -1092,7 +1107,7 @@ CMakeFiles/FeintEditor.dir/src/F_DamakuLineTrace.cpp.obj: CMakeFiles/FeintEditor
 CMakeFiles/FeintEditor.dir/src/F_DamakuLineTrace.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/F_DamakuLineTrace.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/F_DamakuLineTrace.cpp
 CMakeFiles/FeintEditor.dir/src/F_DamakuLineTrace.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_69) "Building CXX object CMakeFiles/FeintEditor.dir/src/F_DamakuLineTrace.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object CMakeFiles/FeintEditor.dir/src/F_DamakuLineTrace.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/F_DamakuLineTrace.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\F_DamakuLineTrace.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\F_DamakuLineTrace.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\F_DamakuLineTrace.cpp
 
 CMakeFiles/FeintEditor.dir/src/F_DamakuLineTrace.cpp.i: cmake_force
@@ -1107,7 +1122,7 @@ CMakeFiles/FeintEditor.dir/src/LayerManager.cpp.obj: CMakeFiles/FeintEditor.dir/
 CMakeFiles/FeintEditor.dir/src/LayerManager.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/LayerManager.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/LayerManager.cpp
 CMakeFiles/FeintEditor.dir/src/LayerManager.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_70) "Building CXX object CMakeFiles/FeintEditor.dir/src/LayerManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object CMakeFiles/FeintEditor.dir/src/LayerManager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/LayerManager.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\LayerManager.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\LayerManager.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\LayerManager.cpp
 
 CMakeFiles/FeintEditor.dir/src/LayerManager.cpp.i: cmake_force
@@ -1122,7 +1137,7 @@ CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj: CMakeFiles/Fein
 CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/LuaObjectEditorComponent.cpp
 CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_71) "Building CXX object CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\LuaObjectEditorComponent.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\LuaObjectEditorComponent.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\LuaObjectEditorComponent.cpp
 
 CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.i: cmake_force
@@ -1137,7 +1152,7 @@ CMakeFiles/FeintEditor.dir/src/NewRenderModel.cpp.obj: CMakeFiles/FeintEditor.di
 CMakeFiles/FeintEditor.dir/src/NewRenderModel.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/NewRenderModel.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/NewRenderModel.cpp
 CMakeFiles/FeintEditor.dir/src/NewRenderModel.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_72) "Building CXX object CMakeFiles/FeintEditor.dir/src/NewRenderModel.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building CXX object CMakeFiles/FeintEditor.dir/src/NewRenderModel.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/NewRenderModel.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\NewRenderModel.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\NewRenderModel.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\NewRenderModel.cpp
 
 CMakeFiles/FeintEditor.dir/src/NewRenderModel.cpp.i: cmake_force
@@ -1152,7 +1167,7 @@ CMakeFiles/FeintEditor.dir/src/ObjectColider.cpp.obj: CMakeFiles/FeintEditor.dir
 CMakeFiles/FeintEditor.dir/src/ObjectColider.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/ObjectColider.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/ObjectColider.cpp
 CMakeFiles/FeintEditor.dir/src/ObjectColider.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_73) "Building CXX object CMakeFiles/FeintEditor.dir/src/ObjectColider.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building CXX object CMakeFiles/FeintEditor.dir/src/ObjectColider.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/ObjectColider.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\ObjectColider.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\ObjectColider.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\ObjectColider.cpp
 
 CMakeFiles/FeintEditor.dir/src/ObjectColider.cpp.i: cmake_force
@@ -1167,7 +1182,7 @@ CMakeFiles/FeintEditor.dir/src/ObjectDisplayer.cpp.obj: CMakeFiles/FeintEditor.d
 CMakeFiles/FeintEditor.dir/src/ObjectDisplayer.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/ObjectDisplayer.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/ObjectDisplayer.cpp
 CMakeFiles/FeintEditor.dir/src/ObjectDisplayer.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_74) "Building CXX object CMakeFiles/FeintEditor.dir/src/ObjectDisplayer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building CXX object CMakeFiles/FeintEditor.dir/src/ObjectDisplayer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/ObjectDisplayer.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\ObjectDisplayer.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\ObjectDisplayer.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\ObjectDisplayer.cpp
 
 CMakeFiles/FeintEditor.dir/src/ObjectDisplayer.cpp.i: cmake_force
@@ -1182,7 +1197,7 @@ CMakeFiles/FeintEditor.dir/src/ObjectListHolder.cpp.obj: CMakeFiles/FeintEditor.
 CMakeFiles/FeintEditor.dir/src/ObjectListHolder.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/ObjectListHolder.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/ObjectListHolder.cpp
 CMakeFiles/FeintEditor.dir/src/ObjectListHolder.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_75) "Building CXX object CMakeFiles/FeintEditor.dir/src/ObjectListHolder.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object CMakeFiles/FeintEditor.dir/src/ObjectListHolder.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/ObjectListHolder.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\ObjectListHolder.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\ObjectListHolder.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\ObjectListHolder.cpp
 
 CMakeFiles/FeintEditor.dir/src/ObjectListHolder.cpp.i: cmake_force
@@ -1197,7 +1212,7 @@ CMakeFiles/FeintEditor.dir/src/ObjectSlot.cpp.obj: CMakeFiles/FeintEditor.dir/fl
 CMakeFiles/FeintEditor.dir/src/ObjectSlot.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/ObjectSlot.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/ObjectSlot.cpp
 CMakeFiles/FeintEditor.dir/src/ObjectSlot.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_76) "Building CXX object CMakeFiles/FeintEditor.dir/src/ObjectSlot.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object CMakeFiles/FeintEditor.dir/src/ObjectSlot.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/ObjectSlot.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\ObjectSlot.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\ObjectSlot.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\ObjectSlot.cpp
 
 CMakeFiles/FeintEditor.dir/src/ObjectSlot.cpp.i: cmake_force
@@ -1212,7 +1227,7 @@ CMakeFiles/FeintEditor.dir/src/ObjectUVRect.cpp.obj: CMakeFiles/FeintEditor.dir/
 CMakeFiles/FeintEditor.dir/src/ObjectUVRect.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/ObjectUVRect.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/ObjectUVRect.cpp
 CMakeFiles/FeintEditor.dir/src/ObjectUVRect.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_77) "Building CXX object CMakeFiles/FeintEditor.dir/src/ObjectUVRect.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object CMakeFiles/FeintEditor.dir/src/ObjectUVRect.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/ObjectUVRect.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\ObjectUVRect.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\ObjectUVRect.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\ObjectUVRect.cpp
 
 CMakeFiles/FeintEditor.dir/src/ObjectUVRect.cpp.i: cmake_force
@@ -1227,7 +1242,7 @@ CMakeFiles/FeintEditor.dir/src/PaternEditor.cpp.obj: CMakeFiles/FeintEditor.dir/
 CMakeFiles/FeintEditor.dir/src/PaternEditor.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/PaternEditor.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/PaternEditor.cpp
 CMakeFiles/FeintEditor.dir/src/PaternEditor.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_78) "Building CXX object CMakeFiles/FeintEditor.dir/src/PaternEditor.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object CMakeFiles/FeintEditor.dir/src/PaternEditor.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/PaternEditor.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\PaternEditor.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\PaternEditor.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\PaternEditor.cpp
 
 CMakeFiles/FeintEditor.dir/src/PaternEditor.cpp.i: cmake_force
@@ -1242,7 +1257,7 @@ CMakeFiles/FeintEditor.dir/src/SceneManager.cpp.obj: CMakeFiles/FeintEditor.dir/
 CMakeFiles/FeintEditor.dir/src/SceneManager.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/SceneManager.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/SceneManager.cpp
 CMakeFiles/FeintEditor.dir/src/SceneManager.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_79) "Building CXX object CMakeFiles/FeintEditor.dir/src/SceneManager.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building CXX object CMakeFiles/FeintEditor.dir/src/SceneManager.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/SceneManager.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\SceneManager.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\SceneManager.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\SceneManager.cpp
 
 CMakeFiles/FeintEditor.dir/src/SceneManager.cpp.i: cmake_force
@@ -1257,7 +1272,7 @@ CMakeFiles/FeintEditor.dir/src/ScreenBuilder.cpp.obj: CMakeFiles/FeintEditor.dir
 CMakeFiles/FeintEditor.dir/src/ScreenBuilder.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/ScreenBuilder.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/ScreenBuilder.cpp
 CMakeFiles/FeintEditor.dir/src/ScreenBuilder.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_80) "Building CXX object CMakeFiles/FeintEditor.dir/src/ScreenBuilder.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building CXX object CMakeFiles/FeintEditor.dir/src/ScreenBuilder.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/ScreenBuilder.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\ScreenBuilder.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\ScreenBuilder.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\ScreenBuilder.cpp
 
 CMakeFiles/FeintEditor.dir/src/ScreenBuilder.cpp.i: cmake_force
@@ -1272,7 +1287,7 @@ CMakeFiles/FeintEditor.dir/src/SpriteDisplayer.cpp.obj: CMakeFiles/FeintEditor.d
 CMakeFiles/FeintEditor.dir/src/SpriteDisplayer.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/SpriteDisplayer.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/SpriteDisplayer.cpp
 CMakeFiles/FeintEditor.dir/src/SpriteDisplayer.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_81) "Building CXX object CMakeFiles/FeintEditor.dir/src/SpriteDisplayer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building CXX object CMakeFiles/FeintEditor.dir/src/SpriteDisplayer.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/SpriteDisplayer.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\SpriteDisplayer.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\SpriteDisplayer.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\SpriteDisplayer.cpp
 
 CMakeFiles/FeintEditor.dir/src/SpriteDisplayer.cpp.i: cmake_force
@@ -1287,7 +1302,7 @@ CMakeFiles/FeintEditor.dir/src/SpriteListHolder.cpp.obj: CMakeFiles/FeintEditor.
 CMakeFiles/FeintEditor.dir/src/SpriteListHolder.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/SpriteListHolder.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/SpriteListHolder.cpp
 CMakeFiles/FeintEditor.dir/src/SpriteListHolder.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_82) "Building CXX object CMakeFiles/FeintEditor.dir/src/SpriteListHolder.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building CXX object CMakeFiles/FeintEditor.dir/src/SpriteListHolder.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/SpriteListHolder.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\SpriteListHolder.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\SpriteListHolder.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\SpriteListHolder.cpp
 
 CMakeFiles/FeintEditor.dir/src/SpriteListHolder.cpp.i: cmake_force
@@ -1302,7 +1317,7 @@ CMakeFiles/FeintEditor.dir/src/SpriteSheet.cpp.obj: CMakeFiles/FeintEditor.dir/f
 CMakeFiles/FeintEditor.dir/src/SpriteSheet.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/SpriteSheet.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/SpriteSheet.cpp
 CMakeFiles/FeintEditor.dir/src/SpriteSheet.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_83) "Building CXX object CMakeFiles/FeintEditor.dir/src/SpriteSheet.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building CXX object CMakeFiles/FeintEditor.dir/src/SpriteSheet.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/SpriteSheet.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\SpriteSheet.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\SpriteSheet.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\SpriteSheet.cpp
 
 CMakeFiles/FeintEditor.dir/src/SpriteSheet.cpp.i: cmake_force
@@ -1317,7 +1332,7 @@ CMakeFiles/FeintEditor.dir/src/TemplateObject.cpp.obj: CMakeFiles/FeintEditor.di
 CMakeFiles/FeintEditor.dir/src/TemplateObject.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/TemplateObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/TemplateObject.cpp
 CMakeFiles/FeintEditor.dir/src/TemplateObject.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_84) "Building CXX object CMakeFiles/FeintEditor.dir/src/TemplateObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building CXX object CMakeFiles/FeintEditor.dir/src/TemplateObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/TemplateObject.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\TemplateObject.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\TemplateObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\TemplateObject.cpp
 
 CMakeFiles/FeintEditor.dir/src/TemplateObject.cpp.i: cmake_force
@@ -1332,7 +1347,7 @@ CMakeFiles/FeintEditor.dir/src/TestCEGUIScreen.cpp.obj: CMakeFiles/FeintEditor.d
 CMakeFiles/FeintEditor.dir/src/TestCEGUIScreen.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/TestCEGUIScreen.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/TestCEGUIScreen.cpp
 CMakeFiles/FeintEditor.dir/src/TestCEGUIScreen.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_85) "Building CXX object CMakeFiles/FeintEditor.dir/src/TestCEGUIScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building CXX object CMakeFiles/FeintEditor.dir/src/TestCEGUIScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/TestCEGUIScreen.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\TestCEGUIScreen.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\TestCEGUIScreen.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\TestCEGUIScreen.cpp
 
 CMakeFiles/FeintEditor.dir/src/TestCEGUIScreen.cpp.i: cmake_force
@@ -1347,7 +1362,7 @@ CMakeFiles/FeintEditor.dir/src/main.cpp.obj: CMakeFiles/FeintEditor.dir/flags.ma
 CMakeFiles/FeintEditor.dir/src/main.cpp.obj: CMakeFiles/FeintEditor.dir/includes_CXX.rsp
 CMakeFiles/FeintEditor.dir/src/main.cpp.obj: D:/VS_Code_prj/GC3_vscode/Editor/src/main.cpp
 CMakeFiles/FeintEditor.dir/src/main.cpp.obj: CMakeFiles/FeintEditor.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_86) "Building CXX object CMakeFiles/FeintEditor.dir/src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Building CXX object CMakeFiles/FeintEditor.dir/src/main.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FeintEditor.dir/src/main.cpp.obj -MF CMakeFiles\FeintEditor.dir\src\main.cpp.obj.d -o CMakeFiles\FeintEditor.dir\src\main.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Editor\src\main.cpp
 
 CMakeFiles/FeintEditor.dir/src/main.cpp.i: cmake_force
@@ -1408,6 +1423,7 @@ FeintEditor_OBJECTS = \
 "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/LabelItem.cpp.obj" \
 "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehaviorBase.cpp.obj" \
 "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.cpp.obj" \
+"CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj" \
 "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj" \
 "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.obj" \
 "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp.obj" \
@@ -1498,6 +1514,7 @@ FeintEditor.exe: CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Ka
 FeintEditor.exe: CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/LabelItem.cpp.obj
 FeintEditor.exe: CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehaviorBase.cpp.obj
 FeintEditor.exe: CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.cpp.obj
+FeintEditor.exe: CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj
 FeintEditor.exe: CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj
 FeintEditor.exe: CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.obj
 FeintEditor.exe: CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp.obj
@@ -1561,7 +1578,7 @@ FeintEditor.exe: D:/VS_Code_prj/GC3_vscode/Editor/../Feintgine_GC_deps/lib/libas
 FeintEditor.exe: CMakeFiles/FeintEditor.dir/linkLibs.rsp
 FeintEditor.exe: CMakeFiles/FeintEditor.dir/objects1.rsp
 FeintEditor.exe: CMakeFiles/FeintEditor.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_87) "Linking CXX executable FeintEditor.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\VS_Code_prj\GC3_vscode\Editor\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_88) "Linking CXX executable FeintEditor.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\FeintEditor.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

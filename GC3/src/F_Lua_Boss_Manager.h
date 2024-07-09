@@ -130,6 +130,8 @@ public:
 
 	//void manipulateBullet()
 
+	void createPatern(const std::string & xNodeEquation, const std::string & yNodeEquation, float radius, const std::vector<float> & factors, int bulletID);
+
 	void reloadPlayer(int val);
 	void initPlayer(int val, Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager, Feintgine::Camera2D * cam,Feintgine::EffectBatch * effectBatch);
 
@@ -140,7 +142,6 @@ protected:
 	KanjiEffectManager  * m_kanjiEffectManager;
 	//Feintgine::EffectBatch m_effectBatch;
 	Feintgine::ParticleEngine2D m_particleEngine;
-
 
 	std::vector<EnemyBulletBase *> m_bullets;
 
@@ -162,7 +163,7 @@ protected:
 
 	BulletManupilator bulletManipulator;
 
-	std::vector<PaternBehaviorBase *> m_paternBehaviors;
+	// std::vector<PaternBehavior_from_lua *> m_paternBehaviors;
 
 };
 

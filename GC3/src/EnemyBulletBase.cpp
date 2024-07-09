@@ -208,6 +208,7 @@ void EnemyBulletBase::setDestination(const glm::vec2 & val)
 {
 	m_destination = val;
 
+	//std::cout << "destination " << m_destination.x << " " << m_destination.y << "\n";
 	m_destinationState = Reaching;
 	m_lifeTime = 2.0f;
 	//if (m_isReachDestination == EnemyBulletBase::NotDefined)

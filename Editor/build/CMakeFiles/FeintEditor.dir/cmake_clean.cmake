@@ -95,6 +95,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehaviorBase.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.cpp.obj"
   "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.cpp.obj.d"
+  "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj"
+  "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj"
   "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj.d"
   "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.obj"

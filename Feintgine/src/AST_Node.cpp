@@ -142,8 +142,15 @@ namespace Feintgine
 
             left = new AST_Node();
             right = new AST_Node();
+            left->setFactors(m_factors);
+            right->setFactors(m_factors);
+            left->setRvalue(r_value);
+            right->setRvalue(r_value);
+            left->setTvalue(t_value);
+            right->setTvalue(t_value);
             left->parseData(leftClause);
             right->parseData(rightClause);
+            
         }
         else
         {
@@ -167,8 +174,6 @@ namespace Feintgine
                     break;
                 }
             }
-
-
             if(middleOperator == 0)
             {
                 if(!isSpecialMath)
@@ -177,18 +182,37 @@ namespace Feintgine
                     std::string strValue = singleClause.substr(1, singleClause.size() - 2);
                     if(strValue == "a")
                     {
-                        value = A;
+
+                        //value = getFactorIndex('a');
+                        value = m_factors[0];
                         std::cout << "a value found \n";
+
                     }
                     else if(strValue == "b")
                     {
-                        value = B;
+                        value = m_factors[1];
                         std::cout << "b value found \n";
+                        
                     }
                     else if(strValue == "c")
                     {
-                        value = C;
+                        value = m_factors[2];
                         std::cout << "c value found \n";
+                    }
+                    else if(strValue == "d")
+                    {
+                        value = m_factors[3];
+                        std::cout << "d value found \n";
+                    }
+                    else if(strValue == "t")
+                    {
+                        value = * t_value;
+                        std::cout << "t value found \n";
+                    }
+                    else if(strValue == "r")
+                    {
+                        value = * r_value;
+                        std::cout << "r value found \n";
                     }
                     else
                     {
@@ -202,7 +226,6 @@ namespace Feintgine
                     if(singleClause.find("cos") != std::string::npos)
                     {
                         is_cos_sin = 1;
-
 
                     }
                     else if(singleClause.find("sin") != std::string::npos)
@@ -226,20 +249,29 @@ namespace Feintgine
                     else if(strValue == "b")
                     {
                         value = m_factors[1];
+                        std::cout << "b value found \n";
                     }
                     else if(strValue == "c")
                     {
                         value = m_factors[2];
-
+                        std::cout << "c value found \n";
                     }
                     else if(strValue == "d")
                     {
 
                         value = m_factors[3];
+                        std::cout << "d value found \n";
                     }
                     else if(strValue == "t")
                     {
                         value = * t_value;
+                        std::cout << "t value found \n";
+                    }
+                    else if(strValue == "r")
+                    {
+
+                        value = * r_value;
+                        std::cout << "r value found \n";
                     }
                     else
                     {
@@ -296,11 +328,19 @@ namespace Feintgine
                 }
 
                 left = new AST_Node();
+                left->setFactors(m_factors);
+                left->setRvalue(r_value);
+                left->setTvalue(t_value);
                 left->parseData( "(" + leftClause + ")");
+               
                 if(!isLast)
                 {
                     right = new AST_Node();
+                    right->setRvalue(r_value);
+                    right->setTvalue(t_value);
+                    right->setFactors(m_factors);
                     right->parseData("("+rightClause +")");
+                   
                 }
 
             }

@@ -32,9 +32,11 @@ end
 -- coin table
 komachi_coins = {"komachi/komachi_12.png","komachi/komachi_11.png","komachi/komachi_13.png"}
 
--- charge table 
+-- charge table
 
 charge_table = {"projectile/fire_1.png","projectile/fire_2.png","projectile/fire_3.png","projectile/fire_4.png"}
+
+factor_table = {3,4,7}
 
 -- Komachi param
 object = {posX = 0.0, posY = 0.0,
@@ -65,7 +67,7 @@ function  DynamicBehavior1( host, dynob )
     direct = {1,-1}
     angle_count = 0
     t_angle = 12 * 0.0174532925
-	while true do 
+	while true do
         for i = 1, 2 do
             DynamicBehavior1_base( host, dynob, direct[i])
         end
@@ -74,9 +76,9 @@ function  DynamicBehavior1( host, dynob )
 
         bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_white.png",
         0.5, -- speed
-        10.0, -- lifeTime 
+        10.0, -- lifeTime
         3,   -- a
-        7,   -- b 
+        7,   -- b
         12,    -- c
         25,   -- r
         0.75,  -- angleStep
@@ -116,7 +118,7 @@ function DynamicBehavior1_base( host, dynob, direction)
 
     cppMoveObject(host,dynob,150 * direction,150,25)
     coroutine.yield()
- 
+
     bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
         4.5 + (-1.0 * direction), -- speed
         10.0, -- lifeTime
@@ -137,14 +139,14 @@ function DynamicBehavior1_base( host, dynob, direction)
     coroutine.yield()
 end
 
--- moveset_normal_1 end 
+-- moveset_normal_1 end
 
--- move set : spell 1 
+-- move set : spell 1
 function moveset_spell_1(host)
     dynamics[komachi] = {behavior = coroutine.create(spell_1_boss_movement,host,komachi)}
     IssueNextTask(host,komachi)
  end
- 
+
  -- handle fire rate of the souls
 function souls_fire(host, dynob)
 
@@ -159,27 +161,27 @@ function souls_fire(host, dynob)
     mY = math.sin(invert_fire_angle)
     interval = 85 --*  math.abs( x + y)
     time = 300
-    
+
     bullet_count = math.random(30,50)
     for t = 0, bullet_count do
         speed = randomFloat(0.5,1.7)
         cppSetFire_Base(host,dynob,"projectile/bullet_shard_blue.png",
         speed, -- speed
         5.0, -- lifeTime
-        x, -- x 
+        x, -- x
         y, -- y
         angle, -- angle
         time + (t  * interval) )
         cppSetFire_Base(host,dynob,"projectile/bullet_shard_blue.png",
         speed, -- speed
         5.0, -- lifeTime
-        mX, -- x 
+        mX, -- x
         mY, -- y
         0, -- angle
         time + (t  * interval) )
-    end 
+    end
     coroutine.yield()
-    
+
 end
 
 -- handle boss's movement
@@ -189,11 +191,11 @@ function spell_1_boss_movement(host, dynob)
     oldXMultiplyValue = 0
     while true do
         xMultiply = math.random(-4,4)
-        yMultiply = math.random(0,3)    
+        yMultiply = math.random(0,3)
         oldXMultiplyValue = xMultiply
         while oldXMultiplyValue == xMultiply do
             xMultiply = math.random(-5,5)
-            
+
         end
         oldXMultiplyValue = xMultiply
         cppMoveObject(host,dynob,xMultiply * thresholdValue ,yMultiply * thresholdValue,100)
@@ -213,8 +215,8 @@ end
 -- handle delete souls when out of bound
 function handle_souls(host)
     x_border = 350
-    for i = 1 , soulsCount 
-    do 
+    for i = 1 , soulsCount
+    do
         x,y = cppGetObjectPos(souls[i])
         if (x > x_border or x < -x_border) then
             cppRemoveFromLua(host,souls[i])
@@ -252,7 +254,7 @@ function spawn_souls(host)
         soulsCount = soulsCount + 1
 
     end
-end 
+end
 
 -- end of move set : spell 1
 
@@ -268,7 +270,7 @@ function DynamicBehavior2(host,dynob)
 
     count = 2
     xthresHold = 175
-    while true do 
+    while true do
         if (count > 1) then
             count = -1
             cppMoveObject(host,dynob,0,170,25)
@@ -279,7 +281,7 @@ function DynamicBehavior2(host,dynob)
             coroutine.yield()
             cppOjbectPlayAnimation(dynob,"charge_end",1,true)
             bc.ftest_ma_custom_aff(host,dynob,"komachi/komachi_13.png",
-            3.425, -- speed 
+            3.425, -- speed
             10.0,  -- lifeTime
             3,     -- k
             2,     -- n
@@ -303,7 +305,7 @@ function DynamicBehavior2(host,dynob)
         cppHoldPosition(host,dynob,200,"charge_end")
         bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
         1, -- tier
-        1.7, -- speed 
+        1.7, -- speed
         10.0,  -- lifeTime
         2,     -- k
         2,     -- n
@@ -333,7 +335,7 @@ function moveset_spell_2(host)
 end
 
 function spell_2_behavior(host,dynob)
-    
+
     x_index = -2
     y_index = 5
     x_pos_threshold = 100
@@ -346,11 +348,11 @@ function spell_2_behavior(host,dynob)
     reset_time = 60
     increament_count = 1
 
-    while true do          
+    while true do
         if( start == false ) then
-            cppMoveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,10 + reset_time )    
+            cppMoveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,10 + reset_time )
             coroutine.yield()
-        end  
+        end
 
         if (start) then
             cppOjbectPlayAnimation(dynob,"cast",1,true)
@@ -361,7 +363,7 @@ function spell_2_behavior(host,dynob)
 
         cppHoldPosition(host,dynob,20,"charging",true)
         coroutine.yield()
-     
+
         cppHoldPosition(host,dynob,1,"charge_end",true)
         spell_2_side_coin(host,dynob,
         increament,         -- direction
@@ -383,7 +385,7 @@ function spell_2_behavior(host,dynob)
         cppHoldPosition(host,dynob,15,"charge_end",true)
         coroutine.yield()
         --cppHoldPosition(host,dynob,20,"charge_end",true)
-       
+
         if(reach_right) then
             if (x_index == 0) then
                 for i = 1, 3 do
@@ -408,9 +410,9 @@ function spell_2_behavior(host,dynob)
                     coroutine.yield()
                     cppMoveObject(host,dynob,0 * x_pos_threshold,y_pos_threshold * y_index,10)
                     coroutine.yield()
-                   
+
                 end
-               
+
                 cppOjbectPlayAnimation(dynob,"charging",1,false)
                 cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.2,15.5)
                 cppHoldPosition(host,dynob,80,"charging")
@@ -418,7 +420,7 @@ function spell_2_behavior(host,dynob)
 
                 bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
                 1, -- tier
-                1.4, -- speed 
+                1.4, -- speed
                 10.0,  -- lifeTime
                 3,     -- k
                 3,     -- n
@@ -434,7 +436,7 @@ function spell_2_behavior(host,dynob)
 
                 bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
                 0, -- tier
-                1.6, -- speed 
+                1.6, -- speed
                 10.0,  -- lifeTime
                 2,     -- k
                 1,     -- n
@@ -466,12 +468,12 @@ function spell_2_behavior(host,dynob)
             increament = 1
         end
 
-    end 
+    end
 end
 
 function spell_2_side_coin(host,dynob,direction,tier,tableName,tableAssets,speed,lifeTime,current_angle,angle_step,interval,time, addon_angle , coin_line, spread_time)
 
-    addon_value = 0 
+    addon_value = 0
 
     if (direction == -1) then
         addon_value = addon_angle --=  addon_value
@@ -502,9 +504,10 @@ function DynamicBehavior3_normal(host,dynob)
 
     x_index = 0
     y_index = 2
-    x_pos_threshold = 75 
+    x_pos_threshold = 75
     y_pos_threshold = 100
     t_angle = 30 * 0.0174532925
+
 
 
     while true do
@@ -513,15 +516,15 @@ function DynamicBehavior3_normal(host,dynob)
         cppMoveObject(host,dynob,0,100,20)
         coroutine.yield()
         cppHoldPosition(host,dynob,10,"charging")
-    
+
         coroutine.yield()
         cppHoldPosition(host,dynob,100,"charge_end")
         for angle_count = 1, 5 do
             bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",
             0.65, -- speed
-            10.0, -- lifeTime 
+            10.0, -- lifeTime
             5,   -- a
-            4,   -- b 
+            4,   -- b
             50,   -- r
             2.5,  -- angleStep
             0,    -- startAngle
@@ -532,6 +535,7 @@ function DynamicBehavior3_normal(host,dynob)
             coroutine.yield()
         end
         coroutine.yield()
+        cppAddBulletManipulatorPatern(host,"(a + b) * cos(t)", "(a + b) * sin(t)",45,"factor_table",factor_table,-1)
         for i = 1, 3 do
             x_index = math.random( -2,2 )
             y_index = math.random( 1,2 )
@@ -543,9 +547,9 @@ function DynamicBehavior3_normal(host,dynob)
             for angle_count = 1, 4 do
                 bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_blue.png",
                 0.65, -- speed
-                7.0, -- lifeTime 
+                7.0, -- lifeTime
                 9,   -- a
-                7,   -- b 
+                7,   -- b
                 3,    -- c
                 50,   -- r
                 0.5,  -- angleStep
@@ -559,9 +563,9 @@ function DynamicBehavior3_normal(host,dynob)
             for angle_count = 1, 3 do
                 bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_medium_red.png",
                 0.5, -- speed
-                10.0, -- lifeTime 
+                10.0, -- lifeTime
                 2,   -- a
-                3,   -- b 
+                3,   -- b
                 5,    -- c
                 50,   -- r
                 0.33,  -- angleStep
@@ -575,6 +579,7 @@ function DynamicBehavior3_normal(host,dynob)
             coroutine.yield()
             cppHoldPosition(host,dynob,1,"charge_end",false)
             coroutine.yield()
+            
         end
     end
 end
@@ -601,7 +606,7 @@ function DynamicBehavior3(host,dynob)
         0.85,    -- speed
         10.0,   -- lifeTime
         4,      -- n
-        6,      -- n2 
+        6,      -- n2
         3,      -- l1
         6,      -- l2
         1,      -- posneg
@@ -618,7 +623,7 @@ function DynamicBehavior3(host,dynob)
         0.85,    -- speed
         10.0,   -- lifeTime
         4,      -- n
-        6,      -- n2 
+        6,      -- n2
         3,      -- l1
         6,      -- l2
         -1,      -- posneg
@@ -636,7 +641,7 @@ function DynamicBehavior3(host,dynob)
         0.85,    -- speed
         10.0,   -- lifeTime
         4,      -- n
-        6,      -- n2 
+        6,      -- n2
         3,      -- l1
         6,      -- l2
         1,      -- posneg
@@ -653,7 +658,7 @@ function DynamicBehavior3(host,dynob)
         0.85,    -- speed
         10.0,   -- lifeTime
         4,      -- n
-        6,      -- n2 
+        6,      -- n2
         3,      -- l1
         6,      -- l2
         -1,      -- posneg
