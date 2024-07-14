@@ -1,90 +1,116 @@
-#pragma once
-
-
-#include <iostream>
-
-#include <math.h>
+#include <iterator>
+#include <regex>
 #include <string>
+#include <queue>
 #include <stack>
-#include <vector>
-
-
-
-
-#define HAS_A 1
-#define HAS_B 2
-#define HAS_C 4
-#define HAS_D 8
-#define HAS_E 16
-#define HAS_T 32
+#include <math.h>
+#include <iostream>
 
 namespace Feintgine
 {
 
-enum Operator{
-    NONE,
-    ADD,
-    SUB,
-    MUL,
-    DIV,
-    SQRT,
-    COS, 
-    SIN
-};
 
-
-
-struct clause
+class AST_Node
 {
-    clause(const std::string & _data, int index) : data(_data), originalIndex(index) {}
-    std::string data;
-    int originalIndex = -1;
-};
+public:
+    AST_Node();
+    ~AST_Node();
 
+    void init(const std::string & mathExp);
 
-struct operationSign
-{
-    operationSign(char _sign, int _index) : sign(_sign), index(_index) {}
-    char sign = ' ';
-    int index = -1;
-};
-
-
-struct AST_Node {
-
-    void parseData(const std::string & data);
-   
-    std::vector<std::stack <int>> bracketStackVector;
-    std::stack <int> bracketStack;
-    std::stack<clause> clauseStack;
-    std::vector<std::stack<clause>> clauses;
     
-    float value = 0.0;
-    AST_Node * left;
-    AST_Node * right;
-    Operator op = NONE;
+
+    float getValue()
+    {
+        calculateValue();
+        return m_value;
+    }
+
     void setFactors(const std::vector<float> & factors)
     {
         m_factors = factors;
     }
 
-    int getFactorIndex(char character);
-
-    float getValue() const;
-
-    std::vector<float> m_factors ;
-
-    void setTvalue(float * t_t_value);
-
-    void setRvalue(float * r_t_value);
-
     void setValue(char varName, float value);
 
-    float * t_value;
 
-    float * r_value;
+    void setTValue(float t) { m_t = t; }
+    void setRadius(float radius) { m_radius = radius; }
+
+private:
+
+    void calculateValue();
+
+    int getValueIndex(char c) 
+    {
+        if(c == 'a')
+            return 0;
+        if(c == 'b')
+            return 1;
+        if(c == 'c')
+            return 2;
+        if(c == 'd')
+            return 3;
+        if (c == 'r')
+            return 11;
+        if(c == 't')
+            return 12;
+        return -1;
+    }
+
+
+    std::vector<float> m_factors;
+    float m_t = 0.0f;
+    float m_radius = 30.0f;
+
+    float m_value = 0.0f;
+
+    std::string m_mathExp;
+    std::queue<std::string> m_mainQueue;
+    
+    std::regex word_regex; 
+
+    bool is_op(const std::string& token) 
+    {
+    return token == "+" || token == "-" 
+        || token == "*" || token == "/" || token == "^";
+    }
+    bool is_math_function(const std::string& token) 
+    {
+        return token == "sin" || token == "cos"
+            || token == "tan" || token == "sqrt";
+    }
+    int get_operation_order(const std::string& token) 
+    {
+        if(token == "+" || token == "-")
+            return 2;
+        if(token == "*" || token == "/")
+            return 3;
+        return 4;
+    }
+    float op_calc(const std::string& op, float a, float b) 
+    {
+        if(op == "+")
+            return a + b;
+        if(op == "-")
+            return a - b;
+        if(op == "*")
+            return a * b;
+        if(op == "/")
+            return a / b;
+        return 0.0f;
+    }
+    float func_calc(const std::string& func, float x) {
+        if(func == "sin")
+            return sin(x);
+        if(func == "cos")
+            return cos(x);
+        if(func == "tan")
+            return tan(x);
+        if(func == "sqrt")
+            return sqrt(x);
+        return 0.0f;
+    }
 
 };
-
-
 }

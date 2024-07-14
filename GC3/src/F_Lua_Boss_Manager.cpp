@@ -530,13 +530,13 @@ int lua_addBulletManipulatorPatern(lua_State * L)
 
 	lua_getglobal(L,tableName.c_str());
 	lua_pushnil(L);
-	std::vector<std::string> tAssets;
+	std::vector<float> factors;
 	while(lua_next(L,-2))
 	{
 		if(lua_isstring(L,-1))
 		{
-			std::string name = lua_tostring(L,-1);
-			tAssets.push_back(name);
+			
+			factors.push_back(lua_tonumber(L,-1));
 			//std::cout << "name " << name << "\n";
 		}
 		lua_pop(L,1);
@@ -544,11 +544,12 @@ int lua_addBulletManipulatorPatern(lua_State * L)
 	}
 	lua_pop(L,1);
 
-	std::vector<float> factors;
-	for(int i = 5; i <= lua_gettop(L); i++)
-	{
-		factors.push_back(lua_tonumber(L,i));
-	}
+	// std::vector<float> factors;
+	// for(int i = 5; i <= lua_gettop(L); i++)
+	// {	
+	// 	factors.push_back(lua_tonumber(L,i));
+	// }
+	
 
 	int bulletID = lua_tonumber(L,6);
 
@@ -919,8 +920,9 @@ void F_Lua_Boss_Manager::createPatern(const std::string & xNodeEquation, const s
 	PaternBehavior_from_lua * pat;
 	pat = new PaternBehavior_from_lua();
 	pat->setFactor(factors);
+	pat->setRadius(radius);
 	pat->create(xNodeEquation, yNodeEquation, radius);
-	
+	pat->setRate(0.001f);
 	
 	bulletManipulator.addPatern(pat,bulletID);
 

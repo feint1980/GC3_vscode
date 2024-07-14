@@ -56,13 +56,14 @@ public:
 				m_pos = m_destination;
 				m_vel = glm::vec2(0.0f);
 				m_destinationState = EnemyBulletBase::Following;
+				
 			}
 			else
 			{
 
 				glm::vec2 direction = glm::normalize(m_destination - m_pos);
 				m_pos += direction * (m_reachDestinationSpeed + distance * 0.01f) ;
-				
+				m_angle = atan2(direction.y, direction.x);
 
 			}
 		}
