@@ -30,7 +30,7 @@ public:
 
 private: 
 
-    glm::vec2 calculatePos(float t,float additionalAngle);
+    glm::vec2 calculatePos(float t);
 
     Feintgine::AST_Node m_xNode;
     Feintgine::AST_Node m_yNode;

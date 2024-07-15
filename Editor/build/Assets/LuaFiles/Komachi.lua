@@ -36,7 +36,7 @@ komachi_coins = {"komachi/komachi_12.png","komachi/komachi_11.png","komachi/koma
 
 charge_table = {"projectile/fire_1.png","projectile/fire_2.png","projectile/fire_3.png","projectile/fire_4.png"}
 
-factor_table = {2,9,7,6}
+factor_table = {2,7,12,6}
 
 -- Komachi param
 object = {posX = 0.0, posY = 0.0,
@@ -535,7 +535,7 @@ function DynamicBehavior3_normal(host,dynob)
             coroutine.yield()
         end
         coroutine.yield()
-        cppAddBulletManipulatorPatern(host,"(((a - b) / c) * cos(t) + ((c - a) / b) * sin(t)) * r","(((a - b) / c) * sin(t) + ((c - a) / b) * sin(t * t)) * r",45,"factor_table",factor_table,0)
+        cppAddBulletManipulatorPatern(host,"((a - b) * cos(t) + (c * cos((a / b - 1)*t))) *r","((a - b) * sin(t) - (c * sin((a / b - 1)*t))) *r",450,"factor_table",factor_table,0)
         --cppAddBulletManipulatorPatern(host,"a * 50","a - b * sin(t)",45,"factor_table",factor_table,0)
         for i = 1, 3 do
             x_index = math.random( -2,2 )

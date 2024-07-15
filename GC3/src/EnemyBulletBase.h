@@ -62,7 +62,7 @@ public:
 			{
 
 				glm::vec2 direction = glm::normalize(m_destination - m_pos);
-				m_pos += direction * (m_reachDestinationSpeed + distance * 0.01f) ;
+				m_pos += direction * (m_reachDestinationSpeed) * deltaTime * (distance * 0.01f); ;
 				m_angle = atan2(direction.y, direction.x);
 
 			}
@@ -71,8 +71,8 @@ public:
 		case EnemyBulletBase::Following:
 		{
 			glm::vec2 direction = glm::normalize(m_destination - m_pos);
-			m_pos += direction * m_reachDestinationSpeed;
-			m_angle = atan2(direction.y, direction.x) + degreeToRad(90);
+			m_pos += direction * m_reachDestinationSpeed * deltaTime ;
+			m_angle = atan2(direction.y, direction.x) ;//+ degreeToRad(90);
 		}
 			break;
 		default:
@@ -200,7 +200,7 @@ protected:
 
 	glm::vec2 m_destination;
 	bool m_isReachDestination = true;
-	float m_reachDestinationSpeed = 1.7f;
+	float m_reachDestinationSpeed = 4.7f;
 
 	destinationState m_destinationState = NotDefined;
 
