@@ -904,6 +904,10 @@ void EditorScreen::handleInput(Feintgine::InputManager & inputManager)
 		{
 			save_wat();
 		}
+		if (inputManager.isKeyPressed(SDLK_w))
+		{
+			m_tileStack.toggleActivation();
+		}
 	}
 	if (inputManager.isKeyDown(SDLK_LALT))
 	{

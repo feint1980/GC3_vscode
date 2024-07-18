@@ -17,6 +17,8 @@ namespace Feintgine
 		~F_TileStack();
 
 
+		void toggleActivation();
+
 		void drawIndicatior(DebugRender & renderer);
 		void update(float deltaTime);
 
@@ -45,6 +47,8 @@ namespace Feintgine
 		int m_row;
 
 		bool isPlace = false;
+
+		bool m_isActivated = false;
 
 		unsigned int m_topLeft_overlap;
 		unsigned int m_topRight_overlap;

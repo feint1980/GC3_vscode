@@ -19,9 +19,12 @@ namespace Feintgine
 
 	void F_TileStack::drawIndicatior(DebugRender & renderer)
 	{
-		glm::vec4 desRect = glm::vec4(m_pos, m_dim);
 
-		renderer.drawBox_center(desRect, m_color, 0.0f);
+		if(m_isActivated)
+		{
+			glm::vec4 desRect = glm::vec4(m_pos, m_dim);
+			renderer.drawBox_center(desRect, m_color, 0.0f);
+		}
 	}
 
 	void F_TileStack::update(float deltaTime)
@@ -53,36 +56,43 @@ namespace Feintgine
 	}
 
 
+	void F_TileStack::toggleActivation()
+	{
+		m_isActivated = !m_isActivated;
+	}
+
 	void F_TileStack::handleInput(InputManager & inputManager)
 	{
 
-		glm::vec2 screenPos = glm::vec2(350, 50);
-		glm::vec2 SpacingOffset = glm::vec2(STACK_SPACING);
-		glm::vec2 curMousePos = m_camera->convertScreenToWorld(inputManager.getMouseCoords() - screenPos);
-		float xbalanceVal = 0.0f;
-		float ybalanceVal = 0.0f;
-		if (curMousePos.x < 0)
+		if(m_isActivated)
 		{
-			xbalanceVal = SpacingOffset.x;
-		}
-		if (curMousePos.y < 0)
-		{
-			ybalanceVal = SpacingOffset.y;
-		}
-		int xVal = (curMousePos.x - xbalanceVal) / SpacingOffset.x;
-		int yVal = (curMousePos.y - ybalanceVal) / SpacingOffset.y;
-		glm::vec2 gridedPos = glm::vec2((xVal* SpacingOffset.x) + 32, (yVal*SpacingOffset.y) + 32);
-		m_pos = gridedPos;
+			glm::vec2 screenPos = glm::vec2(350, 50);
+			glm::vec2 SpacingOffset = glm::vec2(STACK_SPACING);
+			glm::vec2 curMousePos = m_camera->convertScreenToWorld(inputManager.getMouseCoords() - screenPos);
+			float xbalanceVal = 0.0f;
+			float ybalanceVal = 0.0f;
+			if (curMousePos.x < 0)
+			{
+				xbalanceVal = SpacingOffset.x;
+			}
+			if (curMousePos.y < 0)
+			{
+				ybalanceVal = SpacingOffset.y;
+			}
+			int xVal = (curMousePos.x - xbalanceVal) / SpacingOffset.x;
+			int yVal = (curMousePos.y - ybalanceVal) / SpacingOffset.y;
+			glm::vec2 gridedPos = glm::vec2((xVal* SpacingOffset.x) + 32, (yVal*SpacingOffset.y) + 32);
+			m_pos = gridedPos;
 
-		if (inputManager.isKeyDown(SDL_BUTTON_LEFT))
-		{
-			isPlace = true;
+			if (inputManager.isKeyDown(SDL_BUTTON_LEFT))
+			{
+				isPlace = true;
+			}
+			else
+			{
+				isPlace = false;
+			}
 		}
-		else
-		{
-			isPlace = false;
-		}
-
 
 	}
 
