@@ -198,8 +198,10 @@ namespace Feintgine
 		{
 			if(m_layers[i])
 			{
-				if (m_layers[i]->getName().c_str() == layerName.c_str())
+				std::cout << "find name " << m_layers[i]->getName() << " with name " << layerName << "\n";
+				if (m_layers[i]->getName() == layerName)
 				{
+					std::cout << "hit \n";
 					m_currentLayer = m_layers[i];
 					return;
 				}
@@ -233,13 +235,24 @@ namespace Feintgine
 
 
 		std::fstream output(destiny.c_str(), std::ios::out | std::ios::trunc | std::ios::binary);
-
+		//std::fstream output(destiny.c_str(), std::ios::out | std::ios::trunc);
+		//p_scene.Serial
 		if (!p_scene.SerializeToOstream(&output)) {
 			std::cout << "Failed to write scene " << m_name << " to " << destiny.c_str() << "  .\n";
 
 		}
 		else
 		{
+
+			for(int i = 0; i < p_scene.layerlist_size(); i++)
+			{
+				std::cout << "write layer " << p_scene.layerlist(i).name() << "\n";
+				for(int j = 0; j < p_scene.layerlist(i).objectlist_size(); j++)
+				{
+					//std::cout << "write object " << p_scene.layerlist(i).objectlist(j).k
+				}
+			}
+
 			std::cout << "Write scene OK \n";
 		}
 		

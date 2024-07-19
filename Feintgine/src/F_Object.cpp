@@ -6,10 +6,10 @@ namespace Feintgine {
 	void F_Object::loadFromFile(const std::string & filePath)
 	{
 		std::cout << "load file from " << filePath.c_str() << "\n";
-// 		if (!m_refab)
-// 		{
-// 			m_refab = new Proc_Object();
-// 		}
+		//if (!m_refab)
+		//{
+		m_refab = Proc_Object();
+		//}
 
 		m_loadObject.Clear();
 		m_refab.Clear();
@@ -304,8 +304,11 @@ namespace Feintgine {
 			std::cout << "write sprite END ======================= \n";
 
 		}
+		std::cout << "feint debug, reach here \n";
 		proc_object.set_name(name);
-		proc_object.SerializeAsString();
+		std::cout << "feint debug, reach here 2 \n";
+		//proc_object.SerializeAsString();
+		std::cout << "feint debug, reach here 3 \n";
 		std::cout << "check after loop +=========================\n";
 		for (int i = 0; i < proc_object.proc_spritelist_size(); i++)
 		{
@@ -313,6 +316,7 @@ namespace Feintgine {
 			std::cout << "texture patch :" <<  proc_object.proc_spritelist(i).proc_sprite().texturepath() << "\n";
 		}
 		std::string finalPath = filePath + name + ".fob";
+		std::cout << "final path : " << finalPath << "\n";
 		std::fstream output(finalPath.c_str(), std::ios::out | std::ios::trunc | std::ios::binary);
 	
 		if (!proc_object.SerializeToOstream(&output)) {
@@ -439,7 +443,9 @@ namespace Feintgine {
 
 	bool F_Object::isMouseInside(const glm::vec2 & mousePos)
 	{
+		
 		glm::vec2 halfdim = getFullDimObject() / 2.0f;
+		//std::cout << "check mouse inside " << mousePos.x << " " << mousePos.y  << "\n";
 		if (mousePos.x > m_pos.x - halfdim.x && mousePos.x < m_pos.x + halfdim.x && mousePos.y > m_pos.y - halfdim.y && mousePos.y < m_pos.y + halfdim.y)
 		{
 

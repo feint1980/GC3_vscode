@@ -28,6 +28,7 @@ namespace Feintgine
 		void drawLight(Feintgine::LightBatch & lightBatch);
 
 		Proc_Layer getProtoSer();
+		
 
 		void setObject(Proc_LoadObject & o1, Proc_LoadObject &o2);
 

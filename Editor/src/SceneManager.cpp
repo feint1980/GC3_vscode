@@ -404,8 +404,8 @@ void SceneManager::update(const glm::vec2 & mousePos)
 	if (m_currentScene)
 	{
 		//std::cout << "second  " << feint_common::Instance()->convertVec2toString(mousePos) << "\n";
-		// curMousePos = mousePos;
-		// m_currentScene->editorUpdate(mousePos);
+		curMousePos = mousePos;
+		m_currentScene->editorUpdate(mousePos);
 		
 	}
 }
