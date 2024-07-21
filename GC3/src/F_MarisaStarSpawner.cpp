@@ -77,9 +77,9 @@ void F_MarisaStarSpawner::draw(Feintgine::SpriteBatch & spriteBatch)
 }
 
 void F_MarisaStarSpawner::update(float deltaTime ,std::vector<FairyBase *>  enemy,
-	std::vector<EnemyBulletBase * > bullets)
+	std::vector<EnemyBulletBase * > bullets, const glm::vec2 & pos)
 {
-	updateSpawn(deltaTime);
+	updateSpawn(deltaTime,pos);
 	
 	for (int i = 0; i < m_stars.size(); i++)
 	{	
@@ -105,7 +105,7 @@ void F_MarisaStarSpawner::drawLight(Feintgine::LightBatch & lightBatch)
 	}
 }
 
-void F_MarisaStarSpawner::updateSpawn(float deltaTime)
+void F_MarisaStarSpawner::updateSpawn(float deltaTime, const glm::vec2 & pos)
 {
 	//std::cout << m_spawnCounter << "\n";
 	if (m_count > 0)
@@ -114,7 +114,7 @@ void F_MarisaStarSpawner::updateSpawn(float deltaTime)
 		if (m_spawnCounter > m_spawnRate)
 		{
 			glm::vec2 vel = glm::vec2(0, 6.0f);
-			glm::vec2 pos = GlobalValueClass::Instance()->getPlayer()->getPos();
+			// glm::vec2 pos = GlobalValueClass::Instance()->getPlayer()->getPos();
 			pos.y + 5.0f;
 			F_MarisaStar * star = new F_MarisaStar();
 

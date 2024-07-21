@@ -68,13 +68,17 @@ namespace Feintgine
 
 	void Fg_layer::draw(Feintgine::SpriteBatch & spriteBatch)
 	{
-		for (int i = 0; i < m_objects.size(); ++i)
+
+		if(m_isVisible)
 		{
-			m_objects[i].draw(spriteBatch);
-		}
-		for (int i = 0; i < m_brushes.size(); ++i)
-		{
-			m_brushes[i].draw(spriteBatch);
+			for (int i = 0; i < m_objects.size(); ++i)
+			{
+				m_objects[i].draw(spriteBatch);
+			}
+			for (int i = 0; i < m_brushes.size(); ++i)
+			{
+				m_brushes[i].draw(spriteBatch);
+			}
 		}
 	}
 
@@ -91,42 +95,62 @@ namespace Feintgine
 
 	void Fg_layer::drawLight(Feintgine::LightBatch & lightBatch)
 	{
-		for (int i = 0; i < m_objects.size(); ++i)
+		if(m_isVisible)
 		{
-			m_objects[i].drawLight(lightBatch);
+			for (int i = 0; i < m_objects.size(); ++i)
+			{
+				m_objects[i].drawLight(lightBatch);
+			}
 		}
 	}
 
-	Proc_Layer Fg_layer::getProtoSer()
+	void Fg_layer::show(bool value)
 	{
-		Proc_Layer m_proclayer;
+		m_isVisible = value;
+		std::string strStatus = "v";
+		if(!m_isVisible)
+		{
+			strStatus = "x";
+		}
+		if(m_visibleState)
+		{
+			m_visibleState->setText(strStatus);
+		}
 
-		m_proclayer.set_name(m_name);
-		m_proclayer.set_depth(m_depth);
+	}
+
+	Proc_Layer * Fg_layer::getProtoSer()
+	{
+		Proc_Layer * m_proclayer = new Proc_Layer();
+
+		m_proclayer->set_name(m_name);
+		m_proclayer->set_depth(m_depth);
 		for (int i = 0; i < m_objects.size(); i++)
 		{
-			Proc_LoadObject loadObject1 = m_objects[i].getProtoSer();
-			Proc_LoadObject loadObject2 = Proc_LoadObject(*m_proclayer.add_objectlist());
-			setObject(loadObject1, loadObject2);
+			Proc_LoadObject * loadObject1 = m_objects[i].getProtoSer();
+			//Proc_LoadObject*  loadObject2 = new  Proc_LoadObject(*m_proclayer->add_objectlist());
+			m_proclayer->add_objectlist()->CopyFrom(*loadObject1);
+			//setObject(loadObject1, loadObject2);
 		}
-		std::cout << "write layer " << m_proclayer.name() << " with " << m_proclayer.objectlist_size() << "object(s) \n";
+		std::cout << "write layer " << m_proclayer->name() << " with " << m_proclayer->objectlist_size() << "object(s) \n";
 		for (int i = 0; i < m_brushes.size(); i++)
 		{
-			Proc_Brush brush1 = m_brushes[i].getProtoSer();
-			Proc_Brush brush2 = Proc_Brush(*m_proclayer.add_brushlist());
-			setBrush(brush1, brush2);
+			Proc_Brush * brush1 = m_brushes[i].getProtoSer();
+			m_proclayer->add_brushlist()->CopyFrom(*brush1);
+			//Proc_Brush * brush2 = new Proc_Brush(*m_proclayer->add_brushlist());
+			//setBrush(brush1, brush2);
 		}
-		std::cout << "write layer " << m_proclayer.name() << " with " << m_proclayer.brushlist_size() << "brush(s) \n";
+		std::cout << "write layer " << m_proclayer->name() << " with " << m_proclayer->brushlist_size() << "brush(s) \n";
 
 		return m_proclayer;
 	}
 
-	void Fg_layer::setObject(Proc_LoadObject & o1, Proc_LoadObject &o2)
+	void Fg_layer::setObject(Proc_LoadObject * o1, Proc_LoadObject *o2)
 	{
 		o2 = o1;
 	}
 
-	void Fg_layer::setBrush(Proc_Brush & o1, Proc_Brush &o2)
+	void Fg_layer::setBrush(Proc_Brush * o1, Proc_Brush *o2)
 	{
 		o2 = o1;
 	}
@@ -164,6 +188,10 @@ namespace Feintgine
 		for (int i = 0; i < m_objects.size(); i++)
 		{
 			m_objects[i].showHoverBox(debugRenderer);
+		}
+		for(int i = 0; i < m_brushes.size(); ++i)
+		{
+			m_objects[i].drawColider(debugRenderer);
 		}
 	}
 

@@ -44,6 +44,8 @@ public:
 
 	void spawn();
 
+	void setPos(const glm::vec2 & pos);
+
 	void handleWave(float deltaTime);
 
 	glm::vec2 rotatePoint(const glm::vec2& pos, float angle);

@@ -21,11 +21,11 @@ public:
 
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 	void update( float deltaTime, std::vector<FairyBase *>  enemy,
-		std::vector<EnemyBulletBase * > bullets);
+		std::vector<EnemyBulletBase * > bullets, const glm::vec2 & m_pos);
 
 	void drawLight(Feintgine::LightBatch & lightBatch);
 
-	void updateSpawn(float deltaTime);
+	void updateSpawn(float deltaTime, const glm::vec2 & pos);
 
 	void addStar(const F_MarisaStar & star);
 

@@ -38,15 +38,15 @@ namespace Feintgine
 	}
 
 
-	Proc_Brush Brush::getProtoSer()
+	Proc_Brush * Brush::getProtoSer()
 	{
-		Proc_Brush proc_brush;
+		Proc_Brush * proc_brush = new Proc_Brush();
 
-		proc_brush.set_allocated_texturename(&m_filePath);
-		proc_brush.set_allocated_pos(new Proc_Vec2 (feint_common::Instance()->convertVec2ToProcVec2(m_pos)));
-		proc_brush.set_allocated_dim(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(m_dim)));
-		proc_brush.set_allocated_uv(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(m_uv)));
-		proc_brush.set_depth(m_depth);
+		proc_brush->set_allocated_texturename(&m_filePath);
+		proc_brush->set_allocated_pos(new Proc_Vec2 (feint_common::Instance()->convertVec2ToProcVec2(m_pos)));
+		proc_brush->set_allocated_dim(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(m_dim)));
+		proc_brush->set_allocated_uv(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(m_uv)));
+		proc_brush->set_depth(m_depth);
 		return proc_brush;
 	}
 

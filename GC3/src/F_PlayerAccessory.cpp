@@ -286,8 +286,11 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemie
 				break;
 
 				case BULLET_TYPE_MARISA_LASER:
+				{
+
+				
 					m_laser.setVisible(true);
-					//syncLaser();
+				}	//syncLaser();
 					break;
 				default:
 					break;
@@ -439,7 +442,7 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemie
 						break;
 						case BULLET_TYPE_MARISA_LASER:
 						{
-							m_laser.setVisible(true);
+							m_laser.setVisible(false);
 							//syncLaser();
 							//isLaserOff = false;
 						}
@@ -457,6 +460,8 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemie
 	}
 	else
 	{
+		
+
 		if (m_bulletType == BULLET_TYPE_MARISA_LASER)
 		{
 			
@@ -476,6 +481,10 @@ void F_PlayerAccessory::update(float deltaTime, std::vector<FairyBase *>  enemie
 			}
 		}
 		
+	}
+	if(!m_isFire)
+	{
+		m_laser.setVisible(false);
 	}
 	for (auto i = 0; i < m_bullets.size(); i++)
 	{

@@ -39,6 +39,8 @@ public:
 
 	void destroy();
 
+	bool isDestroy() const { return m_isDestroy; }
+
 	bool isRemoved() const { return m_isRemove; }
 
 	void registerParticleBatch(Feintgine::ParticleBatch2D * particleBatch);

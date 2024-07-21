@@ -22,7 +22,7 @@ namespace Feintgine
 		
 		void loadFromProto(const Proc_Brush & proc_brush);
 
-		Proc_Brush getProtoSer(); 
+		Proc_Brush * getProtoSer(); 
 
 		void draw(Feintgine::SpriteBatch & spriteBatch);
 		void init(const std::string & filePath, glm::vec2 pos, glm::vec2 dims, glm::vec2 uv,Feintgine::Color color,float depth);

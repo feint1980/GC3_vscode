@@ -58,8 +58,8 @@ namespace Feintgine
 							
 				update(deltaTime);
 				totalDeltaTime -= deltaTime;
-				
 				checkInput();
+				
 			}
 			
 			

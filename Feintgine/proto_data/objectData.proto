@@ -1,0 +1,90 @@
+syntax = "proto3";
+message Proc_Vec2
+{
+	 float valueX = 1;
+	 float valueY = 2;
+}
+
+message Proc_Vec3
+{
+	 float valueX = 1;
+	 float valueY = 2;
+	 float valueZ = 3;
+}
+
+message Proc_Vec4
+{
+	 float valueX = 1;
+	 float valueY = 2;
+	 float valueZ = 3;
+	 float valueW = 4;
+
+}
+
+message Proc_SpotLight
+{
+	 Proc_Vec2 pos = 1;
+	 Proc_Vec4 color = 2;
+	 Proc_Vec3 atenuation = 3;	
+}
+message Proc_ColiderBox
+{
+	 Proc_Vec2 pos = 1;
+	 Proc_Vec2 dim = 2;
+}
+
+message Proc_Sprite
+{
+	 string texturePath = 1;
+	 Proc_Vec2 dim = 2;
+	 string name = 3;
+	 string packetName = 4;
+	 bool isInvert = 5;
+}
+message Proc_OwnSprite
+{
+	 Proc_Sprite Proc_Sprite = 1;
+	 Proc_Vec2 offsetPos = 2;
+	 Proc_Vec2 offsetScale = 3;
+	 Proc_Vec4 color = 4;
+	 float depth = 5;
+	optional float angle = 6; 
+}
+message Proc_Object 
+{
+	 string name = 1;
+	repeated Proc_OwnSprite Proc_SpriteList = 2;
+	repeated Proc_SpotLight lightList = 3;
+	repeated Proc_ColiderBox coliderList = 4;
+
+}
+message Proc_LoadObject
+{
+	 Proc_Object refab = 1;
+	 Proc_Vec2 pos = 2;
+	 Proc_Vec4 color = 3;
+	 float angle = 4;
+	 Proc_Vec2 scale = 5;
+
+}
+message Proc_Brush
+{
+	 string textureName = 1;
+	 Proc_Vec2 pos = 2;
+	 Proc_Vec2 dim = 3;
+	 Proc_Vec2 uv = 4;
+	 float depth = 5;
+
+}
+message Proc_Layer
+{
+	 string name = 1;
+	 int32  depth = 2;
+	repeated Proc_LoadObject objectList = 3;
+	repeated Proc_Brush brushList = 4;
+}
+message Proc_Scene
+{
+	 string name = 1;
+	repeated Proc_Layer layerList = 2;
+}

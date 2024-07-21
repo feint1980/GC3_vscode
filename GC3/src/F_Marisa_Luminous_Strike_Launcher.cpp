@@ -63,17 +63,17 @@ void F_Marisa_Luminous_Strike_Launcher::draw(Feintgine::SpriteBatch & spriteBatc
 	{
 		m_chargeStar[i]->draw(spriteBatch);
 	}
-	if (m_mainStrike )
+	if (m_mainStrike && !m_mainStrike->isDestroy() )
 	{
 		m_mainStrike->draw(spriteBatch);
 	}
 }
 
-void F_Marisa_Luminous_Strike_Launcher::update(float deltaTime,std::vector<FairyBase *> enemy, std::vector<EnemyBulletBase * > bullets)
+void F_Marisa_Luminous_Strike_Launcher::update(float deltaTime,std::vector<FairyBase *> enemy, std::vector<EnemyBulletBase * > bullets,const glm::vec2 & pos)
 {
  	//m_mainStrike.update(deltaTime, enemy, bullets);
 // 
-	updateSpawn(deltaTime);
+	updateSpawn(deltaTime,pos);
 	for (int i = 0; i < m_chargeStar.size(); i++)
 	{
 		if (m_chargeStar[i]->isRemoved())
@@ -81,7 +81,7 @@ void F_Marisa_Luminous_Strike_Launcher::update(float deltaTime,std::vector<Fairy
 			//std::cout << "remove " << i << "\n";
 			m_chargeStar.erase(m_chargeStar.begin() + i);
 		}
-		m_chargeStar[i]->update(deltaTime, enemy, bullets);
+		m_chargeStar[i]->update(deltaTime, enemy, bullets,pos);
 	}
 	if (m_mainStrike)
 	{
@@ -108,7 +108,9 @@ void F_Marisa_Luminous_Strike_Launcher::drawLight(Feintgine::LightBatch & lightB
 	}
 }
 
-void F_Marisa_Luminous_Strike_Launcher::updateSpawn(float deltaTime)
+
+
+void F_Marisa_Luminous_Strike_Launcher::updateSpawn(float deltaTime, const glm::vec2 & pos)
 {
 	//float radius = 0.0f;
 	if (m_count > 0)
@@ -119,7 +121,7 @@ void F_Marisa_Luminous_Strike_Launcher::updateSpawn(float deltaTime)
 
 			float radius = feint_common::Instance()->getRandomNum(300, 500);
 			float splitAngle = degreeToRad(feint_common::Instance()->getRandomNum(0, 360));
-			glm::vec2 spawnPos = glm::vec2(cos(splitAngle) * radius, sin(splitAngle) * radius) + GlobalValueClass::Instance()->getPlayer()->getPos();
+			glm::vec2 spawnPos = glm::vec2(cos(splitAngle) * radius, sin(splitAngle) * radius) + pos;
 			//glm::vec2 spawnPos(100);
 			F_Marisa_Luminous_Charge * chargePoint = new F_Marisa_Luminous_Charge();
 			Feintgine::Color tColor = getStarColor(m_count % 5);
@@ -142,7 +144,7 @@ void F_Marisa_Luminous_Strike_Launcher::updateSpawn(float deltaTime)
 			//std::cout << "launch \n";
 			m_launched = true;
 			glm::vec2 vel = glm::vec2(0, 21.0f);
-			glm::vec2 pos = GlobalValueClass::Instance()->getPlayer()->getPos();
+			// glm::vec2 pos = GlobalValueClass::Instance()->getPlayer()->getPos();
 			pos.y + 5.0f;
 			//m_mainStrike = new F_Marisa_Luminous_Strike();
 
@@ -150,7 +152,7 @@ void F_Marisa_Luminous_Strike_Launcher::updateSpawn(float deltaTime)
 			//getStarColor(colorIndex)
 
 			m_mainStrike->init(glm::vec2(1.0f), m_chargeAnimation,
-				Feintgine::Color(255, 255, 255, 200), vel, pos, 10, 0.3f);
+				Feintgine::Color(255, 255, 255, 200), vel, pos, 1, 0.3f);
 			//m_mainStrike->registerParticleBatch(m_hitParticleBatch);
 			//m_mainStrike->setLifeTime(3.0f);
 		}

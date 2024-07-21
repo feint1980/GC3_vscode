@@ -65,7 +65,6 @@
 #include "LuaObjectEditorComponent.h"
 
 
-
 const int TYPE_ALL = -1;
 const int TYPE_TERRIAN = 0;
 const int TYPE_OBJECT = 1;
@@ -301,7 +300,7 @@ public:
 
 	void destroySceneCreator();
 
-	void addLayerFunc(const std::string &layerName, float layerDepth);
+	void addLayerFunc(const std::string &layerName, float layerDepth, Feintgine::Fg_layer * layer);
 
 	void updateList();
 

@@ -203,11 +203,13 @@ void SceneManager::closeCurrentScene()
 
 void SceneManager::loadSceneFromFile(const std::string & filePath, CEGUI::MultiColumnList * list)
 {
+	
 	if (!m_currentScene)
 	{
 		//createScene()
 		m_currentScene = new Feintgine::Fg_scene();
 		m_currentScene->loadSceneFromFile(filePath,list);
+		m_layerList = list;
 
 	}
 	else
@@ -232,6 +234,7 @@ void SceneManager::loadSceneFromFile(const std::string & filePath, CEGUI::MultiC
 		
 		std::cout << "reach after clear \n";
 		m_currentScene->loadSceneFromFile(filePath,list);
+		m_layerList = list;
 	}
 }
 
@@ -287,8 +290,6 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 					}
 					if (isGrid)
 					{
-
-
 						if (inputManager.isKeyDown(SDLK_LSHIFT))
 						{
 							if (inputManager.isKeyDown(SDL_BUTTON_LEFT))
@@ -299,18 +300,13 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 									m_currentLayer->addObjectToLayer(object);
 									savedPos = object.getPos();
 								}
-								
-								
 							}
 						}
 					}
 
 				}
-
-
 				if (m_currentLayer)
 				{
-
 					if (inputManager.isKeyPressed(SDLK_DELETE))
 					{
 						m_currentLayer->removeSelectedObjects();
@@ -329,6 +325,26 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 						{
 							m_currentLayer->handleSelectObject();
 						}
+					}
+					if(inputManager.isKeyPressed(SDLK_h))
+					{
+						std::string mState = "x";
+						bool val = m_currentLayer->isVisible();
+
+						if (val)
+						{
+							mState = "v";
+						}
+				
+						m_currentLayer->show(!val);
+						
+						
+						 if(m_layerList)
+						 {
+							m_layerList->handleUpdatedItemData();
+
+						 }
+						
 					}
 				}
 				

@@ -58,7 +58,7 @@ namespace Feintgine
 
 		void create(const Proc_Object & object,const glm::vec2 & pos , const glm::vec2 scale ,float angle, float depth);
 		
-		Proc_LoadObject getProtoSer();
+		Proc_LoadObject * getProtoSer();
 
 		void addSprite(const F_Sprite  & t_sprite,const glm::vec2 & t_posOffset,const glm::vec2 & t_scaleOffset,const  Feintgine::Color & t_color, float offsetAngle, float t_depth,int ID);
 
@@ -84,7 +84,7 @@ namespace Feintgine
 
 		void showHoverBox(Feintgine::DebugRender & debugRenderer);
 
-		Proc_SpotLight getLightSer(const glm::vec2 & pos, const glm::vec4 & color, const glm::vec3 & attennua);
+		Proc_SpotLight * getLightSer(const glm::vec2 & pos, const glm::vec4 & color, const glm::vec3 & attennua);
 		Proc_ColiderBox getColSer(const glm::vec2 & pos, const glm::vec2 & dim);
 	
 
@@ -166,7 +166,7 @@ namespace Feintgine
 		glm::vec4 m_color = glm::vec4(1);
 
 		Proc_LoadObject m_loadObject;
-		Proc_Object  m_refab;
+		Proc_Object  *m_refab;
 		
 		glm::vec2 m_pos;
 		glm::vec2 m_dim;

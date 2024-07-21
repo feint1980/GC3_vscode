@@ -18,17 +18,19 @@ public:
 
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 
-	void update(float deltaTime, std::vector<FairyBase *>  enemy,std::vector<EnemyBulletBase * > bullets);
+	void update(float deltaTime, std::vector<FairyBase *>  enemy,std::vector<EnemyBulletBase * > bullets,const glm::vec2 & pos);
 
 
 	void drawLight(Feintgine::LightBatch & lightBatch);
 
-	void updateSpawn(float deltaTime);
+	void updateSpawn(float deltaTime, const glm::vec2 & pos);
 	void loadAnimation(const std::string & animationPath);
 
 	void registerParticleBatch(Feintgine::ParticleBatch2D * particleBatch);
 
 	Feintgine::Color getStarColor(int index);
+
+	
 
 	void registerAudioEngine(Feintgine::AudioEngine * audioEngine);
 

@@ -19,9 +19,9 @@ F_Marisa_Luminous_Charge::~F_Marisa_Luminous_Charge()
 }
 
 void F_Marisa_Luminous_Charge::update(float deltaTime, std::vector<FairyBase *> enemy,
-	std::vector<EnemyBulletBase * > bullets)
+	std::vector<EnemyBulletBase * > bullets, const glm::vec2 & pos)
 {
-	glm::vec2 targetPos = GlobalValueClass::Instance()->getPlayer()->getPos();
+	glm::vec2 targetPos = pos;//GlobalValueClass::Instance()->getPlayer()->getPos();
 	glm::vec2 halfDim = GlobalValueClass::Instance()->getPlayer()->getDim();
 
 	direction = glm::normalize(targetPos - m_pos);

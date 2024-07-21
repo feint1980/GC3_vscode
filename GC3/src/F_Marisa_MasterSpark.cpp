@@ -213,14 +213,19 @@ bool F_Marisa_MasterSpark::checkColliderWithEnemy(const F_BaseEnemy & enemy)
 	return false;
 }
 
+void F_Marisa_MasterSpark::setPos(const glm::vec2 & pos)
+{
+	m_pos = pos + glm::vec2(0,5);
+}
+
 void F_Marisa_MasterSpark::update(float deltaTime, std::vector<FairyBase *>  enemy,
 	std::vector<EnemyBulletBase * > bullets)
 {
 
- 	if (GlobalValueClass::Instance()->getPlayer())
- 	{
-		m_pos = GlobalValueClass::Instance()->getPlayer()->getPos() + glm::vec2(0,5);
-	}
+ 	// if (GlobalValueClass::Instance()->getPlayer())
+ 	// {
+	// 	m_pos = GlobalValueClass::Instance()->getPlayer()->getPos() + glm::vec2(0,5);
+	// }
 	updateState(deltaTime);
 	updateScale(deltaTime);
 

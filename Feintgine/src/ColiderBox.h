@@ -13,18 +13,19 @@ public:
 	ColiderBox();
 	~ColiderBox();
 
-	bool checkInside(glm::vec2 mousePos);
+	bool checkInside(const glm::vec2 & mousePos);
 
 	void draw(Feintgine::DebugRender & renderer);
 
-	void init(glm::vec2 pos, glm::vec2 dim,int ID);
+	void init(const glm::vec2 & pos, const glm::vec2 & dim,int ID);
 
 	glm::vec2 getPos() const { return m_pos; }
 
 	glm::vec2 getDim() const { return m_dim; }
 
-	void setPos(glm::vec2 pos);
-	void setDim(glm::vec2 dim);
+	void setPos(const glm::vec2 & pos);
+	void setDim(const glm::vec2 & dim);
+	void setOffset(const glm::vec2 & offset);
 
 	void setSelected(bool value);
 
@@ -36,7 +37,7 @@ public:
 private:
 	glm::vec2 m_pos;
 	glm::vec2 m_dim;
-
+	glm::vec2 m_offset;
 	
 	Feintgine::Color m_color = Feintgine::Color(255, 0, 0, 255);
 	Feintgine::Color m_selectedColor = Feintgine::Color(255, 0, 255, 255);

@@ -1,0 +1,89 @@
+
+message Proc_Vec2
+{
+	required float valueX = 1;
+	required float valueY = 2;
+}
+
+message Proc_Vec3
+{
+	required float valueX = 1;
+	required float valueY = 2;
+	required float valueZ = 3;
+}
+
+message Proc_Vec4
+{
+	required float valueX = 1;
+	required float valueY = 2;
+	required float valueZ = 3;
+	required float valueW = 4;
+
+}
+
+message Proc_SpotLight
+{
+	required Proc_Vec2 pos = 1;
+	required Proc_Vec4 color = 2;
+	required Proc_Vec3 atenuation = 3;	
+}
+message Proc_ColiderBox
+{
+	required Proc_Vec2 pos = 1;
+	required Proc_Vec2 dim = 2;
+}
+
+message Proc_Sprite
+{
+	required string texturePath = 1;
+	required Proc_Vec2 dim = 2;
+	required string name = 3;
+	required string packetName = 4;
+}
+message Proc_OwnSprite
+{
+	required Proc_Sprite Proc_Sprite = 1;
+	required Proc_Vec2 offsetPos = 2;
+	required Proc_Vec2 offsetScale = 3;
+	required Proc_Vec4 color = 4;
+	required float depth = 5;
+	optional float angle = 6; 
+}
+message Proc_Object 
+{
+	required string name = 1;
+	repeated Proc_OwnSprite Proc_SpriteList = 2;
+	repeated Proc_SpotLight lightList = 3;
+	repeated Proc_ColiderBox coliderList = 4;
+
+}
+message Proc_LoadObject
+{
+	required Proc_Object refab = 1;
+	required Proc_Vec2 pos = 2;
+	required Proc_Vec4 color = 3;
+	required float angle = 4;
+	required Proc_Vec2 scale = 5;
+
+}
+message Proc_Brush
+{
+	required string textureName = 1;
+	required Proc_Vec2 pos = 2;
+	required Proc_Vec2 dim = 3;
+	required Proc_Vec2 uv = 4;
+	required float depth = 5;
+
+}
+message Proc_Layer
+{
+	required string name = 1;
+	required int32  depth = 2;
+	repeated Proc_LoadObject objectList = 3;
+	repeated Proc_Brush brushList = 4;
+}
+message Proc_Scene
+{
+	required string name = 1;
+	repeated Proc_Layer layerList = 2;
+}

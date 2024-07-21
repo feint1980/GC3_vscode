@@ -10,7 +10,7 @@ public:
 
 
 	void update(float deltaTime, std::vector<FairyBase *>  enemy,
-		std::vector<EnemyBulletBase * > bullets);
+		std::vector<EnemyBulletBase * > bullets, const glm::vec2 & pos);
 
 	void destroy();
 

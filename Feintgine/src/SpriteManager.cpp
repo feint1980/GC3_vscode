@@ -124,25 +124,45 @@ namespace Feintgine {
 
 		scan_dir(name, level);
 		int total_files = m_SpritePackets.size();
-		int begin = 0;
-		int end;
-		int chunk = total_files > max_threads ? total_files / max_threads : 1;
-        int remain_files = total_files % max_threads;
-		for (int i = 0; i < std::min(max_threads, total_files); ++i)
-        {
-            end = begin + chunk - 1 + (remain_files + (i + 1) * chunk == total_files ? remain_files : 0);
+		// int begin = 0;
+		// int end;
+		// int chunk;
+		// if(total_files > max_threads)
+		// {
+		// 	chunk = total_files / max_threads;
 			
-            std::thread t = std::thread([this, begin, end](){
-			for(int i = begin; i <= end; ++i) 
-			{
-                m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-				//std::cout << "thread " << i << " " << m_storedKey[i].c_str() <<  " done \n";
-				m_packetCount++;
-			}
-            });
-            m_Threads.push_back(std::move(t));
-            begin = end + 1;
-        }
+		// }
+		// else
+		// {
+		// 	chunk = 1;
+		// }
+        int remain_files = total_files % max_threads;
+		for(int i = 0 ; i < total_files ; i++)
+		{
+			 std::thread t = std::thread([this,i](){
+					  m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+				   m_packetCount++;
+				 
+			 });
+	
+			 m_Threads.push_back(std::move(t));
+		}
+		// for (int i = 0; i < std::min(max_threads, total_files); ++i)
+        // {
+        //     end = begin + chunk - 1 +
+		// 	 (remain_files + (i + 1) * chunk == total_files ? remain_files : 0);
+			
+        //     std::thread t = std::thread([this, begin, end](){
+		// 	for(int i = begin; i <= end; ++i) 
+		// 	{
+        //         m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+		// 		//std::cout << "thread " << i << " " << m_storedKey[i].c_str() <<  " done \n";
+		// 		m_packetCount++;
+		// 	}
+        //     });
+        //     m_Threads.push_back(std::move(t));
+        //     begin = end + 1;
+        // }
 		for(int i = 0; i < m_Threads.size(); i++)
 		{
 			if(m_Threads[i].joinable())

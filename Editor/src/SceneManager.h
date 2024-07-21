@@ -91,6 +91,8 @@ private:
 
 	int m_currentMode = SELECT_MODE;
 
+	CEGUI::MultiColumnList * m_layerList = nullptr;
+
 	glm::vec2 curMousePos;
 
 	bool i_move = false;

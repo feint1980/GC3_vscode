@@ -152,6 +152,7 @@ void F_Marisa_Luminous_Strike::destroy()
 		}
 
 		m_isDestroy = true;
+		std::cout << "destroy ed \n";
 	}
 	
 }
@@ -209,12 +210,12 @@ void F_Marisa_Luminous_Strike::update(float deltaTime, std::vector<FairyBase *> 
 		{
 			//std::cout << "asrhhh \n";
 			m_alphaTime -= 0.05f * deltaTime;
-			if (!m_animation.isPlaying())
-			{
+			// if (!m_animation.isPlaying())
+			// {
 				m_color.a = 0.0f;
 				m_isRemove = true;
 				count = 1;
-			}
+			//}
 		}
 	}
 	

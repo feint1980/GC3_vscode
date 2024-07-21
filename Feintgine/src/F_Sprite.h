@@ -45,9 +45,9 @@ namespace Feintgine {
 		glm::vec2 getAnchor() const { return m_anchor; }
 		glm::vec2 getTextureDim() const { return m_textureDim; }
 
-		Proc_Vec2 convertVec2ToProcVec2(const glm::vec2 & v2);
-		Proc_Vec3 convertVec3ToProcVec3(const glm::vec3 & v3);
-		Proc_Vec4 convertVec4ToProcVec4(const glm::vec4 & v4);
+		Proc_Vec2 * convertVec2ToProcVec2(const glm::vec2 & v2);
+		Proc_Vec3 * convertVec3ToProcVec3(const glm::vec3 & v3);
+		Proc_Vec4 * convertVec4ToProcVec4(const glm::vec4 & v4);
 
 		std::string getTexturePath() const { return m_texturePath; }
 

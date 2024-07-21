@@ -2982,8 +2982,10 @@ void EditorScreen::initLayerList()
 
 bool EditorScreen::addLayer(const CEGUI::EventArgs &e)
 {
-	
-	addLayerFunc(m_layerName->getText().c_str(),std::stof(m_layerDepth->getText().c_str()));
+	Feintgine::Fg_layer *layer = new Feintgine::Fg_layer();
+	layer->create(m_layerName->getText().c_str(), std::stof(m_layerDepth->getText().c_str()));
+	m_sceneManager.getCurrentScene()->addLayer(layer);
+	addLayerFunc(m_layerName->getText().c_str(),std::stof(m_layerDepth->getText().c_str()),layer);
 	if (m_layers->getFirstSelectedItem())
 	{
 		//m_layers->getFirstSelectedItem()->setSelected(false);
@@ -2995,9 +2997,7 @@ bool EditorScreen::addLayer(const CEGUI::EventArgs &e)
 		
 	}
 
-	Feintgine::Fg_layer *layer = new Feintgine::Fg_layer();
-	layer->create(m_layerName->getText().c_str(), std::stof(m_layerDepth->getText().c_str()));
-	m_sceneManager.getCurrentScene()->addLayer(layer);
+	
 
 	m_addLayerWindow->destroy();
 	
@@ -3077,7 +3077,18 @@ void EditorScreen::save_wat()
 // 			return;
 // 		}
 // 	}
+	
 	m_sceneManager.saveScene();
+
+	//m_layers->clear
+
+	if (m_layers)
+	{
+		for (int i = m_layers->getRowCount() -1; i >= 0 ; i--)
+		{
+			m_layers->removeRow(i);
+		}
+	}
 }
 
 bool EditorScreen::selectCurrentLayer(const CEGUI::EventArgs &e)
@@ -3096,7 +3107,7 @@ void EditorScreen::updateListedLayer()
 
 }
 
-void EditorScreen::addLayerFunc(const std::string &layerName, float layerDepth)
+void EditorScreen::addLayerFunc(const std::string &layerName, float layerDepth, Feintgine::Fg_layer * layer )
 {
 
 	int i_layerDepth = layerDepth;
@@ -3112,6 +3123,8 @@ void EditorScreen::addLayerFunc(const std::string &layerName, float layerDepth)
 	CEGUI::uint firstRow = m_layers->addRow(firstRowItem1, 1);
 	m_layers->setItem(firstRowItem2, 2, firstRow);
 	m_layers->setItem(firstRowItem3, 3, firstRow);
+	layer->setGUIText(firstRowItem3);
+
 
 }
 
@@ -3257,7 +3270,9 @@ bool EditorScreen::selectScene(const CEGUI::EventArgs &e)
 			t_path += m_sceneList->getFirstSelectedItem()->getText().c_str();
 			//clearLayer();
 			std::cout << "load scene from file " << t_path << "\n";
+			//m_layers.clear
 			m_sceneManager.loadSceneFromFile(t_path,m_layers);
+			
 			//m_scene.loadSceneFromFile(t_path);
 	
 	

@@ -27,12 +27,12 @@ namespace Feintgine
 
 		void drawLight(Feintgine::LightBatch & lightBatch);
 
-		Proc_Layer getProtoSer();
+		Proc_Layer * getProtoSer();
 		
 
-		void setObject(Proc_LoadObject & o1, Proc_LoadObject &o2);
+		void setObject(Proc_LoadObject * o1, Proc_LoadObject *o2);
 
-		void setBrush(Proc_Brush & o1, Proc_Brush &o2);
+		void setBrush(Proc_Brush * o1, Proc_Brush *o2);
 
 		void setName(const std::string & name);
 
@@ -58,11 +58,23 @@ namespace Feintgine
 		void handleDeselectObject();
 		void removeSelectedObjects();
 
+		void show(bool value);
+
 		void moveSelectedObject(const glm::vec2 & offset,bool first);
 
 		void clearObjectOffset();
 		
 		void update(float deltaTime);
+
+		//int 
+		void setGUIText(CEGUI::ListboxTextItem * visibleState)
+		{
+			m_visibleState = visibleState;
+		}
+
+		CEGUI::ListboxTextItem * getGUIText() const { return m_visibleState; }
+
+		bool isVisible() const { return m_isVisible; }
 	private:
 		int m_depth;
 		bool startMoving = false;
@@ -71,6 +83,10 @@ namespace Feintgine
 		std::vector<Feintgine::F_Object> m_objects;
 
 		std::vector<Feintgine::Brush> m_brushes;
+
+		CEGUI::ListboxTextItem * m_visibleState = nullptr;
+
+		bool m_isVisible = true;
 
 		glm::vec2 anchorPos;
 	};

@@ -31,6 +31,13 @@ namespace Feintgine
 				list->removeRow(i);
 			}
 		}
+		for(int i = 0; i < m_layers.size(); i++)
+		{
+			m_layers[i]->getObjects().clear();
+			m_layers.erase(m_layers.begin() + i);
+		}
+
+		m_layers.clear();
 
 		std::cout << "start loading scene \n";
 
@@ -65,10 +72,14 @@ namespace Feintgine
 
 				if (list)
 				{
+					
 					CEGUI::uint firstRow = list->addRow(firstRowItem1, 1);
 					list->setItem(firstRowItem2, 2, firstRow);
 					list->setItem(firstRowItem3, 3, firstRow);
+					re_layer->setGUIText(firstRowItem3);
+				
 				}
+
 				
 				m_layers.push_back(std::move(re_layer));
 				
@@ -97,17 +108,18 @@ namespace Feintgine
 		m_layers.push_back(std::move(re_layer));
 	}
 
-	Proc_Scene Fg_scene::getProtoSer()
+	Proc_Scene * Fg_scene::getProtoSer()
 	{
-		Proc_Scene returnScene;
+		Proc_Scene * returnScene = new Proc_Scene();
 
-		returnScene.set_name(m_name);
+		returnScene->set_name(m_name);
 
 		for (int i = 0; i < m_layers.size(); i++)
 		{
 			std::cout << "layer " << m_layers[i]->getName() << " with " << m_layers[i]->getObjects().size() << " object \n";
-			Proc_Layer layer = m_layers[i]->getProtoSer();
-			setLayer(layer, *returnScene.add_layerlist());
+			Proc_Layer  * layer = m_layers[i]->getProtoSer();
+			returnScene->add_layerlist()->CopyFrom(*layer);
+			//setLayer(layer, returnScene->add_layerlist());
 		}
 
 
@@ -220,7 +232,7 @@ namespace Feintgine
 
 	void Fg_scene::saveScene(const std::string & savePath)
 	{
-		Proc_Scene p_scene;
+		Proc_Scene * p_scene = new Proc_Scene();
 
 		//p_scene.set_name(m_name);
 		//std::cout << "this scene has " << m_layers.size() << "layer \n";
@@ -237,17 +249,17 @@ namespace Feintgine
 		std::fstream output(destiny.c_str(), std::ios::out | std::ios::trunc | std::ios::binary);
 		//std::fstream output(destiny.c_str(), std::ios::out | std::ios::trunc);
 		//p_scene.Serial
-		if (!p_scene.SerializeToOstream(&output)) {
+		if (!p_scene->SerializeToOstream(&output)) {
 			std::cout << "Failed to write scene " << m_name << " to " << destiny.c_str() << "  .\n";
 
 		}
 		else
 		{
 
-			for(int i = 0; i < p_scene.layerlist_size(); i++)
+			for(int i = 0; i < p_scene->layerlist_size(); i++)
 			{
-				std::cout << "write layer " << p_scene.layerlist(i).name() << "\n";
-				for(int j = 0; j < p_scene.layerlist(i).objectlist_size(); j++)
+				std::cout << "write layer " << p_scene->layerlist(i).name() << "\n";
+				for(int j = 0; j < p_scene->layerlist(i).objectlist_size(); j++)
 				{
 					//std::cout << "write object " << p_scene.layerlist(i).objectlist(j).k
 				}
@@ -259,7 +271,7 @@ namespace Feintgine
 
 	}
 
-	void Fg_scene::setLayer(Proc_Layer &l1, Proc_Layer &l2)
+	void Fg_scene::setLayer(Proc_Layer * l1, Proc_Layer * l2)
 	{
 		l2 = l1;
 	}

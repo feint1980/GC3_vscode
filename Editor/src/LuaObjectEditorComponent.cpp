@@ -47,6 +47,16 @@ void LuaObjectEditorComponent::loadGUI(Feintgine::GUI * gui)
 		(m_gui->createWidget("TaharezLook/Checkbox", glm::vec4(0.75, 0.05, 0.05, 0.05),
 			glm::vec4(0), "m_playerEnableTogger"));
 
+	m_playerEnableTogger2 = static_cast<CEGUI::ToggleButton *>
+		(m_gui->createWidget("TaharezLook/Checkbox", glm::vec4(0.75, 0.1, 0.05, 0.05),
+			glm::vec4(0), "m_playerEnableTogger2"));
+	
+	m_playerEnableTogger3 = static_cast<CEGUI::ToggleButton *>
+		(m_gui->createWidget("TaharezLook/Checkbox", glm::vec4(0.75, 0.15, 0.05, 0.05),
+			glm::vec4(0), "m_playerEnableTogger3"));
+	
+	
+
 	m_toggleUpdate->subscribeEvent(CEGUI::PushButton::EventClicked,
 		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::toggleUpdate, this));
 
@@ -68,17 +78,48 @@ void LuaObjectEditorComponent::loadGUI(Feintgine::GUI * gui)
 	m_playerEnableTogger->subscribeEvent(CEGUI::ToggleButton::EventMouseClick, 
 		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::togglePlayer, this));
 
+	m_playerEnableTogger2->subscribeEvent(CEGUI::ToggleButton::EventMouseClick, 
+		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::togglePlayer2, this));
+
+	m_playerEnableTogger3->subscribeEvent(CEGUI::ToggleButton::EventMouseClick, 
+		CEGUI::Event::Subscriber(&LuaObjectEditorComponent::togglePlayer3, this));
+
+	m_playerEnableTogger3->setSelected(true);
+
+}
+
+bool LuaObjectEditorComponent::togglePlayer2(const CEGUI::EventArgs &e)
+{
+
+	// if(m_playerEnableTogger2->isSelected())
+	// {
+		m_player.clearData();
+		//reloadPlayer(PLAYER_CHARACTER_MARISA);
+	//}
+	m_playerEnableTogger->setSelected(!m_playerEnableTogger2->isSelected());
+	m_playerEnableTogger3->setSelected(!m_playerEnableTogger2->isSelected());
+	return true;
 }
 
 bool LuaObjectEditorComponent::togglePlayer(const CEGUI::EventArgs &e)
 {
 
-	if(m_playerEnableTogger->isSelected())
-	{
-		//m_player.clearData();
+	// if(m_playerEnableTogger->isSelected())
+	// {
+		m_player.clearData();
 		//reloadPlayer(PLAYER_CHARACTER_REIMU);
-	}
+	//}
 
+	m_playerEnableTogger2->setSelected(!m_playerEnableTogger->isSelected());
+	m_playerEnableTogger3->setSelected(!m_playerEnableTogger->isSelected());
+	return true;
+}
+
+bool LuaObjectEditorComponent::togglePlayer3(const CEGUI::EventArgs &e)
+{
+
+	m_playerEnableTogger2->setSelected(!m_playerEnableTogger3->isSelected());
+	m_playerEnableTogger->setSelected(!m_playerEnableTogger3->isSelected());
 	return true;
 }
 
@@ -143,6 +184,7 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	m_lightBatch.initShader(&m_shader);
 
 	update(1);
+	reloadPlayer(1);
 	//loadMoveset("");
 }
 
@@ -233,10 +275,10 @@ void LuaObjectEditorComponent::loadShader(const std::string & vertexPath, const 
 void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintgine::DebugRender & debug)
 {
 
-	 //glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	 //glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	// glEnable(GL_BLEND);
-	// glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	 glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	 glEnable(GL_BLEND);
+	 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	m_frameBuffer.bind();
 	glViewport(m_drawScreen.x, m_drawScreen.y, m_drawScreen.z, m_drawScreen.w);
@@ -252,27 +294,44 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
 	GLint dayLightIndex = m_shader.getUniformLocation("dayLight");
-	glUniform3f(dayLightIndex, 1.0f, 1.0f, 1.0f);
+	glUniform3f(dayLightIndex, ambient * 1.0f, ambient * 1.0f, ambient * 1.0f);
 
 	if(toogleDrawLight)
 	{
-		m_lightBatch.begin();
-		//m_player.drawLight(m_lightBatch);
-		m_luaObjectManager.drawLight(m_lightBatch);
-		//m_particleEngine.drawLight(m_lightBatch);
-		m_lightBatch.renderLight();
+		if(!m_playerEnableTogger3->isSelected())
+		{
+			m_lightBatch.begin();
+			//m_player.drawLight(m_lightBatch);
+			if(m_playerEnableTogger->isSelected())
+			{
+				m_luaObjectManager.drawLight(m_lightBatch);
+			}
+			
+			if(m_playerEnableTogger2->isSelected())
+			{
+				m_luaObjectManager.drawLight2(m_lightBatch);
+			}
+			//m_particleEngine.drawLight(m_lightBatch);
+			m_lightBatch.renderLight();
+		}
 	}
 	
 	spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 	bg.draw(spriteBatch);
 	shadowing.draw(spriteBatch);
 
-	
-	
 	m_luaObjectManager.draw(spriteBatch);
-	if(m_playerEnableTogger->isSelected())
+	if(!m_playerEnableTogger3->isSelected())
 	{
-		m_luaObjectManager.drawPlayer(spriteBatch);
+		if(m_playerEnableTogger->isSelected())
+		{
+			m_luaObjectManager.drawPlayer(spriteBatch);
+		}
+		if(m_playerEnableTogger2->isSelected())
+		{
+			m_luaObjectManager.drawPlayer2(spriteBatch);
+		}
+		
 		//m_player.draw(spriteBatch);
 		//m_kanjiEffectManager->draw(spriteBatch);
 		//m_kanjiEffectManager.draw(m_spriteBatch);
@@ -332,6 +391,10 @@ void LuaObjectEditorComponent::drawSpellcard(Feintgine::SpriteBatch & spriteBatc
 	{
 		m_luaObjectManager.drawPlayerSpellcard(spriteBatch);
 		//m_player.drawSpellSelector(spriteBatch);
+	}
+	if(m_playerEnableTogger2->isSelected())
+	{
+		m_luaObjectManager.drawPlayerSpellcard2(spriteBatch);
 	}
 	
 	//m_pauseMenu.drawContext()
@@ -397,6 +460,14 @@ void LuaObjectEditorComponent::handleInput(Feintgine::InputManager & inputManage
 	{
 		internalToggleUpdate();
 	}
+	if(inputManager.isKeyPressed(SDLK_F6))
+	{
+		toogleDrawLight = !toogleDrawLight;
+	}
+	if(inputManager.isKeyPressed(SDLK_F7))
+	{
+		ambient = !ambient;
+	}
 	m_luaObjectManager.handleInput(inputManager);
 	//m_player.handleInput(inputManager);
 
@@ -415,6 +486,8 @@ void LuaObjectEditorComponent::showGUI(bool value)
 		m_bossList->show();
 		m_refreshData->show();
 		m_playerEnableTogger->show();
+		m_playerEnableTogger2->show();
+		m_playerEnableTogger3->show();
 	}
 	else
 	{
@@ -426,7 +499,8 @@ void LuaObjectEditorComponent::showGUI(bool value)
 		m_bossList->hide();
 		m_refreshData->hide();
 		m_playerEnableTogger->hide();
-
+		m_playerEnableTogger2->hide();
+		m_playerEnableTogger3->hide();
 	}
 
 	m_bulletCount->setVisible(value);
@@ -498,13 +572,18 @@ void LuaObjectEditorComponent::update(float deltaTime)
 			//m_player.update(deltaTime,m_enemies, m_bullets );
 		}
 
+		if(m_playerEnableTogger2->isSelected())
+		{
+			m_luaObjectManager.updatePlayer2(deltaTime, m_enemies, m_bullets);
+		}
+
 
 		// for (int i = 0; i < m_exlosions.size(); i++)
 		// {
 		// 	m_exlosions[i].update(deltaTime);
 		// }
 		bg.update(deltaTime);
-		//m_effectBatch.update(deltaTime);
+		m_effectBatch.update(deltaTime);
 	}
 }
 

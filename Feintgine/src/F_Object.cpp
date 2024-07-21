@@ -8,11 +8,11 @@ namespace Feintgine {
 		std::cout << "load file from " << filePath.c_str() << "\n";
 		//if (!m_refab)
 		//{
-		m_refab = Proc_Object();
+		m_refab = new  Proc_Object();
 		//}
 
 		m_loadObject.Clear();
-		m_refab.Clear();
+		m_refab->Clear();
 		m_lightListPos.clear();
 		m_lightListAttenuation.clear();
 		m_lightListColor.clear();
@@ -21,49 +21,49 @@ namespace Feintgine {
 		m_filePath = filePath.c_str();
 		//Proc_Object proc_object;
 		std::fstream input(filePath.c_str(), std::ios::in | std::ios::binary);
-		if (!m_refab.ParseFromIstream(&input))
+		if (!m_refab->ParseFromIstream(&input))
 		{
 			std::cout << "Failed to read object :  " << filePath << "\n";
 		}
 		else
 		{
-			m_name = m_refab.name();
+			m_name = m_refab->name();
 			//std::cout << "loading object name " << m_name << "\n";
 			m_sprites.clear();
-			for (int i = 0; i <m_refab.proc_spritelist_size(); i++)
+			for (int i = 0; i <m_refab->proc_spritelist_size(); i++)
 			{
 				//std::cout << " layer index " << i << "has " << s_scence.layers(i).objects_size() << "object \n";
 
 				F_Sprite sprite;
-				sprite = Feintgine::SpriteManager::Instance()->getSprite(m_refab.proc_spritelist(i).proc_sprite().packetname() + "/" + m_refab.proc_spritelist(i).proc_sprite().name());
+				sprite = Feintgine::SpriteManager::Instance()->getSprite(m_refab->proc_spritelist(i).proc_sprite().packetname() + "/" + m_refab->proc_spritelist(i).proc_sprite().name());
 				//sprite.createFromProc(proc_object.proc_spritelist(i).proc_sprite());
 				//glm::vec2 offsetPos = glm::vec2(0);
 				//glm::vec2 offsetScale = glm::vec2(1);
-				glm::vec2 offsetPos = feint_common::Instance()->convertProcVec2ToVec2(m_refab.proc_spritelist(i).offsetpos());
-				glm::vec2 offsetScale = feint_common::Instance()->convertProcVec2ToVec2(m_refab.proc_spritelist(i).offsetscale());
+				glm::vec2 offsetPos = feint_common::Instance()->convertProcVec2ToVec2(m_refab->proc_spritelist(i).offsetpos());
+				glm::vec2 offsetScale = feint_common::Instance()->convertProcVec2ToVec2(m_refab->proc_spritelist(i).offsetscale());
 				//std::cout << "offset Pos "
 				//glm::vec2 offsetScale = convertProcVec2ToVec2(proc_object.proc_spritelist(i).offsetscale());
-				glm::vec4 t_color  = feint_common::Instance()->convertProcVec4ToVec4(m_refab.proc_spritelist(i).color());
+				glm::vec4 t_color  = feint_common::Instance()->convertProcVec4ToVec4(m_refab->proc_spritelist(i).color());
 				t_color *= m_color;
 				
 
 				//prite.setInvert(m_refab.proc_spritelist(i).proc_sprite().);
-				sprite.setInvert(m_refab.proc_spritelist(i).proc_sprite().isinvert());
+				sprite.setInvert(m_refab->proc_spritelist(i).proc_sprite().isinvert());
 				//Feintgine::Color color = Feintgine::Color(255, 255, 255, 255);
 				//std::cout << "value of color loaded is " << v_color.x << "\n";
 				Feintgine::Color color = Feintgine::Color(t_color.x * 255.0f, t_color.y * 255.0f, t_color.z * 255.0f, t_color.w * 255.0f);
-				addSprite(sprite, offsetPos, offsetScale, color, m_refab.proc_spritelist(i).angle(), m_refab.proc_spritelist(i).depth(), i);
+				addSprite(sprite, offsetPos, offsetScale, color, m_refab->proc_spritelist(i).angle(), m_refab->proc_spritelist(i).depth(), i);
 				//addSprite()
 
 			}
-			for (int i = 0; i < m_refab.lightlist_size(); i++)
+			for (int i = 0; i < m_refab->lightlist_size(); i++)
 			{
 				//std::cout << " layer index " << i << "has " << s_scence.layers(i).objects_size() << "object \n";
 	
-				glm::vec2 pos = feint_common::Instance()->convertProcVec2ToVec2(m_refab.lightlist(i).pos());
+				glm::vec2 pos = feint_common::Instance()->convertProcVec2ToVec2(m_refab->lightlist(i).pos());
 				pos += m_pos;
-				glm::vec3 attenuation = feint_common::Instance()->convertProcVec3ToVec3(m_refab.lightlist(i).atenuation());
-				glm::vec4 color = feint_common::Instance()->convertProcVec4ToVec4(m_refab.lightlist(i).color());
+				glm::vec3 attenuation = feint_common::Instance()->convertProcVec3ToVec3(m_refab->lightlist(i).atenuation());
+				glm::vec4 color = feint_common::Instance()->convertProcVec4ToVec4(m_refab->lightlist(i).color());
 				
 				//std::cout << "offset Pos "
 				//glm::vec2 offsetScale = convertProcVec2ToVec2(proc_object.proc_spritelist(i).offsetscale());
@@ -71,13 +71,13 @@ namespace Feintgine {
 				//Feintgine::Color color = Feintgine::Color(v_color.x * 255.0f, v_color.y * 255.0f, v_color.z * 255.0f, v_color.w * 255.0f);
 				
 			}
-			for (int i = 0; i < m_refab.coliderlist_size(); i++)
+			for (int i = 0; i < m_refab->coliderlist_size(); i++)
 			{
 				//std::cout << " layer index " << i << "has " << s_scence.layers(i).objects_size() << "object \n";
 
-				glm::vec2 pos = feint_common::Instance()->convertProcVec2ToVec2(m_refab.coliderlist(i).pos());
+				glm::vec2 pos = feint_common::Instance()->convertProcVec2ToVec2(m_refab->coliderlist(i).pos());
 				pos += m_pos;
-				glm::vec2 dim = feint_common::Instance()->convertProcVec2ToVec2(m_refab.coliderlist(i).dim());
+				glm::vec2 dim = feint_common::Instance()->convertProcVec2ToVec2(m_refab->coliderlist(i).dim());
 		
 				//std::cout << "offset Pos "
 				//glm::vec2 offsetScale = convertProcVec2ToVec2(proc_object.proc_spritelist(i).offsetscale());
@@ -115,26 +115,28 @@ namespace Feintgine {
 		
 	}
 
-	Proc_LoadObject F_Object::getProtoSer()
+	Proc_LoadObject * F_Object::getProtoSer()
 	{
 					
-		Proc_LoadObject object;
+		Proc_LoadObject * object = new Proc_LoadObject();
 
-// 		for (size_t i = 0; i < m_lightListID.size(); i++)
-// 		{
-// 			Proc_SpotLight * t_light = new Proc_SpotLight(getLightSer(m_lightListPos[i], m_lightListColor[i], m_lightListAttenuation[i]));
-// 			t_light = m_refab.add_lightlist();
-// 		}
-// 		for (size_t i = 0; i < m_coliders.size(); i++)
-// 		{
-// 			Proc_ColiderBox * t_col = new Proc_ColiderBox(getColSer(m_coliders[i].getPos(), m_coliders[i].getPos()));
-// 			t_col = m_refab.add_coliderlist();
-// 		}
-		object.set_allocated_refab(&m_refab);
-		object.set_allocated_pos(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(m_pos)));
-		object.set_allocated_scale(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(m_dim)));
-		object.set_angle(m_angle);
-		object.set_allocated_color(new Proc_Vec4(feint_common::Instance()->convertVec4ToProcVec4(m_color)));
+		// for (size_t i = 0; i < m_lightListID.size(); i++)
+		// {
+
+		// 	object->ad
+		// 	// Proc_SpotLight * t_light = new Proc_SpotLight(getLightSer(m_lightListPos[i], m_lightListColor[i], m_lightListAttenuation[i]));
+		// 	// t_light = m_refab->add_lightlist();
+		// }
+		for (size_t i = 0; i < m_coliders.size(); i++)
+		{
+			Proc_ColiderBox * t_col = new Proc_ColiderBox(getColSer(m_coliders[i].getPos(), m_coliders[i].getPos()));
+			t_col = m_refab->add_coliderlist();
+		}
+		object->set_allocated_refab(m_refab);
+		object->set_allocated_pos(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(m_pos)));
+		object->set_allocated_scale(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(m_dim)));
+		object->set_angle(m_angle);
+		object->set_allocated_color(new Proc_Vec4(feint_common::Instance()->convertVec4ToProcVec4(m_color)));
 
 		return object;
 
@@ -203,6 +205,7 @@ namespace Feintgine {
 	{
 		for (int i = 0; i < m_coliders.size(); i++)
 		{
+			m_coliders[i].setOffset(m_pos);
 			m_coliders[i].draw(renderer);
 		}
 	}
@@ -212,13 +215,13 @@ namespace Feintgine {
 		ColiderBox col;
 		col.init(pos, dim,ID);
 		m_coliders.push_back(col);
-// 		if (m_refab)
-// 		{
-// 			Proc_ColiderBox t_col;
-// 			t_col.set_allocated_pos(new Proc_Vec2(convertVec2ToProcVec2(pos)));
-// 			t_col.set_allocated_dim(new Proc_Vec2(convertVec2ToProcVec2(dim)));
-// 			setColider(t_col, *m_refab->add_coliderlist());
-// 		}
+		// if (m_refab)
+		// {
+		// 	Proc_ColiderBox * t_col = new Proc_ColiderBox();
+		// 	t_col->set_allocated_pos(feint_common::Instance()->convertVec2ToProcVec2(pos));
+		// 	t_col->set_allocated_dim(convertVec2ToProcVec2(dim)));
+		// 	setColider(t_col, *m_refab->add_coliderlist());
+		// }
 
 	}
 
@@ -231,10 +234,10 @@ namespace Feintgine {
 
 	void F_Object::saveToFile(const std::string & name, const std::string & filePath)
 	{
-		Proc_Object proc_object;
+		Proc_Object * proc_object = new Proc_Object();
 		for (int i = 0; i < m_lightListID.size(); i++)
 		{
-			Proc_SpotLight *light = proc_object.add_lightlist();
+			Proc_SpotLight *light = proc_object->add_lightlist();
 			Proc_Vec2 * pos = new Proc_Vec2();
 			pos->set_valuex(m_lightListPos[i].x);
 			pos->set_valuey(m_lightListPos[i].y);
@@ -257,7 +260,7 @@ namespace Feintgine {
 		}
 		for (int i = 0; i < m_coliders.size(); i++)
 		{
-			Proc_ColiderBox *colider = proc_object.add_coliderlist();
+			Proc_ColiderBox *colider = proc_object->add_coliderlist();
 			Proc_Vec2 * pos = new Proc_Vec2();
 			pos->set_valuex(m_coliders[i].getPos().x);
 			pos->set_valuey(m_coliders[i].getPos().y);
@@ -270,13 +273,15 @@ namespace Feintgine {
 		for (int i = 0; i < m_sprites.size(); i++)
 		{
 			std::cout << "write sprite START ======================= \n";
-			Proc_OwnSprite * ownSprite = proc_object.add_proc_spritelist();
+			Proc_OwnSprite * ownSprite = proc_object->add_proc_spritelist();
 			Proc_Sprite * sprite = new Proc_Sprite(); 
 			std::cout << "write sprite texture path : " << m_sprites[i].sprite.getTexturePath() <<  " \n";
 			sprite->set_texturepath(m_sprites[i].sprite.getTexturePath());
 			std::cout << "confirm twexture path : " << sprite->texturepath() << "\n";
-			Proc_Vec2 dim = feint_common::Instance()->convertVec2ToProcVec2(m_sprites[i].sprite.getDim());
-			sprite->set_allocated_dim(&dim);
+			Proc_Vec2 *dim  = new Proc_Vec2(); //dim  = feint_common::Instance()->convertVec2ToProcVec2(m_sprites[i].sprite.getDim());
+			dim->set_valuex(m_sprites[i].sprite.getDim().x);
+			dim->set_valuey(m_sprites[i].sprite.getDim().y);
+			sprite->set_allocated_dim(dim);
 			sprite->set_name(m_sprites[i].sprite.getName());
 			sprite->set_packetname(m_sprites[i].sprite.getPacketName());
 			sprite->set_isinvert(m_sprites[i].sprite.isInverted());
@@ -304,28 +309,32 @@ namespace Feintgine {
 			std::cout << "write sprite END ======================= \n";
 
 		}
-		std::cout << "feint debug, reach here \n";
-		proc_object.set_name(name);
-		std::cout << "feint debug, reach here 2 \n";
-		//proc_object.SerializeAsString();
-		std::cout << "feint debug, reach here 3 \n";
+		//std::cout << "feint debug, reach here \n";
+		proc_object->set_name(name);
+		//std::cout << "feint debug, reach here 2 \n";
+		//proc_object->SerializeAsString();
+		//std::cout << "feint debug, reach here 3 \n";
 		std::cout << "check after loop +=========================\n";
-		for (int i = 0; i < proc_object.proc_spritelist_size(); i++)
-		{
-			std::cout << "check write data \n";
-			std::cout << "texture patch :" <<  proc_object.proc_spritelist(i).proc_sprite().texturepath() << "\n";
-		}
+		// for (int i = 0; i < proc_object->proc_spritelist_size(); i++)
+		// {
+		// 	std::cout << "check write data \n";
+		// 	std::cout << "texture patch :" <<  proc_object->proc_spritelist(i).proc_sprite().texturepath() << "\n";
+		// }
 		std::string finalPath = filePath + name + ".fob";
 		std::cout << "final path : " << finalPath << "\n";
 		std::fstream output(finalPath.c_str(), std::ios::out | std::ios::trunc | std::ios::binary);
 	
-		if (!proc_object.SerializeToOstream(&output)) {
-			std::cout << "Failed to write scene .\n";
+		//std::cout << "try serial to string \n";
+		std::string data = proc_object->SerializeAsString();
+		std::cout << "serial to string OK \n";
+
+		if (!proc_object->SerializeToOstream(&output)) {
+			std::cout << "Failed to write object .\n";
 
 		}
 		else
 		{
-			std::cout << "Save Object " << proc_object.name() << " OK \n";
+			std::cout << "Save Object " << proc_object->name() << " OK \n";
 		}
 
 		//proc_object.Clear();
@@ -336,13 +345,13 @@ namespace Feintgine {
 
 
 
-	Proc_SpotLight F_Object::getLightSer(const glm::vec2 & pos, const glm::vec4 & color, const glm::vec3 & attennua)
+	Proc_SpotLight * F_Object::getLightSer(const glm::vec2 & pos, const glm::vec4 & color, const glm::vec3 & attennua)
 	{
 
-		Proc_SpotLight t_light;
-		t_light.set_allocated_pos(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(pos)));
-		t_light.set_allocated_color(new Proc_Vec4(feint_common::Instance()->convertVec4ToProcVec4(color)));
-		t_light.set_allocated_atenuation(new Proc_Vec3(feint_common::Instance()->convertVec3ToProcVec3(attennua)));
+		Proc_SpotLight * t_light = new Proc_SpotLight();
+		t_light->set_allocated_pos(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(pos)));
+		t_light->set_allocated_color(new Proc_Vec4(feint_common::Instance()->convertVec4ToProcVec4(color)));
+		t_light->set_allocated_atenuation(new Proc_Vec3(feint_common::Instance()->convertVec3ToProcVec3(attennua)));
 
 		return t_light;
 

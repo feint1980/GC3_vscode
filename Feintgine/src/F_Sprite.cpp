@@ -42,30 +42,30 @@ namespace Feintgine {
 		m_isInverted = val;
 	}
 
-	Proc_Vec2 F_Sprite::convertVec2ToProcVec2(const glm::vec2 & v2)
+	Proc_Vec2 * F_Sprite::convertVec2ToProcVec2(const glm::vec2 & v2)
 	{
-		Proc_Vec2 pv2;
-		pv2.set_valuex(v2.x);
-		pv2.set_valuey(v2.y);
+		Proc_Vec2 * pv2 = new Proc_Vec2();
+		pv2->set_valuex(v2.x);
+		pv2->set_valuey(v2.y);
 		return pv2;
 	}
 
-	Proc_Vec3 F_Sprite::convertVec3ToProcVec3(const glm::vec3 & v3)
+	Proc_Vec3 * F_Sprite::convertVec3ToProcVec3(const glm::vec3 & v3)
 	{
-		Proc_Vec3 pv3;
-		pv3.set_valuex(v3.x);
-		pv3.set_valuey(v3.y);
-		pv3.set_valuez(v3.z);
+		Proc_Vec3 * pv3 = new Proc_Vec3();
+		pv3->set_valuex(v3.x);
+		pv3->set_valuey(v3.y);
+		pv3->set_valuez(v3.z);
 		return pv3;
 	}
 
-	Proc_Vec4 F_Sprite::convertVec4ToProcVec4(const glm::vec4 & v4)
+	Proc_Vec4 * F_Sprite::convertVec4ToProcVec4(const glm::vec4 & v4)
 	{
-		Proc_Vec4 pv4;
-		pv4.set_valuex(v4.x);
-		pv4.set_valuey(v4.y);
-		pv4.set_valuez(v4.z);
-		pv4.set_valuew(v4.w);
+		Proc_Vec4 * pv4 = new Proc_Vec4();
+		pv4->set_valuex(v4.x);
+		pv4->set_valuey(v4.y);
+		pv4->set_valuez(v4.z);
+		pv4->set_valuew(v4.w);
 		return pv4;
 	}
 
@@ -75,8 +75,8 @@ namespace Feintgine {
 	{
 		Proc_Sprite proc_sprite;
 		proc_sprite.set_texturepath(m_texturePath);
-		Proc_Vec2 dim = convertVec2ToProcVec2(m_dim);
-		proc_sprite.set_allocated_dim(&dim);
+		//Proc_Vec2 dim = 
+		proc_sprite.set_allocated_dim(convertVec2ToProcVec2(m_dim));
 		proc_sprite.set_name(m_name);
 		proc_sprite.set_packetname(m_packetName);
 

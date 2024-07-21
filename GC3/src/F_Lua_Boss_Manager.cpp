@@ -893,13 +893,24 @@ void F_Lua_Boss_Manager::drawLight(Feintgine::LightBatch & lightBatch)
 {
 	m_player.drawLight(lightBatch);
 	m_particleEngine.drawLight(lightBatch);
+
+		
+}
+void F_Lua_Boss_Manager::drawLight2(Feintgine::LightBatch & lightBatch)
+{
+	
+	m_player2.drawLight(lightBatch);
 		
 }
 
 void F_Lua_Boss_Manager::handleInput(Feintgine::InputManager & inputManager)
 {
+
+	m_player2.handleInput(inputManager);
 	m_player.handleInput(inputManager);
 }
+
+
 
 void F_Lua_Boss_Manager::drawPlayer(Feintgine::SpriteBatch & spriteBatch)
 {
@@ -907,6 +918,21 @@ void F_Lua_Boss_Manager::drawPlayer(Feintgine::SpriteBatch & spriteBatch)
 	//std::cout << "call \n";
 //	m_particleEngine.draw(&spriteBatch);	
 	m_player.draw(spriteBatch);
+	
+	m_kanjiEffectManager->draw(spriteBatch);
+	for (int i = 0; i < m_exlosions.size(); i++)
+	{
+		m_exlosions[i].draw(spriteBatch);
+	}
+}
+
+void F_Lua_Boss_Manager::drawPlayer2(Feintgine::SpriteBatch & spriteBatch)
+{
+	
+	//std::cout << "call \n";
+//	m_particleEngine.draw(&spriteBatch);	
+	
+	m_player2.draw(spriteBatch);
 	m_kanjiEffectManager->draw(spriteBatch);
 	for (int i = 0; i < m_exlosions.size(); i++)
 	{
@@ -941,6 +967,17 @@ void F_Lua_Boss_Manager::updatePlayer(float deltaTime, std::vector<FairyBase *> 
 	}
 }
 
+void F_Lua_Boss_Manager::updatePlayer2(float deltaTime, std::vector<FairyBase *>  enemy,
+	std::vector<EnemyBulletBase * > bullets)
+{
+	m_player2.update(deltaTime,enemy,m_bullets);
+	m_particleEngine.update(deltaTime);
+	m_kanjiEffectManager->update(deltaTime);
+	for (int i = 0; i < m_exlosions.size(); i++)
+	{
+		m_exlosions[i].update(deltaTime);
+	}
+}
 
 void F_Lua_Boss_Manager::draw(Feintgine::SpriteBatch & spriteBatch)
 {
@@ -971,30 +1008,46 @@ void F_Lua_Boss_Manager::drawPlayerSpellcard(Feintgine::SpriteBatch & spriteBatc
 	m_player.drawSpellSelector(spriteBatch);
 }
 
+void F_Lua_Boss_Manager::drawPlayerSpellcard2(Feintgine::SpriteBatch & spriteBatch)
+{
+	m_player2.drawSpellSelector(spriteBatch);
+}
+
 
 void F_Lua_Boss_Manager::reloadPlayer(int val)
 {
-	switch(val)
-	{
-		case PLAYER_CHARACTER_REIMU:
-		{
-			m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
-			m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);	
-		}
-		break;
-		case PLAYER_CHARACTER_MARISA:
-		{
-			m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
-			m_player.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
-		}
-		break;
+	
+
+
+	// //m_player.cle
+	// switch(val)
+	// {
+	// 	case PLAYER_CHARACTER_REIMU:
+	// 	{
+	// 		m_player.setAccessoryShot(0);
+	// 		m_player.setCharacterSpell(val);
+	// 		m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
+	// 		m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);	
+			
+	
+	// 	}
+	// 	break;
+	// 	case PLAYER_CHARACTER_MARISA:
+	// 	{
+	// 		m_player2.setAccessoryShot(4);
+	// 		m_player2.setCharacterSpell(val);
+	// 		m_player2.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
+	// 		m_player2.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
+			
+	
+	// 	}
+	// 	break;
 		
-		default:
-			std::cout << "wrong player ID value \n";
-		break;
-	}
-	m_player.setCharacterSpell(val);
-	m_player.setAccessoryShot(0);
+	// 	default:
+	// 		std::cout << "wrong player ID value \n";
+	// 	break;
+	// }
+	
 }
 
 
@@ -1008,7 +1061,6 @@ void F_Lua_Boss_Manager::initPlayer(int val, Feintgine::AudioEngine * audioEngin
 
 	
 	m_player.setCharacterSpell(1);
-
 	m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
 	m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
 	m_player.setAccessoryShot(0);
@@ -1040,10 +1092,47 @@ void F_Lua_Boss_Manager::initPlayer(int val, Feintgine::AudioEngine * audioEngin
 	m_particleEngine.addParticleBatch(m_player.getLeftAccessosry().getParticleBatch());
 	m_particleEngine.addParticleBatch(m_player.getRightAccesory().getParticleBatch());
 
+
+
+	m_player2.setCharacterSpell(2);
+	m_player2.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
+	m_player2.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
+	m_player2.setAccessoryShot(4);
+
+	m_player2.setDeathCallback([&] {
+		addExplosion(
+			Feintgine::SpriteManager::Instance()->getSprite("projectile/death_anim_2.png"),
+			m_player2.getPos(), glm::vec2(1), glm::vec2(0.56), Feintgine::Color(255, 255, 255, 255), 4, 0.02f);
+	});	
+	m_player2.registerExplosionRing(&m_exlosions);
+
+
+	//std::cout << "incoming register logic camera " << cam << "\n";
+	m_player2.registerLogicCamera(cam);
+	m_player2.registerKanjiEffect(kanjiEffectManager);
+
+	m_player2.registerAudioEngine(audioEngine);
+	m_player2.initSound();
+	m_kanjiEffectManager = kanjiEffectManager;
+	
+	m_player2.setPos(glm::vec2(25, -100));
+	m_player2.reset();
+
+	//m_player2.setDepth(40);
+
+	m_player2.registerEffectBatch(effectBatch);
+
+	m_player2.setSpellSelectorPos(glm::vec2(330, 0));
+	m_particleEngine.addParticleBatch(m_player2.getHitParticle());
+	m_particleEngine.addParticleBatch(m_player2.getLeftAccessosry().getParticleBatch());
+	m_particleEngine.addParticleBatch(m_player2.getRightAccesory().getParticleBatch());
+
+
+
 	//m_player.update(1.0f, {}, {});
 	//m_player.registerP
 	//m_player.registerParticleEngine(&m_particleEngine);
-
+	//reloadPlayer(1);
 }
 
 void F_Lua_Boss_Manager::drawParticle(Feintgine::SpriteBatch * spriteBatch)

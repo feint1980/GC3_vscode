@@ -70,6 +70,10 @@ public:
 
 	bool togglePlayer(const CEGUI::EventArgs &e);
 
+	bool togglePlayer2(const CEGUI::EventArgs &e);
+
+	bool togglePlayer3(const CEGUI::EventArgs &e);
+
 	void initPlayer(int val,Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager,Feintgine::Camera2D * cam);
 
 	void addExplosion(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos, const glm::vec2 & scale, const glm::vec2 & explosionRate, const Feintgine::Color & color, float depth, float liveRate /*= 0.1f*/);
@@ -104,6 +108,10 @@ private:
 	CEGUI::PushButton * m_refreshData = nullptr;
 
 	CEGUI::ToggleButton * m_playerEnableTogger = nullptr;
+
+	CEGUI::ToggleButton * m_playerEnableTogger2 = nullptr;
+
+	CEGUI::ToggleButton * m_playerEnableTogger3 = nullptr;
 	
 	CEGUI::Listbox * m_movesetList = nullptr;
 
@@ -116,6 +124,7 @@ private:
 	std::string m_currentLuaDir = "";
 
 	F_Player m_player;
+	F_Player m_player2;
 
 	std::vector<FairyBase *> m_enemies;
 	std::vector<EnemyGuardian *> m_guardians;
@@ -134,6 +143,7 @@ private:
 
 
 	bool toogleDrawLight = false;
+	bool ambient = true;
 
 	Feintgine::ParticleEngine2D m_particleEngine;
 

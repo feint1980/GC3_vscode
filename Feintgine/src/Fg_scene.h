@@ -40,7 +40,7 @@ namespace Feintgine
 			return nullptr;	
 		}
 
-		Proc_Scene getProtoSer();
+		Proc_Scene * getProtoSer();
 
 		void drawScene(Feintgine::SpriteBatch & spriteBatch);
 		void drawLight(Feintgine::LightBatch & lightBatch);
@@ -61,7 +61,7 @@ namespace Feintgine
 // 
  		void saveScene(const std::string & savePath);
 // 
- 		void setLayer(Proc_Layer &l1, Proc_Layer &l2);
+ 		void setLayer(Proc_Layer * l1, Proc_Layer * l2);
 // 
 // 		void drawColiders(Feintgine::DebugRender & renderer);
 // 

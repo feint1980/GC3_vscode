@@ -47,7 +47,7 @@ void F_MarisaLaser::init(const  Feintgine::GLTexture & texture, const glm::vec2 
 
 void F_MarisaLaser::draw(Feintgine::SpriteBatch & spriteBatch)
 {
-		
+	
 	glm::vec4 desRect;
 	desRect.x = m_pos.x - m_dim.x / 2.0f;
 	desRect.y = m_pos.y - m_dim.y / 2.0f;
@@ -92,17 +92,7 @@ void F_MarisaLaser::update(float deltaTime, const glm::vec2 pos, std::vector<Fai
 			if (m_isLowPower)
 			{
 				totalDmg *= 0.75f;
-			// }
-			// for (int i = 0; i < amplifiers.size(); i++)
-			// {
-			// 	if (checkColiderWithAmplifier(*amplifiers[i]))
-			// 	{
-					
-			// 		amplifiers[i]->takeDamage(totalDmg);
-			// 		createParticle(amplifiers[i]);
-			// 		//std::cout << "1 \n";
-			// 	}
-			// }
+			}
 
 			for (int i = 0; i < enemies.size(); i++)
 			{
@@ -114,15 +104,6 @@ void F_MarisaLaser::update(float deltaTime, const glm::vec2 pos, std::vector<Fai
 				}
 			}
 
-			// for (int i = 0; i < guardians.size(); i++)
-			// {
-			// 	if (checkColiderWithGuardian(*guardians[i]))
-			// 	{
-			// 		guardians[i]->takeDamage(totalDmg);
-			// 		createParticle(guardians[i]);
-			// 		//std::cout << "3 \n";
-			// 	}
-			// }
 		}
 		else
 		{
@@ -139,12 +120,11 @@ void F_MarisaLaser::update(float deltaTime, const glm::vec2 pos, std::vector<Fai
 				//std::cout << "stop \n";
 				m_isSwitchHappen = false;
 			}
+		
 		}
 	}
-	
 }
 
-}
 bool F_MarisaLaser::checkColiderWithEmeny(const F_BaseEnemy & enemy)
 {
 	glm::vec2 pos = enemy.getPos();

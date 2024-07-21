@@ -48,6 +48,10 @@ public:
 	void updatePlayer(float deltaTime, std::vector<FairyBase *>  enemy,
 	std::vector<EnemyBulletBase * > bullets);
 
+	void updatePlayer2(float deltaTime, std::vector<FairyBase *>  enemy,
+	std::vector<EnemyBulletBase * > bullets);
+
+
 	void MoveObject(F_Lua_GenericObject * dynamicObject, float x, float y, float time);
 
 	void setObjectVel(F_Lua_GenericObject * dynamicObject, const glm::vec2 & vel);
@@ -92,10 +96,17 @@ public:
 
 	void drawPlayer(Feintgine::SpriteBatch & spriteBatch);
 
+	void drawLight2(Feintgine::LightBatch & lightBatch);
+
+	void drawPlayer2(Feintgine::SpriteBatch & spriteBatch);
+
 	void drawParticle(Feintgine::SpriteBatch * spriteBatch);
 
 
 	void drawPlayerSpellcard(Feintgine::SpriteBatch & spriteBatch);
+
+	void drawPlayerSpellcard2(Feintgine::SpriteBatch & spriteBatch);
+	
 
 	void callCreateFromLua(const std::string & filePath, const std::string & functionName);
 
@@ -138,6 +149,7 @@ public:
 protected:
 
 	F_Player m_player;
+	F_Player m_player2;
 	Feintgine::Camera2D * m_cam;
 	KanjiEffectManager  * m_kanjiEffectManager;
 	//Feintgine::EffectBatch m_effectBatch;

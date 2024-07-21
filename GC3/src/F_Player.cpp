@@ -25,7 +25,7 @@ F_Player::~F_Player()
 void F_Player::init(const std::string & animationPath, 
 	const std::string & accessorySprite, bool isShink)
 {
-	int f = NULL;
+
 	m_energy = MAX_ENERGY;
 	m_animation.init(animationPath);
 	if (isShink)
@@ -819,8 +819,8 @@ void F_Player::setSpellPos(const glm::vec2 & pos)
 void F_Player::update(float deltaTime, std::vector<FairyBase *>  enemy,
 	std::vector<EnemyBulletBase * > bullets)
 {
-	m_starSpawner.update(deltaTime,enemy,bullets);
-	m_luminousLauncher.update(deltaTime, enemy, bullets);
+	m_starSpawner.update(deltaTime,enemy,bullets,m_pos);
+	m_luminousLauncher.update(deltaTime, enemy, bullets, m_pos);
 
 
 	float lightVal = GlobalValueClass::Instance()->getAmbientLight().x;
@@ -1991,6 +1991,10 @@ void F_Player::t_fantasySealOrbEndCallback()
 
 void F_Player::updateMasterSparkMode(float deltaTime)
 {
+	if(m_masterSpark)
+	{
+		m_masterSpark->setPos(m_pos);
+	}
 	if (m_masterSparkTime > 0.0f)
 	{	
 		m_masterSparkTime -= 0.1f * deltaTime;
