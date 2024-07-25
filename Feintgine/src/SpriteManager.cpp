@@ -3,7 +3,7 @@
 
 #ifdef _WIN32
 
-#elif __linux__ 
+#elif __linux__
 
 #define _snprintf_s(a,b,c,...) snprintf(a,b,__VA_ARGS__)
 
@@ -14,7 +14,7 @@
 namespace Feintgine {
 
 	SpriteManager *SpriteManager::p_Instance = 0;
-	//std::mutex SpriteManager::m_Mutex;
+	std::mutex SpriteManager::m_Mutex;
 
 	SpriteManager::SpriteManager()
 	{
@@ -68,8 +68,21 @@ namespace Feintgine {
 					{
 						std::string packetKey = feint_common::Instance()->getFileNameFromPath(texturePath);
 						SpritePacket spritePacket(texturePath);
-						m_SpritePackets.insert(std::make_pair(packetKey.c_str(), std::move(spritePacket)));
-						m_storedKey.push_back(packetKey);
+						m_SpritePackets.insert(std::make_pair(packetKey.c_str(),   std::move(spritePacket)));
+						//m_storedKey.push_back(packetKey);
+						std::thread t = std::thread([this, packetKey](){
+					
+							m_SpritePackets[packetKey].selfLoad();
+							m_packetCount++;
+						});
+						// if(t.joinable())
+						// {
+						// 	t.join();
+						// }
+						t.detach();
+
+						//m_Threads.push_back(std::move(t));
+
                 		//files.push_back(file(texturePath));
                	 		//std::cout << "||||: " << texturePath << "\n";
 					}
@@ -81,23 +94,24 @@ namespace Feintgine {
        // std::cout << "level end -----" << level << "\n";
         return 0;
     }
-	
+
 
 	void SpriteManager::loadSpritePacket(const std::string & filePath)
 	{
 		//m_Mutex.lock();
-		
+
 		SpritePacket spritePacket;
 		//spritePacket = new SpritePacket();
-		
+
 
 		//m_Mutex.try_lock();
-		//m_Mutex.lock();
+		//
+
 		spritePacket.loadPacket(filePath);
 		//std::string packetKey = filePath;
 		std::string packetKey = feint_common::Instance()->getFileNameFromPath(filePath);
-		
-		
+
+		//m_Mutex.lock();
 		m_SpritePackets.insert(std::make_pair(packetKey.c_str(), std::move(spritePacket)));
 		//m_Mutex.unlock();
 		// std::cout << "inserted " << packetKey << "\n";
@@ -122,54 +136,124 @@ namespace Feintgine {
 	int SpriteManager::loadFromDirectory(const char * name, int level)
 	{
 
-		scan_dir(name, level);
-		int total_files = m_SpritePackets.size();
-		// int begin = 0;
-		// int end;
-		// int chunk;
-		// if(total_files > max_threads)
-		// {
-		// 	chunk = total_files / max_threads;
-			
-		// }
-		// else
-		// {
-		// 	chunk = 1;
-		// }
-        int remain_files = total_files % max_threads;
-		for(int i = 0 ; i < total_files ; i++)
+	 	scan_dir(name, level);
+	// 	int total_files = m_SpritePackets.size();
+	// 	int begin = 0;
+	// 	int end;
+	// 	int chunk;
+	// 	int redefinedMaxThreads = max_threads / 2;
+	// 	if(total_files > redefinedMaxThreads)
+	// 	{
+	// 		chunk = total_files / redefinedMaxThreads;
+
+	// 	}
+	// 	else
+	// 	{
+	// 		chunk = 1;
+	// 	}
+    //    int remain_files = total_files % redefinedMaxThreads;
+
+	// 	for (int i = 0; i < std::min(redefinedMaxThreads, total_files); ++i)
+    //     {
+    //         end = begin + chunk - 1 +
+	// 		 (remain_files + (i + 1) * chunk == total_files ? remain_files : 0);
+
+    //         std::thread t = std::thread([this, begin, end](){
+	// 		for(int i = begin; i <= end; ++i)
+	// 		{
+    //             m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+	// 			//std::cout << "thread " << i << " " << m_storedKey[i].c_str() <<  " done \n";
+	// 			m_packetCount++;
+	// 		}
+    //         });
+    //         m_Threads.push_back(std::move(t));
+    //         begin = end + 1;
+    //     }
+
+		// Solution 2, faster but cause crash in GC3
+
+		for(int i = 0 ; i < m_SpritePackets.size(); i++)
 		{
-			 std::thread t = std::thread([this,i](){
-					  m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-				   m_packetCount++;
-				 
-			 });
-	
-			 m_Threads.push_back(std::move(t));
+			// m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+			// m_packetCount++;
+			// async::task<void> t = async::spawn([&,i]{
+			// 	m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+			// 	m_packetCount++;
+			// });
+
+			//m_tasks.push_back(std::move(t));
+			// std::thread t = std::thread([this,i](){
+				
+			// 	m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+			// 	m_packetCount++;
+			// });
+			// if(t.joinable())
+			// {
+			// 	t.join();
+			// }
+			//m_Threads.push(std::move(t));
+			//m_Threads.push_back(t);
+			//if(t.)
+			// t.join();
+			//m_Threads.push_back(std::move(t));
 		}
-		// for (int i = 0; i < std::min(max_threads, total_files); ++i)
-        // {
-        //     end = begin + chunk - 1 +
-		// 	 (remain_files + (i + 1) * chunk == total_files ? remain_files : 0);
-			
-        //     std::thread t = std::thread([this, begin, end](){
-		// 	for(int i = begin; i <= end; ++i) 
+
+
+
+		// while(!m_Threads.empty())
+		// {
+		// 	if(m_Threads.top().joinable())
 		// 	{
-        //         m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-		// 		//std::cout << "thread " << i << " " << m_storedKey[i].c_str() <<  " done \n";
-		// 		m_packetCount++;
+		// 		m_Threads.top().join();
+		// 		m_Threads.pop();
 		// 	}
-        //     });
-        //     m_Threads.push_back(std::move(t));
-        //     begin = end + 1;
-        // }
-		for(int i = 0; i < m_Threads.size(); i++)
+		// }
+		// for(int i = 0; i < m_tasks.size(); i++)
+		// {
+
+		// 	m_tasks[i].wait();
+
+		// }
+		// async::when_all(m_tasks.begin(), m_tasks.end()).then([&]{
+		// 	std::cout << "done \n";
+		// });
+		//}
+
+		// while(!m_packetCount < m_SpritePackets.size())
+		// {
+		// 	//std::cout << "internal wait\n";
+		// }
+
+		// for(int i = 0; i < m_Threads.size(); i++)
+		// {
+		// 	m_Threads[i].detach();
+		// 	// if(m_Threads[i].joinable())
+		// 	// {
+		// 	// 	m_Threads[i].join();
+		// 	// }
+		// }
+		// while(m_packetCount < m_Threads.size())
+		// {
+		// 	if(m_Threads[m_packetCount].joinable())
+		// 	{
+		// 		m_Threads[m_packetCount].join();
+		// 		//m_packetCount++;
+		// 	}
+		// }
+
+
+		while(m_packetCount < m_SpritePackets.size())
 		{
-			if(m_Threads[i].joinable())
-			{
-				m_Threads[i].join();
-			}			
+			std::cout << "external wait\n";
+
 		}
+
+		// for(int i = 0; i < m_Threads.size(); i++)
+		// {
+		// 	//m_Threads[i].detach();
+		// 	m_Threads[i].~thread();
+		// 	m_Threads.erase(m_Threads.begin() + i);
+		// }
 
 		// back to main thread
 		auto textureBuffers = A_Context_saver::getContext_saver()->getTextureBuffers();
@@ -203,7 +287,7 @@ namespace Feintgine {
 		std::cout << "loaded using " << max_threads << " thread(s) \n";
 
 		return 0;
-		
+
 		// ==============================================================
 
 		// std::cout << "scan on " << name << "\n";
@@ -283,10 +367,10 @@ namespace Feintgine {
         //     while(resolved_files < m_packetCount -1  )
         //     {
 
-				
+
 		// 		for (int i = resolved_files ; i < resolved_files + limited_thread; ++i)
 		// 		{
-					
+
 		// 			if (i < m_SpritePackets.size() + limited_thread)
 		// 			{
 		// 				//std::cout <<  "|i| " << i << "\n";
@@ -375,7 +459,7 @@ namespace Feintgine {
 			//std::cout << it->second.
 			return it->second;
 		}
-	
+
 		// for (std::unordered_map<std::string, Feintgine::SpritePacket >::iterator sprite_it = m_SpritePackets.begin(); sprite_it != m_SpritePackets.end(); ++sprite_it)
 		// {
 		// 	if (sprite_it->first == name)
@@ -383,7 +467,7 @@ namespace Feintgine {
 		// 		return sprite_it->second;
 		// 	}
 		// }
-		std::cout << "unable to find Packet " << name << " return null packet \n";			
+		std::cout << "unable to find Packet " << name << " return null packet \n";
 		SpritePacket pa;
 
 		return pa;
@@ -391,7 +475,7 @@ namespace Feintgine {
 
 	F_Sprite SpriteManager::getSprite(const std::string & spritePacket_tt_name)
 	{
-		
+
 		std::string packetName = spritePacket_tt_name.substr(0, spritePacket_tt_name.find("/"));
 		std::string spriteName = spritePacket_tt_name.substr(spritePacket_tt_name.find("/") + 1);
 		if (packetName.find(".xml") == std::string::npos)

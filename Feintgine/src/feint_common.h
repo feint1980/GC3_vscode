@@ -25,6 +25,8 @@
 #include "GUI.h"
 #include <cctype>
 #include <sstream>
+#include <mutex>
+#include <atomic>
 
 
 #define RANDOM_VALUE (_type_,t_lo,t_hi) t_lo + static_cast <_type_> (rand()) / (static_cast <_type_> (RAND_MAX / (t_hi - t_lo)))
@@ -56,6 +58,17 @@ public:
 
 	static feint_common *Instance()
 	{
+
+		// if(pinstance == nullptr) 
+		// {
+    	// 	std::lock_guard<std::mutex> lock(m_);
+		// 	if(pinstance == nullptr) 
+		// 	{
+       	//  		pinstance = new feint_common();
+    	// 	}
+  		// }
+
+		// return pinstance;
 		if (p_Instance == 0)
 		{
 			p_Instance = new feint_common;
@@ -146,7 +159,12 @@ private:
 
 	static feint_common *p_Instance;
 
+	static std::atomic<feint_common*> pinstance;
+    static std::mutex m_;
+
 	glm::vec2 m_resolution;
+
+	// std::mutex mutex;
 
 	std::wstring_convert<std::codecvt_utf8_utf16<wchar_t>> converter;
 

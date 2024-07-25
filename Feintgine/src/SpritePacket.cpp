@@ -3,7 +3,7 @@
 
 namespace Feintgine {
 
-
+	std::mutex SpritePacket::m_t_mutex;
 
 	SpritePacket::SpritePacket()
 	{
@@ -29,7 +29,7 @@ namespace Feintgine {
 	{
 		//TODO : load sprite from XML (note, each sprite does not save their name, this packet ( key of map ) does )
 		xml_document <> t_packet;
-		xml_node<> * t_TextureAtlas;
+		xml_node<> * t_TextureAtlas = nullptr;
 
 		//std::cout << "TEST :::::: " << filePath << "\n";
 
@@ -47,11 +47,11 @@ namespace Feintgine {
 			std::string packetTexturePath = feint_common::Instance()->getPathName(filePath);
 			packetTexturePath.append("/");
 
-
 			t_TextureAtlas = t_packet.first_node("TextureAtlas");
 			packetTexturePath.append(t_TextureAtlas->first_attribute("imagePath")->value());
 			//std::cout << "Image path is " << packetTexturePath << "\n";
 			m_texturePath = packetTexturePath;
+			
 			for (xml_node<> * sprite_node = t_TextureAtlas->first_node("sprite"); sprite_node; sprite_node = sprite_node->next_sibling())
 			{
 				//std::cout << "creating sprite ..... \n";
@@ -62,20 +62,27 @@ namespace Feintgine {
 				// std::cout << "pos X " << sprite_node->first_attribute("x")->value() << "\n";
 				// std::cout << "pos Y " << sprite_node->first_attribute("y")->value() << "\n";
 				//std::cout << "total " << feint_common::Instance()->convertVec2toString(feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("x")->value(), sprite_node->first_attribute("y")->value()));
+				
 				glm::vec2 anchor = glm::vec2(0.5f);
 				if (sprite_node->first_attribute("pX") && sprite_node->first_attribute("pX"))
 				{
 					anchor = feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("pX")->value(), sprite_node->first_attribute("pY")->value());
 				}
-
+			
 				t_sprite.init(feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("x")->value(), sprite_node->first_attribute("y")->value()),
 					feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("w")->value(), sprite_node->first_attribute("h")->value()),
 					anchor,
 					packetTexturePath.c_str(), m_name, sprite_node->first_attribute("n")->value());
+
 				//std::cout << "sprite ID -----" << t_sprite.getTexture().id << "\n";
-				m_spriteMap.insert(std::make_pair(sprite_node->first_attribute("n")->value(), t_sprite));
+				m_t_mutex.lock();
+				m_spriteMap.insert(std::make_pair(sprite_node->first_attribute("n")->value(),  std::move(t_sprite)));
+
+				m_t_mutex.unlock();
+				
 				// 		m_sprites.push_back(t_sprite);
 			}
+			
 
 			//std::cout << " total " << m_spriteMap.size() << " loaded \n";
 			//std::cout << " here are the list >>>>>> \n";
@@ -92,7 +99,7 @@ namespace Feintgine {
 			std::cout << "Error ! File " << filePath << "not exist \n";
 		}
 
-
+		theFile.close();
 	}
 
 	void SpritePacket::writeToImageset(const std::string & name)

@@ -59,7 +59,7 @@ namespace Feintgine {
 		std::map<std::string, SpritePacket > m_SpritePackets;
 		std::vector<std::string> m_storedKey;
 		std::vector<std::thread> m_Threads;
-		//static std::mutex m_Mutex;
+		static std::mutex m_Mutex;
 		//std::atomic<bool> m_isDones[2000]; // let just cache 2000 packets
 		std::atomic_int m_packetCount = std::atomic_int(0);
 
@@ -69,6 +69,8 @@ namespace Feintgine {
 		// std::atomic_int limited_thread = 8;
 		// std::atomic_int resolved_files = 0;
 		// std::atomic_int total_result = 0;
+
+		std::vector<async::task<void>> m_tasks;
 
 		int max_threads = std::thread::hardware_concurrency() ;
 

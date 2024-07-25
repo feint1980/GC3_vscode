@@ -47,6 +47,7 @@ namespace Feintgine {
 		std::string m_texturePath;
 		std::map<std::string, Feintgine::F_Sprite> m_spriteMap;
 		bool isLoaded = false;
+		static std::mutex m_t_mutex;
 
 	};
 }

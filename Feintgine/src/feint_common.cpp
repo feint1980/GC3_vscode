@@ -2,6 +2,10 @@
 
 feint_common *feint_common::p_Instance = 0;
 
+// std::atomic<feint_common*> feint_common::pinstance { nullptr };
+// std::mutex feint_common::m_;
+
+
 feint_common::feint_common()
 {
 	srand(static_cast <unsigned> (time(0)));

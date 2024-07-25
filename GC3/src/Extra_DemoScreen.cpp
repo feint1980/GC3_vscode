@@ -239,7 +239,6 @@ void Extra_DemoScreen::update(float deltaTime)
 			// 	firstCheckPoint();
 			// });
 			firstCheckPoint();
-			return;
 		}
 	}
 
@@ -824,21 +823,22 @@ void Extra_DemoScreen::firstCheckPoint()
 	// 	reloadLevel();
 	// });
 
+
+	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
+
+	while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
+	{
+		std::cout << "waiting ...\n";
+	}
+
+	//Sleep(3000);
+
 	m_bg.init(Feintgine::ResourceManager::getTexture(
 	"Assets/Lazy/bg.png"), glm::vec2(-0,0), glm::vec2(768, 768));
 
 	m_bg2.init(Feintgine::ResourceManager::getTexture(
 	"Assets/Lazy/mountains.png"), glm::vec2(-50, 0), glm::vec2(768  , 768));
 	
-
-
-	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
-
-	// while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
-	// {
-	// 	checkInput();
-	// 	//std::cout << "loading \n";
-	// }
 	std::cout << "loaded !!!!!!! \n";
 
 	m_player.setCharacterSpell(1);
