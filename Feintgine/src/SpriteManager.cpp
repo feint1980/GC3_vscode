@@ -75,11 +75,11 @@ namespace Feintgine {
 							m_SpritePackets[packetKey].selfLoad();
 							m_packetCount++;
 						});
-						// if(t.joinable())
-						// {
-						// 	t.join();
-						// }
-						t.detach();
+						if(t.joinable())
+						{
+							t.join();
+						}
+						//t.detach();
 
 						//m_Threads.push_back(std::move(t));
 
