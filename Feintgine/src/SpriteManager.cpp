@@ -69,7 +69,7 @@ namespace Feintgine {
 						std::string packetKey = feint_common::Instance()->getFileNameFromPath(texturePath);
 						SpritePacket spritePacket(texturePath);
 						m_SpritePackets.insert(std::make_pair(packetKey.c_str(),   std::move(spritePacket)));
-						//m_storedKey.push_back(packetKey);
+						m_storedKey.push_back(packetKey);
 						std::thread t = std::thread([this, packetKey](){
 					
 							m_SpritePackets[packetKey].selfLoad();
@@ -172,31 +172,31 @@ namespace Feintgine {
 
 		// Solution 2, faster but cause crash in GC3
 
-		for(int i = 0 ; i < m_SpritePackets.size(); i++)
-		{
-			// m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-			// m_packetCount++;
-			// async::task<void> t = async::spawn([&,i]{
-			// 	m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-			// 	m_packetCount++;
-			// });
+		// for(int i = 0 ; i < m_SpritePackets.size(); i++)
+		// {
+		// 	// m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+		// 	// m_packetCount++;
+		// 	// async::task<void> t = async::spawn([&,i]{
+		// 	// 	m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+		// 	// 	m_packetCount++;
+		// 	// });
 
-			//m_tasks.push_back(std::move(t));
-			// std::thread t = std::thread([this,i](){
+		// 	//m_tasks.push_back(std::move(t));
+		// 	// std::thread t = std::thread([this,i](){
 				
-			// 	m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-			// 	m_packetCount++;
-			// });
-			// if(t.joinable())
-			// {
-			// 	t.join();
-			// }
-			//m_Threads.push(std::move(t));
-			//m_Threads.push_back(t);
-			//if(t.)
-			// t.join();
-			//m_Threads.push_back(std::move(t));
-		}
+		// 	// 	m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+		// 	// 	m_packetCount++;
+		// 	// });
+		// 	// if(t.joinable())
+		// 	// {
+		// 	// 	t.join();
+		// 	// }
+		// 	//m_Threads.push(std::move(t));
+		// 	//m_Threads.push_back(t);
+		// 	//if(t.)
+		// 	// t.join();
+		// 	//m_Threads.push_back(std::move(t));
+		// }
 
 
 

@@ -38,9 +38,9 @@ charge_table = {"projectile/fire_1.png","projectile/fire_2.png","projectile/fire
 
 factor_table = {2,7,12,6}
 
--- Komachi param
+-- Komachi param -- "./Assets/F_AObjects/boss_komachi.xml",
 object = {posX = 0.0, posY = 0.0,
- animationPath = "./Assets/F_AObjects/boss_komachi.xml",
+ animationPath = "./Assets/F_AObjects/komachi_boss_t.xml",
  scale = 0.6, depth = 15, angle = 0 }
 
 -- soul param
