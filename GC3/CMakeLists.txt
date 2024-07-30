@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 set(PROJECT_N "GC3")
 project(${PROJECT_N} VERSION 1.0)
 
-set(CMAKE_CXX_FLAGS "-fpermissive -std=c++17 -O3")
+set(CMAKE_CXX_FLAGS "-fpermissive -std=c++17")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp)

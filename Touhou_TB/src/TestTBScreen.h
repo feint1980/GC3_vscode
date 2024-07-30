@@ -29,6 +29,7 @@
 
 
 #include "TB_EmptyObject.h"
+#include "BattleScene.h"
 
 class TestTBScreen : public Feintgine::IGameScreen
 {
@@ -78,5 +79,7 @@ protected:
     Feintgine::SpriteBatch m_spriteBatch;
 
     TB_EmptyObject m_bg;
+
+    BattleScene m_battleScene;
 
 };

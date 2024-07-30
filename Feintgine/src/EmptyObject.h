@@ -15,6 +15,7 @@ public:
 	void drawLight(Feintgine::LightBatch & lightBatch);
 	void drawBox(Feintgine::DebugRender & debugRenderer);
 	void init(Feintgine::GLTexture texture , glm::vec2 pos , glm::vec2 dims, Feintgine::Color color);
+	void setColor(const Feintgine::Color & color);
 	glm::vec2 getPos() const { return m_pos; }
 	glm::vec2 getDimentions() const { return m_dims; }
 	void setAngle(float angle);

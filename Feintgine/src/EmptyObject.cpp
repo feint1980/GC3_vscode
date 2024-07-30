@@ -24,7 +24,10 @@ void EmptyObject::setAngle(float angle)
 	m_angle = angle;
 }
 
-
+void EmptyObject::setColor(const Feintgine::Color & color)
+{
+	m_color = color;
+}
 
 void EmptyObject::setAlpha(GLubyte alpha)
 {

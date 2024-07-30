@@ -48,6 +48,8 @@ void TestTBScreen::onEntry()
 	m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0), glm::vec2(1280, 720),Feintgine::Color(255, 255, 255, 255));
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
+	m_battleScene.init(&m_camera);
+
 }
 
 void TestTBScreen::build()
@@ -80,6 +82,7 @@ void TestTBScreen::onExit()
 void TestTBScreen::update(float deltaTime)
 {
     m_camera.update();
+	m_battleScene.update(deltaTime);
 }
 
 void TestTBScreen::checkInput()
@@ -102,6 +105,7 @@ void TestTBScreen::handleInput(Feintgine::InputManager & inputManager)
 	{
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
 	}
+	m_battleScene.handleInput(inputManager);
 }
 
 void TestTBScreen::draw()
@@ -132,6 +136,7 @@ void TestTBScreen::draw()
 	m_spriteBatch.begin();
 
     m_bg.draw(m_spriteBatch);
+	m_battleScene.draw(m_spriteBatch);
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
@@ -147,7 +152,6 @@ void TestTBScreen::drawGameplay()
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
     m_shader.use();
-
 
     glm::mat4 projectionMatrix;
 	GLint pUniform;

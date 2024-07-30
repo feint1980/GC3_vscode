@@ -31,13 +31,115 @@ int lua_CreateFromLua(lua_State * L)
 }
 
 
-BattleScene::BattleScene()
+int lua_CreateSlot(lua_State * L)
+{
+	if (lua_gettop(L) != 4)
+	{
+		std::cout << "gettop failed (lua_CreateSlot) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+	std::cout << "[C++] lua_CreateSlot called \n";
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	int row = (int)lua_tonumber(L, 2);
+	int colum = (int)lua_tonumber(L, 3);
+	int side = (int)lua_tonumber(L, 4);
+	Slot * slot = battleScene->addSlot(row, colum, side);
+	lua_pushlightuserdata(L, slot);
+	return 1;
+} 
+
+void BattleScene::init(Feintgine::Camera2D * camera )
 {
 
-    // init lua
+	m_camera = camera;
+	 // init lua
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
+	// register lua function
+	lua_register(m_script, "cppCreateFromLua", lua_CreateFromLua);
+	lua_register(m_script, "cppCreateSlot", lua_CreateSlot);
+
+	
+
+	if (LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/lua/test.lua")))
+	{
+		std::cout << "read script OK \n";
+	
+	}
+
+	lua_getglobal(m_script, "init");// get the function name to the top of the stack
+	if (lua_isfunction(m_script, -1))
+	{
+		//std::cout << "host is " << this << "\n";
+		lua_pushlightuserdata(m_script, this);
+		//std::cout << "C++ called " + functionName << "\n";
+		const int argCount = 1;
+		const int returnCount =1;
+		if (LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argCount, returnCount, 0)))
+		{
+			
+		}
+	}
+
+
     // lua register 1 ( lua state ) , 2 name will be called in lua, 3 the pointer to function
     //lua_register(m_script, "cppCreateEntity", lua_createEntity);
+}
+
+BattleScene::BattleScene()
+{
+
+   
+}
+
+BattleScene::~BattleScene()
+{
+
+}
+
+Slot * BattleScene::addSlot(int row, int colum, int side)
+{
+	Slot * slot = new Slot();
+	slot->init(row, colum, side);
+	m_slots.push_back(slot);
+
+	return slot;
+}
+
+void BattleScene::handleInput(Feintgine::InputManager & inputManager)
+{
+	glm::vec2 mousePos = inputManager.getMouseCoords();
+
+	for(int i = 0 ; i < m_slots.size(); i++)
+	{
+		if(m_slots[i]->isHovered(m_camera->convertScreenToWorld(mousePos)))
+		{
+			m_slots[i]->setState(1);
+		}
+		else
+		{
+			m_slots[i]->setState(0);
+		}
+	}
+
+}
+
+void BattleScene::draw(Feintgine::SpriteBatch & spriteBatch)
+{
+
+	for(int i = 0 ; i < m_slots.size(); i++)
+	{
+		m_slots[i]->draw(spriteBatch);
+	}
+
+}
+void BattleScene::update(float deltaTime)
+{
+
+	for(int i = 0 ; i < m_slots.size(); i++)
+	{
+		m_slots[i]->update(deltaTime);
+	}
 }
