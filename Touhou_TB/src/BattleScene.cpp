@@ -2,7 +2,7 @@
 #include "BattleScene.h"
 
 
-int lua_CreateFromLua(lua_State * L)
+int lua_CreateEntity(lua_State * L)
 {
 	if (lua_gettop(L) != 7)
 	{
@@ -58,7 +58,7 @@ void BattleScene::init(Feintgine::Camera2D * camera )
     luaL_openlibs(m_script);
 
 	// register lua function
-	lua_register(m_script, "cppCreateFromLua", lua_CreateFromLua);
+	lua_register(m_script, "cppCreateEnity", lua_CreateEntity);
 	lua_register(m_script, "cppCreateSlot", lua_CreateSlot);
 
 	
@@ -82,7 +82,6 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 			
 		}
 	}
-
 
     // lua register 1 ( lua state ) , 2 name will be called in lua, 3 the pointer to function
     //lua_register(m_script, "cppCreateEntity", lua_createEntity);

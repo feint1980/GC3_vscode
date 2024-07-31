@@ -20,6 +20,11 @@ public:
 
     void setState(int state);
 
+    glm::vec2 getPos() const
+    {
+        return m_actualPos;
+    }
+
     private:
     
     glm::ivec2 m_index = glm::ivec2(0,0);
