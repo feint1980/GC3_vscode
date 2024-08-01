@@ -512,7 +512,6 @@ function DynamicBehavior3_normal(host,dynob)
 
     while true do
 
-
         cppMoveObject(host,dynob,0,100,20)
         coroutine.yield()
         cppHoldPosition(host,dynob,10,"charging")

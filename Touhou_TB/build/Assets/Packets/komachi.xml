@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
-<!-- $TexturePacker:SmartUpdate:8e25f634f64245cdd0666fb9d367cb3b:f7b94d6a5a60a3a0f5d0e6a392b3d0bf:047e9cc092d948e4c614f0ae36fa5156$ -->
+<!-- $TexturePacker:SmartUpdate:7ab3155239acde9220da673d5da32445:0e6a190535b86d6353d03f118ce49493:047e9cc092d948e4c614f0ae36fa5156$ -->
 <!--Format:
 n  => name of the sprite
 x  => sprite x pos in texture
@@ -19,15 +19,18 @@ vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
 verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
 triangles  => sprite triangulation, 3 vertex indices per triangle
 -->
-<TextureAtlas imagePath="komachi.png" width="476" height="254">
-    <sprite n="komachi_01.png" x="82" y="0" w="90" h="117"/>
-    <sprite n="komachi_02.png" x="172" y="0" w="90" h="117"/>
-    <sprite n="komachi_03.png" x="262" y="0" w="90" h="117"/>
-    <sprite n="komachi_04.png" x="352" y="0" w="90" h="117"/>
-    <sprite n="komachi_05.png" x="0" y="140" w="90" h="114"/>
-    <sprite n="komachi_06.png" x="378" y="140" w="98" h="110"/>
-    <sprite n="komachi_07.png" x="185" y="140" w="96" h="94"/>
-    <sprite n="komachi_08.png" x="281" y="140" w="97" h="90"/>
-    <sprite n="komachi_09.png" x="0" y="0" w="82" h="140"/>
-    <sprite n="komachi_10.png" x="90" y="140" w="95" h="108"/>
+<TextureAtlas imagePath="komachi.png" width="98" height="1152">
+    <sprite n="komachi_01.png" x="0" y="168" w="90" h="117"/>
+    <sprite n="komachi_02.png" x="0" y="285" w="90" h="117"/>
+    <sprite n="komachi_03.png" x="0" y="402" w="90" h="117"/>
+    <sprite n="komachi_04.png" x="0" y="519" w="90" h="117"/>
+    <sprite n="komachi_05.png" x="0" y="636" w="90" h="114"/>
+    <sprite n="komachi_06.png" x="0" y="1042" w="98" h="110"/>
+    <sprite n="komachi_07.png" x="0" y="858" w="96" h="94"/>
+    <sprite n="komachi_08.png" x="0" y="952" w="97" h="90"/>
+    <sprite n="komachi_09.png" x="0" y="28" w="82" h="140"/>
+    <sprite n="komachi_10.png" x="0" y="750" w="95" h="108"/>
+    <sprite n="komachi_11.png" x="0" y="0" w="28" h="28"/>
+    <sprite n="komachi_12.png" x="28" y="0" w="28" h="28"/>
+    <sprite n="komachi_13.png" x="56" y="0" w="28" h="28"/>
 </TextureAtlas>

@@ -1,0 +1,17 @@
+<F_AObj name="reimu_2">
+	<animations>
+		<animation name="move_left">
+			<anims>
+				<anim name="reimu_new/Reimu_test_08.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_new/Reimu_test_07.png" time="0.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_new/Reimu_test_06.png" time="0.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_new/Reimu_test_05.png" time="0.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_new/Reimu_test_04.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="reimu_new/Reimu_test_03.png" time="0.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_new/Reimu_test_02.png" time="0.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_new/Reimu_test_01.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

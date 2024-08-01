@@ -31,23 +31,36 @@ public:
 
     void update(float deltaTime);
 
-    void init(Slot * slot, const std::string & animationPath, const glm::vec2 & scale );
+    void init(Slot * slot, const std::string & animationPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
 
     void setAttribute(const std::string & attributeName, int value);
 
     void setAttribute(Attribute attribute, float value);
 
     Attribute getAttributeByName(const std::string & attributeName);
+    
+    void setTargetSlot(Slot * slot);
 
+    bool isActive() const { return m_isActive; }
+
+    void setActive(bool value);
 
 protected:
 
     Slot * m_currentSlot;
     Slot * m_moveTargetSlot;
 
+    bool m_isActive = false;
 
+    bool m_isMoving = false;
+
+    glm::vec2 m_startPos;
+    glm::vec2 m_endPos;
+    float m_elaspedTime = 0.0f;
+    float m_completionTime = 0.0f;    
     glm::vec2 m_pos;
     glm::vec2 m_scale;
+    float m_yOffset  ;
 
     Feintgine::F_AnimatedObject m_animation;
 

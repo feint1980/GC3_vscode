@@ -34,6 +34,7 @@ void TestTBScreen::initShader()
 void TestTBScreen::onEntry()
 {
     
+	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	
 
@@ -133,7 +134,7 @@ void TestTBScreen::draw()
 	GLint pUniform = m_shader.getUniformLocation("P");
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
-	m_spriteBatch.begin();
+	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 
     m_bg.draw(m_spriteBatch);
 	m_battleScene.draw(m_spriteBatch);

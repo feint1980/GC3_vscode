@@ -17,11 +17,20 @@ void F_Lua_BaseEntity::init(Slot * slot, const std::string & animationPath, cons
     m_moveTargetSlot = nullptr;
     m_scale = scale;
 
-    m_pos = m_currentSlot->getPos();
-
     m_animation.init(animationPath, m_scale);
     m_animation.playAnimation("idle");
+    m_yOffset = m_animation.getDim().y * 0.5f;
 
+    m_pos = m_currentSlot->getPos();
+    m_pos.y += m_yOffset;
+
+    m_isActive = false;
+
+}
+
+void F_Lua_BaseEntity::setActive(bool value)
+{
+    m_isActive = value;
 }
 void F_Lua_BaseEntity::draw(Feintgine::SpriteBatch & spriteBatch)
 {
@@ -31,24 +40,48 @@ void F_Lua_BaseEntity::draw(Feintgine::SpriteBatch & spriteBatch)
     m_animation.draw(spriteBatch);
 }
 
+void F_Lua_BaseEntity::setTargetSlot(Slot * slot)
+{
+    m_moveTargetSlot = slot;
+    m_startPos = m_pos;
+    m_isActive = false;
+    m_elaspedTime = 0.0f;
+    m_completionTime = 100.0f;
+    m_endPos = m_moveTargetSlot->getPos();
+    std::string animationName = "dash_fw";
+    if(m_endPos.x < m_startPos.x)
+    {
+        animationName = "dash_bw";
+    }
+
+    m_animation.playAnimation(animationName);
+    //m_endPos += m_yOffset;
+}
+
 void F_Lua_BaseEntity::update(float deltaTime)
 {
     if(m_moveTargetSlot)
     {
-        glm::vec2 m_direction; 
-        m_direction.x = m_moveTargetSlot->getPos().x - m_pos.x;
-        m_direction.y = m_moveTargetSlot->getPos().y - m_pos.y;
-        float distance = glm::distance(m_pos, m_moveTargetSlot->getPos());
-        if(distance > 1.0f)
+        m_elaspedTime += deltaTime;
+
+        if(m_elaspedTime < m_completionTime)
         {
-            m_pos += m_direction * deltaTime * distance / 10.0f;
+             glm::vec2 tPos = (m_endPos - m_startPos) * (m_elaspedTime / m_completionTime) + m_startPos;
+
+            m_pos = tPos;
+            m_pos.y += m_yOffset;
         }
         else
         {
             m_pos = m_moveTargetSlot->getPos();
+            m_pos.y += m_yOffset;
             m_currentSlot = m_moveTargetSlot;
             m_moveTargetSlot = nullptr;
-        }   
+            std::string dashAnim = m_animation.getCurrentAnimation()->getAnimName();
+            dashAnim.append("_end");
+            m_animation.playAnimation(dashAnim);
+        }
+     
     }
     m_animation.update(deltaTime);
 }

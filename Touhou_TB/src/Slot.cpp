@@ -39,7 +39,8 @@ void Slot::update(float deltaTime)
 
 void Slot::setState(int state)
 {
-    switch (state)
+    m_state = state;
+    switch (m_state)
     {
     case 0:
         m_circle.setColor(Feintgine::Color( 255, 255, 0, 255));
