@@ -1,3 +1,5 @@
+local tasks = {}
+
 Patchy = { 
     Strength = 3,
     Vitality = 4,
@@ -23,6 +25,13 @@ function Patchy.init(self,host,slot)
 
 end
 
+
+function Patchy.setMoveToSlot(slot)
+    tasks[self.dyobj] = {behavior = coroutine.create(Patchy.moveToSlot,slot)}
+    
+end
+
 function Patchy.moveToSlot(slot)
     cppMoveToSlot(self.dyobj,slot)
+
 end

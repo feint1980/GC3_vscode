@@ -28,11 +28,11 @@ function init(host)
     characters["pat"] = Patchy
     characters["pat"].init(characters["pat"],host,leftSlots[3][2])
     mainGame["main"] = {behavior = coroutine.create(gameLoop,host)} 
-    IssueNextTask(host)
+    IssueNextPhase(host)
 end
 
 
-function IssueNextTask(host)
+function IssueNextPhase(host)
     if coroutine.status(mainGame["main"].behavior) ~= 'dead' then
 		coroutine.resume(mainGame["main"].behavior, host)
 	else
