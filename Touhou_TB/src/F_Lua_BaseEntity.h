@@ -37,13 +37,29 @@ public:
 
     void setAttribute(Attribute attribute, float value);
 
+    void setPos(const glm::vec2 & pos);
+
+    void playAnimation(const std::string & animationName, int time = -1);
+
+    bool isAnimationStoped() const ;
+
     Attribute getAttributeByName(const std::string & attributeName);
     
     void setTargetSlot(Slot * slot);
 
+    Slot * getTargetSlot() const { return m_moveTargetSlot; }
+
+    float getYOffset() const { return m_yOffset; }
+
+    glm::vec2 getPos() const { return m_pos; }
+
     bool isActive() const { return m_isActive; }
 
     void setActive(bool value);
+
+    Slot * getCurrentSlot() const { return m_currentSlot; }
+
+    
 
 protected:
 

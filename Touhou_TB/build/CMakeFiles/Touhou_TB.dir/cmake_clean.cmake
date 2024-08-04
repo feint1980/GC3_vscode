@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Touhou_TB.dir/src/BattleScene.cpp.obj.d"
   "CMakeFiles/Touhou_TB.dir/src/F_Lua_BaseEntity.cpp.obj"
   "CMakeFiles/Touhou_TB.dir/src/F_Lua_BaseEntity.cpp.obj.d"
+  "CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.obj"
+  "CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.obj.d"
   "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj"
   "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj.d"
   "CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj"

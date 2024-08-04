@@ -3,7 +3,7 @@
 #include <ResourceManager.h>
 #include "F_Lua_BaseEntity.h"
 #include "Slot.h"
-
+#include "F_Lua_EntityManipulator.h"
 
 class BattleScene
 {
@@ -24,14 +24,22 @@ public:
 
     void pickActiveEntity(F_Lua_BaseEntity * entity);
 
+    void setMoveTargetSlot(F_Lua_BaseEntity * entity, Slot * slot);
+
+    void addEntityManipulator(F_Lua_EntityManipulator * entityManipulator);
+
 protected:
 
     lua_State * m_script;
 
     F_Lua_BaseEntity * m_currentEntity = nullptr;
 
+    bool m_isMove = false;
+
     std::vector<F_Lua_BaseEntity *> m_entities;
     std::vector<Slot *> m_slots;
+
+    std::vector<F_Lua_EntityManipulator *> m_entityManipulators;
 
     Feintgine::Camera2D * m_camera;
 

@@ -28,6 +28,24 @@ void F_Lua_BaseEntity::init(Slot * slot, const std::string & animationPath, cons
 
 }
 
+void F_Lua_BaseEntity::setPos(const glm::vec2 & pos)
+{
+    m_pos = pos;
+}
+
+
+void F_Lua_BaseEntity::playAnimation(const std::string & animationName, int time)
+{
+
+    std::cout << "entity play animation " << animationName <<  " " << time << std::endl; 
+    m_animation.playAnimation(animationName, time);
+}
+
+bool F_Lua_BaseEntity::isAnimationStoped() const
+{
+    return  m_animation.isPlaying() == false;
+}
+
 void F_Lua_BaseEntity::setActive(bool value)
 {
     m_isActive = value;
@@ -43,46 +61,24 @@ void F_Lua_BaseEntity::draw(Feintgine::SpriteBatch & spriteBatch)
 void F_Lua_BaseEntity::setTargetSlot(Slot * slot)
 {
     m_moveTargetSlot = slot;
-    m_startPos = m_pos;
-    m_isActive = false;
-    m_elaspedTime = 0.0f;
-    m_completionTime = 100.0f;
-    m_endPos = m_moveTargetSlot->getPos();
-    std::string animationName = "dash_fw";
-    if(m_endPos.x < m_startPos.x)
-    {
-        animationName = "dash_bw";
-    }
+    // m_startPos = m_pos;
+    // m_isActive = false;
+    // m_elaspedTime = 0.0f;
+    // m_completionTime = 100.0f;
+    // m_endPos = m_moveTargetSlot->getPos();
+    // std::string animationName = "dash_fw";
+    // if(m_endPos.x < m_startPos.x)
+    // {
+    //     animationName = "dash_bw";
+    // }
 
-    m_animation.playAnimation(animationName);
-    //m_endPos += m_yOffset;
+    // m_animation.playAnimation(animationName);
+    // //m_endPos += m_yOffset;
 }
 
 void F_Lua_BaseEntity::update(float deltaTime)
 {
-    if(m_moveTargetSlot)
-    {
-        m_elaspedTime += deltaTime;
-
-        if(m_elaspedTime < m_completionTime)
-        {
-             glm::vec2 tPos = (m_endPos - m_startPos) * (m_elaspedTime / m_completionTime) + m_startPos;
-
-            m_pos = tPos;
-            m_pos.y += m_yOffset;
-        }
-        else
-        {
-            m_pos = m_moveTargetSlot->getPos();
-            m_pos.y += m_yOffset;
-            m_currentSlot = m_moveTargetSlot;
-            m_moveTargetSlot = nullptr;
-            std::string dashAnim = m_animation.getCurrentAnimation()->getAnimName();
-            dashAnim.append("_end");
-            m_animation.playAnimation(dashAnim);
-        }
-     
-    }
+    
     m_animation.update(deltaTime);
 }
 

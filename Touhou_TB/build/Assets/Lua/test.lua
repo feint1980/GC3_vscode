@@ -7,6 +7,8 @@ local turns = {}
 
 local mainGame = {}
 
+local entityTasks = {}
+
 
 function init(host)
     -- init slots
@@ -40,6 +42,14 @@ function IssueNextPhase(host)
 	end
 end
 
+function HandleMovingTask(host,dynob,slot)
+    if coroutine.status(entityTasks[dynob].behavior) ~= 'dead' then
+        coroutine.resume(entityTasks[dynob].behavior, host, dynob)
+    else
+        print(coroutine.status(entityTasks[dynob].behavior))
+    end
+end
+
 
 function sortCharactersTurn()
     print("sort turn started")
@@ -56,6 +66,37 @@ function sortCharactersTurn()
     print("sort turn ended")
 end
 
+function moveToSlotBehavior(host,dyobj)
+    -- cppEntityPlayAnimation(host,dyobj,"dash_fw",-1)
+    -- coroutine.yield()
+    -- print("called 2")
+    slot = cppEntityGetTargetSlot(dyobj)
+    currentSlot = cppGetEntitySlot(dyobj)
+    print("ok ")
+    currentCol = cppGetSlotCol(currentSlot)
+    print("current col " .. currentCol)
+    targetCol = cppGetSlotCol(slot)
+    dashAnimation = "dash_fw"
+    if currentCol < targetCol then
+        dashAnimation = "dash_bw"
+    end
+
+    cppEntityPlayAnimation(host,dyobj,dashAnimation,-1)
+    cppEntityMoveToslot(host,dyobj,slot,50)
+    coroutine.yield()
+
+    finishedAnimation = dashAnimation .. "_end"
+    cppEntityPlayAnimation(host,dyobj,finishedAnimation,1,18)
+    coroutine.yield()
+    cppEntityPlayAnimation(host,dyobj,"idle",-1)
+    coroutine.yield()
+end
+
+function setEntityMoveToSlot(host,dyobj)
+    entityTasks[dyobj] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj)}
+    HandleMovingTask(host,dyobj)
+end
+
 
 function gameLoop(host)
     local gameOn = true
@@ -67,8 +108,11 @@ function gameLoop(host)
             print("chracter " .. turns[i].Strength .. "turn " )
             cppPickActiveEntity(host,turns[i].dyobj)
             coroutine.yield()
-            
+            table.remove(turns,1)
         end
+        print("end")
     end
 end
+
+
 

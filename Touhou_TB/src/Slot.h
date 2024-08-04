@@ -31,6 +31,11 @@ public:
         return m_actualPos;
     }
 
+    glm::ivec2 getIndex() const
+    {
+        return m_index;
+    }
+
     private:
     
     glm::ivec2 m_index = glm::ivec2(0,0);

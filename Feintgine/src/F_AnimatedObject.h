@@ -296,7 +296,9 @@ namespace Feintgine
 		bool isPlaying() const { 
 			
 			if(m_currentAnimation)
-			return m_currentAnimation->isPlaying(); }
+			return m_currentAnimation->isPlaying();
+
+			return false;}
 
 		void setScale(const glm::vec2 & scale);
 
