@@ -8,14 +8,14 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "E:/template/GC_port/Touhou_TB/src/BattleScene.cpp" "CMakeFiles/Touhou_TB.dir/src/BattleScene.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/BattleScene.cpp.obj.d"
-  "E:/template/GC_port/Touhou_TB/src/F_Lua_BaseEntity.cpp" "CMakeFiles/Touhou_TB.dir/src/F_Lua_BaseEntity.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/F_Lua_BaseEntity.cpp.obj.d"
-  "E:/template/GC_port/Touhou_TB/src/F_Lua_Entitymanipulator.cpp" "CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.obj.d"
-  "E:/template/GC_port/Touhou_TB/src/Slot.cpp" "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj.d"
-  "E:/template/GC_port/Touhou_TB/src/TB_EmptyObject.cpp" "CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj.d"
-  "E:/template/GC_port/Touhou_TB/src/TH_TB_App.cpp" "CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj.d"
-  "E:/template/GC_port/Touhou_TB/src/TestTBScreen.cpp" "CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj.d"
-  "E:/template/GC_port/Touhou_TB/src/main.cpp" "CMakeFiles/Touhou_TB.dir/src/main.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/main.cpp.obj.d"
+  "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/BattleScene.cpp" "CMakeFiles/Touhou_TB.dir/src/BattleScene.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/BattleScene.cpp.obj.d"
+  "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_BaseEntity.cpp" "CMakeFiles/Touhou_TB.dir/src/F_Lua_BaseEntity.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/F_Lua_BaseEntity.cpp.obj.d"
+  "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_Entitymanipulator.cpp" "CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.obj.d"
+  "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/Slot.cpp" "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj.d"
+  "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TB_EmptyObject.cpp" "CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj.d"
+  "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TH_TB_App.cpp" "CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj.d"
+  "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TestTBScreen.cpp" "CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj.d"
+  "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/main.cpp" "CMakeFiles/Touhou_TB.dir/src/main.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/main.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

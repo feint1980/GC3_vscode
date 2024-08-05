@@ -27,8 +27,10 @@ public:
 	GLubyte getAlpha() const { return m_color.a; }
 
 	void setPos(const glm::vec2 pos){ m_pos = pos; }
+	void setDim(const glm::vec2 dims) { m_dims = dims; }
 	float getAngle() const { return m_angle; }
 	void setSPec(float intentse);
+
 
 	float getSpec() const { return m_spec; }
 

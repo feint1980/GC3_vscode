@@ -28,7 +28,7 @@ function init(host)
     end
     -- init characters
     characters["pat"] = Patchy
-    characters["pat"].init(characters["pat"],host,leftSlots[3][2])
+    characters["pat"].init(characters["pat"],host,leftSlots[2][2])
     mainGame["main"] = {behavior = coroutine.create(gameLoop,host)} 
     IssueNextPhase(host)
 end
@@ -86,7 +86,7 @@ function moveToSlotBehavior(host,dyobj)
     coroutine.yield()
 
     finishedAnimation = dashAnimation .. "_end"
-    cppEntityPlayAnimation(host,dyobj,finishedAnimation,1,18)
+    cppEntityPlayAnimation(host,dyobj,finishedAnimation,1)
     coroutine.yield()
     cppEntityPlayAnimation(host,dyobj,"idle",-1)
     coroutine.yield()

@@ -43,7 +43,12 @@ void F_Lua_EntityManipulator::playAnimation(F_Lua_BaseEntity * entity, const std
         m_entity->playAnimation(animationName, time);
     }
     m_elaspedTime = 0;
-    
+    if(time == -1)
+    {
+        m_animationUseTime = true;
+    }
+
+
 }
 
 
@@ -84,6 +89,11 @@ bool F_Lua_EntityManipulator::update(float deltaTime)
                 m_elaspedTime += deltaTime;
                 //m_entity->update(deltaTime);
                 if(m_elaspedTime > m_completionTime)
+                {
+                    m_state = EntityState::None;
+                    return true;
+                }
+                if(m_entity->isAnimationStoped())
                 {
                     m_state = EntityState::None;
                     return true;
