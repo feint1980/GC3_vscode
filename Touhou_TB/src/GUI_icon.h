@@ -11,7 +11,7 @@ public:
     GUI_icon();
     ~GUI_icon();
 
-    void init(const std::string & texturePath, const glm::vec2 & pos, const glm::vec2 & dim, float depth);
+    void init(const std::string & texturePath, const glm::vec2 & pos, const glm::vec2 & dim);
     void setTurnCost(float cost)
     {
         m_turnCost = cost;
@@ -41,18 +41,24 @@ public:
         return m_icon.getDimentions();
     }
 
+    void setSpecialID(unsigned int id)
+    {
+        m_specialID = id;
+    }
+
+    unsigned int getSpecialID() const
+    {
+        return m_specialID;
+    }
 
     float getTurnCost() const 
     {
         return m_turnCost;
     }
 
-
-    
-
 protected:
 
-
+    unsigned int m_specialID = 0;
     EmptyObject m_icon;
     std::string m_description;
     std::string m_name;

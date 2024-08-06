@@ -1,5 +1,10 @@
 print("Helloooooo ")
-package.path = package.path .. ';./Assets/lua/?.lua;'
+package.path = package.path .. ';./Assets/lua/characters/?.lua;' .. ';./Assets/lua/?.lua;'
+
+-- gui include
+require "IconGui"
+
+-- characters include
 require "Patchy"
 local characters = {}
 
@@ -9,6 +14,7 @@ local mainGame = {}
 
 local entityTasks = {}
 
+local t_guiIcons = nil
 
 function init(host)
     -- init slots
@@ -29,6 +35,9 @@ function init(host)
     -- init characters
     characters["pat"] = Patchy
     characters["pat"].init(characters["pat"],host,leftSlots[2][2])
+    t_guiIcons = IconGUI
+    t_guiIcons.init(t_guiIcons,host)
+
     mainGame["main"] = {behavior = coroutine.create(gameLoop,host)} 
     IssueNextPhase(host)
 end

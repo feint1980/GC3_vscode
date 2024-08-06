@@ -23,6 +23,7 @@ void Slot::init(int row, int colum, int side)
     }
     
     m_actualPos = glm::vec2(m_index.x * xFactor, m_index.y * yFactor);
+    m_actualPos.y += 100; // up
 
     m_circle.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/circle.png"), 
     m_actualPos, glm::vec2(120, 40), Feintgine::Color(255, 255, 0, 255));

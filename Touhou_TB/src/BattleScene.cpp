@@ -214,6 +214,150 @@ int lua_EntityGetTargetSlot(lua_State * L)
 	return 1;	
 
 }
+
+int lua_CreateGUIHandler(lua_State * L)
+{
+
+	if (lua_gettop(L) != 4)
+	{
+		std::cout << "gettop failed (lua_CreateGUIHandler) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	std::string selectionTexturePath = lua_tostring(L, 2);
+	glm::vec2 dim = glm::vec2(0);
+
+	dim.x = (float)lua_tonumber(L, 3);
+	dim.y = (float)lua_tonumber(L, 4);
+
+	GUI_handler * handler =  battleScene->createGUIHandler(selectionTexturePath, dim);
+
+	lua_pushlightuserdata(L, handler);
+
+	return 1;
+}
+
+GUI_handler * BattleScene::createGUIHandler(const std::string & selectionTexturePath, const glm::vec2 & dim)
+{
+
+	if(m_guiHandler == nullptr)
+	{
+		m_guiHandler = new GUI_handler();	
+		m_guiHandler->init(selectionTexturePath, dim);
+	}
+	
+	
+	return m_guiHandler;
+}
+
+int lua_CreateIcon(lua_State * L)
+{
+
+	if (lua_gettop(L) < 7 || lua_gettop(L) > 8)
+	{
+		std::cout << "gettop failed (lua_CreateIcon) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	std::string texturePath = lua_tostring(L, 2);
+	glm::vec2 dim = glm::vec2(0);
+
+	dim.x = (float)lua_tonumber(L, 3);
+	dim.y = (float)lua_tonumber(L, 4);
+	std::string name = lua_tostring(L, 5);
+	std::string description = lua_tostring(L, 6);
+	float turnCost = (float)lua_tonumber(L, 7);
+
+	unsigned int specialID = 0;
+	if(lua_gettop(L) == 8)
+	{
+		specialID = (unsigned int)lua_tonumber(L, 8);
+	}
+
+	GUI_icon * icon =  battleScene->createIcon(texturePath,glm::vec2(0), dim);
+	icon->setName(name);
+	icon->setDescription(description);
+	icon->setTurnCost(turnCost);
+	icon->setSpecialID(specialID);
+
+	lua_pushlightuserdata(L, icon);
+	return 1;
+
+}
+
+GUI_icon * BattleScene::createIcon(const std::string & texturePath, const glm::vec2 & pos, const glm::vec2 & dim)
+{
+
+
+	GUI_icon * icon = new GUI_icon();
+	icon->init(texturePath, pos, dim);
+	m_icons.push_back(icon);
+
+	return icon;
+}
+
+
+int lua_GUIHandlerAddIcon(lua_State * L)
+{
+
+	if (lua_gettop(L) != 2)
+	{
+		std::cout << "gettop failed (lua_GUIHandlerAddIcon) \n";	
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	GUI_icon * icon = static_cast<GUI_icon*>(lua_touserdata(L, 2));
+
+	battleScene->GUIHandlerAddIcon(icon);
+	
+	return 0;
+}
+
+void BattleScene::GUIHandlerAddIcon(GUI_icon * icon)
+{
+	
+	if(m_guiHandler != nullptr)
+	{
+		m_guiHandler->addIcon(icon);
+	}
+}
+
+void BattleScene::setGUIHandlerIconPos(GUI_icon * icon, const glm::vec2 & pos)
+{
+	if(m_guiHandler != nullptr)
+	{
+		m_guiHandler->setIconPos(icon, pos);
+	}
+}
+
+int lua_GuiHandlerSetIconPos(lua_State * L)
+{
+
+	if (lua_gettop(L) != 4)
+	{
+		std::cout << "gettop failed (lua_GuiHandlerSetIconPos) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	GUI_icon * icon = static_cast<GUI_icon*>(lua_touserdata(L, 2));
+	glm::vec2 pos = glm::vec2(0);
+
+	pos.x = (float)lua_tonumber(L, 3);
+	pos.y = (float)lua_tonumber(L, 4);
+
+	battleScene->setGUIHandlerIconPos(icon, pos);
+	return 0;
+
+}
+
 void BattleScene::init(Feintgine::Camera2D * camera )
 {
 
@@ -232,6 +376,14 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppEntityPlayAnimation", lua_EntityPlayAnimation);
 	lua_register(m_script, "cppEntityMoveToslot", lua_EntityMoveToSlot);
 	lua_register(m_script, "cppEntityGetTargetSlot", lua_EntityGetTargetSlot);
+
+	// GUI_handler data 
+	lua_register(m_script, "cppCreateGUIHandler", lua_CreateGUIHandler);
+	lua_register(m_script, "cppGUIHandlerAddIcon", lua_GUIHandlerAddIcon);
+	lua_register(m_script, "cppGuiHandlerSetIconPos", lua_GuiHandlerSetIconPos);
+
+	// create gui icon
+	lua_register(m_script, "cppCreateIcon", lua_CreateIcon);
 
 
 	if (LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/lua/test.lua")))
@@ -325,6 +477,10 @@ void BattleScene::draw(Feintgine::SpriteBatch & spriteBatch)
 	for(int i = 0 ; i < m_entities.size(); i++)
 	{
 		m_entities[i]->draw(spriteBatch);
+	}
+	if(m_guiHandler)
+	{
+		m_guiHandler->draw(spriteBatch);
 	}
 
 }

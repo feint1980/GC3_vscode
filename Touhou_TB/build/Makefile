@@ -200,6 +200,54 @@ src/F_Lua_Entitymanipulator.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.s
 .PHONY : src/F_Lua_Entitymanipulator.cpp.s
 
+src/GUI_handler.obj: src/GUI_handler.cpp.obj
+.PHONY : src/GUI_handler.obj
+
+# target to build an object file
+src/GUI_handler.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/GUI_handler.cpp.obj
+.PHONY : src/GUI_handler.cpp.obj
+
+src/GUI_handler.i: src/GUI_handler.cpp.i
+.PHONY : src/GUI_handler.i
+
+# target to preprocess a source file
+src/GUI_handler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/GUI_handler.cpp.i
+.PHONY : src/GUI_handler.cpp.i
+
+src/GUI_handler.s: src/GUI_handler.cpp.s
+.PHONY : src/GUI_handler.s
+
+# target to generate assembly for a file
+src/GUI_handler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/GUI_handler.cpp.s
+.PHONY : src/GUI_handler.cpp.s
+
+src/GUI_icon.obj: src/GUI_icon.cpp.obj
+.PHONY : src/GUI_icon.obj
+
+# target to build an object file
+src/GUI_icon.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.obj
+.PHONY : src/GUI_icon.cpp.obj
+
+src/GUI_icon.i: src/GUI_icon.cpp.i
+.PHONY : src/GUI_icon.i
+
+# target to preprocess a source file
+src/GUI_icon.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.i
+.PHONY : src/GUI_icon.cpp.i
+
+src/GUI_icon.s: src/GUI_icon.cpp.s
+.PHONY : src/GUI_icon.s
+
+# target to generate assembly for a file
+src/GUI_icon.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.s
+.PHONY : src/GUI_icon.cpp.s
+
 src/Slot.obj: src/Slot.cpp.obj
 .PHONY : src/Slot.obj
 
@@ -338,6 +386,12 @@ help:
 	@echo ... src/F_Lua_Entitymanipulator.obj
 	@echo ... src/F_Lua_Entitymanipulator.i
 	@echo ... src/F_Lua_Entitymanipulator.s
+	@echo ... src/GUI_handler.obj
+	@echo ... src/GUI_handler.i
+	@echo ... src/GUI_handler.s
+	@echo ... src/GUI_icon.obj
+	@echo ... src/GUI_icon.i
+	@echo ... src/GUI_icon.s
 	@echo ... src/Slot.obj
 	@echo ... src/Slot.i
 	@echo ... src/Slot.s

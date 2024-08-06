@@ -12,10 +12,10 @@ GUI_icon::~GUI_icon()
 
 }
 
-void GUI_icon::init(const std::string & texturePath, const glm::vec2 & pos, const glm::vec2 & dim, float depth)
+void GUI_icon::init(const std::string & texturePath, const glm::vec2 & pos, const glm::vec2 & dim)
 {
     m_icon.init(Feintgine::ResourceManager::getTexture(texturePath), pos, dim, Feintgine::Color(255, 255, 255, 255));
-    m_icon.setDepth(depth);
+    m_icon.setDepth(10);
     
 }
 
