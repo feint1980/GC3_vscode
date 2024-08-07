@@ -70,15 +70,15 @@ namespace Feintgine {
 						SpritePacket spritePacket(texturePath);
 						m_SpritePackets.insert(std::make_pair(packetKey.c_str(),   std::move(spritePacket)));
 						m_storedKey.push_back(packetKey);
-						std::thread t = std::thread([this, packetKey](){
+						// std::thread t = std::thread([this, packetKey](){
 					
-							m_SpritePackets[packetKey].selfLoad();
-							m_packetCount++;
-						});
-						if(t.joinable())
-						{
-							t.join();
-						}
+						// 	m_SpritePackets[packetKey].selfLoad();
+						// 	m_packetCount++;
+						// });
+						// if(t.joinable())
+						// {
+						// 	t.join();
+						// }
 						//t.detach();
 
 						//m_Threads.push_back(std::move(t));
@@ -137,38 +137,38 @@ namespace Feintgine {
 	{
 
 	 	scan_dir(name, level);
-	// 	int total_files = m_SpritePackets.size();
-	// 	int begin = 0;
-	// 	int end;
-	// 	int chunk;
-	// 	int redefinedMaxThreads = max_threads / 2;
-	// 	if(total_files > redefinedMaxThreads)
-	// 	{
-	// 		chunk = total_files / redefinedMaxThreads;
+		int total_files = m_SpritePackets.size();
+		int begin = 0;
+		int end;
+		int chunk;
+		int redefinedMaxThreads = max_threads / 2;
+		if(total_files > redefinedMaxThreads)
+		{
+			chunk = total_files / redefinedMaxThreads;
 
-	// 	}
-	// 	else
-	// 	{
-	// 		chunk = 1;
-	// 	}
-    //    int remain_files = total_files % redefinedMaxThreads;
+		}
+		else
+		{
+			chunk = 1;
+		}
+       int remain_files = total_files % redefinedMaxThreads;
 
-	// 	for (int i = 0; i < std::min(redefinedMaxThreads, total_files); ++i)
-    //     {
-    //         end = begin + chunk - 1 +
-	// 		 (remain_files + (i + 1) * chunk == total_files ? remain_files : 0);
+		for (int i = 0; i < std::min(redefinedMaxThreads, total_files); ++i)
+        {
+            end = begin + chunk - 1 +
+			 (remain_files + (i + 1) * chunk == total_files ? remain_files : 0);
 
-    //         std::thread t = std::thread([this, begin, end](){
-	// 		for(int i = begin; i <= end; ++i)
-	// 		{
-    //             m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-	// 			//std::cout << "thread " << i << " " << m_storedKey[i].c_str() <<  " done \n";
-	// 			m_packetCount++;
-	// 		}
-    //         });
-    //         m_Threads.push_back(std::move(t));
-    //         begin = end + 1;
-    //     }
+            std::thread t = std::thread([this, begin, end](){
+			for(int i = begin; i <= end; ++i)
+			{
+                m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+				//std::cout << "thread " << i << " " << m_storedKey[i].c_str() <<  " done \n";
+				m_packetCount++;
+			}
+            });
+            m_Threads.push_back(std::move(t));
+            begin = end + 1;
+        }
 
 		// Solution 2, faster but cause crash in GC3
 
@@ -224,14 +224,14 @@ namespace Feintgine {
 		// 	//std::cout << "internal wait\n";
 		// }
 
-		// for(int i = 0; i < m_Threads.size(); i++)
-		// {
-		// 	m_Threads[i].detach();
-		// 	// if(m_Threads[i].joinable())
-		// 	// {
-		// 	// 	m_Threads[i].join();
-		// 	// }
-		// }
+		for(int i = 0; i < m_Threads.size(); i++)
+		{
+			//m_Threads[i].detach();
+			if(m_Threads[i].joinable())
+			{
+				m_Threads[i].join();
+			}
+		}
 		// while(m_packetCount < m_Threads.size())
 		// {
 		// 	if(m_Threads[m_packetCount].joinable())

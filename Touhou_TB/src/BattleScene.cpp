@@ -246,8 +246,8 @@ GUI_handler * BattleScene::createGUIHandler(const std::string & selectionTexture
 	{
 		m_guiHandler = new GUI_handler();	
 		m_guiHandler->init(selectionTexturePath, dim);
-	}
 	
+	}
 	
 	return m_guiHandler;
 }
@@ -358,6 +358,31 @@ int lua_GuiHandlerSetIconPos(lua_State * L)
 
 }
 
+
+int lua_GuiHandlerSetSelectedIcon(lua_State * L)
+{
+
+	if (lua_gettop(L) != 2)
+	{
+		std::cout << "gettop failed (lua_GuiHandlerGetSelectedIcon) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	GUI_icon * icon = static_cast<GUI_icon*>(lua_touserdata(L, 2));
+	GUI_icon * selectedIcon = battleScene->setGUIHandlerSelectedIcon(icon);
+	lua_pushlightuserdata(L, selectedIcon);
+	return 1;
+}
+
+GUI_icon * BattleScene::setGUIHandlerSelectedIcon(GUI_icon * icon)
+{
+	if(m_guiHandler)
+	{
+		return m_guiHandler->getSelectedIcon(icon);
+	}
+}
 void BattleScene::init(Feintgine::Camera2D * camera )
 {
 
@@ -381,6 +406,7 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppCreateGUIHandler", lua_CreateGUIHandler);
 	lua_register(m_script, "cppGUIHandlerAddIcon", lua_GUIHandlerAddIcon);
 	lua_register(m_script, "cppGuiHandlerSetIconPos", lua_GuiHandlerSetIconPos);
+	lua_register(m_script, "cppGuiHandlerSetSelectedIcon", lua_GuiHandlerSetSelectedIcon);
 
 	// create gui icon
 	lua_register(m_script, "cppCreateIcon", lua_CreateIcon);
@@ -445,6 +471,41 @@ void BattleScene::handleInput(Feintgine::InputManager & inputManager)
 			m_slots[i]->setState(0);
 		}
 	}
+
+	int signal = 0;
+	if(inputManager.isKeyPressed(SDLK_LEFT))
+	{
+		signal = 1;
+	}
+
+	if(inputManager.isKeyPressed(SDLK_RIGHT))
+	{
+		signal = 2;
+	}
+
+
+	if(signal != 0)
+	{
+		lua_getglobal(m_script, "handleInput");
+		if (lua_isfunction(m_script, -1))
+		{
+			lua_pushlightuserdata(m_script, this); // host
+
+				//std::cout << "Issue next task pointer " << object << "\n";
+
+			//lua_pushlightuserdata(m_script, m_guiHandler);
+
+			lua_pushnumber(m_script, signal);
+
+			// lua_pushlightuserdata(m_script, entity->getTargetSlot());
+
+			if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 2, 1, 0)))
+			{
+				std::cout << "call handleInput failed \n";
+			}
+		}
+	}
+	
 
 }
 
@@ -512,6 +573,10 @@ void BattleScene::setMoveTargetSlot(F_Lua_BaseEntity * entity, Slot * slot)
 void BattleScene::update(float deltaTime)
 {
 
+	if(m_guiHandler)
+	{
+		m_guiHandler->update(deltaTime);
+	}
 	for(int i = 0 ; i < m_slots.size(); i++)
 	{
 		m_slots[i]->update(deltaTime);

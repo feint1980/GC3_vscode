@@ -38,6 +38,8 @@ public:
 
     void setGUIHandlerIconPos(GUI_icon * icon, const glm::vec2 & pos);
 
+    GUI_icon * setGUIHandlerSelectedIcon(GUI_icon * icon);
+
 protected:
 
     lua_State * m_script;

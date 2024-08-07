@@ -49,7 +49,7 @@ namespace Feintgine
 // 			
 // 			SDL_GetCurrentDisplayMode(index, &m_current);
 
-			
+			checkInput();
 			while (totalDeltaTime > 0.0f)
 			{
 			
@@ -58,7 +58,7 @@ namespace Feintgine
 							
 				update(deltaTime);
 				totalDeltaTime -= deltaTime;
-				checkInput();
+				
 				
 			}
 			

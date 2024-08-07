@@ -107,6 +107,10 @@ function setEntityMoveToSlot(host,dyobj)
 end
 
 
+function handleInput(host,signal)
+    t_guiIcons.onSignal(host,t_guiIcons,signal)
+end
+
 function gameLoop(host)
     local gameOn = true
     while gameOn do

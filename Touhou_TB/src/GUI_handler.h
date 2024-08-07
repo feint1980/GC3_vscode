@@ -21,8 +21,12 @@ public:
 
     void setIconPos(GUI_icon *  icon, const glm::vec2 & pos);
 
+    GUI_icon * getSelectedIcon(GUI_icon * icon);
+
     private :
     std::vector<GUI_icon * > m_icons;
+
+    GUI_icon * m_selectedIcon = nullptr;
 
 
     EmptyObject m_selectionZone;
