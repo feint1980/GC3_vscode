@@ -55,7 +55,24 @@ int lua_SetAtrribute(lua_State * L)
 
 	return 0;
 }
+int lua_SetStrAtrribute(lua_State * L)
+{
+if (lua_gettop(L) != 3)
+	{
+		std::cout << "gettop failed (lua_SetAtrribute) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+	F_Lua_BaseEntity * object = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 1));
 
+	std::string attributeName = lua_tostring(L, 2);
+
+	std::string value = lua_tostring(L, 3);
+
+	object->setAttribute(attributeName, value);
+
+	return 0;
+}
 F_Lua_BaseEntity * BattleScene::addEntity(Slot * slot, const std::string & animationPath, const glm::vec2 & scale)
 {
 
@@ -383,6 +400,8 @@ GUI_icon * BattleScene::setGUIHandlerSelectedIcon(GUI_icon * icon)
 		return m_guiHandler->getSelectedIcon(icon);
 	}
 }
+
+
 void BattleScene::init(Feintgine::Camera2D * camera )
 {
 
@@ -395,6 +414,7 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppCreateEnity", lua_CreateEntity);
 	lua_register(m_script, "cppCreateSlot", lua_CreateSlot);
 	lua_register(m_script, "cppSetAttribute", lua_SetAtrribute);
+	lua_register(m_script, "cppSetStrAttribute", lua_SetStrAtrribute);
 	lua_register(m_script, "cppPickActiveEntity", lua_PickActiveEntity);
 	lua_register(m_script, "cppGetSlotCol", lua_GetSlotCol);
 	lua_register(m_script, "cppGetEntitySlot", lua_GetEntitySlot);
@@ -483,7 +503,6 @@ void BattleScene::handleInput(Feintgine::InputManager & inputManager)
 		signal = 2;
 	}
 
-
 	if(signal != 0)
 	{
 		lua_getglobal(m_script, "handleInput");
@@ -491,7 +510,7 @@ void BattleScene::handleInput(Feintgine::InputManager & inputManager)
 		{
 			lua_pushlightuserdata(m_script, this); // host
 
-				//std::cout << "Issue next task pointer " << object << "\n";
+			//std::cout << "Issue next task pointer " << object << "\n";
 
 			//lua_pushlightuserdata(m_script, m_guiHandler);
 

@@ -1,11 +1,15 @@
 print("Helloooooo ")
-package.path = package.path .. ';./Assets/lua/characters/?.lua;' .. ';./Assets/lua/?.lua;'
+package.path = package.path .. ';./Assets/Lua/characters/?.lua;' .. ';./Assets/Lua/?.lua;' .. './characters/Common/?.lua;' .. './characters/Patchy/?.lua;' .. ';./Assets/Lua/characters/Patchy/?.lua;'
 
 -- gui include
 require "IconGui"
 
 -- characters include
 require "Patchy"
+
+require "Patchouli"
+
+
 local characters = {}
 
 local turns = {}
@@ -35,8 +39,14 @@ function init(host)
     -- init characters
     characters["pat"] = Patchy
     characters["pat"].init(characters["pat"],host,leftSlots[2][2])
+
+    characters["p1"] = Patchouli
+    characters["p1"].init(characters["p1"],host,leftSlots[3][3])
+
     t_guiIcons = IconGUI
     t_guiIcons.init(t_guiIcons,host)
+
+
 
     mainGame["main"] = {behavior = coroutine.create(gameLoop,host)} 
     IssueNextPhase(host)

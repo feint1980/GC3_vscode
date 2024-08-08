@@ -17,6 +17,20 @@ enum Attribute
     Agility,
     Intelligence,
     Wisdom,
+    action,
+    hp,
+    mana,
+    sp,
+    spCap,
+    physicDmg,
+    physicDef,
+    magicDmg,
+    magicDef,
+    accurate,
+    evadeChance,
+    name,
+    lastName,
+    title,
     Invalid
 };
 
@@ -35,7 +49,12 @@ public:
 
     void setAttribute(const std::string & attributeName, int value);
 
+    void setAttribute(const std::string & attributeName, const std::string & value);
+
     void setAttribute(Attribute attribute, float value);
+
+    void setAttribute(Attribute attribute, const std::string & value);
+
 
     void setPos(const glm::vec2 & pos);
 
@@ -86,5 +105,21 @@ protected:
     float m_agility;
     float m_intelligence;
     float m_wisdom;
+
+    float m_action;
+    float m_hp;
+    float m_mana;
+    float m_sp;
+    float m_spCap;
+    float m_physicDmg;
+    float m_physicDef;
+    float m_magicDmg;
+    float m_magicDef;
+
+    float m_accurate;
+    float m_evadeChance;
+    std::string m_name;
+    std::string m_lastName;
+    std::string m_title;
 
 };

@@ -88,29 +88,73 @@ Attribute F_Lua_BaseEntity::getAttributeByName(const std::string & attributeName
     std::string toLower = attributeName;
 
     std::transform(toLower.begin(), toLower.end(), toLower.begin(), ::tolower);
-    if(toLower == "strength" )
+    if(toLower == "strength" || toLower == "str")
     {
         return Strength;
     }
-    else if(toLower == "vitality")
+    else if(toLower == "vitality" || toLower == "vit")
     {
         return Vitality;
     }
-    else if(toLower == "dexterity")
+    else if(toLower == "dexterity" || toLower == "dex")
     {
         return Dexterity;
     }
-    else if(toLower == "agility")
+    else if(toLower == "agility" || toLower == "agi")
     {
         return Agility;
     }
-    else if(toLower == "intelligence")
+    else if(toLower == "intelligence" || toLower == "int")
     {
         return Intelligence;
     }
-    else if(toLower == "wisdom")
+    else if(toLower == "wisdom" || toLower == "wis")
     {
         return Wisdom;
+    }
+    else if(toLower == "action")
+    {
+        return action;
+    }
+    else if(toLower == "hp" || toLower == "health")
+    {
+        return hp;
+    }
+    else if(toLower == "mana" || toLower == "mp")
+    {
+        return mana;
+    }
+    else if(toLower == "sp")
+    {
+        return sp;
+    }
+    else if(toLower == "spcap")
+    {
+        return spCap;
+    }
+    else if(toLower == "physicdmg" || toLower == "physic")
+    {
+        return physicDmg;
+    }
+    else if(toLower == "magicdmg" || toLower == "magic")
+    {
+        return magicDmg;
+    }
+    else if(toLower == "magicdef" || toLower == "magdef" || toLower == "magicdef")
+    {
+        return magicDef;
+    }
+    else if(toLower == "physicdef" || toLower == "physdef" || toLower == "physicdef")
+    {
+        return physicDef;
+    }
+    else if(toLower == "accurate" || toLower == "accuracy" || toLower == "acc")
+    {
+        return accurate;
+    }
+    else if(toLower == "evadechance" || toLower == "evade")
+    {
+        return evadeChance;
     }
     else
     {
@@ -126,6 +170,35 @@ void F_Lua_BaseEntity::setAttribute(const std::string & attributeName, int value
   
 }
 
+void F_Lua_BaseEntity::setAttribute(const std::string & attributeName, const std::string & value)
+{
+    Attribute attribute = getAttributeByName(attributeName);
+    setAttribute(attribute, value);
+}
+
+
+void F_Lua_BaseEntity::setAttribute(Attribute attribute, const std::string & value)
+{
+
+    if(attribute != Invalid)
+    {
+
+        switch(attribute)
+        {
+            case name:
+                m_name = value;
+                break;
+            case lastName:
+                m_lastName = value;
+                break;
+            case title:
+                m_title = value;
+                break;
+            default:
+                break;
+        }
+    }
+}
 void F_Lua_BaseEntity::setAttribute(Attribute attribute, float value)
 {
 
@@ -150,6 +223,39 @@ void F_Lua_BaseEntity::setAttribute(Attribute attribute, float value)
                 break;
             case Wisdom:
                 m_wisdom = value;
+                break;
+            case action:
+                m_action = value;
+                break;
+            case hp:
+                m_hp = value;
+                break;
+            case mana:
+                m_mana = value;
+                break;  
+            case sp:
+                m_sp = value;
+                break;
+            case spCap:
+                m_spCap = value;
+                break;
+            case physicDmg:
+                m_physicDmg = value;
+                break;
+            case physicDef:
+                m_physicDef = value;
+                break;
+            case magicDmg:
+                m_magicDmg = value;
+                break;
+            case magicDef:
+                m_magicDef = value;
+                break;
+            case accurate:
+                m_accurate = value;
+                break;
+            case evadeChance:
+                m_evadeChance = value;
                 break;
             default:
                 break;

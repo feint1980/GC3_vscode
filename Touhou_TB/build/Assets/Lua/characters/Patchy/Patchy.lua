@@ -21,6 +21,7 @@ function Patchy.init(self,host,slot)
     cppSetAttribute(self.dyobj,"Agility",self.Agility)
     cppSetAttribute(self.dyobj,"Intelligence",self.Intelligence)
     cppSetAttribute(self.dyobj,"Wisdom",self.Wisdom)
+    
     self.action = 1 + self.Dexterity * 0.05
 
 end

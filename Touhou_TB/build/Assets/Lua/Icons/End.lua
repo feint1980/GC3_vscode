@@ -19,4 +19,3 @@ end
 function End.getObject(self)
     return self.iconObj
 end
-
