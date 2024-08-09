@@ -1,21 +1,23 @@
+package.path = package.path .. ';./Assets/lua/Icons/?.lua;'
 
-Move = {
+require "Icon"
 
+Move = Icon:new({
     asset = "./Assets/TB_GUI/move.png",
-    name = "Move",
-    description = "Move to selected slot (0.5 turn per distance )",
+    name = "Icon",
+    description = "baseIcon",
     turnCost = 0.5,
     iconObj = nil,
-    specialID = 1
-}
+    dyobj = nil,
+    specialID = 1,
+    funct = function() Move:move() end,
+    host = nil,
+    index = 1
+})
 
 
-function Move.init(self,host)
-    --self.iconObj = 
-    self.iconObj =  cppCreateIcon(host,self.asset,64,64,self.name,self.description,self.turnCost, self.specialID)
-
+function Move:move()
+    print("calllllled")
+    -- todo, make the host now able to select the slot to move
 end
 
-function Move.getObject(self)
-    return self.iconObj
-end

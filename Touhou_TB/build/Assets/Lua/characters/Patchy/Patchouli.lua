@@ -5,9 +5,7 @@ require "IconGui"
 -- characters include
 require "Character"
 
-Patchouli = Character:new()
-
-p = Patchouli:new{
+Patchouli = Character:new({
     Strenth = 3,
     Vitality = 4,
     Dexterity = 8,
@@ -32,3 +30,6 @@ p = Patchouli:new{
     lastName = "Knowledge",
     title = "Unmoving Library"
 }
+)
+
+-- Patchouli:new

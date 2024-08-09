@@ -1,3 +1,10 @@
+package.path = package.path .. ';./Assets/lua/Icons/?.lua;'
+require "Move"
+require "End"
+
+
+
+
 Character = {
 
     Strength = 5,
@@ -20,9 +27,13 @@ Character = {
     magicDef = 10,
     accurate = 0.5,
     evadeChance = 0.1,
-    name = "None",
+    name = "Nameless",
     lastName = "None",
-    title = "None"
+    title = "None",
+
+    common_actions = {},
+    items = {},
+    skills = {}
 
 }
 
@@ -33,7 +44,7 @@ function Character:new(o)
     return o
 end
 
-function Character.init(self,host,slot)
+function Character:init(host,slot)
 
     self.dyobj = cppCreateEnity(host,self.animationPath,slot)
     -- set attributes
@@ -58,5 +69,19 @@ function Character.init(self,host,slot)
     cppSetAttribute(self.dyobj,"lastName",self.lastName)
     cppSetAttribute(self.dyobj,"title",self.title)
 
+    --return self
+
+end
+
+function Character:loadCommon(host)
+
+    self.common_actions["Move"] = Move
+    self.common_actions["Move"]:init(host,self.dyobj)
+
+
+    self.common_actions["End"] = End
+    self.common_actions["End"]:init(host,self.dyobj)
+
+    table.sort(self.common_actions, function(a,b) return a.index < b.index end)
 
 end

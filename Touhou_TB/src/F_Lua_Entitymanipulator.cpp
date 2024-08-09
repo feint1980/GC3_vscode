@@ -76,7 +76,7 @@ bool F_Lua_EntityManipulator::update(float deltaTime)
                         m_entity->setPos(m_endPos);
                         m_state = EntityState::None;
                         return true;
-                    }
+                    }   
             }
         }
         break;

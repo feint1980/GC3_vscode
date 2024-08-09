@@ -37,16 +37,16 @@ function init(host)
         end
     end
     -- init characters
-    characters["pat"] = Patchy
-    characters["pat"].init(characters["pat"],host,leftSlots[2][2])
+    -- characters["pat"] = Patchy
+    -- characters["pat"].init(characters["pat"],host,leftSlots[2][2])
 
-    characters["p1"] = Patchouli
-    characters["p1"].init(characters["p1"],host,leftSlots[3][3])
+    characters["p1"] = Patchouli:new()
+    characters["p1"]:init(host,leftSlots[3][3])
+    characters["p1"]:loadCommon(host)
 
     t_guiIcons = IconGUI
-    t_guiIcons.init(t_guiIcons,host)
-
-
+    t_guiIcons:init(host)
+    --t_guiIcons:loadIcons(host,characters["p1"])
 
     mainGame["main"] = {behavior = coroutine.create(gameLoop,host)} 
     IssueNextPhase(host)
@@ -118,7 +118,7 @@ end
 
 
 function handleInput(host,signal)
-    t_guiIcons.onSignal(host,t_guiIcons,signal)
+    t_guiIcons:onSignal(host,signal)
 end
 
 function gameLoop(host)
@@ -130,9 +130,11 @@ function gameLoop(host)
             -- do something
             print("chracter " .. turns[i].Strength .. "turn " )
             cppPickActiveEntity(host,turns[i].dyobj)
+            t_guiIcons:loadIcons(host,turns[i])
             coroutine.yield()
             table.remove(turns,1)
         end
+        
         print("end")
     end
 end

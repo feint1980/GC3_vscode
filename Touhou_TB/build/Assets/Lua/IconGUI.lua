@@ -8,32 +8,56 @@ require "End"
 
 
 IconGUI = {
-   guiHandler = nil,
-   selectIcon = nil,
-   currentIndex = 1
+    guiHandler = nil,
+    selectIcon = nil,
+    currentTTD = nil,
+    currentIndex = 1
 }
 
-function IconGUI.init(self,host)
+function IconGUI:init(host)
 
     self.guiHandler = cppCreateGUIHandler(host,"./Assets/TB_GUI/selection.png", 68,68)
 
-    commmon_icons["Move"] = Move
-    commmon_icons["Move"].init(commmon_icons["Move"],host)
+    -- commmon_icons["Move"] = Move
+    -- commmon_icons["Move"].init(commmon_icons["Move"],host)
 
-    -- addObject = commmon_icons["Move"].getObject(commmon_icons["Move"])
-    cppGUIHandlerAddIcon(host,commmon_icons["Move"].iconObj)
-    cppGuiHandlerSetIconPos(host,commmon_icons["Move"].iconObj,200,-300)
+    -- -- addObject = commmon_icons["Move"].getObject(commmon_icons["Move"])
+    -- cppGUIHandlerAddIcon(host,commmon_icons["Move"].iconObj)
+    -- cppGuiHandlerSetIconPos(host,commmon_icons["Move"].iconObj,200,-300)
 
-    commmon_icons["End"] = End
-    commmon_icons["End"].init(commmon_icons["End"],host)
-    cppGUIHandlerAddIcon(host,commmon_icons["End"].iconObj)
-    cppGuiHandlerSetIconPos(host,commmon_icons["End"].iconObj,270,-300)
+    -- commmon_icons["End"] = End
+    -- commmon_icons["End"].init(commmon_icons["End"],host)
+    -- cppGUIHandlerAddIcon(host,commmon_icons["End"].iconObj)
+    -- cppGuiHandlerSetIconPos(host,commmon_icons["End"].iconObj,270,-300)
 
-    self.selectIcon = cppGuiHandlerSetSelectedIcon(host,commmon_icons["Move"].iconObj)
-    self.currentIndex = 1
+    -- self.selectIcon = cppGuiHandlerSetSelectedIcon(host,commmon_icons["Move"].iconObj)
+    -- self.currentIndex = 1
     
 
 end
+
+function IconGUI:loadIcons(host,character)
+    -- clear icons
+    commmon_icons = {}
+    tIndex = 0
+    print("start loading from " .. character.name)
+    for k,v in pairs(character.common_actions) do
+        print("loading from " .. k)
+        commmon_icons[k] = v
+      
+        cppGUIHandlerAddIcon(host,commmon_icons[k].iconObj)
+        cppGuiHandlerSetIconPos(host,commmon_icons[k].iconObj,200 + (70 * tIndex),-300)
+        if tIndex == 0 then
+            self.selectIcon = cppGuiHandlerSetSelectedIcon(host,commmon_icons[k].iconObj)
+        end
+        tIndex = tIndex + 1
+    end
+
+    print("end loading")
+
+end
+
+
 
 function tablelength(T)
   local count = 0
@@ -41,7 +65,7 @@ function tablelength(T)
   return count
 end
 
-function IconGUI.onSignal(host, self,signal)
+function IconGUI:onSignal(host,signal)
    
     --print("original index is " .. self.currentIndex)
     tableCount = tablelength(commmon_icons)
@@ -57,6 +81,13 @@ function IconGUI.onSignal(host, self,signal)
     if self.currentIndex < 1 then
         self.currentIndex = tableCount
     end
+
+    if signal == 32 then
+        if self.currentTTD ~= nil then
+            self.currentTTD.funct()
+        end
+    end
+
     --print("current index is " .. self.currentIndex)
     local index = 0
    
@@ -67,6 +98,7 @@ function IconGUI.onSignal(host, self,signal)
         if index == self.currentIndex then
             --print("set icon " .. v.name)
             self.selectIcon = cppGuiHandlerSetSelectedIcon(host,v.iconObj)
+            self.currentTTD = v
         end
        
     end    

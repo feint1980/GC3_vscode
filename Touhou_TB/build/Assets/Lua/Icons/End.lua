@@ -1,21 +1,22 @@
+package.path = package.path .. ';./Assets/lua/Icons/?.lua;'
 
-End = {
+require "Icon"
 
-    asset = "./Assets/TB_GUI/end.png",
-    name = "End",
-    description = "End the character's turn",
+End = Icon:new({
+    asset = "./Assets/TB_GUI/End.png",
+    name = "Icon",
+    description = "baseIcon",
     turnCost = 0.5,
     iconObj = nil,
-    specialID = 1
-}
+    dyobj = nil,
+    specialID = 1,
+    funct = function() End:endTurn() end,
+    host = nil,
+    index = 2
+})
 
 
-function End.init(self,host)
-    --self.iconObj = 
-    self.iconObj =  cppCreateIcon(host,self.asset,64,64,self.name,self.description,self.turnCost, self.specialID)
-
+function End:endTurn()
+    print(" end  calllllled")
 end
 
-function End.getObject(self)
-    return self.iconObj
-end

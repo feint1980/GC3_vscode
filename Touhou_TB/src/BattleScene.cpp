@@ -503,6 +503,11 @@ void BattleScene::handleInput(Feintgine::InputManager & inputManager)
 		signal = 2;
 	}
 
+	if(inputManager.isKeyPressed(SDLK_RETURN))
+	{
+		signal = 32;
+	}
+
 	if(signal != 0)
 	{
 		lua_getglobal(m_script, "handleInput");
