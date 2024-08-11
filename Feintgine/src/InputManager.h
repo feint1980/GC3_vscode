@@ -26,7 +26,7 @@ namespace Feintgine {
 
 		bool isKeyDown(unsigned int keyID);
 
-
+		bool isMouseMove()const { return _isMouseMove; }
 
 		bool isKeyPressed(unsigned int keyID);
 
@@ -38,6 +38,7 @@ namespace Feintgine {
 		std::unordered_map<unsigned int, bool> _previousKeyMap;
 
 		glm::vec2 _mouseCoords;
+		bool _isMouseMove = false;
 	};
 
 }

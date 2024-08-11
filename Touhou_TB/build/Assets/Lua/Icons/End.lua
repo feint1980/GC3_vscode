@@ -4,7 +4,7 @@ require "Icon"
 
 End = Icon:new({
     asset = "./Assets/TB_GUI/End.png",
-    name = "Icon",
+    name = "End",
     description = "baseIcon",
     turnCost = 0.5,
     iconObj = nil,
@@ -12,6 +12,7 @@ End = Icon:new({
     specialID = 1,
     funct = function() End:endTurn() end,
     host = nil,
+    selectionSide = 0,
     index = 2
 })
 

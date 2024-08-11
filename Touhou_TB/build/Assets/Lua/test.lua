@@ -20,6 +20,23 @@ local entityTasks = {}
 
 local t_guiIcons = nil
 
+phase = 1
+side = 3
+
+selectedSlot = nil
+selectedChar = nil
+
+function setPhase(host,tPhase, tSide)
+    phase = tPhase
+    side = tSide
+    if phase == 1 then
+        cppGuiHandlerSetFocusColor(host,255,255,255,255)
+    end
+    if phase == 2 then
+        cppGuiHandlerSetFocusColor(host,0,255,0,255)
+    end
+end
+
 function init(host)
     -- init slots
     leftSlots = {}          -- create the matrix
@@ -75,7 +92,7 @@ function sortCharactersTurn()
     -- empty the list
     turns = {}
     for k,v in pairs(characters) do
-        -- insert character on the list based on Dexterity 
+        -- insert character on the list based on Dexterity  
         table.insert(turns, v)
     end
 
@@ -117,9 +134,42 @@ function setEntityMoveToSlot(host,dyobj)
 end
 
 
-function handleInput(host,signal)
-    t_guiIcons:onSignal(host,signal)
+function handleSlot(host,signal)
+    -- if (side & 1) == 1 then
+    --     print("handle slot left")
+    -- end
+    -- if (side & 2) == 2 then
+    --     print("handle slot right")
+    -- end
+
+    if side == 1 then
+        print ("handle slot left")
+    end
+
 end
+function handleInput(host,signal)
+    if phase == 1 then
+        t_guiIcons:onSignal(host,signal)
+    end
+    if phase == 2 then
+        if signal == 64 then
+           setPhase(host,1,3)
+        end
+        handleSlot(host,signal)
+    end
+end
+
+function handleMouse(host,x,y,button)
+    if phase == 1 then
+        t_guiIcons:onMouseMove(host,x,y,button)
+    end
+    if phase == 2 then
+        if button == 2 then
+            setPhase(host,1,3)
+        end
+    end
+end
+
 
 function gameLoop(host)
     local gameOn = true
@@ -129,6 +179,7 @@ function gameLoop(host)
         for i = 1, #turns do
             -- do something
             print("chracter " .. turns[i].Strength .. "turn " )
+            currentChar = turns[i]
             cppPickActiveEntity(host,turns[i].dyobj)
             t_guiIcons:loadIcons(host,turns[i])
             coroutine.yield()

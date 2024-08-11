@@ -10,8 +10,9 @@ Icon = {
     specialID = 1,
     funct = nil,
     host = nil,
+    selectionSide = 3,
     index = -1
-    
+        
 }
 
 function Icon:new(o)
@@ -28,6 +29,10 @@ function Icon:init(host,dyobj)
     self.host = host
     self.dyobj = dyobj
 
+end
+
+function Icon:getPos()
+    cppGetIconPos(self.iconObj)
 end
 
 function Icon:setFunct(funct)

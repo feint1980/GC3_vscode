@@ -36,6 +36,19 @@ function IconGUI:init(host)
 
 end
 
+function IconGUI:setFocusColor(host,r,g,b,a)
+
+end
+
+function IconGUI:setSelect(host,value)
+
+end
+
+function IconGUI:selectIcon(host,icon)
+    cppSetHandlerSelected(host)
+    cppSetPhase(host,icon.selectionSide)
+end 
+
 function IconGUI:loadIcons(host,character)
     -- clear icons
     commmon_icons = {}
@@ -57,12 +70,32 @@ function IconGUI:loadIcons(host,character)
 
 end
 
-
-
 function tablelength(T)
   local count = 0
   for _ in pairs(T) do count = count + 1 end
   return count
+end
+
+function IconGUI:onMouseMove(host,x,y,button)
+   -- print("mouse move " .. x .. " " .. y)
+    for k,v in pairs(commmon_icons) do
+        tX,tY = cppGetIconPos(v.iconObj)
+        --print("x " .. tX .. " y " .. tY)
+        -- each icon dimension is 64x64
+        if x > tX - 32 and x < tX + 32 and y > tY - 32 and y < tY + 32 then
+            --print("set icon " .. v.name)
+            self.selectIcon = cppGuiHandlerSetSelectedIcon(host,v.iconObj)
+            self.currentTTD = v
+        end
+     
+    end    
+    if button == 1 then
+       
+        if self.currentTTD ~= nil then
+            print("select " .. self.currentTTD.name)
+            self.currentTTD.funct()
+        end
+    end
 end
 
 function IconGUI:onSignal(host,signal)

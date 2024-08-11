@@ -36,7 +36,11 @@ public:
 
     void GUIHandlerAddIcon(GUI_icon * icon);
 
+    void setPhase(int phaseType, int sides);
+
     void setGUIHandlerIconPos(GUI_icon * icon, const glm::vec2 & pos);
+
+    void setGUIHandlerFocusColor(const Feintgine::Color & color);
 
     GUI_icon * setGUIHandlerSelectedIcon(GUI_icon * icon);
 
@@ -59,6 +63,6 @@ protected:
 
     GUI_handler * m_guiHandler = nullptr;
 
-
-
+    int m_phaseType = 0; // 0 -> skill/items/icons, 1 -> slot
+    int m_SelectionSide = 0; // 1 -> left, 2 -> right , 3 -> both
 };

@@ -263,7 +263,9 @@ GUI_handler * BattleScene::createGUIHandler(const std::string & selectionTexture
 	{
 		m_guiHandler = new GUI_handler();	
 		m_guiHandler->init(selectionTexturePath, dim);
-	
+		m_guiHandler->registerBattleScene(this);
+		m_guiHandler->registerCamera(m_camera);
+
 	}
 	
 	return m_guiHandler;
@@ -401,6 +403,78 @@ GUI_icon * BattleScene::setGUIHandlerSelectedIcon(GUI_icon * icon)
 	}
 }
 
+int lua_SetPhase(lua_State * L)
+{
+
+	if (lua_gettop(L) != 3)
+	{
+		std::cout << "gettop failed (lua_SetPhase) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	int phase = lua_tonumber(L, 2);
+	int side = lua_tonumber(L, 3);	
+	battleScene->setPhase(phase, side);
+	return 0;
+}
+
+int lua_GetIconPos(lua_State * L)
+{
+	if(lua_gettop(L) != 1)
+	{
+		std::cout << "gettop failed (lua_SetIconPos) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	GUI_icon * icon = static_cast<GUI_icon*>(lua_touserdata(L, 1));
+	glm::vec2 pos = icon->getPos();
+	lua_pushnumber(L, pos.x);
+	lua_pushnumber(L, pos.y);
+	return 2;
+}
+
+
+int lua_GuiHandlerSetFocusColor(lua_State * L)
+{
+
+	if (lua_gettop(L) != 5)
+	{
+		std::cout << "gettop failed (lua_GuiHandlerSetFocusColor) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	int r = lua_tonumber(L, 2);
+	int g = lua_tonumber(L, 3);
+	int b = lua_tonumber(L, 4);
+	int a = lua_tonumber(L, 5);
+	Feintgine::Color color = Feintgine::Color(r, g, b, a);
+	battleScene->setGUIHandlerFocusColor(color);
+	return 0;
+}
+
+void BattleScene::setGUIHandlerFocusColor(const Feintgine::Color & color)
+{
+
+	if(m_guiHandler)
+	{
+		m_guiHandler->setFocusColor(color);
+	}
+
+}
+
+
+void BattleScene::setPhase(int phaseType, int sides)
+{
+	m_phaseType = phaseType;
+	m_SelectionSide = sides;
+
+	//m_guiHandler->setPhase(phaseType, sides);
+}
 
 void BattleScene::init(Feintgine::Camera2D * camera )
 {
@@ -421,16 +495,19 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppEntityPlayAnimation", lua_EntityPlayAnimation);
 	lua_register(m_script, "cppEntityMoveToslot", lua_EntityMoveToSlot);
 	lua_register(m_script, "cppEntityGetTargetSlot", lua_EntityGetTargetSlot);
+	lua_register(m_script, "cppSetPhase", lua_SetPhase);
 
 	// GUI_handler data 
 	lua_register(m_script, "cppCreateGUIHandler", lua_CreateGUIHandler);
 	lua_register(m_script, "cppGUIHandlerAddIcon", lua_GUIHandlerAddIcon);
 	lua_register(m_script, "cppGuiHandlerSetIconPos", lua_GuiHandlerSetIconPos);
 	lua_register(m_script, "cppGuiHandlerSetSelectedIcon", lua_GuiHandlerSetSelectedIcon);
+	lua_register(m_script, "cppGuiHandlerSetFocusColor", lua_GuiHandlerSetFocusColor);
+
 
 	// create gui icon
 	lua_register(m_script, "cppCreateIcon", lua_CreateIcon);
-
+	lua_register(m_script, "cppGetIconPos", lua_GetIconPos);
 
 	if (LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/lua/test.lua")))
 	{
@@ -478,59 +555,43 @@ Slot * BattleScene::addSlot(int row, int colum, int side)
 
 void BattleScene::handleInput(Feintgine::InputManager & inputManager)
 {
-	glm::vec2 mousePos = inputManager.getMouseCoords();
 
-	for(int i = 0 ; i < m_slots.size(); i++)
+	if(m_guiHandler)
 	{
-		if(m_slots[i]->isHovered(m_camera->convertScreenToWorld(mousePos)))
-		{
-			m_slots[i]->setState(1);
-		}
-		else
-		{
-			m_slots[i]->setState(0);
-		}
+		m_guiHandler->handleInput(inputManager, m_script);
 	}
+	// switch(m_phaseType)
+	// {
+	// 	case 0: // icon selection
+	// 	{
+	// 		if(m_guiHandler)
+	// 		{
+				
+	// 		}
+	// 	}
+	// 	break;
 
-	int signal = 0;
-	if(inputManager.isKeyPressed(SDLK_LEFT))
-	{
-		signal = 1;
-	}
+	// 	case 1: // slot selection
+	// 	{
+	// 		glm::vec2 mousePos = inputManager.getMouseCoords();
+	// 		for(int i = 0 ; i < m_slots.size(); i++)
+	// 		{
+	// 			if(m_slots[i]->isHovered(m_camera->convertScreenToWorld(mousePos)))
+	// 			{
+	// 				m_slots[i]->setState(1);
+	// 			}
+	// 			else
+	// 			{
+	// 				m_slots[i]->setState(0);
+	// 			}
+	// 		}
+	// 	}
+	// 	break;
 
-	if(inputManager.isKeyPressed(SDLK_RIGHT))
-	{
-		signal = 2;
-	}
-
-	if(inputManager.isKeyPressed(SDLK_RETURN))
-	{
-		signal = 32;
-	}
-
-	if(signal != 0)
-	{
-		lua_getglobal(m_script, "handleInput");
-		if (lua_isfunction(m_script, -1))
-		{
-			lua_pushlightuserdata(m_script, this); // host
-
-			//std::cout << "Issue next task pointer " << object << "\n";
-
-			//lua_pushlightuserdata(m_script, m_guiHandler);
-
-			lua_pushnumber(m_script, signal);
-
-			// lua_pushlightuserdata(m_script, entity->getTargetSlot());
-
-			if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 2, 1, 0)))
-			{
-				std::cout << "call handleInput failed \n";
-			}
-		}
-	}
+	// 	default:
+	// 	break;
+	// }
 	
-
 }
 
 void BattleScene::pickActiveEntity(F_Lua_BaseEntity * entity)
