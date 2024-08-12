@@ -73,6 +73,12 @@ function Character:init(host,slot)
 
 end
 
+function compare(a,b)
+    return a.index < b.index
+end
+
+
+
 function Character:loadCommon(host)
 
     self.common_actions["Move"] = Move
@@ -82,6 +88,7 @@ function Character:loadCommon(host)
     self.common_actions["End"] = End
     self.common_actions["End"]:init(host,self.dyobj)
 
-    table.sort(self.common_actions, function(a,b) return a.index < b.index end)
+    table.sort(self.common_actions, compare)
+    --table.sort(self.common_actions, function(a,b) return a.index < b.index end)
 
 end

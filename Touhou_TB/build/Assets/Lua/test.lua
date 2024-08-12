@@ -4,6 +4,8 @@ package.path = package.path .. ';./Assets/Lua/characters/?.lua;' .. ';./Assets/L
 -- gui include
 require "IconGui"
 
+require "slotHandler"
+
 -- characters include
 require "Patchy"
 
@@ -19,6 +21,8 @@ local mainGame = {}
 local entityTasks = {}
 
 local t_guiIcons = nil
+
+local t_slotHandler = nil;
 
 phase = 1
 side = 3
@@ -39,26 +43,31 @@ end
 
 function init(host)
     -- init slots
-    leftSlots = {}          -- create the matrix
-    for i=1,3 do
-        leftSlots[i] = {}     -- create a new row
-        for j=1,3 do
-            leftSlots[i][j] = cppCreateSlot(host, i, j,1)
-        end
-    end
-    rightSlots = {}          -- create the matrix
-    for i=1,3 do
-        rightSlots[i] = {}     -- create a new row
-        for j=1,3 do
-            rightSlots[i][j] = cppCreateSlot(host, i, j,2)
-        end
-    end
+    -- leftSlots = {}          -- create the matrix
+    -- for i=1,3 do
+    --     leftSlots[i] = {}     -- create a new row
+    --     for j=1,3 do
+    --         leftSlots[i][j] = cppCreateSlot(host, i, j,1)
+    --     end
+    -- end
+    -- rightSlots = {}          -- create the matrix
+    -- for i=1,3 do
+    --     rightSlots[i] = {}     -- create a new row
+    --     for j=1,3 do
+    --         rightSlots[i][j] = cppCreateSlot(host, i, j,2)
+    --     end
+    -- end
+
+    t_slotHandler = SlotHandler
+    t_slotHandler:init(host,3,3)
+
     -- init characters
     -- characters["pat"] = Patchy
     -- characters["pat"].init(characters["pat"],host,leftSlots[2][2])
 
     characters["p1"] = Patchouli:new()
-    characters["p1"]:init(host,leftSlots[3][3])
+    characters["p1"]:init(host,t_slotHandler:getSlot(3,3,1))
+    --characters["p1"]:init(host,leftSlots[3][3])
     characters["p1"]:loadCommon(host)
 
     t_guiIcons = IconGUI
