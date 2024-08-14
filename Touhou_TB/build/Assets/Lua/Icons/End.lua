@@ -20,12 +20,12 @@ End = Icon:new({
 
 function End:selected()
     print(" end selected called")
-    
+    IssueNextPhase(host)
 end
 
 
 function End:endTurn(host)
     print(" end calllllled !!!!!")
-    IssueNextPhase(host)
+   
 end
 

@@ -139,11 +139,7 @@ end
 function handleInput(host,signal)
     if phase == 1 then
         t_guiIcons:onSignal(host,signal)
-        if signal == 32 then
-            if t_slotHandler:getCurrentCount() == t_guiIcons:getCurrentTTD().requiredSlotCount then
-                t_guiIcons:getCurrentTTD().funct(host)
-            end
-        end
+        return
     end
     if phase == 2 then
         if signal == 64 then
@@ -189,7 +185,7 @@ function gameLoop(host)
             t_guiIcons:loadIcons(host,turns[i])
             coroutine.yield()
             print("turn " .. turns[i].name .. " ended")
-            table.remove(turns,1)
+            turns = table.remove(turns,1)
 
         end
         
