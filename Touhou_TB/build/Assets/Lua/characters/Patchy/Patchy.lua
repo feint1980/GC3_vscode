@@ -1,38 +1,39 @@
-local tasks = {}
+package.path = package.path  .. '../Common/?.lua' .. ';./Assets/Lua/characters/Common/?.lua;'
+-- gui include
+require "IconGui"
 
-Patchy = { 
-    Strength = 3,
+-- characters include
+require "Character"
+
+Patchy = Character:new({
+    Strenth = 3,
     Vitality = 4,
-    Dexterity = 5,
+    Dexterity = 4,
     Agility = 4,
     Intelligence = 22,
     Wisdom = 22,
-    dyobj = nil,
+
     animationPath = "./Assets/F_AObjects/patchouli_tb.xml",
-    action = 0
+    action = 1.0,
+    hp = 30,
+    mana = 370,
+    sp = 0,
+    spCap = 100,
+    physicDmg = 4,
+    physicDef = 6,
+    magicDmg = 25,
+    magicDef = 13,
+    defence = 4,
+    accurate = 0.85,
+    evadeChance = 0.1,
+    name = "Patchy",
+    lastName = "Knowledge",
+    title = "Unmoving Library",
+    common_actions = {},
+    items = {},
+    skills = {},
+    currentSlot = nil
 }
+)
 
-function Patchy.init(self,host,slot)
-    
-    self.dyobj = cppCreateEnity(host,self.animationPath,slot)
-    cppSetAttribute(self.dyobj,"Strength",self.Strength)
-    cppSetAttribute(self.dyobj,"Vitality",self.Vitality)
-    cppSetAttribute(self.dyobj,"Dexterity",self.Dexterity)
-    cppSetAttribute(self.dyobj,"Agility",self.Agility)
-    cppSetAttribute(self.dyobj,"Intelligence",self.Intelligence)
-    cppSetAttribute(self.dyobj,"Wisdom",self.Wisdom)
-    
-    self.action = 1 + self.Dexterity * 0.05
-
-end
-
-
-function Patchy.setMoveToSlot(slot)
-    tasks[self.dyobj] = {behavior = coroutine.create(Patchy.moveToSlot,slot)}
-    
-end
-
-function Patchy.moveToSlot(slot)
-    cppMoveToSlot(self.dyobj,slot)
-
-end
+-- Patchouli:new

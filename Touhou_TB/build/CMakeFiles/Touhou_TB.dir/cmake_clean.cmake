@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.obj.d"
   "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj"
   "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj.d"
+  "CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj"
+  "CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj.d"
   "CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj"
   "CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj.d"
   "CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj"

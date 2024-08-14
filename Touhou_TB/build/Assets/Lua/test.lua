@@ -22,7 +22,7 @@ local entityTasks = {}
 
 local t_guiIcons = nil
 
-local t_slotHandler = nil;
+t_slotHandler = nil;
 
 phase = 1
 side = 3
@@ -35,9 +35,12 @@ function setPhase(host,tPhase, tSide)
     side = tSide
     if phase == 1 then
         cppGuiHandlerSetFocusColor(host,255,255,255,255)
+        cppSetSlothandlerActive(t_slotHandler.handlerObject,false)
     end
     if phase == 2 then
         cppGuiHandlerSetFocusColor(host,0,255,0,255)
+        t_slotHandler:setSelectedCount(t_guiIcons:getCurrentTTD().requiredSlotCount)
+        cppSetSlothandlerActive(t_slotHandler.handlerObject,true)
     end
 end
 
@@ -60,10 +63,11 @@ function init(host)
 
     t_slotHandler = SlotHandler
     t_slotHandler:init(host,3,3)
-
+   
     -- init characters
-    -- characters["pat"] = Patchy
-    -- characters["pat"].init(characters["pat"],host,leftSlots[2][2])
+    characters["pat"] = Patchy:new()
+    characters["pat"]:init(host,t_slotHandler:getSlot(1,1,1))
+    characters["pat"]:loadCommon(host)
 
     characters["p1"] = Patchouli:new()
     characters["p1"]:init(host,t_slotHandler:getSlot(3,3,1))
@@ -111,31 +115,7 @@ function sortCharactersTurn()
     print("sort turn ended")
 end
 
-function moveToSlotBehavior(host,dyobj)
-    -- cppEntityPlayAnimation(host,dyobj,"dash_fw",-1)
-    -- coroutine.yield()
-    -- print("called 2")
-    slot = cppEntityGetTargetSlot(dyobj)
-    currentSlot = cppGetEntitySlot(dyobj)
-    print("ok ")
-    currentCol = cppGetSlotCol(currentSlot)
-    print("current col " .. currentCol)
-    targetCol = cppGetSlotCol(slot)
-    dashAnimation = "dash_fw"
-    if currentCol < targetCol then
-        dashAnimation = "dash_bw"
-    end
 
-    cppEntityPlayAnimation(host,dyobj,dashAnimation,-1)
-    cppEntityMoveToslot(host,dyobj,slot,50)
-    coroutine.yield()
-
-    finishedAnimation = dashAnimation .. "_end"
-    cppEntityPlayAnimation(host,dyobj,finishedAnimation,1)
-    coroutine.yield()
-    cppEntityPlayAnimation(host,dyobj,"idle",-1)
-    coroutine.yield()
-end
 
 function setEntityMoveToSlot(host,dyobj)
     entityTasks[dyobj] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj)}
@@ -159,12 +139,23 @@ end
 function handleInput(host,signal)
     if phase == 1 then
         t_guiIcons:onSignal(host,signal)
+        if signal == 32 then
+            if t_slotHandler:getCurrentCount() == t_guiIcons:getCurrentTTD().requiredSlotCount then
+                t_guiIcons:getCurrentTTD().funct(host)
+            end
+        end
     end
     if phase == 2 then
         if signal == 64 then
-           setPhase(host,1,3)
+            setPhase(host,1,3)
         end
-        handleSlot(host,signal)
+      
+        t_slotHandler:onSignal(host,signal,t_guiIcons:getCurrentTTD().selectionSide)
+        if signal == 32 then
+            if t_slotHandler:getCurrentCount() == t_guiIcons:getCurrentTTD().requiredSlotCount then
+                t_guiIcons:getCurrentTTD().funct(host)
+            end
+        end
     end
 end
 
@@ -185,14 +176,21 @@ function gameLoop(host)
     while gameOn do
         sortCharactersTurn()
         
-        for i = 1, #turns do
+        totalTurn = tablelength(turns) 
+        print("totalTurn " .. totalTurn)
+
+        for i = 1, totalTurn do
             -- do something
-            print("chracter " .. turns[i].Strength .. "turn " )
+            print("chracter " .. turns[i].name .. "turn " )
             currentChar = turns[i]
+            cppSelectHoverSlot(t_slotHandler.handlerObject,currentChar.currentSlot)
+    
             cppPickActiveEntity(host,turns[i].dyobj)
             t_guiIcons:loadIcons(host,turns[i])
             coroutine.yield()
+            print("turn " .. turns[i].name .. " ended")
             table.remove(turns,1)
+
         end
         
         print("end")

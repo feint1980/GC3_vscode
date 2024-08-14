@@ -33,7 +33,8 @@ Character = {
 
     common_actions = {},
     items = {},
-    skills = {}
+    skills = {},
+    currentSlot = nil
 
 }
 
@@ -47,6 +48,7 @@ end
 function Character:init(host,slot)
 
     self.dyobj = cppCreateEnity(host,self.animationPath,slot)
+    self.currentSlot = slot
     -- set attributes
     cppSetAttribute(self.dyobj,"Strength",self.Strength)
     cppSetAttribute(self.dyobj,"Vitality",self.Vitality)
@@ -73,14 +75,11 @@ function Character:init(host,slot)
 
 end
 
-function compare(a,b)
-    return a.index < b.index
-end
-
 
 
 function Character:loadCommon(host)
 
+    print("load common call")
     self.common_actions["Move"] = Move
     self.common_actions["Move"]:init(host,self.dyobj)
 
@@ -88,7 +87,15 @@ function Character:loadCommon(host)
     self.common_actions["End"] = End
     self.common_actions["End"]:init(host,self.dyobj)
 
-    table.sort(self.common_actions, compare)
-    --table.sort(self.common_actions, function(a,b) return a.index < b.index end)
+    print("sort skills called")
+    --self.common_actions = sortData(self.common_actions)
+    t_common_actions = {}
+    for k,v in pairs(self.common_actions) do
+        table.insert(t_common_actions, v)
+    end
+    table.sort(t_common_actions, function(a,b) return a.index < b.index end)
+    print("sort skills ended")
+    self.common_actions = t_common_actions
 
 end
+

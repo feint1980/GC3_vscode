@@ -93,9 +93,13 @@ function IconGUI:onMouseMove(host,x,y,button)
        
         if self.currentTTD ~= nil then
             print("select " .. self.currentTTD.name)
-            self.currentTTD.funct()
+            self.currentTTD.selectedFunct()
         end
     end
+end
+
+function IconGUI:getCurrentTTD()
+    return self.currentTTD
 end
 
 function IconGUI:onSignal(host,signal)
@@ -117,7 +121,7 @@ function IconGUI:onSignal(host,signal)
 
     if signal == 32 then
         if self.currentTTD ~= nil then
-            self.currentTTD.funct()
+            self.currentTTD.selectedFunct()
         end
     end
 
@@ -134,7 +138,6 @@ function IconGUI:onSignal(host,signal)
             self.currentTTD = v
         end
        
-    end    
-    
+    end        
 end
 

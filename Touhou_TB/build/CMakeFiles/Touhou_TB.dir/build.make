@@ -158,11 +158,26 @@ CMakeFiles/Touhou_TB.dir/src/Slot.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Touhou_TB.dir/src/Slot.cpp.s"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\Slot.cpp -o CMakeFiles\Touhou_TB.dir\src\Slot.cpp.s
 
+CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj: CMakeFiles/Touhou_TB.dir/flags.make
+CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj: CMakeFiles/Touhou_TB.dir/includes_CXX.rsp
+CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj: D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/SlotHandler.cpp
+CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj: CMakeFiles/Touhou_TB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Touhou_TB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj -MF CMakeFiles\Touhou_TB.dir\src\SlotHandler.cpp.obj.d -o CMakeFiles\Touhou_TB.dir\src\SlotHandler.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\SlotHandler.cpp
+
+CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.i"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\SlotHandler.cpp > CMakeFiles\Touhou_TB.dir\src\SlotHandler.cpp.i
+
+CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.s"
+	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\SlotHandler.cpp -o CMakeFiles\Touhou_TB.dir\src\SlotHandler.cpp.s
+
 CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj: CMakeFiles/Touhou_TB.dir/flags.make
 CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj: CMakeFiles/Touhou_TB.dir/includes_CXX.rsp
 CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj: D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TB_EmptyObject.cpp
 CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj: CMakeFiles/Touhou_TB.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Touhou_TB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Touhou_TB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj -MF CMakeFiles\Touhou_TB.dir\src\TB_EmptyObject.cpp.obj.d -o CMakeFiles\Touhou_TB.dir\src\TB_EmptyObject.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\TB_EmptyObject.cpp
 
 CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.i: cmake_force
@@ -177,7 +192,7 @@ CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj: CMakeFiles/Touhou_TB.dir/flags.m
 CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj: CMakeFiles/Touhou_TB.dir/includes_CXX.rsp
 CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj: D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TH_TB_App.cpp
 CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj: CMakeFiles/Touhou_TB.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Touhou_TB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Touhou_TB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj -MF CMakeFiles\Touhou_TB.dir\src\TH_TB_App.cpp.obj.d -o CMakeFiles\Touhou_TB.dir\src\TH_TB_App.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\TH_TB_App.cpp
 
 CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.i: cmake_force
@@ -192,7 +207,7 @@ CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj: CMakeFiles/Touhou_TB.dir/flag
 CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj: CMakeFiles/Touhou_TB.dir/includes_CXX.rsp
 CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj: D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TestTBScreen.cpp
 CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj: CMakeFiles/Touhou_TB.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Touhou_TB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Touhou_TB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj -MF CMakeFiles\Touhou_TB.dir\src\TestTBScreen.cpp.obj.d -o CMakeFiles\Touhou_TB.dir\src\TestTBScreen.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\TestTBScreen.cpp
 
 CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.i: cmake_force
@@ -207,7 +222,7 @@ CMakeFiles/Touhou_TB.dir/src/main.cpp.obj: CMakeFiles/Touhou_TB.dir/flags.make
 CMakeFiles/Touhou_TB.dir/src/main.cpp.obj: CMakeFiles/Touhou_TB.dir/includes_CXX.rsp
 CMakeFiles/Touhou_TB.dir/src/main.cpp.obj: D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/main.cpp
 CMakeFiles/Touhou_TB.dir/src/main.cpp.obj: CMakeFiles/Touhou_TB.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Touhou_TB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/Touhou_TB.dir/src/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=D:\VS_Code_prj\GC3_vscode\Touhou_TB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/Touhou_TB.dir/src/main.cpp.obj"
 	C:\SysGCC\mingw32\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Touhou_TB.dir/src/main.cpp.obj -MF CMakeFiles\Touhou_TB.dir\src\main.cpp.obj.d -o CMakeFiles\Touhou_TB.dir\src\main.cpp.obj -c D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\main.cpp
 
 CMakeFiles/Touhou_TB.dir/src/main.cpp.i: cmake_force
@@ -226,6 +241,7 @@ Touhou_TB_OBJECTS = \
 "CMakeFiles/Touhou_TB.dir/src/GUI_handler.cpp.obj" \
 "CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.obj" \
 "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj" \
+"CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj" \
 "CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj" \
 "CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj" \
 "CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj" \
@@ -240,6 +256,7 @@ Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.obj
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/src/GUI_handler.cpp.obj
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.obj
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj
+Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj
@@ -269,7 +286,7 @@ Touhou_TB.exe: D:/VS_Code_prj/GC3_vscode/Touhou_TB/../Feintgine_GC_deps/lib/liba
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/linkLibs.rsp
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/objects1.rsp
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\VS_Code_prj\GC3_vscode\Touhou_TB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable Touhou_TB.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=D:\VS_Code_prj\GC3_vscode\Touhou_TB\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Linking CXX executable Touhou_TB.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Touhou_TB.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

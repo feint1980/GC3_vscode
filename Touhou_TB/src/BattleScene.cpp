@@ -129,6 +129,20 @@ int lua_GetSlotCol(lua_State * L)
 	return 1;
 }
 
+int lua_GetSlotRow(lua_State * L)
+{
+	if (lua_gettop(L) != 1)
+	{
+		std::cout << "gettop failed (lua_GetSlotRow) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+	Slot * slot = static_cast<Slot*>(lua_touserdata(L, 1));
+	int row = slot->getIndex().y;
+	lua_pushnumber(L, row);
+	return 1;
+}
+
 int lua_GetEntitySlot(lua_State * L)
 {
 	if (lua_gettop(L) != 1)
@@ -256,6 +270,7 @@ int lua_CreateGUIHandler(lua_State * L)
 	return 1;
 }
 
+
 GUI_handler * BattleScene::createGUIHandler(const std::string & selectionTexturePath, const glm::vec2 & dim)
 {
 
@@ -270,6 +285,38 @@ GUI_handler * BattleScene::createGUIHandler(const std::string & selectionTexture
 	
 	return m_guiHandler;
 }
+
+
+int lua_CreateSlotHandler(lua_State * L)
+{
+
+	if (lua_gettop(L) != 1)
+	{
+		std::cout << "gettop failed (lua_CreateSlotHandler) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	SlotHandler * slotHandler =  battleScene->createSlotHandler();
+
+	lua_pushlightuserdata(L, slotHandler);
+
+	return 1;
+}
+
+SlotHandler * BattleScene::createSlotHandler()
+{
+
+	if(m_slotHandler == nullptr)
+	{
+		m_slotHandler = new SlotHandler();
+		m_slotHandler->init(this, m_camera);
+	}
+
+	return m_slotHandler;
+}
+
 
 int lua_CreateIcon(lua_State * L)
 {
@@ -476,6 +523,49 @@ void BattleScene::setPhase(int phaseType, int sides)
 	//m_guiHandler->setPhase(phaseType, sides);
 }
 
+int lua_SetSlothandlerActive(lua_State * L)
+{
+	if(lua_gettop(L) != 2)
+	{
+		std::cout << "gettop failed (lua_SetSlothandlerActive) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	SlotHandler * handler = static_cast<SlotHandler*>(lua_touserdata(L, 1));
+	bool active = lua_toboolean(L, 2);
+
+	handler->setActive(active);
+	return 0;
+}
+
+int lua_SelectHoverSlot(lua_State * L)
+{
+
+	if(lua_gettop(L) != 2)
+	{
+		std::cout << "gettop failed (lua_SelectHoverSlot) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	// if (lua_gettop(L) == 2)
+	// {
+	SlotHandler * handler = static_cast<SlotHandler*>(lua_touserdata(L, 1));
+	Slot * slot = static_cast<Slot*>(lua_touserdata(L, 2));
+
+	handler->setSelectTargetSlot(slot);
+	//}
+	// else if (lua_gettop(L) == 3)
+	// {
+	// 	SlotHandler * handler = static_cast<SlotHandler*>(lua_touserdata(L, 1));
+	// 	int col = lua_tonumber(L, 2);
+	// 	int row = lua_tonumber(L, 3);
+	// 	handler->setSelectTargetSlot(col, row);
+	// }
+	
+}
+
 void BattleScene::init(Feintgine::Camera2D * camera )
 {
 
@@ -486,16 +576,26 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 
 	// register lua function
 	lua_register(m_script, "cppCreateEnity", lua_CreateEntity);
-	lua_register(m_script, "cppCreateSlot", lua_CreateSlot);
+
 	lua_register(m_script, "cppSetAttribute", lua_SetAtrribute);
 	lua_register(m_script, "cppSetStrAttribute", lua_SetStrAtrribute);
 	lua_register(m_script, "cppPickActiveEntity", lua_PickActiveEntity);
-	lua_register(m_script, "cppGetSlotCol", lua_GetSlotCol);
+	
 	lua_register(m_script, "cppGetEntitySlot", lua_GetEntitySlot);
 	lua_register(m_script, "cppEntityPlayAnimation", lua_EntityPlayAnimation);
 	lua_register(m_script, "cppEntityMoveToslot", lua_EntityMoveToSlot);
 	lua_register(m_script, "cppEntityGetTargetSlot", lua_EntityGetTargetSlot);
 	lua_register(m_script, "cppSetPhase", lua_SetPhase);
+
+	// slots
+	lua_register(m_script, "cppGetSlotCol", lua_GetSlotCol);
+	lua_register(m_script, "cppGetSlotRow", lua_GetSlotRow);
+
+	// slot Handler
+	lua_register(m_script, "cppCreateSlotHandler", lua_CreateSlotHandler);
+	lua_register(m_script, "cppCreateSlot", lua_CreateSlot);
+	lua_register(m_script, "cppSetSlothandlerActive", lua_SetSlothandlerActive);
+	lua_register(m_script, "cppSelectHoverSlot", lua_SelectHoverSlot);
 
 	// GUI_handler data 
 	lua_register(m_script, "cppCreateGUIHandler", lua_CreateGUIHandler);
@@ -503,7 +603,6 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppGuiHandlerSetIconPos", lua_GuiHandlerSetIconPos);
 	lua_register(m_script, "cppGuiHandlerSetSelectedIcon", lua_GuiHandlerSetSelectedIcon);
 	lua_register(m_script, "cppGuiHandlerSetFocusColor", lua_GuiHandlerSetFocusColor);
-
 
 	// create gui icon
 	lua_register(m_script, "cppCreateIcon", lua_CreateIcon);
@@ -546,11 +645,13 @@ BattleScene::~BattleScene()
 
 Slot * BattleScene::addSlot(int row, int colum, int side)
 {
-	Slot * slot = new Slot();
-	slot->init(row, colum, side);
-	m_slots.push_back(slot);
+	if(m_slotHandler)
+	{
 
-	return slot;
+		return m_slotHandler->addSlot(row, colum, side);
+	}
+	return nullptr;
+	
 }
 
 void BattleScene::handleInput(Feintgine::InputManager & inputManager)
@@ -615,9 +716,14 @@ void BattleScene::pickActiveEntity(F_Lua_BaseEntity * entity)
 void BattleScene::draw(Feintgine::SpriteBatch & spriteBatch)
 {
 
-	for(int i = 0 ; i < m_slots.size(); i++)
+	// for(int i = 0 ; i < m_slots.size(); i++)
+	// {
+	// 	m_slots[i]->draw(spriteBatch);
+	// }
+
+	if(m_slotHandler)
 	{
-		m_slots[i]->draw(spriteBatch);
+		m_slotHandler->draw(spriteBatch);
 	}
 
 	for(int i = 0 ; i < m_entities.size(); i++)
@@ -662,22 +768,26 @@ void BattleScene::update(float deltaTime)
 	{
 		m_guiHandler->update(deltaTime);
 	}
-	for(int i = 0 ; i < m_slots.size(); i++)
+	if(m_slotHandler)
 	{
-		m_slots[i]->update(deltaTime);
-		if(m_currentEntity && !m_isMove)
-		{
-			if(m_currentEntity->isActive())
-			{
-				//std::cout << "has active entity \n";
-				if(m_slots[i]->getState() == 1)
-				{
-					setMoveTargetSlot(m_currentEntity, m_slots[i]);
-					m_isMove = true;
-				}
-			}
-		}
+		m_slotHandler->update(deltaTime);
 	}
+	// for(int i = 0 ; i < m_slots.size(); i++)
+	// {
+	// 	m_slots[i]->update(deltaTime);
+	// 	if(m_currentEntity && !m_isMove)
+	// 	{
+	// 		if(m_currentEntity->isActive())
+	// 		{
+	// 			//std::cout << "has active entity \n";
+	// 			if(m_slots[i]->getState() == 1)
+	// 			{
+	// 				setMoveTargetSlot(m_currentEntity, m_slots[i]);
+	// 				m_isMove = true;
+	// 			}
+	// 		}
+	// 	}
+	// }
 
 	for(int i = 0 ; i < m_entities.size(); i++)
 	{
@@ -692,7 +802,7 @@ void BattleScene::update(float deltaTime)
 				
 			if(m_entityManipulators[i]->update(deltaTime))
 			{
-				lua_getglobal(m_script, "HandleMovingTask");
+				lua_getglobal(m_script, "HandleSkillTasks");
 				if (lua_isfunction(m_script, -1))
 				{
 					//m_luaBossStates[i]->m_luaBoss;
@@ -703,6 +813,8 @@ void BattleScene::update(float deltaTime)
 					//std::cout << "Issue next task pointer " << object << "\n";
 
 					lua_pushlightuserdata(m_script, entity);
+
+					//lua_pusht
 
 					// lua_pushlightuserdata(m_script, entity->getTargetSlot());
 

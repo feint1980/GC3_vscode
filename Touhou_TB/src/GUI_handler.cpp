@@ -98,6 +98,16 @@ void GUI_handler::handleInput(Feintgine::InputManager & inputManager,lua_State *
 		signal = 2;
 	}
 
+    if (inputManager.isKeyPressed(SDLK_UP))
+    {
+        signal = 4;
+    }
+    
+    if (inputManager.isKeyPressed(SDLK_DOWN))
+    {
+        signal = 8;
+    }
+
 	if(inputManager.isKeyPressed(SDLK_RETURN))
 	{
 		signal = 32;

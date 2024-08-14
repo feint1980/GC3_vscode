@@ -28,7 +28,11 @@ Patchouli = Character:new({
     evadeChance = 0.1,
     name = "Patchouli",
     lastName = "Knowledge",
-    title = "Unmoving Library"
+    title = "Unmoving Library",
+    common_actions = {},
+    items = {},
+    skills = {},
+    currentSlot = nil
 }
 )
 

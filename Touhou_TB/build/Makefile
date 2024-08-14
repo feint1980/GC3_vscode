@@ -272,6 +272,30 @@ src/Slot.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/Slot.cpp.s
 .PHONY : src/Slot.cpp.s
 
+src/SlotHandler.obj: src/SlotHandler.cpp.obj
+.PHONY : src/SlotHandler.obj
+
+# target to build an object file
+src/SlotHandler.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj
+.PHONY : src/SlotHandler.cpp.obj
+
+src/SlotHandler.i: src/SlotHandler.cpp.i
+.PHONY : src/SlotHandler.i
+
+# target to preprocess a source file
+src/SlotHandler.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.i
+.PHONY : src/SlotHandler.cpp.i
+
+src/SlotHandler.s: src/SlotHandler.cpp.s
+.PHONY : src/SlotHandler.s
+
+# target to generate assembly for a file
+src/SlotHandler.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.s
+.PHONY : src/SlotHandler.cpp.s
+
 src/TB_EmptyObject.obj: src/TB_EmptyObject.cpp.obj
 .PHONY : src/TB_EmptyObject.obj
 
@@ -395,6 +419,9 @@ help:
 	@echo ... src/Slot.obj
 	@echo ... src/Slot.i
 	@echo ... src/Slot.s
+	@echo ... src/SlotHandler.obj
+	@echo ... src/SlotHandler.i
+	@echo ... src/SlotHandler.s
 	@echo ... src/TB_EmptyObject.obj
 	@echo ... src/TB_EmptyObject.i
 	@echo ... src/TB_EmptyObject.s

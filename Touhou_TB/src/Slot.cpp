@@ -11,6 +11,13 @@ Slot::~Slot()
 
 }
 
+
+void Slot::setTargetSlot(Slot * slot)
+{
+    m_targetSlot = slot;
+    m_isMoving = true;
+}
+
 void Slot::init(int row, int colum, int side)
 {
     m_index = glm::ivec2(row, colum);
@@ -36,7 +43,25 @@ void Slot::draw(Feintgine::SpriteBatch & spriteBatch)
 
 void Slot::update(float deltaTime)
 {
-    
+    if (m_targetSlot)
+    {
+        if(m_isMoving)
+        {
+            float distance = glm::length(m_actualPos - m_targetSlot->getPos());
+            if(distance > 2.5f)
+            {
+                m_actualPos = glm::mix(m_actualPos, m_targetSlot->getPos(), 0.1f);
+            }
+            else
+            {
+                m_actualPos = m_targetSlot->getPos();
+                m_isMoving = false;
+                m_index = m_targetSlot->getIndex();
+                //m_targetSlot = nullptr; may be later
+            }
+        }
+        //m_targetPos = m_targetSlot->getPos();
+    }
 }
 
 void Slot::setState(int state)

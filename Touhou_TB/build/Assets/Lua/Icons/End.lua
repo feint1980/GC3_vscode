@@ -10,14 +10,22 @@ End = Icon:new({
     iconObj = nil,
     dyobj = nil,
     specialID = 1,
+    selectedFunct = function() End:selected() end,
     funct = function() End:endTurn() end,
     host = nil,
     selectionSide = 0,
-    index = 2
+    index = 2,
+    requiredSlotCount = 0
 })
 
+function End:selected()
+    print(" end selected called")
+    
+end
 
-function End:endTurn()
-    print(" end  calllllled")
+
+function End:endTurn(host)
+    print(" end calllllled !!!!!")
+    IssueNextPhase(host)
 end
 

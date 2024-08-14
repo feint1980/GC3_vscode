@@ -26,6 +26,8 @@ public:
         return m_state;
     }
 
+    void setTargetSlot(Slot * slot);
+
     glm::vec2 getPos() const
     {
         return m_actualPos;
@@ -40,10 +42,14 @@ public:
     
     glm::ivec2 m_index = glm::ivec2(0,0);
     glm::vec2 m_actualPos = glm::vec2(0,0);
+    glm::vec2 m_targetPos = glm::vec2(0,0);
 
     int m_state = 0;
     int m_side = 1; // 1 | left  2 | right
     EmptyObject m_circle ; 
 
+
+    Slot * m_targetSlot = nullptr;
+    bool m_isMoving = false;
 
 };

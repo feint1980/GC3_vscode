@@ -5,7 +5,7 @@
 #include "Slot.h"
 #include "F_Lua_EntityManipulator.h"
 #include "GUI_handler.h"
-
+#include "SlotHandler.h"
 
 class BattleScene
 {
@@ -32,6 +32,8 @@ public:
 
     GUI_handler * createGUIHandler(const std::string & selectionTexturePath, const glm::vec2 & dim);
 
+    SlotHandler * createSlotHandler();
+
     GUI_icon * createIcon(const std::string & texturePath, const glm::vec2 & pos, const glm::vec2 & dim);
 
     void GUIHandlerAddIcon(GUI_icon * icon);
@@ -53,9 +55,14 @@ protected:
     bool m_isMove = false;
 
     std::vector<F_Lua_BaseEntity *> m_entities;
-    std::vector<Slot *> m_slots;
+  
+  //  std::vector<Slot *> m_slots;
+
+    SlotHandler * m_slotHandler = nullptr;
 
     std::vector<GUI_icon *> m_icons;
+
+    std::vector<Slot * > m_selectedSlot;
 
     std::vector<F_Lua_EntityManipulator *> m_entityManipulators;
 

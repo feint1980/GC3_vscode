@@ -10,18 +10,85 @@ Move = Icon:new({
     iconObj = nil,
     dyobj = nil,
     specialID = 1,
+    selectedFunct = function() Move:selected() end,
     funct = function() Move:move() end,
     host = nil,
     selectionSide = 1,
-    index = 1
+    index = 1,
+    requiredSlotCount = 1
 })
 
 
-function Move:move()
-    print("move called")
+
+
+function Move:selected()
+    print("move selected called")
     setPhase(self.host,2,1)
 
     -- todo, make the host now able to select the slot to move
+end
+
+
+function moveToSlotBehavior(host, dyobj)
+
+
+    print("moveToSlotBehavior called")
+    slots = t_slotHandler:getSelectedSlots()
+
+    count =  tablelength(slots)
+    print("slot count " .. count)
+
+
+
+    if count ~= 1 then
+        print("wrong number of slots selected")
+        return
+    end
+    --slot = slots[1]
+
+    --count = 1
+    --tempSlots = {}
+    for k,v in pairs(slots) do
+        slot = v
+    end
+        
+    
+    currentSlot = cppGetEntitySlot(dyobj)
+    print("ok ")
+    currentCol = cppGetSlotCol(currentSlot)
+    print("current col " .. currentCol)
+    if(slot ~= nil) then
+        print("slot not nil")
+    else 
+        print("slot is nil")
+    end
+    targetCol = cppGetSlotCol(slot)
+    dashAnimation = "dash_fw"
+    if currentCol < targetCol then
+        dashAnimation = "dash_bw"
+    end
+
+    cppEntityPlayAnimation(host,dyobj,dashAnimation,-1)
+    cppEntityMoveToslot(host,dyobj,slot,50)
+    coroutine.yield()
+
+    finishedAnimation = dashAnimation .. "_end"
+    cppEntityPlayAnimation(host,dyobj,finishedAnimation,1)
+    coroutine.yield()
+    cppEntityPlayAnimation(host,dyobj,"idle",-1)
+    coroutine.yield()
+end
+
+function Move:move(host)
+    -- count =  tablelength(selectedSlots)
+    -- if count ~= 1 then
+    --     print("wrong number of slots selected")
+    --     return
+    -- end
+    --slot = selectedSlots[1]
+    print("move called \n")
+    tasks[self.dyobj] = {behavior = coroutine.create(moveToSlotBehavior,host,self.dyobj)}
+    HandleSkillTasks(self.host,self.dyobj)
 end
 
 

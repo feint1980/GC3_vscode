@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/GUI_handler.cpp" "CMakeFiles/Touhou_TB.dir/src/GUI_handler.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/GUI_handler.cpp.obj.d"
   "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/GUI_icon.cpp" "CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.obj.d"
   "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/Slot.cpp" "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj.d"
+  "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/SlotHandler.cpp" "CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj.d"
   "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TB_EmptyObject.cpp" "CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj.d"
   "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TH_TB_App.cpp" "CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj.d"
   "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TestTBScreen.cpp" "CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj" "gcc" "CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj.d"
