@@ -169,25 +169,25 @@ end
 
 function gameLoop(host)
     local gameOn = true
+    totalTurn = tablelength(turns) 
+    print("totalTurn " .. totalTurn)
+    sortCharactersTurn()
+    i = 1
     while gameOn do
-        sortCharactersTurn()
-        
-        totalTurn = tablelength(turns) 
-        print("totalTurn " .. totalTurn)
-
-        for i = 1, totalTurn do
+      
             -- do something
-            print("chracter " .. turns[i].name .. "turn " )
-            currentChar = turns[i]
-            cppSelectHoverSlot(t_slotHandler.handlerObject,currentChar.currentSlot)
-    
-            cppPickActiveEntity(host,turns[i].dyobj)
-            t_guiIcons:loadIcons(host,turns[i])
-            coroutine.yield()
-            print("turn " .. turns[i].name .. " ended")
-            turns = table.remove(turns,1)
+        print("chracter " .. turns[i].name .. "turn " )
+        currentChar = turns[i]
+        cppSelectHoverSlot(t_slotHandler.handlerObject,currentChar.currentSlot)
 
-        end
+        cppPickActiveEntity(host,turns[i].dyobj)
+        t_guiIcons:loadIcons(host,turns[i])
+        coroutine.yield()
+        i = i + 1
+        print("turn " .. turns[i].name .. " ended")
+        turns = table.remove(turns,1)
+
+
         
         print("end")
     end
