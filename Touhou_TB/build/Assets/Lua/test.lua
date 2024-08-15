@@ -69,9 +69,9 @@ function init(host)
     -- init characters
  
 
-    characters["pat"] = Patchy:new()
-    characters["pat"]:init(host,t_slotHandler:getSlot(1,2,1))
-    characters["pat"]:loadCommon(host)
+    -- characters["pat"] = Patchy:new()
+    -- characters["pat"]:init(host,t_slotHandler:getSlot(1,2,1))
+    -- characters["pat"]:loadCommon(host)
 
     characters["p1"] = Patchouli:new()
     characters["p1"]:init(host,t_slotHandler:getSlot(3,3,1))
@@ -155,7 +155,13 @@ function handleInput(host,signal)
         t_slotHandler:onSignal(host,signal,t_guiIcons:getCurrentTTD().selectionSide)
         if signal == 32 then
             if t_slotHandler:getCurrentCount() == t_guiIcons:getCurrentTTD().requiredSlotCount then
-                t_guiIcons:getCurrentTTD():funct()
+                if selectedChar ~= nil then
+                    print(selectedChar.name .. " selected")
+                    t_guiIcons:getCurrentTTD():funct(host,selectedChar.dyobj,selectedChar.name)
+                else
+                    print("no character selected")
+                end
+                --t_guiIcons:getCurrentTTD():funct(host,selectedChar.dyobj,selectedChar.name)
             end
         end
     end
@@ -178,24 +184,30 @@ function gameLoop(host)
     totalTurn = tablelength(turns) 
     print("totalTurn " .. totalTurn)
     sortCharactersTurn()
-    i = 2
-    --while gameOn do
+    i = 1
+    while gameOn do
       
             -- do something
-        currentChar = turns[i]
-        print("chracter " .. turns[i].name .. "turn " )
-      
-        cppSelectHoverSlot(t_slotHandler.handlerObject,currentChar.currentSlot)
+        --for i = 1,totalTurn do
+            selectedChar = turns[i]
+            --currentChar = turns[i] 
+            print("chracter " .. turns[i].name .. "turn " )
+        
+            cppSelectHoverSlot(t_slotHandler.handlerObject,selectedChar.currentSlot)
+           
+            --cppPickActiveEntity(host,currentChar.dyobj)
+            t_guiIcons:loadIcons(host,selectedChar)
+           
+            coroutine.yield()
+            
+            --coroutine.yield()
+            -- i = i + 1
+            -- print("turn " .. currentChar.name .. " ended")
+            -- --turns = table.remove(turns,1)
+            -- print("end")
 
-        --cppPickActiveEntity(host,currentChar.dyobj)
-        t_guiIcons:loadIcons(host,turns[i])
-        --coroutine.yield()
-        --i = i + 1
-        print("turn " .. currentChar.name .. " ended")
-        --turns = table.remove(turns,1)
-
-        print("end")
-    --end
+       -- end
+    end
 end
 
 

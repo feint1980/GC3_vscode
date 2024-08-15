@@ -11,12 +11,12 @@ Move = Icon:new({
     dyobj = nil,
     specialID = 1,
     selectedFunct = function() Move:selected() end,
-    funct = function() Move:move() end,
+    funct = function() Move:move(host, dyobj,charName) end,
     host = nil,
     selectionSide = 1,
     index = 1,
     requiredSlotCount = 1,
-    charName = ""
+    charName = "None"
 })
 
 
@@ -76,22 +76,21 @@ function moveToSlotBehavior(host, dyobj,charName)
     coroutine.yield()
 end
 
-function callMove(host,dyobj,charName)
-
-    tasks[charName] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj,charName)}
-    HandleSkillTasks(host,dyobj,charName)
-
-end 
-function Move:move()
+function Move:move(host,dyobj,charName)
     -- count =  tablelength(selectedSlots)
     -- if count ~= 1 then
     --     print("wrong number of slots selected")
     --     return
     -- end
     --slot = selectedSlots[1]
-    print("move character " .. self.charName)
+    print("MOVE CALLED ")
+    print("charName " .. charName)
 
-    callMove(self.host,self.dyobj,self.charName)
+
+    tasks[charName] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj,charName)}
+    HandleSkillTasks(host,dyobj,charName)
+
+    print("MOVE CALLED END")
   
 end
 

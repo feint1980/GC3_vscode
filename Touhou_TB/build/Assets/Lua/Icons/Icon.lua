@@ -49,10 +49,11 @@ function Icon:setFunct(funct)
     self.funct = funct
 end
 
-function HandleSkillTasks(host,dyobj,name)
-    if coroutine.status(tasks[name].behavior) ~= 'dead' then
-        coroutine.resume(tasks[name].behavior, host, dyobj, name)
+function HandleSkillTasks(host,dyobj,charName)
+    print("HandleSkillTasks called")
+    if coroutine.status(tasks[charName].behavior) ~= 'dead' then
+        coroutine.resume(tasks[charName].behavior, host, dyobj, charName)
     else
-        print(coroutine.status(tasks[name].behavior))
+        print(coroutine.status(tasks[charName].behavior))
     end
 end
