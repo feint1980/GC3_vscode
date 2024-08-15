@@ -15,9 +15,9 @@ Move = Icon:new({
     host = nil,
     selectionSide = 1,
     index = 1,
-    requiredSlotCount = 1
+    requiredSlotCount = 1,
+    charName = ""
 })
-
 
 
 
@@ -29,16 +29,14 @@ function Move:selected()
 end
 
 
-function moveToSlotBehavior(host, dyobj)
+function moveToSlotBehavior(host, dyobj,charName)
 
 
-    print("moveToSlotBehavior called")
+    print("moveToSlotBehavior called" .. charName)
     slots = t_slotHandler:getSelectedSlots()
 
     count =  tablelength(slots)
     print("slot count " .. count)
-
-
 
     if count ~= 1 then
         print("wrong number of slots selected")
@@ -51,7 +49,6 @@ function moveToSlotBehavior(host, dyobj)
     for k,v in pairs(slots) do
         slot = v
     end
-        
     
     currentSlot = cppGetEntitySlot(dyobj)
     print("ok ")
@@ -79,16 +76,23 @@ function moveToSlotBehavior(host, dyobj)
     coroutine.yield()
 end
 
-function Move:move(host)
+function callMove(host,dyobj,charName)
+
+    tasks[charName] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj,charName)}
+    HandleSkillTasks(host,dyobj,charName)
+
+end 
+function Move:move()
     -- count =  tablelength(selectedSlots)
     -- if count ~= 1 then
     --     print("wrong number of slots selected")
     --     return
     -- end
     --slot = selectedSlots[1]
-    print("move called \n")
-    tasks[self.dyobj] = {behavior = coroutine.create(moveToSlotBehavior,host,self.dyobj)}
-    HandleSkillTasks(self.host,self.dyobj)
+    print("move character " .. self.charName)
+
+    callMove(self.host,self.dyobj,self.charName)
+  
 end
 
 

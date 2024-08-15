@@ -36,6 +36,7 @@ Character = {
     skills = {},
     currentSlot = nil
 
+
 }
 
 function Character:new(o)
@@ -67,9 +68,9 @@ function Character:init(host,slot)
     cppSetAttribute(self.dyobj,"magicDef",self.magicDef)
     cppSetAttribute(self.dyobj,"accurate",self.accurate)
     cppSetAttribute(self.dyobj,"evadeChance",self.evadeChance)
-    cppSetAttribute(self.dyobj,"name",self.name)
-    cppSetAttribute(self.dyobj,"lastName",self.lastName)
-    cppSetAttribute(self.dyobj,"title",self.title)
+    cppSetStrAttribute(self.dyobj,"name",self.name)
+    cppSetStrAttribute(self.dyobj,"lastName",self.lastName)
+    cppSetStrAttribute(self.dyobj,"title",self.title)
 
     --return self
 
@@ -81,11 +82,11 @@ function Character:loadCommon(host)
 
     print("load common call")
     self.common_actions["Move"] = Move
-    self.common_actions["Move"]:init(host,self.dyobj)
+    self.common_actions["Move"]:init(host,self.dyobj,self.name)
 
 
     self.common_actions["End"] = End
-    self.common_actions["End"]:init(host,self.dyobj)
+    self.common_actions["End"]:init(host,self.dyobj,self.name)
 
     print("sort skills called")
     --self.common_actions = sortData(self.common_actions)

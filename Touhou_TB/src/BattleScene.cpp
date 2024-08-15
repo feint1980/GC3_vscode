@@ -173,6 +173,8 @@ int lua_EntityPlayAnimation(lua_State * L)
 	F_Lua_BaseEntity * object = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 2));
 	std::string animationName = lua_tostring(L, 3);
 
+
+	
 	int time = 0;
 	if (lua_gettop(L) >= 4)
 	{
@@ -186,6 +188,7 @@ int lua_EntityPlayAnimation(lua_State * L)
 		std::cout << " has duration " << duration << "\n";
 	}
 	
+	std::cout << "lua_EntityPlayAnimation entity name " << object->getStrAttributeByName("name") << "\n";
 
 	F_Lua_EntityManipulator * manipulator = new F_Lua_EntityManipulator();
 
@@ -813,12 +816,15 @@ void BattleScene::update(float deltaTime)
 					//std::cout << "Issue next task pointer " << object << "\n";
 
 					lua_pushlightuserdata(m_script, entity);
+					std::string name = entity->getStrAttributeByName("name");
+					std::cout << "the result of " << name << " !!!!!!!!!!!!!\n";
+					lua_pushstring(m_script, entity->getStrAttributeByName("name").c_str());
 
 					//lua_pusht
 
 					// lua_pushlightuserdata(m_script, entity->getTargetSlot());
 
-					if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 2, 1, 0)))
+					if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
 					{
 						std::cout << "HandleMovingTask failed \n";
 					}

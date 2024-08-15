@@ -55,6 +55,10 @@ public:
 
     void setAttribute(Attribute attribute, const std::string & value);
 
+    float getFloatAttributeByName(const std::string & attributeName);
+
+    std::string getStrAttributeByName(const std::string & attributeName);
+
 
     void setPos(const glm::vec2 & pos);
 

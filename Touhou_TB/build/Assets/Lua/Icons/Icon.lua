@@ -13,10 +13,10 @@ Icon = {
     host = nil,
     selectionSide = 3,
     index = -1,
-    requiredSlotCount = 1
+    requiredSlotCount = 1,
+    charName = ""
 }
 
-tasks = {}
 
 function Icon:new(o)
     o = o or {}
@@ -25,12 +25,13 @@ function Icon:new(o)
     return o
 end
 
-function Icon:init(host,dyobj)
+function Icon:init(host,dyobj,tCharName)
     --self.iconObj = 
     print("icon init")
     self.iconObj =  cppCreateIcon(host,self.asset,64,64,self.name,self.description,self.turnCost, self.specialID)
     self.host = host
     self.dyobj = dyobj
+    self.charName = tCharName
 
 end
 
@@ -48,10 +49,10 @@ function Icon:setFunct(funct)
     self.funct = funct
 end
 
-function HandleSkillTasks(host,dynob)
-    if coroutine.status(tasks[dynob].behavior) ~= 'dead' then
-        coroutine.resume(tasks[dynob].behavior, host, dynob)
+function HandleSkillTasks(host,dyobj,name)
+    if coroutine.status(tasks[name].behavior) ~= 'dead' then
+        coroutine.resume(tasks[name].behavior, host, dyobj, name)
     else
-        print(coroutine.status(tasks[dynob].behavior))
+        print(coroutine.status(tasks[name].behavior))
     end
 end

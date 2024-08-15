@@ -11,7 +11,8 @@ IconGUI = {
     guiHandler = nil,
     selectIcon = nil,
     currentTTD = nil,
-    currentIndex = 1
+    currentIndex = 1,
+    baseLine = 200
 }
 
 function IconGUI:init(host)
@@ -59,13 +60,14 @@ function IconGUI:loadIcons(host,character)
         commmon_icons[k] = v
       
         cppGUIHandlerAddIcon(host,commmon_icons[k].iconObj)
-        cppGuiHandlerSetIconPos(host,commmon_icons[k].iconObj,200 + (70 * tIndex),-300)
+        cppGuiHandlerSetIconPos(host,commmon_icons[k].iconObj,self.baseLine + (70 * tIndex),-300)
         if tIndex == 0 then
             self.selectIcon = cppGuiHandlerSetSelectedIcon(host,commmon_icons[k].iconObj)
         end
         tIndex = tIndex + 1
     end
 
+    --self.baseLine = self.baseLine + 100
     print("end loading")
 
 end
@@ -93,7 +95,7 @@ function IconGUI:onMouseMove(host,x,y,button)
        
         if self.currentTTD ~= nil then
             print("select " .. self.currentTTD.name)
-            self.currentTTD.selectedFunct()
+            self.currentTTD:selectedFunct()
         end
     end
 end
@@ -121,7 +123,7 @@ function IconGUI:onSignal(host,signal)
 
     if signal == 32 then
         if self.currentTTD ~= nil then
-            self.currentTTD.selectedFunct()
+            self.currentTTD:selectedFunct()
         end
     end
 

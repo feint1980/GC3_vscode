@@ -156,6 +156,18 @@ Attribute F_Lua_BaseEntity::getAttributeByName(const std::string & attributeName
     {
         return evadeChance;
     }
+    else if(toLower == "name")
+    {
+        return name;
+    }
+    else if(toLower == "lastname")
+    {
+        return lastName;
+    }
+    else if(toLower == "title")
+    {
+        return title;
+    }
     else
     {
         return Invalid;
@@ -176,6 +188,68 @@ void F_Lua_BaseEntity::setAttribute(const std::string & attributeName, const std
     setAttribute(attribute, value);
 }
 
+float F_Lua_BaseEntity::getFloatAttributeByName(const std::string & attributeName)
+{
+
+    Attribute attribute = getAttributeByName(attributeName);
+    switch (attribute)
+    {
+        case Strength:
+            return m_strength;  
+        case Vitality:
+            return m_vitality;
+        case Dexterity: 
+            return m_dexterity;
+        case Agility:
+            return m_agility;
+        case Intelligence:
+            return m_intelligence;
+        case Wisdom:
+            return m_wisdom;
+        case action:
+            return m_action;
+        case hp:
+            return m_hp;
+        case mana:
+            return m_mana;
+        case sp:
+            return m_sp;
+        case spCap:
+            return m_spCap;
+        case physicDmg:
+            return m_physicDmg;
+        case physicDef:
+            return m_physicDef;
+        case magicDmg:
+            return m_magicDmg;
+        case magicDef:
+            return m_magicDef;
+        case accurate:
+            return m_accurate;
+        case evadeChance:
+            return m_evadeChance;
+        default:
+            return -115114.0f;
+    }
+}
+
+std::string F_Lua_BaseEntity::getStrAttributeByName(const std::string & attributeName)
+{
+
+    Attribute attribute = getAttributeByName(attributeName);
+    switch (attribute)
+    {
+        case name:
+            return m_name;
+        case lastName:
+            return m_lastName;
+        case title:
+            return m_title;
+        default:
+            return "none";
+    }
+}
+
 
 void F_Lua_BaseEntity::setAttribute(Attribute attribute, const std::string & value)
 {
@@ -187,6 +261,7 @@ void F_Lua_BaseEntity::setAttribute(Attribute attribute, const std::string & val
         {
             case name:
                 m_name = value;
+                std::cout << "set name: " << m_name << "\n";
                 break;
             case lastName:
                 m_lastName = value;

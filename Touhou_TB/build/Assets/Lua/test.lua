@@ -22,6 +22,8 @@ local entityTasks = {}
 
 local t_guiIcons = nil
 
+tasks = {}
+
 t_slotHandler = nil;
 
 phase = 1
@@ -65,14 +67,18 @@ function init(host)
     t_slotHandler:init(host,3,3)
    
     -- init characters
+ 
+
     characters["pat"] = Patchy:new()
-    characters["pat"]:init(host,t_slotHandler:getSlot(1,1,1))
+    characters["pat"]:init(host,t_slotHandler:getSlot(1,2,1))
     characters["pat"]:loadCommon(host)
 
     characters["p1"] = Patchouli:new()
     characters["p1"]:init(host,t_slotHandler:getSlot(3,3,1))
-    --characters["p1"]:init(host,leftSlots[3][3])
     characters["p1"]:loadCommon(host)
+
+
+  
 
     t_guiIcons = IconGUI
     t_guiIcons:init(host)
@@ -149,7 +155,7 @@ function handleInput(host,signal)
         t_slotHandler:onSignal(host,signal,t_guiIcons:getCurrentTTD().selectionSide)
         if signal == 32 then
             if t_slotHandler:getCurrentCount() == t_guiIcons:getCurrentTTD().requiredSlotCount then
-                t_guiIcons:getCurrentTTD().funct(host)
+                t_guiIcons:getCurrentTTD():funct()
             end
         end
     end
@@ -172,26 +178,27 @@ function gameLoop(host)
     totalTurn = tablelength(turns) 
     print("totalTurn " .. totalTurn)
     sortCharactersTurn()
-    i = 1
-    while gameOn do
+    i = 2
+    --while gameOn do
       
             -- do something
-        print("chracter " .. turns[i].name .. "turn " )
         currentChar = turns[i]
+        print("chracter " .. turns[i].name .. "turn " )
+      
         cppSelectHoverSlot(t_slotHandler.handlerObject,currentChar.currentSlot)
 
-        cppPickActiveEntity(host,turns[i].dyobj)
+        --cppPickActiveEntity(host,currentChar.dyobj)
         t_guiIcons:loadIcons(host,turns[i])
-        coroutine.yield()
-        i = i + 1
-        print("turn " .. turns[i].name .. " ended")
-        turns = table.remove(turns,1)
+        --coroutine.yield()
+        --i = i + 1
+        print("turn " .. currentChar.name .. " ended")
+        --turns = table.remove(turns,1)
 
-
-        
         print("end")
-    end
+    --end
 end
+
+
 
 
 

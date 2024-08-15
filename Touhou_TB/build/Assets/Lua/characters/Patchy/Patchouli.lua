@@ -12,7 +12,7 @@ Patchouli = Character:new({
     Agility = 4,
     Intelligence = 22,
     Wisdom = 22,
-
+    dyobj = nil,
     animationPath = "./Assets/F_AObjects/patchouli_tb.xml",
     action = 1.0,
     hp = 30,
