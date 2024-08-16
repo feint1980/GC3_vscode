@@ -11,6 +11,8 @@ require "Patchy"
 
 require "Patchouli"
 
+require "turnHandler"
+
 
 local characters = {}
 
@@ -21,6 +23,8 @@ local mainGame = {}
 local entityTasks = {}
 
 local t_guiIcons = nil
+
+t_turnHandler = nil
 
 tasks = {}
 
@@ -63,8 +67,11 @@ function init(host)
     --     end
     -- end
 
+    t_turnHandler = TurnHandler:new()
     t_slotHandler = SlotHandler
     t_slotHandler:init(host,3,3)
+
+        
    
     -- init characters
  
@@ -73,12 +80,18 @@ function init(host)
     -- characters["pat"]:init(host,t_slotHandler:getSlot(1,2,1))
     -- characters["pat"]:loadCommon(host)
 
-    characters["p1"] = Patchouli:new()
-    characters["p1"]:init(host,t_slotHandler:getSlot(3,3,1))
-    characters["p1"]:loadCommon(host)
+    p1 = Patchouli:new()
+    p1:init(host,t_slotHandler:getSlot(3,3,1))
+    p1:loadCommon(host)
+
+    p2 = Patchy:new()
+    p2:init(host,t_slotHandler:getSlot(2,2,1))
+    p2:loadCommon(host)
 
 
-  
+    t_turnHandler:addCharacter(p1)
+    t_turnHandler:addCharacter(p2)
+
 
     t_guiIcons = IconGUI
     t_guiIcons:init(host)
@@ -181,24 +194,42 @@ end
 
 function gameLoop(host)
     local gameOn = true
-    totalTurn = tablelength(turns) 
-    print("totalTurn " .. totalTurn)
-    sortCharactersTurn()
-    i = 1
+    -- totalTurn = tablelength(turns) 
+    -- print("totalTurn " .. totalTurn)
+    -- sortCharactersTurn()
+    -- i = 1
     while gameOn do
       
+
+        print("restarting turns")
+        t_turnHandler:putCharacterIntoList()
+        print("sort turn OK ")
+
+        for i = 1, #t_turnHandler:getActiveList() do 
+            print("character " .. t_turnHandler:getCurrentCharacter().name)
+            print("yielding !!!!!!!!!")
+            cppSelectHoverSlot(t_slotHandler.handlerObject, t_turnHandler:getCurrentCharacter().currentSlot)
+            print("select hover done")
+            t_guiIcons:loadIcons(host,t_turnHandler:getCurrentCharacter())
+            print("load icons done")
+            coroutine.yield()
+            t_turnHandler:nextTurn()
+        end
+
+       
+        -- Old code
             -- do something
         --for i = 1,totalTurn do
-            selectedChar = turns[i]
-            --currentChar = turns[i] 
-            print("chracter " .. turns[i].name .. "turn " )
+            -- selectedChar = turns[i]
+            -- --currentChar = turns[i] 
+            -- print("chracter " .. turns[i].name .. "turn " )
         
-            cppSelectHoverSlot(t_slotHandler.handlerObject,selectedChar.currentSlot)
+            -- cppSelectHoverSlot(t_slotHandler.handlerObject,selectedChar.currentSlot)
            
-            --cppPickActiveEntity(host,currentChar.dyobj)
-            t_guiIcons:loadIcons(host,selectedChar)
+            -- --cppPickActiveEntity(host,currentChar.dyobj)
+            -- t_guiIcons:loadIcons(host,selectedChar)
            
-            coroutine.yield()
+            -- coroutine.yield()
             
             --coroutine.yield()
             -- i = i + 1

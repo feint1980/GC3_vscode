@@ -129,9 +129,11 @@ function SlotHandler:onSignal(host,signal,side)
     self:selectHover(self:getSlot(self.current_index_x, self.current_index_y, self.currentSide))
 
     if signal == 32 then
-        self.selectedSlots[self.currentCount + 1] = self.currentSlot
-        print("set current count " .. self.currentCount + 1)
-        self.currentCount = self.currentCount + 1
+        -- todo fix here 
+        --t_guiIcons:currentTTD.funct(host,t_turnHandler:getCurrentCharacter())
+        --self.selectedSlots[self.currentCount + 1] = self.currentSlot
+        --print("set current count " .. self.currentCount + 1)
+        --self.currentCount = self.currentCount + 1
     end
     
     --cppSelectHoverSlot(self.handlerObject,self.currentSlot)

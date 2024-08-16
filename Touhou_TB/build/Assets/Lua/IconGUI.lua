@@ -122,7 +122,9 @@ function IconGUI:onSignal(host,signal)
     end
 
     if signal == 32 then
+        --IssueNextPhase(host)
         if self.currentTTD ~= nil then
+          
             self.currentTTD:selectedFunct()
         end
     end

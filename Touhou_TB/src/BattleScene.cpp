@@ -814,14 +814,14 @@ void BattleScene::update(float deltaTime)
 
 					lua_pushlightuserdata(m_script, entity);
 
-					std::string name = entity->getStrAttributeByName("name");
+					//std::string name = entity->getStrAttributeByName("name");
 					
 
 					//lua_pusht
 
 					// lua_pushlightuserdata(m_script, entity->getTargetSlot());
 
-					if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
+					if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 2, 1, 0)))
 					{
 						std::cout << "HandleMovingTask failed \n";
 					}

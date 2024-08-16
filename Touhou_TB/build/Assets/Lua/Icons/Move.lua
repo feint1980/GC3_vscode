@@ -11,7 +11,7 @@ Move = Icon:new({
     dyobj = nil,
     specialID = 1,
     selectedFunct = function() Move:selected() end,
-    funct = function() Move:move(host, dyobj,charName) end,
+    funct = function() Move:move(host, dyobj) end,
     host = nil,
     selectionSide = 1,
     index = 1,
@@ -29,10 +29,10 @@ function Move:selected()
 end
 
 
-function moveToSlotBehavior(host, dyobj,charName)
+function moveToSlotBehavior(host, dyobj)
 
 
-    print("moveToSlotBehavior called" .. charName)
+    print("moveToSlotBehavior called" )
     slots = t_slotHandler:getSelectedSlots()
 
     count =  tablelength(slots)
@@ -76,7 +76,7 @@ function moveToSlotBehavior(host, dyobj,charName)
     coroutine.yield()
 end
 
-function Move:move(host,dyobj,charName)
+function Move:move(host,dyobj)
     -- count =  tablelength(selectedSlots)
     -- if count ~= 1 then
     --     print("wrong number of slots selected")
@@ -84,11 +84,11 @@ function Move:move(host,dyobj,charName)
     -- end
     --slot = selectedSlots[1]
     print("MOVE CALLED ")
-    print("charName " .. charName)
 
 
-    tasks[charName] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj,charName)}
-    HandleSkillTasks(host,dyobj,charName)
+
+    tasks[charName] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj)}
+    HandleSkillTasks(host,dyobj)
 
     print("MOVE CALLED END")
   
