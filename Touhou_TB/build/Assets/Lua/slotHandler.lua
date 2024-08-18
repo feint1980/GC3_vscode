@@ -21,17 +21,32 @@ SlotHandler = {
     currentSlot = nil,
     currentSide = 1,
     handlerObject = nil,
+    turnHandler = nil,
     requiredSlot = 0,
     currentCount = 0
 }
 
-function SlotHandler:init(host,row,col)
+function SlotHandler:new(o)
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    return o
+end
+
+function SlotHandler:init(host,row,col,tTurnHandler)
     leftSlots  = {}          -- create the matrix
     rightSlots = {}          -- create the matrix
 
     self.host = host
 
     self.handlerObject = cppCreateSlotHandler(host)
+    self.turnHandler = tTurnHandler
+
+    if(self.turnHandler ~= nil) then
+        print("turnHandler is not nil")
+    else 
+        print("turnHandler is nil")
+    end
 
     for i=1,row do
         leftSlots[i] = {}     -- create a new row
@@ -70,6 +85,10 @@ function SlotHandler:selectHover(slot)
 end
 
 function SlotHandler:getSelectedSlots()
+    print("check data before turn")
+    for i = 1, #self.selectedSlots do
+        print("got slot " .. i)
+    end
     return self.selectedSlots
 end
 
@@ -129,11 +148,32 @@ function SlotHandler:onSignal(host,signal,side)
     self:selectHover(self:getSlot(self.current_index_x, self.current_index_y, self.currentSide))
 
     if signal == 32 then
+        self.selectedSlots[self.currentCount + 1] = self.currentSlot
+        self.currentCount = self.currentCount + 1
+
+        print("called function " .. self.turnHandler:getCurrentCharacter().name) 
+        if self.currentCount == t_guiIcons:getCurrentTTD().requiredSlotCount then
+            if self.turnHandler:getCurrentCharacter().dyobj ~= nil then
+
+                -- t_guiIcons:getCurrentTTD().funct(host,self.turnHandler:getCurrentCharacter().dyobj)
+
+                tName = t_guiIcons:getCurrentTTD().name
+                print("datata " .. tName)
+                t_guiIcons:getCurrentTTD():useFunction(host,self.turnHandler:getCurrentCharacter())
+                -- if tName == "Move" then 
+                --     move(host,self.turnHandler:getCurrentCharacter().dyobj)
+                -- end
+
+            else
+                print("dyobj is nil")
+            end
+        end
         -- todo fix here 
+        --icon
         --t_guiIcons:currentTTD.funct(host,t_turnHandler:getCurrentCharacter())
-        --self.selectedSlots[self.currentCount + 1] = self.currentSlot
+        
         --print("set current count " .. self.currentCount + 1)
-        --self.currentCount = self.currentCount + 1
+       
     end
     
     --cppSelectHoverSlot(self.handlerObject,self.currentSlot)

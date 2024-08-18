@@ -11,7 +11,7 @@ Move = Icon:new({
     dyobj = nil,
     specialID = 1,
     selectedFunct = function() Move:selected() end,
-    funct = function() Move:move(host, dyobj) end,
+    funct = function() move(host, dyobj) end,
     host = nil,
     selectionSide = 1,
     index = 1,
@@ -37,18 +37,19 @@ function moveToSlotBehavior(host, dyobj)
 
     count =  tablelength(slots)
     print("slot count " .. count)
-
+    print("testttt ")
     if count ~= 1 then
         print("wrong number of slots selected")
         return
     end
     --slot = slots[1]
-
+    print("reach here 5 ")
     --count = 1
     --tempSlots = {}
     for k,v in pairs(slots) do
         slot = v
     end
+    print("reach here ")
     
     currentSlot = cppGetEntitySlot(dyobj)
     print("ok ")
@@ -76,7 +77,7 @@ function moveToSlotBehavior(host, dyobj)
     coroutine.yield()
 end
 
-function Move:move(host,dyobj)
+function move(host,dyobj)
     -- count =  tablelength(selectedSlots)
     -- if count ~= 1 then
     --     print("wrong number of slots selected")
@@ -85,13 +86,62 @@ function Move:move(host,dyobj)
     --slot = selectedSlots[1]
     print("MOVE CALLED ")
 
+    if(host == nil) then
+        print("host is nil")
+        return
+    end
 
+    if dyobj == nil then
+        print("move dyobj is nil")
+        return
+    end
 
-    tasks[charName] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj)}
+    tasks[dyobj] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj)}
     HandleSkillTasks(host,dyobj)
 
     print("MOVE CALLED END")
   
 end
 
+function Move:useFunction(host,character)
+    print("MOVE CALLED ")
 
+    if(host == nil) then
+        print("host is nil")
+        return
+    end
+
+    if character.dyobj == nil then
+        print("move character.dyobj is nil")
+        return
+    end
+
+    tasks[character.dyobj] = {behavior = coroutine.create(moveToSlotBehavior,host,character.dyobj)}
+    HandleSkillTasks(host,character.dyobj)
+    setPhase(host,1,3)
+
+    
+    print("!!!! set slot start ")
+    slots = t_slotHandler:getSelectedSlots()
+
+    count =  tablelength(slots)
+    print("slot count " .. count)
+    print("testttt ")
+    if count ~= 1 then
+        print("wrong number of slots selected")
+        return
+    end
+    --slot = slots[1]
+    print("reach here 5 ")
+    --count = 1
+    --tempSlots = {}
+    for k,v in pairs(slots) do
+        slot = v
+    end
+    print("reach here ")
+    character.currentSlot = slot
+    print("!!!! set slot end ")
+
+
+    print("MOVE CALLED END")
+end

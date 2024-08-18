@@ -49,11 +49,15 @@ function Icon:setFunct(funct)
     self.funct = funct
 end
 
-function HandleSkillTasks(host,dyobj,charName)
+function HandleSkillTasks(host,dyobj)
     print("HandleSkillTasks called")
-    if coroutine.status(tasks[charName].behavior) ~= 'dead' then
-        coroutine.resume(tasks[charName].behavior, host, dyobj, charName)
+    if coroutine.status(tasks[dyobj].behavior) ~= 'dead' then
+        coroutine.resume(tasks[dyobj].behavior, host, dyobj)
     else
-        print(coroutine.status(tasks[charName].behavior))
+        print(coroutine.status(tasks[dyobj].behavior))
     end
+end
+
+function Icon:useFunction(host,dyobj)
+    -- todo : inherits and override 
 end

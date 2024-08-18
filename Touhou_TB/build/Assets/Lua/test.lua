@@ -18,11 +18,11 @@ local characters = {}
 
 local turns = {}
 
-local mainGame = {}
+mainGame = {}
 
 local entityTasks = {}
 
-local t_guiIcons = nil
+t_guiIcons = nil
 
 t_turnHandler = nil
 
@@ -68,8 +68,8 @@ function init(host)
     -- end
 
     t_turnHandler = TurnHandler:new()
-    t_slotHandler = SlotHandler
-    t_slotHandler:init(host,3,3)
+    t_slotHandler = SlotHandler:new()
+    t_slotHandler:init(host,3,3,t_turnHandler)
 
         
    
@@ -93,7 +93,7 @@ function init(host)
     t_turnHandler:addCharacter(p2)
 
 
-    t_guiIcons = IconGUI
+    t_guiIcons = IconGUI:new()
     t_guiIcons:init(host)
     --t_guiIcons:loadIcons(host,characters["p1"])
 
@@ -216,7 +216,7 @@ function gameLoop(host)
             t_turnHandler:nextTurn()
         end
 
-       
+        print("all of turns are done, reseting !!!!!!!!!!!!!!!!!!!!!!!!!!!")
         -- Old code
             -- do something
         --for i = 1,totalTurn do

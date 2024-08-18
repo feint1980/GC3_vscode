@@ -15,6 +15,17 @@ IconGUI = {
     baseLine = 200
 }
 
+
+function IconGUI:new(o)
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    return o
+end
+
+
+
+
 function IconGUI:init(host)
 
     self.guiHandler = cppCreateGUIHandler(host,"./Assets/TB_GUI/selection.png", 68,68)
@@ -51,6 +62,17 @@ function IconGUI:selectIcon(host,icon)
 end 
 
 function IconGUI:loadIcons(host,character)
+
+
+    if #commmon_icons > 0 then
+        -- hide the last icons 
+        print("hide the last icons")
+       for k,v in pairs(commmon_icons) do
+        print("hide icon " .. commmon_icons[k].name)
+        cppGuiHandlerRemoveIcon(host,commmon_icons[k].iconObj)
+        --cppGuiHandlerSetIconPos(host,commmon_icons[k].iconObj,0,-400)
+        end
+    end
     -- clear icons
     commmon_icons = {}
     tIndex = 0
@@ -58,7 +80,6 @@ function IconGUI:loadIcons(host,character)
     for k,v in pairs(character.common_actions) do
         print("loading from " .. k)
         commmon_icons[k] = v
-      
         cppGUIHandlerAddIcon(host,commmon_icons[k].iconObj)
         cppGuiHandlerSetIconPos(host,commmon_icons[k].iconObj,self.baseLine + (70 * tIndex),-300)
         if tIndex == 0 then

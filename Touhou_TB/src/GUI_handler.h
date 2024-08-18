@@ -21,6 +21,8 @@ public:
 
     void addIcon(GUI_icon * icon);
 
+    void removeIcon(GUI_icon * icon);
+
     void setIconPos(GUI_icon *  icon, const glm::vec2 & pos);
 
     void setPhase(int phaseType, int sides);

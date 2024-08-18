@@ -82,7 +82,7 @@ public:
 
     Slot * getCurrentSlot() const { return m_currentSlot; }
 
-    
+    void setCurrentSlot(Slot * slot) { m_currentSlot = slot; }
 
 protected:
 

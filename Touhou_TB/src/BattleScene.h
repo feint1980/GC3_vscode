@@ -38,6 +38,8 @@ public:
 
     void GUIHandlerAddIcon(GUI_icon * icon);
 
+    void GUIHandlerRemoveIcon(GUI_icon * icon);
+
     void setPhase(int phaseType, int sides);
 
     void setGUIHandlerIconPos(GUI_icon * icon, const glm::vec2 & pos);

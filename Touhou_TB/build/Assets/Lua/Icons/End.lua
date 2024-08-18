@@ -24,6 +24,7 @@ function End:selected()
 end
 
 
+
 function End:endTurn(host)
     print(" end calllllled !!!!!")
    

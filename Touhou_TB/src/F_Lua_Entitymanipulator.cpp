@@ -23,9 +23,11 @@ void F_Lua_EntityManipulator::moveToSlot(F_Lua_BaseEntity * entity, Slot * slot,
     m_endPos = slot->getPos();
     m_endPos.y += m_entity->getYOffset();
 
+    
     m_completionTime = time;
 
     m_elaspedTime = 0.0f;
+    tempSlot = slot;
 
 }
 
@@ -75,6 +77,7 @@ bool F_Lua_EntityManipulator::update(float deltaTime)
                         
                         m_entity->setPos(m_endPos);
                         m_state = EntityState::None;
+                        m_entity->setCurrentSlot(tempSlot);
                         return true;
                     }   
             }

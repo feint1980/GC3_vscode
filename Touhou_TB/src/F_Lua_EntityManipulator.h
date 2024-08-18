@@ -39,6 +39,8 @@ protected:
 
 	glm::vec2 m_endPos;
 
+    Slot * tempSlot = nullptr;
+
 
     EntityState m_state = EntityState::None;
 };

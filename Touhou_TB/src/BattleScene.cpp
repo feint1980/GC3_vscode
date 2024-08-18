@@ -367,6 +367,30 @@ GUI_icon * BattleScene::createIcon(const std::string & texturePath, const glm::v
 }
 
 
+int lua_GuiHandlerRemoveIcon(lua_State * L)
+{
+
+	if (lua_gettop(L) != 2)
+	{
+		std::cout << "gettop failed (lua_GUIHandlerRemoveIcon) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	GUI_icon * icon = static_cast<GUI_icon*>(lua_touserdata(L, 2));
+
+	battleScene->GUIHandlerRemoveIcon(icon);
+
+	return 0;
+
+
+}
+
+void BattleScene::GUIHandlerRemoveIcon(GUI_icon * icon)
+{
+	
+}
+
 int lua_GUIHandlerAddIcon(lua_State * L)
 {
 
@@ -411,6 +435,7 @@ int lua_GuiHandlerSetIconPos(lua_State * L)
 		std::cout << lua_gettop(L) << "\n";
 		return -1;
 	}
+	
 
 	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
 	GUI_icon * icon = static_cast<GUI_icon*>(lua_touserdata(L, 2));
@@ -418,6 +443,9 @@ int lua_GuiHandlerSetIconPos(lua_State * L)
 
 	pos.x = (float)lua_tonumber(L, 3);
 	pos.y = (float)lua_tonumber(L, 4);
+
+	std::cout << "[C++] lua_GuiHandlerSetIconPos called \n";
+	std::cout << "pos " << pos.x << " " << pos.y << "\n"; 
 
 	battleScene->setGUIHandlerIconPos(icon, pos);
 	return 0;
@@ -603,6 +631,7 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppGuiHandlerSetIconPos", lua_GuiHandlerSetIconPos);
 	lua_register(m_script, "cppGuiHandlerSetSelectedIcon", lua_GuiHandlerSetSelectedIcon);
 	lua_register(m_script, "cppGuiHandlerSetFocusColor", lua_GuiHandlerSetFocusColor);
+	lua_register(m_script, "cppGuiHandlerRemoveIcon", lua_GuiHandlerRemoveIcon);
 
 	// create gui icon
 	lua_register(m_script, "cppCreateIcon", lua_CreateIcon);

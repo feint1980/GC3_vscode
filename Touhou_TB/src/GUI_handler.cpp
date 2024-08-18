@@ -48,6 +48,20 @@ void GUI_handler::addIcon(GUI_icon * icon)
         m_icons.push_back(icon);
     }
 }
+void GUI_handler::removeIcon(GUI_icon * icon)
+{
+    if(icon)
+    {
+        for(int i = 0; i < m_icons.size(); i++)
+        {
+            if(m_icons[i] == icon)
+            {
+                m_icons.erase(m_icons.begin() + i);
+            }
+        }
+    }
+
+}
 
 void GUI_handler::setFocusColor(const Feintgine::Color & color)
 {

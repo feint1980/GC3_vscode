@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Touhou_TB.dir/src/F_Lua_BaseEntity.cpp.obj.d"
   "CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.obj"
   "CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.obj.d"
+  "CMakeFiles/Touhou_TB.dir/src/F_TurnHandler.cpp.obj"
+  "CMakeFiles/Touhou_TB.dir/src/F_TurnHandler.cpp.obj.d"
   "CMakeFiles/Touhou_TB.dir/src/GUI_handler.cpp.obj"
   "CMakeFiles/Touhou_TB.dir/src/GUI_handler.cpp.obj.d"
   "CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.obj"
