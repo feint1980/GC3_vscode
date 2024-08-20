@@ -1,0 +1,53 @@
+<F_AObj name="reimu_tb">
+	<animations>
+		<animation name="dash_bw">
+			<anims>
+				<anim name="Reimu_TB/dash_bw_01.png" time="5.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/dash_bw_02.png" time="5.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Reimu_TB/dash_bw_03.png" time="5.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="dash_bw_end">
+			<anims>
+				<anim name="Reimu_TB/Jump_04.png" time="3.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Reimu_TB/jump_bw.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/Jump_03.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/Jump_02.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/Jump_01.png" time="5.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="dash_fw">
+			<anims>
+				<anim name="Reimu_TB/dash_stop_04.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/dash_stop_03.png" time="5.00" offset_x="-5.00" offset_y="-8.00"/>
+				<anim name="Reimu_TB/air_dash_fw_02.png" time="5.00" offset_x="3.00" offset_y="8.00"/>
+				<anim name="Reimu_TB/air_dash_fw_03.png" time="5.00" offset_x="5.00" offset_y="12.00" loop="1"/>
+				<anim name="Reimu_TB/air_dash_fw_04.png" time="5.00" offset_x="7.00" offset_y="10.00"/>
+				<anim name="Reimu_TB/air_dash_fw_05.png" time="0.00" offset_x="7.00" offset_y="12.00"/>
+			</anims>
+		</animation>
+		<animation name="dash_fw_end">
+			<anims>
+				<anim name="Reimu_TB/dash_stop_02.png" time="3.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Reimu_TB/dash_stop_03.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/dash_stop_04.png" time="5.00" offset_x="5.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/dash_stop_01.png" time="5.00" offset_x="-9.50" offset_y="-5.50"/>
+			</anims>
+		</animation>
+		<animation name="idle">
+			<anims>
+				<anim name="Reimu_TB/idle_01.png" time="5.50" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Reimu_TB/idle_02.png" time="5.50" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/idle_04.png" time="5.50" offset_x="4.00" offset_y="-1.50"/>
+				<anim name="Reimu_TB/idle_05.png" time="5.50" offset_x="3.00" offset_y="-2.00"/>
+				<anim name="Reimu_TB/idle_06.png" time="5.50" offset_x="5.00" offset_y="-1.50"/>
+				<anim name="Reimu_TB/idle_07.png" time="5.50" offset_x="7.00" offset_y="-1.00"/>
+				<anim name="Reimu_TB/idle_08.png" time="5.50" offset_x="5.50" offset_y="-0.50"/>
+				<anim name="Reimu_TB/idle_09.png" time="5.50" offset_x="1.50" offset_y="0.00"/>
+				<anim name="Reimu_TB/idle_10.png" time="5.50" offset_x="-0.50" offset_y="1.00"/>
+				<anim name="Reimu_TB/idle_11.png" time="5.50" offset_x="-1.50" offset_y="1.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

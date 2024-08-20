@@ -9,7 +9,7 @@ EditorScreen::EditorScreen()
 EditorScreen::EditorScreen(Feintgine::Window * window)
 {
 
-	std::cout << "init Editor screen \n";
+	
 	m_screenIndex = 0;
 	//m_sceneFilePath = "";
 	m_window = window;
@@ -25,7 +25,7 @@ EditorScreen::~EditorScreen()
 
 int EditorScreen::listdir(const char *name, int level)
 {
-	//std::cout << "scan on " << name << "\n";
+	
 	DIR *dir ;
 	struct dirent *entry;
 
@@ -120,7 +120,7 @@ void EditorScreen::destroy()
 
 void EditorScreen::entryRuntime()
 {
-	std::cout << "loading in multithread \n";
+	
 	__int64 now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 	std::cout << "Start loading " << now << "\n";
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
@@ -335,12 +335,6 @@ void EditorScreen::entryRuntime()
 
 	m_enemyEditor.init(EditEnemy, &m_editEnemyCamera,
 		m_editEnemyCamera_static);
-
-
-	
-
-	std::cout << "m_editorLuaCamera " << &m_editLuaCamera << "\n";
-	std::cout << "p_editorLuaCamera " << p_editorLuaCamera << "\n";
 	
 	m_luaEditor.init(EditLua, &m_editLuaCamera,
 		m_editLuaCamera_static);
@@ -377,7 +371,6 @@ void EditorScreen::entryRuntime()
 
 void EditorScreen::onEntry()
 {
-	std::cout << "entry !!! \n";
 	
 	m_spriteBatch.init();
 	m_fullCam.init(1600, 900);
@@ -388,8 +381,7 @@ void EditorScreen::onEntry()
 	bg.init(Feintgine::ResourceManager::getTexture("Assets/Textures/loading.png"), 
 		glm::vec2(0), glm::vec2(224.0f, 56.0f), Feintgine::Color(255, 255, 255, 255));
 
-	std::cout << "entry end !!! \n";
-
+	
 	//entryRuntime();
 
 }
@@ -766,8 +758,6 @@ void EditorScreen::initShader()
 // 	m_sceneShader.linkShaders();
 
 	m_alpha = 1;
-
-	std::cout << "init Shader OK \n";
 }
 
 void EditorScreen::checkInput()

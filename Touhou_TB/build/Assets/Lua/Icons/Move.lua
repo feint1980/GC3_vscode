@@ -66,8 +66,14 @@ function moveToSlotBehavior(host, dyobj)
         dashAnimation = "dash_bw"
     end
 
+    currentRow = cppGetSlotRow(currentSlot)
+    targetRow = cppGetSlotRow(slot)
+
+
+    result = math.abs(currentRow - targetRow) + math.abs(currentCol - targetCol)
+
     cppEntityPlayAnimation(host,dyobj,dashAnimation,-1)
-    cppEntityMoveToslot(host,dyobj,slot,50)
+    cppEntityMoveToslot(host,dyobj,slot,result * 25)
     coroutine.yield()
 
     finishedAnimation = dashAnimation .. "_end"

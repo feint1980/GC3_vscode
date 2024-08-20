@@ -23,7 +23,6 @@ Patchy = Character:new({
     physicDef = 6,
     magicDmg = 25,
     magicDef = 13,
-    defence = 4,
     accurate = 0.85,
     evadeChance = 0.1,
     name = "Patchy",

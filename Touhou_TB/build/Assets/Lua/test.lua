@@ -1,5 +1,5 @@
 print("Helloooooo ")
-package.path = package.path .. ';./Assets/Lua/characters/?.lua;' .. ';./Assets/Lua/?.lua;' .. './characters/Common/?.lua;' .. './characters/Patchy/?.lua;' .. ';./Assets/Lua/characters/Patchy/?.lua;'
+package.path = package.path .. ';./Assets/Lua/characters/?.lua;' .. ';./Assets/Lua/?.lua;' .. './characters/Common/?.lua;' .. './characters/Patchy/?.lua;' .. ';./Assets/Lua/characters/Patchy/?.lua;' .. ';./characters/Reimu/slots/?.lua;' .. ';./Assets/Lua/characters/Reimu/?.lua;'
 
 -- gui include
 require "IconGui"
@@ -7,7 +7,7 @@ require "IconGui"
 require "slotHandler"
 
 -- characters include
-require "Patchy"
+require "Reimu"
 
 require "Patchouli"
 
@@ -84,7 +84,7 @@ function init(host)
     p1:init(host,t_slotHandler:getSlot(3,3,1))
     p1:loadCommon(host)
 
-    p2 = Patchy:new()
+    p2 = Reimu:new()
     p2:init(host,t_slotHandler:getSlot(2,2,1))
     p2:loadCommon(host)
 
