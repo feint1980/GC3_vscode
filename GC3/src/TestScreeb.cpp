@@ -61,7 +61,7 @@ void TestScreeb::onEntry()
 
 	std::cout << "camera pos is " << feint_common::Instance()->convertVec2toString(m_camera.getPosition()) << "\n";
 	m_luaManager.init();
-	m_luaManager.readFile("Assets/Lua/test.lua");
+	//m_luaManager.readFile("Assets/Lua/test.lua");
 
 	// m_luaObj.init(glm::vec2(0, 0), glm::vec2(1.0f, 1.0f), "Assets/F_AObjects/boss_komachi.xml", "name", 1, glm::vec2(0, 0));
 	// m_anim.init("./Assets/F_AObjects/boss_komachi.xml");

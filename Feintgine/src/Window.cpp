@@ -129,8 +129,8 @@ namespace Feintgine{
 			F_Logger::Instance()->writeLog("glew co van de ");
 		}
 		std::cout << "context is " << glContext << "\n";
-		F_Logger::Instance()->writeLog("context is " + std::to_string((int)glContext));
-		F_Logger::Instance()->writeLog("Window create has no problem");
+		// F_Logger::Instance()->writeLog("context is " + std::to_string((int)glContext));
+		// F_Logger::Instance()->writeLog("Window create has no problem");
 
 		glClearColor(0, 0, 0, 0);
 		glEnable(GL_BLEND);
@@ -138,6 +138,7 @@ namespace Feintgine{
 
 		A_Context_saver::getContext_saver()->saveContext(m_sdlWindow,glContext);
 		
+		std::cout << "init window OK \n";
 
 // 		PFNWGLSWAPINTERVALEXTPROC       wglSwapIntervalEXT = NULL;
 // 		PFNWGLGETSWAPINTERVALEXTPROC    wglGetSwapIntervalEXT = NULL;

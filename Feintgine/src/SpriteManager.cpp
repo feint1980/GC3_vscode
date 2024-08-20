@@ -170,6 +170,15 @@ namespace Feintgine {
             begin = end + 1;
         }
 
+		for(int i = 0; i < m_Threads.size(); i++)
+		{
+			//m_Threads[i].detach();
+			if(m_Threads[i].joinable())
+			{
+				m_Threads[i].join();
+			}
+		}
+
 		// Solution 2, faster but cause crash in GC3
 
 		// for(int i = 0 ; i < m_SpritePackets.size(); i++)
@@ -224,14 +233,7 @@ namespace Feintgine {
 		// 	//std::cout << "internal wait\n";
 		// }
 
-		for(int i = 0; i < m_Threads.size(); i++)
-		{
-			//m_Threads[i].detach();
-			if(m_Threads[i].joinable())
-			{
-				m_Threads[i].join();
-			}
-		}
+	
 		// while(m_packetCount < m_Threads.size())
 		// {
 		// 	if(m_Threads[m_packetCount].joinable())

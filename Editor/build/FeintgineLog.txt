@@ -1,7 +1,8 @@
 Feintgine log
-Window create has no problem
-context is 196609
-Window create has no problem
+Compile shader success !!!
+Compile shader success !!!
+Compile shader success !!!
+Compile shader success !!!
 Compile shader success !!!
 Compile shader success !!!
 Compile shader success !!!

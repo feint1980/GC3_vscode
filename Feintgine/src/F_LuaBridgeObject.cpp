@@ -174,45 +174,45 @@ F_LuaObject * F_LuaBridgeObject::getObjectByID(int id)
 
 void F_LuaBridgeObject::test()
 {
-    std::cout << "init lua \n";
-    init(); 
-    luabridge::getGlobalNamespace(m_LuaState)
-    .beginNamespace("test")
-    .addFunction ("davai", +[] (int x) { return x * 3; })
-    .endNamespace();
+//     std::cout << "init lua \n";
+//     init(); 
+//     luabridge::getGlobalNamespace(m_LuaState)
+//     .beginNamespace("test")
+//     .addFunction ("davai", +[] (int x) { return x * 3; })
+//     .endNamespace();
 
-    std::cout << "reading file \n";
+//     std::cout << "reading file \n";
 
-    int resultDofile = luaL_dofile(m_LuaState, "Assets/Lua/test.lua");
+//     int resultDofile = luaL_dofile(m_LuaState, "Assets/Lua/boss_common.lua");
 
-    if(resultDofile != LUA_OK)
-    {
-        std::cout << lua_tostring(m_LuaState, -1) << "\n";
-        return;
-    }
+//     if(resultDofile != LUA_OK)
+//     {
+//         std::cout << lua_tostring(m_LuaState, -1) << "\n";
+//         return;
+//     }
 
 
-   // lua_getglobal(m_LuaState, "boss_komachi");
+//    // lua_getglobal(m_LuaState, "boss_komachi");
 
-    int id = getIntField(m_LuaState, "boss_komachi","id");
+//     int id = getIntField(m_LuaState, "boss_komachi","id");
 
-    std::cout << "from C++ : " << id << "\n";
+//     std::cout << "from C++ : " << id << "\n";
 
-    std::cout << "from C++ : " << getStringField(m_LuaState , "boss_komachi", "name") << "\n";
+//     std::cout << "from C++ : " << getStringField(m_LuaState , "boss_komachi", "name") << "\n";
 
-    glm::vec2 position = GetVec2FromTable(m_LuaState, "boss_komachi", "pos");
+//     glm::vec2 position = GetVec2FromTable(m_LuaState, "boss_komachi", "pos");
 
-    glm::vec2 scale = GetVec2FromTable(m_LuaState, "boss_komachi", "scale");
+//     glm::vec2 scale = GetVec2FromTable(m_LuaState, "boss_komachi", "scale");
 
-    std::cout << "from C++ : " << position.x << " " << position.y << "\n";
-    std::cout << "from C++ : " << scale.x << " " << scale.y << "\n";
+//     std::cout << "from C++ : " << position.x << " " << position.y << "\n";
+//     std::cout << "from C++ : " << scale.x << " " << scale.y << "\n";
     
-    if(resultDofile != LUA_OK)
-    {
-        std::cout << "unable to read file \n";
-        std::cout << lua_tostring(m_LuaState, -1) << "\n";
-    }
-    std::cout << "test end \n";
+//     if(resultDofile != LUA_OK)
+//     {
+//         std::cout << "unable to read file \n";
+//         std::cout << lua_tostring(m_LuaState, -1) << "\n";
+//     }
+//     std::cout << "test end \n";
     // run file Lua
 }
 }
