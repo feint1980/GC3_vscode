@@ -158,6 +158,9 @@ void Extra_DemoScreen::onEntry()
 	m_text_spellName = tgui::Label::create();
 	m_text_spellSign = tgui::Label::create();
 	m_text_load = tgui::Label::create();
+
+	//m_text_load->setText
+	//m_text_load->
 	
 
 

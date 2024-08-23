@@ -409,6 +409,30 @@ int lua_GUIHandlerAddIcon(lua_State * L)
 	return 0;
 }
 
+
+void  BattleScene::initTGUI(SDL_Window * window )
+{
+
+	TTF_Init();
+	m_tgui = new tgui::Gui(window);
+	tgui::Font font("./font/ARIALUNI.ttf");
+
+	m_tgui->setFont(font);
+
+	m_iconDescription = tgui::TextArea::create();	
+	m_iconDescription->setPosition(250,800);
+	
+	m_iconDescription->setTextSize(8);
+	m_iconDescription->getRenderer()->setTextColor(tgui::Color::White);
+	m_iconDescription->getRenderer()->setBorderColor(tgui::Color::Black);
+	//m_iconDescription->setColor
+	//m_iconDescription->getRenderer()->setTextOutlineThickness(4);
+	m_iconDescription->setText("hereqwewqeqwewqewqe");
+
+	m_tgui->add(m_iconDescription);
+
+}
+
 void BattleScene::GUIHandlerAddIcon(GUI_icon * icon)
 {
 	
@@ -741,6 +765,14 @@ void BattleScene::pickActiveEntity(F_Lua_BaseEntity * entity)
 	}
 }
 
+
+void BattleScene::drawGUI()
+{
+	if(m_tgui)
+	{
+		m_tgui->draw();
+	}
+}
 
 void BattleScene::draw(Feintgine::SpriteBatch & spriteBatch)
 {

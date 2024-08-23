@@ -4,6 +4,8 @@ require "IconGui"
 
 -- characters include
 require "Character"
+require "kickBack"
+
 
 Reimu = Character:new({
     Strenth = 9,
@@ -34,5 +36,18 @@ Reimu = Character:new({
     currentSlot = nil
 }
 )
+
+function Reimu:loadCommon(host)
+   
+    self.common_actions =  Character:loadCommon(host)
+    -- todo load more common of reimu
+end
+
+function Reimu:loadSkills(host)
+
+    self.skills = {}
+    self.skills["KickBack"] = KickBack
+    self.skills["KickBack"]:init(host,self.dyobj,self.name)
+end
 
 -- Patchouli:new

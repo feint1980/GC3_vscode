@@ -71,8 +71,7 @@ function init(host)
     t_slotHandler = SlotHandler:new()
     t_slotHandler:init(host,3,3,t_turnHandler)
 
-        
-   
+
     -- init characters
  
 
@@ -87,6 +86,7 @@ function init(host)
     p2 = Reimu:new()
     p2:init(host,t_slotHandler:getSlot(2,2,1))
     p2:loadCommon(host)
+    p2:loadSkills(host)
 
 
     t_turnHandler:addCharacter(p1)

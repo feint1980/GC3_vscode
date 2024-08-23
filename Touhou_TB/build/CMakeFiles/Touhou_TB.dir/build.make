@@ -300,6 +300,7 @@ Touhou_TB.exe: D:/VS_Code_prj/GC3_vscode/Touhou_TB/../Feintgine_GC_deps/lib/libS
 Touhou_TB.exe: D:/VS_Code_prj/GC3_vscode/Touhou_TB/../Feintgine_GC_deps/lib/libSDL2_ttf.dll.a
 Touhou_TB.exe: D:/VS_Code_prj/GC3_vscode/Touhou_TB/../Feintgine_GC_deps/lib/libnanogui.dll.a
 Touhou_TB.exe: D:/VS_Code_prj/GC3_vscode/Touhou_TB/../Feintgine_GC_deps/lib/libasync++.dll.a
+Touhou_TB.exe: D:/VS_Code_prj/GC3_vscode/Touhou_TB/../Feintgine_GC_deps/lib/libtgui.a
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/linkLibs.rsp
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/objects1.rsp
 Touhou_TB.exe: CMakeFiles/Touhou_TB.dir/link.txt

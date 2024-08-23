@@ -7,6 +7,9 @@
 #include "GUI_handler.h"
 #include "SlotHandler.h"
 
+#include <TGUI/TGUI.hpp>
+#include <TGUI/Backend/SDL-TTF-OpenGL3.hpp>
+
 class BattleScene
 {
 public:
@@ -20,6 +23,9 @@ public:
     F_Lua_BaseEntity * addEntity(Slot * slot, const std::string & animationPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
 
     void draw(Feintgine::SpriteBatch & spriteBatch);
+
+    void drawGUI();
+
     void update(float deltaTime);
 
     void handleInput(Feintgine::InputManager & inputManager);
@@ -48,6 +54,8 @@ public:
 
     GUI_icon * setGUIHandlerSelectedIcon(GUI_icon * icon);
 
+    void initTGUI(SDL_Window * window);
+
 protected:
 
     lua_State * m_script;
@@ -71,6 +79,15 @@ protected:
     Feintgine::Camera2D * m_camera;
 
     GUI_handler * m_guiHandler = nullptr;
+
+
+    // TGUI section start
+    tgui::Gui * m_tgui = nullptr;
+
+    tgui::TextArea::Ptr m_iconDescription = nullptr;
+
+
+    // TGUI section end
 
     int m_phaseType = 0; // 0 -> skill/items/icons, 1 -> slot
     int m_SelectionSide = 0; // 1 -> left, 2 -> right , 3 -> both

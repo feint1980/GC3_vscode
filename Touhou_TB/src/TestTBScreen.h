@@ -67,6 +67,8 @@ public:
 
     void initShader();
 
+    void drawGUI();
+
 protected:
 
     

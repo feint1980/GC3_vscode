@@ -12,7 +12,7 @@ IconGUI = {
     selectIcon = nil,
     currentTTD = nil,
     currentIndex = 1,
-    baseLine = 200
+    baseLine = -200
 }
 
 
@@ -85,6 +85,17 @@ function IconGUI:loadIcons(host,character)
         if tIndex == 0 then
             self.selectIcon = cppGuiHandlerSetSelectedIcon(host,commmon_icons[k].iconObj)
         end
+        tIndex = tIndex + 1
+    end
+
+
+    skill_icons = {}
+    tIndex = 0
+    for k,v in pairs(character.skills) do
+        print("loading from " .. k)
+        skill_icons[k] = v
+        cppGUIHandlerAddIcon(host,skill_icons[k].iconObj)
+        cppGuiHandlerSetIconPos(host,skill_icons[k].iconObj,-600 +  (70 * tIndex),-300)
         tIndex = tIndex + 1
     end
 

@@ -126,7 +126,6 @@ function Move:useFunction(host,character)
     HandleSkillTasks(host,character.dyobj)
     setPhase(host,1,3)
 
-    
     print("!!!! set slot start ")
     slots = t_slotHandler:getSelectedSlots()
 

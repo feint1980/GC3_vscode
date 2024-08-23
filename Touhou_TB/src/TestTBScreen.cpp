@@ -50,6 +50,8 @@ void TestTBScreen::onEntry()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	m_battleScene.init(&m_camera);
+	m_battleScene.initTGUI(m_window->getWindow());
+
 
 }
 
@@ -142,7 +144,10 @@ void TestTBScreen::draw()
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
 	
+
+	drawGUI();
 	SDL_GL_SetSwapInterval(1);	
+
 }
 
 void TestTBScreen::drawGameplay()
@@ -172,4 +177,17 @@ void TestTBScreen::drawGameplay()
     m_spriteBatch.renderBatch();
 
     m_shader.unuse();
+
+
+
+
 }
+
+
+void TestTBScreen::drawGUI()
+{
+
+	m_battleScene.drawGUI();
+}
+
+

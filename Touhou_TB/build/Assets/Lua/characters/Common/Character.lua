@@ -78,6 +78,7 @@ end
 function Character:loadCommon(host)
 
     print("load common call")
+    self.common_actions = {}
     self.common_actions["Move"] = Move
     self.common_actions["Move"]:init(host,self.dyobj,self.name)
 
@@ -92,7 +93,11 @@ function Character:loadCommon(host)
     end
     table.sort(t_common_actions, function(a,b) return a.index < b.index end)
     print("sort skills ended")
+    self.common_actions = {}
     self.common_actions = t_common_actions
+    --table.shallow_copy(self.common_actions, t_common_actions)
+    print("common action size (common) " .. #self.common_actions)
+    return self.common_actions
 
 end
 

@@ -36,4 +36,13 @@ Patchouli = Character:new({
 }
 )
 
+
+
+function Patchouli:loadCommon(host)
+   
+    self.common_actions =  Character:loadCommon(host)
+    -- todo load more common of patchouli
+end
+
+
 -- Patchouli:new
