@@ -73,7 +73,7 @@ public:
     Slot * getTargetSlot() const { return m_moveTargetSlot; }
 
     float getYOffset() const { return m_yOffset; }
-
+ 
     glm::vec2 getPos() const { return m_pos; }
 
     bool isActive() const { return m_isActive; }

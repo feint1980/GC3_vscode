@@ -84,7 +84,8 @@ protected:
     // TGUI section start
     tgui::Gui * m_tgui = nullptr;
 
-    tgui::TextArea::Ptr m_iconDescription = nullptr;
+    tgui::RichTextLabel::Ptr m_iconDescription = nullptr;
+    tgui::RichTextLabel::Ptr m_iconName = nullptr;
 
 
     // TGUI section end

@@ -419,17 +419,27 @@ void  BattleScene::initTGUI(SDL_Window * window )
 
 	m_tgui->setFont(font);
 
-	m_iconDescription = tgui::TextArea::create();	
-	m_iconDescription->setPosition(250,800);
+
+	m_iconName = tgui::RichTextLabel::create();	
+	m_iconName->setPosition(850,700);
+	m_iconName->setTextSize(32);
+	m_iconName->getRenderer()->setTextColor(tgui::Color::White);
+	m_iconName->getRenderer()->setBorderColor(tgui::Color::Black);
+	m_iconName->getRenderer()->setTextOutlineThickness(4);
+	m_iconName->setText("Name");
 	
-	m_iconDescription->setTextSize(8);
+	m_iconDescription = tgui::RichTextLabel::create();	
+	m_iconDescription->setPosition(850,740);
+	m_iconDescription->setTextSize(24);
 	m_iconDescription->getRenderer()->setTextColor(tgui::Color::White);
 	m_iconDescription->getRenderer()->setBorderColor(tgui::Color::Black);
-	//m_iconDescription->setColor
-	//m_iconDescription->getRenderer()->setTextOutlineThickness(4);
-	m_iconDescription->setText("hereqwewqeqwewqewqe");
+	m_iconDescription->getRenderer()->setTextOutlineThickness(4);
+	m_iconDescription->setText("hereqwewqe \n<color=#ff0000>C Davai machi</color>");
 
+
+	m_tgui->add(m_iconName);
 	m_tgui->add(m_iconDescription);
+
 
 }
 
