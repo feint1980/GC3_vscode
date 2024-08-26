@@ -23,7 +23,11 @@ KickBack = Icon:new({
 
 
 function KickBack:workOnString()
-    
+    local retStr = ""
+    retStr = "Kick back a target, deals <i><color=#00ff1d>"
+    retStr = retStr .. tostring()
+
+    return retStr
 end
 
 function KickBack:selected()
