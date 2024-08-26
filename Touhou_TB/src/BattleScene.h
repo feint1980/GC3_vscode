@@ -46,6 +46,8 @@ public:
 
     void GUIHandlerRemoveIcon(GUI_icon * icon);
 
+    void GUIHandlerClearIcons();
+
     void setPhase(int phaseType, int sides);
 
     void setGUIHandlerIconPos(GUI_icon * icon, const glm::vec2 & pos);

@@ -5,8 +5,8 @@ require "Icon"
 
 KickBack = Icon:new({
     asset = "./Assets/TB_GUI/spell_1.png",
-    name = "KickBack",
-    description = "Kick a target deal <i><color=#00ff1d>75 </color></i> damage.." ,
+    name = "Hakurei's Kick",
+    description = "",
     turnCost = 0.75,
     manaCost = 0,
     iconObj = nil,
@@ -15,19 +15,26 @@ KickBack = Icon:new({
     selectedFunct = function() KickBack:selected() end,
     funct = function()  end,
     host = nil,
-    selectionSide = 1,
+    selectionSide = 2,
     index = 1,
     requiredSlotCount = 1,
-    charName = "None"
+    character = nil
 })
 
 
-function KickBack:workOnString()
-    local retStr = ""
-    retStr = "Kick back a target, deals <i><color=#00ff1d>"
-    retStr = retStr .. tostring()
+function KickBack:init(host,dyobj,character)
 
-    return retStr
+    self.host = host
+    self.dyobj = dyobj
+    self.character = tCharacter
+    local retStr = ""
+    retStr = "Kick back a target, deals <i><color=#ff1200>"
+    retStr = retStr .. tostring( (character.Dexterity * 0.5) + (character.Agility * 0.25) + (character.Strength * 0.25) )
+    retStr = retStr .. "</color></i> damage"
+    retStr = retStr .. "\nSend the target back <i><color=#00ff1d>1</color></i> distance"
+
+    self.iconObj =  cppCreateIcon(host,self.asset,64,64,self.name,retStr,self.turnCost,self.manaCost,self.turnCostStr,self.manaCostStr, self.specialID)
+
 end
 
 function KickBack:selected()

@@ -49,14 +49,27 @@ end
 function IconGUI:loadIcons(host,character)
 
 
-    if #commmon_icons > 0 then
-        -- hide the last icons 
-        print("hide the last icons")
-       for k,v in pairs(commmon_icons) do
-        print("hide icon " .. commmon_icons[k].name)
-        cppGuiHandlerRemoveIcon(host,commmon_icons[k].iconObj)
-        end
-    end
+    -- if #commmon_icons > 0 then
+    --     -- hide the last icons 
+    --     print("hide the last icons")
+    --    for k,v in pairs(commmon_icons) do
+    --     print("hide icon " .. commmon_icons[k].name)
+    --     cppGuiHandlerSetIconPos(host,commmon_icons[k].iconObj,5000,0)
+    --     cppGuiHandlerRemoveIcon(host,commmon_icons[k].iconObj)
+    --     end
+    -- end
+
+    -- if #skill_icons > 0 then
+    --     -- hide the last icons
+    --     print("hide the last icons")
+    --    for k,v in pairs(skill_icons) do
+    --     print("hide icon " .. skill_icons[k].name)
+    --     cppGuiHandlerSetIconPos(host,commmon_icons[k].iconObj,5000,0)
+    --     cppGuiHandlerRemoveIcon(host,skill_icons[k].iconObj)
+    --     end
+    -- end
+    cppGuiHandlerClearIcons(host)
+
     -- clear icons
     commmon_icons = {}
     tIndex = 0

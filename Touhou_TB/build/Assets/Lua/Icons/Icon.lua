@@ -34,7 +34,7 @@ function Icon:init(host,dyobj,tCharacter)
     self.iconObj =  cppCreateIcon(host,self.asset,64,64,self.name,self.description,self.turnCost,self.manaCost,self.turnCostStr,self.manaCostStr, self.specialID)
     self.host = host
     self.dyobj = dyobj
-    self.charName = tCharacter
+    self.character = tCharacter
 
 end
 

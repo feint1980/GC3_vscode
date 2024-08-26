@@ -20,6 +20,18 @@ void GUI_handler::init(const std::string & selectionTexturePath,const glm::vec2 
 }
 
 
+void GUI_handler::clearIcons()
+{
+
+    for(int i = 0; i < m_icons.size(); i++)
+    {
+        //delete m_icons[i];
+        //m_icons[i] = nullptr;
+        m_icons.erase(m_icons.begin() + i);
+    }
+    m_icons.clear();
+}
+
 void GUI_handler::setPhase(int phaseType, int sides)
 {
 
@@ -57,6 +69,7 @@ void GUI_handler::removeIcon(GUI_icon * icon)
             if(m_icons[i] == icon)
             {
                 m_icons.erase(m_icons.begin() + i);
+                std::cout << "icon " << i << " removed" << std::endl;
             }
         }
     }

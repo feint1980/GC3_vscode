@@ -397,6 +397,8 @@ int lua_GuiHandlerRemoveIcon(lua_State * L)
 
 void BattleScene::GUIHandlerRemoveIcon(GUI_icon * icon)
 {
+
+	m_guiHandler->removeIcon(icon);
 	
 }
 
@@ -728,6 +730,26 @@ int lua_SetDescriptionBoxDim(lua_State * L)
 	return 0;
 }
 
+int lua_GuiHandlerClearIcons(lua_State * L)
+{
+
+	if(lua_gettop(L) != 1)
+	{
+		std::cout << "gettop failed (lua_GuiHandlerClearIcons) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+
+	battleScene->GUIHandlerClearIcons();
+}
+
+void BattleScene::GUIHandlerClearIcons()
+{
+	m_guiHandler->clearIcons();
+}
+
 void BattleScene::setDescriptionBoxDim(const glm::vec2 & dim)
 {
 	std::cout << "setDescriptionBoxDim " << dim.x << " " << dim.y << "\n";
@@ -772,6 +794,7 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppGuiHandlerSetSelectedIcon", lua_GuiHandlerSetSelectedIcon);
 	lua_register(m_script, "cppGuiHandlerSetFocusColor", lua_GuiHandlerSetFocusColor);
 	lua_register(m_script, "cppGuiHandlerRemoveIcon", lua_GuiHandlerRemoveIcon);
+	lua_register(m_script, "cppGuiHandlerClearIcons", lua_GuiHandlerClearIcons);
 
 	// create gui icon
 	lua_register(m_script, "cppCreateIcon", lua_CreateIcon);
