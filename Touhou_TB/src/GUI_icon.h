@@ -16,6 +16,11 @@ public:
     {
         m_turnCost = cost;
     }
+
+    void setManaCost(float cost)
+    {
+        m_manaCost = cost;
+    }
     void setDescription(const std::string & description)
     {
         m_description = description;
@@ -30,6 +35,16 @@ public:
     void setPos(const glm::vec2 & pos);
 
     void setDim(const glm::vec2 & dim);
+
+    std::string getDescription() const
+    {
+        return m_description;
+    }
+
+    std::string getName() const
+    {
+        return m_name;
+    }
 
     glm::vec2 getPos() const
     {
@@ -56,6 +71,31 @@ public:
         return m_turnCost;
     }
 
+    float getManaCost() const
+    {
+        return m_manaCost;
+    }
+
+    std::string getTurnCostString() const
+    {
+        return m_turnCostString;
+    }
+
+    std::string getManaCostString() const
+    {
+        return m_manaCostString;
+    }
+
+    void setTurnCostString(const std::string & str)
+    {
+        m_turnCostString = str;
+    }
+
+    void setManaCostString(const std::string & str)
+    {
+        m_manaCostString = str;
+    }
+
 protected:
 
     unsigned int m_specialID = 0;
@@ -63,6 +103,9 @@ protected:
     std::string m_description;
     std::string m_name;
     float m_turnCost = 0.0f;
+    float m_manaCost = 0.0f;
+    std::string m_turnCostString = "";
+    std::string m_manaCostString = "";
 
     
 };

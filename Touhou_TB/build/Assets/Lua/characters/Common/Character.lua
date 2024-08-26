@@ -80,10 +80,10 @@ function Character:loadCommon(host)
     print("load common call")
     self.common_actions = {}
     self.common_actions["Move"] = Move
-    self.common_actions["Move"]:init(host,self.dyobj,self.name)
+    self.common_actions["Move"]:init(host,self.dyobj,self)
 
     self.common_actions["End"] = End
-    self.common_actions["End"]:init(host,self.dyobj,self.name)
+    self.common_actions["End"]:init(host,self.dyobj,self)
 
     print("sort skills called")
     --self.common_actions = sortData(self.common_actions)

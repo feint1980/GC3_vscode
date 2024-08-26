@@ -321,7 +321,7 @@ SlotHandler * BattleScene::createSlotHandler()
 int lua_CreateIcon(lua_State * L)
 {
 
-	if (lua_gettop(L) < 7 || lua_gettop(L) > 8)
+	if (lua_gettop(L) < 10 || lua_gettop(L) > 11)
 	{
 		std::cout << "gettop failed (lua_CreateIcon) \n";
 		std::cout << lua_gettop(L) << "\n";
@@ -337,11 +337,15 @@ int lua_CreateIcon(lua_State * L)
 	std::string name = lua_tostring(L, 5);
 	std::string description = lua_tostring(L, 6);
 	float turnCost = (float)lua_tonumber(L, 7);
+	float manaCost = (float)lua_tonumber(L, 8);
+	std::string turnCostStr = lua_tostring(L, 9);
+	std::string manaCostStr = lua_tostring(L, 10);
+
 
 	unsigned int specialID = 0;
-	if(lua_gettop(L) == 8)
+	if(lua_gettop(L) == 11)
 	{
-		specialID = (unsigned int)lua_tonumber(L, 8);
+		specialID = (unsigned int)lua_tonumber(L, 11);
 	}
 
 	GUI_icon * icon =  battleScene->createIcon(texturePath,glm::vec2(0), dim);
@@ -349,8 +353,13 @@ int lua_CreateIcon(lua_State * L)
 	icon->setDescription(description);
 	icon->setTurnCost(turnCost);
 	icon->setSpecialID(specialID);
+	icon->setManaCost(manaCost);
+	icon->setTurnCostString(turnCostStr);
+	icon->setManaCostString(manaCostStr);
 
 	lua_pushlightuserdata(L, icon);
+
+	std::cout << "Add icon called OK \n";
 	return 1;
 
 }
@@ -421,23 +430,41 @@ void  BattleScene::initTGUI(SDL_Window * window )
 
 
 	m_iconName = tgui::RichTextLabel::create();	
-	m_iconName->setPosition(850,700);
+	m_iconName->setPosition(800,710);
 	m_iconName->setTextSize(32);
 	m_iconName->getRenderer()->setTextColor(tgui::Color::White);
 	m_iconName->getRenderer()->setBorderColor(tgui::Color::Black);
-	m_iconName->getRenderer()->setTextOutlineThickness(4);
+	m_iconName->getRenderer()->setTextOutlineThickness(1);
+	//m_iconName->getRenderer()->setTextOutlineColor(tgui::Color::White);
 	m_iconName->setText("Name");
-	
+
+	m_iconTurnCost = tgui::RichTextLabel::create();	
+	m_iconTurnCost->setPosition(800,760);
+	m_iconTurnCost->setTextSize(20);
+	m_iconTurnCost->getRenderer()->setTextColor(tgui::Color::White);
+	m_iconTurnCost->getRenderer()->setBorderColor(tgui::Color::Black);
+	m_iconTurnCost->getRenderer()->setTextOutlineThickness(1);
+	m_iconTurnCost->setText("Cost :");
+
+	m_iconManaCost = tgui::RichTextLabel::create();	
+	m_iconManaCost->setPosition(800,780);
+	m_iconManaCost->setTextSize(20);
+	m_iconManaCost->getRenderer()->setTextColor(tgui::Color::White);
+	m_iconManaCost->getRenderer()->setBorderColor(tgui::Color::Black);
+	m_iconManaCost->getRenderer()->setTextOutlineThickness(1);
+	m_iconManaCost->setText("Cost :");
+
 	m_iconDescription = tgui::RichTextLabel::create();	
-	m_iconDescription->setPosition(850,740);
-	m_iconDescription->setTextSize(24);
+	m_iconDescription->setPosition(800,820);
+	m_iconDescription->setTextSize(18);
 	m_iconDescription->getRenderer()->setTextColor(tgui::Color::White);
 	m_iconDescription->getRenderer()->setBorderColor(tgui::Color::Black);
-	m_iconDescription->getRenderer()->setTextOutlineThickness(4);
+	m_iconDescription->getRenderer()->setTextOutlineThickness(1);
 	m_iconDescription->setText("hereqwewqe \n<color=#ff0000>C Davai machi</color>");
 
-
 	m_tgui->add(m_iconName);
+	m_tgui->add(m_iconTurnCost);
+	m_tgui->add(m_iconManaCost);
 	m_tgui->add(m_iconDescription);
 
 
@@ -508,7 +535,32 @@ GUI_icon * BattleScene::setGUIHandlerSelectedIcon(GUI_icon * icon)
 {
 	if(m_guiHandler)
 	{
-		return m_guiHandler->getSelectedIcon(icon);
+
+		GUI_icon * selectedIcon = m_guiHandler->getSelectedIcon(icon);
+
+		std::string name  = selectedIcon->getName();
+		// if(m_iconName)
+		// {
+		m_iconName->setText(name.c_str());
+		//}
+		
+	
+
+		std::string turnCost = "Turn cost: <i><color=#FF8800>";
+		turnCost += (feint_common::Instance()->convertPreciousFloatToString(selectedIcon->getTurnCost()));
+		turnCost += ("</color></i> ");
+		turnCost += (selectedIcon->getTurnCostString());
+
+		std::string manaCost = "Mana cost: <i><color=#0090FF>";
+		manaCost += (feint_common::Instance()->convertPreciousFloatToString(selectedIcon->getManaCost()));
+		manaCost += ("</color></i> ");
+		manaCost += (selectedIcon->getManaCostString());
+
+		m_iconTurnCost->setText(turnCost);
+		m_iconManaCost->setText(manaCost);
+		m_iconDescription->setText(selectedIcon->getDescription());
+
+		return selectedIcon;
 	}
 }
 
@@ -628,6 +680,60 @@ int lua_SelectHoverSlot(lua_State * L)
 	
 }
 
+
+int lua_SetDescriptionBoxPos(lua_State * L)
+{
+
+	if(lua_gettop(L) != 3)
+	{
+		std::cout << "gettop failed (lua_SetDescriptionBoxPos) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+
+	glm::vec2 pos  = glm::vec2(0);
+	// glm::vec2(lua_tonumber(L, 2), lua_tonumber(L, 3));
+	pos.x = lua_tonumber(L, 2);
+	pos.y = lua_tonumber(L, 3);
+
+	battleScene->setDescriptionBoxPos(pos);
+	return 0;
+}
+
+void BattleScene::setDescriptionBoxPos(const glm::vec2 & pos)
+{
+	m_descriptionBox.setPos(pos);
+}
+
+int lua_SetDescriptionBoxDim(lua_State * L)
+{
+	if(lua_gettop(L) != 3)
+	{
+		std::cout << "gettop failed (lua_SetDescriptionBoxDim) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+
+	glm::vec2 dim  = glm::vec2(0);
+	// glm::vec2(lua_tonumber(L, 2), lua_tonumber(L, 3));
+	dim.x = lua_tonumber(L, 2);
+	dim.y = lua_tonumber(L, 3);
+
+	std::cout << "lua_SetDescriptionBoxDim " << dim.x << " " << dim.y << "\n";
+	battleScene->setDescriptionBoxDim(dim);
+	return 0;
+}
+
+void BattleScene::setDescriptionBoxDim(const glm::vec2 & dim)
+{
+	std::cout << "setDescriptionBoxDim " << dim.x << " " << dim.y << "\n";
+	m_descriptionBox.setDim(dim);
+}
+
 void BattleScene::init(Feintgine::Camera2D * camera )
 {
 
@@ -671,6 +777,15 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppCreateIcon", lua_CreateIcon);
 	lua_register(m_script, "cppGetIconPos", lua_GetIconPos);
 
+	// misc
+	lua_register(m_script, "cppSetDescriptionBoxPos", lua_SetDescriptionBoxPos);
+	lua_register(m_script, "cppSetDescriptionBoxDim", lua_SetDescriptionBoxDim);
+	
+
+	m_descriptionBox.init(Feintgine::ResourceManager::getTexture("./Assets/TB_GUI/Description_box.png"), glm::vec2(200, -350), glm::vec2(400, 150), Feintgine::Color(255, 255, 255, 255));
+
+
+
 	if (LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/lua/test.lua")))
 	{
 		std::cout << "read script OK \n";
@@ -691,6 +806,8 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 		}
 	}
 
+
+	
     // lua register 1 ( lua state ) , 2 name will be called in lua, 3 the pointer to function
     //lua_register(m_script, "cppCreateEntity", lua_createEntity);
 }
@@ -791,6 +908,8 @@ void BattleScene::draw(Feintgine::SpriteBatch & spriteBatch)
 	// {
 	// 	m_slots[i]->draw(spriteBatch);
 	// }
+
+	m_descriptionBox.draw(spriteBatch);
 
 	if(m_slotHandler)
 	{

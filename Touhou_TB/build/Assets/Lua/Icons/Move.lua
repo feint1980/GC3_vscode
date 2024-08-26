@@ -5,8 +5,9 @@ require "Icon"
 Move = Icon:new({
     asset = "./Assets/TB_GUI/move.png",
     name = "Move",
-    description = "baseIcon",
+    description = "Move character to selected position",
     turnCost = 0.5,
+    manaCost = 0,
     iconObj = nil,
     dyobj = nil,
     specialID = 1,
@@ -16,7 +17,9 @@ Move = Icon:new({
     selectionSide = 1,
     index = 1,
     requiredSlotCount = 1,
-    charName = "None"
+    charName = "None",
+    turnCostStr = "turn per<i><color=#00ff1d>1 </color></i>distance",
+    manaCostStr = ""
 })
 
 

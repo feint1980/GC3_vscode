@@ -52,9 +52,15 @@ public:
 
     void setGUIHandlerFocusColor(const Feintgine::Color & color);
 
+    void setDescriptionBoxPos(const glm::vec2 & pos);
+
+    void setDescriptionBoxDim(const glm::vec2 & dim);
+
     GUI_icon * setGUIHandlerSelectedIcon(GUI_icon * icon);
 
     void initTGUI(SDL_Window * window);
+
+
 
 protected:
 
@@ -86,7 +92,11 @@ protected:
 
     tgui::RichTextLabel::Ptr m_iconDescription = nullptr;
     tgui::RichTextLabel::Ptr m_iconName = nullptr;
+    tgui::RichTextLabel::Ptr m_iconTurnCost = nullptr;
+    tgui::RichTextLabel::Ptr m_iconManaCost = nullptr;
 
+
+    EmptyObject m_descriptionBox;
 
     // TGUI section end
 

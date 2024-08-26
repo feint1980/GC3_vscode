@@ -14,7 +14,7 @@ public:
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 	void drawLight(Feintgine::LightBatch & lightBatch);
 	void drawBox(Feintgine::DebugRender & debugRenderer);
-	void init(Feintgine::GLTexture texture , glm::vec2 pos , glm::vec2 dims, Feintgine::Color color);
+	void init(const Feintgine::GLTexture & texture ,const glm::vec2 & pos ,const glm::vec2 & dims, const Feintgine::Color & color);
 	void setColor(const Feintgine::Color & color);
 	glm::vec2 getPos() const { return m_pos; }
 	glm::vec2 getDimentions() const { return m_dims; }
@@ -26,8 +26,8 @@ public:
 
 	GLubyte getAlpha() const { return m_color.a; }
 
-	void setPos(const glm::vec2 pos){ m_pos = pos; }
-	void setDim(const glm::vec2 dims) { m_dims = dims; }
+	void setPos(const glm::vec2 & pos) { m_pos = pos; }
+	void setDim(const glm::vec2 & dims) { m_dims = dims; }
 	float getAngle() const { return m_angle; }
 	void setSPec(float intentse);
 

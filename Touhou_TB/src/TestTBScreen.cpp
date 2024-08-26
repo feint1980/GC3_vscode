@@ -49,9 +49,8 @@ void TestTBScreen::onEntry()
 	m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,100), glm::vec2(1280, 720),Feintgine::Color(255, 255, 255, 255));
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	m_battleScene.init(&m_camera);
 	m_battleScene.initTGUI(m_window->getWindow());
-
+	m_battleScene.init(&m_camera);
 
 }
 

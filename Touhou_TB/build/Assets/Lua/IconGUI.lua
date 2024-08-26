@@ -12,7 +12,8 @@ IconGUI = {
     selectIcon = nil,
     currentTTD = nil,
     currentIndex = 1,
-    baseLine = -200
+    selectionField = 1, -- 1 common 2 skill 3 item
+    baseLine = -110
 }
 
 
@@ -29,22 +30,6 @@ end
 function IconGUI:init(host)
 
     self.guiHandler = cppCreateGUIHandler(host,"./Assets/TB_GUI/selection.png", 68,68)
-
-    -- commmon_icons["Move"] = Move
-    -- commmon_icons["Move"].init(commmon_icons["Move"],host)
-
-    -- -- addObject = commmon_icons["Move"].getObject(commmon_icons["Move"])
-    -- cppGUIHandlerAddIcon(host,commmon_icons["Move"].iconObj)
-    -- cppGuiHandlerSetIconPos(host,commmon_icons["Move"].iconObj,200,-300)
-
-    -- commmon_icons["End"] = End
-    -- commmon_icons["End"].init(commmon_icons["End"],host)
-    -- cppGUIHandlerAddIcon(host,commmon_icons["End"].iconObj)
-    -- cppGuiHandlerSetIconPos(host,commmon_icons["End"].iconObj,270,-300)
-
-    -- self.selectIcon = cppGuiHandlerSetSelectedIcon(host,commmon_icons["Move"].iconObj)
-    -- self.currentIndex = 1
-    
 
 end
 
@@ -70,7 +55,6 @@ function IconGUI:loadIcons(host,character)
        for k,v in pairs(commmon_icons) do
         print("hide icon " .. commmon_icons[k].name)
         cppGuiHandlerRemoveIcon(host,commmon_icons[k].iconObj)
-        --cppGuiHandlerSetIconPos(host,commmon_icons[k].iconObj,0,-400)
         end
     end
     -- clear icons
@@ -87,7 +71,6 @@ function IconGUI:loadIcons(host,character)
         end
         tIndex = tIndex + 1
     end
-
 
     skill_icons = {}
     tIndex = 0
@@ -139,7 +122,14 @@ end
 function IconGUI:onSignal(host,signal)
    
     --print("original index is " .. self.currentIndex)
-    tableCount = tablelength(commmon_icons)
+
+    --tCurrentTable = commmon_icons
+    tableCount = 1
+    if self.selectionField == 1 then
+        tableCount = tablelength(commmon_icons)
+    elseif self.selectionField == 2 then
+        tableCount = tablelength(skill_icons)
+    end
     --print("got signal " .. signal)
     if signal == 1 then
         self.currentIndex = self.currentIndex - 1
@@ -148,32 +138,59 @@ function IconGUI:onSignal(host,signal)
     end
     if self.currentIndex > tableCount then
         self.currentIndex = 1
+        self.selectionField = self.selectionField + 1
+      
     end
     if self.currentIndex < 1 then
         self.currentIndex = tableCount
+        self.selectionField = self.selectionField - 1
+      
+    end
+    if self.selectionField > 2 then -- 2 for now, items isn't yet implemented
+        self.selectionField = 1
+    end
+    if self.selectionField < 1 then
+        self.selectionField = 2
     end
 
+
+    
+    --print("current index is " .. self.currentIndex)
+    --print("selection field is " .. self.selectionField)
     if signal == 32 then
         --IssueNextPhase(host)
         if self.currentTTD ~= nil then
-          
             self.currentTTD:selectedFunct()
         end
     end
 
-    --print("current index is " .. self.currentIndex)
+
+
     local index = 0
-   
-    for k,v in pairs(commmon_icons) do
-        index = index + 1
-        --print("loop through icon " .. v.name)
-        --print("index now is " .. index)
-        if index == self.currentIndex then
-            --print("set icon " .. v.name)
-            self.selectIcon = cppGuiHandlerSetSelectedIcon(host,v.iconObj)
-            self.currentTTD = v
-        end
-       
-    end        
+    if self.selectionField == 1 then
+        for k,v in pairs(commmon_icons) do
+            index = index + 1
+            --print("loop through icon " .. v.name)
+            --print("index now is " .. index)
+            if index == self.currentIndex then
+                --print("set icon " .. v.name)
+                self.selectIcon = cppGuiHandlerSetSelectedIcon(host,v.iconObj)
+                self.currentTTD = v
+            end -- index == self.currentIndex 
+        end -- loop
+    end -- if self.selectionField == 1
+
+    if self.selectionField == 2 then
+        for k,v in pairs(skill_icons) do
+            index = index + 1
+            --print("loop through icon " .. v.name)
+            --print("index now is " .. index)
+            if index == self.currentIndex then
+                --print("set icon " .. v.name)
+                self.selectIcon = cppGuiHandlerSetSelectedIcon(host,v.iconObj)
+                self.currentTTD = v
+            end -- index == self.currentIndex
+        end -- loop
+    end -- if self.selectionField == 2
 end
 

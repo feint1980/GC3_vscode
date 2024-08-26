@@ -67,13 +67,17 @@ function init(host)
     --     end
     -- end
 
+
+    cppSetDescriptionBoxPos(host,300,-355);
+    cppSetDescriptionBoxDim(host,600,180);
+
     t_turnHandler = TurnHandler:new()
     t_slotHandler = SlotHandler:new()
     t_slotHandler:init(host,3,3,t_turnHandler)
 
 
     -- init characters
- 
+
 
     -- characters["pat"] = Patchy:new()
     -- characters["pat"]:init(host,t_slotHandler:getSlot(1,2,1))
@@ -88,10 +92,8 @@ function init(host)
     p2:loadCommon(host)
     p2:loadSkills(host)
 
-
     t_turnHandler:addCharacter(p1)
     t_turnHandler:addCharacter(p2)
-
 
     t_guiIcons = IconGUI:new()
     t_guiIcons:init(host)
@@ -173,10 +175,10 @@ function handleInput(host,signal)
                     t_guiIcons:getCurrentTTD():funct(host,selectedChar.dyobj,selectedChar.name)
                 else
                     print("no character selected")
-                end
+                end -- if selectedChar ~= nil
                 --t_guiIcons:getCurrentTTD():funct(host,selectedChar.dyobj,selectedChar.name)
-            end
-        end
+            end -- if t_slotHandler:getCurrentCount() == t_guiIcons:getCurrentTTD().requiredSlotCount
+        end -- if signal == 32
     end
 end
 

@@ -10,7 +10,7 @@ EmptyObject::EmptyObject()
 EmptyObject::~EmptyObject()
 {
 }
-void EmptyObject::init(Feintgine::GLTexture texture, glm::vec2 pos, glm::vec2 dims, Feintgine::Color color)
+void EmptyObject::init(const Feintgine::GLTexture & texture ,const glm::vec2 & pos ,const glm::vec2 & dims, const Feintgine::Color & color)
 {
 	m_texture = texture;
 	m_pos = pos;
@@ -57,6 +57,7 @@ void EmptyObject::expandingSize(const glm::vec2 & dimMax, const glm::vec2 & howf
 		m_dims.y += howfast.y;
 	}
 }
+
 
 void EmptyObject::fayde_spec(float min_spec, float max_spec, float fade_speed , bool loop)
 {

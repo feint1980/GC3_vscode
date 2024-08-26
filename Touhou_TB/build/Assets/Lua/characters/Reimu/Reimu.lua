@@ -45,9 +45,22 @@ end
 
 function Reimu:loadSkills(host)
 
+   -- local t_skills = {}
     self.skills = {}
     self.skills["KickBack"] = KickBack
-    self.skills["KickBack"]:init(host,self.dyobj,self.name)
+    self.skills["KickBack"]:init(host,self.dyobj,self)
+
+    -- for k,v in pairs(self.skills) do
+    --     table.insert(t_skills,v)
+    -- end
+
+    -- self.skills = {}
+    -- self.skills =  t_skills
+
+    --print("skills loaded " .. #self.skills)
+    --print("skills loaded " .. #t_skills)
+   --return self.skills
+    
 end
 
 -- Patchouli:new

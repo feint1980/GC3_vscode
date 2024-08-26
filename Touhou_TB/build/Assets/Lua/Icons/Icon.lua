@@ -5,6 +5,7 @@ Icon = {
     name = "Icon",
     description = "baseIcon",
     turnCost = 0.5,
+    manaCost = 0,
     iconObj = nil,
     dyobj = nil,
     specialID = 1,
@@ -14,7 +15,9 @@ Icon = {
     selectionSide = 3,
     index = -1,
     requiredSlotCount = 1,
-    charName = ""
+    character = nil,
+    turnCostStr = "",
+    manaCostStr = ""
 }
 
 
@@ -25,13 +28,13 @@ function Icon:new(o)
     return o
 end
 
-function Icon:init(host,dyobj,tCharName)
+function Icon:init(host,dyobj,tCharacter)
     --self.iconObj = 
     print("icon init")
-    self.iconObj =  cppCreateIcon(host,self.asset,64,64,self.name,self.description,self.turnCost, self.specialID)
+    self.iconObj =  cppCreateIcon(host,self.asset,64,64,self.name,self.description,self.turnCost,self.manaCost,self.turnCostStr,self.manaCostStr, self.specialID)
     self.host = host
     self.dyobj = dyobj
-    self.charName = tCharName
+    self.charName = tCharacter
 
 end
 

@@ -5,8 +5,9 @@ require "Icon"
 End = Icon:new({
     asset = "./Assets/TB_GUI/End.png",
     name = "End",
-    description = "baseIcon",
-    turnCost = 0.5,
+    description = "End the character turn",
+    turnCost = 0,
+    manaCost = 0,
     iconObj = nil,
     dyobj = nil,
     specialID = 1,
@@ -15,7 +16,10 @@ End = Icon:new({
     host = nil,
     selectionSide = 0,
     index = 2,
-    requiredSlotCount = 0
+    requiredSlotCount = 0,
+    charName = "None",
+    turnCostStr = "",
+    manaCostStr = ""
 })
 
 function End:selected()
@@ -27,6 +31,5 @@ end
 
 function End:endTurn(host)
     print(" end calllllled !!!!!")
-   
 end
 
