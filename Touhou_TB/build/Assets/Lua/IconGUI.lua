@@ -117,10 +117,21 @@ function IconGUI:onMouseMove(host,x,y,button)
             self.selectIcon = cppGuiHandlerSetSelectedIcon(host,v.iconObj)
             self.currentTTD = v
         end
-     
     end    
+
+    for k,v in pairs(skill_icons) do
+        tX,tY = cppGetIconPos(v.iconObj)
+        --print("x " .. tX .. " y " .. tY)
+        -- each icon dimension is 64x64
+        if x > tX - 32 and x < tX + 32 and y > tY - 32 and y < tY + 32 then
+            --print("set icon " .. v.name)
+            self.selectIcon = cppGuiHandlerSetSelectedIcon(host,v.iconObj)
+            self.currentTTD = v
+        end
+    end
+    
+
     if button == 1 then
-       
         if self.currentTTD ~= nil then
             print("select " .. self.currentTTD.name)
             self.currentTTD:selectedFunct()

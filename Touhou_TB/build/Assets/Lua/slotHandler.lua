@@ -97,7 +97,18 @@ function SlotHandler:clearSelectedSlots()
 end
 
 
+-- function SlotHandler:onMouseMove(host,x,y,button)
+
+--     if (side & 1) == 1 then
+--         self.currentSide = 1
+--     else
+--         self.currentSide = 2
+--     end
+-- end
+
 function SlotHandler:onSignal(host,signal,side)
+
+    print("on signal " .. signal .. " side " .. side)
 
     if (side & 1) == 1 then
         self.currentSide = 1
@@ -105,30 +116,45 @@ function SlotHandler:onSignal(host,signal,side)
         self.currentSide = 2
     end
 
+
+    local tValue = 1
+    if self.currentSide == 2 then
+        tValue = -1
+    end
+
+    print("tValue is " .. tValue)
     if signal == 1 then
-        self.current_index_x = self.current_index_x + 1
-        if self.current_index_x > 3 then
-            self.current_index_x = 1
-            if side == 3 then
-                self.currentSide = self.currentSide + 1
-            end
-            if self.currentSide > 2 then
-                self.currentSide = 1
-            end
-        end
+        self.current_index_x = self.current_index_x + tValue
     end
 
     if signal == 2 then
-        self.current_index_x = self.current_index_x - 1
-        if self.current_index_x < 1 then
-            self.current_index_x = 3
-            if side == 3 then
-                self.currentSide = self.currentSide + 1
-            end
-            if self.currentSide > 2 then
-                self.currentSide = 1
-            end
+        self.current_index_x = self.current_index_x - tValue
+    end
+
+    if self.current_index_x > 3 then
+        self.current_index_x = 1
+        --print("reset to 1 ")
+        if side == 3 then
+             self.currentSide = self.currentSide + 1
         end
+        -- if self.currentSide > 2 then
+        --     self.currentSide = 1
+        --     self.current_index_x = 3
+        -- end
+    end
+
+    if self.current_index_x < 1 then
+        self.current_index_x = 3
+        if side == 3 then
+            self.currentSide = self.currentSide - 1
+        end
+        -- if self.currentSide < 1 then
+        --     self.currentSide = 2
+        -- end
+    end
+
+    if self.currentSide > 2 then
+        self.currentSide = 1
     end
 
     if signal == 4 then
@@ -144,6 +170,9 @@ function SlotHandler:onSignal(host,signal,side)
             self.current_index_y = 3
         end
     end
+
+
+    print("final result " .. self.current_index_x .. " " .. self.current_index_y .. " " .. self.currentSide) 
 
     self:selectHover(self:getSlot(self.current_index_x, self.current_index_y, self.currentSide))
 
