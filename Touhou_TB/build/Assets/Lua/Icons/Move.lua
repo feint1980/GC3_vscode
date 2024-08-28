@@ -17,6 +17,7 @@ Move = Icon:new({
     selectionSide = 1,
     index = 1,
     requiredSlotCount = 1,
+    slotFlag = 1, --  0 = none, 1 = empty only,2 = has character in slot
     charName = "None",
     turnCostStr = "turn per<i><color=#00ff1d>1 </color></i>distance",
     manaCostStr = ""
@@ -27,7 +28,7 @@ Move = Icon:new({
 function Move:selected()
     print("move selected called")
     setPhase(self.host,2,1)
-
+    t_slotHandler:onSignal(self.host,2,self.selectionSide,self.slotFlag)
     -- todo, make the host now able to select the slot to move
 end
 
@@ -148,6 +149,7 @@ function Move:useFunction(host,character)
     end
     print("reach here ")
     character.currentSlot = slot
+    slot:setDyobj(character.dyobj)
     print("!!!! set slot end ")
 
 

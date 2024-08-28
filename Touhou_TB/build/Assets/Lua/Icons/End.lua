@@ -17,6 +17,7 @@ End = Icon:new({
     selectionSide = 0,
     index = 2,
     requiredSlotCount = 0,
+    slotFlag = 0, --  0 = none, 1 = empty only,2 = has character in slot
     charName = "None",
     turnCostStr = "",
     manaCostStr = ""

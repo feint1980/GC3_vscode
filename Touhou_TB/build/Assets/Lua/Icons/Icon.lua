@@ -15,6 +15,7 @@ Icon = {
     selectionSide = 3,
     index = -1,
     requiredSlotCount = 1,
+    slotFlag = 0, --  0 = none, 1=empty only, 2 has character in slot
     character = nil,
     turnCostStr = "",
     manaCostStr = ""

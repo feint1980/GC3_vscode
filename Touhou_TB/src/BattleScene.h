@@ -48,6 +48,8 @@ public:
 
     void GUIHandlerClearIcons();
 
+    void SlotHandlerSetValidSlot(bool isValidSlot);
+
     void setPhase(int phaseType, int sides);
 
     void setGUIHandlerIconPos(GUI_icon * icon, const glm::vec2 & pos);
@@ -62,7 +64,7 @@ public:
 
     void initTGUI(SDL_Window * window);
 
-
+    bool checkIfSlotEmpty(Slot * slot);
 
 protected:
 

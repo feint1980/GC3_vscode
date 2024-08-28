@@ -756,6 +756,92 @@ void BattleScene::setDescriptionBoxDim(const glm::vec2 & dim)
 	m_descriptionBox.setDim(dim);
 }
 
+
+int lua_IsSlotEmpty(lua_State * L)
+{
+
+	if(lua_gettop(L) != 2)
+	{
+		std::cout << "gettop failed (lua_IsSlotEmpty) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	Slot * slot = static_cast<Slot*>(lua_touserdata(L, 2));
+
+	bool value = true; // default value is empty
+	value = battleScene->checkIfSlotEmpty(slot);
+	//std::cout << "lua_IsSlotEmpty " << value << "\n";
+	lua_pushboolean(L, value);
+
+	return 1;
+
+}
+
+
+bool BattleScene::checkIfSlotEmpty(Slot * slot)
+{
+	for(int i = 0 ; i < m_entities.size(); i++)
+	{
+		//std::cout << "m_entities[i]->getCurrentSlot() " << m_entities[i]->getCurrentSlot() << "|" << slot << "\n";
+		if(m_entities[i]->getCurrentSlot() == slot)
+		{
+			//std::cout << ""
+			return false;
+		}
+	}
+
+	return true;
+}
+
+int lua_GetSlotPos(lua_State * L)
+{
+
+	if(lua_gettop(L) != 1)
+	{
+		std::cout << "gettop failed (lua_GetSlotPos) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+	Slot * slot = static_cast<Slot*>(lua_touserdata(L, 1));
+
+	glm::vec2 pos = slot->getPos();
+
+	lua_pushnumber(L, pos.x);
+	lua_pushnumber(L, pos.y);
+
+	return 2;
+}
+
+int lua_SlotHandlerSetValidTarget(lua_State * L)
+{
+
+	if(lua_gettop(L) != 2)
+	{
+		std::cout << "gettop failed (lua_SlotHandlerSetValidTarget) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	bool value = lua_toboolean(L, 2);
+
+	battleScene->SlotHandlerSetValidSlot(value);
+
+	return 0;	
+}
+
+void BattleScene::SlotHandlerSetValidSlot(bool isValidSlot)
+{
+	if(m_slotHandler)
+	{
+		m_slotHandler->setValidTargetSlot(isValidSlot);
+	}
+
+}
+
+
 void BattleScene::init(Feintgine::Camera2D * camera )
 {
 
@@ -780,12 +866,15 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	// slots
 	lua_register(m_script, "cppGetSlotCol", lua_GetSlotCol);
 	lua_register(m_script, "cppGetSlotRow", lua_GetSlotRow);
+	lua_register(m_script, "cppGetSlotPos", lua_GetSlotPos);
 
 	// slot Handler
 	lua_register(m_script, "cppCreateSlotHandler", lua_CreateSlotHandler);
 	lua_register(m_script, "cppCreateSlot", lua_CreateSlot);
 	lua_register(m_script, "cppSetSlothandlerActive", lua_SetSlothandlerActive);
 	lua_register(m_script, "cppSelectHoverSlot", lua_SelectHoverSlot);
+	lua_register(m_script, "cppIsSlotEmpty", lua_IsSlotEmpty);
+	lua_register(m_script, "cppSlotHandlerSetValidTarget", lua_SlotHandlerSetValidTarget);
 
 	// GUI_handler data 
 	lua_register(m_script, "cppCreateGUIHandler", lua_CreateGUIHandler);
@@ -804,6 +893,8 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppSetDescriptionBoxPos", lua_SetDescriptionBoxPos);
 	lua_register(m_script, "cppSetDescriptionBoxDim", lua_SetDescriptionBoxDim);
 	
+	
+
 
 	m_descriptionBox.init(Feintgine::ResourceManager::getTexture("./Assets/TB_GUI/Description_box.png"), glm::vec2(200, -350), glm::vec2(400, 150), Feintgine::Color(255, 255, 255, 255));
 

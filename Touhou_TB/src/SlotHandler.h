@@ -25,6 +25,8 @@ public:
 
     void setSelectTargetSlot(Slot * slot);
 
+    void setValidTargetSlot(bool value);
+
 private :
 
     std::vector<Slot *> m_slots;
@@ -40,6 +42,8 @@ private :
     Slot * m_selectTargetSlot = nullptr;
 
     bool m_isMoving = false; 
+
+    bool m_isValidTargetSlot = false;
 
     bool m_isActive = false;
 

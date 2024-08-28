@@ -86,11 +86,15 @@ function init(host)
     p1 = Patchouli:new()
     p1:init(host,t_slotHandler:getSlot(3,3,1))
     p1:loadCommon(host)
+    --t_slotHandler:getSlot(3,3,1):setDyobj(p1)
+
 
     p2 = Reimu:new()
     p2:init(host,t_slotHandler:getSlot(2,2,1))
     p2:loadCommon(host)
     p2:loadSkills(host)
+    --t_slotHandler:getSlot(2,2,1):setDyobj(p2)
+
 
     t_turnHandler:addCharacter(p1)
     t_turnHandler:addCharacter(p2)
@@ -167,7 +171,7 @@ function handleInput(host,signal)
             setPhase(host,1,3)
         end
       
-        t_slotHandler:onSignal(host,signal,t_guiIcons:getCurrentTTD().selectionSide)
+        t_slotHandler:onSignal(host,signal,t_guiIcons:getCurrentTTD().selectionSide,t_guiIcons:getCurrentTTD().slotFlag)
         if signal == 32 then
             if t_slotHandler:getCurrentCount() == t_guiIcons:getCurrentTTD().requiredSlotCount then
                 if selectedChar ~= nil then
@@ -187,12 +191,12 @@ function handleMouse(host,x,y,button)
         t_guiIcons:onMouseMove(host,x,y,button)
     end
     if phase == 2 then
+        t_slotHandler:onMouseMove(host,x,y,button,t_guiIcons:getCurrentTTD().selectionSide,t_guiIcons:getCurrentTTD().slotFlag)
         if button == 2 then
             setPhase(host,1,3)
         end
     end
 end
-
 
 function gameLoop(host)
     local gameOn = true

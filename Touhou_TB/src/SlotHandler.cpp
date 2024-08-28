@@ -31,6 +31,21 @@ void SlotHandler::setActive(bool val)
     
 }
 
+void SlotHandler::setValidTargetSlot(bool value)
+{   
+    m_isValidTargetSlot = value;
+
+    if(m_isValidTargetSlot)
+    {
+        m_hoveredSlot.setColor(Feintgine::Color(0, 255, 0, 255));
+    }
+    else
+    {
+        m_hoveredSlot.setColor(Feintgine::Color(255, 0, 0, 255));
+    }
+
+}
+
 void SlotHandler::draw(Feintgine::SpriteBatch & spriteBatch)
 {
     for(int i = 0 ; i < m_slots.size(); i++)
@@ -42,6 +57,9 @@ void SlotHandler::draw(Feintgine::SpriteBatch & spriteBatch)
         m_hoveredSlot.draw(spriteBatch);
     }
 }
+
+
+void setInvalidTargetSlot(bool value);
 
 void SlotHandler::update(float deltaTime)
 {
