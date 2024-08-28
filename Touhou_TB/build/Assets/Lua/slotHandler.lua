@@ -163,7 +163,6 @@ function SlotHandler:onMouseMove(host,x,y,button,side,flag)
     end
 end
 
-
 function SlotHandler:onSignal(host,signal,side,flag)
 
     --print("on signal " .. signal .. " side " .. side)

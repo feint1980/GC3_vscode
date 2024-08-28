@@ -814,6 +814,7 @@ int lua_GetSlotPos(lua_State * L)
 	return 2;
 }
 
+
 int lua_SlotHandlerSetValidTarget(lua_State * L)
 {
 
