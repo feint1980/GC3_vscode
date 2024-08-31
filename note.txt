@@ -12,10 +12,12 @@
 % Feintgine list 
     x add lua method to add event
     x move the player properies to F_Lua_Boss_Manager ( this will now act as the whole game )
-    - add lua method to add manipulate  
+    x add lua method to add manipulate  
     
 
 
 % GC3 list 
     
     
+% Touhou TB 
+    - make a function in Icon.lua that other class will inherit and override 

@@ -1,4 +1,4 @@
-# Install script for directory: D:/VS_Code_prj/GC3_vscode/Feintgine
+# Install script for directory: E:/template/GC_port/Feintgine
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "D:/VS_Code_prj/GC3_vscode/Feintgine/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "E:/template/GC_port/Feintgine/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
