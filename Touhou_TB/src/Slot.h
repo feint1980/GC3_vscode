@@ -38,6 +38,11 @@ public:
         return m_index;
     }
 
+    int getSide() const
+    {
+        return m_side;
+    }
+
     private:
     
     glm::ivec2 m_index = glm::ivec2(0,0);

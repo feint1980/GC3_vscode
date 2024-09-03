@@ -328,12 +328,16 @@ namespace Feintgine
 
 		bool changeColor(int channel, float rate, float maxVal);
 
+		void setInvertAnimation();
+
 	private:
 
 		std::string m_filePath;
 		std::string m_name;
 		glm::vec2 m_pos;
 		glm::vec2 m_scale = glm::vec2(1);
+
+		//bool m_isInverted = false;
 
 		bool m_isInited = false;
 		bool m_isVisible = false;

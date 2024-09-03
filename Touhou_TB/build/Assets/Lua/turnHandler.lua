@@ -68,6 +68,12 @@ function TurnHandler:sortCharacter()
     else
         print("dyobj is nil ")
     end
+    for i = 1, #self.charLists do 
+        portrait = cppGetEntityPortrait(self.charLists[i].dyobj)
+        cppSetPortraitPos(portrait, i * 100, 400)
+
+    end
+
 end
 
 function TurnHandler:display()
@@ -80,8 +86,11 @@ end
 function TurnHandler:nextTurn()
     if #self.charLists > 1 then
         self.currentCharacter = self.charLists[1]
+        portrait = cppGetEntityPortrait(self.currentCharacter.dyobj)
+        cppSetPortraitPos(portrait, -2000, 400)
         table.remove(self.charLists,1)
         self:sortCharacter()
+        
     end
   
 end

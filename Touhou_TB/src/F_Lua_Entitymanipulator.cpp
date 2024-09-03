@@ -31,6 +31,19 @@ void F_Lua_EntityManipulator::moveToSlot(F_Lua_BaseEntity * entity, Slot * slot,
 
 }
 
+void F_Lua_EntityManipulator::movePortrait(EmptyObject * portrait, const glm::vec2 & TargetPos, float time)
+{
+
+    m_portraitTargetPos = TargetPos; 
+
+   // portrait->setPos(TargetPos);
+}
+
+void F_Lua_EntityManipulator::setPortaitPos(EmptyObject * portrait, const glm::vec2 & TargetPos)
+{
+    portrait->setPos(TargetPos);
+}
+
 
 void F_Lua_EntityManipulator::playAnimation(F_Lua_BaseEntity * entity, const std::string & animationName, int time, float totalTime)
 {

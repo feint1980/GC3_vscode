@@ -25,6 +25,10 @@ public:
 
     bool update(float deltaTime);
 
+    void movePortrait(EmptyObject * portrait, const glm::vec2 & TargetPos, float time);
+
+    void setPortaitPos(EmptyObject * portrait, const glm::vec2 & TargetPos);
+
     F_Lua_BaseEntity * getEntity() const { return m_entity; }
 
 protected:
@@ -33,6 +37,8 @@ protected:
     float m_completionTime;
 
     bool m_animationUseTime = false;
+
+    glm::vec2 m_portraitTargetPos;
 
     F_Lua_BaseEntity * m_entity = nullptr;
     glm::vec2 m_startPos;

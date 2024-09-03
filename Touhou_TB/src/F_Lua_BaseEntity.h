@@ -45,7 +45,7 @@ public:
 
     void update(float deltaTime);
 
-    void init(Slot * slot, const std::string & animationPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
+    void init(Slot * slot, const std::string & animationPath,const std::string & portraitPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
 
     void setAttribute(const std::string & attributeName, int value);
 
@@ -80,14 +80,31 @@ public:
 
     void setActive(bool value);
 
+    void setSide(int side) 
+    { 
+        m_side = side;
+
+        if(m_side == 2)
+        {
+            m_animation.setInvertAnimation();
+        }
+    }
+
+    int getSide() const { return m_side; }
+
     Slot * getCurrentSlot() const { return m_currentSlot; }
 
     void setCurrentSlot(Slot * slot) { m_currentSlot = slot; }
+
+    EmptyObject * getPortrait() const { return m_portrait; }
 
 protected:
 
     Slot * m_currentSlot;
     Slot * m_moveTargetSlot;
+
+
+    int m_side = 1;
 
     bool m_isActive = false;
 
@@ -102,6 +119,8 @@ protected:
     float m_yOffset  ;
 
     Feintgine::F_AnimatedObject m_animation;
+    EmptyObject * m_portrait;
+
 
     float m_strength;
     float m_vitality;

@@ -45,6 +45,8 @@ namespace Feintgine {
 
 		int getLoopAnim() const { return m_loop; }
 
+		void setInverseAnimation();
+
 		void setLoopAnim(int val);
 
 		int getCurrentIndex() const { return m_curIndex; }
@@ -60,7 +62,7 @@ namespace Feintgine {
 		std::vector<f_anim> m_anims;
 
 		//std::weak_ptr <f_anim> m_currentSprite;
-		std::shared_ptr<f_anim> m_currentSpriteGuard;
+		//std::shared_ptr<f_anim> m_currentSpriteGuard;
 		f_anim * m_currentSprite;// = nullptr;
 		std::string m_animName;
 		int loopIndex = 0;

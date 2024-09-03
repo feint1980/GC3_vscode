@@ -20,7 +20,7 @@ public:
 
     Slot * addSlot(int row, int colum, int side);
 
-    F_Lua_BaseEntity * addEntity(Slot * slot, const std::string & animationPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
+    F_Lua_BaseEntity * addEntity(Slot * slot, const std::string & animationPath,const std::string & portraitPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
 
     void draw(Feintgine::SpriteBatch & spriteBatch);
 

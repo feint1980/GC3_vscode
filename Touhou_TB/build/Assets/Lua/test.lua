@@ -1,5 +1,5 @@
 print("Helloooooo ")
-package.path = package.path .. ';./Assets/Lua/characters/?.lua;' .. ';./Assets/Lua/?.lua;' .. './characters/Common/?.lua;' .. './characters/Patchy/?.lua;' .. ';./Assets/Lua/characters/Patchy/?.lua;' .. ';./characters/Reimu/slots/?.lua;' .. ';./Assets/Lua/characters/Reimu/?.lua;'
+package.path = package.path .. ';./Assets/Lua/characters/?.lua;' .. ';./Assets/Lua/?.lua;' .. './characters/Common/?.lua;' .. './characters/Patchy/?.lua;' .. ';./Assets/Lua/characters/Patchy/?.lua;' .. ';./characters/Reimu/slots/?.lua;' .. ';./Assets/Lua/characters/Reimu/?.lua;' .. ';./characters/Yukari/slots/?.lua;' .. ';./Assets/Lua/characters/Yukari/?.lua;'
 
 -- gui include
 require "IconGui"
@@ -11,7 +11,11 @@ require "Reimu"
 
 require "Patchouli"
 
+require "Yukari"
+
 require "turnHandler"
+
+
 
 
 local characters = {}
@@ -84,20 +88,40 @@ function init(host)
     -- characters["pat"]:loadCommon(host)
 
     p1 = Patchouli:new()
-    p1:init(host,t_slotHandler:getSlot(3,3,1))
+    p1:init(host,t_slotHandler:getSlot(3,3,1),1)
     p1:loadCommon(host)
     --t_slotHandler:getSlot(3,3,1):setDyobj(p1)
 
 
     p2 = Reimu:new()
-    p2:init(host,t_slotHandler:getSlot(2,2,1))
+    p2:init(host,t_slotHandler:getSlot(2,2,1),1)
     p2:loadCommon(host)
     p2:loadSkills(host)
     --t_slotHandler:getSlot(2,2,1):setDyobj(p2)
 
+    p3 = Yukari:new()
+    p3:init(host,t_slotHandler:getSlot(1,3,1),1)
+    p3:loadCommon(host)
+
+
+    p2a = Reimu:new()
+    p2a:init(host,t_slotHandler:getSlot(1,2,2),2)
+    p2a:loadCommon(host)
+    p2a:loadSkills(host)
+    --t_slotHandler:getSlot(2,2,1):setDyobj(p2)
+
+    p3a = Yukari:new()
+    p3a:init(host,t_slotHandler:getSlot(2,3,2),2)
+    p3a:loadCommon(host)
+
 
     t_turnHandler:addCharacter(p1)
     t_turnHandler:addCharacter(p2)
+    t_turnHandler:addCharacter(p3)
+
+    t_turnHandler:addCharacter(p2a)
+    t_turnHandler:addCharacter(p3a)
+
 
     t_guiIcons = IconGUI:new()
     t_guiIcons:init(host)

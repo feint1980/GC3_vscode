@@ -13,6 +13,7 @@ Character = {
 
     dyobj = nil,
     animationPath = "./Assets/F_AObjects/patchouli_tb.xml",
+    portraitPath  = "./Assets/TB_GUI/faces/Patchouli_face.png",
     action = 0,
     hp = 100,
     mana = 100,
@@ -27,7 +28,7 @@ Character = {
     name = "Nameless",
     lastName = "None",
     title = "None",
-
+    side = 1,
     common_actions = {},
     items = {},
     skills = {},
@@ -43,10 +44,11 @@ function Character:new(o)
     return o
 end
 
-function Character:init(host,slot)
+function Character:init(host,slot,tSide)
 
-    self.dyobj = cppCreateEnity(host,self.animationPath,slot)
+    self.dyobj = cppCreateEnity(host,self.animationPath,slot,self.portraitPath,tSide)
     self.currentSlot = slot
+    self.side = tSide
     -- set attributes
     cppSetAttribute(self.dyobj,"Strength",self.Strength)
     cppSetAttribute(self.dyobj,"Vitality",self.Vitality)

@@ -95,6 +95,9 @@ TimeOut: 1500
 # so would cause the system load to exceed this value.
 TestLoad: 
 
+TLSVerify: 
+TLSVersion: 
+
 UseLaunchers: 
 CurlOptions: 
 # warning, if you add new options here that have to do with submit,

@@ -6,6 +6,8 @@
 #include <RakNet/BitStream.h>
 #include <RakNet/RakSleep.h>
 #include <RakNet/PacketLogger.h>
+#include <RakNet/Gets.h>
+#include <RakNet/Kbhit.h>
 #include <assert.h>
 #include <cstdio>
 #include <cstring>
@@ -13,12 +15,23 @@
 
 #include <stdio.h>
 #include <string.h>
+//#include "Gets.h"
 
+#include "ServerMain.h"
 
 #include <iostream>
+    
+
 int wmain(int argc, char const *argv[])
 {
-    RakNet::RakPeerInterface *server=RakNet::RakPeerInterface::GetInstance();
-    std::cout<< "Hello World!" << std::endl;
-    return 0;
+    ServerMain server;
+    server.init("DavaiMachi", 1123, 10);
+
+    server.run();
+
+	return 0;
 }
+
+// Copied from Multiplayer.cpp
+// If the first byte is ID_TIMESTAMP, then we want the 5th byte
+// Otherwise we want the 1st byte

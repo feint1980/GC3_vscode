@@ -4,7 +4,7 @@
 
 int lua_CreateEntity(lua_State * L)
 {
-	if (lua_gettop(L) < 3 ||  lua_gettop(L) > 5)
+	if (lua_gettop(L) < 3 ||  lua_gettop(L) > 7)
 	{
 		std::cout << "gettop failed (lua_CreateFromLua) \n";
 		std::cout << lua_gettop(L) << "\n";
@@ -16,23 +16,35 @@ int lua_CreateEntity(lua_State * L)
 	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
 	std::string animationPath = lua_tostring(L, 2);
 	Slot * slot = static_cast<Slot*>(lua_touserdata(L, 3));
-
+	int side = 1;
 	glm::vec2 scale = glm::vec2(1.0f, 1.0f);
-	if(lua_gettop(L) == 4)
+	std::string portraitPath = "";
+	if(lua_gettop(L) >= 4)
 	{
-		float t_scale = (float)lua_tonumber(L, 4);
+		portraitPath = lua_tostring(L, 4);
+	}
+
+	if(lua_gettop(L) >= 5)
+	{
+		side = (int)lua_tonumber(L, 5);
+	}
+
+	if(lua_gettop(L) >= 6)
+	{
+		float t_scale = (float)lua_tonumber(L, 6);
 		scale = glm::vec2(t_scale, t_scale);
 
 	}
-	if(lua_gettop(L) == 5)
+	if(lua_gettop(L) >= 7)
 	{
-		float t_scale_x = (float)lua_tonumber(L, 4);
-		float t_scale_y = (float)lua_tonumber(L, 5);
+		float t_scale_x = (float)lua_tonumber(L, 6);
+		float t_scale_y = (float)lua_tonumber(L, 7);
 		scale = glm::vec2(t_scale_x, t_scale_y);
 	}
 	
-	F_Lua_BaseEntity * object = battleScene->addEntity(slot, animationPath, scale);
-	
+	F_Lua_BaseEntity * object = battleScene->addEntity(slot, animationPath, portraitPath, scale);
+	object->setSide(side);
+
 	lua_pushlightuserdata(L, object);
 	return 1; // this host function return 1 number 
 }
@@ -73,11 +85,11 @@ if (lua_gettop(L) != 3)
 
 	return 0;
 }
-F_Lua_BaseEntity * BattleScene::addEntity(Slot * slot, const std::string & animationPath, const glm::vec2 & scale)
+F_Lua_BaseEntity * BattleScene::addEntity(Slot * slot, const std::string & animationPath,const std::string & portraitPath , const glm::vec2 & scale)
 {
 
 	F_Lua_BaseEntity * object = new F_Lua_BaseEntity();
-	object->init(slot, animationPath, scale);
+	object->init(slot, animationPath,portraitPath, scale);
 	m_entities.push_back(object);
 	return object;
 }
@@ -842,6 +854,43 @@ void BattleScene::SlotHandlerSetValidSlot(bool isValidSlot)
 
 }
 
+int lua_GetEntityPortrait(lua_State * L)
+{
+
+	if(lua_gettop(L) != 1)
+	{
+		std::cout << "gettop failed (lua_GetEntityPortrait) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 1));
+
+	lua_pushlightuserdata(L, entity->getPortrait());
+	return 1;
+
+}
+
+int lua_SetPortraitPos(lua_State * L)
+{
+
+	if(lua_gettop(L) != 3)
+	{
+		std::cout << "gettop failed (lua_SetPortraitPos) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	EmptyObject * portrait = static_cast<EmptyObject*>(lua_touserdata(L, 1));
+	float x = lua_tonumber(L, 2);
+	float y = lua_tonumber(L, 3);
+
+	portrait->setPos(glm::vec2(x, y));
+
+	return 0;
+
+}
+
 
 void BattleScene::init(Feintgine::Camera2D * camera )
 {
@@ -863,6 +912,9 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppEntityMoveToslot", lua_EntityMoveToSlot);
 	lua_register(m_script, "cppEntityGetTargetSlot", lua_EntityGetTargetSlot);
 	lua_register(m_script, "cppSetPhase", lua_SetPhase);
+
+	lua_register(m_script, "cppGetEntityPortrait", lua_GetEntityPortrait);
+	lua_register(m_script, "cppSetPortraitPos", lua_SetPortraitPos);
 
 	// slots
 	lua_register(m_script, "cppGetSlotCol", lua_GetSlotCol);

@@ -14,6 +14,7 @@ Patchouli = Character:new({
     Wisdom = 22,
     dyobj = nil,
     animationPath = "./Assets/F_AObjects/patchouli_tb.xml",
+    portraitPath  = "./Assets/TB_GUI/faces/Patchouli_face.png",
     action = 1.0,
     hp = 30,
     mana = 370,

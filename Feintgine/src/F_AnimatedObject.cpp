@@ -423,6 +423,15 @@ namespace Feintgine
 		return m_color.change(channel, rate, maxVal);
 	}
 
+	void F_AnimatedObject::setInvertAnimation()
+	{
+		for(auto it = m_animations.begin(); it != m_animations.end(); it++)
+		{
+			//it->second.set
+			it->second.setInverseAnimation();
+		}
+	}
+
 	// 	void f_animation::updateAnim(float deltaTime)
 // 	{
 // 

@@ -1,0 +1,59 @@
+<F_AObj name="yukari_tb">
+	<animations>
+		<animation name="dash_bw">
+			<anims>
+				<anim name="Yukari_TB/dash_bw_01.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/dash_bw_02.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/dash_bw_03.png" time="4.00" offset_x="-5.00" offset_y="0.00" loop="1"/>
+				<anim name="Yukari_TB/dash_bw_04.png" time="4.00" offset_x="-5.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="dash_bw_end">
+			<anims>
+				<anim name="Yukari_TB/dash_bw_04.png" time="5.00" offset_x="-5.00" offset_y="0.00" loop="1"/>
+				<anim name="Yukari_TB/dash_bw_03.png" time="5.00" offset_x="-5.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/dash_bw_02.png" time="5.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/dash_bw_01.png" time="5.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/sit_02.png" time="5.50" offset_x="-4.00" offset_y="-6.00"/>
+				<anim name="Yukari_TB/sit_01.png" time="5.50" offset_x="-13.00" offset_y="-6.00"/>
+			</anims>
+		</animation>
+		<animation name="dash_fw">
+			<anims>
+				<anim name="Yukari_TB/dash_fw_01.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/dash_fw_02.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/dash_fw_03.png" time="3.00" offset_x="11.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/dash_fw_04.png" time="4.00" offset_x="7.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/dash_fw_05.png" time="5.00" offset_x="7.00" offset_y="0.00" loop="1"/>
+				<anim name="Yukari_TB/dash_fw_06.png" time="5.00" offset_x="7.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="dash_fw_end">
+			<anims>
+				<anim name="Yukari_TB/dash_fw_end_01.png" time="3.00" offset_x="7.00" offset_y="0.00" loop="1"/>
+				<anim name="Yukari_TB/dash_fw_end_02.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/dash_fw_end_03.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/dash_fw_end_04.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/magic_b_07.png" time="3.00" offset_x="6.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/magic_b_08.png" time="4.00" offset_x="8.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/magic_b_09.png" time="5.00" offset_x="6.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/magic_b_11.png" time="6.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="idle">
+			<anims>
+				<anim name="Yukari_TB/idle_01.png" time="5.50" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Yukari_TB/idle_02.png" time="5.50" offset_x="-1.00" offset_y="0.00"/>
+				<anim name="Yukari_TB/idle_03.png" time="5.50" offset_x="-2.00" offset_y="-0.50"/>
+				<anim name="Yukari_TB/idle_04.png" time="5.50" offset_x="-2.50" offset_y="-1.00"/>
+				<anim name="Yukari_TB/idle_05.png" time="5.50" offset_x="-2.50" offset_y="-1.00"/>
+				<anim name="Yukari_TB/idle_06.png" time="5.50" offset_x="-2.00" offset_y="-1.00"/>
+				<anim name="Yukari_TB/idle_07.png" time="5.50" offset_x="-1.00" offset_y="-1.50"/>
+				<anim name="Yukari_TB/idle_08.png" time="5.50" offset_x="-0.50" offset_y="-1.00"/>
+				<anim name="Yukari_TB/idle_09.png" time="5.50" offset_x="-0.50" offset_y="-1.00"/>
+				<anim name="Yukari_TB/idle_10.png" time="5.50" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

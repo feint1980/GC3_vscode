@@ -15,7 +15,14 @@ namespace Feintgine
 
 	}
 
-
+	void F_Animation::setInverseAnimation()
+	{
+		for(int i = 0; i < m_anims.size(); i++)
+		{
+			m_anims[i].sprite.setInvert( ! m_anims[i].sprite.isInverted() );
+			m_anims[i].offset.x = -m_anims[i].offset.x;
+		}
+	}
 	F_Animation::~F_Animation()
 	{
 		m_curIndex = 0;
