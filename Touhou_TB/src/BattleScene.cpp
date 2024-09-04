@@ -845,6 +845,7 @@ int lua_SlotHandlerSetValidTarget(lua_State * L)
 	return 0;	
 }
 
+
 void BattleScene::SlotHandlerSetValidSlot(bool isValidSlot)
 {
 	if(m_slotHandler)

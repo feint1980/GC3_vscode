@@ -65,3 +65,8 @@ end
 function Icon:useFunction(host,dyobj)
     -- todo : inherits and override 
 end
+
+function Icon:onCancel(host,dyobj)
+    print("onCancel base called")
+    -- todo : inherits and override
+end

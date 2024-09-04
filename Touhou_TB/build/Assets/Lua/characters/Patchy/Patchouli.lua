@@ -8,7 +8,7 @@ require "Character"
 Patchouli = Character:new({
     Strenth = 3,
     Vitality = 4,
-    Dexterity = 8,
+    Dexterity = 7,
     Agility = 4,
     Intelligence = 22,
     Wisdom = 22,

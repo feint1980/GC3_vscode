@@ -87,31 +87,31 @@ function moveToSlotBehavior(host, dyobj)
     coroutine.yield()
 end
 
-function move(host,dyobj)
-    -- count =  tablelength(selectedSlots)
-    -- if count ~= 1 then
-    --     print("wrong number of slots selected")
-    --     return
-    -- end
-    --slot = selectedSlots[1]
-    print("MOVE CALLED ")
+-- function move(host,dyobj)
+--     -- count =  tablelength(selectedSlots)
+--     -- if count ~= 1 then
+--     --     print("wrong number of slots selected")
+--     --     return
+--     -- end
+--     --slot = selectedSlots[1]
+--     print("MOVE CALLED ")
 
-    if(host == nil) then
-        print("host is nil")
-        return
-    end
+--     if(host == nil) then
+--         print("host is nil")
+--         return
+--     end
 
-    if dyobj == nil then
-        print("move dyobj is nil")
-        return
-    end
+--     if dyobj == nil then
+--         print("move dyobj is nil")
+--         return
+--     end
 
-    tasks[dyobj] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj)}
-    HandleSkillTasks(host,dyobj)
+--     tasks[dyobj] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj)}
+--     HandleSkillTasks(host,dyobj)
 
-    print("MOVE CALLED END")
+--     print("MOVE CALLED END")
   
-end
+-- end
 
 function Move:useFunction(host,character)
     print("MOVE CALLED ")
@@ -154,4 +154,10 @@ function Move:useFunction(host,character)
 
 
     print("MOVE CALLED END")
+end
+
+
+function Move:onCancel(host,dyobj)
+    print("onCancel Move called")
+    -- todo : inherits and override
 end

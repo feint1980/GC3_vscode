@@ -193,6 +193,7 @@ function handleInput(host,signal)
     if phase == 2 then
         if signal == 64 then
             setPhase(host,1,3)
+            t_guiIcons:getCurrentTTD():onCancel(host,t_turnHandler:getCurrentCharacter().dyobj)
         end
       
         t_slotHandler:onSignal(host,signal,t_guiIcons:getCurrentTTD().selectionSide,t_guiIcons:getCurrentTTD().slotFlag)
