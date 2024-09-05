@@ -134,7 +134,7 @@ function IconGUI:onMouseMove(host,x,y,button)
     if button == 1 then
         if self.currentTTD ~= nil then
             print("select " .. self.currentTTD.name)
-            self.currentTTD:selectedFunct()
+            self.currentTTD:selected(host,t_turnHandler:getCurrentCharacter().dyobj)
         end
     end
 end

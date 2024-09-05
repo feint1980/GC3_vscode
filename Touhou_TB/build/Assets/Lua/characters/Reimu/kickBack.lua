@@ -38,7 +38,7 @@ function KickBack:init(host,dyobj,character)
 
 end
 
-function KickBack:selected()
+function KickBack:selected(host,dyobj)
     print("move selected called")
     setPhase(self.host,2,2)
 
@@ -48,3 +48,5 @@ end
 function KickBack:useFunction(host, character)
     print("KickBack use function called")
 end
+
+

@@ -25,9 +25,9 @@ Move = Icon:new({
 
 
 
-function Move:selected()
+function Move:selected(host,dyobj)
     print("move selected called")
-    setPhase(self.host,2,1)
+    setPhase(host,2,1)
     t_slotHandler:onSignal(self.host,2,self.selectionSide,self.slotFlag)
     -- todo, make the host now able to select the slot to move
 end
@@ -37,9 +37,9 @@ function moveToSlotBehavior(host, dyobj)
 
 
     print("moveToSlotBehavior called" )
-    slots = t_slotHandler:getSelectedSlots()
+    local slots = t_slotHandler:getSelectedSlots()
 
-    count =  tablelength(slots)
+    local count =  tablelength(slots)
     print("slot count " .. count)
     print("testttt ")
     if count ~= 1 then
@@ -51,30 +51,30 @@ function moveToSlotBehavior(host, dyobj)
     --count = 1
     --tempSlots = {}
     for k,v in pairs(slots) do
-        slot = v
+        local slot = v
     end
     print("reach here ")
     
-    currentSlot = cppGetEntitySlot(dyobj)
+    local currentSlot = cppGetEntitySlot(dyobj)
     print("ok ")
-    currentCol = cppGetSlotCol(currentSlot)
+    local currentCol = cppGetSlotCol(currentSlot)
     print("current col " .. currentCol)
     if(slot ~= nil) then
         print("slot not nil")
     else 
         print("slot is nil")
     end
-    targetCol = cppGetSlotCol(slot)
-    dashAnimation = "dash_fw"
+    local targetCol = cppGetSlotCol(slot)
+    local dashAnimation = "dash_fw"
     if currentCol < targetCol then
         dashAnimation = "dash_bw"
     end
 
-    currentRow = cppGetSlotRow(currentSlot)
-    targetRow = cppGetSlotRow(slot)
+    local currentRow = cppGetSlotRow(currentSlot)
+    local targetRow = cppGetSlotRow(slot)
 
 
-    result = math.abs(currentRow - targetRow) + math.abs(currentCol - targetCol)
+    local result = math.abs(currentRow - targetRow) + math.abs(currentCol - targetCol)
 
     cppEntityPlayAnimation(host,dyobj,dashAnimation,-1)
     cppEntityMoveToslot(host,dyobj,slot,result * 25)
@@ -87,31 +87,6 @@ function moveToSlotBehavior(host, dyobj)
     coroutine.yield()
 end
 
--- function move(host,dyobj)
---     -- count =  tablelength(selectedSlots)
---     -- if count ~= 1 then
---     --     print("wrong number of slots selected")
---     --     return
---     -- end
---     --slot = selectedSlots[1]
---     print("MOVE CALLED ")
-
---     if(host == nil) then
---         print("host is nil")
---         return
---     end
-
---     if dyobj == nil then
---         print("move dyobj is nil")
---         return
---     end
-
---     tasks[dyobj] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj)}
---     HandleSkillTasks(host,dyobj)
-
---     print("MOVE CALLED END")
-  
--- end
 
 function Move:useFunction(host,character)
     print("MOVE CALLED ")
