@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
-<!-- $TexturePacker:SmartUpdate:98ce331c332bdfbfddb8bebad7101953:4a6caace6248dc1bab65606efc3d8eda:dd44a94a37e3198d5db253104127f85e$ -->
+<!-- $TexturePacker:SmartUpdate:3c7a73f2d14911a4c5ff9159de21cb30:ec0fe1102b65858a3354737bd59f5ab0:f6b3feef290b68cc723d8c87ae89d134$ -->
 <!--Format:
 n  => name of the sprite
 x  => sprite x pos in texture
@@ -19,46 +19,46 @@ vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
 verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
 triangles  => sprite triangulation, 3 vertex indices per triangle
 -->
-<TextureAtlas imagePath="Reimu_TB.png" width="2004" height="1511">
-    <sprite n="air_dash_back_01.png" x="91" y="657" w="87" h="95"/>
-    <sprite n="air_dash_back_02.png" x="0" y="563" w="112" h="93"/>
-    <sprite n="air_dash_back_03.png" x="178" y="657" w="116" h="95"/>
+<TextureAtlas imagePath="Reimu_TB.png" width="2025" height="1616">
+    <sprite n="air_dash_back_01.png" x="561" y="658" w="87" h="95"/>
+    <sprite n="air_dash_back_02.png" x="160" y="564" w="112" h="93"/>
+    <sprite n="air_dash_back_03.png" x="648" y="658" w="116" h="95"/>
     <sprite n="air_dash_fw_01.png" x="1189" y="62" w="84" h="65"/>
-    <sprite n="air_dash_fw_02.png" x="1336" y="1046" w="73" h="101"/>
-    <sprite n="air_dash_fw_03.png" x="99" y="1250" w="72" h="105"/>
-    <sprite n="air_dash_fw_04.png" x="108" y="1147" w="73" h="102"/>
-    <sprite n="air_dash_fw_05.png" x="437" y="1250" w="72" h="106"/>
-    <sprite n="air_guard.png" x="379" y="1046" w="80" h="100"/>
-    <sprite n="air_hit_01.png" x="724" y="947" w="102" h="99"/>
-    <sprite n="air_hit_02.png" x="578" y="752" w="62" h="96"/>
+    <sprite n="air_dash_fw_02.png" x="285" y="1145" w="73" h="101"/>
+    <sprite n="air_dash_fw_03.png" x="1139" y="1247" w="72" h="105"/>
+    <sprite n="air_dash_fw_04.png" x="971" y="1145" w="73" h="102"/>
+    <sprite n="air_dash_fw_05.png" x="1477" y="1247" w="72" h="106"/>
+    <sprite n="air_guard.png" x="1272" y="1045" w="80" h="100"/>
+    <sprite n="air_hit_01.png" x="1564" y="946" w="102" h="99"/>
+    <sprite n="air_hit_02.png" x="1125" y="753" w="62" h="96"/>
     <sprite n="air_hit_03.png" x="0" y="129" w="84" h="68"/>
     <sprite n="air_hit_04.png" x="84" y="129" w="79" h="68"/>
-    <sprite n="air_hit_05.png" x="965" y="563" w="59" h="94"/>
-    <sprite n="air_hit_06.png" x="294" y="657" w="59" h="95"/>
-    <sprite n="air_hit_07.png" x="353" y="657" w="59" h="95"/>
-    <sprite n="attack_a_01.png" x="412" y="657" w="95" h="95"/>
-    <sprite n="attack_a_02.png" x="826" y="947" w="77" h="99"/>
-    <sprite n="attack_a_03.png" x="1785" y="1250" w="72" h="111"/>
-    <sprite n="attack_a_04.png" x="280" y="1362" w="80" h="115"/>
-    <sprite n="attack_a_05.png" x="360" y="1362" w="79" h="116"/>
-    <sprite n="attack_a_06.png" x="1209" y="1250" w="83" h="110"/>
-    <sprite n="attack_a_07.png" x="507" y="657" w="95" h="95"/>
-    <sprite n="attack_b_01.png" x="1286" y="380" w="91" h="91"/>
-    <sprite n="attack_b_02.png" x="1024" y="563" w="112" h="94"/>
-    <sprite n="attack_b_03.png" x="1818" y="206" w="121" h="86"/>
-    <sprite n="attack_b_04.png" x="183" y="380" w="111" h="89"/>
-    <sprite n="attack_b_05.png" x="980" y="471" w="82" h="92"/>
-    <sprite n="attack_c_01.png" x="752" y="380" w="74" h="90"/>
+    <sprite n="air_hit_05.png" x="1125" y="564" w="59" h="94"/>
+    <sprite n="air_hit_06.png" x="764" y="658" w="59" h="95"/>
+    <sprite n="air_hit_07.png" x="823" y="658" w="59" h="95"/>
+    <sprite n="attack_a_01.png" x="882" y="658" w="95" h="95"/>
+    <sprite n="attack_a_02.png" x="1666" y="946" w="77" h="99"/>
+    <sprite n="attack_a_03.png" x="1163" y="1354" w="72" h="111"/>
+    <sprite n="attack_a_04.png" x="157" y="1467" w="80" h="115"/>
+    <sprite n="attack_a_05.png" x="336" y="1467" w="79" h="116"/>
+    <sprite n="attack_a_06.png" x="587" y="1354" w="83" h="110"/>
+    <sprite n="attack_a_07.png" x="977" y="658" w="95" h="95"/>
+    <sprite n="attack_b_01.png" x="1205" y="381" w="91" h="91"/>
+    <sprite n="attack_b_02.png" x="1184" y="564" w="112" h="94"/>
+    <sprite n="attack_b_03.png" x="1715" y="207" w="121" h="86"/>
+    <sprite n="attack_b_04.png" x="0" y="381" w="111" h="89"/>
+    <sprite n="attack_b_05.png" x="918" y="472" w="82" h="92"/>
+    <sprite n="attack_c_01.png" x="671" y="381" w="74" h="90"/>
     <sprite n="attack_c_02.png" x="672" y="62" w="95" h="64"/>
     <sprite n="attack_c_03.png" x="907" y="0" w="96" h="47"/>
     <sprite n="attack_c_04.png" x="1182" y="0" w="70" h="55"/>
     <sprite n="attack_c_05.png" x="1116" y="0" w="66" h="54"/>
-    <sprite n="attack_c_06.png" x="1377" y="380" w="105" h="91"/>
-    <sprite n="attack_c_07.png" x="903" y="947" w="104" h="99"/>
+    <sprite n="attack_c_06.png" x="1296" y="381" w="105" h="91"/>
+    <sprite n="attack_c_07.png" x="1743" y="946" w="104" h="99"/>
     <sprite n="attack_c_08.png" x="1599" y="62" w="118" h="66"/>
-    <sprite n="attack_c_09.png" x="0" y="292" w="117" h="86"/>
-    <sprite n="attack_c_10.png" x="1482" y="380" w="79" h="91"/>
-    <sprite n="attack_d_01.png" x="103" y="206" w="51" h="79"/>
+    <sprite n="attack_c_09.png" x="1836" y="207" w="117" h="86"/>
+    <sprite n="attack_c_10.png" x="1401" y="381" w="79" h="91"/>
+    <sprite n="attack_d_01.png" x="0" y="207" w="51" h="79"/>
     <sprite n="attack_d_02.png" x="1717" y="62" w="97" h="66"/>
     <sprite n="attack_d_03.png" x="767" y="62" w="134" h="64"/>
     <sprite n="attack_d_04.png" x="84" y="62" w="143" h="63"/>
@@ -67,92 +67,92 @@ triangles  => sprite triangulation, 3 vertex indices per triangle
     <sprite n="attack_d_07.png" x="376" y="62" w="146" h="63"/>
     <sprite n="attack_d_08.png" x="522" y="62" w="150" h="63"/>
     <sprite n="attack_d_09.png" x="1045" y="62" w="144" h="64"/>
-    <sprite n="attack_e_01.png" x="181" y="1147" w="95" h="102"/>
-    <sprite n="attack_e_02.png" x="1063" y="292" w="117" h="88"/>
-    <sprite n="attack_e_03.png" x="1561" y="380" w="114" h="91"/>
-    <sprite n="attack_e_04.png" x="826" y="380" w="114" h="90"/>
-    <sprite n="attack_e_05.png" x="1292" y="1250" w="109" h="110"/>
-    <sprite n="attack_f_01.png" x="602" y="657" w="81" h="95"/>
-    <sprite n="attack_f_02.png" x="154" y="206" w="97" h="79"/>
-    <sprite n="attack_f_03.png" x="1259" y="849" w="84" h="98"/>
-    <sprite n="attack_f_04.png" x="1136" y="563" w="84" h="94"/>
-    <sprite n="attack_f_05.png" x="683" y="657" w="80" h="95"/>
-    <sprite n="attack_g_01.png" x="1007" y="947" w="89" h="99"/>
-    <sprite n="attack_g_02.png" x="1260" y="206" w="80" h="84"/>
+    <sprite n="attack_e_01.png" x="1044" y="1145" w="95" h="102"/>
+    <sprite n="attack_e_02.png" x="946" y="293" w="117" h="88"/>
+    <sprite n="attack_e_03.png" x="1480" y="381" w="114" h="91"/>
+    <sprite n="attack_e_04.png" x="745" y="381" w="114" h="90"/>
+    <sprite n="attack_e_05.png" x="670" y="1354" w="109" h="110"/>
+    <sprite n="attack_f_01.png" x="1072" y="658" w="81" h="95"/>
+    <sprite n="attack_f_02.png" x="51" y="207" w="97" h="79"/>
+    <sprite n="attack_f_03.png" x="0" y="946" w="84" h="98"/>
+    <sprite n="attack_f_04.png" x="1296" y="564" w="84" h="94"/>
+    <sprite n="attack_f_05.png" x="1153" y="658" w="80" h="95"/>
+    <sprite n="attack_g_01.png" x="1847" y="946" w="89" h="99"/>
+    <sprite n="attack_g_02.png" x="1157" y="207" w="80" h="84"/>
     <sprite n="attack_g_03.png" x="1053" y="129" w="114" h="73"/>
     <sprite n="attack_g_04.png" x="472" y="129" w="109" h="70"/>
     <sprite n="attack_g_05.png" x="1611" y="129" w="108" h="75"/>
-    <sprite n="attack_g_06.png" x="1675" y="380" w="79" h="91"/>
-    <sprite n="attack_h_01.png" x="1754" y="380" w="112" h="91"/>
-    <sprite n="attack_h_02.png" x="1096" y="947" w="57" h="99"/>
-    <sprite n="attack_h_03.png" x="1153" y="947" w="114" h="99"/>
-    <sprite n="attack_h_04.png" x="1267" y="947" w="74" h="99"/>
-    <sprite n="attack_i_01.png" x="640" y="752" w="87" h="96"/>
-    <sprite n="attack_i_02.png" x="1866" y="380" w="93" h="91"/>
-    <sprite n="attack_i_03.png" x="112" y="563" w="94" h="93"/>
-    <sprite n="attack_i_04.png" x="1062" y="471" w="98" h="92"/>
-    <sprite n="attack_i_05.png" x="1180" y="292" w="150" h="88"/>
-    <sprite n="attack_i_06.png" x="1330" y="292" w="149" h="88"/>
-    <sprite n="attack_i_07.png" x="294" y="380" w="144" h="89"/>
-    <sprite n="attack_i_08.png" x="1479" y="292" w="145" h="88"/>
-    <sprite n="attack_i_09.png" x="1220" y="563" w="126" h="94"/>
-    <sprite n="attack_i_10.png" x="727" y="752" w="87" h="96"/>
-    <sprite n="attack_j_01.png" x="1343" y="849" w="94" h="98"/>
+    <sprite n="attack_g_06.png" x="1594" y="381" w="79" h="91"/>
+    <sprite n="attack_h_01.png" x="1673" y="381" w="112" h="91"/>
+    <sprite n="attack_h_02.png" x="1936" y="946" w="57" h="99"/>
+    <sprite n="attack_h_03.png" x="0" y="1045" w="114" h="99"/>
+    <sprite n="attack_h_04.png" x="114" y="1045" w="74" h="99"/>
+    <sprite n="attack_i_01.png" x="1187" y="753" w="87" h="96"/>
+    <sprite n="attack_i_02.png" x="1785" y="381" w="93" h="91"/>
+    <sprite n="attack_i_03.png" x="272" y="564" w="94" h="93"/>
+    <sprite n="attack_i_04.png" x="1000" y="472" w="98" h="92"/>
+    <sprite n="attack_i_05.png" x="1063" y="293" w="150" h="88"/>
+    <sprite n="attack_i_06.png" x="1213" y="293" w="149" h="88"/>
+    <sprite n="attack_i_07.png" x="111" y="381" w="144" h="89"/>
+    <sprite n="attack_i_08.png" x="1362" y="293" w="145" h="88"/>
+    <sprite n="attack_i_09.png" x="1380" y="564" w="126" h="94"/>
+    <sprite n="attack_i_10.png" x="1274" y="753" w="87" h="96"/>
+    <sprite n="attack_j_01.png" x="84" y="946" w="94" h="98"/>
     <sprite n="attack_j_02.png" x="1814" y="62" w="95" h="66"/>
     <sprite n="attack_j_03.png" x="1273" y="62" w="100" h="65"/>
     <sprite n="attack_j_04.png" x="163" y="129" w="100" h="69"/>
     <sprite n="attack_j_05.png" x="581" y="129" w="112" h="71"/>
     <sprite n="attack_j_06.png" x="693" y="129" w="112" h="72"/>
     <sprite n="attack_j_07.png" x="1167" y="129" w="111" h="73"/>
-    <sprite n="attack_j_08.png" x="0" y="206" w="103" h="78"/>
-    <sprite n="attack_j_09.png" x="117" y="292" w="110" h="86"/>
-    <sprite n="attack_j_10.png" x="1437" y="849" w="97" h="98"/>
-    <sprite n="attack_k_01.png" x="763" y="657" w="90" h="95"/>
-    <sprite n="attack_k_02.png" x="1536" y="206" w="98" h="85"/>
-    <sprite n="attack_k_03.png" x="924" y="1250" w="80" h="109"/>
-    <sprite n="attack_k_04.png" x="853" y="657" w="92" h="95"/>
-    <sprite n="attack_k_05.png" x="1160" y="471" w="94" h="92"/>
-    <sprite n="attack_k_06.png" x="1254" y="471" w="99" h="92"/>
-    <sprite n="attack_k_07.png" x="1624" y="292" w="107" h="88"/>
-    <sprite n="attack_k_08.png" x="0" y="471" w="62" h="91"/>
-    <sprite n="attack_l_01.png" x="1014" y="1147" w="79" h="103"/>
-    <sprite n="attack_l_02.png" x="62" y="471" w="96" h="91"/>
+    <sprite n="attack_j_08.png" x="1919" y="129" w="103" h="78"/>
+    <sprite n="attack_j_09.png" x="0" y="293" w="110" h="86"/>
+    <sprite n="attack_j_10.png" x="178" y="946" w="97" h="98"/>
+    <sprite n="attack_k_01.png" x="1233" y="658" w="90" h="95"/>
+    <sprite n="attack_k_02.png" x="1433" y="207" w="98" h="85"/>
+    <sprite n="attack_k_03.png" x="208" y="1354" w="80" h="109"/>
+    <sprite n="attack_k_04.png" x="1323" y="658" w="92" h="95"/>
+    <sprite n="attack_k_05.png" x="1098" y="472" w="94" h="92"/>
+    <sprite n="attack_k_06.png" x="1192" y="472" w="99" h="92"/>
+    <sprite n="attack_k_07.png" x="1507" y="293" w="107" h="88"/>
+    <sprite n="attack_k_08.png" x="1878" y="381" w="62" h="91"/>
+    <sprite n="attack_l_01.png" x="104" y="1247" w="79" h="103"/>
+    <sprite n="attack_l_02.png" x="0" y="472" w="96" h="91"/>
     <sprite n="attack_l_03.png" x="805" y="129" w="88" h="72"/>
-    <sprite n="attack_l_04.png" x="251" y="206" w="96" h="81"/>
+    <sprite n="attack_l_04.png" x="148" y="207" w="96" h="81"/>
     <sprite n="attack_l_05.png" x="1344" y="0" w="85" h="57"/>
     <sprite n="attack_l_06.png" x="1608" y="0" w="97" h="62"/>
     <sprite n="attack_l_07.png" x="1705" y="0" w="90" h="62"/>
-    <sprite n="attack_m_01.png" x="814" y="752" w="87" h="96"/>
-    <sprite n="attack_m_02.png" x="158" y="471" w="102" h="91"/>
-    <sprite n="attack_m_03.png" x="260" y="471" w="110" h="91"/>
-    <sprite n="attack_m_04.png" x="1353" y="471" w="92" h="92"/>
-    <sprite n="attack_m_05.png" x="1731" y="292" w="86" h="88"/>
-    <sprite n="attack_m_06.png" x="227" y="292" w="86" h="86"/>
-    <sprite n="attack_m_07.png" x="677" y="292" w="78" h="87"/>
-    <sprite n="attack_m_08.png" x="206" y="563" w="74" h="93"/>
-    <sprite n="attack_m_09.png" x="940" y="380" w="101" h="90"/>
-    <sprite n="attack_m_10.png" x="901" y="752" w="87" h="96"/>
-    <sprite n="attack_s_01.png" x="313" y="292" w="95" h="86"/>
-    <sprite n="attack_s_02.png" x="1634" y="206" w="93" h="85"/>
-    <sprite n="attack_s_03.png" x="1409" y="1046" w="60" h="101"/>
-    <sprite n="attack_s_04.png" x="214" y="1362" w="66" h="114"/>
-    <sprite n="attack_s_05.png" x="439" y="1362" w="67" h="116"/>
-    <sprite n="attack_s_06.png" x="1857" y="1250" w="64" h="111"/>
-    <sprite n="crash_01.png" x="1346" y="563" w="96" h="94"/>
-    <sprite n="crash_02.png" x="506" y="1362" w="68" h="116"/>
-    <sprite n="crash_03.png" x="991" y="1362" w="68" h="120"/>
-    <sprite n="dash_bw_01.png" x="945" y="657" w="87" h="95"/>
-    <sprite n="dash_bw_02.png" x="280" y="563" w="112" h="93"/>
-    <sprite n="dash_bw_03.png" x="1032" y="657" w="116" h="95"/>
+    <sprite n="attack_m_01.png" x="1361" y="753" w="87" h="96"/>
+    <sprite n="attack_m_02.png" x="96" y="472" w="102" h="91"/>
+    <sprite n="attack_m_03.png" x="198" y="472" w="110" h="91"/>
+    <sprite n="attack_m_04.png" x="1291" y="472" w="92" h="92"/>
+    <sprite n="attack_m_05.png" x="1614" y="293" w="86" h="88"/>
+    <sprite n="attack_m_06.png" x="110" y="293" w="86" h="86"/>
+    <sprite n="attack_m_07.png" x="560" y="293" w="78" h="87"/>
+    <sprite n="attack_m_08.png" x="366" y="564" w="74" h="93"/>
+    <sprite n="attack_m_09.png" x="859" y="381" w="101" h="90"/>
+    <sprite n="attack_m_10.png" x="1448" y="753" w="87" h="96"/>
+    <sprite n="attack_s_01.png" x="196" y="293" w="95" h="86"/>
+    <sprite n="attack_s_02.png" x="1531" y="207" w="93" h="85"/>
+    <sprite n="attack_s_03.png" x="358" y="1145" w="60" h="101"/>
+    <sprite n="attack_s_04.png" x="91" y="1467" w="66" h="114"/>
+    <sprite n="attack_s_05.png" x="415" y="1467" w="67" h="116"/>
+    <sprite n="attack_s_06.png" x="1235" y="1354" w="64" h="111"/>
+    <sprite n="crash_01.png" x="1506" y="564" w="96" h="94"/>
+    <sprite n="crash_02.png" x="482" y="1467" w="68" h="116"/>
+    <sprite n="crash_03.png" x="1063" y="1467" w="68" h="120"/>
+    <sprite n="dash_bw_01.png" x="1415" y="658" w="87" h="95"/>
+    <sprite n="dash_bw_02.png" x="440" y="564" w="112" h="93"/>
+    <sprite n="dash_bw_03.png" x="1502" y="658" w="116" h="95"/>
     <sprite n="dash_fw_01.png" x="1373" y="62" w="84" h="65"/>
-    <sprite n="dash_fw_02.png" x="1469" y="1046" w="73" h="101"/>
-    <sprite n="dash_fw_03.png" x="171" y="1250" w="72" h="105"/>
-    <sprite n="dash_fw_04.png" x="276" y="1147" w="73" h="102"/>
-    <sprite n="dash_fw_05.png" x="509" y="1250" w="72" h="106"/>
-    <sprite n="dash_stop_01.png" x="1148" y="657" w="77" h="95"/>
+    <sprite n="dash_fw_02.png" x="418" y="1145" w="73" h="101"/>
+    <sprite n="dash_fw_03.png" x="1211" y="1247" w="72" h="105"/>
+    <sprite n="dash_fw_04.png" x="1139" y="1145" w="73" h="102"/>
+    <sprite n="dash_fw_05.png" x="1549" y="1247" w="72" h="106"/>
+    <sprite n="dash_stop_01.png" x="1618" y="658" w="77" h="95"/>
     <sprite n="dash_stop_02.png" x="1457" y="62" w="84" h="65"/>
     <sprite n="dash_stop_03.png" x="263" y="129" w="84" h="69"/>
-    <sprite n="dash_stop_04.png" x="1340" y="206" w="104" h="84"/>
+    <sprite n="dash_stop_04.png" x="1237" y="207" w="104" h="84"/>
     <sprite n="Down_01.png" x="719" y="0" w="82" h="45"/>
     <sprite n="Down_02.png" x="1043" y="0" w="73" h="51"/>
     <sprite n="Down_03.png" x="1252" y="0" w="92" h="56"/>
@@ -164,192 +164,203 @@ triangles  => sprite triangulation, 3 vertex indices per triangle
     <sprite n="Down_09.png" x="275" y="0" w="99" h="37"/>
     <sprite n="Down_10.png" x="127" y="0" w="99" h="36"/>
     <sprite n="Down_11.png" x="374" y="0" w="99" h="37"/>
-    <sprite n="guard_under_01.png" x="1870" y="752" w="69" h="97"/>
-    <sprite n="guard_under_02.png" x="988" y="752" w="69" h="96"/>
-    <sprite n="guard_upper_01.png" x="349" y="1147" w="52" h="102"/>
-    <sprite n="guard_upper_02.png" x="1341" y="947" w="52" h="99"/>
-    <sprite n="guard_upper_b_01.png" x="1442" y="563" w="52" h="94"/>
-    <sprite n="guard_upper_b_02.png" x="1225" y="657" w="53" h="95"/>
-    <sprite n="hit_spin_01.png" x="459" y="1046" w="126" h="100"/>
+    <sprite n="guard_under_01.png" x="630" y="849" w="69" h="97"/>
+    <sprite n="guard_under_02.png" x="1535" y="753" w="69" h="96"/>
+    <sprite n="guard_upper_01.png" x="1212" y="1145" w="52" h="102"/>
+    <sprite n="guard_upper_02.png" x="188" y="1045" w="52" h="99"/>
+    <sprite n="guard_upper_b_01.png" x="1602" y="564" w="52" h="94"/>
+    <sprite n="guard_upper_b_02.png" x="1695" y="658" w="53" h="95"/>
+    <sprite n="hit_spin_01.png" x="1352" y="1045" w="126" h="100"/>
     <sprite n="hit_spin_02.png" x="1393" y="129" w="84" h="74"/>
     <sprite n="hit_spin_03.png" x="1477" y="129" w="70" h="74"/>
-    <sprite n="hit_spin_04.png" x="585" y="1046" w="125" h="100"/>
-    <sprite n="hit_spin_05.png" x="1494" y="563" w="119" h="94"/>
-    <sprite n="hit_spin_06.png" x="1613" y="563" w="106" h="94"/>
+    <sprite n="hit_spin_04.png" x="1478" y="1045" w="125" h="100"/>
+    <sprite n="hit_spin_05.png" x="1654" y="564" w="119" h="94"/>
+    <sprite n="hit_spin_06.png" x="1773" y="564" w="106" h="94"/>
     <sprite n="hit_under_01.png" x="1719" y="129" w="104" h="76"/>
     <sprite n="hit_under_02.png" x="1823" y="129" w="96" h="77"/>
-    <sprite n="hit_under_03.png" x="408" y="292" w="97" h="86"/>
-    <sprite n="hit_upper_01.png" x="710" y="1046" w="113" h="100"/>
-    <sprite n="hit_upper_02.png" x="505" y="292" w="110" h="86"/>
-    <sprite n="hit_upper_03.png" x="1278" y="657" w="96" h="95"/>
-    <sprite n="idle_01.png" x="401" y="1147" w="94" h="102"/>
-    <sprite n="idle_02.png" x="1542" y="1046" w="93" h="101"/>
-    <sprite n="idle_03.png" x="1635" y="1046" w="93" h="101"/>
-    <sprite n="idle_04.png" x="1534" y="849" w="95" h="98"/>
-    <sprite n="idle_05.png" x="0" y="849" w="91" h="97"/>
-    <sprite n="idle_06.png" x="1629" y="849" w="94" h="98"/>
-    <sprite n="idle_07.png" x="1393" y="947" w="100" h="99"/>
-    <sprite n="idle_08.png" x="823" y="1046" w="99" h="100"/>
-    <sprite n="idle_09.png" x="1728" y="1046" w="95" h="101"/>
-    <sprite n="idle_10.png" x="1093" y="1147" w="93" h="103"/>
-    <sprite n="idle_11.png" x="1186" y="1147" w="91" h="103"/>
-    <sprite n="Jump_01.png" x="1723" y="849" w="91" h="98"/>
-    <sprite n="Jump_02.png" x="91" y="849" w="95" h="97"/>
-    <sprite n="Jump_03.png" x="1817" y="292" w="104" h="88"/>
-    <sprite n="Jump_04.png" x="430" y="206" w="82" h="82"/>
+    <sprite n="hit_under_03.png" x="291" y="293" w="97" h="86"/>
+    <sprite n="hit_upper_01.png" x="1603" y="1045" w="113" h="100"/>
+    <sprite n="hit_upper_02.png" x="388" y="293" w="110" h="86"/>
+    <sprite n="hit_upper_03.png" x="1748" y="658" w="96" h="95"/>
+    <sprite n="idle_01.png" x="1264" y="1145" w="94" h="102"/>
+    <sprite n="idle_02.png" x="491" y="1145" w="93" h="101"/>
+    <sprite n="idle_03.png" x="584" y="1145" w="93" h="101"/>
+    <sprite n="idle_04.png" x="275" y="946" w="95" h="98"/>
+    <sprite n="idle_05.png" x="699" y="849" w="91" h="97"/>
+    <sprite n="idle_06.png" x="370" y="946" w="94" h="98"/>
+    <sprite n="idle_07.png" x="240" y="1045" w="100" h="99"/>
+    <sprite n="idle_08.png" x="1716" y="1045" w="99" h="100"/>
+    <sprite n="idle_09.png" x="677" y="1145" w="95" h="101"/>
+    <sprite n="idle_10.png" x="183" y="1247" w="93" h="103"/>
+    <sprite n="idle_11.png" x="276" y="1247" w="91" h="103"/>
+    <sprite n="Jump_01.png" x="464" y="946" w="91" h="98"/>
+    <sprite n="Jump_02.png" x="790" y="849" w="95" h="97"/>
+    <sprite n="Jump_03.png" x="1700" y="293" w="104" h="88"/>
+    <sprite n="Jump_04.png" x="327" y="207" w="82" h="82"/>
     <sprite n="Jump_05.png" x="1547" y="129" w="64" h="74"/>
     <sprite n="Jump_06.png" x="893" y="129" w="66" h="72"/>
-    <sprite n="Jump_07.png" x="1445" y="471" w="107" h="92"/>
-    <sprite n="Jump_08.png" x="1374" y="657" w="113" h="95"/>
-    <sprite n="Jump_09.png" x="1057" y="752" w="116" h="96"/>
-    <sprite n="jump_bw.png" x="922" y="1046" w="129" h="100"/>
-    <sprite n="jump_fw_01.png" x="1200" y="1362" w="74" h="122"/>
+    <sprite n="Jump_07.png" x="1383" y="472" w="107" h="92"/>
+    <sprite n="Jump_08.png" x="1844" y="658" w="113" h="95"/>
+    <sprite n="Jump_09.png" x="1604" y="753" w="116" h="96"/>
+    <sprite n="jump_bw.png" x="1815" y="1045" w="129" h="100"/>
+    <sprite n="jump_fw_01.png" x="1272" y="1467" w="74" h="122"/>
     <sprite n="jump_fw_02.png" x="347" y="129" w="125" h="69"/>
     <sprite n="jump_fw_03.png" x="1278" y="129" w="115" h="73"/>
-    <sprite n="jump_fw_04.png" x="615" y="292" w="62" h="86"/>
-    <sprite n="magic_a_01.png" x="186" y="849" w="93" h="97"/>
-    <sprite n="magic_a_02.png" x="1814" y="849" w="95" h="98"/>
-    <sprite n="magic_a_03.png" x="1051" y="1046" w="96" h="100"/>
-    <sprite n="magic_a_04.png" x="495" y="1147" w="104" h="102"/>
-    <sprite n="magic_a_05.png" x="279" y="849" w="95" h="97"/>
-    <sprite n="magic_a_06.png" x="1173" y="752" w="91" h="96"/>
-    <sprite n="magic_a_07.png" x="1493" y="947" w="85" h="99"/>
-    <sprite n="magic_a_08.png" x="243" y="1250" w="94" h="105"/>
-    <sprite n="magic_a_09.png" x="1578" y="947" w="96" h="99"/>
-    <sprite n="magic_a_10.png" x="1264" y="752" w="90" h="96"/>
-    <sprite n="magic_a_11.png" x="599" y="1147" w="104" h="102"/>
-    <sprite n="magic_b_01.png" x="1674" y="947" w="92" h="99"/>
-    <sprite n="magic_b_02.png" x="337" y="1250" w="100" h="105"/>
-    <sprite n="magic_b_03.png" x="1766" y="947" w="88" h="99"/>
-    <sprite n="magic_c_01.png" x="1147" y="1046" w="93" h="100"/>
-    <sprite n="magic_c_02.png" x="1274" y="1362" w="59" h="123"/>
-    <sprite n="magic_c_03.png" x="574" y="1362" w="50" h="117"/>
-    <sprite n="magic_c_04.png" x="438" y="380" w="85" h="89"/>
-    <sprite n="magic_c_05.png" x="370" y="471" w="85" h="91"/>
-    <sprite n="magic_c_06.png" x="1552" y="471" w="101" h="92"/>
-    <sprite n="magic_c_07.png" x="374" y="849" w="116" h="97"/>
-    <sprite n="magic_c_08.png" x="1059" y="1362" w="51" h="120"/>
-    <sprite n="magic_c_09.png" x="1004" y="1250" w="65" h="109"/>
-    <sprite n="magic_d_01.png" x="523" y="380" w="85" h="89"/>
-    <sprite n="magic_d_02.png" x="455" y="471" w="85" h="91"/>
-    <sprite n="magic_d_03.png" x="392" y="563" w="101" h="93"/>
-    <sprite n="magic_e_01.png" x="1727" y="206" w="91" h="85"/>
-    <sprite n="magic_e_02.png" x="0" y="380" w="93" h="88"/>
-    <sprite n="magic_e_03.png" x="93" y="380" w="90" h="88"/>
-    <sprite n="magic_f_01.png" x="608" y="380" w="85" h="89"/>
-    <sprite n="magic_f_02.png" x="540" y="471" w="85" h="91"/>
-    <sprite n="magic_f_03.png" x="755" y="292" w="111" h="87"/>
-    <sprite n="magic_h_01.png" x="1909" y="849" w="95" h="98"/>
-    <sprite n="magic_h_02.png" x="1240" y="1046" w="96" h="100"/>
-    <sprite n="magic_h_03.png" x="703" y="1147" w="104" h="102"/>
-    <sprite n="magic_h_04.png" x="1653" y="471" w="86" h="92"/>
-    <sprite n="magic_h_05.png" x="1041" y="380" w="83" h="90"/>
-    <sprite n="magic_h_06.png" x="1487" y="657" w="103" h="95"/>
-    <sprite n="magic_h_07.png" x="1277" y="1147" w="124" h="103"/>
-    <sprite n="magic_h_08.png" x="1401" y="1250" w="126" h="110"/>
-    <sprite n="magic_h_09.png" x="0" y="1362" w="123" h="113"/>
-    <sprite n="magic_h_10.png" x="1124" y="380" w="79" h="90"/>
-    <sprite n="magic_h_11.png" x="1739" y="471" w="75" h="92"/>
-    <sprite n="magic_h_12.png" x="0" y="947" w="95" h="98"/>
-    <sprite n="magic_h_13.png" x="807" y="1147" w="104" h="102"/>
-    <sprite n="magic_i_01.png" x="1590" y="657" w="89" h="95"/>
-    <sprite n="magic_i_02.png" x="1401" y="1147" w="112" h="103"/>
-    <sprite n="magic_i_03.png" x="1527" y="1250" w="114" h="110"/>
-    <sprite n="magic_j_01.png" x="1814" y="471" w="86" h="92"/>
-    <sprite n="magic_j_02.png" x="1203" y="380" w="83" h="90"/>
-    <sprite n="magic_j_03.png" x="1679" y="657" w="103" h="95"/>
-    <sprite n="magic_j_a.png" x="828" y="1362" w="163" h="118"/>
-    <sprite n="magic_k_01.png" x="493" y="563" w="61" h="93"/>
-    <sprite n="magic_k_02.png" x="554" y="563" w="67" h="93"/>
-    <sprite n="magic_k_03.png" x="625" y="471" w="75" h="91"/>
-    <sprite n="magic_k_04.png" x="865" y="206" w="124" h="83"/>
-    <sprite n="magic_k_05.png" x="512" y="206" w="134" h="82"/>
-    <sprite n="magic_k_06.png" x="646" y="206" w="136" h="82"/>
-    <sprite n="magic_k_07.png" x="989" y="206" w="124" h="83"/>
-    <sprite n="magic_k_08.png" x="621" y="563" w="76" h="93"/>
-    <sprite n="magic_k_09.png" x="697" y="563" w="65" h="93"/>
+    <sprite n="jump_fw_04.png" x="498" y="293" w="62" h="86"/>
+    <sprite n="magic_a_01.png" x="885" y="849" w="93" h="97"/>
+    <sprite n="magic_a_02.png" x="555" y="946" w="95" h="98"/>
+    <sprite n="magic_a_03.png" x="0" y="1145" w="96" h="100"/>
+    <sprite n="magic_a_04.png" x="1358" y="1145" w="104" h="102"/>
+    <sprite n="magic_a_05.png" x="978" y="849" w="95" h="97"/>
+    <sprite n="magic_a_06.png" x="1720" y="753" w="91" h="96"/>
+    <sprite n="magic_a_07.png" x="340" y="1045" w="85" h="99"/>
+    <sprite n="magic_a_08.png" x="1283" y="1247" w="94" h="105"/>
+    <sprite n="magic_a_09.png" x="425" y="1045" w="96" h="99"/>
+    <sprite n="magic_a_10.png" x="1811" y="753" w="90" h="96"/>
+    <sprite n="magic_a_11.png" x="1462" y="1145" w="104" h="102"/>
+    <sprite n="magic_b_01.png" x="521" y="1045" w="92" h="99"/>
+    <sprite n="magic_b_02.png" x="1377" y="1247" w="100" h="105"/>
+    <sprite n="magic_b_03.png" x="613" y="1045" w="88" h="99"/>
+    <sprite n="magic_c_01.png" x="96" y="1145" w="93" h="100"/>
+    <sprite n="magic_c_02.png" x="1346" y="1467" w="59" h="123"/>
+    <sprite n="magic_c_03.png" x="646" y="1467" w="50" h="117"/>
+    <sprite n="magic_c_04.png" x="255" y="381" w="85" h="89"/>
+    <sprite n="magic_c_05.png" x="308" y="472" w="85" h="91"/>
+    <sprite n="magic_c_06.png" x="1490" y="472" w="101" h="92"/>
+    <sprite n="magic_c_07.png" x="1073" y="849" w="116" h="97"/>
+    <sprite n="magic_c_08.png" x="1131" y="1467" w="51" h="120"/>
+    <sprite n="magic_c_09.png" x="288" y="1354" w="65" h="109"/>
+    <sprite n="magic_d_01.png" x="340" y="381" w="85" h="89"/>
+    <sprite n="magic_d_02.png" x="393" y="472" w="85" h="91"/>
+    <sprite n="magic_d_03.png" x="552" y="564" w="101" h="93"/>
+    <sprite n="magic_e_01.png" x="1624" y="207" w="91" h="85"/>
+    <sprite n="magic_e_02.png" x="1804" y="293" w="93" h="88"/>
+    <sprite n="magic_e_03.png" x="1897" y="293" w="90" h="88"/>
+    <sprite n="magic_f_01.png" x="425" y="381" w="85" h="89"/>
+    <sprite n="magic_f_02.png" x="478" y="472" w="85" h="91"/>
+    <sprite n="magic_f_03.png" x="638" y="293" w="111" h="87"/>
+    <sprite n="magic_h_01.png" x="650" y="946" w="95" h="98"/>
+    <sprite n="magic_h_02.png" x="189" y="1145" w="96" h="100"/>
+    <sprite n="magic_h_03.png" x="1566" y="1145" w="104" h="102"/>
+    <sprite n="magic_h_04.png" x="1591" y="472" w="86" h="92"/>
+    <sprite n="magic_h_05.png" x="960" y="381" w="83" h="90"/>
+    <sprite n="magic_h_06.png" x="0" y="753" w="103" h="95"/>
+    <sprite n="magic_h_07.png" x="367" y="1247" w="124" h="103"/>
+    <sprite n="magic_h_08.png" x="779" y="1354" w="126" h="110"/>
+    <sprite n="magic_h_09.png" x="1721" y="1354" w="123" h="113"/>
+    <sprite n="magic_h_10.png" x="1043" y="381" w="79" h="90"/>
+    <sprite n="magic_h_11.png" x="1677" y="472" w="75" h="92"/>
+    <sprite n="magic_h_12.png" x="745" y="946" w="95" h="98"/>
+    <sprite n="magic_h_13.png" x="1670" y="1145" w="104" h="102"/>
+    <sprite n="magic_i_01.png" x="103" y="753" w="89" h="95"/>
+    <sprite n="magic_i_02.png" x="491" y="1247" w="112" h="103"/>
+    <sprite n="magic_i_03.png" x="905" y="1354" w="114" h="110"/>
+    <sprite n="magic_j_01.png" x="1752" y="472" w="86" h="92"/>
+    <sprite n="magic_j_02.png" x="1122" y="381" w="83" h="90"/>
+    <sprite n="magic_j_03.png" x="192" y="753" w="103" h="95"/>
+    <sprite n="magic_j_a.png" x="900" y="1467" w="163" h="118"/>
+    <sprite n="magic_k_01.png" x="653" y="564" w="61" h="93"/>
+    <sprite n="magic_k_02.png" x="714" y="564" w="67" h="93"/>
+    <sprite n="magic_k_03.png" x="563" y="472" w="75" h="91"/>
+    <sprite n="magic_k_04.png" x="762" y="207" w="124" h="83"/>
+    <sprite n="magic_k_05.png" x="409" y="207" w="134" h="82"/>
+    <sprite n="magic_k_06.png" x="543" y="207" w="136" h="82"/>
+    <sprite n="magic_k_07.png" x="886" y="207" w="124" h="83"/>
+    <sprite n="magic_k_08.png" x="781" y="564" w="76" h="93"/>
+    <sprite n="magic_k_09.png" x="857" y="564" w="65" h="93"/>
     <sprite n="object_01.png" x="70" y="0" w="57" h="20"/>
     <sprite n="object_02.png" x="0" y="0" w="70" h="16"/>
     <sprite n="object_gohei_01.png" x="1884" y="0" w="85" h="62"/>
-    <sprite n="object_gohei_02.png" x="866" y="292" w="33" h="87"/>
-    <sprite n="object_gohei_03.png" x="687" y="1250" w="29" h="107"/>
-    <sprite n="object_gohei_04.png" x="1113" y="206" w="24" h="83"/>
-    <sprite n="object_gohei_05.png" x="1137" y="206" w="22" h="83"/>
-    <sprite n="object_gohei_06.png" x="1159" y="206" w="21" h="83"/>
-    <sprite n="sit_hit_01.png" x="899" y="292" w="78" h="87"/>
-    <sprite n="sit_hit_02.png" x="762" y="563" w="73" h="93"/>
-    <sprite n="sit_hit_03.png" x="693" y="380" w="59" h="89"/>
-    <sprite n="spell_a_01.png" x="1772" y="1362" w="54" h="141"/>
-    <sprite n="spell_a_02.png" x="1903" y="1362" w="50" h="149"/>
-    <sprite n="spell_a_03.png" x="1823" y="1046" w="91" h="101"/>
-    <sprite n="spell_a_04.png" x="1180" y="206" w="80" h="83"/>
-    <sprite n="spell_a_05.png" x="347" y="206" w="83" h="81"/>
-    <sprite n="spell_a_06.png" x="782" y="206" w="83" h="82"/>
-    <sprite n="spell_a_07.png" x="977" y="292" w="86" h="87"/>
-    <sprite n="spell_a_08.png" x="95" y="947" w="95" h="98"/>
-    <sprite n="spell_b_01.png" x="1854" y="947" w="95" h="99"/>
-    <sprite n="spell_b_02.png" x="1354" y="752" w="96" h="96"/>
-    <sprite n="spell_b_03.png" x="1450" y="752" w="96" h="96"/>
-    <sprite n="spell_b_04.png" x="490" y="849" w="96" h="97"/>
-    <sprite n="spell_b_05.png" x="1641" y="1250" w="97" h="110"/>
-    <sprite n="spell_b_06.png" x="1333" y="1362" w="98" h="123"/>
-    <sprite n="spell_b_07.png" x="1431" y="1362" w="98" h="124"/>
-    <sprite n="spell_b_08.png" x="1110" y="1362" w="90" h="120"/>
-    <sprite n="spell_b_09.png" x="835" y="563" w="76" h="93"/>
-    <sprite n="spell_b_10.png" x="1513" y="1147" w="80" h="103"/>
-    <sprite n="spell_b_11.png" x="1529" y="1362" w="66" h="127"/>
-    <sprite n="spell_b_12.png" x="1719" y="563" w="63" h="94"/>
+    <sprite n="object_gohei_02.png" x="749" y="293" w="33" h="87"/>
+    <sprite n="object_gohei_03.png" x="1951" y="1247" w="29" h="107"/>
+    <sprite n="object_gohei_04.png" x="1010" y="207" w="24" h="83"/>
+    <sprite n="object_gohei_05.png" x="1034" y="207" w="22" h="83"/>
+    <sprite n="object_gohei_06.png" x="1056" y="207" w="21" h="83"/>
+    <sprite n="sit_01.png" x="840" y="946" w="95" h="98"/>
+    <sprite n="sit_02.png" x="510" y="381" w="102" h="89"/>
+    <sprite n="sit_03.png" x="1189" y="849" w="57" h="97"/>
+    <sprite n="sit_04.png" x="1621" y="1247" w="68" h="106"/>
+    <sprite n="sit_05.png" x="1838" y="472" w="57" h="92"/>
+    <sprite n="sit_06.png" x="1895" y="472" w="62" h="92"/>
+    <sprite n="sit_07.png" x="1957" y="472" w="60" h="92"/>
+    <sprite n="sit_08.png" x="0" y="564" w="61" h="92"/>
+    <sprite n="sit_09.png" x="1689" y="1247" w="76" h="106"/>
+    <sprite n="sit_10.png" x="1765" y="1247" w="80" h="106"/>
+    <sprite n="sit_11.png" x="701" y="1045" w="97" h="99"/>
+    <sprite n="sit_hit_01.png" x="782" y="293" w="78" h="87"/>
+    <sprite n="sit_hit_02.png" x="922" y="564" w="73" h="93"/>
+    <sprite n="sit_hit_03.png" x="612" y="381" w="59" h="89"/>
+    <sprite n="spell_a_01.png" x="1844" y="1467" w="54" h="141"/>
+    <sprite n="spell_a_02.png" x="1975" y="1467" w="50" h="149"/>
+    <sprite n="spell_a_03.png" x="772" y="1145" w="91" h="101"/>
+    <sprite n="spell_a_04.png" x="1077" y="207" w="80" h="83"/>
+    <sprite n="spell_a_05.png" x="244" y="207" w="83" h="81"/>
+    <sprite n="spell_a_06.png" x="679" y="207" w="83" h="82"/>
+    <sprite n="spell_a_07.png" x="860" y="293" w="86" h="87"/>
+    <sprite n="spell_a_08.png" x="935" y="946" w="95" h="98"/>
+    <sprite n="spell_b_01.png" x="798" y="1045" w="95" h="99"/>
+    <sprite n="spell_b_02.png" x="1901" y="753" w="96" h="96"/>
+    <sprite n="spell_b_03.png" x="0" y="849" w="96" h="96"/>
+    <sprite n="spell_b_04.png" x="1246" y="849" w="96" h="97"/>
+    <sprite n="spell_b_05.png" x="1019" y="1354" w="97" h="110"/>
+    <sprite n="spell_b_06.png" x="1405" y="1467" w="98" h="123"/>
+    <sprite n="spell_b_07.png" x="1503" y="1467" w="98" h="124"/>
+    <sprite n="spell_b_08.png" x="1182" y="1467" w="90" h="120"/>
+    <sprite n="spell_b_09.png" x="995" y="564" w="76" h="93"/>
+    <sprite n="spell_b_10.png" x="603" y="1247" w="80" h="103"/>
+    <sprite n="spell_b_11.png" x="1601" y="1467" w="66" h="127"/>
+    <sprite n="spell_b_12.png" x="1879" y="564" w="63" h="94"/>
     <sprite n="spell_b_13.png" x="959" y="129" w="94" h="72"/>
-    <sprite n="spell_b_14.png" x="1444" y="206" w="92" h="84"/>
-    <sprite n="spell_b_16.png" x="190" y="947" w="95" h="98"/>
-    <sprite n="spell_c_01.png" x="285" y="947" w="86" h="98"/>
-    <sprite n="spell_c_02.png" x="0" y="1250" w="99" h="104"/>
-    <sprite n="spell_c_03.png" x="716" y="1250" w="79" h="107"/>
-    <sprite n="spell_c_04.png" x="795" y="1250" w="82" h="108"/>
-    <sprite n="spell_c_05.png" x="0" y="1046" w="105" h="99"/>
-    <sprite n="spell_c_06.png" x="624" y="1362" w="74" h="117"/>
-    <sprite n="spell_c_07.png" x="911" y="1147" w="103" h="102"/>
-    <sprite n="spell_c_08.png" x="1595" y="1362" w="100" h="128"/>
-    <sprite n="spell_c_10.png" x="581" y="1250" w="106" h="106"/>
-    <sprite n="spell_c_11.png" x="1593" y="1147" w="108" h="103"/>
-    <sprite n="spell_c_12.png" x="1701" y="1147" w="141" h="103"/>
-    <sprite n="spell_c_13.png" x="698" y="1362" w="130" h="117"/>
-    <sprite n="spell_c_14.png" x="700" y="471" w="67" h="91"/>
-    <sprite n="spell_d_01.png" x="105" y="1046" w="95" h="99"/>
-    <sprite n="spell_d_02.png" x="1900" y="471" w="99" h="92"/>
-    <sprite n="spell_d_03.png" x="0" y="1147" w="108" h="101"/>
-    <sprite n="spell_d_04.png" x="1695" y="1362" w="77" h="139"/>
-    <sprite n="spell_d_05.png" x="877" y="1250" w="47" h="108"/>
-    <sprite n="spell_d_06.png" x="1069" y="1250" w="47" h="109"/>
-    <sprite n="spell_d_07.png" x="1546" y="752" w="48" h="96"/>
-    <sprite n="spell_d_08.png" x="911" y="563" w="54" h="93"/>
-    <sprite n="spell_d_09.png" x="586" y="849" w="75" h="97"/>
-    <sprite n="spell_d_10.png" x="371" y="947" w="84" h="98"/>
-    <sprite n="spell_d_11.png" x="200" y="1046" w="84" h="99"/>
-    <sprite n="spell_d_12.png" x="455" y="947" w="84" h="98"/>
-    <sprite n="spell_d_13.png" x="767" y="471" w="78" h="91"/>
-    <sprite n="spell_d_14.png" x="845" y="471" w="67" h="91"/>
-    <sprite n="spell_d_15.png" x="912" y="471" w="68" h="91"/>
-    <sprite n="spell_e_01.png" x="284" y="1046" w="95" h="99"/>
-    <sprite n="spell_e_02.png" x="1782" y="657" w="99" h="95"/>
-    <sprite n="spell_e_03.png" x="1842" y="1147" w="108" h="103"/>
-    <sprite n="spell_e_04.png" x="1826" y="1362" w="77" h="141"/>
-    <sprite n="spell_e_05.png" x="1738" y="1250" w="47" h="110"/>
-    <sprite n="spell_e_06.png" x="1921" y="1250" w="47" h="112"/>
-    <sprite n="spell_e_07.png" x="539" y="947" w="48" h="98"/>
-    <sprite n="spell_e_08.png" x="1881" y="657" w="54" h="95"/>
-    <sprite n="spell_stance_01.png" x="1594" y="752" w="93" h="96"/>
-    <sprite n="spell_stance_02.png" x="0" y="752" w="96" h="95"/>
-    <sprite n="spell_stance_03.png" x="96" y="752" w="93" h="95"/>
-    <sprite n="spell_stance_04.png" x="189" y="752" w="104" h="95"/>
-    <sprite n="spell_stance_05.png" x="293" y="752" w="99" h="95"/>
-    <sprite n="spell_stance_06.png" x="661" y="849" w="92" h="97"/>
-    <sprite n="spell_stance_07.png" x="753" y="849" w="143" h="97"/>
-    <sprite n="spell_stance_08.png" x="896" y="849" w="142" h="97"/>
-    <sprite n="spell_stance_09.png" x="587" y="947" w="137" h="98"/>
-    <sprite n="spell_stance_10.png" x="1038" y="849" w="128" h="97"/>
-    <sprite n="spell_stance_11.png" x="392" y="752" w="96" h="95"/>
-    <sprite n="spell_stance_12.png" x="1687" y="752" w="93" h="96"/>
+    <sprite n="spell_b_14.png" x="1341" y="207" w="92" h="84"/>
+    <sprite n="spell_b_16.png" x="1030" y="946" w="95" h="98"/>
+    <sprite n="spell_c_01.png" x="1125" y="946" w="86" h="98"/>
+    <sprite n="spell_c_02.png" x="1040" y="1247" w="99" h="104"/>
+    <sprite n="spell_c_03.png" x="0" y="1354" w="79" h="107"/>
+    <sprite n="spell_c_04.png" x="79" y="1354" w="82" h="108"/>
+    <sprite n="spell_c_05.png" x="893" y="1045" w="105" h="99"/>
+    <sprite n="spell_c_06.png" x="696" y="1467" w="74" h="117"/>
+    <sprite n="spell_c_07.png" x="1774" y="1145" w="103" h="102"/>
+    <sprite n="spell_c_08.png" x="1667" y="1467" w="100" h="128"/>
+    <sprite n="spell_c_10.png" x="1845" y="1247" w="106" h="106"/>
+    <sprite n="spell_c_11.png" x="683" y="1247" w="108" h="103"/>
+    <sprite n="spell_c_12.png" x="791" y="1247" w="141" h="103"/>
+    <sprite n="spell_c_13.png" x="770" y="1467" w="130" h="117"/>
+    <sprite n="spell_c_14.png" x="638" y="472" w="67" h="91"/>
+    <sprite n="spell_d_01.png" x="998" y="1045" w="95" h="99"/>
+    <sprite n="spell_d_02.png" x="61" y="564" w="99" h="92"/>
+    <sprite n="spell_d_03.png" x="863" y="1145" w="108" h="101"/>
+    <sprite n="spell_d_04.png" x="1767" y="1467" w="77" h="139"/>
+    <sprite n="spell_d_05.png" x="161" y="1354" w="47" h="108"/>
+    <sprite n="spell_d_06.png" x="353" y="1354" w="47" h="109"/>
+    <sprite n="spell_d_07.png" x="96" y="849" w="48" h="96"/>
+    <sprite n="spell_d_08.png" x="1071" y="564" w="54" h="93"/>
+    <sprite n="spell_d_09.png" x="1342" y="849" w="75" h="97"/>
+    <sprite n="spell_d_10.png" x="1211" y="946" w="84" h="98"/>
+    <sprite n="spell_d_11.png" x="1093" y="1045" w="84" h="99"/>
+    <sprite n="spell_d_12.png" x="1295" y="946" w="84" h="98"/>
+    <sprite n="spell_d_13.png" x="705" y="472" w="78" h="91"/>
+    <sprite n="spell_d_14.png" x="783" y="472" w="67" h="91"/>
+    <sprite n="spell_d_15.png" x="850" y="472" w="68" h="91"/>
+    <sprite n="spell_e_01.png" x="1177" y="1045" w="95" h="99"/>
+    <sprite n="spell_e_02.png" x="295" y="753" w="99" h="95"/>
+    <sprite n="spell_e_03.png" x="932" y="1247" w="108" h="103"/>
+    <sprite n="spell_e_04.png" x="1898" y="1467" w="77" h="141"/>
+    <sprite n="spell_e_05.png" x="1116" y="1354" w="47" h="110"/>
+    <sprite n="spell_e_06.png" x="1583" y="1354" w="47" h="112"/>
+    <sprite n="spell_e_07.png" x="1379" y="946" w="48" h="98"/>
+    <sprite n="spell_e_08.png" x="394" y="753" w="54" h="95"/>
+    <sprite n="spell_stance_01.png" x="144" y="849" w="93" h="96"/>
+    <sprite n="spell_stance_02.png" x="448" y="753" w="96" h="95"/>
+    <sprite n="spell_stance_03.png" x="544" y="753" w="93" h="95"/>
+    <sprite n="spell_stance_04.png" x="637" y="753" w="104" h="95"/>
+    <sprite n="spell_stance_05.png" x="741" y="753" w="99" h="95"/>
+    <sprite n="spell_stance_06.png" x="1417" y="849" w="92" h="97"/>
+    <sprite n="spell_stance_07.png" x="1509" y="849" w="143" h="97"/>
+    <sprite n="spell_stance_08.png" x="1652" y="849" w="142" h="97"/>
+    <sprite n="spell_stance_09.png" x="1427" y="946" w="137" h="98"/>
+    <sprite n="spell_stance_10.png" x="1794" y="849" w="128" h="97"/>
+    <sprite n="spell_stance_11.png" x="840" y="753" w="96" h="95"/>
+    <sprite n="spell_stance_12.png" x="237" y="849" w="93" h="96"/>
     <sprite n="Standup_01.png" x="0" y="62" w="84" h="62"/>
     <sprite n="Standup_02.png" x="1909" y="62" w="67" h="67"/>
     <sprite n="Standup_03.png" x="1541" y="62" w="58" h="65"/>
@@ -358,12 +369,28 @@ triangles  => sprite triangulation, 3 vertex indices per triangle
     <sprite n="Standup_06.png" x="1003" y="0" w="40" h="49"/>
     <sprite n="Standup_07.png" x="668" y="0" w="51" h="44"/>
     <sprite n="Standup_08.png" x="1429" y="0" w="42" h="58"/>
-    <sprite n="walk_back_01.png" x="1780" y="752" w="90" h="96"/>
-    <sprite n="walk_back_02.png" x="488" y="752" w="90" h="95"/>
-    <sprite n="walk_back_03.png" x="1782" y="563" w="90" h="94"/>
-    <sprite n="walk_back_04.png" x="1166" y="849" w="93" h="97"/>
-    <sprite n="walk_back_05.png" x="1116" y="1250" w="93" h="109"/>
-    <sprite n="walk_back_06.png" x="123" y="1362" w="91" h="113"/>
-    <sprite n="walk_back_07.png" x="1872" y="563" w="91" h="94"/>
-    <sprite n="walk_back_08.png" x="0" y="657" w="91" h="94"/>
+    <sprite n="walk_back_01.png" x="330" y="849" w="90" h="96"/>
+    <sprite n="walk_back_02.png" x="936" y="753" w="90" h="95"/>
+    <sprite n="walk_back_03.png" x="0" y="658" w="90" h="94"/>
+    <sprite n="walk_back_04.png" x="1922" y="849" w="93" h="97"/>
+    <sprite n="walk_back_05.png" x="400" y="1354" w="93" h="109"/>
+    <sprite n="walk_back_06.png" x="1844" y="1354" w="91" h="113"/>
+    <sprite n="walk_back_07.png" x="90" y="658" w="91" h="94"/>
+    <sprite n="walk_back_08.png" x="181" y="658" w="91" h="94"/>
+    <sprite n="walk_bw_01.png" x="550" y="1467" w="96" h="116"/>
+    <sprite n="walk_bw_02.png" x="237" y="1467" w="99" h="115"/>
+    <sprite n="walk_bw_03.png" x="1299" y="1354" w="98" h="111"/>
+    <sprite n="walk_bw_04.png" x="1397" y="1354" w="95" h="111"/>
+    <sprite n="walk_bw_05.png" x="493" y="1354" w="94" h="109"/>
+    <sprite n="walk_bw_06.png" x="0" y="1467" w="91" h="113"/>
+    <sprite n="walk_bw_07.png" x="1492" y="1354" w="91" h="111"/>
+    <sprite n="walk_bw_08.png" x="1630" y="1354" w="91" h="112"/>
+    <sprite n="walk_fw_01.png" x="420" y="849" w="109" h="96"/>
+    <sprite n="walk_fw_02.png" x="1026" y="753" w="99" h="95"/>
+    <sprite n="walk_fw_03.png" x="272" y="658" w="94" h="94"/>
+    <sprite n="walk_fw_04.png" x="366" y="658" w="94" h="94"/>
+    <sprite n="walk_fw_05.png" x="529" y="849" w="101" h="96"/>
+    <sprite n="walk_fw_06.png" x="1877" y="1145" w="110" h="102"/>
+    <sprite n="walk_fw_07.png" x="460" y="658" w="101" h="94"/>
+    <sprite n="walk_fw_08.png" x="0" y="1247" w="104" h="102"/>
 </TextureAtlas>

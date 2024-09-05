@@ -204,3 +204,4 @@ void AnimatedObject::setInvert(bool value)
 {
 	invert = value;
 }
+

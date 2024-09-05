@@ -36,7 +36,18 @@
 		</animation>
 		<animation name="hakure_kick_ready">
 			<anims>
-				<anim name="Reimu_TB/attack_d_01.png" time="10.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Reimu_TB/sit_01.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Reimu_TB/sit_02.png" time="4.00" offset_x="-5.00" offset_y="-6.00"/>
+				<anim name="Reimu_TB/attack_d_01.png" time="100.00" offset_x="-10.00" offset_y="-6.00"/>
+			</anims>
+		</animation>
+		<animation name="hakurei_kick_cancel">
+			<anims>
+				<anim name="Reimu_TB/attack_d_01.png" time="6.00" offset_x="-10.00" offset_y="-6.00" loop="1"/>
+				<anim name="Reimu_TB/sit_08.png" time="5.00" offset_x="-21.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/sit_09.png" time="5.00" offset_x="-13.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/sit_10.png" time="5.00" offset_x="-13.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/sit_11.png" time="6.00" offset_x="0.00" offset_y="0.00"/>
 			</anims>
 		</animation>
 		<animation name="hakurei_kick_hit">
@@ -45,6 +56,21 @@
 				<anim name="Reimu_TB/attack_g_01.png" time="4.00" offset_x="15.00" offset_y="10.00"/>
 				<anim name="Reimu_TB/attack_g_02.png" time="5.00" offset_x="5.00" offset_y="0.00"/>
 				<anim name="Reimu_TB/attack_g_03.png" time="10.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="hakurei_kick_recover">
+			<anims>
+				<anim name="Reimu_TB/attack_g_03.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Reimu_TB/attack_g_04.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/attack_g_05.png" time="4.00" offset_x="-7.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/attack_g_06.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/attack_g_02.png" time="4.00" offset_x="9.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/attack_g_01.png" time="5.00" offset_x="8.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/attack_d_01.png" time="6.00" offset_x="-10.00" offset_y="-6.00"/>
+				<anim name="Reimu_TB/sit_08.png" time="5.00" offset_x="-21.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/sit_09.png" time="5.00" offset_x="-13.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/sit_10.png" time="5.00" offset_x="-13.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/sit_11.png" time="6.00" offset_x="0.00" offset_y="0.00"/>
 			</anims>
 		</animation>
 		<animation name="idle">
