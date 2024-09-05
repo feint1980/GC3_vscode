@@ -28,7 +28,9 @@ Move = Icon:new({
 function Move:selected(host,dyobj)
     print("move selected called")
     setPhase(host,2,1)
-    t_slotHandler:onSignal(self.host,2,self.selectionSide,self.slotFlag)
+    --local tSignal = 2 
+    --if se
+    t_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
     -- todo, make the host now able to select the slot to move
 end
 
@@ -46,12 +48,13 @@ function moveToSlotBehavior(host, dyobj)
         print("wrong number of slots selected")
         return
     end
-    --slot = slots[1]
+    local slot = slots[1]
     print("reach here 5 ")
     --count = 1
+    --local slot = 
     --tempSlots = {}
     for k,v in pairs(slots) do
-        local slot = v
+        slot = v
     end
     print("reach here ")
     
@@ -132,7 +135,7 @@ function Move:useFunction(host,character)
 end
 
 
-function Move:onCancel(host,dyobj)
+function Move:onCancel(host,character)
     print("onCancel Move called")
     -- todo : inherits and override
 end

@@ -62,15 +62,15 @@ function HandleSkillTasks(host,dyobj)
     end
 end
 
-function Icon:useFunction(host,dyobj)
+function Icon:useFunction(host,character)
     -- todo : inherits and override 
 end
 
-function Icon:selected(host, dyobj)
+function Icon:selected(host, character)
     -- todo : inherits and override
 end 
 
-function Icon:onCancel(host,dyobj)
+function Icon:onCancel(host,character)
     print("onCancel base called")
     -- todo : inherits and override
 end

@@ -38,10 +38,13 @@ function KickBack:init(host,dyobj,character)
 
 end
 
-function KickBack:selected(host,dyobj)
+function KickBack:selected(host,character)
     print("move selected called")
-    setPhase(self.host,2,2)
-
+    setPhase(host,2,2)
+    t_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
+    cppEntityPlayAnimation(host,character.dyobj,"hakure_kick_ready",-1)
+    coroutine.yield()
+   
     -- todo, make the host now able to select the slot to move
 end
 
@@ -49,4 +52,7 @@ function KickBack:useFunction(host, character)
     print("KickBack use function called")
 end
 
-
+function KickBack:onCancel(host,character)
+    cppEntityPlayAnimation(host,character.dyobj,"idle",-1)
+    coroutine.yield()
+end

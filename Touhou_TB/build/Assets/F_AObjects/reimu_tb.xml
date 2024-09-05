@@ -2,8 +2,8 @@
 	<animations>
 		<animation name="dash_bw">
 			<anims>
-				<anim name="Reimu_TB/dash_bw_01.png" time="5.00" offset_x="0.00" offset_y="0.00"/>
-				<anim name="Reimu_TB/dash_bw_02.png" time="5.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Reimu_TB/dash_bw_01.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/dash_bw_02.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
 				<anim name="Reimu_TB/dash_bw_03.png" time="5.00" offset_x="0.00" offset_y="0.00"/>
 			</anims>
 		</animation>
@@ -18,8 +18,8 @@
 		</animation>
 		<animation name="dash_fw">
 			<anims>
-				<anim name="Reimu_TB/dash_stop_04.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
-				<anim name="Reimu_TB/dash_stop_03.png" time="5.00" offset_x="-5.00" offset_y="-8.00"/>
+				<anim name="Reimu_TB/dash_stop_04.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/dash_stop_03.png" time="4.00" offset_x="-5.00" offset_y="-8.00"/>
 				<anim name="Reimu_TB/air_dash_fw_02.png" time="5.00" offset_x="3.00" offset_y="8.00"/>
 				<anim name="Reimu_TB/air_dash_fw_03.png" time="5.00" offset_x="5.00" offset_y="12.00" loop="1"/>
 				<anim name="Reimu_TB/air_dash_fw_04.png" time="5.00" offset_x="7.00" offset_y="10.00"/>
@@ -32,6 +32,19 @@
 				<anim name="Reimu_TB/dash_stop_03.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
 				<anim name="Reimu_TB/dash_stop_04.png" time="5.00" offset_x="5.00" offset_y="0.00"/>
 				<anim name="Reimu_TB/dash_stop_01.png" time="5.00" offset_x="-9.50" offset_y="-5.50"/>
+			</anims>
+		</animation>
+		<animation name="hakure_kick_ready">
+			<anims>
+				<anim name="Reimu_TB/attack_d_01.png" time="10.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+		<animation name="hakurei_kick_hit">
+			<anims>
+				<anim name="Reimu_TB/attack_d_01.png" time="3.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Reimu_TB/attack_g_01.png" time="4.00" offset_x="15.00" offset_y="10.00"/>
+				<anim name="Reimu_TB/attack_g_02.png" time="5.00" offset_x="5.00" offset_y="0.00"/>
+				<anim name="Reimu_TB/attack_g_03.png" time="10.00" offset_x="0.00" offset_y="0.00"/>
 			</anims>
 		</animation>
 		<animation name="idle">
