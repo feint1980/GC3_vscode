@@ -55,7 +55,7 @@ end
 
 function HandleSkillTasks(host,dyobj)
     print("HandleSkillTasks called")
-    if coroutine.status(tasks[dyobj].behavior) ~= 'dead' then
+    if coroutine.status(tasks[dyobj].behavior) ~= 'dead' or coroutine.status(tasks[dyobj].behavior) ~= 'suspended' then
         coroutine.resume(tasks[dyobj].behavior, host, dyobj)
     else
         print(coroutine.status(tasks[dyobj].behavior))

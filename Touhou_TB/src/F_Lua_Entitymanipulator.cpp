@@ -10,6 +10,11 @@ F_Lua_EntityManipulator::F_Lua_EntityManipulator()
 
 F_Lua_EntityManipulator::~F_Lua_EntityManipulator()
 {
+    m_entity = nullptr;
+    m_camera = nullptr;
+    tempSlot = nullptr;
+
+    std::cout << "remove manipulator ######################################## \n"; 
 
 }
 
@@ -31,6 +36,37 @@ void F_Lua_EntityManipulator::moveToSlot(F_Lua_BaseEntity * entity, Slot * slot,
 
 }
 
+void F_Lua_EntityManipulator::waitTime(F_Lua_BaseEntity * entity, float time)
+{  
+    m_entity = entity;
+
+    m_state = EntityState::Wait;
+
+    m_completionTime = time;
+
+    m_elaspedTime = 0.0f;
+
+}
+
+
+void F_Lua_EntityManipulator::setZoomCamera(F_Lua_BaseEntity * entity,Feintgine::Camera2D * camera, const glm::vec2 & zoomCenter,float zoomTarget, float time)
+{
+
+    m_entity = entity;
+    m_camera = camera;
+    m_scaleTarget = zoomTarget;
+    m_completionTime = time;
+    m_elaspedTime = 0.0f;
+    m_savedScale = m_camera->getScale();
+    m_state = EntityState::CameraZoom;
+    m_currentScale = m_savedScale;
+    m_zoomCenter = zoomCenter;
+    m_camSavedPos = m_camera->getPosition();
+
+
+}
+
+
 void F_Lua_EntityManipulator::movePortrait(EmptyObject * portrait, const glm::vec2 & TargetPos, float time)
 {
 
@@ -42,6 +78,20 @@ void F_Lua_EntityManipulator::movePortrait(EmptyObject * portrait, const glm::ve
 void F_Lua_EntityManipulator::setPortaitPos(EmptyObject * portrait, const glm::vec2 & TargetPos)
 {
     portrait->setPos(TargetPos);
+}
+
+
+
+void F_Lua_EntityManipulator::moveToPos(F_Lua_BaseEntity * entity, glm::vec2 pos, float time)
+{
+
+    m_entity = entity;
+    m_state = EntityState::Move;
+    m_startPos = m_entity->getPos();
+    m_endPos = pos;
+    m_completionTime = time;
+    m_elaspedTime = 0.0f;
+
 }
 
 
@@ -117,7 +167,51 @@ bool F_Lua_EntityManipulator::update(float deltaTime)
             }
         }
         break;
+        case EntityState::CameraZoom:
+        {
+            if(m_camera)
+            {
+                m_elaspedTime += deltaTime;
 
+                if(m_elaspedTime < m_completionTime)
+                {
+                      m_currentScale = m_savedScale + (m_scaleTarget - m_savedScale) * (m_elaspedTime / m_completionTime);
+                    m_camera->setScale(m_currentScale);
+                    m_camera->setPosition(m_camSavedPos + (m_zoomCenter - m_camSavedPos) * (m_elaspedTime / m_completionTime));
+
+                   
+                }
+                else 
+                {
+                   
+                    m_camera->setScale(m_scaleTarget);
+                    m_camera->setPosition(m_zoomCenter);
+                    m_state = EntityState::None;
+                    return true;
+                }
+            }
+        }
+        break;
+
+        case EntityState::Wait:
+        {
+            if(m_entity)
+            {
+                
+                
+                if(m_elaspedTime > m_completionTime)
+                {
+                    m_state = EntityState::None;
+                    return true;
+                }
+                else 
+                {
+                    m_elaspedTime += deltaTime;
+                    std::cout << m_elaspedTime <<" / " << m_completionTime  << std::endl;
+                }
+            }
+        }
+        break;
         case EntityState::None:
         {
 

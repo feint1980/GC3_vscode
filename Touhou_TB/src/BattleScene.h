@@ -36,6 +36,8 @@ public:
 
     void addEntityManipulator(F_Lua_EntityManipulator * entityManipulator);
 
+    void addNonWaitEntityManipulator(F_Lua_EntityManipulator * entityManipulator);
+
     GUI_handler * createGUIHandler(const std::string & selectionTexturePath, const glm::vec2 & dim);
 
     SlotHandler * createSlotHandler();
@@ -66,6 +68,8 @@ public:
 
     bool checkIfSlotEmpty(Slot * slot);
 
+    Feintgine::Camera2D * getCamera() const { return m_camera; }
+
 protected:
 
     lua_State * m_script;
@@ -85,6 +89,8 @@ protected:
     std::vector<Slot * > m_selectedSlot;
 
     std::vector<F_Lua_EntityManipulator *> m_entityManipulators;
+
+    std::vector<F_Lua_EntityManipulator *> m_nonWaitManipulators;
 
     Feintgine::Camera2D * m_camera;
 

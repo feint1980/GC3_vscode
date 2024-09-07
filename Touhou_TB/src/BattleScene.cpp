@@ -95,6 +95,7 @@ F_Lua_BaseEntity * BattleScene::addEntity(Slot * slot, const std::string & anima
 }
 
 
+
 int lua_CreateSlot(lua_State * L)
 {
 	if (lua_gettop(L) != 4)
@@ -205,7 +206,6 @@ int lua_EntityPlayAnimation(lua_State * L)
 
 	battleScene->addEntityManipulator(manipulator);
 
-
 	return 0;
 }
 
@@ -237,6 +237,13 @@ void BattleScene::addEntityManipulator(F_Lua_EntityManipulator * entityManipulat
 {
 
 	m_entityManipulators.push_back(entityManipulator);
+}
+
+void BattleScene::addNonWaitEntityManipulator(F_Lua_EntityManipulator * entityManipulator)
+{
+
+	m_nonWaitManipulators.push_back(entityManipulator);
+
 }
 
 
@@ -893,6 +900,165 @@ int lua_SetPortraitPos(lua_State * L)
 }
 
 
+
+int lua_CameraTargetZoom(lua_State * L)
+{
+	if(lua_gettop(L) != 7)
+	{
+		std::cout << "gettop failed (lua_SetPhase) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+
+	F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 2));
+	bool isWait = lua_toboolean(L, 3);
+
+	float x = lua_tonumber(L, 4);
+	float y = lua_tonumber(L, 5);
+	float zoom = lua_tonumber(L, 6);
+	float time = lua_tonumber(L, 7);
+	
+	F_Lua_EntityManipulator * manipulator = new F_Lua_EntityManipulator();
+	manipulator->setZoomCamera(entity,battleScene->getCamera(), glm::vec2(x, y), zoom, time);
+	// if(isWait)
+	// {
+	// 	battleScene->addEntityManipulator(manipulator);
+	// }
+	// else 
+	// {
+	// 	battleScene->addNonWaitEntityManipulator(manipulator);
+	// }
+	battleScene->addNonWaitEntityManipulator(manipulator);
+	//battleScene->addEntityManipulator(manipulator);
+
+	return 0;
+
+}
+
+
+int lua_WaitTime(lua_State * L)
+{
+
+	if(lua_gettop(L) != 3)
+	{
+		std::cout << "gettop failed (lua_WaitTime) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 2));
+
+	float time = lua_tonumber(L, 3);
+
+
+	F_Lua_EntityManipulator * manipulator = new F_Lua_EntityManipulator();
+	manipulator->waitTime(entity, time);
+	battleScene->addEntityManipulator(manipulator);
+
+	return 0;
+
+}
+
+int lua_ResetCamera(lua_State * L)
+{
+
+	if(lua_gettop(L)  < 1 || lua_gettop(L) > 4)
+	{
+		std::cout << "gettop failed (lua_ResetCamera) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;	
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1)); 
+	F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 2));
+
+	bool isWait = false;
+	if(lua_gettop(L) == 3)
+	{
+		isWait = lua_toboolean(L, 3);
+	}
+
+
+	glm::vec2 resetPos = glm::vec2(0, 0);
+	float resetZoom = 1;
+	float resetTime = 10;
+	if(lua_gettop(L) == 4)
+	{
+		resetTime = lua_tonumber(L, 4);
+	}
+	F_Lua_EntityManipulator * manipulator = new F_Lua_EntityManipulator();
+	manipulator->setZoomCamera(entity,battleScene->getCamera(), resetPos, resetZoom, resetTime);
+	if(isWait)
+	{
+		battleScene->addEntityManipulator(manipulator);
+	}
+	else
+	{
+		battleScene->addNonWaitEntityManipulator(manipulator);
+	}
+	
+	return 0;
+}
+
+int lua_GetEntityPos(lua_State * L)
+{
+
+	if(lua_gettop(L) != 1)
+	{
+		std::cout << "gettop failed (lua_GetEntityPos) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 1));
+
+	lua_pushnumber(L, entity->getPos().x);
+	lua_pushnumber(L, entity->getPos().y);
+
+	return 2;
+}
+
+
+int lua_MoveEntity(lua_State * L)
+{
+
+	if(lua_gettop(L) != 6)
+	{
+		std::cout << "gettop failed (lua_SetPhase) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 2));
+
+	bool isWait = lua_toboolean(L, 3);
+
+	float x = lua_tonumber(L, 4);
+	float y = lua_tonumber(L, 5);
+	float time = lua_tonumber(L, 6);
+
+
+	F_Lua_EntityManipulator * manipulator = new F_Lua_EntityManipulator();
+	manipulator->moveToPos(entity, glm::vec2(x, y), time);
+
+	if(isWait)
+	{
+		battleScene->addEntityManipulator(manipulator);
+	}
+	else
+	{
+		battleScene->addNonWaitEntityManipulator(manipulator);
+	}
+
+	//battleScene->addEntityManipulator(manipulator);
+
+	return 0;
+}
 void BattleScene::init(Feintgine::Camera2D * camera )
 {
 
@@ -903,12 +1069,14 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 
 	// register lua function
 	lua_register(m_script, "cppCreateEnity", lua_CreateEntity);
-
+	lua_register(m_script, "cppMoveEntity", lua_MoveEntity);
 	lua_register(m_script, "cppSetAttribute", lua_SetAtrribute);
 	lua_register(m_script, "cppSetStrAttribute", lua_SetStrAtrribute);
 	lua_register(m_script, "cppPickActiveEntity", lua_PickActiveEntity);
+
 	
 	lua_register(m_script, "cppGetEntitySlot", lua_GetEntitySlot);
+	lua_register(m_script, "cppGetEntityPos", lua_GetEntityPos);
 	lua_register(m_script, "cppEntityPlayAnimation", lua_EntityPlayAnimation);
 	lua_register(m_script, "cppEntityMoveToslot", lua_EntityMoveToSlot);
 	lua_register(m_script, "cppEntityGetTargetSlot", lua_EntityGetTargetSlot);
@@ -947,11 +1115,15 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppSetDescriptionBoxPos", lua_SetDescriptionBoxPos);
 	lua_register(m_script, "cppSetDescriptionBoxDim", lua_SetDescriptionBoxDim);
 	
-	
+	// Camera work
+	lua_register(m_script, "cppCameraTargetZoom", lua_CameraTargetZoom); 
+	lua_register(m_script, "cppResetCamera", lua_ResetCamera);
+	lua_register(m_script, "cppWaitTime", lua_WaitTime);
 
+
+	//lua_register(m_script, "cppSetCameraPos", lua_SetCameraPos);
 
 	m_descriptionBox.init(Feintgine::ResourceManager::getTexture("./Assets/TB_GUI/Description_box.png"), glm::vec2(200, -350), glm::vec2(400, 150), Feintgine::Color(255, 255, 255, 255));
-
 
 
 	if (LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/lua/test.lua")))
@@ -1130,6 +1302,10 @@ void BattleScene::update(float deltaTime)
 	{
 		m_slotHandler->update(deltaTime);
 	}
+	if(m_camera)
+	{
+		m_camera->update();
+	}
 	// for(int i = 0 ; i < m_slots.size(); i++)
 	// {
 	// 	m_slots[i]->update(deltaTime);
@@ -1178,18 +1354,35 @@ void BattleScene::update(float deltaTime)
 					//lua_pusht
 
 					// lua_pushlightuserdata(m_script, entity->getTargetSlot());
-
+					std::cout << "called from C++ " << i << "\n";
 					if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 2, 1, 0)))
 					{
 						std::cout << "HandleMovingTask failed \n";
 					}
 				}
+				delete m_entityManipulators[i]; 
+				//m_entityManipulators[i] = nullptr;
 				// After Issued next task
 				m_entityManipulators.erase(m_entityManipulators.begin() + i);
 			}
 				
 		}
+	} // for entity manipulators
+	for(int i = 0 ; i < m_nonWaitManipulators.size(); i++)
+	{
+		if(m_nonWaitManipulators[i])
+		{
+			if(m_nonWaitManipulators[i]->update(deltaTime))
+			{
+				std::cout << "manipulator" << i << " removed \n";
+
+				delete m_nonWaitManipulators[i];
+				m_nonWaitManipulators.erase(m_nonWaitManipulators.begin() + i);
+
+			}
+		}
 	}
+	
 
 }
 	

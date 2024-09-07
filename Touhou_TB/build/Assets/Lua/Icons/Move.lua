@@ -43,20 +43,11 @@ function moveToSlotBehavior(host, dyobj)
 
     local count =  tablelength(slots)
     print("slot count " .. count)
-    print("testttt ")
     if count ~= 1 then
         print("wrong number of slots selected")
         return
     end
     local slot = slots[1]
-    print("reach here 5 ")
-    --count = 1
-    --local slot = 
-    --tempSlots = {}
-    for k,v in pairs(slots) do
-        slot = v
-    end
-    print("reach here ")
     
     local currentSlot = cppGetEntitySlot(dyobj)
     print("ok ")

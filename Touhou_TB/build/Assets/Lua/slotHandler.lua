@@ -165,7 +165,7 @@ end
 
 function SlotHandler:onSignal(host,signal,side,flag)
 
-    --print("on signal " .. signal .. " side " .. side)
+    print("on signal " .. signal .. " side " .. side .. " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
     if t_turnHandler:getCurrentCharacter().side == 2 then
         if side == 1 then
