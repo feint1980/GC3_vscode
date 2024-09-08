@@ -1,5 +1,41 @@
 <F_AObj name="patchouli_tb">
 	<animations>
+		<animation name="book_slam_action">
+			<anims>
+				<anim name="Patchouli_TB/attack_b_06.png" time="3.00" offset_x="-12.00" offset_y="0.00" loop="1"/>
+				<anim name="Patchouli_TB/attack_b_07.png" time="3.00" offset_x="20.00" offset_y="-5.00"/>
+				<anim name="Patchouli_TB/attack_b_08.png" time="3.00" offset_x="19.00" offset_y="-5.00"/>
+				<anim name="Patchouli_TB/attack_b_09.png" time="100.00" offset_x="14.00" offset_y="-4.00"/>
+			</anims>
+		</animation>
+		<animation name="book_slam_cancel">
+			<anims>
+				<anim name="Patchouli_TB/attack_b_06.png" time="3.00" offset_x="-12.00" offset_y="0.00" loop="1"/>
+				<anim name="Patchouli_TB/attack_b_02.png" time="3.00" offset_x="-11.00" offset_y="9.00"/>
+				<anim name="Patchouli_TB/attack_b_01.png" time="5.50" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Patchouli_TB/attack_c_09.png" time="5.50" offset_x="-12.00" offset_y="-1.00"/>
+			</anims>
+		</animation>
+		<animation name="book_slam_ready">
+			<anims>
+				<anim name="Patchouli_TB/attack_b_01.png" time="5.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Patchouli_TB/attack_b_02.png" time="5.00" offset_x="-11.00" offset_y="9.00"/>
+				<anim name="Patchouli_TB/attack_b_03.png" time="5.00" offset_x="-11.00" offset_y="-4.00"/>
+				<anim name="Patchouli_TB/attack_b_04.png" time="5.00" offset_x="-11.00" offset_y="-6.00"/>
+				<anim name="Patchouli_TB/attack_b_05.png" time="100.00" offset_x="-12.00" offset_y="-6.00"/>
+			</anims>
+		</animation>
+		<animation name="book_slam_recover">
+			<anims>
+				<anim name="Patchouli_TB/attack_b_09.png" time="4.00" offset_x="14.00" offset_y="-4.00" loop="1"/>
+				<anim name="Patchouli_TB/attack_b_10.png" time="3.00" offset_x="14.00" offset_y="0.00"/>
+				<anim name="Patchouli_TB/attack_b_11.png" time="4.00" offset_x="14.00" offset_y="0.00"/>
+				<anim name="Patchouli_TB/attack_b_12.png" time="4.00" offset_x="14.00" offset_y="0.00"/>
+				<anim name="Patchouli_TB/attack_b_13.png" time="4.00" offset_x="12.00" offset_y="1.00"/>
+				<anim name="Patchouli_TB/attack_b_14.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="Patchouli_TB/attack_c_09.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
 		<animation name="dash_bw">
 			<anims>
 				<anim name="Patchouli_TB/dash_bw_01.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
@@ -31,6 +67,18 @@
 				<anim name="Patchouli_TB/dash_fw_05.png" time="5.00" offset_x="0.00" offset_y="0.00" loop="1"/>
 				<anim name="Patchouli_TB/dash_fw_06.png" time="6.00" offset_x="0.00" offset_y="0.00"/>
 				<anim name="Patchouli_TB/dash_fw_07.png" time="7.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="hit_upper">
+			<anims>
+				<anim name="Patchouli_TB/hit_upper_01.png" time="4.00" offset_x="0.00" offset_y="0.00" />
+				<anim name="Patchouli_TB/hit_upper_02.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+		<animation name="hit_upper_end">
+			<anims>
+				<anim name="Patchouli_TB/hit_upper_03.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Patchouli_TB/idle_01.png" time="5.00" offset_x="0.00" offset_y="0.00"/>
 			</anims>
 		</animation>
 		<animation name="idle">

@@ -175,7 +175,7 @@ int lua_GetEntitySlot(lua_State * L)
 int lua_EntityPlayAnimation(lua_State * L)
 {
 
-	if (lua_gettop(L) < 3 || lua_gettop(L) > 5)
+	if (lua_gettop(L) < 4 || lua_gettop(L) > 6)
 	{
 		std::cout << "gettop failed (lua_EntityPlayAnimation) \n";
 		std::cout << lua_gettop(L) << "\n";
@@ -186,16 +186,20 @@ int lua_EntityPlayAnimation(lua_State * L)
 	F_Lua_BaseEntity * object = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 2));
 	std::string animationName = lua_tostring(L, 3);
 
+	bool isWait = false;
+	isWait = lua_toboolean(L, 4);
+	
+
 	int time = 0;
-	if (lua_gettop(L) >= 4)
+	if (lua_gettop(L) >= 5)
 	{
-		time = (int)lua_tonumber(L, 4);
+		time = (int)lua_tonumber(L, 5);
 	}
 	float duration = 500.0f;
-	if(lua_gettop(L) == 5)
+	if(lua_gettop(L) == 6)
 	{
 		
-		duration = (float)lua_tonumber(L, 5);
+		duration = (float)lua_tonumber(L, 6);
 		std::cout << " has duration " << duration << "\n";
 	}
 	
@@ -204,7 +208,16 @@ int lua_EntityPlayAnimation(lua_State * L)
 
 	manipulator->playAnimation(object, animationName, time, duration);
 
-	battleScene->addEntityManipulator(manipulator);
+	//battleScene->addEntityManipulator(manipulator);
+
+	if(isWait)
+	{
+		battleScene->addEntityManipulator(manipulator);
+	}
+	else
+	{
+		battleScene->addNonWaitEntityManipulator(manipulator);
+	}
 
 	return 0;
 }
@@ -1059,6 +1072,74 @@ int lua_MoveEntity(lua_State * L)
 
 	return 0;
 }
+
+int lua_ClearEntityTasks (lua_State * L)
+{
+
+	if(lua_gettop(L) != 2)
+	{
+		std::cout << "gettop failed (lua_ClearEntityTasks) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 2));
+	battleScene->clearEntityTasks(entity);
+
+	return 0;
+
+}
+
+void BattleScene::clearEntityTasks(F_Lua_BaseEntity * entity)
+{
+	for(int i = 0 ; i < m_entityManipulators.size(); i++)
+	{
+		if(m_entityManipulators[i]->getEntity() == entity)
+		{
+			//delete m_entityManipulators[i];
+			std::cout << "clear entity task" <<  i << "\n";
+			m_entityManipulators.erase(m_entityManipulators.begin() + i);
+			//return;
+		}
+	}
+}
+
+
+int lua_GetSlotEntity(lua_State * L)
+{
+
+	if(lua_gettop(L) != 2)
+	{
+		std::cout << "gettop failed (lua_GetSlotEntity) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+	Slot * slot = static_cast<Slot*>(lua_touserdata(L, 2));
+
+	F_Lua_BaseEntity * entity = battleScene->getEntityBySlot(slot);
+	lua_pushlightuserdata(L, entity);
+
+	return 1;
+}
+
+F_Lua_BaseEntity * BattleScene::getEntityBySlot(Slot * slot)
+{
+	for(int i = 0 ; i < m_entities.size(); i++)
+	{
+		if(m_entities[i]->getCurrentSlot() == slot)
+		{
+			return m_entities[i];
+		}
+	}
+
+
+}
+
+
 void BattleScene::init(Feintgine::Camera2D * camera )
 {
 
@@ -1089,6 +1170,7 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppGetSlotCol", lua_GetSlotCol);
 	lua_register(m_script, "cppGetSlotRow", lua_GetSlotRow);
 	lua_register(m_script, "cppGetSlotPos", lua_GetSlotPos);
+	lua_register(m_script, "cppGetSlotEntity", lua_GetSlotEntity);
 
 	// slot Handler
 	lua_register(m_script, "cppCreateSlotHandler", lua_CreateSlotHandler);
@@ -1119,6 +1201,10 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppCameraTargetZoom", lua_CameraTargetZoom); 
 	lua_register(m_script, "cppResetCamera", lua_ResetCamera);
 	lua_register(m_script, "cppWaitTime", lua_WaitTime);
+
+
+	lua_register(m_script, "cppClearEntityTasks", lua_ClearEntityTasks);
+
 
 
 	//lua_register(m_script, "cppSetCameraPos", lua_SetCameraPos);
@@ -1329,6 +1415,41 @@ void BattleScene::update(float deltaTime)
 	}
 
 	// update manipulator
+	// if(m_entityManipulators.size() > 0)
+	// {
+	// 	std::cout << "Entity Manipulators size " << m_entityManipulators.size() << "\n";
+	// 	for(int i = 0 ; i < m_entityManipulators.size(); i++)
+	// 	{
+	// 		switch(m_entityManipulators[i]->getState())
+	// 		{
+	// 			case EntityState::Move:
+	// 			{
+	// 				std::cout << i << " : is Move \n"; 
+	// 			}
+	// 			break;
+
+	// 			case EntityState::Animation:
+	// 			{
+	// 				std::cout << i << " : is Animation \n"; 
+	// 			}
+	// 			break;
+
+	// 			case EntityState::Wait:
+	// 			{
+	// 				std::cout << i << " : is Wait \n";
+	// 			}
+	// 			break;
+
+	// 			case EntityState::None:
+	// 			{
+	// 				std::cout << i << " : is None \n"; 
+	// 			}
+	// 			break;
+
+
+	// 		}
+	// 	}
+	// }
 	for(int i = 0 ; i < m_entityManipulators.size(); i++)
 	{
 		if(m_entityManipulators[i])
@@ -1360,7 +1481,7 @@ void BattleScene::update(float deltaTime)
 						std::cout << "HandleMovingTask failed \n";
 					}
 				}
-				delete m_entityManipulators[i]; 
+				//delete m_entityManipulators[i]; 
 				//m_entityManipulators[i] = nullptr;
 				// After Issued next task
 				m_entityManipulators.erase(m_entityManipulators.begin() + i);

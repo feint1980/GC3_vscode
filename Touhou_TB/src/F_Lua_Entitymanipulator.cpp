@@ -3,7 +3,10 @@
 
 F_Lua_EntityManipulator::F_Lua_EntityManipulator()
 {
-
+    m_entity = nullptr;
+    m_camera = nullptr;
+    tempSlot = nullptr;
+    m_elaspedTime= 0;
 
 }
 
@@ -14,8 +17,7 @@ F_Lua_EntityManipulator::~F_Lua_EntityManipulator()
     m_camera = nullptr;
     tempSlot = nullptr;
 
-    std::cout << "remove manipulator ######################################## \n"; 
-
+   
 }
 
 void F_Lua_EntityManipulator::moveToSlot(F_Lua_BaseEntity * entity, Slot * slot, float time)
@@ -156,12 +158,13 @@ bool F_Lua_EntityManipulator::update(float deltaTime)
                 //m_entity->update(deltaTime);
                 if(m_elaspedTime > m_completionTime)
                 {
-                    m_state = EntityState::None;
+                    //m_state = EntityState::None;
                     return true;
                 }
                 if(m_entity->isAnimationStoped())
                 {
-                    m_state = EntityState::None;
+                    //m_state = EntityState::None;
+
                     return true;
                 }
             }
@@ -195,10 +198,7 @@ bool F_Lua_EntityManipulator::update(float deltaTime)
 
         case EntityState::Wait:
         {
-            if(m_entity)
-            {
-                
-                
+                  
                 if(m_elaspedTime > m_completionTime)
                 {
                     m_state = EntityState::None;
@@ -207,9 +207,10 @@ bool F_Lua_EntityManipulator::update(float deltaTime)
                 else 
                 {
                     m_elaspedTime += deltaTime;
-                    std::cout << m_elaspedTime <<" / " << m_completionTime  << std::endl;
+                    // std::cout << m_elaspedTime <<" / " << m_completionTime  << "\n";
+                     return false;
                 }
-            }
+  
         }
         break;
         case EntityState::None:
@@ -220,6 +221,7 @@ bool F_Lua_EntityManipulator::update(float deltaTime)
         break;
 
         default:
+            return true;
         break;
 
     }

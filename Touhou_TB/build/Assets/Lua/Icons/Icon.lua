@@ -22,6 +22,12 @@ Icon = {
 }
 
 
+function sleep (a) 
+    local sec = tonumber(os.clock() + a); 
+    while (os.clock() < sec) do 
+    end 
+end
+
 function Icon:new(o)
     o = o or {}
     setmetatable(o, self)

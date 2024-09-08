@@ -70,6 +70,10 @@ public:
 
     Feintgine::Camera2D * getCamera() const { return m_camera; }
 
+    void clearEntityTasks(F_Lua_BaseEntity * entity);
+
+    F_Lua_BaseEntity * getEntityBySlot(Slot * slot);
+
 protected:
 
     lua_State * m_script;

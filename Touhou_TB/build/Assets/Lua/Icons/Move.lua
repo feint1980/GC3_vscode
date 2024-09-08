@@ -70,15 +70,18 @@ function moveToSlotBehavior(host, dyobj)
 
     local result = math.abs(currentRow - targetRow) + math.abs(currentCol - targetCol)
 
-    cppEntityPlayAnimation(host,dyobj,dashAnimation,-1)
+    cppEntityPlayAnimation(host,dyobj,dashAnimation,false,-1)
     cppEntityMoveToslot(host,dyobj,slot,result * 25)
     coroutine.yield()
 
     finishedAnimation = dashAnimation .. "_end"
-    cppEntityPlayAnimation(host,dyobj,finishedAnimation,1)
+    cppEntityPlayAnimation(host,dyobj,finishedAnimation,true,1)
     coroutine.yield()
-    cppEntityPlayAnimation(host,dyobj,"idle",-1)
+    cppEntityPlayAnimation(host,dyobj,"idle",false,-1)
     coroutine.yield()
+    -- cppClearEntityTasks(host,dyobj)
+    -- coroutine.yield()
+
 end
 
 

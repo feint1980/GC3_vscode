@@ -41,13 +41,27 @@ function KickBack:init(host,dyobj,character)
 end
 
 
+
+function kickBackSelected(host,dyobj)
+    
+    cppEntityPlayAnimation(host,dyobj,"hakurei_kick_ready",false,-1)
+    coroutine.yield()
+
+end
+
 function KickBack:selected(host,character)
     print("move selected called")
     setPhase(host,2,2)
     t_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
-    cppEntityPlayAnimation(host,character.dyobj,"hakurei_kick_ready",-1)
-    -- tasks[character.dyobj] = {behavior = coroutine.create(readyAnimation,host,character.dyobj)}
-    -- HandleSkillTasks(host,character.dyobj)
+    
+
+    --cppEntityPlayAnimation(host,character.dyobj,"hakurei_kick_ready",false,-1)
+
+    tasks[character.dyobj] = {behavior = coroutine.create(kickBackSelected,host,character.dyobj)}
+    if coroutine.status(tasks[character.dyobj].behavior) ~= 'dead' then
+        coroutine.resume(tasks[character.dyobj].behavior,host,character.dyobj)
+    end
+    --HandleSkillTasks(host,character.dyobj)
    -- cppEntityPlayAnimation(host,character.dyobj,"hakurei_kick_ready",-1)
     --coroutine.yield()
    
@@ -56,67 +70,86 @@ end
 
 function kickBackBehavior(host, dyobj)
 
-    -- print("kickBackBehavior called")
-    -- local slots = t_slotHandler:getSelectedSlots()
 
-    -- local count =  tablelength(slots)
-    -- print("slot count " .. count)
-    -- print("testttt ")
-    -- if count ~= 1 then
-    --     print("wrong number of slots selected")
-    --     return
-    -- end
 
-    -- local slot = slots[1]
-    -- local slot_posx, slot_posy = cppGetSlotPos(slot)
-    -- local offset_x = 20
-    -- local offset_y = 40
+    --cppClearEntityTasks(host,dyobj)
 
-    -- local character = t_turnHandler:getCurrentCharacter()
+    print("kickBackBehavior called")
+    local slots = t_slotHandler:getSelectedSlots()
 
+    local count =  tablelength(slots)
+    print("slot count " .. count)
+    print("testttt ")
+    if count ~= 1 then
+        print("wrong number of slots selected")
+        return
+    end
+
+    local slot = slots[1]
+    local slot_posx, slot_posy = cppGetSlotPos(slot)
+    local offset_x = -50
+    local offset_y = 40
+
+    local character = t_turnHandler:getCurrentCharacter()
+
+    if character.side == 2 then
+        offset_x = -offset_x
+    end
+
+    cppCameraTargetZoom(host,dyobj,false,slot_posx,slot_posy,3.7,5)
+    cppEntityPlayAnimation(host,dyobj,"hakurei_kick_hit",false,-1)
+    cppMoveEntity(host,dyobj,true,slot_posx + offset_x,slot_posy + offset_y ,5)
+    
+    -- offset_x = 50
     -- if character.side == 2 then
     --     offset_x = -offset_x
     -- end
-
-    -- cppCameraTargetZoom(host,dyobj,false,slot_posx,slot_posy,3.7,20)
-
-    -- cppMoveEntity(host,dyobj,false,slot_posx + offset_x,slot_posy + offset_y ,20)
     
-    -- offset_x = -50
-    -- if character.side == 2 then
-    --     offset_x = -offset_x
-    -- end
-    
+    --cppWaitTime(host,dyobj,200)
    
-    cppEntityPlayAnimation(host,dyobj,"hakurei_kick_hit",1,200)
     coroutine.yield()
     --coroutine.yield() -- wtf ? 
+    local targetSlot = t_slotHandler:getSelectedSlots()[1]
+    kickbackTarget = cppGetSlotEntity(host,targetSlot)
+    if(kickbackTarget ~= nil) then
+        cppEntityPlayAnimation(host,kickbackTarget,"hit_upper",false,-1)
+    else
+        print("kickbackTarget is nil")
+    end
 
     -- for i = 1, kickCount do
     --     coroutine.yield()
     -- end
-
-    cppWaitTime(host,dyobj,20)
+    --print("cppWaitTime @@@@@@@@")
+    cppWaitTime(host,dyobj,40)
     --cppMoveEntity(host,dyobj,true,slot_posx + offset_x,slot_posy + offset_y,100)
+    --os.execute("sleep " .. tonumber(200000))
+
     coroutine.yield()
 
-    print("nextg !!!!!!!!!!!!!!!!!!!!!!!")
+    if(kickbackTarget ~= nil) then
+        cppEntityPlayAnimation(host,kickbackTarget,"hit_upper_end",false,1)
+    else
+        print("kickbackTarget is nil")
+    end
 
-    cppWaitTime(host,dyobj,20)
-    --cppMoveEntity(host,dyobj,true,slot_posx + offset_x,slot_posy + offset_y,100)
-    coroutine.yield()
+    cppResetCamera(host,dyobj,false,20)
 
-    print("nextg ##############################")
-
-    cppResetCamera(host,dyobj,false,40)
+    if(kickbackTarget ~= nil) then
+        cppEntityPlayAnimation(host,kickbackTarget,"idle",false,-1)
+    else
+        print("kickbackTarget is nil")
+    end
 
     local currentSlot = t_turnHandler:getCurrentCharacter().currentSlot
+    cppEntityPlayAnimation(host,dyobj,"hakurei_kick_recover",false,1)
     cppEntityMoveToslot(host,dyobj,currentSlot,20)
-    cppEntityPlayAnimation(host,dyobj,"hakurei_kick_recover",1)
+    
     coroutine.yield()
   
-    cppEntityPlayAnimation(host,dyobj,"idle",-1)
+    cppEntityPlayAnimation(host,dyobj,"idle",false,-1)
     coroutine.yield()
+    cppClearEntityTasks(host,dyobj)
    
 end
 
@@ -139,9 +172,9 @@ function KickBack:useFunction(host, character)
 end
 
 function cancelAnimation(host,dyobj)
-    cppEntityPlayAnimation(host,dyobj,"hakurei_kick_cancel",1)
+    cppEntityPlayAnimation(host,dyobj,"hakurei_kick_cancel",true,1)
     coroutine.yield()
-    cppEntityPlayAnimation(host,dyobj,"idle",-1)
+    cppEntityPlayAnimation(host,dyobj,"idle",false,-1)
     coroutine.yield()
 end
 
