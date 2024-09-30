@@ -10,6 +10,7 @@
 #include <unordered_map> // replace map with hash table to test if it's faster
 #include <atomic>
 #include <mutex>
+#include <future>
 #include "A_Context_saver.h"
 
 
@@ -57,11 +58,13 @@ namespace Feintgine {
 		static SpriteManager *p_Instance;
 
 		std::map<std::string, SpritePacket > m_SpritePackets;
+		std::map<std::string, std::future<SpritePacket> > m_FutureMap;
 		std::vector<std::string> m_storedKey;
 		std::vector<std::thread> m_Threads;
 		static std::mutex m_Mutex;
 		//std::atomic<bool> m_isDones[2000]; // let just cache 2000 packets
 		std::atomic_int m_packetCount = std::atomic_int(0);
+		
 
 		// // test ||
 		// std::atomic_int fileCount = 0;
@@ -69,6 +72,8 @@ namespace Feintgine {
 		// std::atomic_int limited_thread = 8;
 		// std::atomic_int resolved_files = 0;
 		// std::atomic_int total_result = 0;
+
+
 
 		std::vector<async::task<void>> m_tasks;
 

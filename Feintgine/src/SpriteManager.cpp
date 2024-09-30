@@ -13,6 +13,73 @@
 
 namespace Feintgine {
 
+
+
+	SpritePacket readFile(std::string_view vFilePath) {
+		SpritePacket retVal;
+		xml_document <> t_packet;
+		xml_node<> * t_TextureAtlas = nullptr;
+
+
+		std::string filePath = vFilePath.data();
+
+		//std::cout << "TEST :::::: " << filePath << "\n";
+
+		std::ifstream theFile(filePath.c_str());
+
+		retVal.setName(feint_common::Instance()->getFileNameFromPath(filePath));
+
+		if (!theFile.fail())
+		{
+			std::vector<char> buffer((std::istreambuf_iterator<char>(theFile)), std::istreambuf_iterator<char>());
+			buffer.push_back('\0');
+			// Parse the buffer using the xml file parsing library into doc 
+			t_packet.parse<0>(buffer.data());
+
+			std::string packetTexturePath = feint_common::Instance()->getPathName(filePath);
+			packetTexturePath.append("/");
+
+			t_TextureAtlas = t_packet.first_node("TextureAtlas");
+			packetTexturePath.append(t_TextureAtlas->first_attribute("imagePath")->value());
+			//std::cout << "Image path is " << packetTexturePath << "\n";
+			
+			retVal.setTexturePath(packetTexturePath);
+			
+			for (xml_node<> * sprite_node = t_TextureAtlas->first_node("sprite"); sprite_node; sprite_node = sprite_node->next_sibling())
+			{
+				//std::cout << "creating sprite ..... \n";
+
+				Feintgine::F_Sprite t_sprite;
+				
+				glm::vec2 anchor = glm::vec2(0.5f);
+				if (sprite_node->first_attribute("pX") && sprite_node->first_attribute("pX"))
+				{
+					anchor = feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("pX")->value(), sprite_node->first_attribute("pY")->value());
+				}
+			
+				t_sprite.init(feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("x")->value(), sprite_node->first_attribute("y")->value()),
+					feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("w")->value(), sprite_node->first_attribute("h")->value()),
+					anchor,
+					packetTexturePath.c_str(), retVal.getName(), sprite_node->first_attribute("n")->value());
+
+
+				// retVal.m_spriteMap.insert(std::make_pair(sprite_node->first_attribute("n")->value(),  std::move(t_sprite)));
+
+				retVal.insertSprite(sprite_node->first_attribute("n")->value(), std::move(t_sprite));
+				
+				// 		m_sprites.push_back(t_sprite);
+			}
+			
+		}
+		else
+		{
+			std::cout << "Error ! File " << filePath << "not exist \n";
+		}
+
+		theFile.close();
+		return retVal;
+	}
+
 	SpriteManager *SpriteManager::p_Instance = 0;
 	std::mutex SpriteManager::m_Mutex;
 
@@ -66,20 +133,23 @@ namespace Feintgine {
 				{
 					if (texturePath.find(".xml") != std::string::npos)
 					{
+
+						// old way
+						// std::string packetKey = feint_common::Instance()->getFileNameFromPath(texturePath);
+						// SpritePacket spritePacket(texturePath);
+						// m_SpritePackets.insert(std::make_pair(packetKey.c_str(),   std::move(spritePacket)));
+						// m_storedKey.push_back(packetKey);
+						// new way
 						std::string packetKey = feint_common::Instance()->getFileNameFromPath(texturePath);
 						SpritePacket spritePacket(texturePath);
-						m_SpritePackets.insert(std::make_pair(packetKey.c_str(),   std::move(spritePacket)));
 						m_storedKey.push_back(packetKey);
+
+						m_FutureMap.insert(std::make_pair(packetKey.c_str(), std::async(std::launch::async, readFile, texturePath)));
+						
+						// new way end
+
 						// std::thread t = std::thread([this, packetKey](){
 					
-						// 	m_SpritePackets[packetKey].selfLoad();
-						// 	m_packetCount++;
-						// });
-						// if(t.joinable())
-						// {
-						// 	t.join();
-						// }
-						//t.detach();
 
 						//m_Threads.push_back(std::move(t));
 
@@ -142,41 +212,46 @@ namespace Feintgine {
 		int end;
 		int chunk;
 		int redefinedMaxThreads = max_threads / 2;
-		if(total_files > redefinedMaxThreads)
+	// 	if(total_files > redefinedMaxThreads)
+	// 	{
+	// 		chunk = total_files / redefinedMaxThreads;
+
+	// 	}
+	// 	else
+	// 	{
+	// 		chunk = 1;
+	// 	}
+    //    int remain_files = total_files % redefinedMaxThreads;
+
+	// 	for (int i = 0; i < std::min(redefinedMaxThreads, total_files); ++i)
+    //     {
+    //         end = begin + chunk - 1 +
+	// 		 (remain_files + (i + 1) * chunk == total_files ? remain_files : 0);
+
+    //         std::thread t = std::thread([this, begin, end](){
+	// 		for(int i = begin; i <= end; ++i)
+	// 		{
+    //             m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
+	// 			//std::cout << "thread " << i << " " << m_storedKey[i].c_str() <<  " done \n";
+	// 			m_packetCount++;
+	// 		}
+    //         });
+    //         m_Threads.push_back(std::move(t));
+    //         begin = end + 1;
+    //     }
+
+	// 	for(int i = 0; i < m_Threads.size(); i++)
+	// 	{
+	// 		//m_Threads[i].detach();
+	// 		if(m_Threads[i].joinable())
+	// 		{
+	// 			m_Threads[i].join();
+	// 		}
+	// 	}
+		for( auto & future : m_FutureMap)
 		{
-			chunk = total_files / redefinedMaxThreads;
-
-		}
-		else
-		{
-			chunk = 1;
-		}
-       int remain_files = total_files % redefinedMaxThreads;
-
-		for (int i = 0; i < std::min(redefinedMaxThreads, total_files); ++i)
-        {
-            end = begin + chunk - 1 +
-			 (remain_files + (i + 1) * chunk == total_files ? remain_files : 0);
-
-            std::thread t = std::thread([this, begin, end](){
-			for(int i = begin; i <= end; ++i)
-			{
-                m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-				//std::cout << "thread " << i << " " << m_storedKey[i].c_str() <<  " done \n";
-				m_packetCount++;
-			}
-            });
-            m_Threads.push_back(std::move(t));
-            begin = end + 1;
-        }
-
-		for(int i = 0; i < m_Threads.size(); i++)
-		{
-			//m_Threads[i].detach();
-			if(m_Threads[i].joinable())
-			{
-				m_Threads[i].join();
-			}
+			m_SpritePackets.insert(std::make_pair(future.first, std::move(future.second.get())));
+			m_packetCount++;
 		}
 
 		// Solution 2, faster but cause crash in GC3

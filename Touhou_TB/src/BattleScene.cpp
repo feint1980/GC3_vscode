@@ -1380,6 +1380,8 @@ void BattleScene::setMoveTargetSlot(F_Lua_BaseEntity * entity, Slot * slot)
 void BattleScene::update(float deltaTime)
 {
 
+
+	
 	if(m_guiHandler)
 	{
 		m_guiHandler->update(deltaTime);
@@ -1404,7 +1406,7 @@ void BattleScene::update(float deltaTime)
 	// 			{
 	// 				setMoveTargetSlot(m_currentEntity, m_slots[i]);
 	// 				m_isMove = true;
-	// 			}
+	// 			}um l,
 	// 		}
 	// 	}
 	// }
@@ -1454,7 +1456,6 @@ void BattleScene::update(float deltaTime)
 	{
 		if(m_entityManipulators[i])
 		{
-				
 			if(m_entityManipulators[i]->update(deltaTime))
 			{
 				lua_getglobal(m_script, "HandleSkillTasks");

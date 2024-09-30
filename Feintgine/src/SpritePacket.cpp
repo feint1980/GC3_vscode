@@ -16,6 +16,72 @@ namespace Feintgine {
 		m_filePath = filePath;
 	}
 
+
+	SpritePacket SpritePacket::fLoadPacket( std::string_view vFilePath)
+	{
+		SpritePacket retVal;
+		xml_document <> t_packet;
+		xml_node<> * t_TextureAtlas = nullptr;
+
+
+		m_vFilePath = vFilePath;
+
+		std::string filePath = m_vFilePath.data();
+
+		//std::cout << "TEST :::::: " << filePath << "\n";
+
+		std::ifstream theFile(filePath.c_str());
+
+		retVal.m_name = feint_common::Instance()->getFileNameFromPath(filePath);
+
+		if (!theFile.fail())
+		{
+			std::vector<char> buffer((std::istreambuf_iterator<char>(theFile)), std::istreambuf_iterator<char>());
+			buffer.push_back('\0');
+			// Parse the buffer using the xml file parsing library into doc 
+			t_packet.parse<0>(buffer.data());
+
+			std::string packetTexturePath = feint_common::Instance()->getPathName(filePath);
+			packetTexturePath.append("/");
+
+			t_TextureAtlas = t_packet.first_node("TextureAtlas");
+			packetTexturePath.append(t_TextureAtlas->first_attribute("imagePath")->value());
+			//std::cout << "Image path is " << packetTexturePath << "\n";
+			retVal.m_texturePath = packetTexturePath;
+			
+			for (xml_node<> * sprite_node = t_TextureAtlas->first_node("sprite"); sprite_node; sprite_node = sprite_node->next_sibling())
+			{
+				//std::cout << "creating sprite ..... \n";
+
+				Feintgine::F_Sprite t_sprite;
+				
+				glm::vec2 anchor = glm::vec2(0.5f);
+				if (sprite_node->first_attribute("pX") && sprite_node->first_attribute("pX"))
+				{
+					anchor = feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("pX")->value(), sprite_node->first_attribute("pY")->value());
+				}
+			
+				t_sprite.init(feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("x")->value(), sprite_node->first_attribute("y")->value()),
+					feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("w")->value(), sprite_node->first_attribute("h")->value()),
+					anchor,
+					packetTexturePath.c_str(), m_name, sprite_node->first_attribute("n")->value());
+
+
+				retVal.m_spriteMap.insert(std::make_pair(sprite_node->first_attribute("n")->value(),  std::move(t_sprite)));
+				
+				// 		m_sprites.push_back(t_sprite);
+			}
+			
+		}
+		else
+		{
+			std::cout << "Error ! File " << filePath << "not exist \n";
+		}
+
+		theFile.close();
+		return retVal;
+	}
+
 	SpritePacket::~SpritePacket()
 	{
 	}

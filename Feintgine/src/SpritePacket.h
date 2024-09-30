@@ -19,6 +19,7 @@ namespace Feintgine {
 		SpritePacket();
 		~SpritePacket();
 		SpritePacket(const std::string &filePath);
+		SpritePacket fLoadPacket(std::string_view filePath);
 		void loadPacket(const std::string & filePath);
 
 		void writeToImageset(const std::string & name);
@@ -35,13 +36,21 @@ namespace Feintgine {
 
 		std::string getFilePath() const { return m_filePath; }
 
+		void setName(const std::string & name) { m_name = name; }
+
 		void updateTexture();
+
+		void setTexturePath(const std::string & texturePath) { m_texturePath = texturePath; }
+
+		void insertSprite(const std::string & name, const Feintgine::F_Sprite & sprite) { m_spriteMap.insert({ name, sprite }); }
 
 	private:
 
 		Feintgine::F_Sprite templateSprite;
 
 
+
+		std::string_view m_vFilePath;
 		std::string m_filePath;
 		std::string m_name;
 		std::string m_texturePath;
