@@ -289,7 +289,7 @@ void Yin_Yang_Orb::setDeathCallback(const std::function <void(void)>& f)
 
 void Yin_Yang_Orb::registerAudioEngine(Feintgine::AudioEngine * audioEngine)
 {
-	std::cout << "Yin_Yang_Orb init sound called\n"; 
+	//std::cout << "Yin_Yang_Orb init sound called\n"; 
 	//m_castSound = audioEngine->loadSoundEffect("Sounds/sfx/se_tan00.wav");
 	m_loopSound = audioEngine->loadSoundEffect("Sounds/sfx/hover.wav");
 	m_loopSound.setVolume(24);

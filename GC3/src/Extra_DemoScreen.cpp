@@ -50,6 +50,8 @@ Extra_DemoScreen::Extra_DemoScreen(Feintgine::Window * window)
 	initShader();
 	m_foregroundShader = &m_shader;
 	m_backgroundShader = &m_whiteBlackShader;
+
+	TTF_Init();
 }
 
 Extra_DemoScreen::~Extra_DemoScreen()
@@ -81,7 +83,7 @@ void Extra_DemoScreen::onEntry()
 	//auto task = async::spawn([&]() {
 	
 	//});
-	TTF_Init();
+	
 	m_debug.init();
 	m_camera.init(768, 768, 0);
 
@@ -826,13 +828,24 @@ void Extra_DemoScreen::firstCheckPoint()
 	// 	reloadLevel();
 	// });
 
-
+	std::cout << "loading packets ... \n";
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
-
-	while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
-	{
-		std::cout << "waiting ...\n";
-	}
+// 	try {
+//   // Block of code to try
+// 	throw Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0); // Throw an exception when a problem arise
+// 	}
+// 	catch (std::exception const& e) // bad_alloc handled as any other exception
+// 	{
+// 	std::vector<char> s {'E', 'R', 'R', 'O', 'R', ':', ' '}; // reasonable allocation
+// 	std::cout << std::string(s.begin(), s.end()) << e.what() << std::endl;
+// 	}
+	__int64 t_now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	std::cout << "Start loading " << t_now << "\n";
+	// Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
+	// while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
+	// {
+	// 	std::cout << "waiting ...\n";
+	// }
 
 	//Sleep(3000);
 
@@ -927,6 +940,12 @@ void Extra_DemoScreen::firstCheckPoint()
 
 	reloadLevel();
 	loaded = true;
+
+	__int64 end = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	__int64 elapsed = end - t_now;
+	std::cout << "total " << (float)elapsed / 1000.0f << "\n";
+	std::cout << "End load " << end << " \n";
+
 	
 
 }

@@ -58,7 +58,7 @@ namespace Feintgine {
 		static SpriteManager *p_Instance;
 
 		std::map<std::string, SpritePacket > m_SpritePackets;
-		std::map<std::string, std::future<SpritePacket> > m_FutureMap;
+		std::vector<std::future<SpritePacket> > m_FutureMap;
 		std::vector<std::string> m_storedKey;
 		std::vector<std::thread> m_Threads;
 		static std::mutex m_Mutex;

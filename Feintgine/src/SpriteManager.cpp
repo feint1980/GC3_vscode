@@ -13,7 +13,59 @@
 
 namespace Feintgine {
 
+	 inline std::string t_getFileNameFromPath(const std::string & str)
+	{
 
+		// std::cout << "scan on " << str << "\n";
+		char sep = '/';
+
+
+		size_t i = str.rfind(sep, str.length());
+		if (i != std::string::npos) {
+		
+			return(str.substr(i + 1, str.length() - i));
+		}
+		return("");
+	}
+
+	template<typename R>
+	bool is_ready(std::future<R> const& f)
+	{ return f.wait_for(std::chrono::seconds(0)) == std::future_status::ready; }
+
+	bool t_isFloat(const std::string & s)
+	{
+		std::istringstream iss(s);
+		float f;
+		iss >> std::noskipws >> f; // noskipws considers leading whitespace invalid
+							// Check the entire string was consumed and if either failbit or badbit is set
+		return iss.eof() && !iss.fail();
+	}
+	inline std::string t_getPathName(const std::string & str)
+	{
+
+		// std::cout << "scan on " << str << "\n";
+			char sep = '/';
+
+	// #ifdef _WIN32
+	// 		 sep = '\\';
+	// #endif
+
+			size_t i = str.rfind(sep, str.length());
+			if (i != std::string::npos) {
+				// std::cout << "cliped " << str << "\n";
+				return(str.substr(0, i));
+			}
+			return("");	 
+	}
+
+	inline glm::vec2 t_convertStringToVec2(const std::string & x_string, const std::string & y_string)
+	{
+		if (t_isFloat(x_string) && t_isFloat(y_string))
+		{
+			return glm::vec2(std::stof(x_string.c_str()), std::stof(y_string.c_str()));
+		}	
+		return glm::vec2(-1);
+	}
 
 	SpritePacket readFile(std::string_view vFilePath) {
 		SpritePacket retVal;
@@ -27,7 +79,7 @@ namespace Feintgine {
 
 		std::ifstream theFile(filePath.c_str());
 
-		retVal.setName(feint_common::Instance()->getFileNameFromPath(filePath));
+		retVal.setName(t_getFileNameFromPath(filePath));
 
 		if (!theFile.fail())
 		{
@@ -36,7 +88,7 @@ namespace Feintgine {
 			// Parse the buffer using the xml file parsing library into doc 
 			t_packet.parse<0>(buffer.data());
 
-			std::string packetTexturePath = feint_common::Instance()->getPathName(filePath);
+			std::string packetTexturePath = t_getPathName(filePath);
 			packetTexturePath.append("/");
 
 			t_TextureAtlas = t_packet.first_node("TextureAtlas");
@@ -54,11 +106,11 @@ namespace Feintgine {
 				glm::vec2 anchor = glm::vec2(0.5f);
 				if (sprite_node->first_attribute("pX") && sprite_node->first_attribute("pX"))
 				{
-					anchor = feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("pX")->value(), sprite_node->first_attribute("pY")->value());
+					anchor = t_convertStringToVec2(sprite_node->first_attribute("pX")->value(), sprite_node->first_attribute("pY")->value());
 				}
 			
-				t_sprite.init(feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("x")->value(), sprite_node->first_attribute("y")->value()),
-					feint_common::Instance()->convertStringToVec2(sprite_node->first_attribute("w")->value(), sprite_node->first_attribute("h")->value()),
+				t_sprite.init(t_convertStringToVec2(sprite_node->first_attribute("x")->value(), sprite_node->first_attribute("y")->value()),
+					t_convertStringToVec2(sprite_node->first_attribute("w")->value(), sprite_node->first_attribute("h")->value()),
 					anchor,
 					packetTexturePath.c_str(), retVal.getName(), sprite_node->first_attribute("n")->value());
 
@@ -85,6 +137,7 @@ namespace Feintgine {
 
 	SpriteManager::SpriteManager()
 	{
+		//m_FutureMap.
 	}
 
 
@@ -95,10 +148,11 @@ namespace Feintgine {
 
 	int SpriteManager::scan_dir(const std::string & path, int level)
 	{
-        std::cout << "scan on " << path << "\n";
+		
+        //std::cout << "scan on " << path << "\n";
         //std::cout << "level start -----" << level << "\n";
-        DIR *dir;
-        struct dirent *entry;
+        DIR *dir = nullptr;
+        struct dirent *entry = nullptr;
 
         if (!(dir = opendir(path.c_str())))
         {
@@ -121,9 +175,9 @@ namespace Feintgine {
                     continue;
                 }
 
-                printf("%*s[%s]\n", level * 2, "", entry->d_name);
-                //std::cout << "path -> " << sub_path << "\n";
-
+				// stop printing to increase speed
+                //printf("%*s[%s]\n", level * 2, "", entry->d_name);
+        
                 scan_dir(sub_path, level + 1);
             }
             else
@@ -133,28 +187,12 @@ namespace Feintgine {
 				{
 					if (texturePath.find(".xml") != std::string::npos)
 					{
-
-						// old way
-						// std::string packetKey = feint_common::Instance()->getFileNameFromPath(texturePath);
-						// SpritePacket spritePacket(texturePath);
-						// m_SpritePackets.insert(std::make_pair(packetKey.c_str(),   std::move(spritePacket)));
-						// m_storedKey.push_back(packetKey);
-						// new way
-						std::string packetKey = feint_common::Instance()->getFileNameFromPath(texturePath);
-						SpritePacket spritePacket(texturePath);
+						//m_Mutex.lock();
+						std::string packetKey = t_getFileNameFromPath(texturePath);
+						m_FutureMap.emplace_back(std::async(std::launch::async, readFile, texturePath));
 						m_storedKey.push_back(packetKey);
-
-						m_FutureMap.insert(std::make_pair(packetKey.c_str(), std::async(std::launch::async, readFile, texturePath)));
-						
-						// new way end
-
-						// std::thread t = std::thread([this, packetKey](){
-					
-
-						//m_Threads.push_back(std::move(t));
-
-                		//files.push_back(file(texturePath));
-               	 		//std::cout << "||||: " << texturePath << "\n";
+						SpritePacket packet; 
+						m_SpritePackets.insert(std::make_pair(packetKey.c_str(), std::move(packet)));
 					}
 				}
             }
@@ -171,34 +209,31 @@ namespace Feintgine {
 		//m_Mutex.lock();
 
 		SpritePacket spritePacket;
-		//spritePacket = new SpritePacket();
-
-
+		
 		//m_Mutex.try_lock();
 		//
 
 		spritePacket.loadPacket(filePath);
-		//std::string packetKey = filePath;
-		std::string packetKey = feint_common::Instance()->getFileNameFromPath(filePath);
+		
+		std::string packetKey = t_getFileNameFromPath(filePath);
 
 		//m_Mutex.lock();
 		m_SpritePackets.insert(std::make_pair(packetKey.c_str(), std::move(spritePacket)));
 		//m_Mutex.unlock();
-		// std::cout << "inserted " << packetKey << "\n";
-		// std::cout << "size " << m_SpritePackets.size() << "\n";
-		//m_Mutex.unlock();
+		
 		//std::cout << "loaded packet !!!!!!!! " << packetKey << "\n";
 	}
 
+
 	void SpriteManager::printPacketList()
 	{
-		//std::cout << "************** PRINT SPRITE PACKET LIST ******************\n";
-		//std::map<std::string, SpritePacket>::iterator it;
-// 		for (it = m_SpritePackets.begin(); it != m_SpritePackets.end(); it++)
-// 		{
-// 			std::cout << it->first << "\n";
-// 			std::cout << "with " << it->second.getSpriteMap().size() << "\n";
-// 		}
+		std::cout << "************** PRINT SPRITE PACKET LIST ******************\n";
+		std::map<std::string, SpritePacket>::iterator it;
+		for (it = m_SpritePackets.begin(); it != m_SpritePackets.end(); it++)
+		{
+			std::cout << it->first << "\n";
+			std::cout << "with " << it->second.getSpriteMap().size() << "\n";
+		}
 	}
 
 
@@ -206,131 +241,53 @@ namespace Feintgine {
 	int SpriteManager::loadFromDirectory(const char * name, int level)
 	{
 
-	 	scan_dir(name, level);
-		int total_files = m_SpritePackets.size();
-		int begin = 0;
-		int end;
-		int chunk;
-		int redefinedMaxThreads = max_threads / 2;
-	// 	if(total_files > redefinedMaxThreads)
-	// 	{
-	// 		chunk = total_files / redefinedMaxThreads;
+		scan_dir(name, level);
+		// for (auto & future : m_FutureMap)
+		// {
+		// 	if (future.second.valid())
+		// 	{
+		// 		m_packetCount++;
+		// 	}
+		// }
 
-	// 	}
-	// 	else
-	// 	{
-	// 		chunk = 1;
-	// 	}
-    //    int remain_files = total_files % redefinedMaxThreads;
-
-	// 	for (int i = 0; i < std::min(redefinedMaxThreads, total_files); ++i)
-    //     {
-    //         end = begin + chunk - 1 +
-	// 		 (remain_files + (i + 1) * chunk == total_files ? remain_files : 0);
-
-    //         std::thread t = std::thread([this, begin, end](){
-	// 		for(int i = begin; i <= end; ++i)
-	// 		{
-    //             m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-	// 			//std::cout << "thread " << i << " " << m_storedKey[i].c_str() <<  " done \n";
-	// 			m_packetCount++;
-	// 		}
-    //         });
-    //         m_Threads.push_back(std::move(t));
-    //         begin = end + 1;
-    //     }
-
-	// 	for(int i = 0; i < m_Threads.size(); i++)
-	// 	{
-	// 		//m_Threads[i].detach();
-	// 		if(m_Threads[i].joinable())
-	// 		{
-	// 			m_Threads[i].join();
-	// 		}
-	// 	}
+		// while(m_packetCount < m_FutureMap.size())
+		// {
+		// 	std::cout << "wait \n";
+		// }
+		// finalize the way to async load packets
+		
 		for( auto & future : m_FutureMap)
 		{
-			m_SpritePackets.insert(std::make_pair(future.first, std::move(future.second.get())));
+			future.wait();
+		}
+
+		for(int i = 0 ; i < m_FutureMap.size(); i++)
+		{
+			// m_SpritePackets.insert(std::make_pair(m_storedKey[i], std::move(m_FutureMap[i].get())));
+			m_SpritePackets[m_storedKey[i]] = std::move(m_FutureMap[i].get());
 			m_packetCount++;
 		}
 
-		// Solution 2, faster but cause crash in GC3
-
-		// for(int i = 0 ; i < m_SpritePackets.size(); i++)
+		// for( auto & future : m_FutureMap)
 		// {
-		// 	// m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-		// 	// m_packetCount++;
-		// 	// async::task<void> t = async::spawn([&,i]{
-		// 	// 	m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-		// 	// 	m_packetCount++;
-		// 	// });
-
-		// 	//m_tasks.push_back(std::move(t));
-		// 	// std::thread t = std::thread([this,i](){
+		// 	//m_Mutex.lock();				
+		// 	m_SpritePackets.insert(std::make_pair(future.first, std::move(future.second.get())));
+		// 	m_packetCount++;
+		// }
 				
-		// 	// 	m_SpritePackets.find(m_storedKey[i].c_str())->second.selfLoad();
-		// 	// 	m_packetCount++;
-		// 	// });
-		// 	// if(t.joinable())
-		// 	// {
-		// 	// 	t.join();
-		// 	// }
-		// 	//m_Threads.push(std::move(t));
-		// 	//m_Threads.push_back(t);
-		// 	//if(t.)
-		// 	// t.join();
-		// 	//m_Threads.push_back(std::move(t));
-		// }
 
 
 
-		// while(!m_Threads.empty())
-		// {
-		// 	if(m_Threads.top().joinable())
-		// 	{
-		// 		m_Threads.top().join();
-		// 		m_Threads.pop();
-		// 	}
-		// }
-		// for(int i = 0; i < m_tasks.size(); i++)
-		// {
-
-		// 	m_tasks[i].wait();
-
-		// }
-		// async::when_all(m_tasks.begin(), m_tasks.end()).then([&]{
-		// 	std::cout << "done \n";
-		// });
-		//}
-
-		// while(!m_packetCount < m_SpritePackets.size())
-		// {
-		// 	//std::cout << "internal wait\n";
-		// }
-
-	
-		// while(m_packetCount < m_Threads.size())
-		// {
-		// 	if(m_Threads[m_packetCount].joinable())
-		// 	{
-		// 		m_Threads[m_packetCount].join();
-		// 		//m_packetCount++;
-		// 	}
-		// }
-
-
-		while(m_packetCount < m_SpritePackets.size())
+		// 
+		while(m_packetCount < m_FutureMap.size())
 		{
 			std::cout << "external wait\n";
-
+			
+			
+				//m_Mutex.unlock();
+			
+			
 		}
-
-		// for(int i = 0; i < m_Threads.size(); i++)
-		// {
-		// 	//m_Threads[i].detach();
-		// 	m_Threads[i].~thread();
-		// 	m_Threads.erase(m_Threads.begin() + i);
-		// }
 
 		// back to main thread
 		auto textureBuffers = A_Context_saver::getContext_saver()->getTextureBuffers();
@@ -358,143 +315,12 @@ namespace Feintgine {
 		//loop in m_SpritePackets
 		for(auto it = m_SpritePackets.begin(); it != m_SpritePackets.end(); it++)
 		{
-
 			it->second.updateTexture();
 		}
 		std::cout << "loaded using " << max_threads << " thread(s) \n";
 
 		return 0;
-
-		// ==============================================================
-
-		// std::cout << "scan on " << name << "\n";
-		// DIR *dir;
-		// struct dirent *entry;
-
-		// if (!(dir = opendir(name)))
-		// {
-		// 	std::cout << "dir failed \n";
-		// 	return 0;
-		// }
-
-		// if (!(entry = readdir(dir)))
-		// {
-		// 	std::cout << "entry failed \n";
-		// 	return 0;
-		// }
-
-		// do {
-		// 	if (entry->d_type == DT_DIR) {
-		// 		char path[1024];
-		// 		int len = _snprintf_s(path, sizeof(path) - 1, "%s/%s", name, entry->d_name);
-		// 		path[len] = 0;
-		// 		if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
-		// 			continue;
-		// 			printf("%*s[%s]\n", level * 2, "", entry->d_name);
-		// 		loadFromDirectory(path, level + 1);
-		// 	}
-		// 	else
-		// 	{
-		// 		printf("%*s- %s\n", level * 2, "", entry->d_name);
-		// 		std::string texturePath = name;
-		// 		texturePath.append("/");
-		// 		texturePath.append(entry->d_name);
-
-		// 		if (texturePath.find("Packets/") != std::string::npos)
-		// 		{
-		// 			if (texturePath.find(".xml") != std::string::npos)
-		// 			{
-
-		// 				//m_isDones[m_packetCount] = false;
-		// 				//  std::thread t = std::thread([&](){
-		// 				// 	loadSpritePacket(texturePath.c_str());
-		// 				// 	//m_isDones[m_packetCount] = true;
-		// 				// //	std::cout << "hahahaha \n";
-		// 				// });
-		// 				m_packetCount++;
-		// 				m_texturePaths.push_back(texturePath);
-		// 				//fileCount++;
-		// 				// m_Threads.emplace_back([&](){
-		// 				// 	this->loadSpritePacket(texturePath.c_str());
-		// 				// });
-		// 				// m_Threads.emplace_back([&](){
-		// 				// 	this->loadSpritePacket(texturePath.c_str());
-		// 				// });
-		// 				// auto task = async::spawn([this, texturePath]
-		// 				// {
-		// 				// 	loadSpritePacket(texturePath.c_str()); // sync`
-		// 				// });
-		// 				loadSpritePacket(texturePath.c_str()); // sync`
-		// 			}
-		// 		}
-
-		// 	}
-
-
-		// } while (entry = readdir(dir));
-
-		// if(level == 0) // end of stack
-        // {
-		// 	for(int i = 0; i < m_texturePaths.size(); i++)
-		// 	{
-		// 		m_isLoaded.push_back(false);
-		// 	}
-
-        //     std::cout << "call \n";
-        //     while(resolved_files < m_packetCount -1  )
-        //     {
-
-
-		// 		for (int i = resolved_files ; i < resolved_files + limited_thread; ++i)
-		// 		{
-
-		// 			if (i < m_SpritePackets.size() + limited_thread)
-		// 			{
-		// 				//std::cout <<  "|i| " << i << "\n";
-		// 				// if(!m_isLoaded[i])
-		// 				// {
-		// 					// std::string texturePath = m_texturePaths[i];
-		// 					// std::thread t = std::thread([this, texturePath](){
-		// 					// 	loadSpritePacket(texturePath);
-		// 					// });
-		// 					// std::cout << "create thread " << i << "\n";
-		// 					// t.join();
-		// 					// auto task = async::spawn([this, texturePath]()
-		// 					// {
-		// 					// 	this->loadSpritePacket(texturePath);
-		// 					// });
-		// 				// 	m_isLoaded[i] = true;
-		// 				// }
-
-		// 			}
-		// 		}
-		// 		while (!isDoneBatch())
-		// 		{
-
-		// 		}
-
-		// 		std::cout << "|||||||||||||||||||||||||| next batch |||||||||||||||";
-        //         resolved_files.fetch_add(limited_thread);
-        //         if(resolved_files.load() >= m_packetCount)BackendRendererOpenGL
-        //         {
-        //             resolved_files.store(m_packetCount) ;
-        //         }
-		// 	}
-		// 	std::cout << "enddddddd !!!!!!!!!!!!!!! \n";
-		// }
-		// closedir(dir);
-		// return 0;
 	}
-
-
-	// bool SpriteManager::isDoneBatch()
-	// {
-	// 	if(m_SpritePackets.size() >= resolved_files)
-    //     {
-    //         return true;
-    //     }
-    //     return false;
-	// }
 
 	bool SpriteManager::isLoadingDone()
 	{

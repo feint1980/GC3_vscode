@@ -124,10 +124,10 @@ void EditorScreen::entryRuntime()
 	__int64 now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 	std::cout << "Start loading " << now << "\n";
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
-	while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
-	{
-		std::cout << "waiting ...\n";
-	}
+	// while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
+	// {
+	// 	std::cout << "waiting ...\n";
+	// }
 
 	m_audioEngine = new Feintgine::AudioEngine();
 	m_audioEngine->init();
@@ -353,25 +353,27 @@ void EditorScreen::entryRuntime()
 
 	m_luaEditor.loadBosses("Assets/LuaFiles/");
 
-	
-	__int64 end = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-	std::cout << "End load " << end << std::endl;
-
 	glEnable(GL_BLEND);
+	__int64 end = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	__int64 elapsed = end - now;
+	std::cout << "total " << (float)elapsed / 1000.0f << "\n";
+	std::cout << "End load " << end << " \n";
+
+
 	//glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
 	
 
-	__int64 elapsed = end - now;
-	std::cout << "total " << (float)elapsed / 1000.0f << "\n";
+	
 
 
-	std::cout << "load end !!!!!";
+	std::cout << "load end !!!!! \n";
 	m_isLoaded = true;
 }
 
 void EditorScreen::onEntry()
 {
 	
+	//std::ios_base::sync_with_stdio(false);
 	m_spriteBatch.init();
 	m_fullCam.init(1600, 900);
 	m_fullCam.setPosition(glm::vec2(0));

@@ -85,6 +85,8 @@
 #include "BGM_Label.h"
 #include "Chapter_Label.h"
 
+#include <csignal>
+
 enum ShaderValueType
 {
 	T_Float,

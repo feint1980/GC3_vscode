@@ -6,7 +6,7 @@ enable_testing()
 
 file(GLOB TARGET_SRC "./src/*.cpp")
 
-set(CMAKE_CXX_FLAGS "-fpermissive -std=c++17")
+set(CMAKE_CXX_FLAGS "-fpermissive -std=c++17 -fno-strict-aliasing ")
 
 set(Generic_include_dir ${PROJECT_SOURCE_DIR}/../Feintgine/include)
 

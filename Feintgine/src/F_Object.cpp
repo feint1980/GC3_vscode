@@ -5,7 +5,7 @@ namespace Feintgine {
 
 	void F_Object::loadFromFile(const std::string & filePath)
 	{
-		std::cout << "load file from " << filePath.c_str() << "\n";
+		//std::cout << "load file from " << filePath.c_str() << "\n";
 		//if (!m_refab)
 		//{
 		m_refab = new  Proc_Object();

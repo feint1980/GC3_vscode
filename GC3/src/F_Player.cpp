@@ -1368,7 +1368,7 @@ void F_Player::initSound()
 {
 	if (m_audioEngine)
 	{
-		std::cout << "init sound called \n";
+		//std::cout << "init sound called \n";
 		m_fireSoundEffect = m_audioEngine->loadSoundEffect("Sounds/sfx/fire_sound.wav");
 		m_deadSoundEffect = m_audioEngine->loadSoundEffect("Sounds/sfx/pldead00.wav");
 		m_dashSoundEffect = m_audioEngine->loadSoundEffect("Sounds/sfx/se_tan00.wav");
