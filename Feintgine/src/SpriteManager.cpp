@@ -192,8 +192,8 @@ namespace Feintgine {
 						std::string packetKey = t_getFileNameFromPath(texturePath);
 						m_FutureMap.emplace_back(std::async(std::launch::async, readFile, texturePath));
 						m_storedKey.push_back(packetKey);
-						SpritePacket packet; 
-						m_SpritePackets.insert(std::make_pair(packetKey.c_str(), packet));
+						// SpritePacket packet; 
+						// m_SpritePackets.insert(std::make_pair(packetKey.c_str(), packet));
 					}
 				}
             }
@@ -268,9 +268,9 @@ namespace Feintgine {
 		// }
 		for(int i = 0 ; i < m_FutureMap.size(); i++)
 			{
-				// m_SpritePackets.insert(std::make_pair(m_storedKey[i], std::move(m_FutureMap[i].get())));
+				 m_SpritePackets.insert(std::make_pair(m_storedKey[i], std::move(m_FutureMap[i].get())));
 				
-				m_SpritePackets[m_storedKey[i]] = m_FutureMap[i].get();
+				//m_SpritePackets[m_storedKey[i]] = m_FutureMap[i].get();
 				//std::cout << "packget " << m_storedKey[i] << " is done \n";				
 				m_packetCount++;
 			}
@@ -303,6 +303,10 @@ namespace Feintgine {
 			
 		}
 
+
+
+		
+
 		std::cout << "back to main thread \n";
 
 
@@ -311,10 +315,11 @@ namespace Feintgine {
 
 		// back to main thread
 		auto textureBuffers = A_Context_saver::getContext_saver()->getTextureBuffers();
+		GLTexture t_texture;
 		for(int i = 0; i < textureBuffers.size(); i++)
 		{
 			//m_Mutex.lock();
-			GLTexture t_texture =  ResourceManager::getTexture(textureBuffers[i].filePath);
+			t_texture =  ResourceManager::getTexture(textureBuffers[i].filePath);
 
 
 			glGenTextures(1, &t_texture.id);
@@ -336,14 +341,26 @@ namespace Feintgine {
 		}
 
 		//loop in m_SpritePackets
-		for(auto it = m_SpritePackets.begin(); it != m_SpritePackets.end(); it++)
+		// for(auto it = m_SpritePackets.begin(); it != m_SpritePackets.end(); it++)
+		// {
+		// 	//m_Mutex.lock();
+		// 	it->second.updateTexture();
+		// 	//m_Mutex.unlock();
+		// 	//std::cout << "updated " << it->first << "\n";
+		// }
+		for(int i = 0 ; i < m_storedKey.size(); i++)
 		{
-			//m_Mutex.lock();
-			it->second.updateTexture();
-			//m_Mutex.unlock();
-			std::cout << "updated " << it->first << "\n";
+			m_SpritePackets[m_storedKey[i]].updateTexture();
 		}
 		std::cout << "loaded using " << max_threads << " thread(s) \n";
+
+		// clear temp data
+		for(int i = 0 ; i < m_FutureMap.size(); i++)
+		{
+			m_FutureMap.erase(m_FutureMap.begin() + i);
+			m_storedKey.erase(m_storedKey.begin() + i);
+		}
+		m_FutureMap.clear();
 
 		return 0;
 	}
