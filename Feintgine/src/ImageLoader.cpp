@@ -15,6 +15,8 @@ namespace Feintgine{
 
 		std::vector <unsigned char> in;
 		std::vector <unsigned char> out;
+		// in.reserve(10000);
+		// out.reserve(10000);
 		unsigned long width, height;
 
 		if (IOManager::readFileToBuffer(filePath, in) == false)
@@ -34,11 +36,11 @@ namespace Feintgine{
 		{
 
 			
-			m_mutex_t.lock();
+			//m_mutex_t.lock();
 
-			A_Context_saver::getContext_saver()->addOut(out);
+			//A_Context_saver::getContext_saver()->addOut(out);
 			A_Context_saver::getContext_saver()->addTextureBuffer(filePath,out);
-			m_mutex_t.unlock();
+			//m_mutex_t.unlock();
 		}
 		else
 		{

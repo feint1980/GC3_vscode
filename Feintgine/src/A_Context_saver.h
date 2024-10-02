@@ -46,7 +46,7 @@ namespace Feintgine
         void addTextureBuffer(const std::string & filePath, std::vector<unsigned char> & buffer)
         {
             textureBuffer tb(filePath,buffer);
-            m_textureBuffers.push_back(tb);
+            m_textureBuffers.push_back(std::move(tb));
         }
 
         static A_Context_saver * getContext_saver()
@@ -74,7 +74,7 @@ namespace Feintgine
 
         void addOut(std::vector<unsigned char> out)
         {
-            m_outs.push_back(out);
+            //m_outs.push_back(out);
         }
         void addWidth(long width)
         {
@@ -94,10 +94,10 @@ namespace Feintgine
             return p_glTextures;
         }
 
-        std::vector <std::vector<unsigned char>> getOuts()
-        {
-            return m_outs;
-        }
+        // std::vector <std::vector<unsigned char>> getOuts()
+        // {
+        //     return m_outs;
+        // }
         std::vector <long> getWidths()
         {
             return m_widths;
@@ -119,7 +119,7 @@ namespace Feintgine
 
         static A_Context_saver * p_Context_saver;
         std::vector< std::vector<unsigned char> *> m_ins;
-        std::vector< std::vector<unsigned char>> m_outs;
+        //std::vector< std::vector<unsigned char>> m_outs;
         std::vector<long> m_widths;
         std::vector<long> m_heights;
         SDL_GLContext p_glContext;
