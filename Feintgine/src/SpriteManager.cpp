@@ -323,7 +323,7 @@ namespace Feintgine {
 
 
 			glGenTextures(1, &t_texture.id);
-			auto out = textureBuffers[i].buffer;
+			auto out = std::move(textureBuffers[i].buffer);
 			glBindTexture(GL_TEXTURE_2D, t_texture.id);
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,t_texture.width, t_texture.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, &(out[0]));
 

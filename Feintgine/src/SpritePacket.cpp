@@ -141,10 +141,10 @@ namespace Feintgine {
 					packetTexturePath.c_str(), m_name, sprite_node->first_attribute("n")->value());
 
 				//std::cout << "sprite ID -----" << t_sprite.getTexture().id << "\n";
-				m_t_mutex.lock();
+				//m_t_mutex.lock();
 				m_spriteMap.insert(std::make_pair(sprite_node->first_attribute("n")->value(),  std::move(t_sprite)));
 
-				m_t_mutex.unlock();
+				//m_t_mutex.unlock();
 				
 				// 		m_sprites.push_back(t_sprite);
 			}

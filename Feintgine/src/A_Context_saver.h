@@ -67,15 +67,12 @@ namespace Feintgine
             p_glTextures.push_back(texture);
         }
 
-        void addIn(std::vector<unsigned char> * in)
-        {
-            m_ins.push_back(in);
-        }
+        // void addIn(std::vector<unsigned char> * in)
+        // {
+        //     m_ins.push_back(in);
+        // }
 
-        void addOut(std::vector<unsigned char> out)
-        {
-            //m_outs.push_back(out);
-        }
+
         void addWidth(long width)
         {
             m_widths.push_back(width);
@@ -94,10 +91,6 @@ namespace Feintgine
             return p_glTextures;
         }
 
-        // std::vector <std::vector<unsigned char>> getOuts()
-        // {
-        //     return m_outs;
-        // }
         std::vector <long> getWidths()
         {
             return m_widths;
@@ -118,7 +111,7 @@ namespace Feintgine
         std::vector<GLTexture * > p_glTextures;
 
         static A_Context_saver * p_Context_saver;
-        std::vector< std::vector<unsigned char> *> m_ins;
+        //std::vector< std::vector<unsigned char> *> m_ins;
         //std::vector< std::vector<unsigned char>> m_outs;
         std::vector<long> m_widths;
         std::vector<long> m_heights;
