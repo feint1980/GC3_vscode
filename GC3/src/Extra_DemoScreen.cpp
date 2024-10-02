@@ -147,82 +147,20 @@ void Extra_DemoScreen::onEntry()
 	
 	//m_tgui->add(text);
 
-	tgui::Font font("font/ARIALUNI.ttf");
 	tgui::Font font_load("font/Chronicle.ttf");
-	m_tgui->setFont(font);
 	m_tgui_load->setFont(font_load);
-	
-	//m_tgui->setAbsoluteView
 
-	m_text_realTime_tgui = tgui::Label::create();
-	m_text_fps_tgui = tgui::Label::create();
-	m_text_eventTime_tgui = tgui::Label::create();
-	m_text_spellName = tgui::Label::create();
-	m_text_spellSign = tgui::Label::create();
 	m_text_load = tgui::Label::create();
-
-	//m_text_load->setText
-	//m_text_load->
-	
-
-
 	m_text_load->setPosition(m_window->getScreenWidth() / 2, m_window->getScreenHeight() / 2);
 	m_text_load->setTextSize(32);
 	m_text_load->getRenderer()->setTextColor(tgui::Color::White);
 	m_text_load->getRenderer()->setBorderColor(tgui::Color::Black);
 	m_text_load->getRenderer()->setTextOutlineThickness(4);
-	m_text_load->setText("Loading");
-
-
-	m_text_realTime_tgui->setPosition(800, 50);
-	m_text_realTime_tgui->setTextSize(32);
-	m_text_realTime_tgui->getRenderer()->setTextColor(tgui::Color::White);
-	m_text_realTime_tgui->getRenderer()->setBorderColor(tgui::Color::Black);
-	m_text_realTime_tgui->getRenderer()->setTextOutlineThickness(4);
-	//m_text_eventTime_tgui->getRenderer()->
-
-	m_text_fps_tgui->setPosition(1200, 720);
-	m_text_fps_tgui->setTextSize(32);
-	m_text_fps_tgui->getRenderer()->setTextColor(tgui::Color::White);
-	m_text_fps_tgui->getRenderer()->setBorderColor(tgui::Color::Black);
-	m_text_fps_tgui->getRenderer()->setTextOutlineThickness(4);
-
-
-	m_text_eventTime_tgui->setPosition(800,100);
-	m_text_eventTime_tgui->setTextSize(32);
-	m_text_eventTime_tgui->getRenderer()->setTextColor(tgui::Color::White);
-	m_text_eventTime_tgui->getRenderer()->setBorderColor(tgui::Color::Black);
-	m_text_eventTime_tgui->getRenderer()->setTextOutlineThickness(12);
-
-	m_text_spellName->setPosition(250, 520);
-	m_text_spellName->setTextSize(27);
-	m_text_spellName->getRenderer()->setTextColor(tgui::Color::White);
-	m_text_spellName->getRenderer()->setBorderColor(tgui::Color::Black);
-	m_text_spellName->setWidth("100%");
-	m_text_spellName->setHeight(50);
-	m_text_spellName->setHorizontalAlignment(tgui::Label::HorizontalAlignment::Center);
-	m_text_spellName->getRenderer()->setTextOutlineThickness(4);
-
-
-	m_text_spellSign->setPosition(250, 560);
-	m_text_spellSign->setTextSize(24);
-	m_text_spellSign->getRenderer()->setTextColor(tgui::Color::White);
-	m_text_spellSign->getRenderer()->setBorderColor(tgui::Color::Black);
-	m_text_spellSign->setWidth("100%");
-	m_text_spellSign->setHeight(50);
-	m_text_spellSign->setHorizontalAlignment(tgui::Label::HorizontalAlignment::Center);
-	m_text_spellSign->getRenderer()->setTextOutlineThickness(4);
-
-	m_tgui->add(m_text_realTime_tgui);
-	m_tgui->add(m_text_fps_tgui);
-	m_tgui->add(m_text_eventTime_tgui);
-	m_tgui->add(m_text_spellName);
-	m_tgui->add(m_text_spellSign);
+	m_text_load->setText("Loading ...");
 
 	m_tgui_load->add(m_text_load);
 
-	m_bgmLabel.init(m_tgui, glm::vec2(-400,700), L"",0.0f);
-	m_chapterLabel.init(m_tgui, glm::vec2(280, 300), L"", L"",0.0f);
+	
 
 }
 
@@ -829,6 +767,8 @@ void Extra_DemoScreen::firstCheckPoint()
 	// });
 
 	std::cout << "loading packets ... \n";
+	__int64 t_now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+	std::cout << "Start loading " << t_now << "\n";
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
 // 	try {
 //   // Block of code to try
@@ -839,8 +779,7 @@ void Extra_DemoScreen::firstCheckPoint()
 // 	std::vector<char> s {'E', 'R', 'R', 'O', 'R', ':', ' '}; // reasonable allocation
 // 	std::cout << std::string(s.begin(), s.end()) << e.what() << std::endl;
 // 	}
-	__int64 t_now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
-	std::cout << "Start loading " << t_now << "\n";
+
 	// Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
 	// while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
 	// {
@@ -849,13 +788,79 @@ void Extra_DemoScreen::firstCheckPoint()
 
 	//Sleep(3000);
 
+
 	m_bg.init(Feintgine::ResourceManager::getTexture(
 	"Assets/Lazy/bg.png"), glm::vec2(-0,0), glm::vec2(768, 768));
 
 	m_bg2.init(Feintgine::ResourceManager::getTexture(
 	"Assets/Lazy/mountains.png"), glm::vec2(-50, 0), glm::vec2(768  , 768));
 	
+
+	auto loadTGUITask = async::spawn([&]{
+			tgui::Font font("font/ARIALUNI.ttf");
+			m_tgui->setFont(font);
+			
+			m_text_realTime_tgui = tgui::Label::create();
+			m_text_fps_tgui = tgui::Label::create();
+			m_text_eventTime_tgui = tgui::Label::create();
+			m_text_spellName = tgui::Label::create();
+			m_text_spellSign = tgui::Label::create();
+			
+			m_text_realTime_tgui->setPosition(800, 50);
+			m_text_realTime_tgui->setTextSize(32);
+			m_text_realTime_tgui->getRenderer()->setTextColor(tgui::Color::White);
+			m_text_realTime_tgui->getRenderer()->setBorderColor(tgui::Color::Black);
+			m_text_realTime_tgui->getRenderer()->setTextOutlineThickness(4);
+			//m_text_eventTime_tgui->getRenderer()->
+
+			m_text_fps_tgui->setPosition(1200, 720);
+			m_text_fps_tgui->setTextSize(32);
+			m_text_fps_tgui->getRenderer()->setTextColor(tgui::Color::White);
+			m_text_fps_tgui->getRenderer()->setBorderColor(tgui::Color::Black);
+			m_text_fps_tgui->getRenderer()->setTextOutlineThickness(4);
+
+
+			m_text_eventTime_tgui->setPosition(800,100);
+			m_text_eventTime_tgui->setTextSize(32);
+			m_text_eventTime_tgui->getRenderer()->setTextColor(tgui::Color::White);
+			m_text_eventTime_tgui->getRenderer()->setBorderColor(tgui::Color::Black);
+			m_text_eventTime_tgui->getRenderer()->setTextOutlineThickness(12);
+
+			m_text_spellName->setPosition(250, 520);
+			m_text_spellName->setTextSize(27);
+			m_text_spellName->getRenderer()->setTextColor(tgui::Color::White);
+			m_text_spellName->getRenderer()->setBorderColor(tgui::Color::Black);
+			m_text_spellName->setWidth("100%");
+			m_text_spellName->setHeight(50);
+			m_text_spellName->setHorizontalAlignment(tgui::Label::HorizontalAlignment::Center);
+			m_text_spellName->getRenderer()->setTextOutlineThickness(4);
+
+
+			m_text_spellSign->setPosition(250, 560);
+			m_text_spellSign->setTextSize(24);
+			m_text_spellSign->getRenderer()->setTextColor(tgui::Color::White);
+			m_text_spellSign->getRenderer()->setBorderColor(tgui::Color::Black);
+			m_text_spellSign->setWidth("100%");
+			m_text_spellSign->setHeight(50);
+			m_text_spellSign->setHorizontalAlignment(tgui::Label::HorizontalAlignment::Center);
+			m_text_spellSign->getRenderer()->setTextOutlineThickness(4);
+
+			m_tgui->add(m_text_realTime_tgui);
+			m_tgui->add(m_text_fps_tgui);
+			m_tgui->add(m_text_eventTime_tgui);
+			m_tgui->add(m_text_spellName);
+			m_tgui->add(m_text_spellSign);
+
+
+			m_bgmLabel.init(m_tgui, glm::vec2(-400,700), L"",0.0f);
+			m_chapterLabel.init(m_tgui, glm::vec2(280, 300), L"", L"",0.0f);
+
+	});
+
+	loadTGUITask.get();
+	
 	std::cout << "loaded !!!!!!! \n";
+
 
 	m_player.setCharacterSpell(1);
 	// m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
@@ -871,7 +876,7 @@ void Extra_DemoScreen::firstCheckPoint()
 	// 1 HOMING, 2 Missle , 3 needles, 4 laser
 	m_player.setAccessoryShot(1);
 
-	m_bg2.setColor(Feintgine::Color(255, 255, 255, 100));
+	//m_bg2.setColor(Feintgine::Color(255, 255, 255, 100));
 
 	m_player.setDeathCallback([&] {
 		addExplosion(
@@ -900,6 +905,13 @@ void Extra_DemoScreen::firstCheckPoint()
 	m_player.setPos(glm::vec2(25, -100));
 	m_player.reset();
 	GlobalValueClass::Instance()->savePlayer(&m_player);
+	m_recorder.init(&m_player, &ENGINE_current_tick);
+	//startCount = true;
+
+	m_player.registerEffectBatch(&m_effectBatch);
+
+	
+	//task1.get();
 
 	auto now = std::chrono::system_clock::now();
 	Feintgine::F_Event::Instance()->add([=] {
@@ -912,11 +924,6 @@ void Extra_DemoScreen::firstCheckPoint()
 	is_lightOn = true;
 	m_shaderTime = 0.0;
 
-	
-	m_recorder.init(&m_player, &ENGINE_current_tick);
-	//startCount = true;
-
-	m_player.registerEffectBatch(&m_effectBatch);
 
 	m_linkCreator.registerAudioEngine(&m_audioEngine);
 
@@ -939,14 +946,13 @@ void Extra_DemoScreen::firstCheckPoint()
 	m_shaderEventHandler.addEvent(m_cloudAlpha);
 
 	reloadLevel();
-	loaded = true;
 
 	__int64 end = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 	__int64 elapsed = end - t_now;
 	std::cout << "total " << (float)elapsed / 1000.0f << "\n";
 	std::cout << "End load " << end << " \n";
 
-	
+	loaded = true;
 
 }
 

@@ -191,7 +191,7 @@ namespace Feintgine {
 						//std::cout << "loading package " <<  texturePath << "\n";
 						std::string packetKey = t_getFileNameFromPath(texturePath);
 						m_FutureMap.emplace_back(std::async(std::launch::async, readFile, texturePath));
-						m_storedKey.push_back(packetKey);
+						m_storedKey.push_back(std::move(packetKey));
 						// SpritePacket packet; 
 						// m_SpritePackets.insert(std::make_pair(packetKey.c_str(), packet));
 					}

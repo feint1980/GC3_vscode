@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = @CMakeFiles/Feintgine.dir/includes_CXX.rsp
 
-CXX_FLAGS = -fpermissive -std=c++17 -fno-strict-aliasing 
+CXX_FLAGS = -fpermissive -std=c++17 
 

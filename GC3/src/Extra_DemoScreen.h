@@ -32,6 +32,7 @@
 #include <LightBatch.h>
 #include <thread>
 #include <deque>
+#include <future>
 
 #include <Timing.h>
 #include <FTimer.h>

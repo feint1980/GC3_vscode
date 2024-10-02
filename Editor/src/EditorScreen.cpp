@@ -128,156 +128,177 @@ void EditorScreen::entryRuntime()
 	// {
 	// 	std::cout << "waiting ...\n";
 	// }
+	
 
-	m_audioEngine = new Feintgine::AudioEngine();
-	m_audioEngine->init();
-	//Feintgine::SpriteManager::Instance()->executeReadData();
-	// tileset 
-	m_tileset.initData(Feintgine::ResourceManager::getTexture("Assets/Tilesets/test.png"));
-	m_tileset.loadData();
 
-	// 
-
+	// renderer
 	m_debug.init();
 	m_coliderRenderer.init();
 	m_editorCrosshair.init();
 
 	m_textRenderer.init(24,128, "font/ARIALUNI.ttf");
 	m_sceneManager.loadIcons();
-	 	
-	SceneScreen = glm::vec4(350, 50, 800, 800);
-	EditScreen = glm::vec4(350, 450,400,400);
-	AnimateScreen = glm::vec4(225, 410, 450, 450);
- 	SampleSceen = glm::vec4(970, 700, 150, 150);
-	ObjectsScreen = glm::vec4(10, 560, 300, 300);
- 	PreviewScreen = glm::vec4(50, 50, 220, 220);
-	SpriteListScreen = glm::vec4(1160, 570, 300, 300);
-
-	m_sideCam.init(1366, 768);
-	m_sideCam.setScale(1.0f);
-	m_sideCam.setPosition(glm::vec2(0));
-	m_sideCam.update();
-
-	EditDamaku = glm::vec4(50, 50, 800, 800);
-
-	EditEnemy = glm::vec4(50, 50, 800, 800);
-
-	EditLua = glm::vec4(50, 50, 800, 800);
-
-	staticCam_Editing.init(EditScreen.z, EditScreen.w);
-	staticCam_Editing.setPosition(glm::vec2(0));
-	staticCam_Editing.setScale(1.0f);
-
-	staticCam_Animating.init(AnimateScreen.z, AnimateScreen.w);
-	staticCam_Animating.setPosition(glm::vec2(0));
-
-	m_sampleCam.update();
-	//staticCam_Editing.loadAspect(m_window->getAspect());
+	async::parallel_invoke([&] {
+    	std::cout << "Init Audio engine... \n";
+		m_audioEngine = new Feintgine::AudioEngine();
+	m_audioEngine->init();
+	}, [&] {
+    	std::cout << "Init tileset \n";
+		m_tileset.initData(Feintgine::ResourceManager::getTexture("Assets/Tilesets/test.png"));
+		m_tileset.loadData();
+	}, [&] {
+		std::cout << "iniut renderer \n";
 	
-	m_spriteListCamera.init(SpriteListScreen.z, SpriteListScreen.w);
-	m_spriteListCamera.setScale(1.0f);
+	}, [&] {
+		std::cout << "init camera data \n";
+		SceneScreen = glm::vec4(350, 50, 800, 800);
+		EditScreen = glm::vec4(350, 450,400,400);
+		AnimateScreen = glm::vec4(225, 410, 450, 450);
+		SampleSceen = glm::vec4(970, 700, 150, 150);
+		ObjectsScreen = glm::vec4(10, 560, 300, 300);
+		PreviewScreen = glm::vec4(50, 50, 220, 220);
+		SpriteListScreen = glm::vec4(1160, 570, 300, 300);
 
-	m_spriteListCamera.setPosition(glm::vec2(0));
+		m_sideCam.init(1366, 768);
+		m_sideCam.setScale(1.0f);
+		m_sideCam.setPosition(glm::vec2(0));
+		m_sideCam.update();
 
-	//m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight());
-	m_camera.init(EditScreen.z, EditScreen.w);
-	m_camera.setScale(1.0f);
+		EditDamaku = glm::vec4(50, 50, 800, 800);
 
-	m_animatingCamera.init(AnimateScreen.z, AnimateScreen.w);
-	m_animatingCamera.setScale(2.0f);
+		EditEnemy = glm::vec4(50, 50, 800, 800);
+
+		EditLua = glm::vec4(50, 50, 800, 800);
+
+		staticCam_Editing.init(EditScreen.z, EditScreen.w);
+		staticCam_Editing.setPosition(glm::vec2(0));
+		staticCam_Editing.setScale(1.0f);
+
+		staticCam_Animating.init(AnimateScreen.z, AnimateScreen.w);
+		staticCam_Animating.setPosition(glm::vec2(0));
+
+		m_sampleCam.update();
+		//staticCam_Editing.loadAspect(m_window->getAspect());
+		
+		m_spriteListCamera.init(SpriteListScreen.z, SpriteListScreen.w);
+		m_spriteListCamera.setScale(1.0f);
+
+		m_spriteListCamera.setPosition(glm::vec2(0));
+
+		//m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight());
+		m_camera.init(EditScreen.z, EditScreen.w);
+		m_camera.setScale(1.0f);
+
+		m_animatingCamera.init(AnimateScreen.z, AnimateScreen.w);
+		m_animatingCamera.setScale(2.0f);
 
 
-	m_camera.setPosition(glm::vec2(0));
-	//m_camera.loadAspect(m_window->getAspect());
+		m_camera.setPosition(glm::vec2(0));
+		//m_camera.loadAspect(m_window->getAspect());
 
-	m_sceneCamera.init(SceneScreen.z, SceneScreen.w);
-	m_sceneCamera.setScale(1.0f);
+		m_sceneCamera.init(SceneScreen.z, SceneScreen.w);
+		m_sceneCamera.setScale(1.0f);
+		
+		m_sceneCamera.setPosition(glm::vec2(0));
+		//m_sceneCamera.loadAspect(m_window->getAspect());
+		m_sceneCamera.update();
+		m_sceneCamera_static.init(SceneScreen.z, SceneScreen.w);
+		m_sceneCamera_static.setScale(1.0f);
+
+		m_sceneCamera_static.setPosition(glm::vec2(0));
+
+		m_sceneCamera_static.update();
+
+		m_editDamakuCamera.init(EditDamaku.z, EditDamaku.w);
+		m_editDamakuCamera.setScale(1.0f);
+		m_editDamakuCamera.setPosition(glm::vec2(0));
+
+		m_editDamakuCamera_static.init(EditDamaku.z, EditDamaku.w);
+		m_editDamakuCamera_static.setScale(1.0f);
+		m_editDamakuCamera_static.setPosition(glm::vec2(0));
+		m_editDamakuCamera_static.update();
+
+		m_editEnemyCamera.init(EditEnemy.z, EditEnemy.w);
+		m_editEnemyCamera.setScale(1.0f);
+		m_editEnemyCamera.setPosition(glm::vec2(0));
+		m_editEnemyCamera.update();
+		
+		m_editEnemyCamera_static.init(EditEnemy.z, EditEnemy.w);
+		m_editEnemyCamera_static.setScale(1.0f);
+		m_editEnemyCamera_static.setPosition(glm::vec2(0));
+		m_editEnemyCamera_static.update();
+
+
+		m_editLuaCamera.init(EditLua.z, EditLua.w);
+		m_editLuaCamera.setScale(1.0f);
+		m_editLuaCamera.setPosition(glm::vec2(0));
+		m_editLuaCamera.update();
+
+		m_editLuaCamera_static.init(EditLua.z, EditLua.w);
+		m_editLuaCamera_static.setScale(1.0f);
+		m_editLuaCamera_static.setPosition(glm::vec2(0));
+		m_editLuaCamera_static.update();
+
+
+		m_sampleCam.init(SampleSceen.z, SampleSceen.w);
+		m_sampleCam.setScale(1.0f);
+
+		m_sampleCam.setPosition(glm::vec2(0));	
+		//m_sampleCam.loadAspect(m_window->getAspect());
+		m_sampleCam.update();
+
+		m_previewCamera.init(PreviewScreen.z, PreviewScreen.w);
+		m_previewCamera.setScale(1.0f);
+
+		m_previewCamera.setPosition(glm::vec2(0));	
+		//m_previewCamera.loadAspect(m_window->getAspect());
+		m_previewCamera.update();
+
+		m_previewCamera_static.init(PreviewScreen.z, PreviewScreen.w);
+		m_previewCamera_static.setScale(1.0f);
+
+		m_previewCamera_static.setPosition(glm::vec2(0));
+		m_previewCamera_static.update();
+		//m_previewCamera_static.loadAspect(m_window->getAspect());
+
+
+		staticCam_Sample.init(SampleSceen.z, SampleSceen.w);
+		staticCam_Sample.setScale(1.0f);
+
+		staticCam_Sample.setPosition(glm::vec2(0));
+	//	staticCam_Sample.loadAspect(m_window->getAspect());
+		staticCam_Sample.update();
+
+		m_objectsCamera.init(ObjectsScreen.z, ObjectsScreen.w);
+		m_objectsCamera.setScale(1.0f);
+
+		m_objectsCamera.setPosition(glm::vec2(0));
+	//	m_objectsCamera.loadAspect(m_window->getAspect());
+		m_objectsCamera.update();
+
+		m_camera.update();
+		m_camera.setScale(DEFAULT_OBJECT_CAM_SCALE);
+		m_spriteListCamera.update();
+
+		
+		m_camera.setPosition(glm::vec2(0));
+	}
+	);
 	
-	m_sceneCamera.setPosition(glm::vec2(0));
-	//m_sceneCamera.loadAspect(m_window->getAspect());
-	m_sceneCamera.update();
-	m_sceneCamera_static.init(SceneScreen.z, SceneScreen.w);
-	m_sceneCamera_static.setScale(1.0f);
-
-	m_sceneCamera_static.setPosition(glm::vec2(0));
-
-	m_sceneCamera_static.update();
-
-	m_editDamakuCamera.init(EditDamaku.z, EditDamaku.w);
-	m_editDamakuCamera.setScale(1.0f);
-	m_editDamakuCamera.setPosition(glm::vec2(0));
-
-	m_editDamakuCamera_static.init(EditDamaku.z, EditDamaku.w);
-	m_editDamakuCamera_static.setScale(1.0f);
-	m_editDamakuCamera_static.setPosition(glm::vec2(0));
-	m_editDamakuCamera_static.update();
-
-	m_editEnemyCamera.init(EditEnemy.z, EditEnemy.w);
-	m_editEnemyCamera.setScale(1.0f);
-	m_editEnemyCamera.setPosition(glm::vec2(0));
-	m_editEnemyCamera.update();
+	//Feintgine::SpriteManager::Instance()->executeReadData();
+	// tileset 
 	
-	m_editEnemyCamera_static.init(EditEnemy.z, EditEnemy.w);
-	m_editEnemyCamera_static.setScale(1.0f);
-	m_editEnemyCamera_static.setPosition(glm::vec2(0));
-	m_editEnemyCamera_static.update();
 
+	// 
 
-	m_editLuaCamera.init(EditLua.z, EditLua.w);
-	m_editLuaCamera.setScale(1.0f);
-	m_editLuaCamera.setPosition(glm::vec2(0));
-	m_editLuaCamera.update();
-
-	m_editLuaCamera_static.init(EditLua.z, EditLua.w);
-	m_editLuaCamera_static.setScale(1.0f);
-	m_editLuaCamera_static.setPosition(glm::vec2(0));
-	m_editLuaCamera_static.update();
-
-
-	m_sampleCam.init(SampleSceen.z, SampleSceen.w);
-	m_sampleCam.setScale(1.0f);
-
-	m_sampleCam.setPosition(glm::vec2(0));	
-	//m_sampleCam.loadAspect(m_window->getAspect());
-	m_sampleCam.update();
-
-	m_previewCamera.init(PreviewScreen.z, PreviewScreen.w);
-	m_previewCamera.setScale(1.0f);
-
-	m_previewCamera.setPosition(glm::vec2(0));	
-	//m_previewCamera.loadAspect(m_window->getAspect());
-	m_previewCamera.update();
-
-	m_previewCamera_static.init(PreviewScreen.z, PreviewScreen.w);
-	m_previewCamera_static.setScale(1.0f);
-
-	m_previewCamera_static.setPosition(glm::vec2(0));
-	m_previewCamera_static.update();
-	//m_previewCamera_static.loadAspect(m_window->getAspect());
-
-
-	staticCam_Sample.init(SampleSceen.z, SampleSceen.w);
-	staticCam_Sample.setScale(1.0f);
-
-	staticCam_Sample.setPosition(glm::vec2(0));
-//	staticCam_Sample.loadAspect(m_window->getAspect());
-	staticCam_Sample.update();
-
-	m_objectsCamera.init(ObjectsScreen.z, ObjectsScreen.w);
-	m_objectsCamera.setScale(1.0f);
-
-	m_objectsCamera.setPosition(glm::vec2(0));
-//	m_objectsCamera.loadAspect(m_window->getAspect());
-	m_objectsCamera.update();
-
-	m_camera.update();
-	m_camera.setScale(DEFAULT_OBJECT_CAM_SCALE);
-	m_spriteListCamera.update();
-
-	
-	m_camera.setPosition(glm::vec2(0));
 	//readFile();
 	initGUI();
+	hideAnimateEditor();
+	hideDamakuEditor();
+	showSceneEditor();
+	m_layers->show();
+	m_addLayerButton->show();
+	m_deleteLayerButton->show();
 	m_spriteListDisplayer.init(glm::vec2(0), glm::vec2(SpriteListScreen.z, SpriteListScreen.w), 5, 5, &m_gui);
 	m_spriteListDisplayer.setClickSpriteEvent([&]() {
 		eventSelectSprite();
@@ -308,12 +329,7 @@ void EditorScreen::entryRuntime()
 	//initGUI();
 	drawMode = edit_scene_mode;
 	//hideObjectEditor();
-	hideAnimateEditor();
-	hideDamakuEditor();
-	showSceneEditor();
-	m_layers->show();
-	m_addLayerButton->show();
-	m_deleteLayerButton->show();
+	
 
 	refresh();
 
@@ -362,9 +378,6 @@ void EditorScreen::entryRuntime()
 
 	//glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
 	
-
-	
-
 
 	std::cout << "load end !!!!! \n";
 	m_isLoaded = true;
