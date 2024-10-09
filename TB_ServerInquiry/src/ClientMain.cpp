@@ -52,7 +52,6 @@ void ClientMain::init(const std::string & serverIP,unsigned int port, unsigned i
     // m_socketDescriptor[1].socketFamily = AF_INET6;
 
     
-
     RakNet::ConnectionAttemptResult car = m_client->Connect(m_serverIP.c_str(), m_port, "TTKR", strlen("TTKR"));
 
     RakAssert(car == RakNet::CONNECTION_ATTEMPT_STARTED);

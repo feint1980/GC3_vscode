@@ -55,65 +55,45 @@ function setPhase(host,tPhase, tSide)
 end
 
 function init(host)
-    -- init slots
-    -- leftSlots = {}          -- create the matrix
-    -- for i=1,3 do
-    --     leftSlots[i] = {}     -- create a new row
-    --     for j=1,3 do
-    --         leftSlots[i][j] = cppCreateSlot(host, i, j,1)
-    --     end
-    -- end
-    -- rightSlots = {}          -- create the matrix
-    -- for i=1,3 do
-    --     rightSlots[i] = {}     -- create a new row
-    --     for j=1,3 do
-    --         rightSlots[i][j] = cppCreateSlot(host, i, j,2)
-    --     end
-    -- end
 
 
+    -- Init GUI
     cppSetDescriptionBoxPos(host,300,-355);
     cppSetDescriptionBoxDim(host,600,180);
 
+    -- 
     t_turnHandler = TurnHandler:new()
     t_slotHandler = SlotHandler:new()
     t_slotHandler:init(host,3,3,t_turnHandler)
 
-
     -- init characters
-
-
-    -- characters["pat"] = Patchy:new()
-    -- characters["pat"]:init(host,t_slotHandler:getSlot(1,2,1))
-    -- characters["pat"]:loadCommon(host)
-
+    -- Patchouli, left
     p1 = Patchouli:new()
     p1:init(host,t_slotHandler:getSlot(3,3,1),1)
     p1:loadCommon(host)
-    --t_slotHandler:getSlot(3,3,1):setDyobj(p1)
 
 
+    -- Yukari, left
     p2 = Reimu:new()
     p2:init(host,t_slotHandler:getSlot(2,2,1),1)
     p2:loadCommon(host)
     p2:loadSkills(host)
-    --t_slotHandler:getSlot(2,2,1):setDyobj(p2)
 
+    -- Reimu, left
     p3 = Yukari:new()
     p3:init(host,t_slotHandler:getSlot(1,3,1),1)
     p3:loadCommon(host)
 
-
+    -- Reimu, right
     p2a = Reimu:new()
     p2a:init(host,t_slotHandler:getSlot(1,2,2),2)
     p2a:loadCommon(host)
     p2a:loadSkills(host)
-    --t_slotHandler:getSlot(2,2,1):setDyobj(p2)
 
+    -- Yukari, right
     p3a = Yukari:new()
     p3a:init(host,t_slotHandler:getSlot(2,3,2),2)
     p3a:loadCommon(host)
-
 
     t_turnHandler:addCharacter(p1)
     t_turnHandler:addCharacter(p2)
@@ -122,11 +102,11 @@ function init(host)
     t_turnHandler:addCharacter(p2a)
     t_turnHandler:addCharacter(p3a)
 
-
     t_guiIcons = IconGUI:new()
     t_guiIcons:init(host)
     --t_guiIcons:loadIcons(host,characters["p1"])
 
+    -- start the main game loop
     mainGame["main"] = {behavior = coroutine.create(gameLoop,host)} 
     IssueNextPhase(host)
 end
@@ -147,7 +127,6 @@ function HandleMovingTask(host,dynob,slot)
         print(coroutine.status(entityTasks[dynob].behavior))
     end
 end
-
 
 function sortCharactersTurn()
     print("sort turn started")
