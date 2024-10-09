@@ -22,3 +22,21 @@
 #include "DataBaseHandler.h"
 #include "FileTransferHost.h"
 #include <vector>
+
+enum RequestCode
+{
+    login,
+    invalid
+};
+
+class NetworkPacket
+{
+
+public:
+    NetworkPacket();
+    ~NetworkPacket();
+    RequestCode getSpecialRequestCode(RakNet::Packet *p);
+	
+
+
+}
