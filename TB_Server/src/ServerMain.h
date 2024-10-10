@@ -18,6 +18,8 @@
 
 #include <stdio.h>
 #include <string.h>
+#include "NetworkPacket.h"
+#include "DataBaseHandler.h"
 //#include "Gets.h"
 
 
@@ -54,6 +56,8 @@ public:
 
     void handleCommand(const std::string & command);
 
+    int handleStep2Request(RakNet::Packet *p);
+
     ServerCommand getCommand(const std::string & command);
 
     private:
@@ -76,6 +80,8 @@ private:
     RakNet::Packet * m_currentPacket;
 
     RakNet::SystemAddress m_clientID =RakNet::UNASSIGNED_SYSTEM_ADDRESS;
+
+    DataBaseHandler m_dbh;
 
     char messageBuffer[2048];
     char serverBroadcast[2048];

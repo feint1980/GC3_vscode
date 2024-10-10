@@ -1,42 +1,28 @@
 #pragma
 
-#include "MessageIdentifiers.h"
-
-#include "RakPeerInterface.h"
-#include "RakNetStatistics.h"
-#include "RakNetTypes.h"
-#include "BitStream.h"
-#include "RakSleep.h"
-#include "PacketLogger.h"
+#include <RakNet/RakPeerInterface.h>
+#include <RakNet/RakNetStatistics.h>
+#include <RakNet/RakNetTypes.h>
+#include <RakNet/BitStream.h>
+#include <RakNet/RakSleep.h>
+#include <RakNet/PacketLogger.h>
+#include <RakNet/Gets.h>
+#include <RakNet/Kbhit.h>
 #include <assert.h>
 #include <cstdio>
 #include <cstring>
 #include <stdlib.h>
-#include "Kbhit.h"
-#include <stdio.h>
-#include <string.h>
-#include <string>
-#include "Gets.h"
-#include <iostream>
 
-#include "DataBaseHandler.h"
-#include "FileTransferHost.h"
+#include <string>
 #include <vector>
+
+
 
 enum RequestCode
 {
     login,
     invalid
 };
-
-class NetworkPacket
-{
-
-public:
-    NetworkPacket();
-    ~NetworkPacket();
-    RequestCode getSpecialRequestCode(RakNet::Packet *p);
-	
+RequestCode getSpecialRequestCode(RakNet::Packet *p);
 
 
-}

@@ -12,7 +12,10 @@
 #include <mutex>
 #include <future>
 #include "A_Context_saver.h"
+#include <array>
 
+// Total support packet of engine ( modify if you want but I like to keep it small)
+#define MAX_PACKET_SIZE 256
 
 namespace Feintgine {
 
@@ -58,9 +61,10 @@ namespace Feintgine {
 		static SpriteManager *p_Instance;
 
 		std::map<std::string, SpritePacket > m_SpritePackets;
-		std::vector<std::future<SpritePacket> > m_FutureMap;
+		std::vector<std::future<SpritePacket>> m_FutureMap;
 		std::vector<std::string> m_storedKey;
-		std::vector<std::thread> m_Threads;
+		//std::vector<std::string> m_storedTexturePath;
+		unsigned int m_storedPacketCount = 0;
 		static std::mutex m_Mutex;
 		//std::atomic<bool> m_isDones[2000]; // let just cache 2000 packets
 		std::atomic_int m_packetCount = std::atomic_int(0);

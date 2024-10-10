@@ -6,7 +6,10 @@ project(${PROJECT_N} VERSION 1.0)
 set(CMAKE_CXX_FLAGS "-fpermissive -std=c++17 -municode -m32")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp)
+file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp
+    ${PROJECT_SOURCE_DIR}/../PacketDescription/NetworkPacket.cpp
+
+)
 
 # a macro that gets all of the header containing directories. 
 MACRO(header_directories return_list includes_base_folder extention )
@@ -34,13 +37,15 @@ foreach(dir ${INCLUDES})
 endforeach()
 
 
+set(Packet_include_dir  ${PROJECT_SOURCE_DIR}/../PacketDescription/)
+
 set(FEINTGINE_include_dir  ${PROJECT_SOURCE_DIR}/../Feintgine/src)
 set(FEINTGINE_lib_dir ${PROJECT_SOURCE_DIR}/../Feintgine/build)
 
 set(DEPS_include_dir  ${PROJECT_SOURCE_DIR}/../Feintgine_GC_deps/include)
 set(DEPS_lib_dir  ${PROJECT_SOURCE_DIR}/../Feintgine_GC_deps/lib)
 
-include_directories(${DEPS_include_dir})
+include_directories(${DEPS_include_dir} ${Packet_include_dir})
 
 include_directories(${INCLUDES} ${FEINTGINE_include_dir} ${PROJECT_SOURCE_DIR}/include/)
 

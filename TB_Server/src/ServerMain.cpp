@@ -21,6 +21,26 @@ ServerMain::ServerMain()
     m_port = 1123 ;
 }
 
+int ServerMain::handleStep2Request(RakNet::Packet *p)
+{
+    RequestCode requestCode = getSpecialRequestCode(p);
+    switch (requestCode)
+    {
+        case RequestCode::login:
+        {
+            std::cout << "Login request found !!!\n";
+            // todo : verify login
+
+            return 12;
+        }
+        break;
+        default :
+            return 0;
+        break;
+    }
+    return -22;
+}
+
 
 ServerMain::~ServerMain()
 {
@@ -29,7 +49,12 @@ ServerMain::~ServerMain()
 
 void ServerMain::init(const std::string & password, int port,unsigned int serverSize)
 {
-    std::cout << "Init server \n";
+
+    std::cout << "|=========================================|\n";
+	std::cout << "|            Init DataBase                |\n";
+	m_dbh.loadDataBase("../data/tData.db");
+	std::cout << "|=========================================|\n";
+    std::cout << "|             Init Server                 |\n";
 
     m_server = RakNet::RakPeerInterface::GetInstance();
 
@@ -150,6 +175,8 @@ void ServerMain::update(float deltaTime)
 				break;
 
 			default:
+
+                handleStep2Request(m_currentPacket);
 				// The server knows the static data of all clients, so we can prefix the message
 				// With the name data
 				printf("%s\n", m_currentPacket->data);
