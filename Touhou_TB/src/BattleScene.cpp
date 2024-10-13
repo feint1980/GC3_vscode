@@ -225,7 +225,7 @@ int lua_EntityPlayAnimation(lua_State * L)
 int lua_EntityMoveToSlot(lua_State * L)
 {
 
-	if (lua_gettop(L) != 4)
+	if (lua_gettop(L) < 4 || lua_gettop(L) > 5)
 	{
 		std::cout << "gettop failed (lua_EntityMoveToSlot) \n";
 		std::cout << lua_gettop(L) << "\n";
@@ -235,14 +235,28 @@ int lua_EntityMoveToSlot(lua_State * L)
 	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
 	F_Lua_BaseEntity * object = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 2));
 	Slot * slot = static_cast<Slot*>(lua_touserdata(L, 3));
+
 	float time = (float)lua_tonumber(L, 4);
+
+	bool isWait = true;
+
+	if(lua_gettop(L) == 5)
+	{
+		isWait = lua_toboolean(L, 5);
+	}
 
 	F_Lua_EntityManipulator * manipulator = new F_Lua_EntityManipulator();
 
 	manipulator->moveToSlot(object, slot, time);
 
-	battleScene->addEntityManipulator(manipulator);	
-
+	if(isWait)
+	{
+		battleScene->addEntityManipulator(manipulator);	
+	}
+	else
+	{
+		battleScene->addNonWaitEntityManipulator(manipulator);
+	}
 	return 0;
 }
 

@@ -79,6 +79,11 @@
 				<anim name="Reimu_TB/hit_upper_02.png" time="5.00" offset_x="-11.00" offset_y="-1.00" loop="1"/>
 			</anims>
 		</animation>
+		<animation name="hit_upper_end">
+			<anims>
+				<anim name="Reimu_TB/hit_upper_03.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
 		<animation name="idle">
 			<anims>
 				<anim name="Reimu_TB/idle_01.png" time="5.50" offset_x="0.00" offset_y="0.00" loop="1"/>

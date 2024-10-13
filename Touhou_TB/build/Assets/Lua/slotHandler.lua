@@ -37,7 +37,7 @@ end
 
 
 
-function SlotHandler:init(host,tRow,tCol,tTurnHandler)
+function SlotHandler:init(host,tCol,tRow,tTurnHandler)
     leftSlots  = {}          -- create the matrix
     rightSlots = {}          -- create the matrix
 
@@ -55,28 +55,28 @@ function SlotHandler:init(host,tRow,tCol,tTurnHandler)
     self.row = tRow
     self.col = tCol
 
-    for i=1,self.row do
+    for i=1,self.col do
         leftSlots[i] = {}     -- create a new row
-        for j=1,self.col do
+        for j=1,self.row do
             leftSlots[i][j] = cppCreateSlot(host,i,j,1)--Slot:new()-- cppCreateSlot(host,i,j,1)
             --leftSlots[i][j]:init(host,i,j,1)
         end
     end
 
-    for i=1,self.row do
+    for i=1,self.col do
         rightSlots[i] = {}     -- create a new row
-        for j=1,self.col do
+        for j=1,self.row do
             rightSlots[i][j] = cppCreateSlot(host,i,j,2)--Slot:new()--cppCreateSlot(host,i,j,2)
             --rightSlots[i][j]:init(host,i,j,2)
         end
     end
 end
 
-function SlotHandler:getSlot(tRow,tCol,tSide)
+function SlotHandler:getSlot(tCol,tRow,tSide)
     if tSide == 1 then
-        return leftSlots[tRow][tCol]
+        return leftSlots[tCol][tRow]
     elseif tSide == 2 then
-        return rightSlots[tRow][tCol]
+        return rightSlots[tCol][tRow]
     end
 end
 

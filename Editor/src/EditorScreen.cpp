@@ -76,9 +76,9 @@ int EditorScreen::listdir(const char *name, int level)
 				{
 					// std::cout << "packet " << entry->d_name << " found \n";
 					const CEGUI::Image* sel_img = &CEGUI::ImageManager::getSingleton().get("TaharezLook/MultiListSelectionBrush");
-					 
+					
 					CEGUI::ListboxTextItem * item;
-				 	item = new CEGUI::ListboxTextItem(entry->d_name, animateCount++);
+					item = new CEGUI::ListboxTextItem(entry->d_name, animateCount++);
 					item->setSelectionBrushImage(sel_img);
 					m_AObjList->addItem(item);
 				}

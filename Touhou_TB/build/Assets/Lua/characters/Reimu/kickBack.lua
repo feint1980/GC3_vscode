@@ -1,7 +1,7 @@
-package.path = package.path .. ';./Assets/lua/Icons/?.lua;'
+package.path = package.path .. ';./Assets/lua/Icons/?.lua;' .. ';./Assets/Lua/system/?.lua'
 
 require "Icon"
-
+require "system"
 
 KickBack = Icon:new({
     asset = "./Assets/TB_GUI/spell_1.png",
@@ -43,10 +43,9 @@ end
 
 
 function kickBackSelected(host,dyobj)
-    
+
     cppEntityPlayAnimation(host,dyobj,"hakurei_kick_ready",false,-1)
     coroutine.yield()
-
 end
 
 function KickBack:selected(host,character)
@@ -69,7 +68,6 @@ function KickBack:selected(host,character)
 end
 
 function kickBackBehavior(host, dyobj)
-
 
 
     --cppClearEntityTasks(host,dyobj)
@@ -128,27 +126,47 @@ function kickBackBehavior(host, dyobj)
     coroutine.yield()
 
     if(kickbackTarget ~= nil) then
-        cppEntityPlayAnimation(host,kickbackTarget,"hit_upper_end",false,1)
+        cppEntityPlayAnimation(host,kickbackTarget,"hit_upper_end",true,25)
+        local currentSlotRow = cppGetSlotRow(targetSlot)
+        local currentSlotCol = cppGetSlotCol(targetSlot)
+        local targetSide = getInvertSide(character.side)
+        if( currentSlotCol < 3) then
+            currentSlotCol = currentSlotCol + 1
+            local moveSlot = t_slotHandler:getSlot(currentSlotCol,currentSlotRow,targetSide)
+            --local checkEmpty= 
+            if cppIsSlotEmpty(host,moveSlot) ~= false then
+                cppEntityMoveToslot(host,kickbackTarget,moveSlot,25,false)
+            end
+            --coroutine.yield()
+        end
     else
         print("kickbackTarget is nil")
     end
+    
+    
+    
 
     cppResetCamera(host,dyobj,false,20)
 
+   
+
+    local currentSlot = t_turnHandler:getCurrentCharacter().currentSlot
+    cppEntityPlayAnimation(host,dyobj,"hakurei_kick_recover",false,1)
+    cppEntityMoveToslot(host,dyobj,currentSlot,20)
+    coroutine.yield()
+  
     if(kickbackTarget ~= nil) then
         cppEntityPlayAnimation(host,kickbackTarget,"idle",false,-1)
     else
         print("kickbackTarget is nil")
     end
-
-    local currentSlot = t_turnHandler:getCurrentCharacter().currentSlot
-    cppEntityPlayAnimation(host,dyobj,"hakurei_kick_recover",false,1)
-    cppEntityMoveToslot(host,dyobj,currentSlot,20)
     
-    coroutine.yield()
-  
     cppEntityPlayAnimation(host,dyobj,"idle",false,-1)
     coroutine.yield()
+
+    --coroutine.yield()
+   
+
     cppClearEntityTasks(host,dyobj)
    
 end
