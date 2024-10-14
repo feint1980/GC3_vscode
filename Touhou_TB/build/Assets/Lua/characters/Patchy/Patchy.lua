@@ -7,11 +7,12 @@ require "Character"
 
 Patchy = Character:new({
     Strenth = 3,
-    Vitality = 4,
-    Dexterity = 4,
-    Agility = 4,
-    Intelligence = 22,
-    Wisdom = 22,
+    Vitality = 3,
+    Dexterity = 3,
+    Agility = 3,
+    Intelligence = 18,
+    Wisdom = 18,
+
     dyobj = nil,
     animationPath = "./Assets/F_AObjects/patchouli_tb.xml",
     action = 1.0,

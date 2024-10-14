@@ -72,8 +72,6 @@ void ServerMain::init(const std::string & password, int port,unsigned int server
     m_socketDescriptor[1].port = m_port;
     m_socketDescriptor[1].socketFamily = AF_INET6;
 
-
-
     bool init2IPVer = m_server->Startup(10, m_socketDescriptor,2) == RakNet::RAKNET_STARTED;
     if (!init2IPVer)
     {
@@ -176,7 +174,7 @@ void ServerMain::update(float deltaTime)
 
 			default:
 
-                handleStep2Request(m_currentPacket);
+                int result = handleStep2Request(m_currentPacket);
 				// The server knows the static data of all clients, so we can prefix the message
 				// With the name data
 				printf("%s\n", m_currentPacket->data);

@@ -2,15 +2,63 @@ package.path = package.path .. ';./Assets/lua/Icons/?.lua;'
 require "Move"
 require "End"
 
+--[[
+> Strength (STR)
+Primary Influence: Physical Damage
+Other Effects: Increases the damage dealt by physical attacks, heavy weapons, or abilities that rely on raw power. Could also contribute to the character's ability to break through shields or armor.
+
+
+> Vitality (VIT)
+Primary Influence: Health & Physical Defense
+Other Effects: Determines max HP, physical defense, and resistance to status ailments related to physical endurance (such as bleeding, poison, or stun). It could also reduce incoming physical damage by a percentage.
+
+
+> Dexterity (DEX)
+Primary Influence: Accuracy & Critical Hit Chance (Physical)
+Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes. Dexterity could also enhance skills or abilities that require precision, such as archery or certain melee attacks.
+
+
+> Agility (AGI)
+Primary Influence: Speed & Evasion
+Other Effects: Determines turn order (faster characters act first) and increases evasion against physical attacks. Higher agility could also reduce the chance of getting hit by slower enemies and allow characters to reposition more easily.
+
+
+> Intelligence (INT)
+Primary Influence: Magic Damage
+Other Effects: Increases the damage dealt by magical attacks and spells. It could also affect the potency of debuffs, the number of targets a spell can hit, or even mana regeneration rates.
+
+
+> Wisdom (WIS)
+Primary Influence: Magic Defense & Mana Pool
+Other Effects: Determines resistance to magical attacks and could increase max mana. Wisdom could also affect healing abilities, status effect resistance (such as confusion or charm), and reduce the cooldowns on certain spells or abilities.
+
+
+Derived Stats:
+> Hit Chance: Primarily influenced by Dexterity, could be affected by Agility for ranged or fast attacks.
+
+
+Evasion: Influenced by Agility, with a potential bonus from Wisdom (to dodge magical effects).
+
+
+Critical Hit Chance: Influenced by Dexterity (for physical attacks) and possibly Intelligence (for magical criticals).
+
+
+Physical Defense: Primarily governed by Vitality, with some influence from Strength for sturdier builds.
+
+
+Magic Defense: Primarily governed by Wisdom, with a potential small influence from Intelligence for spellcasters.
+
+
+Speed: Purely determined by Agility; affects turn order in combat.]]--
+
 Character = {
 
-    Strength = 5,
-    Vitality = 5,
-    Dexterity = 5,
-    Agility = 5,
-    Intelligence = 5,
-    Wisdom = 5,
-
+    Strength = 8,
+    Vitality = 8,
+    Dexterity = 8,
+    Agility = 8,
+    Intelligence = 8,
+    Wisdom = 8,
     dyobj = nil,
     animationPath = "./Assets/F_AObjects/patchouli_tb.xml",
     portraitPath  = "./Assets/TB_GUI/faces/Patchouli_face.png",
@@ -34,7 +82,6 @@ Character = {
     skills = {},
     currentSlot = nil
 
-
 }
 
 function Character:new(o)
@@ -42,6 +89,12 @@ function Character:new(o)
     setmetatable(o, self)
     self.__index = self
     return o
+end
+
+function Character:getTurn()
+
+    local additionTurn = 0
+    local count = self.Agility / 5
 end
 
 function Character:init(host,slot,tSide)
@@ -102,4 +155,5 @@ function Character:loadCommon(host)
     return self.common_actions
 
 end
+
 
