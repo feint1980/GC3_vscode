@@ -93,8 +93,10 @@ end
 
 function Character:getTurn()
 
-    local additionTurn = 0
+    
     local count = self.Agility / 5
+    
+
 end
 
 function Character:init(host,slot,tSide)
