@@ -22,10 +22,10 @@ Reimu = Character:new({
     mana = 100,
     sp = 0,
     spCap = 100,
-    physicDmg = 12,
-    physicDef = 12,
-    magicDmg = 12,
-    magicDef = 11,
+    physicDmg = 5,
+    physicDef = 5,
+    magicDmg = 5,
+    magicDef = 5,
     accurate = 0.9,
     evadeChance = 0.3,
     name = "Reimu",
@@ -46,7 +46,7 @@ end
 
 function Reimu:loadSkills(host)
 
-   -- local t_skills = {}
+    -- local t_skills = {}
     self.skills = {}
     self.skills["KickBack"] = KickBack
     self.skills["KickBack"]:init(host,self.dyobj,self)
@@ -60,7 +60,7 @@ function Reimu:loadSkills(host)
 
     --print("skills loaded " .. #self.skills)
     --print("skills loaded " .. #t_skills)
-   --return self.skills
+    --return self.skills
     
 end
 

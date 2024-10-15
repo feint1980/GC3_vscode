@@ -4,17 +4,17 @@ require "End"
 
 --[[
 > Strength (STR)
-Primary Influence: Physical Damage
+Primary Influence: Physical Damage | scale value is 3
 Other Effects: Increases the damage dealt by physical attacks, heavy weapons, or abilities that rely on raw power. Could also contribute to the character's ability to break through shields or armor.
 
 
 > Vitality (VIT)
-Primary Influence: Health & Physical Defense
+Primary Influence: Health & Physical Defense | scale value is 1 
 Other Effects: Determines max HP, physical defense, and resistance to status ailments related to physical endurance (such as bleeding, poison, or stun). It could also reduce incoming physical damage by a percentage.
 
 
 > Dexterity (DEX)
-Primary Influence: Accuracy & Critical Hit Chance (Physical)
+Primary Influence: Accuracy & Critical Hit Chance (Physical) 
 Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes. Dexterity could also enhance skills or abilities that require precision, such as archery or certain melee attacks.
 
 
@@ -73,6 +73,7 @@ Character = {
     magicDef = 10,
     accurate = 0.5,
     evadeChance = 0.1,
+    critChance = 0.125,
     name = "Nameless",
     lastName = "None",
     title = "None",
@@ -92,11 +93,52 @@ function Character:new(o)
 end
 
 function Character:getTurn()
+    local count = math.modf(self.Agility / 7)
+    return 1 +( count * 0.25)
+end
 
-    
-    local count = self.Agility / 5
-    
+function Character:getHP()
+    local additionHP = self.Vitality * 8
+    return 70 + additionHP
+end
 
+function Character:getMana()
+    local additionMana = self.Wisdom * 7
+    return 50 + additionMana
+end
+
+function Character:getPhysicDmg()
+    return 5 +  self.Strength * 2
+end
+
+function Character:getMagicDmg()
+    local additionDmg = self.Intelligence * 4
+    return 10 + additionDmg
+end
+
+function Character:getPhysicDef()
+    local additionDef = self.Vitality * 1
+    return 10 + additionDef
+end
+
+function Character:getMagicDef()
+    local additionDef = self.Wisdom * 1
+    return 10 + additionDef
+end
+
+function Character:getAccurate()
+    local additionAcc = self.Dexterity * 0.03
+    return 0.5 + additionAcc
+end
+
+function Character:getEvadeChance()
+    local additionEvade = self.Agility * 0.02
+    return 0.25 + additionEvade
+end
+
+function Character:getCritChance()
+    local additionCrit = self.Dexterity * 0.013
+    return 0.125 + additionCrit
 end
 
 function Character:init(host,slot,tSide)
@@ -111,17 +153,19 @@ function Character:init(host,slot,tSide)
     cppSetAttribute(self.dyobj,"Agility",self.Agility)
     cppSetAttribute(self.dyobj,"Intelligence",self.Intelligence)
     cppSetAttribute(self.dyobj,"Wisdom",self.Wisdom)
-    cppSetAttribute(self.dyobj,"action",self.action)
-    cppSetAttribute(self.dyobj,"hp",self.hp)
-    cppSetAttribute(self.dyobj,"mana",self.mana)
+
+    cppSetAttribute(self.dyobj,"action",self:getTurn())
+    cppSetAttribute(self.dyobj,"hp",self:getHP())
+    cppSetAttribute(self.dyobj,"mana",self:getMana())
     cppSetAttribute(self.dyobj,"sp",self.sp)
     cppSetAttribute(self.dyobj,"spCap",self.spCap)
-    cppSetAttribute(self.dyobj,"physicDmg",self.physicDmg)
-    cppSetAttribute(self.dyobj,"physicDef",self.physicDef)
-    cppSetAttribute(self.dyobj,"magicDmg",self.magicDmg)
-    cppSetAttribute(self.dyobj,"magicDef",self.magicDef)
-    cppSetAttribute(self.dyobj,"accurate",self.accurate)
-    cppSetAttribute(self.dyobj,"evadeChance",self.evadeChance)
+
+    cppSetAttribute(self.dyobj,"physicDmg",self:getPhysicDmg())
+    cppSetAttribute(self.dyobj,"physicDef",self:getPhysicDef())
+    cppSetAttribute(self.dyobj,"magicDmg",self:getMagicDmg())
+    cppSetAttribute(self.dyobj,"magicDef",self:getMagicDef())
+    cppSetAttribute(self.dyobj,"accurate",self:getAccurate())
+    cppSetAttribute(self.dyobj,"evadeChance",self:getEvadeChance())
     cppSetStrAttribute(self.dyobj,"name",self.name)
     cppSetStrAttribute(self.dyobj,"lastName",self.lastName)
     cppSetStrAttribute(self.dyobj,"title",self.title)
