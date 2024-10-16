@@ -2,6 +2,8 @@ package.path = package.path .. ';./Assets/lua/Icons/?.lua;'
 require "Move"
 require "End"
 
+reuire "system"
+
 --[[
 > Strength (STR)
 Primary Influence: Physical Damage | scale value is 3
@@ -141,6 +143,8 @@ function Character:getCritChance()
     return 0.125 + additionCrit
 end
 
+
+
 function Character:init(host,slot,tSide)
 
     self.dyobj = cppCreateEnity(host,self.animationPath,slot,self.portraitPath,tSide)
@@ -171,7 +175,6 @@ function Character:init(host,slot,tSide)
     cppSetStrAttribute(self.dyobj,"title",self.title)
 
     --return self
-
 end
 
 
@@ -202,4 +205,8 @@ function Character:loadCommon(host)
 
 end
 
+
+function Character:determineEvade(enemy)
+
+end
 
