@@ -124,20 +124,28 @@ function kickBackBehavior(host, dyobj)
     --os.execute("sleep " .. tonumber(200000))
 
     coroutine.yield()
+   
+
 
     if(kickbackTarget ~= nil) then
-        cppEntityPlayAnimation(host,kickbackTarget,"hit_upper_end",true,25)
-        local currentSlotRow = cppGetSlotRow(targetSlot)
-        local currentSlotCol = cppGetSlotCol(targetSlot)
-        local targetSide = getInvertSide(character.side)
-        if( currentSlotCol < 3) then
-            currentSlotCol = currentSlotCol + 1
-            local moveSlot = t_slotHandler:getSlot(currentSlotCol,currentSlotRow,targetSide)
-            --local checkEmpty= 
-            if cppIsSlotEmpty(host,moveSlot) ~= false then
-                cppEntityMoveToslot(host,kickbackTarget,moveSlot,25,false)
+        print("check evade roll !!!!!!!!!!!!!!!!!!")
+        if kickbackTarget:determineEvade( character, dyobj) then 
+            cppEntityPlayAnimation(host,kickbackTarget,"hit_upper_end",true,25)
+            local currentSlotRow = cppGetSlotRow(targetSlot)
+            local currentSlotCol = cppGetSlotCol(targetSlot)
+            local targetSide = getInvertSide(character.side)
+            if( currentSlotCol < 3) then
+                currentSlotCol = currentSlotCol + 1
+                local moveSlot = t_slotHandler:getSlot(currentSlotCol,currentSlotRow,targetSide)
+                --local checkEmpty= 
+                if cppIsSlotEmpty(host,moveSlot) ~= false then
+                    cppEntityMoveToslot(host,kickbackTarget,moveSlot,25,false)
+                end
+                --coroutine.yield()
             end
-            --coroutine.yield()
+        else 
+            print("evaded")
+            --cppEntityPlayAnimation(host,kickbackTarget,"evade",true,25)
         end
     else
         print("kickbackTarget is nil")

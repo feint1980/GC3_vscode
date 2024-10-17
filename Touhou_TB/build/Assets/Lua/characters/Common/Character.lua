@@ -1,8 +1,8 @@
-package.path = package.path .. ';./Assets/lua/Icons/?.lua;'
+package.path = package.path .. ';./Assets/lua/Icons/?.lua;' .. ';./Assets/lua/system/?.lua;'
 require "Move"
 require "End"
 
-reuire "system"
+require "system"
 
 --[[
 > Strength (STR)
@@ -128,13 +128,15 @@ function Character:getMagicDef()
     return 10 + additionDef
 end
 
-function Character:getAccurate()
-    local additionAcc = self.Dexterity * 0.03
+function Character:getAccurate(additionalRoll)
+    local additionalRoll = additionalRoll or 0
+    local additionAcc = (additionalRoll+ self.Dexterity ) * 0.03
     return 0.5 + additionAcc
 end
 
-function Character:getEvadeChance()
-    local additionEvade = self.Agility * 0.02
+function Character:getEvadeChance(additionalRoll)
+    local additionalRoll = additionalRoll or 0
+    local additionEvade = (self.Agility + additionalRoll) * 0.02
     return 0.25 + additionEvade
 end
 
@@ -142,8 +144,6 @@ function Character:getCritChance()
     local additionCrit = self.Dexterity * 0.013
     return 0.125 + additionCrit
 end
-
-
 
 function Character:init(host,slot,tSide)
 
@@ -207,6 +207,20 @@ end
 
 
 function Character:determineEvade(enemy)
+    print("determine evade called")
+    local selfRoll = roll(1,6)
+    local enemyRoll = roll(1,6)
+    local evd = self:getEvadeChance(selfRoll)
+    local att = enemy:getAccurate(enemyRoll)
+    local hitchance = att - evd
+    local rollchance = roll(1,100)
+    rollchance = rollchance / 100
+    print("rollchance " .. rollchance .. "/ hitchance " .. hitchance)
 
+    if rollchance < hitchance then
+        return true -- target evaded
+    else
+        return false -- target not evaded
+    end
 end
 

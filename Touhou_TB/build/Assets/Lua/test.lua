@@ -61,6 +61,9 @@ function init(host)
     cppSetDescriptionBoxPos(host,300,-355);
     cppSetDescriptionBoxDim(host,600,180);
 
+    -- init random seed
+    math.randomseed(114514)
+
     -- 
     t_turnHandler = TurnHandler:new()
     t_slotHandler = SlotHandler:new()
