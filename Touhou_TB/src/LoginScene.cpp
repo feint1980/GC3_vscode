@@ -186,6 +186,7 @@ void LoginScene::initGUI()
 
         m_login_button = tgui::Button::create();
         m_login_button->setText("Login");
+        m_login_button->setSize(m_panel->getSize().x/2 , 30);
         m_panel->add(m_login_button);
         
         m_cancel_button = tgui::Button::create();
