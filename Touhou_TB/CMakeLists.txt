@@ -6,7 +6,10 @@ project(${PROJECT_N} VERSION 1.0)
 set(CMAKE_CXX_FLAGS "-fpermissive -std=c++17 -municode -m32")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp)
+file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp
+
+    ${PROJECT_SOURCE_DIR}/../PacketDescription/NetworkPacket.cpp
+)
 
 # a macro that gets all of the header containing directories. 
 MACRO(header_directories return_list includes_base_folder extention )
@@ -48,5 +51,5 @@ add_executable(${PROJECT_N} ${SRCS})
 
 target_include_directories(${PROJECT_N} PUBLIC include)
 
-target_link_libraries(${PROJECT_N}   ${FEINTGINE_lib_dir}/libFeintgine.a ${DEPS_lib_dir}/libglew32.dll.a  ${DEPS_lib_dir}/libSDL2.dll.a  ${DEPS_lib_dir}/libSDL2main.a  ${DEPS_lib_dir}/libCEGUIBase-0.dll.a ${DEPS_lib_dir}/libCEGUIOpenGLRenderer-0.dll.a  ${DEPS_lib_dir}/libCEGUIExpatParser.dll.a ${DEPS_lib_dir}/libsqlite3.a ${DEPS_lib_dir}/liblua53.a  ${DEPS_lib_dir}/libfreetype.a ${DEPS_lib_dir}/libprotobuf.a  ${DEPS_lib_dir}/libprotoc.a ${DEPS_lib_dir}/libprotobuf-lite.a ${DEPS_lib_dir}/libSDL2_net.dll.a  ${DEPS_lib_dir}/libFreeImage.a ${DEPS_lib_dir}/libassimp.dll.a ${DEPS_lib_dir}/libbox2d.a  ${DEPS_lib_dir}/libSDL2_mixer.dll.a  ${DEPS_lib_dir}/libSDL2_ttf.dll.a ${DEPS_lib_dir}/libnanogui.dll.a  ${DEPS_lib_dir}/libasync++.dll.a ${DEPS_lib_dir}/libtgui.a  libopengl32.a libbz2.a -municode )  
+target_link_libraries(${PROJECT_N}   ${FEINTGINE_lib_dir}/libFeintgine.a ${DEPS_lib_dir}/libglew32.dll.a  ${DEPS_lib_dir}/libSDL2.dll.a  ${DEPS_lib_dir}/libSDL2main.a  ${DEPS_lib_dir}/libCEGUIBase-0.dll.a ${DEPS_lib_dir}/libCEGUIOpenGLRenderer-0.dll.a  ${DEPS_lib_dir}/libCEGUIExpatParser.dll.a ${DEPS_lib_dir}/libsqlite3.a ${DEPS_lib_dir}/liblua53.a  ${DEPS_lib_dir}/libfreetype.a ${DEPS_lib_dir}/libprotobuf.a  ${DEPS_lib_dir}/libprotoc.a ${DEPS_lib_dir}/libprotobuf-lite.a ${DEPS_lib_dir}/libSDL2_net.dll.a  ${DEPS_lib_dir}/libFreeImage.a ${DEPS_lib_dir}/libassimp.dll.a ${DEPS_lib_dir}/libbox2d.a  ${DEPS_lib_dir}/libSDL2_mixer.dll.a  ${DEPS_lib_dir}/libSDL2_ttf.dll.a ${DEPS_lib_dir}/libnanogui.dll.a  ${DEPS_lib_dir}/libasync++.dll.a ${DEPS_lib_dir}/libtgui.a ${DEPS_lib_dir}/libRakNetLibStatic.a libws2_32.a libopengl32.a libbz2.a -municode )  
   

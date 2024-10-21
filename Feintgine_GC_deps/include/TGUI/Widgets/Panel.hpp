@@ -213,7 +213,7 @@ TGUI_MODULE_EXPORT namespace tgui
         SignalVector2f onRightMouseRelease = {"RightMouseReleased"};  //!< The right mouse button was released on top of the panel. Optional parameter: mouse position relative to panel
         SignalVector2f onRightClick        = {"RightClicked"};        //!< The panel was right clicked. Optional parameter: mouse position relative to panel
 
-
+        void setBackgroundColor(const Color & tColor){ m_backgroundColorCached = tColor; }
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     protected:
 

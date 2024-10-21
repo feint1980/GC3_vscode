@@ -72,7 +72,7 @@ int TestTBScreen::getNextScreenIndex() const
 
 int TestTBScreen::getPreviousScreenIndex() const
 {
-    return 0;
+    return 11;
 }
 
 void TestTBScreen::onExit()
@@ -176,9 +176,6 @@ void TestTBScreen::drawGameplay()
     m_spriteBatch.renderBatch();
 
     m_shader.unuse();
-
-
-
 
 }
 

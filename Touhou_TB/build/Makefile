@@ -128,6 +128,30 @@ Touhou_TB/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/build
 .PHONY : Touhou_TB/fast
 
+D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.obj: D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj
+.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.obj
+
+# target to build an object file
+D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj
+.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj
+
+D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.i: D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.i
+.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.i
+
+# target to preprocess a source file
+D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.i
+.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.i
+
+D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.s: D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.s
+.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.s
+
+# target to generate assembly for a file
+D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.s
+.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.s
+
 src/BattleScene.obj: src/BattleScene.cpp.obj
 .PHONY : src/BattleScene.obj
 
@@ -271,6 +295,30 @@ src/GUI_icon.s: src/GUI_icon.cpp.s
 src/GUI_icon.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.s
 .PHONY : src/GUI_icon.cpp.s
+
+src/LoginScene.obj: src/LoginScene.cpp.obj
+.PHONY : src/LoginScene.obj
+
+# target to build an object file
+src/LoginScene.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/LoginScene.cpp.obj
+.PHONY : src/LoginScene.cpp.obj
+
+src/LoginScene.i: src/LoginScene.cpp.i
+.PHONY : src/LoginScene.i
+
+# target to preprocess a source file
+src/LoginScene.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/LoginScene.cpp.i
+.PHONY : src/LoginScene.cpp.i
+
+src/LoginScene.s: src/LoginScene.cpp.s
+.PHONY : src/LoginScene.s
+
+# target to generate assembly for a file
+src/LoginScene.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/src/LoginScene.cpp.s
+.PHONY : src/LoginScene.cpp.s
 
 src/Slot.obj: src/Slot.cpp.obj
 .PHONY : src/Slot.obj
@@ -425,6 +473,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Touhou_TB
+	@echo ... D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.obj
+	@echo ... D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.i
+	@echo ... D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.s
 	@echo ... src/BattleScene.obj
 	@echo ... src/BattleScene.i
 	@echo ... src/BattleScene.s
@@ -443,6 +494,9 @@ help:
 	@echo ... src/GUI_icon.obj
 	@echo ... src/GUI_icon.i
 	@echo ... src/GUI_icon.s
+	@echo ... src/LoginScene.obj
+	@echo ... src/LoginScene.i
+	@echo ... src/LoginScene.s
 	@echo ... src/Slot.obj
 	@echo ... src/Slot.i
 	@echo ... src/Slot.s

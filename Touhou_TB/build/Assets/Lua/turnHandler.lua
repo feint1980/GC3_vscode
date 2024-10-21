@@ -45,6 +45,16 @@ function TurnHandler:addCharacter(character)
 
 end
 
+
+function TurnHandler:getCharacterFromDyobj(dyobj)
+    for i = 1, #self.totalCharList do
+        if self.totalCharList[i].dyobj == dyobj then
+            return self.totalCharList[i]
+        end
+    end
+    return nil
+end
+
 function TurnHandler:putCharacterIntoList()
     self.charLists = {}
     print("putCharacterIntoList called")
