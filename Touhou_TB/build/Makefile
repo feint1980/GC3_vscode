@@ -152,6 +152,78 @@ D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.s
 .PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.s
 
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.obj: D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.obj
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.obj
+
+# target to build an object file
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.obj
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.obj
+
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.i: D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.i
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.i
+
+# target to preprocess a source file
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.i
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.i
+
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.s: D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.s
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.s
+
+# target to generate assembly for a file
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.s
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.s
+
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.obj: D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.obj
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.obj
+
+# target to build an object file
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.obj
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.obj
+
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.i: D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.i
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.i
+
+# target to preprocess a source file
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.i
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.i
+
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.s: D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.s
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.s
+
+# target to generate assembly for a file
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.s
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.s
+
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.obj: D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.obj
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.obj
+
+# target to build an object file
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.obj
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.obj
+
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.i: D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.i
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.i
+
+# target to preprocess a source file
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.i
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.i
+
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.s: D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.s
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.s
+
+# target to generate assembly for a file
+D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Touhou_TB.dir\build.make CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.s
+.PHONY : D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.s
+
 src/BattleScene.obj: src/BattleScene.cpp.obj
 .PHONY : src/BattleScene.obj
 
@@ -476,6 +548,15 @@ help:
 	@echo ... D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.obj
 	@echo ... D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.i
 	@echo ... D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.s
+	@echo ... D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.obj
+	@echo ... D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.i
+	@echo ... D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.s
+	@echo ... D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.obj
+	@echo ... D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.i
+	@echo ... D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.s
+	@echo ... D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.obj
+	@echo ... D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.i
+	@echo ... D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.s
 	@echo ... src/BattleScene.obj
 	@echo ... src/BattleScene.i
 	@echo ... src/BattleScene.s

@@ -302,6 +302,500 @@ CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPack
   D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/RakNet/XBox360Includes.h \
   D:/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.h
 
+CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.obj: D:/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp \
+  C:/SysGCC/mingw32/include/_mingw.h \
+  C:/SysGCC/mingw32/include/_mingw_mac.h \
+  C:/SysGCC/mingw32/include/_mingw_off_t.h \
+  C:/SysGCC/mingw32/include/_mingw_secapi.h \
+  C:/SysGCC/mingw32/include/_mingw_stat64.h \
+  C:/SysGCC/mingw32/include/_timeval.h \
+  C:/SysGCC/mingw32/include/assert.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
+  C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bit \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/algorithmfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/align.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocated_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_lockfree_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/char_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/charconv.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/chrono.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_dir.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_fwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_path.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/invoke.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ios_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_conv.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/localefwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/memoryfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/quoted_string.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_function.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_heap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multimap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multiset.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_raw_storage_iter.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_set.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_uninitialized.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_set.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
+  C:/SysGCC/mingw32/include/c++/12.2.0/chrono \
+  C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
+  C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstring \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ctime \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cwchar \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cwctype \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/exception \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/concurrence.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/string_conversions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/filesystem \
+  C:/SysGCC/mingw32/include/c++/12.2.0/functional \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/atomic_word.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++locale.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_inline.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/error_constants.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr-default.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/messages_members.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/time_members.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/initializer_list \
+  C:/SysGCC/mingw32/include/c++/12.2.0/iomanip \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
+  C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
+  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
+  C:/SysGCC/mingw32/include/c++/12.2.0/locale \
+  C:/SysGCC/mingw32/include/c++/12.2.0/map \
+  C:/SysGCC/mingw32/include/c++/12.2.0/memory \
+  C:/SysGCC/mingw32/include/c++/12.2.0/new \
+  C:/SysGCC/mingw32/include/c++/12.2.0/optional \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
+  C:/SysGCC/mingw32/include/c++/12.2.0/set \
+  C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
+  C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+  C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
+  C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
+  C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
+  C:/SysGCC/mingw32/include/c++/12.2.0/unordered_set \
+  C:/SysGCC/mingw32/include/c++/12.2.0/variant \
+  C:/SysGCC/mingw32/include/c++/12.2.0/vector \
+  C:/SysGCC/mingw32/include/c++/12.2.0/version \
+  C:/SysGCC/mingw32/include/corecrt.h \
+  C:/SysGCC/mingw32/include/corecrt_startup.h \
+  C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
+  C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
+  C:/SysGCC/mingw32/include/crtdefs.h \
+  C:/SysGCC/mingw32/include/ctype.h \
+  C:/SysGCC/mingw32/include/errno.h \
+  C:/SysGCC/mingw32/include/limits.h \
+  C:/SysGCC/mingw32/include/locale.h \
+  C:/SysGCC/mingw32/include/malloc.h \
+  C:/SysGCC/mingw32/include/process.h \
+  C:/SysGCC/mingw32/include/pthread.h \
+  C:/SysGCC/mingw32/include/pthread_compat.h \
+  C:/SysGCC/mingw32/include/pthread_signal.h \
+  C:/SysGCC/mingw32/include/pthread_time.h \
+  C:/SysGCC/mingw32/include/pthread_unistd.h \
+  C:/SysGCC/mingw32/include/sdks/_mingw_ddk.h \
+  C:/SysGCC/mingw32/include/sec_api/stdio_s.h \
+  C:/SysGCC/mingw32/include/sec_api/stdlib_s.h \
+  C:/SysGCC/mingw32/include/sec_api/string_s.h \
+  C:/SysGCC/mingw32/include/sec_api/sys/timeb_s.h \
+  C:/SysGCC/mingw32/include/sec_api/wchar_s.h \
+  C:/SysGCC/mingw32/include/signal.h \
+  C:/SysGCC/mingw32/include/stddef.h \
+  C:/SysGCC/mingw32/include/stdint.h \
+  C:/SysGCC/mingw32/include/stdio.h \
+  C:/SysGCC/mingw32/include/stdlib.h \
+  C:/SysGCC/mingw32/include/string.h \
+  C:/SysGCC/mingw32/include/swprintf.inl \
+  C:/SysGCC/mingw32/include/sys/timeb.h \
+  C:/SysGCC/mingw32/include/sys/types.h \
+  C:/SysGCC/mingw32/include/time.h \
+  C:/SysGCC/mingw32/include/vadefs.h \
+  C:/SysGCC/mingw32/include/wchar.h \
+  C:/SysGCC/mingw32/include/wctype.h \
+  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mm_malloc.h \
+  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stddef.h \
+  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdint.h \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/AbsoluteOrRelativeValue.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Backend/Renderer/BackendTexture.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Color.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Config.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Duration.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Exception.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Filesystem.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Font.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Global.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/DataIO.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/Theme.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/ThemeLoader.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/ObjectConverter.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Optional.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Outline.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Rect.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Renderers/WidgetRenderer.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/String.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/StringView.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/SvgImage.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/TextStyle.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Texture.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/TextureData.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Utf.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Variant.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Vector2.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Vertex.hpp \
+  D:/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.hpp
+
+CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.obj: D:/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp \
+  C:/SysGCC/mingw32/include/_mingw.h \
+  C:/SysGCC/mingw32/include/_mingw_mac.h \
+  C:/SysGCC/mingw32/include/_mingw_off_t.h \
+  C:/SysGCC/mingw32/include/_mingw_secapi.h \
+  C:/SysGCC/mingw32/include/_mingw_stat64.h \
+  C:/SysGCC/mingw32/include/_timeval.h \
+  C:/SysGCC/mingw32/include/assert.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/array \
+  C:/SysGCC/mingw32/include/c++/12.2.0/backward/auto_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/backward/binders.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bit \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/algorithmfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/align.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocated_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_lockfree_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/char_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/charconv.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/chrono.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/concept_check.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cpp_type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/erase_if.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_dir.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_fwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_path.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functexcept.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/functional_hash.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hash_bytes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/invoke.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ios_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/istream.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_conv.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/localefwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/memoryfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/move.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/nested_exception.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/new_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/node_handle.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/parse_numbers.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/postypes.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/predefined_ops.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/ptr_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/quoted_string.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/range_access.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/refwrap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_atomic.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/sstream.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_abs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algo.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_algobase.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_bvector.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_construct.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_function.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_heap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_types.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multimap.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multiset.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_pair.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_raw_storage_iter.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_set.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_uninitialized.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_vector.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf_iterator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/string_view.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/stringfwd.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uniform_int_dist.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unique_ptr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_map.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/unordered_set.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/uses_allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/bits/vector.tcc \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cassert \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cctype \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cerrno \
+  C:/SysGCC/mingw32/include/c++/12.2.0/chrono \
+  C:/SysGCC/mingw32/include/c++/12.2.0/clocale \
+  C:/SysGCC/mingw32/include/c++/12.2.0/codecvt \
+  C:/SysGCC/mingw32/include/c++/12.2.0/compare \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstddef \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstdint \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstdio \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cstring \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ctime \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cwchar \
+  C:/SysGCC/mingw32/include/c++/12.2.0/cwctype \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/exception \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/aligned_buffer.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/concurrence.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/numeric_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/string_conversions.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ext/type_traits.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/filesystem \
+  C:/SysGCC/mingw32/include/c++/12.2.0/functional \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/atomic_word.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++allocator.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++config.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/c++locale.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/cpu_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_base.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_inline.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/error_constants.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr-default.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/messages_members.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/os_defines.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/time_members.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/initializer_list \
+  C:/SysGCC/mingw32/include/c++/12.2.0/iomanip \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ios \
+  C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd \
+  C:/SysGCC/mingw32/include/c++/12.2.0/iostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/istream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/limits \
+  C:/SysGCC/mingw32/include/c++/12.2.0/locale \
+  C:/SysGCC/mingw32/include/c++/12.2.0/map \
+  C:/SysGCC/mingw32/include/c++/12.2.0/memory \
+  C:/SysGCC/mingw32/include/c++/12.2.0/new \
+  C:/SysGCC/mingw32/include/c++/12.2.0/optional \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ostream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/execution_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/glue_memory_defs.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/pstl/pstl_config.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/ratio \
+  C:/SysGCC/mingw32/include/c++/12.2.0/set \
+  C:/SysGCC/mingw32/include/c++/12.2.0/sstream \
+  C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept \
+  C:/SysGCC/mingw32/include/c++/12.2.0/stdlib.h \
+  C:/SysGCC/mingw32/include/c++/12.2.0/streambuf \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string \
+  C:/SysGCC/mingw32/include/c++/12.2.0/string_view \
+  C:/SysGCC/mingw32/include/c++/12.2.0/system_error \
+  C:/SysGCC/mingw32/include/c++/12.2.0/tuple \
+  C:/SysGCC/mingw32/include/c++/12.2.0/type_traits \
+  C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo \
+  C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map \
+  C:/SysGCC/mingw32/include/c++/12.2.0/unordered_set \
+  C:/SysGCC/mingw32/include/c++/12.2.0/variant \
+  C:/SysGCC/mingw32/include/c++/12.2.0/vector \
+  C:/SysGCC/mingw32/include/c++/12.2.0/version \
+  C:/SysGCC/mingw32/include/corecrt.h \
+  C:/SysGCC/mingw32/include/corecrt_startup.h \
+  C:/SysGCC/mingw32/include/corecrt_stdio_config.h \
+  C:/SysGCC/mingw32/include/corecrt_wstdlib.h \
+  C:/SysGCC/mingw32/include/crtdefs.h \
+  C:/SysGCC/mingw32/include/ctype.h \
+  C:/SysGCC/mingw32/include/errno.h \
+  C:/SysGCC/mingw32/include/limits.h \
+  C:/SysGCC/mingw32/include/locale.h \
+  C:/SysGCC/mingw32/include/malloc.h \
+  C:/SysGCC/mingw32/include/process.h \
+  C:/SysGCC/mingw32/include/pthread.h \
+  C:/SysGCC/mingw32/include/pthread_compat.h \
+  C:/SysGCC/mingw32/include/pthread_signal.h \
+  C:/SysGCC/mingw32/include/pthread_time.h \
+  C:/SysGCC/mingw32/include/pthread_unistd.h \
+  C:/SysGCC/mingw32/include/sdks/_mingw_ddk.h \
+  C:/SysGCC/mingw32/include/sec_api/stdio_s.h \
+  C:/SysGCC/mingw32/include/sec_api/stdlib_s.h \
+  C:/SysGCC/mingw32/include/sec_api/string_s.h \
+  C:/SysGCC/mingw32/include/sec_api/sys/timeb_s.h \
+  C:/SysGCC/mingw32/include/sec_api/wchar_s.h \
+  C:/SysGCC/mingw32/include/signal.h \
+  C:/SysGCC/mingw32/include/stddef.h \
+  C:/SysGCC/mingw32/include/stdint.h \
+  C:/SysGCC/mingw32/include/stdio.h \
+  C:/SysGCC/mingw32/include/stdlib.h \
+  C:/SysGCC/mingw32/include/string.h \
+  C:/SysGCC/mingw32/include/swprintf.inl \
+  C:/SysGCC/mingw32/include/sys/timeb.h \
+  C:/SysGCC/mingw32/include/sys/types.h \
+  C:/SysGCC/mingw32/include/time.h \
+  C:/SysGCC/mingw32/include/vadefs.h \
+  C:/SysGCC/mingw32/include/wchar.h \
+  C:/SysGCC/mingw32/include/wctype.h \
+  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mm_malloc.h \
+  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stddef.h \
+  C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/stdint.h \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/AbsoluteOrRelativeValue.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Backend/Renderer/BackendTexture.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Color.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Config.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Duration.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Exception.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Filesystem.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Font.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Global.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/DataIO.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/Theme.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/ThemeLoader.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/ObjectConverter.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Optional.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Outline.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Rect.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Renderers/WidgetRenderer.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/String.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/StringView.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/SvgImage.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/TextStyle.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Texture.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/TextureData.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Utf.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Variant.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Vector2.hpp \
+  D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Vertex.hpp \
+  D:/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.hpp
+
+CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.obj: D:/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp
+
 CMakeFiles/Touhou_TB.dir/src/BattleScene.cpp.obj: D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/BattleScene.cpp \
   C:/SysGCC/mingw32/include/GL/gl.h \
   C:/SysGCC/mingw32/include/GL/glu.h \
@@ -6350,6 +6844,7 @@ CMakeFiles/Touhou_TB.dir/src/LoginScene.cpp.obj: D:/VS_Code_prj/GC3_vscode/Touho
   D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/rapidxml.hpp \
   D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/rapidxml_print.hpp \
   D:/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.h \
+  D:/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.hpp \
   D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/BattleScene.h \
   D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_BaseEntity.h \
   D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_EntityManipulator.h \
@@ -10341,6 +10836,7 @@ CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj: D:/VS_Code_prj/GC3_vscode/Touhou
   D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/rapidxml.hpp \
   D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/rapidxml_print.hpp \
   D:/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.h \
+  D:/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.hpp \
   D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/BattleScene.h \
   D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_BaseEntity.h \
   D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_EntityManipulator.h \
@@ -12620,6 +13116,7 @@ CMakeFiles/Touhou_TB.dir/src/main.cpp.obj: D:/VS_Code_prj/GC3_vscode/Touhou_TB/s
   D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/rapidxml.hpp \
   D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/rapidxml_print.hpp \
   D:/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.h \
+  D:/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.hpp \
   D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/BattleScene.h \
   D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_BaseEntity.h \
   D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_EntityManipulator.h \
@@ -12721,9 +13218,9 @@ C:/SysGCC/mingw32/include/_mingw.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_init_exception.h:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/falagard/PropertyDefinitionBase.h:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Optional.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/falagard/PropertyDefinitionBase.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/tr1/ell_integral.tcc:
 
@@ -12732,6 +13229,10 @@ C:/SysGCC/mingw32/include/_mingw_stat64.h:
 C:/SysGCC/mingw32/include/c++/12.2.0/cctype:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/ostream_insert.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/Spinner.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Filesystem.hpp:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/utility.h:
 
@@ -12781,15 +13282,15 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/Tools/Do
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/alloc_traits.h:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avxintrin.h:
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_list.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/cstdlib:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/ios:
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avxintrin.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_list.h:
+C:/SysGCC/mingw32/include/c++/12.2.0/ios:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_iterator_base_funcs.h:
 
@@ -12798,6 +13299,10 @@ C:/SysGCC/mingw32/include/pthread_compat.h:
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/memoryfwd.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/allocated_ptr.h:
+
+D:/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_filesystem.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_string.tcc:
 
@@ -12812,6 +13317,8 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/RakNet/RakWString.h:
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/cxxabi_forced.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/exception.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Duration.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/Scrollbar.h:
 
@@ -12891,9 +13398,9 @@ C:/SysGCC/mingw32/include/c++/12.2.0/unordered_set:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/cmath:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/ObjectConverter.hpp:
-
 C:/SysGCC/mingw32/include/sysinfoapi.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/ObjectConverter.hpp:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/smmintrin.h:
 
@@ -12927,8 +13434,6 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/_vectorize.hpp:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/clocale:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vbmiintrin.h:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/TGUI.hpp:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/cstdint:
@@ -12945,9 +13450,9 @@ C:/SysGCC/mingw32/include/c++/12.2.0/unordered_map:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/debug/assertions.h:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Color.hpp:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/debug/debug.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Color.hpp:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/ext/alloc_traits.h:
 
@@ -13005,9 +13510,9 @@ C:/SysGCC/mingw32/include/c++/12.2.0/iosfwd:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Backend/Font/SDL_ttf/BackendFontSDLttf.hpp:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/limits:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Vertex.hpp:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/limits:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/math.h:
 
@@ -13097,9 +13602,9 @@ C:/SysGCC/mingw32/include/cderr.h:
 
 C:/SysGCC/mingw32/include/cguid.h:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vp2intersectintrin.h:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets_nonio.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vp2intersectintrin.h:
 
 C:/SysGCC/mingw32/include/combaseapi.h:
 
@@ -13126,6 +13631,8 @@ C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.tcc:
 C:/SysGCC/mingw32/include/libloaderapi.h:
 
 C:/SysGCC/mingw32/include/stdlib.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Global.hpp:
 
 C:/SysGCC/mingw32/include/corecrt_stdio_config.h:
 
@@ -13193,6 +13700,8 @@ C:/SysGCC/mingw32/include/fibersapi.h:
 
 C:/SysGCC/mingw32/include/fileapi.h:
 
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/Theme.hpp:
+
 C:/SysGCC/mingw32/include/fltwinerror.h:
 
 C:/SysGCC/mingw32/include/guiddef.h:
@@ -13217,11 +13726,13 @@ C:/SysGCC/mingw32/include/interlockedapi.h:
 
 C:/SysGCC/mingw32/include/reason.h:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vpopcntdqvlintrin.h:
-
 C:/SysGCC/mingw32/include/ioapiset.h:
 
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vpopcntdqvlintrin.h:
+
 C:/SysGCC/mingw32/include/limits.h:
+
+D:/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/extlibs/Aurora/SmartPtr/Detail/PtrOwner.hpp:
 
@@ -13244,6 +13755,10 @@ C:/SysGCC/mingw32/include/psdk_inc/_ip_types.h:
 C:/SysGCC/mingw32/include/wtypes.h:
 
 C:/SysGCC/mingw32/include/math.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/ThemeLoader.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_endian.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/istream:
 
@@ -13311,10 +13826,6 @@ C:/SysGCC/mingw32/include/oleidl.h:
 
 C:/SysGCC/mingw32/include/poppack.h:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/bmiintrin.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/Rect.h:
-
 C:/SysGCC/mingw32/include/processenv.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.h:
@@ -13324,6 +13835,8 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/f16cintrin.h:
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/RightAlignedRenderedString.h:
 
 C:/SysGCC/mingw32/include/processthreadsapi.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Outline.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Components.hpp:
 
@@ -13343,11 +13856,11 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/xmmintrin.h:
 
 C:/SysGCC/mingw32/include/prsht.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/sstream:
-
 C:/SysGCC/mingw32/include/psdk_inc/_fd_types.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/climits:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/sstream:
 
 C:/SysGCC/mingw32/include/psdk_inc/_socket_types.h:
 
@@ -13375,25 +13888,27 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/hresetintrin.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/FontGlyph.h:
 
-C:/SysGCC/mingw32/include/pshpack2.h:
-
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vnniintrin.h:
 
-C:/SysGCC/mingw32/include/pshpack4.h:
+C:/SysGCC/mingw32/include/pshpack2.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Rect.hpp:
+
+C:/SysGCC/mingw32/include/pshpack4.h:
 
 C:/SysGCC/mingw32/include/pshpack8.h:
 
 C:/SysGCC/mingw32/include/qos.h:
 
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Font.hpp:
+
 C:/SysGCC/mingw32/include/realtimeapiset.h:
 
 C:/SysGCC/mingw32/include/rpc.h:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_metal.h:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_integer.inl:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_metal.h:
 
 C:/SysGCC/mingw32/include/rpcasync.h:
 
@@ -13421,9 +13936,9 @@ C:/SysGCC/mingw32/include/sal.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/pconfigintrin.h:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vlbwintrin.h:
-
 C:/SysGCC/mingw32/include/sec_api/stdio_s.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vlbwintrin.h:
 
 C:/SysGCC/mingw32/include/swprintf.inl:
 
@@ -13463,13 +13978,13 @@ C:/SysGCC/mingw32/include/stdarg.h:
 
 C:/SysGCC/mingw32/include/stddef.h:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/casts.h:
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/tmmintrin.h:
 
-C:/SysGCC/mingw32/include/stdint.h:
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/stubs/casts.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Config.hpp:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/tmmintrin.h:
+C:/SysGCC/mingw32/include/stdint.h:
 
 C:/SysGCC/mingw32/include/stdio.h:
 
@@ -13491,9 +14006,9 @@ C:/SysGCC/mingw32/include/systemtopologyapi.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Widgets/Panel.hpp:
 
-C:/SysGCC/mingw32/include/threadpoolapiset.h:
-
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512erintrin.h:
+
+C:/SysGCC/mingw32/include/threadpoolapiset.h:
 
 C:/SysGCC/mingw32/include/threadpoollegacyapiset.h:
 
@@ -13603,9 +14118,9 @@ C:/SysGCC/mingw32/include/strings.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/RakNet/DS_List.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/cfloat:
-
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512pfintrin.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/cfloat:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/RakNet/DS_Queue.h:
 
@@ -13655,9 +14170,9 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/RakNet/RakMemoryOverride.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Widgets/RichTextLabel.hpp:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512fintrin.h:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512fintrin.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/SystemKeys.h:
 
@@ -13669,9 +14184,9 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_float.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/RakNet/RakNetDefinesOverrides.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/gthr-default.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/this_thread_sleep.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/RakNet/RakNetSmartPtr.h:
 
@@ -13707,21 +14222,15 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/Singleton.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/RakNet/XBox360Includes.h:
 
-D:/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.h:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/TextStyle.hpp:
 
-D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/BattleScene.cpp:
+D:/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/algorithm:
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_vector_relational.hpp:
+
+D:/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/array:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/atomic:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/MemoryAllocation.h:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/keylockerintrin.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bit:
 
@@ -13730,14 +14239,6 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/RelFloatRect.hpp:
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/algorithmfwd.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_base.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_futex.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/Texture.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/SvgImage.hpp:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/async++/aligned_alloc.h:
 
@@ -13748,8 +14249,6 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/ButtonBase.h:
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/basic_ios.tcc:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/codecvt.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/deque.tcc:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/enable_special_members.h:
 
@@ -13775,37 +14274,13 @@ C:/SysGCC/mingw32/include/c++/12.2.0/bits/fs_path.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/falagard/Dimensions.h:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Widgets/CanvasBase.hpp:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Variant.hpp:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/hashtable_policy.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_error.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/list.tcc:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat.hpp:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vnnivlintrin.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine/src/LightBatch.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Backend/Renderer/OpenGL3/CanvasOpenGL3.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Widgets/Scrollbar.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/close_code.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_rect.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_classes.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_conv.h:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512ifmavlintrin.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/locale_facets.tcc:
 
@@ -13837,25 +14312,13 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Renderers/ChatBoxRender
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/falagard/PropertyLinkDefinition.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex.h:
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/atomic_futex.h:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/AllWidgets.hpp:
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/SvgImage.hpp:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Renderers/MessageBoxRenderer.hpp:
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/Texture.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex.tcc:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_automaton.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/Serializer.hpp:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx5124vnniwintrin.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_automaton.tcc:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_constants.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_executor.tcc:
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/shared_ptr.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/mutex:
 
@@ -13871,14 +14334,6 @@ C:/SysGCC/mingw32/include/c++/12.2.0/ext/concurrence.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_function.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_mutex.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/lzcntintrin.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_deque.h:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_heap.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_map.h:
@@ -13887,23 +14342,9 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/lwpintrin.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/compare:
 
-D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_Entitymanipulator.cpp:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vldqintrin.h:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_multimap.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_queue.h:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_raw_storage_iter.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_inline.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_relops.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_matrix.inl:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Sprite.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_set.h:
 
@@ -13914,10 +14355,6 @@ C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tempbuf.h:
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_tree.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/ext/atomicity.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/XMLAttributes.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/bits/streambuf.tcc:
 
@@ -13941,10 +14378,6 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/MultiLineEditb
 
 C:/SysGCC/mingw32/include/c++/12.2.0/codecvt:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/condition_variable:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/TabControl.h:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/io/coded_stream.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_atomic.h:
@@ -13956,8 +14389,6 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/RegexMatcher.h:
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/CoordConverter.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/filesystem:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/fstream:
 
 C:/SysGCC/mingw32/include/setjmp.h:
 
@@ -13973,17 +14404,23 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat4x2.hpp:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/atomic_word.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/set:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_base.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_scancode.h:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/LinkedEvent.h:
+D:/VS_Code_prj/GC3_vscode/Feintgine/src/F_Sprite.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_matrix.inl:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_relops.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/ctype_inline.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/AbsoluteOrRelativeValue.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/LinkedEvent.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/error_constants.h:
 
@@ -13997,14 +14434,6 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/gtc/constants.inl:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/iostream:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/iterator:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Widgets/ToggleButton.hpp:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512dqintrin.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/list:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/StringTranscoder.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/locale:
@@ -14017,12 +14446,6 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/amxbf16intrin.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/ostream:
 
-C:/SysGCC/mingw32/include/process.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/queue:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/stack:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/stdexcept:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/streambuf:
@@ -14031,37 +14454,163 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/falagard/SectionSpecif
 
 C:/SysGCC/mingw32/include/c++/12.2.0/system_error:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/map.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/thread:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_sensor.h:
-
 C:/SysGCC/mingw32/include/c++/12.2.0/tuple:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/x86intrin.h:
 
-C:/SysGCC/mingw32/include/c++/12.2.0/typeindex:
+D:/VS_Code_prj/GC3_vscode/Feintgine/src/EmptyObject.h:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512bf16vlintrin.h:
+D:/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.hpp:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/gtc/matrix_transform.hpp:
 
 C:/SysGCC/mingw32/include/pthread_unistd.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine/src/EmptyObject.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/typeinfo:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/GroupBox.h:
-
-C:/SysGCC/mingw32/include/c++/12.2.0/utility:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/variant:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/GeometryBuffer.h:
 
 C:/SysGCC/mingw32/include/c++/12.2.0/version:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/queue:
+
+C:/SysGCC/mingw32/include/process.h:
+
+C:/SysGCC/mingw32/include/pthread_signal.h:
+
+C:/SysGCC/mingw32/include/pthread_time.h:
+
+C:/SysGCC/mingw32/include/signal.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/Scheme.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat2x4.hpp:
+
+C:/SysGCC/mingw32/include/sys/timeb.h:
+
+C:/SysGCC/mingw32/include/time.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Backend/Renderer/BackendTexture.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Exception.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/DataIO.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Renderers/WidgetRenderer.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/String.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/StringView.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Texture.hpp:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/tbmintrin.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/vpclmulqdqintrin.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/TextureData.hpp:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mm3dnow.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Utf.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Widgets/CanvasBase.hpp:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/fstream.tcc:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Variant.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Vector2.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/SubwidgetContainer.hpp:
+
+D:/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp:
+
+D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/BattleScene.cpp:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/algorithm:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/atomic:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/MemoryAllocation.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/keylockerintrin.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/deque.tcc:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_error.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/list.tcc:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/AllWidgets.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Renderers/MessageBoxRenderer.hpp:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex.tcc:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_automaton.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/Serializer.hpp:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_automaton.tcc:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx5124vnniwintrin.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_constants.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/regex_executor.tcc:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_mutex.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/std_thread.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/lzcntintrin.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_deque.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/stl_queue.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/bits/stream_iterator.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/XMLAttributes.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/condition_variable:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/TabControl.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/fstream:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32/bits/basic_file.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/iterator:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Widgets/ToggleButton.hpp:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/list:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512dqintrin.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/stack:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/google/protobuf/map.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/thread:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_sensor.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512bf16vlintrin.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/typeindex:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/GroupBox.h:
+
+C:/SysGCC/mingw32/include/c++/12.2.0/utility:
 
 C:/SysGCC/mingw32/include/fcntl.h:
 
@@ -14071,23 +14620,9 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/fma4intrin.h:
 
 C:/SysGCC/mingw32/include/memory.h:
 
-C:/SysGCC/mingw32/include/pthread_signal.h:
-
-C:/SysGCC/mingw32/include/pthread_time.h:
-
-C:/SysGCC/mingw32/include/signal.h:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/RendererModules/OpenGL/GL3Renderer.h:
 
 C:/SysGCC/mingw32/include/sys/stat.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/Scheme.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/mat2x4.hpp:
-
-C:/SysGCC/mingw32/include/sys/timeb.h:
-
-C:/SysGCC/mingw32/include/time.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/ammintrin.h:
 
@@ -14111,11 +14646,15 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512cdintrin.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512ifmaintrin.h:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vbmi2intrin.h:
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512ifmavlintrin.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/cldemoteintrin.h:
 
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vbmi2intrin.h:
+
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vbmi2vlintrin.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vbmiintrin.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vbmivlintrin.h:
 
@@ -14123,11 +14662,27 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/cpuid.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_events.h:
 
+D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_Entitymanipulator.cpp:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vldqintrin.h:
+
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/MemoryAllocatedObject.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/HorizontalLayoutContainer.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vlintrin.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_mat.hpp:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vnnivlintrin.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine/src/LightBatch.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Backend/Renderer/OpenGL3/CanvasOpenGL3.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Widgets/Scrollbar.hpp:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/close_code.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/avx512vp2intersectvlintrin.h:
 
@@ -14142,6 +14697,10 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/clwbintrin.h:
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/type_vec4.hpp:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/bmi2intrin.h:
+
+C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/bmiintrin.h:
+
+D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/Rect.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/clflushoptintrin.h:
 
@@ -14165,10 +14724,6 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/ia32intrin.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/immintrin.h:
 
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mm3dnow.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/TextureData.hpp:
-
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mmintrin.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/mwaitintrin.h:
@@ -14186,14 +14741,6 @@ C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/serializeintrin.h:
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_locale.h:
 
 C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/shaintrin.h:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/tbmintrin.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Texture.hpp:
-
-C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include/vpclmulqdqintrin.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/Tree.h:
 
@@ -14555,10 +15102,6 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Widgets/BoxLayout.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/ScrolledItemListBase.h:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Filesystem.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/Spinner.h:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/TabButton.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/CEGUI/widgets/Titlebar.h:
@@ -14585,15 +15128,9 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_config.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_cpuinfo.h:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_endian.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/ThemeLoader.hpp:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_log.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_error.h:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_filesystem.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/SDL2/SDL_gesture.h:
 
@@ -14635,8 +15172,6 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Backend/Renderer/Backen
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Backend/Renderer/BackendText.hpp:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Backend/Renderer/BackendTexture.hpp:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Backend/Renderer/OpenGL3/BackendTextureOpenGL3.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Backend/Window/Backend.hpp:
@@ -14649,27 +15184,13 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Container.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/CopiedSharedPtr.hpp:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Duration.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Exception.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Font.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Global.hpp:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Layout.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_geometric.inl:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/DataIO.hpp:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Widgets/ChildWindow.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/Deserializer.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Loading/Theme.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Outline.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Renderers/ButtonRenderer.hpp:
 
@@ -14707,23 +15228,11 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Renderers/SeparatorLine
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Renderers/TreeViewRenderer.hpp:
 
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Renderers/WidgetRenderer.hpp:
-
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Signal.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/String.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/StringView.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/SubwidgetContainer.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/ToolTip.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Transform.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Utf.hpp:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Vector2.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/TGUI/Widgets/BitmapButton.hpp:
 
@@ -14802,8 +15311,6 @@ D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_packing.inl:
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_trigonometric.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_trigonometric.inl:
-
-D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/func_vector_relational.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine_GC_deps/include/glm/detail/precision.hpp:
 
@@ -14970,6 +15477,8 @@ D:/VS_Code_prj/GC3_vscode/Feintgine/src/T_Scene.h:
 D:/VS_Code_prj/GC3_vscode/Feintgine/src/Timing.h:
 
 D:/VS_Code_prj/GC3_vscode/Feintgine/src/Window.h:
+
+D:/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.hpp:
 
 D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/LoginScene.h:
 

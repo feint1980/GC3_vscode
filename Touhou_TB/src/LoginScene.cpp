@@ -80,6 +80,7 @@ void LoginScene::onExit()
 void LoginScene::update(float deltaTime)
 {
     m_camera.update();
+    m_tgui->updateTime(deltaTime);
 }
 
 void LoginScene::checkInput()
@@ -89,9 +90,11 @@ void LoginScene::checkInput()
     while (SDL_PollEvent(&evnt))
     {
         m_game->onSDLEvent(evnt);
+        m_tgui->handleEvent(evnt);
         
     }
     handleInput(m_game->m_inputManager);
+   
 }
 
 
@@ -101,6 +104,7 @@ void LoginScene::handleInput(Feintgine::InputManager & inputManager)
 	{
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
 	}
+   
 	
 }
 
@@ -147,7 +151,7 @@ void LoginScene::initGUI()
     m_tgui = new tgui::Gui(m_window->getWindow());
     TTF_Init();
 
-   
+    selectTheme(*m_tgui, "themes/Dark.txt");  // force to load in main thread since the openGL problem, you can only have texture created in mainthread ( OpenGL Context)
     auto loadFontTask = async::spawn([&]() {
         tgui::Font font_load("font/ARIALUNI.ttf");    
         m_tgui->setFont(font_load);
@@ -157,50 +161,52 @@ void LoginScene::initGUI()
 
     auto loadPanelTask = async::spawn([&]() {
         m_panel = tgui::Panel::create();
-        m_panel->setSize(600, 400);
+        m_panel->setSize(600, 300);
         m_panel->setPosition(m_window->getScreenWidth()/2 - (m_panel->getSize().x/2) ,   m_window->getScreenHeight()/2 - (m_panel->getSize().y /2) );
-        m_panel->setBackgroundColor(tgui::Color(30,30,30,255));
+        //m_panel->setBackgroundColor(tgui::Color(30,30,30,255));
         m_id_label = tgui::Label::create();
         //tgui::Sprite
         m_id_label->setText("   ID");
-        m_id_label->setPosition(100, 150);
-        m_id_label->setTextColor(tgui::Color::White);
+        m_id_label->setPosition(100, 100);
+        //m_id_label->setTextColor(tgui::Color::White);
         m_panel->add(m_id_label);
         
         m_pw_label = tgui::Label::create();
         m_pw_label->setText("Password");
-        m_pw_label->setPosition(100, 200);
-        m_pw_label->setTextColor(tgui::Color::White);
+        m_pw_label->setPosition(100, 150);
+        //m_pw_label->setTextColor(tgui::Color::White);
         m_panel->add(m_pw_label);
 
         m_id_input = tgui::EditBox::create();
         m_id_input->setSize(m_panel->getSize().x/2 , 30);
-        m_id_input->setPosition(180, 150);
+        m_id_input->setPosition(180, 100);
         m_panel->add(m_id_input);
         
         m_pw_input = tgui::EditBox::create();
         m_pw_input->setSize(m_panel->getSize().x/2  , 30);
-        m_pw_input->setPosition(180, 200);
+        m_pw_input->setPosition(180, 150);
         m_panel->add(m_pw_input);        
        
 
         m_login_button = tgui::Button::create();
         m_login_button->setText("Login");
-        m_login_button->setSize(m_panel->getSize().x/2 , 30);
+        m_login_button->setPosition(240, 200);
         m_panel->add(m_login_button);
         
         m_cancel_button = tgui::Button::create();
         m_cancel_button->setText("Cancel");
+        m_cancel_button->setPosition(340, 200);
         m_panel->add(m_cancel_button);
 
-
         m_tgui->add(m_panel);
-        
+
+      
     });
     
     loadFontTask.get();
     loadPanelTask.get();
 
+     //createExample(*m_tgui, "themes/Dark.txt"); 
 
 }
 

@@ -30,6 +30,8 @@
 #include "TB_EmptyObject.h"
 #include "BattleScene.h"
 #include "../../PacketDescription/NetworkPacket.h"
+#include "../../TGUI_theme/ThemeCreator.hpp"
+
 
 class LoginScene : public Feintgine::IGameScreen
 {
@@ -39,7 +41,7 @@ public:
 
     LoginScene(Feintgine::Window * window);
 
-     virtual int getNextScreenIndex() const override;
+    virtual int getNextScreenIndex() const override;
 
     virtual int getPreviousScreenIndex() const override;
 
