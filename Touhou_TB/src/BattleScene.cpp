@@ -476,7 +476,6 @@ void  BattleScene::initTGUI(SDL_Window * window )
 
 	m_tgui->setFont(font);
 
-
 	m_iconName = tgui::RichTextLabel::create();	
 	m_iconName->setPosition(800,710);
 	m_iconName->setTextSize(32);

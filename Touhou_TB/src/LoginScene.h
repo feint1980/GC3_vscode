@@ -3,7 +3,7 @@
 #include <Camera2D.h>
 #include <vector>
 #include <SpriteBatch.h>
-
+#include <SDL2/SDL_keyboard.h>
 #include <GLTexture.h>
 #include <ResourceManager.h>
 //#include <f_object.pb.h>
@@ -73,11 +73,13 @@ public:
 
     void drawGUI();
 
+
 private:
 
     Feintgine::Window * m_window = nullptr;
 
     Feintgine::Camera2D m_camera;
+
 
     Feintgine::GLSLProgram m_shader;
 
@@ -95,8 +97,18 @@ private:
     tgui::EditBox::Ptr m_id_input;
     tgui::EditBox::Ptr m_pw_input;
 
-    tgui::Button::Ptr m_login_button;
-    tgui::Button::Ptr m_cancel_button;
+    tgui::Label::Ptr m_login_button;
+    tgui::Label::Ptr m_cancel_button;
+
+    tgui::Panel::Ptr m_tos;
+    tgui::RichTextLabel::Ptr m_tos_label;
+    tgui::Label::Ptr m_tos_agre_label;
+    tgui::Label::Ptr m_tos_exit_label;
+
+    tgui::Label::Ptr m_offline_label;
+    tgui::Label::Ptr m_online_label;
+    tgui::Label::Ptr m_exit_label;
+
 
     //BattleScene m_battleScene;
 

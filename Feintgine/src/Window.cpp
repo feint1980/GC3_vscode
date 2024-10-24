@@ -31,7 +31,9 @@ namespace Feintgine{
 		// Declare display mode structure to be filled in.
 		SDL_DisplayMode current;
 
-		SDL_Init(SDL_INIT_VIDEO);
+		//SDL_Init(SDL_INIT_VIDEO | SDL_INIT_GAMECONTROLLER | SDL_INIT_HAPTIC | SDL_INIT_JOYSTICK );
+
+		SDL_Init(SDL_INIT_EVERYTHING);
 
 		// Get current display mode of all displays.
 		for (i = 0; i < SDL_GetNumVideoDisplays(); ++i) {
@@ -53,8 +55,6 @@ namespace Feintgine{
 		}
 		int defaultDisplay = 0;
 		SDL_Log("Use display %d as main display", defaultDisplay);
-
- 		
 
 
 		if (glContext)
