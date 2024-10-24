@@ -234,8 +234,9 @@ void LoginScene::initGUI()
 
 
         m_tos_label = tgui::RichTextLabel::create();
-        m_tos_label->setText("This is a multi line \n text bla bla data ");
-        m_tos_label->setPosition(50, 50);
+        m_tos_label->setText("This is a fan-made game based on \nTouhou project,many assets from other \ngames as concepts/placeholder,if you are \nOK with this prototype then hit \"Agree\" ");
+        m_tos_label->setPosition(10, 50);
+        m_tos_label->setTextSize(14);
 
         m_tos_agre_label = tgui::Label::create();
         m_tos_agre_label->setText("Agree");
