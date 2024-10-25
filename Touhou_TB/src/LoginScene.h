@@ -73,6 +73,7 @@ public:
 
     void drawGUI();
 
+    void setTGUILableClickableEffect(tgui::Label::Ptr & label);
 
 private:
 
@@ -109,6 +110,9 @@ private:
     tgui::Label::Ptr m_online_label;
     tgui::Label::Ptr m_exit_label;
 
+    tgui::Panel::Ptr m_connect_panel;
+    tgui::Label::Ptr m_connect_label;
+    tgui::Label::Ptr m_connect_cancel_label;
 
     //BattleScene m_battleScene;
 

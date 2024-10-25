@@ -17,7 +17,7 @@ unsigned char GetPacketIdentifier(RakNet::Packet *p)
 
 ClientMain::ClientMain()
 {
-    pw = "DavaiMachi";
+    pw = "TTKR";
     m_serverIP = "127.0.0.1";
     m_port = 1919;
 }
