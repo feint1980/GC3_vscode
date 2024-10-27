@@ -106,14 +106,31 @@ function kickBackBehavior(host, dyobj)
     --cppWaitTime(host,dyobj,200)
    
     coroutine.yield()
-    --coroutine.yield() -- wtf ? 
     local targetSlot = t_slotHandler:getSelectedSlots()[1]
-    kickbackTarget = cppGetSlotEntity(host,targetSlot)
+    local kickbackTarget = cppGetSlotEntity(host,targetSlot)
+    local kickBackTargetCharWrap = t_turnHandler:getCharacterFromDyobj(kickbackTarget)
+    local rollHit = true
     if(kickbackTarget ~= nil) then
-        cppEntityPlayAnimation(host,kickbackTarget,"hit_upper",false,-1)
+        if (kickBackTargetCharWrap ~= nil) then
+            if kickBackTargetCharWrap:determineEvade( t_turnHandler:getCharacterFromDyobj(dyobj)) then 
+
+                rollHit = false
+            end
+        else
+            print("kickbackTargetCharWrap is nil")
+        end
     else
         print("kickbackTarget is nil")
     end
+
+    if rollHit then
+        print("roll hit")
+        cppEntityPlayAnimation(host,kickbackTarget,"hit_under",false,1)
+    else
+        print("roll miss")
+        cppEntityPlayAnimation(host,kickbackTarget,"evade",false,1)
+    end
+
 
     -- for i = 1, kickCount do
     --     coroutine.yield()
@@ -125,35 +142,21 @@ function kickBackBehavior(host, dyobj)
 
     coroutine.yield()
    
-    if(kickbackTarget ~= nil) then 
-        kickBackTargetCharWrap = t_turnHandler:getCharacterFromDyobj(kickbackTarget)
-        if (kickBackTargetCharWrap ~= nil) then
-            print("check evade roll !!!!!!!!!!!!!!!!!!")
-            if kickbackTarget:determineEvade( character, dyobj) then 
-                cppEntityPlayAnimation(host,kickbackTarget,"hit_upper_end",true,25)
-                local currentSlotRow = cppGetSlotRow(targetSlot)
-                local currentSlotCol = cppGetSlotCol(targetSlot)
-                local targetSide = getInvertSide(character.side)
-                if( currentSlotCol < 3) then
-                    currentSlotCol = currentSlotCol + 1
-                    local moveSlot = t_slotHandler:getSlot(currentSlotCol,currentSlotRow,targetSide)
-                    --local checkEmpty= 
-                    if cppIsSlotEmpty(host,moveSlot) ~= false then
-                        cppEntityMoveToslot(host,kickbackTarget,moveSlot,25,false)
-                    end
-                    --coroutine.yield()
-                end
-            else 
-                print("evaded")
-                --cppEntityPlayAnimation(host,kickbackTarget,"evade",true,25)
+    if rollHit then
+        cppEntityPlayAnimation(host,kickbackTarget,"hit_under_end",true,25)
+        local currentSlotRow = cppGetSlotRow(targetSlot)
+        local currentSlotCol = cppGetSlotCol(targetSlot)
+        local targetSide = getInvertSide(character.side)
+        if( currentSlotCol < 3) then
+            currentSlotCol = currentSlotCol + 1
+            local moveSlot = t_slotHandler:getSlot(currentSlotCol,currentSlotRow,targetSide)
+            --local checkEmpty= 
+            if cppIsSlotEmpty(host,moveSlot) ~= false then
+                cppEntityMoveToslot(host,kickbackTarget,moveSlot,25,false)
             end
-        else 
-            print("kickbackTargetCharWrap is nil")
+            --coroutine.yield()
         end
-    else
-        print("kickbackTarget is nil")
     end
-    
     
     
 

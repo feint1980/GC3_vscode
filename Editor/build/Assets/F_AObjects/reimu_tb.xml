@@ -34,6 +34,12 @@
 				<anim name="Reimu_TB/dash_stop_01.png" time="5.00" offset_x="-9.50" offset_y="-5.50"/>
 			</anims>
 		</animation>
+		<animation name="evade">
+			<anims>
+				<anim name="Reimu_TB/guard_upper_b_01.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Reimu_TB/guard_upper_b_02.png" time="5.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
 		<animation name="hakurei_kick_cancel">
 			<anims>
 				<anim name="Reimu_TB/attack_d_01.png" time="6.00" offset_x="-10.00" offset_y="-6.00" loop="1"/>
@@ -71,6 +77,17 @@
 				<anim name="Reimu_TB/sit_09.png" time="5.00" offset_x="-13.00" offset_y="0.00"/>
 				<anim name="Reimu_TB/sit_10.png" time="5.00" offset_x="-13.00" offset_y="0.00"/>
 				<anim name="Reimu_TB/sit_11.png" time="6.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="hit_under">
+			<anims>
+				<anim name="Reimu_TB/hit_under_01.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Reimu_TB/hit_under_02.png" time="5.00" offset_x="-3.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="hit_under_end">
+			<anims>
+				<anim name="Reimu_TB/hit_under_03.png" time="6.00" offset_x="0.00" offset_y="0.00" loop="1"/>
 			</anims>
 		</animation>
 		<animation name="hit_upper">

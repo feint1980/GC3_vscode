@@ -72,13 +72,12 @@ function init(host)
     -- init characters
     -- Patchouli, left
     p1 = Patchouli:new()
-    p1:init(host,t_slotHandler:getSlot(3,3,1),1)
+    p1:init(host,t_slotHandler:getSlot(1,1,1),1)
     p1:loadCommon(host)
-
 
     -- Yukari, left
     p2 = Reimu:new()
-    p2:init(host,t_slotHandler:getSlot(2,2,1),1)
+    p2:init(host,t_slotHandler:getSlot(1,2,1),1)
     p2:loadCommon(host)
     p2:loadSkills(host)
 

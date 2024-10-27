@@ -69,6 +69,23 @@
 				<anim name="Patchouli_TB/dash_fw_07.png" time="7.00" offset_x="0.00" offset_y="0.00"/>
 			</anims>
 		</animation>
+		<animation name="evade">
+			<anims>
+				<anim name="Patchouli_TB/guard_upper_01.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Patchouli_TB/guard_upper_02.png" time="5.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="hit_under">
+			<anims>
+				<anim name="Patchouli_TB/hit_under_01.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="Patchouli_TB/hit_under_02.png" time="5.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="hit_under_end">
+			<anims>
+				<anim name="Patchouli_TB/hit_under_03.png" time="6.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
 		<animation name="hit_upper">
 			<anims>
 				<anim name="Patchouli_TB/hit_upper_01.png" time="4.00" offset_x="0.00" offset_y="0.00"/>

@@ -205,7 +205,6 @@ function Character:loadCommon(host)
 
 end
 
-
 function Character:determineEvade(enemy)
     print("determine evade called")
     local selfRoll = roll(1,6)
@@ -217,7 +216,7 @@ function Character:determineEvade(enemy)
     rollchance = rollchance / 100
     print("rollchance " .. rollchance .. "/ hitchance " .. hitchance)
 
-    if rollchance < hitchance then
+    if rollchance > hitchance then
         return true -- target evaded
     else
         return false -- target not evaded
