@@ -1,0 +1,140 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include",
+						"C:/SysGCC/mingw32/include",
+						"C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include-fixed"
+					],
+					"linkDirectories" : 
+					[
+						"C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0",
+						"C:/SysGCC/mingw32/lib/gcc",
+						"C:/SysGCC/mingw32/i686-w64-mingw32/lib",
+						"C:/SysGCC/mingw32/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"mingw32",
+						"gcc",
+						"moldname",
+						"mingwex",
+						"kernel32",
+						"pthread",
+						"advapi32",
+						"shell32",
+						"user32",
+						"kernel32",
+						"mingw32",
+						"gcc",
+						"moldname",
+						"mingwex",
+						"kernel32"
+					]
+				},
+				"path" : "C:/SysGCC/mingw32/bin/cc.exe",
+				"version" : "12.2.0"
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"C:/SysGCC/mingw32/include/c++/12.2.0",
+						"C:/SysGCC/mingw32/include/c++/12.2.0/i686-w64-mingw32",
+						"C:/SysGCC/mingw32/include/c++/12.2.0/backward",
+						"C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include",
+						"C:/SysGCC/mingw32/include",
+						"C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0/include-fixed"
+					],
+					"linkDirectories" : 
+					[
+						"C:/SysGCC/mingw32/lib/gcc/i686-w64-mingw32/12.2.0",
+						"C:/SysGCC/mingw32/lib/gcc",
+						"C:/SysGCC/mingw32/i686-w64-mingw32/lib",
+						"C:/SysGCC/mingw32/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"stdc++",
+						"mingw32",
+						"gcc_s",
+						"gcc",
+						"moldname",
+						"mingwex",
+						"kernel32",
+						"pthread",
+						"advapi32",
+						"shell32",
+						"user32",
+						"kernel32",
+						"mingw32",
+						"gcc_s",
+						"gcc",
+						"moldname",
+						"mingwex",
+						"kernel32"
+					]
+				},
+				"path" : "C:/SysGCC/mingw32/bin/c++.exe",
+				"version" : "12.2.0"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm",
+				"ccm",
+				"cxxm",
+				"c++m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"implicit" : {},
+				"path" : "C:/SysGCC/mingw32/bin/windres.exe"
+			},
+			"language" : "RC",
+			"sourceFileExtensions" : 
+			[
+				"rc",
+				"RC"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}

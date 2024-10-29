@@ -1,5 +1,6 @@
 #pragma
 
+#include <RakNet/MessageIdentifiers.h>
 #include <RakNet/RakPeerInterface.h>
 #include <RakNet/RakNetStatistics.h>
 #include <RakNet/RakNetTypes.h>
@@ -15,8 +16,12 @@
 
 #include <string>
 #include <vector>
-
-
+#include <string.h>
+#ifdef _WIN32
+#include <RakNet/WindowsIncludes.h>
+#else 
+#include <unistd.h>
+#endif
 
 enum RequestCode
 {

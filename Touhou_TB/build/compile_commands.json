@@ -1,0 +1,110 @@
+[
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj -c D:/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.obj -c D:/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/DarkTheme.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.obj -c D:/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/LightTheme.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.obj -c D:/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/D_/VS_Code_prj/GC3_vscode/TGUI_theme/ThemeCreator.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/BattleScene.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/BattleScene.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/BattleScene.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/BattleScene.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/ClientHandler.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/ClientHandler.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/ClientHandler.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/ClientHandler.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/F_Lua_BaseEntity.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_BaseEntity.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_BaseEntity.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/F_Lua_BaseEntity.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_Entitymanipulator.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_Lua_Entitymanipulator.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/F_Lua_Entitymanipulator.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/F_TurnHandler.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_TurnHandler.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/F_TurnHandler.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/F_TurnHandler.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/GUI_handler.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/GUI_handler.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/GUI_handler.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/GUI_handler.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/GUI_icon.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/GUI_icon.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/GUI_icon.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/LoginScene.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/LoginScene.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/LoginScene.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/LoginScene.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/Slot.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/Slot.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/Slot.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/SlotHandler.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/SlotHandler.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/SlotHandler.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TB_EmptyObject.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TB_EmptyObject.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/TB_EmptyObject.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TH_TB_App.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TH_TB_App.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/TH_TB_App.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TestTBScreen.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/TestTBScreen.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/TestTBScreen.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/build",
+  "command": "C:/clang+llvm-18.1.8-x86_64-pc-windows-msvc/bin/clang++.exe  @CMakeFiles/Touhou_TB.dir/includes_CXX.rsp -fpermissive -std=c++17 -municode -m32 -O0 -g -Xclang -gcodeview -D_DEBUG -D_DLL -D_MT -Xclang --dependent-lib=msvcrtd -o CMakeFiles/Touhou_TB.dir/src/main.cpp.obj -c D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/main.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Touhou_TB/src/main.cpp",
+  "output": "CMakeFiles/Touhou_TB.dir/src/main.cpp.obj"
+}
+]
