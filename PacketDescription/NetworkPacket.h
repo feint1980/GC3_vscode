@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 
 #include <RakNet/MessageIdentifiers.h>
 #include <RakNet/RakPeerInterface.h>
@@ -29,5 +29,6 @@ enum RequestCode
     invalid
 };
 RequestCode getSpecialRequestCode(RakNet::Packet *p);
+unsigned char GetPacketIdentifier(RakNet::Packet *p);
 
 

@@ -25,10 +25,11 @@
 #include <FrameBuffer.h>
 #include <FrameBufferScreen.h>
 #include <EffectBatch.h>
-
-
+#include <SpriteManager.h>
+#include <async++.h>
+#include <ResourceManager.h>
 #include "TB_EmptyObject.h"
-#include "BattleScene.h"
+#include "ClientHandler.h"
 #include "../../PacketDescription/NetworkPacket.h"
 #include "../../TGUI_theme/ThemeCreator.hpp"
 
@@ -113,6 +114,10 @@ private:
     tgui::Panel::Ptr m_connect_panel;
     tgui::Label::Ptr m_connect_label;
     tgui::Label::Ptr m_connect_cancel_label;
+
+    ClientHandler * m_client;
+
+    bool m_isDisconnected = true;
 
     //BattleScene m_battleScene;
 

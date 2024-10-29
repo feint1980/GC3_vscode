@@ -91,6 +91,17 @@ void LoginScene::update(float deltaTime)
 {
     m_camera.update();
     m_tgui->updateTime(deltaTime);
+    
+    if(m_isDisconnected )
+    {
+        if(m_client  && m_client->isConnected())
+        {
+            m_connect_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+            m_isDisconnected = false;
+            m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
+            m_panel->moveToFront();
+        }
+    }
 }
 
 void LoginScene::checkInput()
@@ -190,6 +201,7 @@ void LoginScene::initGUI()
     m_tgui->add(m_panel);
     m_tgui->add(m_tos);
     selectTheme(*m_tgui, "themes/Dark.txt");  // force to load in main thread since the openGL problem, you can only have texture created in mainthread ( OpenGL Context)
+
     auto loadFontTask = async::spawn([&]() {
         tgui::Font font_load("font/ARIALUNI.ttf");    
         m_tgui->setFont(font_load);
@@ -236,7 +248,6 @@ void LoginScene::initGUI()
         m_panel->add(m_cancel_button);
         m_panel->setVisible(false);
 
-      
 
     // });
 
@@ -365,9 +376,22 @@ void LoginScene::initGUI()
 
 
     m_online_label->onClick([&]() {
-        m_connect_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-        m_connect_panel->moveToFront();
-
+      
+        if(m_isDisconnected)
+        {
+            m_connect_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+            m_connect_panel->moveToFront();
+            m_client = new ClientHandler();
+            m_client->init("127.0.0.1", 1123);
+            m_client->connect();
+        }
+        else
+        {
+            m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+            m_panel->moveToFront();
+        }
+     
+       
     });
 
 
@@ -410,7 +434,8 @@ void LoginScene::initGUI()
 
     m_cancel_button->onClick([&]() {
         m_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-        m_panel->moveToBack();
+        //m_panel->moveToBack();
+        
     });
 
     // m_cancel_button->onMouseEnter([&]() {
