@@ -21,6 +21,8 @@ ServerMain::ServerMain()
     m_port = 1123 ;
 }
 
+
+
 int ServerMain::handleStep2Request(RakNet::Packet *p)
 {
     RequestCode requestCode = getSpecialRequestCode(p);
@@ -30,6 +32,9 @@ int ServerMain::handleStep2Request(RakNet::Packet *p)
         {
             std::cout << "Login request found !!!\n";
             // todo : verify login
+            std::string cData((const char*) p->data);
+            
+
 
             return 12;
         }
@@ -62,7 +67,7 @@ void ServerMain::init(const std::string & password, int port,unsigned int server
     m_port = port;
     m_connectionSize = serverSize;
 
-    m_server->SetIncomingPassword("TTKR", strlen("TTKR"));
+    m_server->SetIncomingPassword(m_password.c_str(), m_password.size());
 	m_server->SetTimeoutTime(5000,RakNet::UNASSIGNED_SYSTEM_ADDRESS);
     m_server->SetMaximumIncomingConnections(m_connectionSize);
 
@@ -112,7 +117,6 @@ void ServerMain::run()
 {
     while(m_serverOn)
     {
-
         // This sleep keeps RakNet responsive
         RakSleep(30);
         update(1.0f);

@@ -1,18 +1,18 @@
 #include "ClientMain.h"
 
-unsigned char GetPacketIdentifier(RakNet::Packet *p)
-{
-	if (p==0)
-		return 255;
+// unsigned char GetPacketIdentifier(RakNet::Packet *p)
+// {
+// 	if (p==0)
+// 		return 255;
 
-	if ((unsigned char)p->data[0] == ID_TIMESTAMP)
-	{
-		RakAssert(p->length > sizeof(RakNet::MessageID) + sizeof(RakNet::Time));
-		return (unsigned char) p->data[sizeof(RakNet::MessageID) + sizeof(RakNet::Time)];
-	}
-	else
-		return (unsigned char) p->data[0];
-}
+// 	if ((unsigned char)p->data[0] == ID_TIMESTAMP)
+// 	{
+// 		RakAssert(p->length > sizeof(RakNet::MessageID) + sizeof(RakNet::Time));
+// 		return (unsigned char) p->data[sizeof(RakNet::MessageID) + sizeof(RakNet::Time)];
+// 	}
+// 	else
+// 		return (unsigned char) p->data[0];
+// }
 
 
 ClientMain::ClientMain()
@@ -192,6 +192,10 @@ ClientCommand ClientMain::getCommand(const std::string & command)
     {
         return ClientCommand::SHUTDOWN;
     }
+    if(command == "login")
+    {
+        return ClientCommand::LOGIN;
+    }
 
     return ClientCommand::UNKNOWN;
 }
@@ -286,6 +290,16 @@ void ClientMain::handleCommand(const std::string & command)
 		break;	
     }
 
+    case ClientCommand::LOGIN:
+    {
+        std::cout << "enter ID : \n";
+        std::cin >> m_idStr;
+        std::cout << "enter password : \n";
+        std::cin >> m_pwStr;
+
+        
+    }
+    break;
 
     default:
     {

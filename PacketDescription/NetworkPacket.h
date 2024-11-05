@@ -31,4 +31,6 @@ enum RequestCode
 RequestCode getSpecialRequestCode(RakNet::Packet *p);
 unsigned char GetPacketIdentifier(RakNet::Packet *p);
 
+std::string combineLoginPackage(const std::string & id, const std::string & pw);
+
 

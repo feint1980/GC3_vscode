@@ -35,6 +35,11 @@ void DataBaseHandler::loadDataBase(const std::string & databasePath)
 
 }
 
+void DataBaseHandler::getIDAndPassword(const std::string & data, std::string & id, std::string & pw)
+{
+	
+}
+
 bool DataBaseHandler::access_user_info(const std::string & id , const std::string & pw)
 {
 	record_count = 0;

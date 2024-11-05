@@ -21,6 +21,8 @@
 #include <unistd.h>
 #endif
 
+#include "NetworkPacket.h"
+
 #include <stdio.h>
 #include <string.h>
 //#include "Gets.h"
@@ -40,6 +42,7 @@ enum ClientCommand
     DISCONNECT,
     STARTUP, // 
     SHUTDOWN, // 
+    LOGIN,
     UNKNOWN = 792
 };
 
@@ -87,7 +90,11 @@ private:
     char messageBuffer[2048];
     char serverBroadcast[2048];
 
+    std::string m_idStr;
+    std::string m_pwStr;
+
 };
+
 
 
 #endif // ClientMain_H
