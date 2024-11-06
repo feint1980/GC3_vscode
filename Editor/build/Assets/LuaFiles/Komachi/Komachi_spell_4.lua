@@ -3,7 +3,7 @@ package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/L
 bc =  require("./Assets/Luafiles/common/boss_common")
 
 -- Belong to moveset_normal_2
-function DynamicBehavior2(host,dynob)
+function DynamicBehavior4(host,dynob)
     local count = 2
     local xthresHold = 175
     while true do
@@ -16,55 +16,17 @@ function DynamicBehavior2(host,dynob)
             cppHoldPosition(host,dynob,80,"charging")
             coroutine.yield()
             cppOjbectPlayAnimation(dynob,"charge_end",1,true)
-            bc.ftest_ma_custom_aff(host,dynob,"komachi/komachi_13.png",
-            3.425, -- speed
-            10.0,  -- lifeTime
-            3,     -- k
-            2,     -- n
-            4,     -- n2
-            2,     -- l1
-            3,     -- l2
-            -1,     -- posneg
-            0,    -- startAngle
-            1.3777,    -- angleStep
-            45,    -- rotation
-            3,     -- interval
-            0)     -- time
-
-            cppHoldPosition(host,dynob,200,"charge_end",false)
+           
+            cppHoldPosition(host,dynob,100,"charge_end",false)
             coroutine.yield()
         end
-        cppMoveObject(host,dynob,count * xthresHold,150,30)
-        coroutine.yield()
-        cppHoldPosition(host,dynob,10,"charging")
-        coroutine.yield()
-        cppHoldPosition(host,dynob,200,"charge_end")
-        bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
-        1, -- tier
-        1.7, -- speed
-        10.0,  -- lifeTime
-        2,     -- k
-        2,     -- n
-        1,     -- n2
-        2,     -- l1
-        3,     -- l2
-        1,     -- posneg
-        0,    -- startAngle
-        15.11,    -- angleStep
-        0,    -- rotation
-        5,     -- interval
-        10)     -- time
-        coroutine.yield()
-        cppHoldPosition(host,dynob,1,"charge_end",false)
-        coroutine.yield()
-        count = count + 1
     end
 end
 
 -- end of move set : normal 2
 
 
-function spell_2_behavior(host,dynob)
+function spell_4_behavior(host,dynob)
 
     local x_index = -2
     local y_index = 5
@@ -201,24 +163,4 @@ function spell_2_behavior(host,dynob)
     end
 end
 
-function spell_2_side_coin(host,dynob,direction,tier,tableName,tableAssets,speed,lifeTime,current_angle,angle_step,interval,time, addon_angle , coin_line, spread_time)
-
-    local addon_value = 0
-
-    if (direction == -1) then
-        addon_value = addon_angle --=  addon_value
-    end
-    local t_current_angle = current_angle + addon_value
-
-    local additional_speed = 0.7
-
-    for f = 1, coin_line do
-        for i = 1, spread_time do
-            local x = math.cos((t_current_angle + i * (angle_step) ))
-            local y = math.sin((t_current_angle + i * (angle_step) ))
-            cppSetFire_KomachiCoin(host,dynob,tableName,tableAssets,tier,
-                            speed + additional_speed * f,lifeTime,x,y,f_angle,time + (interval  * (f * 25) ))
-        end
-    end
-end
 

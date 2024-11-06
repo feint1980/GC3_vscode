@@ -16,6 +16,7 @@ t_soul = nil
 require "Komachi_spell_1"
 require "Komachi_spell_2"
 require "Komachi_spell_3"
+require "Komachi_spell_4"
 
 -- init random seed
 math.randomseed(os.time())
@@ -91,5 +92,10 @@ end
 
 function moveset_spell_3(host)
     dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior3,host,komachi)}
+    IssueNextTask(host,komachi)
+end
+
+function moveset_spell_4(host)
+    dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior4,host,komachi)}
     IssueNextTask(host,komachi)
 end
