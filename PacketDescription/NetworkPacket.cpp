@@ -31,3 +31,8 @@ RequestCode getSpecialRequestCode(RakNet::Packet *p)
     //std::cout << "Not a request, normal message : \n";
     return RequestCode::invalid;
 }
+std::string combineLoginPackage(const std::string & id, const std::string & pw)
+{
+    std::string returnVal = "|LOGIN_REQUEST|" + id + "|" + pw + "|END_REQUEST|";
+    return returnVal;
+}
