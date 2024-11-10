@@ -57,7 +57,6 @@ void CharacterTestScreen::onEntry()
 
 	m_spriteFont = new Feintgine::SpriteFont("font/ARIALUNI.ttf", 30);
 
-
 }
 
 void CharacterTestScreen::onExit()
