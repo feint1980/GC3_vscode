@@ -642,6 +642,10 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppAddBulletManipulatorPatern", lua_addBulletManipulatorPatern);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 
+	// Komachi's helper start
+
+	// Komachi's helper end
+
 
 
 	bulletManipulator.init(&m_bullets);

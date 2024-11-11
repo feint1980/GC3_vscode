@@ -5,14 +5,12 @@
 #include <GLTexture.h>
 #include <DebugRender.h>
 #include <LightBatch.h>
+#include <F_LuaDynamicObject.h>
 
 
-
-
-
-const int UPDATE_DIMENSION = 1;
-const int UPDATE_SPLASH = 2;
-const int UPDATE_UV = 4;
+const unsigned int UPDATE_DIMENSION = 1;
+const unsigned int UPDATE_FLASH = 2;
+const unsigned int UPDATE_UV = 4;
 class Komachi_pillar
 {
 public:
@@ -31,7 +29,13 @@ public:
 
     void setColor(const Feintgine::Color & color) { m_color = color; }
 
-    void setExpand(const glm::vec2 & maxDim, float rate);
+    void setExpand(const glm::vec2 & targetDim, float time);
+
+    // only flash on vertical side
+    void setUpdateUV(float time, float rate);
+
+    // only flash on horizontal side
+    void setFlash(float time, float freq);
 
 private:
 
@@ -39,6 +43,7 @@ private:
     Feintgine::GLTexture m_texture_2; 
     glm::vec2 m_pos;
     glm::vec2 m_dims;
+    glm::vec2 m_displayDim;
     Feintgine::Color m_color;
     glm::vec4 m_uv = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
 
@@ -47,5 +52,19 @@ private:
     GLuint m_textureId;
 
     unsigned int m_updateState = 0;
+
+    float m_expandTime = 0;
+    float m_flashTime = 0;
+    float m_updateUVTime = 0;
+
+
+    float m_updateUVRate = 0;
+    float m_flashFreq = 0;
+
+    glm::vec2 m_targetDim;
+    glm::vec2 m_extendRate;
+
+    float m_attenuationScale = 0.0f;
+
 
 };
