@@ -52,10 +52,8 @@ int lua_CreateFromLua(lua_State * L)
 	int depth = (int)lua_tonumber(L, 6);
 	float angle = (float)lua_tonumber(L, 7);
 
-	F_Lua_GenericObject * createdDynamicObj = object->createBoss(pos, animationPath, glm::vec2(scale), depth, angle);// createObject(pos, animationPath, 1, 15, 0);
-																										//moveOb
-																										//std::cout << "create object " << createdDynamicObj << "\n";
-																						//std::cout << "create |||| " << createdDynamicObj << "\n";
+	F_Lua_GenericObject * createdDynamicObj = object->createBoss(pos, animationPath, glm::vec2(scale), depth, angle);
+
 	lua_pushlightuserdata(L, createdDynamicObj);
 	return 1; // this host function return 1 number 
 }
@@ -109,8 +107,6 @@ int lua_MoveObject(lua_State * L)
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
 	}
-	//std::cout << "[C++] lua_MoveObject called \n";
-	//F_Lua_Boss_Manager
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1));
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2));
 	float x = lua_tonumber(L, 3);
@@ -180,7 +176,6 @@ int lua_setFireTypePE(lua_State * L)
 		break;
 	}
 
-	//std::cout << "time !!! " << time << "\n";
 
 	int totalInterval = 0;
 	objectManager->rw_addEvent_PE(dynamicObject, asset, speed, lifeTime, peType, startRange, rangeCover,
@@ -318,7 +313,7 @@ int lua_setKomachiCoin(lua_State * L)
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
 	}
-	//	void rw_addEvent_base(F_Lua_GenericObject * dynamicObject, 
+	//void rw_addEvent_base(F_Lua_GenericObject * dynamicObject, 
 	//const std::string & asset, float speed, float lifeTime, 
 	//float x, float y, float currentAngle, double time);
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
@@ -643,6 +638,8 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 
 	// Komachi's helper start
+
+	
 
 	// Komachi's helper end
 

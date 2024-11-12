@@ -22,28 +22,39 @@ void Komachi_pillar::init(const Feintgine::GLTexture & texture_1, const Feintgin
     m_color = color;
 }
 
+void Komachi_pillar::spawn(const glm::vec2 & pos, const glm::vec2 & dim, const Feintgine::Color & color)
+{
+    m_pos = pos;
+    m_dims = dim;
+    m_color = color;
+    m_visible = true;
+}
+
 void Komachi_pillar::draw(Feintgine::SpriteBatch & spriteBatch)
 {
-    glm::vec4 desRect;
 
-    desRect.x = m_pos.x - m_displayDim.x / 2.0f;
-    desRect.y = m_pos.y - m_displayDim.y / 2.0f;
-    desRect.z = m_displayDim.x;
-    desRect.w = m_displayDim.y;
-
-
-    switch (m_frameIndex)
+    if(m_visible)
     {
-    case 0:
-        m_textureId = m_texture_1.id;
-        break;
-    case 1:
-        m_textureId = m_texture_2.id;
-        break;
-    }
-    
+        glm::vec4 desRect;
+        desRect.x = m_pos.x - m_displayDim.x / 2.0f;
+        desRect.y = m_pos.y - m_displayDim.y / 2.0f;
+        desRect.z = m_displayDim.x;
+        desRect.w = m_displayDim.y;
 
-    spriteBatch.draw(desRect, m_uv, m_textureId, 0, m_color, 0);
+
+        switch (m_frameIndex)
+        {
+        case 0:
+            m_textureId = m_texture_1.id;
+            break;
+        case 1:
+            m_textureId = m_texture_2.id;
+            break;
+        }
+        
+        spriteBatch.draw(desRect, m_uv, m_textureId, 0, m_color, 0);
+        
+    }
 
 }
 

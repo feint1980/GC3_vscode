@@ -11,6 +11,7 @@
 const unsigned int UPDATE_DIMENSION = 1;
 const unsigned int UPDATE_FLASH = 2;
 const unsigned int UPDATE_UV = 4;
+const unsigned int UPDATE_COLOR = 8;
 class Komachi_pillar
 {
 public:
@@ -22,6 +23,8 @@ public:
     void draw(Feintgine::SpriteBatch & spriteBatch);
     void drawLight(Feintgine::LightBatch & lightBatch);
     void update(float deltaTime);
+
+    void spawn(const glm::vec2 & pos, const glm::vec2 & dim, const Feintgine::Color & color);
 
     void setPos(const glm::vec2 & pos) { m_pos = pos; }
 
@@ -36,6 +39,8 @@ public:
 
     // only flash on horizontal side
     void setFlash(float time, float freq);
+
+    void fade(float time, const Feintgine::Color & targetColor);
 
 private:
 
@@ -56,10 +61,15 @@ private:
     float m_expandTime = 0;
     float m_flashTime = 0;
     float m_updateUVTime = 0;
+    float m_fadeTime = 0;
 
+    Feintgine::Color m_targetColor;
+
+    bool m_visible = false;
 
     float m_updateUVRate = 0;
     float m_flashFreq = 0;
+    float m_alphaChangeRate = 0;
 
     glm::vec2 m_targetDim;
     glm::vec2 m_extendRate;
