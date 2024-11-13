@@ -15,6 +15,7 @@
 #include "BulletManupilator.h"
 #include <F_BaseObject.h>
 #include "F_Komachi_Souls_Object.h"
+#include "F_Komachi_pillar.h"
 #include <FL_Object.h>
 #include "EnemyBullet_KomachiCoin.h"
 #include <ParticleEngine2D.h>
@@ -38,7 +39,7 @@ enum ObjectType
 class F_Lua_Boss_Manager //: public Feintgine::F_LuaObjectManager
 {
 public:
-	 F_Lua_Boss_Manager();
+	F_Lua_Boss_Manager();
 	~F_Lua_Boss_Manager();
 
 	void init();

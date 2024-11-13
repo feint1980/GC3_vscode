@@ -232,6 +232,20 @@ int lua_setFireType1(lua_State * L)
 	return 0;
 }
 
+int lua_Komachi_summon_pillar(lua_State * L)
+{
+	if(lua_gettop(L) != 10)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+
+	
+
+
+}
+
+
 int lua_setFireMACustomAFF(lua_State * L)
 {
 	if (lua_gettop(L) != 16)
@@ -639,7 +653,7 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 
 	// Komachi's helper start
 
-	
+	lua_register(m_script, "cppKomachi_summon_pillar", lua_Komachi_summon_pillar);
 
 	// Komachi's helper end
 
