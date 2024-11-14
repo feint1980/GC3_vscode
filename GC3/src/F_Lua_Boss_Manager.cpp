@@ -1446,6 +1446,7 @@ void F_Lua_Boss_Manager::rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dyn
 
 
 
+
 void F_Lua_Boss_Manager::createHelper(F_Lua_GenericObject * dynamicObject,unsigned int id , const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time)
 {

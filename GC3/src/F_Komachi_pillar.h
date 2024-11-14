@@ -6,13 +6,13 @@
 #include <DebugRender.h>
 #include <LightBatch.h>
 #include <F_LuaDynamicObject.h>
-
+#include <F_BaseObject.h>
 
 const unsigned int UPDATE_DIMENSION = 1;
 const unsigned int UPDATE_FLASH = 2;
 const unsigned int UPDATE_UV = 4;
 const unsigned int UPDATE_COLOR = 8;
-class F_Komachi_pillar
+class F_Komachi_pillar: public Feintgine::F_BaseObject
 {
 public:
     F_Komachi_pillar();

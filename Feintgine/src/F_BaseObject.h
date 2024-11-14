@@ -23,6 +23,8 @@ namespace Feintgine
 
         void draw(Feintgine::SpriteBatch & spriteBatch);
 
+        void drawLight(Feintgine::LightBatch & lightBatch);
+
         void setAfterImageScaleRate(float scaleRate); // scale rate for the after image trace
 
         virtual void update(float deltaTime) = 0;
