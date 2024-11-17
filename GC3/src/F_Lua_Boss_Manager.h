@@ -33,6 +33,7 @@ enum ArcType
 enum ObjectType
 {
 	komachi_souls = 1,
+	komachi_pillar = 2
 };
 
 
@@ -79,8 +80,10 @@ public:
 	
 	void rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dynamicObject, const std::vector<std::string> & assets, int tier, float speed, float lifeTime, float x, float y, float currentAngle, double time);
 
-	void createHelper(F_Lua_GenericObject * dynamicObject, unsigned int id, const std::string & objectName,
+	Feintgine::F_BaseObject * createHelper(F_Lua_GenericObject * dynamicObject, unsigned int id, const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time);
+
+	
 
 	void waitFor(F_Lua_GenericObject * dynamicObject, float time);
 	
@@ -147,6 +150,14 @@ public:
 	void reloadPlayer(int val);
 	void initPlayer(int val, Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager, Feintgine::Camera2D * cam,Feintgine::EffectBatch * effectBatch);
 
+	void loadTextures();
+
+	void preloadTexture(const std::string & path);
+
+	// Komachi's addon 
+	F_Komachi_pillar * createPillar(const std::string & texturePath1, const std::string & texturePath2, const glm::vec2 & pos, const glm::vec2 & dim, const Feintgine::Color & color);
+
+
 protected:
 
 	F_Player m_player;
@@ -168,13 +179,19 @@ protected:
 
 	std::vector<Feintgine::F_BaseObject *> m_objects;
 
+	std::vector<F_Komachi_pillar *> m_komachiPillars;
+
 	std::map<std::string, ObjectType > m_objectMap;
 
 	float f_angle;
 
+	std::map<std::string, Feintgine::GLTexture> m_preloadedTextures;
+
 	std::vector<ExplosionRing> m_exlosions;
 
 	BulletManupilator bulletManipulator;
+
+
 
 	// std::vector<PaternBehavior_from_lua *> m_paternBehaviors;
 

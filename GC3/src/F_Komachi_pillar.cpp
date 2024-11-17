@@ -19,6 +19,7 @@ void F_Komachi_pillar::init(const Feintgine::GLTexture & texture_1, const Feintg
     m_texture_2 = texture_2;
     m_pos = pos;
     m_dims = dim;
+    m_displayDim = dim;
     m_color = color;
 }
 
@@ -52,7 +53,7 @@ void F_Komachi_pillar::draw(Feintgine::SpriteBatch & spriteBatch)
             break;
         }
         
-        spriteBatch.draw(desRect, m_uv, m_textureId, 0, m_color, 0);
+        spriteBatch.draw(desRect, m_uv, m_textureId, -1, m_color, 0);
         
     }
 
@@ -96,12 +97,15 @@ void F_Komachi_pillar::update(float deltaTime)
     {
         if (m_expandTime > 0.0f)
         {
+            //std::cout << m_expandTime << "\n";
             m_dims += m_extendRate * deltaTime;
+            m_displayDim = m_dims;
             m_expandTime -= deltaTime;
         }
         else
         {
             m_dims = m_targetDim;
+            m_displayDim = m_dims;
             m_updateState &= ~UPDATE_DIMENSION;
         }
     }

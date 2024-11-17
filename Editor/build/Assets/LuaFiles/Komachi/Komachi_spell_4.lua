@@ -2,24 +2,30 @@ package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/L
 
 bc =  require("./Assets/Luafiles/common/boss_common")
 
+fire_pilar = nil
+
 -- Belong to moveset_normal_2
 function DynamicBehavior4(host,dynob)
     local count = 2
     local xthresHold = 175
     while true do
-        if (count > 1) then
-            count = -1
+        --if (count > 1) then
+            --count = -1
             cppMoveObject(host,dynob,0,170,25)
             coroutine.yield()
             cppOjbectPlayAnimation(dynob,"charging",1,false)
             cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.5,15.5)
             cppHoldPosition(host,dynob,80,"charging")
             coroutine.yield()
-            cppOjbectPlayAnimation(dynob,"charge_end",1,true)
-           
-            cppHoldPosition(host,dynob,100,"charge_end",false)
+            fire_pilar = cppKomachi_summon_pillar(host,dynob,"Textures/pillar_1.png","Textures/pillar_2.png",0,0,
+            2,1024,255,255,255,120)
+            cppKomachi_pillar_expand(fire_pilar,708,1024,12)
             coroutine.yield()
-        end
+            -- cppOjbectPlayAnimation(dynob,"charge_end",1,true)
+           
+            -- cppHoldPosition(host,dynob,100,"charge_end",false)
+            -- coroutine.yield()
+        --end
     end
 end
 

@@ -232,18 +232,7 @@ int lua_setFireType1(lua_State * L)
 	return 0;
 }
 
-int lua_Komachi_summon_pillar(lua_State * L)
-{
-	if(lua_gettop(L) != 10)
-	{
-		std::cout << "bad gettop " << lua_gettop(L) << " \n";
-		return -1;
-	}
 
-	
-
-
-}
 
 
 int lua_setFireMACustomAFF(lua_State * L)
@@ -404,6 +393,53 @@ int lua_createHelper(lua_State * L)
 	objectManager->createHelper(dynamicObject,id, objectName, asset, x, y, scaleX, scaleY, depth, velX, velY, afterImageCount, afterImageRate,scaleRate, time);
 	
 	return 0 ;
+}
+
+int lua_Komachi_summon_pillar(lua_State * L)
+{
+	if(lua_gettop(L) != 12)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+
+	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
+	std::string asset1 = lua_tostring(L, 3); //
+	std::string asset2 = lua_tostring(L, 4); //
+	float x = lua_tonumber(L, 5); //
+	float y = lua_tonumber(L, 6); //
+	float dimX = lua_tonumber(L, 7); //
+	float dimY = lua_tonumber(L, 8); //
+	float r = lua_tonumber(L, 9); //
+	float g = lua_tonumber(L, 10); //
+	float b = lua_tonumber(L, 11); //
+	float a = lua_tonumber(L, 12); //
+	// int state = lua_tonumber(L, 15); //
+
+	//std::cout << "called, pre \n";
+	F_Komachi_pillar * pillar = objectManager->createPillar(asset1, asset2,glm::vec2(x,y), glm::vec2(dimX, dimY),Feintgine::Color(r, g, b, a));
+
+	//std::cout << "called, pass \n";
+
+	lua_pushlightuserdata(L, pillar);
+	return 1; // return 1 value (pillar) 
+}
+
+int lua_Komachi_pillar_expand(lua_State * L)
+{
+	if(lua_gettop(L) != 4)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	F_Komachi_pillar * pillar = static_cast<F_Komachi_pillar *>(lua_touserdata(L, 1)); // pillar
+	float dimX = lua_tonumber(L, 2); //
+	float dimY = lua_tonumber(L, 3); //
+	float time = lua_tonumber(L, 4); //
+	pillar->setExpand(glm::vec2(dimX, dimY), time);
+	return 0;
+
 }
 
 int lua_setAfterImage(lua_State * L)
@@ -621,7 +657,7 @@ int lua_setObjectChargingEffect(lua_State * L)
 
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 {
-
+	loadTextures();
 	// Init Map 
 	m_objectMap.insert(std::make_pair("komachi_souls", ObjectType::komachi_souls));
 
@@ -654,11 +690,13 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	// Komachi's helper start
 
 	lua_register(m_script, "cppKomachi_summon_pillar", lua_Komachi_summon_pillar);
+	lua_register(m_script, "cppKomachi_pillar_expand", lua_Komachi_pillar_expand);
+
 
 	// Komachi's helper end
 
 
-
+	
 	bulletManipulator.init(&m_bullets);
 }
 
@@ -693,6 +731,21 @@ void F_Lua_Boss_Manager::removeObject(F_Lua_GenericObject * object)
 	}
 }
 
+F_Komachi_pillar * F_Lua_Boss_Manager::createPillar(const std::string & texturePath1, const std::string & texturePath2, const glm::vec2 & pos, const glm::vec2 & dim, const Feintgine::Color & color)
+{
+	//std::cout << "create pillar \n";
+	F_Komachi_pillar * pillar = new F_Komachi_pillar();
+	pillar->init(Feintgine::ResourceManager::getTexture(texturePath1) , Feintgine::ResourceManager::getTexture(texturePath2), pos, dim, color);
+
+	pillar->spawn(pos, dim, color);
+
+	//std::cout << "attemp pushback \n";
+	m_komachiPillars.push_back(pillar);
+
+	//std::cout << "pushback done \n";
+
+	return pillar;
+}
 
 void F_Lua_Boss_Manager::update(float deltaTime)
 {
@@ -706,6 +759,16 @@ void F_Lua_Boss_Manager::update(float deltaTime)
 			m_luaBosses[i]->update(deltaTime);
 		}
 	}
+	
+	for(int i = 0; i < m_komachiPillars.size(); i++)
+	{
+		if(m_komachiPillars[i])
+		{
+			m_komachiPillars[i]->update(deltaTime);
+		}
+	
+	}
+
 	for(size_t i = 0 ; i < m_objects.size() ; i++)
 	{
 		if (m_objects[i])
@@ -904,10 +967,26 @@ bool F_Lua_Boss_Manager::loadLuaFile(const std::string & filePath)
 	return false;
 }
 
+void F_Lua_Boss_Manager::preloadTexture(const std::string & path)
+{
+
+}
+
+void F_Lua_Boss_Manager::loadTextures()
+{
+	Feintgine::ResourceManager::getTexture("Textures/pillar_1.png");
+	Feintgine::ResourceManager::getTexture("Textures/pillar_2.png");
+	
+}
+
 void F_Lua_Boss_Manager::drawLight(Feintgine::LightBatch & lightBatch)
 {
 	m_player.drawLight(lightBatch);
 	m_particleEngine.drawLight(lightBatch);
+	for(int i = 0; i < m_komachiPillars.size(); i++)
+	{
+		m_komachiPillars[i]->drawLight(lightBatch);
+	}
 
 		
 }
@@ -1009,6 +1088,14 @@ void F_Lua_Boss_Manager::draw(Feintgine::SpriteBatch & spriteBatch)
 	for (size_t i = 0; i < m_bullets.size(); i++)
 	{
 		m_bullets[i]->draw(spriteBatch);
+	}
+
+	for(int i = 0; i < m_komachiPillars.size(); i++)
+	{
+		if(m_komachiPillars[i])
+		{
+			m_komachiPillars[i]->draw(spriteBatch);
+		}
 	}
 
 	//m_player.draw(spriteBatch);
@@ -1447,7 +1534,7 @@ void F_Lua_Boss_Manager::rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dyn
 
 
 
-void F_Lua_Boss_Manager::createHelper(F_Lua_GenericObject * dynamicObject,unsigned int id , const std::string & objectName,
+Feintgine::F_BaseObject * F_Lua_Boss_Manager::createHelper(F_Lua_GenericObject * dynamicObject,unsigned int id , const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time)
 {
 
@@ -1464,8 +1551,11 @@ void F_Lua_Boss_Manager::createHelper(F_Lua_GenericObject * dynamicObject,unsign
 		{
 			m_objects.push_back(object);
 		}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time));
+		return object;
 	}
 		break;
+
+
 	default:
 		break;
 	}	
@@ -1526,4 +1616,10 @@ void F_Lua_Boss_Manager::clearBullets()
 		m_bullets.erase(m_bullets.begin() + i);
 	}
 	m_bullets.clear();
+
+	for (int i = 0; i < m_komachiPillars.size(); i++)
+	{
+		m_komachiPillars.erase(m_komachiPillars.begin() + i);
+	}
+	m_komachiPillars.clear();
 }
