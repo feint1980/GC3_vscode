@@ -70,6 +70,17 @@ void F_Komachi_pillar::setExpand(const glm::vec2 & targetDim, float time)
 
 }
 
+
+void F_Komachi_pillar::setMove(const glm::vec2 & targetPos, float time)
+{
+    m_moveTime = time;
+    m_targetPos = targetPos;
+    m_moveRate = (targetPos - m_pos) / m_moveTime;    
+
+    m_updateState |= UPDATE_POS;
+
+}
+
 void F_Komachi_pillar::setFlash(float time, float freq)
 {
     m_flashTime = time;
@@ -83,6 +94,19 @@ void F_Komachi_pillar::setUpdateUV(float time, float rate)
     m_updateUVTime = time;
     m_updateUVRate = rate;
     m_updateState |= UPDATE_UV;
+}
+
+
+void F_Komachi_pillar::setColorChange(const Feintgine::Color & targetColor, float time)
+{
+    m_targetColor = targetColor;
+    m_changeColorTime = time;
+    m_updateState |= UPDATE_COLOR;
+    m_changeColorRate.r = (targetColor.r - m_color.r) / m_changeColorTime;
+    m_changeColorRate.g = (targetColor.g - m_color.g) / m_changeColorTime;
+    m_changeColorRate.b = (targetColor.b - m_color.b) / m_changeColorTime;
+    m_changeColorRate.a = (targetColor.a - m_color.a) / m_changeColorTime;
+
 }
 
 void F_Komachi_pillar::drawLight(Feintgine::LightBatch & lightBatch)
@@ -136,6 +160,35 @@ void F_Komachi_pillar::update(float deltaTime)
             m_updateState &= ~UPDATE_UV;
         }
 
+    }
+    if(m_updateState & UPDATE_POS)
+    {
+        if(m_moveTime > 0.0f)
+        {
+            m_pos += m_moveRate * deltaTime;
+            m_moveTime -= deltaTime;
+        }
+        else
+        {
+            m_updateState &= ~UPDATE_POS;
+            m_pos = m_targetPos;
+        }
+    }
+    if(m_updateState & UPDATE_COLOR)
+    {
+        if(m_changeColorTime > 0.0f)
+        {
+            m_color.r += m_changeColorRate.r * deltaTime;
+            m_color.g += m_changeColorRate.g * deltaTime;
+            m_color.b += m_changeColorRate.b * deltaTime;
+            m_color.a += m_changeColorRate.a * deltaTime;
+            m_changeColorTime -= deltaTime;
+        }
+        else
+        {
+            m_updateState &= ~UPDATE_COLOR;
+            m_color = m_targetColor;
+        }
     }
 
 }

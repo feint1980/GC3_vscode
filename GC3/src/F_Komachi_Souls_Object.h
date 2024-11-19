@@ -20,6 +20,4 @@ private :
 
 };
 
-
-
 #endif // !_F_KOMACHI_SOULS_OBJECT_H_

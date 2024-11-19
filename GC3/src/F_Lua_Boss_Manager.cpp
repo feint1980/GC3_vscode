@@ -442,6 +442,22 @@ int lua_Komachi_pillar_expand(lua_State * L)
 
 }
 
+int lua_Komachi_pillar_move(lua_State * L)
+{
+	if(lua_gettop(L) != 4)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	F_Komachi_pillar * pillar = static_cast<F_Komachi_pillar *>(lua_touserdata(L, 1)); // pillar
+	float x = lua_tonumber(L, 2); //
+	float y = lua_tonumber(L, 3); //
+	float time = lua_tonumber(L, 4); //
+	pillar->setMove(glm::vec2(x, y), time);
+	return 0;
+}
+
+
 int lua_setAfterImage(lua_State * L)
 {
 	if (lua_gettop(L) <4 ||  lua_gettop(L) > 7)
@@ -691,6 +707,7 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 
 	lua_register(m_script, "cppKomachi_summon_pillar", lua_Komachi_summon_pillar);
 	lua_register(m_script, "cppKomachi_pillar_expand", lua_Komachi_pillar_expand);
+	lua_register(m_script, "cppKomachi_pillar_move", lua_Komachi_pillar_move);
 
 
 	// Komachi's helper end

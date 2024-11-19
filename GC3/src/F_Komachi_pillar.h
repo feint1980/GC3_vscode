@@ -12,6 +12,8 @@ const unsigned int UPDATE_DIMENSION = 1;
 const unsigned int UPDATE_FLASH = 2;
 const unsigned int UPDATE_UV = 4;
 const unsigned int UPDATE_COLOR = 8;
+const unsigned int UPDATE_POS = 16;
+
 class F_Komachi_pillar: public Feintgine::F_BaseObject
 {
 public:
@@ -28,6 +30,8 @@ public:
 
     void setPos(const glm::vec2 & pos) { m_pos = pos; }
 
+    void setMove(const glm::vec2 & targetPos, float time); 
+
     void setDim(const glm::vec2 & dim) { m_dims = dim; }
 
     void setColor(const Feintgine::Color & color) { m_color = color; }
@@ -40,7 +44,7 @@ public:
     // only flash on horizontal side
     void setFlash(float time, float freq);
 
-    void fade(float time, const Feintgine::Color & targetColor);
+    void setColorChange(const Feintgine::Color & targetColor, float time);
 
 private:
 
@@ -61,9 +65,11 @@ private:
     float m_expandTime = 0;
     float m_flashTime = 0;
     float m_updateUVTime = 0;
-    float m_fadeTime = 0;
+    float m_changeColorTime = 0;
+    float m_moveTime = 0;
 
     Feintgine::Color m_targetColor;
+    Feintgine::Color m_changeColorRate;
 
     bool m_visible = false;
 
@@ -73,6 +79,9 @@ private:
 
     glm::vec2 m_targetDim;
     glm::vec2 m_extendRate;
+    glm::vec2 m_moveRate;
+    glm::vec2 m_targetPos;
+
 
     float m_attenuationScale = 0.0f;
 
