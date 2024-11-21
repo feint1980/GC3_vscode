@@ -169,7 +169,7 @@ protected:
 
 	std::vector<EnemyBulletBase *> m_bullets;
 
-	//std::vector<F_Lua_Boss_State *> m_manipulators;
+	std::vector<F_Lua_Boss_State *> m_manipulators;
 	std::vector<F_Lua_Boss_State *> m_luaBossStates;
 	lua_State * m_script;
 	//std::vector<F_Lua_Boss *> m_dynamicObjects;

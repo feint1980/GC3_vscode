@@ -135,7 +135,7 @@ bool F_Lua_EntityManipulator::update(float deltaTime)
                         glm::vec2 tPos = (m_endPos - m_startPos) * (m_elaspedTime / m_completionTime) + m_startPos;
                         
                         m_entity->setPos(tPos);
-                        
+                        return false;
                     }
                     else
                     {
@@ -182,7 +182,7 @@ bool F_Lua_EntityManipulator::update(float deltaTime)
                     m_camera->setScale(m_currentScale);
                     m_camera->setPosition(m_camSavedPos + (m_zoomCenter - m_camSavedPos) * (m_elaspedTime / m_completionTime));
 
-                   
+                    return false;
                 }
                 else 
                 {
@@ -213,13 +213,7 @@ bool F_Lua_EntityManipulator::update(float deltaTime)
   
         }
         break;
-        case EntityState::None:
-        {
-
-            return true;
-        }
-        break;
-
+    
         default:
             return true;
         break;
