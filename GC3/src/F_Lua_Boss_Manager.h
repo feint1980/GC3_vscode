@@ -55,12 +55,15 @@ public:
 
 
 	void MoveObject(F_Lua_GenericObject * dynamicObject, float x, float y, float time);
+	void MoveObjectNonWait(F_Lua_GenericObject * dynamicObject, float x, float y, float time);
+
 
 	void setObjectVel(F_Lua_GenericObject * dynamicObject, const glm::vec2 & vel);
 
 	void handleInput(Feintgine::InputManager & inputManager);
 
 	void standIdle(F_Lua_GenericObject * dynamicObject, float time, const std::string & animName, bool isOverRide = false);
+	void standIdleNonWait(F_Lua_GenericObject * dynamicObject, float time, const std::string & animName, bool isOverRide = false);
 
 	void resetEvent();
 
@@ -69,14 +72,31 @@ public:
 	void rw_addEvent_PE(F_Lua_GenericObject * dynamicObject, const std::string & asset, float speed, float lifeTime, \
 		int peType, float startRange, float rangeCover, float angleStep, float startAngle, int petalCount, int interval, float rotation, int count, double time);
 
+	void rw_addEvent_PE_nonWait(F_Lua_GenericObject * dynamicObject, const std::string & asset, float speed, float lifeTime, \
+		int peType, float startRange, float rangeCover, float angleStep, float startAngle, int petalCount, int interval, float rotation, int count, double time);
+
+
 	void rw_addEvent_T1(F_Lua_GenericObject  * dynamicObject, const std::string & asset, float speed, float lifeTime, \
 		int arcType, float fA, float fB, float fC, float fD,float fR, float angleStep, float startAngle, float rotation, int interval, int count, double time,int id = 0, const std::string & eventName = "");
 	
+
+	void rw_addEvent_T1_nonWait(F_Lua_GenericObject  * dynamicObject, const std::string & asset, float speed, float lifeTime, \
+		int arcType, float fA, float fB, float fC, float fD,float fR, float angleStep, float startAngle, float rotation, int interval, int count, double time,int id = 0, const std::string & eventName = "");
+	
+
 	void rw_addEvent_MA_custom_aff(F_Lua_GenericObject * dynamicObject, const std::string & asset, float speed,
 		float lifeTime, int k, int n, int n2, int l1, int l2,int posneg, float startAngle, 
 		float angleStep, float rotation, int interval, double time);
 
+	
+	void rw_addEvent_MA_custom_aff_nonWait(F_Lua_GenericObject * dynamicObject, const std::string & asset, float speed,
+		float lifeTime, int k, int n, int n2, int l1, int l2,int posneg, float startAngle, 
+		float angleStep, float rotation, int interval, double time);
+
+
 	void rw_addEvent_base(F_Lua_GenericObject * dynamicObject, const std::string & asset, float speed, float lifeTime, float x, float y, float currentAngle, double time,int id = 0, const std::string & eventName = "");
+
+	// void rw_addEvent_base_nonWait(F_Lua_GenericObject * dynamicObject, const std::string & asset, float speed, float lifeTime, float x, float y, float currentAngle, double time,int id = 0, const std::string & eventName = "");
 	
 	void rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dynamicObject, const std::vector<std::string> & assets, int tier, float speed, float lifeTime, float x, float y, float currentAngle, double time);
 
@@ -169,7 +189,7 @@ protected:
 
 	std::vector<EnemyBulletBase *> m_bullets;
 
-	std::vector<F_Lua_Boss_State *> m_manipulators;
+	std::vector<F_Lua_Boss_State *> m_nonWaitLuaBossStates;
 	std::vector<F_Lua_Boss_State *> m_luaBossStates;
 	lua_State * m_script;
 	//std::vector<F_Lua_Boss *> m_dynamicObjects;
@@ -190,8 +210,6 @@ protected:
 	std::vector<ExplosionRing> m_exlosions;
 
 	BulletManupilator bulletManipulator;
-
-
 
 	// std::vector<PaternBehavior_from_lua *> m_paternBehaviors;
 

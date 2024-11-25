@@ -100,7 +100,6 @@ protected:
 
     GUI_handler * m_guiHandler = nullptr;
 
-
     // TGUI section start
     tgui::Gui * m_tgui = nullptr;
 

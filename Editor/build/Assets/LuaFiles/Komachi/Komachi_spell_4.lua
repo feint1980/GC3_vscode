@@ -21,7 +21,7 @@ function DynamicBehavior4(host,dynob)
             2,0,255,255,255,120)
             cppKomachi_pillar_move(fire_pilar,0,0,6)
             cppKomachi_pillar_expand(fire_pilar,708,1024,20)
-            cppWaitFor(host,dynob,25)
+            --cppWaitFor(host,dynob,25)
             coroutine.yield()
            
             print("hereeee !!!")
