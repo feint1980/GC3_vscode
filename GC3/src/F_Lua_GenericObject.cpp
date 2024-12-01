@@ -38,6 +38,11 @@ void F_Lua_GenericObject::draw(Feintgine::SpriteBatch & spriteBatch)
 	}
 }
 
+void F_Lua_GenericObject::drawLight(Feintgine::LightBatch & lightBatch)
+{
+	
+}
+
 void F_Lua_GenericObject::update(float deltaTime)
 {
 	//std::cout << "updated 121212121 \n";

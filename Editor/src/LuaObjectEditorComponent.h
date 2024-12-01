@@ -142,7 +142,7 @@ private:
 	EmptyObject shadowing ;
 
 
-	bool toogleDrawLight = false;
+	bool toogleDrawLight = true;
 	bool ambient = true;
 
 	Feintgine::ParticleEngine2D m_particleEngine;

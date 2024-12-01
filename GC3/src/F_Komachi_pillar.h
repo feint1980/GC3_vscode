@@ -38,6 +38,10 @@ public:
 
     void setExpand(const glm::vec2 & targetDim, float time);
 
+    //void addLightPillar(const glm::vec2 & pos, const glm::vec2 & dim, const Feintgine::Color & color);
+
+    void setLight(const glm::vec4 & color, const glm::vec3 & attenuation, float lifeTime);
+
     // only flash on vertical side
     void setUpdateUV(float time, float rate);
 
@@ -81,6 +85,11 @@ private:
     glm::vec2 m_extendRate;
     glm::vec2 m_moveRate;
     glm::vec2 m_targetPos;
+
+    glm::vec3 m_attentionua;
+	glm::vec3 t_attentionua;
+    Feintgine::Color m_lightColor;
+    float m_lightLifetime = 0.0f;
 
 
     float m_attenuationScale = 0.0f;

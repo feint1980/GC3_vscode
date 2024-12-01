@@ -506,6 +506,62 @@ int lua_Komachi_pillar_expand(lua_State * L)
 
 }
 
+int lua_Komachi_pillar_setLightEffect(lua_State * L)
+{
+
+	if (lua_gettop(L) != 9)
+	{
+		std::cout << "(lua_Komachi_pillar_setLightEffect) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+
+	F_Komachi_pillar * pillar = static_cast<F_Komachi_pillar *>(lua_touserdata(L, 1)); // pillar
+	float colorR = lua_tonumber(L, 2); //
+	float colorG = lua_tonumber(L, 3); //
+	float colorB = lua_tonumber(L, 4); //
+	float colorA = lua_tonumber(L, 5); //
+	float attentionuaX = lua_tonumber(L, 6); //
+	float attentionuaY = lua_tonumber(L, 7); //
+	float attentionuaZ = lua_tonumber(L, 8); //
+	float time = lua_tonumber(L, 9); //
+	std::cout << "set light \n";
+	pillar->setLight(glm::vec4(colorR, colorG, colorB, colorA), glm::vec3(attentionuaX, attentionuaY, attentionuaZ), time);
+	return 0;
+
+}
+
+int lua_Komachi_pillar_setFlashEffect(lua_State * L)
+{
+	if (lua_gettop(L) != 3)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+
+	F_Komachi_pillar * pillar = static_cast<F_Komachi_pillar *>(lua_touserdata(L, 1)); // pillar
+	float time = lua_tonumber(L, 2); //
+	float freq = lua_tonumber(L, 3); //
+	pillar->setFlash(time, freq);
+//
+}
+
+int lua_Komachi_pillar_setColor(lua_State * L)
+{
+	if (lua_gettop(L) != 6)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	F_Komachi_pillar * pillar = static_cast<F_Komachi_pillar *>(lua_touserdata(L, 1)); // pillar
+	float r = lua_tonumber(L, 2); //
+	float g = lua_tonumber(L, 3); //
+	float b = lua_tonumber(L, 4); //
+	float a = lua_tonumber(L, 5); //
+	float time = lua_tonumber(L, 6); //
+	pillar->setColorChange(Feintgine::Color(r, g, b, a), time);
+	return 0;
+}
+
 int lua_Komachi_pillar_move(lua_State * L)
 {
 	if(lua_gettop(L) != 4)
@@ -686,6 +742,8 @@ int lua_addBulletManipulatorPatern(lua_State * L)
 	//createPatern
 }
 
+
+
 int lua_setObjectChargingEffect(lua_State * L)
 {
 	//std::cout << "set charging effect called \n";
@@ -772,6 +830,9 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppKomachi_summon_pillar", lua_Komachi_summon_pillar);
 	lua_register(m_script, "cppKomachi_pillar_expand", lua_Komachi_pillar_expand);
 	lua_register(m_script, "cppKomachi_pillar_move", lua_Komachi_pillar_move);
+	lua_register(m_script, "cppKomachi_pillar_setColor", lua_Komachi_pillar_setColor);
+	lua_register(m_script, "cppKomachi_pillar_setFlashEffect", lua_Komachi_pillar_setFlashEffect);
+	lua_register(m_script, "cppKomachi_pillar_setLightEffect", lua_Komachi_pillar_setLightEffect);
 
 
 	// Komachi's helper end
@@ -1085,19 +1146,25 @@ void F_Lua_Boss_Manager::loadTextures()
 void F_Lua_Boss_Manager::drawLight(Feintgine::LightBatch & lightBatch)
 {
 	m_player.drawLight(lightBatch);
-	m_particleEngine.drawLight(lightBatch);
-	for(int i = 0; i < m_komachiPillars.size(); i++)
-	{
-		m_komachiPillars[i]->drawLight(lightBatch);
-	}
-
+	
 		
 }
 void F_Lua_Boss_Manager::drawLight2(Feintgine::LightBatch & lightBatch)
 {
 	
 	m_player2.drawLight(lightBatch);
+	
 		
+}
+
+void F_Lua_Boss_Manager::drawBossesLight(Feintgine::LightBatch & lightBatch)
+{
+	m_particleEngine.drawLight(lightBatch);
+	
+	for(int i = 0; i < m_komachiPillars.size(); i++)
+	{
+		m_komachiPillars[i]->drawLight(lightBatch);
+	}
 }
 
 void F_Lua_Boss_Manager::handleInput(Feintgine::InputManager & inputManager)

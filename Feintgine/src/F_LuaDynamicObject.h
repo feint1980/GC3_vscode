@@ -6,7 +6,7 @@
 #include "F_oEvent.h"
 #include "AfterImageParticle.h"
 #include "ChargingHandler.h"
-
+#include "LightBatch.h"
 
 // move table define
 /*
@@ -44,6 +44,8 @@ namespace Feintgine
 			const glm::vec2 & scale, float depth, float angle = 0.0f);
 
 		virtual void draw(Feintgine::SpriteBatch & spriteBatch);
+
+		virtual void drawLight(Feintgine::LightBatch & lightBatch);
 
 		virtual void update(float deltaTime);
 

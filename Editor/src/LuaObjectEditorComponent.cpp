@@ -298,9 +298,10 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 
 	if(toogleDrawLight)
 	{
+		m_lightBatch.begin();
 		if(!m_playerEnableTogger3->isSelected())
 		{
-			m_lightBatch.begin();
+			
 			//m_player.drawLight(m_lightBatch);
 			if(m_playerEnableTogger->isSelected())
 			{
@@ -311,9 +312,14 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 			{
 				m_luaObjectManager.drawLight2(m_lightBatch);
 			}
+		
 			//m_particleEngine.drawLight(m_lightBatch);
-			m_lightBatch.renderLight();
+			
+
 		}
+			m_luaObjectManager.drawBossesLight(m_lightBatch);
+
+		m_lightBatch.renderLight();
 	}
 	
 	spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
@@ -368,6 +374,7 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	m_frameBufferScreen.unuse();
 
 }
+
 void LuaObjectEditorComponent::drawSpellcard(Feintgine::SpriteBatch & spriteBatch,Feintgine::GLSLProgram & shader,Feintgine::Camera2D & targetCamera)
 {
 	glViewport(0,0,1366,768);

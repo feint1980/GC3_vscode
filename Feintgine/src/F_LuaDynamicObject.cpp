@@ -54,6 +54,11 @@ namespace Feintgine
 	}
 
 
+	void F_LuaDynamicObject::drawLight(Feintgine::LightBatch & lightBatch)
+	{
+		// pass
+	}
+
 	void F_LuaDynamicObject::createObject(const glm::vec2 & pos, const std::string & t_animationPath, const glm::vec2 & scale, float depth, float angle /*= 0.0f*/)
 	{
 		m_pos = pos;

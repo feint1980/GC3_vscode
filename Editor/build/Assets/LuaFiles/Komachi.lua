@@ -13,11 +13,33 @@ soul_1 = nil
 t_soul = nil
 
 
-require "Komachi_spell_1"
-require "Komachi_spell_2"
-require "Komachi_spell_3"
-require "Komachi_spell_4"
+-- require "Komachi_spell_1"
+-- require "Komachi_spell_2"
+-- require "Komachi_spell_3"
+-- require "Komachi_spell_4"
 
+-- load all module in ./Assets/LuaFiles/Komachi
+-- for filename in io.popen('dir /b/a-d "./Assets/LuaFiles/Komachi/"'):lines() do  --Windows
+--     filename = filename:match"^(.*)%.lua$"
+--     if filename then
+--         print("reloading files ... " .. filename)
+--         require("./Assets/LuaFiles/Komachi."..filename)
+--     end
+-- end
+
+function forceReinit()
+    for filename in io.popen('dir /b/a-d "./Assets/LuaFiles/Komachi/"'):lines() do  --Windows
+        filename = filename:match"^(.*)%.lua$"
+        if filename then
+            print("reloading files ... " .. filename)
+            
+            dofile("./Assets/LuaFiles/Komachi/"..filename .. ".lua")
+        end
+    end
+end
+
+
+forceReinit()
 -- init random seed
 math.randomseed(os.time())
 
@@ -58,6 +80,7 @@ function CreateFromLua(host,path)
 	print("[LUA] create from LUA called \n")
 
 	komachi = cppCreateFromLua(host,object.animationPath,object.posX,object.posY,object.scale,object.depth,object.angle)
+    -- forceReinit()
 
 end
 -- move set : normal 1 ( pre spell 1 )

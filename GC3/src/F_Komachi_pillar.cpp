@@ -109,9 +109,31 @@ void F_Komachi_pillar::setColorChange(const Feintgine::Color & targetColor, floa
 
 }
 
+
+void F_Komachi_pillar::setLight(const glm::vec4 & color, const glm::vec3 & attenuation, float lifeTime)
+{
+    std::cout << "cpp setlight called \n";
+    m_lightColor = color;
+    m_attentionua = attenuation;
+    m_lightLifetime = lifeTime;
+}
+
 void F_Komachi_pillar::drawLight(Feintgine::LightBatch & lightBatch)
 {
-    
+
+    if(m_lightLifetime > 0.1f)
+    {
+        
+        glm::vec2 tPos = m_pos;
+		tPos.y -= 350;
+		int numberOfLight = 1;
+		t_attentionua = m_attentionua + abs(cos(m_lightLifetime)) * 1.1f;
+        lightBatch.addLight(tPos, glm::vec4(m_lightColor.r, m_lightColor.g, m_lightColor.b, m_lightLifetime),
+        glm::vec3(1.0f / t_attentionua.x, 1.0f / t_attentionua.y, 1.0f / t_attentionua.z));
+		lightBatch.addRayLight(tPos, glm::vec4(m_lightColor.r * 0.5f, m_lightColor.g * 0.5f, m_lightColor.b * 0.5f, m_lightLifetime),
+			glm::vec3(1.0f / t_attentionua.x, 1.0f / t_attentionua.y, 1.0f / t_attentionua.z),degreeToRad(-90.0f));
+	}
+
 }
 
 void F_Komachi_pillar::update(float deltaTime)
@@ -139,7 +161,7 @@ void F_Komachi_pillar::update(float deltaTime)
         if (m_flashTime > 0.0f)
         {
             m_flashTime -= deltaTime;
-            m_displayDim = m_dims * sin(m_flashFreq * m_flashTime);
+            m_displayDim.x = m_dims.x  + m_flashFreq * sin(  m_flashTime);
         }
         else
         {
@@ -189,6 +211,10 @@ void F_Komachi_pillar::update(float deltaTime)
             m_updateState &= ~UPDATE_COLOR;
             m_color = m_targetColor;
         }
+    }
+    if(m_lightLifetime > 0.0f)
+    {
+        m_lightLifetime -= deltaTime;
     }
 
 }

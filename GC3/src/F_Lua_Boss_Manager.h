@@ -118,6 +118,8 @@ public:
 
 	void drawLight(Feintgine::LightBatch & lightBatch);
 
+	void drawBossesLight(Feintgine::LightBatch & lightBatch);
+
 	void drawPlayer(Feintgine::SpriteBatch & spriteBatch);
 
 	void drawLight2(Feintgine::LightBatch & lightBatch);
