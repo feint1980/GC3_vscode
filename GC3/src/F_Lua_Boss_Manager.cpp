@@ -1,21 +1,9 @@
 #include "F_Lua_Boss_Manager.h"
 #include "EngineSetting.h"
-//#include "F_Komachi_Souls_Object.cpp" // I am sorry, Feint   | -  Belai
 
 
 
-// int lua_HostFunction(lua_State *L)
-// {
-// 	float a = (float)lua_tonumber(L, 1); // get arg 1 
-// 	float b = (float)lua_tonumber(L, 2); // get arg 2
-// 	//std::cout << "[C++] HostFunction " << a << " " << b << " called \n";
-
-// 	float c = a * b;
-
-// 	lua_pushnumber(L, c);
-// 	return 1; // this host function return 1 number
-// }
-
+// MARK: LUA expose (int) S
 float sinCosCalCulator(int type, float val)
 {
 	switch (type)
@@ -792,6 +780,8 @@ int lua_setObjectChargingEffect(lua_State * L)
 	return 0;
 
 }
+
+// endregion
 
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 {

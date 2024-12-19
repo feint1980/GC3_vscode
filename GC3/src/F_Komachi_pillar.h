@@ -13,7 +13,8 @@ const unsigned int UPDATE_FLASH = 2;
 const unsigned int UPDATE_UV = 4;
 const unsigned int UPDATE_COLOR = 8;
 const unsigned int UPDATE_POS = 16;
-
+const unsigned int UPDATE_LIGHT_ATT = 32;
+const unsigned int UPDATE_LIGHT_COLOR = 64;
 class F_Komachi_pillar: public Feintgine::F_BaseObject
 {
 public:
@@ -41,6 +42,10 @@ public:
     //void addLightPillar(const glm::vec2 & pos, const glm::vec2 & dim, const Feintgine::Color & color);
 
     void setLight(const glm::vec4 & color, const glm::vec3 & attenuation, float lifeTime);
+
+    void setLightColorTarget(const Feintgine::Color & targetColor, float time);
+
+    void setLightAttenuationTarget(const glm::vec3 & targetAttenuation, float time);
 
     // only flash on vertical side
     void setUpdateUV(float time, float rate);
@@ -87,8 +92,12 @@ private:
     glm::vec2 m_targetPos;
 
     glm::vec3 m_attentionua;
+    glm::vec3 m_attentionuaTarget;
 	glm::vec3 t_attentionua;
+    //float 
+
     Feintgine::Color m_lightColor;
+    Feintgine::Color m_lightColorTarget;
     float m_lightLifetime = 0.0f;
 
 
