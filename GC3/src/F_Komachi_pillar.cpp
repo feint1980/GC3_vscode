@@ -121,12 +121,12 @@ void F_Komachi_pillar::setLight(const glm::vec4 & color, const glm::vec3 & atten
 
 void F_Komachi_pillar::setLightColorTarget(const Feintgine::Color & targetColor, float time)
 {
-
+    
 }
 
 void F_Komachi_pillar::setLightAttenuationTarget(const glm::vec3 & targetAttenuation, float time)
 {
-    
+
 }
 
 
