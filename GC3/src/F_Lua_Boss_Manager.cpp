@@ -1,9 +1,7 @@
 #include "F_Lua_Boss_Manager.h"
 #include "EngineSetting.h"
 
-
-
-// MARK: LUA expose (int) S
+#pragma region lua_expose
 float sinCosCalCulator(int type, float val)
 {
 	switch (type)
@@ -19,7 +17,9 @@ float sinCosCalCulator(int type, float val)
 		break;
 	}
 }
+#pragma endregion
 
+#pragma region Common_lua
 int lua_CreateFromLua(lua_State * L)
 {
 	if (lua_gettop(L) != 7)
@@ -28,9 +28,7 @@ int lua_CreateFromLua(lua_State * L)
 		std::cout << lua_gettop(L) << "\n";
 		return -1;
 	}
-	//std::cout << "[C++] lua_CreateFromLua called \n";
 	glm::vec2 pos(0);
-	
 	F_Lua_Boss_Manager * object = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1));
 	std::string animationPath = lua_tostring(L, 2);
 	float posX = (float)lua_tonumber(L, 3);
@@ -46,7 +44,6 @@ int lua_CreateFromLua(lua_State * L)
 	return 1; // this host function return 1 number 
 }
 
-
 int lua_addBulletEvent(lua_State * L)
 {
 	if (lua_gettop(L) != 3)
@@ -54,7 +51,6 @@ int lua_addBulletEvent(lua_State * L)
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
 	}
-	//std::cout << "[C++] lua_SetBulletEvent called \n";
 	F_Lua_Boss_Manager * object = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1));
 	int bulletId = (int)lua_tonumber(L, 2);
 	std::string eventName = lua_tostring(L, 3); 
@@ -69,7 +65,6 @@ int lua_removeFromLua(lua_State * L)
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
 	}
-	//std::cout << "[C++] lua_RemoveFromLua called \n";
 	F_Lua_Boss_Manager * object = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1));
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2));
 	object->removeObject(dynamicObject);
@@ -141,7 +136,6 @@ int lua_HoldPosition(lua_State * L)
 	{
 		isWait = lua_toboolean(L, 6);
 	}
-
 	if (isWait)
 	{
 		objectManager->standIdle(dynamicObject,time,t_anim,isOverRide);
@@ -151,9 +145,10 @@ int lua_HoldPosition(lua_State * L)
 		objectManager->standIdleNonWait(dynamicObject, time, t_anim, isOverRide);
 	}
 
-	
 	return 0;
 }
+
+#pragma endregion
 int lua_setFireTypePE(lua_State * L)
 {
 	if (lua_gettop(L) < 15 || lua_gettop(L) > 16)
@@ -161,7 +156,6 @@ int lua_setFireTypePE(lua_State * L)
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
 	}
-	//std::cout << "lua_AddEvent called \n";
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
 	std::string asset = lua_tostring(L, 3); // asset
@@ -186,8 +180,6 @@ int lua_setFireTypePE(lua_State * L)
 	{
 		isWait = lua_toboolean(L, 16);
 	}
-
-
 	int totalInterval = 0;
 
 	if (isWait)
@@ -199,9 +191,7 @@ int lua_setFireTypePE(lua_State * L)
 	{
 		objectManager->rw_addEvent_PE_nonWait(dynamicObject, asset, speed, lifeTime, peType, startRange, rangeCover,
 		angleStep, startAngle, petalCount, interval, rotation, count, time);
-
 	}
-
 	return 0;
 }
 int lua_setFireType1(lua_State * L)
@@ -211,7 +201,6 @@ int lua_setFireType1(lua_State * L)
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
 	}
-	//std::cout << "lua_AddEvent called \n";
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
 	std::string asset = lua_tostring(L, 3); // asset
@@ -236,7 +225,6 @@ int lua_setFireType1(lua_State * L)
 	{
 		id = lua_tonumber(L, 18);
 	}
-
 	if(lua_gettop(L) >= 19)
 	{
 		eventName = lua_tostring(L, 19);
@@ -249,27 +237,18 @@ int lua_setFireType1(lua_State * L)
 
 	fR = fR * 0.01f;
 
-	//std::cout << "parse value :" << id << " eventName: " << eventName << " \n";
-
-
 	if(isWait)
 	{
 		objectManager->rw_addEvent_T1(dynamicObject, asset, speed, lifeTime, arcType, fA, fB, fC,fD, fR,
 		angleStep, startAngle, rotation, interval, count, time, id, eventName);
-	
 	}
 	else
 	{
 		objectManager->rw_addEvent_T1_nonWait(dynamicObject, asset, speed, lifeTime, arcType, fA, fB, fC,fD, fR,
 		angleStep, startAngle, rotation, interval, count, time, id, eventName);
-	
-	}
-		
+	}		
 	return 0;
 }
-
-
-
 
 int lua_setFireMACustomAFF(lua_State * L)
 {
@@ -278,7 +257,6 @@ int lua_setFireMACustomAFF(lua_State * L)
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
 	}
-	//std::cout << "lua_AddEvent called \n";
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
 	std::string asset = lua_tostring(L, 3); // asset
@@ -301,8 +279,6 @@ int lua_setFireMACustomAFF(lua_State * L)
 	{
 		isWait = lua_toboolean(L, 17);
 	}
-
-
 	if (isWait)
 	{
 		objectManager->rw_addEvent_MA_custom_aff(dynamicObject, asset, speed, lifeTime, k, n, n2, l1, l2, posneg,
@@ -313,24 +289,16 @@ int lua_setFireMACustomAFF(lua_State * L)
 		objectManager->rw_addEvent_MA_custom_aff_nonWait(dynamicObject, asset, speed, lifeTime, k, n, n2, l1, l2, posneg,
 		startAngle, angleStep, rotation, interval, time);
 	}
-
 	return 0;
 }
 
-
 int lua_setFireBase(lua_State * L)
 {
-
-	//std::cout << "here \n";
 	if (lua_gettop(L) < 9 || lua_gettop(L) > 11)
-
 	{
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
 	}
-	//	void rw_addEvent_base(F_Lua_GenericObject * dynamicObject, 
-	//const std::string & asset, float speed, float lifeTime, 
-	//float x, float y, float currentAngle, double time);
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
 	std::string asset = lua_tostring(L, 3); // 
@@ -352,30 +320,20 @@ int lua_setFireBase(lua_State * L)
 	{
 		eventName = lua_tostring(L, 11);
 	}
-
-
 	objectManager->rw_addEvent_base(dynamicObject, asset, speed, lifeTime, x, y, currentAngle, time, id, eventName);
-
 	return 0;
-
 }
 
 int lua_setKomachiCoin(lua_State * L)
 {
-	//std::cout << "here \n";
 	if (lua_gettop(L) != 11)
 	{
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
 		return -1;
 	}
-	//void rw_addEvent_base(F_Lua_GenericObject * dynamicObject, 
-	//const std::string & asset, float speed, float lifeTime, 
-	//float x, float y, float currentAngle, double time);
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
-
 	std::string tableName = lua_tostring(L,3);
-
 	int type = lua_type(L,4);
 	if(type != LUA_TTABLE)
 	{
@@ -391,13 +349,10 @@ int lua_setKomachiCoin(lua_State * L)
 		{
 			std::string name = lua_tostring(L,-1);
 			tAssets.push_back(name);
-			//std::cout << "name " << name << "\n";
 		}
 		lua_pop(L,1);
-		
 	}
 	lua_pop(L,1);
-	//std::string asset = lua_tostring(L, 3); // 
 	int tier = lua_tonumber(L,5);
 	float speed = lua_tonumber(L, 6); // 
 	float lifeTime = lua_tonumber(L, 7); // 
@@ -408,17 +363,10 @@ int lua_setKomachiCoin(lua_State * L)
 
 	objectManager->rw_addEvent_fire_komachi_coin(dynamicObject,tAssets,tier,speed,lifeTime,x,y,currentAngle,time);
 
-	// rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dynamicObject, const std::vector<std::string> & assets, int tier, float speed, float lifeTime, float x, float y, float currentAngle, double time)
-
-	// objectManager->rw_addEvent_base(dynamicObject, asset, speed, lifeTime, x, y, currentAngle, time);
-
 	return 0;
 }
 int lua_createHelper(lua_State * L)
 {
-	//createObject(F_Lua_GenericObject * dynamicObject, const std::string & objectName,
-	//const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, double time);
-
 	if(lua_gettop(L) != 16)
 	{
 		std::cout << "bad gettop " << lua_gettop(L) << " \n";
@@ -467,12 +415,8 @@ int lua_Komachi_summon_pillar(lua_State * L)
 	float g = lua_tonumber(L, 10); //
 	float b = lua_tonumber(L, 11); //
 	float a = lua_tonumber(L, 12); //
-	// int state = lua_tonumber(L, 15); //
 
-	//std::cout << "called, pre \n";
 	F_Komachi_pillar * pillar = objectManager->createPillar(asset1, asset2,glm::vec2(x,y), glm::vec2(dimX, dimY),Feintgine::Color(r, g, b, a));
-
-	//std::cout << "called, pass \n";
 
 	lua_pushlightuserdata(L, pillar);
 	return 1; // return 1 value (pillar) 
@@ -491,7 +435,6 @@ int lua_Komachi_pillar_expand(lua_State * L)
 	float time = lua_tonumber(L, 4); //
 	pillar->setExpand(glm::vec2(dimX, dimY), time);
 	return 0;
-
 }
 
 int lua_Komachi_pillar_setLightEffect(lua_State * L)
@@ -515,7 +458,6 @@ int lua_Komachi_pillar_setLightEffect(lua_State * L)
 	std::cout << "set light \n";
 	pillar->setLight(glm::vec4(colorR, colorG, colorB, colorA), glm::vec3(attentionuaX, attentionuaY, attentionuaZ), time);
 	return 0;
-
 }
 
 int lua_Komachi_pillar_setFlashEffect(lua_State * L)
@@ -530,7 +472,8 @@ int lua_Komachi_pillar_setFlashEffect(lua_State * L)
 	float time = lua_tonumber(L, 2); //
 	float freq = lua_tonumber(L, 3); //
 	pillar->setFlash(time, freq);
-//
+
+	return 0;
 }
 
 int lua_Komachi_pillar_setColor(lua_State * L)
@@ -564,7 +507,6 @@ int lua_Komachi_pillar_move(lua_State * L)
 	pillar->setMove(glm::vec2(x, y), time);
 	return 0;
 }
-
 
 int lua_setAfterImage(lua_State * L)
 {
@@ -601,7 +543,6 @@ int lua_setAfterImage(lua_State * L)
 	return 0;
 }
 
-
 int lua_getObjectPos(lua_State * L)
 {
 	if (lua_gettop(L) != 1)
@@ -611,11 +552,8 @@ int lua_getObjectPos(lua_State * L)
 	}
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
 	glm::vec2 pos = dynamicObject->getPos();
-	//std::cout << "get pos " << pos.x << " " << pos.y << "\n";
-	//lua_newtable(L);
 	lua_pushnumber(L, pos.x);
 	lua_pushnumber(L, pos.y);
-	//lua_settable(L, -3);
 	return 2;
 }
 
@@ -628,7 +566,6 @@ int lua_getObjectAngle(lua_State * L)
 	}
 	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
 	float angle = dynamicObject->getAngle();
-	//std::cout << "angle return " << angle << "\n";
 	lua_pushnumber(L, angle);
 	return 1;
 }
@@ -674,17 +611,17 @@ int lua_playObjectAnimation(lua_State * L)
 	dynamicObject->setAnimOverRide(isOverride);
 	dynamicObject->setAnimationSpeed(playSpeed);
 
+	return 0;
 }
 
 int lua_addBulletManipulatorPatern(lua_State * L)
 {
-
 	if (lua_gettop(L) != 7)
 	{
 		std::cout << "(lua_addBulletManipulatorPatern) bad gettop " << lua_gettop(L) << " \n";
 		return;
 	}
-	
+
 	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
 	std::string xNodeEquation = lua_tostring(L, 2);
 	std::string yNodeEquation = lua_tostring(L, 3);
@@ -704,37 +641,19 @@ int lua_addBulletManipulatorPatern(lua_State * L)
 	{
 		if(lua_isstring(L,-1))
 		{
-			
 			factors.push_back(lua_tonumber(L,-1));
-			//std::cout << "name " << name << "\n";
 		}
 		lua_pop(L,1);
 		
 	}
 	lua_pop(L,1);
-
-	// std::vector<float> factors;
-	// for(int i = 5; i <= lua_gettop(L); i++)
-	// {	
-	// 	factors.push_back(lua_tonumber(L,i));
-	// }
-	
-
 	int bulletID = lua_tonumber(L,6);
-
 	objectManager->createPatern(xNodeEquation, yNodeEquation, radius, factors, bulletID);
-
-	//n(const std::string & xNodeEquation, const std::string & yNodeEquation, float radius, const std::vector<float> & factors, int bulletID)
-
 	return 0;
-	//createPatern
 }
-
-
 
 int lua_setObjectChargingEffect(lua_State * L)
 {
-	//std::cout << "set charging effect called \n";
 	if(lua_gettop(L) != 8)
 	{
 		std::cout << "(lua_setChargingEffect) bad gettop " << lua_gettop(L) << " \n";
@@ -757,10 +676,8 @@ int lua_setObjectChargingEffect(lua_State * L)
 		{
 			std::string name = lua_tostring(L,-1);
 			tAssets.push_back(name);
-			//std::cout << "name " << name << "\n";
 		}
 		lua_pop(L,1);
-		
 	}
 	lua_pop(L,1);
 
@@ -773,16 +690,14 @@ int lua_setObjectChargingEffect(lua_State * L)
 	float radius = lua_tonumber(L,5);
 	int maxCount = lua_tonumber(L,6);
 	float minSpeed = lua_tonumber(L,7);
-	float maxSpeed = lua_tonumber(L,8);
-	
+	float maxSpeed = lua_tonumber(L,8);	
 	dynamicObject->setCharging(tSprites, time, radius, maxCount, minSpeed, maxSpeed);
 
 	return 0;
-
 }
 
-// endregion
-
+#pragma endregion
+// MARK: Class start
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 {
 	loadTextures();
@@ -793,7 +708,6 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	luaL_openlibs(m_script);
 
 	// lua register 1 ( lua state ) , 2 name will be called in lua, 3 the pointer to function
-	//lua_register(m_script, "HostFunction", lua_HostFunction);
 	lua_register(m_script, "cppCreateFromLua", lua_CreateFromLua);
 	lua_register(m_script, "cppMoveObject", lua_MoveObject);
 	lua_register(m_script, "cppHoldPosition", lua_HoldPosition);
@@ -814,9 +728,7 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppSetBulletEvent", lua_addBulletEvent);
 	lua_register(m_script, "cppAddBulletManipulatorPatern", lua_addBulletManipulatorPatern);
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
-
 	// Komachi's helper start
-
 	lua_register(m_script, "cppKomachi_summon_pillar", lua_Komachi_summon_pillar);
 	lua_register(m_script, "cppKomachi_pillar_expand", lua_Komachi_pillar_expand);
 	lua_register(m_script, "cppKomachi_pillar_move", lua_Komachi_pillar_move);
@@ -824,21 +736,14 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppKomachi_pillar_setFlashEffect", lua_Komachi_pillar_setFlashEffect);
 	lua_register(m_script, "cppKomachi_pillar_setLightEffect", lua_Komachi_pillar_setLightEffect);
 
-
-	// Komachi's helper end
-
-
-	
+	// Komachi's helper end	
 	bulletManipulator.init(&m_bullets);
 }
 
-
 F_Lua_Boss_Manager::~F_Lua_Boss_Manager()
 {
+
 }
-
-
-
 void F_Lua_Boss_Manager::addBulletEvent(int bulletID, const std::string & eventName)
 {
 	for(auto i = 0 ;i < m_bullets.size() ;i++)

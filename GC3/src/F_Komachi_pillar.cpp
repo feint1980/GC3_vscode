@@ -121,21 +121,31 @@ void F_Komachi_pillar::setLight(const glm::vec4 & color, const glm::vec3 & atten
 
 void F_Komachi_pillar::setLightColorTarget(const Feintgine::Color & targetColor, float time)
 {
-    
+    m_lightColorTarget = targetColor;
+    m_lightColorTime = time;
+    m_updateState |= UPDATE_LIGHT_COLOR;
+
+    m_lightColorRate.r = (targetColor.r - m_lightColor.r) / m_lightColorTime;
+    m_lightColorRate.g = (targetColor.g - m_lightColor.g) / m_lightColorTime;
+    m_lightColorRate.b = (targetColor.b - m_lightColor.b) / m_lightColorTime;
+    m_lightColorRate.a = (targetColor.a - m_lightColor.a) / m_lightColorTime;
+
 }
 
 void F_Komachi_pillar::setLightAttenuationTarget(const glm::vec3 & targetAttenuation, float time)
 {
+    m_attentionuaTarget = targetAttenuation;
+    m_attentionuaTime = time;
+    m_updateState |= UPDATE_LIGHT_ATT;
 
+    m_attentionuaRate = (targetAttenuation - m_attentionua) / m_attentionuaTime;
 }
-
 
 void F_Komachi_pillar::drawLight(Feintgine::LightBatch & lightBatch)
 {
 
     if(m_lightLifetime > 0.1f)
     {
-        
         glm::vec2 tPos = m_pos;
 		tPos.y -= 350;
 		int numberOfLight = 1;
@@ -222,6 +232,35 @@ void F_Komachi_pillar::update(float deltaTime)
         {
             m_updateState &= ~UPDATE_COLOR;
             m_color = m_targetColor;
+        }
+    }
+    if(m_updateState & UPDATE_LIGHT_COLOR)
+    {
+        if(m_lightColorTime > 0.0f)
+        {
+            m_lightColor.r += m_lightColorRate.r * deltaTime;
+            m_lightColor.g += m_lightColorRate.g * deltaTime;
+            m_lightColor.b += m_lightColorRate.b * deltaTime;
+            m_lightColor.a += m_lightColorRate.a * deltaTime;
+            m_lightColorTime -= deltaTime;
+        }
+        else
+        {
+            m_updateState &= ~UPDATE_LIGHT_COLOR;
+            m_lightColor = m_lightColorTarget;
+        }
+    }
+    if(m_updateState & UPDATE_LIGHT_ATT)
+    {
+        if(m_attentionuaTime > 0.0f)
+        {
+            m_attentionua += m_attentionuaRate * deltaTime;
+            m_attentionuaTime -= deltaTime;
+        }
+        else
+        {
+            m_updateState &= ~UPDATE_LIGHT_ATT;
+            m_attentionua = m_attentionuaTarget;
         }
     }
     if(m_lightLifetime > 0.0f)

@@ -93,12 +93,17 @@ private:
 
     glm::vec3 m_attentionua;
     glm::vec3 m_attentionuaTarget;
+    glm::vec3 m_attentionuaRate;
+    float m_attentionuaTime = 0.0f;
 	glm::vec3 t_attentionua;
-    //float 
+    
 
     Feintgine::Color m_lightColor;
     Feintgine::Color m_lightColorTarget;
+    Feintgine::Color m_lightColorRate;
+    float m_lightColorTime = 0.0f;
     float m_lightLifetime = 0.0f;
+
 
 
     float m_attenuationScale = 0.0f;
