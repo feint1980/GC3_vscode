@@ -33,7 +33,6 @@ void F_Komachi_pillar::spawn(const glm::vec2 & pos, const glm::vec2 & dim, const
 
 void F_Komachi_pillar::draw(Feintgine::SpriteBatch & spriteBatch)
 {
-
     if(m_visible)
     {
         glm::vec4 desRect;
@@ -41,8 +40,6 @@ void F_Komachi_pillar::draw(Feintgine::SpriteBatch & spriteBatch)
         desRect.y = m_pos.y - m_displayDim.y / 2.0f;
         desRect.z = m_displayDim.x;
         desRect.w = m_displayDim.y;
-
-
         switch (m_frameIndex)
         {
         case 0:
@@ -177,7 +174,6 @@ void F_Komachi_pillar::update(float deltaTime)
             m_updateState &= ~UPDATE_DIMENSION;
         }
     }
-
     if (m_updateState & UPDATE_FLASH)
     {
         if (m_flashTime > 0.0f)
@@ -189,9 +185,7 @@ void F_Komachi_pillar::update(float deltaTime)
         {
             m_updateState &= ~UPDATE_FLASH;
         }
-    
     }
-
     if (m_updateState & UPDATE_UV)
     {
         if (m_updateUVTime > 0.0f)
@@ -203,7 +197,6 @@ void F_Komachi_pillar::update(float deltaTime)
         {
             m_updateState &= ~UPDATE_UV;
         }
-
     }
     if(m_updateState & UPDATE_POS)
     {

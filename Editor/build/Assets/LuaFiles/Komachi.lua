@@ -2,6 +2,7 @@ package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/L
 
 bc =  require("./Assets/Luafiles/common/boss_common")
 
+require "wrapper"
 -- coroutine table
 dynamics = {}
 
@@ -27,12 +28,12 @@ t_soul = nil
 --     end
 -- end
 
-function forceReinit()
+--- reload all lua files (at runtime)
+local function forceReinit()
     for filename in io.popen('dir /b/a-d "./Assets/LuaFiles/Komachi/"'):lines() do  --Windows
         filename = filename:match"^(.*)%.lua$"
         if filename then
             print("reloading files ... " .. filename)
-            
             dofile("./Assets/LuaFiles/Komachi/"..filename .. ".lua")
         end
     end
@@ -42,11 +43,6 @@ end
 forceReinit()
 -- init random seed
 math.randomseed(os.time())
-
--- generic functions ( consider put them in a separate file )
-function randomFloat(lower, greater)
-    return lower + math.random()  * (greater - lower);
-end
 
 function IssueNextTask(host, dynob)
     if coroutine.status(dynamics[dynob].behavior) ~= 'dead' then

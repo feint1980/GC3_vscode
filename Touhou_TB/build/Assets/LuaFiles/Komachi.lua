@@ -1,4 +1,8 @@
+package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/LuaFiles/Komachi/?.lua'
+
 bc =  require("./Assets/Luafiles/common/boss_common")
+
+require "general"
 
 -- coroutine table
 dynamics = {}
@@ -9,14 +13,6 @@ soulsCount = 0
 komachi = nil
 soul_1 = nil
 t_soul = nil
-
--- init random seed
-math.randomseed(os.time())
-
--- generic functions ( consider put them in a separate file )
-function randomFloat(lower, greater)
-    return lower + math.random()  * (greater - lower);
-end
 
 
 function IssueNextTask(host, dynob)
@@ -50,7 +46,7 @@ soulData = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/komachi
 function CreateFromLua(host,path)
 	print("[LUA] create from LUA called \n")
 
-	komachi = cppCreateFromLua(host,object.animationPath,object.posX,object.posY,object.scale,object.depth,object.angle)
+	komachi = W_createObject(host,object.animationPath,object.posX,object.posY,object.scale,object.depth,object.angle)
 
 end
 
@@ -71,7 +67,7 @@ function  DynamicBehavior1( host, dynob )
         for i = 1, 2 do
             DynamicBehavior1_base( host, dynob, direct[i])
         end
-        cppMoveObject(host,dynob,0,150,50)
+        W_moveObject(host,dynob,0,150,50)
         coroutine.yield()
 
         bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_white.png",
@@ -116,7 +112,7 @@ end
 
 function DynamicBehavior1_base( host, dynob, direction)
 
-    cppMoveObject(host,dynob,150 * direction,150,25)
+    W_moveObject(host,dynob,150 * direction,150,25)
     coroutine.yield()
 
     bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
@@ -198,7 +194,7 @@ function spell_1_boss_movement(host, dynob)
 
         end
         oldXMultiplyValue = xMultiply
-        cppMoveObject(host,dynob,xMultiply * thresholdValue ,yMultiply * thresholdValue,100)
+        W_moveObject(host,dynob,xMultiply * thresholdValue ,yMultiply * thresholdValue,100)
         coroutine.yield()
         --cppOjbectPlayAnimation(dynob,"charging",-1,true)
         cppHoldPosition(host,dynob,70,"charging",true)
@@ -238,7 +234,7 @@ function spawn_souls(host)
         x_multiplier = math.random(-7,7)
         x_location = x_multiplier * pos_x_dif
 
-        local t_soul = cppCreateFromLua (host,soulData.animationPath,x_location  ,pos_y_dif,soulData.scale,soulData.depth,soulData.angle)
+        local t_soul = W_createObject (host,soulData.animationPath,x_location  ,pos_y_dif,soulData.scale,soulData.depth,soulData.angle)
         x_vel = randomFloat(x_vel_min,x_vel_max)
         y_vel = randomFloat(-4.5,-3.0)
         if(x_location > 0) then
@@ -273,7 +269,7 @@ function DynamicBehavior2(host,dynob)
     while true do
         if (count > 1) then
             count = -1
-            cppMoveObject(host,dynob,0,170,25)
+            W_moveObject(host,dynob,0,170,25)
             coroutine.yield()
             cppOjbectPlayAnimation(dynob,"charging",1,false)
             cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.5,15.5)
@@ -298,7 +294,7 @@ function DynamicBehavior2(host,dynob)
             cppHoldPosition(host,dynob,200,"charge_end",false)
             coroutine.yield()
         end
-        cppMoveObject(host,dynob,count * xthresHold,150,30)
+        W_moveObject(host,dynob,count * xthresHold,150,30)
         coroutine.yield()
         cppHoldPosition(host,dynob,10,"charging")
         coroutine.yield()
@@ -336,21 +332,21 @@ end
 
 function spell_2_behavior(host,dynob)
 
-    x_index = -2
-    y_index = 5
-    x_pos_threshold = 100
-    y_pos_threshold = 40
-    increament = 1
-    reset = false
+    local x_index = -2
+    local y_index = 5
+    local x_pos_threshold = 100
+    local y_pos_threshold = 40
+    local increament = 1
+    local reset = false
 
-    start = false
-    reach_right = false
-    reset_time = 60
-    increament_count = 1
+    local start = false
+    local reach_right = false
+    local reset_time = 60
+    local increament_count = 1
 
     while true do
         if( start == false ) then
-            cppMoveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,10 + reset_time )
+            W_moveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,10 + reset_time )
             coroutine.yield()
         end
 
@@ -380,7 +376,7 @@ function spell_2_behavior(host,dynob)
         4,                  -- coin_line
         3)                  -- spread_time
         coroutine.yield()
-        cppMoveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,7  )
+        W_moveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,7  )
         coroutine.yield()
         cppHoldPosition(host,dynob,15,"charge_end",true)
         coroutine.yield()
@@ -408,7 +404,7 @@ function spell_2_behavior(host,dynob)
                     7)                  -- spread_time
                     y_index = y_index - 1
                     coroutine.yield()
-                    cppMoveObject(host,dynob,0 * x_pos_threshold,y_pos_threshold * y_index,10)
+                    W_moveObject(host,dynob,0 * x_pos_threshold,y_pos_threshold * y_index,10)
                     coroutine.yield()
 
                 end
@@ -513,7 +509,7 @@ function DynamicBehavior3_normal(host,dynob)
     while true do
 
 
-        cppMoveObject(host,dynob,0,100,20)
+        W_moveObject(host,dynob,0,100,20)
         coroutine.yield()
         cppHoldPosition(host,dynob,10,"charging")
 
@@ -540,7 +536,7 @@ function DynamicBehavior3_normal(host,dynob)
         for i = 1, 3 do
             x_index = math.random( -2,2 )
             y_index = math.random( 1,2 )
-            cppMoveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,40)
+            W_moveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,40)
             coroutine.yield()
             cppHoldPosition(host,dynob,10,"charging")
             coroutine.yield()
@@ -595,7 +591,7 @@ end
 function DynamicBehavior3(host,dynob)
 
     while true do
-        cppMoveObject(host,dynob,0,150,20)
+        W_moveObject(host,dynob,0,150,20)
         coroutine.yield()
 
         cppHoldPosition(host,dynob,100,"charging")
@@ -674,7 +670,7 @@ function DynamicBehavior3(host,dynob)
 
         coroutine.yield()
 
-        -- cppMoveObject(host,dynob,1,0,150)
+        -- W_moveObject(host,dynob,1,0,150)
         -- coroutine.yield()
     end
 end

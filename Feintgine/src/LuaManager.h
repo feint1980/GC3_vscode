@@ -32,16 +32,12 @@ public:
 		}
 		return p_Instance;
 	}
-
 	// read an int value in lua
 	int LGetInt(const std::string & name);
 
 	// read a float value in lua
 	float LGetFloat(const std::string & name);
-
-
 	std::string LGetString(const std::string & name);
-
 	bool checkLua(lua_State * L, int returnCode)
 	{
 		if (returnCode != LUA_OK)
@@ -51,9 +47,6 @@ public:
 		}
 		return true;
 	}
-
-
-	// print error
 	void printErrorMessage();
 
 private:

@@ -16,10 +16,55 @@ float sinCosCalCulator(int type, float val)
 		return 1.0f;
 		break;
 	}
+	return 1.0; // 0 may cause error (it was intented to be wrong rather than error)
 }
 #pragma endregion
 
-#pragma region Common_lua
+#pragma region lua_function
+
+int lua_setObjectChargingEffect(lua_State * L)
+{
+	if(lua_gettop(L) != 8)
+	{
+		std::cout << "(lua_setChargingEffect) bad gettop " << lua_gettop(L) << " \n";
+	}
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
+	std::string tableName = lua_tostring(L, 2); // table name
+
+	int type = lua_type(L,3);
+	if(type != LUA_TTABLE)
+	{
+		std::cout << "lua_setObjectChargingEffect : arg 3 is not a table\n";
+	}
+
+	lua_getglobal(L,tableName.c_str());
+	lua_pushnil(L);
+	std::vector<std::string> tAssets;
+	while(lua_next(L,-2))
+	{
+		if(lua_isstring(L,-1))
+		{
+			std::string name = lua_tostring(L,-1);
+			tAssets.push_back(name);
+		}
+		lua_pop(L,1);
+	}
+	lua_pop(L,1);
+
+	std::vector<Feintgine::F_Sprite> tSprites;
+	for (int i = 0; i < tAssets.size(); i++)
+	{
+		tSprites.emplace_back(Feintgine::SpriteManager::Instance()->getSprite(tAssets[i]));
+	}
+	float time = lua_tonumber(L,4);
+	float radius = lua_tonumber(L,5);
+	int maxCount = lua_tonumber(L,6);
+	float minSpeed = lua_tonumber(L,7);
+	float maxSpeed = lua_tonumber(L,8);	
+	dynamicObject->setCharging(tSprites, time, radius, maxCount, minSpeed, maxSpeed);
+	return 0;
+}
+
 int lua_CreateFromLua(lua_State * L)
 {
 	if (lua_gettop(L) != 7)
@@ -42,6 +87,113 @@ int lua_CreateFromLua(lua_State * L)
 
 	lua_pushlightuserdata(L, createdDynamicObj);
 	return 1; // this host function return 1 number 
+}
+
+
+int lua_setAfterImage(lua_State * L)
+{
+	if (lua_gettop(L) <4 ||  lua_gettop(L) > 7)
+	{
+		std::cout << "(lua_setAfterImage) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
+	float interval = lua_tonumber(L, 2);
+	float lifeTime = lua_tonumber(L, 3);
+	int maxNum = 10;
+	float scaleRate = 0.0f;
+	float alphaRate = 0.5f;
+	float traceLifeTime = 2.0f;
+	if(lua_gettop(L) >= 4)
+	{
+		maxNum = lua_tonumber(L, 4);
+	}
+	if(lua_gettop(L) >= 5)
+	{
+		scaleRate = lua_tonumber(L, 5);
+	}
+	if(lua_gettop(L) >= 6)
+	{
+		alphaRate = lua_tonumber(L, 6);
+	}
+	if(lua_gettop(L) == 7)
+	{
+		traceLifeTime = lua_tonumber(L, 7);
+	}
+
+	dynamicObject->setTrace(interval, lifeTime, maxNum, scaleRate, alphaRate,traceLifeTime);
+	return 0;
+}
+
+int lua_getObjectPos(lua_State * L)
+{
+	if (lua_gettop(L) != 1)
+	{
+		std::cout << "(lua_getObjectPos) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
+	glm::vec2 pos = dynamicObject->getPos();
+	lua_pushnumber(L, pos.x);
+	lua_pushnumber(L, pos.y);
+	return 2;
+}
+
+int lua_getObjectAngle(lua_State * L)
+{
+	if (lua_gettop(L) != 1)
+	{
+		std::cout << "(lua_getObjectAngle) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
+	float angle = dynamicObject->getAngle();
+	lua_pushnumber(L, angle);
+	return 1;
+}
+
+int lua_waitFor(lua_State * L)
+{
+	if (lua_gettop(L) != 3)
+	{
+		std::cout << "(lua_waitFor) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
+	float time = lua_tonumber(L, 3);
+	objectManager->waitFor(dynamicObject, time);
+	return 0;
+}
+
+int lua_playObjectAnimation(lua_State * L)
+{
+	if (lua_gettop(L) < 2 && lua_gettop(L) > 5)
+	{
+		std::cout << "(lua_playAnimation) bad gettop " << lua_gettop(L) << " \n";
+	}
+	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
+	std::string animationName = lua_tostring(L, 2);
+	int loopTime = 0;
+	bool isOverride = false;
+	float playSpeed = 1.0f;
+	if(lua_gettop(L) >= 3)
+	{
+		loopTime = lua_tonumber(L, 3);
+	}
+	if(lua_gettop(L) >= 4)
+	{
+		isOverride = lua_toboolean(L, 4);
+	}
+	if(lua_gettop(L) == 5)
+	{
+		playSpeed = lua_tonumber(L, 5);
+	}
+	dynamicObject->playAnimation(animationName, loopTime);
+	dynamicObject->setAnimOverRide(isOverride);
+	dynamicObject->setAnimationSpeed(playSpeed);
+
+	return 0;
 }
 
 int lua_addBulletEvent(lua_State * L)
@@ -149,6 +301,9 @@ int lua_HoldPosition(lua_State * L)
 }
 
 #pragma endregion
+
+#pragma region lua_fire
+
 int lua_setFireTypePE(lua_State * L)
 {
 	if (lua_gettop(L) < 15 || lua_gettop(L) > 16)
@@ -192,6 +347,44 @@ int lua_setFireTypePE(lua_State * L)
 		objectManager->rw_addEvent_PE_nonWait(dynamicObject, asset, speed, lifeTime, peType, startRange, rangeCover,
 		angleStep, startAngle, petalCount, interval, rotation, count, time);
 	}
+	return 0;
+}
+
+int lua_addBulletManipulatorPatern(lua_State * L)
+{
+	if (lua_gettop(L) != 7)
+	{
+		std::cout << "(lua_addBulletManipulatorPatern) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+
+	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
+	std::string xNodeEquation = lua_tostring(L, 2);
+	std::string yNodeEquation = lua_tostring(L, 3);
+	float radius = lua_tonumber(L, 4);
+	std::string tableName = lua_tostring(L, 5); // table name
+
+	int type = lua_type(L,6);
+	if(type != LUA_TTABLE)
+	{
+		std::cout << "lua_setObjectChargingEffect : arg 3 is not a table\n";
+	}
+
+	lua_getglobal(L,tableName.c_str());
+	lua_pushnil(L);
+	std::vector<float> factors;
+	while(lua_next(L,-2))
+	{
+		if(lua_isstring(L,-1))
+		{
+			factors.push_back(lua_tonumber(L,-1));
+		}
+		lua_pop(L,1);
+		
+	}
+	lua_pop(L,1);
+	int bulletID = lua_tonumber(L,6);
+	objectManager->createPatern(xNodeEquation, yNodeEquation, radius, factors, bulletID);
 	return 0;
 }
 int lua_setFireType1(lua_State * L)
@@ -365,6 +558,9 @@ int lua_setKomachiCoin(lua_State * L)
 
 	return 0;
 }
+#pragma endregion
+
+#pragma region lua_helpers
 int lua_createHelper(lua_State * L)
 {
 	if(lua_gettop(L) != 16)
@@ -439,7 +635,6 @@ int lua_Komachi_pillar_expand(lua_State * L)
 
 int lua_Komachi_pillar_setLightEffect(lua_State * L)
 {
-
 	if (lua_gettop(L) != 9)
 	{
 		std::cout << "(lua_Komachi_pillar_setLightEffect) bad gettop " << lua_gettop(L) << " \n";
@@ -457,6 +652,41 @@ int lua_Komachi_pillar_setLightEffect(lua_State * L)
 	float time = lua_tonumber(L, 9); //
 	std::cout << "set light \n";
 	pillar->setLight(glm::vec4(colorR, colorG, colorB, colorA), glm::vec3(attentionuaX, attentionuaY, attentionuaZ), time);
+	return 0;
+}
+
+int lua_Komachi_pillar_setLightAttenuation(lua_State * L)
+{
+	if (lua_gettop(L) != 5)
+	{
+		std::cout << "(lua_Komachi_pillar_setLightAttenuation) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+
+	F_Komachi_pillar * pillar = static_cast<F_Komachi_pillar *>(lua_touserdata(L, 1)); // pillar
+	float attentionuaX = lua_tonumber(L, 2); //
+	float attentionuaY = lua_tonumber(L, 3); //
+	float attentionuaZ = lua_tonumber(L, 4); //
+	float time = lua_tonumber(L, 5); //
+	pillar->setLightAttenuationTarget(glm::vec3(attentionuaX, attentionuaY, attentionuaZ), time);
+	return 0;
+}
+
+int lua_Komachi_pillar_setLightColor(lua_State * L)
+{
+	if (lua_gettop(L) != 6)
+	{
+		std::cout << "(lua_Komachi_pillar_setLightAttenuation) bad gettop " << lua_gettop(L) << " \n";
+		return;
+	}
+
+	F_Komachi_pillar * pillar = static_cast<F_Komachi_pillar *>(lua_touserdata(L, 1)); // pillar
+	float colorR = lua_tonumber(L, 2); //
+	float colorG = lua_tonumber(L, 3); //
+	float colorB = lua_tonumber(L, 4); //
+	float colorA = lua_tonumber(L, 5); //
+	float time = lua_tonumber(L, 6); //
+	pillar->setLightColorTarget(glm::vec4(colorR, colorG, colorB, colorA), time);
 	return 0;
 }
 
@@ -507,197 +737,9 @@ int lua_Komachi_pillar_move(lua_State * L)
 	pillar->setMove(glm::vec2(x, y), time);
 	return 0;
 }
-
-int lua_setAfterImage(lua_State * L)
-{
-	if (lua_gettop(L) <4 ||  lua_gettop(L) > 7)
-	{
-		std::cout << "(lua_setAfterImage) bad gettop " << lua_gettop(L) << " \n";
-		return;
-	}
-	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
-	float interval = lua_tonumber(L, 2);
-	float lifeTime = lua_tonumber(L, 3);
-	int maxNum = 10;
-	float scaleRate = 0.0f;
-	float alphaRate = 0.5f;
-	float traceLifeTime = 2.0f;
-	if(lua_gettop(L) >= 4)
-	{
-		maxNum = lua_tonumber(L, 4);
-	}
-	if(lua_gettop(L) >= 5)
-	{
-		scaleRate = lua_tonumber(L, 5);
-	}
-	if(lua_gettop(L) >= 6)
-	{
-		alphaRate = lua_tonumber(L, 6);
-	}
-	if(lua_gettop(L) == 7)
-	{
-		traceLifeTime = lua_tonumber(L, 7);
-	}
-
-	dynamicObject->setTrace(interval, lifeTime, maxNum, scaleRate, alphaRate,traceLifeTime);
-	return 0;
-}
-
-int lua_getObjectPos(lua_State * L)
-{
-	if (lua_gettop(L) != 1)
-	{
-		std::cout << "(lua_getObjectPos) bad gettop " << lua_gettop(L) << " \n";
-		return;
-	}
-	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
-	glm::vec2 pos = dynamicObject->getPos();
-	lua_pushnumber(L, pos.x);
-	lua_pushnumber(L, pos.y);
-	return 2;
-}
-
-int lua_getObjectAngle(lua_State * L)
-{
-	if (lua_gettop(L) != 1)
-	{
-		std::cout << "(lua_getObjectAngle) bad gettop " << lua_gettop(L) << " \n";
-		return;
-	}
-	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
-	float angle = dynamicObject->getAngle();
-	lua_pushnumber(L, angle);
-	return 1;
-}
-
-int lua_waitFor(lua_State * L)
-{
-	if (lua_gettop(L) != 3)
-	{
-		std::cout << "(lua_waitFor) bad gettop " << lua_gettop(L) << " \n";
-		return;
-	}
-	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
-	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // dynob
-	float time = lua_tonumber(L, 3);
-	objectManager->waitFor(dynamicObject, time);
-	return 0;
-}
-
-int lua_playObjectAnimation(lua_State * L)
-{
-	if (lua_gettop(L) < 2 && lua_gettop(L) > 5)
-	{
-		std::cout << "(lua_playAnimation) bad gettop " << lua_gettop(L) << " \n";
-	}
-	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
-	std::string animationName = lua_tostring(L, 2);
-	int loopTime = 0;
-	bool isOverride = false;
-	float playSpeed = 1.0f;
-	if(lua_gettop(L) >= 3)
-	{
-		loopTime = lua_tonumber(L, 3);
-	}
-	if(lua_gettop(L) >= 4)
-	{
-		isOverride = lua_toboolean(L, 4);
-	}
-	if(lua_gettop(L) == 5)
-	{
-		playSpeed = lua_tonumber(L, 5);
-	}
-	dynamicObject->playAnimation(animationName, loopTime);
-	dynamicObject->setAnimOverRide(isOverride);
-	dynamicObject->setAnimationSpeed(playSpeed);
-
-	return 0;
-}
-
-int lua_addBulletManipulatorPatern(lua_State * L)
-{
-	if (lua_gettop(L) != 7)
-	{
-		std::cout << "(lua_addBulletManipulatorPatern) bad gettop " << lua_gettop(L) << " \n";
-		return;
-	}
-
-	F_Lua_Boss_Manager * objectManager = static_cast<F_Lua_Boss_Manager*>(lua_touserdata(L, 1)); //host
-	std::string xNodeEquation = lua_tostring(L, 2);
-	std::string yNodeEquation = lua_tostring(L, 3);
-	float radius = lua_tonumber(L, 4);
-	std::string tableName = lua_tostring(L, 5); // table name
-
-	int type = lua_type(L,6);
-	if(type != LUA_TTABLE)
-	{
-		std::cout << "lua_setObjectChargingEffect : arg 3 is not a table\n";
-	}
-
-	lua_getglobal(L,tableName.c_str());
-	lua_pushnil(L);
-	std::vector<float> factors;
-	while(lua_next(L,-2))
-	{
-		if(lua_isstring(L,-1))
-		{
-			factors.push_back(lua_tonumber(L,-1));
-		}
-		lua_pop(L,1);
-		
-	}
-	lua_pop(L,1);
-	int bulletID = lua_tonumber(L,6);
-	objectManager->createPatern(xNodeEquation, yNodeEquation, radius, factors, bulletID);
-	return 0;
-}
-
-int lua_setObjectChargingEffect(lua_State * L)
-{
-	if(lua_gettop(L) != 8)
-	{
-		std::cout << "(lua_setChargingEffect) bad gettop " << lua_gettop(L) << " \n";
-	}
-	F_Lua_GenericObject * dynamicObject = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 1)); // dynob
-	std::string tableName = lua_tostring(L, 2); // table name
-
-	int type = lua_type(L,3);
-	if(type != LUA_TTABLE)
-	{
-		std::cout << "lua_setObjectChargingEffect : arg 3 is not a table\n";
-	}
-
-	lua_getglobal(L,tableName.c_str());
-	lua_pushnil(L);
-	std::vector<std::string> tAssets;
-	while(lua_next(L,-2))
-	{
-		if(lua_isstring(L,-1))
-		{
-			std::string name = lua_tostring(L,-1);
-			tAssets.push_back(name);
-		}
-		lua_pop(L,1);
-	}
-	lua_pop(L,1);
-
-	std::vector<Feintgine::F_Sprite> tSprites;
-	for (int i = 0; i < tAssets.size(); i++)
-	{
-		tSprites.emplace_back(Feintgine::SpriteManager::Instance()->getSprite(tAssets[i]));
-	}
-	float time = lua_tonumber(L,4);
-	float radius = lua_tonumber(L,5);
-	int maxCount = lua_tonumber(L,6);
-	float minSpeed = lua_tonumber(L,7);
-	float maxSpeed = lua_tonumber(L,8);	
-	dynamicObject->setCharging(tSprites, time, radius, maxCount, minSpeed, maxSpeed);
-
-	return 0;
-}
-
 #pragma endregion
-// MARK: Class start
+
+#pragma region CPP_lua_e
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 {
 	loadTextures();
@@ -734,11 +776,19 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppKomachi_pillar_move", lua_Komachi_pillar_move);
 	lua_register(m_script, "cppKomachi_pillar_setColor", lua_Komachi_pillar_setColor);
 	lua_register(m_script, "cppKomachi_pillar_setFlashEffect", lua_Komachi_pillar_setFlashEffect);
-	lua_register(m_script, "cppKomachi_pillar_setLightEffect", lua_Komachi_pillar_setLightEffect);
+	lua_register(m_script, "cppKomachi_pillar_setLightEffect", 
+	lua_Komachi_pillar_setLightEffect);
+	lua_register(m_script, "cppKomachi_pillar_setLightAttenuation", 
+	lua_Komachi_pillar_setLightAttenuation);
+	// declare cppKomachi_pillar_setLightColor
+	lua_register(m_script, "cppKomachi_pillar_setLightColor", 
+	lua_Komachi_pillar_setLightColor);
 
 	// Komachi's helper end	
 	bulletManipulator.init(&m_bullets);
 }
+
+#pragma endregion
 
 F_Lua_Boss_Manager::~F_Lua_Boss_Manager()
 {
@@ -752,7 +802,6 @@ void F_Lua_Boss_Manager::addBulletEvent(int bulletID, const std::string & eventN
 		{
 			m_bullets[i]->loadEvent(eventName);
 		}
-
 	}
 }
 
@@ -770,25 +819,17 @@ void F_Lua_Boss_Manager::removeObject(F_Lua_GenericObject * object)
 
 F_Komachi_pillar * F_Lua_Boss_Manager::createPillar(const std::string & texturePath1, const std::string & texturePath2, const glm::vec2 & pos, const glm::vec2 & dim, const Feintgine::Color & color)
 {
-	//std::cout << "create pillar \n";
 	F_Komachi_pillar * pillar = new F_Komachi_pillar();
 	pillar->init(Feintgine::ResourceManager::getTexture(texturePath1) , Feintgine::ResourceManager::getTexture(texturePath2), pos, dim, color);
 
 	pillar->spawn(pos, dim, color);
-
-	//std::cout << "attemp pushback \n";
 	m_komachiPillars.push_back(pillar);
-
-	//std::cout << "pushback done \n";
-
 	return pillar;
 }
 
 void F_Lua_Boss_Manager::update(float deltaTime)
 {
-
 	bulletManipulator.update(deltaTime);
-	//std::cout << "update \n";
 	for (size_t i = 0; i < m_luaBosses.size(); i++)
 	{
 		if (m_luaBosses[i])
@@ -803,9 +844,7 @@ void F_Lua_Boss_Manager::update(float deltaTime)
 		{
 			m_komachiPillars[i]->update(deltaTime);
 		}
-	
 	}
-
 	for(size_t i = 0 ; i < m_objects.size() ; i++)
 	{
 		if (m_objects[i])
@@ -819,25 +858,17 @@ void F_Lua_Boss_Manager::update(float deltaTime)
 		{
 			if (m_luaBossStates[i]->update(deltaTime))
 			{
-			
-				//std::cout << "Issue Next Task [C++] \n";
 				lua_getglobal(m_script, "IssueNextTask");
 				if (lua_isfunction(m_script, -1))
 				{
-					//m_luaBossStates[i]->m_luaBoss;
 					F_Lua_GenericObject * object = m_luaBossStates[i]->m_luaBoss;
-					//lua_pushlightuserdata(m_script, pThread);
-					lua_pushlightuserdata(m_script, this); // host
-
-					//std::cout << "Issue next task pointer " << object << "\n";
-
+					lua_pushlightuserdata(m_script, this); // host, yes, "this" is the host
 					lua_pushlightuserdata(m_script, object);
 					if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 2, 1, 0)))
 					{
 						std::cout << "script failed \n";
 					}
 				}
-
 				// After Issued next task
 				m_luaBossStates.erase(m_luaBossStates.begin() + i);
 			}
@@ -848,21 +879,18 @@ void F_Lua_Boss_Manager::update(float deltaTime)
 		if (m_nonWaitLuaBossStates[i])
 		{
 			if (m_nonWaitLuaBossStates[i]->update(deltaTime))
-			{
-			
+			{		
 				// this update will not call next task after done
 				m_nonWaitLuaBossStates.erase(m_nonWaitLuaBossStates.begin() + i);
 			}
 		}
 	}
-
 	for (int i = 0; i < m_luaBosses.size(); i++)
 	{
 		if (m_luaBosses[i]->m_bullets.size() > 0)
 		{
 			for (int c = 0; c < m_luaBosses[i]->m_bullets.size(); c++)
 			{
-				//m_enemies[i]->m_bullets[c]->initLogic(m_world.get());
 				m_bullets.push_back(m_luaBosses[i]->m_bullets[c]);
 			}
 			m_luaBosses[i]->m_bullets.clear();
@@ -884,43 +912,28 @@ void F_Lua_Boss_Manager::update(float deltaTime)
 void F_Lua_Boss_Manager::MoveObject(F_Lua_GenericObject * dynamicObject, float x, float y, float time)
 {
  	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
- 	manipulator->moveObject(dynamicObject, glm::vec2(x, y), time);
- 	m_luaBossStates.push_back(manipulator);
+	manipulator->moveObject(dynamicObject, glm::vec2(x, y), time);
+	m_luaBossStates.push_back(manipulator);
 }
-
 
 void F_Lua_Boss_Manager::MoveObjectNonWait(F_Lua_GenericObject * dynamicObject, float x, float y, float time)
 {
  	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
- 	manipulator->moveObject(dynamicObject, glm::vec2(x, y), time);
- 	m_nonWaitLuaBossStates.push_back(manipulator);
+	manipulator->moveObject(dynamicObject, glm::vec2(x, y), time);
+	m_nonWaitLuaBossStates.push_back(manipulator);
 }
-
-
-
 void F_Lua_Boss_Manager::waitFor(F_Lua_GenericObject * dynamicObject, float time)
 {
 	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
- 	manipulator->waitFor(dynamicObject, time);
- 	m_luaBossStates.push_back(manipulator);
-
-	// dynamicObject->addEvent([=] 
-	// {
-
-	// 	std::cout << "this end \n";
-
-	// }, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time ));
-
+	manipulator->waitFor(dynamicObject, time);
+	m_luaBossStates.push_back(manipulator);
 }
-
 
 void F_Lua_Boss_Manager::setObjectVel(F_Lua_GenericObject * dynamicObject, const glm::vec2 & vel)
 {
-
 	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
 	manipulator->setObjectVel(dynamicObject, vel);
 	m_luaBossStates.push_back(manipulator);
-
 }
 F_Lua_GenericObject * F_Lua_Boss_Manager::createBoss(const std::string & animationPath, glm::vec2 pos)
 {
@@ -948,7 +961,6 @@ F_Lua_GenericObject * F_Lua_Boss_Manager::createBoss(const glm::vec2 & pos, cons
 	m_luaBosses.push_back(m_object);
 	return m_object;
 }
-
 
 void F_Lua_Boss_Manager::clearBosses()
 {
@@ -1006,29 +1018,19 @@ bool F_Lua_Boss_Manager::loadLuaFile(const std::string & filePath)
 			lua_gettable(m_script, -2);
 			depth = lua_tonumber(m_script, -1);
 			lua_pop(m_script, 1);
-
 			float angle;
 			// get angle 
 			lua_pushstring(m_script, "angle");
 			lua_gettable(m_script, -2);
 			angle = lua_tonumber(m_script, -1);
 			lua_pop(m_script, 1);
-
 			/* note : this version is to cause object init animation from file path, please add 
 			 a copy version if you have time */
 			// Feint~ 
-
 			createBoss(pos, animationPath, scale, depth, angle);
-
 		}
 	}
-
 	return false;
-}
-
-void F_Lua_Boss_Manager::preloadTexture(const std::string & path)
-{
-
 }
 
 void F_Lua_Boss_Manager::loadTextures()
@@ -1041,21 +1043,15 @@ void F_Lua_Boss_Manager::loadTextures()
 void F_Lua_Boss_Manager::drawLight(Feintgine::LightBatch & lightBatch)
 {
 	m_player.drawLight(lightBatch);
-	
-		
 }
 void F_Lua_Boss_Manager::drawLight2(Feintgine::LightBatch & lightBatch)
 {
-	
 	m_player2.drawLight(lightBatch);
-	
-		
 }
 
 void F_Lua_Boss_Manager::drawBossesLight(Feintgine::LightBatch & lightBatch)
 {
-	m_particleEngine.drawLight(lightBatch);
-	
+	m_particleEngine.drawLight(lightBatch);	
 	for(int i = 0; i < m_komachiPillars.size(); i++)
 	{
 		m_komachiPillars[i]->drawLight(lightBatch);
@@ -1064,18 +1060,12 @@ void F_Lua_Boss_Manager::drawBossesLight(Feintgine::LightBatch & lightBatch)
 
 void F_Lua_Boss_Manager::handleInput(Feintgine::InputManager & inputManager)
 {
-
 	m_player2.handleInput(inputManager);
 	m_player.handleInput(inputManager);
 }
 
-
-
 void F_Lua_Boss_Manager::drawPlayer(Feintgine::SpriteBatch & spriteBatch)
-{
-	
-	//std::cout << "call \n";
-//	m_particleEngine.draw(&spriteBatch);	
+{	
 	m_player.draw(spriteBatch);
 	
 	m_kanjiEffectManager->draw(spriteBatch);
@@ -1087,10 +1077,6 @@ void F_Lua_Boss_Manager::drawPlayer(Feintgine::SpriteBatch & spriteBatch)
 
 void F_Lua_Boss_Manager::drawPlayer2(Feintgine::SpriteBatch & spriteBatch)
 {
-	
-	//std::cout << "call \n";
-//	m_particleEngine.draw(&spriteBatch);	
-	
 	m_player2.draw(spriteBatch);
 	m_kanjiEffectManager->draw(spriteBatch);
 	for (int i = 0; i < m_exlosions.size(); i++)
@@ -1101,17 +1087,13 @@ void F_Lua_Boss_Manager::drawPlayer2(Feintgine::SpriteBatch & spriteBatch)
 
 void F_Lua_Boss_Manager::createPatern(const std::string & xNodeEquation, const std::string & yNodeEquation, float radius, const std::vector<float> & factors, int bulletID)
 {
-
 	PaternBehavior_from_lua * pat;
 	pat = new PaternBehavior_from_lua();
 	pat->setFactor(factors);
 	pat->setRadius(radius);
 	pat->create(xNodeEquation, yNodeEquation, radius);
 	pat->setRate(0.001f);
-	
 	bulletManipulator.addPatern(pat,bulletID);
-
-	//bulletManipulator.addPatern(bulletID,0);
 }
 
 void F_Lua_Boss_Manager::updatePlayer(float deltaTime, std::vector<FairyBase *>  enemy,
@@ -1162,12 +1144,6 @@ void F_Lua_Boss_Manager::draw(Feintgine::SpriteBatch & spriteBatch)
 			m_komachiPillars[i]->draw(spriteBatch);
 		}
 	}
-
-	//m_player.draw(spriteBatch);
-	// //std::cout << "call \n";
-	// m_particleEngine.draw(&spriteBatch);	
-	// m_kanjiEffectManager->draw(spriteBatch);
-	
 }
 
 void F_Lua_Boss_Manager::drawPlayerSpellcard(Feintgine::SpriteBatch & spriteBatch)
@@ -1180,43 +1156,10 @@ void F_Lua_Boss_Manager::drawPlayerSpellcard2(Feintgine::SpriteBatch & spriteBat
 	m_player2.drawSpellSelector(spriteBatch);
 }
 
-
 void F_Lua_Boss_Manager::reloadPlayer(int val)
 {
-	
-
-
-	// //m_player.cle
-	// switch(val)
-	// {
-	// 	case PLAYER_CHARACTER_REIMU:
-	// 	{
-	// 		m_player.setAccessoryShot(0);
-	// 		m_player.setCharacterSpell(val);
-	// 		m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
-	// 		m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);	
-			
-	
-	// 	}
-	// 	break;
-	// 	case PLAYER_CHARACTER_MARISA:
-	// 	{
-	// 		m_player2.setAccessoryShot(4);
-	// 		m_player2.setCharacterSpell(val);
-	// 		m_player2.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
-	// 		m_player2.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
-			
-	
-	// 	}
-	// 	break;
-		
-	// 	default:
-	// 		std::cout << "wrong player ID value \n";
-	// 	break;
-	// }
-	
+	// unused
 }
-
 
 void F_Lua_Boss_Manager::addExplosion(const Feintgine::F_Sprite & sprite, const glm::vec2 & pos, const glm::vec2 & scale, const glm::vec2 & explosionRate, const Feintgine::Color & color, float depth, float liveRate /*= 0.1f*/)
 {
@@ -1225,8 +1168,6 @@ void F_Lua_Boss_Manager::addExplosion(const Feintgine::F_Sprite & sprite, const 
 
 void F_Lua_Boss_Manager::initPlayer(int val, Feintgine::AudioEngine * audioEngine, KanjiEffectManager * kanjiEffectManager,Feintgine::Camera2D * cam,Feintgine::EffectBatch * effectBatch)
 {
-
-	
 	m_player.setCharacterSpell(1);
 	m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
 	m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
@@ -1238,28 +1179,21 @@ void F_Lua_Boss_Manager::initPlayer(int val, Feintgine::AudioEngine * audioEngin
 	});	
 	m_player.registerExplosionRing(&m_exlosions);
 
-
 	//std::cout << "incoming register logic camera " << cam << "\n";
 	m_player.registerLogicCamera(cam);
 	m_player.registerKanjiEffect(kanjiEffectManager);
 
 	m_player.registerAudioEngine(audioEngine);
 	m_player.initSound();
-	m_kanjiEffectManager = kanjiEffectManager;
-	
+	m_kanjiEffectManager = kanjiEffectManager;	
 	m_player.setPos(glm::vec2(25, -100));
 	m_player.reset();
 
-	//m_player.setDepth(40);
-
 	m_player.registerEffectBatch(effectBatch);
-
 	m_player.setSpellSelectorPos(glm::vec2(330, 0));
 	m_particleEngine.addParticleBatch(m_player.getHitParticle());
 	m_particleEngine.addParticleBatch(m_player.getLeftAccessosry().getParticleBatch());
 	m_particleEngine.addParticleBatch(m_player.getRightAccesory().getParticleBatch());
-
-
 
 	m_player2.setCharacterSpell(2);
 	m_player2.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
@@ -1273,7 +1207,6 @@ void F_Lua_Boss_Manager::initPlayer(int val, Feintgine::AudioEngine * audioEngin
 	});	
 	m_player2.registerExplosionRing(&m_exlosions);
 
-
 	//std::cout << "incoming register logic camera " << cam << "\n";
 	m_player2.registerLogicCamera(cam);
 	m_player2.registerKanjiEffect(kanjiEffectManager);
@@ -1281,32 +1214,20 @@ void F_Lua_Boss_Manager::initPlayer(int val, Feintgine::AudioEngine * audioEngin
 	m_player2.registerAudioEngine(audioEngine);
 	m_player2.initSound();
 	m_kanjiEffectManager = kanjiEffectManager;
-	
 	m_player2.setPos(glm::vec2(25, -100));
 	m_player2.reset();
-
-	//m_player2.setDepth(40);
-
 	m_player2.registerEffectBatch(effectBatch);
-
 	m_player2.setSpellSelectorPos(glm::vec2(330, 0));
 	m_particleEngine.addParticleBatch(m_player2.getHitParticle());
 	m_particleEngine.addParticleBatch(m_player2.getLeftAccessosry().getParticleBatch());
 	m_particleEngine.addParticleBatch(m_player2.getRightAccesory().getParticleBatch());
 
-
-
-	//m_player.update(1.0f, {}, {});
-	//m_player.registerP
-	//m_player.registerParticleEngine(&m_particleEngine);
-	//reloadPlayer(1);
 }
 
 void F_Lua_Boss_Manager::drawParticle(Feintgine::SpriteBatch * spriteBatch)
 {
 	m_particleEngine.draw(spriteBatch);
 }
-
 
 void F_Lua_Boss_Manager::init()
 {
@@ -1320,19 +1241,11 @@ void F_Lua_Boss_Manager::callCreateFromLua(const std::string & filePath, const s
 		lua_getglobal(m_script, functionName.c_str());// get the function name to the top of the stack
 		if (lua_isfunction(m_script, -1))
 		{
-			//std::cout << "host is " << this << "\n";
 			lua_pushlightuserdata(m_script, this);
-			//std::cout << "C++ called " + functionName << "\n";
 			if (LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 1, 1, 0)))
 			{
-				//std::cout << "[C++] callCreateFromLua OK \n";
-
-				//std::cout << "pointer of return value : \n";
-				//F_LuaDynamicObject* object = (F_LuaDynamicObject*)lua_touserdata(m_script, -1);
-
+				// a print to check if function called
 			}
-
-
 		}
 	}
 }
@@ -1366,21 +1279,14 @@ void F_Lua_Boss_Manager::rw_addEvent_PE(F_Lua_GenericObject * dynamicObject,\
 	int peType, float startRange, float rangeCover, float angleStep,\
 	float startAngle, int petalCount, int interval, float rotation, int count, double time)
 {
-
-
 	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
 	manipulator->addDelayedEvent(dynamicObject, [=] {
 	}, 0);
-
-
-
 	float angle = 0;
 	for (int i = 0; i < count; i++)
 	{
-
 		dynamicObject->addEvent([=]
 		{
-			
 			EnemyBulletBase * bullet = new EnemyBulletBase();
 			bullet->m_lifeTime = lifeTime;
 			float totalAngle = angle + rotation;
@@ -1395,37 +1301,24 @@ void F_Lua_Boss_Manager::rw_addEvent_PE(F_Lua_GenericObject * dynamicObject,\
 				Feintgine::SpriteManager::Instance()->getSprite(asset), tVel, nullptr, 5);
 			dynamicObject->m_bullets.push_back(bullet);
 		}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time + (interval *i)) );
-
 		angle += angleStep;
-
-	}
-		
+	}		
 	m_luaBossStates.push_back(manipulator);
 
-		//std::cout << i << "\n";
-		//
 }
-
 void F_Lua_Boss_Manager::rw_addEvent_PE_nonWait(F_Lua_GenericObject * dynamicObject,\
 	const std::string & asset, float speed, float lifeTime,\
 	int peType, float startRange, float rangeCover, float angleStep,\
 	float startAngle, int petalCount, int interval, float rotation, int count, double time)
 {
-
-
 	F_Lua_Boss_State * manipulator = new F_Lua_Boss_State();
 	manipulator->addDelayedEvent(dynamicObject, [=] {
 	}, 0);
-
-
-
 	float angle = 0;
 	for (int i = 0; i < count; i++)
 	{
-
 		dynamicObject->addEvent([=]
 		{
-			
 			EnemyBulletBase * bullet = new EnemyBulletBase();
 			bullet->m_lifeTime = lifeTime;
 			float totalAngle = angle + rotation;
@@ -1440,18 +1333,11 @@ void F_Lua_Boss_Manager::rw_addEvent_PE_nonWait(F_Lua_GenericObject * dynamicObj
 				Feintgine::SpriteManager::Instance()->getSprite(asset), tVel, nullptr, 5);
 			dynamicObject->m_bullets.push_back(bullet);
 		}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time + (interval *i)) );
-
 		angle += angleStep;
-
-	}
-		
+	}		
 	m_nonWaitLuaBossStates.push_back(manipulator);
 
-		//std::cout << i << "\n";
-		//
 }
-
-
 
 void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_GenericObject * dynamicObject, const std::string & asset,
 	float speed, float lifeTime,int arcType, float fA, float fB, float fC, float fD, float fR, float angleStep, float startAngle, float rotation, int interval, int count, double time,int id /*= 0*/, const std::string & eventName /*= ""*/)
@@ -1461,10 +1347,7 @@ void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_GenericObject * dynamicObject, con
 	{
 	}, 0);
 
-	//fR = fR * 0.01f;
-
 	std::vector<float> factor;
-
 	ArcFunction * arc = nullptr;
 	switch (arcType)
 	{
@@ -1511,16 +1394,10 @@ void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_GenericObject * dynamicObject, con
 	}
 	
 	float angle = startAngle;
-
-	// std::cout << "bullet ID " << id << "\n";
-	// std::cout << "eventName " << eventName << "\n";
-	
 	for (int i = 0; i < count; i++)
 	{
-
 		dynamicObject->addEvent([=] 
 		{
-
 			EnemyBulletBase * bullet = new EnemyBulletBase();
 			bullet->m_lifeTime = lifeTime;
 			glm::vec2 tVel = globalRotatePoint(arc->getValue(angle), rotation);
@@ -1533,17 +1410,11 @@ void F_Lua_Boss_Manager::rw_addEvent_T1(F_Lua_GenericObject * dynamicObject, con
 				bullet->loadEvent(eventName);
 			}
 			dynamicObject->m_bullets.push_back(bullet);
-
-
-
 		}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time + (interval *i)));
 		angle += angleStep;
 	}
-		
-
 	m_luaBossStates.push_back(manipulator);
 }
-
 
 void F_Lua_Boss_Manager::rw_addEvent_T1_nonWait(F_Lua_GenericObject * dynamicObject, const std::string & asset,
 	float speed, float lifeTime,int arcType, float fA, float fB, float fC, float fD, float fR, float angleStep, float startAngle, float rotation, int interval, int count, double time,int id /*= 0*/, const std::string & eventName /*= ""*/)
@@ -1553,8 +1424,6 @@ void F_Lua_Boss_Manager::rw_addEvent_T1_nonWait(F_Lua_GenericObject * dynamicObj
 	{
 	}, 0);
 
-	//fR = fR * 0.01f;
-
 	std::vector<float> factor;
 
 	ArcFunction * arc = nullptr;
@@ -1601,18 +1470,11 @@ void F_Lua_Boss_Manager::rw_addEvent_T1_nonWait(F_Lua_GenericObject * dynamicObj
 		std::cout << "arc is null \n";
 		return;
 	}
-	
 	float angle = startAngle;
-
-	// std::cout << "bullet ID " << id << "\n";
-	// std::cout << "eventName " << eventName << "\n";
-	
 	for (int i = 0; i < count; i++)
 	{
-
 		dynamicObject->addEvent([=] 
 		{
-
 			EnemyBulletBase * bullet = new EnemyBulletBase();
 			bullet->m_lifeTime = lifeTime;
 			glm::vec2 tVel = globalRotatePoint(arc->getValue(angle), rotation);
@@ -1625,17 +1487,11 @@ void F_Lua_Boss_Manager::rw_addEvent_T1_nonWait(F_Lua_GenericObject * dynamicObj
 				bullet->loadEvent(eventName);
 			}
 			dynamicObject->m_bullets.push_back(bullet);
-
-
-
 		}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time + (interval *i)));
 		angle += angleStep;
 	}
-		
-
 	m_nonWaitLuaBossStates.push_back(manipulator);
 }
-
 
 void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff(F_Lua_GenericObject * dynamicObject,
 	const std::string & asset, float speed, float lifeTime, int k, int n, int n2,
@@ -1645,28 +1501,21 @@ void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff(F_Lua_GenericObject * dynamic
 	manipulator->addDelayedEvent(dynamicObject, [=]
 	{
 	}, 0);
-
-	//fR = fR * 0.01f;
 	float angle = 0;
 	f_angle = angle;
 	for (int k = 0; k < 1; k++)
 	{
-
 		for (int t_l1 = 0; t_l1 < l1; t_l1++)
 		{
 			f_angle += angleStep;
 			for (int t_l2 = 0; t_l2 < l2; t_l2++)
 			{
-
 				f_angle += angleStep;
-				//f_angle = t_angle;
 				for (int f = 0; f < n2; f++)
 				{
-
 					f_angle += angleStep;
 					for (int c = 0; c < n; c++)
 					{
-
 						dynamicObject->addEvent([=]
 						{
 							EnemyBulletBase * bullet = new EnemyBulletBase();
@@ -1674,10 +1523,7 @@ void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff(F_Lua_GenericObject * dynamic
 							float x = cos(f_angle * posneg);
 							float y = sin(f_angle * posneg);
 							f_angle += degreeToRad((360 / n));
-
-
 							glm::vec2 tVel = globalRotatePoint(glm::vec2(x, y), f_angle * posneg);
-
 							glm::vec2 vel = tVel * speed;
 							bullet->init(dynamicObject->getPos(), glm::vec2(1),
 								Feintgine::SpriteManager::Instance()->getSprite(asset), vel, nullptr, 5);
@@ -1685,7 +1531,6 @@ void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff(F_Lua_GenericObject * dynamic
 
 							m_bullets.push_back(bullet);
 						}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time + (interval * c)));
-
 					}
 					f_angle += angleStep;
 				}
@@ -1695,7 +1540,6 @@ void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff(F_Lua_GenericObject * dynamic
 	m_luaBossStates.push_back(manipulator);
 }
 
-
 void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff_nonWait(F_Lua_GenericObject * dynamicObject,
 	const std::string & asset, float speed, float lifeTime, int k, int n, int n2,
 	int l1, int l2, int posneg, float startAngle, float angleStep, float rotation, int interval, double time)
@@ -1704,28 +1548,21 @@ void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff_nonWait(F_Lua_GenericObject *
 	manipulator->addDelayedEvent(dynamicObject, [=]
 	{
 	}, 0);
-
-	//fR = fR * 0.01f;
 	float angle = 0;
 	f_angle = angle;
 	for (int k = 0; k < 1; k++)
 	{
-
 		for (int t_l1 = 0; t_l1 < l1; t_l1++)
 		{
 			f_angle += angleStep;
 			for (int t_l2 = 0; t_l2 < l2; t_l2++)
 			{
-
 				f_angle += angleStep;
-				//f_angle = t_angle;
 				for (int f = 0; f < n2; f++)
 				{
-
 					f_angle += angleStep;
 					for (int c = 0; c < n; c++)
 					{
-
 						dynamicObject->addEvent([=]
 						{
 							EnemyBulletBase * bullet = new EnemyBulletBase();
@@ -1733,18 +1570,13 @@ void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff_nonWait(F_Lua_GenericObject *
 							float x = cos(f_angle * posneg);
 							float y = sin(f_angle * posneg);
 							f_angle += degreeToRad((360 / n));
-
-
 							glm::vec2 tVel = globalRotatePoint(glm::vec2(x, y), f_angle * posneg);
-
 							glm::vec2 vel = tVel * speed;
 							bullet->init(dynamicObject->getPos(), glm::vec2(1),
 								Feintgine::SpriteManager::Instance()->getSprite(asset), vel, nullptr, 5);
 							bullet->setDirection(tVel);
-
 							m_bullets.push_back(bullet);
 						}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time + (interval * c)));
-
 					}
 					f_angle += angleStep;
 				}
@@ -1757,15 +1589,12 @@ void F_Lua_Boss_Manager::rw_addEvent_MA_custom_aff_nonWait(F_Lua_GenericObject *
 void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_GenericObject * dynamicObject, const std::string & asset,
 	float speed, float lifeTime, float x, float y, float currentAngle, double time,int id , const std::string & eventName )
 {
-
 	dynamicObject->addEvent([=]
 	{
 		EnemyBulletBase * bullet = new EnemyBulletBase();
 		bullet->m_lifeTime = lifeTime;
-
 		glm::vec2 tVel = globalRotatePoint(glm::vec2(x, y), f_angle ); // investigate this 
-																	   // f_angle || currentAngle
-
+		// f_angle || currentAngle
 		glm::vec2 vel = tVel * speed;
 		bullet->init(dynamicObject->getPos(), glm::vec2(1),
 			Feintgine::SpriteManager::Instance()->getSprite(asset), vel, nullptr, 5);
@@ -1777,11 +1606,7 @@ void F_Lua_Boss_Manager::rw_addEvent_base(F_Lua_GenericObject * dynamicObject, c
 		}
 		m_bullets.push_back(bullet);
 	}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time ));
-
 }
-
-
-
 
 void F_Lua_Boss_Manager::rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dynamicObject, const std::vector<std::string> & assets, int tier, float speed, float lifeTime, float x, float y, float currentAngle, double time)
 {
@@ -1789,8 +1614,7 @@ void F_Lua_Boss_Manager::rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dyn
 	{
 		EnemyBulletBase * bullet = new EnemyBullet_KomachiCoin();
 		bullet->m_lifeTime = lifeTime;
-
-		glm::vec2 tVel = globalRotatePoint(glm::vec2(x, y), f_angle ); // same thing with rw_addEvent_base                                                                                           
+		glm::vec2 tVel = globalRotatePoint(glm::vec2(x, y), f_angle );
 		glm::vec2 vel = tVel * speed;
 		bullet->init(dynamicObject->getPos(), glm::vec2(1),
 			Feintgine::SpriteManager::Instance()->getSprite(assets[tier]), vel, nullptr, 5);
@@ -1798,15 +1622,10 @@ void F_Lua_Boss_Manager::rw_addEvent_fire_komachi_coin(F_Lua_GenericObject * dyn
 		EnemyBullet_KomachiCoin * casted_bullet = dynamic_cast<EnemyBullet_KomachiCoin*>(bullet);  
 		dynamic_cast<EnemyBullet_KomachiCoin*>(bullet)->initTierSetting(assets);
 		dynamic_cast<EnemyBullet_KomachiCoin*>(bullet)->setTier(tier);
-		
-
 		m_bullets.push_back(bullet);
 	}, ENGINE_current_tick + Feintgine::F_oEvent::convertMSToS(time ));
 
 }
-
-
-
 
 Feintgine::F_BaseObject * F_Lua_Boss_Manager::createHelper(F_Lua_GenericObject * dynamicObject,unsigned int id , const std::string & objectName,
 	const std::string & asset, float x, float y, float scaleX, float scaleY, float depth,float velX, float velY,int afterImageCount, float afterImageRate, float scaleRate,double time)
@@ -1817,7 +1636,6 @@ Feintgine::F_BaseObject * F_Lua_Boss_Manager::createHelper(F_Lua_GenericObject *
 	{
 	case ObjectType::komachi_souls:
 	{
-
 		Feintgine::F_BaseObject * object =  new F_Komachi_Souls_Object();//new Feintgine::F_BaseObject();
 		object->init(id,glm::vec2(scaleX, scaleY),asset,Feintgine::Color(255,255,255,255),glm::vec2(velX,velY),glm::vec2(x,y) , depth, afterImageCount,afterImageRate);
 		object->setAfterImageScaleRate(scaleRate);
@@ -1828,8 +1646,6 @@ Feintgine::F_BaseObject * F_Lua_Boss_Manager::createHelper(F_Lua_GenericObject *
 		return object;
 	}
 		break;
-
-
 	default:
 		break;
 	}	
@@ -1837,26 +1653,21 @@ Feintgine::F_BaseObject * F_Lua_Boss_Manager::createHelper(F_Lua_GenericObject *
 
 void F_Lua_Boss_Manager::callFunctionFromLua(const std::string functionName)
 {
-
 	lua_getglobal(m_script, functionName.c_str());// get the function name to the top of the stack
 	if (lua_isfunction(m_script, -1))
 	{
-		//std::cout << "host is " << this << "\n";
 		lua_pushlightuserdata(m_script, this);
-		//std::cout << "C++ called " + functionName << "\n";
 		const int argCount = 1;
 		const int returnCount =1;
 		if (LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argCount, returnCount, 0)))
 		{
-			
+			// safe check
 		}
-	}
-	
+	}	
 }
 
 void F_Lua_Boss_Manager::resetEvent()
 {
-	//callFunctionFromLua("resetFunction");
 	for (int i = 0; i < m_luaBossStates.size(); i++)
 	{
 		m_luaBossStates.erase(m_luaBossStates.begin() + i);
@@ -1873,14 +1684,10 @@ void F_Lua_Boss_Manager::resetEvent()
 		for (int i = 0; i < m_luaBosses.size(); i++)
 		{
 			m_luaBosses.erase(m_luaBosses.begin() + i);
-
 		}
-		//update(0.001f);
 	}
 	m_luaBosses.clear();
-
 	callFunctionFromLua("CreateFromLua");
-	
 }
 
 void F_Lua_Boss_Manager::clearBullets()

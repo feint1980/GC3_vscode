@@ -1,8 +1,11 @@
 package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/LuaFiles/Komachi/?.lua'
 
+
 bc =  require("./Assets/Luafiles/common/boss_common")
 
 fire_pilar = nil
+
+--@cppKomachi_pillar_setLightColor(pillar, r, g, b, a,transitionTime)
 
 -- Belong to moveset_normal_2
 function DynamicBehavior4(host,dynob)
@@ -25,8 +28,10 @@ function DynamicBehavior4(host,dynob)
             cppKomachi_pillar_setFlashEffect(fire_pilar,120,2)
             cppWaitFor(host,dynob,60)
             coroutine.yield()
-            cppKomachi_pillar_setLightEffect(fire_pilar,0.65,0.08,1.0,1.0,12,13,16.5,120)
+            cppKomachi_pillar_setLightEffect(fire_pilar,0.0,0.0,0,0,12,13,16.5,120)
             
+            cppKomachi_pillar_setLightColor(fire_pilar,0.65,0.08,1.0,1.0,4.5)
+            cppKomachi_pillar_setLightAttenuation(fire_pilar,12,13,16.5,4.5)
             cppWaitFor(host,dynob,60)
             coroutine.yield()
             cppKomachi_pillar_setLightEffect(fire_pilar,0.65,0.08,1.0,1.0,12,23,88.5,200)

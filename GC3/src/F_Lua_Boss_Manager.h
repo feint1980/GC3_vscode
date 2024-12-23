@@ -174,46 +174,33 @@ public:
 
 	void loadTextures();
 
-	void preloadTexture(const std::string & path);
-
 	// Komachi's addon 
 	F_Komachi_pillar * createPillar(const std::string & texturePath1, const std::string & texturePath2, const glm::vec2 & pos, const glm::vec2 & dim, const Feintgine::Color & color);
-
 
 protected:
 
 	F_Player m_player;
 	F_Player m_player2;
+
+	lua_State * m_script;
+
 	Feintgine::Camera2D * m_cam;
 	KanjiEffectManager  * m_kanjiEffectManager;
-	//Feintgine::EffectBatch m_effectBatch;
 	Feintgine::ParticleEngine2D m_particleEngine;
 
 	std::vector<EnemyBulletBase *> m_bullets;
-
 	std::vector<F_Lua_Boss_State *> m_nonWaitLuaBossStates;
 	std::vector<F_Lua_Boss_State *> m_luaBossStates;
-	lua_State * m_script;
-	//std::vector<F_Lua_Boss *> m_dynamicObjects;
 	std::vector<F_Lua_GenericObject *> m_luaBosses;
-
-	//std::vector<Feintgine::FL_Object*> m_fl_object; 
-
 	std::vector<Feintgine::F_BaseObject *> m_objects;
-
 	std::vector<F_Komachi_pillar *> m_komachiPillars;
-
-	std::map<std::string, ObjectType > m_objectMap;
-
-	float f_angle;
-
-	std::map<std::string, Feintgine::GLTexture> m_preloadedTextures;
-
 	std::vector<ExplosionRing> m_exlosions;
 
-	BulletManupilator bulletManipulator;
+	std::map<std::string, ObjectType > m_objectMap;
+	std::map<std::string, Feintgine::GLTexture> m_preloadedTextures;
 
-	// std::vector<PaternBehavior_from_lua *> m_paternBehaviors;
+	BulletManupilator bulletManipulator;
+	float f_angle;
 
 };
 

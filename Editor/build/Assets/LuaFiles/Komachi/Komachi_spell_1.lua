@@ -3,6 +3,8 @@ package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/L
 bc =  require("./Assets/Luafiles/common/boss_common")
 
 
+require "general"
+
 -- Belong to moveset_normal_1
 function  DynamicBehavior1( host, dynob )
     local direct = {1,-1}
@@ -103,7 +105,7 @@ function souls_fire(host, dynob)
 
     local bullet_count = math.random(30,50)
     for t = 0, bullet_count do
-        local speed = randomFloat(0.5,1.7)
+        local speed = G_randomFloat(0.5,1.7)
         cppSetFire_Base(host,dynob,"projectile/bullet_shard_blue.png",
         speed, -- speed
         5.0, -- lifeTime
@@ -178,8 +180,8 @@ function spawn_souls(host)
         local x_location = x_multiplier * pos_x_dif
 
         local t_soul = cppCreateFromLua (host,soulData.animationPath,x_location  ,pos_y_dif,soulData.scale,soulData.depth,soulData.angle)
-        local x_vel = randomFloat(x_vel_min,x_vel_max)
-        local y_vel = randomFloat(-4.5,-3.0)
+        local x_vel = G_randomFloat(x_vel_min,x_vel_max)
+        local y_vel = G_randomFloat(-4.5,-3.0)
         if(x_location > 0) then
             x_vel = x_vel * -1
         end

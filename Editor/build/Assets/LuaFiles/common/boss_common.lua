@@ -1,8 +1,6 @@
 
 M = {}
 
-
-
 -- cppSetFire_Type1 arcType belike   
 -- 1 hypocycloid 
 -- 2 hypotrochoid 
