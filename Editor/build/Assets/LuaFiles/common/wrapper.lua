@@ -2,7 +2,13 @@
 -- Manual wrapper because I want to mark all the function expose by C++
 -- OCD warning : this file will contain alot of warning 
 
---- Create a new object (wrapper of cppCreateFromLua)
+-- 
+--  ||| Wrapper of HHP (BNML) |||
+--
+
+--  MARK: Object
+
+--- Wrapper of cppCreateFromLua
 ---@Description: Creates a new object (F_Lua_GenericObject)
 ---@param host pointer instance of F_Lua_Boss_Manager
 ---@param animationPath string The path to the animation file
@@ -13,10 +19,18 @@
 ---@param angle number The angle of the object
 ---@return pointer instance of created F_Lua_GenericObject
 function W_createObject(host ,animationPath , posX, posY,scale,depth,angle)
-    cppCreateFromLua(host,animationPath,posX,posY,scale,depth,angle)
+    return cppCreateFromLua(host,animationPath,posX,posY,scale,depth,angle)
 end
 
---- Move object to specific position (wrapper of cppMoveObject)
+--- wrapper of cppRemoveObject
+--- @Description: Remove object
+--- @  param host pointer instance of F_Lua_Boss_Manager
+--- @  param dynamicObject pointer instance of F_Lua_GenericObject to remove
+function W_removeObject(host,dynob)
+    cppRemoveObject(host,dynob)
+end
+
+--- wrapper of cppMoveObject
 ---@Description: Move object to specific position
 ---@param host pointer instance of F_Lua_Boss_Manager
 ---@param dynamicObject pointer instance of F_Lua_GenericObject to move
@@ -24,11 +38,168 @@ end
 ---@param posY number The y position of the object
 ---@param time number the time to complete the move
 ---@param isWait boolean If the move should wait for completion (default true)
----@return null void return nothing
-function W_moveObject(...)
-    local host,dynob,posX,posY,time,isWait = select('#', ...), ...
+function W_moveObject(host,dynob,posX,posY,time,isWait)
     isWait = isWait or true
     cppMoveObject(host,dynob,posX,posY,time,isWait)
 end
 
--- MARK: Fire section
+--- wrapper of cppHoldPosition
+--- @Description: Hold object at specific position
+--- @param host pointer instance of F_Lua_Boss_Manager
+--- @param dynamicObject pointer instance of F_Lua_GenericObject to hold
+--- @param time number the time to complete the hold
+--- @param animationName string The name of the animation to play
+--- @param isWait boolean If the hold should wait for completion (default true)
+function W_holdPosition(host,dynob,time,animationName,isWait)
+    isWait = isWait or true
+    cppHoldPosition(host,dynob,time,animationName,isWait)
+end
+
+--- Wrapper of coroutine.yield
+function W_yield()
+    coroutine.yield()
+end
+
+--- wrapper of cppSetAfterImage
+--- @Description: Set the object to get the "after image" effect
+--- @param dynob pointer instance of F_Lua_GenericObject 
+--- @param interval number The time between each after image
+--- @param lifetime number The lifetime of the after image
+--- @param maxNum number The maximum number of after image (default 10)
+--- @param scaleRate number The scale rate of the after image (default 0.0)
+--- @param alphaRate number The alpha rate of the after image (default 0.5)
+--- @param traceLifeTime number The lifetime of the trace (default 2.0)
+function W_setObjectAfterImage(dynob,interval,lifetime,maxNum,scaleRate,alphaRate,traceLifeTime)
+    maxNum = maxNum or 10
+    scaleRate = scaleRate or 0.0
+    alphaRate = alphaRate or 0.5
+    traceLifeTime = traceLifeTime or 2.0
+    cppSetAfterImage(dynob,interval,lifetime,maxNum,scaleRate,alphaRate,traceLifeTime)
+end
+
+--- wrapper of cppGetObjectPos
+--- @Description: Get the position of the object
+--- @param dynob pointer instance of F_Lua_GenericObject
+--- @return table The position of the object
+function W_getObjectPos(dynob)
+    return cppGetObjectPos(dynob)
+end
+
+--- wrapper of cppSetObjectVel
+--- @Description: Set the velocity of the object
+--- @param dynob pointer instance of F_Lua_GenericObject
+--- @param xVel number The x velocity of the object
+--- @param yVel number The y velocity of the object
+function W_setObjectVel(dynob,xVel,yVel)
+    cppSetObjectVel(dynob,xVel,yVel)
+end
+
+--- wrapper of cppGetObjectAngle
+--- @Description: Get the angle of the object
+--- @param dynob pointer instance of F_Lua_GenericObject
+--- @return number The angle of the object
+function W_getObjectAngle(dynob)
+    return cppGetObjectAngle(dynob)
+end
+
+--- wrapper of cppWaitFor
+--- @Description: Wait for a specific time
+--- @param host pointer instance of F_Lua_Boss_Manager
+--- @param dynob pointer instance of F_Lua_GenericObject
+--- @param time number The time to wait
+function W_wait(host,dynob,time)
+    cppWaitFor(host,dynob,time)
+end
+
+--- wrapper of cppObjectPlayAnimation
+--- @Description: Play an animation on the object
+--- @param dynob pointer instance of F_Lua_GenericObject
+--- @param animationName string The name of the animation to play
+--- @param time number The time to play the animation
+--- @param isWait boolean If the animation should wait for completion (default true)
+--- @param isOverride boolean If the animation should override the current animation (default false)
+--- @param playSpeed number The speed of the animation (default 1.0)
+function W_playAnimation(dynob,animationName,time,isWait,isOverride,playSpeed)
+    isWait = isWait or true
+    isOverride = isOverride or false
+    playSpeed = playSpeed or 1
+    cppObjectPlayAnimation(dynob,animationName,time,isWait)
+end
+
+--- wrapper of cppObjectSetChargingEffect
+--- @Description: Set the charging effect of the object
+--- @param dynob pointer instance of F_Lua_GenericObject
+--- @param tableName string The name of the table to use
+--- @param table table The table to use
+--- @param time number The time to play the effect
+--- @param radius number The radius of the effect
+--- @param maxCount number The maximum charging particles of effect
+--- @param minSpeed number The minimum speed of the effect
+--- @param maxSpeed number The maximum speed of the effect
+function W_setObjectCharging(dynob,tableName,table,time,radius,maxCount,minSpeed,maxSpeed)
+    cppObjectSetChargingEffect(dynob,tableName,table,time,radius,maxCount,minSpeed,maxSpeed)
+end
+
+-- MARK: Fire
+
+--- wrapper of cppSetFire_Type1
+---@Description: Set the fire of the object
+---@param host (1) pointer instance of F_Lua_Boss_Manager
+---@param dynob (2) pointer instance of F_Lua_GenericObject
+---@param asset (3) string asset (sprite/animation) of the fire
+---@param speed (4) number speed of the bullet
+---@param lifeTime (5) number lifetime of the bullet (to clean up)
+---@param arcType (6) number Arc type : 1(hypocycloid) | 2(hypotrochoid) | 3(custom1) | 4(custom2) | 5(epicycloid) 
+---@param a (7) number The a factor
+---@param b (8) number The b factor
+---@param c (9) number The c factor
+---@param d (10) number The d factor
+---@param r (11) number The r factor (radius)
+---@param angleStep (12) number The increament value for each bullet fires
+---@param startAngle (13) number The first angle will start the fire
+---@param rotation (14) number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time)
+---@param interval (15) number the interval between each bullet
+---@param count (16) number number of the bullets
+---@param evenTime (17) number The time to trigger the event 
+---@param id (18) (optional) number The id of the bullets which are needed for "bullet manipulator" 
+---@param eventName (19) (optional) string The name of event which will trigger (this is not "bullet manipulator")
+---@param isWait (20) (optional) boolean If the fire should wait for completion (default true)
+function W_F_fireType1(host,dynob,asset,speed,lifeTime,a,b,c,r,angleStep,startAngle,rotation,interval,count,eventTime,id,eventName,isWait)
+
+    id = id or 0
+    eventName = eventName or ""
+    isWait = isWait or true
+    cppSetFire_Type1(host,dynob,asset,speed,lifeTime,1,a,b,c,r,angleStep,startAngle,rotation,interval,count,eventTime,id,eventName,isWait)
+end
+
+--- wrapper of cppSetFire_TypePE
+---@Description: Set the fire of the object using polar equation
+---@param host (1) pointer instance of F_Lua_Boss_Manager
+---@param dynob (2) pointer instance of F_Lua_GenericObject
+---@param asset (3) string asset (sprite/animation) of the fire
+---@param speed (4) number speed of the bullet
+---@param lifeTime (5) number lifetime of the bullet (to clean up)
+---@param peType (6) number Arc type : 1(sin) | 2(cos) 
+---@param startRange (7) number The start range of the object
+---@param rangeCover (8) number The end range of the fire
+---@param angleStep (9) number The increament value for each bullet fires
+---@param startAngle (10) number The first angle will start the fire
+---@param petalCount (11) number The number of petal
+---@param interval (12) number the interval between each bullet
+---@param rotatePoint (13) number The point to rotate
+---@param count (14) number number of the bullets
+---@param time (15) number The time to trigger the event 
+---@param isWait (16) (optional) boolean If the fire should wait for completion (default true)
+function W_F_fireTypePE(host,dynob,asset,speed,lifeTime,peType,startRange,rangeCover,angleStep,startAngle,petalCount,interval,rotatePoint,count,time,isWait)
+    
+    isWait = isWait or true
+    cppSetFire_TypePE(host,dynob,asset,speed,lifeTime,peType,startRange,rangeCover,angleStep,startAngle,petalCount,interval,rotatePoint,count,time,isWait)
+end
+
+--- 
+
+function W_F_fireTypeMACustom(host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time,isWait)
+
+    isWait = isWait or true
+    cppSetFire_MA_custom_aff(host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time,isWait)
+end

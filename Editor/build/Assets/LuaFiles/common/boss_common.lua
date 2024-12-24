@@ -1,11 +1,38 @@
+package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' 
+
+require "wrapper"
+
 
 M = {}
+
 
 -- cppSetFire_Type1 arcType belike   
 -- 1 hypocycloid 
 -- 2 hypotrochoid 
 -- 3 feint_custom1 
+-- 4 feint_custom2
+-- 5 epicycloid
 
+
+
+---@function fire in the hypocycloid pattern
+---@Description fire in the hypocycloid pattern
+---@param host (1) pointer instance of F_Lua_Boss_Manager
+---@param dynob (2) pointer instance of F_Lua_GenericObject
+---@param asset (3) string asset (sprite/animation) of the fire
+---@param speed (4) number speed of the bullet
+---@param lifeTime (5) number lifetime of the bullet (to clean up)
+---@param a (6) number The a factor
+---@param b (7) number The b factor
+---@param r (8) number The r factor (radius)
+---@param angleStep (9) number The increament value for each bullet fires
+---@param startAngle (10) number The first angle will start the fire
+---@param rotation (11) number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time)
+---@param interval (12) number the interval between each bullet
+---@param count (13) number number of the bullets
+---@param eventTime (14) number The time to trigger the event 
+---@param id (15) (optional) number The id of the bullets which are needed for "bullet manipulator"
+---@param eventName (16) (optional) string The name of event which will trigger (this is not "bullet manipulator")
 M.patern_MA_hypocycloid =  function (host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime,id,eventName )
 	id = id or 0
 	eventName = eventName or ""
@@ -14,7 +41,7 @@ M.patern_MA_hypocycloid =  function (host, dynob, asset, speed, lifeTime, a, b, 
 	asset,				   -- asset ( animated object / sprite) 
 	speed,                 -- speed
 	lifeTime,              -- lifeTime
-	1,                     -- arcType 
+	1,                     -- arcType (hypocycloid) 
 	a,                     -- a
 	b,                     -- b
 	0,                     -- c ( unused )
@@ -32,7 +59,24 @@ end
 M.patern_MA_hypotrochoid= function (host, dynob, asset, speed, lifeTime, a, b,c, r,angleStep,startAngle, rotation,interval,count, eventTime,id,eventName) 
 	id = id or 0
 	eventName = eventName or ""
-	cppSetFire_Type1(host,dynob,asset,speed,lifeTime,2,a,b,c,0,r,angleStep,startAngle,rotation,interval,count,eventTime,id,eventName)
+	cppSetFire_Type1(host, 	-- host
+	dynob, 					-- dynob
+	asset, 					-- asset
+	speed, 					-- speed
+	lifeTime, 				-- lifeTime
+	2, 						-- 2 hypotrochoid
+	a, 						-- a factor
+	b, 						-- b factor
+	c, 						-- c factor
+	0, 						-- d factor (unused)
+	r, 						-- r radius
+	angleStep, 				-- angleStep
+	startAngle, 			-- startAngle
+	rotation, 				-- rotation (stupid, fix later)
+	interval, 				-- interval
+	count, 					-- count
+	eventTime, 				-- eventTime (the time to trigger event)
+	id,eventName)
 
 end
 

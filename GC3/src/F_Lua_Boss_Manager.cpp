@@ -316,9 +316,9 @@ int lua_setFireTypePE(lua_State * L)
 	std::string asset = lua_tostring(L, 3); // asset
 	float speed = lua_tonumber(L, 4); // speed
 	float lifeTime = lua_tonumber(L, 5); // lifeTime
-	int peType = lua_tonumber(L, 6); // arcType
-	float startRange = lua_tonumber(L, 7); // a
-	float rangeCover = lua_tonumber(L, 8); // b
+	int peType = lua_tonumber(L, 6); // peType
+	float startRange = lua_tonumber(L, 7); // startRange
+	float rangeCover = lua_tonumber(L, 8); // rangeCover
 	float angleStep = lua_tonumber(L, 9); // angleStep 
 	float startAngle = lua_tonumber(L, 10); //startAngle
 	int petalCount = lua_tonumber(L, 11); // petalCount
@@ -753,22 +753,27 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppCreateFromLua", lua_CreateFromLua);
 	lua_register(m_script, "cppMoveObject", lua_MoveObject);
 	lua_register(m_script, "cppHoldPosition", lua_HoldPosition);
-	lua_register(m_script, "cppSetFire_Type1", lua_setFireType1);
-	lua_register(m_script, "cppSetFire_TypePE", lua_setFireTypePE);
-	lua_register(m_script, "cppSetFire_MA_custom_aff", lua_setFireMACustomAFF);
-	lua_register(m_script, "cppSetFire_Base", lua_setFireBase);
-	lua_register(m_script, "cppCreateHelper", lua_createHelper);
+	lua_register(m_script, "cppCreateHelper", lua_createHelper); // this is unused, no wrapper 
 	lua_register(m_script, "cppRemoveFromLua", lua_removeFromLua);
-	lua_register(m_script, "cppSetFire_KomachiCoin",lua_setKomachiCoin);
 	lua_register(m_script, "cppSetAfterImage", lua_setAfterImage);
 	lua_register(m_script, "cppGetObjectPos", lua_getObjectPos);
 	lua_register(m_script, "cppSetObjectVel", lua_setObjectVel);
 	lua_register(m_script, "cppGetObjectAngle", lua_getObjectAngle);
 	lua_register(m_script, "cppWaitFor", lua_waitFor);
-	lua_register(m_script, "cppOjbectPlayAnimation", lua_playObjectAnimation);
+	lua_register(m_script, "cppObjectPlayAnimation", lua_playObjectAnimation);
 	lua_register(m_script, "cppObjectSetChargingEffect", lua_setObjectChargingEffect);
+	
+	// fire bullets
+	lua_register(m_script, "cppSetFire_Type1", lua_setFireType1);
+	lua_register(m_script, "cppSetFire_TypePE", lua_setFireTypePE);
+	lua_register(m_script, "cppSetFire_MA_custom_aff", lua_setFireMACustomAFF);
+	lua_register(m_script, "cppSetFire_Base", lua_setFireBase);
+	lua_register(m_script, "cppSetFire_KomachiCoin",lua_setKomachiCoin);
 	lua_register(m_script, "cppSetBulletEvent", lua_addBulletEvent);
 	lua_register(m_script, "cppAddBulletManipulatorPatern", lua_addBulletManipulatorPatern);
+
+
+
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 	// Komachi's helper start
 	lua_register(m_script, "cppKomachi_summon_pillar", lua_Komachi_summon_pillar);

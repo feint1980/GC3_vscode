@@ -3,7 +3,7 @@ package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/L
 bc =  require("./Assets/Luafiles/common/boss_common")
 
 require "general"
-
+require "wrapper"
 -- coroutine table
 dynamics = {}
 
@@ -13,7 +13,6 @@ soulsCount = 0
 komachi = nil
 soul_1 = nil
 t_soul = nil
-
 
 function IssueNextTask(host, dynob)
     if coroutine.status(dynamics[dynob].behavior) ~= 'dead' then
@@ -47,7 +46,6 @@ function CreateFromLua(host,path)
 	print("[LUA] create from LUA called \n")
 
 	komachi = W_createObject(host,object.animationPath,object.posX,object.posY,object.scale,object.depth,object.angle)
-
 end
 
 -- move set : normal 1 ( pre spell 1 )
@@ -60,9 +58,9 @@ function moveset_normal_1( host )
 end
 -- Belong to moveset_normal_1
 function  DynamicBehavior1( host, dynob )
-    direct = {1,-1}
-    angle_count = 0
-    t_angle = 12 * 0.0174532925
+    local direct = {1,-1}
+    local angle_count = 0
+    local t_angle = 12 * 0.0174532925
 	while true do
         for i = 1, 2 do
             DynamicBehavior1_base( host, dynob, direct[i])
@@ -86,7 +84,7 @@ function  DynamicBehavior1( host, dynob )
         coroutine.yield()
 
 
-        total_line = 12
+        local total_line = 12
         for i = 0, total_line do
             bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
             2.5, -- speed
@@ -146,7 +144,8 @@ function moveset_spell_1(host)
  -- handle fire rate of the souls
 function souls_fire(host, dynob)
 
-    angle = cppGetObjectAngle(dynob)
+    
+    angle = W_getObjectAngle(dynob)
     addon_angle = 190 * 0.0174532925
     fire_angle = angle - addon_angle
     invert_fire_angle = angle - 10 * 0.0174532925
@@ -160,7 +159,7 @@ function souls_fire(host, dynob)
 
     bullet_count = math.random(30,50)
     for t = 0, bullet_count do
-        speed = randomFloat(0.5,1.7)
+        speed = G_randomFloat(0.5,1.7)
         cppSetFire_Base(host,dynob,"projectile/bullet_shard_blue.png",
         speed, -- speed
         5.0, -- lifeTime
@@ -196,7 +195,7 @@ function spell_1_boss_movement(host, dynob)
         oldXMultiplyValue = xMultiply
         W_moveObject(host,dynob,xMultiply * thresholdValue ,yMultiply * thresholdValue,100)
         coroutine.yield()
-        --cppOjbectPlayAnimation(dynob,"charging",-1,true)
+        --W_playAnimation(dynob,"charging",-1,true)
         cppHoldPosition(host,dynob,70,"charging",true)
         cppObjectSetChargingEffect(dynob,"charge_table",charge_table,250,200,60,9.5,15.5)
         spawn_souls(host)
@@ -213,12 +212,12 @@ function handle_souls(host)
     x_border = 350
     for i = 1 , soulsCount
     do
-        x,y = cppGetObjectPos(souls[i])
+        x,y = W_getObjectPos(souls[i])
         if (x > x_border or x < -x_border) then
-            cppRemoveFromLua(host,souls[i])
+            W_removeObject(host,souls[i])
         end
         if ( y < -600) then
-            cppRemoveFromLua(host,souls[i])
+            W_removeObject(host,souls[i])
         end
     end
 end
@@ -235,14 +234,14 @@ function spawn_souls(host)
         x_location = x_multiplier * pos_x_dif
 
         local t_soul = W_createObject (host,soulData.animationPath,x_location  ,pos_y_dif,soulData.scale,soulData.depth,soulData.angle)
-        x_vel = randomFloat(x_vel_min,x_vel_max)
-        y_vel = randomFloat(-4.5,-3.0)
+        x_vel = G_randomFloat(x_vel_min,x_vel_max)
+        y_vel = G_randomFloat(-4.5,-3.0)
         if(x_location > 0) then
             x_vel = x_vel * -1
         end
-        cppSetObjectVel(t_soul,x_vel,y_vel)
-        cppSetAfterImage(t_soul,0.1,100.0,20,0.0125,0.125,4.2)
-        cppOjbectPlayAnimation(t_soul,"idle",-1,true)
+        W_setObjectVel(t_soul,x_vel,y_vel)
+        W_setObjectAfterImage(t_soul,0.1,100.0,20,0.0125,0.125,4.2)
+        W_playAnimation(t_soul,"idle",-1,true)
 
         dynamics[t_soul] = {behavior = coroutine.create(souls_fire,host,t_soul)}
         IssueNextTask(host,t_soul)
@@ -271,11 +270,11 @@ function DynamicBehavior2(host,dynob)
             count = -1
             W_moveObject(host,dynob,0,170,25)
             coroutine.yield()
-            cppOjbectPlayAnimation(dynob,"charging",1,false)
+            W_playAnimation(dynob,"charging",1,false)
             cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.5,15.5)
             cppHoldPosition(host,dynob,80,"charging")
             coroutine.yield()
-            cppOjbectPlayAnimation(dynob,"charge_end",1,true)
+            W_playAnimation(dynob,"charge_end",1,true)
             bc.ftest_ma_custom_aff(host,dynob,"komachi/komachi_13.png",
             3.425, -- speed
             10.0,  -- lifeTime
@@ -351,7 +350,7 @@ function spell_2_behavior(host,dynob)
         end
 
         if (start) then
-            cppOjbectPlayAnimation(dynob,"cast",1,true)
+            W_playAnimation(dynob,"cast",1,true)
         end
         x_index = x_index + increament
         start = true
@@ -409,7 +408,7 @@ function spell_2_behavior(host,dynob)
 
                 end
 
-                cppOjbectPlayAnimation(dynob,"charging",1,false)
+                W_playAnimation(dynob,"charging",1,false)
                 cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.2,15.5)
                 cppHoldPosition(host,dynob,80,"charging")
                 coroutine.yield()

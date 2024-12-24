@@ -9,13 +9,13 @@ function DynamicBehavior4(host,dynob)
     while true do
         if (count > 1) then
             count = -1
-            cppMoveObject(host,dynob,0,170,25)
+            W_moveObject(host,dynob,0,170,25)
             coroutine.yield()
-            cppOjbectPlayAnimation(dynob,"charging",1,false)
+            W_playAnimation(dynob,"charging",1,false)
             cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.5,15.5)
-            cppHoldPosition(host,dynob,80,"charging")
+            W_holdPosition(host,dynob,80,"charging")
             coroutine.yield()
-            cppOjbectPlayAnimation(dynob,"charge_end",1,true)
+            W_playAnimation(dynob,"charge_end",1,true)
             bc.ftest_ma_custom_aff(host,dynob,"komachi/komachi_13.png",
             3.425, -- speed
             10.0,  -- lifeTime
@@ -31,14 +31,14 @@ function DynamicBehavior4(host,dynob)
             3,     -- interval
             0)     -- time
 
-            cppHoldPosition(host,dynob,200,"charge_end",false)
+            W_holdPosition(host,dynob,200,"charge_end",false)
             coroutine.yield()
         end
-        cppMoveObject(host,dynob,count * xthresHold,150,30)
+        W_moveObject(host,dynob,count * xthresHold,150,30)
         coroutine.yield()
-        cppHoldPosition(host,dynob,10,"charging")
+        W_holdPosition(host,dynob,10,"charging")
         coroutine.yield()
-        cppHoldPosition(host,dynob,200,"charge_end")
+        W_holdPosition(host,dynob,200,"charge_end")
         bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
         1, -- tier
         1.7, -- speed
@@ -55,7 +55,7 @@ function DynamicBehavior4(host,dynob)
         5,     -- interval
         10)     -- time
         coroutine.yield()
-        cppHoldPosition(host,dynob,1,"charge_end",false)
+        W_holdPosition(host,dynob,1,"charge_end",false)
         coroutine.yield()
         count = count + 1
     end
@@ -80,21 +80,21 @@ function spell_4_behavior(host,dynob)
 
     while true do
         if( start == false ) then
-            cppMoveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,10 + reset_time )
+            W_moveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,10 + reset_time )
             coroutine.yield()
         end
 
         if (start) then
-            cppOjbectPlayAnimation(dynob,"cast",1,true)
+            W_playAnimation(dynob,"cast",1,true)
         end
         x_index = x_index + increament
         start = true
         reset_time = 0
 
-        cppHoldPosition(host,dynob,20,"charging",true)
+        W_holdPosition(host,dynob,20,"charging",true)
         coroutine.yield()
 
-        cppHoldPosition(host,dynob,1,"charge_end",true)
+        W_holdPosition(host,dynob,1,"charge_end",true)
         spell_2_side_coin(host,dynob,
         increament,         -- direction
         0,                  -- tier
@@ -110,18 +110,18 @@ function spell_4_behavior(host,dynob)
         4,                  -- coin_line
         3)                  -- spread_time
         coroutine.yield()
-        cppMoveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,7  )
+        W_moveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,7  )
         coroutine.yield()
-        cppHoldPosition(host,dynob,15,"charge_end",true)
+        W_holdPosition(host,dynob,15,"charge_end",true)
         coroutine.yield()
-        --cppHoldPosition(host,dynob,20,"charge_end",true)
+        --W_holdPosition(host,dynob,20,"charge_end",true)
 
         if(reach_right) then
             if (x_index == 0) then
                 for i = 1, 3 do
-                    cppHoldPosition(host,dynob,20,"charging",true)
+                    W_holdPosition(host,dynob,20,"charging",true)
                     coroutine.yield()
-                    cppHoldPosition(host,dynob,1,"charge_end",true)
+                    W_holdPosition(host,dynob,1,"charge_end",true)
                     spell_2_side_coin(host,dynob,
                     increament,         -- direction
                     1,                  -- tier
@@ -138,14 +138,14 @@ function spell_4_behavior(host,dynob)
                     7)                  -- spread_time
                     y_index = y_index - 1
                     coroutine.yield()
-                    cppMoveObject(host,dynob,0 * x_pos_threshold,y_pos_threshold * y_index,10)
+                    W_moveObject(host,dynob,0 * x_pos_threshold,y_pos_threshold * y_index,10)
                     coroutine.yield()
 
                 end
 
-                cppOjbectPlayAnimation(dynob,"charging",1,false)
+                W_playAnimation(dynob,"charging",1,false)
                 cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.2,15.5)
-                cppHoldPosition(host,dynob,80,"charging")
+                W_holdPosition(host,dynob,80,"charging")
                 coroutine.yield()
 
                 bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
@@ -179,9 +179,9 @@ function spell_4_behavior(host,dynob)
                 60 * increament_count,    -- rotation
                 18,     -- interval
                 1)     -- time
-                cppHoldPosition(host,dynob,370,"cast")
+                W_holdPosition(host,dynob,370,"cast")
                 increament_count = increament_count + 1
-                --cppHoldPosition(host,dynob,400,"cast")
+                --W_holdPosition(host,dynob,400,"cast")
                 coroutine.yield()
                 y_index = 5
                 x_index = -2

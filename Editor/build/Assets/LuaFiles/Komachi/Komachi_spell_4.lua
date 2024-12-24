@@ -16,7 +16,7 @@ function DynamicBehavior4(host,dynob)
             --count = -1
             cppMoveObject(host,dynob,0,170,25)
             coroutine.yield()
-            cppOjbectPlayAnimation(dynob,"charging",1,false)
+            W_playAnimation(dynob,"charging",1,false)
             cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.5,15.5)
             cppHoldPosition(host,dynob,80,"charging")
             coroutine.yield()
@@ -26,26 +26,25 @@ function DynamicBehavior4(host,dynob)
             cppKomachi_pillar_move(fire_pilar,0,0,6)
             cppKomachi_pillar_expand(fire_pilar,11,1024,20)
             cppKomachi_pillar_setFlashEffect(fire_pilar,120,2)
-            cppWaitFor(host,dynob,60)
+            W_wait(host,dynob,60)
             coroutine.yield()
             cppKomachi_pillar_setLightEffect(fire_pilar,0.0,0.0,0,0,12,13,16.5,120)
             
             cppKomachi_pillar_setLightColor(fire_pilar,0.65,0.08,1.0,1.0,4.5)
             cppKomachi_pillar_setLightAttenuation(fire_pilar,12,13,16.5,4.5)
-            cppWaitFor(host,dynob,60)
+            W_wait(host,dynob,60)
             coroutine.yield()
             cppKomachi_pillar_setLightEffect(fire_pilar,0.65,0.08,1.0,1.0,12,23,88.5,200)
             cppKomachi_pillar_expand(fire_pilar,500,1024,20)
             cppKomachi_pillar_setColor(fire_pilar,255,255,255,122,20)
             --cppKomachi_pillar_setFlashEffect(fire_pilar,500,3)
 
-            cppWaitFor(host,dynob,500)
+            W_wait(host,dynob,500)
             coroutine.yield()
 
-            coroutine.yield()
-           
+            coroutine.yield() -- this is for block the loop (to test)
             print("hereeee !!!")
-            -- cppOjbectPlayAnimation(dynob,"charge_end",1,true)
+            -- W_playAnimation(dynob,"charge_end",1,true)
            
             -- cppHoldPosition(host,dynob,100,"charge_end",false)
             -- coroutine.yield()
@@ -77,7 +76,7 @@ function spell_4_behavior(host,dynob)
         end
 
         if (start) then
-            cppOjbectPlayAnimation(dynob,"cast",1,true)
+            W_playAnimation(dynob,"cast",1,true)
         end
         x_index = x_index + increament
         start = true
@@ -135,7 +134,7 @@ function spell_4_behavior(host,dynob)
 
                 end
 
-                cppOjbectPlayAnimation(dynob,"charging",1,false)
+                W_playAnimation(dynob,"charging",1,false)
                 cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.2,15.5)
                 cppHoldPosition(host,dynob,80,"charging")
                 coroutine.yield()

@@ -5,6 +5,10 @@ bc =  require("./Assets/Luafiles/common/boss_common")
 
 require "general"
 
+function randomFloat(lower, greater)
+    return lower + math.random()  * (greater - lower);
+end
+
 -- Belong to moveset_normal_1
 function  DynamicBehavior1( host, dynob )
     local direct = {1,-1}
@@ -105,7 +109,7 @@ function souls_fire(host, dynob)
 
     local bullet_count = math.random(30,50)
     for t = 0, bullet_count do
-        local speed = G_randomFloat(0.5,1.7)
+        local speed = randomFloat(0.5,1.7)
         cppSetFire_Base(host,dynob,"projectile/bullet_shard_blue.png",
         speed, -- speed
         5.0, -- lifeTime
@@ -141,7 +145,7 @@ function spell_1_boss_movement(host, dynob)
         oldXMultiplyValue = xMultiply
         cppMoveObject(host,dynob,xMultiply * thresholdValue ,yMultiply * thresholdValue,100)
         coroutine.yield()
-        --cppOjbectPlayAnimation(dynob,"charging",-1,true)
+        W_playAnimation(dynob,"charging",-1,true)
         cppHoldPosition(host,dynob,70,"charging",true)
         cppObjectSetChargingEffect(dynob,"charge_table",charge_table,250,200,60,9.5,15.5)
         spawn_souls(host)
@@ -180,14 +184,14 @@ function spawn_souls(host)
         local x_location = x_multiplier * pos_x_dif
 
         local t_soul = cppCreateFromLua (host,soulData.animationPath,x_location  ,pos_y_dif,soulData.scale,soulData.depth,soulData.angle)
-        local x_vel = G_randomFloat(x_vel_min,x_vel_max)
-        local y_vel = G_randomFloat(-4.5,-3.0)
+        local x_vel = randomFloat(x_vel_min,x_vel_max)
+        local y_vel = randomFloat(-4.5,-3.0)
         if(x_location > 0) then
             x_vel = x_vel * -1
         end
         cppSetObjectVel(t_soul,x_vel,y_vel)
         cppSetAfterImage(t_soul,0.1,100.0,20,0.0125,0.125,4.2)
-        cppOjbectPlayAnimation(t_soul,"idle",-1,true)
+        W_playAnimation(t_soul,"idle",-1,true)
 
         dynamics[t_soul] = {behavior = coroutine.create(souls_fire,host,t_soul)}
         IssueNextTask(host,t_soul)
