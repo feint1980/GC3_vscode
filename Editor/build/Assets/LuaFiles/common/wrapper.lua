@@ -196,10 +196,146 @@ function W_F_fireTypePE(host,dynob,asset,speed,lifeTime,peType,startRange,rangeC
     cppSetFire_TypePE(host,dynob,asset,speed,lifeTime,peType,startRange,rangeCover,angleStep,startAngle,petalCount,interval,rotatePoint,count,time,isWait)
 end
 
---- 
-
+--- wrapper of cppSetFire_MA_custom_aff
+---@Description: Set the fire of the object using custom affine equation
+---@param host (1) pointer instance of F_Lua_Boss_Manager
+---@param dynob (2) pointer instance of F_Lua_GenericObject
+---@param asset (3) string asset (sprite/animation) of the fire
+---@param speed (4) number speed of the bullet
+---@param lifeTime (5) number lifetime of the bullet (to clean up)
+---@param k (6) number The k factor
+---@param n (7) number The n factor
+---@param n2 (8) number The n2 factor
+---@param l1 (9) number The l1 factor
+---@param l2 (10) number The l2 factor
+---@param posneg (11) number The posneg factor
+---@param startAngle (12) number The first angle will start the fire
+---@param angleStep (13) number The increament value for each bullet fires
+---@param rotation (14) number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time)
+---@param interval (15) number the interval between each bullet
+---@param time (16) number The time to trigger the event
+---@param isWait (17) (optional) boolean If the fire should wait for completion (default true)
 function W_F_fireTypeMACustom(host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time,isWait)
 
     isWait = isWait or true
     cppSetFire_MA_custom_aff(host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time,isWait)
+end
+
+
+--- wrapper of cppSetFire_Base
+---@Description: Set the base fire
+---@param host (1) pointer instance of F_Lua_Boss_Manager
+---@param dynob (2) pointer instance of F_Lua_GenericObject
+---@param asset (3) string asset (sprite/animation) of the fire
+---@param speed (4) number speed of the bullet
+---@param lifeTime (5) number lifetime of the bullet (to clean up)
+---@param x (6) number The x position of the object
+---@param y (7) number The y position of the object
+---@param currentAngle (8) number The current angle of the object
+---@param time (9) number The time to trigger the event
+---@param id (10) (optional) number The id of the bullets which are needed for "bullet manipulator"
+---@param eventName (11) (optional) string The name of event which will trigger (this is not "bullet manipulator")
+function W_F_fireBase(host,dynob,asset,speed,lifeTime,x,y,currentAngle,time,id,eventName)
+    id = id or 0
+    eventName = eventName or ""
+    cppSetFire_Base(host,dynob,asset,speed,lifeTime,x,y,currentAngle,time,id,eventName)
+end
+
+--- wrapper of cppSetBulletEvent
+---@Description: Set the bullets that has certain ID to act to an event by name
+---@param host (1) pointer instance of F_Lua_Boss_Manager
+---@param id (2) number The id of the bullet
+---@param eventName (3) string The name of event
+function W_setBulletEvent(host,id,eventName)
+    cppSetBulletEvent(host,id,eventName)
+end
+
+--- wrapper of cppAddBulletManipulatorPatern
+---@Description: set bullets with certain ID to be manipulated
+---@param host (1) pointer instance of F_Lua_Boss_Manager
+---@param xNode (2) number The x position of the object
+---@param yNode (3) number The y position of the object
+---@param radius (4) number The radius of the object
+---@param tableName (5) string table name of the fire
+---@param type (6) number type of the fire
+---@param id (7) number The id of the bullets which are needed for "bullet manipulator"
+function W_manipulate(host,xNode,yNode,radius,tableName,type,id)
+
+    cppAddBulletManipulatorPatern(host,xNode,yNode,radius,tableName,type,id)
+end
+
+-- MARK: Komachi
+
+--- wrapper of cppSetFire_KomachiCoin
+---@Description: Set the fire of the object
+---@param host (1) pointer instance of F_Lua_Boss_Manager
+---@param dynob (2) pointer instance of F_Lua_GenericObject
+---@param tableName (3) string table name of the fire
+---@param table (4) string table name of the fire
+---@param tier (5) number tier of the fire
+---@param speed (6) number speed of the bullet
+---@param lifeTime (7) number lifetime of the bullet (to clean up)
+---@param x (8) number The x position of the object
+---@param y (9) number The y position of the object
+---@param currentAngle (10) number The current angle of the object
+---@param time (11) number The time to trigger the event
+function W_Komachi_fireCoin(host,dynob,tableName,table,tier,speed,lifeTime,x,y,currentAngle,time)
+    cppSetFire_KomachiCoin(host,dynob,tableName,table,tier,speed,lifeTime,x,y,currentAngle,time)
+end
+
+--- wrapper of cppKomachi_summon_pillar
+---@Description: Summon the flame pillar
+---@param host (1) pointer instance of F_Lua_Boss_Manager
+---@param dynob (2) pointer instance of F_Lua_GenericObject
+---@param asset1 (3) string asset (sprite/animation) of the fire 1
+---@param asset2 (4) string asset (sprite/animation) of the fire 2
+---@param x (5) number The x position of the object
+---@param y (6) number The y position of the object
+---@param dimX (7) number The x dimension of the object
+---@param dimY (8) number The y dimension of the object
+---@param r (9) number The color red of the object
+---@param g (10) number The color green of the object
+---@param b (11) number The color blue of the object
+---@param a (12) number The color alpha of the object
+---@return pointer instance of created F_Komachi_pillar
+function W_Komachi_summonPillar(host,dynob,asset1,asset2,x,y,dimX,dimY,r,g,b,a)
+    return cppKomachi_summon_pillar(host,dynob,asset1,asset2,x,y,dimX,dimY,r,g,b,a)
+end
+
+--- wrapper of cppKomachi_pillar_expand
+---@Description: Expand the flame pillar
+---@param pillar (1) pointer instance of F_Komachi_pillar
+---@param dimX (2) number The x dimension of the object
+---@param dimY (3) number The y dimension of the object
+---@param time (4) number The the total time to expand or shrink from original dimension to new dimension
+function W_Komachi_pillarExpand(pillar,dimX,dimY,time)
+    cppKomachi_pillar_expand(pillar,dimX,dimY,time)
+end
+
+--- wrapper of cppKomachi_pillar_move
+---@Description: Move the flame pillar
+---@param pillar (1) pointer instance of F_Komachi_pillar
+---@param x (2) number The x position of the object
+---@param y (3) number The y position of the object
+---@param time (4) number The the total time to move from original position to new position
+function W_Komachi_pillarMove(pillar,x,y,time)
+    cppKomachi_pillar_move(pillar,x,y,time)
+end
+
+--- wrapper of cppKomachi_pillar_setColor
+---@Description: Set the color of the flame pillar
+---@param pillar (1) pointer instance of F_Komachi_pillar
+---@param r (2) number The color red of the object
+---@param g (3) number The color green of the object
+---@param b (4) number The color blue of the object
+---@param a (5) number The color alpha of the object
+---@param time (6) number The the total time to change from original color to new color
+function W_Komachi_pillar_setColor(pillar,r,g,b,a,time)
+    cppKomachi_pillar_setColor(pillar,r,g,b,a,time)
+end
+
+
+--- 
+function W_Komachi_set_pillar_flash()
+    cppKomachi_pillar_setFlashEffect
 end

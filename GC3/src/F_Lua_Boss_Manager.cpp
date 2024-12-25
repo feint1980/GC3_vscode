@@ -772,8 +772,6 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_register(m_script, "cppSetBulletEvent", lua_addBulletEvent);
 	lua_register(m_script, "cppAddBulletManipulatorPatern", lua_addBulletManipulatorPatern);
 
-
-
 	//std::cout << "called  F_Lua_Boss_Manager |||||||||||||||\n";
 	// Komachi's helper start
 	lua_register(m_script, "cppKomachi_summon_pillar", lua_Komachi_summon_pillar);
