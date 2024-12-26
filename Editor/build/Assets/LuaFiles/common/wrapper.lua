@@ -335,7 +335,50 @@ function W_Komachi_pillar_setColor(pillar,r,g,b,a,time)
 end
 
 
---- 
-function W_Komachi_set_pillar_flash()
-    cppKomachi_pillar_setFlashEffect
+--- wrapper of cppKomachi_pillar_setFlashEffect 
+---@Description: Set the flash effect of the flame pillar
+---@param pillar (1) pointer instance of F_Komachi_pillar
+---@param time (2) number The the total time to flash the pillar
+---@param freq (3) number The frequency of the flash
+function W_Komachi_set_pillar_flash(pillar,time,freq)
+
+    cppKomachi_pillar_setFlashEffect(pillar,time,freq)
+end
+
+-- wrapper of cppKomachi_pillar_setLightEffect
+---@Description: Set the light effect of the flame pillar
+---@param pillar (1) pointer instance of F_Komachi_pillar
+---@param r (2) number The color red of the object
+---@param g (3) number The color green of the object
+---@param b (4) number The color blue of the object
+---@param a (5) number The color alpha of the object
+---@param x (6) number The x attenuation of the light
+---@param y (7) number The y attenuation of the light
+---@param z (8) number The z attenuation of the light
+---@param time (9) number The the total time to change from original color to new color
+function W_Komachi_set_pillar_light(pillar,r,g,b,a,x,y,z,time)
+    cppKomachi_pillar_setLightEffect(pillar,r,g,b,a,x,y,z,time)
+end
+
+--- wrapper of cppKomachi_pillar_setLightAttenuation
+---@Description: Set the light attenuation of the flame pillar
+---@param pillar (1) pointer instance of F_Komachi_pillar
+---@param x (2) number The x position of the object
+---@param y (3) number The y position of the object
+---@param z (4) number The z position of the object
+---@param time (5) number The the total time to change from original color to new color
+function  W_Komachi_set_pillar_light_attenuation(pillar,x,y,z,time)
+    cppKomachi_pillar_setLightAttenuation(pillar,x,y,z,time)
+end
+
+--- wrapper of cppKomachi_pillar_setLightColor
+---@Description: Set the light color of the flame pillar
+---@param pillar (1) pointer instance of F_Komachi_pillar
+---@param r (2) number The color red of the object
+---@param g (3) number The color green of the object
+---@param b (4) number The color blue of the object
+---@param a (5) number The color alpha of the object
+---@param time (6) number The the total time to change from original color to new color
+function W_Komachi_set_pillar_color(pillar,r,g,b,a,time)
+    cppKomachi_pillar_setLightColor(pillar,r,g,b,a,time)
 end

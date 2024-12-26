@@ -739,7 +739,7 @@ int lua_Komachi_pillar_move(lua_State * L)
 }
 #pragma endregion
 
-#pragma region CPP_lua_e
+// MARK: CPP_lua
 F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 {
 	loadTextures();
@@ -791,7 +791,6 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	bulletManipulator.init(&m_bullets);
 }
 
-#pragma endregion
 
 F_Lua_Boss_Manager::~F_Lua_Boss_Manager()
 {
