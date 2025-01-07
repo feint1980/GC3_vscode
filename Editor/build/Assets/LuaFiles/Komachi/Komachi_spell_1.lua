@@ -72,6 +72,8 @@ function  DynamicBehavior1( host, dynob )
             1,   -- interval
             25,  -- count
             100,4)   -- eventTime
+
+            -- 
             coroutine.yield()
         end
         cppHoldPosition(host,dynob,200,"cast")
