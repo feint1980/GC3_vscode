@@ -316,7 +316,8 @@ function patern_Feint_custom1(host, dynob, asset, speed, lifeTime, a, b,c, r,ang
 end
 
 
---- 
+--- function: patern_Feint_custom2 fire in the feint custom pattern (2)
+	
 M.patern_Feint_custom2 = function (host, dynob, asset, speed, lifeTime, a, b,c,d,r,angleStep,startAngle, rotation,interval,count, eventTime, id,eventName )
 	id = id or 0
 	eventName = eventName or ""
