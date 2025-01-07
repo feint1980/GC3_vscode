@@ -382,3 +382,4 @@ end
 function W_Komachi_set_pillar_color(pillar,r,g,b,a,time)
     cppKomachi_pillar_setLightColor(pillar,r,g,b,a,time)
 end
+

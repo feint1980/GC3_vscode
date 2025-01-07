@@ -75,7 +75,8 @@ soulData = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/komachi
 function CreateFromLua(host,path)
 	print("[LUA] create from LUA called \n")
 
-	komachi = cppCreateFromLua(host,object.animationPath,object.posX,object.posY,object.scale,object.depth,object.angle)
+	--komachi = cppCreateFromLua(host,object.animationPath,object.posX,object.posY,object.scale,object.depth,object.angle)
+    komachi = W_createObject(host,object.animationPath,object.posX,object.posY,object.scale,object.depth,object.angle)
     -- forceReinit()
 
 end

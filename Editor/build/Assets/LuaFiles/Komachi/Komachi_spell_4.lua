@@ -29,7 +29,7 @@ function DynamicBehavior4(host,dynob)
             W_wait(host,dynob,60)
             coroutine.yield()
             cppKomachi_pillar_setLightEffect(fire_pilar,0.0,0.0,0,0,12,13,16.5,120)
-            
+            )
             cppKomachi_pillar_setLightColor(fire_pilar,0.65,0.08,1.0,1.0,4.5)
             cppKomachi_pillar_setLightAttenuation(fire_pilar,12,13,16.5,4.5)
             W_wait(host,dynob,60)

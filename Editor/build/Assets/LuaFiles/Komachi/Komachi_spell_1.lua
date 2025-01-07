@@ -1,9 +1,11 @@
-package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/LuaFiles/Komachi/?.lua'
+package.path = package.path .. ';./Assets/LuaFiles/common/?.lua' .. ';./Assets/LuaFiles/Komachi/?.lua'
 
-bc =  require("./Assets/Luafiles/common/boss_common")
+-- old format 
+--bc =  require("./Assets/Luafiles/common/boss_common")
 
 
 require "general"
+require "boss_common"
 
 function randomFloat(lower, greater)
     return lower + math.random()  * (greater - lower);
@@ -18,10 +20,12 @@ function  DynamicBehavior1( host, dynob )
         for i = 1, 2 do
             DynamicBehavior1_base( host, dynob, direct[i])
         end
-        cppMoveObject(host,dynob,0,150,50)
+        W_moveObject(host,dynob,0,150,50)
+        --cppMoveObject(host,dynob,0,150,50)
         coroutine.yield()
 
-        bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_white.png",
+       
+        patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_blue.png",
         0.5, -- speed
         10.0, -- lifeTime
         3,   -- a
@@ -32,10 +36,26 @@ function  DynamicBehavior1( host, dynob )
         0 ,    -- startAngle
         0,    -- rotation
         0,   -- interval
-        155,  -- count
+        155,  -- count  
         100,4)  -- eventTime
-        coroutine.yield()
 
+
+        -- bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_white.png",
+        -- 0.5, -- speed
+        -- 10.0, -- lifeTime
+        -- 3,   -- a
+        -- 7,   -- b
+        -- 12,    -- c
+        -- 25,   -- r
+        -- 0.75,  -- angleStep
+        -- 0 ,    -- startAngle
+        -- 0,    -- rotation
+        -- 0,   -- interval
+        -- 155,  -- count
+        -- 100,4)  -- eventTime
+        -- old format 
+
+        coroutine.yield()
 
         local total_line = 12
         for i = 0, total_line do
