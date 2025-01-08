@@ -348,7 +348,6 @@ M.patern_MA_epicycloid =  function (host, dynob, asset, speed, lifeTime, a, b, r
 	id,eventName)
 end
 
-
 M.patern_PE_Rose_sin = function (host,dynob, asset, speed, lifeTime, startRange, rangeCover, angleStep,startAngle,petalCount,rotation, interval,count, eventTime)
 	cppSetFire_TypePE(host,dynob,asset, speed, lifeTime, 1, startRange, rangeCover, angleStep, startAngle,petalCount,rotation,interval,count,eventTime)
 
