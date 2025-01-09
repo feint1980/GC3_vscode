@@ -88,7 +88,6 @@ function TB_GetSlotCol(slot)
     return cppGetSlotCol(slot)
 end
 
-
 --- function wrapper of cppGetSlotEntity
 ---@Description: Get the entity (F_Lua_BaseEntity) of the slot (Slot)
 ---@param host pointer instace of BattleScene
@@ -98,10 +97,9 @@ function TB_GetSlotEntity(host,slot)
     return cppGetSlotEntity(host,slot)
 end
 
-
 -- MARK: Entity
 
---- fucntion wrapper of cppCreateEntity
+--- function wrapper of cppCreateEntity
 ---@Description: Creates a new entity (F_Lua_BaseEntity)
 ---@param host pointer instace of BattleScene
 ---@param animationPath string The path to the animation file
@@ -120,11 +118,54 @@ function TB_CreateEntity(host,animationPath , slot, portraitPath, side,scale , s
 end
 
 
+--- function wrapper of cppMoveEntity
+---@Description: Move an entity (F_Lua_BaseEntity)
+---@param host pointer instace of BattleScene
+---@param entity pointer instance of F_Lua_BaseEntity
+---@param posX number The x position of the entity
+---@param posY number The y position of the entity
+---@param time number The time to complete the move
+function TB_MoveEntity(host, entity, posX, posY, time)
+    cppMoveEntity(host, entity, posX, posY, time)
+end
 
 
+--- funcion wrapper of cppSetAttribute
+---@Description: Set the attribute of an entity (F_Lua_BaseEntity)
+---@param entity pointer instance of F_Lua_BaseEntity
+---@param attribute string The attribute to set
+---@param value number The value to set
+function TB_SetAttribute( entity, attribute, value)
+    cppSetAttribute( entity, attribute, value)
+end
 
 
+-- function wrapper of cppSetStrAttribute
+---@Description: Set the string attribute of an entity (F_Lua_BaseEntity)
+---@param entity pointer instance of F_Lua_BaseEntity
+---@param attribute string The attribute to set
+---@param value string The value to set
+function TB_SetStrAttribute( entity, attribute, value)
+    cppSetStrAttribute( entity, attribute, value)
+end
 
+-- function wrapper of cppPickActiveEntity
+---@Description: Pick an active entity (F_Lua_BaseEntity)
+---@param host pointer instace of BattleScene
+---@param entity pointer instance of F_Lua_BaseEntity will be picked
+function TB_PickActiveEntity( host, entity)
+    cppPickActiveEntity( host, entity)
+end
 
+-- MARK: Icon
 
+--- function wrapper of cppCreateIcon
+---@Description: Create an icon (Icon)
+---@param host pointer instace of BattleScene
+---@param iconPath string The path to the icon file
+---@param slot pointer instance of Slot (created by TBD)
+---@return pointer instance of created Icon
+function TB_CreateIcon(host,assetPath,dimX, dimY,name,description,turnCost,manaCost)
+    return cppCreateIcon(host,iconPath,slot)
+end
 

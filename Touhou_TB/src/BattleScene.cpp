@@ -590,8 +590,6 @@ GUI_icon * BattleScene::setGUIHandlerSelectedIcon(GUI_icon * icon)
 		// {
 		m_iconName->setText(name.c_str());
 		//}
-		
-	
 
 		std::string turnCost = "Turn cost: <i><color=#FF8800>";
 		turnCost += (feint_common::Instance()->convertPreciousFloatToString(selectedIcon->getTurnCost()));
@@ -1215,10 +1213,7 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppResetCamera", lua_ResetCamera);
 	lua_register(m_script, "cppWaitTime", lua_WaitTime);
 
-
 	lua_register(m_script, "cppClearEntityTasks", lua_ClearEntityTasks);
-
-
 
 	//lua_register(m_script, "cppSetCameraPos", lua_SetCameraPos);
 

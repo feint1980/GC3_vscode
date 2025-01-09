@@ -24,7 +24,6 @@ Move = Icon:new({
 })
 
 
-
 function Move:selected(host,dyobj)
     print("move selected called")
     setPhase(host,2,1)

@@ -1,4 +1,21 @@
 
+
+Tag = {}
+
+Tag.color_red = "<color=#ff1200>"
+Tag.color_orange = "<color=#FF5D00>"
+Tag.color_green = "<color=#00ff1d>"
+Tag.color_blue = "<color=#2B83FF>"
+Tag.color_close = "</color>"
+Tag.italic_open = "<i>"
+Tag.italic_close = "</i>"
+
+Tag.iRed = Tag.italic_open .. Tag.color_red
+Tag.iOrange = Tag.italic_open .. Tag.color_orange
+Tag.iGreen = Tag.italic_open .. Tag.color_green
+Tag.iClose = Tag.color_close .. Tag.italic_close
+
+
 Icon = {
 
     asset = "./Assets/TB_GUI/missing.png",
@@ -19,6 +36,9 @@ Icon = {
     character = nil,
     turnCostStr = "",
     manaCostStr = ""
+    -- Why turn cost and mana cost also have strings?
+    -- It use to further detail the turn cost or mana cost (sth sth per turn/mana)
+    -- default will be display the turnCost/manaCost 
 }
 
 

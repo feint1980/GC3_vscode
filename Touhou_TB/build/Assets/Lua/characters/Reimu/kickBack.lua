@@ -31,7 +31,7 @@ function KickBack:init(host,dyobj,character)
     self.dyobj = dyobj
     self.character = tCharacter
     local retStr = ""
-    retStr = "Đá 1 đối tượng, gây <i><color=#ff1200>" --"Kick back a target, deals <i><color=#ff1200>"
+    retStr = "Đá 1 mục tiêu, gây <i><color=#ff1200>" --"Kick back a target, deals <i><color=#ff1200>"
     retStr = retStr .. tostring(character:getPhysicDmg() * 0.5 )
     retStr = retStr .. "</color></i><i><color=#FF5D00> Damage mod (50%)</color></i> sát thương vật lý "--"</color></i> damage"
     retStr = retStr .. "\nĐẩy đối tượng lui <i><color=#00ff1d>1</color></i> bước" --"\nSend the target back <i><color=#00ff1d>1</color></i> distance"
