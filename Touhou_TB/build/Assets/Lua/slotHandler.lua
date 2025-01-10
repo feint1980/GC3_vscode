@@ -3,10 +3,11 @@ package.path = package.path .. ';./Assets/Lua/slots/?.lua;'
 
 require "Slot"
 
-leftSlots  = {}          -- create the matrix
-rightSlots = {}          -- create the matrix
+leftSlots  = {}
+rightSlots = {}
 
-
+---Description of SlotHandler: TBD 
+---@class SlotHandler
 SlotHandler = {
 
     host = nil,
@@ -28,6 +29,8 @@ SlotHandler = {
     col = 0
 }
 
+---Create an instace of SlotHandler
+---@return SlotHandler 
 function SlotHandler:new(o)
     o = o or {}
     setmetatable(o, self)
@@ -35,14 +38,16 @@ function SlotHandler:new(o)
     return o
 end
 
-
-
+---Initialize the SlotHandler (call after create by using "new()" function )
+---@param host pointer instace of BattleScene
+---@param tCol number The number of column (each side)
+---@param tRow number The number of row (each side)
+---@param tTurnHandler instance of TurnHandler(lua)
 function SlotHandler:init(host,tCol,tRow,tTurnHandler)
-    leftSlots  = {}          -- create the matrix
-    rightSlots = {}          -- create the matrix
+    leftSlots  = {}
+    rightSlots = {}
 
     self.host = host
-
     self.handlerObject = cppCreateSlotHandler(host)
     self.turnHandler = tTurnHandler
 
@@ -56,23 +61,31 @@ function SlotHandler:init(host,tCol,tRow,tTurnHandler)
     self.col = tCol
 
     for i=1,self.col do
-        leftSlots[i] = {}     -- create a new row
+        leftSlots[i] = {}-- create a new rows
         for j=1,self.row do
-            leftSlots[i][j] = cppCreateSlot(host,i,j,1)--Slot:new()-- cppCreateSlot(host,i,j,1)
+            leftSlots[i][j] = cppCreateSlot(host,i,j,1)
+            --Slot:new()-- cppCreateSlot(host,i,j,1) | old format
             --leftSlots[i][j]:init(host,i,j,1)
         end
     end
 
     for i=1,self.col do
-        rightSlots[i] = {}     -- create a new row
+        rightSlots[i] = {}-- create a new rows
         for j=1,self.row do
-            rightSlots[i][j] = cppCreateSlot(host,i,j,2)--Slot:new()--cppCreateSlot(host,i,j,2)
+            rightSlots[i][j] = cppCreateSlot(host,i,j,2)
+            --Slot:new()--cppCreateSlot(host,i,j,2) | old format
             --rightSlots[i][j]:init(host,i,j,2)
         end
     end
 end
 
+---Get the slot by column and row index, default side is 1
+---@param tCol number The column index
+---@param tRow number The row index
+---@param tSide number (optional) 1 = left, 2 = right (default is 1)
+---@return pointer instance of Slot
 function SlotHandler:getSlot(tCol,tRow,tSide)
+    tSide = tSide or 1
     if tSide == 1 then
         return leftSlots[tCol][tRow]
     elseif tSide == 2 then
@@ -80,19 +93,26 @@ function SlotHandler:getSlot(tCol,tRow,tSide)
     end
 end
 
-function SlotHandler:setSelectedCount(tCount)
+
+---Set the required number of slot need to be selected/targeted
+---@param tCount number The number of slot
+function SlotHandler:setTotalSelectedCount(tCount)
     self.selectedSlots = {}
     self.totalSelectedCount = tCount
     self.currentCount = 0
 end
 
+
+---Set the slot as hovered 
+---@param slot pointer instance of Slot
 function SlotHandler:selectHover(slot)
-   
     cppSelectHoverSlot(self.handlerObject,slot)
     self.current_index_x = cppGetSlotCol(slot)
     self.current_index_y = cppGetSlotRow(slot)
 end
 
+---Return the slots selected/targeted 
+---@return table The selected slots
 function SlotHandler:getSelectedSlots()
     print("check data before turn")
     for i = 1, #self.selectedSlots do
@@ -101,10 +121,10 @@ function SlotHandler:getSelectedSlots()
     return self.selectedSlots
 end
 
+---Clear the selected slots
 function SlotHandler:clearSelectedSlots()
     self.selectedSlots = {}
 end
-
 
 -- function SlotHandler:onMouseMove(host,x,y,button)
 
@@ -116,17 +136,30 @@ end
 -- end
 
 
+
+--- Handle mouse move event
+---@param host pointer instance of BattleScene
+---@param x number 
+---@param y number
+---@param button number
+---@param side number |1 = left, 2 = right, 3 = both|
+---@param flag number |0 = none|1=empty only|2 has character in slot|
 function SlotHandler:onMouseMove(host,x,y,button,side,flag)
 
+    --- check if side is valid
     if side < 0 and side > 3 then
         return
     end
 
+    -- bit 1 has left side
+    -- bit 2 has right side
+    -- 3 has both bit 1 and bit 2
+
+    -- check for left side
     if side == 1 or side == 3 then
         for i = 1, self.row do
             for j = 1, self.col do
                 pos_x, pos_y = cppGetSlotPos(leftSlots[i][j])
-
                 if x > pos_x - 60 and x < pos_x + 60 and y > pos_y - 30 and y < pos_y + 30 then
                     self.current_index_x = j
                     self.current_index_y = i
@@ -138,6 +171,7 @@ function SlotHandler:onMouseMove(host,x,y,button,side,flag)
         end
     end -- if side == 1 or side == 3
     
+    -- check for right side
     if side == 2 or side == 3 then
         for i = 1, self.row do
             for j = 1, self.col do
@@ -154,19 +188,35 @@ function SlotHandler:onMouseMove(host,x,y,button,side,flag)
         end
     end -- if side == 1 or side == 3
 
-    if flag == 1 then
-        if cppIsSlotEmpty(host,self.currentSlot) ~= true then
-            cppSlotHandlerSetValidTarget(host,false)
-        else
+
+    -- Flag: |0 = none|1=empty only|2 has character in slot|
+    if flag == SlotFlag.EmptyOnly then 
+        if cppIsSlotEmpty(host,self.currentSlot) == true then
             cppSlotHandlerSetValidTarget(host,true)
+        else
+            cppSlotHandlerSetValidTarget(host,false)
         end
     end
 end
 
+
+--- Handle signal (keyboard or gamepad)
+---@param host pointer instance of BattleScene
+---@param signal number keystroke or gamepad button
+---@param side number |1 = left, 2 = right, 3 = both|
+---@param flag number |0 = none|1=empty only|2 has character in slot|
 function SlotHandler:onSignal(host,signal,side,flag)
 
     print("on signal " .. signal .. " side " .. side .. " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
+    
+    -- check if side is valid
+    if side < 0 and side > 3 then
+        print("side is invalid")
+        return
+    end
+
+    -- invert side if character on the right
     if t_turnHandler:getCurrentCharacter().side == 2 then
         if side == 1 then
             side = 2
@@ -174,12 +224,8 @@ function SlotHandler:onSignal(host,signal,side,flag)
             side = 1
         end
     end
-    end
 
-    if side < 0 and side > 3 then
-        return
-    end
-
+    -- I can't remember why
     if side ~= 3 then
         self.currentSide = side
     end

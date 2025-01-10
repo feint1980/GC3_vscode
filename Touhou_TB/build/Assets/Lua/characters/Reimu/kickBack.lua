@@ -22,8 +22,7 @@ KickBack = Icon:new({
     character = nil
 })
 
-kickCount = 0
-
+kickCount = 0 -- try remove this, may be this is unused
 
 function KickBack:init(host,dyobj,character)
 
@@ -52,7 +51,7 @@ function KickBack:selected(host,character)
     print("move selected called")
     setPhase(host,2,2)
     t_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
-    
+
 
     --cppEntityPlayAnimation(host,character.dyobj,"hakurei_kick_ready",false,-1)
 
@@ -61,21 +60,20 @@ function KickBack:selected(host,character)
         coroutine.resume(tasks[character.dyobj].behavior,host,character.dyobj)
     end
     --HandleSkillTasks(host,character.dyobj)
-   -- cppEntityPlayAnimation(host,character.dyobj,"hakurei_kick_ready",-1)
+    -- cppEntityPlayAnimation(host,character.dyobj,"hakurei_kick_ready",-1)
     --coroutine.yield()
-   
+
     -- todo, make the host now able to select the slot to move
 end
 
 function kickBackBehavior(host, dyobj)
-
 
     --cppClearEntityTasks(host,dyobj)
 
     print("kickBackBehavior called")
     local slots = t_slotHandler:getSelectedSlots()
 
-    local count =  tablelength(slots)
+    local count = tablelength(slots)
     print("slot count " .. count)
     print("testttt ")
     if count ~= 1 then
@@ -97,14 +95,14 @@ function kickBackBehavior(host, dyobj)
     cppCameraTargetZoom(host,dyobj,false,slot_posx,slot_posy,3.7,5)
     cppEntityPlayAnimation(host,dyobj,"hakurei_kick_hit",false,-1)
     cppMoveEntity(host,dyobj,true,slot_posx + offset_x,slot_posy + offset_y ,5)
-    
+
     -- offset_x = 50
     -- if character.side == 2 then
     --     offset_x = -offset_x
     -- end
-    
+
     --cppWaitTime(host,dyobj,200)
-   
+
     coroutine.yield()
     local targetSlot = t_slotHandler:getSelectedSlots()[1]
     local kickbackTarget = cppGetSlotEntity(host,targetSlot)
@@ -112,8 +110,7 @@ function kickBackBehavior(host, dyobj)
     local rollHit = true
     if(kickbackTarget ~= nil) then
         if (kickBackTargetCharWrap ~= nil) then
-            if kickBackTargetCharWrap:determineEvade( t_turnHandler:getCharacterFromDyobj(dyobj)) then 
-
+            if kickBackTargetCharWrap:determineEvade( t_turnHandler:getCharacterFromDyobj(dyobj)) then
                 rollHit = false
             end
         else
@@ -141,7 +138,7 @@ function kickBackBehavior(host, dyobj)
     --os.execute("sleep " .. tonumber(200000))
 
     coroutine.yield()
-   
+
     if rollHit then
         cppEntityPlayAnimation(host,kickbackTarget,"hit_under_end",true,25)
         local currentSlotRow = cppGetSlotRow(targetSlot)
@@ -150,39 +147,39 @@ function kickBackBehavior(host, dyobj)
         if( currentSlotCol < 3) then
             currentSlotCol = currentSlotCol + 1
             local moveSlot = t_slotHandler:getSlot(currentSlotCol,currentSlotRow,targetSide)
-            --local checkEmpty= 
+            --local checkEmpty=
             if cppIsSlotEmpty(host,moveSlot) ~= false then
                 cppEntityMoveToslot(host,kickbackTarget,moveSlot,25,false)
             end
             --coroutine.yield()
         end
     end
-    
-    
+
+
 
     cppResetCamera(host,dyobj,false,20)
 
-   
+
 
     local currentSlot = t_turnHandler:getCurrentCharacter().currentSlot
     cppEntityPlayAnimation(host,dyobj,"hakurei_kick_recover",false,1)
     cppEntityMoveToslot(host,dyobj,currentSlot,20)
     coroutine.yield()
-  
+
     if(kickbackTarget ~= nil) then
         cppEntityPlayAnimation(host,kickbackTarget,"idle",false,-1)
     else
         print("kickbackTarget is nil")
     end
-    
+
     cppEntityPlayAnimation(host,dyobj,"idle",false,-1)
     coroutine.yield()
 
     --coroutine.yield()
-   
+
 
     cppClearEntityTasks(host,dyobj)
-   
+
 end
 
 
@@ -190,14 +187,14 @@ function KickBack:useFunction(host, character)
     print("KickBack use function called")
 
     kickCount = kickCount + 1
-    
+
     -- if(tasks[character.dyobj] ~= nil) then
     --     print("task is not nil")
     --     tasks[character.dyobj].behavior = nil
     -- end
     tasks[character.dyobj] = {behavior = coroutine.create(kickBackBehavior,host,character.dyobj)}
     --coroutine.resume(tasks[character.dyobj].behavior,host,character.dyobj)
-   HandleSkillTasks(host,character.dyobj)
+    HandleSkillTasks(host,character.dyobj)
     -- local x,y = cppGetEntityPos(character.dyobj)
     -- cppCameraTargetZoom(host,x,y,3.7,8)
     setPhase(host,1,3)

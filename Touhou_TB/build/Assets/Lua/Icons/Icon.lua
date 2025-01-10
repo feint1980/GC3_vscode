@@ -1,7 +1,5 @@
-
-
+---TGUI text tag 
 Tag = {}
-
 Tag.color_red = "<color=#ff1200>"
 Tag.color_orange = "<color=#FF5D00>"
 Tag.color_green = "<color=#00ff1d>"
@@ -14,6 +12,12 @@ Tag.iRed = Tag.italic_open .. Tag.color_red
 Tag.iOrange = Tag.italic_open .. Tag.color_orange
 Tag.iGreen = Tag.italic_open .. Tag.color_green
 Tag.iClose = Tag.color_close .. Tag.italic_close
+
+---Skill/Item filter flag
+SlotFlag = {}
+SlotFlag.None = 0
+SlotFlag.EmptyOnly = 1
+SlotFlag.HasCharacter = 2
 
 
 Icon = {

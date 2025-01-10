@@ -49,7 +49,7 @@ function setPhase(host,tPhase, tSide)
     end
     if phase == 2 then
         cppGuiHandlerSetFocusColor(host,0,255,0,255)
-        t_slotHandler:setSelectedCount(t_guiIcons:getCurrentTTD().requiredSlotCount)
+        t_slotHandler:setTotalSelectedCount(t_guiIcons:getCurrentTTD().requiredSlotCount)
         cppSetSlothandlerActive(t_slotHandler.handlerObject,true)
     end
 end
@@ -146,7 +146,6 @@ function sortCharactersTurn()
 end
 
 
-
 function setEntityMoveToSlot(host,dyobj)
     entityTasks[dyobj] = {behavior = coroutine.create(moveToSlotBehavior,host,dyobj)}
     HandleMovingTask(host,dyobj)
@@ -211,8 +210,6 @@ function gameLoop(host)
     -- sortCharactersTurn()
     -- i = 1
     while gameOn do
-      
-
         print("restarting turns")
         t_turnHandler:putCharacterIntoList()
         print("sort turn OK ")
