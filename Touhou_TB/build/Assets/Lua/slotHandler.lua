@@ -199,6 +199,15 @@ function SlotHandler:onMouseMove(host,x,y,button,side,flag)
     end
 end
 
+--- Revert the targeting side(based on current side ) For example : if a spell/item that is used (left) will target right only, and then that spell/item when used on the right will target left only
+---@param side number |1 = left, 2 = right|
+function revertSide(side)
+    if side == 1 then
+        return 2
+    elseif side == 2 then
+        return 1
+    end
+end
 
 --- Handle signal (keyboard or gamepad)
 ---@param host pointer instance of BattleScene
@@ -209,20 +218,28 @@ function SlotHandler:onSignal(host,signal,side,flag)
 
     print("on signal " .. signal .. " side " .. side .. " !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
 
-    
     -- check if side is valid
     if side < 0 and side > 3 then
         print("side is invalid")
         return
     end
 
-    -- invert side if character on the right
+
+
+    --- This is the old code, however I decided to keep it as comment because it wasn't tested
+    --- throughtly
+    -- -- invert side if character on the right
+    -- if t_turnHandler:getCurrentCharacter().side == 2 then
+    --     if side == 1 then
+    --         side = 2
+    --     else if side == 2 then
+    --         side = 1
+    --     end
+    -- end
+    -- end -- please don't remove this end
+    
     if t_turnHandler:getCurrentCharacter().side == 2 then
-        if side == 1 then
-            side = 2
-        else if side == 2 then
-            side = 1
-        end
+        side = revertSide(side)
     end
 
     -- I can't remember why
@@ -237,7 +254,17 @@ function SlotHandler:onSignal(host,signal,side,flag)
         invert = -1
     end
 
-    --print("invert is " .. invert)
+    
+    --- Signal chart: 
+    --- 1 = left key    || d-pad left
+    --- 2 = right key   || d-pad right
+    --- 4 = up key      || d-pad up
+    --- 8 = down key    || d-pad down
+    --- 16 = None -> reserve for now
+    --- 32 = enter      || a button
+    --- 64 = escape     || b button
+
+
     if signal == 1 then
         self.current_index_x = self.current_index_x + (tValue * invert)
     end
