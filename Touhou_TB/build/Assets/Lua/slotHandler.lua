@@ -10,6 +10,7 @@ rightSlots = {}
 ---@class SlotHandler
 SlotHandler = {
 
+    ---@type pointer instace of BattleScene
     host = nil,
     leftSlots = {},
     rightSlots = {},
@@ -50,6 +51,7 @@ function SlotHandler:init(host,tCol,tRow,tTurnHandler)
     self.host = host
     self.handlerObject = cppCreateSlotHandler(host)
     self.turnHandler = tTurnHandler
+
 
     if(self.turnHandler ~= nil) then
         print("turnHandler is not nil")
@@ -238,6 +240,7 @@ function SlotHandler:onSignal(host,signal,side,flag)
     -- end
     -- end -- please don't remove this end
     
+    -- new invert format
     if t_turnHandler:getCurrentCharacter().side == 2 then
         side = revertSide(side)
     end
@@ -254,7 +257,6 @@ function SlotHandler:onSignal(host,signal,side,flag)
         invert = -1
     end
 
-    
     --- Signal chart: 
     --- 1 = left key    || d-pad left
     --- 2 = right key   || d-pad right
@@ -264,26 +266,32 @@ function SlotHandler:onSignal(host,signal,side,flag)
     --- 32 = enter      || a button
     --- 64 = escape     || b button
 
-
-    if signal == 1 then
+    if signal == 1 then 
+        -- move the cursor to the left
         self.current_index_x = self.current_index_x + (tValue * invert)
     end
 
     if signal == 2 then
+        -- move the cursor to the right
         self.current_index_x = self.current_index_x - (tValue * invert)
     end
 
+    -- reset the cursor if it goes out of bounds
     if self.currentSide == 1 then
         if self.current_index_x > 3 then
+            -- reset from 1 to 3
             self.current_index_x = 1
-            --print("reset to 1 ")
+        
+            -- if side is 3 (both side) then reset the cursor to the other side
             if side == 3 then
                 self.currentSide = 2
                 self.current_index_x = 3
             end
         end
         if self.current_index_x < 1 then
+            -- reset from 1 to 3
             self.current_index_x = 3
+            -- if side is 3 (both side) then reset the cursor to the other side
             if side == 3 then
                 self.currentSide = 2
                 self.current_index_x = 1
@@ -291,42 +299,64 @@ function SlotHandler:onSignal(host,signal,side,flag)
         end
     end
 
+    -- reset the cursor if it goes out of bounds
     if self.currentSide == 2 then
         if self.current_index_x > 3 then
+            -- reset from 3 to 1
             self.current_index_x = 1
+            -- if side is 3 (both side) then reset the cursor to the other side
             if side == 3 then
                 self.currentSide = 1
                 self.current_index_x = 3
             end
         end
         if self.current_index_x < 1 then
+            -- reset from 3 to 1
             self.current_index_x = 3
             if side == 3 then
+                -- if side is 3 (both side) then reset the cursor to the other side
                 self.currentSide = 1
                 self.current_index_x = 1
             end
         end
     end
+
+    -- old format
+    -- if signal == 4 then
+    --     self.current_index_y = self.current_index_y - 1
+    --     if self.current_index_y < 1 then
+    --         self.current_index_y = 3
+    --     end
+    -- end
+
+    -- if signal == 8 then
+    --     self.current_index_y = self.current_index_y + 1
+    --     if self.current_index_y > 3 then
+    --         self.current_index_y = 1
+    --     end
+    -- end
 
     if signal == 4 then
         self.current_index_y = self.current_index_y - 1
-        if self.current_index_y < 1 then
-            self.current_index_y = 3
-        end
     end
 
     if signal == 8 then
         self.current_index_y = self.current_index_y + 1
-        if self.current_index_y > 3 then
-            self.current_index_y = 1
-        end
     end
 
+    if self.current_index_y < 1 then
+        self.current_index_y = 3
+    end
+    if self.current_index_y > 3 then
+        self.current_index_y = 1
+    end
 
+    -- all index ready, get the current slot
     self.currentSlot = self:getSlot(self.current_index_x, self.current_index_y, self.currentSide)
-    --self:selectHover)
+
+    -- filter with flag
     if flag == 1 then
-        while cppIsSlotEmpty(host,self.currentSlot) ~= true do           
+        while cppIsSlotEmpty(host,self.currentSlot) ~= true do      
             if signal == 1 then 
                 self.current_index_x = self.current_index_x + invert
                 if self.current_index_x > 3 then
@@ -345,17 +375,17 @@ function SlotHandler:onSignal(host,signal,side,flag)
                     self.current_index_y = 3
                 end
             end
-
             if signal == 8 then
                 self.current_index_y = self.current_index_y + 1
                 if self.current_index_y > 3 then
                     self.current_index_y = 1
                 end
             end
-
+            -- get the filtered slot
             self.currentSlot = self:getSlot(self.current_index_x, self.current_index_y, self.currentSide)
         end
     end 
+    -- hover the current slot
     self:selectHover(self:getSlot(self.current_index_x, self.current_index_y, self.currentSide))
     
     --print("flag is " .. flag)
@@ -383,15 +413,10 @@ function SlotHandler:onSignal(host,signal,side,flag)
         --print("called function " .. self.turnHandler:getCurrentCharacter().name)
         if self.currentCount == t_guiIcons:getCurrentTTD().requiredSlotCount then
             if self.turnHandler:getCurrentCharacter().dyobj ~= nil then
-
                 -- t_guiIcons:getCurrentTTD().funct(host,self.turnHandler:getCurrentCharacter().dyobj)
-
                 tName = t_guiIcons:getCurrentTTD().name
                 print("datata " .. tName)
                 t_guiIcons:getCurrentTTD():useFunction(host,self.turnHandler:getCurrentCharacter())
-                -- if tName == "Move" then
-                --     move(host,self.turnHandler:getCurrentCharacter().dyobj)
-                -- end
 
             else
                 print("dyobj is nil")

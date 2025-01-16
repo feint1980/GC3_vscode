@@ -6,7 +6,7 @@ require "IconGui"
 require "Character"
 require "kickBack"
 
-
+---@class Reimu: Character
 Reimu = Character:new({
     Strenth = 7,
     Vitality = 7,

@@ -53,17 +53,42 @@ Magic Defense: Primarily governed by Wisdom, with a potential small influence fr
 
 Speed: Purely determined by Agility; affects turn order in combat.]]--
 
+---@class (exact) Character
+---@field Strength number
+---@field Vitality number
+---@field Dexterity number
+---@field Agility number
+---@field Intelligence number
+---@field Wisdom number
+---@field HitChance number
+---@field Evasion number
+---@field CriticalHitChance number
+---@field PhysicalDefense number
+---@field MagicDefense number
+---@field Speed number 
 Character = {
 
+    ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Carry weight(not update yet)
     Strength = 8,
+
+    ---@type number Vitality(VIT) Primary Influence: Health & Physical Defense scale value is 1 |Other Effects: Determines max HP, physical defense, and resistance to status ailments related to physical endurance (such as bleeding, poison, or stun). It could also reduce incoming physical damage by a percentage.
     Vitality = 8,
+
+    ---@type numer Dexterity(DEX) Primary Influence: Accuracy & Critical Hit Chance (Physical) Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes. Dexterity could also enhance skills or abilities that require precision, such as archery or certain melee attacks.
     Dexterity = 8,
+
+    ---@type number Agility(AGI) Primary Influence: Speed & Evasion |Other Effects: Determines turn order (faster characters act first) and increases evasion against physical attacks. Higher agility could also reduce the chance of getting hit by slower enemies and allow characters to reposition more easily.
     Agility = 8,
+
+    ---@type number Intelligence (INT) Primary Influence: Magic Damage scale value by 3|Other Effects: Increases the damage dealt by magical attacks and spells. It could also affect the potency of debuffs, the number of targets a spell can hit, or even mana regeneration rates.
     Intelligence = 8,
+
+    ---@type number Wisdom (WIS) Primary Influence: Magic Defense & Mana Pool|Other Effects: Determines resistance to magical attacks and could increase max mana. Wisdom could also affect healing abilities, status effect resistance (such as confusion or charm), and reduce the cooldowns on certain spells or abilities.
     Wisdom = 8,
+
     dyobj = nil,
     animationPath = "./Assets/F_AObjects/patchouli_tb.xml",
-    portraitPath  = "./Assets/TB_GUI/faces/Patchouli_face.png",
+    portraitPath  = "./Assets/TB_GUI/faces/missing.png",
     action = 0,
     hp = 100,
     mana = 100,
@@ -79,9 +104,13 @@ Character = {
     name = "Nameless",
     lastName = "None",
     title = "None",
+    ---@type number The side of the character |1 = left, 2 = right|
     side = 1,
+    ---@type table The list of common actions
     common_actions = {},
+    ---@type table The list of items
     items = {},
+    ---@type table The list of skills
     skills = {},
     currentSlot = nil
 
@@ -94,6 +123,7 @@ function Character:new(o)
     return o
 end
 
+---@return number The turn of the character | Fomula 1 + (Agility/7 * 0.25) 
 function Character:getTurn()
     local count = math.modf(self.Agility / 7)
     return 1 +( count * 0.25)
@@ -101,12 +131,12 @@ end
 
 function Character:getHP()
     local additionHP = self.Vitality * 8
-    return 70 + additionHP
+    return self.hp + additionHP
 end
 
 function Character:getMana()
     local additionMana = self.Wisdom * 7
-    return 50 + additionMana
+    return self.mana + additionMana
 end
 
 function Character:getPhysicDmg()
@@ -114,7 +144,7 @@ function Character:getPhysicDmg()
 end
 
 function Character:getMagicDmg()
-    local additionDmg = self.Intelligence * 4
+    local additionDmg = self.Intelligence * 3
     return 10 + additionDmg
 end
 
@@ -176,8 +206,6 @@ function Character:init(host,slot,tSide)
 
     --return self
 end
-
-
 
 function Character:loadCommon(host)
 
