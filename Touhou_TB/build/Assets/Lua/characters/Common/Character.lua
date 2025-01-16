@@ -123,7 +123,7 @@ function Character:new(o)
     return o
 end
 
----@return number The turn of the character | Fomula 1 + (Agility/7 * 0.25) 
+---@return number The turn of the character | Fomula 1 + (Agility/7 * 0.25) |
 function Character:getTurn()
     local count = math.modf(self.Agility / 7)
     return 1 +( count * 0.25)
