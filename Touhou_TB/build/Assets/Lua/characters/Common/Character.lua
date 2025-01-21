@@ -68,10 +68,10 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field Speed number 
 Character = {
 
-    ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Carry weight(not update yet)
+    ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Carry weight(not implemented yet)
     Strength = 8,
 
-    ---@type number Vitality(VIT) Primary Influence: Health & Physical Defense scale value is 1 |Other Effects: Determines max HP, physical defense, and resistance to status ailments related to physical endurance (such as bleeding, poison, or stun). It could also reduce incoming physical damage by a percentage.
+    ---@type number Vitality(VIT) Primary Influence: Health (HP), Status resistant
     Vitality = 8,
 
     ---@type numer Dexterity(DEX) Primary Influence: Accuracy & Critical Hit Chance (Physical) Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes. Dexterity could also enhance skills or abilities that require precision, such as archery or certain melee attacks.

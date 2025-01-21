@@ -1,13 +1,18 @@
 require "character"
 
+---@Description of TurnHandler: This class controls handle turns in games
+---@class TurnHandler
 TurnHandler = {
 
+    ---@type instance of Character
     currentCharacter = nil,
     charLists = {},
     totalCharList = {}
 
 }
 
+---@Description create a new instance of TurnHandler
+---@return TurnHandler 
 function TurnHandler:new(o)
     print("new TurnHandler called")
     o = o or {}
@@ -16,10 +21,14 @@ function TurnHandler:new(o)
     return o    
 end
 
+---@Description: return the in turn character
+---@return instance of Character
 function TurnHandler:getCurrentCharacter()
     return self.currentCharacter
 end
 
+---@Description: Return the pointer of Character's dyobj | why this exist, I still do not know | May be it has null check ? 
+---@return pointer of Character dyobj
 function TurnHandler:getCurrentCharacterDyobj()
     if self.currentCharacter.dyobj ~= nil then
         return self.currentCharacter.dyobj  
@@ -27,9 +36,11 @@ function TurnHandler:getCurrentCharacterDyobj()
         print("getCurrentCharacterDyobj dyobj is nil ")
         return nil
     end
-
 end
 
+
+---@Description: return the list of Character
+---@return table list of Character
 function TurnHandler:getActiveList()
     return self.charLists
 end

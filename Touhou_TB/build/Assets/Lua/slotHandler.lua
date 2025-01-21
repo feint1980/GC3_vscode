@@ -6,7 +6,7 @@ require "Slot"
 leftSlots  = {}
 rightSlots = {}
 
----Description of SlotHandler: TBD 
+---Description of SlotHandler: This class controls the slots in the game 
 ---@class SlotHandler
 SlotHandler = {
 
@@ -52,7 +52,6 @@ function SlotHandler:init(host,tCol,tRow,tTurnHandler)
     self.handlerObject = cppCreateSlotHandler(host)
     self.turnHandler = tTurnHandler
 
-
     if(self.turnHandler ~= nil) then
         print("turnHandler is not nil")
     else
@@ -95,7 +94,6 @@ function SlotHandler:getSlot(tCol,tRow,tSide)
     end
 end
 
-
 ---Set the required number of slot need to be selected/targeted
 ---@param tCount number The number of slot
 function SlotHandler:setTotalSelectedCount(tCount)
@@ -103,7 +101,6 @@ function SlotHandler:setTotalSelectedCount(tCount)
     self.totalSelectedCount = tCount
     self.currentCount = 0
 end
-
 
 ---Set the slot as hovered 
 ---@param slot pointer instance of Slot
@@ -136,7 +133,6 @@ end
 --         self.currentSide = 2
 --     end
 -- end
-
 
 
 --- Handle mouse move event
@@ -225,8 +221,6 @@ function SlotHandler:onSignal(host,signal,side,flag)
         print("side is invalid")
         return
     end
-
-
 
     --- This is the old code, however I decided to keep it as comment because it wasn't tested
     --- throughtly
@@ -433,6 +427,7 @@ function SlotHandler:onSignal(host,signal,side,flag)
     --cppSelectHoverSlot(self.handlerObject,self.currentSlot)
 end
 
+---@return number Return the number of slot selected
 function SlotHandler:getCurrentCount()
     return self.currentCount
 end

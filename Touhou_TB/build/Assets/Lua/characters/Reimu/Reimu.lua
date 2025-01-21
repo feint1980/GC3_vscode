@@ -51,6 +51,9 @@ function Reimu:loadSkills(host)
     self.skills["KickBack"] = KickBack
     self.skills["KickBack"]:init(host,self.dyobj,self)
 
+    
+
+
     -- for k,v in pairs(self.skills) do
     --     table.insert(t_skills,v)
     -- end
