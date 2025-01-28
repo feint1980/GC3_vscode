@@ -3,7 +3,7 @@ package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/L
 bc =  require("./Assets/Luafiles/common/boss_common")
 
 -- Belong to moveset_normal_4
-function DynamicBehavior4(host,dynob)
+function DynamicBehavior2(host,dynob)
     local count = 2
     local xthresHold = 175
     while true do
@@ -12,7 +12,7 @@ function DynamicBehavior4(host,dynob)
             W_moveObject(host,dynob,0,170,25)
             coroutine.yield()
             W_playAnimation(dynob,"charging",1,false)
-            cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.5,15.5)
+            W_setObjectCharging(dynob,"Komachi_charge_table",Komachi_charge_table,100,250,120,9.5,15.5)
             W_holdPosition(host,dynob,80,"charging")
             coroutine.yield()
             W_playAnimation(dynob,"charge_end",1,true)
@@ -39,7 +39,7 @@ function DynamicBehavior4(host,dynob)
         W_holdPosition(host,dynob,10,"charging")
         coroutine.yield()
         W_holdPosition(host,dynob,200,"charge_end")
-        bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
+        bc.ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
         1, -- tier
         1.7, -- speed
         10.0,  -- lifeTime
@@ -64,7 +64,30 @@ end
 -- end of move set : normal 4
 
 
-function spell_4_behavior(host,dynob)
+function Komachi_side_coin(host,dynob,direction,tier,tableName,tableAssets,speed,lifeTime,current_angle,angle_step,interval,time, addon_angle , coin_line, spread_time)
+
+    local addon_value = 0
+
+    if (direction == -1) then
+        addon_value = addon_angle --=  addon_value
+    end
+    local t_current_angle = current_angle + addon_value
+
+    local additional_speed = 0.7
+    local f_angle = t_current_angle
+
+    for f = 1, coin_line do
+        for i = 1, spread_time do
+            f_angle = f_angle + angle_step
+            local x = math.cos((t_current_angle + i * (angle_step) ))
+            local y = math.sin((t_current_angle + i * (angle_step) ))
+            W_Komachi_fireCoin(host,dynob,tableName,tableAssets,tier,
+                            speed + additional_speed * f,lifeTime,x,y,f_angle,time + (interval  * (f * 25) ))
+        end
+    end
+end
+
+function spell_2_behavior(host,dynob)
 
     local x_index = -2
     local y_index = 5
@@ -95,11 +118,11 @@ function spell_4_behavior(host,dynob)
         coroutine.yield()
 
         W_holdPosition(host,dynob,1,"charge_end",true)
-        spell_2_side_coin(host,dynob,
+        Komachi_side_coin(host,dynob,
         increament,         -- direction
         0,                  -- tier
-        "komachi_coins",    -- tableName
-        komachi_coins,      -- tableAssets
+        "KOMACHI_COINS",    -- tableName
+        KOMACHI_COINS,      -- tableAssets
         4.8,                -- speed
         9.0,               -- lifeTime
         -125 * 0.0174533,   -- current_angle
@@ -122,11 +145,11 @@ function spell_4_behavior(host,dynob)
                     W_holdPosition(host,dynob,20,"charging",true)
                     coroutine.yield()
                     W_holdPosition(host,dynob,1,"charge_end",true)
-                    spell_2_side_coin(host,dynob,
+                    Komachi_side_coin(host,dynob,
                     increament,         -- direction
                     1,                  -- tier
-                    "komachi_coins",    -- tableName
-                    komachi_coins,      -- tableAssets
+                    "KOMACHI_COINS",    -- tableName
+                    KOMACHI_COINS,      -- tableAssets
                     2.6,                -- speed
                     10.0,               -- lifeTime
                     9 * 0.01745336,    -- current_angle
@@ -144,11 +167,11 @@ function spell_4_behavior(host,dynob)
                 end
 
                 W_playAnimation(dynob,"charging",1,false)
-                cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.2,15.5)
+                W_setObjectCharging(dynob,"Komachi_charge_table",Komachi_charge_table,100,250,120,9.2,15.5)
                 W_holdPosition(host,dynob,80,"charging")
                 coroutine.yield()
 
-                bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
+                bc.ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
                 1, -- tier
                 1.4, -- speed
                 10.0,  -- lifeTime
@@ -164,7 +187,7 @@ function spell_4_behavior(host,dynob)
                 12,     -- interval
                 1)     -- time
 
-                bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
+                bc.ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
                 0, -- tier
                 1.6, -- speed
                 10.0,  -- lifeTime

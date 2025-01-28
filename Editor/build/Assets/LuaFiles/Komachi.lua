@@ -1,17 +1,18 @@
+---@diagnostic disable: redundant-parameter
 package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/LuaFiles/Komachi/?.lua' ..';./Komachi/?.lua'
 
 bc =  require("./Assets/Luafiles/common/boss_common")
 
 require "wrapper"
+require("./Assets/Luafiles/common/boss_common")
 -- coroutine table
 dynamics = {}
 
-souls = {}
-soulsCount = 0
+Souls = {}
+SoulsCount = 0
 
-komachi = nil
-soul_1 = nil
-t_soul = nil
+KomachiObj = nil
+
 
 
 -- require "Komachi_spell_1"
@@ -55,67 +56,68 @@ end
 ------------------------------------------------------------------
 
 -- coin table
-komachi_coins = {"komachi/komachi_12.png","komachi/komachi_11.png","komachi/komachi_13.png"}
+KOMACHI_COINS = {"komachi/komachi_12.png","komachi/komachi_11.png","komachi/komachi_13.png"}
 
 -- charge table
 
-charge_table = {"projectile/fire_1.png","projectile/fire_2.png","projectile/fire_3.png","projectile/fire_4.png"}
+Komachi_charge_table = {"projectile/fire_1.png","projectile/fire_2.png","projectile/fire_3.png","projectile/fire_4.png"}
 
-factor_table = {2,7,12,6}
+Komachi_factor_table = {2,7,12,6}
+
 
 -- Komachi param -- "./Assets/F_AObjects/boss_komachi.xml", komachi_boss_t
-object = {posX = 0.0, posY = 0.0,
+Komachi_object = {posX = 0.0, posY = 0.0,
  animationPath = "./Assets/F_AObjects/boss_komachi.xml",
  scale = 0.6, depth = 15, angle = 0 }
 
 -- soul param
-soulData = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/komachi_effects.xml", scale = 1.0, depth = 15.0, angle = 0.0 }
+Komachi_soulData = {posX = 0.0, posY = 0.0, animationPath = "./Assets/F_AObjects/komachi_effects.xml", scale = 1.0, depth = 15.0, angle = 0.0 }
 
 -- init ( double click on the object in the editor ) note, path is unused for now
 function CreateFromLua(host,path)
 	print("[LUA] create from LUA called \n")
 
 	--komachi = cppCreateFromLua(host,object.animationPath,object.posX,object.posY,object.scale,object.depth,object.angle)
-    komachi = W_createObject(host,object.animationPath,object.posX,object.posY,object.scale,object.depth,object.angle)
+    KomachiObj = W_createObject(host,Komachi_object.animationPath,Komachi_object.posX,Komachi_object.posY,Komachi_object.scale,Komachi_object.depth,Komachi_object.angle)
     -- forceReinit()
 
 end
 -- move set : normal 1 ( pre spell 1 )
 function moveset_normal_1( host )
 
-	dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior1,host,komachi)}
-	IssueNextTask(host,komachi)
+	dynamics[KomachiObj] = {behavior = coroutine.create(DynamicBehavior1,host,KomachiObj)}
+	IssueNextTask(host,KomachiObj)
 end
 
 -- move set : spell 1
 function moveset_spell_1(host)
-    dynamics[komachi] = {behavior = coroutine.create(spell_1_boss_movement,host,komachi)}
-    IssueNextTask(host,komachi)
- end
+    dynamics[KomachiObj] = {behavior = coroutine.create(Komachi_spell_1_boss_movement,host,KomachiObj)}
+    IssueNextTask(host,KomachiObj)
+end
 
 -- move set : normal 2
 function moveset_normal_2(host)
-    dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior2,host,komachi)}
-    IssueNextTask(host,komachi)
+    dynamics[KomachiObj] = {behavior = coroutine.create(DynamicBehavior2,host,KomachiObj)}
+    IssueNextTask(host,KomachiObj)
 end
 
 -- move set : spell 2
 function moveset_spell_2(host)
-    dynamics[komachi] = {behavior = coroutine.create(spell_2_behavior,host,komachi)}
-    IssueNextTask(host,komachi)
+    dynamics[KomachiObj] = {behavior = coroutine.create(spell_2_behavior,host,KomachiObj)}
+    IssueNextTask(host,KomachiObj)
 end
 
 function moveset_normal_3(host)
-    dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior3_normal,host,komachi)}
-    IssueNextTask(host,komachi)
+    dynamics[KomachiObj] = {behavior = coroutine.create(DynamicBehavior3_normal,host,KomachiObj)}
+    IssueNextTask(host,KomachiObj)
 end
 
 function moveset_spell_3(host)
-    dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior3,host,komachi)}
-    IssueNextTask(host,komachi)
+    dynamics[KomachiObj] = {behavior = coroutine.create(DynamicBehavior3,host,KomachiObj)}
+    IssueNextTask(host,KomachiObj)
 end
 
 function moveset_spell_4(host)
-    dynamics[komachi] = {behavior = coroutine.create(DynamicBehavior4,host,komachi)}
-    IssueNextTask(host,komachi)
+    dynamics[KomachiObj] = {behavior = coroutine.create(DynamicBehavior4,host,KomachiObj)}
+    IssueNextTask(host,KomachiObj)
 end

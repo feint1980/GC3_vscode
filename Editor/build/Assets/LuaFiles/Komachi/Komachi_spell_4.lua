@@ -7,7 +7,7 @@ fire_pilar = nil
 
 --@cppKomachi_pillar_setLightColor(pillar, r, g, b, a,transitionTime)
 
--- Belong to moveset_normal_2
+-- Belong to moveset_normal_4
 function DynamicBehavior4(host,dynob)
     local count = 2
     local xthresHold = 175
@@ -17,7 +17,7 @@ function DynamicBehavior4(host,dynob)
             cppMoveObject(host,dynob,0,170,25)
             coroutine.yield()
             W_playAnimation(dynob,"charging",1,false)
-            cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.5,15.5)
+            cppObjectSetChargingEffect(dynob,"Komachi_charge_table",Komachi_charge_table,100,250,120,9.5,15.5)
             cppHoldPosition(host,dynob,80,"charging")
             coroutine.yield()
             cppHoldPosition(host,dynob,80,"cast")
@@ -29,7 +29,7 @@ function DynamicBehavior4(host,dynob)
             W_wait(host,dynob,60)
             coroutine.yield()
             cppKomachi_pillar_setLightEffect(fire_pilar,0.0,0.0,0,0,12,13,16.5,120)
-            )
+        
             cppKomachi_pillar_setLightColor(fire_pilar,0.65,0.08,1.0,1.0,4.5)
             cppKomachi_pillar_setLightAttenuation(fire_pilar,12,13,16.5,4.5)
             W_wait(host,dynob,60)
@@ -52,7 +52,7 @@ function DynamicBehavior4(host,dynob)
     end
 end
 
--- end of move set : normal 2
+-- end of move set : normal 4
 
 
 function spell_4_behavior(host,dynob)
@@ -89,8 +89,8 @@ function spell_4_behavior(host,dynob)
         spell_2_side_coin(host,dynob,
         increament,         -- direction
         0,                  -- tier
-        "komachi_coins",    -- tableName
-        komachi_coins,      -- tableAssets
+        "KOMACHI_COINS",    -- tableName
+        KOMACHI_COINS,      -- tableAssets
         4.8,                -- speed
         9.0,               -- lifeTime
         -125 * 0.0174533,   -- current_angle
@@ -116,8 +116,8 @@ function spell_4_behavior(host,dynob)
                     spell_2_side_coin(host,dynob,
                     increament,         -- direction
                     1,                  -- tier
-                    "komachi_coins",    -- tableName
-                    komachi_coins,      -- tableAssets
+                    "KOMACHI_COINS",    -- tableName
+                    KOMACHI_COINS,      -- tableAssets
                     2.6,                -- speed
                     10.0,               -- lifeTime
                     9 * 0.01745336,    -- current_angle
@@ -135,11 +135,11 @@ function spell_4_behavior(host,dynob)
                 end
 
                 W_playAnimation(dynob,"charging",1,false)
-                cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.2,15.5)
+                cppObjectSetChargingEffect(dynob,"Komachi_charge_table",Komachi_charge_table,100,250,120,9.2,15.5)
                 cppHoldPosition(host,dynob,80,"charging")
                 coroutine.yield()
 
-                bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
+                bc.ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
                 1, -- tier
                 1.4, -- speed
                 10.0,  -- lifeTime
@@ -155,7 +155,7 @@ function spell_4_behavior(host,dynob)
                 12,     -- interval
                 1)     -- time
 
-                bc.ftest_ma_custom_coin(host,dynob,"komachi_coins",komachi_coins,
+                bc.ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
                 0, -- tier
                 1.6, -- speed
                 10.0,  -- lifeTime

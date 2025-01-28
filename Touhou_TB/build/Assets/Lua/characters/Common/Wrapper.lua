@@ -8,13 +8,17 @@
 -- MARK: Slot_handle
 
 
+---@class pointer
+---@class vec2
+
 --- function wrapper of cppCreateSlotHandler
 ---@Description: Creates a new slot handler (SlotHandler)
 ---@param host pointer instace of BattleScene
 ---@return pointer instance of created SlotHandler
 function TB_CreateSlotHandler(host)
-    return cppCreateSlotHandler(host)
+    return cppCreateSlotHandler(host) 
 end
+
 
 --- fucntion wrapper of cppCreateSlot
 ---@Description: Creates a new slot (Slot)
@@ -26,6 +30,7 @@ end
 function TB_CreateSlot(host,row,col,side)
     return cppCreateSlot(host,row,col,side)
 end
+
 
 
 --- fucntion wrapper of cppSetSlothandlerActive
@@ -67,7 +72,7 @@ end
 --- fucntion wrapper of cppGetSlotPos
 ---@Description: Get the position of the slot (Slot)
 ---@param slot pointer instance of Slot
----@return glm::vec2 The position of the slot
+---@return vec2 The position of the slot
 function TB_GetSlotPos(slot)
     return cppGetSlotPos(slot)
 end
@@ -97,6 +102,7 @@ function TB_GetSlotEntity(host,slot)
     return cppGetSlotEntity(host,slot)
 end
 
+
 -- MARK: Entity
 
 --- function wrapper of cppCreateEntity
@@ -117,7 +123,6 @@ function TB_CreateEntity(host,animationPath , slot, portraitPath, side,scale , s
     return cppCreateEntity(host,animationPath,slot,portraitPath,side,scale,scaleY)
 end
 
-
 --- function wrapper of cppMoveEntity
 ---@Description: Move an entity (F_Lua_BaseEntity)
 ---@param host pointer instace of BattleScene
@@ -125,6 +130,7 @@ end
 ---@param posX number The x position of the entity
 ---@param posY number The y position of the entity
 ---@param time number The time to complete the move
+
 function TB_MoveEntity(host, entity, posX, posY, time)
     cppMoveEntity(host, entity, posX, posY, time)
 end
@@ -138,7 +144,6 @@ end
 function TB_SetAttribute( entity, attribute, value)
     cppSetAttribute( entity, attribute, value)
 end
-
 
 -- function wrapper of cppSetStrAttribute
 ---@Description: Set the string attribute of an entity (F_Lua_BaseEntity)

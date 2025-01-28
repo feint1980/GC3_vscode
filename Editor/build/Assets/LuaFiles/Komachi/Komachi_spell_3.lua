@@ -21,7 +21,7 @@ function DynamicBehavior3_normal(host,dynob)
         coroutine.yield()
         cppHoldPosition(host,dynob,80,"charge_end")
         for angle_count = 1, 5 do
-            bc.patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",
+            Patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",
             0.65, -- speed
             10.0, -- lifeTime
             5,   -- a
@@ -47,7 +47,8 @@ function DynamicBehavior3_normal(host,dynob)
             coroutine.yield()
             cppHoldPosition(host,dynob,300,"charge_end")
             for angle_count = 1, 4 do
-                bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_shard_blue.png",
+                Patern_MA_hypotrochoid(host,dynob
+                ,"projectile/bullet_shard_blue.png",
                 0.65, -- speed
                 7.0, -- lifeTime
                 9,   -- a
@@ -63,7 +64,7 @@ function DynamicBehavior3_normal(host,dynob)
                 coroutine.yield()
             end
             for angle_count = 1, 3 do
-                bc.patern_MA_hypotrochoid(host,dynob,"projectile/bullet_medium_red.png",
+                Patern_MA_hypotrochoid(host,dynob,"projectile/bullet_medium_red.png",
                 0.5, -- speed
                 10.0, -- lifeTime
                 2,   -- a
@@ -95,7 +96,7 @@ function DynamicBehavior3(host,dynob)
         coroutine.yield()
         -- t_xPos = t_xPos * -1
         cppHoldPosition(host,dynob,100,"charging")
-        cppObjectSetChargingEffect(dynob,"charge_table",charge_table,100,250,120,9.5,15.5)
+        cppObjectSetChargingEffect(dynob,"Komachi_charge_table",Komachi_charge_table,100,250,120,9.5,15.5)
         coroutine.yield()
         cppHoldPosition(host,dynob,750,"charge_end")
         bc.ftest_ma_custom_aff2(host,dynob,

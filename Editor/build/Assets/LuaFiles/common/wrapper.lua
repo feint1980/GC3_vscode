@@ -2,6 +2,12 @@
 -- Manual wrapper because I want to mark all the function expose by C++
 -- OCD warning : this file will contain alot of warning 
 
+
+
+--- dict define
+
+
+
 -- 
 --  ||| Wrapper of HHP (BNML) |||
 --
@@ -22,22 +28,30 @@ function W_createObject(host ,animationPath , posX, posY,scale,depth,angle)
     return cppCreateFromLua(host,animationPath,posX,posY,scale,depth,angle)
 end
 
+-- --- Wrapper of cppRemoveFromLua
+-- --- @Description: Remove object
+-- --- @param host pointer instance of F_Lua_Boss_Manager
+-- --- @param dynob pointer instance of F_Lua_GenericObject to remove
+-- function W_removeObject(host,dynob)
+--     cppRemoveFromLua(host,dynob)
+-- end
+
 --- wrapper of cppRemoveObject
 --- @Description: Remove object
---- @  param host pointer instance of F_Lua_Boss_Manager
---- @  param dynamicObject pointer instance of F_Lua_GenericObject to remove
+--- @param host pointer instance of F_Lua_Boss_Manager
+--- @param dynob pointer instance of F_Lua_GenericObject to remove
 function W_removeObject(host,dynob)
-    cppRemoveObject(host,dynob)
+    cppRemoveFromLua(host,dynob)
 end
 
 --- wrapper of cppMoveObject
 ---@Description: Move object to specific position
 ---@param host pointer instance of F_Lua_Boss_Manager
----@param dynamicObject pointer instance of F_Lua_GenericObject to move
+---@param dynob pointer instance of F_Lua_GenericObject to move
 ---@param posX number The x position of the object
 ---@param posY number The y position of the object
 ---@param time number the time to complete the move
----@param isWait boolean If the move should wait for completion (default true)
+---@param isWait? boolean (optional) If the move should wait for completion (default true)
 function W_moveObject(host,dynob,posX,posY,time,isWait)
     isWait = isWait or true
     cppMoveObject(host,dynob,posX,posY,time,isWait)
@@ -46,10 +60,10 @@ end
 --- wrapper of cppHoldPosition
 --- @Description: Hold object at specific position
 --- @param host pointer instance of F_Lua_Boss_Manager
---- @param dynamicObject pointer instance of F_Lua_GenericObject to hold
+--- @param dynob pointer instance of F_Lua_GenericObject to hold
 --- @param time number the time to complete the hold
 --- @param animationName string The name of the animation to play
---- @param isWait boolean If the hold should wait for completion (default true)
+--- @param isWait? boolean(optional) If the hold should wait for completion (default true)
 function W_holdPosition(host,dynob,time,animationName,isWait)
     isWait = isWait or true
     cppHoldPosition(host,dynob,time,animationName,isWait)
@@ -85,6 +99,8 @@ function W_getObjectPos(dynob)
     return cppGetObjectPos(dynob)
 end
 
+
+
 --- wrapper of cppSetObjectVel
 --- @Description: Set the velocity of the object
 --- @param dynob pointer instance of F_Lua_GenericObject
@@ -116,9 +132,9 @@ end
 --- @param dynob pointer instance of F_Lua_GenericObject
 --- @param animationName string The name of the animation to play
 --- @param time number The time to play the animation
---- @param isWait boolean If the animation should wait for completion (default true)
---- @param isOverride boolean If the animation should override the current animation (default false)
---- @param playSpeed number The speed of the animation (default 1.0)
+--- @param isWait? boolean (optional) If the animation should wait for completion (default true)
+--- @param isOverride? boolean (optional) If the animation should override the current animation (default false)
+--- @param playSpeed? number (optional) The speed of the animation (default 1.0)
 function W_playAnimation(dynob,animationName,time,isWait,isOverride,playSpeed)
     isWait = isWait or true
     isOverride = isOverride or false
@@ -142,34 +158,60 @@ end
 
 -- MARK: Fire
 
---- wrapper of cppSetFire_Type1
+--- wrapper of cppSetFire_Type1 (total parameters : 20)
 ---@Description: Set the fire of the object
----@param host (1) pointer instance of F_Lua_Boss_Manager
----@param dynob (2) pointer instance of F_Lua_GenericObject
----@param asset (3) string asset (sprite/animation) of the fire
----@param speed (4) number speed of the bullet
----@param lifeTime (5) number lifetime of the bullet (to clean up)
----@param arcType (6) number Arc type : 1(hypocycloid) | 2(hypotrochoid) | 3(custom1) | 4(custom2) | 5(epicycloid) 
----@param a (7) number The a factor
----@param b (8) number The b factor
----@param c (9) number The c factor
----@param d (10) number The d factor
----@param r (11) number The r factor (radius)
----@param angleStep (12) number The increament value for each bullet fires
----@param startAngle (13) number The first angle will start the fire
----@param rotation (14) number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time)
----@param interval (15) number the interval between each bullet
----@param count (16) number number of the bullets
----@param evenTime (17) number The time to trigger the event 
----@param id (18) (optional) number The id of the bullets which are needed for "bullet manipulator" 
----@param eventName (19) (optional) string The name of event which will trigger (this is not "bullet manipulator")
----@param isWait (20) (optional) boolean If the fire should wait for completion (default true)
-function W_F_fireType1(host,dynob,asset,speed,lifeTime,a,b,c,r,angleStep,startAngle,rotation,interval,count,eventTime,id,eventName,isWait)
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param arcType number Arc type : |1(hypocycloid) | 2(hypotrochoid) | 3(custom1) | 4(custom2) | 5(epicycloid)| (6)
+---@param a number The a factor (7)
+---@param b number The b factor (8)
+---@param c number The c factor (9)
+---@param d number The d factor (10)
+---@param r number The radius factor (11)
+---@param angleStep number The increament value for each bullet fires (12)
+---@param startAngle number The first angle will start the fire (13)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (14)
+---@param interval number the interval between each bullet (15)
+---@param count number number of the bullets (16)
+---@param eventTime number The time to trigger the event  (17)
+---@param id? number (optional) The id of the bullets which are needed for "bullet manipulator"  (18)
+---@param eventName? string (optional) The name of event which will trigger (this is not "bullet manipulator") (19)
+---@param isWait? boolean (optional) If the fire should wait for completion (default true) (20)
+function W_F_fireType1(host,dynob,asset,speed,lifeTime,
+    arcType,a,b,
+    c,d ,r,
+    angleStep,startAngle,rotation,
+    interval,count,eventTime,
+    id,eventName,isWait)
 
     id = id or 0
     eventName = eventName or ""
     isWait = isWait or true
-    cppSetFire_Type1(host,dynob,asset,speed,lifeTime,1,a,b,c,r,angleStep,startAngle,rotation,interval,count,eventTime,id,eventName,isWait)
+
+    cppSetFire_Type1(host   -- 1
+    ,dynob                  -- 2
+    ,asset                  -- 3 
+    ,speed                  -- 4
+    ,lifeTime               -- 5
+    ,arcType                -- 6 
+    ,a                      -- 7
+    ,b                      -- 8
+    ,c                      -- 9
+    ,d                      -- 10
+    ,r                      -- 11
+    ,angleStep              -- 12 
+    ,startAngle             -- 13
+    ,rotation               -- 14
+    ,interval               -- 15
+    ,count                  -- 16
+    ,eventTime              -- 17
+    ,id                     -- 18
+    ,eventName              -- 19
+    ,isWait                 -- 20
+    )
 end
 
 --- wrapper of cppSetFire_TypePE
@@ -224,17 +266,17 @@ end
 
 --- wrapper of cppSetFire_Base
 ---@Description: Set the base fire
----@param host (1) pointer instance of F_Lua_Boss_Manager
----@param dynob (2) pointer instance of F_Lua_GenericObject
----@param asset (3) string asset (sprite/animation) of the fire
----@param speed (4) number speed of the bullet
----@param lifeTime (5) number lifetime of the bullet (to clean up)
----@param x (6) number The x position of the object
----@param y (7) number The y position of the object
----@param currentAngle (8) number The current angle of the object
----@param time (9) number The time to trigger the event
----@param id (10) (optional) number The id of the bullets which are needed for "bullet manipulator"
----@param eventName (11) (optional) string The name of event which will trigger (this is not "bullet manipulator")
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param x number The x position of the object (6)
+---@param y number The y position of the object (7)
+---@param currentAngle number The current angle of the object (8)
+---@param time number The time to trigger the event (9)
+---@param id? number (optional) The id of the bullets which are needed for "bullet manipulator" (10)
+---@param eventName? string (optional) The name of event which will trigger (this is not "bullet manipulator") (11)
 function W_F_fireBase(host,dynob,asset,speed,lifeTime,x,y,currentAngle,time,id,eventName)
     id = id or 0
     eventName = eventName or ""
@@ -243,9 +285,9 @@ end
 
 --- wrapper of cppSetBulletEvent
 ---@Description: Set the bullets that has certain ID to act to an event by name
----@param host (1) pointer instance of F_Lua_Boss_Manager
----@param id (2) number The id of the bullet
----@param eventName (3) string The name of event
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param id number The id of the bullet (2)
+---@param eventName string The name of event (3)
 function W_setBulletEvent(host,id,eventName)
     cppSetBulletEvent(host,id,eventName)
 end
