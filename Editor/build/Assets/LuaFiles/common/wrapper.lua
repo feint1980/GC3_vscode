@@ -216,48 +216,68 @@ end
 
 --- wrapper of cppSetFire_TypePE
 ---@Description: Set the fire of the object using polar equation
----@param host (1) pointer instance of F_Lua_Boss_Manager
----@param dynob (2) pointer instance of F_Lua_GenericObject
----@param asset (3) string asset (sprite/animation) of the fire
----@param speed (4) number speed of the bullet
----@param lifeTime (5) number lifetime of the bullet (to clean up)
----@param peType (6) number Arc type : 1(sin) | 2(cos) 
----@param startRange (7) number The start range of the object
----@param rangeCover (8) number The end range of the fire
----@param angleStep (9) number The increament value for each bullet fires
----@param startAngle (10) number The first angle will start the fire
----@param petalCount (11) number The number of petal
----@param interval (12) number the interval between each bullet
----@param rotatePoint (13) number The point to rotate
----@param count (14) number number of the bullets
----@param time (15) number The time to trigger the event 
----@param isWait (16) (optional) boolean If the fire should wait for completion (default true)
-function W_F_fireTypePE(host,dynob,asset,speed,lifeTime,peType,startRange,rangeCover,angleStep,startAngle,petalCount,interval,rotatePoint,count,time,isWait)
-    
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param peType number Arc type : |1(sin)|2(cos)| (6)
+---@param startRange number The start range of the object (7)
+---@param rangeCover number The end range of the fire (8)
+---@param angleStep number The increament value for each bullet fires (9)
+---@param startAngle number The first angle will start the fire (10)
+---@param petalCount number The number of petal (11)
+---@param interval number the interval between each bullet (12)
+---@param rotatePoint number The point to rotate (13)
+---@param count number number of the bullets (14)
+---@param time number The time to trigger the event  (15)
+---@param isWait? boolean (optional) If the fire should wait for completion (default true) (16)
+function W_F_fireTypePE(host,dynob,asset,speed,
+    lifeTime,peType,startRange,rangeCover,angleStep,
+    startAngle,petalCount,interval,rotatePoint,
+    count,time,isWait)
     isWait = isWait or true
-    cppSetFire_TypePE(host,dynob,asset,speed,lifeTime,peType,startRange,rangeCover,angleStep,startAngle,petalCount,interval,rotatePoint,count,time,isWait)
+    cppSetFire_TypePE(host  -- host
+    ,dynob                  -- dynob
+    ,asset                  -- asset
+    ,speed                  -- speed
+    ,lifeTime               -- lifeTime
+    ,peType                 -- peType
+    ,startRange             -- startRange
+    ,rangeCover             -- rangeCover
+    ,angleStep              -- angleStep
+    ,startAngle             -- startAngle
+    ,petalCount             -- petalCount
+    ,interval               -- interval
+    ,rotatePoint            -- rotatePoint
+    ,count                  -- count
+    ,time                   -- time
+    ,isWait)                -- isWait
 end
 
 --- wrapper of cppSetFire_MA_custom_aff
----@Description: Set the fire of the object using custom affine equation
----@param host (1) pointer instance of F_Lua_Boss_Manager
----@param dynob (2) pointer instance of F_Lua_GenericObject
----@param asset (3) string asset (sprite/animation) of the fire
----@param speed (4) number speed of the bullet
----@param lifeTime (5) number lifetime of the bullet (to clean up)
----@param k (6) number The k factor
----@param n (7) number The n factor
----@param n2 (8) number The n2 factor
----@param l1 (9) number The l1 factor
----@param l2 (10) number The l2 factor
----@param posneg (11) number The posneg factor
----@param startAngle (12) number The first angle will start the fire
----@param angleStep (13) number The increament value for each bullet fires
----@param rotation (14) number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time)
----@param interval (15) number the interval between each bullet
----@param time (16) number The time to trigger the event
----@param isWait (17) (optional) boolean If the fire should wait for completion (default true)
-function W_F_fireTypeMACustom(host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time,isWait)
+---@Description: Set the fire of the object using custom affine equation, total 17(18)parameters 
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param k number The k factor (6)
+---@param n number The n factor (7)
+---@param n2 number The n2 factor (8)
+---@param l1 number The l1 factor (9)
+---@param l2 number The l2 factor (10)
+---@param posneg number The posneg factor (11)
+---@param startAngle number The first angle will start the fire (12)
+---@param angleStep number The increament value for each bullet fires (13)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (14)
+---@param interval number the interval between each bullet (15)
+---@param time number The time to trigger the event (16)
+---@param isWait? boolean (optional) If the fire should wait for completion (default true) (17)
+function W_F_fireTypeMACustom(host,dynob,asset,speed,
+    lifeTime,k,n,n2,l1,l2
+    ,posneg,startAngle,angleStep,rotation,interval
+    ,time,isWait)
 
     isWait = isWait or true
     cppSetFire_MA_custom_aff(host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time,isWait)
@@ -294,15 +314,14 @@ end
 
 --- wrapper of cppAddBulletManipulatorPatern
 ---@Description: set bullets with certain ID to be manipulated
----@param host (1) pointer instance of F_Lua_Boss_Manager
----@param xNode (2) number The x position of the object
----@param yNode (3) number The y position of the object
----@param radius (4) number The radius of the object
----@param tableName (5) string table name of the fire
----@param type (6) number type of the fire
----@param id (7) number The id of the bullets which are needed for "bullet manipulator"
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param xNode number The x position of the object (2)
+---@param yNode number The y position of the object (3)
+---@param radius number The radius of the object (4)
+---@param tableName string table name of the fire (5)
+---@param type number type of the fire (6)
+---@param id number The id of the bullets which are needed for "bullet manipulator" (7)
 function W_manipulate(host,xNode,yNode,radius,tableName,type,id)
-
     cppAddBulletManipulatorPatern(host,xNode,yNode,radius,tableName,type,id)
 end
 
@@ -310,78 +329,83 @@ end
 
 --- wrapper of cppSetFire_KomachiCoin
 ---@Description: Set the fire of the object
----@param host (1) pointer instance of F_Lua_Boss_Manager
----@param dynob (2) pointer instance of F_Lua_GenericObject
----@param tableName (3) string table name of the fire
----@param table (4) string table name of the fire
----@param tier (5) number tier of the fire
----@param speed (6) number speed of the bullet
----@param lifeTime (7) number lifetime of the bullet (to clean up)
----@param x (8) number The x position of the object
----@param y (9) number The y position of the object
----@param currentAngle (10) number The current angle of the object
----@param time (11) number The time to trigger the event
-function W_Komachi_fireCoin(host,dynob,tableName,table,tier,speed,lifeTime,x,y,currentAngle,time)
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param tableName string table name of the fire (3)
+---@param table string table name of the fire (4)
+---@param tier number tier of the fire (5)
+---@param speed number speed of the bullet (6)
+---@param lifeTime number lifetime of the bullet (to clean up) (7)
+---@param x number The x position of the object (8)
+---@param y number The y position of the object (9)
+---@param currentAngle number The current angle of the object (10)
+---@param time number The time to trigger the event (11)
+function W_Komachi_fireCoin(host,dynob,tableName,table,
+    tier,speed,lifeTime,x,
+    y,currentAngle,time)
     cppSetFire_KomachiCoin(host,dynob,tableName,table,tier,speed,lifeTime,x,y,currentAngle,time)
 end
 
 --- wrapper of cppKomachi_summon_pillar
 ---@Description: Summon the flame pillar
----@param host (1) pointer instance of F_Lua_Boss_Manager
----@param dynob (2) pointer instance of F_Lua_GenericObject
----@param asset1 (3) string asset (sprite/animation) of the fire 1
----@param asset2 (4) string asset (sprite/animation) of the fire 2
----@param x (5) number The x position of the object
----@param y (6) number The y position of the object
----@param dimX (7) number The x dimension of the object
----@param dimY (8) number The y dimension of the object
----@param r (9) number The color red of the object
----@param g (10) number The color green of the object
----@param b (11) number The color blue of the object
----@param a (12) number The color alpha of the object
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset1 string asset (sprite/animation) of the fire 1 (3)
+---@param asset2 string asset (sprite/animation) of the fire 2 (4)
+---@param x number The x position of the object (5)
+---@param y number The y position of the object (6)
+---@param dimX number The x dimension of the object (7)
+---@param dimY number The y dimension of the object (8)
+---@param r number The color red of the object (9)
+---@param g number The color green of the object (10)
+---@param b number The color blue of the object (11)
+---@param a number The color alpha of the object (12)
 ---@return pointer instance of created F_Komachi_pillar
-function W_Komachi_summonPillar(host,dynob,asset1,asset2,x,y,dimX,dimY,r,g,b,a)
+function W_Komachi_summonPillar(host,dynob,asset1,asset2,
+    x,y,dimX,dimY,
+    r,g,b,a)
     return cppKomachi_summon_pillar(host,dynob,asset1,asset2,x,y,dimX,dimY,r,g,b,a)
 end
 
 --- wrapper of cppKomachi_pillar_expand
 ---@Description: Expand the flame pillar
----@param pillar (1) pointer instance of F_Komachi_pillar
----@param dimX (2) number The x dimension of the object
----@param dimY (3) number The y dimension of the object
----@param time (4) number The the total time to expand or shrink from original dimension to new dimension
+---@param pillar pointer instance of F_Komachi_pillar (1)
+---@param dimX number The x dimension of the object (2)
+---@param dimY number The y dimension of the object (3)
+---@param time number The the total time to expand or shrink from original dimension to new dimension (4)
 function W_Komachi_pillarExpand(pillar,dimX,dimY,time)
     cppKomachi_pillar_expand(pillar,dimX,dimY,time)
 end
 
 --- wrapper of cppKomachi_pillar_move
 ---@Description: Move the flame pillar
----@param pillar (1) pointer instance of F_Komachi_pillar
----@param x (2) number The x position of the object
----@param y (3) number The y position of the object
----@param time (4) number The the total time to move from original position to new position
+---@param pillar pointer instance of F_Komachi_pillar (1)
+---@param x number The x position of the object (2)
+---@param y number The y position of the object (3)
+---@param time number The the total time to move from original position to new position (4)
 function W_Komachi_pillarMove(pillar,x,y,time)
     cppKomachi_pillar_move(pillar,x,y,time)
 end
 
 --- wrapper of cppKomachi_pillar_setColor
 ---@Description: Set the color of the flame pillar
----@param pillar (1) pointer instance of F_Komachi_pillar
----@param r (2) number The color red of the object
----@param g (3) number The color green of the object
----@param b (4) number The color blue of the object
----@param a (5) number The color alpha of the object
----@param time (6) number The the total time to change from original color to new color
-function W_Komachi_pillar_setColor(pillar,r,g,b,a,time)
+---@param pillar pointer instance of F_Komachi_pillar (1)
+---@param r number The color red of the object (2)
+---@param g number The color green of the object (3)
+---@param b number The color blue of the object (4)
+---@param a number The color alpha of the object (5)
+---@param time number The the total time to change from original color to new color (6)
+function W_Komachi_pillar_setColor(pillar,r,g,
+    b,a,time)
     cppKomachi_pillar_setColor(pillar,r,g,b,a,time)
 end
 
 
 --- wrapper of cppKomachi_pillar_setFlashEffect 
 ---@Description: Set the flash effect of the flame pillar
----@param pillar (1) pointer instance of F_Komachi_pillar
----@param time (2) number The the total time to flash the pillar
----@param freq (3) number The frequency of the flash
+---@param pillar pointer instance of F_Komachi_pillar (1)
+---@param time number The the total time to flash the pillar (2)
+---@param freq number The frequency of the flash (3)
 function W_Komachi_set_pillar_flash(pillar,time,freq)
 
     cppKomachi_pillar_setFlashEffect(pillar,time,freq)
@@ -389,38 +413,38 @@ end
 
 -- wrapper of cppKomachi_pillar_setLightEffect
 ---@Description: Set the light effect of the flame pillar
----@param pillar (1) pointer instance of F_Komachi_pillar
----@param r (2) number The color red of the object
----@param g (3) number The color green of the object
----@param b (4) number The color blue of the object
----@param a (5) number The color alpha of the object
----@param x (6) number The x attenuation of the light
----@param y (7) number The y attenuation of the light
----@param z (8) number The z attenuation of the light
----@param time (9) number The the total time to change from original color to new color
+---@param pillar pointer instance of F_Komachi_pillar (1)
+---@param r number The color red of the object (2)
+---@param g number The color green of the object (3)
+---@param b number The color blue of the object (4)
+---@param a number The color alpha of the object (5)
+---@param x number The x attenuation of the light (6)
+---@param y number The y attenuation of the light (7)
+---@param z number The z attenuation of the light (8)
+---@param time number The the total time to change from original color to new color (9)
 function W_Komachi_set_pillar_light(pillar,r,g,b,a,x,y,z,time)
     cppKomachi_pillar_setLightEffect(pillar,r,g,b,a,x,y,z,time)
 end
 
 --- wrapper of cppKomachi_pillar_setLightAttenuation
 ---@Description: Set the light attenuation of the flame pillar
----@param pillar (1) pointer instance of F_Komachi_pillar
----@param x (2) number The x position of the object
----@param y (3) number The y position of the object
----@param z (4) number The z position of the object
----@param time (5) number The the total time to change from original color to new color
+---@param pillar pointer instance of F_Komachi_pillar (1)
+---@param x number The x position of the object (2)
+---@param y number The y position of the object (3)
+---@param z number The z position of the object (4)
+---@param time number The the total time to change from original color to new color (5)
 function  W_Komachi_set_pillar_light_attenuation(pillar,x,y,z,time)
     cppKomachi_pillar_setLightAttenuation(pillar,x,y,z,time)
 end
 
 --- wrapper of cppKomachi_pillar_setLightColor
 ---@Description: Set the light color of the flame pillar
----@param pillar (1) pointer instance of F_Komachi_pillar
----@param r (2) number The color red of the object
----@param g (3) number The color green of the object
----@param b (4) number The color blue of the object
----@param a (5) number The color alpha of the object
----@param time (6) number The the total time to change from original color to new color
+---@param pillar pointer instance of F_Komachi_pillar (1)
+---@param r number The color red of the object (2)
+---@param g number The color green of the object (3)
+---@param b number The color blue of the object (4)
+---@param a number The color alpha of the object (5)
+---@param time number The the total time to change from original color to new color (6)
 function W_Komachi_set_pillar_color(pillar,r,g,b,a,time)
     cppKomachi_pillar_setLightColor(pillar,r,g,b,a,time)
 end

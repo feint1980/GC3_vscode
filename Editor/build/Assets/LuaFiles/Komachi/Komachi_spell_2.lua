@@ -2,7 +2,7 @@ package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/L
 
 bc =  require("./Assets/Luafiles/common/boss_common")
 
--- Belong to moveset_normal_4
+-- Belong to moveset_normal_2
 function DynamicBehavior2(host,dynob)
     local count = 2
     local xthresHold = 175
@@ -137,7 +137,6 @@ function spell_2_behavior(host,dynob)
         coroutine.yield()
         W_holdPosition(host,dynob,15,"charge_end",true)
         coroutine.yield()
-        --W_holdPosition(host,dynob,20,"charge_end",true)
 
         if(reach_right) then
             if (x_index == 0) then

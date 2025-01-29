@@ -37,7 +37,7 @@ function  DynamicBehavior1( host, dynob )
 
         local total_line = 12
         for i = 0, total_line do
-            bc.patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
+            Patern_Feint_custom1(host,dynob,"projectile/bullet_shard_blue.png",
             2.5, -- speed
             10.0, -- lifeTime
             4,   -- a

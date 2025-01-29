@@ -13,13 +13,12 @@ function DynamicBehavior3_normal(host,dynob)
     local t_xPos = 1
     while true do
 
-        cppMoveObject(host,dynob,t_xPos,150,20)
+        W_moveObject(host,dynob,t_xPos,150,20)
         t_xPos = t_xPos * -1
         coroutine.yield()
-        cppHoldPosition(host,dynob,10,"charging")
-
+        W_holdPosition(host,dynob,10,"charging")
         coroutine.yield()
-        cppHoldPosition(host,dynob,80,"charge_end")
+        W_holdPosition(host,dynob,80,"charge_end")
         for angle_count = 1, 5 do
             Patern_MA_hypocycloid(host,dynob,"projectile/bullet_shard_white.png",
             0.65, -- speed
@@ -41,11 +40,11 @@ function DynamicBehavior3_normal(host,dynob)
         for i = 1, 3 do
             x_index = math.random( -2,2 )
             y_index = math.random( 1,2 )
-            cppMoveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,40)
+            W_moveObject(host,dynob,x_index * x_pos_threshold,y_pos_threshold * y_index,40)
             coroutine.yield()
-            cppHoldPosition(host,dynob,10,"charging")
+            W_holdPosition(host,dynob,10,"charging")
             coroutine.yield()
-            cppHoldPosition(host,dynob,300,"charge_end")
+            W_holdPosition(host,dynob,300,"charge_end")
             for angle_count = 1, 4 do
                 Patern_MA_hypotrochoid(host,dynob
                 ,"projectile/bullet_shard_blue.png",
@@ -80,25 +79,22 @@ function DynamicBehavior3_normal(host,dynob)
                 coroutine.yield()
             end
             coroutine.yield()
-            cppHoldPosition(host,dynob,1,"charge_end",false)
+            W_holdPosition(host,dynob,1,"charge_end",false)
             coroutine.yield()
-            
         end
     end
 end
 
 function DynamicBehavior3(host,dynob)
-
-
-   
     while true do
-        cppMoveObject(host,dynob,0,150,20)
+        W_moveObject(host,dynob,0,150,20)
         coroutine.yield()
-        -- t_xPos = t_xPos * -1
-        cppHoldPosition(host,dynob,100,"charging")
-        cppObjectSetChargingEffect(dynob,"Komachi_charge_table",Komachi_charge_table,100,250,120,9.5,15.5)
+        W_holdPosition(host,dynob,100,"charging")
+        W_setObjectCharging(dynob,"Komachi_charge_table",Komachi_charge_table
+        ,100,250,120,
+        9.5,15.5)
         coroutine.yield()
-        cppHoldPosition(host,dynob,750,"charge_end")
+        W_holdPosition(host,dynob,750,"charge_end")
         bc.ftest_ma_custom_aff2(host,dynob,
         "projectile/knife_red.png",
         0.85,    -- speed

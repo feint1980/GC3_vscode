@@ -141,79 +141,14 @@ end
 ---@param interval number the interval between each bullet (13)
 ---@param count number number of the bullets (14)
 ---@param eventTime number The time to trigger the event  (15)
----@param idle number (optional) The id of the bullets which are needed for "bullet manipulator" (16)
----@param eventName? string (optional) The name of event which will trigger (this is not "bullet manipulator") (17) 
-M.patern_MA_hypotrochoid= function (host, dynob, asset, speed, lifeTime, a, b,c, r,angleStep,startAngle, rotation,interval,count, eventTime,id,eventName) 
-	id = id or 0
-	eventName = eventName or ""
-	cppSetFire_Type1(host, 	-- host
-	dynob, 					-- dynob
-	asset, 					-- asset
-	speed, 					-- speed
-	lifeTime, 				-- lifeTime
-	2, 						-- 2 hypotrochoid
-	a, 						-- a factor
-	b, 						-- b factor
-	c, 						-- c factor
-	0, 						-- d factor (unused)
-	r, 						-- r radius
-	angleStep, 				-- angleStep
-	startAngle, 			-- startAngle
-	rotation, 				-- rotation (stupid, fix later)
-	interval, 				-- interval
-	count, 					-- count
-	eventTime, 				-- eventTime (the time to trigger event)
-	id,eventName)
-
-end -- keep for old format
-
-
-
--- function fire in the hypotrochoid pattern
----@Description fire in the hypotrochoid pattern total 15(17) parameters
----@param host pointer instance of F_Lua_Boss_Manager (1)
----@param dynob pointer instance of F_Lua_GenericObject (2)
----@param asset string asset (sprite/animation) of the fire (3)
----@param speed number speed of the bullet (4)patern_MA_hypotrochoid
----@param lifeTime number lifetime of the bullet (to clean up) (5)
----@param a number The a factor (6)
----@param b number The b factor (7)
----@param c number The c factor (8)
----@param r number The r factor (radius) (9)
----@param angleStep number The increament value for each bullet fires (10)
----@param startAngle number The first angle will start the fire (11)
----@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (12)
----@param interval number the interval between each bullet (13)
----@param count number number of the bullets (14)
----@param eventTime number The time to trigger the event  (15)
 ---@param id? number (optional) The id of the bullets which are needed for "bullet manipulator" (16)
 ---@param eventName? string (optional) The name of event which will trigger (this is not "bullet manipulator") (17) 
 function Patern_MA_hypotrochoid(host, dynob, asset, speed, lifeTime,
-	 a, b,c, r,angleStep,
-	 startAngle, rotation,interval,count,
-	  eventTime,id,eventName)
+	a, b,c, r,angleStep,
+	startAngle, rotation,interval,count,
+	eventTime,id,eventName)
 	id = id or 0
 	eventName = eventName or ""
-
-
-	-- cppSetFire_Type1(host, 	-- host
-	-- dynob, 					-- dynob
-	-- asset, 					-- asset
-	-- speed, 					-- speed
-	-- lifeTime, 				-- lifeTime
-	-- 2, 						-- 2 hypotrochoid
-	-- a, 						-- a factor
-	-- b, 						-- b factor
-	-- c, 						-- c factor
-	-- 0, 						-- d factor (unused)
-	-- r, 						-- r radius
-	-- angleStep, 				-- angleStep
-	-- startAngle, 			-- startAngle
-	-- rotation, 				-- rotation (stupid, fix later)
-	-- interval, 				-- interval
-	-- count, 					-- count
-	-- eventTime, 				-- eventTime (the time to trigger event)
-	-- id,eventName)
 
 	W_F_fireType1(host, 	-- host
 	dynob, 					-- dynob
@@ -235,73 +170,9 @@ function Patern_MA_hypotrochoid(host, dynob, asset, speed, lifeTime,
 	id,
 	eventName)
 
-
 end
 
 
---- function: Patern_Feint_custom1 fire in the feint custom pattern
----@Description fire in the feint custom pattern total 17(19) parameters
----@param host pointer instance of F_Lua_Boss_Manager (1)
----@param dynob pointer instance of F_Lua_GenericObject (2)
----@param asset string asset (sprite/animation) of the fire (3)
----@param speed number speed of the bullet (3)
----@param lifeTime number lifetime of the bullet (to clean up) (5)
----@param a number The a factor (6)
----@param b number The b factor (7)
----@param c number The c factor (8)
----@param r number The radius factor (9)
----@param angleStep number The increament value for each bullet fires (10)
----@param startAngle number The first angle will start the fire (11)
----@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (12)
----@param interval number the interval between each bullet (13)
----@param count number number of the bullets (14)
----@param eventTime number The time to trigger the event (15)
----@param id number? (optional) The id of the bullets which are needed for "bullet manipulator" (16)
----@param eventName? string (optional) The name of event which will trigger (this is not "bullet manipulator") (17)
-M.patern_Feint_custom1 = function (host, dynob, asset, speed, lifeTime, a, b,c, r,angleStep,startAngle, rotation,interval,count, eventTime,id,eventName)
-	id = id or 0
-	eventName = eventName or ""
-
-	W_F_fireType1(host		-- host (1)
-	, dynob 				-- dynob (2)
-	, asset 				-- asset (3)
-	, speed 				-- speed (4)
-	, lifeTime 				-- lifeTime (5)
-	, 3 					-- arcType (predetermined) (6)
-	, a 					-- a factor (7)
-	, b 					-- b factor (8)
-	, c 					-- c factor (9)
-	, 0 					-- d factor (unused) (10)
-	, r 					-- r radius (11)
-	, angleStep 			-- angleStep (12)
-	, startAngle 			-- startAngle (13)
-	, rotation 				-- rotation (14)
-	, interval 				-- interval (15)
-	, count 				-- count (16)
-	, eventTime 			-- eventTime (17)
-	, id ,eventName) 		-- id and eventName (optional) (18 and 19)
-
-	-- cppSetFire_Type1(host 	-- host	(1)
-	-- ,dynob 					-- dynob (2)
-	-- ,asset 					-- asset (3)
-	-- ,speed 					-- speed (4)
-	-- ,lifeTime 				-- lifeTime (5)
-	-- ,3 						-- arcType (predetermined) (6)
-	-- ,a 						-- a factor (7)
-	-- ,b 						-- b factor (8)
-	-- ,c 						-- c factor (9)
-	-- ,0 						-- d factor (unused) (10)
-	-- ,r 						-- r radius (11)
-	-- ,angleStep 				-- angleStep (12)
-	-- ,startAngle 			-- startAngle (13)
-	-- ,rotation 				-- rotation (14)
-	-- ,interval 				-- interval (15)
-	-- ,count 					-- count (16)
-	-- ,eventTime 				-- eventTime (17)
-	-- ,id,eventName)			-- id and eventName (optional) (18 and 19)
-
-end -- keep for old format
-
 
 --- function: Patern_Feint_custom1 fire in the feint custom pattern
 ---@Description fire in the feint custom pattern total 17(19) parameters
@@ -320,7 +191,7 @@ end -- keep for old format
 ---@param interval number the interval between each bullet (13)
 ---@param count number number of the bullets (14)
 ---@param eventTime number The time to trigger the event (15)
----@param id number? (optional) The id of the bullets which are needed for "bullet manipulator" (16)
+---@param id? number (optional) The id of the bullets which are needed for "bullet manipulator" (16)
 ---@param eventName? string (optional) The name of event which will trigger (this is not "bullet manipulator") (17)
 function Patern_Feint_custom1(host, dynob, asset, speed, lifeTime, a, b,c, r,angleStep,startAngle, rotation,interval,count, eventTime,id,eventName)
 	id = id or 0
@@ -345,41 +216,68 @@ function Patern_Feint_custom1(host, dynob, asset, speed, lifeTime, a, b,c, r,ang
 	, eventTime 			-- eventTime (17)
 	, id ,eventName) 		-- id and eventName (optional) (18 and 19)
 
-	-- cppSetFire_Type1(host 	-- host	(1)
-	-- ,dynob 					-- dynob (2)
-	-- ,asset 					-- asset (3)
-	-- ,speed 					-- speed (4)
-	-- ,lifeTime 				-- lifeTime (5)
-	-- ,3 						-- arcType (predetermined) (6)
-	-- ,a 						-- a factor (7)
-	-- ,b 						-- b factor (8)
-	-- ,c 						-- c factor (9)
-	-- ,0 						-- d factor (unused) (10)
-	-- ,r 						-- r radius (11)
-	-- ,angleStep 				-- angleStep (12)
-	-- ,startAngle 			-- startAngle (13)
-	-- ,rotation 				-- rotation (14)
-	-- ,interval 				-- interval (15)
-	-- ,count 					-- count (16)
-	-- ,eventTime 				-- eventTime (17)
-	-- ,id,eventName)			-- id and eventName (optional) (18 and 19)
-
 end
 
 
 --- function: patern_Feint_custom2 fire in the feint custom pattern (2)
-	
-M.patern_Feint_custom2 = function (host, dynob, asset, speed, lifeTime, a, b,c,d,r,angleStep,startAngle, rotation,interval,count, eventTime, id,eventName )
+---@Description: fire in the feint custom pattern total 16(18) parameters
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param a number The a factor (6)
+---@param b number The b factor (7)
+---@param c number The c factor (8)
+---@param d number The d factor (9)
+---@param r number The radius factor (10)
+---@param angleStep number The increament value for each bullet fires (11)
+---@param startAngle number The first angle will start the fire (12)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (13)
+---@param interval number the interval between each bullet (14)
+---@param count number number of the bullets (15)
+---@param eventTime number The time to trigger the event (16)
+---@param id? number (optional) The id of the bullets which are needed for "bullet manipulator" (17)
+---@param eventName? string (optional) The name of event which will trigger (this is not "bullet manipulator") (18)
+Patern_Feint_custom2 = function (host, dynob, asset, speed,
+	lifeTime, a, b,c,d,
+	r,angleStep,startAngle, rotation,interval,
+	count, eventTime, id,eventName )
 	id = id or 0
 	eventName = eventName or ""
-	cppSetFire_Type1(host,dynob,asset,speed,lifeTime,4,a,b,c,d,r,angleStep,startAngle,rotation,interval,count,eventTime,id,eventName)
+	W_F_fireType1(host,dynob,asset,speed,lifeTime
+	,4,a,b,c,d,r,angleStep
+	,startAngle,rotation,interval
+	,count,eventTime,id,eventName)
 
 end
 
-M.patern_MA_epicycloid =  function (host, dynob, asset, speed, lifeTime, a, b, r,angleStep,startAngle, rotation,interval,count, eventTime,id,eventName) 
+
+--- function: patern_MA_epicycloid fire in the epicycloid pattern (2)
+---@Description: fire in the epicycloid pattern total 16(18) parameters
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param a number The a factor (6)
+---@param b number The b factor (7)
+---@param r number The radius factor (8)
+---@param angleStep number The increament value for each bullet fires (9)
+---@param startAngle number The first angle will start the fire (10)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (11)
+---@param interval number the interval between each bullet (12)
+---@param count number number of the bullets (13)
+---@param eventTime number The time to trigger the event (14)
+---@param id? number (optional) The id of the bullets which are needed for "bullet manipulator" (15)
+---@param eventName? string (optional) The name of event which will trigger (this is not "bullet manipulator") (16)
+Patern_MA_epicycloid =  function (host, dynob, asset, speed, lifeTime,
+	a, b, r,angleStep,startAngle,
+	rotation,interval,count,
+	eventTime,id,eventName) 
 	id = id or 0
 	eventName = eventName or ""
-	cppSetFire_Type1(host, -- host 
+	W_F_fireType1(host, -- host 
 	dynob,                 -- dynob
 	asset,				   -- asset ( animated object / sprite) 
 	speed,                 -- speed
@@ -399,8 +297,30 @@ M.patern_MA_epicycloid =  function (host, dynob, asset, speed, lifeTime, a, b, r
 	id,eventName)
 end
 
-M.patern_PE_Rose_sin = function (host,dynob, asset, speed, lifeTime, startRange, rangeCover, angleStep,startAngle,petalCount,rotation, interval,count, eventTime)
-	cppSetFire_TypePE(host,dynob,asset, speed, lifeTime, 1, startRange, rangeCover, angleStep, startAngle,petalCount,rotation,interval,count,eventTime)
+--- function: Patern_PE_Rose_sin fire in the Rose (sin) pattern (2)
+---@Description: fire in the Rose (sin) pattern 
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param startRange number The start range (6)
+---@param rangeCover number The range cover (7)
+---@param angleStep number The increament value for each bullet fires (8)
+---@param startAngle number The first angle will start the fire (9)
+---@param petalCount number The number of petal (10)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (11)
+---@param interval number the interval between each bullet (12)
+---@param count number number of the bullets (13)
+---@param eventTime number The time to trigger the event (14)
+M.patern_PE_Rose_sin = function (host,dynob, asset,
+	speed, lifeTime, startRange, rangeCover, angleStep,
+	startAngle,petalCount,rotation,
+	interval,count, eventTime)
+	W_F_fireTypePE(host,dynob,asset, speed, lifeTime
+	, 1, startRange, rangeCover, angleStep
+	, startAngle,petalCount,rotation
+	,interval,count,eventTime)
 
 end
 
@@ -435,9 +355,9 @@ M.ftest_ma_custom_aff = function (host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,p
 				do
 					f_angle = f_angle +angleStep
 					for t_n = 0,n
-					do 
-						x = math.cos(f_angle * posneg)
-						y = math.sin(f_angle * posneg)
+					do
+						local x = math.cos(f_angle * posneg)
+						local y = math.sin(f_angle * posneg)
 						f_angle = f_angle + math.rad(360/n)
 
 						--coroutine.create(cppSetFire_Base,host,dynob,asset,speed,lifeTime,x,y,f_angle,time)
