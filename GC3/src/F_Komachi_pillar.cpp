@@ -93,7 +93,6 @@ void F_Komachi_pillar::setUpdateUV(float time, float rate)
     m_updateState |= UPDATE_UV;
 }
 
-
 void F_Komachi_pillar::setColorChange(const Feintgine::Color & targetColor, float time)
 {
     m_targetColor = targetColor;
@@ -106,7 +105,6 @@ void F_Komachi_pillar::setColorChange(const Feintgine::Color & targetColor, floa
 
 }
 
-
 void F_Komachi_pillar::setLight(const glm::vec4 & color, const glm::vec3 & attenuation, float lifeTime)
 {
     std::cout << "cpp setlight called \n";
@@ -114,7 +112,6 @@ void F_Komachi_pillar::setLight(const glm::vec4 & color, const glm::vec3 & atten
     m_attentionua = attenuation;
     m_lightLifetime = lifeTime;
 }
-
 
 void F_Komachi_pillar::setLightColorTarget(const Feintgine::Color & targetColor, float time)
 {
@@ -144,9 +141,9 @@ void F_Komachi_pillar::drawLight(Feintgine::LightBatch & lightBatch)
     if(m_lightLifetime > 0.1f)
     {
         glm::vec2 tPos = m_pos;
-		tPos.y -= 350;
+		tPos.y -= 400;
 		int numberOfLight = 1;
-		t_attentionua = m_attentionua + abs(cos(m_lightLifetime)) * 1.1f;
+		t_attentionua = m_attentionua + abs(cos(m_lightLifetime)) * 1.4f;
         lightBatch.addLight(tPos, glm::vec4(m_lightColor.r, m_lightColor.g, m_lightColor.b, m_lightLifetime),
         glm::vec3(1.0f / t_attentionua.x, 1.0f / t_attentionua.y, 1.0f / t_attentionua.z));
 		lightBatch.addRayLight(tPos, glm::vec4(m_lightColor.r * 0.5f, m_lightColor.g * 0.5f, m_lightColor.b * 0.5f, m_lightLifetime),

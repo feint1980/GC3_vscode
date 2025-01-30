@@ -283,7 +283,6 @@ function W_F_fireTypeMACustom(host,dynob,asset,speed,
     cppSetFire_MA_custom_aff(host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time,isWait)
 end
 
-
 --- wrapper of cppSetFire_Base
 ---@Description: Set the base fire
 ---@param host pointer instance of F_Lua_Boss_Manager (1)
@@ -332,7 +331,7 @@ end
 ---@param host pointer instance of F_Lua_Boss_Manager (1)
 ---@param dynob pointer instance of F_Lua_GenericObject (2)
 ---@param tableName string table name of the fire (3)
----@param table string table name of the fire (4)
+---@param table table table name of the fire (4)
 ---@param tier number tier of the fire (5)
 ---@param speed number speed of the bullet (6)
 ---@param lifeTime number lifetime of the bullet (to clean up) (7)
@@ -406,7 +405,7 @@ end
 ---@param pillar pointer instance of F_Komachi_pillar (1)
 ---@param time number The the total time to flash the pillar (2)
 ---@param freq number The frequency of the flash (3)
-function W_Komachi_set_pillar_flash(pillar,time,freq)
+function W_Komachi_pillar_setFlash(pillar,time,freq)
 
     cppKomachi_pillar_setFlashEffect(pillar,time,freq)
 end
@@ -422,7 +421,7 @@ end
 ---@param y number The y attenuation of the light (7)
 ---@param z number The z attenuation of the light (8)
 ---@param time number The the total time to change from original color to new color (9)
-function W_Komachi_set_pillar_light(pillar,r,g,b,a,x,y,z,time)
+function W_Komachi_pillar_setLight(pillar,r,g,b,a,x,y,z,time)
     cppKomachi_pillar_setLightEffect(pillar,r,g,b,a,x,y,z,time)
 end
 
@@ -433,7 +432,7 @@ end
 ---@param y number The y position of the object (3)
 ---@param z number The z position of the object (4)
 ---@param time number The the total time to change from original color to new color (5)
-function  W_Komachi_set_pillar_light_attenuation(pillar,x,y,z,time)
+function  W_Komachi_pillar_setLightAttenuation(pillar,x,y,z,time)
     cppKomachi_pillar_setLightAttenuation(pillar,x,y,z,time)
 end
 
@@ -445,7 +444,25 @@ end
 ---@param b number The color blue of the object (4)
 ---@param a number The color alpha of the object (5)
 ---@param time number The the total time to change from original color to new color (6)
-function W_Komachi_set_pillar_color(pillar,r,g,b,a,time)
+function W_Komachi_pillar_setLightColor(pillar,r,g,b,a,time)
     cppKomachi_pillar_setLightColor(pillar,r,g,b,a,time)
 end
 
+
+--- wrapper of cppKomachi_pillar_setFrameIndex
+---@Description: Set the frame index of the flame pillar
+---@param pillar pointer instance of F_Komachi_pillar (1)
+---@param index number The index of the frame    
+function W_Komachi_pillar_setFrameIndex(pillar,index) 
+    cppKomachi_pillar_setFrameIndex(pillar,index)
+end
+
+
+--- wrapper of cppKomachi_pillar_setUVUpdate
+---@Description: Set the UV update of the flame pillar
+---@param pillar pointer instance of F_Komachi_pillar (1)
+---@param rate number The UV update rate
+---@param time number the UV update time 
+function W_Komachi_pillar_setUVUpdate(pillar,rate,time)
+    cppKomachi_pillar_setUVUpdate(pillar,rate,time)
+end

@@ -1,8 +1,5 @@
 package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/LuaFiles/Komachi/?.lua'
 
-bc =  require("./Assets/Luafiles/common/boss_common")
-
-
 function DynamicBehavior3_normal(host,dynob)
 
     local x_index = 0
@@ -95,7 +92,7 @@ function DynamicBehavior3(host,dynob)
         9.5,15.5)
         coroutine.yield()
         W_holdPosition(host,dynob,750,"charge_end")
-        bc.ftest_ma_custom_aff2(host,dynob,
+        Ftest_ma_custom_aff2(host,dynob,
         "projectile/knife_red.png",
         0.85,    -- speed
         10.0,   -- lifeTime
@@ -112,7 +109,7 @@ function DynamicBehavior3(host,dynob)
         0,      -- id
         "slowdownCustomF2")      -- event)
 
-        bc.ftest_ma_custom_aff2(host,dynob,
+        Ftest_ma_custom_aff2(host,dynob,
         "projectile/knife_yellow.png",
         0.85,    -- speed
         10.0,   -- lifeTime
@@ -129,8 +126,7 @@ function DynamicBehavior3(host,dynob)
         0,      -- id
         "slowdownCustomF2")      -- event)
 
-
-        bc.ftest_ma_custom_aff2(host,dynob,
+        Ftest_ma_custom_aff2(host,dynob,
         "projectile/bullet_shard_blue.png",
         0.85,    -- speed
         10.0,   -- lifeTime
@@ -147,7 +143,7 @@ function DynamicBehavior3(host,dynob)
         0,      -- id
         "slowdownCustomF3")      -- event)
 
-        bc.ftest_ma_custom_aff2(host,dynob,
+        Ftest_ma_custom_aff2(host,dynob,
         "projectile/bullet_shard_yellow.png",
         0.85,    -- speed
         10.0,   -- lifeTime

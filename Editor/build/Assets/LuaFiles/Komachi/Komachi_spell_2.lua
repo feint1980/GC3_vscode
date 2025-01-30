@@ -39,7 +39,7 @@ function DynamicBehavior2(host,dynob)
         W_holdPosition(host,dynob,10,"charging")
         coroutine.yield()
         W_holdPosition(host,dynob,200,"charge_end")
-        bc.ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
+        Ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
         1, -- tier
         1.7, -- speed
         10.0,  -- lifeTime
@@ -170,7 +170,7 @@ function spell_2_behavior(host,dynob)
                 W_holdPosition(host,dynob,80,"charging")
                 coroutine.yield()
 
-                bc.ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
+                Ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
                 1, -- tier
                 1.4, -- speed
                 10.0,  -- lifeTime
@@ -186,7 +186,7 @@ function spell_2_behavior(host,dynob)
                 12,     -- interval
                 1)     -- time
 
-                bc.ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
+                Ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
                 0, -- tier
                 1.6, -- speed
                 10.0,  -- lifeTime

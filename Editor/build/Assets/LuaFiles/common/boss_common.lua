@@ -172,8 +172,6 @@ function Patern_MA_hypotrochoid(host, dynob, asset, speed, lifeTime,
 
 end
 
-
-
 --- function: Patern_Feint_custom1 fire in the feint custom pattern
 ---@Description fire in the feint custom pattern total 17(19) parameters
 ---@param host pointer instance of F_Lua_Boss_Manager (1)
@@ -252,7 +250,6 @@ Patern_Feint_custom2 = function (host, dynob, asset, speed,
 
 end
 
-
 --- function: patern_MA_epicycloid fire in the epicycloid pattern (2)
 ---@Description: fire in the epicycloid pattern total 16(18) parameters
 ---@param host pointer instance of F_Lua_Boss_Manager (1)
@@ -271,7 +268,7 @@ end
 ---@param eventTime number The time to trigger the event (14)
 ---@param id? number (optional) The id of the bullets which are needed for "bullet manipulator" (15)
 ---@param eventName? string (optional) The name of event which will trigger (this is not "bullet manipulator") (16)
-Patern_MA_epicycloid =  function (host, dynob, asset, speed, lifeTime,
+function Patern_MA_epicycloid(host, dynob, asset, speed, lifeTime,
 	a, b, r,angleStep,startAngle,
 	rotation,interval,count,
 	eventTime,id,eventName) 
@@ -324,24 +321,167 @@ M.patern_PE_Rose_sin = function (host,dynob, asset,
 
 end
 
+--- function: Patern_PE_Rose_sin fire in the Rose (sin) pattern
+---@Description: fire in the Rose (sin) pattern 
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param startRange number The start range (6)
+---@param rangeCover number The range cover (7)
+---@param angleStep number The increament value for each bullet fires (8)
+---@param startAngle number The first angle will start the fire (9)
+---@param petalCount number The number of petal (10)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (11)
+---@param interval number the interval between each bullet (12)
+---@param count number number of the bullets (13)
+---@param eventTime number The time to trigger the event (14)
+function Patern_PE_Rose_sin(host,dynob, asset,
+	speed, lifeTime, startRange, rangeCover, angleStep,
+	startAngle,petalCount,rotation,
+	interval,count, eventTime)
+	W_F_fireTypePE(host,dynob,asset, speed, lifeTime
+	, 1, startRange, rangeCover, angleStep
+	, startAngle,petalCount,rotation
+	,interval,count,eventTime)
+end
 
-M.patern_PE_Rose_cos = function (host,dynob, asset, speed, lifeTime, startRange, rangeCover, angleStep,startAngle,petalCount,rotation, interval,count, eventTime)
-	cppSetFire_TypePE(host,dynob,asset, speed, lifeTime, 2, startRange, rangeCover, angleStep, startAngle,petalCount,rotation,interval,count,eventTime)
+--- funtion: patern_PE_Rose_cos fire in the Rose (cos) pattern
+---@Description: fire in the Rose (cos) pattern
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param startRange number The start range (6)
+---@param rangeCover number The range cover (7)
+---@param angleStep number The increament value for each bullet fires (8)
+---@param startAngle number The first angle will start the fire (9)
+---@param petalCount number The number of petal (10)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (11)
+---@param interval number the interval between each bullet (12)
+---@param count number number of the bullets (13)
+---@param eventTime number The time to trigger the event (14)
+M.patern_PE_Rose_cos = function (host,dynob, asset, speed, lifeTime,
+	startRange, rangeCover, angleStep,startAngle,petalCount,
+	rotation, interval,count, eventTime)
+	W_F_fireTypePE(host,dynob,asset, speed,
+	lifeTime, 2, startRange,
+	rangeCover, angleStep, startAngle
+	,petalCount,rotation,interval
+	,count,eventTime)
+end
 
+--- funtion: Patern_PE_Rose_cos fire in the Rose (cos) pattern
+---@Description: fire in the Rose (cos) pattern total 14 parameters
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param startRange number The start range (6)
+---@param rangeCover number The range cover (7)
+---@param angleStep number The increament value for each bullet fires (8)
+---@param startAngle number The first angle will start the fire (9)
+---@param petalCount number The number of petal (10)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (11)
+---@param interval number the interval between each bullet (12)
+---@param count number number of the bullets (13)
+---@param eventTime number The time to trigger the event (14)
+function Patern_PE_Rose_cos(host,dynob, asset, speed, lifeTime,
+	startRange, rangeCover, angleStep,startAngle,petalCount,
+	rotation, interval,count, eventTime)
+	W_F_fireTypePE(host,dynob,asset, speed,
+	lifeTime, 2, startRange,
+	rangeCover, angleStep, startAngle
+	,petalCount,rotation,interval
+	,count,eventTime)
+end
+
+--- function: patern_PE_circle fire in the circle pattern
+---@Description: fire in the circle pattern 
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param startRange number The start range (6)
+---@param rangeCover number The range cover (7)
+---@param angleStep number The increament value for each bullet fires (8)
+---@param startAngle number The first angle will start the fire (9)
+---@param petalCount number The number of petal (10)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (11)
+---@param interval number the interval between each bullet (12)
+---@param count number number of the bullets (13)
+---@param eventTime number The time to trigger the event (14)
+M.patern_PE_circle = function (host,dynob, asset, 
+	speed, lifeTime, startRange, rangeCover,
+	angleStep,startAngle,petalCount,rotation,
+	interval,count, eventTime)
+	W_F_fireTypePE(host,dynob,asset, speed,
+	lifeTime, 3, startRange, 
+	rangeCover, angleStep, startAngle,
+	petalCount,rotation,interval,count,eventTime)
+end
+
+--- function: Patern_PE_circle fire in the circle pattern
+---@Description: fire in the circle pattern 
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param startRange number The start range (6)
+---@param rangeCover number The range cover (7)
+---@param angleStep number The increament value for each bullet fires (8)
+---@param startAngle number The first angle will start the fire (9)
+---@param petalCount number The number of petal (10)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (11)
+---@param interval number the interval between each bullet (12)
+---@param count number number of the bullets (13)
+---@param eventTime number The time to trigger the event (14)
+function Patern_PE_circle(host,dynob, asset, 
+	speed, lifeTime, startRange, rangeCover,
+	angleStep,startAngle,petalCount,rotation,
+	interval,count, eventTime)
+	W_F_fireTypePE(host,dynob,asset, speed,
+	lifeTime, 3, startRange, 
+	rangeCover, angleStep, startAngle,
+	petalCount,rotation,interval,count,eventTime)
 end
 
 
-M.patern_PE_circle = function (host,dynob, asset, speed, lifeTime, startRange, rangeCover, angleStep,startAngle,petalCount,rotation, interval,count, eventTime)
-	cppSetFire_TypePE(host,dynob,asset, speed, lifeTime, 3, startRange, rangeCover, angleStep, startAngle,petalCount,rotation,interval,count,eventTime)
-
-end
-
-
-M.ftest_ma_custom_aff = function (host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time,id,eventName)
+--- function: ftest_ma_custom_aff fire in the circle pattern
+---@Description: fire in the ma custom aff pattern
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param k number The number of k (6)
+---@param n number The number of n (7)
+---@param n2 number The number of n2 (8)
+---@param l1 number The number of l1 (9)
+---@param l2 number The number of l2 (10)
+---@param posneg number The number of posneg (11)
+---@param startAngle number The first angle will start the fire (12)
+---@param angleStep number The increament value for each bullet fires (13)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (14)
+---@param interval number the interval between each bullet (15)
+---@param time number number of the bullets (16)
+---@param id number number of the bullets (17)
+---@param eventName string The name of event which will trigger (this is not "bullet manipulator") (18)
+M.ftest_ma_custom_aff = function (host,dynob,asset,speed,
+	lifeTime,k,n,n2,l1,
+	l2,posneg,startAngle,angleStep,
+	rotation,interval,time,id,eventName)
 	local f_angle = startAngle 
 	local f_count = 0;
 	id = id or 0
 	eventName = eventName or ""
+
+	-- rotation unused
 	for t_k = 0,k
 	do
 	f_angle = f_angle +angleStep
@@ -359,9 +499,9 @@ M.ftest_ma_custom_aff = function (host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,p
 						local x = math.cos(f_angle * posneg)
 						local y = math.sin(f_angle * posneg)
 						f_angle = f_angle + math.rad(360/n)
-
-						--coroutine.create(cppSetFire_Base,host,dynob,asset,speed,lifeTime,x,y,f_angle,time)
-						cppSetFire_Base(host,dynob,asset,speed,lifeTime,x,y,f_angle,time + (interval  * f_count),id,eventName)
+						W_F_fireBase(host,dynob,asset,speed
+						,lifeTime,x,y,f_angle
+						,time + (interval  * f_count),id,eventName)
 						f_count = f_count + 1
 					end -- n
 				end -- n2
@@ -370,9 +510,95 @@ M.ftest_ma_custom_aff = function (host,dynob,asset,speed,lifeTime,k,n,n2,l1,l2,p
 	end -- k
 end
 
-M.ftest_ma_custom_coin = function (host,dynob,tableName,tableAssets,tier,speed,lifeTime,k,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time)
+--- function: Ftest_ma_custom_aff fire in the circle pattern
+---@Description: fire in the ma custom aff pattern
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param asset string asset (sprite/animation) of the fire (3)
+---@param speed number speed of the bullet (4)
+---@param lifeTime number lifetime of the bullet (to clean up) (5)
+---@param k number The number of k (6)
+---@param n number The number of n (7)
+---@param n2 number The number of n2 (8)
+---@param l1 number The number of l1 (9)
+---@param l2 number The number of l2 (10)
+---@param posneg number The number of posneg (11)
+---@param startAngle number The first angle will start the fire (12)
+---@param angleStep number The increament value for each bullet fires (13)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (14)
+---@param interval number the interval between each bullet (15)
+---@param time number number of the bullets (16)
+---@param id number number of the bullets (17)
+---@param eventName string The name of event which will trigger (this is not "bullet manipulator") (18)
+function Ftest_ma_custom_aff(host,dynob,asset,speed,
+	lifeTime,k,n,n2,l1,
+	l2,posneg,startAngle,angleStep,
+	rotation,interval,time,id,eventName)
 	local f_angle = startAngle 
 	local f_count = 0;
+	id = id or 0
+	eventName = eventName or ""
+
+	-- rotation unused
+	for t_k = 0,k
+	do
+	f_angle = f_angle +angleStep
+		for t_l1 = 0,l1
+		do
+			f_angle = f_angle +angleStep
+			for t_l2 = 0,l2
+			do
+				f_angle = f_angle +angleStep
+				for t_n2 = 0,n2
+				do
+					f_angle = f_angle +angleStep
+					for t_n = 0,n
+					do
+						local x = math.cos(f_angle * posneg)
+						local y = math.sin(f_angle * posneg)
+						f_angle = f_angle + math.rad(360/n)
+						W_F_fireBase(host,dynob,asset,speed,
+						lifeTime,x,y,f_angle,
+						time + (interval  * f_count),id,eventName)
+						f_count = f_count + 1
+					end -- n
+				end -- n2
+			end -- l2
+		end -- l1
+	end -- k
+end
+
+
+--- function: Ftest_ma_custom_coin fire in the circle pattern
+---@Description: fire in the ma custom coin pattern
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param tableName string table name (3)
+---@param tableAssets table table assets (4)
+---@param tier number tier of the bullet (5)
+---@param speed number speed of the bullet (6)
+---@param lifeTime number lifetime of the bullet (to clean up) (7)
+---@param k number The number of k (8)
+---@param n number The number of n (9)
+---@param n2 number The number of n2 (10)
+---@param l1 number The number of l1 (11)
+---@param l2 number The number of l2 (12)
+---@param posneg number The number of posneg (13)
+---@param startAngle number The first angle will start the fire (14)
+---@param angleStep number The increament value for each bullet fires (15)
+---@param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (16)
+---@param interval number the interval between each bullet (17)
+---@param time number number of the bullets (18)
+function Ftest_ma_custom_coin(host,dynob,
+	tableName,tableAssets,tier,
+	speed,lifeTime,k,n,n2,
+	l1,l2,posneg,startAngle,
+	angleStep,rotation,interval,time)
+	local f_angle = startAngle 
+	local f_count = 0;
+
+	-- rotation unused
+
 	for t_k = 0,k
 	do
 	f_angle = f_angle +angleStep
@@ -387,13 +613,12 @@ M.ftest_ma_custom_coin = function (host,dynob,tableName,tableAssets,tier,speed,l
 					f_angle = f_angle +angleStep
 					for t_n = 0,n
 					do 
-						x = math.cos(f_angle * posneg)
-						y = math.sin(f_angle * posneg)
+						local x = math.cos(f_angle * posneg)
+						local y = math.sin(f_angle * posneg)
 						f_angle = f_angle + math.rad(360/n)
-
-						cppSetFire_KomachiCoin(host,dynob,tableName,tableAssets,tier,
-						speed,lifeTime,x,y,f_angle,time + (interval  * f_count))
-
+						W_Komachi_fireCoin(host,dynob,tableName,
+						tableAssets,tier,speed,lifeTime,
+						x,y,f_angle,time + (interval  * f_count))
 						f_count = f_count + 1
 					end -- n
 				end -- n2
@@ -402,9 +627,29 @@ M.ftest_ma_custom_coin = function (host,dynob,tableName,tableAssets,tier,speed,l
 	end -- k
 end
 
-
-
-M.ftest_ma_custom_aff2 =function(host,dynob,asset,speed,lifeTime,n,n2,l1,l2,posneg,startAngle,angleStep,rotation,interval,time,id,eventName)
+--- function: Ftest_ma_custom_aff2 fire in the custom feint affine pattern (2)
+--- @Description: fire in the custom feint affine pattern (2)
+--- @param host pointer instance of F_Lua_Boss_Manager (1)
+--- @param dynob pointer instance of F_Lua_GenericObject (2)
+--- @param asset string asset (sprite/animation) of the fire (3)
+--- @param speed number speed of the bullet (4)
+--- @param lifeTime number lifetime of the bullet (to clean up) (5)
+--- @param n number The number of n (6)
+--- @param n2 number The number of n2 (7)
+--- @param l1 number The number of l1 (8)
+--- @param l2 number The number of l2 (9)
+--- @param posneg number The number of posneg (10)
+--- @param startAngle number The first angle will start the fire (11)
+--- @param angleStep number The increament value for each bullet fires (12)
+--- @param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (13)
+--- @param interval number the interval between each bullet (14)
+--- @param time number number of the bullets (15)
+--- @param id? number (optional) number of the bullets (16)
+--- @param eventName? string (optional) event name (17)
+M.ftest_ma_custom_aff2 =function(host,dynob,asset,speed,
+	lifeTime,n,n2,l1,l2,
+	posneg,startAngle,angleStep,
+	rotation,interval,time,id,eventName)
 
 	local f_angle =  startAngle
 	local f_count = 0;
@@ -420,22 +665,74 @@ M.ftest_ma_custom_aff2 =function(host,dynob,asset,speed,lifeTime,n,n2,l1,l2,posn
 			do
 				f_angle = f_angle +angleStep
 				for t_n = 0,n
-				do 
-					x = math.cos(f_angle * posneg)
-					y = math.sin(f_angle * posneg)
+				do
+					local x = math.cos(f_angle * posneg)
+					local y = math.sin(f_angle * posneg)
 					f_angle = f_angle + math.rad(360/n)
-
-					--coroutine.create(cppSetFire_Base,host,dynob,asset,speed,lifeTime,x,y,f_angle,time)
-					cppSetFire_Base(host,dynob,asset,speed,lifeTime,x,y,f_angle,time + (interval  * f_count),id,eventName) 
+					W_F_fireBase(host,dynob,asset,speed,
+					lifeTime,x,y,f_angle,
+					time + (interval  * f_count),id,eventName)
 					f_count = f_count + 1
 				end -- n
-			
 			end -- n2
 		end -- l2
 	end -- l1
 end
 
 
+--- function:Ftest_ma_custom_aff2 fire in the custom feint affine pattern (2)
+--- @Description: fire in the custom feint affine pattern (2)
+--- @param host pointer instance of F_Lua_Boss_Manager (1)
+--- @param dynob pointer instance of F_Lua_GenericObject (2)
+--- @param asset string asset (sprite/animation) of the fire (3)
+--- @param speed number speed of the bullet (4)
+--- @param lifeTime number lifetime of the bullet (to clean up) (5)
+--- @param n number The number of n (6)
+--- @param n2 number The number of n2 (7)
+--- @param l1 number The number of l1 (8)
+--- @param l2 number The number of l2 (9)
+--- @param posneg number The number of posneg (10)
+--- @param startAngle number The first angle will start the fire (11)
+--- @param angleStep number The increament value for each bullet fires (12)
+--- @param rotation number rotation start from angle (IDK why this still exist, stupid tho, but I will change once I got time) (13)
+--- @param interval number the interval between each bullet (14)
+--- @param time number number of the bullets (15)
+--- @param id? number (optional) number of the bullets (16)
+--- @param eventName? string (optional) event name (17)
+function Ftest_ma_custom_aff2(host,dynob,asset,speed,
+	lifeTime,n,n2,l1,l2,
+	posneg,startAngle,angleStep,
+	rotation,interval,time,id,eventName)
+
+	local f_angle =  startAngle
+	local f_count = 0;
+	id = id or 0
+	eventName = eventName or ""
+	for t_l1 = 0,l1
+	do
+		f_angle = f_angle + angleStep + math.random(0,360)
+		for t_l2 = 0,l2
+		do
+			f_angle = f_angle +angleStep
+			for t_n2 = 0,n2
+			do
+				f_angle = f_angle +angleStep
+				for t_n = 0,n
+				do
+					local x = math.cos(f_angle * posneg)
+					local y = math.sin(f_angle * posneg)
+					f_angle = f_angle + math.rad(360/n)
+					W_F_fireBase(host,dynob,asset,speed,
+					lifeTime,x,y,f_angle,
+					time + (interval  * f_count),id,eventName)
+					f_count = f_count + 1
+				end -- n
+			end -- n2
+		end -- l2
+	end -- l1
+end
+
+-- this is unused
 M.arc_hypocycloid =  function (a,b,r,t)
 	local retX, retY
 	retX = ((a - b) * math.cos(t) +( b * math.cos((a - b) / b) * t)) * r

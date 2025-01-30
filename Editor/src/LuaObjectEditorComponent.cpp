@@ -275,10 +275,10 @@ void LuaObjectEditorComponent::loadShader(const std::string & vertexPath, const 
 void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintgine::DebugRender & debug)
 {
 
-	 glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
-	 glEnable(GL_BLEND);
-	 glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	m_frameBuffer.bind();
 	glViewport(m_drawScreen.x, m_drawScreen.y, m_drawScreen.z, m_drawScreen.w);
@@ -300,8 +300,7 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	{
 		m_lightBatch.begin();
 		if(!m_playerEnableTogger3->isSelected())
-		{
-			
+		{		
 			//m_player.drawLight(m_lightBatch);
 			if(m_playerEnableTogger->isSelected())
 			{
@@ -314,8 +313,6 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 			}
 		
 			//m_particleEngine.drawLight(m_lightBatch);
-			
-
 		}
 			m_luaObjectManager.drawBossesLight(m_lightBatch);
 

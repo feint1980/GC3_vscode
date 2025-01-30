@@ -690,6 +690,34 @@ int lua_Komachi_pillar_setLightColor(lua_State * L)
 	return 0;
 }
 
+int lua_Komachi_pillar_setFrameIndex(lua_State * L)
+{
+	if (lua_gettop(L) != 2)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	F_Komachi_pillar * pillar = static_cast<F_Komachi_pillar *>(lua_touserdata(L, 1)); // pillar
+	int index = lua_tonumber(L, 2); //
+	pillar->setFrameIndex(index);
+	return 0;
+}
+
+int lua_Komachi_pillar_setUVUpdate(lua_State * L)
+{
+	if (lua_gettop(L) != 3)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	F_Komachi_pillar * pillar = static_cast<F_Komachi_pillar *>(lua_touserdata(L, 1)); // pillar
+	float rate = lua_tonumber(L, 2); //
+	float time = lua_tonumber(L, 3); //
+	pillar->setUpdateUV(time, rate);
+	return 0;
+
+}
+
 int lua_Komachi_pillar_setFlashEffect(lua_State * L)
 {
 	if (lua_gettop(L) != 3)
@@ -786,6 +814,8 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	// declare cppKomachi_pillar_setLightColor
 	lua_register(m_script, "cppKomachi_pillar_setLightColor", 
 	lua_Komachi_pillar_setLightColor);
+	lua_register(m_script, "cppKomachi_pillar_setFrameIndex", lua_Komachi_pillar_setFrameIndex); 
+	lua_register(m_script, "cppKomachi_pillar_setUVUpdate", lua_Komachi_pillar_setUVUpdate);
 
 	// Komachi's helper end	
 	bulletManipulator.init(&m_bullets);

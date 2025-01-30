@@ -3,7 +3,11 @@ package.path = package.path .. ';./Assets/LuaFiles/Common/?.lua' .. ';./Assets/L
 
 bc =  require("./Assets/Luafiles/common/boss_common")
 
-fire_pilar = nil
+Komachi_fire_pilar = nil
+
+Komachi_fire_pillar_up = nil
+
+Komachi_fire_pillar_up_2 = nil
 
 --@cppKomachi_pillar_setLightColor(pillar, r, g, b, a,transitionTime)
 
@@ -14,30 +18,68 @@ function DynamicBehavior4(host,dynob)
     while true do
         --if (count > 1) then
             --count = -1
-            cppMoveObject(host,dynob,0,170,25)
+            W_moveObject(host,dynob,0,170,25)
             coroutine.yield()
             W_playAnimation(dynob,"charging",1,false)
-            cppObjectSetChargingEffect(dynob,"Komachi_charge_table",Komachi_charge_table,100,250,120,9.5,15.5)
-            cppHoldPosition(host,dynob,80,"charging")
+            W_setObjectCharging(dynob,"Komachi_charge_table",
+            Komachi_charge_table,100,250,
+            120,9.5,15.5)
+            W_holdPosition(host,dynob,80,"charging")
             coroutine.yield()
-            cppHoldPosition(host,dynob,80,"cast")
-            fire_pilar = cppKomachi_summon_pillar(host,dynob,"Textures/pillar_1.png","Textures/pillar_2.png",0,1024,
+            W_holdPosition(host,dynob,80,"cast")
+            Komachi_fire_pilar = W_Komachi_summonPillar(host,dynob,"Textures/pillar_1.png","Textures/pillar_2.png",0,1024,
             2,0,255,255,255,255)
-            cppKomachi_pillar_move(fire_pilar,0,0,6)
-            cppKomachi_pillar_expand(fire_pilar,11,1024,20)
-            cppKomachi_pillar_setFlashEffect(fire_pilar,120,2)
+
+            Komachi_fire_pillar_up = W_Komachi_summonPillar(host,dynob,"Textures/pillar_1.png","Textures/pillar_2.png",0,1024,
+            2,0,255,255,255,0)
+            Komachi_fire_pillar_up_2 = W_Komachi_summonPillar(host,dynob,"Textures/pillar_1.png","Textures/pillar_2.png",0,1024,
+            2,0,255,255,255,0)
+
+            W_Komachi_pillar_setFrameIndex(Komachi_fire_pillar_up,1)
+            W_Komachi_pillar_setFrameIndex(Komachi_fire_pillar_up_2,1)
+
+            W_Komachi_pillarMove(Komachi_fire_pilar,0,0,6)
+            W_Komachi_pillarMove(Komachi_fire_pillar_up,0,0,6)
+            W_Komachi_pillarMove(Komachi_fire_pillar_up_2,0,0,6)
+
+            W_Komachi_pillarExpand(Komachi_fire_pilar,11,1024,20)
+            W_Komachi_pillarExpand(Komachi_fire_pillar_up,2,1024,20)
+            W_Komachi_pillarExpand(Komachi_fire_pillar_up_2,2,1024,20)
+
+            W_Komachi_pillar_setFlash(Komachi_fire_pilar,120,2)
+
             W_wait(host,dynob,60)
             coroutine.yield()
-            cppKomachi_pillar_setLightEffect(fire_pilar,0.0,0.0,0,0,12,13,16.5,120)
-        
-            cppKomachi_pillar_setLightColor(fire_pilar,0.65,0.08,1.0,1.0,4.5)
-            cppKomachi_pillar_setLightAttenuation(fire_pilar,12,13,16.5,4.5)
+            W_Komachi_pillar_setLight(Komachi_fire_pilar,0.0,0.0,0,0,12,13,16.5,1200)
+
+            W_Komachi_pillar_setLightColor(Komachi_fire_pilar,0.65,0.08,1.0,1.0,4.5)
+            W_Komachi_pillar_setLightAttenuation(Komachi_fire_pilar,12,13,16.5,4.5)
             W_wait(host,dynob,60)
             coroutine.yield()
-            cppKomachi_pillar_setLightEffect(fire_pilar,0.65,0.08,1.0,1.0,12,23,88.5,200)
-            cppKomachi_pillar_expand(fire_pilar,500,1024,20)
-            cppKomachi_pillar_setColor(fire_pilar,255,255,255,122,20)
-            --cppKomachi_pillar_setFlashEffect(fire_pilar,500,3)
+            -- W_Komachi_set_pillar_light(Komachi_fire_pilar,0.65,0.08,1.0,1.0,12,23,88.5,2000)
+            W_Komachi_pillarExpand(Komachi_fire_pilar,500,1024,20)
+            W_Komachi_pillar_setColor(Komachi_fire_pilar,255,255,255,122,20)
+
+            W_Komachi_pillar_setLightColor(Komachi_fire_pilar,0.7,0.1,1.0,1.0,4.5)
+            W_Komachi_pillar_setLightAttenuation(Komachi_fire_pilar,24,26,32.5,4.5)
+            W_Komachi_pillar_setFlash(Komachi_fire_pilar,300,1)
+
+            W_Komachi_pillar_setUVUpdate(Komachi_fire_pillar_up,-0.00125,1200)
+            W_wait(host,dynob,50)
+            coroutine.yield()
+            W_Komachi_pillar_setUVUpdate(Komachi_fire_pillar_up_2,-0.0025,1200)
+            W_wait(host,dynob,100)
+            coroutine.yield()
+
+            W_Komachi_pillarExpand(Komachi_fire_pillar_up,500,1024,10)
+            W_Komachi_pillarExpand(Komachi_fire_pillar_up_2,500,1024,10)
+            W_wait(host,dynob,20)
+            coroutine.yield()
+            W_Komachi_pillar_setColor(Komachi_fire_pillar_up,255,255,255,50,20)
+            W_Komachi_pillar_setColor(Komachi_fire_pillar_up_2,255,255,255,50,20)
+
+            -- W_Komachi_pillar_setFrameIndex(Komachi_fire_pilar,1)
+            --cppKomachi_pillar_setFlashEffect(Komachi_fire_pilar,500,3)
 
             W_wait(host,dynob,500)
             coroutine.yield()
@@ -45,7 +87,6 @@ function DynamicBehavior4(host,dynob)
             coroutine.yield() -- this is for block the loop (to test)
             print("hereeee !!!")
             -- W_playAnimation(dynob,"charge_end",1,true)
-           
             -- cppHoldPosition(host,dynob,100,"charge_end",false)
             -- coroutine.yield()
         --end
@@ -139,7 +180,7 @@ function spell_4_behavior(host,dynob)
                 cppHoldPosition(host,dynob,80,"charging")
                 coroutine.yield()
 
-                bc.ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
+                Ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
                 1, -- tier
                 1.4, -- speed
                 10.0,  -- lifeTime
@@ -155,7 +196,7 @@ function spell_4_behavior(host,dynob)
                 12,     -- interval
                 1)     -- time
 
-                bc.ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
+                Ftest_ma_custom_coin(host,dynob,"KOMACHI_COINS",KOMACHI_COINS,
                 0, -- tier
                 1.6, -- speed
                 10.0,  -- lifeTime

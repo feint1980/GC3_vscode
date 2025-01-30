@@ -55,6 +55,7 @@ public:
 
     void setColorChange(const Feintgine::Color & targetColor, float time);
 
+    void setFrameIndex(unsigned int index) { m_frameIndex = index; }
 private:
 
     Feintgine::GLTexture m_texture_1;
