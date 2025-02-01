@@ -51,9 +51,6 @@ namespace Feintgine
 		}
 	}
 
-
-
-
 	void Camera2D::logicUpdate(float deltatime)
 	{
 		if (m_shakeLifetime > 0.0f)

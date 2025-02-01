@@ -276,9 +276,6 @@ void Yin_Yang_Orb::update(float deltaTime ,std::vector<FairyBase *>  enemy, std:
 			m_animation.getCurrentAnimation()->stop();
 			m_animationFront.getCurrentAnimation()->stop();
 		}
-	
-
-		
 	}
 }
 

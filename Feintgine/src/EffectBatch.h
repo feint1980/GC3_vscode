@@ -40,7 +40,7 @@ namespace Feintgine
 
 		void initEffectBatch(FrameBufferScreen * frameBufferScreen, Camera2D * camera);
 
-		void addRippleEffect(const glm::vec2 & pos, float size, float freq, float lifeTime, float sizeRate, float freqRate);
+		void addRippleEffect(glm::vec2 pos, float size, float freq, float lifeTime, float sizeRate, float freqRate);
 
 		void addRippleEffectContinuos(glm::vec2 * pos, float size, float freq, float lifeTime, float sizeRate, float freqRate);
 		void stopRippleEffect(glm::vec2 * pos);

@@ -159,6 +159,7 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	m_cam = cam;
 	m_staticCam = staticCam;
 
+	
 	//m_luaObjectManager.loadLuaFile("Assets/LuaFiles/test.lua");
 	//m_luaObjectManager.callLuaFunction("Assets/LuaFiles/test.lua","TestFunc");
 	//m_luaObjectManager.callCreateFromLua("Assets/LuaFiles/test.lua", "CreateFromLua");
@@ -181,7 +182,9 @@ void LuaObjectEditorComponent::init(const glm::vec4 &drawScreen, Feintgine::Came
 	m_frameBufferScreen.initFrameTexture(tex_fb, m_drawScreen.z + 2, m_drawScreen.w + 2);
 
 	m_effectBatch.initEffectBatch(&m_frameBufferScreen, m_cam);
+	m_luaObjectManager.registerEffectBatch(&m_effectBatch);
 	m_lightBatch.initShader(&m_shader);
+	m_luaObjectManager.registerCameraLogic(m_cam);
 
 	update(1);
 	reloadPlayer(1);
@@ -517,6 +520,13 @@ void LuaObjectEditorComponent::showGUI(bool value)
 	m_playerEnableTogger->setVisible(value);
 }
 
+// void LuaObjectEditorComponent::registerEffectBatch(Feintgine::EffectBatch * effectBatch)
+// {
+// 	m_luaObjectManager.registerEffectBatch(effectBatch);
+// }
+
+
+
 void LuaObjectEditorComponent::loadBosses(const std::string & path)
 {
 	DIR * dir;
@@ -565,6 +575,8 @@ void LuaObjectEditorComponent::update(float deltaTime)
 
 		//m_particleEngine.update(deltaTime);
 		m_luaObjectManager.update(deltaTime);
+
+		m_cam->logicUpdate(deltaTime);
 
 		ENGINE_current_tick += (ENGINE_tick_speed * deltaTime);
 

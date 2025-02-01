@@ -56,6 +56,7 @@ public:
     void setColorChange(const Feintgine::Color & targetColor, float time);
 
     void setFrameIndex(unsigned int index) { m_frameIndex = index; }
+    void setLightSupport(bool isSupport) { m_isShowLightSupport = isSupport; }
 private:
 
     Feintgine::GLTexture m_texture_1;
@@ -66,6 +67,7 @@ private:
     Feintgine::Color m_color;
     glm::vec4 m_uv = glm::vec4(0.0f, 0.0f, 1.0f, 1.0f);
 
+    bool m_isShowLightSupport = false;
     unsigned int m_frameIndex = 0;
 
     GLuint m_textureId;

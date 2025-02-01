@@ -466,3 +466,59 @@ end
 function W_Komachi_pillar_setUVUpdate(pillar,rate,time)
     cppKomachi_pillar_setUVUpdate(pillar,rate,time)
 end
+
+--- wrapper of cppKomachi_pillar_setLightSupport
+---@Description: Set the light support of the flame pillar
+---@param pillar pointer instance of F_Komachi_pillar (1)
+---@param support boolean The light support
+function W_Komachi_pillar_setLightSupport(pillar,support)
+    cppKomachi_pillar_setLightSupport(pillar,support)
+end
+
+
+--- MARK: Screen Effect
+
+--- wrapper of cppStartShakeCamera
+---@Descriptiopn: Start the screen shake effect
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param time number The total time to shake the camera (2)
+---@param vertFreg number The vertical shake frequency (3)
+---@param horiFreg number The horizontal shake frequency (4)
+function W_StartShakeCamera(host,time,vertFreg,horiFreg)
+    cppStartShakeCamera(host,time,vertFreg,horiFreg)
+end
+
+--- wrapper of cppAddScreenDistortion
+---@Description: Add the screen distortion effect
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param x number The x position of the effect (2)
+---@param y number The y position of the effect (3)
+---@param size number The size of the effect (4)
+---@param freq number The frequency of the effect (5)
+---@param lifeTime number The life time of the effect (6)
+---@param sizeRate number The size rate of the effect (7)
+---@param freqRate number The frequency rate of the effect (8)
+function W_AddScreenDistortion(host,x,y,size,
+    freq,lifeTime,sizeRate,freqRate)
+    
+    cppAddScreenDistortion(host,x,y,size,freq,lifeTime,sizeRate,freqRate)
+end
+
+---wrapper of cppAddScreenDistortionFollow
+---@Description: Add the screen distortion effect that follow the object position
+---@param host pointer instance of F_Lua_Boss_Manager (1)
+---@param dynob pointer instance of F_Lua_GenericObject (2)
+---@param size number The size of the effect (3)
+---@param freq number The frequency of the effect (4)
+---@param sizeRate number The size rate of the effect (5)
+---@param freqRate number The frequency rate of the effect (6)
+function W_AddScreenDistortionFollow(host,dynob,size,
+    freq,sizeRate,freqRate)
+    print("wrapper AddScreenDistortionFollow called")
+    cppAddScreenDistortionFollow(host,dynob,size,freq,sizeRate,freqRate)
+end
+
+
+
+
+

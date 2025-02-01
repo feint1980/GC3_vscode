@@ -21,6 +21,8 @@
 #include <ParticleEngine2D.h>
 #include "PaternBehavior_from_lua.h"
 
+#include <EffectBatch.h>
+
 enum ArcType
 {
 	arcHypocycloid = 1,
@@ -174,6 +176,18 @@ public:
 
 	void loadTextures();
 
+	void registerCameraLogic(Feintgine::Camera2D * cam) { m_cam = cam; }
+
+	void registerEffectBatch(Feintgine::EffectBatch * effectBatch) { m_effectBatch = effectBatch; }
+
+
+
+	void startShakeCamera(float duration, float verFreq, float horFreq);
+
+	void addDistortionEffect(glm::vec2 pos, float size, float freq, float lifeTime, float sizeRate, float freqRate);
+
+	void addDistortionFollowEffect(glm::vec2 * pos, float size, float freq, float lifeTime, float sizeRate, float freqRate);
+
 	// Komachi's addon 
 	F_Komachi_pillar * createPillar(const std::string & texturePath1, const std::string & texturePath2, const glm::vec2 & pos, const glm::vec2 & dim, const Feintgine::Color & color);
 
@@ -188,6 +202,8 @@ protected:
 	KanjiEffectManager  * m_kanjiEffectManager;
 	Feintgine::ParticleEngine2D m_particleEngine;
 
+	Feintgine::EffectBatch * m_effectBatch;
+
 	std::vector<EnemyBulletBase *> m_bullets;
 	std::vector<F_Lua_Boss_State *> m_nonWaitLuaBossStates;
 	std::vector<F_Lua_Boss_State *> m_luaBossStates;
@@ -198,6 +214,8 @@ protected:
 
 	std::map<std::string, ObjectType > m_objectMap;
 	std::map<std::string, Feintgine::GLTexture> m_preloadedTextures;
+
+	std::vector<glm::vec2 * > m_rippleReplicatePos;
 
 	BulletManupilator bulletManipulator;
 	float f_angle;

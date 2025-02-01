@@ -27,6 +27,9 @@ function DynamicBehavior4(host,dynob)
             W_holdPosition(host,dynob,80,"charging")
             coroutine.yield()
             W_holdPosition(host,dynob,80,"cast")
+            W_StartShakeCamera(host,1.5,6,3)
+
+            -- init, create pillar
             Komachi_fire_pilar = W_Komachi_summonPillar(host,dynob,"Textures/pillar_1.png","Textures/pillar_2.png",0,1024,
             2,0,255,255,255,255)
 
@@ -38,13 +41,15 @@ function DynamicBehavior4(host,dynob)
             W_Komachi_pillar_setFrameIndex(Komachi_fire_pillar_up,1)
             W_Komachi_pillar_setFrameIndex(Komachi_fire_pillar_up_2,1)
 
-            W_Komachi_pillarMove(Komachi_fire_pilar,0,0,6)
-            W_Komachi_pillarMove(Komachi_fire_pillar_up,0,0,6)
-            W_Komachi_pillarMove(Komachi_fire_pillar_up_2,0,0,6)
+            -- summon pillar into place
+            W_Komachi_pillarMove(Komachi_fire_pilar,0,0,2)
+            W_Komachi_pillarMove(Komachi_fire_pillar_up,0,0,2)
+            W_Komachi_pillarMove(Komachi_fire_pillar_up_2,0,0,2)
 
-            W_Komachi_pillarExpand(Komachi_fire_pilar,11,1024,20)
-            W_Komachi_pillarExpand(Komachi_fire_pillar_up,2,1024,20)
-            W_Komachi_pillarExpand(Komachi_fire_pillar_up_2,2,1024,20)
+            -- update 1, expand pillar
+            W_Komachi_pillarExpand(Komachi_fire_pilar,11,1024,5)
+            W_Komachi_pillarExpand(Komachi_fire_pillar_up,2,1024,5)
+            W_Komachi_pillarExpand(Komachi_fire_pillar_up_2,2,1024,5)
 
             W_Komachi_pillar_setFlash(Komachi_fire_pilar,120,2)
 
@@ -52,19 +57,37 @@ function DynamicBehavior4(host,dynob)
             coroutine.yield()
             W_Komachi_pillar_setLight(Komachi_fire_pilar,0.0,0.0,0,0,12,13,16.5,5500)
 
+
+
+            -- update 2, pillar transform to full
             W_Komachi_pillar_setLightColor(Komachi_fire_pilar,0.65,0.08,1.0,1.0,4.5)
             W_Komachi_pillar_setLightAttenuation(Komachi_fire_pilar,12,13,16.5,4.5)
-            W_wait(host,dynob,60)
+            
+
+            W_wait(host,dynob,30)
             coroutine.yield()
+            W_StartShakeCamera(host,6.5,4,6)
+            
             W_Komachi_pillar_setLightAttenuation(Komachi_fire_pilar,44,26,75.5,4.5)
             -- W_Komachi_set_pillar_light(Komachi_fire_pilar,0.65,0.08,1.0,1.0,12,23,88.5,2000)
             W_Komachi_pillarExpand(Komachi_fire_pilar,500,1024,20)
             W_Komachi_pillar_setColor(Komachi_fire_pilar,255,255,255,122,20)
+            W_wait(host,dynob,30)
+            coroutine.yield()
+            -- camera shake
+            
+            -- distortion
+            --W_AddScreenDistortion(host,10,-512,1.2, 12.5, -200.0, 0.0005, 0.00012)
+
+            -- W_AddScreenDistortion(host,10,-200,.7, 9.5, -125.0, 0.001, 0.0007)
+
+            -- W_AddScreenDistortion(host,10,-100,.7, 10.5, -105.0, 0.001, 0.0007)
 
             W_Komachi_pillar_setLightColor(Komachi_fire_pilar,0.7,0.1,1.0,1.0,4.5)
-            
+
             W_Komachi_pillar_setFlash(Komachi_fire_pilar,300,1)
 
+            --- update 3, show souls follow
             W_Komachi_pillar_setUVUpdate(Komachi_fire_pillar_up,-0.00125,5000)
             W_wait(host,dynob,50)
             coroutine.yield()
@@ -72,13 +95,21 @@ function DynamicBehavior4(host,dynob)
             W_Komachi_pillar_setUVUpdate(Komachi_fire_pillar_up_2,-0.0025,5000)
             W_wait(host,dynob,100)
             coroutine.yield()
+            W_StartShakeCamera(host,30,2,2)
+            -- W_AddScreenDistortion(host,0,-512, .7, 6.5,500,
+            -- -135.0, 0.001)
 
             W_Komachi_pillarExpand(Komachi_fire_pillar_up,500,1024,10)
             W_Komachi_pillarExpand(Komachi_fire_pillar_up_2,500,1024,10)
             W_wait(host,dynob,20)
             coroutine.yield()
-            W_Komachi_pillar_setColor(Komachi_fire_pillar_up,255,255,255,75,20)
+            W_Komachi_pillar_setColor(Komachi_fire_pillar_up,255,255,255,75,40)
             W_Komachi_pillar_setColor(Komachi_fire_pillar_up_2,255,255,255,50,20)
+            W_wait(host,dynob,20)
+            coroutine.yield()
+
+            W_Komachi_pillar_setLightAttenuation(Komachi_fire_pilar,44,26,75.5,45.5)
+
 
             -- W_Komachi_pillar_setFrameIndex(Komachi_fire_pilar,1)
             --cppKomachi_pillar_setFlashEffect(Komachi_fire_pilar,500,3)

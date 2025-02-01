@@ -20,12 +20,18 @@ namespace Feintgine
 		m_camera = camera;
 	}
 
-	void EffectBatch::addRippleEffect(const glm::vec2 & pos, float size, float freq, float lifeTime, float sizeRate, float freqRate)
+	void EffectBatch::addRippleEffect(glm::vec2 pos, float size, float freq, float lifeTime, float sizeRate, float freqRate)
 	{
-	
-		glm::vec2 * tPos = new glm::vec2(0);
 
-		m_ripplePos.push_back(tPos);
+		//glm::vec2 tempPos = pos;
+		// glm::vec2 * tPos = &pos;
+
+		// std::cout << "tempPos from ripple Effect " << pos.x << " " << pos.y << "\n";
+
+		glm::vec2 * pTPos = new glm::vec2(pos); 
+
+		std::cout << "check data pTPos " << pTPos->x << " " << pTPos->y << "\n";
+		m_ripplePos.push_back(pTPos);
 		//m_ripplePos.push_back(convertPos);
 		m_rippleSize.push_back(size * m_camera->getScale());
 		m_rippleFreq.push_back(freq * m_camera->getScale());

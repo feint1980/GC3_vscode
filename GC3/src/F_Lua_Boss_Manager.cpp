@@ -765,6 +765,76 @@ int lua_Komachi_pillar_move(lua_State * L)
 	pillar->setMove(glm::vec2(x, y), time);
 	return 0;
 }
+
+int lua_Komachi_pillar_setLightSupport(lua_State * L)
+{
+	if (lua_gettop(L) != 2)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	F_Komachi_pillar * pillar = static_cast<F_Komachi_pillar *>(lua_touserdata(L, 1)); // pillar
+	bool support = lua_toboolean(L, 2); //
+	pillar->setLightSupport(support);
+	return 0;
+}
+
+int lua_startShake(lua_State * L)
+{
+	if (lua_gettop(L) != 4)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	F_Lua_Boss_Manager * host = static_cast<F_Lua_Boss_Manager *>(lua_touserdata(L, 1)); // host
+	float time = lua_tonumber(L, 2); //
+	float vertfreq = lua_tonumber(L, 3); //
+	float hozfreq = lua_tonumber(L, 4); //
+	std::cout << "recieve call \n";
+	host->startShakeCamera(time, vertfreq, hozfreq);
+	return 0;
+}
+
+int lua_addDistortion(lua_State * L)
+{
+	if (lua_gettop(L) != 8)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	F_Lua_Boss_Manager * host = static_cast<F_Lua_Boss_Manager *>(lua_touserdata(L, 1)); // host
+	float posX = lua_tonumber(L, 2); //
+	float posY = lua_tonumber(L, 3); //
+	float size = lua_tonumber(L, 4); //
+	float freq = lua_tonumber(L, 5); //
+	float lifeTime = lua_tonumber(L, 6); //
+	float sizeRate = lua_tonumber(L, 7); //
+	float freqRate = lua_tonumber(L, 8); //
+	glm::vec2 * pos = new glm::vec2(posX, posY);
+	host->addDistortionEffect(*pos, size, freq, lifeTime, sizeRate,freqRate);
+	return 0;
+	
+}
+
+int lua_addDistortionFollow(lua_State * L)
+{
+	if (lua_gettop(L) != 7)
+	{
+		std::cout << "bad gettop " << lua_gettop(L) << " \n";
+		return -1;
+	}
+	F_Lua_Boss_Manager * host = static_cast<F_Lua_Boss_Manager *>(lua_touserdata(L, 1)); // host
+	F_Lua_GenericObject * object = static_cast<F_Lua_GenericObject *>(lua_touserdata(L, 2)); // object
+	float size = lua_tonumber(L, 3); //
+	float freq = lua_tonumber(L, 4); //
+	float lifeTime = lua_tonumber(L, 5); //
+	float sizeRate = lua_tonumber(L, 6); //
+	float freqRate = lua_tonumber(L, 7); //
+	glm::vec2 * posPtr = object->getPosPointer();
+	host->addDistortionFollowEffect(posPtr, size, freq, lifeTime, sizeRate, freqRate);
+	return 0;
+}
+
 #pragma endregion
 
 // MARK: CPP_lua
@@ -816,6 +886,12 @@ F_Lua_Boss_Manager::F_Lua_Boss_Manager()
 	lua_Komachi_pillar_setLightColor);
 	lua_register(m_script, "cppKomachi_pillar_setFrameIndex", lua_Komachi_pillar_setFrameIndex); 
 	lua_register(m_script, "cppKomachi_pillar_setUVUpdate", lua_Komachi_pillar_setUVUpdate);
+	lua_register(m_script, "cppKomachi_pillar_setLightSupport,", lua_Komachi_pillar_setLightSupport);
+
+	// declare effect lua 
+	lua_register(m_script,"cppStartShakeCamera", lua_startShake);
+	lua_register(m_script,"cppAddScreenDistortion", lua_addDistortion);
+	lua_register(m_script,"cppAddScreenDistortionFollow", lua_addDistortionFollow);
 
 	// Komachi's helper end	
 	bulletManipulator.init(&m_bullets);
@@ -976,6 +1052,8 @@ F_Lua_GenericObject * F_Lua_Boss_Manager::createBoss(const std::string & animati
 	return dynamicObject;
 }
 
+
+
 F_Lua_GenericObject * F_Lua_Boss_Manager::createBoss(const glm::vec2 & pos, const Feintgine::F_AnimatedObject & t_animation, const glm::vec2 & scale, float depth, float angle /*= 0.0f*/)
 {
 	std::cout << "createBoss 2 called \n";
@@ -1070,6 +1148,14 @@ void F_Lua_Boss_Manager::loadTextures()
 	Feintgine::ResourceManager::getTexture("Textures/pillar_1.png");
 	Feintgine::ResourceManager::getTexture("Textures/pillar_2.png");
 	
+}
+
+
+
+void F_Lua_Boss_Manager::startShakeCamera(float duration, float verFreq, float horFreq)
+{
+
+	m_cam->startShake(duration, verFreq, horFreq);
 }
 
 void F_Lua_Boss_Manager::drawLight(Feintgine::LightBatch & lightBatch)
@@ -1735,4 +1821,15 @@ void F_Lua_Boss_Manager::clearBullets()
 		m_komachiPillars.erase(m_komachiPillars.begin() + i);
 	}
 	m_komachiPillars.clear();
+}
+
+void F_Lua_Boss_Manager::addDistortionEffect(glm::vec2 pos, float size, float freq, float lifeTime, float sizeRate, float freqRate)
+{
+
+	m_effectBatch->addRippleEffect(pos, size, freq, lifeTime,  sizeRate, freqRate);
+}
+
+void F_Lua_Boss_Manager::addDistortionFollowEffect(glm::vec2 * pos, float size, float freq, float lifeTime, float sizeRate, float freqRate)
+{
+	m_effectBatch->addRippleEffectContinuos(pos, size, freq, lifeTime, sizeRate, freqRate);
 }

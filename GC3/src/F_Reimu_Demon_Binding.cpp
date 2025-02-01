@@ -91,8 +91,8 @@ void F_Reimu_Demon_Binding::drawLight(Feintgine::LightBatch & lightBatch)
 		tPos.y -= 350;
 		int numberOfLight = 1;
 		t_attentionua = m_attentionua + abs(cos(m_lifeTime)) * 1.1f;
- 		lightBatch.addLight(tPos, glm::vec4(1.0f,1.0f, 1.0f, m_lifeTime),
- 			glm::vec3(1.0f / t_attentionua.x, 1.0f / t_attentionua.y, 1.0f / t_attentionua.z));
+		lightBatch.addLight(tPos, glm::vec4(1.0f,1.0f, 1.0f, m_lifeTime),
+		glm::vec3(1.0f / t_attentionua.x, 1.0f / t_attentionua.y, 1.0f / t_attentionua.z));
 		lightBatch.addRayLight(tPos, glm::vec4(.1f, .1f, .1f, m_lifeTime),
 			glm::vec3(1.0f / t_attentionua.x, 1.0f / t_attentionua.y, 1.0f / t_attentionua.z),degreeToRad(-90.0f));
 	}

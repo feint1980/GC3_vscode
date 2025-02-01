@@ -141,11 +141,28 @@ void F_Komachi_pillar::drawLight(Feintgine::LightBatch & lightBatch)
     if(m_lightLifetime > 0.1f)
     {
         glm::vec2 tPos = m_pos;
-		tPos.y -= 400;
-		int numberOfLight = 1;
-		t_attentionua = m_attentionua + abs(cos(m_lightLifetime)) * 1.4f;
-        lightBatch.addLight(tPos, glm::vec4(m_lightColor.r, m_lightColor.g, m_lightColor.b, m_lightLifetime),
-        glm::vec3(1.0f / t_attentionua.x, 1.0f / t_attentionua.y, 1.0f / t_attentionua.z));
+        float algn = 150;
+        tPos.y -= 400;
+        t_attentionua = m_attentionua + abs(cos(m_lightLifetime)) * 1.3f;
+
+        if(m_isShowLightSupport)
+        {
+            for (int i = -2; i < 3; i++)
+            {
+                tPos.x = m_pos.x + algn * i;
+                lightBatch.addLight(tPos, glm::vec4(m_lightColor.r, m_lightColor.g, m_lightColor.b, m_lightLifetime),
+            glm::vec3(1.0f / t_attentionua.x, 1.0f / t_attentionua.y, 1.0f / t_attentionua.z));
+            }
+        }
+		
+		
+        // tPos.x += 150;
+        // lightBatch.addLight(tPos, glm::vec4(m_lightColor.r, m_lightColor.g, m_lightColor.b, m_lightLifetime),
+        // glm::vec3(1.0f / t_attentionua.x, 1.0f / t_attentionua.y, 1.0f / t_attentionua.z));
+        // tPos.x -= 300;
+        // lightBatch.addLight(tPos, glm::vec4(m_lightColor.r, m_lightColor.g, m_lightColor.b, m_lightLifetime),
+        // glm::vec3(1.0f / t_attentionua.x, 1.0f / t_attentionua.y, 1.0f / t_attentionua.z));
+        tPos.x = m_pos.x;
 		lightBatch.addRayLight(tPos, glm::vec4(m_lightColor.r * 0.5f, m_lightColor.g * 0.5f, m_lightColor.b * 0.5f, m_lightLifetime),
 			glm::vec3(1.0f / t_attentionua.x, 1.0f / t_attentionua.y, 1.0f / t_attentionua.z),degreeToRad(-90.0f));
 	}

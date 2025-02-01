@@ -355,6 +355,8 @@ void EditorScreen::entryRuntime()
 	m_luaEditor.init(EditLua, &m_editLuaCamera,
 		m_editLuaCamera_static);
 	
+	//m_luaEditor.registerEffectBatch(&m_effectBatch);
+
 	m_luaEditor.initPlayer(1,m_audioEngine,&m_kanjiEffectManager,&m_editLuaCamera);
 
 

@@ -1161,10 +1161,10 @@ void F_Player::update(float deltaTime, std::vector<FairyBase *>  enemy,
 	}
 
 	m_spellSelector.update(deltaTime);
-	if (m_logicCamera)
-	{
-		m_logicCamera->logicUpdate(deltaTime);
-	}
+	// if (m_logicCamera)
+	// {
+	// 	m_logicCamera->logicUpdate(deltaTime);
+	// }
 	m_rod.update(m_pos, deltaTime, bullets);
 
 
@@ -2818,12 +2818,10 @@ void F_Player::addDistorionFollowEffect(glm::vec2 * pos, float size, float freq,
 void F_Player::setCharacterSpell(unsigned int value)
 {
 	m_characterType = value;
-
 }
 
 F_PlayerAccessory F_Player::getLeftAccessosry()
-{
-	
+{	
 	return m_leftAccessory;
 	
 }

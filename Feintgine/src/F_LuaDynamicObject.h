@@ -84,6 +84,8 @@ namespace Feintgine
 
 		float getAngle() const { return m_angle; }
 
+		glm::vec2 * getPosPointer() { return p_pos; }
+
 	protected:
 
 		// protected functions

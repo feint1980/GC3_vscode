@@ -312,6 +312,7 @@ protected:
 
 	Feintgine::EffectBatch * m_effectBatch = nullptr;
 
+	
 	bool moveHor = true;
 	bool moveVer = false;
 	bool isMove = false;

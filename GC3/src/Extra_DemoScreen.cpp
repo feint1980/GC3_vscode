@@ -187,6 +187,7 @@ void Extra_DemoScreen::update(float deltaTime)
 
 	m_camera.update();
 
+	m_camera.logicUpdate(deltaTime);
 	updateShaderCamera(deltaTime);
 
 	m_shaderTime += 0.01075f* deltaTime;
