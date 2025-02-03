@@ -45,6 +45,9 @@ function TurnHandler:getActiveList()
     return self.charLists
 end
 
+
+---@Decription: add Character into TurnHandler
+---@param character instance of Character
 function TurnHandler:addCharacter(character)
     --table.insert(self.charLists,character)
     if character.dyobj ~= nil then
@@ -56,7 +59,9 @@ function TurnHandler:addCharacter(character)
 
 end
 
-
+---@Description: get Character from dyobj
+---@param dyobj pointer of Character dyobj
+---@return instance of Character
 function TurnHandler:getCharacterFromDyobj(dyobj)
     print("getCharacterFromDyobj called")
     for i = 1, #self.totalCharList do

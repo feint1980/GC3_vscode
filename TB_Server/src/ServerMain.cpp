@@ -21,21 +21,17 @@ ServerMain::ServerMain()
     m_port = 1123 ;
 }
 
-
-
 int ServerMain::handleStep2Request(RakNet::Packet *p)
 {
-    RequestCode requestCode = getSpecialRequestCode(p);
+    PacketCode requestCode = getSpecialRequestCode(p);
     switch (requestCode)
     {
-        case RequestCode::login:
+        case PacketCode::LOGIN:
         {
             std::cout << "Login request found !!!\n";
             // todo : verify login
             std::string cData((const char*) p->data);
             
-
-
             return 12;
         }
         break;
@@ -119,6 +115,7 @@ void ServerMain::run()
     {
         // This sleep keeps RakNet responsive
         RakSleep(30);
+        // todo, think about delta time problem :
         update(1.0f);
 
         handleInput();
@@ -130,6 +127,8 @@ void ServerMain::run()
 }
 void ServerMain::update(float deltaTime)
 {
+
+    // check for packets
     for (m_currentPacket=m_server->Receive(); m_currentPacket; m_server->DeallocatePacket(m_currentPacket), m_currentPacket=m_server->Receive())
 		{
 			// We got a packet, get the identifier with our handy function
@@ -142,7 +141,6 @@ void ServerMain::update(float deltaTime)
 				// Connection lost normally
 				printf("ID_DISCONNECTION_NOTIFICATION from %s\n", m_currentPacket->systemAddress.ToString(true));;
 				break;
-
 
 			case ID_NEW_INCOMING_CONNECTION:
 				// Somebody connected.  We have their IP now
@@ -197,49 +195,48 @@ void ServerMain::update(float deltaTime)
 
 }
 
-ServerCommand ServerMain::getCommand(const std::string & command)
+PacketCode ServerMain::getCommand(const std::string & command)
 {
     // if command contains certain word
     if(command == "quit" || command == "exit")
     {
-        return ServerCommand::QUIT;
+        return PacketCode::QUIT;
     }
 
     if(command.find("stats") != std::string::npos)
     {
-        return ServerCommand::STATS;
+        return PacketCode::STATS;
     }
     if(command == "ping")
     {
-        return ServerCommand::PING;
+        return PacketCode::PING;
     }
     if(command == "pingip")
     {
-        return ServerCommand::PINGIP;
+        return PacketCode::PINGIP;
     }
     if(command == "ls" || command == "list")
     {
-        return ServerCommand::LIST;
+        return PacketCode::LIST;
     }
     if(command == "kick")
     {
-        return ServerCommand::KICK;
+        return PacketCode::KICK;
     }
     if(command == "ban")
     {
-        return ServerCommand::BAN;
+        return PacketCode::BAN;
     }
     std::string sample = "SVB ";
     std::string subStr = command.substr(0,sample.length());
 
     if(subStr == sample)
     {
-        return ServerCommand::BC;
+        return PacketCode::BC;
     }
 
 
-
-    return ServerCommand::UNKNOWN;
+    return PacketCode::UNKNOWN;
 
 }
 
@@ -255,12 +252,12 @@ void ServerMain::handleInput()
 
 void ServerMain::handleCommand(const std::string & command)
 {
-    ServerCommand sc = getCommand(command);
+    PacketCode sc = getCommand(command);
 
     switch(sc)
     {
 
-    case ServerCommand::QUIT:
+    case PacketCode::QUIT:
     {
 
     
@@ -268,7 +265,7 @@ void ServerMain::handleCommand(const std::string & command)
         break;
     }
 
-    case ServerCommand::STATS:
+    case PacketCode::STATS:
     {
         m_statistics = m_server->GetStatistics(m_server->GetSystemAddressFromIndex(0));
         StatisticsToString(m_statistics, messageBuffer, 2);
@@ -277,14 +274,14 @@ void ServerMain::handleCommand(const std::string & command)
     }
         break;
 
-    case ServerCommand::PING:
+    case PacketCode::PING:
     {
         m_server->Ping(m_clientID); // not sure what this line actually do 
         break;
 
     }
 
-    case ServerCommand::PINGIP:
+    case PacketCode::PINGIP:
     {
         printf("Enter IP: ");
         Gets(messageBuffer,sizeof(messageBuffer));
@@ -297,33 +294,33 @@ void ServerMain::handleCommand(const std::string & command)
         break;
     }
 
-    case ServerCommand::KICK:
+    case PacketCode::KICK:
     {
         m_server->CloseConnection(m_clientID, true, 0);
         break;
     }
 
-    case ServerCommand::BAN:
+    case PacketCode::BAN:
     {
         printf("Enter IP to ban.  You can use * as a wildcard\n");
         Gets(messageBuffer,sizeof(messageBuffer));
         m_server->AddToBanList(messageBuffer, 0);
         break;
     }
-    case ServerCommand::LIST:
+    case PacketCode::LIST:
     {
-        
-			RakNet::SystemAddress systems[m_connectionSize];
-			unsigned short numConnections=0;
-			m_server->GetConnectionList((RakNet::SystemAddress*) &systems, &numConnections);
-			for (int i=0; i < numConnections; i++)
-			{
-				printf("%i. %s\n", i+1, systems[i].ToString(true));
-			}
-			break;
+        RakNet::SystemAddress systems[m_connectionSize];
+        unsigned short numConnections=0;
+        m_server->GetConnectionList((RakNet::SystemAddress*) &systems, &numConnections);
+        std::cout << "Total connections : " << numConnections << "\n";
+        for (int i=0; i < numConnections; i++)
+        {
+            printf("%i. %s\n", i+1, systems[i].ToString(true));
+        }
+        break;
     }
 
-    case ServerCommand::BC:
+    case PacketCode::BC:
     {
         serverBroadcast[0] = 0;
         const static char prefix[] = "SV_BROADCAST: ";

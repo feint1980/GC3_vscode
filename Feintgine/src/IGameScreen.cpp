@@ -15,13 +15,13 @@ namespace Feintgine
 	}
 
 	int IGameScreen::getNextScreenIndex() const
-	 {
+	{
 		return SCREEN_INDEX_NULL;
-	 }
+	}
 	int IGameScreen::getPreviousScreenIndex() const
-	 {
+	{
 		return SCREEN_INDEX_NULL;
-	 }
+	}
 
 	void IGameScreen::build()
 	{

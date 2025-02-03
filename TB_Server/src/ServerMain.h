@@ -27,18 +27,6 @@
 
 
 
-enum ServerCommand
-{
-    QUIT = 22,
-    STATS,
-    PING,
-    PINGIP,
-    KICK,
-    BAN,
-    LIST,
-    BC,
-    UNKNOWN = 792
-};
 
 class ServerMain
 {
@@ -58,7 +46,7 @@ public:
 
     int handleStep2Request(RakNet::Packet *p);
 
-    ServerCommand getCommand(const std::string & command);
+    PacketCode getCommand(const std::string & command);
 
     private:
 

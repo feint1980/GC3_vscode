@@ -44,7 +44,7 @@ enum CommandCode {
 	undefined
 };
 
-enum RequestCode
+enum PacketCode
 {
 	login,
 	download,
@@ -65,7 +65,7 @@ public :
 
 	unsigned char GetPacketIdentifier(RakNet::Packet* p);
 	
-	RequestCode getSpecialRequestCode(RakNet::Packet *p);
+	PacketCode getSpecialRequestCode(RakNet::Packet *p);
 	
 	std::string processRequest(const std::string & mainStr, std::vector<std::string> listOfKeyword, int location);
 	
@@ -73,7 +73,7 @@ public :
 
 private :
 
-	std::vector<std::string> getKeyword(RequestCode requestCode);
+	std::vector<std::string> getKeyword(PacketCode requestCode);
 	RakNet::RakPeerInterface * m_server;
 	RakNet::RakNetStatistics * m_statistics;
 	RakNet::Packet * m_packet;

@@ -31,28 +31,13 @@
 #include <iostream>
 
 
-
-enum ClientCommand
-{
-    QUIT = 22,
-    STATS,
-    PING,
-    GETLASTPING,
-    CONNECT,
-    DISCONNECT,
-    STARTUP, // 
-    SHUTDOWN, // 
-    LOGIN,
-    UNKNOWN = 792
-};
-
 class ClientMain
 {
 public:
     ClientMain();
     ~ClientMain();
 
-    void init(const std::string & serverIP, unsigned int port, unsigned int serverSize);
+    void init(const std::string & serverIP,const std::string & pw, unsigned int port, unsigned int serverSize);
 
     void update(float deltaTime);
 
@@ -62,7 +47,7 @@ public:
 
     void handleCommand(const std::string & command);
 
-    ClientCommand getCommand(const std::string & command);
+    PacketCode getCommand(const std::string & command);
 
     private:
 

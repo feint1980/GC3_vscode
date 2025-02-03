@@ -24,7 +24,7 @@
 int wmain(int argc, char const *argv[])
 {
     ClientMain client;
-    client.init("127.0.0.1", 1123, 10);
+    client.init("127.0.0.1","DavaiMachi", 1123, 10);
 
     client.run();
 

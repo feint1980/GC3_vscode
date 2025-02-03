@@ -15,8 +15,7 @@ unsigned char GetPacketIdentifier(RakNet::Packet *p)
 		return (unsigned char) p->data[0];
 }
 
-
-RequestCode getSpecialRequestCode(RakNet::Packet *p)
+PacketCode getSpecialRequestCode(RakNet::Packet *p)
 {
  //   std::cout << "getSpecialRequestCode called \n";
 
@@ -25,11 +24,11 @@ RequestCode getSpecialRequestCode(RakNet::Packet *p)
     {
         //std::cout << "Login request found !!!\n";
         //proceed to verify login
-        return RequestCode::login;
+        return PacketCode::LOGIN;
     }
     
     //std::cout << "Not a request, normal message : \n";
-    return RequestCode::invalid;
+    return PacketCode::INVALID;
 }
 std::string combineLoginPackage(const std::string & id, const std::string & pw)
 {

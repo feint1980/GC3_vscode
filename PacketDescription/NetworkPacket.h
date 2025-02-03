@@ -23,12 +23,30 @@
 #include <unistd.h>
 #endif
 
-enum RequestCode
+
+enum PacketCode
 {
-    login,
-    invalid
+    
+    QUIT = 22,
+    STATS,
+    PING,
+    PINGIP,
+    KICK,
+    BAN,
+    LIST,
+    BC,
+    GETLASTPING,
+    CONNECT,
+    DISCONNECT,
+    STARTUP, // 
+    SHUTDOWN, // 
+    LOGIN,
+    INVALID = 322,
+    UNKNOWN = 792
+
 };
-RequestCode getSpecialRequestCode(RakNet::Packet *p);
+PacketCode getSpecialRequestCode(RakNet::Packet *p);
+
 unsigned char GetPacketIdentifier(RakNet::Packet *p);
 
 std::string combineLoginPackage(const std::string & id, const std::string & pw);

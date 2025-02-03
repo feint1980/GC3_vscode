@@ -6,8 +6,6 @@
 
 --- dict define
 
-
-
 -- 
 --  ||| Wrapper of HHP (BNML) |||
 --
@@ -126,6 +124,7 @@ end
 function W_wait(host,dynob,time)
     cppWaitFor(host,dynob,time)
 end
+
 
 --- wrapper of cppObjectPlayAnimation
 --- @Description: Play an animation on the object
@@ -474,7 +473,6 @@ end
 function W_Komachi_pillar_setLightSupport(pillar,support)
     cppKomachi_pillar_setLightSupport(pillar,support)
 end
-
 
 --- MARK: Screen Effect
 

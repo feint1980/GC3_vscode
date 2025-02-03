@@ -6,7 +6,7 @@ int main(int argc, char* argv[])
 {
 
 	ServerHandler handler;
-	handler.init(19090,"Studio-WaVN", 1000, 10);
+	handler.init(19090,"TTRK", 1000, 10);
 	handler.update();	
 
 	return 0;

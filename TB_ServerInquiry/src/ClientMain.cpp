@@ -28,7 +28,7 @@ ClientMain::~ClientMain()
 
 }
 
-void ClientMain::init(const std::string & serverIP,unsigned int port, unsigned int serverSize)
+void ClientMain::init(const std::string & serverIP,const std::string & pw,unsigned int port, unsigned int serverSize)
 {
     std::cout << "Init Client \n";
 
@@ -52,7 +52,7 @@ void ClientMain::init(const std::string & serverIP,unsigned int port, unsigned i
     // m_socketDescriptor[1].socketFamily = AF_INET6;
 
     
-    RakNet::ConnectionAttemptResult car = m_client->Connect(m_serverIP.c_str(), m_port, "TTKR", strlen("TTKR"));
+    RakNet::ConnectionAttemptResult car = m_client->Connect(m_serverIP.c_str(), m_port, pw.c_str(), pw.size());
 
     RakAssert(car == RakNet::CONNECTION_ATTEMPT_STARTED);
 
@@ -88,7 +88,7 @@ void ClientMain::run()
 }
 void ClientMain::update(float deltaTime)
 {
-   for (m_currentPacket=m_client->Receive(); m_currentPacket; m_client->DeallocatePacket(m_currentPacket), m_currentPacket=m_client->Receive())
+    for (m_currentPacket=m_client->Receive(); m_currentPacket; m_client->DeallocatePacket(m_currentPacket), m_currentPacket=m_client->Receive())
 		{
 			// We got a packet, get the identifier with our handy function
 			unsigned char packetIdentifier = GetPacketIdentifier(m_currentPacket);
@@ -156,48 +156,48 @@ void ClientMain::update(float deltaTime)
 
 }
 
-ClientCommand ClientMain::getCommand(const std::string & command)
+PacketCode ClientMain::getCommand(const std::string & command)
 {
     // if command contains certain word
     if(command == "quit" || command == "exit")
     {
-        return ClientCommand::QUIT;
+        return PacketCode::QUIT;
     }
 
     if(command.find("stats") != std::string::npos)
     {
-        return ClientCommand::STATS;
+        return PacketCode::STATS;
     }
     if(command == "connect")
     {
-        return ClientCommand::CONNECT;
+        return PacketCode::CONNECT;
     }
     if(command == "disconnect" || command == "dc")
     {
-        return ClientCommand::DISCONNECT;
+        return PacketCode::DISCONNECT;
     }
     if(command == "ping")
     {
-        return ClientCommand::PING;
+        return PacketCode::PING;
     }
     if(command == "glp")
     {
-        return ClientCommand::GETLASTPING;
+        return PacketCode::GETLASTPING;
     }
     if(command == "startup")
     {
-        return ClientCommand::STARTUP;
+        return PacketCode::STARTUP;
     }
     if(command == "shutdown")
     {
-        return ClientCommand::SHUTDOWN;
+        return PacketCode::SHUTDOWN;
     }
     if(command == "login")
     {
-        return ClientCommand::LOGIN;
+        return PacketCode::LOGIN;
     }
 
-    return ClientCommand::UNKNOWN;
+    return PacketCode::UNKNOWN;
 }
 
 void ClientMain::handleInput()
@@ -212,18 +212,18 @@ void ClientMain::handleInput()
 
 void ClientMain::handleCommand(const std::string & command)
 {
-    ClientCommand sc = getCommand(command);
+    PacketCode rc = getCommand(command);
 
-    switch(sc)
+    switch(rc)
     {
 
-    case ClientCommand::QUIT:
+    case PacketCode::QUIT:
     {
         m_clientOn = false;
         break;
     }
 
-    case ClientCommand::STATS:
+    case PacketCode::STATS:
     {
         m_statistics = m_client->GetStatistics(m_client->GetSystemAddressFromIndex(0));
         StatisticsToString(m_statistics, messageBuffer, 2);
@@ -232,7 +232,7 @@ void ClientMain::handleCommand(const std::string & command)
     }
         break;
 
-    case ClientCommand::CONNECT:
+    case PacketCode::CONNECT:
     {
         std::cout << "try to connect to server \n";
         bool connectResult = m_client->Connect(m_serverIP.c_str(), m_port, "TTKR",strlen("TTKR")) == RakNet::CONNECTION_ATTEMPT_STARTED;
@@ -246,20 +246,20 @@ void ClientMain::handleCommand(const std::string & command)
         }
         break;
     }
-    case ClientCommand::DISCONNECT:
+    case PacketCode::DISCONNECT:
     {
-      printf("Enter index to disconnect: ");
-				char str[32];
-				Gets(str, sizeof(str));
-				if (str[0]==0)
-					strcpy(str,"0");
-				int index = atoi(str);
-				m_client->CloseConnection(m_client->GetSystemAddressFromIndex(index),false);
-				printf("Disconnecting.\n");
+        printf("Enter index to disconnect: ");
+        char str[32];
+        Gets(str, sizeof(str));
+        if (str[0]==0)
+            strcpy(str,"0");
+        int index = atoi(str);
+        m_client->CloseConnection(m_client->GetSystemAddressFromIndex(index),false);
+        printf("Disconnecting.\n");
         break;
     }
 
-    case ClientCommand::STARTUP:
+    case PacketCode::STARTUP:
     {
         bool b = m_client->Startup(8,&m_socketDescriptor, 1)==RakNet::RAKNET_STARTED;
         if (b)
@@ -272,7 +272,7 @@ void ClientMain::handleCommand(const std::string & command)
         }
     }
 
-    case ClientCommand::PING:
+    case PacketCode::PING:
     {
         if (m_client->GetSystemAddressFromIndex(0)!=RakNet::UNASSIGNED_SYSTEM_ADDRESS)
         {
@@ -281,7 +281,7 @@ void ClientMain::handleCommand(const std::string & command)
     }
         break;
 
-    case ClientCommand::GETLASTPING:
+    case PacketCode::GETLASTPING:
     {
         if (m_client->GetSystemAddressFromIndex(0)!=RakNet::UNASSIGNED_SYSTEM_ADDRESS)
         {
@@ -290,14 +290,17 @@ void ClientMain::handleCommand(const std::string & command)
 		break;	
     }
 
-    case ClientCommand::LOGIN:
+    case PacketCode::LOGIN:
     {
         std::cout << "enter ID : \n";
         std::cin >> m_idStr;
         std::cout << "enter password : \n";
         std::cin >> m_pwStr;
 
+        std::string packet = combineLoginPackage(m_idStr, m_pwStr);
+        m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
         
+        std::cout << "sent " << packet <<  "\n";
     }
     break;
 

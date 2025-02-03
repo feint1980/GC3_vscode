@@ -2,20 +2,19 @@
 
 int _kbhit (void)
 {
-  struct timeval tv;
-  fd_set rdfs;
- 
-  tv.tv_sec = 0;
-  tv.tv_usec = 0;
- 
-  FD_ZERO(&rdfs);
-  FD_SET (STDIN_FILENO, &rdfs);
- 
-  select(STDIN_FILENO+1, &rdfs, NULL, NULL, &tv);
-  return FD_ISSET(STDIN_FILENO, &rdfs);
- 
+	struct timeval tv;
+	fd_set rdfs;
+	
+	tv.tv_sec = 0;
+	tv.tv_usec = 0;
+	
+	FD_ZERO(&rdfs);
+	FD_SET (STDIN_FILENO, &rdfs);
+	
+	select(STDIN_FILENO+1, &rdfs, NULL, NULL, &tv);
+	return FD_ISSET(STDIN_FILENO, &rdfs);
+	
 }
-
 
 
 int ServerHandler::init(unsigned int port, const std::string& Password, long timeout, unsigned int maxConnection)
@@ -237,7 +236,7 @@ bool ServerHandler::isLoginLegit(const std::string & tData)
 	return false;
 }
 
-RequestCode ServerHandler::getSpecialRequestCode(RakNet::Packet *p)
+PacketCode ServerHandler::getSpecialRequestCode(RakNet::Packet *p)
 {
 	std::cout << "check Special Request... \n";
 	// check for Login Request 
@@ -248,15 +247,15 @@ RequestCode ServerHandler::getSpecialRequestCode(RakNet::Packet *p)
 		std::cout << "Login request found !!!\n";
 		//proceed to verify login
 		
-		return RequestCode::login;	
+		return PacketCode::login;	
 	}
 	if(cData.find("|DOWNLOAD_REQUEST|") != std::string::npos)
 	{
 		std::cout << "Download request found !!!\n";
-		return RequestCode::download;
+		return PacketCode::download;
 	}
 	std::cout << "Not a request, normal message : \n";
-	return RequestCode::invalid;
+	return PacketCode::invalid;
 
 }
 
@@ -308,11 +307,11 @@ void ServerHandler::listen()
 		default:
 
 			
-			RequestCode requestCode = getSpecialRequestCode(m_packet);
+			PacketCode requestCode = getSpecialRequestCode(m_packet);
 			std::vector<std::string> keywords;
 			switch(requestCode)
 			{
-				case RequestCode::login:
+				case PacketCode::login:
 				{
 					std::cout << "request login from " << m_packet->systemAddress.ToString() << "\n";
 					keywords = getKeyword(requestCode);
@@ -337,7 +336,7 @@ void ServerHandler::listen()
 						m_server->Send(buffer2,(int)strlen(buffer2) + 1, HIGH_PRIORITY, RELIABLE_ORDERED,0,m_packet->systemAddress,false);
 				}	
 				break;
-				case RequestCode::invalid:
+				case PacketCode::invalid:
 				{
 					
 					std::cout << "================================\n";
@@ -347,7 +346,7 @@ void ServerHandler::listen()
 					m_server->Send(buffer2, (const int)strlen(buffer2) + 1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, m_packet->systemAddress, true);
 				}
 				break;
-				case RequestCode::download:
+				case PacketCode::download:
 				{
 					std::cout << "Request Download from " << m_packet->systemAddress.ToString() << "\n";
 					keywords = getKeyword(requestCode);
@@ -378,19 +377,19 @@ void ServerHandler::send()
 {
 
 }
-std::vector<std::string> ServerHandler::getKeyword(RequestCode requestCode)
+std::vector<std::string> ServerHandler::getKeyword(PacketCode requestCode)
 {
 	std::vector<std::string> returnVec;	
 	switch(requestCode)
 	{
-		case RequestCode::login:
+		case PacketCode::login:
 		{
 			returnVec.push_back("|LOGIN_REQUEST|");
 			returnVec.push_back("|_ENCRYPED_METHOD_|");
 			returnVec.push_back("|REQUEST_END|");
 		}
 		break;	
-		case RequestCode::download:
+		case PacketCode::download:
 		{
 			returnVec.push_back("|LOGIN_DOWNLOAD|");
 			returnVec.push_back("|_GENERATED_ID_|");
