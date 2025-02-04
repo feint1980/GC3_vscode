@@ -48,8 +48,10 @@ enum PacketCode
 
 enum ResponseCode
 {
+    Login = 12,
+    Invalid = 277
     
-}
+};
 
 
 PacketCode getSpecialRequestCode(RakNet::Packet *p);

@@ -1,6 +1,6 @@
 #include "ServerMain.h"
 
-#include "ServerScriptingManager.cpp"
+#include "ServerScriptingManager.h"
 
 // unsigned char GetPacketIdentifier(RakNet::Packet *p)
 // {

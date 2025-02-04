@@ -25,7 +25,7 @@
 
 #include <iostream>
 
-#include "ServerMain.h"
+//#include "ServerMain.h"
 
 class ServerScriptingManager
 {
