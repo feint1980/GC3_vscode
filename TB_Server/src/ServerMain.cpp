@@ -1,5 +1,7 @@
 #include "ServerMain.h"
 
+#include "ServerScriptingManager.cpp"
+
 // unsigned char GetPacketIdentifier(RakNet::Packet *p)
 // {
 // 	if (p==0)
@@ -51,9 +53,11 @@ ServerMain::~ServerMain()
 void ServerMain::init(const std::string & password, int port,unsigned int serverSize)
 {
 
+   
     std::cout << "|=========================================|\n";
 	std::cout << "|            Init DataBase                |\n";
-	m_dbh.loadDataBase("../data/tData.db");
+    m_dbh = new DataBaseHandler();
+	m_dbh->loadDataBase("../data/tData.db");
 	std::cout << "|=========================================|\n";
     std::cout << "|             Init Server                 |\n";
 
@@ -81,7 +85,7 @@ void ServerMain::init(const std::string & password, int port,unsigned int server
 
         if (!init1IPVer)
         {
-            std::cout << "Server failed to start.  Terminating.\n";
+            std::cout << "Server failed to start. Terminating.\n";
             exit(1);
         }
     }
@@ -104,10 +108,11 @@ void ServerMain::init(const std::string & password, int port,unsigned int server
 		printf("%i. %s (LAN=%i)\n", i+1, sa.ToString(false), sa.IsLANAddress());
 	}
     printf("\nGUID: %s\n", m_server->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString());
+
+    m_scriptManager = new ServerScriptingManager();
+    m_scriptManager->init(m_server,m_dbh);
     
-
 }
-
 
 void ServerMain::run()
 {
@@ -192,7 +197,7 @@ void ServerMain::update(float deltaTime)
 			}
 
 		}
-
+    m_scriptManager->update(deltaTime);
 }
 
 PacketCode ServerMain::getCommand(const std::string & command)
@@ -310,7 +315,7 @@ void ServerMain::handleCommand(const std::string & command)
     case PacketCode::LIST:
     {
         RakNet::SystemAddress systems[m_connectionSize];
-        unsigned short numConnections=0;
+        unsigned short numConnections=m_connectionSize;
         m_server->GetConnectionList((RakNet::SystemAddress*) &systems, &numConnections);
         std::cout << "Total connections : " << numConnections << "\n";
         for (int i=0; i < numConnections; i++)

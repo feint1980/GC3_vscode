@@ -26,6 +26,7 @@
 #include <iostream>
 
 
+class ServerScriptingManager;
 
 
 class ServerMain
@@ -69,7 +70,9 @@ private:
 
     RakNet::SystemAddress m_clientID =RakNet::UNASSIGNED_SYSTEM_ADDRESS;
 
-    DataBaseHandler m_dbh;
+    DataBaseHandler * m_dbh;
+
+    ServerScriptingManager * m_scriptManager;
 
     char messageBuffer[2048];
     char serverBroadcast[2048];

@@ -45,6 +45,13 @@ enum PacketCode
     UNKNOWN = 792
 
 };
+
+enum ResponseCode
+{
+    
+}
+
+
 PacketCode getSpecialRequestCode(RakNet::Packet *p);
 
 unsigned char GetPacketIdentifier(RakNet::Packet *p);

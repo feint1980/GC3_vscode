@@ -81,9 +81,10 @@ void ClientMain::run()
         update(1.0f);
         handleInput();
     }
+
     m_client->Shutdown(300);
     RakNet::RakPeerInterface::DestroyInstance(m_client);
-    std::cout << "Server shutdown \n"; 
+    std::cout << "Client shutdown \n"; 
 
 }
 void ClientMain::update(float deltaTime)
@@ -248,12 +249,14 @@ void ClientMain::handleCommand(const std::string & command)
     }
     case PacketCode::DISCONNECT:
     {
-        printf("Enter index to disconnect: ");
-        char str[32];
-        Gets(str, sizeof(str));
-        if (str[0]==0)
-            strcpy(str,"0");
-        int index = atoi(str);
+        // printf("Enter index to disconnect: ");
+        // char str[32];
+        // Gets(str, sizeof(str));
+        // if (str[0]==0)
+        //     strcpy(str,"0");
+        // int index = atoi(str);
+        int index = 0;
+
         m_client->CloseConnection(m_client->GetSystemAddressFromIndex(index),false);
         printf("Disconnecting.\n");
         break;
