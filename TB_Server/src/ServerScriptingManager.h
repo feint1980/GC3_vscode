@@ -33,26 +33,21 @@ public:
     ServerScriptingManager();
     ~ServerScriptingManager();
 
-    void init(RakNet::RakPeerInterface * server,DataBaseHandler * dbh)
-    {
-        std::cout << "|=========================================|\n";
-        std::cout << "|     Init Server Scripting Manager       |\n";
-        m_server = server;
-        m_dbh = dbh;
-        std::cout << "|    Init Server Scripting Manager OK     |\n";
-        std::cout << "|=========================================|\n";
-    }
+    void init(RakNet::RakPeerInterface * server,DataBaseHandler * dbh);
     void update(float deltaTime);
 
-    int handleCommand(RakNet::Packet *p);
+    ResponseCode handleCommand(RakNet::Packet *p);
 
     //void handleInput();
+
+    std::string doQuery(const std::string & queryCmd);
 
 private:
 
     RakNet::RakPeerInterface * m_server;
     DataBaseHandler * m_dbh;
 
+    lua_State * m_script;
 
 };
 
