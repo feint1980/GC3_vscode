@@ -21,17 +21,20 @@ create table account_stats (
 
 );
 
+create table character_base_table (
+    character_id varchar(128) primary key,
+    character_name varchar(128) not null,
+    character_last_name varchar(128) not null,
+    character_title varchar(128),
+
+);
+
 create table character_table (
     character_id varchar(128) primary key, -- primary key
     character_name varchar(128) not null,
     character_last_name varchar(128) not null,
-    character_titla varchar(128),
-    character_str INTEGER,
-    character_vit INTEGER,
-    character_dex INTEGER,
-    character_agi INTEGER,
-    character_int INTEGER,
-    character_wis INTEGER
+    character_title varchar(128)
+
 );
 
 create table account_own_character (
@@ -52,6 +55,8 @@ create table account_own_character (
     REFERENCES character_table(character_id)
     
 );
+
+
 
 select "created tables :";
 .tables

@@ -62,6 +62,18 @@ bool DataBaseHandler::access_user_info(const std::string & id , const std::strin
 	{
 		return true;
 	}
+	if (record_count == 0)
+	{
+		std::cout << " no record found ";
+		return false;
+	}
+	if (record_count > 1)
+	{
+		std::cout << " Warning: login info is not unique ";
+		return false;
+	}
+	
+
 	return false;
 }
 

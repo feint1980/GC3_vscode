@@ -57,7 +57,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
     // register lua functions
     
-    lua_register(m_script, "cppSendQuery", lua_SendQuery);
+    // lua_register(m_script, "cppSendQuery", lua_SendQuery);
 
 
 }
