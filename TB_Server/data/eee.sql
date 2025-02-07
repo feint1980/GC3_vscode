@@ -1,17 +1,13 @@
--- Note for sqlite3 command
---
--- no variable supported, so I guess we use sqlite3 command
-
-drop table if exists account_table;
-
-create table account_table (
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE account_table (
     account_no INTEGER primary key AUTOINCREMENT,
     account_id varchar(128) not null, -- account name, primary key
     account_password varchar(128) not null -- account password
 
 );
-
-create table account_stats_table (
+INSERT INTO account_table VALUES(1,'feint','ok');
+CREATE TABLE account_stats_table (
     account_stat_id varchar(128) primary key, -- primary key
     gold DOUBLE, 
     account_id varchar(128) not null,
@@ -19,16 +15,14 @@ create table account_stats_table (
     REFERENCES account_table(account_id)
 
 );
-
-create table character_base_table (
+CREATE TABLE character_base_table (
     character_id varchar(128) primary key,
     character_name varchar(128) not null,
     character_last_name varchar(128) not null,
     character_title varchar(128)
 
 );
-
-create table character_existance_table(
+CREATE TABLE character_existance_table(
     world_character_id varchar(128) PRIMARY KEY, 
     character_id varchar(128) not null,
     account_stat_id varchar(128) not null,
@@ -38,18 +32,6 @@ create table character_existance_table(
     CONSTRAINT fk_character FOREIGN KEY (character_id)
     REFERENCES character_base_table(character_id)
 );
-
-
-select "created tables :";
-.tables
-
-.print "todo, add the data insertion here !!! "
-
-.output c:/data.sql
-.dump account_table account_stats character_table account_own_character
-.print "end ! o_O"
-
-
---- insert phase
-
-insert into account_table(account_id,account_password) values ('feint','ok');
+DELETE FROM sqlite_sequence;
+INSERT INTO sqlite_sequence VALUES('account_table',1);
+COMMIT;
