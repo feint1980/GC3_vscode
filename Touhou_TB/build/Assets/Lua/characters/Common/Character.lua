@@ -74,7 +74,7 @@ Character = {
     ---@type number Vitality(VIT) Primary Influence: Health (HP), Status resistant
     Vitality = 8,
 
-    ---@type numer Dexterity(DEX) Primary Influence: Accuracy & Critical Hit Chance (Physical) Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes. Dexterity could also enhance skills or abilities that require precision, such as archery or certain melee attacks.
+    ---@type number Dexterity(DEX) Primary Influence: Accuracy & Critical Hit Chance (Physical) Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes. Dexterity could also enhance skills or abilities that require precision, such as archery or certain melee attacks.
     Dexterity = 8,
 
     ---@type number Agility(AGI) Primary Influence: Speed & Evasion |Other Effects: Determines turn order (faster characters act first) and increases evasion against physical attacks. Higher agility could also reduce the chance of getting hit by slower enemies and allow characters to reposition more easily.
