@@ -181,7 +181,6 @@ void ServerMain::update(float deltaTime)
 
 			default:
 
-
                 m_scriptManager->handleCommand(m_currentPacket);
                 int result = handleStep2Request(m_currentPacket);
 				// The server knows the static data of all clients, so we can prefix the message

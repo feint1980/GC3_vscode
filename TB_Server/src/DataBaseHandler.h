@@ -17,6 +17,9 @@ public :
 
 	void getIDAndPassword(const std::string & data, std::string & id, std::string & pw);
 
+
+	sqlite3 * getDatabase() { return m_db; }
+
 private:
 	sqlite3 * m_db;
 	const char* data = "Callback function called";

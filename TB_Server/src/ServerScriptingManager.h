@@ -27,6 +27,17 @@
 
 //#include "ServerMain.h"
 
+
+
+struct SQLResponse
+{
+    int rc;
+    void * data;
+    int recordCount;
+};
+
+static SQLResponse m_response;
+
 class ServerScriptingManager
 {
 public:
@@ -40,7 +51,7 @@ public:
 
     //void handleInput();
 
-    std::string doQuery(const std::string & queryCmd);
+    bool doQuery(const std::string & queryCmd);
 
 private:
 
@@ -49,6 +60,7 @@ private:
 
     lua_State * m_script;
 
+    
 };
 
 

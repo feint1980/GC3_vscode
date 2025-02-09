@@ -51,10 +51,11 @@ bool DataBaseHandler::access_user_info(const std::string & id , const std::strin
 	
 	if(rc != SQLITE_OK)
 	{
-		std::cout << "SQL query failed \n";
+		std::cout << "no record found \n";
 		sqlite3_free(zErrMsg);
 	
 	}
+	else
 	{
 		std::cout << "Query OK !!! \n";	
 	}
@@ -62,11 +63,11 @@ bool DataBaseHandler::access_user_info(const std::string & id , const std::strin
 	{
 		return true;
 	}
-	if (record_count == 0)
-	{
-		std::cout << " no record found ";
-		return false;
-	}
+	// if (record_count == 0)
+	// {
+	// 	std::cout << " no record found ";
+	// 	return false;
+	// }
 	if (record_count > 1)
 	{
 		std::cout << " Warning: login info is not unique ";
