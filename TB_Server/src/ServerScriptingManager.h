@@ -27,8 +27,6 @@
 
 //#include "ServerMain.h"
 
-
-
 struct SQLResponse
 {
     int rc;
@@ -37,6 +35,7 @@ struct SQLResponse
 };
 
 static SQLResponse m_response;
+
 
 class ServerScriptingManager
 {
@@ -47,7 +46,7 @@ public:
     void init(RakNet::RakPeerInterface * server,DataBaseHandler * dbh);
     void update(float deltaTime);
 
-    ResponseCode handleCommand(RakNet::Packet *p);
+    ClientRequestCode handleCommand(RakNet::Packet *p);
 
     //void handleInput();
 
@@ -62,8 +61,5 @@ private:
 
     
 };
-
-
-
 
 #endif // SERVERSCRIPTINGMANAGER_H

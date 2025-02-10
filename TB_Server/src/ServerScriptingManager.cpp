@@ -3,6 +3,13 @@
 
 // MARK: lua section
 
+static const std::string KEY_TABLE = "register_key_table";
+static const std::string ACCOUNT_TABLE = "account_table";
+static const std::string ACCOUNT_STATS_TABLE = "register_key_table";
+static const std::string CHARACTER_BASE_TABLE = "character_base_table";
+static const std::string CHARACTER_EXISTANCE_TABLE = "character_existance_table";
+
+static const std::string INSERT = "insert into";
 
 static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **azColName)
 {
@@ -15,7 +22,33 @@ static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **
 	return 0;
 }
 
+int lua_GenKey(lua_State * L)
+{
+    if (lua_gettop(L) != 0)
+    {
+        std::cout << "gettop failed (lua_GenKey) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        int size = sizeof(a) - 1;
+        int numberOfRandom = 12 ;
+        char p[numberOfRandom + 1];
+        for (int i = 0; i < numberOfRandom; i++)
+        {
+            p[i] = a[rand() % size];
+        }
+        p[numberOfRandom] = '\0';
 
+        std::string key = p;
+        std::cout << "c++ side: key: " << key << "\n";
+        lua_pushstring(L, key.c_str());
+    }
+
+    return 1;
+}
 
 int lua_DoQuery(lua_State * L)
 {
@@ -31,6 +64,7 @@ int lua_DoQuery(lua_State * L)
         std::string queryCmd = lua_tostring(L, 2);
 
         host->doQuery(queryCmd);
+        return 0;
     }
 
     return 0;
@@ -53,7 +87,7 @@ void ServerScriptingManager::update(float deltaTime)
 
 
 
-ResponseCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
+ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
 {
     PacketCode requestCode = getSpecialRequestCode(p);
     switch (requestCode)
@@ -64,14 +98,14 @@ ResponseCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
             // todo : verify login
             std::string cData((const char*) p->data);
             
-            return ResponseCode::Login;
+            return ClientRequestCode::Login;
         }
         break;
         default :
-            return ResponseCode::Invalid;
+            return ClientRequestCode::Invalid;
         break;
     }
-    return ResponseCode::Invalid;
+    return ClientRequestCode::Invalid;
 }
 
 bool ServerScriptingManager::doQuery(const std::string & queryCmd)
@@ -100,7 +134,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     std::cout << "|     Init Server Scripting Manager       |\n";
     m_server = server;
     m_dbh = dbh;
-    std::cout << "|    Init Server Scripting Manager OK     |\n";
+    std::cout << "|     Init Server Scripting Manager OK    |\n";
     std::cout << "|=========================================|\n";
 
     m_script = luaL_newstate();
@@ -110,6 +144,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     // register lua functions
     
     lua_register(m_script, "cppDoQuery", lua_DoQuery);
+    lua_register(m_script, "cppGenKey", lua_GenKey);
 
 
 }

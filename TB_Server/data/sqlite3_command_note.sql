@@ -4,17 +4,25 @@
 
 drop table if exists account_table;
 
+
+create table register_key_table(
+    key_no INTEGER PRIMARY key AUTOINCREMENT,
+    key_str_val CHARACTER(12),
+    key_ready BOOLEAN
+);
+
 create table account_table (
     account_no INTEGER primary key AUTOINCREMENT,
-    account_id varchar(128) not null, -- account name, primary key
-    account_password varchar(128) not null -- account password
+    account_id varchar(64) not null, -- account name, primary key
+    account_password varchar(64) not null, -- account password
+    account_lvl INTEGER DEFAULT 0 -- include admin ( for inquiry ) 
 
 );
 
 create table account_stats_table (
-    account_stat_id varchar(128) primary key, -- primary key
+    account_stat_id varchar(64) primary key, -- primary key
     gold DOUBLE, 
-    account_id varchar(128) not null,
+    account_id varchar(64) not null,
     CONSTRAINT fk_account FOREIGN KEY (account_id)
     REFERENCES account_table(account_id)
 
@@ -23,7 +31,6 @@ create table account_stats_table (
 create table character_base_table (
     character_id varchar(128) primary key,
     character_name varchar(128) not null,
-    character_last_name varchar(128) not null,
     character_title varchar(128)
 
 );

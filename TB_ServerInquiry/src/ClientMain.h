@@ -29,7 +29,7 @@
 
 
 #include <iostream>
-
+#include "ClientScriptingManager.h"
 
 class ClientMain
 {
@@ -77,6 +77,8 @@ private:
 
     std::string m_idStr;
     std::string m_pwStr;
+
+    ClientScriptingManager * m_scriptManager;
 
 };
 

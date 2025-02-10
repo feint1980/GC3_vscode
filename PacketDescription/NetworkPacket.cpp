@@ -22,9 +22,14 @@ PacketCode getSpecialRequestCode(RakNet::Packet *p)
     std::string cData((const char*) p->data);
     if(cData.find("|LOGIN_REQUEST|") != std::string::npos)
     {
+        if(cData.find("|END_REQUEST|") != std::string::npos)
+        {
+            return PacketCode::LOGIN;
+        }
         //std::cout << "Login request found !!!\n";
         //proceed to verify login
-        return PacketCode::LOGIN;
+
+        return PacketCode::INVALID;
     }
     
     //std::cout << "Not a request, normal message : \n";

@@ -65,6 +65,10 @@ void ClientMain::init(const std::string & serverIP,const std::string & pw,unsign
     std::cout << "init networking OK ! \n";
     std::cout << "GUID is : " << m_client->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString() << "\n"; 
 
+
+    m_scriptManager = new ClientScriptingManager();
+    m_scriptManager->init(m_client);
+
 }
 
 

@@ -53,7 +53,7 @@ ServerMain::~ServerMain()
 void ServerMain::init(const std::string & password, int port,unsigned int serverSize)
 {
 
-   
+
     std::cout << "|=========================================|\n";
 	std::cout << "|            Init DataBase                |\n";
     m_dbh = new DataBaseHandler();

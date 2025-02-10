@@ -46,9 +46,20 @@ enum PacketCode
 
 };
 
-enum ResponseCode
+enum ClientRequestCode
 {
     Login = 12,
+    Register = 13,
+    Invalid = 277
+    
+};
+
+enum ServerResponseCode
+{
+    Login_OK = 22,
+    Login_Fail = 23,
+    Register_OK = 33,
+    Register_Fail = 34,
     Invalid = 277
     
 };
