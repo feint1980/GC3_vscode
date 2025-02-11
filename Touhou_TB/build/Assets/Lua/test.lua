@@ -1,4 +1,4 @@
-print("Helloooooo ")
+print("Test run started")
 package.path = package.path .. ';./Assets/Lua/characters/?.lua;' .. ';./Assets/Lua/?.lua;' .. './characters/Common/?.lua;' .. './characters/Patchy/?.lua;' .. ';./Assets/Lua/characters/Patchy/?.lua;' .. ';./characters/Reimu/slots/?.lua;' .. ';./Assets/Lua/characters/Reimu/?.lua;' .. ';./characters/Yukari/slots/?.lua;' .. ';./Assets/Lua/characters/Yukari/?.lua;'
 
 -- gui include

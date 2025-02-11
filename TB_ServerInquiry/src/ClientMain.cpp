@@ -66,8 +66,8 @@ void ClientMain::init(const std::string & serverIP,const std::string & pw,unsign
     std::cout << "GUID is : " << m_client->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString() << "\n"; 
 
 
-    m_scriptManager = new ClientScriptingManager();
-    m_scriptManager->init(m_client);
+    //m_scriptManager = new ClientScriptingManager();
+    //m_scriptManager->init(m_client);
 
 }
 
@@ -201,6 +201,14 @@ PacketCode ClientMain::getCommand(const std::string & command)
     {
         return PacketCode::LOGIN;
     }
+    if(command == "register")
+    {
+        return PacketCode::REGISTER;
+    }
+    if(command == "key" || command == "getkey")
+    {
+        return PacketCode::REQUEST_KEY;
+    }
 
     return PacketCode::UNKNOWN;
 }
@@ -224,6 +232,8 @@ void ClientMain::handleCommand(const std::string & command)
 
     case PacketCode::QUIT:
     {
+        // dc before quit
+        m_client->CloseConnection(m_client->GetSystemAddressFromIndex(0),false);
         m_clientOn = false;
         break;
     }
@@ -239,6 +249,8 @@ void ClientMain::handleCommand(const std::string & command)
 
     case PacketCode::CONNECT:
     {
+
+
         std::cout << "try to connect to server \n";
         bool connectResult = m_client->Connect(m_serverIP.c_str(), m_port, "TTKR",strlen("TTKR")) == RakNet::CONNECTION_ATTEMPT_STARTED;
         if(connectResult)
@@ -304,12 +316,30 @@ void ClientMain::handleCommand(const std::string & command)
         std::cout << "enter password : \n";
         std::cin >> m_pwStr;
 
-        std::string packet = combineLoginPackage(m_idStr, m_pwStr);
+        std::string packet = combinePackage("LOGIN",m_idStr, m_pwStr);
         m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
         
         std::cout << "sent " << packet <<  "\n";
     }
     break;
+
+    case PacketCode::REGISTER:
+    {
+        std::cout << "enter ID : \n";
+        std::cin >> m_registerID;
+        std::cout << "enter password : \n";
+        std::cin >> m_registerPw;
+
+
+
+
+        std::string packet = combinePackage("REGISTER",m_idStr, m_pwStr);
+        m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+        
+        std::cout << "sent " << packet <<  "\n";
+    }
+    break;
+
 
     default:
     {

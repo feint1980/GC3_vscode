@@ -19,7 +19,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "NetworkPacket.h"
-#include "DataBaseHandler.h"
 
 #include "LuaManager.h"
 
@@ -46,7 +45,7 @@ public:
 
     lua_State * m_script;
 
-}
+};
 
 
 

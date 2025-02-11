@@ -26,10 +26,10 @@
 #include <stdio.h>
 #include <string.h>
 //#include "Gets.h"
-
+#include <cstring>
 
 #include <iostream>
-#include "ClientScriptingManager.h"
+//#include "ClientScriptingManager.h"
 
 class ClientMain
 {
@@ -78,7 +78,12 @@ private:
     std::string m_idStr;
     std::string m_pwStr;
 
-    ClientScriptingManager * m_scriptManager;
+
+    std::string m_registerID;
+    std::string m_registerPw;
+    std::string m_regiserPWConfirm;
+
+    //ClientScriptingManager * m_scriptManager;
 
 };
 

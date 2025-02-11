@@ -5,7 +5,7 @@
 
 static const std::string KEY_TABLE = "register_key_table";
 static const std::string ACCOUNT_TABLE = "account_table";
-static const std::string ACCOUNT_STATS_TABLE = "register_key_table";
+static const std::string ACCOUNT_STATS_TABLE = "account_stats_table";
 static const std::string CHARACTER_BASE_TABLE = "character_base_table";
 static const std::string CHARACTER_EXISTANCE_TABLE = "character_existance_table";
 
@@ -86,7 +86,6 @@ void ServerScriptingManager::update(float deltaTime)
 }
 
 
-
 ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
 {
     PacketCode requestCode = getSpecialRequestCode(p);
@@ -102,10 +101,10 @@ ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
         }
         break;
         default :
-            return ClientRequestCode::Invalid;
+            return ClientRequestCode::Client_Invalid;
         break;
     }
-    return ClientRequestCode::Invalid;
+    return ClientRequestCode::Client_Invalid;
 }
 
 bool ServerScriptingManager::doQuery(const std::string & queryCmd)

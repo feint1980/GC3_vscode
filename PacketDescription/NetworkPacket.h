@@ -41,6 +41,8 @@ enum PacketCode
     STARTUP, // 
     SHUTDOWN, // 
     LOGIN,
+    REGISTER,
+    REQUEST_KEY,
     INVALID = 322,
     UNKNOWN = 792
 
@@ -50,8 +52,8 @@ enum ClientRequestCode
 {
     Login = 12,
     Register = 13,
-    Invalid = 277
-    
+    Client_Invalid = 277
+
 };
 
 enum ServerResponseCode
@@ -60,7 +62,7 @@ enum ServerResponseCode
     Login_Fail = 23,
     Register_OK = 33,
     Register_Fail = 34,
-    Invalid = 277
+    Server_Invalid = 277
     
 };
 
@@ -69,6 +71,6 @@ PacketCode getSpecialRequestCode(RakNet::Packet *p);
 
 unsigned char GetPacketIdentifier(RakNet::Packet *p);
 
-std::string combineLoginPackage(const std::string & id, const std::string & pw);
+std::string combinePackage(const std::string & type,const std::string & id, const std::string & pw);
 
 

@@ -190,9 +190,9 @@ void ServerMain::update(float deltaTime)
 				// Relay the message.  We prefix the name for other clients.  This demonstrates
 				// That messages can be changed on the server before being broadcast
 				// Sending is the same as before
-                sprintf(messageBuffer, "Relay msg: %s", m_currentPacket->data);
+                //sprintf(messageBuffer, "Relay msg: %s", m_currentPacket->data);
 				
-				m_server->Send(messageBuffer, (const int) strlen(messageBuffer)+1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, m_currentPacket->systemAddress, true);
+				//m_server->Send(messageBuffer, (const int) strlen(messageBuffer)+1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, m_currentPacket->systemAddress, true);
 
 				break;
 			}
@@ -340,6 +340,7 @@ void ServerMain::handleCommand(const std::string & command)
     }
 
     default:
+
         break;
     }
 
