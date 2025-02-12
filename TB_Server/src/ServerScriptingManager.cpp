@@ -86,24 +86,55 @@ void ServerScriptingManager::update(float deltaTime)
 }
 
 
+std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
+{
+    return std::string((const char*)p->data);
+}
+
 ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
 {
     PacketCode requestCode = getSpecialRequestCode(p);
-    switch (requestCode)
+    // send relay data to lua to process
+    std::string msg = getMegFromPackget(p);
+
+    lua_getglobal(m_script, "HandleMessage");
+    if (lua_isfunction(m_script, -1))
     {
-        case PacketCode::LOGIN:
+        lua_pushlightuserdata(m_script, this); // host
+
+        //std::cout << "Issue next task pointer " << object << "\n";
+
+        lua_pushstring(m_script, msg.c_str());
+        //lua_pushlightuserdata(m_script, m_guiHandler);
+
+        lua_pushnumber(m_script, requestCode);
+
+        // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+
+        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
         {
-            std::cout << "Login request found !!!\n";
-            // todo : verify login
-            std::string cData((const char*) p->data);
-            
-            return ClientRequestCode::Login;
+            std::cout << "call HandleMessage failed \n";
         }
-        break;
-        default :
-            return ClientRequestCode::Client_Invalid;
-        break;
     }
+
+    
+
+
+    // switch (requestCode)
+    // {
+    //     case PacketCode::LOGIN:
+    //     {
+    //         std::cout << "Login request found !!!\n";
+    //         // todo : verify login
+    //         std::string cData((const char*) p->data);
+            
+    //         return ClientRequestCode::Login;
+    //     }
+    //     break;
+    //     default :
+    //         return ClientRequestCode::Client_Invalid;
+    //     break;
+    // }
     return ClientRequestCode::Client_Invalid;
 }
 
@@ -145,6 +176,22 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppDoQuery", lua_DoQuery);
     lua_register(m_script, "cppGenKey", lua_GenKey);
 
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "luaFiles/serverSideScript.lua")))
+    {
+        std::cout << "Run script OK \n";
+    }
+
+    lua_getglobal(m_script, "Init");
+    if(lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this);
+        const int argc = 1;
+        const int returnCount = 0;
+        if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+        {
+            std::cout << "Call Init from C++ OK \n";
+        }
+    }
 
 }
 

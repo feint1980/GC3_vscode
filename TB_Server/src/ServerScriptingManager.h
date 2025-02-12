@@ -50,6 +50,8 @@ public:
 
     //void handleInput();
 
+    std::string getMegFromPackget(RakNet::Packet *p);
+
     bool doQuery(const std::string & queryCmd);
 
 private:
