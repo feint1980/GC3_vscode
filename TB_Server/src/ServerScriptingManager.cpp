@@ -13,9 +13,43 @@ static const std::string INSERT = "insert into";
 
 static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **azColName)
 {
-	int i;
-	for(i = 0; i<argc; i++) {
-		printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+
+    std::cout << "serverScriptingCallback \n";
+	
+
+    for(int i = 0 ; i < m_response.data.size() ; i++)
+    {
+        m_response.data[i].clear();
+    }
+    m_response.data.clear();
+
+    for(int i = 0; i<m_response.columnNames.size(); i++)
+    {
+        m_response.columnNames[i].clear();
+    }
+
+	for(int i = 0; i<argc; i++) {
+		//printf("%s : %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+        std::cout << "index i " << i << "\n";
+        lua_getglobal(shared_luaState, "AddColData");
+        if (lua_isfunction(shared_luaState, -1))
+        {
+            std::string colName = azColName[i];
+            std::string value = "NULL";
+            if (argv[i])
+            {
+                value = argv[i];
+            }
+            m_response.columnNames.push_back(colName);
+            m_response.data.push_back(value);
+            lua_pushstring(shared_luaState, colName.c_str());
+            lua_pushstring(shared_luaState, value.c_str());
+            if (!LuaManager::Instance()->checkLua(shared_luaState, lua_pcall(shared_luaState, 2, 1, 0)))
+            {
+                std::cout << "call AddColData failed \n";
+            }
+        }
+
 	}
 	m_response.recordCount = argc;
 	printf("\n");
@@ -50,6 +84,29 @@ int lua_GenKey(lua_State * L)
     return 1;
 }
 
+int lua_GetQueryResults(lua_State * L)
+{
+    if (lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_GetQueryResults) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        int resultCode = m_response.rc;
+        int recordCount = m_response.recordCount;
+
+        
+        lua_pushinteger(L, resultCode);
+        lua_pushinteger(L, recordCount);
+       // lua_pushstring(L, result.c_str());
+
+    }
+    return 3;
+}
+
 int lua_DoQuery(lua_State * L)
 {
     if (lua_gettop(L) != 2)
@@ -79,6 +136,7 @@ ServerScriptingManager::~ServerScriptingManager()
 {
 
 }
+
 
 void ServerScriptingManager::update(float deltaTime)
 {
@@ -141,18 +199,18 @@ ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
 bool ServerScriptingManager::doQuery(const std::string & queryCmd)
 {
     char * zErrMsg = 0;
-    m_response.rc = sqlite3_exec(m_dbh->getDatabase(), queryCmd.c_str(), serverScriptingCallback, (void*)m_response.data, &zErrMsg);
+    m_response.rc = sqlite3_exec(m_dbh->getDatabase(), queryCmd.c_str(), serverScriptingCallback, (void*)m_response.rawData, &zErrMsg);
 
     if(m_response.rc != SQLITE_OK)
     {
-        std::cout << "ServerScriptingManager doQuery failed: " << zErrMsg << "\n";
-        std::cout << "The query tried to be: " << queryCmd << "\n";
+        //std::cout << "ServerScriptingManager doQuery failed: " << zErrMsg << "\n";
+        //std::cout << "The query tried to be: " << queryCmd << "\n";
         sqlite3_free(zErrMsg);
         return false;
     }
     else
     {
-        std::cout << "ServerScriptingManager doQuery OK! , check the response\n";
+        //std::cout << "ServerScriptingManager doQuery OK! , check the response\n";
         return true;
     }
     return false;
@@ -174,9 +232,11 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     // register lua functions
     
     lua_register(m_script, "cppDoQuery", lua_DoQuery);
+    lua_register(m_script, "cppGetQueryResults", lua_GetQueryResults);
     lua_register(m_script, "cppGenKey", lua_GenKey);
 
-    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "luaFiles/serverSideScript.lua")))
+
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))
     {
         std::cout << "Run script OK \n";
     }
@@ -193,5 +253,6 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
         }
     }
 
+    shared_luaState = m_script;
 }
 

@@ -29,13 +29,18 @@
 
 struct SQLResponse
 {
+
     int rc;
-    void * data;
+    void * rawData;
+    std::vector<std::string> columnNames;
+    std::vector<std::string> data;
     int recordCount;
 };
 
 static SQLResponse m_response;
 
+
+static lua_State * shared_luaState;
 
 class ServerScriptingManager
 {
@@ -53,6 +58,8 @@ public:
     std::string getMegFromPackget(RakNet::Packet *p);
 
     bool doQuery(const std::string & queryCmd);
+
+    //int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **azColName);
 
 private:
 

@@ -44,7 +44,6 @@ int ServerMain::handleStep2Request(RakNet::Packet *p)
     return -22;
 }
 
-
 ServerMain::~ServerMain()
 {
 
@@ -57,7 +56,7 @@ void ServerMain::init(const std::string & password, int port,unsigned int server
     std::cout << "|=========================================|\n";
 	std::cout << "|            Init DataBase                |\n";
     m_dbh = new DataBaseHandler();
-	m_dbh->loadDataBase("../data/tData.db");
+	m_dbh->loadDataBase("../data/t2.db");
 	std::cout << "|=========================================|\n";
     std::cout << "|             Init Server                 |\n";
 

@@ -61,4 +61,4 @@ select "created tables :";
 
 insert into account_table(account_id,account_password,account_lvl) values ('feint','ok',2);
 insert into account_table(account_id,account_password,account_lvl) values ('belai','okk',1);
-insert into account_table(account_id,account_password,account_lvl) values ('chamas','123');
+insert into account_table(account_id,account_password) values ('chamas','123');

@@ -130,7 +130,6 @@ end
 ---@param posX number The x position of the entity
 ---@param posY number The y position of the entity
 ---@param time number The time to complete the move
-
 function TB_MoveEntity(host, entity, posX, posY, time)
     cppMoveEntity(host, entity, posX, posY, time)
 end
@@ -170,7 +169,7 @@ end
 ---@param iconPath string The path to the icon file
 ---@param slot pointer instance of Slot (created by TBD)
 ---@return pointer instance of created Icon
-function TB_CreateIcon(host,assetPath,dimX, dimY,name,description,turnCost,manaCost)
+function TB_CreateIcon(host,iconPath,slot)
     return cppCreateIcon(host,iconPath,slot)
 end
 
