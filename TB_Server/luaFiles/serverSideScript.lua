@@ -5,6 +5,14 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "serverWrapper"
 
 
+--- function SV_DoQuery, clear data before a query
+---@Description: call a server to do a query
+---@param host pointer instance of ServerScriptingManager
+---@param query string the query command
+function SVI_DoQuery(host,query)
+    ClearQuery()
+    SV_DoQuery(host,query)
+end
 
 Account_Table = {
     tb_name = "account_table",
@@ -81,28 +89,48 @@ ResponseHandle[PacketCode.login] = function(host, message)
     print("id is " .. t_id)
     print("pw is " .. t_pw)
 
-    local checkLoginSql = "SELECT * FROM " .. Table.account.tb_name .. " WHERE " ..Table.account.id.. " = '" .. t_id .. "' AND " .. Table.account.pw .. " = '" .. t_pw .. "';"
-    print(checkLoginSql)
-    SV_DoQuery(host, checkLoginSql)
-    
-    -- for i = 1, Query_count do
-    --     print(Query_col[i] .. ">:<" .. Query_val[i])
-    -- end
+    local totalParam = Table.account.id .. ", " .. Table.account.pw .. ", " .. Table.account.lvl 
+    local startQuery = "SELECT "
 
-    local index = 4
-    if Query_count == 0 then 
+    local endQuery = " FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = '" .. t_id .. "' AND " .. Table.account.pw .. " = '" .. t_pw .. "';"
+
+    local checkLoginSql = startQuery .. totalParam .. endQuery
+    local checkCountSql = startQuery .. "COUNT(*)"  .. endQuery
+
+    print(checkCountSql)
+    SVI_DoQuery(host, checkCountSql)
+
+    -- for i = 1, Query_count do
+    --     print(Query_col[i] .. ":" .. Query_val[i])
+    -- end
+    local count = tonumber(Query_val[1])
+
+    if count == 0 then
         print("a login attemp failed")
-    else if Query_count > 4 then
+    else if count > 1 then
         print("WARNING unexpected result, If you see this message in production ? you are COOKED !!!")
     else --- only one result
         print("a login attemp succeed")
-        -- todo : query relevant info and send back to client
+        SVI_DoQuery(host, checkLoginSql)
+        
+        print("account id is " .. Query_val[1])
+        print("account pw is " .. Query_val[2])
+
+        local acc_lvl = tonumber(Query_val[3]) 
+        print("account lvl is " .. Query_val[3])
+
+        
+
+        if acc_lvl == 0 then
+            ---pass
+            --- query for account stats
+        end
+        
     end
 
+    end -- why ?
 end
-        -- body
 
-end
 
 function Init(host)
     T_Host = host

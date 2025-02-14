@@ -30,7 +30,7 @@ static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **
 
 	for(int i = 0; i<argc; i++) {
 		//printf("%s : %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-        std::cout << "index i " << i << "\n";
+        // std::cout << "index i " << i << "\n";
         lua_getglobal(shared_luaState, "AddColData");
         if (lua_isfunction(shared_luaState, -1))
         {
