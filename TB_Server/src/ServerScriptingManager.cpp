@@ -56,9 +56,23 @@ static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **
 	return 0;
 }
 
+std::string genKey(int numberOfRandom)
+{
+    char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    int size = sizeof(a) - 1;
+    char p[numberOfRandom + 1];
+    for (int i = 0; i < numberOfRandom; i++)
+    {
+        p[i] = a[rand() % size];
+    }
+    p[numberOfRandom] = '\0';
+
+    return std::string(p);
+}
+
 int lua_GenKey(lua_State * L)
 {
-    if (lua_gettop(L) != 0)
+    if (lua_gettop(L) != 1)
     {
         std::cout << "gettop failed (lua_GenKey) \n";
         std::cout << lua_gettop(L) << "\n";
@@ -66,17 +80,9 @@ int lua_GenKey(lua_State * L)
     }
     else
     {
-        char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        int size = sizeof(a) - 1;
-        int numberOfRandom = 12 ;
-        char p[numberOfRandom + 1];
-        for (int i = 0; i < numberOfRandom; i++)
-        {
-            p[i] = a[rand() % size];
-        }
-        p[numberOfRandom] = '\0';
 
-        std::string key = p;
+        int numberOfRandom = lua_tointeger(L, 1);
+        std::string key = genKey(numberOfRandom);
         std::cout << "c++ side: key: " << key << "\n";
         lua_pushstring(L, key.c_str());
     }
@@ -127,6 +133,61 @@ int lua_DoQuery(lua_State * L)
     return 0;
 }
 
+int lua_SendToClient(lua_State * L)
+{
+    std::cout << "lua_SendToClient called \n";
+    if (lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_SendToClient) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        RakNet::SystemAddress * clientId = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 2));
+        std::string msg = lua_tostring(L, 3);
+        host->sendData(*clientId, msg);
+        // host->sendToClient(clientId, requestCode);
+        return 0;
+    }
+}
+
+int lua_Packet_getData(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Packet_getData) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+        std::string msg((const char *)p->data);
+
+        lua_pushstring(L, msg.c_str());
+        return 1;
+    }
+}
+
+int lua_Packet_getIP(lua_State * L)
+{
+
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Packet_getIP) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+        RakNet::SystemAddress * clientId = &p->systemAddress;
+        lua_pushlightuserdata(L,clientId);
+        return 1;
+    }
+}
 
 ServerScriptingManager::ServerScriptingManager()
 {
@@ -146,7 +207,17 @@ void ServerScriptingManager::update(float deltaTime)
 
 std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
 {
+    //p->systemAddress
+    //p->systemAddress
     return std::string((const char*)p->data);
+}
+
+uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data)
+{
+    std::cout << "send data called \n";
+    std::cout << "send data to " << target.ToString(true) << " with length " << data.size() << "\n";
+    m_server->Send(data.c_str(), data.size(), HIGH_PRIORITY, RELIABLE_ORDERED,0,target,true);
+    return 0;
 }
 
 ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
@@ -162,7 +233,7 @@ ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
 
         //std::cout << "Issue next task pointer " << object << "\n";
 
-        lua_pushstring(m_script, msg.c_str());
+        lua_pushlightuserdata(m_script, p);
         //lua_pushlightuserdata(m_script, m_guiHandler);
 
         lua_pushnumber(m_script, requestCode);
@@ -174,9 +245,6 @@ ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
             std::cout << "call HandleMessage failed \n";
         }
     }
-
-    
-
 
     // switch (requestCode)
     // {
@@ -234,6 +302,12 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppDoQuery", lua_DoQuery);
     lua_register(m_script, "cppGetQueryResults", lua_GetQueryResults);
     lua_register(m_script, "cppGenKey", lua_GenKey);
+    lua_register(m_script, "cppSendToClient", lua_SendToClient);
+
+    // extract data from packet
+    lua_register(m_script, "cppPacket_getData", lua_Packet_getData);
+    lua_register(m_script, "cppPacket_getIP", lua_Packet_getIP);
+
 
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))

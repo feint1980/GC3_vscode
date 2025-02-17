@@ -103,7 +103,7 @@ end
 
 -- move set : spell 2
 function moveset_spell_2(host)
-    dynamics[KomachiObj] = {behavior = coroutine.create(spell_2_behavior,host,KomachiObj)}
+    dynamics[KomachiObj] = {behavior = coroutine.create(Komaci_spell_2_behavior,host,KomachiObj)}
     IssueNextTask(host,KomachiObj)
 end
 

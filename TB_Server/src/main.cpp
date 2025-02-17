@@ -25,7 +25,7 @@
 int wmain(int argc, char const *argv[])
 {
     ServerMain server;
-    server.init("DavaiMachi", 1123, 10);
+    server.init("DavaiMachi", 1123, 100);
 
     server.run();
 

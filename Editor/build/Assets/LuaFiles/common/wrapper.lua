@@ -26,6 +26,7 @@ function W_createObject(host ,animationPath , posX, posY,scale,depth,angle)
     return cppCreateFromLua(host,animationPath,posX,posY,scale,depth,angle)
 end
 
+
 -- --- Wrapper of cppRemoveFromLua
 -- --- @Description: Remove object
 -- --- @param host pointer instance of F_Lua_Boss_Manager

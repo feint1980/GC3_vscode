@@ -191,7 +191,7 @@ void ServerMain::update(float deltaTime)
 				// Sending is the same as before
                 //sprintf(messageBuffer, "Relay msg: %s", m_currentPacket->data);
 				
-				//m_server->Send(messageBuffer, (const int) strlen(messageBuffer)+1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, m_currentPacket->systemAddress, true);
+				m_server->Send(messageBuffer, (const int) strlen(messageBuffer)+1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, m_currentPacket->systemAddress, true);
 
 				break;
 			}
@@ -314,7 +314,7 @@ void ServerMain::handleCommand(const std::string & command)
     }
     case PacketCode::LIST:
     {
-        RakNet::SystemAddress systems[m_connectionSize];
+       RakNet::SystemAddress systems[m_connectionSize];
         unsigned short numConnections=m_connectionSize;
         m_server->GetConnectionList((RakNet::SystemAddress*) &systems, &numConnections);
         std::cout << "Total connections : " << numConnections << "\n";

@@ -87,7 +87,7 @@ function Komachi_side_coin(host,dynob,direction,tier,tableName,tableAssets,speed
     end
 end
 
-function spell_2_behavior(host,dynob)
+function Komaci_spell_2_behavior(host,dynob)
 
     local x_index = -2
     local y_index = 5

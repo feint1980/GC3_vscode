@@ -57,7 +57,13 @@ public:
 
     std::string getMegFromPackget(RakNet::Packet *p);
 
+    
+
+    uint32_t sendData(const RakNet::SystemAddress & target, const std::string & data);
+
     bool doQuery(const std::string & queryCmd);
+
+
 
     //int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **azColName);
 

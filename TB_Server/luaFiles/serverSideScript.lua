@@ -63,24 +63,98 @@ end
 
 T_Host = nil
 
-
 PacketCode = {
-    login = 35
+    login = 35,
+    register = 36,
+    requestKey = 37
 }
-
 
 ResponseHandle = {}
 
 
-ResponseHandle[PacketCode.login] = function(host, message)
+--- function CheckAccountValid
+---@Description : check if the query of account and password is valid (only one result)
+---@param host pointer instance of ServerScriptingManager
+---@param id string account id (1)
+---@param pw string account password (2)
+---@return boolean true if valid
+function CheckAccountValid(host, id, pw)
+
+    print("CheckAccountValid debug: id is " .. id .. " pw is " .. pw)
+    local queryCountCmd= " SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = '" .. id .. "' AND " .. Table.account.pw .. " = '" .. pw .. "';"
+
+    print("query " .. queryCountCmd)
+    SVI_DoQuery(host, queryCountCmd)
+    print("result " .. Query_val[1])
+    local result = Query_val[1]
+    local count = tonumber(result)
+    print("count " .. count)
+
+    if count > 1 then
+        print("WARNING unexpected result, If you see this message in production ? you are COOKED !!!")
+        return false
+    end
+    if count == 0 then
+        print("valid check failed")
+        return false
+    end
+    print("CheckAccountValid debug: everything OK ")
+    return true
+
+end
+
+ResponseHandle[PacketCode.requestKey] = function(host, packet)
+
+    local message = SV_GetPacketData(packet)
+
+    print("request key found, processing")
+    local pattern_start = "|REQUEST_KEY_REQUEST|"
+    local firstIndex = string.find(message, pattern_start)
+    local beginP = firstIndex + string.len(pattern_start)
+
+    local pattern_end = "|REQUEST_KEY_END_REQUEST|"
+    local endIndex = string.find(message, pattern_end)
+
+    local processResult = string.sub(message, beginP, endIndex - 1)
+
+    local clientIP = SV_GetPacketIP(packet)
+
+    --- dump
+    --- split id and account by the sigh |
+    local t_id = string.sub(processResult, 0,string.find(processResult, "|") - 1)
+    local t_pw = string.sub(processResult, string.len(t_id) + 2 , string.len(processResult))
+    print("id is " .. t_id)
+    print("pw is " .. t_pw)
+
+    if CheckAccountValid(host, t_id, t_pw) then
+        print("account is valid")
+        SVI_DoQuery(host,"SELECT " .. Table.account.lvl .. " FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.id .. " = '" .. t_id .. "';")
+
+        local result = tonumber(Query_val[1])
+        if result > 1 then 
+            -- gen key 
+            print("here")
+        else
+            print("here")
+        end
+    end
+
+end
+
+ResponseHandle[PacketCode.login] = function(host,packet)
     print("login response found, processing")
+
+    local message = SV_GetPacketData(packet)
+
     local pattern_start = "|LOGIN_REQUEST|"
     local firstIndex = string.find(message, pattern_start)
     local beginP = firstIndex + string.len(pattern_start)
 
     local pattern_end = "|LOGIN_END_REQUEST|"
     local endIndex = string.find(message, pattern_end)
-    
+
+    local clientIP = SV_GetPacketIP(packet)
+
     local processResult = string.sub(message, beginP, endIndex - 1)
     --- dump 
     --- split id and account by the sigh | 
@@ -97,38 +171,14 @@ ResponseHandle[PacketCode.login] = function(host, message)
     local checkLoginSql = startQuery .. totalParam .. endQuery
     local checkCountSql = startQuery .. "COUNT(*)"  .. endQuery
 
-    print(checkCountSql)
-    SVI_DoQuery(host, checkCountSql)
-
-    -- for i = 1, Query_count do
-    --     print(Query_col[i] .. ":" .. Query_val[i])
-    -- end
-    local count = tonumber(Query_val[1])
-
-    if count == 0 then
-        print("a login attemp failed")
-    else if count > 1 then
-        print("WARNING unexpected result, If you see this message in production ? you are COOKED !!!")
-    else --- only one result
-        print("a login attemp succeed")
-        SVI_DoQuery(host, checkLoginSql)
-        
-        print("account id is " .. Query_val[1])
-        print("account pw is " .. Query_val[2])
-
-        local acc_lvl = tonumber(Query_val[3]) 
-        print("account lvl is " .. Query_val[3])
-
-        
-
-        if acc_lvl == 0 then
-            ---pass
-            --- query for account stats
-        end
-        
+    if CheckAccountValid(host, t_id, t_pw) then
+        -- print("account is valid")
+        print("account is valid")
+    else
+        print("login failed")
+        SV_SendMsg(host,clientIP,"Login failed ( this will be packet to client)" )
     end
 
-    end -- why ?
 end
 
 
@@ -136,13 +186,23 @@ function Init(host)
     T_Host = host
 end
 
-function HandleMessage(host,message,requestCode)
+
+--- function HandleMessage 
+--- @Description : handle message from client
+--- @param host pointer instance of ServerScriptingManager
+--- @param clientIP pointer of IP system from client
+--- @param message string message from client
+--- @param requestCode number request code
+function HandleMessage(host,packet,requestCode)
     print("relay message")
+
+    local message = SV_GetPacketData(packet)
+
     print(message)
     print("request code : " .. requestCode)
 
     if ResponseHandle[requestCode] ~= nil then
-        ResponseHandle[requestCode](host, message)
+        ResponseHandle[requestCode](host,packet)
     end
 
 end

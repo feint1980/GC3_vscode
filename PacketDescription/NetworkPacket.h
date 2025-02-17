@@ -52,6 +52,7 @@ enum ClientRequestCode
 {
     Login = 12,
     Register = 13,
+    RequestKey = 193,
     Client_Invalid = 277
 
 };
@@ -71,6 +72,8 @@ PacketCode getSpecialRequestCode(RakNet::Packet *p);
 
 unsigned char GetPacketIdentifier(RakNet::Packet *p);
 
-std::string combinePackage(const std::string & type,const std::string & id, const std::string & pw);
+std::string combine2Package(const std::string & type,const std::string & id, const std::string & pw);
+
+std::string combine3Package(const std::string & type,const std::string & id, const std::string & pw, const std::string & key);
 
 

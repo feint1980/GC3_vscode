@@ -82,6 +82,7 @@ private:
     std::string m_registerID;
     std::string m_registerPw;
     std::string m_regiserPWConfirm;
+    std::string m_registerKey;
 
     //ClientScriptingManager * m_scriptManager;
 
