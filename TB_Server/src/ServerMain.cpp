@@ -147,7 +147,7 @@ void ServerMain::update(float deltaTime)
 				break;
 
 			case ID_NEW_INCOMING_CONNECTION:
-				// Somebody connected.  We have their IP now
+				{// Somebody connected.  We have their IP now
 				printf("ID_NEW_INCOMING_CONNECTION from %s with GUID %s\n", m_currentPacket->systemAddress.ToString(true), m_currentPacket->guid.ToString());
 				m_clientID=m_currentPacket->systemAddress; // Record the player ID of the client
 
@@ -162,20 +162,22 @@ void ServerMain::update(float deltaTime)
 				}
 
 				break;
-
+                }
 			case ID_INCOMPATIBLE_PROTOCOL_VERSION:
 				printf("ID_INCOMPATIBLE_PROTOCOL_VERSION\n");
 				break;
 
 			case ID_CONNECTED_PING:
 			case ID_UNCONNECTED_PING:
+                {
 				printf("Ping from %s\n", m_currentPacket->systemAddress.ToString(true));
-				break;
 
+				break;
+                }
 			case ID_CONNECTION_LOST:
 				// Couldn't deliver a reliable packet - i.e. the other system was abnormally
 				// terminated
-				printf("ID_CONNECTION_LOST from %s\n", m_currentPacket->systemAddress.ToString(true));;
+				printf("ID_CONNECTION_LOST from %s\n", m_currentPacket->systemAddress.ToString(true));
 				break;
 
 			default:
@@ -191,7 +193,7 @@ void ServerMain::update(float deltaTime)
 				// Sending is the same as before
                 //sprintf(messageBuffer, "Relay msg: %s", m_currentPacket->data);
 				
-				m_server->Send(messageBuffer, (const int) strlen(messageBuffer)+1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, m_currentPacket->systemAddress, true);
+				// m_server->Send(messageBuffer, (const int) strlen(messageBuffer)+1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 
 				break;
 			}
@@ -282,6 +284,7 @@ void ServerMain::handleCommand(const std::string & command)
     case PacketCode::PING:
     {
         m_server->Ping(m_clientID); // not sure what this line actually do 
+        
         break;
 
     }
@@ -314,7 +317,7 @@ void ServerMain::handleCommand(const std::string & command)
     }
     case PacketCode::LIST:
     {
-       RakNet::SystemAddress systems[m_connectionSize];
+        RakNet::SystemAddress systems[m_connectionSize];
         unsigned short numConnections=m_connectionSize;
         m_server->GetConnectionList((RakNet::SystemAddress*) &systems, &numConnections);
         std::cout << "Total connections : " << numConnections << "\n";
@@ -333,7 +336,6 @@ void ServerMain::handleCommand(const std::string & command)
         // trim the SVB
         std::string msg = command.substr(strlen("SVB "), command.length());
         strcat(serverBroadcast, msg.c_str());
-        
         m_server->Send(serverBroadcast, (int) strlen(serverBroadcast), HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
         break;
     }

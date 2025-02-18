@@ -1,5 +1,3 @@
---- cppDoQuery
---- cppGenKey
 ---
 ---
 
@@ -46,9 +44,12 @@ end
 ---@param host pointer instance of ServerScriptingManager
 ---@param clientIP pointer instance of RakNet::SystemAddress
 ---@param message string message to send
-
 function SV_SendMsg(host,clientIP,message)
     cppSendToClient(host,clientIP,message)
 end
 
-
+--- function wrapper of cppGenKey
+---@Description: generate a key
+function SV_GenKey(numberOfChars)
+    return cppGenKey(numberOfChars)
+end

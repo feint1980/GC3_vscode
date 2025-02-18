@@ -80,7 +80,6 @@ int lua_GenKey(lua_State * L)
     }
     else
     {
-
         int numberOfRandom = lua_tointeger(L, 1);
         std::string key = genKey(numberOfRandom);
         std::cout << "c++ side: key: " << key << "\n";
@@ -147,6 +146,8 @@ int lua_SendToClient(lua_State * L)
         ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
         RakNet::SystemAddress * clientId = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 2));
         std::string msg = lua_tostring(L, 3);
+        //std::cout << "msg send is |" << msg << "|\n"; 
+       // msg += "\0";
         host->sendData(*clientId, msg);
         // host->sendToClient(clientId, requestCode);
         return 0;
@@ -214,9 +215,7 @@ std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
 
 uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data)
 {
-    std::cout << "send data called \n";
-    std::cout << "send data to " << target.ToString(true) << " with length " << data.size() << "\n";
-    m_server->Send(data.c_str(), data.size(), HIGH_PRIORITY, RELIABLE_ORDERED,0,target,true);
+    m_server->Send(data.c_str(), data.size() + 1, HIGH_PRIORITY, RELIABLE_SEQUENCED,12, target,false);
     return 0;
 }
 

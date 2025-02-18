@@ -26,12 +26,25 @@ PacketCode getSpecialRequestCode(RakNet::Packet *p)
         {
             return PacketCode::LOGIN;
         }
-        //std::cout << "Login request found !!!\n";
-        //proceed to verify login
-
-        return PacketCode::INVALID;
     }
-    
+
+    if(cData.find("|REQUEST_KEY_REQUEST|") != std::string::npos)
+    {
+        if(cData.find("|REQUEST_KEY_END_REQUEST|") != std::string::npos)
+        {
+            return PacketCode::REQUEST_KEY;
+        }
+    }
+
+    if(cData.find("|REGISTER_REQUEST|") != std::string::npos)
+    {
+        if(cData.find("|REGISTER_END_REQUEST|") != std::string::npos)
+        {
+            return PacketCode::REGISTER;
+        }
+    }
+
+
     //std::cout << "Not a request, normal message : \n";
     return PacketCode::INVALID;
 }

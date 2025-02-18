@@ -93,7 +93,11 @@ void ClientMain::run()
 }
 void ClientMain::update(float deltaTime)
 {
-    for (m_currentPacket=m_client->Receive(); m_currentPacket; m_client->DeallocatePacket(m_currentPacket), m_currentPacket=m_client->Receive())
+    
+    for (m_currentPacket=m_client->Receive(); 
+    m_currentPacket;
+    m_client->DeallocatePacket(m_currentPacket),
+    m_currentPacket=m_client->Receive())
 		{
 			// We got a packet, get the identifier with our handy function
 			unsigned char packetIdentifier = GetPacketIdentifier(m_currentPacket);
@@ -154,9 +158,15 @@ void ClientMain::update(float deltaTime)
 				break;
 			default:
 				// It's a client, so just show the message
-				printf("%s\n", m_currentPacket->data);
-				break;
+                {
+                    std::string msg ((const char*)m_currentPacket->data);
+                    std::cout << "server : " << msg << std::endl;
+                    break;
+                }
 			}
+                m_client->DeallocatePacket(m_currentPacket);
+                m_currentPacket = nullptr;
+                //std::flush(std::ostream&);
 		}
 
 }
@@ -333,7 +343,7 @@ void ClientMain::handleCommand(const std::string & command)
         std::cin >> m_regiserPWConfirm;
 
         int retry = 0;
-        do
+        while(retry < 4)
         {
             if (std::strcmp(m_registerPw.c_str(), m_regiserPWConfirm.c_str()) != 0)
             {
@@ -344,14 +354,24 @@ void ClientMain::handleCommand(const std::string & command)
                 std::cin >> m_regiserPWConfirm;
                 retry ++;
             }
+            else if (std::strcmp(m_registerPw.c_str(), m_regiserPWConfirm.c_str()) == 0)
+            {
+                retry = 4;
+                break;
+            }
+            else
+            {
+                std::cout << "end\n";
+            }
 
-        } while (std::strcmp(m_registerPw.c_str(), m_regiserPWConfirm.c_str()) == 0 || retry >= 3);
+        };
         
+        std::cout << "enter key : \n";
+        std::cin >> m_registerKey;
 
-        std::string packet = combine2Package("REGISTER",m_registerID, m_registerPw);
+        std::string packet = combine3Package("REGISTER",m_registerID, m_registerPw,m_registerKey);
         m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
         
-        std::cout << "sent " << packet <<  "\n";
     }
     break;
 
@@ -361,10 +381,9 @@ void ClientMain::handleCommand(const std::string & command)
         std::cin >> m_idStr;
         std::cout << "enter password : \n";
         std::cin >> m_pwStr;
-        std::string packet = combine2Package("KEY",m_idStr, m_pwStr);
+        std::string packet = combine2Package("REQUEST_KEY",m_idStr, m_pwStr);
         m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
         
-        std::cout << "sent " << packet <<  "\n";
     }
     break;
 
