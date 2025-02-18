@@ -217,8 +217,12 @@ ResponseHandle[PacketCode.register] = function(host,packet)
             SVI_DoQuery(host,checkKeyReadyQuery)
             local keyReadyValue = tonumber(Query_val[1])
             if keyReadyValue == 1 then
-                local insertAccountQuery = "INSERT INTO " .. Table.account.tb_name .. " VALUES ('" .. t_id .. "', '" .. t_pw .. "', '0');"
+                local insertAccountQuery = "INSERT INTO " .. Table.account.tb_name ..'('.. Table.account.id .. ', ' .. Table.account.pw  .. ") VALUES ('" .. t_id .. "', '" .. t_pw .. "');"
+                -- print("account insert check : " .. insertAccountQuery)
                 SV_DoQuery(host,insertAccountQuery)
+                local updateKeyQuery = "UPDATE " .. Table.register_key.tb_name .. " SET " .. Table.register_key.ready .. " = '0' WHERE " .. Table.register_key.val .. " = '" .. t_key .. "';"
+                SV_DoQuery(host,updateKeyQuery)
+                SV_SendMsg(host,clientIP,"Register success")
             else 
                 SV_SendMsg(host,clientIP,"Register Key already use")
             end
