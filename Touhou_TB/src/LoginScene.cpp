@@ -439,6 +439,7 @@ void LoginScene::initGUI()
             m_client->init("127.0.0.1", 1123);
             m_client->connect();
             m_guiStack.push(m_connect_panel);
+            
         }
         else
         {
