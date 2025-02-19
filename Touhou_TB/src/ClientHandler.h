@@ -16,9 +16,7 @@ public:
 
     void update(float deltaTime);
 
-    
     void connect();
-
 
     bool isConnected() { return m_isConnected; }
     private:
@@ -40,9 +38,6 @@ public:
     bool m_isInited = false;
 
     bool m_isConnected = false;
-
-
-
 
 };
 

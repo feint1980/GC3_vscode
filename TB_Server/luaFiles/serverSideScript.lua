@@ -223,7 +223,7 @@ ResponseHandle[PacketCode.register] = function(host,packet)
                 local updateKeyQuery = "UPDATE " .. Table.register_key.tb_name .. " SET " .. Table.register_key.ready .. " = '0' WHERE " .. Table.register_key.val .. " = '" .. t_key .. "';"
                 SV_DoQuery(host,updateKeyQuery)
                 SV_SendMsg(host,clientIP,"Register success")
-            else 
+            else
                 SV_SendMsg(host,clientIP,"Register Key already use")
             end
         else
@@ -236,9 +236,6 @@ ResponseHandle[PacketCode.register] = function(host,packet)
         print("accountCount is " .. accountCount)
         print("If you see this warning in production, you are COOKED !")
     end
-
-
-
 
 end
 

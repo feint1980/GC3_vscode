@@ -92,7 +92,7 @@ void LoginScene::update(float deltaTime)
     m_camera.update();
     m_tgui->updateTime(deltaTime);
     
-    if(m_isDisconnected )
+    if(m_isDisconnected)
     {
         if(m_client  && m_client->isConnected())
         {
@@ -100,24 +100,22 @@ void LoginScene::update(float deltaTime)
             m_isDisconnected = false;
             m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
             m_panel->moveToFront();
+            m_guiStack.push(m_panel);
+            m_id_input->setFocused(true);
         }
     }
 }
 
 void LoginScene::checkInput()
 {
-    
     SDL_Event evnt;
     while (SDL_PollEvent(&evnt))
     {
         m_game->onSDLEvent(evnt);
         m_tgui->handleEvent(evnt);
-        
     }
     handleInput(m_game->m_inputManager);
-   
 }
-
 
 void LoginScene::setTGUILableClickableEffect(tgui::Label::Ptr & label)
 {
@@ -145,13 +143,18 @@ void LoginScene::handleInput(Feintgine::InputManager & inputManager)
         //SDL_StartTextInput();
     }
 
-    // example for controller input
-    // if(inputManager.isKeyPressed(SDLK_LEFT))
-    // {
-    //     SDL_WarpMouseInWindow(m_window->getWindow(),m_tos_agre_label->getAbsolutePosition().x, m_tos_agre_label->getAbsolutePosition().y);
-    // }
+    if (inputManager.isKeyPressed(SDLK_ESCAPE))
+    {
 
-	//SDL_JoystickRumble()
+        if(!m_guiStack.empty())
+        {
+            
+            m_guiStack.top().get()->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+            m_guiStack.pop();
+        }
+    }
+    
+
 }
 
 
@@ -197,8 +200,11 @@ void LoginScene::initGUI()
     m_tgui = new tgui::Gui(m_window->getWindow());
     TTF_Init();
     m_panel = tgui::Panel::create();
+    m_register_panel = tgui::Panel::create();
+
     m_tos = tgui::Panel::create();
     m_tgui->add(m_panel);
+    m_tgui->add(m_register_panel);
     m_tgui->add(m_tos);
     selectTheme(*m_tgui, "themes/Dark.txt");  // force to load in main thread since the openGL problem, you can only have texture created in mainthread ( OpenGL Context)
 
@@ -239,23 +245,97 @@ void LoginScene::initGUI()
 
         m_login_button = tgui::Label::create();
         m_login_button->setText("Login");
-        m_login_button->setPosition(240, 200);
+        m_login_button->setPosition(200, 200);
         m_panel->add(m_login_button);
 
         m_cancel_button = tgui::Label::create();
         m_cancel_button->setText("Cancel");
-        m_cancel_button->setPosition(340, 200);
+        m_cancel_button->setPosition(290, 200);
         m_panel->add(m_cancel_button);
         m_panel->setVisible(false);
 
+        m_register_button = tgui::Label::create();
+        m_register_button->setText("Register");
+        m_register_button->setPosition(400, 200);
+        m_panel->add(m_register_button);
 
-    // });
+        // Register panel
+        m_register_panel->setSize(600, 300);
+        m_register_panel->setPosition(m_window->getScreenWidth()/2 - (m_register_panel->getSize().x/2) ,   m_window->getScreenHeight()/2 - (m_register_panel->getSize().y /2) );
 
+
+        m_register_id_label = tgui::Label::create();
+        m_register_id_label->setText("            ID");
+        m_register_id_label->setPosition(65, 50);
+        m_register_panel->add(m_register_id_label);
+
+        m_register_pw_label = tgui::Label::create();
+        m_register_pw_label->setText("  Password");
+        m_register_pw_label->setPosition(65, 100);
+        m_register_panel->add(m_register_pw_label);
+
+        m_register_pw_confirm_label = tgui::Label::create();
+        m_register_pw_confirm_label->setText("Confirm PW");
+        m_register_pw_confirm_label->setPosition(65, 150);
+        m_register_panel->add(m_register_pw_confirm_label);
+
+        m_register_key_label = tgui::Label::create();
+        m_register_key_label->setText("          Key");
+        m_register_key_label->setPosition(65, 200);
+        m_register_panel->add(m_register_key_label);
+
+        m_register_id_input = tgui::EditBox::create();
+        m_register_id_input->setSize(m_register_panel->getSize().x /2, 30);
+        m_register_id_input->setPosition(180,50);
+        m_register_panel->add(m_register_id_input);
+
+        m_register_pw_input = tgui::EditBox::create();
+        m_register_pw_input->setSize(m_register_panel->getSize().x /2, 30);
+        m_register_pw_input->setPosition(180,100);
+        m_register_panel->add(m_register_pw_input);
+
+        m_register_pw_confirm_input = tgui::EditBox::create();
+        m_register_pw_confirm_input->setSize(m_register_panel->getSize().x /2, 30);
+        m_register_pw_confirm_input->setPosition(180,150);
+        m_register_panel->add(m_register_pw_confirm_input);
+
+        m_register_key_input = tgui::EditBox::create();
+        m_register_key_input->setSize(m_register_panel->getSize().x /2, 30);
+        m_register_key_input->setPosition(180,200);
+        m_register_panel->add(m_register_key_input);
+
+        m_register_regis_button = tgui::Label::create();
+        m_register_regis_button->setText("Register");
+        m_register_regis_button->setPosition(230, 250);
+        m_register_panel->add(m_register_regis_button);
+
+        m_register_cancel_button = tgui::Label::create();
+        m_register_cancel_button->setText("Cancel");
+        m_register_cancel_button->setPosition(330, 250);
+        m_register_panel->add(m_register_cancel_button);
+        m_register_panel->setVisible(false);
+
+        setTGUILableClickableEffect(m_register_button);
+        setTGUILableClickableEffect(m_register_regis_button);
+        setTGUILableClickableEffect(m_register_cancel_button);
+
+        m_register_button->onClick([&]()
+        {
+            m_register_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+            m_register_panel->moveToFront();
+            m_guiStack.push(m_register_panel);
+        });
+
+        m_register_cancel_button->onClick([&]() 
+        {
+            m_register_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+            m_guiStack.pop();
+        });
+
+        
     // auto loadTOSTask = async::spawn([&]() {
-       
         m_tos->setSize(400, 300);
         m_tos->setPosition(m_window->getScreenWidth()/2 - 200 , m_window->getScreenHeight()/2 -150 );
-
 
         m_tos_label = tgui::RichTextLabel::create();
         m_tos_label->setText("This is a fan-made game based on \nTouhou project,many assets from other \ngames as concepts/placeholder,if you are \nOK with this prototype then hit \"Agree\" ");
@@ -291,7 +371,6 @@ void LoginScene::initGUI()
         m_exit_label->setText("Exit");
         m_exit_label->setPosition(m_window->getScreenWidth()/2 -50, m_window->getScreenHeight()/2 + 100 );
 
-
         m_online_label->moveToBack();
         m_offline_label->moveToBack();
         m_exit_label->moveToBack();
@@ -309,7 +388,6 @@ void LoginScene::initGUI()
     loadFontTask.get();
     // loadPanelTask.get();
     // loadTOSTask.get();
- 
     m_connect_panel = tgui::Panel::create();
     m_connect_panel->setSize(300, 200);
     m_connect_panel->setPosition(m_window->getScreenWidth()/2 - 150 , m_window->getScreenHeight()/2 -50 );
@@ -327,7 +405,6 @@ void LoginScene::initGUI()
     m_connect_panel->add(m_connect_cancel_label);
     m_connect_cancel_label->setVerticalAlignment(tgui::Label::VerticalAlignment::Center);
     
-
     m_tgui->add(m_connect_panel);
 
     m_connect_cancel_label->onClick([&]() {
@@ -336,6 +413,7 @@ void LoginScene::initGUI()
     });
 
     setTGUILableClickableEffect(m_connect_cancel_label);
+    
 
     m_tos->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(200));
     m_tos->moveToFront();
@@ -344,39 +422,15 @@ void LoginScene::initGUI()
         m_online_label->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
         m_offline_label->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
         m_exit_label->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
+        m_isAccept = true;
 
     });
-
-
-
-    // m_tos_agre_label->onMouseEnter([&]() {
-    
-    //     m_tos_agre_label->getRenderer()->setTextColor(tgui::Color::Green);
-    //     //std::cout << "hover \n";
-    // });
-    // m_tos_agre_label->onMouseLeave([&]() {
-    //       m_tos_agre_label->getRenderer()->setTextColor(tgui::Color::White);
-    //       //std::cout << "out \n";
-    // });
 
     setTGUILableClickableEffect(m_tos_agre_label);
     setTGUILableClickableEffect(m_tos_exit_label);
 
-    // m_tos_exit_label->onClick([&]() {
-    //     exit(1);
-    // });
-    // m_tos_exit_label->onMouseEnter([&]() {
-    //     m_tos_exit_label->getRenderer()->setTextColor(tgui::Color::Green);
-    //     //std::cout << "hover \n";
-    // });
-    // m_tos_exit_label->onMouseLeave([&]() {
-    //     m_tos_exit_label->getRenderer()->setTextColor(tgui::Color::White);
-    //     //std::cout << "out \n";
-    // });
-
-
-    m_online_label->onClick([&]() {
-      
+    m_online_label->onClick([&]() 
+    {
         if(m_isDisconnected)
         {
             m_connect_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
@@ -384,23 +438,15 @@ void LoginScene::initGUI()
             m_client = new ClientHandler();
             m_client->init("127.0.0.1", 1123);
             m_client->connect();
+            m_guiStack.push(m_connect_panel);
         }
         else
         {
             m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
             m_panel->moveToFront();
+            m_guiStack.push(m_panel);
         }
-     
-       
     });
-
-
-    // m_online_label->onMouseEnter([&]() {
-    //     m_online_label->getRenderer()->setTextColor(tgui::Color::Green);    
-    // }); 
-    // m_online_label->onMouseLeave([&]() {
-    //     m_online_label->getRenderer()->setTextColor(tgui::Color::White);
-    // });
 
     setTGUILableClickableEffect(m_online_label);
 
@@ -408,26 +454,11 @@ void LoginScene::initGUI()
         std::cout << "offline \n";
     });
 
-
-    // m_offline_label->onMouseEnter([&]() {
-    //     m_offline_label->getRenderer()->setTextColor(tgui::Color::Green);
-    // });
-    // m_offline_label->onMouseLeave([&]() {
-    //     m_offline_label->getRenderer()->setTextColor(tgui::Color::White);
-    // });
-
     setTGUILableClickableEffect(m_offline_label);
 
     m_login_button->onClick([&]() {
         //todo login here
     });
-
-    // m_login_button->onMouseEnter([&]() {
-    //     m_login_button->getRenderer()->setTextColor(tgui::Color::Green);
-    // });
-    // m_login_button->onMouseLeave([&]() {
-    //     m_login_button->getRenderer()->setTextColor(tgui::Color::White);
-    // });
 
     setTGUILableClickableEffect(m_login_button);
 
@@ -435,29 +466,14 @@ void LoginScene::initGUI()
     m_cancel_button->onClick([&]() {
         m_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
         //m_panel->moveToBack();
-        
+        m_guiStack.pop();
     });
-
-    // m_cancel_button->onMouseEnter([&]() {
-    //     m_cancel_button->getRenderer()->setTextColor(tgui::Color::Green);
-    // });
-    // m_cancel_button->onMouseLeave([&]() {
-    //     m_cancel_button->getRenderer()->setTextColor(tgui::Color::White);
-    // });
 
     setTGUILableClickableEffect(m_cancel_button);
 
     m_exit_label->onClick([&]() {
         exit(1);
     });
-
-
-    // m_exit_label->onMouseEnter([&]() {
-    //     m_exit_label->getRenderer()->setTextColor(tgui::Color::Green);
-    // });
-    // m_exit_label->onMouseLeave([&]() {
-    //     m_exit_label->getRenderer()->setTextColor(tgui::Color::White);
-    // });
 
     setTGUILableClickableEffect(m_exit_label);
 

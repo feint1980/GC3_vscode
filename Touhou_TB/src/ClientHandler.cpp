@@ -6,7 +6,7 @@
 
 ClientHandler::ClientHandler()
 {
-    
+    pw = "DavaiMachi";
 }
 
 ClientHandler::~ClientHandler()
@@ -17,6 +17,8 @@ ClientHandler::~ClientHandler()
 void ClientHandler::init(const std::string & serverIP, unsigned int port)
 {
     std::cout << "Init Client \n";
+
+    // pw = serverPW;
 
     m_client = RakNet::RakPeerInterface::GetInstance();
 
@@ -39,13 +41,13 @@ void ClientHandler::connect()
 {
     if(m_isInited)
     {
-        RakNet::ConnectionAttemptResult car = m_client->Connect(m_serverIP.c_str(), m_port, "TTKR", strlen("TTKR"));
+        RakNet::ConnectionAttemptResult car = m_client->Connect(m_serverIP.c_str(), m_port, pw.c_str(), pw.size());
         RakAssert(car == RakNet::CONNECTION_ATTEMPT_STARTED);
     
         std::cout << "IP address: \n";
         for(int i = 0; i < m_client->GetNumberOfAddresses(); i++)
         {
-           printf("%i. %s\n", i+1, m_client->GetLocalIP(i));
+            printf("%i. %s\n", i+1, m_client->GetLocalIP(i));
         }
         std::cout << "init networking OK ! \n";
         std::cout << "GUID is : " << m_client->GetGuidFromSystemAddress (RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString() << "\n"; 
@@ -53,7 +55,7 @@ void ClientHandler::connect()
         // {
         //     m_isConnected = true;
         // }
-          m_isConnected = true;
+        //m_isConnected = true;
         
     }
 }

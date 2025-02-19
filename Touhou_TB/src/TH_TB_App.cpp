@@ -34,8 +34,9 @@ void TH_TB_App::addScreen()
     m_test = std::make_unique<TestTBScreen>(&m_window); 
     m_screenList->addScreen(m_test.get());
 
-    m_screenList->setScreen(m_test->getScreenIndex());
+    m_screenList->setScreen(m_login->getScreenIndex());
 }
+
 
 void TH_TB_App::onExit()
 {

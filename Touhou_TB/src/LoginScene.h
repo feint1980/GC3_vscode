@@ -17,6 +17,7 @@
 
 #include <thread>
 #include <deque>
+#include <stack>
 
 #include <Timing.h>
 #include <FTimer.h>
@@ -82,7 +83,6 @@ private:
 
     Feintgine::Camera2D m_camera;
 
-
     Feintgine::GLSLProgram m_shader;
 
     Feintgine::SpriteBatch m_spriteBatch;
@@ -92,6 +92,8 @@ private:
     tgui::Gui * m_tgui;
 
     tgui::Panel::Ptr m_panel;
+    tgui::Panel::Ptr m_register_panel;
+
 
     tgui::Label::Ptr m_id_label;
     tgui::Label::Ptr m_pw_label;
@@ -99,8 +101,23 @@ private:
     tgui::EditBox::Ptr m_id_input;
     tgui::EditBox::Ptr m_pw_input;
 
+    tgui::Label::Ptr m_register_id_label;
+    tgui::Label::Ptr m_register_pw_label;
+    tgui::Label::Ptr m_register_pw_confirm_label;
+    tgui::Label::Ptr m_register_key_label;
+
+    tgui::EditBox::Ptr m_register_id_input;
+    tgui::EditBox::Ptr m_register_pw_input;
+    tgui::EditBox::Ptr m_register_pw_confirm_input;
+    tgui::EditBox::Ptr m_register_key_input;
+
+
     tgui::Label::Ptr m_login_button;
+    tgui::Label::Ptr m_register_button;
     tgui::Label::Ptr m_cancel_button;
+
+    tgui::Label::Ptr m_register_regis_button;
+    tgui::Label::Ptr m_register_cancel_button;
 
     tgui::Panel::Ptr m_tos;
     tgui::RichTextLabel::Ptr m_tos_label;
@@ -116,6 +133,10 @@ private:
     tgui::Label::Ptr m_connect_cancel_label;
 
     ClientHandler * m_client;
+
+    bool m_isAccept = false;
+
+    std::stack<tgui::Panel::Ptr> m_guiStack;
 
     bool m_isDisconnected = true;
 
