@@ -6,6 +6,15 @@
 #include <iostream>
 
 
+enum Status
+{
+    Disconnected = 0,
+    Connected = 1, 
+    FailedAttemp =2,
+    LoginGranted = 3
+};
+
+
 class ClientHandler
 {
 public:
@@ -19,6 +28,9 @@ public:
     void connect();
 
     bool isConnected() { return m_isConnected; }
+
+    Status getStatus() { return m_status; }
+
     private:
 
     std::string pw; 
@@ -39,6 +51,9 @@ public:
 
     bool m_isConnected = false;
 
+
+
+    Status m_status = Status::Disconnected;
 };
 
 

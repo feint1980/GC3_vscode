@@ -1,5 +1,3 @@
----
----
 
 --- Classes declare
 ---@class pointer

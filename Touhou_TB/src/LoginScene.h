@@ -128,9 +128,17 @@ private:
     tgui::Label::Ptr m_online_label;
     tgui::Label::Ptr m_exit_label;
 
-    tgui::Panel::Ptr m_connect_panel;
-    tgui::Label::Ptr m_connect_label;
-    tgui::Label::Ptr m_connect_cancel_label;
+    tgui::Panel::Ptr m_noti_panel;
+    tgui::RichTextLabel::Ptr m_noti_label;
+    tgui::Label::Ptr m_noti_cancel_label;
+
+
+    // tgui::Panel::Ptr m_notification_panel;
+    // tgui::Label::Ptr m_notification_label;
+    // tgui::Label::Ptr m_notification_cancel_label;
+    // tgui::Label::Ptr m_notification_cancel_label;
+    
+
 
     ClientHandler * m_client;
 
@@ -139,6 +147,8 @@ private:
     std::stack<tgui::Panel::Ptr> m_guiStack;
 
     bool m_isDisconnected = true;
+
+    //Status m_lastResponse = Status::Disconnected;
 
     //BattleScene m_battleScene;
 

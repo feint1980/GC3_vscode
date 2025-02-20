@@ -92,18 +92,57 @@ void LoginScene::update(float deltaTime)
     m_camera.update();
     m_tgui->updateTime(deltaTime);
     
-    if(m_isDisconnected)
+
+    if(m_client)
     {
-        if(m_client  && m_client->isConnected())
+        m_client->update(deltaTime);
+        Status tStatus = m_client->getStatus();
+        switch(tStatus)
         {
-            m_connect_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-            m_isDisconnected = false;
-            m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
-            m_panel->moveToFront();
-            m_guiStack.push(m_panel);
-            m_id_input->setFocused(true);
+            case Status::Disconnected:
+            {
+                if(m_client->isConnected())
+                {
+                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+                    //m_isDisconnected = false;
+                    m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
+                    m_panel->moveToFront();
+                    m_guiStack.push(m_panel);
+                    m_id_input->setFocused(true);
+                    tStatus = Status::Connected;
+                }
+                
+            }
+            break;
+
+            case Status::Connected:
+            {
+                if(m_noti_panel->isVisible())
+                {
+                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+                    m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
+                    m_panel->moveToFront();
+                    m_guiStack.push(m_panel);
+                    m_id_input->setFocused(true);
+                }
+            }
+            break;
+
+            case Status::FailedAttemp:
+            {
+                m_noti_label->setText("Not able to connect to server !");
+            
+                m_noti_cancel_label->setText("OK");
+
+            }
+            break;
+
+            default:
+            break;
+
         }
     }
+    
 }
 
 void LoginScene::checkInput()
@@ -356,20 +395,23 @@ void LoginScene::initGUI()
         m_tos->setVisible(false);
 
         m_online_label = tgui::Label::create();
-        m_online_label->setVerticalAlignment(tgui::Label::VerticalAlignment::Center);
         m_online_label->setText("Play Online");
-        m_online_label->setPosition(m_window->getScreenWidth()/2 - 50, m_window->getScreenHeight()/2);
-
+        m_online_label->setPosition("50%" , m_window->getScreenHeight()/2 - 25);
+        m_online_label->setOrigin(0.5,0);
+        m_online_label->setAutoSize(true);
+        m_tgui->updateTime(1);
 
         m_offline_label = tgui::Label::create();
-        m_offline_label->setVerticalAlignment(tgui::Label::VerticalAlignment::Center);
         m_offline_label->setText("Play Offline");
-        m_offline_label->setPosition(m_window->getScreenWidth()/2 -50, m_window->getScreenHeight()/2 + 50 );
+        m_offline_label->setPosition("50%" , m_window->getScreenHeight()/2 + 25 );
+        m_offline_label->setOrigin(0.5,0);
+        m_offline_label->setAutoSize(true);
 
         m_exit_label = tgui::Label::create();
-        m_exit_label->setVerticalAlignment(tgui::Label::VerticalAlignment::Center);
         m_exit_label->setText("Exit");
-        m_exit_label->setPosition(m_window->getScreenWidth()/2 -50, m_window->getScreenHeight()/2 + 100 );
+        m_exit_label->setOrigin(0.5,0);
+        m_exit_label->setPosition("50%" , m_window->getScreenHeight()/2 + 75 );
+        m_exit_label->setAutoSize(true);
 
         m_online_label->moveToBack();
         m_offline_label->moveToBack();
@@ -386,33 +428,35 @@ void LoginScene::initGUI()
     // });
 
     loadFontTask.get();
-    // loadPanelTask.get();
-    // loadTOSTask.get();
-    m_connect_panel = tgui::Panel::create();
-    m_connect_panel->setSize(300, 200);
-    m_connect_panel->setPosition(m_window->getScreenWidth()/2 - 150 , m_window->getScreenHeight()/2 -50 );
-    m_connect_panel->setVisible(false);
+    m_noti_panel = tgui::Panel::create();
+    m_noti_panel->setSize(300, 200);
+    m_noti_panel->setPosition(m_window->getScreenWidth()/2 - 150 , m_window->getScreenHeight()/2 -50 );
+    m_noti_panel->setVisible(false);
 
-    m_connect_label = tgui::Label::create();
-    m_connect_label->setText("Connecting...");
-    m_connect_label->setPosition(100, 30);
-    m_connect_panel->add(m_connect_label);
-    m_connect_label->setVerticalAlignment(tgui::Label::VerticalAlignment::Center);
-    
-    m_connect_cancel_label = tgui::Label::create();
-    m_connect_cancel_label->setText("Cancel");
-    m_connect_cancel_label->setPosition(100, 150);
-    m_connect_panel->add(m_connect_cancel_label);
-    m_connect_cancel_label->setVerticalAlignment(tgui::Label::VerticalAlignment::Center);
-    
-    m_tgui->add(m_connect_panel);
+    m_noti_label = tgui::RichTextLabel::create();
+    m_noti_label->setPosition("50%" , 45);
+    m_noti_label->setOrigin(0.5,0);
+    m_noti_label->setAutoSize(true);
+    m_noti_panel->add(m_noti_label);
 
-    m_connect_cancel_label->onClick([&]() {
-        m_connect_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+
+    m_noti_cancel_label = tgui::Label::create();
+    m_noti_cancel_label->setText("Cancel");
+    // m_connect_cancel_label->setHorizontalAlignment(tgui::Label::HorizontalAlignment::Center);
+
+    m_noti_cancel_label->setPosition("50%"  , 150);
+    m_noti_cancel_label->setOrigin(0.5,0);
+    m_noti_cancel_label->setAutoSize(true);
+    m_noti_panel->add(m_noti_cancel_label);
+
+    m_tgui->add(m_noti_panel);
+
+    m_noti_cancel_label->onClick([&]() {
+        m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
 
     });
 
-    setTGUILableClickableEffect(m_connect_cancel_label);
+    setTGUILableClickableEffect(m_noti_cancel_label);
     
 
     m_tos->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(200));
@@ -433,12 +477,16 @@ void LoginScene::initGUI()
     {
         if(m_isDisconnected)
         {
-            m_connect_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-            m_connect_panel->moveToFront();
-            m_client = new ClientHandler();
-            m_client->init("127.0.0.1", 1123);
+            m_noti_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+            m_noti_label->setText("Connecting...");
+            m_noti_panel->moveToFront();
+            if(m_client == nullptr)
+            {
+                m_client = new ClientHandler();
+                m_client->init("127.0.0.1", 1123);
+            }
             m_client->connect();
-            m_guiStack.push(m_connect_panel);
+            m_guiStack.push(m_noti_panel);
             
         }
         else
