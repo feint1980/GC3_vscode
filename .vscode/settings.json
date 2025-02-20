@@ -71,7 +71,8 @@
     "mutex": "cpp",
     "span": "cpp",
     "typeindex": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "csignal": "cpp"
   },
   "workbench.colorCustomizations": {
     "editor.background": "#181818db",
@@ -205,5 +206,6 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
-  "C_Cpp_Runner.msvcSecureNoWarnings": false
+  "C_Cpp_Runner.msvcSecureNoWarnings": false,
+  "cmake.sourceDirectory": "D:/VS_Code_prj/GC3_vscode/Editor"
 }

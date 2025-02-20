@@ -16,3 +16,4 @@ build/CMakeFiles/*
 *.make
 *.Makefile*
 *.rsp
+*.dll

@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\Touhou_TB.dir/objects.a
-C:\SysGCC\mingw32\bin\ar.exe qc CMakeFiles\Touhou_TB.dir/objects.a @CMakeFiles\Touhou_TB.dir\objects1.rsp
-C:\SysGCC\mingw32\bin\c++.exe -fpermissive -std=c++17 -municode -m32 -Wl,--whole-archive CMakeFiles\Touhou_TB.dir/objects.a -Wl,--no-whole-archive -o Touhou_TB.exe -Wl,--out-implib,libTouhou_TB.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Touhou_TB.dir\linkLibs.rsp
