@@ -65,6 +65,8 @@ public:
 
     void initGUI();
 
+    void setNotification(const std::string & msg,const std::string & btnMsg, const std::function<void()> & callback2);
+    
     //void loadMT();
 
     //void drawLoadingScreen();
@@ -131,6 +133,7 @@ private:
     tgui::Panel::Ptr m_noti_panel;
     tgui::RichTextLabel::Ptr m_noti_label;
     tgui::Label::Ptr m_noti_cancel_label;
+
 
 
     // tgui::Panel::Ptr m_notification_panel;

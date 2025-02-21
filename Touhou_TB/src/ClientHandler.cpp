@@ -103,8 +103,8 @@ void ClientHandler::update(float deltaTime)
 				printf("remote new incoming\n");
 				break;
 			case ID_CONNECTION_BANNED: // Banned from this server
-            m_status = Status::Disconnected;
 				printf("Banned\n");
+                m_status = Status::Banned;
 				break;			
 			case ID_CONNECTION_ATTEMPT_FAILED:
 				printf("Connection attempt failed\n");
@@ -113,11 +113,11 @@ void ClientHandler::update(float deltaTime)
 			case ID_NO_FREE_INCOMING_CONNECTIONS:
 				// Sorry, the server is full.  I don't do anything here but
 				// A real app should tell the user
-                m_status = Status::Disconnected;
+                m_status = Status::IsFull;
 				printf("Server is full\n");
 				break;
 			case ID_INVALID_PASSWORD:
-                m_status = Status::Disconnected;
+                m_status = Status::WSPacket;
 				printf("error code K2 D31\n");
 				break;
 

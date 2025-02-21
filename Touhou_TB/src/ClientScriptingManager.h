@@ -32,6 +32,8 @@ public:
 
     void init(RakNet::RakPeerInterface * client);
 
+    uint32_t sendData(const std::string & data);
+
     private:
     RakNet::RakPeerInterface * m_client;
 

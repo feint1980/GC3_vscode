@@ -8,12 +8,15 @@
 
 enum Status
 {
-    Disconnected = 0,
-    Connected = 1, 
-    FailedAttemp =2,
-    LoginGranted = 3
+    Disconnected,
+    Connected, 
+    FailedAttemp,
+    LoginGranted,
+    Banned,
+    Incompatible,
+    IsFull,
+    WSPacket
 };
-
 
 class ClientHandler
 {
@@ -28,6 +31,8 @@ public:
     void connect();
 
     bool isConnected() { return m_isConnected; }
+
+    void setStatus(Status status) { m_status = status; }
 
     Status getStatus() { return m_status; }
 

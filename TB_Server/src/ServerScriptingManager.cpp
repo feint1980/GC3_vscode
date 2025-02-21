@@ -134,7 +134,7 @@ int lua_DoQuery(lua_State * L)
 
 int lua_SendToClient(lua_State * L)
 {
-    std::cout << "lua_SendToClient called \n";
+    // std::cout << "lua_SendToClient called \n";
     if (lua_gettop(L) != 3)
     {
         std::cout << "gettop failed (lua_SendToClient) \n";
@@ -152,6 +152,8 @@ int lua_SendToClient(lua_State * L)
         // host->sendToClient(clientId, requestCode);
         return 0;
     }
+
+    return 0;
 }
 
 int lua_Packet_getData(lua_State * L)
@@ -308,13 +310,12 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppPacket_getIP", lua_Packet_getIP);
 
 
-
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))
     {
         std::cout << "Run script OK \n";
     }
 
-    lua_getglobal(m_script, "Init");
+    lua_getglobal(m_script, "ServerSide_Init");
     if(lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this);
@@ -322,7 +323,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
-            std::cout << "Call Init from C++ OK \n";
+            std::cout << "Call ServerSide_Init from C++ OK \n";
         }
     }
 

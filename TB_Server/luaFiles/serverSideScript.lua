@@ -304,10 +304,9 @@ function AddRegisterKey(host)
     return nil
 end
 
-function Init(host)
+function ServerSide_Init(host)
     T_Host = host
 end
-
 
 --- function HandleMessage 
 --- @Description : handle message from client

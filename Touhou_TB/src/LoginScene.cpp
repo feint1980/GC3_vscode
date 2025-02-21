@@ -130,10 +130,40 @@ void LoginScene::update(float deltaTime)
 
             case Status::FailedAttemp:
             {
-                m_noti_label->setText("Not able to connect to server !");
-            
-                m_noti_cancel_label->setText("OK");
+                setNotification("Unable to connect to server", "OK",[&](){
+                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+                    m_client->setStatus(Status::Disconnected);
+                }
+                );
+            }
+            break;
 
+            case Status::Banned:
+            {
+                setNotification("You are banned from this server", "OK",[&](){
+                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+                    m_client->setStatus(Status::Disconnected);
+                }
+                );
+            }
+            break;
+
+            case Status::Incompatible:
+            {
+                setNotification("Error code K2 D32", "Oh no",[&](){
+                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+                    m_client->setStatus(Status::Disconnected);
+                }
+                );
+            }
+            break;
+
+            case Status::IsFull:
+            {
+                setNotification("Server is full", "OK",[&](){
+                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+                    m_client->setStatus(Status::Disconnected);
+                });
             }
             break;
 
@@ -178,31 +208,36 @@ void LoginScene::handleInput(Feintgine::InputManager & inputManager)
 
     if(inputManager.isKeyPressed(SDLK_F10))
     {
-       // tgui::BackendSDL::openVirtualKeyboard();
         //SDL_StartTextInput();
     }
 
     if (inputManager.isKeyPressed(SDLK_ESCAPE))
     {
-
         if(!m_guiStack.empty())
-        {
-            
+        {       
             m_guiStack.top().get()->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
             m_guiStack.pop();
         }
     }
-    
-
 }
 
+void LoginScene::setNotification(const std::string & msg,const std::string & btnMsg, const std::function<void()> & callback)
+{
+    if(!m_noti_panel->isVisible())
+    {
+        m_noti_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+    }
+
+    m_noti_label->setText(msg);
+    m_noti_cancel_label->setText(btnMsg);
+    m_noti_cancel_label->onClick(callback);
+}
 
 void LoginScene::draw()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	
-
 	m_shader.use();
 
 	// GLint alphaLocation = m_shader.getUniformLocation("time");
