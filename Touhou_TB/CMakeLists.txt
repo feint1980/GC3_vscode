@@ -27,6 +27,9 @@ ENDMACRO()
 # using said macro.
 header_directories(INCLUDES ${PROJECT_SOURCE_DIR}/include/ hpp)
 
+set(Packet_include_dir  ${PROJECT_SOURCE_DIR}/../PacketDescription/)
+
+
 message("src files:")
 foreach(file ${SRCS})
         message(STATUS ${file})
@@ -44,7 +47,7 @@ set(FEINTGINE_lib_dir ${PROJECT_SOURCE_DIR}/../Feintgine/build)
 set(DEPS_include_dir  ${PROJECT_SOURCE_DIR}/../Feintgine_GC_deps/include)
 set(DEPS_lib_dir  ${PROJECT_SOURCE_DIR}/../Feintgine_GC_deps/lib)
 
-include_directories(${DEPS_include_dir})
+include_directories(${DEPS_include_dir} ${Packet_include_dir})
 
 
 include_directories(${INCLUDES} ${FEINTGINE_include_dir} ${PROJECT_SOURCE_DIR}/include/)

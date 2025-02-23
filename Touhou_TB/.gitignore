@@ -11,7 +11,6 @@ build/CMakeFiles/*
 */CEGUI.log
 */Makefile
 */CMakeFiles/*
-*/CMakeCache.txt
 *.d
 *.make
 *.Makefile*

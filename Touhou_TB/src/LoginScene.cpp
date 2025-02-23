@@ -91,7 +91,6 @@ void LoginScene::update(float deltaTime)
 {
     m_camera.update();
     m_tgui->updateTime(deltaTime);
-    
 
     if(m_client)
     {
@@ -213,11 +212,11 @@ void LoginScene::handleInput(Feintgine::InputManager & inputManager)
 
     if (inputManager.isKeyPressed(SDLK_ESCAPE))
     {
-        if(!m_guiStack.empty())
-        {       
-            m_guiStack.top().get()->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-            m_guiStack.pop();
-        }
+        // if(!m_guiStack.empty())
+        // {       
+        //     m_guiStack.top().get()->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+        //     m_guiStack.pop();
+        // }
     }
 }
 
@@ -397,13 +396,13 @@ void LoginScene::initGUI()
         {
             m_register_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
             m_register_panel->moveToFront();
-            m_guiStack.push(m_register_panel);
+           // m_guiStack.push(m_register_panel);
         });
 
         m_register_cancel_button->onClick([&]() 
         {
             m_register_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-            m_guiStack.pop();
+           // m_guiStack.pop();
         });
 
         
@@ -521,14 +520,14 @@ void LoginScene::initGUI()
                 m_client->init("127.0.0.1", 1123);
             }
             m_client->connect();
-            m_guiStack.push(m_noti_panel);
+            //m_guiStack.push(m_noti_panel);
             
         }
         else
         {
             m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
             m_panel->moveToFront();
-            m_guiStack.push(m_panel);
+            //m_guiStack.push(m_panel);
         }
     });
 

@@ -143,7 +143,7 @@ private:
     
 
 
-    ClientHandler * m_client;
+    ClientHandler * m_client = nullptr;
 
     bool m_isAccept = false;
 
