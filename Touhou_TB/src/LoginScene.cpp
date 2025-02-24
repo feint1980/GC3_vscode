@@ -168,10 +168,8 @@ void LoginScene::update(float deltaTime)
 
             default:
             break;
-
         }
     }
-    
 }
 
 void LoginScene::checkInput()

@@ -34,8 +34,13 @@ public:
 
     uint32_t sendData(const std::string & data);
 
+    void update(float deltaTime);
+
+    void handleMessage(RakNet::Packet *p);
+
+
     private:
-    RakNet::RakPeerInterface * m_client;
+    RakNet::RakPeerInterface * m_client = nullptr;
 
     lua_State * m_script;
 

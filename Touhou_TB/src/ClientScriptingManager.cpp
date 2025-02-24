@@ -12,6 +12,12 @@ ClientScriptingManager::~ClientScriptingManager()
 
 }
 
+
+void ClientScriptingManager::update(float deltaTime)
+{
+    PacketCode requestCode = getSpecialRequestCode(m_client->Receive());
+}
+
 int lua_SendData(lua_State * L)
 {
     if(lua_gettop(L) != 2)
@@ -74,3 +80,6 @@ void ClientScriptingManager::init(RakNet::RakPeerInterface * client)
     }
 
 }
+
+
+
