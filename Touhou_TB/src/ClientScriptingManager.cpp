@@ -16,6 +16,7 @@ ClientScriptingManager::~ClientScriptingManager()
 void ClientScriptingManager::update(float deltaTime)
 {
     PacketCode requestCode = getSpecialRequestCode(m_client->Receive());
+    
 }
 
 int lua_SendData(lua_State * L)
