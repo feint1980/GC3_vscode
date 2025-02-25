@@ -44,6 +44,7 @@ void LoginScene::onEntry()
     m_camera.update();
 
     
+    m_scriptingManager.init("127.0.0.1", 1123);
 
     m_spriteBatch.init();
     
@@ -92,84 +93,88 @@ void LoginScene::update(float deltaTime)
     m_camera.update();
     m_tgui->updateTime(deltaTime);
 
-    if(m_client)
-    {
-        m_client->update(deltaTime);
-        Status tStatus = m_client->getStatus();
-        switch(tStatus)
-        {
-            case Status::Disconnected:
-            {
-                if(m_client->isConnected())
-                {
-                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-                    //m_isDisconnected = false;
-                    m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
-                    m_panel->moveToFront();
-                    m_guiStack.push(m_panel);
-                    m_id_input->setFocused(true);
-                    tStatus = Status::Connected;
-                }
+
+    m_scriptingManager.update(deltaTime);
+
+
+    // if(m_client)
+    // {
+    //     m_client->update(deltaTime);
+    //     Status tStatus = m_client->getStatus();
+    //     switch(tStatus)
+    //     {
+    //         case Status::Disconnected:
+    //         {
+    //             if(m_client->isConnected())
+    //             {
+    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+    //                 //m_isDisconnected = false;
+    //                 m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
+    //                 m_panel->moveToFront();
+    //                 m_guiStack.push(m_panel);
+    //                 m_id_input->setFocused(true);
+    //                 tStatus = Status::Connected;
+    //             }
                 
-            }
-            break;
+    //         }
+    //         break;
 
-            case Status::Connected:
-            {
-                if(m_noti_panel->isVisible())
-                {
-                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-                    m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
-                    m_panel->moveToFront();
-                    m_guiStack.push(m_panel);
-                    m_id_input->setFocused(true);
-                }
-            }
-            break;
+    //         case Status::Connected:
+    //         {
+    //             if(m_noti_panel->isVisible())
+    //             {
+    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+    //                 m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
+    //                 m_panel->moveToFront();
+    //                 m_guiStack.push(m_panel);
+    //                 m_id_input->setFocused(true);
+    //             }
+    //         }
+    //         break;
 
-            case Status::FailedAttemp:
-            {
-                setNotification("Unable to connect to server", "OK",[&](){
-                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-                    m_client->setStatus(Status::Disconnected);
-                }
-                );
-            }
-            break;
+    //         case Status::FailedAttemp:
+    //         {
+    //             setNotification("Unable to connect to server", "OK",[&](){
+    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+    //                 m_client->setStatus(Status::Disconnected);
+    //             }
+    //             );
+    //         }
+    //         break;
 
-            case Status::Banned:
-            {
-                setNotification("You are banned from this server", "OK",[&](){
-                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-                    m_client->setStatus(Status::Disconnected);
-                }
-                );
-            }
-            break;
+    //         case Status::Banned:
+    //         {
+    //             setNotification("You are banned from this server", "OK",[&](){
+    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+    //                 m_client->setStatus(Status::Disconnected);
+    //             }
+    //             );
+    //         }
+    //         break;
 
-            case Status::Incompatible:
-            {
-                setNotification("Error code K2 D32", "Oh no",[&](){
-                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-                    m_client->setStatus(Status::Disconnected);
-                }
-                );
-            }
-            break;
+    //         case Status::Incompatible:
+    //         {
+    //             setNotification("Error code K2 D32", "Oh no",[&](){
+    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+    //                 m_client->setStatus(Status::Disconnected);
+    //             }
+    //             );
+    //         }
+    //         break;
 
-            case Status::IsFull:
-            {
-                setNotification("Server is full", "OK",[&](){
-                    m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-                    m_client->setStatus(Status::Disconnected);
-                });
-            }
-            break;
+    //         case Status::IsFull:
+    //         {
+    //             setNotification("Server is full", "OK",[&](){
+    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
+    //                 m_client->setStatus(Status::Disconnected);
+    //             });
+    //         }
+    //         break;
 
-            default:
-            break;
-        }
-    }
+    //         default:
+    //         break;
+    //     }
+    // }
 }
 
 void LoginScene::checkInput()
@@ -512,14 +517,15 @@ void LoginScene::initGUI()
             m_noti_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
             m_noti_label->setText("Connecting...");
             m_noti_panel->moveToFront();
-            if(m_client == nullptr)
-            {
-                m_client = new ClientHandler();
-                m_client->init("127.0.0.1", 1123);
-            }
-            m_client->connect();
+            // if(m_client == nullptr)
+            // {
+            //     m_client = new ClientHandler();
+            //     m_client->init("127.0.0.1", 1123);
+            // }
+            // m_client->connect();
             //m_guiStack.push(m_noti_panel);
-            
+            m_scriptingManager.connect();
+
         }
         else
         {
@@ -563,5 +569,4 @@ void LoginScene::initGUI()
 void LoginScene::drawGUI()
 {
     m_tgui->draw();
-
 }

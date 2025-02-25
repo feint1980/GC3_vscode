@@ -6,7 +6,7 @@
 #include <SDL2/SDL_keyboard.h>
 #include <GLTexture.h>
 #include <ResourceManager.h>
-//#include <f_object.pb.h>
+
 #include <iostream>
 #include <IGameScreen.h>
 #include <Window.h>
@@ -31,9 +31,11 @@
 #include <ResourceManager.h>
 #include "TB_EmptyObject.h"
 #include "ClientHandler.h"
+
 #include "../../PacketDescription/NetworkPacket.h"
 #include "../../TGUI_theme/ThemeCreator.hpp"
 
+#include "ClientScriptingManager.h"
 
 class LoginScene : public Feintgine::IGameScreen
 {
@@ -141,9 +143,10 @@ private:
     // tgui::Label::Ptr m_notification_cancel_label;
     // tgui::Label::Ptr m_notification_cancel_label;
     
+    // ClientHandler * m_client = nullptr;
 
 
-    ClientHandler * m_client = nullptr;
+    ClientScriptingManager m_scriptingManager;
 
     bool m_isAccept = false;
 

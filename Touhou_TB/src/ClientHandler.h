@@ -6,17 +6,17 @@
 #include <iostream>
 
 
-enum Status
-{
-    Disconnected,
-    Connected, 
-    FailedAttemp,
-    LoginGranted,
-    Banned,
-    Incompatible,
-    IsFull,
-    WSPacket
-};
+// enum Status
+// {
+//     Disconnected,
+//     Connected, 
+//     FailedAttemp,
+//     LoginGranted,
+//     Banned,
+//     Incompatible,
+//     IsFull,
+//     WSPacket
+// };
 
 class ClientHandler
 {
@@ -32,9 +32,9 @@ public:
 
     bool isConnected() { return m_isConnected; }
 
-    void setStatus(Status status) { m_status = status; }
+    // void setStatus(Status status) { m_status = status; }
 
-    Status getStatus() { return m_status; }
+    // Status getStatus() { return m_status; }
 
     private:
 
@@ -56,9 +56,7 @@ public:
 
     bool m_isConnected = false;
 
-
-
-    Status m_status = Status::Disconnected;
+    // Status m_status = Status::Disconnected;
 };
 
 

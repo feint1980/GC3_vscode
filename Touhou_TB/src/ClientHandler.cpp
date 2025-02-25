@@ -77,26 +77,26 @@ void ClientHandler::update(float deltaTime)
 				// Connection lost normally
 				printf("Disconnected !!!\n");
                 m_isConnected = false;
-                m_status = Status::Disconnected;
+                // m_status = Status::Disconnected;
 				break;
 			case ID_ALREADY_CONNECTED:
 				// Connection lost normally
 				printf("already connected with guid %" PRINTF_64_BIT_MODIFIER "u\n", m_currentPacket->guid);
                 m_isConnected = true;
-                m_status = Status::Connected;
+                // m_status = Status::Connected;
 				break;
 			case ID_INCOMPATIBLE_PROTOCOL_VERSION:
 				printf("error code K2 D32\n");
-                m_status = Status::Disconnected;
+                // m_status = Status::Disconnected;
 				break;
 			case ID_REMOTE_DISCONNECTION_NOTIFICATION: // Server telling the clients of another client disconnecting gracefully.  You can manually broadcast this in a peer to peer enviroment if you want.
 				printf("remote disconnect\n"); 
-                m_status = Status::Disconnected;
+                // m_status = Status::Disconnected;
                 // m_isConnected = false;
 				break;
 			case ID_REMOTE_CONNECTION_LOST: // Server telling the clients of another client disconnecting forcefully.  You can manually broadcast this in a peer to peer enviroment if you want.
 				printf("remove connection lost\n");
-                m_status = Status::Disconnected;
+                // m_status = Status::Disconnected;
                 m_isConnected = false;
 				break;
 			case ID_REMOTE_NEW_INCOMING_CONNECTION: // Server telling the clients of another client connecting.  You can manually broadcast this in a peer to peer enviroment if you want.
@@ -104,25 +104,25 @@ void ClientHandler::update(float deltaTime)
 				break;
 			case ID_CONNECTION_BANNED: // Banned from this server
 				printf("Banned\n");
-                m_status = Status::Banned;
+                // m_status = Status::Banned;
 				break;			
 			case ID_CONNECTION_ATTEMPT_FAILED:
 				printf("Connection attempt failed\n");
-                m_status = Status::FailedAttemp;
+                // m_status = Status::FailedAttemp;
 				break;
 			case ID_NO_FREE_INCOMING_CONNECTIONS:
 				// Sorry, the server is full.  I don't do anything here but
 				// A real app should tell the user
-                m_status = Status::IsFull;
+                // m_status = Status::IsFull;
 				printf("Server is full\n");
 				break;
 			case ID_INVALID_PASSWORD:
-                m_status = Status::WSPacket;
+                // m_status = Status::WSPacket;
 				printf("error code K2 D31\n");
 				break;
 
 			case ID_CONNECTION_LOST:
-                m_status = Status::Disconnected;
+                // m_status = Status::Disconnected;
 				// Couldn't deliver a reliable packet - i.e. the other system was abnormally
 				// terminated
 				printf("Lost connection\n");
@@ -133,7 +133,7 @@ void ClientHandler::update(float deltaTime)
 				// This tells the client they have connected
 				printf("Able to connect to %s gennerated GUID %s\n", m_currentPacket->systemAddress.ToString(true), m_currentPacket->guid.ToString());
 				printf("My external address is %s\n", m_client->GetExternalID(m_currentPacket->systemAddress).ToString(true));
-                m_status = Status::Connected;
+                // m_status = Status::Connected;
                 m_isConnected = true;
 				break;
 			case ID_CONNECTED_PING:
