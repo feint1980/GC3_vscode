@@ -49,9 +49,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     std::cout << "|     Init Client RakNet Core OK          |\n";
     m_RakNetCoreInitialized = true;
 
-    // m_sock
     m_script = luaL_newstate();
-
     luaL_openlibs(m_script);
 
     std::cout << "|     Init Client Scripting Manager OK    |\n";

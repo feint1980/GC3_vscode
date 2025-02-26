@@ -5,8 +5,10 @@
 #include <Window.h>
 #include <InputManager.h>
 #include <map>
+#include <set>
 #include "../../TGUI_theme/ThemeCreator.hpp"
 
+#include "LuaManager.h"
 
 
 enum WidgetType 
@@ -16,8 +18,15 @@ enum WidgetType
     Panel
 };
 
+struct LuaWidgetDataStructure
+{
+    std::string name;
+    WidgetType type;
+};
+
 class TGUIScriptingManager
 {
+    
 public:
     TGUIScriptingManager();
     ~TGUIScriptingManager();
@@ -27,9 +36,11 @@ public:
     void update(float deltaTime);
     void draw();
 
-    void createGUI(const std::string & name, WidgetType type);
+    LuaWidgetDataStructure * createGUI(const std::string & name, WidgetType type);
 
     void handleInput(Feintgine::InputManager & inputManager);
+
+    void addTo(const std::string & childrenTarget, const std::string & parentTarget = "");
 
 private:
 
@@ -39,7 +50,9 @@ private:
     std::map<std::string, tgui::EditBox::Ptr> m_editBoxMap;
     std::map<std::string, tgui::Panel::Ptr> m_panelMap;
 
+    std::vector<LuaWidgetDataStructure *> m_widgets;
 
+    lua_State * m_script = nullptr;
 
 };
 
