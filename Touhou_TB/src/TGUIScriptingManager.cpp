@@ -95,7 +95,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
 
 void TGUIScriptingManager::addTo(const std::string & childrenTarget, const std::string & parentTarget )
 {
-
+    
 }
 
 LuaWidgetDataStructure * TGUIScriptingManager::createGUI(const std::string & name, WidgetType type)
