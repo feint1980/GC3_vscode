@@ -45,6 +45,12 @@ public:
     
     void addChildPanelToParent(LuaWidgetDataStructure * parent, tgui::Panel::Ptr panel);
     
+    tgui::Label::Ptr createLabel(const std::string & text,float x, float y); 
+    
+
+    tgui::EditBox::Ptr createEditBox(const std::string & text,float x, float y, tgui::Panel::Ptr parent);
+
+    tgui::Panel::Ptr createPanel(float x, float y, float width, float height, tgui::Panel::Ptr parent);
 
 
 
@@ -53,6 +59,8 @@ public:
     void handleInput(Feintgine::InputManager & inputManager);
 
     void addTo(LuaWidgetDataStructure * child, LuaWidgetDataStructure * parent = nullptr);
+
+    tgui::Gui * getTGUI() { return m_tgui; }
 
 private:
 

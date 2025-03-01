@@ -192,7 +192,6 @@ void LoginScene::setTGUILableClickableEffect(tgui::Label::Ptr & label)
 {
     label->onMouseEnter([&](){
         label->getRenderer()->setTextColor(tgui::Color::Green );
-
     });
 
     label->onMouseLeave([&](){
@@ -408,7 +407,6 @@ void LoginScene::initGUI()
            // m_guiStack.pop();
         });
 
-        
     // auto loadTOSTask = async::spawn([&]() {
         m_tos->setSize(400, 300);
         m_tos->setPosition(m_window->getScreenWidth()/2 - 200 , m_window->getScreenHeight()/2 -150 );

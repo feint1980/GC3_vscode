@@ -2,35 +2,114 @@
 #include "TGUIScriptingManager.h"
 
 
-int lua_createWidget(lua_State * L)
+// int lua_createWidget(lua_State * L)
+// {
+//     if(lua_gettop(L) != 2)
+//     {
+//         std::cout << "gettop failed (lua_createWidget) \n";
+//         std::cout << lua_gettop(L) << "\n";
+//         return -1;
+//     }
+//     else
+//     {
+//         TGUIScriptingManager * host =   static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+//         std::string requestCmd = lua_tostring(L, 2);
+//         int type = lua_tonumber(L,3);
+//         LuaWidgetDataStructure * guiObject = host->createGUI(requestCmd,WidgetType(type));
+//         lua_pushlightuserdata(L,guiObject);
+//         return 1;
+
+//     }
+//     return -1;
+// }
+
+int lua_createLabel(lua_State * L)
 {
-    if(lua_gettop(L) != 2)
+    if(lua_gettop(L) < 4 || lua_gettop(L) > 5)
     {
-        std::cout << "gettop failed (lua_SendRequest) \n";
-        std::cout << lua_gettop(L) << "\n";
+        std::cout << "gettop failed (lua_createLabel) " << lua_gettop(L) << "\n";
         return -1;
     }
     else
     {
         TGUIScriptingManager * host =   static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
-        std::string requestCmd = lua_tostring(L, 2);
-        int type = lua_tonumber(L,3);
-        LuaWidgetDataStructure * guiObject = host->createGUI(requestCmd,WidgetType(type));
-        lua_pushlightuserdata(L,guiObject);
+        std::string text = lua_tostring(L, 2);
+        float x = lua_tonumber(L, 3);
+        float y = lua_tonumber(L, 4);
+        tgui::Label::Ptr label = host->createLabel(text,x,y);
+        if(lua_gettop(L) == 5)
+        {
+            tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 5));
+            if(parent)
+            {
+                parent->get()->add(label);
+            }
+        }
+        else
+        {
+            host->getTGUI()->add(label);
+        }
+        lua_pushlightuserdata(L,label.get());
         return 1;
-
     }
-    return -1;
 }
+
 
 TGUIScriptingManager::TGUIScriptingManager()
 {
+
+
 
 }
 TGUIScriptingManager::~TGUIScriptingManager()
 {
 
 }
+
+
+tgui::Label::Ptr TGUIScriptingManager::createLabel(const std::string & text,float x, float y)
+{
+    tgui::Label::Ptr label = tgui::Label::create(text);
+    label->setPosition(x, y);
+    // label->setText(text);
+    label->setTextColor(tgui::Color::White);
+    
+    return label;
+}
+
+tgui::EditBox::Ptr TGUIScriptingManager::createEditBox(const std::string & text,float x, float y, tgui::Panel::Ptr parent)
+{
+    tgui::EditBox::Ptr editBox = tgui::EditBox::create();
+    editBox->setPosition(x, y);
+    editBox->setText(text);
+    if(parent)
+    {
+        parent->add(editBox);
+    }
+    else 
+    {
+        m_tgui->add(editBox);
+    }
+    return editBox;
+}
+
+tgui::Panel::Ptr TGUIScriptingManager::createPanel(float x, float y, float width, float height, tgui::Panel::Ptr parent)
+{
+    tgui::Panel::Ptr panel = tgui::Panel::create();
+    panel->setPosition(x, y);
+    panel->setSize(width, height);
+    if(parent)
+    {
+        parent->add(panel);
+    }
+    else 
+    {
+        m_tgui->add(panel);
+    }
+    return panel;
+}
+
+
 
 void TGUIScriptingManager::update(float deltaTime)
 {
@@ -64,7 +143,6 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
 
     });
 
-
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
@@ -76,7 +154,10 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
 
     // register lua functions
 
-    lua_register(m_script, "cppCreateWidget", lua_createWidget);
+    // lua_register(m_script, "cppCreateWidget", lua_createWidget); old way
+    lua_register(m_script, "cppCreateLabel", lua_createLabel);
+
+
 
     // run Init script
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))
@@ -95,6 +176,8 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
             std::cout << "TGUI Scripting Init from C++ OK \n";
         }
     }
+    
+    loadFontTask.get();
 
 }
 
@@ -160,9 +243,12 @@ void TGUIScriptingManager::addTo(LuaWidgetDataStructure * child, LuaWidgetDataSt
 {
     if(!child)
     {
+        std::cout << "WARNING : attemp to add null widget \n";
+
         return;
     }
-    
+    //
+
 
     switch(child->type)
     {
