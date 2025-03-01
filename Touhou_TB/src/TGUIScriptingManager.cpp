@@ -53,14 +53,21 @@ void TGUIScriptingManager::handleInput(Feintgine::InputManager & inputManager)
 void TGUIScriptingManager::init(Feintgine::Window * m_window)
 {
     m_tgui = new tgui::Gui(m_window->getWindow());
-    TTF_Init();
+    TTF_Init(); // a must
 
-    
-    
+    selectTheme(*m_tgui, "themes/Dark.txt");  // force to load in main thread since the openGL problem, you can only have texture created in mainthread ( OpenGL Context)
+
+    auto loadFontTask = async::spawn([&]() {
+        tgui::Font font_load("font/ARIALUNI.ttf");    
+        m_tgui->setFont(font_load);
+        m_tgui->setTextSize(20);        
+
+    });
+
+
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
-    
     // init lua component
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI.lua")))
     {
@@ -70,8 +77,6 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
     // register lua functions
 
     lua_register(m_script, "cppCreateWidget", lua_createWidget);
-
-
 
     // run Init script
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))
@@ -93,8 +98,113 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
 
 }
 
-void TGUIScriptingManager::addTo(const std::string & childrenTarget, const std::string & parentTarget )
+void TGUIScriptingManager::addChildLabelToParent(LuaWidgetDataStructure * parent, tgui::Label::Ptr label)
 {
+    switch(parent->type)
+    {
+    case Label:
+        // nothing
+        std::cout << "attemp to add child to label widget, name : " << parent->name << "\n";
+    break;
+    case EditBox:
+        std::cout << "attemp to add child to editbox widget, name : " << parent->name << "\n";
+    break;
+    case Panel:
+        m_panelMap[parent->name]->add(label);
+    break;
+    default:
+    break;
+    }
+}
+
+
+void TGUIScriptingManager::addChildEditBoxToParent(LuaWidgetDataStructure * parent, tgui::EditBox::Ptr editBox)
+{
+    switch(parent->type)
+    {
+    case Label:
+        // nothing
+        std::cout << "attemp to add child to label widget, name : " << parent->name << "\n";
+    break;
+    case EditBox:
+        std::cout << "attemp to add child to editbox widget, name : " << parent->name << "\n";
+    break;
+    case Panel:
+        m_panelMap[parent->name]->add(editBox);
+    break;
+    default:
+    break;
+    }
+}
+    
+void TGUIScriptingManager::addChildPanelToParent(LuaWidgetDataStructure * parent, tgui::Panel::Ptr panel)
+{
+    switch(parent->type)
+    {
+    case Label:
+        // nothing
+        std::cout << "attemp to add child to label widget, name : " << parent->name << "\n";
+    break;
+    case EditBox:
+        std::cout << "attemp to add child to editbox widget, name : " << parent->name << "\n";
+    break;
+    case Panel:
+        m_panelMap[parent->name]->add(panel);
+    break;
+    default:
+    break;
+    }
+}
+    
+void TGUIScriptingManager::addTo(LuaWidgetDataStructure * child, LuaWidgetDataStructure * parent )
+{
+    if(!child)
+    {
+        return;
+    }
+    
+
+    switch(child->type)
+    {
+    case Label:
+    {
+        if(parent)
+        {
+            addChildLabelToParent(parent, m_labelMap[child->name]);
+        }
+        else
+        {
+            m_tgui->add(m_labelMap[child->name]);
+        }
+    }
+    break;
+    case EditBox:
+    {
+        if(parent)
+        {
+            addChildEditBoxToParent(parent, m_editBoxMap[child->name]);
+        }
+        else
+        {
+            m_tgui->add(m_editBoxMap[child->name]);
+        }
+    }
+    break;
+    case Panel:
+    {
+        if(parent)
+        {
+            addChildPanelToParent(parent, m_panelMap[child->name]);
+        }
+        else
+        {
+            m_tgui->add(m_panelMap[child->name]);
+        }
+    }
+    break;
+    default:
+    break;
+    }
     
 }
 
@@ -121,7 +231,7 @@ LuaWidgetDataStructure * TGUIScriptingManager::createGUI(const std::string & nam
         
     break;
     }
-    m_widgets.push_back(retVal);
+    m_widgets.insert(retVal);
 
     return retVal;
     

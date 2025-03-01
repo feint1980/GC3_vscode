@@ -7,7 +7,7 @@
 #include <map>
 #include <set>
 #include "../../TGUI_theme/ThemeCreator.hpp"
-
+#include <async++.h>
 #include "LuaManager.h"
 
 
@@ -24,6 +24,9 @@ struct LuaWidgetDataStructure
     WidgetType type;
 };
 
+
+
+
 class TGUIScriptingManager
 {
     
@@ -36,11 +39,20 @@ public:
     void update(float deltaTime);
     void draw();
 
+    void addChildLabelToParent(LuaWidgetDataStructure * parent, tgui::Label::Ptr label);
+
+    void addChildEditBoxToParent(LuaWidgetDataStructure * parent, tgui::EditBox::Ptr editBox);
+    
+    void addChildPanelToParent(LuaWidgetDataStructure * parent, tgui::Panel::Ptr panel);
+    
+
+
+
     LuaWidgetDataStructure * createGUI(const std::string & name, WidgetType type);
 
     void handleInput(Feintgine::InputManager & inputManager);
 
-    void addTo(const std::string & childrenTarget, const std::string & parentTarget = "");
+    void addTo(LuaWidgetDataStructure * child, LuaWidgetDataStructure * parent = nullptr);
 
 private:
 
@@ -50,7 +62,7 @@ private:
     std::map<std::string, tgui::EditBox::Ptr> m_editBoxMap;
     std::map<std::string, tgui::Panel::Ptr> m_panelMap;
 
-    std::vector<LuaWidgetDataStructure *> m_widgets;
+    std::set<LuaWidgetDataStructure *> m_widgets;
 
     lua_State * m_script = nullptr;
 
