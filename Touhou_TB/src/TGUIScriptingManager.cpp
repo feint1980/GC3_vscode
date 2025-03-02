@@ -23,11 +23,47 @@
 //     return -1;
 // }
 
-int lua_createLabel(lua_State * L)
+int lua_Label_SetText(lua_State * L)
+{
+
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Label_SetText) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));
+        std::string text = lua_tostring(L, 2);
+        label->get()->setText(text);
+    }
+
+    return 0;
+}
+
+int lua_Label_SetPos(lua_State * L)
+{
+
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Label_SetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        label->get()->setPosition(x,y);
+    }
+    return 0;
+}
+
+int lua_Label_Create(lua_State * L)
 {
     if(lua_gettop(L) < 4 || lua_gettop(L) > 5)
     {
-        std::cout << "gettop failed (lua_createLabel) " << lua_gettop(L) << "\n";
+        std::cout << "gettop failed (lua_Label_Create) " << lua_gettop(L) << "\n";
         return -1;
     }
     else
@@ -155,8 +191,10 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
     // register lua functions
 
     // lua_register(m_script, "cppCreateWidget", lua_createWidget); old way
-    lua_register(m_script, "cppCreateLabel", lua_createLabel);
-
+    // TGUI Label section
+    lua_register(m_script, "cpp_Label_Create", lua_Label_Create);
+    lua_register(m_script, "cpp_Label_SetPos" , lua_Label_SetPos);
+    lua_register(m_script, "cpp_Label_SetText", lua_Label_SetText);
 
 
     // run Init script

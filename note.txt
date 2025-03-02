@@ -21,3 +21,4 @@
     
 % Touhou TB 
     - make a function in Icon.lua that other class will inherit and override 
+    - remake Login Scene with TGUI Scripting

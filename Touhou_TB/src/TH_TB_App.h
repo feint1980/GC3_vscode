@@ -4,7 +4,7 @@
 #include <IMainGame.h>
 #include "TestTBScreen.h"
 #include "LoginScene.h"
-
+#include "LoginSceneV2.h"
 
 class TH_TB_App : public Feintgine::IMainGame
 {
@@ -20,6 +20,7 @@ private:
 
     std::unique_ptr<TestTBScreen> m_test = nullptr;
     std::unique_ptr<LoginScene> m_login = nullptr;
+    std::unique_ptr<LoginSceneV2> m_loginV2 = nullptr;
 
 };
 
