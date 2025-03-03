@@ -44,7 +44,7 @@ void LoginSceneV2::onEntry()
     m_camera.update();
 
     
-    m_scriptingManager.init("127.0.0.1", 1123);
+    // m_scriptingManager.init("127.0.0.1", 1123);
 
     m_spriteBatch.init();
     
@@ -90,11 +90,13 @@ void LoginSceneV2::onExit()
 
 void LoginSceneV2::update(float deltaTime)
 {
-    m_camera.update();
-    m_tgui->updateTime(deltaTime);
+    // m_camera.update();
+    // m_tgui->updateTime(deltaTime);
 
+    //std::cout << "updte \n";
+    m_guiScriptingManager.update(deltaTime);
 
-    m_scriptingManager.update(deltaTime);
+    // m_scriptingManager.update(deltaTime);
 
 
     // if(m_client)
@@ -183,9 +185,10 @@ void LoginSceneV2::checkInput()
     while (SDL_PollEvent(&evnt))
     {
         m_game->onSDLEvent(evnt);
-        m_tgui->handleEvent(evnt);
+        m_guiScriptingManager.checkInput(evnt);
     }
     handleInput(m_game->m_inputManager);
+    
 }
 
 void LoginSceneV2::setTGUILableClickableEffect(tgui::Label::Ptr & label)
@@ -202,6 +205,8 @@ void LoginSceneV2::setTGUILableClickableEffect(tgui::Label::Ptr & label)
 
 void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
 {
+
+
     if (inputManager.isKeyPressed(SDL_QUIT))
 	{
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
@@ -220,6 +225,7 @@ void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
         //     m_guiStack.pop();
         // }
     }
+    m_guiScriptingManager.handleInput(inputManager);
 }
 
 void LoginSceneV2::setNotification(const std::string & msg,const std::string & btnMsg, const std::function<void()> & callback)
@@ -274,6 +280,29 @@ void LoginSceneV2::draw()
 void LoginSceneV2::initGUIV2()
 {
     m_guiScriptingManager.init(m_window);
+
+    // m_scr
+    m_script = m_guiScriptingManager.getLuaScript();
+    //luaL_openlibs(m_script);
+
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/Login/loginScene.lua")))
+    {
+        std::cout << "Run loginScene script OK \n";
+    }
+
+    lua_getglobal(m_script, "LoginSceneInit");
+    if(lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this);
+        lua_pushlightuserdata(m_script, &m_guiScriptingManager);
+        std::cout << "check ref : " << &m_guiScriptingManager << "\n";
+        const int argc = 2;
+        const int returnCount = 0;
+        if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+        {
+            std::cout << "Login scene init script from C++ OK \n";
+        }
+    }
 
 }
 
@@ -573,5 +602,5 @@ void LoginSceneV2::initGUI()
 
 void LoginSceneV2::drawGUI()
 {
-    m_tgui->draw();
+    m_guiScriptingManager.draw();
 }

@@ -5,6 +5,8 @@ require "IconGui"
 -- characters include
 require "Character"
 
+---@class Patchy: Character
+---@return Patchy
 Patchy = Character:new({
     Strenth = 3,
     Vitality = 3,

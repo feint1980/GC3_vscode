@@ -97,11 +97,10 @@ private:
 
     TB_EmptyObject m_bg;
 
-    tgui::Gui * m_tgui;
+    tgui::Gui * m_tgui = nullptr;
 
     tgui::Panel::Ptr m_panel;
     tgui::Panel::Ptr m_register_panel;
-
 
     tgui::Label::Ptr m_id_label;
     tgui::Label::Ptr m_pw_label;
@@ -140,6 +139,7 @@ private:
     tgui::RichTextLabel::Ptr m_noti_label;
     tgui::Label::Ptr m_noti_cancel_label;
 
+    lua_State * m_script = nullptr;
 
 
     // tgui::Panel::Ptr m_notification_panel;
@@ -160,6 +160,7 @@ private:
 
     TGUIScriptingManager m_guiScriptingManager;
 
+    
     //Status m_lastResponse = Status::Disconnected;
 
     //BattleScene m_battleScene;

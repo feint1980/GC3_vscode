@@ -52,9 +52,11 @@ public:
 
     tgui::Panel::Ptr createPanel(float x, float y, float width, float height, tgui::Panel::Ptr parent);
 
-
+    lua_State * getLuaScript() { return m_script; }
 
     LuaWidgetDataStructure * createGUI(const std::string & name, WidgetType type);
+
+    void checkInput(const SDL_Event &  evnt);
 
     void handleInput(Feintgine::InputManager & inputManager);
 

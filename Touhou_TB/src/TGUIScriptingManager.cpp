@@ -23,6 +23,7 @@
 //     return -1;
 // }
 
+
 int lua_Label_SetText(lua_State * L)
 {
 
@@ -41,6 +42,50 @@ int lua_Label_SetText(lua_State * L)
     return 0;
 }
 
+int lua_Label_SetAlignment(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Label_SetAlignment) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr *>(lua_touserdata(L, 1));
+        int aligmentType = lua_tonumber(L, 2);
+        // 0 left, 1 center, 2 right
+        switch(aligmentType)
+        {
+            case 0:// left
+            {
+                // left plank (default by C++)
+            }
+            break;
+            case 1:// center
+            {
+
+                //label->get()->setText("asdadase \n");
+                label->get()->setOrigin(0.5,0);
+                label->get()->setAutoSize(true);
+            }
+            break;
+            case 2:// right
+            {
+                // todo later
+            }
+            break;
+            default:
+            {
+                std::cout << "lua_Label_SetAlignment failed (lua_Label_SetAlignment) " << lua_gettop(L) << "\n";
+                return -1;
+            }
+            break;
+        }
+        //label->get()->setTextAlignment(tgui::TextAlignment(aligmentType));
+    }
+    return 0;
+}
+
 int lua_Label_SetPos(lua_State * L)
 {
 
@@ -52,15 +97,40 @@ int lua_Label_SetPos(lua_State * L)
     else
     {
         tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));
-        float x = lua_tonumber(L, 2);
+    
+        float fX = 0;
+        std::string strX = "0%";
+        bool xUseNum = true;
+        if(lua_isnumber(L, 2))
+        {
+            fX = lua_tonumber(L, 2);
+        }
+        if(lua_isstring(L, 2))
+        {
+            strX = lua_tostring(L, 2);
+            xUseNum = false;
+        }
+        
+
         float y = lua_tonumber(L, 3);
-        label->get()->setPosition(x,y);
+        
+        if(xUseNum)
+        {
+            label->get()->setPosition(fX,y);
+        }
+        else
+        {
+            label->get()->setPosition(strX.c_str(),y);
+        }
+        
+        
     }
     return 0;
 }
 
 int lua_Label_Create(lua_State * L)
 {
+    std::cout << "[C++] lua_Label_Create called \n";
     if(lua_gettop(L) < 4 || lua_gettop(L) > 5)
     {
         std::cout << "gettop failed (lua_Label_Create) " << lua_gettop(L) << "\n";
@@ -68,24 +138,33 @@ int lua_Label_Create(lua_State * L)
     }
     else
     {
+        std::cout << "create label \n";
         TGUIScriptingManager * host =   static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
         std::string text = lua_tostring(L, 2);
         float x = lua_tonumber(L, 3);
         float y = lua_tonumber(L, 4);
-        tgui::Label::Ptr label = host->createLabel(text,x,y);
+        // tgui::Label::Ptr label = host->createLabel(text,x,y);
+        tgui::Label::Ptr * label = new tgui::Label::Ptr();
+        *label = host->createLabel(text,x,y);
         if(lua_gettop(L) == 5)
         {
+            //std::cout << "parentless add \n";
             tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 5));
             if(parent)
             {
-                parent->get()->add(label);
+                parent->get()->add(*label);
+            }
+            else
+            {
+                host->getTGUI()->add(*label);
             }
         }
         else
         {
-            host->getTGUI()->add(label);
+            //std::cout << "main gui add label \n";
+            host->getTGUI()->add(*label);
         }
-        lua_pushlightuserdata(L,label.get());
+        lua_pushlightuserdata(L,label);
         return 1;
     }
 }
@@ -165,6 +244,15 @@ void TGUIScriptingManager::handleInput(Feintgine::InputManager & inputManager)
 
 }
 
+void TGUIScriptingManager::checkInput(const SDL_Event &  evnt)
+{
+    if(m_tgui)
+    {
+        m_tgui->handleEvent(evnt);
+    }
+}
+
+
 void TGUIScriptingManager::init(Feintgine::Window * m_window)
 {
     m_tgui = new tgui::Gui(m_window->getWindow());
@@ -172,29 +260,37 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
 
     selectTheme(*m_tgui, "themes/Dark.txt");  // force to load in main thread since the openGL problem, you can only have texture created in mainthread ( OpenGL Context)
 
-    auto loadFontTask = async::spawn([&]() {
+    // auto loadFontTask = async::spawn([&]() {
         tgui::Font font_load("font/ARIALUNI.ttf");    
         m_tgui->setFont(font_load);
         m_tgui->setTextSize(20);        
 
-    });
+    // });
 
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
     // init lua component
-    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI.lua")))
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))
     {
         std::cout << "Run script OK \n";
     }
 
+    // MARK: CPP_LUA
     // register lua functions
 
-    // lua_register(m_script, "cppCreateWidget", lua_createWidget); old way
+    // TGUI Main
+    //lua_register(m_script, "cpp_Main_Add_Label", lua_Main_Add_Label);
+
+
+    
     // TGUI Label section
+    // lua_register(m_script, "cppCreateWidget", lua_createWidget); old way
     lua_register(m_script, "cpp_Label_Create", lua_Label_Create);
     lua_register(m_script, "cpp_Label_SetPos" , lua_Label_SetPos);
     lua_register(m_script, "cpp_Label_SetText", lua_Label_SetText);
+    lua_register(m_script, "cpp_Label_SetAlignment", lua_Label_SetAlignment);
+
 
 
     // run Init script
@@ -207,7 +303,10 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
     if(lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this);
-        const int argc = 1;
+        lua_pushnumber(m_script,m_window->getScreenWidth());
+        lua_pushnumber(m_script,m_window->getScreenHeight());
+        std::cout << "pass ref : " << this << "\n";
+        const int argc = 3;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
@@ -215,7 +314,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
         }
     }
     
-    loadFontTask.get();
+    // loadFontTask.get();
 
 }
 

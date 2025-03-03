@@ -67,12 +67,14 @@ function init(host)
     -- 
     t_turnHandler = TurnHandler:new()
     t_slotHandler = SlotHandler:new()
+
+
     t_slotHandler:init(host,3,3,t_turnHandler)
 
-    
     -- init characters
     -- Patchouli, left
     p1 = Patchouli:new()
+
     p1:init(host,t_slotHandler:getSlot(1,1,1),1)
     p1:loadCommon(host)
 
