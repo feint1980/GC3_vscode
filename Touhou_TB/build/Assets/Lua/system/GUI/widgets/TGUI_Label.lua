@@ -1,10 +1,5 @@
 
 
-TextAlginment = {
-    Left = 0,
-    Center = 1,
-    Right = 2
-}
 
 
 LabelColor ={}
@@ -50,7 +45,13 @@ end
 ---@param posY number y position
 ---@param parent? pointer instance parent, default nil (main)
 function Label:init(host, text, posX, posY,parent)
+    parent = parent or nil
     self.ptr =  TGUI_Label_Create(host, text, posX, posY,parent)
+    self.text = text
+    self.posX = posX
+    self.posY = posY    
+    self.parent = parent    
+    
 end
 
 
@@ -62,10 +63,10 @@ function Label:setPos(posX, posY)
 end
 
 ---@Description set the position of the label
----@param posX string x position
----@param posY number y position
-function Label:setPosStr(posXStr, posY)
-    TGUI_Label_SetPosStr(self.ptr, posXStr, posY)
+---@param posXStr string x position
+---@param posYStr string y position
+function Label:setPosStr(posXStr, posYStr)
+    TGUI_Label_SetPosStr(self.ptr, posXStr, posYStr)
 end
 
 ---@Description set the text of the label
@@ -80,6 +81,43 @@ function Label:setAlignment(alignment)
     TGUI_Label_SetAlignment(self.ptr, alignment)
 end
 
+---@Description set the color of the label
+---@param r number red
+---@param g number green
+---@param b number blue
+---@param a? number alpha
+function Label:setColor(r,g,b,a)
+    a = a or 255
+    TGUI_Label_SetTextColor(self.ptr, r,g,b,a)
+end
+
+---@Description set the callback of the label on hover
+---@param func function
+function Label:setOnHoverCallback(func)
+    TGUI_Label_setOnHoverCallback(self.ptr, func)
+end
+
+---@Description set the callback of the label off hover
+---@param func function
+function Label:setOffHoverCallback(func)
+    TGUI_Label_setOffHoverCallback(self.ptr, func)
+end
+
+---@Description set the callback of the label on click
+---@param func function
+function Label:setOnClickCallback(func)
+    TGUI_Label_setOnClickCallBack(self.ptr, func)
+end
+
+
+---@Description set the label change color on Hover : on -> green | off ->white
+function Label:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
+    self:setOnHoverCallback(function() self:setColor(hR,hG,hB,hA) end)
+    self:setOffHoverCallback(function() self:setColor(oR,oG,oB,oA) end)
+end
+
+
+
 --- MARK: Wrapper
 --- function wrapper of cpp_Label_Create
 ---@Description create new tgui label object in cpp
@@ -88,6 +126,7 @@ end
 ---@param posX number x position
 ---@param posY number y position
 ---@param parent? pointer instance parent, default nil (main)
+---@return pointer instance of TGUI Label
 function TGUI_Label_Create(host, text, posX, posY,parent)
     parent = parent or nil
     return cpp_Label_Create(host, text, posX, posY,parent)
@@ -102,13 +141,13 @@ function TGUI_Label_SetPos(label, posX, posY)
     cpp_Label_SetPos(label, posX, posY)
 end
 
---- function wrapper of cpp_Label_SetPos
+--- function wrapper of cpp_Label_SetPosStr
 --- @Description set the position of the label
 ---@param label pointer instance of Label
----@param posX string x position
----@param posY number y position
-function TGUI_Label_SetPosStr(label, posX, posY)
-    cpp_Label_SetPos(label, posX, posY)
+---@param posXStr string x position
+---@param posYStr string y position
+function TGUI_Label_SetPosStr(label, posXStr, posYStr)
+    cpp_Label_SetPosStr(label, posXStr, posYStr)
 end
 
 
@@ -128,5 +167,39 @@ function TGUI_Label_SetAlignment(label, aligmentType)
     cpp_Label_SetAlignment(label, aligmentType)
 end
 
+--- function wrapper of cpp_Label_SetTextColor
+---@Description set the text color of the label
+---@param label pointer instance of Label
+---@param r number red (0-255)
+---@param g number green (0-255)
+---@param b number blue (0-255)
+---@param a? number alpha (0-255) default 255
+function TGUI_Label_SetTextColor(label, r, g, b,a)
+    a = a or 255
+    cpp_Label_SetTextColor(label, r, g, b, a)
+end
 
 
+--- function wrapper of cpp_Label_SetOnHoverCallback
+---@Description set the on hover callback of the label
+---@param label pointer instance of Label
+---@param callback function
+function TGUI_Label_setOnHoverCallback(label, callback)
+    cpp_Label_SetOnHoverCallback(label, callback)
+end
+
+--- function wrapper of cpp_Label_SetOffHoverCallback
+---@Description set the off hover callback of the label
+---@param label pointer instance of Label
+---@param callback function
+function TGUI_Label_setOffHoverCallback(label, callback)
+    cpp_Label_SetOffHoverCallback(label, callback)
+end
+
+--- function wrapper of cpp_Label_SetOnClickCallBack
+---@Description set the on click callback of the label
+---@param label pointer instance of Label
+---@param callback function
+function TGUI_Label_setOnClickCallBack(label, callback)
+    cpp_Label_SetOnClickCallback(label, callback)
+end

@@ -47,8 +47,9 @@ public:
     
     tgui::Label::Ptr createLabel(const std::string & text,float x, float y); 
     
+    tgui::RichTextLabel::Ptr createRTLabel(const std::string & text,float x, float y); 
 
-    tgui::EditBox::Ptr createEditBox(const std::string & text,float x, float y, tgui::Panel::Ptr parent);
+    tgui::EditBox::Ptr createEditBox(float x, float y, float width, float height, tgui::Panel::Ptr parent);
 
     tgui::Panel::Ptr createPanel(float x, float y, float width, float height, tgui::Panel::Ptr parent);
 
