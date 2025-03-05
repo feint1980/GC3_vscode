@@ -665,6 +665,8 @@ int lua_Label_SetOnClickCallback(lua_State * L)
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
         lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 
+        // label->get()->onClick(nullptr);
+        //label->get()->
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onClick(callback);
     }
@@ -700,7 +702,6 @@ int lua_RTLabel_SetOnClickCallback(lua_State * L)
 
 int lua_Label_Create(lua_State * L)
 {
-    std::cout << "[C++] lua_Label_Create called \n";
     if(lua_gettop(L) < 4 || lua_gettop(L) > 5)
     {
         std::cout << "gettop failed (lua_Label_Create) " << lua_gettop(L) << "\n";
@@ -841,7 +842,10 @@ tgui::Panel::Ptr TGUIScriptingManager::createPanel(float x, float y, float width
 
 void TGUIScriptingManager::update(float deltaTime)
 {
-
+    if(m_tgui)
+    {
+        m_tgui->updateTime(deltaTime);
+    }
 
 }
 void TGUIScriptingManager::draw()
@@ -866,7 +870,7 @@ void TGUIScriptingManager::checkInput(const SDL_Event &  evnt)
 }
 
 
-void TGUIScriptingManager::init(Feintgine::Window * m_window)
+void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
 {
     m_tgui = new tgui::Gui(m_window->getWindow());
     TTF_Init(); // a must
@@ -880,8 +884,8 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
 
     // });
 
-    m_script = luaL_newstate();
-    luaL_openlibs(m_script);
+    m_script = script; // luaL_newstate();
+    // luaL_openlibs(m_script);
 
     // init lua component
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))
@@ -963,146 +967,4 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window)
     
     // loadFontTask.get();
 
-}
-
-void TGUIScriptingManager::addChildLabelToParent(LuaWidgetDataStructure * parent, tgui::Label::Ptr label)
-{
-    switch(parent->type)
-    {
-    case Label:
-        // nothing
-        std::cout << "attemp to add child to label widget, name : " << parent->name << "\n";
-    break;
-    case EditBox:
-        std::cout << "attemp to add child to editbox widget, name : " << parent->name << "\n";
-    break;
-    case Panel:
-        m_panelMap[parent->name]->add(label);
-    break;
-    default:
-    break;
-    }
-}
-
-
-void TGUIScriptingManager::addChildEditBoxToParent(LuaWidgetDataStructure * parent, tgui::EditBox::Ptr editBox)
-{
-    switch(parent->type)
-    {
-    case Label:
-        // nothing
-        std::cout << "attemp to add child to label widget, name : " << parent->name << "\n";
-    break;
-    case EditBox:
-        std::cout << "attemp to add child to editbox widget, name : " << parent->name << "\n";
-    break;
-    case Panel:
-        m_panelMap[parent->name]->add(editBox);
-    break;
-    default:
-    break;
-    }
-}
-    
-void TGUIScriptingManager::addChildPanelToParent(LuaWidgetDataStructure * parent, tgui::Panel::Ptr panel)
-{
-    switch(parent->type)
-    {
-    case Label:
-        // nothing
-        std::cout << "attemp to add child to label widget, name : " << parent->name << "\n";
-    break;
-    case EditBox:
-        std::cout << "attemp to add child to editbox widget, name : " << parent->name << "\n";
-    break;
-    case Panel:
-        m_panelMap[parent->name]->add(panel);
-    break;
-    default:
-    break;
-    }
-}
-    
-void TGUIScriptingManager::addTo(LuaWidgetDataStructure * child, LuaWidgetDataStructure * parent )
-{
-    if(!child)
-    {
-        std::cout << "WARNING : attemp to add null widget \n";
-
-        return;
-    }
-    //
-
-
-    switch(child->type)
-    {
-    case Label:
-    {
-        if(parent)
-        {
-            addChildLabelToParent(parent, m_labelMap[child->name]);
-        }
-        else
-        {
-            m_tgui->add(m_labelMap[child->name]);
-        }
-    }
-    break;
-    case EditBox:
-    {
-        if(parent)
-        {
-            addChildEditBoxToParent(parent, m_editBoxMap[child->name]);
-        }
-        else
-        {
-            m_tgui->add(m_editBoxMap[child->name]);
-        }
-    }
-    break;
-    case Panel:
-    {
-        if(parent)
-        {
-            addChildPanelToParent(parent, m_panelMap[child->name]);
-        }
-        else
-        {
-            m_tgui->add(m_panelMap[child->name]);
-        }
-    }
-    break;
-    default:
-    break;
-    }
-    
-}
-
-LuaWidgetDataStructure * TGUIScriptingManager::createGUI(const std::string & name, WidgetType type)
-{
-    LuaWidgetDataStructure * retVal = new LuaWidgetDataStructure;
-    retVal->name = name;
-    retVal->type = type;
-    switch (type)
-    {
-    case Label:
-        m_labelMap[name] = tgui::Label::create();
-        // m_tgui->add(m_labelMap[name]);
-        break;
-    case EditBox:
-        m_editBoxMap[name] = tgui::EditBox::create();
-        // m_tgui->add(m_editBoxMap[name]);
-        break;
-    case Panel:
-        m_panelMap[name] = tgui::Panel::create();
-        // m_tgui->add(m_panelMap[name]);
-        break;
-    default:
-        
-    break;
-    }
-    m_widgets.insert(retVal);
-
-    return retVal;
-    
 }

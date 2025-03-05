@@ -146,6 +146,8 @@ private:
     // ClientHandler * m_client = nullptr;
 
 
+    lua_State * m_script = nullptr;
+
     ClientScriptingManager m_scriptingManager;
 
     bool m_isAccept = false;

@@ -43,7 +43,7 @@ public:
     ClientScriptingManager();
     ~ClientScriptingManager();
 
-    void init(const std::string & serverIP, unsigned int port);
+    void init(const std::string & serverIP, unsigned int port,lua_State * script);
 
     uint32_t sendData(const std::string & data);
 
@@ -56,6 +56,8 @@ public:
     void firstGateWay(RakNet::Packet *p);
 
     void secondGateWay(RakNet::Packet *p);
+
+    void sendDataToLuaScripting(RakNet::Packet *p);
 
     ClientStatus getStatus() { return m_status; }
 
@@ -71,8 +73,6 @@ public:
     ClientStatus m_status = ClientStatus::Disconnected;
 
     bool m_isConnected = false; 
-
-
 
     // RakNet Core component
     std::string pw; 

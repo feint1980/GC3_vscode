@@ -67,23 +67,13 @@ public:
 
     void handleInput(Feintgine::InputManager & inputManager);
 
-    void initGUI();
-
     void initGUIV2();
-
-    void setNotification(const std::string & msg,const std::string & btnMsg, const std::function<void()> & callback2);
-    
-    //void loadMT();
-
-    //void drawLoadingScreen();
 
     void drawGameplay();
 
     void initShader();
 
     void drawGUI();
-
-    void setTGUILableClickableEffect(tgui::Label::Ptr & label);
 
 private:
 
@@ -99,62 +89,11 @@ private:
 
     tgui::Gui * m_tgui = nullptr;
 
-    tgui::Panel::Ptr m_panel;
-    tgui::Panel::Ptr m_register_panel;
-
-    tgui::Label::Ptr m_id_label;
-    tgui::Label::Ptr m_pw_label;
-
-    tgui::EditBox::Ptr m_id_input;
-    tgui::EditBox::Ptr m_pw_input;
-
-    tgui::Label::Ptr m_register_id_label;
-    tgui::Label::Ptr m_register_pw_label;
-    tgui::Label::Ptr m_register_pw_confirm_label;
-    tgui::Label::Ptr m_register_key_label;
-
-    tgui::EditBox::Ptr m_register_id_input;
-    tgui::EditBox::Ptr m_register_pw_input;
-    tgui::EditBox::Ptr m_register_pw_confirm_input;
-    tgui::EditBox::Ptr m_register_key_input;
-
-
-    tgui::Label::Ptr m_login_button;
-    tgui::Label::Ptr m_register_button;
-    tgui::Label::Ptr m_cancel_button;
-
-    tgui::Label::Ptr m_register_regis_button;
-    tgui::Label::Ptr m_register_cancel_button;
-
-    tgui::Panel::Ptr m_tos;
-    tgui::RichTextLabel::Ptr m_tos_label;
-    tgui::Label::Ptr m_tos_agre_label;
-    tgui::Label::Ptr m_tos_exit_label;
-
-    tgui::Label::Ptr m_offline_label;
-    tgui::Label::Ptr m_online_label;
-    tgui::Label::Ptr m_exit_label;
-
-    tgui::Panel::Ptr m_noti_panel;
-    tgui::RichTextLabel::Ptr m_noti_label;
-    tgui::Label::Ptr m_noti_cancel_label;
-
     lua_State * m_script = nullptr;
 
-
-    // tgui::Panel::Ptr m_notification_panel;
-    // tgui::Label::Ptr m_notification_label;
-    // tgui::Label::Ptr m_notification_cancel_label;
-    // tgui::Label::Ptr m_notification_cancel_label;
-    
-    // ClientHandler * m_client = nullptr;
-
-
-    ClientScriptingManager m_scriptingManager;
+    ClientScriptingManager m_clientScriptingManager;
 
     bool m_isAccept = false;
-
-    std::stack<tgui::Panel::Ptr> m_guiStack;
 
     bool m_isDisconnected = true;
 

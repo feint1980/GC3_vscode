@@ -90,93 +90,10 @@ void LoginSceneV2::onExit()
 
 void LoginSceneV2::update(float deltaTime)
 {
-    // m_camera.update();
-    // m_tgui->updateTime(deltaTime);
 
-    //std::cout << "updte \n";
     m_guiScriptingManager.update(deltaTime);
+    m_clientScriptingManager.update(deltaTime);
 
-    // m_scriptingManager.update(deltaTime);
-
-
-    // if(m_client)
-    // {
-    //     m_client->update(deltaTime);
-    //     Status tStatus = m_client->getStatus();
-    //     switch(tStatus)
-    //     {
-    //         case Status::Disconnected:
-    //         {
-    //             if(m_client->isConnected())
-    //             {
-    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-    //                 //m_isDisconnected = false;
-    //                 m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
-    //                 m_panel->moveToFront();
-    //                 m_guiStack.push(m_panel);
-    //                 m_id_input->setFocused(true);
-    //                 tStatus = Status::Connected;
-    //             }
-                
-    //         }
-    //         break;
-
-    //         case Status::Connected:
-    //         {
-    //             if(m_noti_panel->isVisible())
-    //             {
-    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-    //                 m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
-    //                 m_panel->moveToFront();
-    //                 m_guiStack.push(m_panel);
-    //                 m_id_input->setFocused(true);
-    //             }
-    //         }
-    //         break;
-
-    //         case Status::FailedAttemp:
-    //         {
-    //             setNotification("Unable to connect to server", "OK",[&](){
-    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-    //                 m_client->setStatus(Status::Disconnected);
-    //             }
-    //             );
-    //         }
-    //         break;
-
-    //         case Status::Banned:
-    //         {
-    //             setNotification("You are banned from this server", "OK",[&](){
-    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-    //                 m_client->setStatus(Status::Disconnected);
-    //             }
-    //             );
-    //         }
-    //         break;
-
-    //         case Status::Incompatible:
-    //         {
-    //             setNotification("Error code K2 D32", "Oh no",[&](){
-    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-    //                 m_client->setStatus(Status::Disconnected);
-    //             }
-    //             );
-    //         }
-    //         break;
-
-    //         case Status::IsFull:
-    //         {
-    //             setNotification("Server is full", "OK",[&](){
-    //                 m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-    //                 m_client->setStatus(Status::Disconnected);
-    //             });
-    //         }
-    //         break;
-
-    //         default:
-    //         break;
-    //     }
-    // }
 }
 
 void LoginSceneV2::checkInput()
@@ -189,18 +106,6 @@ void LoginSceneV2::checkInput()
     }
     handleInput(m_game->m_inputManager);
     
-}
-
-void LoginSceneV2::setTGUILableClickableEffect(tgui::Label::Ptr & label)
-{
-    label->onMouseEnter([&](){
-        label->getRenderer()->setTextColor(tgui::Color::Green );
-    });
-
-    label->onMouseLeave([&](){
-        label->getRenderer()->setTextColor(tgui::Color::White );
-    });
-
 }
 
 void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
@@ -219,25 +124,9 @@ void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
 
     if (inputManager.isKeyPressed(SDLK_ESCAPE))
     {
-        // if(!m_guiStack.empty())
-        // {       
-        //     m_guiStack.top().get()->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-        //     m_guiStack.pop();
-        // }
+
     }
     m_guiScriptingManager.handleInput(inputManager);
-}
-
-void LoginSceneV2::setNotification(const std::string & msg,const std::string & btnMsg, const std::function<void()> & callback)
-{
-    if(!m_noti_panel->isVisible())
-    {
-        m_noti_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-    }
-
-    m_noti_label->setText(msg);
-    m_noti_cancel_label->setText(btnMsg);
-    m_noti_cancel_label->onClick(callback);
 }
 
 void LoginSceneV2::draw()
@@ -279,10 +168,16 @@ void LoginSceneV2::draw()
 
 void LoginSceneV2::initGUIV2()
 {
-    m_guiScriptingManager.init(m_window);
 
-    // m_scr
-    m_script = m_guiScriptingManager.getLuaScript();
+    m_script = luaL_newstate();
+    luaL_openlibs(m_script);
+
+    m_guiScriptingManager.init(m_window,m_script);
+
+    m_clientScriptingManager.init("127.0.0.1", 1123,m_script);
+
+    // inverse case
+    //m_script = m_guiScriptingManager.getLuaScript();
     //luaL_openlibs(m_script);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/Login/loginScene.lua")))
@@ -295,308 +190,15 @@ void LoginSceneV2::initGUIV2()
     {
         lua_pushlightuserdata(m_script, this);
         lua_pushlightuserdata(m_script, &m_guiScriptingManager);
+        lua_pushlightuserdata(m_script, &m_clientScriptingManager);
         std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-        const int argc = 2;
+        const int argc = 3;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
             std::cout << "Login scene init script from C++ OK \n";
         }
     }
-
-}
-
-void LoginSceneV2::initGUI()
-{
-    m_tgui = new tgui::Gui(m_window->getWindow());
-    TTF_Init();
-    m_panel = tgui::Panel::create();
-    m_register_panel = tgui::Panel::create();
-
-    m_tos = tgui::Panel::create();
-    m_tgui->add(m_panel);
-    m_tgui->add(m_register_panel);
-    m_tgui->add(m_tos);
-    selectTheme(*m_tgui, "themes/Dark.txt");  // force to load in main thread since the openGL problem, you can only have texture created in mainthread ( OpenGL Context)
-
-    auto loadFontTask = async::spawn([&]() {
-        tgui::Font font_load("font/ARIALUNI.ttf");    
-        m_tgui->setFont(font_load);
-        m_tgui->setTextSize(20);        
-
-    });
-
-    // auto loadPanelTask = async::spawn([&]() {
-        
-        m_panel->setSize(600, 300);
-        m_panel->setPosition(m_window->getScreenWidth()/2 - (m_panel->getSize().x/2) ,   m_window->getScreenHeight()/2 - (m_panel->getSize().y /2) );
-        //m_panel->setBackgroundColor(tgui::Color(30,30,30,255));
-        m_id_label = tgui::Label::create();
-        //tgui::Sprite
-        m_id_label->setText("   ID");
-        m_id_label->setPosition(80, 100);
-        //m_id_label->setTextColor(tgui::Color::White);
-        m_panel->add(m_id_label);
-        
-        m_pw_label = tgui::Label::create();
-        m_pw_label->setText("Password");
-        m_pw_label->setPosition(80, 150);
-        //m_pw_label->setTextColor(tgui::Color::White);
-        m_panel->add(m_pw_label);
-
-        m_id_input = tgui::EditBox::create();
-        m_id_input->setSize(m_panel->getSize().x/2 , 30);
-        m_id_input->setPosition(180, 100);
-        m_panel->add(m_id_input);
-        
-        m_pw_input = tgui::EditBox::create();
-        m_pw_input->setSize(m_panel->getSize().x/2  , 30);
-        m_pw_input->setPosition(180, 150);
-        m_panel->add(m_pw_input);        
-
-        m_login_button = tgui::Label::create();
-        m_login_button->setText("Login");
-        m_login_button->setPosition(200, 200);
-        m_panel->add(m_login_button);
-
-        m_cancel_button = tgui::Label::create();
-        m_cancel_button->setText("Cancel");
-        m_cancel_button->setPosition(290, 200);
-        m_panel->add(m_cancel_button);
-        m_panel->setVisible(false);
-
-        m_register_button = tgui::Label::create();
-        m_register_button->setText("Register");
-        m_register_button->setPosition(400, 200);
-        m_panel->add(m_register_button);
-
-        // Register panel
-        m_register_panel->setSize(600, 300);
-        m_register_panel->setPosition(m_window->getScreenWidth()/2 - (m_register_panel->getSize().x/2) ,   m_window->getScreenHeight()/2 - (m_register_panel->getSize().y /2) );
-
-
-        m_register_id_label = tgui::Label::create();
-        m_register_id_label->setText("            ID");
-        m_register_id_label->setPosition(65, 50);
-        m_register_panel->add(m_register_id_label);
-
-        m_register_pw_label = tgui::Label::create();
-        m_register_pw_label->setText("  Password");
-        m_register_pw_label->setPosition(65, 100);
-        m_register_panel->add(m_register_pw_label);
-
-        m_register_pw_confirm_label = tgui::Label::create();
-        m_register_pw_confirm_label->setText("Confirm PW");
-        m_register_pw_confirm_label->setPosition(65, 150);
-        m_register_panel->add(m_register_pw_confirm_label);
-
-        m_register_key_label = tgui::Label::create();
-        m_register_key_label->setText("          Key");
-        m_register_key_label->setPosition(65, 200);
-        m_register_panel->add(m_register_key_label);
-
-        m_register_id_input = tgui::EditBox::create();
-        m_register_id_input->setSize(m_register_panel->getSize().x /2, 30);
-        m_register_id_input->setPosition(180,50);
-        m_register_panel->add(m_register_id_input);
-
-        m_register_pw_input = tgui::EditBox::create();
-        m_register_pw_input->setSize(m_register_panel->getSize().x /2, 30);
-        m_register_pw_input->setPosition(180,100);
-        m_register_panel->add(m_register_pw_input);
-
-        m_register_pw_confirm_input = tgui::EditBox::create();
-        m_register_pw_confirm_input->setSize(m_register_panel->getSize().x /2, 30);
-        m_register_pw_confirm_input->setPosition(180,150);
-        m_register_panel->add(m_register_pw_confirm_input);
-
-        m_register_key_input = tgui::EditBox::create();
-        m_register_key_input->setSize(m_register_panel->getSize().x /2, 30);
-        m_register_key_input->setPosition(180,200);
-        m_register_panel->add(m_register_key_input);
-
-        m_register_regis_button = tgui::Label::create();
-        m_register_regis_button->setText("Register");
-        m_register_regis_button->setPosition(230, 250);
-        m_register_panel->add(m_register_regis_button);
-
-        m_register_cancel_button = tgui::Label::create();
-        m_register_cancel_button->setText("Cancel");
-        m_register_cancel_button->setPosition(330, 250);
-        m_register_panel->add(m_register_cancel_button);
-        m_register_panel->setVisible(false);
-
-        setTGUILableClickableEffect(m_register_button);
-        setTGUILableClickableEffect(m_register_regis_button);
-        setTGUILableClickableEffect(m_register_cancel_button);
-
-        m_register_button->onClick([&]()
-        {
-            m_register_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-            m_register_panel->moveToFront();
-           // m_guiStack.push(m_register_panel);
-        });
-
-        m_register_cancel_button->onClick([&]() 
-        {
-            m_register_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-           // m_guiStack.pop();
-        });
-
-    // auto loadTOSTask = async::spawn([&]() {
-        m_tos->setSize(400, 300);
-        m_tos->setPosition(m_window->getScreenWidth()/2 - 200 , m_window->getScreenHeight()/2 -150 );
-
-        m_tos_label = tgui::RichTextLabel::create();
-        m_tos_label->setText("This is a fan-made game based on \nTouhou project,many assets from other \ngames as concepts/placeholder,if you are \nOK with this prototype then hit \"Agree\" ");
-        m_tos_label->setPosition(10, 50);
-        m_tos_label->setTextSize(14);
-
-        m_tos_agre_label = tgui::Label::create();
-        m_tos_agre_label->setText("Agree");
-        m_tos_agre_label->setPosition(120, 200);
-
-        m_tos_exit_label = tgui::Label::create();
-        m_tos_exit_label->setText("Exit");
-        m_tos_exit_label->setPosition(220, 200);
-
-        m_tos->add(m_tos_label);
-        m_tos->add(m_tos_agre_label);
-        m_tos->add(m_tos_exit_label);
-        m_tos->setVisible(false);
-
-        m_online_label = tgui::Label::create();
-        m_online_label->setText("Play Online");
-        m_online_label->setPosition("50%" , m_window->getScreenHeight()/2 - 25);
-        m_online_label->setOrigin(0.5,0);
-        m_online_label->setAutoSize(true);
-        m_tgui->updateTime(1);
-
-        m_offline_label = tgui::Label::create();
-        m_offline_label->setText("Play Offline");
-        m_offline_label->setPosition("50%" , m_window->getScreenHeight()/2 + 25 );
-        m_offline_label->setOrigin(0.5,0);
-        m_offline_label->setAutoSize(true);
-
-        m_exit_label = tgui::Label::create();
-        m_exit_label->setText("Exit");
-        m_exit_label->setOrigin(0.5,0);
-        m_exit_label->setPosition("50%" , m_window->getScreenHeight()/2 + 75 );
-        m_exit_label->setAutoSize(true);
-
-        m_online_label->moveToBack();
-        m_offline_label->moveToBack();
-        m_exit_label->moveToBack();
-
-        m_online_label->setVisible(false);
-        m_offline_label->setVisible(false);
-        m_exit_label->setVisible(false);
-
-        m_tgui->add(m_online_label);
-        m_tgui->add(m_offline_label);
-        m_tgui->add(m_exit_label);
-
-    // });
-
-    loadFontTask.get();
-    m_noti_panel = tgui::Panel::create();
-    m_noti_panel->setSize(300, 200);
-    m_noti_panel->setPosition(m_window->getScreenWidth()/2 - 150 , m_window->getScreenHeight()/2 -50 );
-    m_noti_panel->setVisible(false);
-
-    m_noti_label = tgui::RichTextLabel::create();
-    m_noti_label->setPosition("50%" , 45);
-    m_noti_label->setOrigin(0.5,0);
-    m_noti_label->setAutoSize(true);
-    m_noti_panel->add(m_noti_label);
-
-
-    m_noti_cancel_label = tgui::Label::create();
-    m_noti_cancel_label->setText("Cancel");
-    // m_connect_cancel_label->setHorizontalAlignment(tgui::Label::HorizontalAlignment::Center);
-
-    m_noti_cancel_label->setPosition("50%"  , 150);
-    m_noti_cancel_label->setOrigin(0.5,0);
-    m_noti_cancel_label->setAutoSize(true);
-    m_noti_panel->add(m_noti_cancel_label);
-
-    m_tgui->add(m_noti_panel);
-
-    m_noti_cancel_label->onClick([&]() {
-        m_noti_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-
-    });
-
-    setTGUILableClickableEffect(m_noti_cancel_label);
-    
-
-    m_tos->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(200));
-    m_tos->moveToFront();
-    m_tos_agre_label->onClick([&]() {
-        m_tos->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
-        m_online_label->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
-        m_offline_label->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
-        m_exit_label->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(500));
-        m_isAccept = true;
-
-    });
-
-    setTGUILableClickableEffect(m_tos_agre_label);
-    setTGUILableClickableEffect(m_tos_exit_label);
-
-    m_online_label->onClick([&]() 
-    {
-        if(m_isDisconnected)
-        {
-            m_noti_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-            m_noti_label->setText("Connecting...");
-            m_noti_panel->moveToFront();
-            // if(m_client == nullptr)
-            // {
-            //     m_client = new ClientHandler();
-            //     m_client->init("127.0.0.1", 1123);
-            // }
-            // m_client->connect();
-            //m_guiStack.push(m_noti_panel);
-            m_scriptingManager.connect();
-
-        }
-        else
-        {
-            m_panel->showWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-            m_panel->moveToFront();
-            //m_guiStack.push(m_panel);
-        }
-    });
-
-    setTGUILableClickableEffect(m_online_label);
-
-    m_offline_label->onClick([&]() {
-        std::cout << "offline \n";
-    });
-
-    setTGUILableClickableEffect(m_offline_label);
-
-    m_login_button->onClick([&]() {
-        //todo login here
-    });
-
-    setTGUILableClickableEffect(m_login_button);
-
-
-    m_cancel_button->onClick([&]() {
-        m_panel->hideWithEffect(tgui::ShowEffectType::Fade, std::chrono::milliseconds(250));
-        //m_panel->moveToBack();
-        m_guiStack.pop();
-    });
-
-    setTGUILableClickableEffect(m_cancel_button);
-
-    m_exit_label->onClick([&]() {
-        exit(1);
-    });
-
-    setTGUILableClickableEffect(m_exit_label);
 
 }
 

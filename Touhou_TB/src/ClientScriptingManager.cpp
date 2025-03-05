@@ -22,13 +22,30 @@ int lua_SendData(lua_State * L)
     return -1;
 }
 
+int lua_Connect(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Connect) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        host->connect();
+    }
+
+    return 0;
+}
+
 
 uint32_t ClientScriptingManager::sendData(const std::string & data)
 {
     return m_client->Send(data.c_str(), data.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
-void ClientScriptingManager::init(const std::string & serverIP, unsigned int port)
+void ClientScriptingManager::init(const std::string & serverIP, unsigned int port,lua_State * script)
 {
     std::cout << "|=========================================|\n";
     std::cout << "|     Init Client Scripting Manager       |\n";
@@ -49,8 +66,9 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     std::cout << "|     Init Client RakNet Core OK          |\n";
     m_RakNetCoreInitialized = true;
 
-    m_script = luaL_newstate();
-    luaL_openlibs(m_script);
+    m_script = script;
+    // m_script = luaL_newstate();
+    // luaL_openlibs(m_script);
 
     std::cout << "|     Init Client Scripting Manager OK    |\n";
     std::cout << "|=========================================|\n";
@@ -58,7 +76,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     // register lua functions
 
     lua_register(m_script, "cppSendData", lua_SendData);
-
+    lua_register(m_script, "cppConnect", lua_Connect);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/Networking/clientSide.lua")))
     {
@@ -96,7 +114,8 @@ void ClientScriptingManager::handleMessage(RakNet::Packet *p)
 {
 
     // first gateway
-    firstGateWay(p);
+    sendDataToLuaScripting(p);
+    // firstGateWay(p);
 
     //PacketCode requestCode = getSpecialRequestCode(p);
 }
@@ -116,6 +135,25 @@ void ClientScriptingManager::connect()
         // std::cout << "init networking OK ! \n";
         std::cout << "GUID is : " << m_client->GetGuidFromSystemAddress (RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString() << "\n"; 
         
+    }
+}
+
+void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
+{
+    if(m_script)
+    {
+        lua_getglobal(m_script, "Client_ReceiveData");
+        if(lua_isfunction(m_script, -1))
+        {
+            lua_pushstring(m_script,(const char*)p->data);
+            lua_pushlightuserdata(m_script, &p->systemAddress);
+            const int argc = 2;
+            const int returnCount = 0;
+            if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+            {
+                //std::cout << "Pass Data OK \n";
+            }
+        }
     }
 }
 

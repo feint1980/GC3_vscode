@@ -37,6 +37,15 @@ function SV_GetPacketIP(packet)
     return cppPacket_getIP(packet)
 end
 
+--- function wrapper of cppPacket_extract
+---@Description: get the data of a packet 
+---@param packet pointer instance of RakNet::Packet
+---@return string data of the packet 
+---@return pointer instance of RakNet::SystemAddress
+function SV_ExtractPacket(packet)
+    return cppPacket_extract(packet)
+end
+
 --- function wrapper of cppSendToClient
 ---@Description: send a packet to a client
 ---@param host pointer instance of ServerScriptingManager

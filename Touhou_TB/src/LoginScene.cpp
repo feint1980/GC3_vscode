@@ -43,8 +43,10 @@ void LoginScene::onEntry()
 
     m_camera.update();
 
-    
-    m_scriptingManager.init("127.0.0.1", 1123);
+    m_script = luaL_newstate();
+    luaL_openlibs(m_script);
+
+    m_scriptingManager.init("127.0.0.1", 1123,m_script);
 
     m_spriteBatch.init();
     
@@ -93,8 +95,8 @@ void LoginScene::update(float deltaTime)
     m_camera.update();
     m_tgui->updateTime(deltaTime);
 
-
     m_scriptingManager.update(deltaTime);
+
 
 
     // if(m_client)
