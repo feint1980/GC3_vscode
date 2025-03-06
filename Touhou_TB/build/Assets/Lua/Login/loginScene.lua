@@ -60,6 +60,31 @@ Login_CancelBtn = nil
 ---@type Label
 Login_LGRegisterBtn = nil
 
+---Register Panel
+---@type Panel
+Login_RegisterPanel = nil
+---@type Label
+Login_RegisterIDLabel = nil
+---@type EditBox
+Login_RegisterIDEditBox = nil
+---@type Label
+Login_RegisterPWLabel = nil
+---@type EditBox
+Login_RegisterPWEditBox = nil
+---@type Label
+Login_RegisterPW2Label = nil
+---@type EditBox
+Login_RegisterPW2EditBox = nil
+---@type Label
+Login_RegisterKeyLabel = nil
+---@type EditBox
+Login_RegisterKeyEditBox = nil
+---@type Label
+Login_RegisterBtn = nil
+---@type Label
+Login_RegisterCancelBtn = nil
+
+
 --- Global variables section end ----
 
 function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
@@ -75,25 +100,25 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
         print("Login_GUIScriptingPtr is not nil")
     end
 
-        --- Notification section ----
-        Login_Noti_Panel = Panel:new()
-        Login_Noti_Panel:init(Login_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
-        Login_Noti_Panel:setAligment(0.5,0,5)
-        Login_Noti_Panel:setSizeStr("25%", "20%")
-        Login_Noti_Panel:setPosStr("50%", "50%")
-        Login_Noti_Panel:setVisible(false)
-    
-        Login_Noti_Msg = RTLabel:new()
-        Login_Noti_Msg:init(Login_GUIScriptingPtr,"",0,0,Login_Noti_Panel.ptr)
-        Login_Noti_Msg:setAlignment(TextAlginment.Center)
-        Login_Noti_Msg:setPosStr("50%","20%")
-    
-        Login_Noti_Btn = Label:new()
-        Login_Noti_Btn:init(Login_GUIScriptingPtr,"OK",0,0,Login_Noti_Panel.ptr)
-        Login_Noti_Btn:setAlignment(TextAlginment.Center)
-        Login_Noti_Btn:setPosStr("50%","75%")
-        Login_Noti_Btn:setHoverable(0,255,0,255,255,255,255,255)
-        Login_Noti_Btn:setOnClickCallback(function() Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250) end)
+    --- Notification section ----
+    Login_Noti_Panel = Panel:new()
+    Login_Noti_Panel:init(Login_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
+    Login_Noti_Panel:setAligment(0.5,0,5)
+    Login_Noti_Panel:setSizeStr("25%", "20%")
+    Login_Noti_Panel:setPosStr("50%", "50%")
+    Login_Noti_Panel:setVisible(false)
+
+    Login_Noti_Msg = RTLabel:new()
+    Login_Noti_Msg:init(Login_GUIScriptingPtr,"",0,0,Login_Noti_Panel.ptr)
+    Login_Noti_Msg:setAlignment(TextAlginment.Center)
+    Login_Noti_Msg:setPosStr("50%","20%")
+
+    Login_Noti_Btn = Label:new()
+    Login_Noti_Btn:init(Login_GUIScriptingPtr,"OK",0,0,Login_Noti_Panel.ptr)
+    Login_Noti_Btn:setAlignment(TextAlginment.Center)
+    Login_Noti_Btn:setPosStr("50%","75%")
+    Login_Noti_Btn:setHoverable(0,255,0,255,255,255,255,255)
+    Login_Noti_Btn:setOnClickCallback(function() Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250) end)
 
     --- Main Menu section ----
     
@@ -110,9 +135,15 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_PlayOnlineBtn:init(Login_GUIScriptingPtr,"Play Online",TGUI_ScreenWidth/2 ,TGUI_ScreenHeight/2 )
     Login_PlayOnlineBtn:setAlignment(TextAlginment.Center)
     Login_PlayOnlineBtn:setHoverable(0,255,0,255,255,255,255,255)
-    Login_PlayOnlineBtn:setOnClickCallback(function()
-        Client_Connect(ClientScriptingPtr)
-        Login_showNotification("Connecting ...","")
+    Login_PlayOnlineBtn:setOnClickCallback(
+        function()
+        if Client_Connected == false then
+            Client_Connect(ClientScriptingPtr)
+            Login_showNotification("Connecting ...","")
+        else
+            Login_LoginPanel:showWithEffect(PanelShowType.Fade,250)
+        end
+
         end)
 
     Login_ExitBtn = Label:new()
@@ -144,6 +175,8 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
 
     tosPanel:showWithEffect(PanelShowType.Fade,250)
 
+
+    --- Login Panel section
     Login_LoginPanel = Panel:new()
     Login_LoginPanel:init(Login_GUIScriptingPtr,0,0,600,400)
     Login_LoginPanel:setAligment(0.5,0.5)
@@ -151,6 +184,11 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_LoginPanel:setPosStr("50%", "50%")
     Login_LoginPanel:setVisible(false)
 
+    local login_title = Label:new()
+    login_title:init(Login_GUIScriptingPtr,"Login",0,0,Login_LoginPanel.ptr)
+    login_title:setAlignment(TextAlginment.Center)
+    login_title:setPosStr("50%","10%")
+    
     Login_IDLabel = Label:new()
     Login_IDLabel:init(Login_GUIScriptingPtr,"ID",0,0,Login_LoginPanel.ptr)
     Login_IDLabel:setPosStr("7%","30%")
@@ -176,17 +214,16 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_LoginBtn:setAlignment(TextAlginment.Center)
     Login_LoginBtn:setHoverable(0,255,0,255,255,255,255,255)
 
-    -- Login_LoginBtn:setOnClickCallback(function()
-        -- Client_Connect(ClientScriptingPtr)
-        -- Login_showNotification("Connecting ...","")
-        -- end)
-
     Login_LGRegisterBtn = Label:new()
     Login_LGRegisterBtn:init(Login_GUIScriptingPtr,"Register",0,0,Login_LoginPanel.ptr)
     Login_LGRegisterBtn:setPosStr("50%","75%")
     Login_LGRegisterBtn:setAlignment(TextAlginment.Center)
     Login_LGRegisterBtn:setHoverable(0,255,0,255,255,255,255,255)
+    Login_LGRegisterBtn:setOnClickCallback(function()
+        Login_LoginPanel:hideWithEffect(PanelShowType.Fade,250)
+        Login_RegisterPanel:showWithEffect(PanelShowType.Fade,250)
 
+    end)
 
     Login_CancelBtn = Label:new()
     Login_CancelBtn:init(Login_GUIScriptingPtr,"Cancel",0,0,Login_LoginPanel.ptr)
@@ -196,6 +233,74 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_CancelBtn:setOnClickCallback(function()
         Login_LoginPanel:hideWithEffect(PanelShowType.Fade,250)
     end)
+
+    --- Register Panel section
+    Login_RegisterPanel = Panel:new()
+    Login_RegisterPanel:init(Login_GUIScriptingPtr,0,0,600,400)
+    Login_RegisterPanel:setAligment(0.5,0.5)
+    Login_RegisterPanel:setSizeStr("30%", "35%")
+    Login_RegisterPanel:setPosStr("50%", "50%")
+    Login_RegisterPanel:setVisible(false)
+
+    local register_title = Label:new()
+    register_title:init(Login_GUIScriptingPtr,"Register Account",0,0,Login_RegisterPanel.ptr)
+    register_title:setAlignment(TextAlginment.Center)
+    register_title:setPosStr("50%","5%")
+
+    Login_RegisterIDLabel = Label:new()
+    Login_RegisterIDLabel:init(Login_GUIScriptingPtr,"ID",0,0,Login_RegisterPanel.ptr)
+    Login_RegisterIDLabel:setPosStr("6%","20%")
+
+    Login_RegisterIDEditBox = EditBox:new()
+    Login_RegisterIDEditBox:init(Login_GUIScriptingPtr,0,0,200,40,Login_RegisterPanel.ptr)
+    Login_RegisterIDEditBox:setPosStr("30%","20%")
+    Login_RegisterIDEditBox:setSizeStr("60%","10%")
+
+    Login_PWLabel = Label:new()
+    Login_PWLabel:init(Login_GUIScriptingPtr,"Password",0,0,Login_RegisterPanel.ptr)
+    Login_PWLabel:setPosStr("6%","35%")
+
+    Login_RegisterPWEditBox = EditBox:new()
+    Login_RegisterPWEditBox:init(Login_GUIScriptingPtr,0,0,200,40,Login_RegisterPanel.ptr)
+    Login_RegisterPWEditBox:setPWCharacter("*")
+    Login_RegisterPWEditBox:setPosStr("30%","35%")
+    Login_RegisterPWEditBox:setSizeStr("60%","10%")
+
+    Login_RegisterPW2Label = Label:new()
+    Login_RegisterPW2Label:init(Login_GUIScriptingPtr,"Confirm PW",0,0,Login_RegisterPanel.ptr)
+    Login_RegisterPW2Label:setPosStr("6%","50%")
+
+    Login_RegisterPW2EditBox = EditBox:new()
+    Login_RegisterPW2EditBox:init(Login_GUIScriptingPtr,0,0,200,40,Login_RegisterPanel.ptr)
+    Login_RegisterPW2EditBox:setPWCharacter("*")
+    Login_RegisterPW2EditBox:setPosStr("30%","50%")
+    Login_RegisterPW2EditBox:setSizeStr("60%","10%")
+
+    Login_RegisterKeyLabel = Label:new()
+    Login_RegisterKeyLabel:init(Login_GUIScriptingPtr,"Key",0,0,Login_RegisterPanel.ptr)
+    Login_RegisterKeyLabel:setPosStr("6%","65%")
+
+    Login_RegisterKeyEditBox = EditBox:new()
+    Login_RegisterKeyEditBox:init(Login_GUIScriptingPtr,0,0,200,40,Login_RegisterPanel.ptr)    -- TODO: implement key input for registration
+    Login_RegisterKeyEditBox:setPosStr("30%","65%")
+    Login_RegisterKeyEditBox:setSizeStr("60%","10%")
+
+
+    Login_RegisterBtn = Label:new()
+    Login_RegisterBtn:init(Login_GUIScriptingPtr,"Register",0,0,Login_RegisterPanel.ptr)
+    Login_RegisterBtn:setPosStr("25%","85%")
+    Login_RegisterBtn:setAlignment(TextAlginment.Center)
+    Login_RegisterBtn:setHoverable(0,255,0,255,255,255,255,255)
+
+    Login_RegisterCancelBtn = Label:new()
+    Login_RegisterCancelBtn:init(Login_GUIScriptingPtr,"Cancel",0,0,Login_RegisterPanel.ptr)
+    Login_RegisterCancelBtn:setPosStr("75%","85%")
+    Login_RegisterCancelBtn:setAlignment(TextAlginment.Center)
+    Login_RegisterCancelBtn:setHoverable(0,255,0,255,255,255,255,255)
+    Login_RegisterCancelBtn:setOnClickCallback(function()
+        Login_RegisterPanel:hideWithEffect(PanelShowType.Fade,250)
+    end)
+
 
 
     ---- TOS section end
@@ -227,16 +332,32 @@ Login_HandleTask = {}
 ---@param packet Client_Packet
 Login_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet)
     print("ID_CONNECTION_REQUEST_ACCEPTED riu ko bro ?")
+
     Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,100)
+    Client_Connected = true
+
     Login_LoginPanel:showWithEffect(PanelShowType.Fade,250)
 end
 
 Login_HandleTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)
     print("ID_CONNECTION_ATTEMPT_FAILED")
+    Client_Connected = false
     Login_Noti_Msg:setText("Failed to connect !!!!")
     Login_Noti_Btn:setText("OK")
-    Login_Noti_Btn:setOnClickCallback(function() Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250) end)
 
+    -- Login_Noti_Btn:setOnClickCallback(function() Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250) end)
+end
+
+
+Login_HandleTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
+    print("ID_DISCONNECTION_NOTIFICATION")
+    Client_Connected = false
+
+end
+
+Login_HandleTask[PacketID.ID_CONNECTION_LOST] = function(host,packet)
+    print("ID_CONNECTION_LOST")
+    Client_Connected = false
 end
 
 
