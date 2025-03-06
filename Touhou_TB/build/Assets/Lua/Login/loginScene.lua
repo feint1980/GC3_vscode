@@ -24,6 +24,8 @@ Login_GUIScriptingPtr = nil
 ---@type ClientScriptingPtr
 Login_ClientScriptingPtr = nil
 
+
+--- Main Menu
 ---@type Label
 Login_PlayOfflineBtn = nil
 ---@type Label
@@ -31,6 +33,8 @@ Login_PlayOnlineBtn = nil
 ---@type Label
 Login_ExitBtn = nil
 
+
+---Notification
 ---@type Panel
 Login_Noti_Panel = nil
 ---@type RTLabel
@@ -38,6 +42,23 @@ Login_Noti_Msg = nil
 ---@type Label
 Login_Noti_Btn = nil
 
+---Login Panel
+---@type Panel
+Login_LoginPanel = nil
+---@type Label
+Login_IDLabel = nil
+---@type EditBox
+Login_IDEditBox = nil
+---@type Label
+Login_PWLabel = nil
+---@type EditBox
+Login_PWEditBox = nil
+---@type Label
+Login_LoginBtn = nil
+---@type Label
+Login_CancelBtn = nil
+---@type Label
+Login_LGRegisterBtn = nil
 
 --- Global variables section end ----
 
@@ -53,7 +74,6 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     if Login_GUIScriptingPtr ~= nil then
         print("Login_GUIScriptingPtr is not nil")
     end
-
 
         --- Notification section ----
         Login_Noti_Panel = Panel:new()
@@ -90,7 +110,10 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_PlayOnlineBtn:init(Login_GUIScriptingPtr,"Play Online",TGUI_ScreenWidth/2 ,TGUI_ScreenHeight/2 )
     Login_PlayOnlineBtn:setAlignment(TextAlginment.Center)
     Login_PlayOnlineBtn:setHoverable(0,255,0,255,255,255,255,255)
-    Login_PlayOnlineBtn:setOnClickCallback(function() Client_Connect(ClientScriptingPtr) end)
+    Login_PlayOnlineBtn:setOnClickCallback(function()
+        Client_Connect(ClientScriptingPtr)
+        Login_showNotification("Connecting ...","")
+        end)
 
     Login_ExitBtn = Label:new()
     Login_ExitBtn:init(Login_GUIScriptingPtr,"Exit",TGUI_ScreenWidth/2 ,TGUI_ScreenHeight/2 + 50)
@@ -121,6 +144,60 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
 
     tosPanel:showWithEffect(PanelShowType.Fade,250)
 
+    Login_LoginPanel = Panel:new()
+    Login_LoginPanel:init(Login_GUIScriptingPtr,0,0,600,400)
+    Login_LoginPanel:setAligment(0.5,0.5)
+    Login_LoginPanel:setSizeStr("30%", "30%")
+    Login_LoginPanel:setPosStr("50%", "50%")
+    Login_LoginPanel:setVisible(false)
+
+    Login_IDLabel = Label:new()
+    Login_IDLabel:init(Login_GUIScriptingPtr,"ID",0,0,Login_LoginPanel.ptr)
+    Login_IDLabel:setPosStr("7%","30%")
+
+    Login_IDEditBox = EditBox:new()
+    Login_IDEditBox:init(Login_GUIScriptingPtr,0,0,200,40,Login_LoginPanel.ptr)
+    Login_IDEditBox:setPosStr("30%","30%")
+    Login_IDEditBox:setSizeStr("60%","10%")
+
+    Login_PWLabel = Label:new()
+    Login_PWLabel:init(Login_GUIScriptingPtr,"Password",0,0,Login_LoginPanel.ptr)
+    Login_PWLabel:setPosStr("7%","50%")
+
+    Login_PWEditBox = EditBox:new()
+    Login_PWEditBox:init(Login_GUIScriptingPtr,0,0,200,40,Login_LoginPanel.ptr)
+    Login_PWEditBox:setPWCharacter("*")
+    Login_PWEditBox:setPosStr("30%","50%")
+    Login_PWEditBox:setSizeStr("60%","10%")
+
+    Login_LoginBtn = Label:new()
+    Login_LoginBtn:init(Login_GUIScriptingPtr,"Login",0,0,Login_LoginPanel.ptr)
+    Login_LoginBtn:setPosStr("25%","75%")
+    Login_LoginBtn:setAlignment(TextAlginment.Center)
+    Login_LoginBtn:setHoverable(0,255,0,255,255,255,255,255)
+
+    -- Login_LoginBtn:setOnClickCallback(function()
+        -- Client_Connect(ClientScriptingPtr)
+        -- Login_showNotification("Connecting ...","")
+        -- end)
+
+    Login_LGRegisterBtn = Label:new()
+    Login_LGRegisterBtn:init(Login_GUIScriptingPtr,"Register",0,0,Login_LoginPanel.ptr)
+    Login_LGRegisterBtn:setPosStr("50%","75%")
+    Login_LGRegisterBtn:setAlignment(TextAlginment.Center)
+    Login_LGRegisterBtn:setHoverable(0,255,0,255,255,255,255,255)
+
+
+    Login_CancelBtn = Label:new()
+    Login_CancelBtn:init(Login_GUIScriptingPtr,"Cancel",0,0,Login_LoginPanel.ptr)
+    Login_CancelBtn:setPosStr("75%","75%")
+    Login_CancelBtn:setAlignment(TextAlginment.Center)
+    Login_CancelBtn:setHoverable(0,255,0,255,255,255,255,255)
+    Login_CancelBtn:setOnClickCallback(function()
+        Login_LoginPanel:hideWithEffect(PanelShowType.Fade,250)
+    end)
+
+
     ---- TOS section end
 
     -- local testEditBox = EditBox:new()
@@ -141,6 +218,27 @@ function Login_showNotification(msg,btnText)
     --     end)
 
 end
+
+
+
+Login_HandleTask = {}
+---@Description handle packet when connected
+---@param host pointer instance of ClientScriptingManager
+---@param packet Client_Packet
+Login_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet)
+    print("ID_CONNECTION_REQUEST_ACCEPTED riu ko bro ?")
+    Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,100)
+    Login_LoginPanel:showWithEffect(PanelShowType.Fade,250)
+end
+
+Login_HandleTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)
+    print("ID_CONNECTION_ATTEMPT_FAILED")
+    Login_Noti_Msg:setText("Failed to connect !!!!")
+    Login_Noti_Btn:setText("OK")
+    Login_Noti_Btn:setOnClickCallback(function() Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250) end)
+
+end
+
 
 
 

@@ -320,6 +320,8 @@ void LoginScene::initGUI()
         m_pw_input->setPosition(180, 150);
         m_panel->add(m_pw_input);        
 
+        //m_pw_input->setPasswordCharacter()
+
         m_login_button = tgui::Label::create();
         m_login_button->setText("Login");
         m_login_button->setPosition(200, 200);

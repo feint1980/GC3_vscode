@@ -1,6 +1,5 @@
 
 
-
 --- @class (exact) EditBox
 --- @field host pointer instance of TGUIScriptingManager
 --- @field ptr pointer instance of TGUI Editbox
@@ -47,6 +46,45 @@ function EditBox:init(host,posX, posY, width, height, parent)
     self.height = height
 end
 
+---@Description set position of EditBox
+---@param posX number x position
+---@param posY number y position
+function EditBox:setPos(posX, posY)
+    TGUI_EditBox_SetPos(self.ptr, posX, posY)
+    self.posX = posX
+    self.posY = posY    
+end
+
+
+
+---@Description set position of EditBox (string)
+---@param posXStr string x position
+---@param posYStr string y position
+function EditBox:setPosStr(posXStr, posYStr)
+    TGUI_EditBox_SetPosStr(self.ptr, posXStr, posYStr)
+end
+
+
+
+---@Description set size of EditBox
+---@param width number width
+---@param height number height
+function EditBox:setSize(width, height)
+    TGUI_EditBox_SetSize(self.ptr, width, height)
+end
+
+---@Description set size of EditBox (string)
+---@param widthStr string width
+---@param heightStr string height
+function EditBox:setSizeStr(widthStr, heightStr)
+    TGUI_EditBox_SetSizeStr(self.ptr, widthStr, heightStr)
+end
+
+---@Description set the input only show this character for PW
+---@param tC string (only first character count)
+function EditBox:setPWCharacter(tC)
+    TGUI_EditBox_SetPWChar(self.ptr, tC)
+end
 
 --- MARK: Wrapper
 
@@ -62,4 +100,51 @@ end
 function TGUI_EditBox_Create(host, posX, posY, width, height, parent)
     parent = parent or nil
     return cpp_EditBox_Create(host, posX, posY, width, height, parent)
+end
+
+---wrapper of cpp_EditBox_SetPos
+---@Description set position of TGUI EditBox
+---@param editBox pointer instance of TGUI EditBox
+---@param posX number x position
+---@param posY number y position
+function TGUI_EditBox_SetPos(editBox, posX, posY)
+    cpp_EditBox_SetPos(editBox, posX, posY)
+end
+
+
+---wrapper of cpp_EditBox_SetPosStr
+---@Description set position of TGUI EditBox
+---@param editBox pointer instance of TGUI EditBox
+---@param posXStr string x position
+---@param posYStr string y position
+function TGUI_EditBox_SetPosStr(editBox, posXStr, posYStr)
+    cpp_EditBox_SetPosStr(editBox, posXStr, posYStr)
+end
+
+
+---wrapper of cpp_EditBox_SetSize
+---@Description set position of TGUI EditBox
+---@param editBox pointer instance of TGUI EditBox
+---@param width number 
+---@param height number 
+function TGUI_EditBox_SetSize(editBox, width, height)
+    cpp_EditBox_SetSize(editBox, width, height)
+end
+
+
+---wrapper of cpp_EditBox_SetSizeStr
+---@Description set position of TGUI EditBox
+---@param editBox pointer instance of TGUI EditBox
+---@param width string 
+---@param height string 
+function TGUI_EditBox_SetSizeStr(editBox, width, height)
+    cpp_EditBox_SetSizeStr(editBox, width, height)
+end
+
+---wrapper of cpp_EditBox_SetPWChar
+---@Description set password character of TGUI EditBox
+---@param editBox pointer instance of TGUI EditBox
+---@param tC string (only first character count)
+function TGUI_EditBox_SetPWChar(editBox, tC)
+    cpp_EditBox_SetPWChar(editBox, tC)
 end

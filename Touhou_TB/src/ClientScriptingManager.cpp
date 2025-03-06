@@ -2,6 +2,27 @@
 
 
 
+int lua_GetPacketId(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_GetPacketId) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+        if(p)
+        {
+            lua_pushnumber(L, GetPacketIdentifier(p));
+            return 1;
+        }
+
+    }
+    return 0;
+}
+
 int lua_SendData(lua_State * L)
 {
     if(lua_gettop(L) != 2)
@@ -77,6 +98,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
 
     lua_register(m_script, "cppSendData", lua_SendData);
     lua_register(m_script, "cppConnect", lua_Connect);
+    lua_register(m_script, "cppGetPacketId", lua_GetPacketId);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/Networking/clientSide.lua")))
     {
@@ -147,7 +169,8 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
         {
             lua_pushstring(m_script,(const char*)p->data);
             lua_pushlightuserdata(m_script, &p->systemAddress);
-            const int argc = 2;
+            lua_pushnumber(m_script, GetPacketIdentifier(p));
+            const int argc = 3;
             const int returnCount = 0;
             if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
             {

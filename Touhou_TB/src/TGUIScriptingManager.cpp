@@ -133,6 +133,24 @@ int lua_EditBox_SetSizeStr(lua_State * L)
     return 0;
 }
 
+int lua_EditBox_SetPWChar(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_EditBox_SetPWChar) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
+        char tC = lua_tostring(L, 2)[0];
+        editBox->get()->setPasswordCharacter(tC);
+        return 0;
+        
+    }
+    return -1;
+}
+
 
 int lua_Panel_SetPosStr(lua_State * L)
 {
@@ -666,7 +684,7 @@ int lua_Label_SetOnClickCallback(lua_State * L)
         lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 
         // label->get()->onClick(nullptr);
-        //label->get()->
+        label->get()->onClick.disconnectAll();
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onClick(callback);
     }
@@ -929,7 +947,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_EditBox_SetPosStr", lua_EditBox_SetPosStr);
     lua_register(m_script, "cpp_EditBox_SetSize", lua_EditBox_SetSize);
     lua_register(m_script, "cpp_EditBox_SetSizeStr", lua_EditBox_SetSizeStr);
-
+    lua_register(m_script, "cpp_EditBox_SetPWChar", lua_EditBox_SetPWChar);
 
     // TGUI Panel section
     lua_register(m_script, "cpp_Panel_Create", lua_Panel_Create);
@@ -942,7 +960,6 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Panel_SetVisible", lua_Panel_setVisible);
     lua_register(m_script, "cpp_Panel_SetAlignment", lua_Panel_SetAlignment);
     
-
 
     // run Init script
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))
