@@ -79,6 +79,19 @@ PacketCode = {
 
 ResponseHandle = {}
 
+---@Description combines packet
+---@param type string type of packet to wrap
+---@param list table data to wrap
+function CombinePackage(type,list)
+    ----
+    local returnValue = "|"
+    returnValue = returnValue .. type .. "_REQUEST|" 
+    for i = 1, #list do
+        returnValue = returnValue .. list[i] .. "|"
+    end
+    returnValue = returnValue .. type .. "_END_REQUEST|"
+    return returnValue
+end
 
 
 --- function CheckAccountValid
@@ -163,6 +176,7 @@ ResponseHandle[PacketCode.requestKey] = function(host, packet)
         end
     else
         SV_SendMsg(host,clientIP,"Access denied !" )
+        -- SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
     end
 
 end
@@ -207,8 +221,8 @@ ResponseHandle[PacketCode.register] = function(host,packet)
         local keyCount = tonumber(result)
         if keyCount == 0 then
             -- key not exist
-            SV_SendMsg(host,clientIP,"The register key is invalid" )
-
+            -- SV_SendMsg(host,clientIP,"The register key is invalid" )
+            SV_SendMsg(host,clientIP,CombinePackage("REGISTER_RES_NEG",{ "Register Key is invalid !"}))
         elseif keyCount == 1 then
             -- key exist
             -- check if key is ready
@@ -222,16 +236,19 @@ ResponseHandle[PacketCode.register] = function(host,packet)
                 SV_DoQuery(host,insertAccountQuery)
                 local updateKeyQuery = "UPDATE " .. Table.register_key.tb_name .. " SET " .. Table.register_key.ready .. " = '0' WHERE " .. Table.register_key.val .. " = '" .. t_key .. "';"
                 SV_DoQuery(host,updateKeyQuery)
-                SV_SendMsg(host,clientIP,"Register success")
+                SV_SendMsg(host,clientIP,CombinePackage("REGISTER_RES_POS",{ "Register successfully !" }) )
+                -- SV_SendMsg(host,clientIP,"Register success")
             else
-                SV_SendMsg(host,clientIP,"Register Key already use")
+                -- SV_SendMsg(host,clientIP,"Register Key already use")
+                SV_SendMsg(host,clientIP,CombinePackage("REGISTER_RES_NEG",{ "Register Key already used !"}))
             end
         else
             print("multiple key found in query, WARNING")
         end
 
     elseif accountCount == 1 then
-        SV_SendMsg(host,clientIP,"Account already exists" )
+        SV_SendMsg(host,clientIP,CombinePackage("REGISTER_RES_NEG",{ "Account already exists !"}))
+        -- SV_SendMsg(host,clientIP,"Account already exists" )
     else
         print("accountCount is " .. accountCount)
         print("If you see this warning in production, you are COOKED !")
@@ -270,9 +287,10 @@ ResponseHandle[PacketCode.login] = function(host,packet)
 
     if CheckAccountValid(host, t_id, t_pw) then
         -- print("account is valid")
-        SV_SendMsg(host,clientIP,"login granted, will send user data later" )
+        SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ "login granted, will send user data later"}))
     else
-        SV_SendMsg(host,clientIP,"Login failed ( this will be packet to client)" )
+        SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
+        -- SV_SendMsg(host,clientIP,"Login failed ( this will be packet to client)" )
     end
 
 end

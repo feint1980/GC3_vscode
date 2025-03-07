@@ -35,6 +35,7 @@ int lua_SendData(lua_State * L)
     {
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string requestCmd = lua_tostring(L, 2);
+        std::cout << "client side send data:" << requestCmd << "\n";
         uint32_t result = host->sendData(requestCmd);
         lua_pushnumber(L, result);
         return 1;

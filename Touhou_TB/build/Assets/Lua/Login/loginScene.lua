@@ -1,5 +1,5 @@
 
-package.path = package.path .. ';./Assets/Lua/system/GUI/?/?.lua;' .. ';./Assets/Lua/system/GUI/widgets/?.lua;' .. ';./Assets/Lua/system/Networking/?.lua;'
+package.path = package.path .. ';./Assets/Lua/system/GUI/?/?.lua;' .. ';./Assets/Lua/system/GUI/widgets/?.lua;' .. ';./Assets/Lua/system/Networking/?.lua;' .. ';./Assets/Lua/Login/?.lua;'
 
 -- require "tguiScript"
 
@@ -8,6 +8,7 @@ require "TGUI_Panel"
 require "TGUI_RTLabel" 
 require "TGUI_Editbox"
 require "clientSide"
+require "loginStripOrder"
 
 print("login scene run\n")
 
@@ -18,10 +19,10 @@ print("login scene run\n")
 
 LoginHost = nil
 
----@type TGUIScriptingPtr
+---@type pointer TGUIScriptingPtr
 Login_GUIScriptingPtr = nil
 
----@type ClientScriptingPtr
+---@type pointer ClientScriptingPtr
 Login_ClientScriptingPtr = nil
 
 
@@ -86,6 +87,22 @@ Login_RegisterCancelBtn = nil
 
 
 --- Global variables section end ----
+
+---@Description combines packet
+---@param type string type of packet to wrap
+---@param list table data to wrap
+function Login_CombinePackage(type,list)
+    ----
+    local returnValue = "|"
+    returnValue = returnValue .. type .. "_REQUEST|" 
+    for i = 1, #list do
+        returnValue = returnValue .. list[i] .. "|"
+    end
+    returnValue = returnValue .. type .. "_END_REQUEST|"
+    return returnValue
+end
+
+
 
 function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
 
@@ -213,6 +230,18 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_LoginBtn:setPosStr("25%","75%")
     Login_LoginBtn:setAlignment(TextAlginment.Center)
     Login_LoginBtn:setHoverable(0,255,0,255,255,255,255,255)
+    Login_LoginBtn:setOnClickCallback(function()
+        
+        if Client_Connected == true then
+            Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+        end
+
+
+        print(Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+
+
+    end)
+
 
     Login_LGRegisterBtn = Label:new()
     Login_LGRegisterBtn:init(Login_GUIScriptingPtr,"Register",0,0,Login_LoginPanel.ptr)
@@ -291,6 +320,10 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_RegisterBtn:setPosStr("25%","85%")
     Login_RegisterBtn:setAlignment(TextAlginment.Center)
     Login_RegisterBtn:setHoverable(0,255,0,255,255,255,255,255)
+    Login_RegisterBtn:setOnClickCallback(function()
+        Login_RegisterCall(host)
+    end)
+
 
     Login_RegisterCancelBtn = Label:new()
     Login_RegisterCancelBtn:init(Login_GUIScriptingPtr,"Cancel",0,0,Login_RegisterPanel.ptr)
@@ -300,7 +333,6 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_RegisterCancelBtn:setOnClickCallback(function()
         Login_RegisterPanel:hideWithEffect(PanelShowType.Fade,250)
     end)
-
 
 
     ---- TOS section end
@@ -330,6 +362,18 @@ Login_HandleTask = {}
 ---@Description handle packet when connected
 ---@param host pointer instance of ClientScriptingManager
 ---@param packet Client_Packet
+
+
+
+HandlePacketTask["main"] = function(host,packet)
+    print("ttt2")
+    if Login_HandleTask[packet.packetID] ~= nil then
+        Login_HandleTask[packet.packetID](ClientSide_Host,packet)
+    else
+        Login_HandleTask_OtherID(host,packet)
+    end
+end
+
 Login_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet)
     print("ID_CONNECTION_REQUEST_ACCEPTED riu ko bro ?")
 
@@ -359,6 +403,125 @@ Login_HandleTask[PacketID.ID_CONNECTION_LOST] = function(host,packet)
     print("ID_CONNECTION_LOST")
     Client_Connected = false
 end
+
+Login_HandleStep2 = {}
+
+
+
+function Login_HandleTask_OtherID(host, packet)
+    local otherID = Login_GetOtherID(packet)
+    -- local msg = Login_StripMSG(packet.data,otherID)
+    print("other id " .. otherID)
+    if Login_HandleStep2[otherID] ~= nil then
+        Login_HandleStep2[otherID](host,packet)
+    end
+    -- print("msg stripped: "..msg)
+end
+
+--- Handle msg when login failed
+Login_HandleStep2[Packet_OtherID.ID_LOGIN_NEG] = function(host,packet)
+    print("ID_LOGIN_NEG")
+    Login_Noti_Msg:setText( StripMSG(packet.data,Packet_OtherID.ID_LOGIN_NEG))
+    Login_Noti_Btn:setText("OK")
+    Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
+    
+end
+
+--- Handle msg when login OK
+Login_HandleStep2[Packet_OtherID.ID_LOGIN_POS] = function(host,packet)
+    print("ID_LOGIN_POS")
+    Login_Noti_Msg:setText( StripMSG(packet.data,Packet_OtherID.ID_LOGIN_POS))
+    Login_Noti_Btn:setText("OK")
+    Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
+    
+end
+
+Login_HandleStep2[Packet_OtherID.ID_REGISTER_NEG] = function(host,packet)
+    print("ID_REGISTER_NEG")
+    Login_Noti_Msg:setText( StripMSG(packet.data,Packet_OtherID.ID_REGISTER_NEG))
+    Login_Noti_Btn:setText("OK")
+    Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
+    
+end
+
+
+Login_HandleStep2[Packet_OtherID.ID_REGISTER_POS] = function(host,packet)
+    print("ID_REGISTER_POS")
+    Login_Noti_Msg:setText( StripMSG(packet.data,Packet_OtherID.ID_REGISTER_POS))
+    Login_Noti_Btn:setText("OK")
+    Login_RegisterPanel:hideWithEffect(PanelShowType.Fade,250)
+    Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
+
+end
+
+
+function Login_CheckValid(info)
+    local size = string.len(info)
+    if size  < 6  or size > 32 then
+        return false
+    end
+end
+
+function Login_RegisterCall(host)
+    local id = Login_RegisterIDEditBox:getText()
+    local pw = Login_RegisterPWEditBox:getText()
+    local pw2 = Login_RegisterPW2EditBox:getText()
+    local tKey = Login_RegisterKeyEditBox:getText()
+
+    if Login_CheckValid(id) == false then
+        Login_showNotification("Invalid ID","OK")
+        return
+    end
+
+    if Login_CheckValid(pw) == false then
+        Login_showNotification("Invalid Password","OK")
+        return
+    else 
+        if pw ~= pw2 then
+            Login_showNotification("Password not match","OK")
+            return
+        end
+    end
+
+    if string.len(tKey) ~= 12 then
+        Login_showNotification("Invalid Key Format !","OK")
+        return
+    end
+
+    Client_SendData(Login_ClientScriptingPtr,Login_CombinePackage("REGISTER",{id,pw,tKey}))
+end
+
+---@Description get the code of other special ID
+---@param packet Client_Packet
+---@return number 
+function Login_GetOtherID(packet)
+    local msg = packet.data
+    print("msg is :" .. msg)
+
+    for k,v in pairs(OrderList) do
+        if string.match(msg,v.firstStr) then
+            if string.match(msg,v.secondStr) then
+                return k
+            end
+        end
+    end
+    
+    return Packet_OtherID.ID_INVALID
+end
+
+
+---@Description extract the message from the packet
+---@param msg string data want to extract
+---@param otherID number ( to select which part need to be strip)
+function StripMSG(msg,otherID)
+
+    print("at least it here " .. otherID)
+
+    -- print( OrderList[Packet_OtherID.ID_LOGIN_NEG].firstStr)
+    return string.sub(msg,string.len(OrderList[otherID].firstStr) + 1,string.len(msg) - string.len(OrderList[otherID].secondStr))
+
+end
+
 
 
 

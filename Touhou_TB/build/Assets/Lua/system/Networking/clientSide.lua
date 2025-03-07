@@ -34,7 +34,16 @@ PacketID = {
     ID_NO_FREE_INCOMING_CONNECTIONS = 20,
     ID_INVALID_PASSWORD = 24,
     ID_CONNECTION_LOST = 22,
-    ID_CONNECTION_REQUEST_ACCEPTED = 16
+    ID_CONNECTION_REQUEST_ACCEPTED = 16,
+    ID_OTHER = 124
+}
+
+Packet_OtherID = {
+    ID_LOGIN_NEG = 1,
+    ID_LOGIN_POS = 2,
+    ID_REGISTER_NEG = 3,
+    ID_REGISTER_POS = 4,
+    ID_INVALID = 77
 }
 
 
@@ -68,6 +77,7 @@ end
 ---@param data string data need to send
 ---@return number response 
 function Client_SendData(host,data)
+    print("call this")
     return cppSendData(host,data)
 end
 
@@ -87,17 +97,25 @@ function Client_ReceiveData(msg, ip,pID)
     tPacket.data = msg
     tPacket.ipAddr = ip
     tPacket.packetID = pID
-    Client_HandlePacket(tPacket)
+    Client_HandlePacket(tPacket)    
 end
+
+
+HandlePacketTask = {}
 
 --- handle packet
 --- @param packet Client_Packet
 function Client_HandlePacket(packet)
-    print("handle packet")
-    if Login_HandleTask[packet.packetID] ~= nil then
-        Login_HandleTask[packet.packetID](ClientSide_Host,packet)
+    print("handle packet" .. packet.packetID)
+    for k,v in pairs(HandlePacketTask) do
+        print(k)
+        if HandlePacketTask[k] ~= nil then
+            HandlePacketTask[k](ClientSide_Host,packet)
+        end
     end
+    -- if Login_HandleTask[packet.packetID] ~= nil then
+    --     Login_HandleTask[packet.packetID](ClientSide_Host,packet)
+    -- end
 end
-
 
 

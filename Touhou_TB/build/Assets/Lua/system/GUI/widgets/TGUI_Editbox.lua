@@ -86,6 +86,19 @@ function EditBox:setPWCharacter(tC)
     TGUI_EditBox_SetPWChar(self.ptr, tC)
 end
 
+---@Description set text of EditBox
+---@param text string text
+function EditBox:setText(text)
+    TGUI_EditBox_SetText(self.ptr, text)
+end
+
+---@Description get text of EditBox
+---@return string text
+function EditBox:getText()
+    return TGUI_EditBox_GetText(self.ptr)
+end
+
+
 --- MARK: Wrapper
 
 ---wrapper of cpp_EditBox_Create
@@ -147,4 +160,20 @@ end
 ---@param tC string (only first character count)
 function TGUI_EditBox_SetPWChar(editBox, tC)
     cpp_EditBox_SetPWChar(editBox, tC)
+end
+
+---wrapper of lua_EditBox_SetText
+---@Description set text of TGUI EditBox
+---@param editBox pointer instance of TGUI EditBox
+---@param text string 
+function TGUI_EditBox_SetText(editBox, text)
+    cpp_EditBox_SetText(editBox, text)
+end
+
+---wrapper of lua_EditBox_GetText
+---@Description get text of TGUI EditBox
+---@param editBox pointer instance of TGUI EditBox
+---@return string 
+function TGUI_EditBox_GetText(editBox)
+    return cpp_EditBox_GetText(editBox)
 end
