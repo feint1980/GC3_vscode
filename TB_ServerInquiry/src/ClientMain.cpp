@@ -17,9 +17,9 @@
 
 ClientMain::ClientMain()
 {
-    pw = "TTKR";
+    pw = "DavaiMachi";
     m_serverIP = "127.0.0.1";
-    m_port = 1919;
+    m_port = 1123;
 }
 
 
@@ -41,7 +41,7 @@ void ClientMain::init(const std::string & serverIP,const std::string & pw,unsign
     m_client->AllowConnectionResponseIPMigration(false);
 
 
-    m_socketDescriptor = RakNet::SocketDescriptor(m_port + 1, 0);
+    m_socketDescriptor = RakNet::SocketDescriptor(m_port + 2, 0);
     m_socketDescriptor.socketFamily = AF_INET;
     m_client->Startup(8, &m_socketDescriptor, 1);
     m_client->SetOccasionalPing(true);
