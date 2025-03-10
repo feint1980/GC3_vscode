@@ -1,0 +1,3 @@
+"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\Whiteboard.dir/objects.a
+C:\SysGCC\mingw32\bin\ar.exe qc CMakeFiles\Whiteboard.dir/objects.a @CMakeFiles\Whiteboard.dir\objects1.rsp
+C:\SysGCC\mingw32\bin\c++.exe -fpermissive -std=c++17 -municode -m32 -Wl,--whole-archive CMakeFiles\Whiteboard.dir/objects.a -Wl,--no-whole-archive -o Whiteboard.exe -Wl,--out-implib,libWhiteboard.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Whiteboard.dir\linkLibs.rsp

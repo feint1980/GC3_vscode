@@ -30,7 +30,6 @@ OrderList = {
 OrderList[Packet_OtherID.ID_LOGIN_NEG] = Login_Strip_Order:new()
 OrderList[Packet_OtherID.ID_LOGIN_NEG]:init("|LOGIN_RES_NEG_REQUEST|","|LOGIN_RES_NEG_END_REQUEST|")
 
-
 OrderList[Packet_OtherID.ID_LOGIN_POS] = Login_Strip_Order:new()
 OrderList[Packet_OtherID.ID_LOGIN_POS]:init("|LOGIN_RES_POS_REQUEST|","|LOGIN_RES_POS_END_REQUEST|")
 

@@ -21,6 +21,7 @@
 #include <array>
 #include "NetworkPacket.h"
 #include "DataBaseHandler.h"
+#include <RakNet/SecureHandshake.h>
 //#include "Gets.h"
 
 
@@ -77,6 +78,7 @@ private:
 
     char messageBuffer[2048];
     char serverBroadcast[2048];
+
 
     //std::array<RakNet::SystemAddress ,100> m_systems;
 

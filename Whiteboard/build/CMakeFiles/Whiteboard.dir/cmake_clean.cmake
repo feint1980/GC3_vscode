@@ -1,0 +1,15 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/Whiteboard.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj"
+  "CMakeFiles/Whiteboard.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj.d"
+  "CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.obj"
+  "CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.obj.d"
+  "Whiteboard.exe"
+  "Whiteboard.exe.manifest"
+  "Whiteboard.pdb"
+  "libWhiteboard.dll.a"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/Whiteboard.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

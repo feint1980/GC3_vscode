@@ -17,6 +17,7 @@
 
 #include "NativeFeatureIncludes.h"
 
+
 #if LIBCAT_SECURITY==1
 
 // If building a RakNet DLL, be sure to tweak the CAT_EXPORT macro meaning

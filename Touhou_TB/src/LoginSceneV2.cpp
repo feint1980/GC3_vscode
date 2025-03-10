@@ -51,7 +51,7 @@ void LoginSceneV2::onEntry()
     float tempScale = 0.85f;
 	m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,100), glm::vec2(1280, 720),Feintgine::Color(255, 255, 255, 255));
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    initGUIV2();
+    initGUI();
 
     if(SDL_HasScreenKeyboardSupport())
     {
@@ -166,7 +166,7 @@ void LoginSceneV2::draw()
 }
 
 
-void LoginSceneV2::initGUIV2()
+void LoginSceneV2::initGUI()
 {
 
     m_script = luaL_newstate();

@@ -4,6 +4,9 @@ require "End"
 
 require "system"
 
+
+---@class pointer
+
 --[[
 > Strength (STR)
 Primary Influence: Physical Damage | scale value is 3
@@ -86,9 +89,13 @@ Character = {
     ---@type number Wisdom (WIS) Primary Influence: Magic Defense & Mana Pool|Other Effects: Determines resistance to magical attacks and could increase max mana. Wisdom could also affect healing abilities, status effect resistance (such as confusion or charm), and reduce the cooldowns on certain spells or abilities.
     Wisdom = 8,
 
+    ---@type pointer instance of F_Lua_BaseEntity
     dyobj = nil,
+    ---@type string The path to the animation file
     animationPath = "./Assets/F_AObjects/patchouli_tb.xml",
+    ---@type string The path to the portrait file
     portraitPath  = "./Assets/TB_GUI/faces/missing.png",
+    
     action = 0,
     hp = 100,
     mana = 100,

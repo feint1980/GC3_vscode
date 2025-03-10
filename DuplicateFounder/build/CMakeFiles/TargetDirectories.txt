@@ -1,0 +1,3 @@
+D:/VS_Code_prj/GC3_vscode/DuplicateFounder/build/CMakeFiles/DuplicateFounder.dir
+D:/VS_Code_prj/GC3_vscode/DuplicateFounder/build/CMakeFiles/edit_cache.dir
+D:/VS_Code_prj/GC3_vscode/DuplicateFounder/build/CMakeFiles/rebuild_cache.dir

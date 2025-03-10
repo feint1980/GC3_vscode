@@ -67,7 +67,7 @@ public:
 
     void handleInput(Feintgine::InputManager & inputManager);
 
-    void initGUIV2();
+    void initGUI();
 
     void drawGameplay();
 
@@ -92,10 +92,6 @@ private:
     lua_State * m_script = nullptr;
 
     ClientScriptingManager m_clientScriptingManager;
-
-    bool m_isAccept = false;
-
-    bool m_isDisconnected = true;
 
     TGUIScriptingManager m_guiScriptingManager;
 
