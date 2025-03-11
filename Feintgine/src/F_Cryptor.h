@@ -14,6 +14,9 @@ namespace Feintgine
     class F_Cryptor
     {
     public:
+
+        void init(const std::string & password, const std::string & salt);
+
         void encrypt(const std::string &input, std::string &output);
         void decrypt(const std::string &input, std::string &output);
 
