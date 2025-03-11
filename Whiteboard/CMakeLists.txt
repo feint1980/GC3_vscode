@@ -6,9 +6,9 @@ project(${PROJECT_N} VERSION 1.0)
 set(CMAKE_CXX_FLAGS "-fpermissive -std=c++17 -municode -m32")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp
-    ${PROJECT_SOURCE_DIR}/../PacketDescription/NetworkPacket.cpp
-    GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.c
+file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/threadPoolExample.cpp
+    # ${PROJECT_SOURCE_DIR}/../PacketDescription/NetworkPacket.cpp
+    # GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.c
 
 )
 

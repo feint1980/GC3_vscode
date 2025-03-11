@@ -15,7 +15,7 @@
 
 #ifndef PSA_CRYPTO_EXTRA_H
 #define PSA_CRYPTO_EXTRA_H
-#include "mbedtls/private_access.h"
+#include "../private_access.h"
 
 #include "crypto_types.h"
 #include "crypto_compat.h"

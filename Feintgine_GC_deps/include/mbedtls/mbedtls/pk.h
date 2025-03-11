@@ -10,22 +10,22 @@
 
 #ifndef MBEDTLS_PK_H
 #define MBEDTLS_PK_H
-#include "mbedtls/private_access.h"
+#include "private_access.h"
 
-#include "mbedtls/build_info.h"
+#include "build_info.h"
 
-#include "mbedtls/md.h"
+#include "md.h"
 
 #if defined(MBEDTLS_RSA_C)
-#include "mbedtls/rsa.h"
+#include "rsa.h"
 #endif
 
 #if defined(MBEDTLS_ECP_C)
-#include "mbedtls/ecp.h"
+#include "ecp.h"
 #endif
 
 #if defined(MBEDTLS_ECDSA_C)
-#include "mbedtls/ecdsa.h"
+#include "ecdsa.h"
 #endif
 
 #if defined(MBEDTLS_PSA_CRYPTO_CLIENT)

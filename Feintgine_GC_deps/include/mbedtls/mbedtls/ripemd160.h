@@ -9,9 +9,9 @@
  */
 #ifndef MBEDTLS_RIPEMD160_H
 #define MBEDTLS_RIPEMD160_H
-#include "mbedtls/private_access.h"
+#include "private_access.h"
 
-#include "mbedtls/build_info.h"
+#include "build_info.h"
 
 #include <stddef.h>
 #include <stdint.h>

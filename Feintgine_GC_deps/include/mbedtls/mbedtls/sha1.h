@@ -16,9 +16,9 @@
  */
 #ifndef MBEDTLS_SHA1_H
 #define MBEDTLS_SHA1_H
-#include "mbedtls/private_access.h"
+#include "private_access.h"
 
-#include "mbedtls/build_info.h"
+#include "build_info.h"
 
 #include <stddef.h>
 #include <stdint.h>

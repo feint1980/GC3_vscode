@@ -21,12 +21,12 @@
 
 #ifndef MBEDTLS_ECP_H
 #define MBEDTLS_ECP_H
-#include "mbedtls/private_access.h"
+#include "private_access.h"
 
-#include "mbedtls/build_info.h"
-#include "mbedtls/platform_util.h"
+#include "build_info.h"
+#include "platform_util.h"
 
-#include "mbedtls/bignum.h"
+#include "bignum.h"
 
 /*
  * ECP error codes

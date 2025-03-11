@@ -17,12 +17,12 @@
 
 #ifndef MBEDTLS_ECDSA_H
 #define MBEDTLS_ECDSA_H
-#include "mbedtls/private_access.h"
+#include "private_access.h"
 
-#include "mbedtls/build_info.h"
+#include "build_info.h"
 
-#include "mbedtls/ecp.h"
-#include "mbedtls/md.h"
+#include "ecp.h"
+#include "md.h"
 
 /**
  * \brief           Maximum ECDSA signature size for a given curve bit size

@@ -19,9 +19,9 @@
 
 #ifndef MBEDTLS_POLY1305_H
 #define MBEDTLS_POLY1305_H
-#include "mbedtls/private_access.h"
+#include "private_access.h"
 
-#include "mbedtls/build_info.h"
+#include "build_info.h"
 
 #include <stdint.h>
 #include <stddef.h>

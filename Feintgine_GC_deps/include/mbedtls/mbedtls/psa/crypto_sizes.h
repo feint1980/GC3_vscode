@@ -35,7 +35,7 @@
  * TF-PSA-Crypto repository which has a different build system and
  * configuration.
  */
-#include "psa/build_info.h"
+#include "build_info.h"
 
 #define PSA_BITS_TO_BYTES(bits) (((bits) + 7u) / 8u)
 #define PSA_BYTES_TO_BITS(bytes) ((bytes) * 8u)

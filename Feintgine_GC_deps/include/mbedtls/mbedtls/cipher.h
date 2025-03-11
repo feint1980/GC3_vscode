@@ -14,12 +14,12 @@
 
 #ifndef MBEDTLS_CIPHER_H
 #define MBEDTLS_CIPHER_H
-#include "mbedtls/private_access.h"
+#include "private_access.h"
 
-#include "mbedtls/build_info.h"
+#include "build_info.h"
 
 #include <stddef.h>
-#include "mbedtls/platform_util.h"
+#include "platform_util.h"
 
 #if defined(MBEDTLS_GCM_C) || defined(MBEDTLS_CCM_C) || defined(MBEDTLS_CHACHAPOLY_C)
 #define MBEDTLS_CIPHER_MODE_AEAD

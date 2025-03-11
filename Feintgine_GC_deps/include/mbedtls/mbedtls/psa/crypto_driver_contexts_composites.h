@@ -7,7 +7,7 @@
  *  Warning: This file will be auto-generated in the future.
  *
  * \note This file may not be included directly. Applications must
- * include psa/crypto.h.
+ * include crypto.h.
  *
  * \note This header and its content are not part of the Mbed TLS API and
  * applications must not depend on it. Its main purpose is to define the
@@ -22,16 +22,16 @@
 #ifndef PSA_CRYPTO_DRIVER_CONTEXTS_COMPOSITES_H
 #define PSA_CRYPTO_DRIVER_CONTEXTS_COMPOSITES_H
 
-#include "psa/crypto_driver_common.h"
+#include "crypto_driver_common.h"
 
 /* Include the context structure definitions for the Mbed TLS software drivers */
-#include "psa/crypto_builtin_composites.h"
+#include "crypto_builtin_composites.h"
 
 /* Include the context structure definitions for those drivers that were
  * declared during the autogeneration process. */
 
 #if defined(MBEDTLS_TEST_LIBTESTDRIVER1)
-#include <libtestdriver1/include/psa/crypto.h>
+#include <libtestdriver1/include/crypto.h>
 #endif
 
 #if defined(PSA_CRYPTO_DRIVER_TEST)

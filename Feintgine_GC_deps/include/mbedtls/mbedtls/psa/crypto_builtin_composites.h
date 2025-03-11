@@ -20,18 +20,18 @@
 
 #ifndef PSA_CRYPTO_BUILTIN_COMPOSITES_H
 #define PSA_CRYPTO_BUILTIN_COMPOSITES_H
-#include "mbedtls/private_access.h"
+#include "../private_access.h"
 
-#include <psa/crypto_driver_common.h>
+#include "crypto_driver_common.h"
 
-#include "mbedtls/cmac.h"
+#include "../cmac.h"
 #if defined(MBEDTLS_PSA_BUILTIN_ALG_GCM)
-#include "mbedtls/gcm.h"
+#include "../gcm.h"
 #endif
 #if defined(MBEDTLS_PSA_BUILTIN_ALG_CCM)
-#include "mbedtls/ccm.h"
+#include "../ccm.h"
 #endif
-#include "mbedtls/chachapoly.h"
+#include "../chachapoly.h"
 
 /*
  * MAC multi-part operation definitions.
@@ -102,7 +102,7 @@ typedef struct {
 
 #define MBEDTLS_PSA_AEAD_OPERATION_INIT { 0, 0, 0, 0, { 0 } }
 
-#include "mbedtls/ecdsa.h"
+#include "../ecdsa.h"
 
 /* Context structure for the Mbed TLS interruptible sign hash implementation. */
 typedef struct {
@@ -177,7 +177,7 @@ typedef struct {
 
 /* EC-JPAKE operation definitions */
 
-#include "mbedtls/ecjpake.h"
+#include "../ecjpake.h"
 
 #if defined(MBEDTLS_PSA_BUILTIN_ALG_JPAKE)
 #define MBEDTLS_PSA_BUILTIN_PAKE  1

@@ -24,6 +24,6 @@ add_library(Feintgine STATIC
     ${TARGET_SRC}
 )
 
-target_link_libraries(Feintgine ${DEPS_lib_dir}/libSDL2.a ${DEPS_lib_dir}/libSDL2main.a  ${DEPS_lib_dir}/glew32s.lib ${DEPS_lib_dir}/libCEGUIBase-0.dll.a ${DEPS_lib_dir}/libCEGUIOpenGLRenderer-0.dll.a  ${DEPS_lib_dir}/libCEGUIExpatParser.dll.a ${DEPS_lib_dir}/libfreetype.a ${DEPS_lib_dir}/libprotobuf.a  ${DEPS_lib_dir}/libprotoc.a ${DEPS_lib_dir}/libprotobuf-lite.a   ${DEPS_lib_dir}/libSDL2_net.dll.a ${DEPS_lib_dir}/libSDL2_ttf.dll.a   ${DEPS_lib_dir}/libSDL2_mixer.dll.a  ${DEPS_lib_dir}/liblua53.a ${DEPS_lib_dir}/libFreeImage.a ${DEPS_lib_dir}/libassimp.dll.a ${DEPS_lib_dir}/libnanogui.dll.a libopengl32.a {DEPS_lib_dir}/libasync++.dll.a} )
+target_link_libraries(Feintgine ${DEPS_lib_dir}/libSDL2.a ${DEPS_lib_dir}/libSDL2main.a  ${DEPS_lib_dir}/glew32s.lib ${DEPS_lib_dir}/libCEGUIBase-0.dll.a ${DEPS_lib_dir}/libCEGUIOpenGLRenderer-0.dll.a  ${DEPS_lib_dir}/libCEGUIExpatParser.dll.a ${DEPS_lib_dir}/libfreetype.a ${DEPS_lib_dir}/libprotobuf.a  ${DEPS_lib_dir}/libprotoc.a ${DEPS_lib_dir}/libprotobuf-lite.a   ${DEPS_lib_dir}/libSDL2_net.dll.a ${DEPS_lib_dir}/libSDL2_ttf.dll.a   ${DEPS_lib_dir}/libSDL2_mixer.dll.a  ${DEPS_lib_dir}/liblua53.a ${DEPS_lib_dir}/libFreeImage.a ${DEPS_lib_dir}/libassimp.dll.a ${DEPS_lib_dir}/libnanogui.dll.a libopengl32.a {DEPS_lib_dir}/libasync++.dll.a} ${DEPS_lib_dir}/mbedtls/libmbedcrypto.a ${DEPS_lib_dir}/mbedtls/libmbedtls.a ${DEPS_lib_dir}/mbedtls/libmbedx509.a  ${DEPS_lib_dir}/mbedtls/libp256m.a  ${DEPS_lib_dir}/mbedtls/libeverest.a -lbcrypt )
 
 

@@ -20,9 +20,9 @@
 
 #ifndef PSA_CRYPTO_BUILTIN_KEY_DERIVATION_H
 #define PSA_CRYPTO_BUILTIN_KEY_DERIVATION_H
-#include "mbedtls/private_access.h"
+#include "../private_access.h"
 
-#include <psa/crypto_driver_common.h>
+#include "crypto_driver_common.h"
 
 #if defined(MBEDTLS_PSA_BUILTIN_ALG_HKDF) || \
     defined(MBEDTLS_PSA_BUILTIN_ALG_HKDF_EXTRACT) || \

@@ -128,53 +128,29 @@ Whiteboard/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/build
 .PHONY : Whiteboard/fast
 
-D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.obj: D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj
-.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.obj
+src/threadPoolExample.obj: src/threadPoolExample.cpp.obj
+.PHONY : src/threadPoolExample.obj
 
 # target to build an object file
-D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj
-.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj
+src/threadPoolExample.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/threadPoolExample.cpp.obj
+.PHONY : src/threadPoolExample.cpp.obj
 
-D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.i: D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.i
-.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.i
-
-# target to preprocess a source file
-D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.i
-.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.i
-
-D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.s: D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.s
-.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.s
-
-# target to generate assembly for a file
-D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.s
-.PHONY : D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.s
-
-src/whiteboardMain.obj: src/whiteboardMain.cpp.obj
-.PHONY : src/whiteboardMain.obj
-
-# target to build an object file
-src/whiteboardMain.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.obj
-.PHONY : src/whiteboardMain.cpp.obj
-
-src/whiteboardMain.i: src/whiteboardMain.cpp.i
-.PHONY : src/whiteboardMain.i
+src/threadPoolExample.i: src/threadPoolExample.cpp.i
+.PHONY : src/threadPoolExample.i
 
 # target to preprocess a source file
-src/whiteboardMain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.i
-.PHONY : src/whiteboardMain.cpp.i
+src/threadPoolExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/threadPoolExample.cpp.i
+.PHONY : src/threadPoolExample.cpp.i
 
-src/whiteboardMain.s: src/whiteboardMain.cpp.s
-.PHONY : src/whiteboardMain.s
+src/threadPoolExample.s: src/threadPoolExample.cpp.s
+.PHONY : src/threadPoolExample.s
 
 # target to generate assembly for a file
-src/whiteboardMain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.s
-.PHONY : src/whiteboardMain.cpp.s
+src/threadPoolExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/threadPoolExample.cpp.s
+.PHONY : src/threadPoolExample.cpp.s
 
 # Help Target
 help:
@@ -185,12 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Whiteboard
-	@echo ... D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.obj
-	@echo ... D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.i
-	@echo ... D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.s
-	@echo ... src/whiteboardMain.obj
-	@echo ... src/whiteboardMain.i
-	@echo ... src/whiteboardMain.s
+	@echo ... src/threadPoolExample.obj
+	@echo ... src/threadPoolExample.i
+	@echo ... src/threadPoolExample.s
 .PHONY : help
 
 

@@ -9,7 +9,7 @@
  */
 #ifndef MBEDTLS_ECJPAKE_H
 #define MBEDTLS_ECJPAKE_H
-#include "mbedtls/private_access.h"
+#include "private_access.h"
 
 /*
  * J-PAKE is a password-authenticated key exchange that allows deriving a
@@ -27,10 +27,10 @@
  * The payloads are serialized in a way suitable for use in TLS, but could
  * also be use outside TLS.
  */
-#include "mbedtls/build_info.h"
+#include "build_info.h"
 
-#include "mbedtls/ecp.h"
-#include "mbedtls/md.h"
+#include "ecp.h"
+#include "md.h"
 
 #ifdef __cplusplus
 extern "C" {

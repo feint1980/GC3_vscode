@@ -1,10 +1,10 @@
 /**
- * \file psa/crypto_struct.h
+ * \file crypto_struct.h
  *
  * \brief PSA cryptography module: Mbed TLS structured type implementations
  *
  * \note This file may not be included directly. Applications must
- * include psa/crypto.h.
+ * include crypto.h.
  *
  * This file contains the definitions of some data structures with
  * implementation-specific definitions.
@@ -48,7 +48,7 @@
 
 #ifndef PSA_CRYPTO_STRUCT_H
 #define PSA_CRYPTO_STRUCT_H
-#include "mbedtls/private_access.h"
+#include "../private_access.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -56,16 +56,16 @@ extern "C" {
 
 /*
  * Include the build-time configuration information header. Here, we do not
- * include `"mbedtls/build_info.h"` directly but `"psa/build_info.h"`, which
+ * include `"build_info.h"` directly but `"build_info.h"`, which
  * is basically just an alias to it. This is to ease the maintenance of the
  * TF-PSA-Crypto repository which has a different build system and
  * configuration.
  */
-#include "psa/build_info.h"
+#include "build_info.h"
 
 /* Include the context definition for the compiled-in drivers for the primitive
  * algorithms. */
-#include "psa/crypto_driver_contexts_primitives.h"
+#include "crypto_driver_contexts_primitives.h"
 
 struct psa_hash_operation_s {
 #if defined(MBEDTLS_PSA_CRYPTO_CLIENT) && !defined(MBEDTLS_PSA_CRYPTO_C)
@@ -126,7 +126,7 @@ static inline struct psa_cipher_operation_s psa_cipher_operation_init(void)
 
 /* Include the context definition for the compiled-in drivers for the composite
  * algorithms. */
-#include "psa/crypto_driver_contexts_composites.h"
+#include "crypto_driver_contexts_composites.h"
 
 struct psa_mac_operation_s {
 #if defined(MBEDTLS_PSA_CRYPTO_CLIENT) && !defined(MBEDTLS_PSA_CRYPTO_C)
@@ -197,7 +197,7 @@ static inline struct psa_aead_operation_s psa_aead_operation_init(void)
 
 /* Include the context definition for the compiled-in drivers for the key
  * derivation algorithms. */
-#include "psa/crypto_driver_contexts_key_derivation.h"
+#include "crypto_driver_contexts_key_derivation.h"
 
 struct psa_key_derivation_s {
 #if defined(MBEDTLS_PSA_CRYPTO_CLIENT) && !defined(MBEDTLS_PSA_CRYPTO_C)
@@ -241,7 +241,7 @@ struct psa_custom_key_parameters_s {
 /* Omitted when compiling in C++, because one of the parameters is a
  * pointer to a struct with a flexible array member, and that is not
  * standard C++.
- * https://github.com/Mbed-TLS/mbedtls/issues/9020
+ * https://github.com/Mbed-TLS/issues/9020
  */
 /* This is a deprecated variant of `struct psa_custom_key_parameters_s`.
  * It has exactly the same layout, plus an extra field which is a flexible

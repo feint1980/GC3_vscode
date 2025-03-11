@@ -8,25 +8,74 @@
 #include <map>
 #include <string>
 #include <vector>
+#include <future>
 
 #include <cstdio>
 #include <dirent.h>
+
+#include <queue>
+
+#include <stack>
+
+#include <chrono>
+#include <ctime>
+
+#include <functional>
+
+#include <thread>
+#include <atomic>
 #define BUFFER_SIZE 4096  // Read the file in 4KB chunks
 
 
+// typedef std::vector<std::thread> thread_pool; 
+
+// std::vector<thread> m_threadPools;
+
+
+std::atomic_int m_threadPoolIndex = 0;
+
+
+
 struct file_info {
-    std::string filename;
-    std::vector<std::string> m_duplicatedFiles;
+    
+    std::wstring filename;
+    std::vector<std::wstring> m_duplicatedFiles;
 };
+typedef std::vector<std::thread> thread_pool; 
 
-std::map<std::string, file_info> m_fileMap;
 
-void hash_file_md5(const std::string &filename) {
-    FILE *file = fopen(filename.c_str(), "rb");
+typedef std::stack<std::function<void()>> taskQueue;
+
+
+taskQueue m_taskQueues[32]; // max 32 but only workk up to std::thread::hardware_concurrency() which can be 8/16/32
+
+
+// thread_pool threadPools[4];
+// std::map< ,std::future<file_info>> m_FutureFiles;
+
+
+void executeTask(int index)
+{
+
+    while(!m_taskQueues[index].empty())
+    {
+        m_taskQueues[index].top()();
+        m_taskQueues[index].pop();
+    }
+
+}
+
+
+void hash_file_md5(const std::wstring &filename, std::map<std::wstring, file_info> &m_fileMap) {
+    FILE *file = _wfopen(filename.c_str(), L"rb");
     if (!file) {
-        std::cerr << "Error opening file: " << filename << std::endl;
+        std::wcerr << "Error opening file: " << filename << L"\n";
         return;
     }
+
+    std::wstring data = L"sdsadsd";
+
+    // FILE * tt = _wfopen(data.c_str(), L"rb");
 
     mbedtls_md5_context md5_ctx;
     mbedtls_md5_init(&md5_ctx);
@@ -45,12 +94,12 @@ void hash_file_md5(const std::string &filename) {
     mbedtls_md5_free(&md5_ctx);
 
     // Print the MD5 hash in hexadecimal format
-    std::cout << filename << "\t\t\t| MD5:|";
-    for (int i = 0; i < 16; i++)
-        printf("%02x", output[i]);
-    std::cout <<"|\n";
+    // std::cout << filename << "\t\t\t| MD5:|";
+    // for (int i = 0; i < 16; i++)
+    //     printf("%02x", output[i]);
+    // std::cout <<"|\n";
 
-    std::string hash = std::string(reinterpret_cast<char*>(output), 32);
+    std::wstring hash = std::wstring(reinterpret_cast<wchar_t*>(output), 32);
     if(m_fileMap.find(hash) == m_fileMap.end())
     {
         file_info info;
@@ -59,7 +108,7 @@ void hash_file_md5(const std::string &filename) {
     }
     else
     {
-        std::cout << "found duplicate \n";
+        // std::cout << "found duplicate " << filename << "| orgiginal | " << m_fileMap[hash].filename << "\n";
         m_fileMap[hash].m_duplicatedFiles.push_back(filename);
     }
 }
@@ -90,33 +139,33 @@ void hash_file_sha256(const std::string &filename) {
     mbedtls_sha256_free(&sha256_ctx);
 
     // Print the hash in hexadecimal format
-    std::cout << filename << "| SHA-256 Hash: |";
-    for (int i = 0; i < 32; i++)
-    {
-        printf("%02x", output[i]);
-    }
-    std::cout << "|\n";
+    // std::cout << filename << "| SHA-256 Hash: |";
+    // for (int i = 0; i < 32; i++)
+    // {
+    //     printf("%02x", output[i]);
+    // }
+    // std::cout << "|\n";
 
 
     // m_fileMap[hash].m_duplicatedFiles.push_back(filename);
 }
 
 
-int scan_dir(const std::string & path, int level)
+int scan_dir(const std::wstring & path, int level, std::map<std::wstring, file_info> &m_fileMap)
 	{
 		
         //std::cout << "scan on " << path << "\n";
         //std::cout << "level start -----" << level << "\n";
-        DIR *dir = nullptr;
-        struct dirent *entry = nullptr;
+        _WDIR *dir = nullptr;
+        struct _wdirent *entry = nullptr;
 
-        if (!(dir = opendir(path.c_str())))
+        if (!(dir = _wopendir(path.c_str())))
         {
             std::cout << "dir failed \n";
             return 0;
         }
 
-        if (!(entry = readdir(dir)))
+        if (!(entry = _wreaddir(dir)))
         {
             std::cout << "entry failed \n";
             return 0;
@@ -125,8 +174,8 @@ int scan_dir(const std::string & path, int level)
         {
             if (entry->d_type == DT_DIR)
             {
-                std::string sub_path = path + "/" + entry->d_name;
-                if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
+                std::wstring sub_path = path + L"/" + entry->d_name;
+                if (wcscmp(entry->d_name, L".") == 0 || wcscmp(entry->d_name, L"..") == 0)
                 {
                     continue;
                 }
@@ -134,55 +183,96 @@ int scan_dir(const std::string & path, int level)
 				// stop printing to increase speed
                 //printf("%*s[%s]\n", level * 2, "", entry->d_name);
         
-                scan_dir(sub_path, level + 1);
+                scan_dir(sub_path, level + 1, m_fileMap);
             }
             else
             {
-                std::string file_path = path + "/" + entry->d_name;
-                hash_file_md5( file_path );
+                std::wstring file_path = path + L"/" + entry->d_name;
+
+                // std::thread t = std::thread(hash_file_md5, file_path);
+
+                // thread_pool[m_threadPoolIndex]
+
+                m_taskQueues[m_threadPoolIndex].push([file_path, &m_fileMap]() { hash_file_md5(file_path, m_fileMap);} );
+                m_threadPoolIndex ++;
+                if(m_threadPoolIndex >= std::thread::hardware_concurrency())
+                {
+                    m_threadPoolIndex = 0;
+                }
+
+                // m_threads
+                // if(t.joinable())
+                // {
+                //     t.join();
+                // }
+                // m_threadPools[m_threadPoolIndex].push_back(std::move(t));
+                // m_threadPoolIndex ++;
+                // if(m_threadPoolIndex >= std::thread::hardware_concurrency())
+                // {
+                //     m_threadPoolIndex = 0;
+                // }
+                // m_threadPoolIndex = (m_threadPoolIndex + 1) % std::thread::hardware_concurrency();
+
+                // m_threads.push_back(std::move(t));
+                // hash_file_md5( file_path );
 			
             }
-        } while (entry = readdir(dir));
+        } while (entry = _wreaddir(dir));
 
-        closedir(dir);
+        _wclosedir(dir);
        // std::cout << "level end -----" << level << "\n";
         return 0;
     }
 
 
-int wmain(int argc, char const *argv[]) {
+int wmain(int argc, wchar_t const *argv[]) {
     //std::string filename = "test.txt";  // Change this to your file
     //hash_file_sha256(filename);
 
-    // scan_dir("./", 0);
+    std::map<std::wstring, file_info> m_fileMap;
 
     if(argc != 2)
     {
         std::cout << "wrong number of arguments, only use 1, the path to scane \n";
         return 0;
     }
+    auto start =  std::chrono::system_clock::now();
 
-    scan_dir(argv[1],0);
-    std::cout << "done ||||| \n";
-    for(int i = 0 ; i < 5 ; i++)
+    std::cout << "scanning \n";
+
+    scan_dir(argv[1],0, m_fileMap);
+
+    std::vector<std::future<void>> futures;
+
+    for(int i = 0 ; i < std::thread::hardware_concurrency() ; i++)
     {
-    std::cout << "############################################################################ \n";
-
+        futures.push_back(std::async(std::launch::async, [i]() { executeTask(i); }));
     }
+
+    for (auto &f : futures) {
+        f.get();  // Wait for each async task to finish
+    }
+    std::cout << "done ||||| \n";
+
     std::cout << "result : ";
     for(auto it = m_fileMap.begin(); it != m_fileMap.end(); it++)
     {
         if(it->second.m_duplicatedFiles.size() > 0)
         {
-            std::cout << "file " << it->second.filename << " has " << it->second.m_duplicatedFiles.size() << " duplicates: \n";
+            std::wcout << L"file " << it->second.filename << L" has " << it->second.m_duplicatedFiles.size() << L" duplicates: \n";
             for(int i = 0 ; i < it->second.m_duplicatedFiles.size() ; i++)
             {
-                std::cout << it->second.m_duplicatedFiles[i] << "\n";
+                std::wcout << it->second.m_duplicatedFiles[i] << "\n";
             }
+            std::wcout << L"#################################################################################### \n";
+    
         }
-
     }
     std::cout << "process done !! \n";
 
+    auto end = std::chrono::system_clock::now();
+
+    std::chrono::duration<double> elapsed_seconds = end - start;
+    std::cout << "elapsed time: " << elapsed_seconds.count() << "s\n";
     return 0;
 }

@@ -20,20 +20,20 @@
 
 #ifndef PSA_CRYPTO_BUILTIN_PRIMITIVES_H
 #define PSA_CRYPTO_BUILTIN_PRIMITIVES_H
-#include "mbedtls/private_access.h"
+#include "../private_access.h"
 
-#include <psa/crypto_driver_common.h>
+#include "crypto_driver_common.h"
 
 /*
  * Hash multi-part operation definitions.
  */
 
-#include "mbedtls/md5.h"
-#include "mbedtls/ripemd160.h"
-#include "mbedtls/sha1.h"
-#include "mbedtls/sha256.h"
-#include "mbedtls/sha512.h"
-#include "mbedtls/sha3.h"
+#include "../md5.h"
+#include "../ripemd160.h"
+#include "../sha1.h"
+#include "../sha256.h"
+#include "../sha512.h"
+#include "../sha3.h"
 
 #if defined(MBEDTLS_PSA_BUILTIN_ALG_MD5) || \
     defined(MBEDTLS_PSA_BUILTIN_ALG_RIPEMD160) || \
@@ -85,7 +85,7 @@ typedef struct {
  * Cipher multi-part operation definitions.
  */
 
-#include "mbedtls/cipher.h"
+#include "../cipher.h"
 
 #if defined(MBEDTLS_PSA_BUILTIN_ALG_STREAM_CIPHER) || \
     defined(MBEDTLS_PSA_BUILTIN_ALG_CTR) || \

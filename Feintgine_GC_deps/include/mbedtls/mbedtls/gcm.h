@@ -18,14 +18,14 @@
 
 #ifndef MBEDTLS_GCM_H
 #define MBEDTLS_GCM_H
-#include "mbedtls/private_access.h"
+#include "private_access.h"
 
-#include "mbedtls/build_info.h"
+#include "build_info.h"
 
-#include "mbedtls/cipher.h"
+#include "cipher.h"
 
 #if defined(MBEDTLS_BLOCK_CIPHER_C)
-#include "mbedtls/block_cipher.h"
+#include "block_cipher.h"
 #endif
 
 #include <stdint.h>

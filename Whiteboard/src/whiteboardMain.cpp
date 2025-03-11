@@ -111,8 +111,6 @@ int wmain() {
 
     std::cout << "\n";
 
-
-
     std::string message;
     std::cout << "Enter message to encrypt: ";
     std::getline(std::cin, message);
