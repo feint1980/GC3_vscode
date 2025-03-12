@@ -20,7 +20,7 @@
 #include <string.h>
 #include "NetworkPacket.h"
 #include <iostream>
-
+#include <F_Cryptor.h>
 #include "LuaManager.h"
 
 
@@ -82,7 +82,9 @@ public:
     bool m_RakNetCoreInitialized = false;
 
 
+    Feintgine::F_Cryptor m_cryptor;
+
 };
 
 
-#endif 
+#endif

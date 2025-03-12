@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Whiteboard.dir/src/AESRSA_hybrid_example.cpp.obj"
-  "CMakeFiles/Whiteboard.dir/src/AESRSA_hybrid_example.cpp.obj.d"
+  "CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.obj"
+  "CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.obj.d"
   "Whiteboard.exe"
   "Whiteboard.exe.manifest"
   "Whiteboard.pdb"

@@ -68,7 +68,7 @@ enum ServerResponseCode
 };
 
 
-PacketCode getSpecialRequestCode(RakNet::Packet *p);
+//PacketCode getSpecialRequestCode(RakNet::Packet *p);
 
 unsigned char GetPacketIdentifier(RakNet::Packet *p);
 

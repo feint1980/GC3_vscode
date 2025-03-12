@@ -128,29 +128,29 @@ Whiteboard/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/build
 .PHONY : Whiteboard/fast
 
-src/AESRSA_hybrid_example.obj: src/AESRSA_hybrid_example.cpp.obj
-.PHONY : src/AESRSA_hybrid_example.obj
+src/whiteboardMain.obj: src/whiteboardMain.cpp.obj
+.PHONY : src/whiteboardMain.obj
 
 # target to build an object file
-src/AESRSA_hybrid_example.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/AESRSA_hybrid_example.cpp.obj
-.PHONY : src/AESRSA_hybrid_example.cpp.obj
+src/whiteboardMain.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.obj
+.PHONY : src/whiteboardMain.cpp.obj
 
-src/AESRSA_hybrid_example.i: src/AESRSA_hybrid_example.cpp.i
-.PHONY : src/AESRSA_hybrid_example.i
+src/whiteboardMain.i: src/whiteboardMain.cpp.i
+.PHONY : src/whiteboardMain.i
 
 # target to preprocess a source file
-src/AESRSA_hybrid_example.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/AESRSA_hybrid_example.cpp.i
-.PHONY : src/AESRSA_hybrid_example.cpp.i
+src/whiteboardMain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.i
+.PHONY : src/whiteboardMain.cpp.i
 
-src/AESRSA_hybrid_example.s: src/AESRSA_hybrid_example.cpp.s
-.PHONY : src/AESRSA_hybrid_example.s
+src/whiteboardMain.s: src/whiteboardMain.cpp.s
+.PHONY : src/whiteboardMain.s
 
 # target to generate assembly for a file
-src/AESRSA_hybrid_example.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/AESRSA_hybrid_example.cpp.s
-.PHONY : src/AESRSA_hybrid_example.cpp.s
+src/whiteboardMain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.s
+.PHONY : src/whiteboardMain.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Whiteboard
-	@echo ... src/AESRSA_hybrid_example.obj
-	@echo ... src/AESRSA_hybrid_example.i
-	@echo ... src/AESRSA_hybrid_example.s
+	@echo ... src/whiteboardMain.obj
+	@echo ... src/whiteboardMain.i
+	@echo ... src/whiteboardMain.s
 .PHONY : help
 
 

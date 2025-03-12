@@ -55,4 +55,4 @@ add_executable(${PROJECT_N} ${SRCS})
 
 target_include_directories(${PROJECT_N} PUBLIC include)
 
-target_link_libraries(${PROJECT_N}  ${DEPS_lib_dir}/libsqlite3.a ${DEPS_lib_dir}/liblua53.a  ${DEPS_lib_dir}/libprotobuf.a  ${DEPS_lib_dir}/libprotoc.a ${DEPS_lib_dir}/libprotobuf-lite.a  ${DEPS_lib_dir}/libRakNetLibStatic.a  libbz2.a libws2_32.a -municode  )  
+target_link_libraries(${PROJECT_N} ${FEINTGINE_lib_dir}/libFeintgine.a  ${DEPS_lib_dir}/libsqlite3.a ${DEPS_lib_dir}/liblua53.a  ${DEPS_lib_dir}/libprotobuf.a  ${DEPS_lib_dir}/libprotoc.a ${DEPS_lib_dir}/libprotobuf-lite.a  ${DEPS_lib_dir}/libRakNetLibStatic.a ${DEPS_lib_dir}/mbedtls/libmbedcrypto.a ${DEPS_lib_dir}/mbedtls/libmbedtls.a ${DEPS_lib_dir}/mbedtls/libmbedx509.a  ${DEPS_lib_dir}/mbedtls/libp256m.a  ${DEPS_lib_dir}/mbedtls/libeverest.a  libbz2.a libws2_32.a -municode -lbcrypt )  

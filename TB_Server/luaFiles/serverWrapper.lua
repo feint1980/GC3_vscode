@@ -13,6 +13,15 @@ function SV_DoQuery(host,query)
 end
 
 
+--- function wrapper of cppDoQuerySTMT
+---@Description: call a server to do a query
+---@param host pointer instance of ServerScriptingManager
+---@param stmt pointer instance of sqlite3_stmt
+function SV_DoQuerySTMT(host,stmt)
+    cppDoQuerySTMT(host,stmt)
+    SV_GetQueryResults(host)
+end
+
 --- function wrapper of cppGetQueryResults
 ---@Description: get the result of a query
 ---@param host pointer instance of ServerScriptingManager
@@ -22,10 +31,11 @@ end
 
 --- function wrapper of cppPacket_getData
 ---@Description: get the data of a packet 
+---@param host pointer instance of ServerScriptingManager
 ---@param packet pointer instance of RakNet::Packet
 ---@return string data of the packet 
-function SV_GetPacketData(packet)
-    return cppPacket_getData(packet)
+function SV_GetPacketData(host,packet)
+    return cppPacket_getData(host,packet)
 end
 
 
@@ -55,8 +65,22 @@ function SV_SendMsg(host,clientIP,message)
     cppSendToClient(host,clientIP,message)
 end
 
---- function wrapper of cppGenKey
----@Description: generate a key
-function SV_GenKey(numberOfChars)
-    return cppGenKey(numberOfChars)
+--- function wrapper of cppSqlite_CreateStatement
+---@Desciption: create a sqlite3_stmt 
+---@param host pointer instace of ServerScriptingManager
+---@param baseQuery string base query 
+function SV_CreateSQLSTMT(host,baseQuery)
+    return cppSqlite_CreateStatement(host,baseQuery)
 end
+
+--- function wrapper of cppSqlite_BindStatement
+---@Desciption: create a sqlite3_stmt 
+---@param host pointer instace of ServerScriptingManager
+---@param stmt pointer stm need to be bound 
+---@param index number indext need to bound
+---@param stringVal string 
+function SV_BindSQLSTMT(host,stmt,index, stringVal)
+    cppSqlite_BindStatement(host,stmt,index, stringVal)
+end
+
+--- function wrapper of 

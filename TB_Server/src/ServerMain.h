@@ -47,7 +47,7 @@ public:
 
     void handleCommand(const std::string & command);
 
-    int handleStep2Request(RakNet::Packet *p);
+    // int handleStep2Request(RakNet::Packet *p);
 
     PacketCode getCommand(const std::string & command);
 

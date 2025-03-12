@@ -17,7 +17,6 @@ public :
 
 	void getIDAndPassword(const std::string & data, std::string & id, std::string & pw);
 
-
 	sqlite3 * getDatabase() { return m_db; }
 
 private:

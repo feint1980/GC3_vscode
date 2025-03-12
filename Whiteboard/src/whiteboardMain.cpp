@@ -124,12 +124,13 @@ int wmain() {
     std::cout << "Encrypted (hex): ";
     for (unsigned char byte : encrypted)
         printf("%02x", byte);
-    std::cout << std::endl;
+    std::cout << "| size is " << encrypted.size() << "\n";
+
 
     std::string decrypted;
     aes_decrypt(encrypted, decrypted, iv);
 
-    std::cout << "Decrypted: " << decrypted << std::endl;
+    std::cout << "Decrypted: " << decrypted << "| size is " << decrypted.size() << "\n";
 
 
     return 0;

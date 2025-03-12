@@ -14,6 +14,15 @@ function SVI_DoQuery(host,query)
     SV_DoQuery(host,query)
 end
 
+--- function SV_DoQuery, clear data before a query
+---@Description: call a server to do a query
+---@param host pointer instance of ServerScriptingManager
+---@param stmt pointer the stmt command
+function SVI_DoQuerySTMT(host,stmt)
+    ClearQuery()
+    SV_DoQuerySTMT(host,stmt)
+end
+
 Account_Table = {
     tb_name = "account_table",
     no = "account_no",
@@ -102,11 +111,21 @@ end
 ---@return number tResult of count query
 function CheckAccountCount(host, id, pw)
     -- tResult = -1
+
     print("CheckAccountValid debug: id is " .. id .. " pw is " .. pw)
-    local queryCountCmd= " SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = '" .. id .. "' AND " .. Table.account.pw .. " = '" .. pw .. "';"
+    -- local queryCountCmd= " SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = '" .. id .. "' AND " .. Table.account.pw .. " = '" .. pw .. "';"
+
+    local queryCountCmd= " SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ? AND " .. Table.account.pw .. " = ?;"
+    local stmt = SV_CreateSQLSTMT(host,queryCountCmd)
+    
+    SV_BindSQLSTMT(host,stmt,1,id)
+    SV_BindSQLSTMT(host,stmt,2,pw)
+    
 
     print("query " .. queryCountCmd)
-    SVI_DoQuery(host, queryCountCmd)
+    
+    -- SVI_DoQuery(host, queryCountCmd)
+    SVI_DoQuerySTMT(host,stmt)
     print("result " .. Query_val[1])
     local result = Query_val[1]
     local count =  tonumber(result)
@@ -137,7 +156,7 @@ end
 --- MARK: Request_Key 
 ResponseHandle[PacketCode.requestKey] = function(host, packet)
 
-    local message = SV_GetPacketData(packet)
+    local message = SV_GetPacketData(host,packet)
 
     print("request key found, processing")
     local pattern_start = "|REQUEST_KEY_REQUEST|"
@@ -185,7 +204,7 @@ end
 ResponseHandle[PacketCode.register] = function(host,packet)
     print("register response found, processing")
 
-    local message = SV_GetPacketData(packet)
+    local message = SV_GetPacketData(host,packet)
     local clientIP = SV_GetPacketIP(packet)
 
     local pattern_start = "|REGISTER_REQUEST|"
@@ -260,7 +279,7 @@ end
 ResponseHandle[PacketCode.login] = function(host,packet)
     print("login response found, processing")
 
-    local message = SV_GetPacketData(packet)
+    local message = SV_GetPacketData(host,packet)
 
     local pattern_start = "|LOGIN_REQUEST|"
     local firstIndex = string.find(message, pattern_start)
@@ -282,8 +301,6 @@ ResponseHandle[PacketCode.login] = function(host,packet)
 
     local endQuery = " FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = '" .. t_id .. "' AND " .. Table.account.pw .. " = '" .. t_pw .. "';"
 
-    local checkLoginSql = startQuery .. totalParam .. endQuery
-    local checkCountSql = startQuery .. "COUNT(*)"  .. endQuery
 
     if CheckAccountValid(host, t_id, t_pw) then
         -- print("account is valid")
@@ -334,7 +351,7 @@ end
 function HandleMessage(host,packet,requestCode)
     print("relay message")
 
-    local message = SV_GetPacketData(packet)
+    local message = SV_GetPacketData(host,packet)
 
     print(message)
     print("request code : " .. requestCode)

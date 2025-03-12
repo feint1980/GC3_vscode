@@ -19,6 +19,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "NetworkPacket.h"
+#include <F_Cryptor.h>
 #include "DataBaseHandler.h"
 
 #include "LuaManager.h"
@@ -45,6 +46,10 @@ static lua_State * shared_luaState;
 class ServerScriptingManager
 {
 public:
+
+    
+    PacketCode getSpecialRequestCode(RakNet::Packet *p);
+
     ServerScriptingManager();
     ~ServerScriptingManager();
 
@@ -57,9 +62,17 @@ public:
 
     uint32_t sendData(const RakNet::SystemAddress & target, const std::string & data);
 
+    std::string getDecryptMsg(const std::string & data);
+
     bool doQuery(const std::string & queryCmd);
 
+    bool doQuery(sqlite3_stmt * stmt);
+
+    sqlite3 * getDB() { return m_dbh->getDatabase();}
+
 private:
+
+    Feintgine::F_Cryptor m_cryptor;
 
     RakNet::RakPeerInterface * m_server;
     DataBaseHandler * m_dbh;

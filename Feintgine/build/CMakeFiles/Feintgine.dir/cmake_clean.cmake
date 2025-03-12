@@ -79,6 +79,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/Feintgine.dir/src/F_BaseObject.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/F_BaseObjectManipulator.cpp.obj.d"
+  "CMakeFiles/Feintgine.dir/src/F_Cryptor.cpp.obj"
+  "CMakeFiles/Feintgine.dir/src/F_Cryptor.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj"
   "CMakeFiles/Feintgine.dir/src/F_Dialouge_Handler.cpp.obj.d"
   "CMakeFiles/Feintgine.dir/src/F_EmptyObject.cpp.obj"

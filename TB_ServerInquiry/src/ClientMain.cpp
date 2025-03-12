@@ -66,6 +66,39 @@ void ClientMain::init(const std::string & serverIP,const std::string & pw,unsign
     std::cout << "GUID is : " << m_client->GetGuidFromSystemAddress(RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString() << "\n"; 
 
 
+    // init key
+    int t1[16] = {
+        7, 12, 5, 7,
+        8, 33, 51, 21,
+        77, 71, 22, 43,
+        12, 15, 99, 4
+    };
+    int t2[8] = {
+        12, 6, 7, 2,
+        9, 12, 91, 42
+    } ;
+
+    std::string tStr1;
+    
+    std::string tStr2;
+    
+    for(int i = 0 ; i < 16 ; i++)
+    {
+        tStr1.push_back(t1[i]);
+    }
+
+    
+    std::cout << "tStr1:|" <<  tStr1 << "|\n"; 
+
+    for(int i = 0 ; i < 8 ; i++)
+    {
+        tStr2.push_back(t2[i]);
+    }
+    std::cout << "tStr2:|" << tStr2 << "|\n";
+
+
+    m_cryptor.init(tStr1, tStr2);   
+
     //m_scriptManager = new ClientScriptingManager();
     //m_scriptManager->init(m_client);
 
@@ -161,6 +194,35 @@ void ClientMain::update(float deltaTime)
                 {
                     std::string msg ((const char*)m_currentPacket->data);
                     std::cout << "server : " << msg << std::endl;
+
+                    
+                    // get the iv 
+                    unsigned char iv[AES_IV_SIZE];
+                    for(int i = 0 ; i < AES_IV_SIZE ; i++)
+                    {
+                        iv[i] = m_currentPacket->data[(m_currentPacket->length -1) - (AES_IV_SIZE - i)]; 
+                    }
+                    std::cout << "salt is :\n";
+                    for(int i = 0 ; i < AES_IV_SIZE; i++)
+                    {
+                        printf("%02x", iv[i]);
+                    }  
+                    std::cout << "\n";
+                    std::vector<unsigned char> tMsg;
+                    for(int i = 0 ;i < (m_currentPacket->length -1) - AES_IV_SIZE; i++)
+                    {
+                        tMsg.push_back(m_currentPacket->data[i]);
+                    }
+                    std::cout << "tMsg check \n";
+                    for(int i = 0 ;i < tMsg.size() ; i++)
+                    {
+                        printf("%02x", tMsg[i]);
+                    }   
+
+                    std::cout << "\ndecrypt : \n";
+                    std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
+
+
                     break;
                 }
 			}
@@ -231,6 +293,43 @@ void ClientMain::handleInput()
         handleCommand(messageBuffer);
         
     }
+}
+
+void ClientMain::sendData(const std::string & mesg)
+{
+
+    unsigned char iv[AES_IV_SIZE];
+    m_cryptor.generateRandomIV(iv);
+    // std::string tData = m_cryptor.getStringFromEncrypt(m_cryptor.encrypt(data,iv));
+
+    auto tData = m_cryptor.encrypt(mesg,iv);
+
+    std::cout << "data send : \n";
+    for(int i = 0 ; i < tData.size() ; i++)
+    {
+        printf("%02x", tData[i]);
+    } 
+
+    for(int i = 0 ; i < AES_IV_SIZE;i++)
+    {
+        tData.push_back(iv[i]);
+    }
+
+    
+    std::cout << "\nsalt is \n";
+    for(int i = 0 ; i < AES_IV_SIZE ; i++)
+    {
+        printf("%02x", iv[i]);
+    } 
+    
+
+    std::string sendStr;
+    for(int i = 0 ; i < tData.size() ; i++)
+    {
+        sendStr.push_back((tData[i]));
+    } 
+
+    m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
 void ClientMain::handleCommand(const std::string & command)
@@ -327,9 +426,13 @@ void ClientMain::handleCommand(const std::string & command)
         std::cin >> m_pwStr;
 
         std::string packet = combine2Package("LOGIN",m_idStr, m_pwStr);
-        m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
-        
+
         std::cout << "sent " << packet <<  "\n";
+        sendData(packet);
+
+        // m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+        
+      
     }
     break;
 
@@ -370,7 +473,10 @@ void ClientMain::handleCommand(const std::string & command)
         std::cin >> m_registerKey;
 
         std::string packet = combine3Package("REGISTER",m_registerID, m_registerPw,m_registerKey);
-        m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+
+        sendData(packet);
+
+        // m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
         
     }
     break;
@@ -382,18 +488,22 @@ void ClientMain::handleCommand(const std::string & command)
         std::cout << "enter password : \n";
         std::cin >> m_pwStr;
         std::string packet = combine2Package("REQUEST_KEY",m_idStr, m_pwStr);
-        m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+
+        sendData(packet);
+
+        // m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
         
     }
     break;
 
     default:
     {
-        m_client->Send(command.c_str(), command.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+
+        sendData(command);
+        // m_client->Send(command.c_str(), command.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 
     }
         break;
     }
-
 
 }

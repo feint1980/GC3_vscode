@@ -23,26 +23,6 @@ ServerMain::ServerMain()
     m_port = 1123 ;
 }
 
-int ServerMain::handleStep2Request(RakNet::Packet *p)
-{
-    PacketCode requestCode = getSpecialRequestCode(p);
-    switch (requestCode)
-    {
-        case PacketCode::LOGIN:
-        {
-            std::cout << "Login request found !!!\n";
-            // todo : verify login
-            std::string cData((const char*) p->data);
-            
-            return 12;
-        }
-        break;
-        default :
-            return 0;
-        break;
-    }
-    return -22;
-}
 
 ServerMain::~ServerMain()
 {

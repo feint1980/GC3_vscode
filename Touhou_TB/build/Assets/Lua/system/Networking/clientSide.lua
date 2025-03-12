@@ -94,6 +94,7 @@ end
 ---@
 function Client_ReceiveData(msg, ip,pID)
     local tPacket = Client_Packet:new()
+    print("Client_ReceiveData recieve : " .. msg )
     tPacket.data = msg
     tPacket.ipAddr = ip
     tPacket.packetID = pID

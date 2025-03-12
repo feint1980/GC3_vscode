@@ -21,6 +21,7 @@
 #include <unistd.h>
 #endif
 
+#include <F_Cryptor.h>
 #include "NetworkPacket.h"
 
 #include <stdio.h>
@@ -44,6 +45,8 @@ public:
     void run();
 
     void handleInput();
+
+    void sendData(const std::string & mesg);
 
     void handleCommand(const std::string & command);
 
@@ -78,6 +81,7 @@ private:
     std::string m_idStr;
     std::string m_pwStr;
 
+    Feintgine::F_Cryptor m_cryptor;
 
     std::string m_registerID;
     std::string m_registerPw;
