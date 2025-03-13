@@ -236,7 +236,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
             Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
         end
 
-
+        print("setOnClickCallback send data : ")
         print(Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
 
 

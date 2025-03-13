@@ -3,7 +3,9 @@
 #define _DATABASE_HANDLER_H_
 
 #include <iostream>
+// #include <sqlite3ext.h>
 #include <sqlite3.h>
+
 #include <string>
 
 class DataBaseHandler 

@@ -202,26 +202,13 @@ void ClientMain::update(float deltaTime)
                     {
                         iv[i] = m_currentPacket->data[(m_currentPacket->length -1) - (AES_IV_SIZE - i)]; 
                     }
-                    std::cout << "salt is :\n";
-                    for(int i = 0 ; i < AES_IV_SIZE; i++)
-                    {
-                        printf("%02x", iv[i]);
-                    }  
-                    std::cout << "\n";
+
                     std::vector<unsigned char> tMsg;
                     for(int i = 0 ;i < (m_currentPacket->length -1) - AES_IV_SIZE; i++)
                     {
                         tMsg.push_back(m_currentPacket->data[i]);
                     }
-                    std::cout << "tMsg check \n";
-                    for(int i = 0 ;i < tMsg.size() ; i++)
-                    {
-                        printf("%02x", tMsg[i]);
-                    }   
-
-                    std::cout << "\ndecrypt : \n";
                     std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
-
 
                     break;
                 }
@@ -298,31 +285,17 @@ void ClientMain::handleInput()
 void ClientMain::sendData(const std::string & mesg)
 {
 
-    unsigned char iv[AES_IV_SIZE];
+    unsigned char iv[AES_IV_SIZE] = {};
     m_cryptor.generateRandomIV(iv);
     // std::string tData = m_cryptor.getStringFromEncrypt(m_cryptor.encrypt(data,iv));
 
     auto tData = m_cryptor.encrypt(mesg,iv);
 
-    std::cout << "data send : \n";
-    for(int i = 0 ; i < tData.size() ; i++)
-    {
-        printf("%02x", tData[i]);
-    } 
-
     for(int i = 0 ; i < AES_IV_SIZE;i++)
     {
         tData.push_back(iv[i]);
     }
-
     
-    std::cout << "\nsalt is \n";
-    for(int i = 0 ; i < AES_IV_SIZE ; i++)
-    {
-        printf("%02x", iv[i]);
-    } 
-    
-
     std::string sendStr;
     for(int i = 0 ; i < tData.size() ; i++)
     {

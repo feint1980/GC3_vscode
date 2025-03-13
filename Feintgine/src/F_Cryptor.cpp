@@ -11,11 +11,13 @@ namespace Feintgine
 
     F_Cryptor::~F_Cryptor()
     {
-
+   
+        mbedtls_aes_free(&m_aes);
     }
 
     void F_Cryptor::init(const std::string & password, const std::string & phrase)
     {
+
         mbedtls_sha256_context sha_ctx;
         mbedtls_sha256_init(&sha_ctx);
         mbedtls_sha256_starts(&sha_ctx, 0);  // 0 = SHA-256 (not SHA-224)
@@ -26,12 +28,12 @@ namespace Feintgine
 
         m_isReady = true;
 
-        std::cout << " key gen : \n";
-        for (int i = 0 ; i < AES_KEY_SIZE ; i++)
-        {
-            printf("%02x", m_aesKey[i]);
-        }
-        std::cout << "\n";
+        // std::cout << " key gen : \n";
+        // for (int i = 0 ; i < AES_KEY_SIZE ; i++)
+        // {
+        //     printf("%02x", m_aesKey[i]);
+        // }
+        // std::cout << "\n";
     }        
     
 
@@ -43,6 +45,7 @@ namespace Feintgine
             return retVal;
         }
 
+        
         // mbedtls_aes_init(&m_aes);
 
         mbedtls_aes_setkey_enc(&m_aes, m_aesKey, AES_KEY_SIZE * 8);  // Set 256-bit key
@@ -58,7 +61,7 @@ namespace Feintgine
         std::memcpy(iv_copy, iv, AES_IV_SIZE);
 
         mbedtls_aes_crypt_cbc(&m_aes, MBEDTLS_AES_ENCRYPT, padded_size, iv_copy, padded_input.data(), retVal.data());
-        mbedtls_aes_free(&m_aes);
+        // mbedtls_aes_free(&m_aes);
         return retVal;
 
     }
@@ -91,7 +94,7 @@ namespace Feintgine
         // Remove padding
         retVal.assign(reinterpret_cast<char*>(decrypted.data()));
     
-        mbedtls_aes_free(&m_aes);
+        // mbedtls_aes_free(&m_aes);
 
         return retVal;
 

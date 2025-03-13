@@ -62,7 +62,7 @@ public:
 
     uint32_t sendData(const RakNet::SystemAddress & target, const std::string & data);
 
-    std::string getDecryptMsg(const std::string & data);
+    // std::string getDecryptMsg(const std::string & data);
 
     bool doQuery(const std::string & queryCmd);
 
@@ -79,7 +79,9 @@ private:
 
     lua_State * m_script;
 
-    
+
+
+
 };
 
 #endif // SERVERSCRIPTINGMANAGER_H

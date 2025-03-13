@@ -98,7 +98,7 @@ int lua_SQLCreateStatement(lua_State *L)
 
 int lua_SQLBindStatement(lua_State * L)
 {
-    if (lua_gettop(L) != 4)
+    if (lua_gettop(L) != 3)
     {
         std::cout << "gettop failed (lua_SQLBindStatement) \n";
         std::cout << lua_gettop(L) << "\n";
@@ -106,20 +106,129 @@ int lua_SQLBindStatement(lua_State * L)
     }
     else
     {
-        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
-        sqlite3_stmt* stmt =  static_cast<sqlite3_stmt*>(lua_touserdata(L, 2));
-        int index = lua_tointeger(L,3);
-        std::string val = lua_tostring(L,4);
+
+        sqlite3_stmt* stmt =  static_cast<sqlite3_stmt*>(lua_touserdata(L, 1));
+        int index = lua_tointeger(L,2);
+        std::string val = lua_tostring(L,3);
 
         std::cout << "lua_SQLBindStatement called corrct \n" ;
 
-        int rc = sqlite3_bind_text(stmt, index, val.c_str(), -1, SQLITE_STATIC);
+        std::cout << "binding index " << index << " with value " << val << "\n";
+        int rc = sqlite3_bind_text(stmt, index, val.c_str(), -1, SQLITE_TRANSIENT);
+        // sqlite3_bind
         
+        char* expanded = sqlite3_expanded_sql(stmt);
+        if (expanded) {
+            std::cout << "lua_SQLBindStatement Query: " << expanded << std::endl;
+            sqlite3_free(expanded);  // Must free memory!
+        }
+
         std::cout << "return values is  " << rc << "\n"; 
 
         return 0;
     }
 }
+
+int lua_SQLStepStatement(lua_State * L)
+{
+    if (lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SQLStepStatement) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        sqlite3_stmt* stmt =  static_cast<sqlite3_stmt*>(lua_touserdata(L, 2));
+
+        
+        char* expanded = sqlite3_expanded_sql(stmt);
+        if (expanded) {
+            std::cout << "Expanded Query: " << expanded << std::endl;
+            sqlite3_free(expanded);  // Must free memory!
+        }
+        int rc = sqlite3_step(stmt);
+        lua_pushinteger(L, rc);
+        return 1;
+        
+    }
+    return 0;
+}
+
+int lua_SQLGetResultColumnCount(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_SQLGetResultColumnCount) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }   
+    else
+    {
+        sqlite3_stmt* stmt =  static_cast<sqlite3_stmt*>(lua_touserdata(L, 1));
+        int rc = sqlite3_column_count(stmt);
+        lua_pushinteger(L, rc);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_SQLGetResultInt(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SQLGetResultInt) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }   
+    else
+    {
+        sqlite3_stmt* stmt =  static_cast<sqlite3_stmt*>(lua_touserdata(L, 1));
+        int index = lua_tointeger(L,2);
+        int rc = sqlite3_column_int(stmt, index);
+        lua_pushinteger(L, rc);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_SQLGetResultString(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SQLGetResultString) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }   
+    else
+    {
+        sqlite3_stmt* stmt =  static_cast<sqlite3_stmt*>(lua_touserdata(L, 1));
+        int index = lua_tointeger(L,2);
+        const char* rc = (const char*)sqlite3_column_text(stmt, index);
+        lua_pushstring(L, rc);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_SQLFinalizeStmt(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_SQLFinalizeStmt) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }   
+    else
+    {
+        sqlite3_stmt* stmt =  static_cast<sqlite3_stmt*>(lua_touserdata(L, 1));
+        sqlite3_finalize(stmt);
+        return 0;
+    }
+    return 0;
+}
+
 
 int lua_GenKey(lua_State * L)
 {
@@ -259,6 +368,9 @@ int lua_Packet_getIP(lua_State * L)
     {
         RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
         RakNet::SystemAddress * clientId = &p->systemAddress;
+        // this may cause memory leak in future or idk, just test
+        //clientId = new RakNet::SystemAddress(*clientId);
+
         lua_pushlightuserdata(L,clientId);
         return 1;
     }
@@ -309,34 +421,26 @@ std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
     //p->systemAddress
     //p->systemAddress
 
+    // std::string retVal = "";
+
     unsigned char iv[AES_IV_SIZE];
     for(int i = 0 ; i < AES_IV_SIZE ; i++)
     {
         iv[i] = p->data[(p->length -1) - (AES_IV_SIZE - i)]; 
     }
-    std::cout << "salt is :\n";
-    for(int i = 0 ; i < AES_IV_SIZE; i++)
-    {
-        printf("%02x", iv[i]);
-    }  
-    std::cout << "\n";
+
+
+
     std::vector<unsigned char> tMsg;
     for(int i = 0 ;i < (p->length -1) - AES_IV_SIZE; i++)
     {
         tMsg.push_back(p->data[i]);
     }
-    std::cout << "tMsg check \n";
-    for(int i = 0 ;i < tMsg.size() ; i++)
-    {
-        printf("%02x", tMsg[i]);
-    }   
 
-    std::cout << "\ndecrypt : \n";
-    //std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
+    // retVal =  m_cryptor.decrypt(tMsg, iv);
 
-    return m_cryptor.decrypt(tMsg, iv);
+    return m_cryptor.decrypt(tMsg, iv);;
 
-    // return std::string((const char*)p->data);
 }
 
 uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data)
@@ -344,30 +448,16 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
     
     // encrypt 
     
-    unsigned char iv[AES_IV_SIZE];
+    unsigned char iv[AES_IV_SIZE] = {};
     m_cryptor.generateRandomIV(iv);
     // std::string tData = m_cryptor.getStringFromEncrypt(m_cryptor.encrypt(data,iv));
 
     auto tData = m_cryptor.encrypt(data,iv);
 
-    std::cout << "data send : \n";
-    for(int i = 0 ; i < tData.size() ; i++)
-    {
-        printf("%02x", tData[i]);
-    } 
-
     for(int i = 0 ; i < AES_IV_SIZE;i++)
     {
         tData.push_back(iv[i]);
     }
-
-    
-    std::cout << "\nsalt is \n";
-    for(int i = 0 ; i < AES_IV_SIZE ; i++)
-    {
-        printf("%02x", iv[i]);
-    } 
-    
 
     std::string sendStr;
     for(int i = 0 ; i < tData.size() ; i++)
@@ -376,6 +466,9 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
     } 
 
     m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY, RELIABLE_SEQUENCED,12, target,false);
+
+    // free iv 
+
     return 0;
 }
 
@@ -509,6 +602,8 @@ bool ServerScriptingManager::doQuery(sqlite3_stmt * stmt)
 
 void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHandler * dbh)
 {
+    srand( (unsigned)time(NULL) );
+
     std::cout << "|=========================================|\n";
     std::cout << "|     Init Server Scripting Manager       |\n";
     m_server = server;
@@ -522,17 +617,23 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
     // register lua functions
     
-  
+
     lua_register(m_script, "cppGetQueryResults", lua_GetQueryResults);
     lua_register(m_script, "cppGenKey", lua_GenKey);
     lua_register(m_script, "cppSendToClient", lua_SendToClient);
-
 
     // Sqlite 
     lua_register(m_script, "cppSqlite_CreateStatement",lua_SQLCreateStatement );
     lua_register(m_script, "cppSqlite_BindStatement", lua_SQLBindStatement);
     lua_register(m_script, "cppDoQuery", lua_DoQuery);
     lua_register(m_script, "cppDoQuerySTMT", lua_DoQuerySTMT);
+    lua_register(m_script, "cppSqlite_StepStatement", lua_SQLStepStatement);
+    lua_register(m_script, "cppSqlite_GetResultColumnCount", lua_SQLGetResultColumnCount);
+    lua_register(m_script, "cppSqlite_gettResultInt", lua_SQLGetResultInt);
+    lua_register(m_script, "cppSqlite_gettResultString", lua_SQLGetResultString);
+    lua_register(m_script, "cppSqlite_finalizeStmt", lua_SQLFinalizeStmt);
+
+
 
     // extract data from packet
     lua_register(m_script, "cppPacket_getData", lua_Packet_getData);
@@ -581,13 +682,13 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     }
 
     
-    std::cout << "tStr1:|" <<  tStr1 << "|\n"; 
+    // std::cout << "tStr1:|" <<  tStr1 << "|\n"; 
 
     for(int i = 0 ; i < 8 ; i++)
     {
         tStr2.push_back(t2[i]);
     }
-    std::cout << "tStr2:|" << tStr2 << "|\n";
+    // std::cout << "tStr2:|" << tStr2 << "|\n";
 
 
     m_cryptor.init(tStr1, tStr2);   

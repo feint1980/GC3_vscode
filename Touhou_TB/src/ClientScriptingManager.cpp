@@ -35,7 +35,7 @@ int lua_SendData(lua_State * L)
     {
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string requestCmd = lua_tostring(L, 2);
-        std::cout << "client side send data:" << requestCmd << "\n";
+        // std::cout << "client side send data:" << requestCmd << "\n";
         uint32_t result = host->sendData(requestCmd);
         lua_pushnumber(L, result);
         return 1;
@@ -65,37 +65,22 @@ int lua_Connect(lua_State * L)
 uint32_t ClientScriptingManager::sendData(const std::string & data)
 {
 
-    unsigned char iv[AES_IV_SIZE];
+    unsigned char iv[AES_IV_SIZE] = {};
     m_cryptor.generateRandomIV(iv);
     // std::string tData = m_cryptor.getStringFromEncrypt(m_cryptor.encrypt(data,iv));
 
     auto tData = m_cryptor.encrypt(data,iv);
 
-    std::cout << "data send : \n";
-    for(int i = 0 ; i < tData.size() ; i++)
-    {
-        printf("%02x", tData[i]);
-    } 
-
     for(int i = 0 ; i < AES_IV_SIZE;i++)
     {
         tData.push_back(iv[i]);
     }
-
     
-    std::cout << "\nsalt is \n";
-    for(int i = 0 ; i < AES_IV_SIZE ; i++)
-    {
-        printf("%02x", iv[i]);
-    } 
-    std::cout << "\n";
-
     std::string sendStr;
     for(int i = 0 ; i < tData.size() ; i++)
     {
         sendStr.push_back((tData[i]));
     } 
-
     
     return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }

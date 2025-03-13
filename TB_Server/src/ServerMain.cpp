@@ -98,9 +98,9 @@ void ServerMain::run()
     while(m_serverOn)
     {
         // This sleep keeps RakNet responsive
-        RakSleep(30);
+        // RakSleep(10);
         // todo, think about delta time problem :
-        update(1.0f);
+        update(0.1f);
 
         handleInput();
     }
@@ -246,8 +246,6 @@ void ServerMain::handleCommand(const std::string & command)
 
     case PacketCode::QUIT:
     {
-
-    
         m_serverOn = false;
         break;
     }
