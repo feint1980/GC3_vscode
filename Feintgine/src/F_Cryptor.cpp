@@ -11,7 +11,6 @@ namespace Feintgine
 
     F_Cryptor::~F_Cryptor()
     {
-   
         mbedtls_aes_free(&m_aes);
     }
 

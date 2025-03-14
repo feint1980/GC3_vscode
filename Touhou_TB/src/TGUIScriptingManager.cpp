@@ -849,6 +849,18 @@ tgui::Label::Ptr TGUIScriptingManager::createLabel(const std::string & text,floa
     return label;
 }
 
+tgui::Picture::Ptr TGUIScriptingManager::createPicture(const std::string & path, float x, float y, float width, float height)
+{
+    tgui::Picture::Ptr picture = tgui::Picture::create();
+    tgui::Texture texture(path);
+    picture->getRenderer()->setTexture(texture);
+    // picture->set
+    picture->setPosition(x, y);
+    picture->setSize(width, height);
+    return picture;
+}
+
+
 tgui::RichTextLabel::Ptr TGUIScriptingManager::createRTLabel(const std::string & text,float x, float y)
 {
     tgui::RichTextLabel::Ptr label = tgui::RichTextLabel::create(text);
@@ -922,6 +934,7 @@ void TGUIScriptingManager::checkInput(const SDL_Event &  evnt)
     }
 }
 
+    
 
 void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
 {
@@ -950,10 +963,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     // register lua functions
 
     // TGUI Main
-    //lua_register(m_script, "cpp_Main_Add_Label", lua_Main_Add_Label);
 
-
-    
     // TGUI Label section
     lua_register(m_script, "cpp_Label_Create", lua_Label_Create);
     lua_register(m_script, "cpp_Label_SetPos" , lua_Label_SetPos);

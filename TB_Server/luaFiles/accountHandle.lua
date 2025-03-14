@@ -22,8 +22,9 @@ function CheckAccountCount(host, id, pw)
     -- tResult = -1
 
     local queryCountCmd= "SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ? AND " .. Table.account.pw .. " = ?;"
+    local ePW = SV_getEncryptPW(host, pw)
 
-    SVI_DoQuerySTMT(host,queryCountCmd,{id,pw})
+    SVI_DoQuerySTMT(host,queryCountCmd,{id,ePW})
 
     print("result " .. Query_val[1])
     local result = Query_val[1]
@@ -91,8 +92,9 @@ ResponseHandle[PacketCode.requestKey] = function(host, packet)
         
         -- SVI_DoQuerySTMT(host,stmt)
         -- SV_SQLFinalizeStmt(stmt)
+        local ePW = SV_getEncryptPW(host, t_pw)
 
-        SVI_DoQuerySTMT(host,queryCountCmd,{t_id,t_pw})
+        SVI_DoQuerySTMT(host,queryCountCmd,{t_id,ePW})
 
         local result = tonumber(Query_val[1])
         if result > 1 then 
@@ -193,13 +195,14 @@ ResponseHandle[PacketCode.register] = function(host,packet)
 
                 -- print("account insert check : " .. insertAccountQuery)
                 -- SV_DoQuery(host,insertAccountQuery)
-                SVI_DoQuerySTMT(host,insertAccountQuery,{t_id,t_pw})
+
+                local ePW = SV_getEncryptPW(host, t_pw)
+
+                SVI_DoQuerySTMT(host,insertAccountQuery,{t_id,ePW})
 
                 -- local updateKeyQuery = "UPDATE " .. Table.register_key.tb_name .. " SET " .. Table.register_key.ready .. " = '0' WHERE " .. Table.register_key.val .. " = '" .. t_key .. "';"
 
                 local updateKeyQuery = "UPDATE " .. Table.register_key.tb_name .. " SET " .. Table.register_key.ready .. " = '0' WHERE " .. Table.register_key.val .. " = ?;"
-
-
 
                 -- SV_DoQuery(host,updateKeyQuery)
                 SVI_DoQuerySTMT(host,updateKeyQuery,{t_key})

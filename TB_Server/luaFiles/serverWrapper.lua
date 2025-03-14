@@ -131,3 +131,12 @@ end
 function SV_GenKey(no)
     return cppGenKey(no)
 end
+
+--- function wrapper of cpp_getEncrypedPW
+--- @Desciption: get the encrypted pw
+--- @param host pointer instance of ServerScriptingManager
+--- @param pw string account pw
+--- @return string encrypted pw
+function SV_getEncryptPW(host, pw)
+    return cpp_getEncrypedPW(host, pw)
+end

@@ -62,6 +62,8 @@ public:
 
     uint32_t sendData(const RakNet::SystemAddress & target, const std::string & data);
 
+    std::string getEncryptPW(const std::string & pw);
+
     // std::string getDecryptMsg(const std::string & data);
 
     bool doQuery(const std::string & queryCmd);
@@ -74,12 +76,14 @@ private:
 
     Feintgine::F_Cryptor m_cryptor;
 
+    Feintgine::F_Cryptor m_pwCryptor;
+
     RakNet::RakPeerInterface * m_server;
     DataBaseHandler * m_dbh;
 
     lua_State * m_script;
 
-
+    unsigned char *passwordSalt;
 
 
 };

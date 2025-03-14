@@ -26,6 +26,8 @@ public:
     
     tgui::RichTextLabel::Ptr createRTLabel(const std::string & text,float x, float y); 
 
+    tgui::Picture::Ptr createPicture(const std::string & path, float x, float y, float width, float height);
+
     tgui::EditBox::Ptr createEditBox(float x, float y, float width, float height, tgui::Panel::Ptr parent);
 
     tgui::Panel::Ptr createPanel(float x, float y, float width, float height, tgui::Panel::Ptr parent);

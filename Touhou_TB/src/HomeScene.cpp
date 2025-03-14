@@ -16,7 +16,7 @@ HomeScene::HomeScene(Feintgine::Window * window)
 {
     m_alpha = 0.0f;
     m_window = window;
-    m_screenIndex = 10;
+    m_screenIndex = 11;
 
     initShader();
 }

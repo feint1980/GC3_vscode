@@ -312,6 +312,25 @@ int lua_DoQuerySTMT(lua_State * L)
 
 }
 
+int lua_getEncryptedPW(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_getEncryptedPW) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        std::string msg = lua_tostring(L, 2);
+        std::string result = host->getEncryptPW(msg);
+        lua_pushstring(L, result.c_str());
+        return 1;
+    }
+    return 0;
+}
+
 int lua_SendToClient(lua_State * L)
 {
     // std::cout << "lua_SendToClient called \n";
@@ -634,13 +653,14 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppSqlite_finalizeStmt", lua_SQLFinalizeStmt);
 
 
-
     // extract data from packet
     lua_register(m_script, "cppPacket_getData", lua_Packet_getData);
     lua_register(m_script, "cppPacket_getIP", lua_Packet_getIP);
     lua_register(m_script, "cppPacket_extract", lua_Packet_extract);
 
-    
+    // misc
+    lua_register(m_script, "cpp_getEncrypedPW", lua_getEncryptedPW);
+
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))
     {
@@ -672,9 +692,16 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
         9, 12, 91, 42
     } ;
 
+    int t3[8] = {
+        5, 10, 11, 4, 
+        44, 12, 8, 92
+    };
+
     std::string tStr1;
     
     std::string tStr2;
+
+    std::string tStr3;
     
     for(int i = 0 ; i < 16 ; i++)
     {
@@ -688,10 +715,18 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     {
         tStr2.push_back(t2[i]);
     }
+
+    for(int i = 0 ; i < 8 ; i++)
+    {
+        tStr3.push_back(t3[i]);
+    }
     // std::cout << "tStr2:|" << tStr2 << "|\n";
 
 
     m_cryptor.init(tStr1, tStr2);   
+
+    m_pwCryptor.init(tStr1, tStr3);
+
     std::string tData = "Test data hahaha ";
     unsigned char iv[AES_IV_SIZE];
     std::cout << tData << "\n";
@@ -705,11 +740,46 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     std::cout << "decrypt back : \n";
     std::cout << m_cryptor.decrypt(ct,iv) << "\n";
 
+    
+    std::string tpwData = "da0feb2427bf1bf";
+
+    passwordSalt = new unsigned char[AES_IV_SIZE];
+
+    for(int i = 0 ; i < tpwData.size() ; i++)
+    {
+        passwordSalt[i] = tpwData[i];
+    }
 
     std::cout << "version " << sqlite3_libversion() << "\n";
 
 }
 
+std::string ServerScriptingManager::getEncryptPW(const std::string & pw)
+{
+
+    std::string retVal;
+
+   // Remove padding
+    // retVal.assign(reinterpret_cast<char*>(m_pwCryptor.encrypt(pw,passwordSalt).data()));
+
+
+    std::vector<unsigned char> buffer = m_pwCryptor.encrypt(pw,passwordSalt); 
+    retVal.reserve(buffer.size() * 2);
+    std::cout << "encrypt pw \n";
+
+    for(int i = 0 ; i < buffer.size() ; i++)
+    {
+        printf("%02x", buffer[i]);
+        sprintf(&retVal[i*2],"%02x", buffer[i]);
+    }
+
+
+    std::cout << "\ndecrypt pw " << m_pwCryptor.decrypt(buffer,passwordSalt) << "\n";
+
+
+    std::cout << "ret val " << retVal << "\n";
+    return retVal;
+}
 
 PacketCode ServerScriptingManager::getSpecialRequestCode(RakNet::Packet *p)
 {
