@@ -828,6 +828,48 @@ int lua_RTLabel_Create(lua_State * L)
 }
 
 
+int lua_Picture_Create(lua_State * L)
+{
+    std::cout << "[C++] lua_Picture_Create called \n";
+    if(lua_gettop(L) < 6 || lua_gettop(L) > 7)
+    {
+        std::cout << "gettop failed (lua_Picture_Create) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        TGUIScriptingManager * host =   static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        std::string path = lua_tostring(L, 2);
+        float x = lua_tonumber(L, 3);
+        float y = lua_tonumber(L, 4);
+        float width = lua_tonumber(L, 5);
+        float height = lua_tonumber(L, 6);
+        tgui::Picture::Ptr * picture = new tgui::Picture::Ptr();
+        *picture = host->createPicture(path,x,y,width,height);
+        if(lua_gettop(L) == 7)
+        {
+            tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 7));
+            if(parent)
+            {
+                parent->get()->add(*picture);
+            
+            }
+            else
+            {
+                host->getTGUI()->add(*picture);
+            }
+        }
+        else
+        {
+            host->getTGUI()->add(*picture);
+        }
+        lua_pushlightuserdata(L,picture);
+        return 1;
+    }
+    return 0;
+}
+
+
 TGUIScriptingManager::TGUIScriptingManager()
 {
 
@@ -1007,6 +1049,9 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Panel_SetVisible", lua_Panel_setVisible);
     lua_register(m_script, "cpp_Panel_SetAlignment", lua_Panel_SetAlignment);
     
+
+    // TGUI Picture section
+    lua_register(m_script, "cpp_Picture_Create", lua_Picture_Create);
 
     // run Init script
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))

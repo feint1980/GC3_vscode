@@ -28,6 +28,8 @@ Label = {
 
 }
 
+---@class Label
+
 ---@Description create new instance of Label
 ---@return Label
 function Label:new(o)
