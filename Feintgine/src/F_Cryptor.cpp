@@ -27,12 +27,12 @@ namespace Feintgine
 
         m_isReady = true;
 
-        // std::cout << " key gen : \n";
-        // for (int i = 0 ; i < AES_KEY_SIZE ; i++)
-        // {
-        //     printf("%02x", m_aesKey[i]);
-        // }
-        // std::cout << "\n";
+        std::cout << " key gen : \n";
+        for (int i = 0 ; i < AES_KEY_SIZE ; i++)
+        {
+            printf("%02x", m_aesKey[i]);
+        }
+        std::cout << "\n";
     }        
     
 

@@ -24,6 +24,9 @@ function CheckAccountCount(host, id, pw)
     local queryCountCmd= "SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ? AND " .. Table.account.pw .. " = ?;"
     local ePW = SV_getEncryptPW(host, pw)
 
+    print("tpw " .. pw)
+    print("epw " .. ePW)
+
     SVI_DoQuerySTMT(host,queryCountCmd,{id,ePW})
 
     print("result " .. Query_val[1])
@@ -248,11 +251,14 @@ ResponseHandle[PacketCode.login] = function(host,packet)
     print("id is " .. t_id)
     print("pw is " .. t_pw)
 
+    
     if CheckAccountValid(host, t_id, t_pw) then
 
         print("account check OK, send OK message")
+        local guid = SV_GetPacketGUID(packet)
+        SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
 
-        SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ "login granted, will send user data later"}))
+
     else
         print("account check failed send negative response")
         SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )

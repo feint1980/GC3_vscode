@@ -42,7 +42,7 @@ public:
 
 private:
 
-    tgui::Gui * m_tgui;
+    tgui::Gui * m_tgui = nullptr;
 
     lua_State * m_script = nullptr;
 

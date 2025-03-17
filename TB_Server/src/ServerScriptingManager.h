@@ -21,6 +21,8 @@
 #include "NetworkPacket.h"
 #include <F_Cryptor.h>
 #include "DataBaseHandler.h"
+#include <sstream>
+#include <iomanip>
 
 #include "LuaManager.h"
 
@@ -83,7 +85,7 @@ private:
 
     lua_State * m_script;
 
-    unsigned char *passwordSalt;
+    unsigned char *passwordSalt = nullptr;
 
 
 };

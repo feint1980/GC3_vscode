@@ -111,8 +111,6 @@ function CombinePackage(type,list)
     return returnValue
 end
 
-
-
 function ServerSide_Init(host)
     T_Host = host
 end

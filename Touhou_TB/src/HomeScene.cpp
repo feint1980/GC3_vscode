@@ -16,8 +16,9 @@ HomeScene::HomeScene(Feintgine::Window * window)
 {
     m_alpha = 0.0f;
     m_window = window;
-    m_screenIndex = 11;
+    m_screenIndex = 1;
 
+    std::cout << "home scene init \n";
     initShader();
 }
 
@@ -33,7 +34,7 @@ void HomeScene::initShader()
 
 void HomeScene::onEntry()
 {
-    
+    std::cout << "home scene onEntry \n";
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	

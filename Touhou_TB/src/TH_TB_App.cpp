@@ -27,19 +27,22 @@ void TH_TB_App::onInit()
 void TH_TB_App::addScreen()
 {
 
-    m_login = std::make_unique<LoginScene>(&m_window);
+    // m_login = std::make_unique<LoginScene>(&m_window);
 
     
-    m_screenList->addScreen(m_login.get());
+    // m_screenList->addScreen(m_login.get());
 
     m_loginV2 = std::make_unique<LoginSceneV2>(&m_window);
 
     m_screenList->addScreen(m_loginV2.get());
 
+    m_home = std::make_unique<HomeScene>(&m_window);
+
+    m_screenList->addScreen(m_home.get());
+
+
     m_test = std::make_unique<TestTBScreen>(&m_window); 
     m_screenList->addScreen(m_test.get());
-
-
 
     m_screenList->setScreen(m_loginV2->getScreenIndex());
 }

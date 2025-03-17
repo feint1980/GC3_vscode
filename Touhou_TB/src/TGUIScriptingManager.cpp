@@ -869,6 +869,97 @@ int lua_Picture_Create(lua_State * L)
     return 0;
 }
 
+int lua_Picture_SetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Picture_SetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Picture::Ptr * picture = static_cast<tgui::Picture::Ptr*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        picture->get()->setPosition(x,y);
+    }
+
+    return 0;
+}
+
+int lua_Picture_SetPosStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Picture_SetPosStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Picture::Ptr * picture = static_cast<tgui::Picture::Ptr*>(lua_touserdata(L, 1));
+        std::string x = lua_tostring(L, 2);
+        std::string y = lua_tostring(L, 3);
+        picture->get()->setPosition(x.c_str(),y.c_str());
+    }
+
+    return 0;
+}
+
+
+int lua_Picture_SetSize(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Picture_SetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Picture::Ptr * picture = static_cast<tgui::Picture::Ptr*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        picture->get()->setSize(x,y);
+    }
+    return 0;
+}
+
+
+int lua_Picture_SetSizeStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Picture_SetSizeStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Picture::Ptr * picture = static_cast<tgui::Picture::Ptr*>(lua_touserdata(L, 1));
+        std::string x = lua_tostring(L, 2);
+        std::string y = lua_tostring(L, 3);
+        picture->get()->setSize(x.c_str(),y.c_str());
+    }
+    return 0;
+}
+
+int lua_Picture_SetTexture(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Picture_SetTexture) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Picture::Ptr * picture = static_cast<tgui::Picture::Ptr*>(lua_touserdata(L, 1));
+        std::string path = lua_tostring(L, 2);
+        tgui::Texture texture(path);
+        picture->get()->getRenderer()->setTexture(texture);
+    }
+    return 0;
+}
+
+
+
 
 TGUIScriptingManager::TGUIScriptingManager()
 {
@@ -878,7 +969,8 @@ TGUIScriptingManager::TGUIScriptingManager()
 }
 TGUIScriptingManager::~TGUIScriptingManager()
 {
-
+    m_script = nullptr;
+    m_tgui = nullptr;
 }
 
 
@@ -1052,6 +1144,11 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
 
     // TGUI Picture section
     lua_register(m_script, "cpp_Picture_Create", lua_Picture_Create);
+    lua_register(m_script, "cpp_Picture_SetPos", lua_Picture_SetPos);
+    lua_register(m_script, "cpp_Picture_SetPosStr", lua_Picture_SetPosStr);
+    lua_register(m_script, "cpp_Picture_SetSize", lua_Picture_SetSize);
+    lua_register(m_script, "cpp_Picture_SetSizeStr", lua_Picture_SetSizeStr);
+    lua_register(m_script, "lua_Picture_SetTexture", lua_Picture_SetTexture);
 
     // run Init script
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))

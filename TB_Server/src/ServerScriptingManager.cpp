@@ -60,6 +60,8 @@ static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **
 }
 
 
+
+
 std::string genKey(int numberOfRandom)
 {
     char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -92,6 +94,23 @@ int lua_SQLCreateStatement(lua_State *L)
         sqlite3_prepare_v2(host->getDB(), query.c_str(),-1, &stmt, nullptr);
 
         lua_pushlightuserdata(L, stmt);
+        return 1;
+    }
+}
+
+
+int lua_Packet_getGUID(lua_State *L)
+{
+    if (lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Packet_getGUID) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::Packet * packet = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+        lua_pushstring(L, packet->guid.ToString());
         return 1;
     }
 }
@@ -657,6 +676,8 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppPacket_getData", lua_Packet_getData);
     lua_register(m_script, "cppPacket_getIP", lua_Packet_getIP);
     lua_register(m_script, "cppPacket_extract", lua_Packet_extract);
+    lua_register(m_script, "cppPacket_getGUID", lua_Packet_getGUID);
+
 
     // misc
     lua_register(m_script, "cpp_getEncrypedPW", lua_getEncryptedPW);
@@ -725,6 +746,8 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
     m_cryptor.init(tStr1, tStr2);   
 
+
+    std::cout << "pwCryptor init \n";
     m_pwCryptor.init(tStr1, tStr3);
 
     std::string tData = "Test data hahaha ";
@@ -749,8 +772,14 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     {
         passwordSalt[i] = tpwData[i];
     }
+    
+    std::cout << "password salt: ";
+    for (int i = 0 ; i <  tpwData.size() ; i++)
+    {
+        printf("%02x", passwordSalt[i]);
+    };
 
-    std::cout << "version " << sqlite3_libversion() << "\n";
+    std::cout << "\nversion " << sqlite3_libversion() << "\n";
 
 }
 
@@ -767,12 +796,19 @@ std::string ServerScriptingManager::getEncryptPW(const std::string & pw)
     retVal.reserve(buffer.size() * 2);
     std::cout << "encrypt pw \n";
 
-    for(int i = 0 ; i < buffer.size() ; i++)
-    {
-        printf("%02x", buffer[i]);
-        sprintf(&retVal[i*2],"%02x", buffer[i]);
+    // for(int i = 0 ; i < buffer.size() ; i++)
+    // {
+    //     printf("%02x", buffer[i]);
+    //     sprintf(&retVal[i*2],"%02x", buffer[i]);
+    //     // retVal[i*2] = (char)buffer[i];
+    // }
+    // retVal = std::string(buffer.begin(), buffer.end());
+    std::ostringstream oss;
+    for (unsigned char byte : buffer) {
+        oss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(byte);
     }
 
+    retVal = oss.str();
 
     std::cout << "\ndecrypt pw " << m_pwCryptor.decrypt(buffer,passwordSalt) << "\n";
 

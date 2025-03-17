@@ -9,6 +9,7 @@ require "TGUI_RTLabel"
 require "TGUI_Editbox"
 require "clientSide"
 require "loginStripOrder"
+require "clientWrapper"
 
 print("login scene run\n")
 
@@ -238,8 +239,6 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
 
         print("setOnClickCallback send data : ")
         print(Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
-
-
     end)
 
 
@@ -364,9 +363,8 @@ Login_HandleTask = {}
 ---@param packet Client_Packet
 
 
-
 HandlePacketTask["main"] = function(host,packet)
-    print("ttt2")
+
     if Login_HandleTask[packet.packetID] ~= nil then
         Login_HandleTask[packet.packetID](ClientSide_Host,packet)
     else
@@ -430,9 +428,14 @@ end
 --- Handle msg when login OK
 Login_HandleStep2[Packet_OtherID.ID_LOGIN_POS] = function(host,packet)
     print("ID_LOGIN_POS")
-    Login_Noti_Msg:setText( StripMSG(packet.data,Packet_OtherID.ID_LOGIN_POS))
-    Login_Noti_Btn:setText("OK")
-    Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
+    local tData = StripMSG(packet.data,Packet_OtherID.ID_LOGIN_POS)
+
+    local tD = SplitMessgae(tData,"|",2)
+    -- for i,v in ipairs(tD) do
+    --     print(tD[i])
+    -- end
+
+    cpp_switchScene(LoginHost,tD[1],tD[2],tD[3])
     
 end
 

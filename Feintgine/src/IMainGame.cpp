@@ -155,8 +155,9 @@ namespace Feintgine
 				m_currentScreen = m_screenList->moveNext();
 				if (m_currentScreen)
 				{
-					m_currentScreen->setRunning();
+					
 					m_currentScreen->onEntry();
+					m_currentScreen->setRunning();
 				}
 				break;
 
@@ -165,8 +166,9 @@ namespace Feintgine
 				m_currentScreen = m_screenList->movePrevious();
 				if (m_currentScreen)
 				{
-					m_currentScreen->setRunning();
+					
 					m_currentScreen->onEntry();
+					m_currentScreen->setRunning();
 				}
 				break;
 			case ScreenState::EXIT_APPLICATION:

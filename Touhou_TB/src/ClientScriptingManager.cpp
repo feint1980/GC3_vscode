@@ -165,8 +165,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
 
 
     m_cryptor.init(tStr1, tStr2);   
-
-
+    
 }
 
 ClientScriptingManager::ClientScriptingManager()
@@ -234,14 +233,14 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
             {
                 tMsg.push_back(p->data[i]);
             }
-            std::cout << "tMsg check \n";
-            for(int i = 0 ;i < tMsg.size() ; i++)
-            {
-                printf("%02x", tMsg[i]);
-            }   
+            // std::cout << "tMsg check \n";
+            // for(int i = 0 ;i < tMsg.size() ; i++)
+            // {
+            //     printf("%02x", tMsg[i]);
+            // }   
 
-            std::cout << "\ndecrypt : \n";
-            // std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
+            // std::cout << "\ndecrypt : \n";
+            // // std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
 
             lua_pushstring(m_script,m_cryptor.decrypt(tMsg, iv).c_str());
             lua_pushlightuserdata(m_script, &p->systemAddress);

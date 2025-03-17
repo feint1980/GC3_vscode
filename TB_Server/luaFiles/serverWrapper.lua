@@ -38,6 +38,13 @@ function SV_GetPacketData(host,packet)
     return cppPacket_getData(host,packet)
 end
 
+--- function wrapper of cppPacket_getGUID
+---@Description: get the GUID of a packet 
+---@param packet pointer instance of RakNet::Packet
+---@return string GUID of the packet 
+function SV_GetPacketGUID(packet)
+    return cppPacket_getGUID(packet)
+end
 
 --- function wrapper of cppPacket_getIP
 ---@Description: get the IP of a packet 
@@ -140,3 +147,4 @@ end
 function SV_getEncryptPW(host, pw)
     return cpp_getEncrypedPW(host, pw)
 end
+

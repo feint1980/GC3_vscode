@@ -32,6 +32,8 @@
 #include "TB_EmptyObject.h"
 #include "ClientHandler.h"
 
+#include "InfoHolder.h"
+
 #include "../../PacketDescription/NetworkPacket.h"
 // #include "../../TGUI_theme/ThemeCreator.hpp"
 
@@ -65,6 +67,8 @@ public:
 
     virtual void checkInput() override;
 
+    void changeScene(const std::string & tID, const std::string & tPW, const std::string & tGUID);
+
     void handleInput(Feintgine::InputManager & inputManager);
 
     void initGUI();
@@ -91,7 +95,10 @@ private:
 
     lua_State * m_script = nullptr;
 
-    ClientScriptingManager m_clientScriptingManager;
+    ClientScriptingManager * m_clientScriptingManager = nullptr;
+
+    // ClientScriptingManager m_clientScriptingManager;// = nullptr;
+
 
     TGUIScriptingManager m_guiScriptingManager;
 

@@ -1,6 +1,39 @@
 #include "LoginSceneV2.h"
 
 
+int lua_switchScene(lua_State * L)
+{
+
+    if(lua_gettop(L) != 4)
+    {
+        std::cout << "gettop failed (lua_switchScene) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        
+        std::cout << " cpp_switchScene called \n";
+        LoginSceneV2 * host = (LoginSceneV2 *)lua_touserdata(L, 1);
+        std::string t_id = lua_tostring(L, 2);
+        std::string t_pw = lua_tostring(L, 3);
+        std::string t_guid = lua_tostring(L, 4);
+
+        host->changeScene(t_id, t_pw, t_guid);
+
+    }
+    return 0;
+}
+
+
+void LoginSceneV2::changeScene(const std::string & tID, const std::string & tPW, const std::string & tGUID)
+{
+    InfoHolder::getInstance()->registerPersonalData(tGUID, tID, tPW);
+
+    // m_screenIndex = 11;
+    // std::cout << "suppose to change scene \n";
+    m_currentState = Feintgine::ScreenState::CHANGE_NEXT;
+}
+
 LoginSceneV2::LoginSceneV2()
 {
 
@@ -16,7 +49,7 @@ LoginSceneV2::LoginSceneV2(Feintgine::Window * window)
 {
     m_alpha = 0.0f;
     m_window = window;
-    m_screenIndex = 10;
+    m_screenIndex = 0;
 
     initShader();
 }
@@ -85,6 +118,12 @@ int LoginSceneV2::getPreviousScreenIndex() const
 
 void LoginSceneV2::onExit()
 {
+
+    std::cout << "on exi call \n";
+    // m_tgui->;
+    m_shader.dispose();
+    m_spriteBatch.~SpriteBatch();
+    std::cout << "exit call OK \n";
     // unload screen (unused)
 }
 
@@ -92,7 +131,11 @@ void LoginSceneV2::update(float deltaTime)
 {
 
     m_guiScriptingManager.update(deltaTime);
-    m_clientScriptingManager.update(deltaTime);
+    if(m_clientScriptingManager)
+    {
+        m_clientScriptingManager->update(deltaTime);
+
+    }
 
 }
 
@@ -174,7 +217,13 @@ void LoginSceneV2::initGUI()
 
     m_guiScriptingManager.init(m_window,m_script);
 
-    m_clientScriptingManager.init("127.0.0.1", 1123,m_script);
+    m_clientScriptingManager = new ClientScriptingManager();
+
+    m_clientScriptingManager->init("127.0.0.1", 1123,m_script);
+
+    // m_clientScriptingManager.init("127.0.0.1", 1123,m_script);
+
+    InfoHolder::getInstance()->registerClientScriptingManager(m_clientScriptingManager);
 
     // inverse case
     //m_script = m_guiScriptingManager.getLuaScript();
@@ -185,12 +234,15 @@ void LoginSceneV2::initGUI()
         std::cout << "Run loginScene script OK \n";
     }
 
+
+    lua_register(m_script, "cpp_switchScene", lua_switchScene);
+
     lua_getglobal(m_script, "LoginSceneInit");
     if(lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this);
         lua_pushlightuserdata(m_script, &m_guiScriptingManager);
-        lua_pushlightuserdata(m_script, &m_clientScriptingManager);
+        lua_pushlightuserdata(m_script, m_clientScriptingManager);
         std::cout << "check ref : " << &m_guiScriptingManager << "\n";
         const int argc = 3;
         const int returnCount = 0;
@@ -199,7 +251,6 @@ void LoginSceneV2::initGUI()
             std::cout << "Login scene init script from C++ OK \n";
         }
     }
-
 }
 
 void LoginSceneV2::drawGUI()
