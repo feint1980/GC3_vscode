@@ -95,7 +95,19 @@ end
 T_Host = nil
 
 
+PacketIdentifier = {
+    ID_DISCONNECTION_NOTIFICATION = 21,
+    ID_NEW_INCOMING_CONNECTION = 19,
+    ID_INCOMPATIBLE_PROTOCOL_VERSION = 25,
+    ID_CONNECTED_PING = 0,
+    ID_UNCONNECTED_PING = 1,
+    ID_CONNECTION_LOST = 20
+
+}
+
 ResponseHandle = {}
+
+CommonHandle = {}
 
 ---@Description combines packet
 ---@param type string type of packet to wrap
@@ -132,6 +144,23 @@ function HandleMessage(host,packet,requestCode)
         ResponseHandle[requestCode](host,packet)
     end
 
+end
+
+--- function handle Common 
+function HandleCommon(host, packet, identifierCode)
+
+    if CommonHandle[identifierCode] ~= nil then
+        CommonHandle[identifierCode](host,packet)
+    end
+end
+
+--- function CommonHandle (PacketIdentifier.ID_CONNECTION_LOST)
+--- @Description: detect connection lost
+--- @param host pointer instance of ServerScriptingManager
+--- @param packet pointer instance of RakNet::Packet
+CommonHandle[PacketIdentifier.ID_CONNECTION_LOST] = function(host,packet)
+    local guid = SV_GetPacketGUID(packet)
+    print("detect connection from " .. ClientEPList[guid].name .. " lost")
 end
 
 function AddColData(colName, value)

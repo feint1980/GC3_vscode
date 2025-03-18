@@ -39,7 +39,7 @@ function Picture:new(o)
     return o
 end
 
-function Picture:init(host,path,posX,posY,width,height,parent) )
+function Picture:init(host,path,posX,posY,width,height,parent)
     parent = parent or nil
 
     self.host = host
@@ -53,23 +53,104 @@ function Picture:init(host,path,posX,posY,width,height,parent) )
 end
 
 
+---@Description set the position of the picture
+---@param posX number x position
+---@param posY number y position
+function Picture:setPos(posX, posY)
+    TGUI_Picture_SetPos(self.ptr, posX, posY)
+    self.posX = posX
+    self.posY = posY
+end
 
+---@Description set the position of the picture (string version)
+---@param posXStr string x position
+---@param posYStr string y position
+function Picture:setPosStr(posXStr, posYStr)
+    TGUI_Picture_SetPosStr(self.ptr, posXStr, posYStr)
+    
+end
+
+---@Description set the size of the picture
+---@param width number width
+---@param height number height
+function Picture:setSize(width, height)
+    TGUI_Picture_SetSize(self.ptr, width, height)
+    self.width = width
+    self.height = height
+end
+
+---@Description set the size of the picture (string version)
+---@param width string width
+---@param height string height
+function Picture:setSizeStr(width, height)
+    TGUI_Picture_SetSizeStr(self.ptr, width, height)
+end
+
+---@Description set the texture of the picture
+---@param path string path
+function Picture:setTexture(path)
+    TGUI_Picture_SetTexture(self.ptr, path)
+    self.path = path
+end
 
 
 --- MARK: Wrapper
 --- function wrapper of cpp_Label_Create
 ---@Description create new tgui label object in cpp
 ---@param host pointer instance of TGUIScriptingManager
----@param text string text to display
+---@param path string path to texture file
 ---@param posX number x position
 ---@param posY number y position
+---@param width number width
+---@param height number height
 ---@param parent? pointer instance parent, default nil (main)
 ---@return pointer instance of TGUI Label
-function TGUI_Picture_Create(host, text, posX, posY,parent)
+function TGUI_Picture_Create(host, path, posX, posY,    width, height,parent)
     parent = parent or nil
-    return cpp_Label_Create(host, text, posX, posY,parent)
+    return cpp_Picture_Create(host, path, posX, posY, width, height,parent)
 end
 
+--- function wrapper of cpp_Picture_SetPos
+--- @Description set the position of the picture
+--- @param picture pointer instance of TGUI Picture
+--- @param posX number x position
+--- @param posY number y position
+function TGUI_Picture_SetPos(picture, posX, posY)
+    cpp_Picture_SetPos(picture, posX, posY)
+end
 
+--- function wrapper of cpp_Picture_SetPosStr
+--- @Description set the position of the picture (string version)
+--- @param picture pointer instance of TGUI Picture
+--- @param posXStr string x position
+--- @param posYStr string y position
+function TGUI_Picture_SetPosStr(picture, posXStr, posYStr)
+    cpp_Picture_SetPosStr(picture, posXStr, posYStr)
+end
 
+--- function wrapper of cpp_Picture_SetSize
+--- @Description set the size of the picture
+--- @param picture pointer instance of TGUI Picture
+--- @param width number width
+--- @param height number height
+function TGUI_Picture_SetSize(picture, width, height)
+    cpp_Picture_SetSize(picture, width, height)
+end
+
+--- function wrapper of cpp_Picture_SetSizeStr
+--- @Description set the size of the picture (string version)
+--- @param picture pointer instance of TGUI Picture
+--- @param width string width
+--- @param height string height
+function TGUI_Picture_SetSizeStr(picture, width, height)
+    cpp_Picture_SetSizeStr(picture, width, height)
+end
+
+--- function wrapper of lua_Picture_SetTexture
+---@Description set the texture of the picture
+---@param picture pointer instance of TGUI Picture
+---@param texturePath string path to texture
+function TGUI_Picture_SetTexture(picture, texturePath)
+    lua_Picture_SetTexture(picture, texturePath)
+end
 

@@ -6,7 +6,7 @@ CREATE TABLE register_key_table(
     key_ready BOOLEAN
 );
 INSERT INTO register_key_table VALUES(1,'F98ER24S8UR3',0);
-INSERT INTO register_key_table VALUES(2,'ZPZXH0DA1YOJ',0);
+INSERT INTO register_key_table VALUES(2,'ZPZXH0DA1YOJ',1);
 INSERT INTO register_key_table VALUES(3,'E8760XLSLS7E',1);
 INSERT INTO register_key_table VALUES(4,'9TH4LPCV7UVH',1);
 INSERT INTO register_key_table VALUES(5,'32X6K7VHLVZW',1);
@@ -21,8 +21,7 @@ CREATE TABLE account_table (
     account_lvl INTEGER DEFAULT 0 -- include admin ( for inquiry ) 
 
 );
-INSERT INTO account_table VALUES(7,'testdata','38df562ea277489ce6ae90f05dd3f955',0);
-INSERT INTO account_table VALUES(8,'feint','95372b148c6f360dfa9bc283775a8036',2);
+INSERT INTO account_table VALUES(9,'feint','b81e79006c48754188243d6130e5c46787e2096c0e97941bcce56490902e024a',2);
 CREATE TABLE account_stats_table (
     account_stat_id varchar(64) primary key, -- primary key
     mon DOUBLE,
@@ -48,6 +47,6 @@ CREATE TABLE character_existance_table(
     REFERENCES character_base_table(character_id)
 );
 DELETE FROM sqlite_sequence;
-INSERT INTO sqlite_sequence VALUES('account_table',8);
+INSERT INTO sqlite_sequence VALUES('account_table',9);
 INSERT INTO sqlite_sequence VALUES('register_key_table',9);
 COMMIT;

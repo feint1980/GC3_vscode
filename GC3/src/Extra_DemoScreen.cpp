@@ -160,8 +160,6 @@ void Extra_DemoScreen::onEntry()
 
 	m_tgui_load->add(m_text_load);
 
-	
-
 }
 
 void Extra_DemoScreen::onExit()

@@ -63,6 +63,8 @@ public:
 
     void setStataus(ClientStatus status) { m_status = status; }
 
+    void cleanUp();
+
     private:
     RakNet::RakPeerInterface * m_client = nullptr;
 

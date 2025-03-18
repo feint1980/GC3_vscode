@@ -109,6 +109,8 @@ void ServerMain::run()
     std::cout << "Server shutdown \n"; 
 
 }
+
+
 void ServerMain::update(float deltaTime)
 {
 
@@ -121,44 +123,53 @@ void ServerMain::update(float deltaTime)
 			// Check if this is a network message packet
 			switch (packetIdentifier)
 			{
-			case ID_DISCONNECTION_NOTIFICATION:
-				// Connection lost normally
-				printf("ID_DISCONNECTION_NOTIFICATION from %s\n", m_currentPacket->systemAddress.ToString(true));;
-				break;
+			// case ID_DISCONNECTION_NOTIFICATION:
+			// 	// Connection lost normally
+			// 	printf("ID_DISCONNECTION_NOTIFICATION from %s\n", m_currentPacket->systemAddress.ToString(true));;
+			// 	break;
 
-			case ID_NEW_INCOMING_CONNECTION:
-				{// Somebody connected.  We have their IP now
-				printf("ID_NEW_INCOMING_CONNECTION from %s with GUID %s\n", m_currentPacket->systemAddress.ToString(true), m_currentPacket->guid.ToString());
-				m_clientID=m_currentPacket->systemAddress; // Record the player ID of the client
+			// case ID_NEW_INCOMING_CONNECTION:
+			// 	{// Somebody connected.  We have their IP now
+			// 	printf("ID_NEW_INCOMING_CONNECTION from %s with GUID %s\n", m_currentPacket->systemAddress.ToString(true), m_currentPacket->guid.ToString());
+			// 	m_clientID=m_currentPacket->systemAddress; // Record the player ID of the client
 
-				printf("Remote internal IDs:\n");
-				for (int index=0; index < MAXIMUM_NUMBER_OF_INTERNAL_IDS; index++)
-				{
-					RakNet::SystemAddress internalId = m_server->GetInternalID(m_currentPacket->systemAddress, index);
-					if (internalId!=RakNet::UNASSIGNED_SYSTEM_ADDRESS)
-					{
-						printf("%i. %s\n", index+1, internalId.ToString(true));
-					}
-				}
+			// 	printf("Remote internal IDs:\n");
+			// 	for (int index=0; index < MAXIMUM_NUMBER_OF_INTERNAL_IDS; index++)
+			// 	{
+			// 		RakNet::SystemAddress internalId = m_server->GetInternalID(m_currentPacket->systemAddress, index);
+			// 		if (internalId!=RakNet::UNASSIGNED_SYSTEM_ADDRESS)
+			// 		{
+			// 			printf("%i. %s\n", index+1, internalId.ToString(true));
+			// 		}
+			// 	}
 
-				break;
-                }
-			case ID_INCOMPATIBLE_PROTOCOL_VERSION:
-				printf("ID_INCOMPATIBLE_PROTOCOL_VERSION\n");
-				break;
+			// 	break;
+            //     }
+			// case ID_INCOMPATIBLE_PROTOCOL_VERSION:
+			// 	printf("ID_INCOMPATIBLE_PROTOCOL_VERSION\n");
+			// 	break;
 
-			case ID_CONNECTED_PING:
-			case ID_UNCONNECTED_PING:
-                {
-				printf("Ping from %s\n", m_currentPacket->systemAddress.ToString(true));
+			// case ID_CONNECTED_PING:
+			// case ID_UNCONNECTED_PING:
+            //     {
+			// 	printf("Ping from %s\n", m_currentPacket->systemAddress.ToString(true));
 
-				break;
-                }
-			case ID_CONNECTION_LOST:
-				// Couldn't deliver a reliable packet - i.e. the other system was abnormally
-				// terminated
-				printf("ID_CONNECTION_LOST from %s\n", m_currentPacket->systemAddress.ToString(true));
-				break;
+			// 	break;
+            //     }
+			// case ID_CONNECTION_LOST:
+			// 	// Couldn't deliver a reliable packet - i.e. the other system was abnormally
+			// 	// terminated
+			// 	printf("ID_CONNECTION_LOST from %s\n", m_currentPacket->systemAddress.ToString(true));
+			// 	break;
+
+            case ID_DISCONNECTION_NOTIFICATION:
+            case ID_NEW_INCOMING_CONNECTION:
+            case ID_INCOMPATIBLE_PROTOCOL_VERSION:
+            case ID_CONNECTED_PING:
+            case ID_UNCONNECTED_PING:
+            case ID_CONNECTION_LOST:
+                m_scriptManager->handleCommon(m_currentPacket);
+            break;
 
 			default:
 

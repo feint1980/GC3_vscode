@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.obj"
-  "CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.obj.d"
+  "CMakeFiles/Whiteboard.dir/src/bcryptExample.cpp.obj"
+  "CMakeFiles/Whiteboard.dir/src/bcryptExample.cpp.obj.d"
   "Whiteboard.exe"
   "Whiteboard.exe.manifest"
   "Whiteboard.pdb"

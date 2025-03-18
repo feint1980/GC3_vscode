@@ -27,6 +27,9 @@
 #include "LuaManager.h"
 
 #include <iostream>
+#include <bcrypt.h>
+
+
 
 //#include "ServerMain.h"
 
@@ -60,6 +63,8 @@ public:
 
     ClientRequestCode handleCommand(RakNet::Packet *p);
 
+    unsigned int handleCommon(RakNet::Packet *p);
+
     std::string getMegFromPackget(RakNet::Packet *p);
 
     uint32_t sendData(const RakNet::SystemAddress & target, const std::string & data);
@@ -78,7 +83,7 @@ private:
 
     Feintgine::F_Cryptor m_cryptor;
 
-    Feintgine::F_Cryptor m_pwCryptor;
+    // Feintgine::F_Cryptor m_pwCryptor;
 
     RakNet::RakPeerInterface * m_server;
     DataBaseHandler * m_dbh;

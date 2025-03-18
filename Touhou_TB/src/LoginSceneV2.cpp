@@ -29,8 +29,6 @@ void LoginSceneV2::changeScene(const std::string & tID, const std::string & tPW,
 {
     InfoHolder::getInstance()->registerPersonalData(tGUID, tID, tPW);
 
-    // m_screenIndex = 11;
-    // std::cout << "suppose to change scene \n";
     m_currentState = Feintgine::ScreenState::CHANGE_NEXT;
 }
 
@@ -67,7 +65,7 @@ void LoginSceneV2::initShader()
 void LoginSceneV2::onEntry()
 {
     
-	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
+	// Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	
 
@@ -108,7 +106,7 @@ void LoginSceneV2::destroy()
 
 int LoginSceneV2::getNextScreenIndex() const
 {
-    return 12;
+    return 1;
 }
 
 int LoginSceneV2::getPreviousScreenIndex() const
@@ -121,9 +119,14 @@ void LoginSceneV2::onExit()
 
     std::cout << "on exi call \n";
     // m_tgui->;
-    m_shader.dispose();
-    m_spriteBatch.~SpriteBatch();
-    std::cout << "exit call OK \n";
+    // m_guiScriptingManager.cleanup();
+    // m_shader.dispose();
+    // if(m_clientScriptingManager)
+    // {
+    //     m_clientScriptingManager->cleanUp();
+    // }
+    // m_spriteBatch.~SpriteBatch();
+    // std::cout << "exit call OK \n";
     // unload screen (unused)
 }
 

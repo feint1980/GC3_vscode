@@ -2,7 +2,7 @@
 #ifndef _SCREENLIST_H_
 #define _SCREENLIST_H_
 #include <vector>
-
+#include <iostream>
 namespace Feintgine
 {
 	class IMainGame;

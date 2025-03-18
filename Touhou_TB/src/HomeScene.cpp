@@ -1,6 +1,31 @@
 #include "HomeScene.h"
 
 
+
+int lua_getInfo(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_getInfo) " << lua_gettop(L) << "\n";
+        std::cout << lua_tostring(L, 1) << "\n";
+        return -1;
+
+    }
+    {
+        int totalNum = lua_tonumber(L, 1);
+        std::vector<std::string> data;
+        InfoHolder::getInstance()->getData(data);
+        for(int i = 0 ; i < totalNum; i++)
+        {
+            // std::cout << "push data " << data[i] << "\n";
+            lua_pushstring(L, data[i].c_str());
+        }
+        return totalNum;
+
+    }
+    return 0;
+}
+
 HomeScene::HomeScene()
 {
 
@@ -38,14 +63,9 @@ void HomeScene::onEntry()
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	
-
     m_camera.setPosition(glm::vec2(0, 0));
-    //m_camera.setScale(1.5f);
 
     m_camera.update();
-
-    
-    // m_scriptingManager.init("127.0.0.1", 1123);
 
     m_spriteBatch.init();
     
@@ -61,6 +81,25 @@ void HomeScene::onEntry()
     else{
         std::cout << " no SDL_HasScreenKeyboardSupport ##################\n";
     }
+}
+
+void HomeScene::initLoading()
+{
+    m_tgui_load = new tgui::Gui(m_window->getWindow());
+    tgui::Font font_load("font/Chronicle.ttf");
+	m_tgui_load->setFont(font_load);
+
+    m_text_load = tgui::Label::create();
+	m_text_load->setPosition(m_window->getScreenWidth() / 2, m_window->getScreenHeight() / 2);
+	m_text_load->setTextSize(32);
+    m_text_load->setOrigin(0.5,0);
+	m_text_load->getRenderer()->setTextColor(tgui::Color::White);
+	m_text_load->getRenderer()->setBorderColor(tgui::Color::Black);
+	m_text_load->getRenderer()->setTextOutlineThickness(4);
+	m_text_load->setText("Loading ...");
+
+	m_tgui_load->add(m_text_load);
+
 }
 
 void HomeScene::build()
@@ -92,8 +131,12 @@ void HomeScene::onExit()
 void HomeScene::update(float deltaTime)
 {
 
+    
     m_guiScriptingManager.update(deltaTime);
-    m_clientScriptingManager.update(deltaTime);
+    if(m_clientScriptingManager)
+    {
+        m_clientScriptingManager->update(deltaTime);
+    }
 
 }
 
@@ -154,7 +197,7 @@ void HomeScene::draw()
 
 	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 
-    //m_bg.draw(m_spriteBatch);
+    // m_bg.draw(m_spriteBatch);
 
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
@@ -174,21 +217,22 @@ void HomeScene::initGUI()
 
     m_guiScriptingManager.init(m_window,m_script);
 
-    m_clientScriptingManager.init("127.0.0.1", 1123,m_script);
-
-    // inverse case
+    m_clientScriptingManager = InfoHolder::getInstance()->getClientScriptingManager();
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/Home/homeScene.lua")))
     {
         std::cout << "Run loginScene script OK \n";
     }
 
+
+    lua_register(m_script, "cpp_getInfo", lua_getInfo);
+
     lua_getglobal(m_script, "HomeSceneInit");
     if(lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this);
         lua_pushlightuserdata(m_script, &m_guiScriptingManager);
-        lua_pushlightuserdata(m_script, &m_clientScriptingManager);
+        lua_pushlightuserdata(m_script, m_clientScriptingManager);
         std::cout << "check ref : " << &m_guiScriptingManager << "\n";
         const int argc = 3;
         const int returnCount = 0;
@@ -203,4 +247,13 @@ void HomeScene::initGUI()
 void HomeScene::drawGUI()
 {
     m_guiScriptingManager.draw();
+
+}
+
+void HomeScene::drawLoading()
+{
+    if(m_tgui_load)
+    {
+        m_tgui_load->draw();
+    }
 }

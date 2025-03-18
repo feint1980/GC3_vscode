@@ -281,13 +281,13 @@ namespace Feintgine {
 
 		// }
 		for(int i = 0 ; i < m_storedPacketCount; i++)
-			{
-				 m_SpritePackets.insert(std::make_pair(m_storedKey[i], std::move(m_FutureMap[i].get())));
-				
-				//m_SpritePackets[m_storedKey[i]] = m_FutureMap[i].get();
-				//std::cout << "packget " << m_storedKey[i] << " is done \n";				
-				m_packetCount++;
-			}
+		{
+				m_SpritePackets.insert(std::make_pair(m_storedKey[i], std::move(m_FutureMap[i].get())));
+			
+			//m_SpritePackets[m_storedKey[i]] = m_FutureMap[i].get();
+			//std::cout << "packget " << m_storedKey[i] << " is done \n";				
+			m_packetCount++;
+		}
 		// auto loadTask = std::async(std::launch::async, [&]{
 		// 	for(int i = 0 ; i < m_FutureMap.size(); i++)
 		// 	{
@@ -316,14 +316,7 @@ namespace Feintgine {
 			
 			
 		}
-
-
-
-		
-
 		std::cout << "back to main thread \n";
-
-
 		// 
 		
 

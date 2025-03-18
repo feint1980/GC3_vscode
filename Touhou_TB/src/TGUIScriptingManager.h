@@ -38,6 +38,8 @@ public:
 
     void handleInput(Feintgine::InputManager & inputManager);
 
+    void cleanup();
+
     tgui::Gui * getTGUI() { return m_tgui; }
 
 private:

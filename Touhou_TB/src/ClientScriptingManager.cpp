@@ -191,6 +191,16 @@ void ClientScriptingManager::handleMessage(RakNet::Packet *p)
     //PacketCode requestCode = getSpecialRequestCode(p);
 }
 
+void ClientScriptingManager::cleanUp()
+{
+    for(int i = 0 ; i < 8 ; i++)
+    {
+        m_client->DeallocatePacket(m_client->Receive());
+    }
+
+    RakNet::RakPeerInterface::DestroyInstance(m_client);
+}
+
 void ClientScriptingManager::connect()
 {
     if(m_RakNetCoreInitialized)

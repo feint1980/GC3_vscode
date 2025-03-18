@@ -20,6 +20,12 @@ print("login scene run\n")
 
 LoginHost = nil
 
+function Wait(seconds)
+    local start = os.time()
+    while os.time() - start < seconds do end
+end
+
+
 ---@type pointer TGUIScriptingPtr
 Login_GUIScriptingPtr = nil
 
@@ -434,6 +440,13 @@ Login_HandleStep2[Packet_OtherID.ID_LOGIN_POS] = function(host,packet)
     -- for i,v in ipairs(tD) do
     --     print(tD[i])
     -- end
+    
+    Login_Noti_Msg:setText("Loading ...")
+    Login_Noti_Btn:setText("OK")
+    Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
+    
+
+    -- Login_LoginPanel:hideWithEffect(PanelShowType.Fade,250)
 
     cpp_switchScene(LoginHost,tD[1],tD[2],tD[3])
     

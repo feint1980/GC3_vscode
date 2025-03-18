@@ -11,7 +11,25 @@ static const std::string CHARACTER_EXISTANCE_TABLE = "character_existance_table"
 
 static const std::string INSERT = "insert into";
 
+std::vector<unsigned char> salt = {0x12, 0x34, 0x56, 0x78, 0x9A, 0xBC, 0xDE, 0xF0};  // password salt 
 
+std::vector<unsigned char> hashPasswordPBKDF2(const std::string& password, const std::vector<unsigned char>& salt, int iterations = 1000) {
+    BCRYPT_ALG_HANDLE hAlgorithm;
+    DWORD keyLength = 32;  // 256-bit output
+
+    if (BCryptOpenAlgorithmProvider(&hAlgorithm, BCRYPT_SHA256_ALGORITHM, NULL, BCRYPT_ALG_HANDLE_HMAC_FLAG) != 0) {
+        throw std::runtime_error("Failed to open SHA-256 HMAC provider.");
+    }
+
+    std::vector<unsigned char> derivedKey(keyLength);
+    if (BCryptDeriveKeyPBKDF2(hAlgorithm, (PUCHAR)password.data(), password.size(), (PUCHAR)salt.data(), salt.size(), iterations, derivedKey.data(), keyLength, 0) != 0) {
+        BCryptCloseAlgorithmProvider(hAlgorithm, 0);
+        throw std::runtime_error("Failed to derive key.");
+    }
+
+    BCryptCloseAlgorithmProvider(hAlgorithm, 0);
+    return derivedKey;
+}
 
 
 static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **azColName)
@@ -510,6 +528,31 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
     return 0;
 }
 
+unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
+{
+    unsigned char packetIdentifier = GetPacketIdentifier(p);
+
+    std::cout << "handleCommon called " << packetIdentifier << "\n";
+    lua_getglobal(m_script, "HandleCommon");
+    if (lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this); // host
+
+        lua_pushlightuserdata(m_script, p);
+
+        lua_pushnumber(m_script, packetIdentifier);
+
+        // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+
+        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
+        {
+            std::cout << "call HandleMessage failed \n";
+        }
+    }
+
+    return 666;
+}
+
 ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
 {
     PacketCode requestCode = getSpecialRequestCode(p);
@@ -748,7 +791,6 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
 
     std::cout << "pwCryptor init \n";
-    m_pwCryptor.init(tStr1, tStr3);
 
     std::string tData = "Test data hahaha ";
     unsigned char iv[AES_IV_SIZE];
@@ -788,32 +830,15 @@ std::string ServerScriptingManager::getEncryptPW(const std::string & pw)
 
     std::string retVal;
 
-   // Remove padding
-    // retVal.assign(reinterpret_cast<char*>(m_pwCryptor.encrypt(pw,passwordSalt).data()));
+    std::vector<unsigned char> hashed = hashPasswordPBKDF2(pw, salt);
 
-
-    std::vector<unsigned char> buffer = m_pwCryptor.encrypt(pw,passwordSalt); 
-    retVal.reserve(buffer.size() * 2);
-    std::cout << "encrypt pw \n";
-
-    // for(int i = 0 ; i < buffer.size() ; i++)
-    // {
-    //     printf("%02x", buffer[i]);
-    //     sprintf(&retVal[i*2],"%02x", buffer[i]);
-    //     // retVal[i*2] = (char)buffer[i];
-    // }
-    // retVal = std::string(buffer.begin(), buffer.end());
     std::ostringstream oss;
-    for (unsigned char byte : buffer) {
+    for (unsigned char byte : hashed) {
         oss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(byte);
     }
 
     retVal = oss.str();
 
-    std::cout << "\ndecrypt pw " << m_pwCryptor.decrypt(buffer,passwordSalt) << "\n";
-
-
-    std::cout << "ret val " << retVal << "\n";
     return retVal;
 }
 

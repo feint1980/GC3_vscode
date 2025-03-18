@@ -1,7 +1,7 @@
 package.path = package.path .. ";../luaFiles/?.lua"
 
 require "serverWrapper"
-
+require "clientHandling"
 
 PacketCode = {
     login = 35,
@@ -191,19 +191,12 @@ ResponseHandle[PacketCode.register] = function(host,packet)
 
             local keyReadyValue = tonumber(Query_val[1])
             if keyReadyValue == 1 then
-                -- local insertAccountQuery = "INSERT INTO " .. Table.account.tb_name ..'('.. Table.account.id .. ', ' .. Table.account.pw  .. ") VALUES ('" .. t_id .. "', '" .. t_pw .. "');"
-
 
                 local insertAccountQuery = "INSERT INTO " .. Table.account.tb_name ..'('.. Table.account.id .. ', ' .. Table.account.pw  .. ") VALUES ( ?,?);"
-
-                -- print("account insert check : " .. insertAccountQuery)
-                -- SV_DoQuery(host,insertAccountQuery)
 
                 local ePW = SV_getEncryptPW(host, t_pw)
 
                 SVI_DoQuerySTMT(host,insertAccountQuery,{t_id,ePW})
-
-                -- local updateKeyQuery = "UPDATE " .. Table.register_key.tb_name .. " SET " .. Table.register_key.ready .. " = '0' WHERE " .. Table.register_key.val .. " = '" .. t_key .. "';"
 
                 local updateKeyQuery = "UPDATE " .. Table.register_key.tb_name .. " SET " .. Table.register_key.ready .. " = '0' WHERE " .. Table.register_key.val .. " = ?;"
 
@@ -258,6 +251,10 @@ ResponseHandle[PacketCode.login] = function(host,packet)
         local guid = SV_GetPacketGUID(packet)
         SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
 
+
+        local systemAddress = SV_GetPacketIP(packet)
+
+        CH_AddClientEP(systemAddress, guid, t_id)
 
     else
         print("account check failed send negative response")

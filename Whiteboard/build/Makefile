@@ -128,29 +128,29 @@ Whiteboard/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/build
 .PHONY : Whiteboard/fast
 
-src/whiteboardMain.obj: src/whiteboardMain.cpp.obj
-.PHONY : src/whiteboardMain.obj
+src/bcryptExample.obj: src/bcryptExample.cpp.obj
+.PHONY : src/bcryptExample.obj
 
 # target to build an object file
-src/whiteboardMain.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.obj
-.PHONY : src/whiteboardMain.cpp.obj
+src/bcryptExample.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/bcryptExample.cpp.obj
+.PHONY : src/bcryptExample.cpp.obj
 
-src/whiteboardMain.i: src/whiteboardMain.cpp.i
-.PHONY : src/whiteboardMain.i
+src/bcryptExample.i: src/bcryptExample.cpp.i
+.PHONY : src/bcryptExample.i
 
 # target to preprocess a source file
-src/whiteboardMain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.i
-.PHONY : src/whiteboardMain.cpp.i
+src/bcryptExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/bcryptExample.cpp.i
+.PHONY : src/bcryptExample.cpp.i
 
-src/whiteboardMain.s: src/whiteboardMain.cpp.s
-.PHONY : src/whiteboardMain.s
+src/bcryptExample.s: src/bcryptExample.cpp.s
+.PHONY : src/bcryptExample.s
 
 # target to generate assembly for a file
-src/whiteboardMain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.s
-.PHONY : src/whiteboardMain.cpp.s
+src/bcryptExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/bcryptExample.cpp.s
+.PHONY : src/bcryptExample.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Whiteboard
-	@echo ... src/whiteboardMain.obj
-	@echo ... src/whiteboardMain.i
-	@echo ... src/whiteboardMain.s
+	@echo ... src/bcryptExample.obj
+	@echo ... src/bcryptExample.i
+	@echo ... src/bcryptExample.s
 .PHONY : help
 
 

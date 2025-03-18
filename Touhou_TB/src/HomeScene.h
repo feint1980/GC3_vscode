@@ -32,6 +32,8 @@
 #include "TB_EmptyObject.h"
 #include "ClientHandler.h"
 
+#include "InfoHolder.h"
+
 #include "../../PacketDescription/NetworkPacket.h"
 
 #include "TGUIScriptingManager.h"
@@ -72,7 +74,11 @@ public:
 
     void initShader();
 
+    void drawLoading();
+
     void drawGUI();
+
+    void initLoading();
 
 private:
 
@@ -87,10 +93,13 @@ private:
     TB_EmptyObject m_bg;
 
     tgui::Gui * m_tgui = nullptr;
+    tgui::Label::Ptr m_text_load;
+
+    tgui::Gui * m_tgui_load;
 
     lua_State * m_script = nullptr;
 
-    ClientScriptingManager m_clientScriptingManager;
+    ClientScriptingManager *m_clientScriptingManager;
 
     TGUIScriptingManager m_guiScriptingManager;
 

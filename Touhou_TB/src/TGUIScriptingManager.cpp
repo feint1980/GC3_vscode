@@ -1068,7 +1068,13 @@ void TGUIScriptingManager::checkInput(const SDL_Event &  evnt)
     }
 }
 
-    
+void TGUIScriptingManager::cleanup()
+{
+    for(auto it = m_tgui->getWidgets().begin(); it != m_tgui->getWidgets().end(); it++)
+    {
+        m_tgui->remove(*it);
+    }
+}
 
 void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
 {

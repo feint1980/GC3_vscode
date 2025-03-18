@@ -1,6 +1,7 @@
 #include "ScreenList.h"
 #include "IGameScreen.h"
 
+
 namespace Feintgine
 {
 	ScreenList::ScreenList(IMainGame * game) :
@@ -65,6 +66,7 @@ namespace Feintgine
 		{
 			return nullptr;
 		}
+		std::cout << "m_currentScreenIndex " << m_currentScreenIndex << "\n";
 		return m_screens[m_currentScreenIndex];
 	}
 	void ScreenList::onExit()

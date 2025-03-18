@@ -36,6 +36,15 @@ public:
     void registerPersonalData(const std::string & guid, const std::string & id, const std::string & pw) { m_guid = guid; m_id = id; m_pw = pw; }
 
 
+    void getData(std::vector<std::string> & data) 
+    {
+        data.clear();
+        data.push_back(m_id);
+        data.push_back(m_pw);
+        data.push_back(m_guid);
+    }
+
+
     ClientScriptingManager * getClientScriptingManager() { return m_clientScriptingManager; }
 
 
