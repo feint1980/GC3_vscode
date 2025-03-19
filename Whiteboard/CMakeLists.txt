@@ -6,10 +6,13 @@ project(${PROJECT_N} VERSION 1.0)
 set(CMAKE_CXX_FLAGS "-fpermissive -std=c++17 -municode -m32")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/bcryptExample.cpp
-    # ${PROJECT_SOURCE_DIR}/../PacketDescription/NetworkPacket.cpp
-    # GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.c
-
+file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/testBoard.cpp
+    # ${PROJECT_SOURCE_DIR}/../PacketDescription/AESRSA_hybrid_example.cpp
+    # ${PROJECT_SOURCE_DIR}/../PacketDescription/bcryptExample.cpp
+    # ${PROJECT_SOURCE_DIR}/../PacketDescription/json_example.cpp
+    # ${PROJECT_SOURCE_DIR}/../PacketDescription/keyExamples.cpp
+    # ${PROJECT_SOURCE_DIR}/../PacketDescription/threadPoolExample.cpp
+    # ${PROJECT_SOURCE_DIR}/../PacketDescription/whiteboardMain.cpp
 )
 
 # a macro that gets all of the header containing directories. 

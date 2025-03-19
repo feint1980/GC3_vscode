@@ -532,7 +532,7 @@ unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
 {
     unsigned char packetIdentifier = GetPacketIdentifier(p);
 
-    std::cout << "handleCommon called " << packetIdentifier << "\n";
+    std::cout << "handleCommon called #########" << (int)packetIdentifier << "#############\n";
     lua_getglobal(m_script, "HandleCommon");
     if (lua_isfunction(m_script, -1))
     {
@@ -871,6 +871,13 @@ PacketCode ServerScriptingManager::getSpecialRequestCode(RakNet::Packet *p)
         }
     }
 
+    if(cData.find("|USERDATA_REQUEST|") != std::string::npos)
+    {
+        if(cData.find("|USERDATA_END_REQUEST|") != std::string::npos)
+        {
+            return PacketCode::USERDATA;
+        }
+    }
 
     //std::cout << "Not a request, normal message : \n";
     return PacketCode::INVALID;

@@ -43,6 +43,7 @@ enum PacketCode
     LOGIN,
     REGISTER,
     REQUEST_KEY,
+    USERDATA = 65,
     INVALID = 322,
     UNKNOWN = 792
 

@@ -415,6 +415,8 @@ int lua_Label_SetAlignment(lua_State * L)
             case 2:// right
             {
                 // todo later
+                label->get()->setOrigin(1.0,0);
+                label->get()->setAutoSize(true);
             }
             break;
             default:

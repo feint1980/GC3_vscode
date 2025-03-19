@@ -128,29 +128,29 @@ Whiteboard/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/build
 .PHONY : Whiteboard/fast
 
-src/bcryptExample.obj: src/bcryptExample.cpp.obj
-.PHONY : src/bcryptExample.obj
+src/testBoard.obj: src/testBoard.cpp.obj
+.PHONY : src/testBoard.obj
 
 # target to build an object file
-src/bcryptExample.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/bcryptExample.cpp.obj
-.PHONY : src/bcryptExample.cpp.obj
+src/testBoard.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/testBoard.cpp.obj
+.PHONY : src/testBoard.cpp.obj
 
-src/bcryptExample.i: src/bcryptExample.cpp.i
-.PHONY : src/bcryptExample.i
+src/testBoard.i: src/testBoard.cpp.i
+.PHONY : src/testBoard.i
 
 # target to preprocess a source file
-src/bcryptExample.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/bcryptExample.cpp.i
-.PHONY : src/bcryptExample.cpp.i
+src/testBoard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/testBoard.cpp.i
+.PHONY : src/testBoard.cpp.i
 
-src/bcryptExample.s: src/bcryptExample.cpp.s
-.PHONY : src/bcryptExample.s
+src/testBoard.s: src/testBoard.cpp.s
+.PHONY : src/testBoard.s
 
 # target to generate assembly for a file
-src/bcryptExample.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/bcryptExample.cpp.s
-.PHONY : src/bcryptExample.cpp.s
+src/testBoard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/testBoard.cpp.s
+.PHONY : src/testBoard.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Whiteboard
-	@echo ... src/bcryptExample.obj
-	@echo ... src/bcryptExample.i
-	@echo ... src/bcryptExample.s
+	@echo ... src/testBoard.obj
+	@echo ... src/testBoard.i
+	@echo ... src/testBoard.s
 .PHONY : help
 
 

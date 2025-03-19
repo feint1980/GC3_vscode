@@ -6,7 +6,8 @@ require "clientHandling"
 PacketCode = {
     login = 35,
     register = 36,
-    requestKey = 37
+    requestKey = 37,
+    requestUserData = 65
 }
 
 
@@ -147,30 +148,15 @@ ResponseHandle[PacketCode.register] = function(host,packet)
 
     local checkAccountExistQuery = "SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ?;"
 
-    -- local stmt = SV_CreateSQLSTMT(host,checkAccountExistQuery)
-    
-    -- SV_BindSQLSTMT(stmt,1,t_id)
-    -- SV_BindSQLSTMT(stmt,2,t_pw)
-    
-    -- SVI_DoQuerySTMT(host,stmt)
-    -- SV_SQLFinalizeStmt(stmt)
-
     SVI_DoQuerySTMT(host,checkAccountExistQuery,{t_id})
 
-
-    -- SVI_DoQuery(host,checkAccountExistQuery)
 
     local result = Query_val[1]
     local accountCount = tonumber(result)
     if accountCount == 0 then
-        -- local addAccountQuery = "INSERT INTO " .. Table.account.tb_name .. " VALUES ('" .. t_id .. "', '" .. t_pw .. "', '" .. t_key .. "');"
-        -- id is avaiable, check if the key is avaiable to use
-        -- local checkKeyExistQuery = "SELECT COUNT(*) FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.val .. " = '" .. t_key .. "';"
 
         local checkKeyExistQuery = "SELECT COUNT(*) FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.val .. " = ?;"
 
-
-        -- SVI_DoQuery(host,checkKeyExistQuery)
         SVI_DoQuerySTMT(host,checkKeyExistQuery,{t_key})
 
         result = Query_val[1]
@@ -182,12 +168,10 @@ ResponseHandle[PacketCode.register] = function(host,packet)
         elseif keyCount == 1 then
             -- key exist
             -- check if key is ready
-            -- local checkKeyReadyQuery = "SELECT " .. Table.register_key.ready .. " FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.val .. " = '" .. t_key .. "';"
 
             local checkKeyReadyQuery = "SELECT " .. Table.register_key.ready .. " FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.val .. " = ?;"
 
             SVI_DoQuerySTMT(host,checkKeyReadyQuery,{t_key})
-            -- SVI_DoQuery(host,checkKeyReadyQuery)
 
             local keyReadyValue = tonumber(Query_val[1])
             if keyReadyValue == 1 then
@@ -200,13 +184,15 @@ ResponseHandle[PacketCode.register] = function(host,packet)
 
                 local updateKeyQuery = "UPDATE " .. Table.register_key.tb_name .. " SET " .. Table.register_key.ready .. " = '0' WHERE " .. Table.register_key.val .. " = ?;"
 
-                -- SV_DoQuery(host,updateKeyQuery)
                 SVI_DoQuerySTMT(host,updateKeyQuery,{t_key})
 
                 SV_SendMsg(host,clientIP,CombinePackage("REGISTER_RES_POS",{ "Register successfully !" }) )
-                -- SV_SendMsg(host,clientIP,"Register success")
+
+                -- add starter mon and souls to new account
+                local insertCurrency =  "INSERT INTO account_stats_table (account_id, mon, souls) VALUES (?, 100, 15);"
+                SVI_DoQuerySTMT(host,insertCurrency,{t_id})
+
             else
-                -- SV_SendMsg(host,clientIP,"Register Key already use")
                 SV_SendMsg(host,clientIP,CombinePackage("REGISTER_RES_NEG",{ "Register Key already used !"}))
             end
         else
@@ -220,6 +206,29 @@ ResponseHandle[PacketCode.register] = function(host,packet)
         print("accountCount is " .. accountCount)
         print("If you see this warning in production, you are COOKED !")
     end
+
+end
+
+--- MARK: Request User Data
+ResponseHandle[PacketCode.requestUserData] = function(host,packet)
+    print("request user data found, processing")
+    local message = SV_GetPacketData(host,packet)
+    local clientIP = SV_GetPacketIP(packet)
+
+    local pattern_start = "|REGISTER_REQUEST|"
+    local firstIndex = string.find(message, pattern_start)
+    local beginP = firstIndex + string.len(pattern_start)
+    local pattern_end = "|REGISTER_END_REQUEST|"
+    local endIndex = string.find(message, pattern_end)
+
+    local processResult = string.sub(message, beginP, endIndex - 1)
+
+    local t_id = string.sub(processResult, 0,string.find(processResult, "|") - 1)
+    local halfProcess = string.sub(processResult, string.len(t_id) + 2 , string.len(processResult))
+    local t_pw = string.sub(halfProcess, 0,string.find(halfProcess, "|") - 1)
+    local t_guid = string.sub(halfProcess, string.len(t_pw) + 2 , string.len(halfProcess))
+
+    print("reuest data from " .. clientIP .. " " .. t_id .. " " .. t_pw .. " " .. t_guid)
 
 end
 
@@ -263,6 +272,8 @@ ResponseHandle[PacketCode.login] = function(host,packet)
     end
 
 end
+
+
 
 function AddRegisterKey(host)
     local registerKeyNum = 12

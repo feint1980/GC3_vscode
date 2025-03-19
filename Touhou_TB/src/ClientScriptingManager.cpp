@@ -193,12 +193,12 @@ void ClientScriptingManager::handleMessage(RakNet::Packet *p)
 
 void ClientScriptingManager::cleanUp()
 {
-    for(int i = 0 ; i < 8 ; i++)
-    {
-        m_client->DeallocatePacket(m_client->Receive());
-    }
+    // for(int i = 0 ; i < 8 ; i++)
+    // {
+    //     m_client->DeallocatePacket(m_client->Receive());
+    // }
 
-    RakNet::RakPeerInterface::DestroyInstance(m_client);
+    // RakNet::RakPeerInterface::DestroyInstance(m_client);
 }
 
 void ClientScriptingManager::connect()

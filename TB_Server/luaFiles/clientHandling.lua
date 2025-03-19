@@ -65,10 +65,18 @@ function CH_FindClient(guid)
 end
 
 function CH_List()
-    print("list start ...")
+    
+    print("total connected : " ..GetTableSize(ClientEPList) .. " users")
     for k,v in pairs(ClientEPList) do
         print(v.name .. "|" .. k .. "|")
     end
     print("list end !!!")
 end
 
+function GetTableSize(t)
+    local count = 0
+    for _, _ in pairs(t) do
+        count = count + 1
+    end
+    return count
+end

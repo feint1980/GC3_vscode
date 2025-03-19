@@ -101,7 +101,7 @@ PacketIdentifier = {
     ID_INCOMPATIBLE_PROTOCOL_VERSION = 25,
     ID_CONNECTED_PING = 0,
     ID_UNCONNECTED_PING = 1,
-    ID_CONNECTION_LOST = 20
+    ID_CONNECTION_LOST = 22
 
 }
 
@@ -160,8 +160,23 @@ end
 --- @param packet pointer instance of RakNet::Packet
 CommonHandle[PacketIdentifier.ID_CONNECTION_LOST] = function(host,packet)
     local guid = SV_GetPacketGUID(packet)
-    print("detect connection from " .. ClientEPList[guid].name .. " lost")
+    print("detect connection lost from " .. ClientEPList[guid].name .. " lost")
+    ClientEPList[guid] = nil
+    CH_List()
 end
+
+--- function CommonHandle (PacketIdentifier.ID_CONNECTION_LOST)
+--- @Description: detect connection lost
+--- @param host pointer instance of ServerScriptingManager
+--- @param packet pointer instance of RakNet::Packet
+CommonHandle[PacketIdentifier.ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
+    local guid = SV_GetPacketGUID(packet)
+    print("detect disconnect from " .. ClientEPList[guid].name .. " lost")
+    ClientEPList[guid] = nil
+    CH_List()
+end
+
+-- CommonHandle[PacketIdentifier.ID_NEW_INCOMING_CONNECTION] = function(host,packet)
 
 function AddColData(colName, value)
 
