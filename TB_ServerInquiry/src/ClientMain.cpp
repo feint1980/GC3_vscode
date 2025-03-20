@@ -41,7 +41,7 @@ void ClientMain::init(const std::string & serverIP,const std::string & pw,unsign
     m_client->AllowConnectionResponseIPMigration(false);
 
 
-    m_socketDescriptor = RakNet::SocketDescriptor(m_port + 2, 0);
+    m_socketDescriptor = RakNet::SocketDescriptor(0, 0);
     m_socketDescriptor.socketFamily = AF_INET;
     m_client->Startup(8, &m_socketDescriptor, 1);
     m_client->SetOccasionalPing(true);

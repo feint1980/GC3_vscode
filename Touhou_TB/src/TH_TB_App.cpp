@@ -41,8 +41,8 @@ void TH_TB_App::addScreen()
     m_screenList->addScreen(m_home.get());
 
 
-    // m_test = std::make_unique<TestTBScreen>(&m_window); 
-    // m_screenList->addScreen(m_test.get());
+    m_test = std::make_unique<TestTBScreen>(&m_window); 
+    m_screenList->addScreen(m_test.get());
 
     m_screenList->setScreen(m_loginV2->getScreenIndex());
 }

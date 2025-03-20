@@ -4,7 +4,7 @@
 int lua_switchScene(lua_State * L)
 {
 
-    if(lua_gettop(L) != 4)
+    if(lua_gettop(L) != 5)
     {
         std::cout << "gettop failed (lua_switchScene) " << lua_gettop(L) << "\n";
         return -1;
@@ -17,17 +17,33 @@ int lua_switchScene(lua_State * L)
         std::string t_id = lua_tostring(L, 2);
         std::string t_pw = lua_tostring(L, 3);
         std::string t_guid = lua_tostring(L, 4);
+        int index = lua_tointeger(L, 5);
 
-        host->changeScene(t_id, t_pw, t_guid);
+        
+        if(index == 0)
+        {
+            host->changeScene(t_id, t_pw, t_guid);
+        }
+        else
+        {
+            std::cout << "switch back \n";
+            host->changeOffline();
+        }
 
     }
     return 0;
 }
 
+void LoginSceneV2::changeOffline()
+{
 
-void LoginSceneV2::changeScene(const std::string & tID, const std::string & tPW, const std::string & tGUID)
+    m_currentState = Feintgine::ScreenState::CHANGE_PREVIOUS;
+}
+
+void LoginSceneV2::changeScene( const std::string & tID, const std::string & tPW, const std::string & tGUID)
 {
     InfoHolder::getInstance()->registerPersonalData(tGUID, tID, tPW);
+
 
     m_currentState = Feintgine::ScreenState::CHANGE_NEXT;
 }
@@ -111,7 +127,7 @@ int LoginSceneV2::getNextScreenIndex() const
 
 int LoginSceneV2::getPreviousScreenIndex() const
 {
-    return -1;
+    return 2;
 }
 
 void LoginSceneV2::onExit()

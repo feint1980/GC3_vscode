@@ -69,6 +69,8 @@ public:
 
     void changeScene(const std::string & tID, const std::string & tPW, const std::string & tGUID);
 
+    void changeOffline();
+
     void handleInput(Feintgine::InputManager & inputManager);
 
     void initGUI();

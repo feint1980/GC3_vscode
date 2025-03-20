@@ -152,8 +152,12 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_PlayOfflineBtn:setPos(TGUI_ScreenWidth/2 ,TGUI_ScreenHeight/2 - 50)
     Login_PlayOfflineBtn:setHoverable(0,255,0,255,255,255,255,255)
     Login_PlayOfflineBtn:setOnClickCallback(function()
-        Login_showNotification("Play Offline is not supported yet !\nWill be implemented in the future ...","OK")
+        Login_showNotification("I have no time to implement\n this nproperly, what you about\n to see is the concept ...","OK")
         end)
+        Login_Noti_Btn:setOnClickCallback(function() 
+            Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+            cpp_switchScene(LoginHost,0,0,0,1)
+            end)
 
     Login_PlayOnlineBtn = Label:new()
     Login_PlayOnlineBtn:init(Login_GUIScriptingPtr,"Play Online",TGUI_ScreenWidth/2 ,TGUI_ScreenHeight/2 )
@@ -446,7 +450,7 @@ Login_HandleStep2[Packet_OtherID.ID_LOGIN_POS] = function(host,packet)
 
     -- Login_LoginPanel:hideWithEffect(PanelShowType.Fade,250)
 
-    cpp_switchScene(LoginHost,tD[1],tD[2],tD[3])
+    cpp_switchScene(LoginHost,tD[1],tD[2],tD[3],0)
     
 end
 
@@ -535,9 +539,5 @@ function StripMSG(msg,otherID)
     return string.sub(msg,string.len(OrderList[otherID].firstStr) + 1,string.len(msg) - string.len(OrderList[otherID].secondStr))
 
 end
-
-
-
-
 
 print("kinda OK")
