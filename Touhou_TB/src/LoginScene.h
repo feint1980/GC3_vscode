@@ -143,7 +143,7 @@ private:
     // tgui::Label::Ptr m_notification_cancel_label;
     // tgui::Label::Ptr m_notification_cancel_label;
     
-    // ClientHandler * m_client = nullptr;
+    RakNet::RakPeerInterface* m_client = nullptr;
 
 
     lua_State * m_script = nullptr;

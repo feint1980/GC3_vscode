@@ -51,10 +51,17 @@ void ServerMain::init(const std::string & password, int port,unsigned int server
     m_server->SetMaximumIncomingConnections(m_connectionSize);
 
 
-    m_socketDescriptor[0].port = m_port;
+    m_socketDescriptor[0] = RakNet::SocketDescriptor(m_port, "0.0.0.0");
     m_socketDescriptor[0].socketFamily = AF_INET;
-    m_socketDescriptor[1].port = m_port;
+    m_socketDescriptor[1] = RakNet::SocketDescriptor(m_port, "0.0.0.0");
     m_socketDescriptor[1].socketFamily = AF_INET6;
+
+    // m_socketDescriptor[0].port = m_port;
+    // m_socketDescriptor[0].socketFamily = AF_INET;
+    // m_socketDescriptor[1].port = m_port;
+    // m_socketDescriptor[1].socketFamily = AF_INET6;
+    // m_socketDescriptor[0].hostAddress = "0.0.0.0";
+    // m_socketDescriptor[1].hostAddress = "0.0.0.0";
 
     bool init2IPVer = m_server->Startup(10, m_socketDescriptor,2) == RakNet::RAKNET_STARTED;
     if (!init2IPVer)
@@ -71,6 +78,7 @@ void ServerMain::init(const std::string & password, int port,unsigned int server
 
     m_server->SetOccasionalPing(true);
 	m_server->SetUnreliableTimeout(1000);
+    m_server->AllowConnectionResponseIPMigration(false);
 
 	DataStructures::List< RakNet::RakNetSocket2* > sockets;
 	m_server->GetSockets(sockets);
@@ -98,7 +106,7 @@ void ServerMain::run()
     while(m_serverOn)
     {
         // This sleep keeps RakNet responsive
-        // RakSleep(10);
+        RakSleep(10);
         // todo, think about delta time problem :
         update(0.1f);
 

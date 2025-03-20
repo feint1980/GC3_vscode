@@ -43,6 +43,8 @@ Packet_OtherID = {
     ID_LOGIN_POS = 2,
     ID_REGISTER_NEG = 3,
     ID_REGISTER_POS = 4,
+    USER_DATA_POS = 5,
+    USER_DATA_NEG = 6,
     ID_INVALID = 77
 }
 

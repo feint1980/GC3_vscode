@@ -366,10 +366,8 @@ end
 Login_HandleTask = {}
 ---@Description handle packet when connected
 ---@param host pointer instance of ClientScriptingManager
----@param packet Client_Packet
-
-
-HandlePacketTask["main"] = function(host,packet)
+---@param packet Client_Packets
+HandlePacketTask["login_main"] = function(host,packet)
 
     if Login_HandleTask[packet.packetID] ~= nil then
         Login_HandleTask[packet.packetID](ClientSide_Host,packet)

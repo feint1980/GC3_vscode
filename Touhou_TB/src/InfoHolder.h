@@ -14,21 +14,23 @@ public:
     static InfoHolder* getInstance()
     { 
 
-        if(!m_inforHolder)
-        {
-            m_inforHolder = new InfoHolder();
-
-        }
-        else
-        {
-            return m_inforHolder;
-        }
+        if (m_inforHolder == 0)
+			{
+				m_inforHolder = new InfoHolder();
+				return m_inforHolder;
+			}
+			return m_inforHolder;
     }
 
-    void registerClientScriptingManager(ClientScriptingManager * clientScriptingManager)
+    void registerClient(RakNet::RakPeerInterface * client)
     {
-        m_clientScriptingManager = clientScriptingManager;
+    
+        // m_clientScriptingManager = clientScriptingManager;
+        m_client = client;
+        std::cout << "register client " << m_client << "\n";
     }
+
+    void registerClientScriptingManager(ClientScriptingManager * clientScriptingManager) { m_clientScriptingManager = clientScriptingManager; }
 
     void registerCryptorMap(Feintgine::F_Cryptor * cryptor, const std::string & id) { m_cryptorMap[id] = cryptor; }
 
@@ -44,6 +46,12 @@ public:
         data.push_back(m_guid);
     }
 
+    RakNet::RakPeerInterface * getClient() { 
+        
+        std::cout << "get client " << m_client << "\n";
+        return m_client; }
+
+
 
     ClientScriptingManager * getClientScriptingManager() { return m_clientScriptingManager; }
 
@@ -58,6 +66,8 @@ private:
     std::string m_pw;
 
     ClientScriptingManager * m_clientScriptingManager = nullptr;
+
+    RakNet::RakPeerInterface * m_client = nullptr;
 
     std::map<std::string,Feintgine::F_Cryptor *> m_cryptorMap;
 

@@ -85,7 +85,7 @@ uint32_t ClientScriptingManager::sendData(const std::string & data)
     return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
-void ClientScriptingManager::init(const std::string & serverIP, unsigned int port,lua_State * script)
+void ClientScriptingManager::init(const std::string & serverIP, unsigned int port,  RakNet::RakPeerInterface * client, lua_State * script)
 {
     std::cout << "|=========================================|\n";
     std::cout << "|     Init Client Scripting Manager       |\n";
@@ -93,15 +93,16 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     //m_client = client;
     std::cout << "|     Init Client RakNet Core ...         |\n";
 
-    m_client = RakNet::RakPeerInterface::GetInstance();
+    m_client = client;
+    // m_client = RakNet::RakPeerInterface::GetInstance();
     m_serverIP = serverIP;
     m_port = port;
 
-    m_client->AllowConnectionResponseIPMigration(false);
-    m_socketDescriptor = RakNet::SocketDescriptor(m_port + 1, 0);
-    m_socketDescriptor.socketFamily = AF_INET;
-    m_client->Startup(8, &m_socketDescriptor, 1);
-    m_client->SetOccasionalPing(true);
+    // m_client->AllowConnectionResponseIPMigration(false);
+    // m_socketDescriptor = RakNet::SocketDescriptor(m_port + 1, 0);
+    // m_socketDescriptor.socketFamily = AF_INET;
+    // m_client->Startup(8, &m_socketDescriptor, 1);
+    // m_client->SetOccasionalPing(true);
 
     std::cout << "|     Init Client RakNet Core OK          |\n";
     m_RakNetCoreInitialized = true;

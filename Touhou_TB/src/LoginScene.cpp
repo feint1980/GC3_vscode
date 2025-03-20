@@ -46,7 +46,14 @@ void LoginScene::onEntry()
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
-    m_scriptingManager.init("127.0.0.1", 1123,m_script);
+    m_client = RakNet::RakPeerInterface::GetInstance();
+
+    m_client->AllowConnectionResponseIPMigration(false);
+    RakNet::SocketDescriptor socketDescriptor = RakNet::SocketDescriptor(  0, 0);
+    socketDescriptor.socketFamily = AF_INET;
+    m_client->Startup(8, &socketDescriptor, 1);
+    m_client->SetOccasionalPing(true);
+    m_scriptingManager.init("127.0.0.1", 1123, m_client, m_script);
 
     m_spriteBatch.init();
     

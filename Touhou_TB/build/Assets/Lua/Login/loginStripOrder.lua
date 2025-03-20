@@ -38,3 +38,5 @@ OrderList[Packet_OtherID.ID_REGISTER_NEG]:init("|REGISTER_RES_NEG_REQUEST|","|RE
 
 OrderList[Packet_OtherID.ID_REGISTER_POS] = Login_Strip_Order:new()
 OrderList[Packet_OtherID.ID_REGISTER_POS]:init("|REGISTER_RES_POS_REQUEST|","|REGISTER_RES_POS_END_REQUEST|")
+
+

@@ -11,8 +11,6 @@ PacketCode = {
 }
 
 
-
-
 --- function CheckAccountValid
 ---@Description : check if the query of account and password is valid (only one result)
 ---@param host pointer instance of ServerScriptingManager
@@ -215,10 +213,10 @@ ResponseHandle[PacketCode.requestUserData] = function(host,packet)
     local message = SV_GetPacketData(host,packet)
     local clientIP = SV_GetPacketIP(packet)
 
-    local pattern_start = "|REGISTER_REQUEST|"
+    local pattern_start = "|USERDATA_REQUEST|"
     local firstIndex = string.find(message, pattern_start)
     local beginP = firstIndex + string.len(pattern_start)
-    local pattern_end = "|REGISTER_END_REQUEST|"
+    local pattern_end = "|USERDATA_END_REQUEST|"
     local endIndex = string.find(message, pattern_end)
 
     local processResult = string.sub(message, beginP, endIndex - 1)
@@ -228,7 +226,21 @@ ResponseHandle[PacketCode.requestUserData] = function(host,packet)
     local t_pw = string.sub(halfProcess, 0,string.find(halfProcess, "|") - 1)
     local t_guid = string.sub(halfProcess, string.len(t_pw) + 2 , string.len(halfProcess))
 
-    print("reuest data from " .. clientIP .. " " .. t_id .. " " .. t_pw .. " " .. t_guid)
+    if CheckAccountValid(host, t_id, t_pw) then
+
+        print("account check OK, getting data from DB")
+
+        local getDataQuerry = "SELECT mon,souls from " .. Account_Stats_Table.tb_name .. " WHERE " .. Account_Stats_Table.id  .. " = ?;"
+
+        SVI_DoQuerySTMT(host,getDataQuerry,{t_id})
+
+        local mon = Query_val[1]
+        local souls = Query_val[2]
+
+
+        SV_SendMsg(host,clientIP,CombinePackage("USERDATA_RES_POS", {t_id,mon,souls,t_guid}))
+
+    end
 
 end
 
@@ -256,6 +268,14 @@ ResponseHandle[PacketCode.login] = function(host,packet)
     
     if CheckAccountValid(host, t_id, t_pw) then
 
+
+        for k,v in pairs(ClientEPList) do
+            if v.name == t_id then
+                print("account already logged in")
+                SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
+                return
+            end
+        end
         print("account check OK, send OK message")
         local guid = SV_GetPacketGUID(packet)
         SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))

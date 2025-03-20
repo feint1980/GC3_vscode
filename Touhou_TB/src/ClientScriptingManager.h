@@ -43,7 +43,7 @@ public:
     ClientScriptingManager();
     ~ClientScriptingManager();
 
-    void init(const std::string & serverIP, unsigned int port,lua_State * script);
+    void init(const std::string & serverIP, unsigned int port,  RakNet::RakPeerInterface * client, lua_State * script);
 
     uint32_t sendData(const std::string & data);
 

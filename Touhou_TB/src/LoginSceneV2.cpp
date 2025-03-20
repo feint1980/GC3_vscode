@@ -119,7 +119,7 @@ void LoginSceneV2::onExit()
 
     std::cout << "on exi call \n";
     // m_tgui->;
-    // m_guiScriptingManager.cleanup();
+    m_guiScriptingManager.cleanup();
     // m_shader.dispose();
     // if(m_clientScriptingManager)
     // {
@@ -222,11 +222,24 @@ void LoginSceneV2::initGUI()
 
     m_clientScriptingManager = new ClientScriptingManager();
 
-    m_clientScriptingManager->init("127.0.0.1", 1123,m_script);
+    // m_clientScriptingManager->init("127.0.0.1", 1123,m_script);
+
+    m_client = RakNet::RakPeerInterface::GetInstance();
+
+
+
+    unsigned int port = 1123;
+    m_client->AllowConnectionResponseIPMigration(false);
+    RakNet::SocketDescriptor socketDescriptor = RakNet::SocketDescriptor(0, 0);
+    socketDescriptor.socketFamily = AF_INET;
+    m_client->Startup(8, &socketDescriptor, 1);
+    m_client->SetOccasionalPing(true);
+    m_clientScriptingManager->init("192.168.0.27", port, m_client, m_script);
+
 
     // m_clientScriptingManager.init("127.0.0.1", 1123,m_script);
 
-    InfoHolder::getInstance()->registerClientScriptingManager(m_clientScriptingManager);
+    InfoHolder::getInstance()->registerClient(m_client);
 
     // inverse case
     //m_script = m_guiScriptingManager.getLuaScript();

@@ -72,6 +72,7 @@ void HomeScene::onEntry()
     float tempScale = 0.85f;
 	m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,100), glm::vec2(1280, 720),Feintgine::Color(255, 255, 255, 255));
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    std::cout << "now init lua components\n";
     initGUI();
 
     if(SDL_HasScreenKeyboardSupport())
@@ -217,7 +218,16 @@ void HomeScene::initGUI()
 
     m_guiScriptingManager.init(m_window,m_script);
 
-    m_clientScriptingManager = InfoHolder::getInstance()->getClientScriptingManager();
+    // m_clientScriptingManager = InfoHolder::getInstance()->getClientScriptingManager();
+
+    unsigned int port = 1123;
+
+    m_clientScriptingManager = new ClientScriptingManager();
+
+    m_client = InfoHolder::getInstance()->getClient();
+
+    m_clientScriptingManager->init("127.0.0.1", port,m_client, m_script);
+
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/Home/homeScene.lua")))
     {

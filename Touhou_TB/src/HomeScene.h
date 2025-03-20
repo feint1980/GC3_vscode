@@ -99,7 +99,9 @@ private:
 
     lua_State * m_script = nullptr;
 
-    ClientScriptingManager *m_clientScriptingManager;
+    ClientScriptingManager *m_clientScriptingManager = nullptr;
+
+    RakNet::RakPeerInterface * m_client = nullptr;
 
     TGUIScriptingManager m_guiScriptingManager;
 

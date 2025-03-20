@@ -46,6 +46,15 @@ Account_Table = {
 
 }
 
+Account_Stats_Table = {
+    tb_name = "account_stats_table",
+    id = "account_id",
+    mon = "mon",
+    soul = "souls"
+
+}
+
+
 RegisterKey_Table = {
     tb_name = "register_key_table",
     no = "key_no",
@@ -160,6 +169,9 @@ end
 --- @param packet pointer instance of RakNet::Packet
 CommonHandle[PacketIdentifier.ID_CONNECTION_LOST] = function(host,packet)
     local guid = SV_GetPacketGUID(packet)
+    if(ClientEPList[guid] == nil) then
+        return
+    end
     print("detect connection lost from " .. ClientEPList[guid].name .. " lost")
     ClientEPList[guid] = nil
     CH_List()
