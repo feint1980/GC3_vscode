@@ -233,12 +233,12 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
             {
                 iv[i] = p->data[(p->length -1) - (AES_IV_SIZE - i)]; 
             }
-            std::cout << "salt is :\n";
-            for(int i = 0 ; i < AES_IV_SIZE; i++)
-            {
-                printf("%02x", iv[i]);
-            }  
-            std::cout << "\n";
+            // std::cout << "salt is :\n";
+            // for(int i = 0 ; i < AES_IV_SIZE; i++)
+            // {
+            //     printf("%02x", iv[i]);
+            // }  
+            // std::cout << "\n";
             std::vector<unsigned char> tMsg;
             for(int i = 0 ;i < (p->length -1) - AES_IV_SIZE; i++)
             {
@@ -251,11 +251,13 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
             // }   
 
             // std::cout << "\ndecrypt : \n";
+            unsigned char identifier = GetPacketIdentifier(p);
             // // std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
+            std::cout << "got packet " << identifier << "\n";
 
             lua_pushstring(m_script,m_cryptor.decrypt(tMsg, iv).c_str());
             lua_pushlightuserdata(m_script, &p->systemAddress);
-            lua_pushnumber(m_script, GetPacketIdentifier(p));
+            lua_pushnumber(m_script, identifier);
             const int argc = 3;
             const int returnCount = 0;
             if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))

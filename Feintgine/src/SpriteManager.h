@@ -13,6 +13,8 @@
 #include <future>
 #include "A_Context_saver.h"
 #include <array>
+#include <queue>
+#include <condition_variable>
 
 // Total support packet of engine ( modify if you want but I like to keep it small)
 #define MAX_PACKET_SIZE 256
@@ -54,34 +56,30 @@ namespace Feintgine {
 		// Needed this function to wait all the multithread loadng is done
 		bool isLoadingDone();
 
-
+		void loadTStoredPackets(int index);
 
 	private:
 
 		static SpriteManager *p_Instance;
 
 		std::map<std::string, SpritePacket > m_SpritePackets;
-		std::vector<std::future<SpritePacket>> m_FutureMap;
 		std::vector<std::string> m_storedKey;
-		//std::vector<std::string> m_storedTexturePath;
-		unsigned int m_storedPacketCount = 0;
-		static std::mutex m_Mutex;
-		//std::atomic<bool> m_isDones[2000]; // let just cache 2000 packets
-		std::atomic_int m_packetCount = std::atomic_int(0);
 		
+		std::vector<std::queue<std::string>> m_storedPaths;
+		std::atomic_int m_indexCount = std::atomic_int(0);
 
-		// // test ||
-		// std::atomic_int fileCount = 0;
-
-		// std::atomic_int limited_thread = 8;
-		// std::atomic_int resolved_files = 0;
-		// std::atomic_int total_result = 0;
-
+		std::atomic_int m_packetCount = std::atomic_int(0);
+		std::atomic_int m_storedPacketCount = std::atomic_int(0);
 
 
 		std::vector<async::task<void>> m_tasks;
 
 		int max_threads = std::thread::hardware_concurrency() ;
+		int half_threads = 0;
+		int target_threads = 0;
+
+
+		std::vector<std::thread> m_threads;
 
 		std::vector<std::string> m_texturePaths;
 	//	std::vector<bool> m_isLoaded;

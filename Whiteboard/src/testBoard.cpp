@@ -1,19 +1,51 @@
 #include <iostream>
+#include <deque>
+#include <thread>
+#include <mutex>
+#include <condition_variable>
 
-void divide(int a, int b) {
-    try {
-        if (b == 0) {
-            throw std::runtime_error("Division by zero is not allowed.");
-        }
-        std::cout << "Result: " << a / b << std::endl;
-    } catch (const std::exception &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+std::deque<int> taskQueue;
+std::mutex queueMutex;
+std::condition_variable cv;
+
+bool producerDone = false;
+
+void producer() {
+    for (int i = 1; i <= 50000; ++i) {
+        std::unique_lock<std::mutex> lock(queueMutex);
+        taskQueue.push_back(i);  // Add task to the back
+        std::cout << "Produced: " << i << "\n";
+        lock.unlock();
+        cv.notify_one();  // Notify a waiting thread
+        // std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+    producerDone = true;
+}
+
+void consumer() {
+    while (true) {
+        std::unique_lock<std::mutex> lock(queueMutex);
+        cv.wait(lock, [] { return !taskQueue.empty(); });  // Wait until queue is not empty
+
+        int task = taskQueue.front();
+        taskQueue.pop_front();
+        std::cout << "Consumed: " << task << " !!!!!!!!!!\n";
+        lock.unlock();
+
+        if (producerDone && taskQueue.empty()) break;  // Stop condition
     }
 }
 
 int wmain() {
-    // divide(10, 2); // Works fine
-    // divide(10, 0); // Throws an error
-    std::cout << 10/0 << "\n";
+    std::thread t1(producer);
+    std::thread t2(consumer);
+    std::thread t3(consumer);
+
+    t1.join();
+    t2.join();
+    t3.join();
+
+
+    std::cout << "all done \n";
     return 0;
 }

@@ -447,8 +447,6 @@ int ObjectListHolder::listdir(const char *name, int level)
 			texturePath.append("/");
 			texturePath.append(entry->d_name);
 
-
-
 			if (texturePath.find("F_Objects/") != std::string::npos)
 			{
 				if (texturePath.find(".fob") != std::string::npos)

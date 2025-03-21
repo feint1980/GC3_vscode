@@ -135,10 +135,11 @@ namespace Feintgine {
 	}
 
 	SpriteManager *SpriteManager::p_Instance = 0;
-	std::mutex SpriteManager::m_Mutex;
 
 	SpriteManager::SpriteManager()
 	{
+		half_threads = std::thread::hardware_concurrency() / 2;
+		target_threads = max_threads;
 		//m_FutureMap.
 	}
 
@@ -150,7 +151,6 @@ namespace Feintgine {
 
 	int SpriteManager::scan_dir(const std::string & path, int level)
 	{
-		
         //std::cout << "scan on " << path << "\n";
         //std::cout << "level start -----" << level << "\n";
         DIR *dir = nullptr;
@@ -177,9 +177,6 @@ namespace Feintgine {
                     continue;
                 }
 
-				// stop printing to increase speed
-                //printf("%*s[%s]\n", level * 2, "", entry->d_name);
-        
                 scan_dir(sub_path, level + 1);
             }
             else
@@ -189,23 +186,20 @@ namespace Feintgine {
 				{
 					if (texturePath.find(".xml") != std::string::npos)
 					{
-						//m_Mutex.lock();
-						//std::cout << "loading package " <<  texturePath << "\n";
 						std::string packetKey = t_getFileNameFromPath(texturePath);
-						//m_storedTexturePath[m_storedPacketCount] = texturePath;
-						
-						m_FutureMap.emplace_back(std::async(std::launch::async, readFile, std::move(texturePath)));
-						//m_FutureMap[m_storedPacketCount] = std::async(std::launch::async, readFile, texturePath);
+
+						m_storedPaths[m_indexCount].emplace(texturePath);
+						m_indexCount++;
+						if(m_indexCount == target_threads)
+						{
+							m_indexCount = 0;
+						}
 						m_storedKey.emplace_back(packetKey);
 						m_storedPacketCount++;
-						// SpritePacket packet; 
-						// m_SpritePackets.insert(std::make_pair(packetKey.c_str(), packet));
 					}
 				}
             }
         } while (entry = readdir(dir));
-
-
 
         closedir(dir);
        // std::cout << "level end -----" << level << "\n";
@@ -213,24 +207,32 @@ namespace Feintgine {
     }
 
 
+	void SpriteManager::loadTStoredPackets(int index)
+	{
+		while(m_storedPaths[index].size() > 0)
+		{
+			SpritePacket spritePacket;
+		
+			spritePacket.loadPacket(m_storedPaths[index].front());
+			std::string packetKey = t_getFileNameFromPath(m_storedPaths[index].front());
+
+			m_SpritePackets.insert(std::make_pair(packetKey.c_str(), std::move(spritePacket)));
+			m_packetCount++;
+			m_storedPaths[index].pop();
+			std::cout << "loaded " << m_packetCount << "/" << m_storedPacketCount << "(thread " << index << ")\n";
+
+		}
+	}
+
 	void SpriteManager::loadSpritePacket(const std::string & filePath)
 	{
-		//m_Mutex.lock();
-
 		SpritePacket spritePacket;
 		
-		//m_Mutex.try_lock();
-		//
-
 		spritePacket.loadPacket(filePath);
 		
 		std::string packetKey = t_getFileNameFromPath(filePath);
 
-		//m_Mutex.lock();
 		m_SpritePackets.insert(std::make_pair(packetKey.c_str(), std::move(spritePacket)));
-		//m_Mutex.unlock();
-		
-		//std::cout << "loaded packet !!!!!!!! " << packetKey << "\n";
 	}
 
 
@@ -245,87 +247,37 @@ namespace Feintgine {
 		}
 	}
 
-
-
 	int SpriteManager::loadFromDirectory(const char * name, int level)
 	{
 
-		m_FutureMap.reserve(MAX_PACKET_SIZE);
+		// m_FutureMap.reserve(MAX_PACKET_SIZE); old way
 		m_storedKey.reserve(MAX_PACKET_SIZE);
+		for(int i = 0 ; i < target_threads ; i++)
+		{
+			m_storedPaths.push_back(std::queue<std::string>());
+		}
 		scan_dir(name, level);
-		// if(m_storedPacketCount > MAX_PACKET_SIZE)
-		// {
-		// 	std::cout << "warning !!!!!! the total number of packet is more than the engine defined, you would want to increase the number of data can be loaded \n";
-		// }
-		// for (auto & future : m_FutureMap)
-		// {
-		// 	if (future.second.valid())
-		// 	{
-		// 		m_packetCount++;
-		// 	}
-		// }
 
-		// while(m_packetCount < m_FutureMap.size())
-		// {
-		// 	std::cout << "wait \n";
-		// }
-		// finalize the way to async load packets
-		
-		// for( auto & future : m_FutureMap)
-		// {
-		// 	//future.wait();
-		// 	if(future.valid())
-		// 	{
-		// 		m_packetCount++;
-		// 	}
-
-		// }
-		for(int i = 0 ; i < m_storedPacketCount; i++)
+		for(int i = 0 ; i < target_threads ; i++)
 		{
-				m_SpritePackets.insert(std::make_pair(m_storedKey[i], std::move(m_FutureMap[i].get())));
-			
-			//m_SpritePackets[m_storedKey[i]] = m_FutureMap[i].get();
-			//std::cout << "packget " << m_storedKey[i] << " is done \n";				
-			m_packetCount++;
-		}
-		// auto loadTask = std::async(std::launch::async, [&]{
-		// 	for(int i = 0 ; i < m_FutureMap.size(); i++)
-		// 	{
-		// 		// m_SpritePackets.insert(std::make_pair(m_storedKey[i], std::move(m_FutureMap[i].get())));
-				
-		// 		m_SpritePackets[m_storedKey[i]] = m_FutureMap[i].get();
-		// 		std::cout << "packget " << m_storedKey[i] << " is done \n";				
-		// 		m_packetCount++;
-		// 	}
+			std::thread loader(std::bind(&SpriteManager::loadTStoredPackets, this,i));
+			m_threads.push_back(std::move(loader));
 
-		// } );
-		
-		//loadTask.get();
-		// for( auto & future : m_FutureMap)
-		// {
-		// 	//m_Mutex.lock();				
-		// 	m_SpritePackets.insert(std::make_pair(future.first, std::move(future.second.get())));
-		// 	m_packetCount++;
-		// }
-		while(m_packetCount < m_storedPacketCount)
-		{
-			std::cout << "external wait\n";
-			
-			
-				//m_Mutex.unlock();
-			
-			
 		}
+
+		for(int i = 0 ; i < m_threads.size() ; i++)	
+		{
+			m_threads[i].join();
+		}
+
 		std::cout << "back to main thread \n";
-		// 
-		
 
 		// back to main thread
 		auto textureBuffers = A_Context_saver::getContext_saver()->getTextureBuffers();
 		GLTexture t_texture;
 		for(int i = 0; i < textureBuffers.size(); i++)
 		{
-			//m_Mutex.lock();
+			
 			t_texture =  ResourceManager::getTexture(textureBuffers[i].filePath);
 
 
@@ -344,30 +296,14 @@ namespace Feintgine {
 			glBindTexture(GL_TEXTURE_2D, 0);
 
 			ResourceManager::rewriteTexture(textureBuffers[i].filePath, t_texture);
-			//m_Mutex.unlock();
 		}
 
-		//loop in m_SpritePackets
-		// for(auto it = m_SpritePackets.begin(); it != m_SpritePackets.end(); it++)
-		// {
-		// 	//m_Mutex.lock();
-		// 	it->second.updateTexture();
-		// 	//m_Mutex.unlock();
-		// 	//std::cout << "updated " << it->first << "\n";
-		// }
+		std::cout << "update buffer texture OK \n";
 		for(int i = 0 ; i < m_storedPacketCount; i++)
 		{
 			m_SpritePackets[m_storedKey[i]].updateTexture();
 		}
-		std::cout << "loaded using " << max_threads << " thread(s) \n";
-
-		// clear temp data
-		// for(int i = 0 ; i < co; i++)
-		// {
-		// 	m_FutureMap.erase(m_FutureMap.begin() + i);
-		// 	m_storedKey.erase(m_storedKey.begin() + i);
-		// }
-		// m_FutureMap.clear();
+		std::cout << "loaded using " << target_threads << " thread(s) \n";
 
 		return 0;
 	}
@@ -408,18 +344,8 @@ namespace Feintgine {
 
 		if (it != m_SpritePackets.end())
 		{
-			//std::cout << "Found Packet : " << name << '\n';
-			//std::cout << it->second.
 			return it->second;
 		}
-
-		// for (std::unordered_map<std::string, Feintgine::SpritePacket >::iterator sprite_it = m_SpritePackets.begin(); sprite_it != m_SpritePackets.end(); ++sprite_it)
-		// {
-		// 	if (sprite_it->first == name)
-		// 	{
-		// 		return sprite_it->second;
-		// 	}
-		// }
 		std::cout << "unable to find Packet " << name << " return null packet \n";
 		SpritePacket pa;
 
@@ -435,7 +361,6 @@ namespace Feintgine {
 		{
 			packetName.append(".xml");
 		}
-		//std::cout << "><><><><>< looking for sprite "<< spriteName << " in packet " << packetName << "\n";
 		return getSpritePacketByName(packetName).getSpriteByName(spriteName);
 	}
 

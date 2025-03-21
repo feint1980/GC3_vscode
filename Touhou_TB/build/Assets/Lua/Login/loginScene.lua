@@ -392,8 +392,9 @@ end
 Login_HandleTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)
     print("ID_CONNECTION_ATTEMPT_FAILED")
     Client_Connected = false
-    Login_Noti_Msg:setText("Failed to connect !!!!")
-    Login_Noti_Btn:setText("OK")
+    -- Login_Noti_Msg:setText("Failed to connect !!!!")
+    -- Login_Noti_Btn:setText("OK")
+    Login_showNotification("Failed to connect !!!!","OK")
 
     -- Login_Noti_Btn:setOnClickCallback(function() Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250) end)
 end
@@ -420,7 +421,9 @@ function Login_HandleTask_OtherID(host, packet)
     print("other id " .. otherID)
     if Login_HandleStep2[otherID] ~= nil then
         Login_HandleStep2[otherID](host,packet)
-    end
+    -- else 
+    --     Login_HandleTask[packet.packetID](host,packet)
+    end 
     -- print("msg stripped: "..msg)
 end
 
