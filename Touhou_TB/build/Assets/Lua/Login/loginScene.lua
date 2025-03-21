@@ -109,8 +109,6 @@ function Login_CombinePackage(type,list)
     return returnValue
 end
 
-
-
 function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
 
     LoginHost = host
@@ -128,7 +126,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_Noti_Panel = Panel:new()
     Login_Noti_Panel:init(Login_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
     Login_Noti_Panel:setAligment(0.5,0,5)
-    Login_Noti_Panel:setSizeStr("25%", "20%")
+    Login_Noti_Panel:setSizeStr("30%", "25%")
     Login_Noti_Panel:setPosStr("50%", "50%")
     Login_Noti_Panel:setVisible(false)
 
@@ -156,7 +154,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
         end)
         Login_Noti_Btn:setOnClickCallback(function() 
             Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
-            cpp_switchScene(LoginHost,0,0,0,1)
+            -- cpp_switchScene(LoginHost,0,0,0,1)
             end)
 
     Login_PlayOnlineBtn = Label:new()

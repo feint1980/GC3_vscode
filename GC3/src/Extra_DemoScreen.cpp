@@ -405,7 +405,7 @@ void Extra_DemoScreen::draw()
 	// m_shaderNormal.use();
 	// m_shaderNormal.unuse();
 
-	m_frameBuffer.bind();
+	// m_frameBuffer.bind();
 	//drawBackup(); // was for debug
 
 	// if (GlobalValueClass::Instance()->isLightBalance())
@@ -413,11 +413,11 @@ void Extra_DemoScreen::draw()
 	// 	drawCustomShader();
 	// }
 	drawGameplay();
-	m_frameBuffer.unbind();
-	m_frameBufferScreen.use();
+	// m_frameBuffer.unbind();
+	// m_frameBufferScreen.use();
 	m_effectBatch.draw();
-	m_frameBufferScreen.draw();
-	m_frameBufferScreen.unuse();
+	// m_frameBufferScreen.draw();
+	// m_frameBufferScreen.unuse();
 
 	drawTimer();
 
@@ -1012,14 +1012,6 @@ void Extra_DemoScreen::drawGameplay()
 			{
 				m_enemies[i]->drawLight(m_lightBatch);
 			}
-			// for (auto i = 0; i < m_guardians.size(); i++)
-			// {
-			// 	m_guardians[i]->drawLight(m_lightBatch);
-			// }
-			// for (auto i = 0; i < m_amplifiers.size(); i++)
-			// {
-			// 	m_amplifiers[i]->drawLight(m_lightBatch);
-			// }
 		}
 
 		m_lightBatch.renderLight();

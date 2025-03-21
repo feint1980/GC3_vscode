@@ -614,7 +614,6 @@ int lua_Label_SetOnHoverCallback(lua_State * L)
         }
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
-        lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onMouseEnter(callback);
@@ -711,6 +710,7 @@ int lua_Label_SetOnClickCallback(lua_State * L)
     else
     {
         tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));
+        label->get()->onClick.disconnectAll();
         if(!lua_isfunction(L, 2))
         {
             std::cout << "param 2 is not a function \n";
@@ -718,10 +718,7 @@ int lua_Label_SetOnClickCallback(lua_State * L)
         }
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
-        lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
-
-        // label->get()->onClick(nullptr);
-        label->get()->onClick.disconnectAll();
+        
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onClick(callback);
     }
@@ -746,8 +743,7 @@ int lua_RTLabel_SetOnClickCallback(lua_State * L)
         }
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
-        lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
-
+        label->get()->onClick.disconnectAll();
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onClick(callback);
     }

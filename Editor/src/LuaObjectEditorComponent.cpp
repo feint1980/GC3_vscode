@@ -283,7 +283,7 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	m_frameBuffer.bind();
+	// m_frameBuffer.bind();
 	glViewport(m_drawScreen.x, m_drawScreen.y, m_drawScreen.z, m_drawScreen.w);
 
 	m_shader.use();
@@ -367,11 +367,11 @@ void LuaObjectEditorComponent::draw(Feintgine::SpriteBatch & spriteBatch, Feintg
 	debug.end();
 	debug.render(Static_Edit_projectionMatrix, 2.0f);
 	
-	m_frameBuffer.unbind();
-	m_frameBufferScreen.use();
+	// m_frameBuffer.unbind();
+	// m_frameBufferScreen.use();
 	m_effectBatch.draw();
-	m_frameBufferScreen.draw();
-	m_frameBufferScreen.unuse();
+	// m_frameBufferScreen.draw();
+	// m_frameBufferScreen.unuse();
 
 }
 

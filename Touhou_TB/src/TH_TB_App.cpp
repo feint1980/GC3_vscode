@@ -17,7 +17,8 @@ TH_TB_App::~TH_TB_App()
 
 void TH_TB_App::onInit()
 {
-    // todos
+    // todosmake
+    
     configureScreen("TH TB", 1600, 900, 0,false);
     setScreenInMiddle();
     

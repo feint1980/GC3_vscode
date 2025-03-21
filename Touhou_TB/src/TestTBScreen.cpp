@@ -32,14 +32,12 @@ void TestTBScreen::initShader()
 	m_shader.linkShaders();
 }
 void TestTBScreen::onEntry()
-{
-    
+{    
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
-	
 
     m_camera.setPosition(glm::vec2(0, 0));
-    //m_camera.setScale(1.5f);
+    m_camera.setScale(0.8f);
 
     m_camera.update();
 
