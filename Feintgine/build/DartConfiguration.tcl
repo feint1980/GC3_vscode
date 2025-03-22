@@ -4,14 +4,14 @@
 
 
 # Configuration directories and files
-SourceDirectory: C:/Users/Huyen-z/Documents/Feint/GC3_vscode/Feintgine
-BuildDirectory: C:/Users/Huyen-z/Documents/Feint/GC3_vscode/Feintgine/build
+SourceDirectory: E:/template/GC_port/Feintgine
+BuildDirectory: E:/template/GC_port/Feintgine/build
 
 # Where to place the cost data store
 CostDataFile: 
 
 # Site is something like machine.domain, i.e. pragmatic.crd
-Site: HUYEN
+Site: DESKTOP-5LBAV83
 
 # Build name is osname-revision-compiler, i.e. Linux-2.4.2-2smp-c++
 BuildName: Win32-mingw32-make
@@ -27,7 +27,7 @@ SubmitInactivityTimeout:
 NightlyStartTime: 00:00:00 EDT
 
 # Commands for the build/test/submit cycle
-ConfigureCommand: "C:/Program Files/CMake/bin/cmake.exe" "C:/Users/Huyen-z/Documents/Feint/GC3_vscode/Feintgine"
+ConfigureCommand: "C:/Program Files/CMake/bin/cmake.exe" "E:/template/GC_port/Feintgine"
 MakeCommand: C:/Program\ Files/CMake/bin/cmake.exe --build . --config "${CTEST_CONFIGURATION_TYPE}" -- -i
 DefaultCTestConfigurationType: Release
 

@@ -664,8 +664,7 @@ int lua_Label_SetOffHoverCallback(lua_State * L)
         }
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
-        lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
-
+        label->get()->onMouseLeave.disconnectAll();
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onMouseLeave(callback);
     }
@@ -690,7 +689,6 @@ int lua_RTLabel_SetOffHoverCallback(lua_State * L)
         }
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
-        lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
 
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onMouseLeave(callback);
@@ -719,7 +717,9 @@ int lua_Label_SetOnClickCallback(lua_State * L)
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
         
-        std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
+        std::function<void()> callback = [L,ref](){
+            std::cout << "ref is " << ref << "\n";
+            lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onClick(callback);
     }
 
