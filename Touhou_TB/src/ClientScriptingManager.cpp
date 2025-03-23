@@ -186,8 +186,12 @@ void ClientScriptingManager::handleMessage(RakNet::Packet *p)
 {
 
     // first gateway
-    sendDataToLuaScripting(p);
     // firstGateWay(p);
+    sendDataToLuaScripting(p);
+    
+
+
+
 
     //PacketCode requestCode = getSpecialRequestCode(p);
 }
@@ -222,28 +226,22 @@ void ClientScriptingManager::connect()
 
 void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
 {
+    std::cout << "sendDataToLuaScripting \n";
     if(m_script)
     {
+        std::cout << "script is not null \n";
         lua_getglobal(m_script, "Client_ReceiveData");
         if(lua_isfunction(m_script, -1))
         {
-
-            unsigned char iv[AES_IV_SIZE];
-            for(int i = 0 ; i < AES_IV_SIZE ; i++)
+            std::cout << "length of packet is " << p->length << "\n";
+            std::cout << "attemp to call lua fuinction \n";
+            bool selfPacket = false;
+            if(p->length < 2)
             {
-                iv[i] = p->data[(p->length -1) - (AES_IV_SIZE - i)]; 
+                selfPacket = true;
+             
             }
-            // std::cout << "salt is :\n";
-            // for(int i = 0 ; i < AES_IV_SIZE; i++)
-            // {
-            //     printf("%02x", iv[i]);
-            // }  
-            // std::cout << "\n";
-            std::vector<unsigned char> tMsg;
-            for(int i = 0 ;i < (p->length -1) - AES_IV_SIZE; i++)
-            {
-                tMsg.push_back(p->data[i]);
-            }
+       
             // std::cout << "tMsg check \n";
             // for(int i = 0 ;i < tMsg.size() ; i++)
             // {
@@ -251,11 +249,35 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
             // }   
 
             // std::cout << "\ndecrypt : \n";
+            std::cout << "get packet identifier \n";
             unsigned char identifier = GetPacketIdentifier(p);
             // // std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
-            std::cout << "got packet " << identifier << "\n";
+            std::cout << "got packet !!!!!!! " << identifier << "\n";
 
-            lua_pushstring(m_script,m_cryptor.decrypt(tMsg, iv).c_str());
+            if(!selfPacket)
+            {
+                unsigned char iv[AES_IV_SIZE];
+                for(int i = 0 ; i < AES_IV_SIZE ; i++)
+                {
+                    iv[i] = p->data[(p->length -1) - (AES_IV_SIZE - i)]; 
+                }
+                // std::cout << "salt is :\n";
+                // for(int i = 0 ; i < AES_IV_SIZE; i++)
+                // {
+                //     printf("%02x", iv[i]);
+                // }  
+                // std::cout << "\n";
+                std::vector<unsigned char> tMsg;
+                for(int i = 0 ;i < (p->length -1) - AES_IV_SIZE; i++)
+                {
+                    tMsg.push_back(p->data[i]);
+                }
+                lua_pushstring(m_script,m_cryptor.decrypt(tMsg, iv).c_str());
+            }
+            else
+            {
+                lua_pushstring(m_script, std::string((const char *) p->data).c_str());
+            }
             lua_pushlightuserdata(m_script, &p->systemAddress);
             lua_pushnumber(m_script, identifier);
             const int argc = 3;

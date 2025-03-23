@@ -50,6 +50,15 @@ Login_Noti_Msg = nil
 ---@type Label
 Login_Noti_Btn = nil
 
+
+---Note
+---@type Panel
+Login_Note_Panel = nil
+---@type RTLabel
+Login_Note_Msg = nil
+---@type Label
+Login_Note_Btn = nil
+
 ---Login Panel
 ---@type Panel
 Login_LoginPanel = nil
@@ -142,6 +151,26 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_Noti_Btn:setHoverable(0,255,0,255,255,255,255,255)
     Login_Noti_Btn:setOnClickCallback(function() Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250) end)
 
+    --- Note section ----
+    Login_Note_Panel = Panel:new()
+    Login_Note_Panel:init(Login_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
+    Login_Note_Panel:setAligment(0.5,0,5)
+    Login_Note_Panel:setSizeStr("30%", "25%")
+    Login_Note_Panel:setPosStr("50%", "50%")
+    Login_Note_Panel:setVisible(false)
+
+    Login_Note_Msg = RTLabel:new()
+    Login_Note_Msg:init(Login_GUIScriptingPtr,"",0,0,Login_Note_Panel.ptr)
+    Login_Note_Msg:setAlignment(TextAlginment.Center)
+    Login_Note_Msg:setPosStr("50%","20%")
+
+    Login_Note_Btn = Label:new()
+    Login_Note_Btn:init(Login_GUIScriptingPtr,"OK",0,0,Login_Note_Panel.ptr)
+    Login_Note_Btn:setAlignment(TextAlginment.Center)    
+    Login_Note_Btn:setPosStr("50%","75%")
+    Login_Note_Btn:setHoverable(0,255,0,255,255,255,255,255)
+    Login_Note_Btn:setOnClickCallback(function() Login_Note_Panel:hideWithEffect(PanelShowType.Fade,250) end)
+
     --- Main Menu section ----
     
     Login_PlayOfflineBtn = Label:new()
@@ -150,13 +179,13 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_PlayOfflineBtn:setPos(TGUI_ScreenWidth/2 ,TGUI_ScreenHeight/2 - 50)
     Login_PlayOfflineBtn:setHoverable(0,255,0,255,255,255,255,255)
     Login_PlayOfflineBtn:setOnClickCallback(function()
-        Login_showNotification("I have no time to implement\n this nproperly, what you about\n to see is the concept ...","OK")
+        Login_showNote("I have no time to implement\n this nproperly, what you about\n to see is the concept ...","OK")
         end)
-        Login_Noti_Btn:setOnClickCallback(function() 
-            Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
-            -- cpp_switchScene(LoginHost,0,0,0,1)
+        Login_Note_Btn:setOnClickCallback(function() 
+            Login_Note_Panel:hideWithEffect(PanelShowType.Fade,250)
+            cpp_switchScene(LoginHost,0,0,0,1)
             end)
-
+        
     Login_PlayOnlineBtn = Label:new()
     Login_PlayOnlineBtn:init(Login_GUIScriptingPtr,"Play Online",TGUI_ScreenWidth/2 ,TGUI_ScreenHeight/2 )
     Login_PlayOnlineBtn:setAlignment(TextAlginment.Center)
@@ -363,6 +392,20 @@ function Login_showNotification(msg,btnText)
 
 end
 
+---@Description show Note box
+---@param msg string message
+---@param btnText string
+function Login_showNote(msg,btnText)
+    Login_Note_Panel:showWithEffect(PanelShowType.Fade,250)
+    Login_Note_Msg:setText(msg)
+    Login_Note_Btn:setText(btnText)
+    -- Login_Noti_Btn:setOnClickCallback(function()
+    --     print("call back end ")
+    --     Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,2500)
+    --     end)
+
+end
+
 
 
 Login_HandleTask = {}
@@ -370,7 +413,7 @@ Login_HandleTask = {}
 ---@param host pointer instance of ClientScriptingManager
 ---@param packet Client_Packets
 HandlePacketTask["login_main"] = function(host,packet)
-
+    print("recive packet  >>>> " .. packet.packetID)
     if Login_HandleTask[packet.packetID] ~= nil then
         Login_HandleTask[packet.packetID](ClientSide_Host,packet)
     else

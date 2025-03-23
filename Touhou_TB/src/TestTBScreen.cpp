@@ -37,7 +37,7 @@ void TestTBScreen::onEntry()
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 
     m_camera.setPosition(glm::vec2(0, 0));
-    m_camera.setScale(0.8f);
+    m_camera.setScale(1.0f);
 
     m_camera.update();
 
