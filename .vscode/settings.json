@@ -72,7 +72,17 @@
     "span": "cpp",
     "typeindex": "cpp",
     "variant": "cpp",
-    "csignal": "cpp"
+    "csignal": "cpp",
+    "entropy.h": "c",
+    "buffer": "cpp",
+    "executor": "cpp",
+    "internet": "cpp",
+    "io_context": "cpp",
+    "netfwd": "cpp",
+    "socket": "cpp",
+    "timer": "cpp",
+    "ranges": "cpp",
+    "valarray": "cpp"
   },
   "workbench.colorCustomizations": {
     "editor.background": "#181818db",

@@ -1,3 +1,0 @@
-C:/Users/Huyen-z/Documents/Feint/GC3_vscode/Editor/build/CMakeFiles/FeintEditor.dir
-C:/Users/Huyen-z/Documents/Feint/GC3_vscode/Editor/build/CMakeFiles/edit_cache.dir
-C:/Users/Huyen-z/Documents/Feint/GC3_vscode/Editor/build/CMakeFiles/rebuild_cache.dir
