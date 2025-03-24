@@ -1,51 +1,61 @@
 #include <iostream>
-#include <deque>
-#include <thread>
-#include <mutex>
-#include <condition_variable>
-
-std::deque<int> taskQueue;
-std::mutex queueMutex;
-std::condition_variable cv;
-
-bool producerDone = false;
-
-void producer() {
-    for (int i = 1; i <= 50000; ++i) {
-        std::unique_lock<std::mutex> lock(queueMutex);
-        taskQueue.push_back(i);  // Add task to the back
-        std::cout << "Produced: " << i << "\n";
-        lock.unlock();
-        cv.notify_one();  // Notify a waiting thread
-        // std::this_thread::sleep_for(std::chrono::milliseconds(100));
+ 
+struct V
+{
+    virtual void f() {} // must be polymorphic to use runtime-checked dynamic_cast
+};
+ 
+struct A : virtual V {};
+ 
+struct B : virtual V
+{
+    B(V* v, A* a)
+    {
+        // casts during construction (see the call in the constructor of D below)
+        dynamic_cast<B*>(v); // well-defined: v of type V*, V base of B, results in B*
+        dynamic_cast<B*>(a); // undefined behavior: a has type A*, A not a base of B
     }
-    producerDone = true;
-}
-
-void consumer() {
-    while (true) {
-        std::unique_lock<std::mutex> lock(queueMutex);
-        cv.wait(lock, [] { return !taskQueue.empty(); });  // Wait until queue is not empty
-
-        int task = taskQueue.front();
-        taskQueue.pop_front();
-        std::cout << "Consumed: " << task << " !!!!!!!!!!\n";
-        lock.unlock();
-
-        if (producerDone && taskQueue.empty()) break;  // Stop condition
+};
+ 
+struct D : A, B
+{
+    D() : B(static_cast<A*>(this), this) {}
+};
+ 
+struct Base
+{
+    virtual ~Base() {}
+};
+ 
+struct Derived : Base
+{
+    virtual void name() {}
+};
+ 
+int wmain()
+{
+    D d; // the most derived object
+    A& a = d; // upcast, dynamic_cast may be used, but unnecessary
+ 
+    [[maybe_unused]]
+    D& new_d = dynamic_cast<D&>(a); // downcast
+    [[maybe_unused]]
+    B& new_b = dynamic_cast<B&>(a); // sidecast
+ 
+    Base* b1 = new Base;
+    if (Derived* d = dynamic_cast<Derived*>(b1); d != nullptr)
+    {
+        std::cout << "downcast from b1 to d successful\n";
+        d->name(); // safe to call
     }
-}
-
-int wmain() {
-    std::thread t1(producer);
-    std::thread t2(consumer);
-    std::thread t3(consumer);
-
-    t1.join();
-    t2.join();
-    t3.join();
-
-
-    std::cout << "all done \n";
-    return 0;
+ 
+    Base* b2 = new Derived;
+    if (Derived* d = dynamic_cast<Derived*>(b2); d != nullptr)
+    {
+        std::cout << "downcast from b2 to d successful\n";
+        d->name(); // safe to call
+    }
+ 
+    delete b1;
+    delete b2;
 }
