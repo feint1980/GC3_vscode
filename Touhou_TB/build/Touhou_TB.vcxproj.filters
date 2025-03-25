@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\PacketDescription\NetworkPacket.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\TGUI_theme\DarkTheme.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\TGUI_theme\LightTheme.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\TGUI_theme\ThemeCreator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\BattleScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\ClientHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\ClientScriptingManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\F_Lua_BaseEntity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\F_Lua_Entitymanipulator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\F_TurnHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\GUI_handler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\GUI_icon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\HomeScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\InfoHolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\LoginScene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\LoginSceneV2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\Slot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\SlotHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\TB_EmptyObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\TGUIScriptingManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\TH_TB_App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\TestTBScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\VS_Code_prj\GC3_vscode\Touhou_TB\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{625F502A-2568-3992-B30B-994CB3148344}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

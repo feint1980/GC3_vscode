@@ -1,61 +1,41 @@
+
 #include <iostream>
- 
-struct V
-{
-    virtual void f() {} // must be polymorphic to use runtime-checked dynamic_cast
-};
- 
-struct A : virtual V {};
- 
-struct B : virtual V
-{
-    B(V* v, A* a)
-    {
-        // casts during construction (see the call in the constructor of D below)
-        dynamic_cast<B*>(v); // well-defined: v of type V*, V base of B, results in B*
-        dynamic_cast<B*>(a); // undefined behavior: a has type A*, A not a base of B
-    }
-};
- 
-struct D : A, B
-{
-    D() : B(static_cast<A*>(this), this) {}
-};
- 
-struct Base
-{
-    virtual ~Base() {}
-};
- 
-struct Derived : Base
-{
-    virtual void name() {}
-};
- 
-int wmain()
-{
-    D d; // the most derived object
-    A& a = d; // upcast, dynamic_cast may be used, but unnecessary
- 
-    [[maybe_unused]]
-    D& new_d = dynamic_cast<D&>(a); // downcast
-    [[maybe_unused]]
-    B& new_b = dynamic_cast<B&>(a); // sidecast
- 
-    Base* b1 = new Base;
-    if (Derived* d = dynamic_cast<Derived*>(b1); d != nullptr)
-    {
-        std::cout << "downcast from b1 to d successful\n";
-        d->name(); // safe to call
-    }
- 
-    Base* b2 = new Derived;
-    if (Derived* d = dynamic_cast<Derived*>(b2); d != nullptr)
-    {
-        std::cout << "downcast from b2 to d successful\n";
-        d->name(); // safe to call
-    }
- 
-    delete b1;
-    delete b2;
+#include <cmath>
+// Base case: when no digits are left
+
+template <int n, int step>
+int getDecFromBy() {
+    // std::cout << n << "\n";
+    // std::cout << step << "\n";
+    
+    return n;
+    // std::cout << std::endl;
 }
+
+// Variadic template to print binary representation
+template <int n, int step, bool first,bool... rest>
+int getDecFromBy() {
+    
+ 
+    if(first)
+    {
+        std::cout << "got step " << step << "\n"; ;
+        std::cout << "n now is " << step << "\n";
+        return getDecFromBy< step + n ,step * 2 ,rest...>();
+    }
+    else
+    {
+        std::cout << "no \n";
+        std::cout << "n now is " << n << "\n";
+        return getDecFromBy< n ,step * 2 ,rest...>();
+    }
+
+     // Recursive call to process the rest
+}
+
+int wmain() {
+    std::cout <<  getDecFromBy<0,1, 1, 0, 1, 1>(); 
+    // std::cout << t << "\n";
+    return 0;
+}
+
