@@ -1,3 +1,3 @@
-D:/VS_Code_prj/GC3_vscode/Whiteboard/build/CMakeFiles/Whiteboard.dir
-D:/VS_Code_prj/GC3_vscode/Whiteboard/build/CMakeFiles/edit_cache.dir
-D:/VS_Code_prj/GC3_vscode/Whiteboard/build/CMakeFiles/rebuild_cache.dir
+E:/template/GC_port/Whiteboard/build/CMakeFiles/Whiteboard.dir
+E:/template/GC_port/Whiteboard/build/CMakeFiles/edit_cache.dir
+E:/template/GC_port/Whiteboard/build/CMakeFiles/rebuild_cache.dir
