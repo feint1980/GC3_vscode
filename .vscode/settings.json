@@ -217,5 +217,14 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
-  "cmake.sourceDirectory": "D:/VS_Code_prj/GC3_vscode/Editor"
+  "cmake.sourceDirectory": "D:/VS_Code_prj/GC3_vscode/Editor",
+  "make-to-cpp-props.configurations": [
+    {
+      "name": "default",
+      "cStandard": "c11",
+      "cppStandard": "c++11",
+      "includePath": [],
+      "defines": []
+    }
+  ]
 }
