@@ -25,7 +25,7 @@
 #include <FrameBufferScreen.h>
 #include <Camera2D.h>
 #include <fstream>
-
+#include <deque>
 
 class LuaObjectEditorComponent
 {
@@ -119,6 +119,7 @@ private:
 
 	CEGUI::Listbox * m_bossList = nullptr;
 
+	// std::vector<EnemyBulletBase *> m_bullets;
 	std::vector<EnemyBulletBase *> m_bullets;
 
 	F_Lua_Boss_Manager m_luaObjectManager;

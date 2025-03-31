@@ -42,27 +42,19 @@ void LinkAmplifier::update(float deltaTime, std::vector<EnemyBulletBase *> & ene
 	m_iceWall.update(deltaTime,player);
 	if (m_isAlive)
 	{
-
 		updateAmplifyEffect(enemies_bullets, player);
-
 		handlingState(deltaTime);
-
 		handleLinker();
 	}
 	else 
 	{
-	
-		m_alpha -= 0.1f * deltaTime;
-		
+		m_alpha -= 0.1f * deltaTime;	
 		m_animation.setScale(glm::vec2(1.0f,m_alpha));
 		if (m_alpha <= 0.0f)
 		{
 			m_isRemoved = true;
 		}
 	}
-
-
-
 }
 
 void LinkAmplifier::updateAmplifyEffect(std::vector<EnemyBulletBase *> & enemies_bullets, F_Player & player)

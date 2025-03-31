@@ -89,7 +89,7 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Main_MonValLabel:setPosStr("93%","5%")
     Main_MonValLabel:setAlignment(TextAlginment.Right)
 
-    Home_RequestUserlData()
+    -- Home_RequestUserlData()
 
 end
 

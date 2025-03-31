@@ -1,5 +1,5 @@
 
-package.path = package.path .. ';./Assets/Lua/system/GUI/?/?.lua;' .. ';./Assets/Lua/system/GUI/widgets/?.lua;' .. ';./Assets/Lua/system/Networking/?.lua;' .. ';./Assets/Lua/Login/?.lua;'
+package.path = package.path .. ';./Assets/Lua/system/GUI/?/?.lua;' .. ';./Assets/Lua/system/GUI/widgets/?.lua;' .. ';./Assets/Lua/system/Networking/?.lua;' .. ';./Assets/Lua/Login/?.lua;' .. ';./Assets/Lua/system/event/?.lua;'
 
 -- require "tguiScript"
 
@@ -10,6 +10,7 @@ require "TGUI_Editbox"
 require "clientSide"
 require "loginStripOrder"
 require "clientWrapper"
+require "LuaEventHandler"
 
 print("login scene run\n")
 
@@ -149,7 +150,9 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_Noti_Btn:setAlignment(TextAlginment.Center)
     Login_Noti_Btn:setPosStr("50%","75%")
     Login_Noti_Btn:setHoverable(0,255,0,255,255,255,255,255)
-    Login_Noti_Btn:setOnClickCallback(function() Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250) end)
+    Login_Noti_Btn:setOnClickCallback(function() 
+        print("close !!!!")
+        Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250) end)
 
     --- Note section ----
     Login_Note_Panel = Panel:new()
@@ -206,6 +209,8 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_ExitBtn:setAlignment(TextAlginment.Center)
     Login_ExitBtn:setHoverable(0,255,0,255,255,255,255,255)
     Login_ExitBtn:setOnClickCallback(function() os.exit() end)
+    -- Login_ExitBtn:setOnClickCallback(function() print("1") end)
+
 
     ---- TOS section -----
     local tosPanel = Panel:new()
@@ -270,12 +275,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_LoginBtn:setHoverable(0,255,0,255,255,255,255,255)
     Login_LoginBtn:setOnClickCallback(function()
         
-        if Client_Connected == true then
-            Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
-        end
-
-        print("setOnClickCallback send data : ")
-        print(Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+        Login_MainCall(host)
     end)
 
 
@@ -373,6 +373,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
 
     ---- TOS section end
 
+    Tscheduler:wait(2, function() print("2 seconds passed!") end)
     -- local testEditBox = EditBox:new()
     -- testEditBox:init(Login_GUIScriptingPtr,200,50,200,50)
 
@@ -385,6 +386,7 @@ function Login_showNotification(msg,btnText)
     Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
     Login_Noti_Msg:setText(msg)
     Login_Noti_Btn:setText(btnText)
+    Login_Noti_Panel.visible = true
     -- Login_Noti_Btn:setOnClickCallback(function()
     --     print("call back end ")
     --     Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,2500)
@@ -407,7 +409,6 @@ function Login_showNote(msg,btnText)
 end
 
 
-
 Login_HandleTask = {}
 ---@Description handle packet when connected
 ---@param host pointer instance of ClientScriptingManager
@@ -424,7 +425,9 @@ end
 Login_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet)
     print("ID_CONNECTION_REQUEST_ACCEPTED riu ko bro ?")
 
-    Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,100)
+    if Login_Noti_Panel.visible == true then
+        Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,300)
+    end
     Client_Connected = true
 
     Login_LoginPanel:showWithEffect(PanelShowType.Fade,250)
@@ -517,6 +520,15 @@ Login_HandleStep2[Packet_OtherID.ID_REGISTER_POS] = function(host,packet)
 end
 
 
+function Login_MainCall(host)
+    if Client_Connected == true then
+        Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+    end
+
+    print("setOnClickCallback send data : ")
+    print(Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+end
+
 function Login_CheckValid(info)
     local size = string.len(info)
     if size  < 6  or size > 32 then
@@ -581,6 +593,21 @@ function StripMSG(msg,otherID)
 
     -- print( OrderList[Packet_OtherID.ID_LOGIN_NEG].firstStr)
     return string.sub(msg,string.len(OrderList[otherID].firstStr) + 1,string.len(msg) - string.len(OrderList[otherID].secondStr))
+
+end
+
+
+function Login_handleKeyboard(signal)
+
+    if signal == 1 then
+        if Login_Noti_Panel.visible == true then 
+            Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+            -- print("sssss")
+        elseif Login_LoginPanel.visible == true then
+            Login_MainCall(LoginHost)
+            -- print("eeeee")
+        end
+    end
 
 end
 

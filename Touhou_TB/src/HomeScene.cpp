@@ -139,6 +139,8 @@ void HomeScene::update(float deltaTime)
         m_clientScriptingManager->update(deltaTime);
     }
 
+
+    
 }
 
 void HomeScene::checkInput()

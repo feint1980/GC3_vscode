@@ -5,6 +5,7 @@
 LuaObjectEditorComponent::LuaObjectEditorComponent()
 {
 	ENGINE_current_tick = 0;
+	m_bullets.reserve(5000);
 }
 
 

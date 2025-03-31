@@ -37,7 +37,8 @@ Panel = {
     posY = 0,
     width = 0,
     height = 0,
-    parent = nil
+    parent = nil,
+    visible = true
 }
 
 
@@ -108,6 +109,7 @@ end
 ---@param time number time to disappear
 function Panel:hideWithEffect(type,time)
     TGUI_Panel_HideWithEffect(self.ptr, type,time)
+    self.visible = false
 end
 
 ---@Description show panel with effect
@@ -115,6 +117,7 @@ end
 ---@param time number time to appear
 function Panel:showWithEffect(type,time)
     TGUI_Panel_ShowWithEffect(self.ptr, type,time)
+    self.visible = true
 end
 
 ---@Description set Alignment of Panel
@@ -129,7 +132,10 @@ end
 ---@param visible boolean
 function Panel:setVisible(visible)
     TGUI_Panel_SetVisible(self.ptr, visible)
+    self.visible = visible
 end
+
+
 
 ---- MARK: Wrapper
 

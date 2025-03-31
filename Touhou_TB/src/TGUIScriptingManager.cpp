@@ -1,6 +1,7 @@
 
 #include "TGUIScriptingManager.h"
 
+int luaCallbackRef = LUA_NOREF;
 
 int lua_Panel_Create(lua_State * L)
 {
@@ -709,18 +710,27 @@ int lua_Label_SetOnClickCallback(lua_State * L)
     {
         tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));
             
+        // if (luaCallbackRef != LUA_NOREF) {
+        //     luaL_unref(L, LUA_REGISTRYINDEX, luaCallbackRef);
+        //     luaCallbackRef = LUA_NOREF;
+        //     std::cout << "UNREF CALLED !!!!!!!!!!!!!!!!\n";
+        // }
         if(!lua_isfunction(L, 2))
         {
             std::cout << "param 2 is not a function \n";
             return -1;
         }
+        // luaCallbackRef = luaL_ref(L, LUA_REGISTRYINDEX);
         lua_pushvalue(L, 2);
-        int ref = luaL_ref(L, LUA_REGISTRYINDEX);
+        int ref = luaL_ref(L, LUA_REGISTRYINDEX);;
         label->get()->onClick.disconnectAll();
         std::function<void()> callback = [L,ref](){
             std::cout << "ref is " << ref << "\n";
-            lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
+            lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);
+        };
+        lua_pop(L, 1);
         label->get()->onClick(callback);
+        
     }
 
 }
@@ -1155,10 +1165,10 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "lua_Picture_SetTexture", lua_Picture_SetTexture);
 
     // run Init script
-    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))
-    {
-        std::cout << "Run script OK \n";
-    }
+    // if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))
+    // {
+    //     std::cout << "Run script OK \n";
+    // }
 
     lua_getglobal(m_script, "TGUIScripting_Init");
     if(lua_isfunction(m_script, -1))

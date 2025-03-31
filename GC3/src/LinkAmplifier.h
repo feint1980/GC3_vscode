@@ -55,14 +55,9 @@ public:
 	bool isAlive() const { return m_isAlive; }
 
 	bool isRemove() const { return m_isRemoved; }
-
-
-
-
 private : 
 
 	bool m_isIvertXY = false;
-
 	bool m_isRemoved = false;
 	bool m_isAlive = false;
 	int m_state = 0 ;

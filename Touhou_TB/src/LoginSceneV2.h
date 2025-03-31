@@ -41,6 +41,7 @@
 
 #include "ClientScriptingManager.h"
 
+#include "LuaEventHandler.h"
 class LoginSceneV2 : public Feintgine::IGameScreen
 {
 public:
@@ -66,6 +67,8 @@ public:
     virtual void draw() override;
 
     virtual void checkInput() override;
+
+    void sendSignalToLua(int signal);
 
     void changeScene(const std::string & tID, const std::string & tPW, const std::string & tGUID);
 
@@ -103,6 +106,8 @@ private:
 
     // ClientScriptingManager m_clientScriptingManager;// = nullptr;
 
+
+    LuaEventHandler m_luaEventHandler ;
 
     TGUIScriptingManager m_guiScriptingManager;
 

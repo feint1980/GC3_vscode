@@ -5,12 +5,12 @@
 #include "IcedObject.h"
 #include "F_Player.h"
 #include <feint_common.h>
+#include <deque>
 class IceWall
 {
 public:
 	IceWall();
 	~IceWall();
-
 
 	void init();
 
@@ -22,9 +22,6 @@ public:
 
 	void setDim(const glm::vec2 & dim);
 
-	
-
-
 	void freezeBullet( F_BulletBase * bullet);
 
 	void drawDebug(Feintgine::DebugRender & debugRenderer);
@@ -35,7 +32,9 @@ private :
 	glm::vec2 m_pos;
 	glm::vec2 m_dim;
 
-	std::vector<IcedObject> m_iceObjects;
+	// std::vector<IcedObject> m_iceObjects;
+
+	std::deque<IcedObject> m_iceObjects;
 
 	std::vector<Feintgine::F_Sprite> m_sprites;
 

@@ -103,6 +103,8 @@ private:
 
     RakNet::RakPeerInterface * m_client = nullptr;
 
+    // bool isReady = false;
+
     TGUIScriptingManager m_guiScriptingManager;
 
 };

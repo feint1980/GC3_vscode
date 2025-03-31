@@ -135,7 +135,7 @@ void LoginSceneV2::onExit()
 
     std::cout << "on exi call \n";
     // m_tgui->;
-    m_guiScriptingManager.cleanup();
+    // m_guiScriptingManager.cleanup();
     // m_shader.dispose();
     // if(m_clientScriptingManager)
     // {
@@ -155,6 +155,7 @@ void LoginSceneV2::update(float deltaTime)
         m_clientScriptingManager->update(deltaTime);
 
     }
+    m_luaEventHandler.update(deltaTime);
 
 }
 
@@ -189,6 +190,27 @@ void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
 
     }
     m_guiScriptingManager.handleInput(inputManager);
+
+    if(inputManager.isKeyPressed(SDLK_RETURN))
+    {
+        sendSignalToLua(1);
+    }
+}
+
+void LoginSceneV2::sendSignalToLua(int signal)
+{
+    lua_getglobal(m_script, "Login_handleKeyboard");
+    if(lua_isfunction(m_script, -1))
+    {
+        // lua_pushlightuserdata(m_script, this);
+        lua_pushinteger(m_script, signal);
+        const int argc = 1;
+        const int returnCount = 0;
+        if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+        {
+            std::cout << "sendSignalToLua " << signal << " OK \n";
+        }
+    }
 }
 
 void LoginSceneV2::draw()
@@ -235,6 +257,8 @@ void LoginSceneV2::initGUI()
     luaL_openlibs(m_script);
 
     m_guiScriptingManager.init(m_window,m_script);
+
+    m_luaEventHandler.init(m_script);
 
     m_clientScriptingManager = new ClientScriptingManager();
 

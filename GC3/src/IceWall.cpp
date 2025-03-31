@@ -24,7 +24,6 @@ void IceWall::init()
 		m_sprites.push_back(sprite);
 	}
 
-
 }
 
 

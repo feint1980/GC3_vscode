@@ -1502,8 +1502,6 @@ void Extra_DemoScreen::loadLevel(const std::string & levelPath)
 						{
 							std::cout << "warning, the value shader " << name << " is null \n";
 						}
-
-
 					}, ENGINE_current_tick + time);
 					break;
 				}
@@ -1511,9 +1509,6 @@ void Extra_DemoScreen::loadLevel(const std::string & levelPath)
 				default:
 					break;
 				}
-
-				
-
 			}
 
 		}
