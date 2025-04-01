@@ -6,6 +6,9 @@ require "IconGui"
 require "Character"
 
 ---@class Patchouli: Character
+Patchouli = setmetatable({}, { __index = Character })
+
+---@Description Patchouli inherits from Character
 ---@return Patchouli
 Patchouli = Character:new({
     Strenth = 3,
@@ -38,8 +41,6 @@ Patchouli = Character:new({
     currentSlot = nil
 }
 )
-
-
 
 function Patchouli:loadCommon(host)
    

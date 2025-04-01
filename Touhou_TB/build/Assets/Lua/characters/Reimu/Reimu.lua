@@ -66,5 +66,3 @@ function Reimu:loadSkills(host)
     --return self.skills
     
 end
-
--- Patchouli:new

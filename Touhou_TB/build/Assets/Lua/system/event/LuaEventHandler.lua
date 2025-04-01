@@ -2,40 +2,80 @@
 
 Tscheduler = {}
 
-HandlerHost = nil
-Tsize = 0
 
-function InitHandler(host)
-    HandlerHost = host
+EventTasks = {
+    time = 0,
+    callback = nil
+}
+
+function EventTasks:new( time, callback)
+    local o = {}
+    o.time = time
+    o.callback = callback
+    setmetatable(o, self)
+    self.__index = self
+    return o
 end
 
-function Tscheduler:wait(time, callback)
-    print("Wait call " .. time)
-    table.insert(self, {time = time, callback = callback})
-    -- if size of table > 0 then kick start in C++
+
+
+EvenTaskList = {}
+
+_G.HandlerHost = nil
+Tsize = 0
+function InitEventHandler(host)
+    _G.HandlerHost = host
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! host add !!!!!!!!!!!!!!!!!!!!!!!!!!")
+    if _G.HandlerHost == nil then
+        print("host is nil")
+    else
+        print("host is not nil")
+        print(_G.HandlerHost)
+    end
+end
+
+
+function Tscheduler_addTask(time, callback,host)
+
+    host = host or _G.HandlerHost
+    -- if host == nil then
+
+
+    local task = EventTasks:new(time, callback)
+
+    table.insert(EvenTaskList, task)
+
     if(Tsize == 0) then
-        cppEventHandlerStart(HandlerHost)
+        print("start event handler")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! host use !!!!!!!!!!!!!!!!!!!!!!!!!!")
+        if _G.HandlerHost == nil then
+            print("_G.HandlerHost is nil")
+        else
+            print("_G.HandlerHost is not nil")
+        end
+        cppEventHandlerStart()
     end
     Tsize =  Tsize + 1
 end
 
-function Tscheduler:update(dt)
-    -- print("update call ")
-    for i = #self, 1, -1 do
-        local task = self[i]
-        -- print("task " .. task.time)
-        task.time = task.time - dt
-        if task.time <= 0 then
-            task.callback()
-            table.remove(self, i)
-            Tsize = Tsize - 1
-            if Tsize == 0 then
-                cppEventHandlerStop(HandlerHost)
-            end
-        end
-    end
-end
 
 function EventHandlerUpdate(dt)
-    Tscheduler:update(dt)
+    -- print("lua update regardless " )
+    if Tsize > 0 then 
+        -- print("lua update " .. dt)
+        for i = #EvenTaskList, 1, -1 do
+            local task = EvenTaskList[i]
+            -- print("task " .. task.time)
+            task.time = task.time - dt
+            if task.time <= 0 then
+                task.callback()
+                table.remove(EvenTaskList, i)
+                Tsize = Tsize - 1
+            end
+            if(Tsize == 0) then
+                cppEventHandlerStop()
+                print("stop event handler")
+            end
+        end
+    end 
 end

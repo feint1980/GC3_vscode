@@ -73,16 +73,17 @@ function TurnHandler:getCharacterFromDyobj(dyobj)
     return nil
 end
 
+---@Description: put Character into TurnHandler
 function TurnHandler:putCharacterIntoList()
     self.charLists = {}
     print("putCharacterIntoList called")
     for i = 1, #self.totalCharList do
         table.insert(self.charLists,self.totalCharList[i])
     end
-
     self:sortCharacter()
 end
 
+---@Description: sort Character by Dexterity
 function TurnHandler:sortCharacter()
 
     print("sortCharacter called")
@@ -111,6 +112,7 @@ function TurnHandler:display()
 
 end
 
+---@Description : next chracter turn
 function TurnHandler:nextTurn()
     if #self.charLists > 1 then
         self.currentCharacter = self.charLists[1]

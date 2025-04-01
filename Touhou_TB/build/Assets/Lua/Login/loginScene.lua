@@ -372,8 +372,6 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
 
 
     ---- TOS section end
-
-    Tscheduler:wait(2, function() print("2 seconds passed!") end)
     -- local testEditBox = EditBox:new()
     -- testEditBox:init(Login_GUIScriptingPtr,200,50,200,50)
 

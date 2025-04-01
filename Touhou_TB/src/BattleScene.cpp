@@ -1361,35 +1361,9 @@ void BattleScene::draw(Feintgine::SpriteBatch & spriteBatch)
 
 }
 
-void BattleScene::setMoveTargetSlot(F_Lua_BaseEntity * entity, Slot * slot)
-{
-		entity->setTargetSlot(slot);
-		lua_getglobal(m_script, "setEntityMoveToSlot");
-		if (lua_isfunction(m_script, -1))
-		{
-			//m_luaBossStates[i]->m_luaBoss;
-			
-			//lua_pushlightuserdata(m_script, pThread);
-			lua_pushlightuserdata(m_script, this); // host
-
-			//std::cout << "Issue next task pointer " << object << "\n";
-
-			lua_pushlightuserdata(m_script, entity);
-
-			// lua_pushlightuserdata(m_script, entity->getTargetSlot());
-
-			if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 2, 1, 0)))
-			{
-				std::cout << "call setEntityMoveToSlot failed \n";
-			}
-		}
-}
-
 void BattleScene::update(float deltaTime)
 {
 
-
-	
 	if(m_guiHandler)
 	{
 		m_guiHandler->update(deltaTime);
@@ -1402,64 +1376,12 @@ void BattleScene::update(float deltaTime)
 	{
 		m_camera->update();
 	}
-	// for(int i = 0 ; i < m_slots.size(); i++)
-	// {
-	// 	m_slots[i]->update(deltaTime);
-	// 	if(m_currentEntity && !m_isMove)
-	// 	{
-	// 		if(m_currentEntity->isActive())
-	// 		{
-	// 			//std::cout << "has active entity \n";
-	// 			if(m_slots[i]->getState() == 1)
-	// 			{
-	// 				setMoveTargetSlot(m_currentEntity, m_slots[i]);
-	// 				m_isMove = true;
-	// 			}um l,
-	// 		}
-	// 	}
-	// }
 
 	for(int i = 0 ; i < m_entities.size(); i++)
 	{
 		m_entities[i]->update(deltaTime);
 	}
 
-	// update manipulator
-	// if(m_entityManipulators.size() > 0)
-	// {
-	// 	std::cout << "Entity Manipulators size " << m_entityManipulators.size() << "\n";
-	// 	for(int i = 0 ; i < m_entityManipulators.size(); i++)
-	// 	{
-	// 		switch(m_entityManipulators[i]->getState())
-	// 		{
-	// 			case EntityState::Move:
-	// 			{
-	// 				std::cout << i << " : is Move \n"; 
-	// 			}
-	// 			break;
-
-	// 			case EntityState::Animation:
-	// 			{
-	// 				std::cout << i << " : is Animation \n"; 
-	// 			}
-	// 			break;
-
-	// 			case EntityState::Wait:
-	// 			{
-	// 				std::cout << i << " : is Wait \n";
-	// 			}
-	// 			break;
-
-	// 			case EntityState::None:
-	// 			{
-	// 				std::cout << i << " : is None \n"; 
-	// 			}
-	// 			break;
-
-
-	// 		}
-	// 	}
-	// }
 	for(int i = 0 ; i < m_entityManipulators.size(); i++)
 	{
 		if(m_entityManipulators[i])
@@ -1469,29 +1391,18 @@ void BattleScene::update(float deltaTime)
 				lua_getglobal(m_script, "HandleSkillTasks");
 				if (lua_isfunction(m_script, -1))
 				{
-					//m_luaBossStates[i]->m_luaBoss;
-					F_Lua_BaseEntity * entity = m_entityManipulators[i]->getEntity();
-					//lua_pushlightuserdata(m_script, pThread);
-					lua_pushlightuserdata(m_script, this); // host
 
-					//std::cout << "Issue next task pointer " << object << "\n";
+					F_Lua_BaseEntity * entity = m_entityManipulators[i]->getEntity();
+					lua_pushlightuserdata(m_script, this); // host
 
 					lua_pushlightuserdata(m_script, entity);
 
-					//std::string name = entity->getStrAttributeByName("name");
-					
-
-					//lua_pusht
-
-					// lua_pushlightuserdata(m_script, entity->getTargetSlot());
 					std::cout << "called from C++ " << i << "\n";
 					if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 2, 1, 0)))
 					{
 						std::cout << "HandleMovingTask failed \n";
 					}
 				}
-				//delete m_entityManipulators[i]; 
-				//m_entityManipulators[i] = nullptr;
 				// After Issued next task
 				m_entityManipulators.erase(m_entityManipulators.begin() + i);
 			}

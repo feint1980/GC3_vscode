@@ -32,8 +32,6 @@ public:
 
     void pickActiveEntity(F_Lua_BaseEntity * entity);
 
-    void setMoveTargetSlot(F_Lua_BaseEntity * entity, Slot * slot);
-
     void addEntityManipulator(F_Lua_EntityManipulator * entityManipulator);
 
     void addNonWaitEntityManipulator(F_Lua_EntityManipulator * entityManipulator);

@@ -5,8 +5,15 @@ local item_icons = {}
 package.path = package.path .. ';./Assets/lua/Icons/?.lua;'
 require "Move"
 require "End"
+require "IconGUIWrapper"
 
+---@class instance
 
+---@class IconGUI
+---@field guiHandler? pointer instance of GuiHandler
+---@field selectIcon? pointer instance of Icon
+---@field currentTTD? Icon icon object
+---@field currentIndex number
 IconGUI = {
     guiHandler = nil,
     selectIcon = nil,
@@ -16,7 +23,8 @@ IconGUI = {
     baseLine = -110
 }
 
-
+---@Description create a new instance of IconGUI
+---@return IconGUI
 function IconGUI:new(o)
     o = o or {}
     setmetatable(o, self)
@@ -24,63 +32,30 @@ function IconGUI:new(o)
     return o
 end
 
-
-
-
+---@Description init IconGUI
+---@param host pointer instance of BattleScene
 function IconGUI:init(host)
-
-    self.guiHandler = cppCreateGUIHandler(host,"./Assets/TB_GUI/selection.png", 68,68)
-
+    self.guiHandler = TB_CreateGUIHandler(host,"./Assets/TB_GUI/selection.png", 68,68)
 end
 
-function IconGUI:setFocusColor(host,r,g,b,a)
-
-end
-
-function IconGUI:setSelect(host,value)
-
-end
-
-function IconGUI:selectIcon(host,icon)
-    cppSetHandlerSelected(host)
-    cppSetPhase(host,icon.selectionSide)
-end 
-
+---@Description load icons from character
+---@param host pointer instance of BattleScene
+---@param character pointer instance of Character
 function IconGUI:loadIcons(host,character)
 
-
-    -- if #commmon_icons > 0 then
-    --     -- hide the last icons 
-    --     print("hide the last icons")
-    --    for k,v in pairs(commmon_icons) do
-    --     print("hide icon " .. commmon_icons[k].name)
-    --     cppGuiHandlerSetIconPos(host,commmon_icons[k].iconObj,5000,0)
-    --     cppGuiHandlerRemoveIcon(host,commmon_icons[k].iconObj)
-    --     end
-    -- end
-
-    -- if #skill_icons > 0 then
-    --     -- hide the last icons
-    --     print("hide the last icons")
-    --    for k,v in pairs(skill_icons) do
-    --     print("hide icon " .. skill_icons[k].name)
-    --     cppGuiHandlerSetIconPos(host,commmon_icons[k].iconObj,5000,0)
-    --     cppGuiHandlerRemoveIcon(host,skill_icons[k].iconObj)
-    --     end
-    -- end
-    cppGuiHandlerClearIcons(host)
+    TB_GuiHandlerClearIcons(host)
 
     -- clear icons
     commmon_icons = {}
-    tIndex = 0
+    local tIndex = 0
     print("start loading from " .. character.name)
     for k,v in pairs(character.common_actions) do
         print("loading from " .. k)
         commmon_icons[k] = v
-        cppGUIHandlerAddIcon(host,commmon_icons[k].iconObj)
-        cppGuiHandlerSetIconPos(host,commmon_icons[k].iconObj,self.baseLine + (70 * tIndex),-300)
+        TB_GuiHandlerAddIcon(host,commmon_icons[k].iconObj)
+        TB_GuiHandlerSetIconPos(host,commmon_icons[k].iconObj,self.baseLine + (70 * tIndex),-300)
         if tIndex == 0 then
-            self.selectIcon = cppGuiHandlerSetSelectedIcon(host,commmon_icons[k].iconObj)
+            self.selectIcon = TB_GuiHandlerSetSelectedIcon(host,commmon_icons[k].iconObj)
         end
         tIndex = tIndex + 1
     end
@@ -90,8 +65,8 @@ function IconGUI:loadIcons(host,character)
     for k,v in pairs(character.skills) do
         print("loading from " .. k)
         skill_icons[k] = v
-        cppGUIHandlerAddIcon(host,skill_icons[k].iconObj)
-        cppGuiHandlerSetIconPos(host,skill_icons[k].iconObj,-600 +  (70 * tIndex),-300)
+        TB_GuiHandlerAddIcon(host,skill_icons[k].iconObj)
+        TB_GuiHandlerSetIconPos(host,skill_icons[k].iconObj,-600 +  (70 * tIndex),-300)
         tIndex = tIndex + 1
     end
 
@@ -100,32 +75,42 @@ function IconGUI:loadIcons(host,character)
 
 end
 
+
+---@Description get the length of a table
+---@param T table
+---@return number
 function tablelength(T)
-  local count = 0
-  for _ in pairs(T) do count = count + 1 end
-  return count
+    local count = 0
+    for _ in pairs(T) do count = count + 1 end
+    return count
 end
 
+
+---@Description handle mouse move
+---@param host pointer instance of BattleScene
+---@param x number
+---@param y number
+---@param button number
 function IconGUI:onMouseMove(host,x,y,button)
-   -- print("mouse move " .. x .. " " .. y)
+    -- print("mouse move " .. x .. " " .. y)
     for k,v in pairs(commmon_icons) do
-        tX,tY = cppGetIconPos(v.iconObj)
+        local tX,tY = TB_GetIconPos(v.iconObj)
         --print("x " .. tX .. " y " .. tY)
         -- each icon dimension is 64x64
         if x > tX - 32 and x < tX + 32 and y > tY - 32 and y < tY + 32 then
             --print("set icon " .. v.name)
-            self.selectIcon = cppGuiHandlerSetSelectedIcon(host,v.iconObj)
+            self.selectIcon = TB_GuiHandlerSetSelectedIcon(host,v.iconObj)
             self.currentTTD = v
         end
-    end    
+    end
 
     for k,v in pairs(skill_icons) do
-        tX,tY = cppGetIconPos(v.iconObj)
+        local tX,tY = TB_GetIconPos(v.iconObj)
         --print("x " .. tX .. " y " .. tY)
         -- each icon dimension is 64x64
         if x > tX - 32 and x < tX + 32 and y > tY - 32 and y < tY + 32 then
             --print("set icon " .. v.name)
-            self.selectIcon = cppGuiHandlerSetSelectedIcon(host,v.iconObj)
+            self.selectIcon = TB_GuiHandlerSetSelectedIcon(host,v.iconObj)
             self.currentTTD = v
         end
     end
@@ -134,7 +119,7 @@ function IconGUI:onMouseMove(host,x,y,button)
     if button == 1 then
         if self.currentTTD ~= nil then
             print("select " .. self.currentTTD.name)
-            -- self.currentTTD:selected(host,t_turnHandler:getCurrentCharacter().dyobj)
+            -- self.currentTTD:selected(host,T_turnHandler:getCurrentCharacter().dyobj)
         end
     end
 end
@@ -144,11 +129,11 @@ function IconGUI:getCurrentTTD()
 end
 
 function IconGUI:onSignal(host,signal)
-   
+
     --print("original index is " .. self.currentIndex)
 
     --tCurrentTable = commmon_icons
-    tableCount = 1
+    local tableCount = 1
     if self.selectionField == 1 then
         tableCount = tablelength(commmon_icons)
     elseif self.selectionField == 2 then
@@ -163,12 +148,12 @@ function IconGUI:onSignal(host,signal)
     if self.currentIndex > tableCount then
         self.currentIndex = 1
         self.selectionField = self.selectionField + 1
-      
+
     end
     if self.currentIndex < 1 then
         self.currentIndex = tableCount
         self.selectionField = self.selectionField - 1
-      
+
     end
     if self.selectionField > 2 then -- 2 for now, items isn't yet implemented
         self.selectionField = 1
@@ -177,17 +162,12 @@ function IconGUI:onSignal(host,signal)
         self.selectionField = 2
     end
 
-
-    
-    --print("current index is " .. self.currentIndex)
-    --print("selection field is " .. self.selectionField)
     if signal == 32 then
         --IssueNextPhase(host)
         if self.currentTTD ~= nil then
-            self.currentTTD:selected(host,t_turnHandler:getCurrentCharacter())
+            self.currentTTD:selected(host,T_turnHandler:getCurrentCharacter())
         end
     end
-
 
 
     local index = 0

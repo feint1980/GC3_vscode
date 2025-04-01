@@ -24,7 +24,7 @@ function Slot:init(host,tRow,tCol,tSide)
     self.side = tSide
     self.row = tRow
     self.col = tCol
-    self.slotObj = cppCreateSlot(host,self.row,self.col,self.side)
+    self.slotObj = TB_CreateSlot(host,self.row,self.col,self.side)
 end
 
 function Slot:setDyobj(tDyobj)

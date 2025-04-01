@@ -1,4 +1,4 @@
-package.path = package.path .. ';./Assets/Lua/system/GUI/?/?.lua;' .. ';./Assets/Lua/system/GUI/widgets/?.lua;' .. ';./Assets/Lua/system/Networking/?.lua;' .. ';./Assets/Lua/Home/?.lua;'
+package.path = package.path .. ';./Assets/Lua/system/GUI/?/?.lua;' .. ';./Assets/Lua/system/GUI/widgets/?.lua;' .. ';./Assets/Lua/system/Networking/?.lua;' .. ';./Assets/Lua/Home/?.lua;' .. ';./Assets/Lua/system/event/?.lua;'
 
 -- require "tguiScript"
 
@@ -10,8 +10,7 @@ require "TGUI_Picture"
 require "clientSide"
 require "clientWrapper"
 require "homeOrderStrip"
-
-
+require "LuaEventHandler"
 
 HomeSceneHost = nil
 
@@ -89,7 +88,12 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Main_MonValLabel:setPosStr("93%","5%")
     Main_MonValLabel:setAlignment(TextAlginment.Right)
 
-    -- Home_RequestUserlData()
+
+
+    Tscheduler_addTask(25, function() 
+        Home_RequestUserlData()
+    end)
+    HomeMain_RequestDataLoop()
 
 end
 
@@ -120,6 +124,11 @@ function HomeMain_GetOtherID(packet)
     
     return Packet_OtherID.ID_INVALID
 end
+
+
+---@Description handle Non special packet
+---@param host pointer instance of ClientScriptingManager
+---@param packet Client_Packet
 function HomeMain_HandleTask_OtherID(host, packet)
     local otherID = HomeMain_GetOtherID(packet)
     -- local msg = Login_StripMSG(packet.data,otherID)
@@ -127,12 +136,12 @@ function HomeMain_HandleTask_OtherID(host, packet)
     if HomeMain_HandleStep2[otherID] ~= nil then
         HomeMain_HandleStep2[otherID](host,packet)
     end
-    -- print("msg stripped: "..msg)
 end
 
-
+---@Description loop for Client script
+---@param host pointer instance of ClientScriptingManager
+---@param packet Client_Packet
 HandlePacketTask["home_main"] = function(host,packet)
-
     print("handle home packet task " .. packet.packetID)
     if HomeMain_HandleTask[packet.packetID] ~= nil then
         HomeMain_HandleTask[packet.packetID](ClientSide_Host,packet)
@@ -143,6 +152,9 @@ end
 
 HomeMain_HandleStep2 = {}
 
+---@Description handle USER_DATA_POS
+---@param host pointer instance of ClientScriptingManager
+---@param packet Client_Packet
 HomeMain_HandleStep2[Packet_OtherID.USER_DATA_POS] = function(host,packet)
     local tData = Home_StripMSG(packet.data,Packet_OtherID.USER_DATA_POS)
     -- print(packet.data)
@@ -150,31 +162,31 @@ HomeMain_HandleStep2[Packet_OtherID.USER_DATA_POS] = function(host,packet)
     local tD = SplitMessgae(tData,"|",3)
     local t_id,t_pw , t_guid = Home_GetInfo(3)
 
-    print("td " .. tD[1]) 
-    print("td " .. tD[2]) 
+    print("td " .. tD[1])
+    print("td " .. tD[2])
     print("td " .. tD[3])
 
     Main_MonValLabel:setText(tD[2])
-    Main_SoulsValLabel:setText(tD[3]) 
+    Main_SoulsValLabel:setText(tD[3])
 
     print("HomeMain_HandleStep2 " .. Packet_OtherID.USER_DATA_POS)
-   
-    -- local d_id 
 end
 
+---@Description handle USER_DATA_POS
+---@param host pointer instance of ClientScriptingManager
+---@param packet Client_Packet
 HomeMain_HandleStep2[Packet_OtherID.USER_DATA_NEG] = function(host,packet)
     Main_MonValLabel:setText("!!!!!")
-    Main_SoulsValLabel:setText("!!!!!") 
+    Main_SoulsValLabel:setText("!!!!!")
 end
 
-
+---@Description request update money data
 function Home_RequestUserlData()
 
     local id,pw, guid = Home_GetInfo(3)
 
     Client_SendData( Home_ClientScriptingPtr,CombinePackage("USERDATA", {id, pw, guid}))
-end 
-
+end
 
 ---function wrapper of cpp_getInfo
 ---@param no number
@@ -183,16 +195,23 @@ function Home_GetInfo(no)
     return cpp_getInfo(no)
 end
 
-
-
 ---@Description extract the message from the packet
 ---@param msg string data want to extract
 ---@param otherID number ( to select which part need to be strip)
 function Home_StripMSG(msg,otherID)
 
     print("at least it here " .. otherID)
-
-    -- print( OrderList[Packet_OtherID.ID_LOGIN_NEG].firstStr)
     return string.sub(msg,string.len(Home_OrderList[otherID].firstStr) + 1,string.len(msg) - string.len(Home_OrderList[otherID].secondStr))
 
+end
+
+HomeMain_Tasks = {}
+
+---@Description Backup update function
+function HomeMain_RequestDataLoop()
+
+    Tscheduler_addTask(300, function()
+        Home_RequestUserlData()
+        HomeMain_RequestDataLoop()
+    end)
 end

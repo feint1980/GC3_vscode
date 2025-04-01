@@ -147,7 +147,7 @@ void GUI_handler::handleInput(Feintgine::InputManager & inputManager,lua_State *
 
 	if(signal != 0)
 	{
-		lua_getglobal(luaState, "handleInput");
+		lua_getglobal(luaState, "Battle_HandleInput");
 		if (lua_isfunction(luaState, -1))
 		{
 			lua_pushlightuserdata(luaState, m_battleScene); // host
@@ -180,7 +180,7 @@ void GUI_handler::handleInput(Feintgine::InputManager & inputManager,lua_State *
             signal = 2;
         }
 
-        lua_getglobal(luaState, "handleMouse");
+        lua_getglobal(luaState, "Battle_HandleMouse");
         if (lua_isfunction(luaState, -1))
         {
             lua_pushlightuserdata(luaState, m_battleScene); // host

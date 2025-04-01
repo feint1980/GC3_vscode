@@ -256,9 +256,10 @@ void LoginSceneV2::initGUI()
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
+    m_luaEventHandler.init(m_script);
     m_guiScriptingManager.init(m_window,m_script);
 
-    m_luaEventHandler.init(m_script);
+   
 
     m_clientScriptingManager = new ClientScriptingManager();
 

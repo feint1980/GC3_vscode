@@ -19,10 +19,10 @@ class LuaEventHandler
     private:
 
     double m_time = 0.0f;
-    bool m_isCounting = false;
+  
     float m_accumulator = 0.0f;
 
-    lua_State * m_script;
+    lua_State * m_script = nullptr;
 
 };
 

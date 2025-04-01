@@ -19,7 +19,7 @@ SlotFlag.None = 0
 SlotFlag.EmptyOnly = 1
 SlotFlag.HasCharacter = 2
 
-
+---@class Icon
 Icon = {
 
     asset = "./Assets/TB_GUI/missing.png",

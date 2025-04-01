@@ -15,8 +15,8 @@ KickBack = Icon:new({
     selectedFunct = function() KickBack:selected() end,
     funct = function()  end,
     host = nil,
-    selectionSide = 2,
-    index = 1,
+    selectionSide = 2, -- 1 = self, 2 = other
+    index = 2,
     requiredSlotCount = 1,
     slotFlag = 2, --  0 = none, 1 = empty only,2 = has character in slot
     character = nil
@@ -39,8 +39,6 @@ function KickBack:init(host,dyobj,character)
 
 end
 
-
-
 function kickBackSelected(host,dyobj)
 
     cppEntityPlayAnimation(host,dyobj,"hakurei_kick_ready",false,-1)
@@ -52,7 +50,6 @@ function KickBack:selected(host,character)
     setPhase(host,2,2)
     t_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
 
-
     --cppEntityPlayAnimation(host,character.dyobj,"hakurei_kick_ready",false,-1)
 
     tasks[character.dyobj] = {behavior = coroutine.create(kickBackSelected,host,character.dyobj)}
@@ -63,7 +60,6 @@ function KickBack:selected(host,character)
     -- cppEntityPlayAnimation(host,character.dyobj,"hakurei_kick_ready",-1)
     --coroutine.yield()
 
-    -- todo, make the host now able to select the slot to move
 end
 
 function kickBackBehavior(host, dyobj)
@@ -86,7 +82,7 @@ function kickBackBehavior(host, dyobj)
     local offset_x = -50
     local offset_y = 40
 
-    local character = t_turnHandler:getCurrentCharacter()
+    local character = T_turnHandler:getCurrentCharacter()
 
     if character.side == 2 then
         offset_x = -offset_x
@@ -106,11 +102,11 @@ function kickBackBehavior(host, dyobj)
     coroutine.yield()
     local targetSlot = t_slotHandler:getSelectedSlots()[1]
     local kickbackTarget = cppGetSlotEntity(host,targetSlot)
-    local kickBackTargetCharWrap = t_turnHandler:getCharacterFromDyobj(kickbackTarget)
+    local kickBackTargetCharWrap = T_turnHandler:getCharacterFromDyobj(kickbackTarget)
     local rollHit = true
     if(kickbackTarget ~= nil) then
         if (kickBackTargetCharWrap ~= nil) then
-            if kickBackTargetCharWrap:determineEvade( t_turnHandler:getCharacterFromDyobj(dyobj)) then
+            if kickBackTargetCharWrap:determineEvade( T_turnHandler:getCharacterFromDyobj(dyobj)) then
                 rollHit = false
             end
         else
@@ -161,7 +157,7 @@ function kickBackBehavior(host, dyobj)
 
 
 
-    local currentSlot = t_turnHandler:getCurrentCharacter().currentSlot
+    local currentSlot = T_turnHandler:getCurrentCharacter().currentSlot
     cppEntityPlayAnimation(host,dyobj,"hakurei_kick_recover",false,1)
     cppEntityMoveToslot(host,dyobj,currentSlot,20)
     coroutine.yield()

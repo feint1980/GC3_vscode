@@ -40,6 +40,8 @@
 
 #include "ClientScriptingManager.h"
 
+#include "LuaEventHandler.h"
+
 class HomeScene : public Feintgine::IGameScreen
 {
 public:
@@ -106,5 +108,7 @@ private:
     // bool isReady = false;
 
     TGUIScriptingManager m_guiScriptingManager;
+
+    LuaEventHandler m_luaEventHandler;
 
 };

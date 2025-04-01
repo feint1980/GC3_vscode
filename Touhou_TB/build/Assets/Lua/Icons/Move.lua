@@ -36,7 +36,6 @@ end
 
 function moveToSlotBehavior(host, dyobj)
 
-
     print("moveToSlotBehavior called" )
     local slots = t_slotHandler:getSelectedSlots()
 

@@ -1,31 +1,33 @@
 #include "LuaEventHandler.h"
-
+static bool LuaHandler_isCounting = false;
 int lua_EventHandlerStart(lua_State * L)
 {
-    if(lua_gettop(L) != 1)
+    std::cout << "[C++] lua_EventHandlerStart called \n";
+    if(lua_gettop(L) != 0)
     {   
         std::cout << "gettop failed (lua_EventHandlerStart) " << lua_gettop(L) << "\n";
         return -1;
     }
     else
     {
-        LuaEventHandler * eventHandler = static_cast<LuaEventHandler*>(lua_touserdata(L, 1));
-        eventHandler->startCounting();
+        std::cout << "[C++] lua_EventHandlerStart pass \n";
+        
+        LuaHandler_isCounting = true;
+        
         return 0;
     }
 }
 
 int lua_EventHandlerStop(lua_State * L)
 {
-    if(lua_gettop(L) != 1)
+    if(lua_gettop(L) != 0)
     {   
         std::cout << "gettop failed (lua_EventHandlerStop) " << lua_gettop(L) << "\n";
         return -1;
     }
     else
     {
-        LuaEventHandler * eventHandler = static_cast<LuaEventHandler*>(lua_touserdata(L, 1));
-        eventHandler->stopCounting();
+        LuaHandler_isCounting = false;
         return 0;
     }
 }
@@ -33,6 +35,7 @@ int lua_EventHandlerStop(lua_State * L)
 LuaEventHandler::LuaEventHandler()
 {
     // m_accumulator =f;
+    // LuaHandler_isCounting = true;
 }
 
 LuaEventHandler::~LuaEventHandler()
@@ -53,13 +56,14 @@ void LuaEventHandler::init(lua_State * script)
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/event/LuaEventHandler.lua")))    
     {
         std::cout << "Run script LuaEventHandler OK \n";
+    
     }
 
-
-    lua_getglobal(m_script, "InitHandler");
+    lua_getglobal(m_script, "InitEventHandler");
     if(lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this);
+        std::cout << "ref is " << this << "\n";
         const int argc = 1;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
@@ -75,39 +79,38 @@ void LuaEventHandler::init(lua_State * script)
 
 void LuaEventHandler::update(float deltaTime)
 {
-    if(m_isCounting)
+    // std::cout << "delta " << deltaTime << "\n";
+    if(LuaHandler_isCounting)
     {
         m_accumulator += deltaTime;
         if(m_accumulator >= 0.25f)
         {
-            m_accumulator = 0.0f;
-            m_time += m_accumulator;
+            // m_time += m_accumulator;
+            
             lua_getglobal(m_script, "EventHandlerUpdate");
             if(lua_isfunction(m_script, -1))
             {
                 // lua_pushlightuserdata(m_script, this);
-                lua_pushnumber(m_script, m_time);
+                lua_pushnumber(m_script, m_accumulator);
                 const int argc = 1;
                 const int returnCount = 0;
                 if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
                 {
-                    std::cout << "EventHandlerUpdate " << m_time << " OK \n";
+                    // std::cout << "EventHandlerUpdate " << m_time << " OK \n";
                 }
             }
+            m_accumulator = 0.0f;
         }
-
     }
 }
 
 void LuaEventHandler::startCounting()
 {
-    m_isCounting = true;
-  
+    LuaHandler_isCounting = true;
 }
-
 
 void LuaEventHandler::stopCounting()
 {
-    m_isCounting = false;
+    LuaHandler_isCounting = false;
     m_time = 0;
 }
