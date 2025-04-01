@@ -30,7 +30,7 @@ T_turnHandler = nil
 
 tasks = {}
 
-t_slotHandler = nil;
+T_slotHandler = nil;
 
 phase = 1
 side = 3
@@ -43,12 +43,12 @@ function setPhase(host,tPhase, tSide)
     side = tSide
     if phase == 1 then
         cppGuiHandlerSetFocusColor(host,255,255,255,255)
-        cppSetSlothandlerActive(t_slotHandler.handlerObject,false)
+        cppSetSlothandlerActive(T_slotHandler.handlerObject,false)
     end
     if phase == 2 then
         cppGuiHandlerSetFocusColor(host,0,255,0,255)
-        t_slotHandler:setTotalSelectedCount(T_guiIcons:getCurrentTTD().requiredSlotCount)
-        cppSetSlothandlerActive(t_slotHandler.handlerObject,true)
+        T_slotHandler:setTotalSelectedCount(T_guiIcons:getCurrentTTD().requiredSlotCount)
+        cppSetSlothandlerActive(T_slotHandler.handlerObject,true)
     end
 end
 
@@ -64,38 +64,38 @@ function init(host)
 
     -- 
     T_turnHandler = TurnHandler:new()
-    t_slotHandler = SlotHandler:new()
+    T_slotHandler = SlotHandler:new()
 
 
-    t_slotHandler:init(host,3,3,T_turnHandler)
+    T_slotHandler:init(host,3,3,T_turnHandler)
 
     -- init characters
     -- Patchouli, left
     local p1 = Patchouli:new()
 
-    p1:init(host,t_slotHandler:getSlot(1,1,1),1)
+    p1:init(host,T_slotHandler:getSlot(1,1,1),1)
     p1:loadCommon(host)
 
     -- Yukari, left
     local p2 = Reimu:new()
-    p2:init(host,t_slotHandler:getSlot(1,2,1),1)
+    p2:init(host,T_slotHandler:getSlot(1,2,1),1)
     p2:loadCommon(host)
     p2:loadSkills(host)
 
     -- Reimu, left
     local p3 = Yukari:new()
-    p3:init(host,t_slotHandler:getSlot(1,3,1),1)
+    p3:init(host,T_slotHandler:getSlot(1,3,1),1)
     p3:loadCommon(host)
 
     -- Reimu, right
     local p2a = Reimu:new()
-    p2a:init(host,t_slotHandler:getSlot(1,2,2),2)
+    p2a:init(host,T_slotHandler:getSlot(1,2,2),2)
     p2a:loadCommon(host)
     p2a:loadSkills(host)
 
     -- Yukari, right
     local p3a = Yukari:new()
-    p3a:init(host,t_slotHandler:getSlot(2,3,2),2)
+    p3a:init(host,T_slotHandler:getSlot(2,3,2),2)
     p3a:loadCommon(host)
 
     T_turnHandler:addCharacter(p1)
@@ -141,9 +141,9 @@ function Battle_HandleInput(host,signal)
             setPhase(host,1,3)
             T_guiIcons:getCurrentTTD():onCancel(host,T_turnHandler:getCurrentCharacter())
         end
-        t_slotHandler:onSignal(host,signal,T_guiIcons:getCurrentTTD().selectionSide,T_guiIcons:getCurrentTTD().slotFlag)
+        T_slotHandler:onSignal(host,signal,T_guiIcons:getCurrentTTD().selectionSide,T_guiIcons:getCurrentTTD().slotFlag)
         if signal == 32 then
-            if t_slotHandler:getCurrentCount() == T_guiIcons:getCurrentTTD().requiredSlotCount then
+            if T_slotHandler:getCurrentCount() == T_guiIcons:getCurrentTTD().requiredSlotCount then
                 if selectedChar ~= nil then
                     print(selectedChar.name .. " selected")
                     T_guiIcons:getCurrentTTD():funct(host,selectedChar.dyobj,selectedChar.name)
@@ -151,7 +151,7 @@ function Battle_HandleInput(host,signal)
                     print("no character selected")
                 end -- if selectedChar ~= nil
                 --T_guiIcons:getCurrentTTD():funct(host,selectedChar.dyobj,selectedChar.name)
-            end -- if t_slotHandler:getCurrentCount() == T_guiIcons:getCurrentTTD().requiredSlotCount
+            end -- if T_slotHandler:getCurrentCount() == T_guiIcons:getCurrentTTD().requiredSlotCount
         end -- if signal == 32
     end
 end
@@ -167,7 +167,7 @@ function Battle_HandleMouse(host,x,y,button)
         T_guiIcons:onMouseMove(host,x,y,button)
     end
     if phase == 2 then
-        t_slotHandler:onMouseMove(host,x,y,button,T_guiIcons:getCurrentTTD().selectionSide,T_guiIcons:getCurrentTTD().slotFlag)
+        T_slotHandler:onMouseMove(host,x,y,button,T_guiIcons:getCurrentTTD().selectionSide,T_guiIcons:getCurrentTTD().slotFlag)
         if button == 2 then
             setPhase(host,1,3)
         end
@@ -187,7 +187,7 @@ function gameLoop(host)
         for i = 1, #T_turnHandler:getActiveList() do 
             print("character " .. T_turnHandler:getCurrentCharacter().name)
             print("yielding !!!!!!!!!")
-            cppSelectHoverSlot(t_slotHandler.handlerObject, T_turnHandler:getCurrentCharacter().currentSlot)
+            cppSelectHoverSlot(T_slotHandler.handlerObject, T_turnHandler:getCurrentCharacter().currentSlot)
             print("select hover done")
             T_guiIcons:loadIcons(host,T_turnHandler:getCurrentCharacter())
             print("load icons done")

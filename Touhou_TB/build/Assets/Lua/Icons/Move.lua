@@ -29,7 +29,7 @@ function Move:selected(host,dyobj)
     setPhase(host,2,1)
     --local tSignal = 2 
     --if se
-    t_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
+    T_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
     -- todo, make the host now able to select the slot to move
 end
 
@@ -37,7 +37,7 @@ end
 function moveToSlotBehavior(host, dyobj)
 
     print("moveToSlotBehavior called" )
-    local slots = t_slotHandler:getSelectedSlots()
+    local slots = T_slotHandler:getSelectedSlots()
 
     local count =  tablelength(slots)
     print("slot count " .. count)
@@ -101,7 +101,7 @@ function Move:useFunction(host,character)
     setPhase(host,1,3)
 
     print("!!!! set slot start ")
-    slots = t_slotHandler:getSelectedSlots()
+    slots = T_slotHandler:getSelectedSlots()
 
     count =  tablelength(slots)
     print("slot count " .. count)

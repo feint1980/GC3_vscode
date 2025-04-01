@@ -48,7 +48,7 @@ end
 function KickBack:selected(host,character)
     print("move selected called")
     setPhase(host,2,2)
-    t_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
+    T_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
 
     --cppEntityPlayAnimation(host,character.dyobj,"hakurei_kick_ready",false,-1)
 
@@ -67,7 +67,7 @@ function kickBackBehavior(host, dyobj)
     --cppClearEntityTasks(host,dyobj)
 
     print("kickBackBehavior called")
-    local slots = t_slotHandler:getSelectedSlots()
+    local slots = T_slotHandler:getSelectedSlots()
 
     local count = tablelength(slots)
     print("slot count " .. count)
@@ -100,7 +100,7 @@ function kickBackBehavior(host, dyobj)
     --cppWaitTime(host,dyobj,200)
 
     coroutine.yield()
-    local targetSlot = t_slotHandler:getSelectedSlots()[1]
+    local targetSlot = T_slotHandler:getSelectedSlots()[1]
     local kickbackTarget = cppGetSlotEntity(host,targetSlot)
     local kickBackTargetCharWrap = T_turnHandler:getCharacterFromDyobj(kickbackTarget)
     local rollHit = true
@@ -142,7 +142,7 @@ function kickBackBehavior(host, dyobj)
         local targetSide = getInvertSide(character.side)
         if( currentSlotCol < 3) then
             currentSlotCol = currentSlotCol + 1
-            local moveSlot = t_slotHandler:getSlot(currentSlotCol,currentSlotRow,targetSide)
+            local moveSlot = T_slotHandler:getSlot(currentSlotCol,currentSlotRow,targetSide)
             --local checkEmpty=
             if cppIsSlotEmpty(host,moveSlot) ~= false then
                 cppEntityMoveToslot(host,kickbackTarget,moveSlot,25,false)
