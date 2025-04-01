@@ -124,10 +124,13 @@ function IconGUI:onMouseMove(host,x,y,button)
     end
 end
 
+---@Description get the current TTD (icon)
+---@return Icon
 function IconGUI:getCurrentTTD()
     return self.currentTTD
 end
 
+---@Description handle signal (keyboard/gamepad from C++)
 function IconGUI:onSignal(host,signal)
 
     --print("original index is " .. self.currentIndex)
