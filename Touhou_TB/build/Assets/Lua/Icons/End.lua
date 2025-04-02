@@ -2,6 +2,10 @@ package.path = package.path .. ';./Assets/lua/Icons/?.lua;'
 
 require "Icon"
 
+---@class End: Icon
+
+---@Description End inherits from Icon
+---@return End
 End = Icon:new({
     asset = "./Assets/TB_GUI/End.png",
     name = "End",
@@ -12,7 +16,7 @@ End = Icon:new({
     dyobj = nil,
     specialID = 1,
     selectedFunct = function() End:selected() end,
-    funct = function() End:endTurn() end,
+    funct = function() End:endTurn(End.host) end,
     host = nil,
     selectionSide = 0,
     index = 2,
@@ -23,13 +27,14 @@ End = Icon:new({
     manaCostStr = ""
 })
 
+---@Description: Set the function to be called when the icon is selected/clicked
 function End:selected()
     print(" end selected called")
-    IssueNextPhase(host)
+    IssueNextPhase(self.host)
 end
 
 
-
+---@Description: Set the function to be called when the icon is selected/clicked
 function End:endTurn(host)
     print(" end calllllled !!!!!")
 end

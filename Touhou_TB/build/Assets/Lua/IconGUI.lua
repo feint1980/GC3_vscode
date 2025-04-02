@@ -3,8 +3,7 @@ local skill_icons = {}
 local item_icons = {}
 
 package.path = package.path .. ';./Assets/lua/Icons/?.lua;'
-require "Move"
-require "End"
+
 require "IconGUIWrapper"
 
 ---@class instance
@@ -22,6 +21,14 @@ IconGUI = {
     selectionField = 1, -- 1 common 2 skill 3 item
     baseLine = -110
 }
+
+---@class INPUT_type
+INPUT_type = {
+    Keyboard = 1,
+    Mouse = 2
+}
+
+T_CurrentInputType = INPUT_type.Mouse
 
 ---@Description create a new instance of IconGUI
 ---@return IconGUI
@@ -92,6 +99,7 @@ end
 ---@param y number
 ---@param button number
 function IconGUI:onMouseMove(host,x,y,button)
+    T_CurrentInputType = INPUT_type.Mouse
     -- print("mouse move " .. x .. " " .. y)
     for k,v in pairs(commmon_icons) do
         local tX,tY = TB_GetIconPos(v.iconObj)
@@ -114,12 +122,11 @@ function IconGUI:onMouseMove(host,x,y,button)
             self.currentTTD = v
         end
     end
-    
 
     if button == 1 then
         if self.currentTTD ~= nil then
             print("select " .. self.currentTTD.name)
-            -- self.currentTTD:selected(host,T_turnHandler:getCurrentCharacter().dyobj)
+            self.currentTTD:selected(host,T_turnHandler:getCurrentCharacter().dyobj)
         end
     end
 end
@@ -132,7 +139,7 @@ end
 
 ---@Description handle signal (keyboard/gamepad from C++)
 function IconGUI:onSignal(host,signal)
-
+    T_CurrentInputType = INPUT_type.Keyboard
     --print("original index is " .. self.currentIndex)
 
     --tCurrentTable = commmon_icons
@@ -172,7 +179,6 @@ function IconGUI:onSignal(host,signal)
         end
     end
 
-
     local index = 0
     if self.selectionField == 1 then
         for k,v in pairs(commmon_icons) do
@@ -181,7 +187,7 @@ function IconGUI:onSignal(host,signal)
             --print("index now is " .. index)
             if index == self.currentIndex then
                 --print("set icon " .. v.name)
-                self.selectIcon = cppGuiHandlerSetSelectedIcon(host,v.iconObj)
+                self.selectIcon = TB_GuiHandlerSetSelectedIcon(host,v.iconObj)
                 self.currentTTD = v
             end -- index == self.currentIndex 
         end -- loop
@@ -194,7 +200,7 @@ function IconGUI:onSignal(host,signal)
             --print("index now is " .. index)
             if index == self.currentIndex then
                 --print("set icon " .. v.name)
-                self.selectIcon = cppGuiHandlerSetSelectedIcon(host,v.iconObj)
+                self.selectIcon = TB_GuiHandlerSetSelectedIcon(host,v.iconObj)
                 self.currentTTD = v
             end -- index == self.currentIndex
         end -- loop

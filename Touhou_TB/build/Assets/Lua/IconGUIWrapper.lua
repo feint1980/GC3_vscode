@@ -54,7 +54,7 @@ function TB_GuiHandlerSetSelectedIcon(host,icon)
 end
 
 ---@Description wrapper of cppGetIconPos
----@param icon Icon The icon to add (lua)
+---@param icon pointer instance of GUI_icon
 ---@return vec2 The position of the icon
 function TB_GetIconPos(icon)
     return cppGetIconPos(icon)

@@ -32,23 +32,28 @@ tasks = {}
 
 T_slotHandler = nil;
 
-phase = 1
-side = 3
+T_phase = 1
+T_side = 3
 
 selectedSlot = nil
 selectedChar = nil
 
-function setPhase(host,tPhase, tSide)
-    phase = tPhase
-    side = tSide
-    if phase == 1 then
-        cppGuiHandlerSetFocusColor(host,255,255,255,255)
-        cppSetSlothandlerActive(T_slotHandler.handlerObject,false)
+
+---@Description : Set the gameplay phase
+---@param host pointer instance of BattleScene
+---@param tPhase number |1 select skills/item phase |2 select targets
+---@param tSide number |1 left side |2 right side
+function SetPhase(host,tPhase, tSide)
+    T_phase = tPhase
+    T_side = tSide
+    if T_phase == 1 then --handle skill/item selection
+        TB_GuiHandlerSetFocusColor(host,255,255,255,255)
+        TB_SetSlothandlerActive(T_slotHandler.handlerObject,false)
     end
-    if phase == 2 then
-        cppGuiHandlerSetFocusColor(host,0,255,0,255)
+    if T_phase == 2 then --handle target selection
+        TB_GuiHandlerSetFocusColor(host,0,255,0,255)
         T_slotHandler:setTotalSelectedCount(T_guiIcons:getCurrentTTD().requiredSlotCount)
-        cppSetSlothandlerActive(T_slotHandler.handlerObject,true)
+        TB_SetSlothandlerActive(T_slotHandler.handlerObject,true)
     end
 end
 
@@ -132,13 +137,13 @@ end
 
 
 function Battle_HandleInput(host,signal)
-    if phase == 1 then
+    if T_phase == 1 then
         T_guiIcons:onSignal(host,signal)
         return
     end
-    if phase == 2 then
+    if T_phase == 2 then
         if signal == 64 then
-            setPhase(host,1,3)
+            SetPhase(host,1,3)
             T_guiIcons:getCurrentTTD():onCancel(host,T_turnHandler:getCurrentCharacter())
         end
         T_slotHandler:onSignal(host,signal,T_guiIcons:getCurrentTTD().selectionSide,T_guiIcons:getCurrentTTD().slotFlag)
@@ -163,13 +168,20 @@ function Battle_HandleMouse(host,x,y,button)
         print("right click")
     end
     
-    if phase == 1 then
+    if T_phase == 1 then
         T_guiIcons:onMouseMove(host,x,y,button)
     end
-    if phase == 2 then
+    if T_phase == 2 then
+        if button == 2 then -- right click 
+            SetPhase(host,1,3)
+            T_guiIcons:getCurrentTTD():onCancel(host,T_turnHandler:getCurrentCharacter())
+            T_slotHandler.currentSlot = nil
+            return
+        end
+        
         T_slotHandler:onMouseMove(host,x,y,button,T_guiIcons:getCurrentTTD().selectionSide,T_guiIcons:getCurrentTTD().slotFlag)
         if button == 2 then
-            setPhase(host,1,3)
+            SetPhase(host,1,3)
         end
     end
 end
@@ -187,7 +199,7 @@ function gameLoop(host)
         for i = 1, #T_turnHandler:getActiveList() do 
             print("character " .. T_turnHandler:getCurrentCharacter().name)
             print("yielding !!!!!!!!!")
-            cppSelectHoverSlot(T_slotHandler.handlerObject, T_turnHandler:getCurrentCharacter().currentSlot)
+            TB_SelectHoverSlot(T_slotHandler.handlerObject, T_turnHandler:getCurrentCharacter().currentSlot)
             print("select hover done")
             T_guiIcons:loadIcons(host,T_turnHandler:getCurrentCharacter())
             print("load icons done")

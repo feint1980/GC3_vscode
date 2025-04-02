@@ -50,6 +50,8 @@ public:
 
     void SlotHandlerSetValidSlot(bool isValidSlot);
 
+    bool isSlotValid();
+
     void setPhase(int phaseType, int sides);
 
     void setGUIHandlerIconPos(GUI_icon * icon, const glm::vec2 & pos);

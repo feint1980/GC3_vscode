@@ -42,8 +42,9 @@ Patchouli = Character:new({
 }
 )
 
+---@Description loadCommon override
+---@param host pointer instance of BattleScene
 function Patchouli:loadCommon(host)
-   
     self.common_actions =  Character:loadCommon(host)
     -- todo load more common of patchouli
 end

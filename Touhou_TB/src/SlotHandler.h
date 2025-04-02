@@ -27,6 +27,8 @@ public:
 
     void setValidTargetSlot(bool value);
 
+    bool isSlotValid();
+
 private :
 
     std::vector<Slot *> m_slots;
@@ -46,5 +48,7 @@ private :
     bool m_isValidTargetSlot = false;
 
     bool m_isActive = false;
+
+    bool m_isSlotValid = false;
 
 };

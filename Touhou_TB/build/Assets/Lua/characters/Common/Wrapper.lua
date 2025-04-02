@@ -64,7 +64,15 @@ end
 ---@param value boolean The valid target state
 function TB_SlotHandlerSetValidTarget(host, value)
     cppSlotHandlerSetValidTarget(host, value)
-end 
+end
+
+--- function wrapper of cppIsSlotValid
+--- @Description: Check if the slot (Slot) is valid
+--- @param host pointer instace of BattleScene
+--- @return boolean True if the slot is valid
+function TB_IsSlotValid(host)
+    return cppIsSlotValid(host)
+end
 
 
 -- MARK: Slot
@@ -167,9 +175,28 @@ end
 ---@Description: Create an icon (Icon)
 ---@param host pointer instace of BattleScene
 ---@param iconPath string The path to the icon file
----@param slot pointer instance of Slot (created by TBD)
+---@param width number The width of the icon
+---@param height number The height of the icon
+---@param name string The name of the icon
+---@param description string The description of the icon
+---@param turnCost number The turn cost of the icon
+---@param manaCost number The mana cost of the icon
+---@param turnCostStr string The turn cost string of the icon
+---@param manaCostStr string The mana cost string of the icon
+---@param specialID number The special ID of the icon
 ---@return pointer instance of created Icon
-function TB_CreateIcon(host,iconPath,slot)
-    return cppCreateIcon(host,iconPath,slot)
+function TB_CreateIcon(host,iconPath, width, height, name, description, turnCost, manaCost, turnCostStr, manaCostStr, specialID)
+    return cppCreateIcon(host,iconPath, width, height, name, description, turnCost, manaCost, turnCostStr, manaCostStr, specialID)
+end
+
+
+---@Description wrapper of cppGuiHandlerSetFocusColor
+---@param host pointer instace of BattleScene
+---@param r number
+---@param g number
+---@param b number
+---@param a number
+function TB_GuiHandlerSetFocusColor(host, r, g, b, a)
+    cppGuiHandlerSetFocusColor(host, r, g, b, a)
 end
 

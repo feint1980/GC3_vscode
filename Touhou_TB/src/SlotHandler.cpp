@@ -19,6 +19,11 @@ Slot * SlotHandler::addSlot(int row, int colum, int side)
     return slot;
 }
 
+bool SlotHandler::isSlotValid()
+{
+    return m_isSlotValid;
+}
+
 void SlotHandler::setSelectTargetSlot(Slot * slot)
 {
     m_selectTargetSlot = slot;
@@ -38,10 +43,12 @@ void SlotHandler::setValidTargetSlot(bool value)
     if(m_isValidTargetSlot)
     {
         m_hoveredSlot.setColor(Feintgine::Color(0, 255, 0, 255));
+        m_isSlotValid = true;
     }
     else
     {
         m_hoveredSlot.setColor(Feintgine::Color(255, 0, 0, 255));
+        m_isSlotValid = false;
     }
 
 }

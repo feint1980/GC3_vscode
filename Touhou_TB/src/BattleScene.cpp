@@ -876,6 +876,27 @@ int lua_SlotHandlerSetValidTarget(lua_State * L)
 	return 0;	
 }
 
+int lua_IsSlotValid(lua_State * L)
+{
+
+	if(lua_gettop(L) != 1)
+	{
+		std::cout << "gettop failed (lua_IsSlotValid) \n";
+		std::cout << lua_gettop(L) << "\n";
+		return -1;
+	}
+
+	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
+
+	bool value = true; // default value is empty
+	value = battleScene->isSlotValid();
+
+	lua_pushboolean(L, value);
+
+	return 1;
+	
+}
+
 
 void BattleScene::SlotHandlerSetValidSlot(bool isValidSlot)
 {
@@ -884,6 +905,14 @@ void BattleScene::SlotHandlerSetValidSlot(bool isValidSlot)
 		m_slotHandler->setValidTargetSlot(isValidSlot);
 	}
 
+}
+
+bool BattleScene::isSlotValid()
+{
+	if(m_slotHandler)
+	{
+		return m_slotHandler->isSlotValid();
+	}
 }
 
 int lua_GetEntityPortrait(lua_State * L)
@@ -1190,6 +1219,7 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppSelectHoverSlot", lua_SelectHoverSlot);
 	lua_register(m_script, "cppIsSlotEmpty", lua_IsSlotEmpty);
 	lua_register(m_script, "cppSlotHandlerSetValidTarget", lua_SlotHandlerSetValidTarget);
+	lua_register(m_script, "cppIsSlotValid", lua_IsSlotValid);
 
 	// GUI_handler data 
 	lua_register(m_script, "cppCreateGUIHandler", lua_CreateGUIHandler);

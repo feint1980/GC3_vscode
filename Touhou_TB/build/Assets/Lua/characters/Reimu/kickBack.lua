@@ -1,4 +1,4 @@
-package.path = package.path .. ';./Assets/lua/Icons/?.lua;' .. ';./Assets/Lua/system/?.lua'
+package.path = package.path .. ';./Assets/Lua/Icons/?.lua;' .. ';./Assets/Lua/system/?.lua' .. './Assets/Lua/system/event/?.lua'
 
 require "Icon"
 require "system"
@@ -12,7 +12,7 @@ KickBack = Icon:new({
     iconObj = nil,
     dyobj = nil,
     specialID = 1,
-    selectedFunct = function() KickBack:selected() end,
+    selectedFunct = function() KickBack:selected(KickBack.host, KickBack.dyobj) end,
     funct = function()  end,
     host = nil,
     selectionSide = 2, -- 1 = self, 2 = other
@@ -22,39 +22,54 @@ KickBack = Icon:new({
     character = nil
 })
 
-kickCount = 0 -- try remove this, may be this is unused
+KickCount = 0 -- try remove this, may be this is unused
 
 function KickBack:init(host,dyobj,character)
 
     self.host = host
     self.dyobj = dyobj
-    self.character = tCharacter
+    self.character = character
     local retStr = ""
     retStr = "Đá 1 mục tiêu, gây <i><color=#ff1200>" --"Kick back a target, deals <i><color=#ff1200>"
     retStr = retStr .. tostring(character:getPhysicDmg() * 0.5 )
     retStr = retStr .. "</color></i><i><color=#FF5D00> Damage mod (50%)</color></i> sát thương vật lý "--"</color></i> damage"
     retStr = retStr .. "\nĐẩy đối tượng lui <i><color=#00ff1d>1</color></i> bước" --"\nSend the target back <i><color=#00ff1d>1</color></i> distance"
 
-    self.iconObj =  cppCreateIcon(host,self.asset,64,64,self.name,retStr,self.turnCost,self.manaCost,self.turnCostStr,self.manaCostStr, self.specialID)
+    self.iconObj =  TB_CreateIcon(host,self.asset,64,64,
+    self.name,retStr,self.turnCost,self.manaCost,
+    self.turnCostStr,self.manaCostStr, self.specialID)
 
 end
 
-function kickBackSelected(host,dyobj)
 
+---@Description Kick back coroutine
+---@param host pointer instance of BattleScene
+---@param dyobj pointer instance of F_Lua_BaseEntity
+function KickBackSelected(host,dyobj)
+
+    print("KickBackSelected !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     cppEntityPlayAnimation(host,dyobj,"hakurei_kick_ready",false,-1)
     coroutine.yield()
 end
 
 function KickBack:selected(host,character)
     print("move selected called")
-    setPhase(host,2,2)
-    T_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
 
+
+    -- work around 
+    if T_CurrentInputType == INPUT_type.Keyboard then
+        T_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
+    else
+        if T_slotHandler.currentSlot ~= nil then
+            T_slotHandler.currentSlot = nil
+        end
+    end
+
+    SetPhase(host,2,2)
     --cppEntityPlayAnimation(host,character.dyobj,"hakurei_kick_ready",false,-1)
-
-    tasks[character.dyobj] = {behavior = coroutine.create(kickBackSelected,host,character.dyobj)}
-    if coroutine.status(tasks[character.dyobj].behavior) ~= 'dead' then
-        coroutine.resume(tasks[character.dyobj].behavior,host,character.dyobj)
+    tasks[character] = {behavior = coroutine.create(KickBackSelected,host,character)}
+    if coroutine.status(tasks[character].behavior) ~= 'dead' then
+        coroutine.resume(tasks[character].behavior,host,character)
     end
     --HandleSkillTasks(host,character.dyobj)
     -- cppEntityPlayAnimation(host,character.dyobj,"hakurei_kick_ready",-1)
@@ -125,7 +140,7 @@ function kickBackBehavior(host, dyobj)
     end
 
 
-    -- for i = 1, kickCount do
+    -- for i = 1, KickCount do
     --     coroutine.yield()
     -- end
     --print("cppWaitTime @@@@@@@@")
@@ -182,7 +197,7 @@ end
 function KickBack:useFunction(host, character)
     print("KickBack use function called")
 
-    kickCount = kickCount + 1
+    KickCount = KickCount + 1
 
     -- if(tasks[character.dyobj] ~= nil) then
     --     print("task is not nil")
@@ -193,7 +208,7 @@ function KickBack:useFunction(host, character)
     HandleSkillTasks(host,character.dyobj)
     -- local x,y = cppGetEntityPos(character.dyobj)
     -- cppCameraTargetZoom(host,x,y,3.7,8)
-    setPhase(host,1,3)
+    SetPhase(host,1,3)
 end
 
 function cancelAnimation(host,dyobj)

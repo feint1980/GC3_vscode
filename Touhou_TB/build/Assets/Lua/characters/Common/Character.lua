@@ -69,6 +69,7 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field PhysicalDefense number
 ---@field MagicDefense number
 ---@field Speed number 
+---@field dyobj? pointer instance of F_Lua_BaseEntity
 Character = {
 
     ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Carry weight(not implemented yet)

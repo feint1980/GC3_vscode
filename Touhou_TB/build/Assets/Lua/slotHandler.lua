@@ -16,6 +16,7 @@ SlotHandler = {
     LeftSlots = {},
     RightSlots = {},
     selectedSlots = {},
+    ---@type pointer instace of F_Lua_BaseEntity (Character.dyobj )
     currentChar = nil,
     current_index_x = 1,
     current_index_y = 1,
@@ -44,7 +45,7 @@ end
 ---@param host pointer instace of BattleScene
 ---@param tCol number The number of column (each side)
 ---@param tRow number The number of row (each side)
----@param tTurnHandler instance of TurnHandler(lua)
+---@param tTurnHandler TurnHandler instance of TurnHandler(lua)
 function SlotHandler:init(host,tCol,tRow,tTurnHandler)
     LeftSlots  = {}
     RightSlots = {}
@@ -151,6 +152,11 @@ function SlotHandler:onMouseMove(host,x,y,button,side,flag)
     -- bit 2 has right side
     -- 3 has both bit 1 and bit 2
 
+    -- new invert format
+    if T_turnHandler:getCurrentCharacter().side == 2 then
+        side = RevertSide(side)
+    end
+
     -- check for left side
     if side == 1 or side == 3 then
         for i = 1, self.row do
@@ -162,7 +168,10 @@ function SlotHandler:onMouseMove(host,x,y,button,side,flag)
                     self.currentSlot = self:getSlot(i,j,1)
                     self:selectHover(self.currentSlot)
                     --print("set current slot to " .. self.currentSlot.slotObj)
+                -- else
+                --     self.currentSlot = nil
                 end
+
             end
         end
     end -- if side == 1 or side == 3
@@ -179,6 +188,8 @@ function SlotHandler:onMouseMove(host,x,y,button,side,flag)
                     self.currentSlot = self:getSlot(i,j,2)
                     self:selectHover(self.currentSlot)
                     --print("set current slot to " .. self.currentSlot.slotObj)
+                -- else
+                --     self.currentSlot = nil
                 end
             end
         end
@@ -186,13 +197,37 @@ function SlotHandler:onMouseMove(host,x,y,button,side,flag)
 
 
     -- Flag: |0 = none|1=empty only|2 has character in slot|
-    if flag == SlotFlag.EmptyOnly then 
+    if flag == SlotFlag.EmptyOnly then
         if TB_IsSlotEmpty(host,self.currentSlot) == true then
             TB_SlotHandlerSetValidTarget(host,true)
         else
             TB_SlotHandlerSetValidTarget(host,false)
         end
+    elseif flag == SlotFlag.HasCharacter then
+        if TB_IsSlotEmpty(host,self.currentSlot) == false then
+            TB_SlotHandlerSetValidTarget(host,true)
+        else
+            TB_SlotHandlerSetValidTarget(host,false)
+        end
     end
+
+    if button == 1 then
+        if TB_IsSlotValid(host) == true and self.currentSlot ~= nil  then
+            self.selectedSlots[self.currentCount + 1] = self.currentSlot
+            self.currentCount = self.currentCount + 1
+        end
+
+        if self.currentCount == T_guiIcons:getCurrentTTD().requiredSlotCount then
+            if self.turnHandler:getCurrentCharacter().dyobj ~= nil then
+                local tName = T_guiIcons:getCurrentTTD().name
+                print("datata " .. tName)
+                T_guiIcons:getCurrentTTD():useFunction(host,self.turnHandler:getCurrentCharacter())
+            else
+                print("dyobj is nil")
+            end
+        end
+    end
+
 end
 
 --- Revert the targeting side(based on current side ) For example : if a spell/item that is used (left) will target right only, and then that spell/item when used on the right will target left only
@@ -219,18 +254,6 @@ function SlotHandler:onSignal(host,signal,side,flag)
         print("side is invalid")
         return
     end
-
-    --- This is the old code, however I decided to keep it as comment because it wasn't tested
-    --- throughtly
-    -- -- invert side if character on the right
-    -- if T_turnHandler:getCurrentCharacter().side == 2 then
-    --     if side == 1 then
-    --         side = 2
-    --     else if side == 2 then
-    --         side = 1
-    --     end
-    -- end
-    -- end -- please don't remove this end
     
     -- new invert format
     if T_turnHandler:getCurrentCharacter().side == 2 then
@@ -347,9 +370,9 @@ function SlotHandler:onSignal(host,signal,side,flag)
     self.currentSlot = self:getSlot(self.current_index_x, self.current_index_y, self.currentSide)
 
     -- filter with flag
-    if flag == 1 then
-        while cppIsSlotEmpty(host,self.currentSlot) ~= true do      
-            if signal == 1 then 
+    if flag == SlotFlag.EmptyOnly then
+        while TB_IsSlotEmpty(host,self.currentSlot) ~= true do
+            if signal == 1 then
                 self.current_index_x = self.current_index_x + invert
                 if self.current_index_x > 3 then
                     self.current_index_x = 1
@@ -377,39 +400,44 @@ function SlotHandler:onSignal(host,signal,side,flag)
             self.currentSlot = self:getSlot(self.current_index_x, self.current_index_y, self.currentSide)
         end
     end 
+
+
+ 
+
+
+
     -- hover the current slot
     self:selectHover(self:getSlot(self.current_index_x, self.current_index_y, self.currentSide))
     
-    --print("flag is " .. flag)
-    if signal == 32 then
-        if flag == 1 then
-            if cppIsSlotEmpty(host,self.currentSlot) == true then
-                self.selectedSlots[self.currentCount + 1] = self.currentSlot
-                self.currentCount = self.currentCount + 1
-            end
-        elseif flag == 2 then
-            if cppIsSlotEmpty(host,self.currentSlot) ~= true then
-                self.selectedSlots[self.currentCount + 1] = self.currentSlot
-                self.currentCount = self.currentCount + 1
-                print("current count is " .. self.currentCount)
-            else 
-                -- todo add the show require target
-                print("require target")
-            end
+    if flag == SlotFlag.EmptyOnly then
+        if TB_IsSlotEmpty(host,self.currentSlot) == true then
+            TB_SlotHandlerSetValidTarget(host,true)
         else
-            self.selectedSlots[self.currentCount + 1] = self.currentSlot
-            self.currentCount = self.currentCount + 1
+            TB_SlotHandlerSetValidTarget(host,false)
+            if self.currentSlot ~= nil then
+                self.currentSlot = nil
+            end
         end
+    elseif flag == SlotFlag.HasCharacter then
+        if TB_IsSlotEmpty(host,self.currentSlot) == false then
+            TB_SlotHandlerSetValidTarget(host,true)
+        else
+            TB_SlotHandlerSetValidTarget(host,false)
+            if self.currentSlot ~= nil then
+                self.currentSlot = nil
+            end
+        end
+    end
 
-        --print("current count is " .. self.currentCount)
-        --print("called function " .. self.turnHandler:getCurrentCharacter().name)
+    if signal == 32 then
+        self.selectedSlots[self.currentCount + 1] = self.currentSlot
+        self.currentCount = self.currentCount + 1
         if self.currentCount == T_guiIcons:getCurrentTTD().requiredSlotCount then
             if self.turnHandler:getCurrentCharacter().dyobj ~= nil then
                 -- T_guiIcons:getCurrentTTD().funct(host,self.turnHandler:getCurrentCharacter().dyobj)
-                tName = T_guiIcons:getCurrentTTD().name
+                local tName = T_guiIcons:getCurrentTTD().name
                 print("datata " .. tName)
                 T_guiIcons:getCurrentTTD():useFunction(host,self.turnHandler:getCurrentCharacter())
-
             else
                 print("dyobj is nil")
             end

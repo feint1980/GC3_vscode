@@ -2,6 +2,16 @@ package.path = package.path .. ';./Assets/lua/Icons/?.lua;'
 
 require "Icon"
 
+---@type SlotHandler
+T_slotHandler = _G["T_slotHandler"]
+
+---@type INPUT_type
+T_CurrentInputType = _G["T_CurrentInputType"]
+
+---@class Move: Icon
+
+---@Description Move inherits from Icon
+---@return Move
 Move = Icon:new({
     asset = "./Assets/TB_GUI/move.png",
     name = "Move",
@@ -11,8 +21,9 @@ Move = Icon:new({
     iconObj = nil,
     dyobj = nil,
     specialID = 1,
-    selectedFunct = function() Move:selected() end,
-    funct = function() move(host, dyobj) end,
+    selectedFunct = function() Move:selected(Move.host,Move.dyobj) end,
+    funct = function() print("move") end,
+    ---@type pointer instance of BattleScene
     host = nil,
     selectionSide = 1,
     index = 1,
@@ -23,29 +34,37 @@ Move = Icon:new({
     manaCostStr = ""
 })
 
+---@type SlotHandler
+---T_slotHandler
 
+---@Description: Set the function to be called when the icon is selected/clicked
+---@param host pointer instance of BattleScene
+---@param dyobj pointer instance of F_Lua_BaseEntity
 function Move:selected(host,dyobj)
     print("move selected called")
-    setPhase(host,2,1)
-    --local tSignal = 2 
-    --if se
-    T_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
-    -- todo, make the host now able to select the slot to move
+    SetPhase(host,2,1) -- move selected, now switch to select target
+
+    if T_CurrentInputType == INPUT_type.Keyboard then 
+        T_slotHandler:onSignal(host,2,self.selectionSide,self.slotFlag)
+    end
+
 end
 
-
-function moveToSlotBehavior(host, dyobj)
+function MoveToSlotBehavior(host, dyobj)
 
     print("moveToSlotBehavior called" )
+    --- basics procedure, get all slot first
     local slots = T_slotHandler:getSelectedSlots()
 
+    -- check if there is only only the slot you need
     local count =  tablelength(slots)
     print("slot count " .. count)
-    if count ~= 1 then
+    if count ~= Move.requiredSlotCount then
         print("wrong number of slots selected")
-        return
+        return --- avoid strange behavior 
     end
-    local slot = slots[1]
+    
+    local slot = slots[1] -- target what you need
     
     local currentSlot = cppGetEntitySlot(dyobj)
     print("ok ")
@@ -53,7 +72,7 @@ function moveToSlotBehavior(host, dyobj)
     print("current col " .. currentCol)
     if(slot ~= nil) then
         print("slot not nil")
-    else 
+    else
         print("slot is nil")
     end
     local targetCol = cppGetSlotCol(slot)
@@ -96,9 +115,9 @@ function Move:useFunction(host,character)
         return
     end
 
-    tasks[character.dyobj] = {behavior = coroutine.create(moveToSlotBehavior,host,character.dyobj)}
+    tasks[character.dyobj] = {behavior = coroutine.create(MoveToSlotBehavior,host,character.dyobj)}
     HandleSkillTasks(host,character.dyobj)
-    setPhase(host,1,3)
+    SetPhase(host,1,3)
 
     print("!!!! set slot start ")
     slots = T_slotHandler:getSelectedSlots()
