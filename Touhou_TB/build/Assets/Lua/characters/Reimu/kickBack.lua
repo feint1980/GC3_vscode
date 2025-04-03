@@ -3,6 +3,11 @@ package.path = package.path .. ';./Assets/Lua/Icons/?.lua;' .. ';./Assets/Lua/sy
 require "Icon"
 require "system"
 
+
+---@class KickBack: Icon
+
+---@Description KickBack inherits from Icon
+---@return KickBack
 KickBack = Icon:new({
     asset = "./Assets/TB_GUI/spell_1.png",
     name = "Hakurei's Kick",--"Bác Lệ Thần Cước",--"Hakurei's Kick",

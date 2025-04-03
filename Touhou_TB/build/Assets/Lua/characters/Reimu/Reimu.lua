@@ -7,7 +7,7 @@ require "Character"
 require "kickBack"
 
 ---@class Reimu: Character
-Reimu = setmetatable({}, { __index = Character })
+
 
 ---@Description Reimu inherits from Character
 ---@return Reimu
@@ -42,12 +42,21 @@ Reimu = Character:new({
 }
 )
 
+
+---@Description Reimu inherits from Character
+---@function Reimu:loadCommon
+---@param host pointer instance of BattleScene
+---@return table
 function Reimu:loadCommon(host)
 
     self.common_actions =  Character:loadCommon(host)
+
+    return self.common_actions
     -- todo load more common of reimu
 end
 
+---@Description Reimu inherits from Character
+---@function Reimu:loadSkills
 function Reimu:loadSkills(host)
 
     -- local t_skills = {}
@@ -55,15 +64,4 @@ function Reimu:loadSkills(host)
     self.skills["KickBack"] = KickBack
     self.skills["KickBack"]:init(host,self.dyobj,self)
 
-    -- for k,v in pairs(self.skills) do
-    --     table.insert(t_skills,v)
-    -- end
-
-    -- self.skills = {}
-    -- self.skills =  t_skills
-
-    --print("skills loaded " .. #self.skills)
-    --print("skills loaded " .. #t_skills)
-    --return self.skills
-    
 end

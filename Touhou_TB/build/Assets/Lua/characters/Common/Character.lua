@@ -70,6 +70,30 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field MagicDefense number
 ---@field Speed number 
 ---@field dyobj? pointer instance of F_Lua_BaseEntity
+---@field animationPath string
+---@field portraitPath string
+---@field action number
+---@field hp number
+---@field mana number
+---@field sp number
+---@field spCap number
+---@field physicDmg number
+---@field physicDef number
+---@field magicDmg number
+---@field magicDef number
+---@field accurate number
+---@field critical number
+---@field evadeChance number
+---@field hitChance number
+---@field critChance number
+---@field name string
+---@field lastName string
+---@field title string
+---@field side number
+---@field common_actions table
+---@field items table   
+---@field skills table
+---@field currentSlot Slot slot object
 Character = {
 
     ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Carry weight(not implemented yet)
@@ -120,10 +144,15 @@ Character = {
     items = {},
     ---@type table The list of skills
     skills = {},
+    ---@type Slot The current slot
     currentSlot = nil
 
 }
 
+
+---@Description create a new instance of Character
+---@param o? table
+---@return Character
 function Character:new(o)
     o = o or {}
     setmetatable(o, self)
@@ -131,90 +160,124 @@ function Character:new(o)
     return o
 end
 
+
+---@Description Get the turn of the character
 ---@return number The turn of the character | Fomula 1 + (Agility/7 * 0.25) |
 function Character:getTurn()
     local count = math.modf(self.Agility / 7)
     return 1 +( count * 0.25)
 end
 
+---@Description Get the HP of the character
+---@return number The HP of the character
 function Character:getHP()
     local additionHP = self.Vitality * 8
     return self.hp + additionHP
 end
 
+---@Description Get the Mana of the character
+---@return number The Mana of the character
 function Character:getMana()
     local additionMana = self.Wisdom * 7
     return self.mana + additionMana
 end
 
+
+---@Description Get the Physical Damage of the character
+---@return number The Physical Damage of the character
 function Character:getPhysicDmg()
-    return 5 +  self.Strength * 2
+    return self.physicDmg +  self.Strength * 2
 end
 
+---@Description Get the Magic Damage of the character
+---@return number The Magic Damage of the character
 function Character:getMagicDmg()
     local additionDmg = self.Intelligence * 3
-    return 10 + additionDmg
+    return self.magicDmg + additionDmg
 end
 
+
+---@Description Get the Physical Defense of the character
+---@return number The Physical Defense of the character
 function Character:getPhysicDef()
     local additionDef = self.Vitality * 1
-    return 10 + additionDef
+    return self.physicDef + additionDef
 end
 
+---@Description Get the Magic Defense of the character
+---@return number The Magic Defense of the character
 function Character:getMagicDef()
     local additionDef = self.Wisdom * 1
-    return 10 + additionDef
+    return self.magicDef + additionDef
 end
 
+
+---@Description Get the Accuracy of the character
+---@param additionalRoll? number
+---@return number The Accuracy of the character
 function Character:getAccurate(additionalRoll)
-    local additionalRoll = additionalRoll or 0
+    additionalRoll = additionalRoll or 0
     local additionAcc = (additionalRoll+ self.Dexterity ) * 0.03
-    return 0.5 + additionAcc
+    return self.accurate + additionAcc
 end
 
+
+---@Description Get the Evasion of the character
+---@param additionalRoll? number
+---@return number The Evasion of the character
 function Character:getEvadeChance(additionalRoll)
-    local additionalRoll = additionalRoll or 0
+    additionalRoll = additionalRoll or 0
     local additionEvade = (self.Agility + additionalRoll) * 0.02
-    return 0.25 + additionEvade
+    return self.evadeChance + additionEvade
 end
 
+---@Description Get the Critical Chance of the character
+---@return number The Critical Chance of the character
 function Character:getCritChance()
     local additionCrit = self.Dexterity * 0.013
-    return 0.125 + additionCrit
+    return self.critChance + additionCrit
 end
 
+---@Description Initialize the character
+---@param host pointer instance of BattleScene
+---@param slot pointer The slot where the character is created
+---@param tSide number 1 = left, 2 = right
 function Character:init(host,slot,tSide)
 
-    self.dyobj = cppCreateEnity(host,self.animationPath,slot,self.portraitPath,tSide)
+    self.dyobj = TB_CreateEntity(host,self.animationPath,slot,self.portraitPath,tSide)
     self.currentSlot = slot
     self.side = tSide
     -- set attributes
-    cppSetAttribute(self.dyobj,"Strength",self.Strength)
-    cppSetAttribute(self.dyobj,"Vitality",self.Vitality)
-    cppSetAttribute(self.dyobj,"Dexterity",self.Dexterity)
-    cppSetAttribute(self.dyobj,"Agility",self.Agility)
-    cppSetAttribute(self.dyobj,"Intelligence",self.Intelligence)
-    cppSetAttribute(self.dyobj,"Wisdom",self.Wisdom)
+    TB_SetAttribute(self.dyobj,"Strength",self.Strength)
+    TB_SetAttribute(self.dyobj,"Vitality",self.Vitality)
+    TB_SetAttribute(self.dyobj,"Dexterity",self.Dexterity)
+    TB_SetAttribute(self.dyobj,"Agility",self.Agility)
+    TB_SetAttribute(self.dyobj,"Intelligence",self.Intelligence)
+    TB_SetAttribute(self.dyobj,"Wisdom",self.Wisdom)
 
-    cppSetAttribute(self.dyobj,"action",self:getTurn())
-    cppSetAttribute(self.dyobj,"hp",self:getHP())
-    cppSetAttribute(self.dyobj,"mana",self:getMana())
-    cppSetAttribute(self.dyobj,"sp",self.sp)
-    cppSetAttribute(self.dyobj,"spCap",self.spCap)
+    TB_SetAttribute(self.dyobj,"action",self:getTurn())
+    TB_SetAttribute(self.dyobj,"hp",self:getHP())
+    TB_SetAttribute(self.dyobj,"mana",self:getMana())
+    TB_SetAttribute(self.dyobj,"sp",self.sp)
+    TB_SetAttribute(self.dyobj,"spCap",self.spCap)
 
-    cppSetAttribute(self.dyobj,"physicDmg",self:getPhysicDmg())
-    cppSetAttribute(self.dyobj,"physicDef",self:getPhysicDef())
-    cppSetAttribute(self.dyobj,"magicDmg",self:getMagicDmg())
-    cppSetAttribute(self.dyobj,"magicDef",self:getMagicDef())
-    cppSetAttribute(self.dyobj,"accurate",self:getAccurate())
-    cppSetAttribute(self.dyobj,"evadeChance",self:getEvadeChance())
-    cppSetStrAttribute(self.dyobj,"name",self.name)
-    cppSetStrAttribute(self.dyobj,"lastName",self.lastName)
-    cppSetStrAttribute(self.dyobj,"title",self.title)
+    TB_SetAttribute(self.dyobj,"physicDmg",self:getPhysicDmg())
+    TB_SetAttribute(self.dyobj,"physicDef",self:getPhysicDef())
+    TB_SetAttribute(self.dyobj,"magicDmg",self:getMagicDmg())
+    TB_SetAttribute(self.dyobj,"magicDef",self:getMagicDef())
+    TB_SetAttribute(self.dyobj,"accurate",self:getAccurate())
+    TB_SetAttribute(self.dyobj,"evadeChance",self:getEvadeChance())
+    TB_SetStrAttribute(self.dyobj,"name",self.name)
+    TB_SetStrAttribute(self.dyobj,"lastName",self.lastName)
+    TB_SetStrAttribute(self.dyobj,"title",self.title)
 
     --return self
 end
 
+
+---@Description Load the common actions of the character
+---@param host pointer instance of BattleScene
+---@return table The common actions
 function Character:loadCommon(host)
 
     print("load common call")
@@ -227,7 +290,7 @@ function Character:loadCommon(host)
 
     print("sort skills called")
     --self.common_actions = sortData(self.common_actions)
-    t_common_actions = {}
+    local t_common_actions = {}
     for k,v in pairs(self.common_actions) do
         table.insert(t_common_actions, v)
     end
@@ -241,6 +304,9 @@ function Character:loadCommon(host)
 
 end
 
+---@function Character:determineEvade
+---@param enemy Character The enemy character
+---@return boolean
 function Character:determineEvade(enemy)
     print("determine evade called")
     local selfRoll = roll(1,6)
@@ -259,3 +325,10 @@ function Character:determineEvade(enemy)
     end
 end
 
+
+---@Description Load the skills of the character
+---@function Character:loadSkills
+---@param host pointer instance of BattleScene
+function Character:loadSkills(host)
+    --todo : inherits and override
+end

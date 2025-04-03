@@ -35,10 +35,6 @@ T_slotHandler = nil;
 T_phase = 1
 T_side = 3
 
-selectedSlot = nil
-selectedChar = nil
-
-
 ---@Description : Set the gameplay phase
 ---@param host pointer instance of BattleScene
 ---@param tPhase number |1 select skills/item phase |2 select targets
@@ -59,27 +55,26 @@ end
 
 function init(host)
 
-
     -- Init GUI
+    ---@diagnostic disable-next-line --- Too lazy to define wrapper
     cppSetDescriptionBoxPos(host,300,-355);
+    ---@diagnostic disable-next-line
     cppSetDescriptionBoxDim(host,600,180);
 
     -- init random seed
     math.randomseed(114514)
 
-    -- 
     T_turnHandler = TurnHandler:new()
     T_slotHandler = SlotHandler:new()
-
 
     T_slotHandler:init(host,3,3,T_turnHandler)
 
     -- init characters
     -- Patchouli, left
     local p1 = Patchouli:new()
-
     p1:init(host,T_slotHandler:getSlot(1,1,1),1)
     p1:loadCommon(host)
+    p1:loadSkills(host)
 
     -- Yukari, left
     local p2 = Reimu:new()
@@ -91,6 +86,7 @@ function init(host)
     local p3 = Yukari:new()
     p3:init(host,T_slotHandler:getSlot(1,3,1),1)
     p3:loadCommon(host)
+    p3:loadSkills(host)
 
     -- Reimu, right
     local p2a = Reimu:new()
@@ -102,6 +98,7 @@ function init(host)
     local p3a = Yukari:new()
     p3a:init(host,T_slotHandler:getSlot(2,3,2),2)
     p3a:loadCommon(host)
+    p3a:loadSkills(host)
 
     T_turnHandler:addCharacter(p1)
     T_turnHandler:addCharacter(p2)
@@ -112,10 +109,10 @@ function init(host)
 
     T_guiIcons = IconGUI:new()
     T_guiIcons:init(host)
-    --T_guiIcons:loadIcons(host,characters["p1"])
 
     -- start the main game loop
-    mainGame["main"] = {behavior = coroutine.create(gameLoop,host)} 
+    ---@diagnostic disable-next-line: redundant-parameter
+    mainGame["main"] = {behavior = coroutine.create(TBgameLoop,host)} 
     IssueNextPhase(host)
 end
 
@@ -135,7 +132,6 @@ function HandleMovingTask(host,dynob,slot)
     end
 end
 
-
 function Battle_HandleInput(host,signal)
     if T_phase == 1 then
         T_guiIcons:onSignal(host,signal)
@@ -147,17 +143,7 @@ function Battle_HandleInput(host,signal)
             T_guiIcons:getCurrentTTD():onCancel(host,T_turnHandler:getCurrentCharacter())
         end
         T_slotHandler:onSignal(host,signal,T_guiIcons:getCurrentTTD().selectionSide,T_guiIcons:getCurrentTTD().slotFlag)
-        if signal == 32 then
-            if T_slotHandler:getCurrentCount() == T_guiIcons:getCurrentTTD().requiredSlotCount then
-                if selectedChar ~= nil then
-                    print(selectedChar.name .. " selected")
-                    T_guiIcons:getCurrentTTD():funct(host,selectedChar.dyobj,selectedChar.name)
-                else
-                    print("no character selected")
-                end -- if selectedChar ~= nil
-                --T_guiIcons:getCurrentTTD():funct(host,selectedChar.dyobj,selectedChar.name)
-            end -- if T_slotHandler:getCurrentCount() == T_guiIcons:getCurrentTTD().requiredSlotCount
-        end -- if signal == 32
+
     end
 end
 
@@ -167,7 +153,7 @@ function Battle_HandleMouse(host,x,y,button)
     elseif button == 2 then
         print("right click")
     end
-    
+
     if T_phase == 1 then
         T_guiIcons:onMouseMove(host,x,y,button)
     end
@@ -178,7 +164,7 @@ function Battle_HandleMouse(host,x,y,button)
             T_slotHandler.currentSlot = nil
             return
         end
-        
+
         T_slotHandler:onMouseMove(host,x,y,button,T_guiIcons:getCurrentTTD().selectionSide,T_guiIcons:getCurrentTTD().slotFlag)
         if button == 2 then
             SetPhase(host,1,3)
@@ -186,7 +172,7 @@ function Battle_HandleMouse(host,x,y,button)
     end
 end
 
-function gameLoop(host)
+function TBgameLoop(host)
     local gameOn = true
     -- totalTurn = tablelength(turns) 
     -- print("totalTurn " .. totalTurn)

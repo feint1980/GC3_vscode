@@ -6,7 +6,7 @@ require "IconGui"
 require "Character"
 
 ---@class Patchouli: Character
-Patchouli = setmetatable({}, { __index = Character })
+
 
 ---@Description Patchouli inherits from Character
 ---@return Patchouli
@@ -42,8 +42,10 @@ Patchouli = Character:new({
 }
 )
 
----@Description loadCommon override
+---@Description Patchouli inherits from Character
+---@function Patchouli:loadCommon
 ---@param host pointer instance of BattleScene
+---@return table
 function Patchouli:loadCommon(host)
     self.common_actions =  Character:loadCommon(host)
     -- todo load more common of patchouli

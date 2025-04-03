@@ -1189,7 +1189,7 @@ void BattleScene::init(Feintgine::Camera2D * camera )
     luaL_openlibs(m_script);
 
 	// register lua function
-	lua_register(m_script, "cppCreateEnity", lua_CreateEntity);
+	lua_register(m_script, "cppCreateEntity", lua_CreateEntity);
 	lua_register(m_script, "cppMoveEntity", lua_MoveEntity);
 	lua_register(m_script, "cppSetAttribute", lua_SetAtrribute);
 	lua_register(m_script, "cppSetStrAttribute", lua_SetStrAtrribute);

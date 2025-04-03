@@ -5,7 +5,8 @@ require "Icon"
 ---@type SlotHandler
 T_slotHandler = _G["T_slotHandler"]
 
----@type INPUT_type
+
+
 T_CurrentInputType = _G["T_CurrentInputType"]
 
 ---@class Move: Icon
@@ -50,6 +51,10 @@ function Move:selected(host,dyobj)
 
 end
 
+
+---@Description Move to slot behavior
+---@param host pointer instance of BattleScene
+---@param dyobj pointer instance of F_Lua_BaseEntity
 function MoveToSlotBehavior(host, dyobj)
 
     print("moveToSlotBehavior called" )
@@ -63,38 +68,41 @@ function MoveToSlotBehavior(host, dyobj)
         print("wrong number of slots selected")
         return --- avoid strange behavior 
     end
-    
+
+    ---@type pointer? 
     local slot = slots[1] -- target what you need
-    
-    local currentSlot = cppGetEntitySlot(dyobj)
+
+    local currentSlot = TB_GetEntitySlot(dyobj)
     print("ok ")
-    local currentCol = cppGetSlotCol(currentSlot)
+    local currentCol = TB_GetSlotCol(currentSlot)
     print("current col " .. currentCol)
+
     if(slot ~= nil) then
         print("slot not nil")
     else
         print("slot is nil")
     end
-    local targetCol = cppGetSlotCol(slot)
+
+    local targetCol = TB_GetSlotCol(slot)
+
     local dashAnimation = "dash_fw"
     if currentCol < targetCol then
         dashAnimation = "dash_bw"
     end
 
-    local currentRow = cppGetSlotRow(currentSlot)
-    local targetRow = cppGetSlotRow(slot)
-
+    local currentRow = TB_GetSlotRow(currentSlot)
+    local targetRow = TB_GetSlotRow(slot)
 
     local result = math.abs(currentRow - targetRow) + math.abs(currentCol - targetCol)
 
-    cppEntityPlayAnimation(host,dyobj,dashAnimation,false,-1)
-    cppEntityMoveToslot(host,dyobj,slot,result * 25)
+    TB_EntityPlayAnimation(host,dyobj,dashAnimation,false,-1)
+    TB_EntityMoveToSlot(host,dyobj,slot,result * 25)
     coroutine.yield()
 
-    finishedAnimation = dashAnimation .. "_end"
-    cppEntityPlayAnimation(host,dyobj,finishedAnimation,true,1)
+    local finishedAnimation = dashAnimation .. "_end"
+    TB_EntityPlayAnimation(host,dyobj,finishedAnimation,true,1)
     coroutine.yield()
-    cppEntityPlayAnimation(host,dyobj,"idle",false,-1)
+    TB_EntityPlayAnimation(host,dyobj,"idle",false,-1)
     coroutine.yield()
     -- cppClearEntityTasks(host,dyobj)
     -- coroutine.yield()
@@ -120,9 +128,9 @@ function Move:useFunction(host,character)
     SetPhase(host,1,3)
 
     print("!!!! set slot start ")
-    slots = T_slotHandler:getSelectedSlots()
+    local slots = T_slotHandler:getSelectedSlots()
 
-    count =  tablelength(slots)
+    local count =  tablelength(slots)
     print("slot count " .. count)
     print("testttt ")
     if count ~= 1 then
@@ -130,18 +138,17 @@ function Move:useFunction(host,character)
         return
     end
     --slot = slots[1]
-    print("reach here 5 ")
+    -- print("reach here 5 ")
     --count = 1
     --tempSlots = {}
+    local slot = nil
     for k,v in pairs(slots) do
+        ---@type Slot
         slot = v
     end
-    print("reach here ")
+    -- print("reach here ")
     character.currentSlot = slot
     slot:setDyobj(character.dyobj)
-    print("!!!! set slot end ")
-
-
     print("MOVE CALLED END")
 end
 

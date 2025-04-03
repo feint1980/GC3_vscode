@@ -47,7 +47,7 @@ end
 
 
 ---@Decription: add Character into TurnHandler
----@param character instance of Character
+---@param character Character instance of Character
 function TurnHandler:addCharacter(character)
     --table.insert(self.charLists,character)
     if character.dyobj ~= nil then

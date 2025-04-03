@@ -38,8 +38,13 @@ Yukari = Character:new({
 }
 )
 
+---@Description Yukari inherits from Character
+---@function Yukari:loadCommon
+---@param host pointer instance of BattleScene
+---@return table
+---@override
 function Yukari:loadCommon(host)
-   
+
     self.common_actions =  Character:loadCommon(host)
     -- todo load more common of yukari
 end

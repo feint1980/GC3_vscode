@@ -119,20 +119,11 @@ function SlotHandler:getSelectedSlots()
     return self.selectedSlots
 end
 
+
 ---Clear the selected slots
 function SlotHandler:clearSelectedSlots()
     self.selectedSlots = {}
 end
-
--- function SlotHandler:onMouseMove(host,x,y,button)
-
---     if (side & 1) == 1 then
---         self.currentSide = 1
---     else
---         self.currentSide = 2
---     end
--- end
-
 
 --- Handle mouse move event
 ---@param host pointer instance of BattleScene
@@ -399,16 +390,11 @@ function SlotHandler:onSignal(host,signal,side,flag)
             -- get the filtered slot
             self.currentSlot = self:getSlot(self.current_index_x, self.current_index_y, self.currentSide)
         end
-    end 
-
-
- 
-
-
-
+    end
+    
     -- hover the current slot
     self:selectHover(self:getSlot(self.current_index_x, self.current_index_y, self.currentSide))
-    
+
     if flag == SlotFlag.EmptyOnly then
         if TB_IsSlotEmpty(host,self.currentSlot) == true then
             TB_SlotHandlerSetValidTarget(host,true)

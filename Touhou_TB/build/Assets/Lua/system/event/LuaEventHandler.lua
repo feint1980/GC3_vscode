@@ -37,9 +37,7 @@ end
 
 function Tscheduler_addTask(time, callback,host)
 
-    host = host or _G.HandlerHost
     -- if host == nil then
-
 
     local task = EventTasks:new(time, callback)
 
@@ -48,11 +46,6 @@ function Tscheduler_addTask(time, callback,host)
     if(Tsize == 0) then
         print("start event handler")
         print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! host use !!!!!!!!!!!!!!!!!!!!!!!!!!")
-        if _G.HandlerHost == nil then
-            print("_G.HandlerHost is nil")
-        else
-            print("_G.HandlerHost is not nil")
-        end
         cppEventHandlerStart()
     end
     Tsize =  Tsize + 1
@@ -77,5 +70,5 @@ function EventHandlerUpdate(dt)
                 print("stop event handler")
             end
         end
-    end 
+    end
 end

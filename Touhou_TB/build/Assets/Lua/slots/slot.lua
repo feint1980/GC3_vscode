@@ -1,3 +1,5 @@
+
+---@class Slot
 Slot = {
 
     asset = "./Assets/Textures/circle.png",

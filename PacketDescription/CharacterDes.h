@@ -1,0 +1,6 @@
+#ifndef CHARACTERDESC_H
+#define CHARACTERDESC_H
+
+
+#endif // CHARACTERDESC_H
+
