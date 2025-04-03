@@ -76,7 +76,6 @@ void LinkAmplifier::updateAmplifyEffect(std::vector<EnemyBulletBase *> & enemies
 				{
 					// if difficult is hard or lunatic
 					player.getBullets()[i]->destroy();
-
 				}
 			}
 		}
@@ -93,7 +92,6 @@ void LinkAmplifier::updateAmplifyEffect(std::vector<EnemyBulletBase *> & enemies
 						// if difficult is hard or lunatic
 						//std::cout << "left hit \n";
 						player.getLeftAccessosry().getBullets()[i]->destroy();
-
 					}
 				}
 			}
@@ -110,7 +108,6 @@ void LinkAmplifier::updateAmplifyEffect(std::vector<EnemyBulletBase *> & enemies
 						// if difficult is hard or lunatic
 						//std::cout << "left hit \n";
 						player.getRightAccesory().getBullets()[i]->destroy();
-
 					}
 				}
 			}
