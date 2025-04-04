@@ -34,7 +34,6 @@ std::string longestPalindrome(std::string_view s) {
 }
 
 
-
 int wmain() {
     std::cout << longestPalindrome("babad") << '\n';  
     std::cout << longestPalindrome("cbbd") << '\n';   

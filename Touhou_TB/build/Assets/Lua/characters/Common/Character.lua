@@ -93,16 +93,16 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field common_actions table
 ---@field items table   
 ---@field skills table
----@field currentSlot Slot slot object
+---@field currentSlot pointer slot object
 Character = {
 
-    ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Carry weight(not implemented yet)
+    ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Physical displace chance/resistant  
     Strength = 8,
 
-    ---@type number Vitality(VIT) Primary Influence: Health (HP), Status resistant
+    ---@type number Vitality(VIT) Primary Influence: Health (HP), Status resistance, Last stance resistance, Physic def, Crit resistance 
     Vitality = 8,
 
-    ---@type number Dexterity(DEX) Primary Influence: Accuracy & Critical Hit Chance (Physical) Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes. Dexterity could also enhance skills or abilities that require precision, such as archery or certain melee attacks.
+    ---@type number Dexterity(DEX) Primary Influence: Accuracy (Physic) & Critical Hit Chance (Physical) Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes.
     Dexterity = 8,
 
     ---@type number Agility(AGI) Primary Influence: Speed & Evasion |Other Effects: Determines turn order (faster characters act first) and increases evasion against physical attacks. Higher agility could also reduce the chance of getting hit by slower enemies and allow characters to reposition more easily.
@@ -125,7 +125,7 @@ Character = {
     hp = 100,
     mana = 100,
     sp = 0,
-    spCap = 100, 
+    spCap = 100,
     physicDmg = 10,
     physicDef = 10,
     magicDmg = 10,
@@ -133,6 +133,15 @@ Character = {
     accurate = 0.5,
     evadeChance = 0.1,
     critChance = 0.125,
+    hpScale = 8,
+    manaScale = 7,
+    physicDmgScale = 2, 
+    magicDmgScale = 3,
+    physicDefScale = 1,
+    magicDefScale = 1,
+
+
+
     name = "Nameless",
     lastName = "None",
     title = "None",
@@ -144,11 +153,10 @@ Character = {
     items = {},
     ---@type table The list of skills
     skills = {},
-    ---@type Slot The current slot
+    ---@type pointer? instance of Slot 
     currentSlot = nil
 
 }
-
 
 ---@Description create a new instance of Character
 ---@param o? table

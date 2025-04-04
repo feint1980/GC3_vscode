@@ -117,7 +117,7 @@ end
 ---@Description: Creates a new entity (F_Lua_BaseEntity)
 ---@param host pointer instace of BattleScene
 ---@param animationPath string The path to the animation file
----@param slot Slot instance of Slot (created by TBD)
+---@param slot pointer instance of Slot (created by TBD)
 ---@param portraitPath string (optional) The path to the portrait file
 ---@param side? number (optional) 1 = left, 2 = right
 ---@param scale? number (optional) The scale of the entity (both x and y)

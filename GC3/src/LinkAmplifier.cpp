@@ -230,9 +230,7 @@ void LinkAmplifier::handlingState(float deltaTime)
 		{
 			m_animation.setScale(glm::vec2( calculateLinkScale(),1.0f));
 		}
-		
-
-	
+			
 	}
 	break;
 	case 2 :
