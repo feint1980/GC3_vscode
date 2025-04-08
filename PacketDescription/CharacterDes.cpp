@@ -115,6 +115,8 @@ void CharacterDesc::writeData(const std::string & path)
     CharacterStats patchouli = { 3,4,7,4,22,21, "./Assets/F_AObjects/patchouli_tb.xml", "./Assets/TB_GUI/faces/Patchouli_face.png", 1.0, 30, 370, 0, 100, 4, 25, 3, 13, 0.85, 0.1, 0.125, 8, 7,2,3,1,1,0.3,0.2, 0.25,"Patchouli", "Knowledge", "Unmoving Library",1 };
 
     json j = patchouli;
+    std::ofstream o(path);
+    o << std::setw(4) << j << std::endl;
 
 }
 float CharacterDesc::getFloatAttributeByName(const std::string & attributeName)
