@@ -63,9 +63,7 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field Agility number
 ---@field Intelligence number
 ---@field Wisdom number
----@field HitChance number
 ---@field Evasion number
----@field CriticalHitChance number
 ---@field PhysicalDefense number
 ---@field MagicDefense number
 ---@field Speed number 
@@ -82,10 +80,18 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field magicDmg number
 ---@field magicDef number
 ---@field accurate number
----@field critical number
 ---@field evadeChance number
 ---@field hitChance number
 ---@field critChance number
+---@field hpScale number
+---@field manaScale number
+---@field physicDmgScale number
+---@field magicDmgScale number
+---@field physicDefScale number
+---@field magicDefScale number
+---@field accurateScale number
+---@field evadeChanceScale number
+---@field deathDoorSurviveChance number
 ---@field name string
 ---@field lastName string
 ---@field title string
@@ -135,13 +141,13 @@ Character = {
     critChance = 0.125,
     hpScale = 8,
     manaScale = 7,
-    physicDmgScale = 2, 
+    physicDmgScale = 2,
     magicDmgScale = 3,
     physicDefScale = 1,
     magicDefScale = 1,
-
-
-
+    accurateScale = 0.3,
+    evadeChanceScale = 0.2,
+    deathDoorSurviveChance = 0.25,
     name = "Nameless",
     lastName = "None",
     title = "None",
@@ -179,14 +185,14 @@ end
 ---@Description Get the HP of the character
 ---@return number The HP of the character
 function Character:getHP()
-    local additionHP = self.Vitality * 8
+    local additionHP = self.Vitality * self.hpScale
     return self.hp + additionHP
 end
 
 ---@Description Get the Mana of the character
 ---@return number The Mana of the character
 function Character:getMana()
-    local additionMana = self.Wisdom * 7
+    local additionMana = self.Wisdom * self.manaScale
     return self.mana + additionMana
 end
 
@@ -194,13 +200,13 @@ end
 ---@Description Get the Physical Damage of the character
 ---@return number The Physical Damage of the character
 function Character:getPhysicDmg()
-    return self.physicDmg +  self.Strength * 2
+    return self.physicDmg +  self.Strength * self.physicDmgScale
 end
 
 ---@Description Get the Magic Damage of the character
 ---@return number The Magic Damage of the character
 function Character:getMagicDmg()
-    local additionDmg = self.Intelligence * 3
+    local additionDmg = self.Intelligence * self.magicDmgScale
     return self.magicDmg + additionDmg
 end
 
@@ -208,14 +214,14 @@ end
 ---@Description Get the Physical Defense of the character
 ---@return number The Physical Defense of the character
 function Character:getPhysicDef()
-    local additionDef = self.Vitality * 1
+    local additionDef = self.Vitality * self.physicDefScale
     return self.physicDef + additionDef
 end
 
 ---@Description Get the Magic Defense of the character
 ---@return number The Magic Defense of the character
 function Character:getMagicDef()
-    local additionDef = self.Wisdom * 1
+    local additionDef = self.Wisdom * self.magicDefScale
     return self.magicDef + additionDef
 end
 
@@ -225,7 +231,7 @@ end
 ---@return number The Accuracy of the character
 function Character:getAccurate(additionalRoll)
     additionalRoll = additionalRoll or 0
-    local additionAcc = (additionalRoll+ self.Dexterity ) * 0.03
+    local additionAcc = (additionalRoll+ self.Dexterity ) * self.accurateScale
     return self.accurate + additionAcc
 end
 
@@ -235,16 +241,23 @@ end
 ---@return number The Evasion of the character
 function Character:getEvadeChance(additionalRoll)
     additionalRoll = additionalRoll or 0
-    local additionEvade = (self.Agility + additionalRoll) * 0.02
+    local additionEvade = (self.Agility + additionalRoll) * self.evadeChanceScale
     return self.evadeChance + additionEvade
 end
 
 ---@Description Get the Critical Chance of the character
 ---@return number The Critical Chance of the character
 function Character:getCritChance()
-    local additionCrit = self.Dexterity * 0.013
+    local additionCrit = self.Dexterity * 0.027
     return self.critChance + additionCrit
 end
+
+function Character:getDeathDoorSurviveChance(additonalRoll)
+    additonalRoll = additonalRoll or 0
+    local additionSurvive = (self.Vitality + additonalRoll) * 0.03
+    return self.deathDoorSurviveChance + additionSurvive
+end
+
 
 ---@Description Initialize the character
 ---@param host pointer instance of BattleScene

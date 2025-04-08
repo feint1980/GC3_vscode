@@ -3,15 +3,63 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
+
+#include <ofstream>
+
+#include <algorithm>
+#include <nlohmann/json.hpp>
+
+
+struct CharacterStats 
+{
+    float strength;
+    float vitality ;
+    float dexterity ;
+    float agility ;
+    float intelligence ;
+    float wisdom ;
+    std::string animationPath;
+    std::string portraitPath;
+    float action;
+    float hp;
+    float mana;
+    float sp;
+    float spCap;
+    float physicDmg;
+    float magicDmg;
+    float physicDef;
+    float magicDef;
+    float accurate;
+    float evadeChance;
+    float critChance;
+    float hpScale;
+    float manaScale;
+    float physicDmgScale;
+    float magicDmgScale ;
+    float physicDefScale ;
+    float magicDefScale ;
+    float accurateScale;
+    float evadeChanceScale ;
+    float deathDoorSurviveChance;
+    std::string name ;
+    std::string lastName ;
+    std::string title ;
+    int side ;
+};
+
+
 
 enum Attribute
 {
-    Strength = 0,
-    Vitality,
-    Dexterity,
-    Agility,
-    Intelligence,
-    Wisdom,
+    Strength ,
+    Vitality ,
+    Dexterity ,
+    Agility ,
+    Intelligence ,
+    Wisdom ,
+    animationPath,
+    portraitPath,
     action,
     hp,
     mana,
@@ -23,11 +71,25 @@ enum Attribute
     magicDef,
     accurate,
     evadeChance,
-    name,
-    lastName,
-    title,
+    critChance,
+    hpScale,
+    manaScale,
+    physicDmgScale,
+    magicDmgScale ,
+    physicDefScale ,
+    magicDefScale ,
+    accurateScale,
+    evadeChanceScale ,
+    deathDoorSurviveChance,
+    name ,
+    lastName ,
+    title ,
+    side ,
     Invalid
 };
+
+
+
 
 
 class CharacterDesc
@@ -37,14 +99,25 @@ class CharacterDesc
         ~CharacterDesc();
 
         // void init()
+    void writeData(const std::string & path);
 
-        float getFloatAttributeByName(const std::string & attributeName);
+    Attribute getAttributeByName(const std::string & attributeName);
 
-        std::string getStrAttributeByName(const std::string & attributeName);
-    
+    void setAttribute(const std::string & attributeName, float value);
+
+    void setAttribute(const std::string & attributeName, const std::string & value);
+
+    void setAttribute(Attribute attribute, float value);
+
+    void setAttribute(Attribute attribute, const std::string & value);
+
+    float getFloatAttributeByName(const std::string & attributeName);
+
+    std::string getStrAttributeByName(const std::string & attributeName);
+    private :
+    CharacterStats m_charStats;
+
 };
-
-
 
 #endif // CHARACTERDESC_H
 

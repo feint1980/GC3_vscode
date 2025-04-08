@@ -128,29 +128,29 @@ Whiteboard/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/build
 .PHONY : Whiteboard/fast
 
-src/testBoard.obj: src/testBoard.cpp.obj
-.PHONY : src/testBoard.obj
+src/json_example.obj: src/json_example.cpp.obj
+.PHONY : src/json_example.obj
 
 # target to build an object file
-src/testBoard.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/testBoard.cpp.obj
-.PHONY : src/testBoard.cpp.obj
+src/json_example.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/json_example.cpp.obj
+.PHONY : src/json_example.cpp.obj
 
-src/testBoard.i: src/testBoard.cpp.i
-.PHONY : src/testBoard.i
+src/json_example.i: src/json_example.cpp.i
+.PHONY : src/json_example.i
 
 # target to preprocess a source file
-src/testBoard.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/testBoard.cpp.i
-.PHONY : src/testBoard.cpp.i
+src/json_example.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/json_example.cpp.i
+.PHONY : src/json_example.cpp.i
 
-src/testBoard.s: src/testBoard.cpp.s
-.PHONY : src/testBoard.s
+src/json_example.s: src/json_example.cpp.s
+.PHONY : src/json_example.s
 
 # target to generate assembly for a file
-src/testBoard.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/testBoard.cpp.s
-.PHONY : src/testBoard.cpp.s
+src/json_example.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/json_example.cpp.s
+.PHONY : src/json_example.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Whiteboard
-	@echo ... src/testBoard.obj
-	@echo ... src/testBoard.i
-	@echo ... src/testBoard.s
+	@echo ... src/json_example.obj
+	@echo ... src/json_example.i
+	@echo ... src/json_example.s
 .PHONY : help
 
 

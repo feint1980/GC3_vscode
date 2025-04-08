@@ -47,7 +47,9 @@ int wmain() {
 
     // Convert to JSON
     json j = patchouli;
-    std::cout << "JSON: " << j.dump(4) << std::endl;
+    std::cout << "JSON: " << j.dump(4,'.') << std::endl;
+
+    // j.get<CharacterStats>();
 
     // Convert back to struct
     CharacterStats newCharacter = j.get<CharacterStats>();
