@@ -1,10 +1,9 @@
 print("server side script started ...")
 
-package.path = package.path .. ";../luaFiles/?.lua"
+package.path = package.path .. ";../luaFiles/?.lua" ..";../luaFiles/Characters/?.lua"
 
 require "serverWrapper"
-
-
+require "S_Patchouli"
 
 --- function SV_DoQuery, clear data before a query
 ---@Description: call a server to do a query
@@ -14,7 +13,6 @@ function SVI_DoQuery(host,query)
     ClearQuery()
     SV_DoQuery(host,query)
 end
-
 
 --- function SVI_DoQuerySTMT, clear data before a query
 ---@Description: call a server to do a query
@@ -201,3 +199,9 @@ end
 require "accountHandle"
 
 print("server side script ended ...")
+
+print("read data from lua : ")
+
+
+
+cppUpdateCharacter(T_Host, S_Patchouli)

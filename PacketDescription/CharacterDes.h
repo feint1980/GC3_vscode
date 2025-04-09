@@ -5,11 +5,13 @@
 #include <vector>
 #include <iostream>
 
-#include <ofstream>
+#include <fstream>
+
 
 #include <algorithm>
 #include <nlohmann/json.hpp>
 
+using json = nlohmann::json;
 
 struct CharacterStats 
 {
@@ -46,8 +48,10 @@ struct CharacterStats
     std::string lastName ;
     std::string title ;
     int side ;
+    int level;
+    int xp;
+    std::string ID;
 };
-
 
 
 enum Attribute
@@ -85,6 +89,9 @@ enum Attribute
     lastName ,
     title ,
     side ,
+    level,
+    xp,
+    ID,
     Invalid
 };
 
@@ -100,6 +107,9 @@ class CharacterDesc
 
         // void init()
     void writeData(const std::string & path);
+
+
+    CharacterStats readFromLua(const std::string & path);
 
     Attribute getAttributeByName(const std::string & attributeName);
 

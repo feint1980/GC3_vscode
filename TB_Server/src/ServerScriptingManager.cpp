@@ -1,6 +1,8 @@
 #include "ServerScriptingManager.h"
 
 
+using json = nlohmann::json;
+
 // MARK: lua section
 
 static const std::string KEY_TABLE = "register_key_table";
@@ -80,6 +82,7 @@ static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **
 
 
 
+
 std::string genKey(int numberOfRandom)
 {
     char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -113,6 +116,135 @@ int lua_SQLCreateStatement(lua_State *L)
 
         lua_pushlightuserdata(L, stmt);
         return 1;
+    }
+}
+
+
+// Read value from lua table, you need to call lua table first
+void assignValue(lua_State *L,int index, const std::string & target, float & modVal)
+{
+
+    lua_getfield(L,2,target.c_str());
+    modVal = lua_tonumber(L,-1);
+    lua_pop(L,1);
+}
+void assignValue(lua_State *L,int index, const std::string & target, std::string & modVal)
+{
+
+    lua_getfield(L,2,target.c_str());
+    modVal = lua_tostring(L,-1);
+    lua_pop(L,1);
+}
+
+void assignValue(lua_State *L,int index, const std::string & target, int & modVal)
+{
+
+    lua_getfield(L,2,target.c_str());
+    modVal = lua_tointeger(L,-1);
+    lua_pop(L,1);
+}
+
+
+
+int lua_UpdateCharacter(lua_State *L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_UpdateCharacter) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        if (!lua_istable(L, 2)) {
+            std::cout << "Expected a table!\n"; 
+            // lua_pushstring(L, "Expected a table!");
+            lua_error(L); // Throws error in Lua
+            return 0;
+        }
+        else
+        {
+            std::cout << "got table, here we go \n";
+            CharacterStats stats;
+            // Strength
+            assignValue(L,2,"Strenth", stats.strength);
+            // Vitality
+            assignValue(L,2,"Vitality", stats.vitality);
+            // Dexterity
+            assignValue(L,2,"Dexterity", stats.dexterity);
+            // Agility
+            assignValue(L,2,"Agility", stats.agility);
+            // Intelligence
+            assignValue(L,2,"Intelligence", stats.intelligence);
+            // Wisdom
+            assignValue(L,2,"Wisdom", stats.wisdom);
+            // animationPath
+            assignValue(L,2,"animationPath", stats.animationPath);
+            // portraitPath
+            assignValue(L,2,"portraitPath", stats.portraitPath);
+            // action 
+            assignValue(L,2,"action", stats.action);
+            // hp
+            assignValue(L,2,"hp", stats.hp);
+            // mana
+            assignValue(L,2,"mana", stats.mana);
+            // sp
+            assignValue(L,2,"sp", stats.sp);
+            // spCap
+            assignValue(L,2,"spCap", stats.spCap);
+            // physicDmg
+            assignValue(L,2,"physicDmg", stats.physicDmg);
+            // physicDef
+            assignValue(L,2,"physicDef", stats.physicDef);
+            // magicDmg
+            assignValue(L,2,"magicDmg", stats.magicDmg);
+            // magicDef
+            assignValue(L,2,"magicDef", stats.magicDef);
+            // accurate
+            assignValue(L,2,"accurate", stats.accurate);
+            // evadeChance
+            assignValue(L,2,"evadeChance", stats.evadeChance);
+            // critChance
+            assignValue(L,2,"critChance", stats.critChance);
+            // hpScale
+            assignValue(L,2,"hpScale", stats.hpScale);
+            // manaScale
+            assignValue(L,2,"manaScale", stats.manaScale);
+            // physicDmgScale
+            assignValue(L,2,"physicDmgScale", stats.physicDmgScale);
+            // magicDmgScale
+            assignValue(L,2,"magicDmgScale", stats.magicDmgScale);
+            // physicDefScale
+            assignValue(L,2,"physicDefScale", stats.physicDefScale);
+            // magicDefScale
+            assignValue(L,2,"magicDefScale", stats.magicDefScale);
+            // accurateScale
+            assignValue(L,2,"accurateScale", stats.accurateScale);
+            // evadeChanceScale
+            assignValue(L,2,"evadeChanceScale", stats.evadeChanceScale);
+            // deathDoorSurviveChance
+            assignValue(L,2,"deathDoorSurviveChance", stats.deathDoorSurviveChance);
+            // name
+            assignValue(L,2,"name", stats.name);
+            // lastName
+            assignValue(L,2,"lastName", stats.lastName);
+            // title
+            assignValue(L,2,"title", stats.title);
+            // side 
+            assignValue(L,2,"side", stats.side);
+            // level
+            assignValue(L,2,"level", stats.level);
+            // xp
+            assignValue(L,2,"xp", stats.xp);
+            // ID
+            assignValue(L,2,"ID", stats.ID);
+
+            // std::cout << "Strength: " << stats.strength << "\n";
+            //json j = stats;
+            // json j = patchouli;
+
+        }
     }
 }
 
@@ -685,6 +817,10 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 {
     srand( (unsigned)time(NULL) );
 
+
+    // test path 
+    m_charDesc.writeData("./patchy.json");
+
     std::cout << "|=========================================|\n";
     std::cout << "|     Init Server Scripting Manager       |\n";
     m_server = server;
@@ -725,6 +861,8 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     // misc
     lua_register(m_script, "cpp_getEncrypedPW", lua_getEncryptedPW);
 
+    // Update Characters it belongs here because the server read and update it to database
+    lua_register(m_script, "cppUpdateCharacter", lua_UpdateCharacter);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))
     {

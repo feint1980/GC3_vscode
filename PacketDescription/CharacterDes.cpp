@@ -1,8 +1,9 @@
 #include "CharacterDes.h"
 
-using json = nlohmann::json;
 
-void to_json(json& j, const CharacterStats& c) 
+
+
+static void to_json(json& j, const CharacterStats& c) 
 {
     j = json{
         {"strength", c.strength},
@@ -37,12 +38,15 @@ void to_json(json& j, const CharacterStats& c)
         {"name",c.name},
         {"lastName",c.lastName},
         {"title",c.title},
-        {"side",c.side}
+        {"side",c.side},
+        {"level",c.level},
+        {"xp", c.xp},
+        {"ID",c.ID}
     };
 }
 
 // Convert JSON to struct
-void from_json(const json& j, CharacterStats& c) {
+static void from_json(const json& j, CharacterStats& c) {
     j.at("strength").get_to(c.strength);
     j.at("vitality").get_to(c.vitality);
     j.at("dexterity").get_to(c.dexterity);
@@ -76,7 +80,9 @@ void from_json(const json& j, CharacterStats& c) {
     j.at("lastName").get_to(c.lastName);
     j.at("title").get_to(c.title);
     j.at("side").get_to(c.side);
-
+    j.at("level").get_to(c.level);
+    j.at("xp").get_to(c.xp);
+    j.at("ID").get_to(c.ID);
 }
 
 
@@ -103,22 +109,38 @@ void CharacterDesc::setAttribute(Attribute attribute, const std::string & value)
         case Attribute::title:
         m_charStats.title = value;
         break;
+        case Attribute::animationPath:
+        m_charStats.animationPath = value;
+        break;
+        case Attribute::portraitPath:
+        m_charStats.portraitPath = value;
+        break;
+        case Attribute::ID:
+        m_charStats.ID = value;
+        break;
         default:
         std::cout << "failed to set att :(" << attribute << ") with: " << value << "\n";  
         break;
     }
 }
 
-
 void CharacterDesc::writeData(const std::string & path)
 {
-    CharacterStats patchouli = { 3,4,7,4,22,21, "./Assets/F_AObjects/patchouli_tb.xml", "./Assets/TB_GUI/faces/Patchouli_face.png", 1.0, 30, 370, 0, 100, 4, 25, 3, 13, 0.85, 0.1, 0.125, 8, 7,2,3,1,1,0.3,0.2, 0.25,"Patchouli", "Knowledge", "Unmoving Library",1 };
+    CharacterStats patchouli = { 3,4,7,4,22,21, "./Assets/F_AObjects/patchouli_tb.xml", "./Assets/TB_GUI/faces/Patchouli_face.png", 1.0, 30, 370, 0, 100, 4, 25, 3, 13, 0.85, 0.1, 0.125, 8, 7,2,3,1,1,0.035,0.025, 0.25,"Patchouli", "Knowledge", "Unmoving Library",1,1 };
 
     json j = patchouli;
     std::ofstream o(path);
     o << std::setw(4) << j << std::endl;
+    o.close();
 
 }
+
+CharacterStats CharacterDesc::readFromLua(const std::string & path)
+{
+    CharacterDesc desc;
+    
+}
+
 float CharacterDesc::getFloatAttributeByName(const std::string & attributeName)
 {
 
@@ -178,6 +200,12 @@ float CharacterDesc::getFloatAttributeByName(const std::string & attributeName)
             return m_charStats.evadeChanceScale;
         case deathDoorSurviveChance:
             return m_charStats.deathDoorSurviveChance;
+        case side:
+            return m_charStats.side;
+        case level:
+            return m_charStats.level;
+        case xp:
+            return m_charStats.xp;
         default:
             std::cout << "warinng, wrong attriute call " << attributeName << "\n";
             return -115114.0f;
@@ -195,6 +223,12 @@ std::string CharacterDesc::getStrAttributeByName(const std::string & attributeNa
             return m_charStats.lastName;
         case title:
             return m_charStats.title;
+        case animationPath:
+            return m_charStats.animationPath;
+        case portraitPath:
+            return m_charStats.portraitPath;
+        case ID:
+            return m_charStats.ID;    
         default:
             std::cout << "warning, wrong attri " << attributeName << "\n";
             return "none";
@@ -297,6 +331,15 @@ void CharacterDesc::setAttribute(Attribute attribute, float value)
             break;
         case Attribute::deathDoorSurviveChance:
             m_charStats.deathDoorSurviveChance = value;
+            break;
+        case Attribute::side:
+            m_charStats.side = value;
+            break;
+        case Attribute::level:
+            m_charStats.level = value;
+            break;
+        case Attribute::xp:
+            m_charStats.xp = value;
             break;
         default:
             std::cout << "error when try to set the att (" << attribute << ") : " << value << "\n";
@@ -429,6 +472,26 @@ Attribute CharacterDesc::getAttributeByName(const std::string & attributeName)
     else if(toLower == "title")
     {
         return title;
+    }
+    else if(toLower == "animationpath" || toLower == "animPath")
+    {
+        return animationPath;
+    }
+    else if(toLower == "portraitpath" || toLower == "porttpath")
+    {
+        return portraitPath;
+    }
+    else if(toLower == "id" )
+    {
+        return ID;
+    }
+    else if(toLower == "level" || toLower == "lvl" )
+    {
+        return level;
+    }
+    else if(toLower == "exp" || toLower == "xp" )
+    {
+        return xp;
     }
     else
     {

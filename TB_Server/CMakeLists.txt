@@ -8,6 +8,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp
     ${PROJECT_SOURCE_DIR}/../PacketDescription/NetworkPacket.cpp
+    ${PROJECT_SOURCE_DIR}/../PacketDescription/CharacterDes.cpp
 
 )
 

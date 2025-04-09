@@ -28,7 +28,7 @@
 
 #include <iostream>
 #include <bcrypt.h>
-
+#include "CharacterDes.h"
 
 
 //#include "ServerMain.h"
@@ -92,6 +92,7 @@ private:
 
     unsigned char *passwordSalt = nullptr;
 
+    CharacterDesc m_charDesc;
 
 };
 

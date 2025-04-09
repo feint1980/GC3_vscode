@@ -6,8 +6,8 @@ CREATE TABLE register_key_table(
     key_ready INTEGER CHECK (key_ready IN (0,1)) NOT NULL
 );
 INSERT INTO register_key_table VALUES(1,'F98ER24S8UR3',1);
-INSERT INTO register_key_table VALUES(2,'ZPZXH0DA1YOJ',1);
-INSERT INTO register_key_table VALUES(3,'E8760XLSLS7E',1);
+INSERT INTO register_key_table VALUES(2,'ZPZXH0DA1YOJ',0);
+INSERT INTO register_key_table VALUES(3,'E8760XLSLS7E',0);
 INSERT INTO register_key_table VALUES(4,'9TH4LPCV7UVH',1);
 INSERT INTO register_key_table VALUES(5,'32X6K7VHLVZW',1);
 INSERT INTO register_key_table VALUES(6,'ELOGAKEOEEOJ',1);
@@ -33,12 +33,13 @@ INSERT INTO account_stats_table VALUES('belai101',100.0,15.0);
 INSERT INTO account_stats_table VALUES('huyen12',100.0,15.0);
 CREATE TABLE character_base_table (
     character_id VARCHAR(128) PRIMARY KEY, 
-    character_name VARCHAR(128) NOT NULL
+    character_name VARCHAR(128) NOT NULL,
+    stats TEXT
 );
-INSERT INTO character_base_table VALUES('T_REIMU','Hakurei Reimu');
-INSERT INTO character_base_table VALUES('T_MARISA','Kirisame Marisa');
-INSERT INTO character_base_table VALUES('T_YUKARI','Yakumo Yukari');
-INSERT INTO character_base_table VALUES('T_PATCHY','Patchouli Knowledge');
+INSERT INTO character_base_table VALUES('T_REIMU','Hakurei Reimu', '');
+INSERT INTO character_base_table VALUES('T_MARISA','Kirisame Marisa','');
+INSERT INTO character_base_table VALUES('T_YUKARI','Yakumo Yukari','');
+INSERT INTO character_base_table VALUES('T_PATCHY','Patchouli Knowledge','');
 CREATE TABLE player_character_table (
     player_character_id INTEGER PRIMARY KEY AUTOINCREMENT, 
     account_id VARCHAR(64) NOT NULL, 
@@ -49,8 +50,6 @@ CREATE TABLE player_character_table (
     CONSTRAINT fk_account FOREIGN KEY (account_id) REFERENCES account_table(account_id) ON DELETE CASCADE,
     CONSTRAINT fk_character FOREIGN KEY (character_id) REFERENCES character_base_table(character_id) ON DELETE CASCADE
 );
-
-
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('register_key_table',9);
 COMMIT;
