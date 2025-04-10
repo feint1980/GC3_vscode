@@ -1,4 +1,8 @@
-S_Patchouli = 
+package.path = package.path .. ";../luaFiles/?.lua" 
+
+require "global"
+
+Character_Table["S_Patchouli"] =  
 {
     Strenth = 3,
     Vitality = 4,
@@ -10,7 +14,7 @@ S_Patchouli =
     portraitPath  = "./Assets/TB_GUI/faces/Patchouli_face.png",
     action = 0,
     hp = 30,
-    mana = 379,
+    mana = 370,
     sp = 0,
     spCap = 100,
     physicDmg = 4,
@@ -22,10 +26,10 @@ S_Patchouli =
     critChance = 0.125,
     hpScale = 8,
     manaScale = 10,
-    physicDmgScale = 2,
-    magicDmgScale = 3,
+    physicDmgScale = 1,
+    magicDmgScale = 3.7,
     physicDefScale = 1,
-    magicDefScale = 1,
+    magicDefScale = 2.7,
     accurateScale = 0.035,
     evadeChanceScale = 0.025,
     deathDoorSurviveChance = 0.25,
@@ -37,3 +41,4 @@ S_Patchouli =
     xp = 0,
     ID = "T_PATCHY"
 }
+

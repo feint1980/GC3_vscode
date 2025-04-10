@@ -1,9 +1,9 @@
 print("server side script started ...")
 
-package.path = package.path .. ";../luaFiles/?.lua" ..";../luaFiles/Characters/?.lua"
+package.path = package.path .. ";../luaFiles/?.lua" 
 
 require "serverWrapper"
-require "S_Patchouli"
+require "global"
 
 --- function SV_DoQuery, clear data before a query
 ---@Description: call a server to do a query
@@ -204,4 +204,30 @@ print("read data from lua : ")
 
 
 
-cppUpdateCharacter(T_Host, S_Patchouli)
+
+local function get_current_file_path()
+    local str = debug.getinfo(1, "S").source:sub(2)
+    return str:match("(.*[/\\])") or "./" -- Returns directory path
+end
+
+local current_path = get_current_file_path()
+print("Current file directory:", current_path)
+
+os.execute('dir /b/a-d  ..\\luaFiles\\Characters\\*.lua')
+
+function Server_LoadCharacters(host)
+    print("loadCharacters() called")
+    
+    for filename in io.popen('dir /b/a-d  ..\\luaFiles\\Characters\\*.lua'):lines() do  --Windows
+    -- for filename in io.popen('dir /b/a-d "'):lines() do  --Windows
+        filename = filename:match"^(.*)%.lua$"
+        if filename then
+            print("reloading files ... " .. filename)
+            dofile("../luaFiles/Characters/"..filename .. ".lua")
+            cppUpdateCharacter(host,Character_Table[filename])
+        end
+    end
+end
+
+
+

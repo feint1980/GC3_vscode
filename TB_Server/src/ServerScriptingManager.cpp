@@ -34,6 +34,90 @@ std::vector<unsigned char> hashPasswordPBKDF2(const std::string& password, const
 }
 
 
+
+static void to_json(json& j, const CharacterStats& c) 
+{
+    j = json{
+        {"strength", c.strength},
+        {"vitality", c.vitality},
+        {"dexterity", c.dexterity},
+        {"agility", c.agility},
+        {"intelligence", c.intelligence},
+        {"wisdom", c.wisdom},
+        {"animationPath", c.animationPath},
+        {"portraitPath", c.portraitPath},
+        {"action",c.action},
+        {"hp",c.hp},
+        {"mana",c.mana},
+        {"sp",c.sp},
+        {"spCap",c.spCap},
+        {"physicDmg",c.physicDmg},
+        {"physicDef",c.physicDef},
+        {"magicDmg",c.magicDmg},
+        {"magicDef",c.magicDef},
+        {"accurate",c.accurate},
+        {"evadeChance",c.evadeChance},
+        {"critChance",c.critChance},
+        {"hpScale",c.hpScale},
+        {"manaScale",c.manaScale},
+        {"physicDmgScale",c.physicDmgScale},
+        {"magicDmgScale",c.magicDmgScale},
+        {"physicDefScale",c.physicDefScale},
+        {"magicDefScale",c.magicDefScale},
+        {"accurateScale",c.accurateScale},
+        {"evadeChanceScale",c.evadeChanceScale},
+        {"deathDoorSurviveChance",c.deathDoorSurviveChance},
+        {"name",c.name},
+        {"lastName",c.lastName},
+        {"title",c.title},
+        {"side",c.side},
+        {"level",c.level},
+        {"xp", c.xp},
+        {"ID",c.ID}
+    };
+}
+
+// Convert JSON to struct
+static void from_json(const json& j, CharacterStats& c) {
+    j.at("strength").get_to(c.strength);
+    j.at("vitality").get_to(c.vitality);
+    j.at("dexterity").get_to(c.dexterity);
+    j.at("agility").get_to(c.agility);
+    j.at("intelligence").get_to(c.intelligence);
+    j.at("wisdom").get_to(c.wisdom);
+    j.at("animationPath").get_to(c.animationPath);
+    j.at("portraitPath").get_to(c.portraitPath);
+    j.at("action").get_to(c.action);
+    j.at("hp").get_to(c.hp);
+    j.at("mana").get_to(c.mana);
+    j.at("sp").get_to(c.sp);
+    j.at("spCap").get_to(c.spCap);
+    j.at("physicDmg").get_to(c.physicDmg);
+    j.at("physicDef").get_to(c.physicDef);
+    j.at("magicDmg").get_to(c.magicDmg);
+    j.at("magicDef").get_to(c.magicDef);
+    j.at("accurate").get_to(c.accurate);
+    j.at("evadeChance").get_to(c.evadeChance);
+    j.at("critChance").get_to(c.critChance);
+    j.at("hpScale").get_to(c.hpScale);  
+    j.at("manaScale").get_to(c.manaScale);
+    j.at("physicDmgScale").get_to(c.physicDmgScale);
+    j.at("magicDmgScale").get_to(c.magicDmgScale);
+    j.at("physicDefScale").get_to(c.physicDefScale);
+    j.at("magicDefScale").get_to(c.magicDefScale);
+    j.at("accurateScale").get_to(c.accurateScale);
+    j.at("evadeChanceScale").get_to(c.evadeChanceScale);
+    j.at("deathDoorSurviveChance").get_to(c.deathDoorSurviveChance);
+    j.at("name").get_to(c.name);
+    j.at("lastName").get_to(c.lastName);
+    j.at("title").get_to(c.title);
+    j.at("side").get_to(c.side);
+    j.at("level").get_to(c.level);
+    j.at("xp").get_to(c.xp);
+    j.at("ID").get_to(c.ID);
+}
+
+
 static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **azColName)
 {
 
@@ -42,14 +126,15 @@ static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **
 
     for(int i = 0 ; i < m_response.data.size() ; i++)
     {
-        m_response.data[i].clear();
+        m_response.data[i] = "";
     }
     m_response.data.clear();
 
     for(int i = 0; i<m_response.columnNames.size(); i++)
     {
-        m_response.columnNames[i].clear();
+        m_response.columnNames[i] = "";
     }
+    std::cout << "reset done \n";
 
 	for(int i = 0; i<argc; i++) {
 		//printf("%s : %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
@@ -241,9 +326,52 @@ int lua_UpdateCharacter(lua_State *L)
             assignValue(L,2,"ID", stats.ID);
 
             // std::cout << "Strength: " << stats.strength << "\n";
-            //json j = stats;
-            // json j = patchouli;
+            json j = stats;
 
+            // std::cout << "JSON: " << j.dump(4) << "\n";
+
+            std::string checkCharacterExist = "select character_id from character_base_table where character_id ='" + stats.ID + "';";
+            if(host)
+            {
+                std::cout << "host exist \n";
+                std::cout << "query \n";
+                std::cout << checkCharacterExist << "\n";
+                
+                if (host->doQuery(checkCharacterExist))
+                {
+                    if(m_response.recordCount == 1) // exist
+                    {
+                        std::cout << " chacater found ! update ...\n";
+                        
+                        std::string updateQuery = "update character_base_table set stats = '" + j.dump(4) + "' where character_id ='" + stats.ID + "'";
+                        std::cout << "test query " << updateQuery << "\n";
+                        
+                        host->doQuery(updateQuery);
+
+    
+                    }
+                    else if(m_response.recordCount == 0) // not exist
+                    {
+                        std::cout << "test \n";
+    
+                    }
+                    else // if this happen you are COOKED !
+                    {
+                        std::cout << "cooked \n";
+                    }
+                    
+                }
+                else
+                {
+
+                }
+            }
+            else
+            {
+                std::cout << "host null \n";
+            }
+
+        
         }
     }
 }
@@ -736,8 +864,8 @@ bool ServerScriptingManager::doQuery(const std::string & queryCmd)
 
     if(m_response.rc != SQLITE_OK)
     {
-        //std::cout << "ServerScriptingManager doQuery failed: " << zErrMsg << "\n";
-        //std::cout << "The query tried to be: " << queryCmd << "\n";
+        std::cout << "ServerScriptingManager doQuery failed: " << zErrMsg << "\n";
+        std::cout << "The query tried to be: " << queryCmd << "\n";
         sqlite3_free(zErrMsg);
         return false;
     }
@@ -881,6 +1009,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
         }
     }
 
+
     shared_luaState = m_script;
 
     int t1[16] = {
@@ -960,6 +1089,20 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     };
 
     std::cout << "\nversion " << sqlite3_libversion() << "\n";
+
+
+    
+    lua_getglobal(m_script, "Server_LoadCharacters");
+    if(lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this);
+        const int argc = 1;
+        const int returnCount = 0;
+        if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+        {
+            std::cout << "Call Server_LoadCharacters from C++ OK \n";
+        }
+    }
 
 }
 

@@ -37,7 +37,6 @@ CREATE TABLE character_base_table (
     stats TEXT
 );
 INSERT INTO character_base_table VALUES('T_REIMU','Hakurei Reimu', '');
-INSERT INTO character_base_table VALUES('T_MARISA','Kirisame Marisa','');
 INSERT INTO character_base_table VALUES('T_YUKARI','Yakumo Yukari','');
 INSERT INTO character_base_table VALUES('T_PATCHY','Patchouli Knowledge','');
 CREATE TABLE player_character_table (
