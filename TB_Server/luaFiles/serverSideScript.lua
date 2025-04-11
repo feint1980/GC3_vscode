@@ -217,7 +217,6 @@ os.execute('dir /b/a-d  ..\\luaFiles\\Characters\\*.lua')
 
 function Server_LoadCharacters(host)
     print("loadCharacters() called")
-    
     for filename in io.popen('dir /b/a-d  ..\\luaFiles\\Characters\\*.lua'):lines() do  --Windows
     -- for filename in io.popen('dir /b/a-d "'):lines() do  --Windows
         filename = filename:match"^(.*)%.lua$"

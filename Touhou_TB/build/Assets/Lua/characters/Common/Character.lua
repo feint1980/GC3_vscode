@@ -287,10 +287,13 @@ function Character:init(host,slot,tSide)
     TB_SetAttribute(self.dyobj,"magicDmg",self:getMagicDmg())
     TB_SetAttribute(self.dyobj,"magicDef",self:getMagicDef())
     TB_SetAttribute(self.dyobj,"accurate",self:getAccurate())
+    
     TB_SetAttribute(self.dyobj,"evadeChance",self:getEvadeChance())
     TB_SetStrAttribute(self.dyobj,"name",self.name)
     TB_SetStrAttribute(self.dyobj,"lastName",self.lastName)
     TB_SetStrAttribute(self.dyobj,"title",self.title)
+
+
 
     --return self
 end

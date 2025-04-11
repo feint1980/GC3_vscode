@@ -348,30 +348,29 @@ int lua_UpdateCharacter(lua_State *L)
                         
                         host->doQuery(updateQuery);
 
-    
                     }
                     else if(m_response.recordCount == 0) // not exist
                     {
-                        std::cout << "test \n";
-    
+                        std::string insertString = "insert into character_base_table (character_id, character_name, stats) values ('" + stats.ID + "', '" + stats.name + " " + stats.lastName +  "', '" + j.dump(4) + "');";
+                        if(host)
+                        {
+                            if(host->doQuery(insertString))
+                            {
+                                std::cout << "added " << stats.ID << " OK !!!\n";
+                            }
+                        }
                     }
                     else // if this happen you are COOKED !
                     {
-                        std::cout << "cooked \n";
+                        std::cout << "cooked (multiple record of character found) \n";
                     }
                     
-                }
-                else
-                {
-
                 }
             }
             else
             {
                 std::cout << "host null \n";
             }
-
-        
         }
     }
 }
