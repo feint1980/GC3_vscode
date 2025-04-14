@@ -35,20 +35,20 @@
 #include "InfoHolder.h"
 
 #include "../../PacketDescription/NetworkPacket.h"
-// #include "../../TGUI_theme/ThemeCreator.hpp"
 
 #include "TGUIScriptingManager.h"
 
 #include "ClientScriptingManager.h"
 
 #include "LuaEventHandler.h"
-class LoginSceneV2 : public Feintgine::IGameScreen
+
+class HomeScene : public Feintgine::IGameScreen
 {
 public:
-    LoginSceneV2();
-    ~LoginSceneV2();
+    HomeScene();
+    ~HomeScene();
 
-    LoginSceneV2(Feintgine::Window * window);
+    HomeScene(Feintgine::Window * window);
 
     virtual int getNextScreenIndex() const override;
 
@@ -68,12 +68,6 @@ public:
 
     virtual void checkInput() override;
 
-    void sendSignalToLua(int signal);
-
-    void changeScene(const std::string & tID, const std::string & tPW, const std::string & tGUID);
-
-    void changeOffline();
-
     void handleInput(Feintgine::InputManager & inputManager);
 
     void initGUI();
@@ -82,7 +76,11 @@ public:
 
     void initShader();
 
+    void drawLoading();
+
     void drawGUI();
+
+    void initLoading();
 
 private:
 
@@ -97,17 +95,20 @@ private:
     TB_EmptyObject m_bg;
 
     tgui::Gui * m_tgui = nullptr;
+    tgui::Label::Ptr m_text_load;
+
+    tgui::Gui * m_tgui_load;
 
     lua_State * m_script = nullptr;
 
+    ClientScriptingManager *m_clientScriptingManager = nullptr;
+
     RakNet::RakPeerInterface * m_client = nullptr;
 
-    ClientScriptingManager * m_clientScriptingManager = nullptr;
-
-    LuaEventHandler m_luaEventHandler ;
+    // bool isReady = false;
 
     TGUIScriptingManager m_guiScriptingManager;
 
-    
+    LuaEventHandler m_luaEventHandler;
 
 };

@@ -1,4 +1,4 @@
-#include "LoginSceneV2.h"
+#include "Wonderland_MainMenu.h"
 
 
 int lua_switchScene(lua_State * L)
@@ -13,7 +13,7 @@ int lua_switchScene(lua_State * L)
     {
         
         std::cout << " cpp_switchScene called \n";
-        LoginSceneV2 * host = (LoginSceneV2 *)lua_touserdata(L, 1);
+        Wonderland_MainMenu * host = (Wonderland_MainMenu *)lua_touserdata(L, 1);
         std::string t_id = lua_tostring(L, 2);
         std::string t_pw = lua_tostring(L, 3);
         std::string t_guid = lua_tostring(L, 4);
@@ -34,13 +34,13 @@ int lua_switchScene(lua_State * L)
     return 0;
 }
 
-void LoginSceneV2::changeOffline()
+void Wonderland_MainMenu::changeOffline()
 {
 
     m_currentState = Feintgine::ScreenState::CHANGE_PREVIOUS;
 }
 
-void LoginSceneV2::changeScene( const std::string & tID, const std::string & tPW, const std::string & tGUID)
+void Wonderland_MainMenu::changeScene( const std::string & tID, const std::string & tPW, const std::string & tGUID)
 {
     InfoHolder::getInstance()->registerPersonalData(tGUID, tID, tPW);
 
@@ -48,18 +48,18 @@ void LoginSceneV2::changeScene( const std::string & tID, const std::string & tPW
     m_currentState = Feintgine::ScreenState::CHANGE_NEXT;
 }
 
-LoginSceneV2::LoginSceneV2()
+Wonderland_MainMenu::Wonderland_MainMenu()
 {
 
 }
 
 
-LoginSceneV2::~LoginSceneV2()
+Wonderland_MainMenu::~Wonderland_MainMenu()
 {
 
 }
 
-LoginSceneV2::LoginSceneV2(Feintgine::Window * window)
+Wonderland_MainMenu::Wonderland_MainMenu(Feintgine::Window * window)
 {
     m_alpha = 0.0f;
     m_window = window;
@@ -68,7 +68,7 @@ LoginSceneV2::LoginSceneV2(Feintgine::Window * window)
     initShader();
 }
 
-void LoginSceneV2::initShader()
+void Wonderland_MainMenu::initShader()
 {
     
     m_shader.compileShaders("Shaders/ShaderToy/normal.vert", "Shaders/ShaderToy/normal.frag");
@@ -78,25 +78,19 @@ void LoginSceneV2::initShader()
 	m_shader.linkShaders();
 }
 
-void LoginSceneV2::onEntry()
+void Wonderland_MainMenu::onEntry()
 {
     
-	// Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	
-
     m_camera.setPosition(glm::vec2(0, 0));
     //m_camera.setScale(1.5f);
 
     m_camera.update();
 
-    
-    // m_scriptingManager.init("127.0.0.1", 1123);
-
     m_spriteBatch.init();
     
     float tempScale = 0.85f;
-	m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,100), glm::vec2(1280, 720),Feintgine::Color(255, 255, 255, 255));
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     initGUI();
 
@@ -109,44 +103,35 @@ void LoginSceneV2::onEntry()
     }
 }
 
-void LoginSceneV2::build()
+void Wonderland_MainMenu::build()
 {
 
 	// build screen (unused)
 }
 
-void LoginSceneV2::destroy()
+void Wonderland_MainMenu::destroy()
 {
     // unload screen (unused)
 }
 
-int LoginSceneV2::getNextScreenIndex() const
+int Wonderland_MainMenu::getNextScreenIndex() const
 {
     return 1;
 }
 
-int LoginSceneV2::getPreviousScreenIndex() const
+int Wonderland_MainMenu::getPreviousScreenIndex() const
 {
     return 2;
 }
 
-void LoginSceneV2::onExit()
+void Wonderland_MainMenu::onExit()
 {
 
     std::cout << "on exi call \n";
-    // m_tgui->;
-    // m_guiScriptingManager.cleanup();
-    // m_shader.dispose();
-    // if(m_clientScriptingManager)
-    // {
-    //     m_clientScriptingManager->cleanUp();
-    // }
-    // m_spriteBatch.~SpriteBatch();
-    // std::cout << "exit call OK \n";
-    // unload screen (unused)
+
 }
 
-void LoginSceneV2::update(float deltaTime)
+void Wonderland_MainMenu::update(float deltaTime)
 {
 
     m_guiScriptingManager.update(deltaTime);
@@ -159,7 +144,7 @@ void LoginSceneV2::update(float deltaTime)
 
 }
 
-void LoginSceneV2::checkInput()
+void Wonderland_MainMenu::checkInput()
 {
     SDL_Event evnt;
     while (SDL_PollEvent(&evnt))
@@ -171,7 +156,7 @@ void LoginSceneV2::checkInput()
     
 }
 
-void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
+void Wonderland_MainMenu::handleInput(Feintgine::InputManager & inputManager)
 {
 
 
@@ -197,7 +182,7 @@ void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
     }
 }
 
-void LoginSceneV2::sendSignalToLua(int signal)
+void Wonderland_MainMenu::sendSignalToLua(int signal)
 {
     lua_getglobal(m_script, "Login_handleKeyboard");
     if(lua_isfunction(m_script, -1))
@@ -213,7 +198,7 @@ void LoginSceneV2::sendSignalToLua(int signal)
     }
 }
 
-void LoginSceneV2::draw()
+void Wonderland_MainMenu::draw()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -250,7 +235,7 @@ void LoginSceneV2::draw()
 }
 
 
-void LoginSceneV2::initGUI()
+void Wonderland_MainMenu::initGUI()
 {
 
     m_script = luaL_newstate();
@@ -304,12 +289,12 @@ void LoginSceneV2::initGUI()
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
-            std::cout << "Login scene init script from C++ OK \n";
+            std::cout << "LoginSceneInit called from C++ OK \n";
         }
     }
 }
 
-void LoginSceneV2::drawGUI()
+void Wonderland_MainMenu::drawGUI()
 {
     m_guiScriptingManager.draw();
 }

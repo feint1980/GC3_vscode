@@ -42,13 +42,13 @@
 #include "ClientScriptingManager.h"
 
 #include "LuaEventHandler.h"
-class LoginSceneV2 : public Feintgine::IGameScreen
+class Wonderland_MainMenu : public Feintgine::IGameScreen
 {
 public:
-    LoginSceneV2();
-    ~LoginSceneV2();
+    Wonderland_MainMenu();
+    ~Wonderland_MainMenu();
 
-    LoginSceneV2(Feintgine::Window * window);
+    Wonderland_MainMenu(Feintgine::Window * window);
 
     virtual int getNextScreenIndex() const override;
 
@@ -78,8 +78,6 @@ public:
 
     void initGUI();
 
-    void drawGameplay();
-
     void initShader();
 
     void drawGUI();
@@ -93,8 +91,6 @@ private:
     Feintgine::GLSLProgram m_shader;
 
     Feintgine::SpriteBatch m_spriteBatch;
-
-    TB_EmptyObject m_bg;
 
     tgui::Gui * m_tgui = nullptr;
 
