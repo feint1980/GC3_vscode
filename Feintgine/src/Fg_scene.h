@@ -33,11 +33,7 @@ namespace Feintgine
 
 		Fg_layer * getCurrentLayer()
 		{ 
-			if(m_currentLayer)
-			{
-				return m_currentLayer;
-			}  
-			return nullptr;	
+			return m_currentLayer;
 		}
 
 		Proc_Scene * getProtoSer();

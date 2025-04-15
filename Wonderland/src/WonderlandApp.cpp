@@ -27,18 +27,11 @@ void WonderlandApp::onInit()
 
 void WonderlandApp::addScreen()
 {
-    m_loginV2 = std::make_unique<Wonderland_MainMenu>(&m_window);
+    m_mainMenu = std::make_unique<Wonderland_MainMenu>(&m_window);
 
-    m_screenList->addScreen(m_loginV2.get());
+    m_screenList->addScreen(m_mainMenu.get());
 
-    m_home = std::make_unique<HomeScene>(&m_window);
-
-    m_screenList->addScreen(m_home.get());
-
-    m_test = std::make_unique<TestTBScreen>(&m_window); 
-    m_screenList->addScreen(m_test.get());
-
-    m_screenList->setScreen(m_loginV2->getScreenIndex());
+    m_screenList->setScreen(m_mainMenu->getScreenIndex());
 }
 
 

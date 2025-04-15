@@ -29,10 +29,9 @@ namespace Feintgine
 
 		Proc_Layer * getProtoSer();
 		
+		void setObject(Proc_LoadObject * target, Proc_LoadObject * source);
 
-		void setObject(Proc_LoadObject * o1, Proc_LoadObject *o2);
-
-		void setBrush(Proc_Brush * o1, Proc_Brush *o2);
+		void setBrush(Proc_Brush * target, Proc_Brush *source);
 
 		void setName(const std::string & name);
 
@@ -66,6 +65,10 @@ namespace Feintgine
 		
 		void update(float deltaTime);
 
+		int getSelectedObjectCount();
+
+		void updatePositionEditbox();
+
 		//int 
 		void setGUIText(CEGUI::ListboxTextItem * visibleState)
 		{
@@ -83,6 +86,8 @@ namespace Feintgine
 		std::vector<Feintgine::F_Object> m_objects;
 
 		std::vector<Feintgine::Brush> m_brushes;
+
+		std::vector<Feintgine::F_Object *> m_selectedObjects;
 
 		CEGUI::ListboxTextItem * m_visibleState = nullptr;
 

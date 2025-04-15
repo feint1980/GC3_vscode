@@ -32,63 +32,36 @@ namespace Feintgine {
 			m_sprites.clear();
 			for (int i = 0; i <m_refab->proc_spritelist_size(); i++)
 			{
-				//std::cout << " layer index " << i << "has " << s_scence.layers(i).objects_size() << "object \n";
-
 				F_Sprite sprite;
 				sprite = Feintgine::SpriteManager::Instance()->getSprite(m_refab->proc_spritelist(i).proc_sprite().packetname() + "/" + m_refab->proc_spritelist(i).proc_sprite().name());
-				//sprite.createFromProc(proc_object.proc_spritelist(i).proc_sprite());
-				//glm::vec2 offsetPos = glm::vec2(0);
-				//glm::vec2 offsetScale = glm::vec2(1);
 				glm::vec2 offsetPos = feint_common::Instance()->convertProcVec2ToVec2(m_refab->proc_spritelist(i).offsetpos());
 				glm::vec2 offsetScale = feint_common::Instance()->convertProcVec2ToVec2(m_refab->proc_spritelist(i).offsetscale());
-				//std::cout << "offset Pos "
-				//glm::vec2 offsetScale = convertProcVec2ToVec2(proc_object.proc_spritelist(i).offsetscale());
 				glm::vec4 t_color  = feint_common::Instance()->convertProcVec4ToVec4(m_refab->proc_spritelist(i).color());
 				t_color *= m_color;
-				
 
-				//prite.setInvert(m_refab.proc_spritelist(i).proc_sprite().);
 				sprite.setInvert(m_refab->proc_spritelist(i).proc_sprite().isinvert());
-				//Feintgine::Color color = Feintgine::Color(255, 255, 255, 255);
-				//std::cout << "value of color loaded is " << v_color.x << "\n";
 				Feintgine::Color color = Feintgine::Color(t_color.x * 255.0f, t_color.y * 255.0f, t_color.z * 255.0f, t_color.w * 255.0f);
 				addSprite(sprite, offsetPos, offsetScale, color, m_refab->proc_spritelist(i).angle(), m_refab->proc_spritelist(i).depth(), i);
-				//addSprite()
 
 			}
 			for (int i = 0; i < m_refab->lightlist_size(); i++)
 			{
-				//std::cout << " layer index " << i << "has " << s_scence.layers(i).objects_size() << "object \n";
-	
 				glm::vec2 pos = feint_common::Instance()->convertProcVec2ToVec2(m_refab->lightlist(i).pos());
 				pos += m_pos;
 				glm::vec3 attenuation = feint_common::Instance()->convertProcVec3ToVec3(m_refab->lightlist(i).atenuation());
 				glm::vec4 color = feint_common::Instance()->convertProcVec4ToVec4(m_refab->lightlist(i).color());
 				
-				//std::cout << "offset Pos "
-				//glm::vec2 offsetScale = convertProcVec2ToVec2(proc_object.proc_spritelist(i).offsetscale());
 				addLight(pos, color, attenuation, i);
-				//Feintgine::Color color = Feintgine::Color(v_color.x * 255.0f, v_color.y * 255.0f, v_color.z * 255.0f, v_color.w * 255.0f);
-				
 			}
 			for (int i = 0; i < m_refab->coliderlist_size(); i++)
 			{
-				//std::cout << " layer index " << i << "has " << s_scence.layers(i).objects_size() << "object \n";
-
 				glm::vec2 pos = feint_common::Instance()->convertProcVec2ToVec2(m_refab->coliderlist(i).pos());
 				pos += m_pos;
 				glm::vec2 dim = feint_common::Instance()->convertProcVec2ToVec2(m_refab->coliderlist(i).dim());
-		
-				//std::cout << "offset Pos "
-				//glm::vec2 offsetScale = convertProcVec2ToVec2(proc_object.proc_spritelist(i).offsetscale());
 				addColider(pos, dim, i);
-				//Feintgine::Color color = Feintgine::Color(v_color.x * 255.0f, v_color.y * 255.0f, v_color.z * 255.0f, v_color.w * 255.0f);
-
 			}
 
 			std::cout << "read file ok \n";
-
-
 		}
 	}
 
@@ -107,12 +80,9 @@ namespace Feintgine {
 		std::string loadTarget = "./Assets/F_Objects/" + object.name() + ".fob";	
 		loadFromFile(loadTarget);
 		setPos(pos);
-		setDepth(depth);
-	//	m_pos = pos;
 		m_dim = m_dim * scale;
 		m_angle = angle; 
-		//m_depth = depth;
-		
+		m_depth = depth;		
 	}
 
 	Proc_LoadObject * F_Object::getProtoSer()
@@ -123,7 +93,6 @@ namespace Feintgine {
 		// for (size_t i = 0; i < m_lightListID.size(); i++)
 		// {
 
-		// 	object->ad
 		// 	// Proc_SpotLight * t_light = new Proc_SpotLight(getLightSer(m_lightListPos[i], m_lightListColor[i], m_lightListAttenuation[i]));
 		// 	// t_light = m_refab->add_lightlist();
 		// }
@@ -192,14 +161,8 @@ namespace Feintgine {
 		m_lightListColor.push_back(color);
 		m_lightListAttenuation.push_back(attenuation);
 		m_lightListID.push_back(ID);
-	
-		
 		//setLight(getLightSer(pos, color, attenuation), *t_light);
-				
 	}
-	
-
-
 
 	void F_Object::drawColider(DebugRender & renderer)
 	{
@@ -405,7 +368,6 @@ namespace Feintgine {
 	{
 		m_depth = depth;
 	}
-
 
 	void F_Object::resetOffset()
 	{

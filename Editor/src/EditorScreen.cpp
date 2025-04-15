@@ -1,21 +1,16 @@
 ﻿#include "EditorScreen.h"
 
-
-
 EditorScreen::EditorScreen()
 {
 }
 
 EditorScreen::EditorScreen(Feintgine::Window * window)
 {
-
-	
 	m_screenIndex = 0;
 	//m_sceneFilePath = "";
 	m_window = window;
 	//m_scene = new Feintgine::Fg_scene();
 	initShader();
-
 }
 
 EditorScreen::~EditorScreen()
@@ -25,7 +20,6 @@ EditorScreen::~EditorScreen()
 
 int EditorScreen::listdir(const char *name, int level)
 {
-	
 	DIR *dir ;
 	struct dirent *entry;
 
@@ -40,7 +34,6 @@ int EditorScreen::listdir(const char *name, int level)
 		std::cout << "entry failed \n";
 		return 0;
 	}
-		
 
 	do {
 		if (entry->d_type == DT_DIR) {
@@ -58,8 +51,6 @@ int EditorScreen::listdir(const char *name, int level)
 			std::string texturePath = name;
 			texturePath.append("/");
 			texturePath.append(entry->d_name);
-
-
 
 			if (texturePath.find("Packets/") != std::string::npos)
 			{
@@ -92,7 +83,6 @@ int EditorScreen::listdir(const char *name, int level)
 
 }
 
-
 int EditorScreen::getNextScreenIndex() const
 {
 	return -1;
@@ -105,7 +95,7 @@ int EditorScreen::getPreviousScreenIndex() const
 
 void EditorScreen::build()
 {
-	
+
 }
 
 void EditorScreen::destroy()
@@ -117,20 +107,12 @@ void EditorScreen::destroy()
 	m_coliderRenderer.dispose();
 }
 
-
 void EditorScreen::entryRuntime()
-{
-	
+{	
 	__int64 now = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
 	std::cout << "Start loading " << now << "\n";
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
-	// while(!Feintgine::SpriteManager::Instance()->isLoadingDone())
-	// {
-	// 	std::cout << "waiting ...\n";
-	// }
 	
-
-
 	// renderer
 	m_debug.init();
 	m_coliderRenderer.init();
@@ -139,11 +121,11 @@ void EditorScreen::entryRuntime()
 	m_textRenderer.init(24,128, "font/ARIALUNI.ttf");
 	m_sceneManager.loadIcons();
 	async::parallel_invoke([&] {
-    	std::cout << "Init Audio engine... \n";
+		std::cout << "Init Audio engine... \n";
 		m_audioEngine = new Feintgine::AudioEngine();
 	m_audioEngine->init();
 	}, [&] {
-    	std::cout << "Init tileset \n";
+		std::cout << "Init tileset \n";
 		m_tileset.initData(Feintgine::ResourceManager::getTexture("Assets/Tilesets/test.png"));
 		m_tileset.loadData();
 	}, [&] {
@@ -158,16 +140,13 @@ void EditorScreen::entryRuntime()
 		ObjectsScreen = glm::vec4(10, 560, 300, 300);
 		PreviewScreen = glm::vec4(50, 50, 220, 220);
 		SpriteListScreen = glm::vec4(1160, 570, 300, 300);
-
 		m_sideCam.init(1366, 768);
 		m_sideCam.setScale(1.0f);
 		m_sideCam.setPosition(glm::vec2(0));
 		m_sideCam.update();
 
 		EditDamaku = glm::vec4(50, 50, 800, 800);
-
 		EditEnemy = glm::vec4(50, 50, 800, 800);
-
 		EditLua = glm::vec4(50, 50, 800, 800);
 
 		staticCam_Editing.init(EditScreen.z, EditScreen.w);
@@ -192,9 +171,7 @@ void EditorScreen::entryRuntime()
 		m_animatingCamera.init(AnimateScreen.z, AnimateScreen.w);
 		m_animatingCamera.setScale(2.0f);
 
-
 		m_camera.setPosition(glm::vec2(0));
-		//m_camera.loadAspect(m_window->getAspect());
 
 		m_sceneCamera.init(SceneScreen.z, SceneScreen.w);
 		m_sceneCamera.setScale(1.0f);
@@ -206,7 +183,6 @@ void EditorScreen::entryRuntime()
 		m_sceneCamera_static.setScale(1.0f);
 
 		m_sceneCamera_static.setPosition(glm::vec2(0));
-
 		m_sceneCamera_static.update();
 
 		m_editDamakuCamera.init(EditDamaku.z, EditDamaku.w);
@@ -228,7 +204,6 @@ void EditorScreen::entryRuntime()
 		m_editEnemyCamera_static.setPosition(glm::vec2(0));
 		m_editEnemyCamera_static.update();
 
-
 		m_editLuaCamera.init(EditLua.z, EditLua.w);
 		m_editLuaCamera.setScale(1.0f);
 		m_editLuaCamera.setPosition(glm::vec2(0));
@@ -238,7 +213,6 @@ void EditorScreen::entryRuntime()
 		m_editLuaCamera_static.setScale(1.0f);
 		m_editLuaCamera_static.setPosition(glm::vec2(0));
 		m_editLuaCamera_static.update();
-
 
 		m_sampleCam.init(SampleSceen.z, SampleSceen.w);
 		m_sampleCam.setScale(1.0f);
@@ -259,8 +233,6 @@ void EditorScreen::entryRuntime()
 
 		m_previewCamera_static.setPosition(glm::vec2(0));
 		m_previewCamera_static.update();
-		//m_previewCamera_static.loadAspect(m_window->getAspect());
-
 
 		staticCam_Sample.init(SampleSceen.z, SampleSceen.w);
 		staticCam_Sample.setScale(1.0f);
@@ -279,19 +251,11 @@ void EditorScreen::entryRuntime()
 		m_camera.update();
 		m_camera.setScale(DEFAULT_OBJECT_CAM_SCALE);
 		m_spriteListCamera.update();
-
 		
 		m_camera.setPosition(glm::vec2(0));
 	}
 	);
 	
-	//Feintgine::SpriteManager::Instance()->executeReadData();
-	// tileset 
-	
-
-	// 
-
-	//readFile();
 	initGUI();
 	hideAnimateEditor();
 	hideDamakuEditor();
@@ -314,7 +278,6 @@ void EditorScreen::entryRuntime()
 			m_selectedObject  = m_objectHolder.getNonConstDisplaySample();
 			m_selectedObject.setDepth(100);
 			EditorProperty::Instance()->setCurrentEditObject(m_selectedObject);
-			//m_selectedObject = *p_selectedObject;
 			m_objectSelected = true;
 		return true;
 	});
@@ -328,18 +291,13 @@ void EditorScreen::entryRuntime()
 	});
 	//initGUI();
 	drawMode = edit_scene_mode;
-	//hideObjectEditor();
-	
-
 	refresh();
-
 	//Load Sprite Packets
 	
 	m_spriteListDisplayer.hide();
 	m_buildObjectTool.init(&m_buildingObject,&m_gui,&m_camera);
 
 	m_buildObjectTool.hide();
-
 	m_objectHolder.init(glm::vec2(0), glm::vec2(ObjectsScreen.z, ObjectsScreen.w), 5, 5, &m_gui);
 	
 	m_sceneManager.init(&m_sceneCamera,&m_gui);
@@ -355,15 +313,10 @@ void EditorScreen::entryRuntime()
 	m_luaEditor.init(EditLua, &m_editLuaCamera,
 		m_editLuaCamera_static);
 	
-	//m_luaEditor.registerEffectBatch(&m_effectBatch);
-
 	m_luaEditor.initPlayer(1,m_audioEngine,&m_kanjiEffectManager,&m_editLuaCamera);
 
-
-	
 	m_enemyEditor.loadGUI(&m_gui);
 	m_enemyEditor.loadEnemies("./Data/stageData/enemyState/fairyState.est");
-	//m_enemyEditor.loadEnemy("./Data/stageData/enemyState/fairyState.est");
 	m_enemyEditor.showGUI(false);
 
 	m_luaEditor.loadGUI(&m_gui);
@@ -377,20 +330,13 @@ void EditorScreen::entryRuntime()
 	std::cout << "total " << (float)elapsed / 1000.0f << "\n";
 	std::cout << "End load " << end << " \n";
 
-
-	//glBlendFuncSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
-	
-
-	std::cout << "load end !!!!! \n";
 	m_isLoaded = true;
 }
 
 void EditorScreen::onEntry()
 {
-	
-	//std::ios_base::sync_with_stdio(false);
 	m_spriteBatch.init();
-	m_fullCam.init(1600, 900);
+	m_fullCam.init(m_window->getScreenWidth(), m_window->getScreenHeight());
 	m_fullCam.setPosition(glm::vec2(0));
 
 	m_fullCam.setScale(1.0f);
@@ -398,12 +344,7 @@ void EditorScreen::onEntry()
 	bg.init(Feintgine::ResourceManager::getTexture("Assets/Textures/loading.png"), 
 		glm::vec2(0), glm::vec2(224.0f, 56.0f), Feintgine::Color(255, 255, 255, 255));
 
-	
-	//entryRuntime();
-
 }
-
-
 
 void EditorScreen::onExit()
 {
@@ -411,8 +352,6 @@ void EditorScreen::onExit()
 	//m_spriteListShader.dispose();
 	//m_sceneShader.dispose();
 	m_gui.destroy();
-	
-	
 }
 
 
@@ -696,16 +635,14 @@ void EditorScreen::draw()
 		if (drawMode == edit_enemy_mode)
 		{
 			m_enemyEditor.draw(m_spriteBatch,m_debug);
-			
 		}
 		if (drawMode == edit_lua_mode)
 		{
 			m_luaEditor.draw(m_spriteBatch, m_debug);
 			m_luaEditor.drawSpellcard(m_spriteBatch,m_editDamakuShader,m_sideCam);
-		
 		}
 
-		glViewport(0, 0, 1600, 900);
+		glViewport(0, 0, m_window->getScreenWidth(), m_window->getScreenHeight());
 		
 		m_textRenderer.renderText(m_fullCam, 
 			L"FPS :" + 
@@ -713,21 +650,29 @@ void EditorScreen::draw()
 				Instance()->convertPreciousFloatToString(m_game->getFps())),
 			glm::vec2(720, -400), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
 
+
+		
 		glm::vec2 curPos = m_sceneCamera.convertScreenToWorld(m_game->getInputManager().getMouseCoords(),
 			glm::vec2(SceneScreen.x, SceneScreen.y), glm::vec2(m_window->getScreenWidth(), m_window->getScreenHeight()));
 
 
 		
-		//std::string narrow = converter.to_bytes(wide_utf16_source_string);
-		//feint_common::Instance()->con	
-		//std::wstring l_x = feint_common::Instance()->convertStringtoWstring(feint_common::Instance()->convertPreciousFloatToString(curPos.x));
-		//std::wstring l_y = feint_common::Instance()->convertStringtoWstring(feint_common::Instance()->convertPreciousFloatToString(curPos.y));
+		// std::string narrow = converter.to_bytes(wide_utf16_source_string);
+		// feint_common::Instance()->con	
+		std::wstring l_x = feint_common::Instance()->convertStringtoWstring(feint_common::Instance()->convertPreciousFloatToString(curPos.x));
+		std::wstring l_y = feint_common::Instance()->convertStringtoWstring(feint_common::Instance()->convertPreciousFloatToString(curPos.y));
+		m_textRenderer.renderText(m_fullCam, 
+			L"X :" + l_x,
+			glm::vec2(-50, -430), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
+		m_textRenderer.renderText(m_fullCam, 
+			L"Y :" + l_y,
+			glm::vec2(100, -430), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
 
-	// 	m_textRenderer.renderText(m_fullCam, L"X :" + l_x
-	// 		, glm::vec2(0, -430), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_LEFT);
-	// 
-	// 	m_textRenderer.renderText(m_fullCam, L"Y :" + l_y
-	// 		, glm::vec2(150, -430), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_LEFT);
+		// m_textRenderer.renderText(m_fullCam, L"X :" + l_x
+		// 	, glm::vec2(600, -400), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_LEFT);
+	
+		// m_textRenderer.renderText(m_fullCam, L"Y :" + l_y
+		// 	, glm::vec2(600, -400), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_LEFT);
 
 		m_gui.draw();
 
@@ -804,38 +749,30 @@ void EditorScreen::checkInput()
 						{
 							currentCam->move(-glm::vec2(evnt.motion.xrel, -evnt.motion.yrel));
 							currentCam->update();
-
 						}
-						
 					}
-									
 				}
 			}
 			break;
-
 			case SDL_MOUSEWHEEL:
 			{
 				if (currentCam && currentCam != &m_objectsCamera)
 				{
 					if (evnt.wheel.y > 0)
 					{
-						
 						currentCam->setScale(currentCam->getScale() *1.1f);
 					}
 					else
 					{
 						currentCam->setScale(currentCam->getScale() *0.9f);
-
 					}
 				}
 				if (currentCam)
 				{
 					currentCam->update();
 				}
-				
 			}
 			break;
-
 			default:
 				mouseMove = false;
 				break;
@@ -884,10 +821,8 @@ void EditorScreen::handleInput(Feintgine::InputManager & inputManager)
 
 	if(drawMode == edit_animate_mode)
 	{
-
 		if (!animation_anim_offset_textbox_x->hasInputFocus() && !animation_anim_offset_textbox_y->hasInputFocus())
 		{
-
 			if (inputManager.isKeyPressed(SDLK_LEFT))
 			{
 				animation_slide->scrollBackwardsByStep();
@@ -937,7 +872,6 @@ void EditorScreen::handleInput(Feintgine::InputManager & inputManager)
 		}
 		if (inputManager.isKeyPressed(SDLK_2))
 		{
-			
 			switchScreen(T_EDIT_OJECT_MODE);
 		}
 		if (inputManager.isKeyPressed(SDLK_3))
@@ -1183,10 +1117,8 @@ void EditorScreen::initGUI()
 	m_gui.loadScheme("AlfiskoSkin.scheme");
 	m_gui.setFont("DejaVuSans-8");
 	
-
 	//Load component
 
-	
 	initMenuBar();
 	initTextureList();
 	initEditTool();
@@ -3562,13 +3494,11 @@ void EditorScreen::showObjectEditor()
 void EditorScreen::showSceneEditor()
 {
 	//m_actionCombo->show();
-
 	m_ambientColorR->show();
 	m_ambientColorG->show();
 	m_ambientColorB->show();
 	m_ambientColor_label->show();
 	m_objectHolder.show();
-
 }
 
 void EditorScreen::hideSceneEditor()
@@ -3579,7 +3509,6 @@ void EditorScreen::hideSceneEditor()
 	m_ambientColorB->hide();
 	m_ambientColor_label->hide();
 	m_objectHolder.hide();
-
 }
 
 void EditorScreen::showAnimateEditor()
@@ -3923,9 +3852,9 @@ void EditorScreen::deleteCurrentLayer()
 void EditorScreen::initAmbientTool()
 {
 
-	m_ambientColorR  = static_cast<CEGUI::Editbox*> (m_gui.createWidget("TaharezLook/Editbox", 
+	m_ambientColorR = static_cast<CEGUI::Editbox*> (m_gui.createWidget("TaharezLook/Editbox", 
 		glm::vec4(0.8, 0.8, 0.04, 0.03), glm::vec4(0), "m_ambientColorR"));
-	m_ambientColorG  = static_cast<CEGUI::Editbox*> (m_gui.createWidget("TaharezLook/Editbox",
+	m_ambientColorG = static_cast<CEGUI::Editbox*> (m_gui.createWidget("TaharezLook/Editbox",
 		glm::vec4(0.85, 0.8, 0.04, 0.03), glm::vec4(0), "m_ambientColorG"));
 	m_ambientColorB = static_cast<CEGUI::Editbox*> (m_gui.createWidget("TaharezLook/Editbox",
 		glm::vec4(0.9, 0.8, 0.04, 0.03), glm::vec4(0), "m_ambientColorB"));
@@ -3965,7 +3894,6 @@ bool EditorScreen::onAmbientLightChanged(const CEGUI::EventArgs &e)
 	glm::vec3 color = glm::vec3(std::stof(m_ambientColorR->getText().c_str()),
 		std::stof(m_ambientColorG->getText().c_str()), std::stof(m_ambientColorB->getText().c_str()));
 	m_ambientLight = color;
-
 
 	return true;
 }
@@ -4194,7 +4122,6 @@ bool EditorScreen::onMarkAsLoopToggled(const CEGUI::EventArgs &e)
 
 bool EditorScreen::onMarkReady(const CEGUI::EventArgs &e)
 {
-	
 	m_markable = true;
 	return true;
 }
@@ -4207,7 +4134,6 @@ bool EditorScreen::onMarkAsStop(const CEGUI::EventArgs &e)
 
 bool EditorScreen::onAddAnimButtonClicked(const CEGUI::EventArgs &e)
 {
-	
 	if (m_fAnimatedObject.getCurrentAnimation())
 	{
 		if (m_fAnimatedObject.getCurrentAnimation()->getSize() == 0)
@@ -4223,15 +4149,10 @@ bool EditorScreen::onAddAnimButtonClicked(const CEGUI::EventArgs &e)
 			animation_slide->setStepSize(1.0f / (float)m_fAnimatedObject.getCurrentAnimation()->getSize());
 			animation_slide->scrollForwardsByStep();
 			animation_tick_textbox->setText("0");
-
-			
 		}
 		updateAnimation(e);
 		updateAnimationLabel();
-		
-		
 	}
-	
 	return true;
 }
 
@@ -4421,11 +4342,11 @@ bool EditorScreen::createAction(const CEGUI::EventArgs &e)
 	{
 		m_fAnimatedObject.addNewAnimation(animation_addNewAction_textBox->getText().c_str());
  		CEGUI::ListboxTextItem * item;
- 		item = new CEGUI::ListboxTextItem(animation_addNewAction_textBox->getText().c_str(), 0);
- 		item->setSelectionBrushImage("TaharezLook/ListboxSelectionBrush");
- 		m_actionList->addItem(item);
- 		
- 		destroyNewActionScreen(e);
+		item = new CEGUI::ListboxTextItem(animation_addNewAction_textBox->getText().c_str(), 0);
+		item->setSelectionBrushImage("TaharezLook/ListboxSelectionBrush");
+		m_actionList->addItem(item);
+
+		destroyNewActionScreen(e);
 	}
 	return true;
 }
@@ -4473,8 +4394,6 @@ bool EditorScreen::onOffsetAnimationChangedX(const CEGUI::EventArgs &e)
 	{
 		if (m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim())
 		{
-
-
 			offsetPos = glm::vec2(std::stof(animation_anim_offset_textbox_x->getText().c_str()),
 				m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim()->offset.y);
 		}
@@ -4514,8 +4433,6 @@ bool EditorScreen::onOffsetPosChangedLeft(const CEGUI::EventArgs &e)
 	float x_val = std::stof(animation_anim_offset_textbox_x->getText().c_str());
 	x_val -= 1.0f;
 	animation_anim_offset_textbox_x->setText(feint_common::Instance()->convertPreciousFloatToString(x_val));
-	
-
 
 	return true;
 }
@@ -4538,7 +4455,6 @@ bool EditorScreen::onOffsetPosChangedUp(const CEGUI::EventArgs &e)
 	animation_anim_offset_textbox_y->setText(feint_common::Instance()->convertPreciousFloatToString(y_val));
 
 	//glm::vec2 offsetPos(m_fAnimatedObject.getCurrentAnimation()->getCurrentAnim()->offset.x, y_val);
-	
 	return true;
 }
 
@@ -4616,5 +4532,3 @@ void EditorScreen::hideEditEnemyEditor()
 {
 
 }
-
-  

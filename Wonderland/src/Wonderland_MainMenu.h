@@ -29,10 +29,8 @@
 #include <SpriteManager.h>
 #include <async++.h>
 #include <ResourceManager.h>
-#include "TB_EmptyObject.h"
 #include "ClientHandler.h"
 
-#include "InfoHolder.h"
 
 #include "../../PacketDescription/NetworkPacket.h"
 // #include "../../TGUI_theme/ThemeCreator.hpp"

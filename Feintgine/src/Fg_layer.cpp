@@ -7,7 +7,6 @@ namespace Feintgine
 	{
 	}
 
-
 	Fg_layer::~Fg_layer()
 	{
 
@@ -23,19 +22,14 @@ namespace Feintgine
 		for (int i = 0; i < c_layer.objectlist_size(); i++)
 		{
 			F_Object fob;
-			//fob.init(c_layer.objects(i).prefab());
-		
 			glm::vec2 t_pos = feint_common::Instance()->convertProcVec2ToVec2(c_layer.objectlist(i).pos());
 			glm::vec2 t_scale = feint_common::Instance()->convertProcVec2ToVec2(c_layer.objectlist(i).scale());
 			
 			std::cout << "DEBUG the pos is ### " << feint_common::Instance()->convertVec2toString(t_pos) << "\n";
-			//fob.
-
 
 			fob.create(c_layer.objectlist(i).refab() , t_pos, t_scale, 0, m_depth);
 
 			m_objects.push_back(fob);
-
 		}
 		std::cout << "layer " << m_name << " has " << c_layer.brushlist_size() << "brush \n";
 		for (int i = 0; i < c_layer.brushlist_size(); i++)
@@ -50,20 +44,16 @@ namespace Feintgine
 
 	float Fg_layer::changeDepthToCurrentLayer(const F_Object & object)
 	{
-
 		return object.getDepth() * 0.001;
-
 	}
 
 	void Fg_layer::addObjectToLayer(const F_Object & object)
 	{
-		 
-		 F_Object t_object = object;
-		 t_object.setDepth(m_depth + changeDepthToCurrentLayer(object));
-		 m_objects.push_back(t_object);
-		 updateDepth();
 
-		
+		F_Object t_object = object;
+		t_object.setDepth(m_depth + changeDepthToCurrentLayer(object));
+		m_objects.push_back(t_object);
+		updateDepth();
 	}
 
 	void Fg_layer::draw(Feintgine::SpriteBatch & spriteBatch)
@@ -116,7 +106,6 @@ namespace Feintgine
 		{
 			m_visibleState->setText(strStatus);
 		}
-
 	}
 
 	Proc_Layer * Fg_layer::getProtoSer()
@@ -145,14 +134,14 @@ namespace Feintgine
 		return m_proclayer;
 	}
 
-	void Fg_layer::setObject(Proc_LoadObject * o1, Proc_LoadObject *o2)
+	void Fg_layer::setObject(Proc_LoadObject * target, Proc_LoadObject *source)
 	{
-		o2 = o1;
+		source = target;
 	}
 
-	void Fg_layer::setBrush(Proc_Brush * o1, Proc_Brush *o2)
+	void Fg_layer::setBrush(Proc_Brush * target, Proc_Brush * source)
 	{
-		o2 = o1;
+		source = target;
 	}
 
 	void Fg_layer::setName(const std::string & name)
@@ -164,7 +153,6 @@ namespace Feintgine
 	{
 		m_name = name;
 		m_depth = depth;
-
 	}
 
 	void Fg_layer::clearObject()
@@ -179,7 +167,6 @@ namespace Feintgine
 		for (int i = 0; i < m_objects.size(); i++)
 		{
 			m_objects[i].setHover(m_objects[i].isMouseInside(mousePos));
-
 		}
 	}
 
@@ -189,7 +176,7 @@ namespace Feintgine
 		{
 			m_objects[i].showHoverBox(debugRenderer);
 		}
-		for(int i = 0; i < m_brushes.size(); ++i)
+		for(int i = 0; i < m_objects.size(); ++i)
 		{
 			m_objects[i].drawColider(debugRenderer);
 		}
@@ -218,7 +205,16 @@ namespace Feintgine
 			if (m_objects[i].isHover())
 			{
 				m_objects[i].setSelected(true);
+				m_selectedObjects.push_back(&m_objects[i]);
 			}
+		}
+
+	}
+	void Fg_layer::updatePositionEditbox()
+	{
+		if(m_selectedObjects.size()  == 1)
+		{
+			
 		}
 	}
 
@@ -244,8 +240,22 @@ namespace Feintgine
 		}
 	}
 
+	int Fg_layer::getSelectedObjectCount()
+	{
+		int count = 0;
+		for (int i = 0; i < m_objects.size(); i++)
+		{
+			if (m_objects[i].isSelected())
+			{
+				count++;
+			}
+		}
+		return count;
+	}
+
 	void Fg_layer::moveSelectedObject(const glm::vec2 & offset,bool first )
 	{
+	
 		for (int i = 0; i < m_objects.size(); i++)
 		{
 
@@ -260,7 +270,6 @@ namespace Feintgine
 				{
 					m_objects[i].moveToOffset(offset);
 				}
-			//	m_objects[i].setPos(offset);
 			}
 		}
 	}

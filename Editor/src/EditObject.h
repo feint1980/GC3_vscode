@@ -11,9 +11,6 @@ public:
 
 	std::vector<Feintgine::SelfSprite> getSpriteList() const { return m_sprites; }
 
-
-	
-
 	void deleteSpriteByID(int ID);
 	void deleteColiderByID(int ID);
 
@@ -27,9 +24,7 @@ public:
 	int getLightIndexByID(int ID);
 
 	void calculateOffset(const glm::vec2 & pos);
-
-
-
+	
 	std::string getFilePath() const {
 
 		return m_filePath;

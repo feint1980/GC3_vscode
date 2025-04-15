@@ -10,15 +10,12 @@
 
 namespace Feintgine
 {
-
-
 	class Brush
 	{
 	public:
 		Brush();
 		~Brush();
 		void setDepth(float depth);
-		
 		
 		void loadFromProto(const Proc_Brush & proc_brush);
 
@@ -30,7 +27,6 @@ namespace Feintgine
 		float getDepth() const { return m_depth; }
 	private:
 
-	
 		std::string m_filePath;
 		glm::vec2 m_pos;
 		glm::vec2 m_dim;

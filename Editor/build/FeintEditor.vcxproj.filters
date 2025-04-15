@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\BackGroundMap.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\BulletManupilator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\EnemyAmplifier.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\EnemyBulletBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\EnemyBullet_KomachiCoin.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\EnemyGuardian.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\ExplosionRing.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_BaseEnemy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_BulletBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_BulletStraight.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_CollectableItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_HomingBullet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Komachi_Souls_Object.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Komachi_pillar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Lua_Boss.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Lua_Boss_Manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Lua_Boss_State.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Lua_GenericObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_MarisaLaser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_MarisaRocket_small.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_MarisaStar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_MarisaStarSpawner.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Marisa_Laser_trail.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Marisa_Luminous_Charge.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Marisa_Luminous_Strike.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Marisa_Luminous_Strike_Launcher.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Marisa_MasterSpark.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Marisa_Star_Trail.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Marisa_Star_Trail_Manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_MasterSpark_Wave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Non_Direction_Laser.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Orreries_Sun.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Player.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_PlayerAccessory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Player_Sun_Manager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_ReimuWave.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Reimu_Demon_Binding.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_Reimu_Fantasy_Seal_Obj.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\F_SpriteObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\FairyBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\GlobalValueClass.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\Gohei_Rod.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\GuardianShield.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\KanjiEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\KanjiEffectManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\KanjiEffectrObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\LabelItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\PaternBehaviorBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\PaternBehavior_Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\PaternBehavior_from_lua.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\PowerItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\ScoreItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\SealingAmulet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\SpellcardIcon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\SpellcardSelector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\TraceObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\Yin_Yang_Orb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\GC3\src\Yin_Yang_Orb_Ex.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\BuildObjectTool.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\DamakuEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\DisplaySample.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\EditLayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\EditObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\EditRenderedObjectComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\EditorMain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\EditorProperty.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\EditorScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\EnemyEditorComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\EventManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\F_DamakuBase.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\F_DamakuLineTrace.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\LayerManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\LuaObjectEditorComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\NewRenderModel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\ObjectColider.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\ObjectDisplayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\ObjectListHolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\ObjectSlot.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\ObjectUVRect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\PaternEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\SceneManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\ScreenBuilder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\SpriteDisplayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\SpriteListHolder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\SpriteSheet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\TemplateObject.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\TestCEGUIScreen.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\VS_Code_prj\GC3_vscode\Editor\src\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\VS_Code_prj\GC3_vscode\Editor\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{06466071-E601-358F-B622-34E9267611B2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

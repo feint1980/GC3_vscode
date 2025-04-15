@@ -8,7 +8,6 @@ namespace Feintgine
 	{
 	}
 
-
 	Brush::~Brush()
 	{
 	}
@@ -17,7 +16,6 @@ namespace Feintgine
 	{
 		m_depth = depth;
 	}
-	
 
 	void Brush::loadFromProto(const Proc_Brush & proc_brush)
 	{
@@ -63,7 +61,6 @@ namespace Feintgine
 
 	void Brush::init(const std::string & filePath , glm::vec2 pos, glm::vec2 dims, glm::vec2 uv, Feintgine::Color color , float depth)
 	{
-
 		m_filePath = filePath;
 		m_texture = Feintgine::ResourceManager::getTexture(m_filePath.c_str());
 		m_pos = pos;
@@ -71,7 +68,6 @@ namespace Feintgine
 		m_color = color;
 		m_uv = uv;
 		m_depth = depth;
-
 	}
 
 }

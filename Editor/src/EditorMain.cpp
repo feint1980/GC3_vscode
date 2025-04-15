@@ -26,9 +26,7 @@ void EditorMain::onInit()
 	}
 	configureScreen("Feint Editor", 1600, 900, 0,false);
 	
-
 	setScreenInMiddle();
-
 }
 
 

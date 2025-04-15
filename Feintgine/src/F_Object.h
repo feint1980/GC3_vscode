@@ -1,8 +1,6 @@
 #ifndef _F_OBJECT_H_
 #define _F_OBJECT_H_
 
-
-
 #include "F_Sprite.h"
 #include "GLSLProgram.h"
 #include "ColiderBox.h"
@@ -13,10 +11,7 @@
 #include "TextRenderer.h"
 namespace Feintgine
 {
-
-
 	struct SelfSprite {
-
 		SelfSprite(const F_Sprite & t_sprite,const glm::vec2 & t_posOffset,const glm::vec2 & t_scaleOffset,const Feintgine::Color & t_color, float t_angleOffset ,float t_depth,int ID)
 		{
 			sprite = t_sprite;
@@ -87,7 +82,6 @@ namespace Feintgine
 		Proc_SpotLight * getLightSer(const glm::vec2 & pos, const glm::vec4 & color, const glm::vec3 & attennua);
 		Proc_ColiderBox getColSer(const glm::vec2 & pos, const glm::vec2 & dim);
 	
-
 		std::vector<glm::vec2> m_lightListPos;
 		std::vector<glm::vec2> m_lightListOffsetPos;
 		std::vector<glm::vec4> m_lightListColor;
@@ -139,8 +133,6 @@ namespace Feintgine
 		}
 
 		bool isMouseInside(const glm::vec2 & mousePos);
-	
-
 		void clearLightAfterward();
 
 		F_Object();
@@ -171,7 +163,7 @@ namespace Feintgine
 		glm::vec2 m_pos;
 		glm::vec2 m_dim;
 		float m_depth;
-		float m_angle;
+		float m_angle = 0;
 
 		float m_maxX;
 		float m_maxY;
@@ -181,8 +173,6 @@ namespace Feintgine
 		glm::vec2 savePos;
 
 		float t_priority;
-
 	};
 }
-
 #endif

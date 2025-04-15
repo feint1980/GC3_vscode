@@ -1,7 +1,5 @@
 #include "EditObject.h"
 
-
-
 EditObject::EditObject()
 {
 }
@@ -10,10 +8,6 @@ EditObject::EditObject()
 EditObject::~EditObject()
 {
 }
-
-
-
-
 
 int EditObject::getLightIndexByID(int ID)
 {
@@ -24,7 +18,6 @@ int EditObject::getLightIndexByID(int ID)
 			return i;
 		}
 	}
-
 	return -1;
 }
 
@@ -51,9 +44,6 @@ void EditObject::setEnlargeSize(float size)
 	m_enlarger = size;
 }
 
-
-
-
 Feintgine::SelfSprite * EditObject::getSpriteByID(int ID)
 {
 	for (int i = 0; i < m_sprites.size(); i++)
@@ -63,7 +53,6 @@ Feintgine::SelfSprite * EditObject::getSpriteByID(int ID)
 			return &m_sprites[i];
 		}
 	}
-
 	std::cout << "not found , return null \n";
 	return nullptr;
 }
@@ -96,4 +85,3 @@ void EditObject::calculateOffset(const glm::vec2 & pos)
 {
 	savedOffset = m_pos - pos;
 }
-

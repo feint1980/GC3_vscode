@@ -42,8 +42,6 @@ void Wonderland_MainMenu::changeOffline()
 
 void Wonderland_MainMenu::changeScene( const std::string & tID, const std::string & tPW, const std::string & tGUID)
 {
-    InfoHolder::getInstance()->registerPersonalData(tGUID, tID, tPW);
-
 
     m_currentState = Feintgine::ScreenState::CHANGE_NEXT;
 }
@@ -264,13 +262,11 @@ void Wonderland_MainMenu::initGUI()
 
     // m_clientScriptingManager.init("127.0.0.1", 1123,m_script);
 
-    InfoHolder::getInstance()->registerClient(m_client);
-
     // inverse case
     //m_script = m_guiScriptingManager.getLuaScript();
     //luaL_openlibs(m_script);
 
-    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/Login/loginScene.lua")))
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/MainMenu/mainMenu.lua")))
     {
         std::cout << "Run loginScene script OK \n";
     }

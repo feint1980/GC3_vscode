@@ -8,14 +8,10 @@
 #include <EmptyObject.h>
 #include "EditorProperty.h"
 
-
 const int SELECT_MODE = 1;
 const int EDIT_MODE = 2;
 
-
-
 const int BRUSH_UV_MODE = 0;
-
 const int BRUSH_CUSTOM_MODE = 1;
 
 class SceneManager
@@ -46,6 +42,7 @@ public:
 
 	void selectCurrentLayer(const std::string & layerName);
 
+	glm::vec2 getOffsetPos();
 
 	void draw(Feintgine::SpriteBatch & spriteBatch);
 
@@ -71,10 +68,8 @@ public:
 
 	void loadBrushTexture(CEGUI::Combobox * list,const std::string & itemName) ;
 
-
 	void switchMode(int BrushMode);
 
-	
 	bool isGrided() const { return isGrid; }
 
 	void saveScene();
@@ -99,19 +94,18 @@ private:
 
 	bool isGrid = false;
 
-
 	glm::vec2 firstClick;
 
-	Feintgine::Camera2D * m_sceneCam;
+	Feintgine::Camera2D * m_sceneCam = nullptr;
 
 	Feintgine::Fg_scene * m_currentScene = nullptr;
 	std::string m_name;
 
-	Feintgine::GUI * m_gui;
+	Feintgine::GUI * m_gui = nullptr;
 
-	CEGUI::DefaultWindow * gridOffset_label;
-	CEGUI::Editbox * gridOffset_x;
-	CEGUI::Editbox * gridOffset_y;
+	CEGUI::DefaultWindow * gridOffset_label = nullptr;
+	CEGUI::Editbox * gridOffset_x = nullptr;
+	CEGUI::Editbox * gridOffset_y = nullptr;
 
 	CEGUI::ToggleButton * brushUVMode = nullptr;;
 	CEGUI::ToggleButton * brushCustomMode = nullptr;
@@ -119,12 +113,9 @@ private:
 	CEGUI::Combobox * texturePicker = nullptr;
 
 	CEGUI::PushButton * addBrushButton; 
-
+	CEGUI::PushButton * gridApply;
 
 	CEGUI::Window * m_addBrushWindow;
-
-	CEGUI::Editbox * m_brushName;
-	CEGUI::Editbox * m_brushDepth;
 
 	CEGUI::Editbox * m_brushCollum;
 	CEGUI::Editbox * m_brushRow;
@@ -132,14 +123,13 @@ private:
 	CEGUI::Editbox * m_brushPosX;
 	CEGUI::Editbox * m_brushPosY;
 
+	CEGUI::DefaultWindow * m_pos_label;
+	CEGUI::Editbox * m_posXEditBox;
+	CEGUI::Editbox * m_posYEditBox;
 
 
 	int m_itemCount = 0;
-
-	CEGUI::PushButton * gridApply;
-
 	glm::vec2 savedPos;
-	
 
 };
 

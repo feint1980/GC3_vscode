@@ -64,24 +64,12 @@
 #include "../../GC3/src/F_MarisaRocket_small.h"
 #include "LuaObjectEditorComponent.h"
 
-
 const int TYPE_ALL = -1;
 const int TYPE_TERRIAN = 0;
 const int TYPE_OBJECT = 1;
 const int TYPE_TREE = 2;
 const int TYPE_PLANT = 3;
 const int TYPE_DECAL = 4;
-
-// struct lessWidth
-// {
-// 
-// 	inline bool operator() (const ColiderBox & c1, const ColiderBox & c2)
-// 	{
-// 		return ((c1.getDim().x * c1.getDim().y) < (c2.getDim().x * c2.getDim().y));
-// 	}
-// };
-
-
 
 const int edit_object_mode = 0;
 const int edit_scene_mode = 1;
@@ -108,12 +96,7 @@ class EditorScreen : public Feintgine::IGameScreen
 {
 
 public:
-	
-	
-	// load packet  
 	void loadPacket(const std::string & file);
-
-	//
 
 	EditorScreen();
 	~EditorScreen();
@@ -121,7 +104,7 @@ public:
 	EditorScreen(Feintgine::Window * window);
 
 	virtual int getNextScreenIndex() const override;
-  
+
 	virtual int getPreviousScreenIndex() const override;
 
 	virtual void build() override;
@@ -130,7 +113,6 @@ public:
 
 	virtual void onEntry() override;
 
-	
 	virtual void onExit() override;
 
 	virtual void update(float deltaTime) override;
@@ -142,54 +124,41 @@ public:
 		GetCurrentDirectory(MAX_PATH, NPath);
 		std::string::size_type pos = std::string(NPath).find_last_of("\\/");
 
-		 std::string rt = std::string(NPath).substr(0, pos);
+		std::string rt = std::string(NPath).substr(0, pos);
 
-		// rt.append("/Editor");
-		 return rt;
+		return rt;
 
 	}
 
 	void checkInput();
 	
 	void handleInput(Feintgine::InputManager & inputManager);
-
 	
-	//init ********************************************************************************
+	//init ******************************Init*******************************************
 
-	
 	void initSceneBrowse();
-
 	void initGUI();
 	void initShader();
 	void initMenuBar();
 	void initTextureList();
 	void initObjectUI();
-
 	void initFilters();
 	void initLayerList();
-
 	void initEditTool();
-
 	void initActionBar();
-
 	void initAObjList();
 
-	//******************************************************************************
+	//***********************************Draw*******************************************
+
 	void drawEditScreen();
 	void drawSceneScreen();
-
 	void drawSampleScreen();
 	void drawObjectsScreen();
 	void drawPreviewScreen();
-
 	void drawAnimateObject();
-
 	void drawSpriteList();
-
 	void drawLoadingScene();
-
 	void drawDamaKuScreen();
-
 
 	//***********************************
 	
@@ -197,11 +166,9 @@ public:
 
 	bool isInsideScreen(const glm::vec2 & pos, glm::vec4 t_sc);
 
-
 	// Eitor functions****************************************************************
 
 	void showFilePicker();
-
 	
 	bool openScene(const CEGUI::EventArgs &e);
 
@@ -760,10 +727,8 @@ private :
 	CEGUI::PushButton * m_addToObject = nullptr;
 
 	EditObject m_selectedObject;
-	EditObject * p_selectedObject;
 	bool m_objectSelected = false;
 	Feintgine::LightBatch m_lightBatch;
-
 
 	Feintgine::Brush m_brushTest;
 
@@ -778,7 +743,6 @@ private :
 	CEGUI::Editbox * m_ambientColorB;
 
 	CEGUI::DefaultWindow * m_ambientColor_label;
-
 
 	float m_cameraAngle = 0;
 
@@ -805,7 +769,6 @@ private :
 
 	EmptyObject bg;
 
-
 	Feintgine::F_TileStack m_tileStack;
 	Feintgine::F_TileManager m_tileManager;
 
@@ -813,7 +776,6 @@ private :
 
 	bool debugTiles = true;
 	void toggetDebugTiles();
-	//B_Object m_selectObject = nullptr;
 
 	// Edit Enemy Mode here
 	EnemyEditorComponent m_enemyEditor;
@@ -826,4 +788,3 @@ private :
 	bool m_isLoaded = false;
 
 };
-

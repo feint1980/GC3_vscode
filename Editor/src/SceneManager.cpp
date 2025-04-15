@@ -4,7 +4,7 @@
 
 SceneManager::SceneManager()
 {
-	 m_currentScene = nullptr;
+	m_currentScene = nullptr;
 }
 
 
@@ -37,7 +37,6 @@ bool SceneManager::createScene(const std::string & fileName)
 		{
 			std::cout << "Did not create new scene \n";			
 		}
-
 	}
 	return true;
 }
@@ -47,7 +46,6 @@ int SceneManager::listdir(const char *name, int level, const char *fileName)
 	//std::cout << "scan on " << name << "\n";
 	DIR *dir;
 	struct dirent *entry;
-
 
 	if (!(dir = opendir(name)))
 	{
@@ -60,7 +58,6 @@ int SceneManager::listdir(const char *name, int level, const char *fileName)
 		std::cout << "entry failed \n";
 		return 0;
 	}
-
 
 	do {
 		if (entry->d_type == DT_DIR) {
@@ -76,13 +73,11 @@ int SceneManager::listdir(const char *name, int level, const char *fileName)
 		{
 			printf(" >>>>> %*s- %s\n", level * 2, "", entry->d_name);
 			std::cout << "compare name : " << fileName << " to " << entry->d_name << "\n";
-			
 			if (!std::strcmp(fileName, entry->d_name) )
 			{
 				std::cout << "found exist file \n";
 				return -1;
 			}
-
 		}
 	} while (entry = readdir(dir));
 	std::cout << "no exist file found \n";
@@ -94,7 +89,6 @@ int SceneManager::listdir(const char *name, int level, const char *fileName)
 
 void SceneManager::init(Feintgine::Camera2D * cam, Feintgine::GUI * gui)
 {
-
 	m_gui = gui;
 	m_sceneCam = cam;
 	EditorProperty::Instance()->setSpacingOffset(glm::vec2(64));
@@ -107,26 +101,31 @@ void SceneManager::init(Feintgine::Camera2D * cam, Feintgine::GUI * gui)
 		(gui->createWidget("TaharezLook/Button", glm::vec4(0.85, 0.62, 0.08, 0.04), glm::vec4(0), "addBrushButton"));
 	addBrushButton->setText("Add Brush");
 
-	//onAddBurshClick
-	//addBrushButton
-
 	gridOffset_x->setValidationString("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)");
 	gridOffset_y->setValidationString("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)");
 	updateSpacingOffset();
-	//gridOffset_x->setText(feint_common::Instance()->convertPreciousFloatToString(spacingOffset.x,1).c_str());
-	//gridOffset_y->setText(feint_common::Instance()->convertPreciousFloatToString(spacingOffset.y, 1).c_str());
+
 	gridOffset_x->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&SceneManager::onSpacingXOffsetChanged, this));
 	gridOffset_y->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&SceneManager::onSpacingYOffsetChanged, this));
 
-	 
 	gridApply = static_cast<CEGUI::PushButton *>
 		(gui->createWidget("TaharezLook/Button", glm::vec4(0.85, 0.55, 0.12, 0.04), glm::vec4(0), "gridApply"));
 	gridApply->setText("Apply Current Object");
 	gridApply->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&SceneManager::onApplyGridClick, this));
 	addBrushButton->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&SceneManager::onAddBurshClick, this));
 
-	
+	m_pos_label = static_cast<CEGUI::DefaultWindow *> (gui->createWidget("TaharezLook/Label",
+		glm::vec4(0.72, 0.69, 0.08, 0.05), glm::vec4(0), "m_pos_label"));
+	m_pos_label->setText("Position");
+
+	m_posXEditBox = static_cast<CEGUI::Editbox*> (gui->createWidget("TaharezLook/Editbox", 
+		glm::vec4(0.80, 0.7, 0.06, 0.03), glm::vec4(0), "m_posXEditBox"));
 		
+	m_posYEditBox = static_cast<CEGUI::Editbox*> (gui->createWidget("TaharezLook/Editbox", 
+		glm::vec4(0.87, 0.7, 0.06, 0.03), glm::vec4(0), "m_posYEditBox"));
+	m_posXEditBox->setValidationString("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)");
+	m_posYEditBox->setValidationString("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)");
+
 }
 
 void SceneManager::loadIcons()
@@ -141,7 +140,6 @@ int SceneManager::browseScene(const char *name, int level, CEGUI::Listbox * list
 	DIR *dir;
 	struct dirent *entry;
 
-
 	if (!(dir = opendir(name)))
 	{
 		std::cout << "dir failed \n";
@@ -154,7 +152,6 @@ int SceneManager::browseScene(const char *name, int level, CEGUI::Listbox * list
 		return 0;
 	}
 
-
 	do {
 		if (entry->d_type == DT_DIR) {
 			char path[1024];
@@ -162,34 +159,22 @@ int SceneManager::browseScene(const char *name, int level, CEGUI::Listbox * list
 			path[len] = 0;
 			if (strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
 				continue;
-			//	printf("%*s[%s]\n", level * 2, "", entry->d_name);
 			browseScene(path, level + 1, listBox);
 		}
 		else
 		{
-		
-				
 			std::cout << "scene " << entry->d_name << " found \n";
 			CEGUI::ListboxTextItem * item  =new CEGUI::ListboxTextItem(entry->d_name, 0, 0, false, false);
 			listBox->addItem(item);
 			const CEGUI::Image* sel_img = &CEGUI::ImageManager::getSingleton().get("TaharezLook/MultiListSelectionBrush");
 
 			item->setSelectionBrushImage(sel_img);
-// 			if (texturePath.find("./Scene/") != std::string::npos)
-// 			{
-// 				
-// 				
-// 					
-// 				
-// 			}
 
 		}
 	} while (entry = readdir(dir));
 
-
 	closedir(dir);
 	return 0;
-
 }
 
 void SceneManager::closeCurrentScene()
@@ -217,7 +202,7 @@ void SceneManager::loadSceneFromFile(const std::string & filePath, CEGUI::MultiC
 		m_currentLayer = m_currentScene->getCurrentLayer();
 		if (m_currentLayer)
 		{
-			 m_currentScene->findAndSetCurrentLayer(m_currentLayer->getName());
+			m_currentScene->findAndSetCurrentLayer(m_currentLayer->getName());
 		}
 		else
 		{
@@ -238,10 +223,14 @@ void SceneManager::loadSceneFromFile(const std::string & filePath, CEGUI::MultiC
 	}
 }
 
+glm::vec2 SceneManager::getOffsetPos()
+{
+
+}
+
 void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSelected, const Feintgine::F_Object &object, CEGUI::MultiColumnList * list)
 {
 
-	
 	if (inputManager.isKeyPressed(SDLK_1))
 	{
 		m_currentMode = SELECT_MODE;
@@ -270,7 +259,6 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 	}
 	else
 	{
-
 		m_currentLayer = m_currentScene->getCurrentLayer();
 		if (m_currentLayer)
 		{
@@ -330,20 +318,15 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 					{
 						std::string mState = "x";
 						bool val = m_currentLayer->isVisible();
-
 						if (val)
 						{
 							mState = "v";
 						}
-				
 						m_currentLayer->show(!val);
-						
-						
-						 if(m_layerList)
-						 {
+						if(m_layerList)
+						{
 							m_layerList->handleUpdatedItemData();
-
-						 }
+						}
 						
 					}
 				}
@@ -406,14 +389,8 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 				}
 			}
 		}
-
-		
-	
-	}
-	
+	}	
 }
-
-
 
 void SceneManager::update(const glm::vec2 & mousePos)
 {
@@ -422,7 +399,6 @@ void SceneManager::update(const glm::vec2 & mousePos)
 		//std::cout << "second  " << feint_common::Instance()->convertVec2toString(mousePos) << "\n";
 		curMousePos = mousePos;
 		m_currentScene->editorUpdate(mousePos);
-		
 	}
 }
 
@@ -460,6 +436,9 @@ void SceneManager::showGUIcomponent(bool val)
 		gridOffset_y->show();
 		gridApply->show();
 		addBrushButton->show();
+		m_pos_label->show();
+		m_posXEditBox->show();
+		m_posYEditBox->show();
 		
 	}
 	else
@@ -469,6 +448,9 @@ void SceneManager::showGUIcomponent(bool val)
 		gridOffset_y->hide();
 		gridApply->hide();
 		addBrushButton->hide();
+		m_pos_label->hide();
+		m_posXEditBox->hide();
+		m_posYEditBox->hide();
 	}
 }
 
@@ -522,34 +504,23 @@ bool SceneManager::onAddBurshClick(const CEGUI::EventArgs &e)
 {
 	if (m_currentScene)
 	{
-
-
+		m_currentLayer = m_currentScene->getCurrentLayer();
 		if (m_currentLayer)
 		{
 			m_addBrushWindow = static_cast<CEGUI::Window*>
 				(m_gui->createWidget("TaharezLook/FrameWindow", glm::vec4(0.5, 0.5, 0.4, 0.4), glm::vec4(0), "m_addBrushWindow"));
-
-	 		CEGUI::PushButton * AcceptButton = static_cast<CEGUI::PushButton*>(m_gui->createWidget("TaharezLook/Button", glm::vec4(0.4, 0.8, 0.14, 0.08), glm::vec4(0), "OK_AddBrush_button"));
-	 		AcceptButton->setText("Create");
-
-
-			//AcceptButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&EditorScreen::addLayer, this));
-			//m_addLayerWindow->subscribeEvent(CEGUI::FrameWindow::EventCloseClicked, CEGUI::Event::Subscriber(&EditorScreen::destroyObjectPannel, this));
 			m_addBrushWindow->setText("Add Brush");
 
-	 		CEGUI::DefaultWindow * edit1_label = static_cast<CEGUI::DefaultWindow *> (m_gui->createWidget("TaharezLook/Label", glm::vec4(0.01, 0.1, 0.12, 0.1), glm::vec4(0), "addlayer_name_label"));
-	 		edit1_label->setText("Name");
-	 		CEGUI::DefaultWindow * edit2_label = static_cast<CEGUI::DefaultWindow *> (m_gui->createWidget("TaharezLook/Label", glm::vec4(0.01, 0.28, 0.12, 0.1), glm::vec4(0), "addbrush_depth_label"));
-	 		edit2_label->setText("Depth");
+	 		CEGUI::PushButton * AcceptButton = static_cast<CEGUI::PushButton*>(m_gui->createWidget("TaharezLook/Button", glm::vec4(0.4, 0.8, 0.14, 0.08), glm::vec4(0), "OK_AddBrush_button"));
+			AcceptButton->setText("Create");
+
 			CEGUI::DefaultWindow * edit3_label = static_cast<CEGUI::DefaultWindow *> (m_gui->createWidget("TaharezLook/Label", glm::vec4(0.65, 0.04, 0.12, 0.1), glm::vec4(0), "addlayer_depth_label"));
 			edit3_label->setText("Texture");
-	// 
-	// 
+
 			texturePicker = static_cast<CEGUI::Combobox*>
 				(m_gui->createWidget("TaharezLook/Combobox", glm::vec4(0.5, 0.12, 0.4, 0.22), glm::vec4(0), "texturePicker"));
-	 		m_brushName = static_cast<CEGUI::Editbox *>(m_gui->createWidget("TaharezLook/Editbox", glm::vec4(0.13, 0.1, 0.2, 0.08), glm::vec4(0), "edit_layerName"));
-			m_brushDepth = static_cast<CEGUI::Editbox *>(m_gui->createWidget("TaharezLook/Editbox", glm::vec4(0.13, 0.28, 0.2, 0.08), glm::vec4(0), "edit_layerDepth"));
-	// 
+
+
 			CEGUI::DefaultWindow * edit4_label = static_cast<CEGUI::DefaultWindow *> (m_gui->createWidget("TaharezLook/Label", glm::vec4(0.08, 0.43, 0.15, 0.1), glm::vec4(0), "edit4_label"));
 			edit4_label->setText("UV Mode");
 			brushUVMode = static_cast<CEGUI::ToggleButton*>
@@ -570,26 +541,18 @@ bool SceneManager::onAddBurshClick(const CEGUI::EventArgs &e)
 			m_brushRow->setText("30");
 
  			CEGUI::DefaultWindow * edit5_label = static_cast<CEGUI::DefaultWindow *> (m_gui->createWidget("TaharezLook/Label", glm::vec4(0.48, 0.35, 0.15, 0.1), glm::vec4(0), "edit5_label"));
- 			edit5_label->setText("Collumn");
+			edit5_label->setText("Collumn");
 
 			CEGUI::DefaultWindow * edit6_label = static_cast<CEGUI::DefaultWindow *> (m_gui->createWidget("TaharezLook/Label", glm::vec4(0.48, 0.45, 0.15, 0.1), glm::vec4(0), "edit6_label"));
 			edit6_label->setText("Row");
 
-			m_brushDepth->setValidationString("^-?\\d*");
 			m_brushCollum->setValidationString("\\d*");
 			m_brushRow->setValidationString("\\d*");
-// 			brushCustomMode = static_cast<CEGUI::ToggleButton*>
-// 				(m_gui->createWidget("TaharezLook/RadioButton", glm::vec4(0.05, 0.52, 0.04, 0.04), glm::vec4(0), "brushCustomMode"));;
-// 			brushCustomMode->setDisabled(true);
 
-	// 		m_layerDepth->setValidationString("\\d*");
 			m_addBrushWindow->subscribeEvent(CEGUI::FrameWindow::EventCloseClicked, CEGUI::Event::Subscriber(& SceneManager::onCloseBrushProtocol, this));
 			AcceptButton->subscribeEvent(CEGUI::PushButton::EventClicked, CEGUI::Event::Subscriber(&SceneManager::addBrushOnCurrentLayer, this));
-			m_addBrushWindow->addChild(m_brushName);
-			m_addBrushWindow->addChild(m_brushDepth);
+
 			m_addBrushWindow->addChild(AcceptButton);
-			m_addBrushWindow->addChild(edit1_label);
-			m_addBrushWindow->addChild(edit2_label);
 			m_addBrushWindow->addChild(edit3_label);
 			m_addBrushWindow->addChild(texturePicker);
 			m_addBrushWindow->addChild(brushUVMode);
@@ -601,9 +564,7 @@ bool SceneManager::onAddBurshClick(const CEGUI::EventArgs &e)
 			m_addBrushWindow->addChild(m_brushPosX);
 			m_addBrushWindow->addChild(m_brushPosY);
 
-
 			listdir("./Assets", 0);
-
 
 		}
 		else
@@ -617,7 +578,6 @@ bool SceneManager::onAddBurshClick(const CEGUI::EventArgs &e)
 	}
 	return true;
 }
-
 
 int SceneManager::listdir(const char *name, int level)
 {
@@ -637,7 +597,6 @@ int SceneManager::listdir(const char *name, int level)
 		return 0;
 	}
 
-
 	do {
 		if (entry->d_type == DT_DIR) {
 			char path[1024];
@@ -655,8 +614,6 @@ int SceneManager::listdir(const char *name, int level)
 			texturePath.append("/");
 			texturePath.append(entry->d_name);
 
-
-
 			if (texturePath.find("Brush/") != std::string::npos)
 			{
 				if (texturePath.find(".png") != std::string::npos)
@@ -671,7 +628,6 @@ int SceneManager::listdir(const char *name, int level)
 
 	closedir(dir);
 	return 0;
-
 }
 
 bool SceneManager::onSpacingYOffsetChanged(const CEGUI::EventArgs &e)
@@ -691,7 +647,6 @@ bool SceneManager::onApplyGridClick(const CEGUI::EventArgs & e)
 {
 	EditorProperty::Instance()->setSpacingOffset(EditorProperty::Instance()->getCurrentEditObject().getFullDimObject());
 	updateSpacingOffset();
-
 	return true;
 }
 
@@ -701,6 +656,7 @@ bool SceneManager::onCloseBrushProtocol(const CEGUI::EventArgs &e)
 	if (m_addBrushWindow)
 	{
 		m_addBrushWindow->destroy();
+		// m_addBrushWindow->hide();
 	}
 
 	return true;
@@ -711,27 +667,22 @@ bool SceneManager::addBrushOnCurrentLayer(const CEGUI::EventArgs &e)
 	m_currentLayer = m_currentScene->getCurrentLayer();
 	if (m_currentLayer)
 	{
-
 		Feintgine::Brush brush;
 		std::string destination = "./Assets/Brush/";
 		destination.append(texturePicker->getText().c_str());
 		glm::vec2 pos = glm::vec2(std::stof(m_brushPosX->getText().c_str()), std::stof(m_brushPosY->getText().c_str()));
 		int collum = std::stoi(m_brushCollum->getText().c_str());
 		int row = std::stoi(m_brushRow->getText().c_str());
-
 		Feintgine::GLTexture texture = Feintgine::ResourceManager::getTexture(destination);
-		//glm::vec2 textureDim = texture.g
-
 
 		brush.init(destination, pos, glm::vec2(texture.width * collum, texture.height * row), glm::vec2(collum,row),
-			Feintgine::Color(255, 255, 255, 255), std::stoi(m_brushDepth->getText().c_str()));
+			Feintgine::Color(255, 255, 255, 255), m_currentLayer->getDepth());
 
 		m_currentLayer->addBrush(brush);
 		if (m_addBrushWindow)
 		{
 			m_addBrushWindow->destroy();
 		}
-
 	}
 
 	return true;
@@ -742,7 +693,6 @@ void SceneManager::updateSpacingOffset()
 	glm::vec2 originalSpacing = EditorProperty::Instance()->getSpacingOffset();
 	gridOffset_x->setText(feint_common::Instance()->convertPreciousFloatToString(originalSpacing.x, 1).c_str());
 	gridOffset_y->setText(feint_common::Instance()->convertPreciousFloatToString(originalSpacing.y, 1).c_str());
-	//
 }
 
 void SceneManager::loadBrushTexture(CEGUI::Combobox * list, const std::string & itemName)
