@@ -156,11 +156,11 @@ void SceneManager::init(Feintgine::Camera2D * cam, Feintgine::GUI * gui)
 
 
 	m_angleLeftRotate = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
-		glm::vec4(0.745, 0.81, 0.015, 0.015), glm::vec4(0), "m_angleLeftRotate"));
+		glm::vec4(0.738, 0.81, 0.015, 0.015), glm::vec4(0), "m_angleLeftRotate"));
 	m_angleLeftRotate->setText("<");
 
 	m_angleRightRotate = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
-		glm::vec4(0.785, 0.81, 0.015, 0.015), glm::vec4(0), "m_angleRightRotate"));
+		glm::vec4(0.788, 0.81, 0.015, 0.015), glm::vec4(0), "m_angleRightRotate"));
 	m_angleRightRotate->setText(">");
 
 	m_posXEditBox->setText("0");
@@ -169,11 +169,6 @@ void SceneManager::init(Feintgine::Camera2D * cam, Feintgine::GUI * gui)
 
 }
 
-bool SceneManager::onPosRightPadClick(const CEGUI::EventArgs &e)
-{
-
-	return true;
-}
 
 bool SceneManager::onPosUpPadClick(const CEGUI::EventArgs &e)
 {
