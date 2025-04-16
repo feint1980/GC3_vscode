@@ -1,12 +1,9 @@
 #include "SceneManager.h"
 
-
-
 SceneManager::SceneManager()
 {
 	m_currentScene = nullptr;
 }
-
 
 SceneManager::~SceneManager()
 {
@@ -84,7 +81,6 @@ int SceneManager::listdir(const char *name, int level, const char *fileName)
 
 	closedir(dir);
 	return 0;
-
 }
 
 void SceneManager::init(Feintgine::Camera2D * cam, Feintgine::GUI * gui)
@@ -115,17 +111,170 @@ void SceneManager::init(Feintgine::Camera2D * cam, Feintgine::GUI * gui)
 	addBrushButton->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&SceneManager::onAddBurshClick, this));
 
 	m_pos_label = static_cast<CEGUI::DefaultWindow *> (gui->createWidget("TaharezLook/Label",
-		glm::vec4(0.72, 0.69, 0.08, 0.05), glm::vec4(0), "m_pos_label"));
-	m_pos_label->setText("Position");
+		glm::vec4(0.731, 0.70, 0.08, 0.05), glm::vec4(0), "m_pos_label"));
+	m_pos_label->setText("Pos");
+
+	m_posUpButton = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
+		glm::vec4(0.765, 0.695, 0.015, 0.015), glm::vec4(0), "m_posUpButton"));
+	m_posUpButton->setText("^");
+
+	m_posUpButton->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&SceneManager::onPosUpPadClick, this));
+
+	m_posDownButton = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
+		glm::vec4(0.765, 0.74, 0.015, 0.015), glm::vec4(0), "m_posDownButton"));
+	m_posDownButton->setText("v");
+
+	m_posLeftButton = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
+		glm::vec4(0.745, 0.72, 0.015, 0.015), glm::vec4(0), "m_posLeftButton"));
+	m_posLeftButton->setText("<");
+
+	m_posRightButton = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
+		glm::vec4(0.785, 0.72, 0.015, 0.015), glm::vec4(0), "m_posRightButton"));
+	m_posRightButton->setText(">");
+
+	m_posDownButton->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&SceneManager::onPosDownPadClick, this));
+
+	m_posLeftButton->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&SceneManager::onPosLeftPadClick, this));
+
+	m_posRightButton->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&SceneManager::onPosRightPadClick, this));
 
 	m_posXEditBox = static_cast<CEGUI::Editbox*> (gui->createWidget("TaharezLook/Editbox", 
-		glm::vec4(0.80, 0.7, 0.06, 0.03), glm::vec4(0), "m_posXEditBox"));
+		glm::vec4(0.82, 0.71, 0.06, 0.03), glm::vec4(0), "m_posXEditBox"));
 		
 	m_posYEditBox = static_cast<CEGUI::Editbox*> (gui->createWidget("TaharezLook/Editbox", 
-		glm::vec4(0.87, 0.7, 0.06, 0.03), glm::vec4(0), "m_posYEditBox"));
+		glm::vec4(0.89, 0.71, 0.06, 0.03), glm::vec4(0), "m_posYEditBox"));
 	m_posXEditBox->setValidationString("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)");
 	m_posYEditBox->setValidationString("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)");
 
+	m_angle_label = static_cast<CEGUI::DefaultWindow *> (gui->createWidget("TaharezLook/Label",
+		glm::vec4(0.73, 0.79, 0.08, 0.05), glm::vec4(0), "m_angle_label"));
+	m_angle_label->setText("Angle");
+
+	m_angleEditBox = static_cast<CEGUI::Editbox*> (gui->createWidget("TaharezLook/Editbox", 
+		glm::vec4(0.82, 0.8, 0.06, 0.03), glm::vec4(0), "m_angleEditBox"));
+	m_angleEditBox->setValidationString("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)");
+
+
+	m_angleLeftRotate = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
+		glm::vec4(0.745, 0.81, 0.015, 0.015), glm::vec4(0), "m_angleLeftRotate"));
+	m_angleLeftRotate->setText("<");
+
+	m_angleRightRotate = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
+		glm::vec4(0.785, 0.81, 0.015, 0.015), glm::vec4(0), "m_angleRightRotate"));
+	m_angleRightRotate->setText(">");
+
+	m_posXEditBox->setText("0");
+	m_posYEditBox->setText("0");
+	m_angleEditBox->setText("0");
+
+}
+
+bool SceneManager::onPosRightPadClick(const CEGUI::EventArgs &e)
+{
+
+	return true;
+}
+
+bool SceneManager::onPosUpPadClick(const CEGUI::EventArgs &e)
+{
+	updatePosClick(1);
+	return true;
+}
+
+bool SceneManager::onPosDownPadClick(const CEGUI::EventArgs &e)
+{
+	updatePosClick(2);
+	return true;
+}
+
+bool SceneManager::onPosLeftPadClick(const CEGUI::EventArgs &e)
+{
+	updatePosClick(3);
+	return true;
+}
+
+bool SceneManager::onPosRightPadClick(const CEGUI::EventArgs &e)
+{
+	updatePosClick(4);
+	return true;
+}
+
+void SceneManager::updatePosClick(int signal)
+{
+	// chart : 
+	// 1 : up
+	// 2 : down
+	// 3 : left
+	// 4 : right
+	if(m_currentLayer && m_currentLayer->getSelectedObjectCount() > 0)
+	{
+		glm::vec2 currentPos;
+
+		currentPos.x = std::stof(m_posXEditBox->getText().c_str());
+		currentPos.y = std::stof(m_posYEditBox->getText().c_str());
+
+		switch (signal)
+		{
+		case 1:
+			currentPos.y += 1.0f;
+			m_posYEditBox->setText(std::to_string(currentPos.y).c_str());
+			break;
+		case 2:
+			currentPos.y -= 1.0f;
+			m_posYEditBox->setText(std::to_string(currentPos.y).c_str());
+			break;
+		case 3:
+			currentPos.x -= 1.0f;
+			m_posXEditBox->setText(std::to_string(currentPos.x).c_str());
+			break;
+		case 4:
+			currentPos.x += 1.0f;
+			m_posXEditBox->setText(std::to_string(currentPos.x).c_str());
+			break;
+		default:
+			break;
+		}
+		m_moveObject = true;
+		updateSelectObjectPos(currentPos);
+	}
+}
+
+bool SceneManager::onXPosTextChange(const CEGUI::EventArgs &e)
+{
+	float x = std::stof(m_posXEditBox->getText().c_str());
+	float y = std::stof(m_posYEditBox->getText().c_str());
+	return true;
+}
+
+bool SceneManager::onPosEditBoxClick(const CEGUI::EventArgs &e)
+{
+	m_moveObject = true;
+	return true;
+}
+
+void SceneManager::updateSelectObjectPos(const glm::vec2 & pos)
+{
+	auto list = m_currentLayer->getSelectObject();
+	
+	if(list.size() == 1)
+	{
+		list[0]->setPos(glm::vec2(pos.x, pos.y));
+	}
+	else if (list.size() > 1)
+	{
+		if(m_moveObject)
+		{
+			float diffX = pos.x-  m_centerPos.x ;
+			float diffY = pos.y - m_centerPos.y ;
+			for (int i = 0; i < list.size(); i++)
+			{
+				list[i]->setPos(glm::vec2(list[i]->getPos().x + diffX, list[i]->getPos().y + diffY));
+			}
+			m_centerPos = pos;
+			m_moveObject = false;
+		}
+	}
+	
 }
 
 void SceneManager::loadIcons()
@@ -188,14 +337,12 @@ void SceneManager::closeCurrentScene()
 
 void SceneManager::loadSceneFromFile(const std::string & filePath, CEGUI::MultiColumnList * list)
 {
-	
 	if (!m_currentScene)
 	{
 		//createScene()
 		m_currentScene = new Feintgine::Fg_scene();
 		m_currentScene->loadSceneFromFile(filePath,list);
 		m_layerList = list;
-
 	}
 	else
 	{
@@ -208,15 +355,7 @@ void SceneManager::loadSceneFromFile(const std::string & filePath, CEGUI::MultiC
 		{
 			std::cout << "now no more selected layer \n";
 		}
-
 		std::cout << "reach here \n";
-// 		for (int i = 0; i < m_currentScene->getLayers().size(); i++)
-// 		{
-// 			std::cout << "clear << " << i << "\n";
-// 			m_currentScene->getLayers().erase(m_currentScene->getLayers().begin() + i);
-// 		}
-		
-		
 		std::cout << "reach after clear \n";
 		m_currentScene->loadSceneFromFile(filePath,list);
 		m_layerList = list;
@@ -226,6 +365,85 @@ void SceneManager::loadSceneFromFile(const std::string & filePath, CEGUI::MultiC
 glm::vec2 SceneManager::getOffsetPos()
 {
 
+}
+
+void SceneManager::updateSelectObjectsAngle(float angle)
+{
+	auto list = m_currentLayer->getSelectObject();
+	if(list.size() == 1)
+	{
+		list[0]->setAngle(angle);
+	}
+	else if (list.size() > 1)
+	{
+		for (int i = 0; i < list.size(); i++)
+		{
+			list[i]->setAngle( list[i]->getAngle() + angle );
+		}
+	}
+}
+
+void SceneManager::updateSelectObjectAngle()
+{
+	if(m_currentLayer )
+	{
+		if(m_angleEditBox->hasInputFocus())
+		{
+			float angle = std::stof(m_angleEditBox->getText().c_str());
+			updateSelectObjectsAngle(degreeToRad(angle));
+		}
+		else
+		{
+			auto list = m_currentLayer->getSelectObject();
+			if(list.size() == 1)
+			{
+				m_angleEditBox->setText(feint_common::Instance()->convertPreciousFloatToString(radToDegree( list[0]->getAngle()), 2).c_str());
+			}
+			else
+			{
+				m_angleEditBox->setText("0");
+			}
+		}
+	}
+}
+
+void SceneManager::updateSelectObjectsPos()
+{
+	if(m_currentLayer )
+	{
+		if(m_posXEditBox->hasInputFocus() || m_posYEditBox->hasInputFocus())
+		{
+			float x = std::stof(m_posXEditBox->getText().c_str());
+			float y = std::stof(m_posYEditBox->getText().c_str());
+			m_moveObject = true;
+			updateSelectObjectPos(glm::vec2(x,y));
+		}
+		else
+		{
+			auto list = m_currentLayer->getSelectObject();
+			if(list.size() == 0)
+			{
+				m_posXEditBox->setText("0");
+				m_posYEditBox->setText("0");
+			}
+			else if(list.size() == 1)
+			{
+				m_posXEditBox->setText(feint_common::Instance()->convertPreciousFloatToString(list[0]->getPos().x, 3).c_str());
+				m_posYEditBox->setText(feint_common::Instance()->convertPreciousFloatToString(list[0]->getPos().y, 3).c_str());
+			}
+			else
+			{
+				m_centerPos = glm::vec2(0, 0);
+				for (int i = 0; i < list.size(); i++)
+				{
+					m_centerPos += list[i]->getPos();
+				}
+				m_centerPos /= list.size();
+				m_posXEditBox->setText(feint_common::Instance()->convertPreciousFloatToString(m_centerPos.x, 3).c_str());
+				m_posYEditBox->setText(feint_common::Instance()->convertPreciousFloatToString(m_centerPos.y, 3).c_str());
+			}
+		}
+	}
 }
 
 void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSelected, const Feintgine::F_Object &object, CEGUI::MultiColumnList * list)
@@ -250,9 +468,7 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 		{
 			isGrid = true;
 		}
-		
 	}
-
 	if (!m_currentScene)
 	{
 		return;
@@ -272,9 +488,12 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 				{
 					if (inputManager.isKeyPressed(SDL_BUTTON_LEFT))
 					{
-
 						m_currentLayer->addObjectToLayer(object);
 						std::cout << "added " << object.getName() << " \n";
+					}
+					else
+					{
+						// m_moveObject = false;
 					}
 					if (isGrid)
 					{
@@ -282,7 +501,6 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 						{
 							if (inputManager.isKeyDown(SDL_BUTTON_LEFT))
 							{
-								
 								if (savedPos != object.getPos())
 								{
 									m_currentLayer->addObjectToLayer(object);
@@ -291,20 +509,19 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 							}
 						}
 					}
-
 				}
 				if (m_currentLayer)
 				{
 					if (inputManager.isKeyPressed(SDLK_DELETE))
 					{
 						m_currentLayer->removeSelectedObjects();
-
 					}
 					if (inputManager.isKeyDown(SDLK_LCTRL))
 					{
 						if (inputManager.isKeyPressed(SDL_BUTTON_LEFT))
 						{
 							m_currentLayer->handleDeselectObject();
+							m_angleEditBox->setText("0");
 						}
 					}
 					else
@@ -312,6 +529,13 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 						if (inputManager.isKeyPressed(SDL_BUTTON_LEFT))
 						{
 							m_currentLayer->handleSelectObject();
+							// m_centerPos = glm::vec2(0, 0);
+							// for(int i = 0; i < m_currentLayer->getSelectObject().size(); i++)
+							// {
+							// 	m_centerPos += m_currentLayer->getSelectObject()[i]->getPos();
+							// }
+							// m_centerPos /= m_currentLayer->getSelectObject().size();
+							m_angleEditBox->setText("0");
 						}
 					}
 					if(inputManager.isKeyPressed(SDLK_h))
@@ -327,10 +551,8 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 						{
 							m_layerList->handleUpdatedItemData();
 						}
-						
 					}
 				}
-				
 			}
 			if (m_currentMode == EDIT_MODE)
 			{
@@ -342,8 +564,6 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 						{
 							i_move = true;
 							firstClick = curMousePos;
-							
-							//std::cout << "get first click " << feint_common::Instance()->convertVec2toString(firstClick) << "\n";
 							m_currentLayer->moveSelectedObject(firstClick, true);
 							m_currentLayer->updateDepth();
 						}
@@ -351,7 +571,6 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 						{
 							if (isGrid)
 							{
-
 								glm::vec2 SpacingOffset = EditorProperty::Instance()->getSpacingOffset();
 								float standardX = 64.0f;
 								float standardY = 64.0f;
@@ -378,7 +597,6 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 								m_currentLayer->moveSelectedObject(finalPos, false);
 							}
 							m_currentLayer->updateDepth();
-							//i_move = false;
 						}
 					}
 					else
@@ -396,9 +614,10 @@ void SceneManager::update(const glm::vec2 & mousePos)
 {
 	if (m_currentScene)
 	{
-		//std::cout << "second  " << feint_common::Instance()->convertVec2toString(mousePos) << "\n";
 		curMousePos = mousePos;
 		m_currentScene->editorUpdate(mousePos);
+		updateSelectObjectsPos();
+		updateSelectObjectAngle();
 	}
 }
 
@@ -417,7 +636,6 @@ void SceneManager::selectCurrentLayer(const std::string & layerName)
 		m_currentScene->findAndSetCurrentLayer(layerName);
 	}
 }
-
 
 void SceneManager::draw(Feintgine::SpriteBatch & spriteBatch)
 {
@@ -439,7 +657,12 @@ void SceneManager::showGUIcomponent(bool val)
 		m_pos_label->show();
 		m_posXEditBox->show();
 		m_posYEditBox->show();
-		
+		m_angle_label->show();
+		m_angleEditBox->show();
+		m_posUpButton->show();
+		m_posDownButton->show();
+		m_posLeftButton->show();
+		m_posRightButton->show();
 	}
 	else
 	{
@@ -451,12 +674,17 @@ void SceneManager::showGUIcomponent(bool val)
 		m_pos_label->hide();
 		m_posXEditBox->hide();
 		m_posYEditBox->hide();
+		m_angle_label->hide();
+		m_angleEditBox->hide();
+		m_posUpButton->hide();
+		m_posDownButton->hide();
+		m_posLeftButton->hide();
+		m_posRightButton->hide();
 	}
 }
 
 void SceneManager::drawIcons(Feintgine::SpriteBatch & spriteBatch)
 {
-	
 	m_selectIcon.draw(spriteBatch);
 	m_moveIcon.draw(spriteBatch);
 }
@@ -469,8 +697,6 @@ void SceneManager::drawLight(Feintgine::LightBatch & lightBatch)
 	}
 }
 
-
-
 void SceneManager::drawIconsBorder(Feintgine::DebugRender & debugRenderer)
 {
 	if (m_currentMode == SELECT_MODE)
@@ -481,7 +707,6 @@ void SceneManager::drawIconsBorder(Feintgine::DebugRender & debugRenderer)
 	{
 		m_moveIcon.drawBox(debugRenderer);
 	}
-	
 }
 
 bool SceneManager::onSpacingXOffsetChanged(const CEGUI::EventArgs &e)
@@ -491,12 +716,7 @@ bool SceneManager::onSpacingXOffsetChanged(const CEGUI::EventArgs &e)
 	{
 		originalSpacing.x = std::stof(gridOffset_x->getText().c_str());
 		EditorProperty::Instance()->setSpacingOffset(originalSpacing);
-		//gridOffset_x->setText(feint_common::Instance()->convertPreciousFloatToString(originalSpacing.x, 1).c_str());
-		//updateSpacingOffset();
 	}
-	
-	
-	
 	return true;
 }
 
@@ -520,14 +740,12 @@ bool SceneManager::onAddBurshClick(const CEGUI::EventArgs &e)
 			texturePicker = static_cast<CEGUI::Combobox*>
 				(m_gui->createWidget("TaharezLook/Combobox", glm::vec4(0.5, 0.12, 0.4, 0.22), glm::vec4(0), "texturePicker"));
 
-
 			CEGUI::DefaultWindow * edit4_label = static_cast<CEGUI::DefaultWindow *> (m_gui->createWidget("TaharezLook/Label", glm::vec4(0.08, 0.43, 0.15, 0.1), glm::vec4(0), "edit4_label"));
 			edit4_label->setText("UV Mode");
 			brushUVMode = static_cast<CEGUI::ToggleButton*>
 				(m_gui->createWidget("TaharezLook/RadioButton", glm::vec4(0.05, 0.45, 0.04, 0.04), glm::vec4(0), "brushDimMode"));
 			brushUVMode->setSelected(true);
 
-		
 			m_brushCollum = static_cast<CEGUI::Editbox *>(m_gui->createWidget("TaharezLook/Editbox", glm::vec4(0.63, 0.35, 0.2, 0.08), glm::vec4(0), "m_brushCollum"));
 			m_brushRow = static_cast<CEGUI::Editbox *>(m_gui->createWidget("TaharezLook/Editbox", glm::vec4(0.63, 0.45, 0.2, 0.08), glm::vec4(0), "m_brushRow"));
 
@@ -565,7 +783,6 @@ bool SceneManager::onAddBurshClick(const CEGUI::EventArgs &e)
 			m_addBrushWindow->addChild(m_brushPosY);
 
 			listdir("./Assets", 0);
-
 		}
 		else
 		{
@@ -622,10 +839,8 @@ int SceneManager::listdir(const char *name, int level)
 					loadBrushTexture(texturePicker, entry->d_name);
 				}
 			}
-
 		}
 	} while (entry = readdir(dir));
-
 	closedir(dir);
 	return 0;
 }
@@ -637,8 +852,6 @@ bool SceneManager::onSpacingYOffsetChanged(const CEGUI::EventArgs &e)
 	{
 		originalSpacing.y = std::stof(gridOffset_y->getText().c_str());
 		EditorProperty::Instance()->setSpacingOffset(originalSpacing);
-		//gridOffset_y->setText(feint_common::Instance()->convertPreciousFloatToString(originalSpacing.y, 1).c_str());
-		//updateSpacingOffset();
 	}	
 	return true;
 }
@@ -652,13 +865,10 @@ bool SceneManager::onApplyGridClick(const CEGUI::EventArgs & e)
 
 bool SceneManager::onCloseBrushProtocol(const CEGUI::EventArgs &e)
 {
-
 	if (m_addBrushWindow)
 	{
 		m_addBrushWindow->destroy();
-		// m_addBrushWindow->hide();
 	}
-
 	return true;
 }
 
@@ -684,7 +894,6 @@ bool SceneManager::addBrushOnCurrentLayer(const CEGUI::EventArgs &e)
 			m_addBrushWindow->destroy();
 		}
 	}
-
 	return true;
 }
 
@@ -710,7 +919,6 @@ void SceneManager::switchMode(int BrushMode)
 {
 	switch (BrushMode)
 	{
-	
 	default:
 		break;
 	}
@@ -720,7 +928,6 @@ void SceneManager::saveScene()
 {
 	if (m_currentScene)
 	{
-		
 		m_currentScene->saveScene("./Scence/");
 		m_currentScene = nullptr;
 	}

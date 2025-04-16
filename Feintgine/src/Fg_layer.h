@@ -57,6 +57,8 @@ namespace Feintgine
 		void handleDeselectObject();
 		void removeSelectedObjects();
 
+		void deselect(Feintgine::F_Object * object);
+
 		void show(bool value);
 
 		void moveSelectedObject(const glm::vec2 & offset,bool first);
@@ -76,6 +78,11 @@ namespace Feintgine
 		}
 
 		CEGUI::ListboxTextItem * getGUIText() const { return m_visibleState; }
+
+		std::vector<Feintgine::F_Object *> getSelectObject() 
+		{
+			return m_selectedObjects;
+		}
 
 		bool isVisible() const { return m_isVisible; }
 	private:

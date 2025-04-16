@@ -7,6 +7,8 @@
 #include <DebugRender.h>
 #include <EmptyObject.h>
 #include "EditorProperty.h"
+#include <feint_common.h>
+
 
 const int SELECT_MODE = 1;
 const int EDIT_MODE = 2;
@@ -64,7 +66,31 @@ public:
 
 	bool addBrushOnCurrentLayer(const CEGUI::EventArgs &e);
 
+	bool onXPosTextChange(const CEGUI::EventArgs &e);
+
+	bool onPosEditBoxClick(const CEGUI::EventArgs &e);
+
+	bool onPosUpPadClick(const CEGUI::EventArgs &e);
+
+	bool onPosDownPadClick(const CEGUI::EventArgs &e);
+
+	bool onPosLeftPadClick(const CEGUI::EventArgs &e);
+
+	bool onPosRightPadClick(const CEGUI::EventArgs &e);
+
+	bool onAnglePadLeftClick(const CEGUI::EventArgs &e);
+
+	void updatePosClick(int signal);
+
+	void updateSelectObjectPos(const glm::vec2 & pos);
+
+	void updateSelectObjectsAngle(float angle);
+
 	void updateSpacingOffset();
+
+	void updateSelectObjectsPos();
+
+	void updateSelectObjectAngle();
 
 	void loadBrushTexture(CEGUI::Combobox * list,const std::string & itemName) ;
 
@@ -127,9 +153,24 @@ private:
 	CEGUI::Editbox * m_posXEditBox;
 	CEGUI::Editbox * m_posYEditBox;
 
+	CEGUI::PushButton * m_posUpButton;
+	CEGUI::PushButton * m_posDownButton;
+	CEGUI::PushButton * m_posLeftButton;
+	CEGUI::PushButton * m_posRightButton;
+
+	CEGUI::PushButton * m_angleLeftRotate;
+	CEGUI::PushButton * m_angleRightRotate;
+
+
+	CEGUI::DefaultWindow * m_angle_label;
+	CEGUI::Editbox * m_angleEditBox;
+
+	bool m_moveObject = false;
 
 	int m_itemCount = 0;
 	glm::vec2 savedPos;
+	glm::vec2 m_centerPos;
+	float m_centerAngle = 0.0f;
 
 };
 

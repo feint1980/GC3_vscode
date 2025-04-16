@@ -25,9 +25,12 @@ namespace Feintgine
 			glm::vec2 t_pos = feint_common::Instance()->convertProcVec2ToVec2(c_layer.objectlist(i).pos());
 			glm::vec2 t_scale = feint_common::Instance()->convertProcVec2ToVec2(c_layer.objectlist(i).scale());
 			
+			float t_angle = c_layer.objectlist(i).angle();
+			std::cout << "DEBUG the angle is ### " << t_angle << " |" << c_layer.objectlist(i).angle() << "\n";
+
 			std::cout << "DEBUG the pos is ### " << feint_common::Instance()->convertVec2toString(t_pos) << "\n";
 
-			fob.create(c_layer.objectlist(i).refab() , t_pos, t_scale, 0, m_depth);
+			fob.create(c_layer.objectlist(i).refab() , t_pos, t_scale, t_angle, m_depth);
 
 			m_objects.push_back(fob);
 		}
@@ -81,6 +84,11 @@ namespace Feintgine
 				m_objects[i].setSelected(false);
 			}
 		}
+		for(int i = 0 ; i < m_selectedObjects.size() ; i++)
+		{
+			m_selectedObjects.erase(m_selectedObjects.begin() + i);
+		}
+		m_selectedObjects.clear();
 	}
 
 	void Fg_layer::drawLight(Feintgine::LightBatch & lightBatch)
@@ -210,13 +218,6 @@ namespace Feintgine
 		}
 
 	}
-	void Fg_layer::updatePositionEditbox()
-	{
-		if(m_selectedObjects.size()  == 1)
-		{
-			
-		}
-	}
 
 	void Fg_layer::handleDeselectObject()
 	{
@@ -225,6 +226,17 @@ namespace Feintgine
 			if (m_objects[i].isHover() && m_objects[i].isSelected())
 			{
 				m_objects[i].setSelected(false);
+				deselect(&m_objects[i]);
+			}
+		}
+	}
+	void Fg_layer::deselect(Feintgine::F_Object * object)
+	{
+		for (int i = 0 ; i < m_selectedObjects.size() ; i++)
+		{
+			if (m_selectedObjects[i] == object)
+			{
+				m_selectedObjects.erase(m_selectedObjects.begin() + i);
 			}
 		}
 	}
@@ -242,15 +254,8 @@ namespace Feintgine
 
 	int Fg_layer::getSelectedObjectCount()
 	{
-		int count = 0;
-		for (int i = 0; i < m_objects.size(); i++)
-		{
-			if (m_objects[i].isSelected())
-			{
-				count++;
-			}
-		}
-		return count;
+
+		return m_selectedObjects.size();
 	}
 
 	void Fg_layer::moveSelectedObject(const glm::vec2 & offset,bool first )

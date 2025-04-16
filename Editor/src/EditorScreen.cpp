@@ -648,7 +648,7 @@ void EditorScreen::draw()
 			L"FPS :" + 
 			feint_common::Instance()->convertStringtoWstring(feint_common::
 				Instance()->convertPreciousFloatToString(m_game->getFps())),
-			glm::vec2(720, -400), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
+			glm::vec2(720, -415), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
 
 
 		
@@ -3220,18 +3220,11 @@ bool EditorScreen::selectScene(const CEGUI::EventArgs &e)
 			std::cout << m_sceneList->getFirstSelectedItem()->getText() << "\n";
 			std::string t_path = "./Scence/";
 			t_path += m_sceneList->getFirstSelectedItem()->getText().c_str();
-			//clearLayer();
+			clearLayer();
 			std::cout << "load scene from file " << t_path << "\n";
 			//m_layers.clear
 			m_sceneManager.loadSceneFromFile(t_path,m_layers);
 			
-			//m_scene.loadSceneFromFile(t_path);
-	
-	
-// 			for (int i = 0; i < m_sceneManager.getCurrentScene()->getLayers().size(); i++)
-// 			{
-// 				addLayerFunc(m_sceneManager.getCurrentScene()->getLayers()[i].getName(), (float)m_sceneManager.getCurrentScene()->getLayers()[i].getDepth());
-// 			}
 			closeSelectSceen();
 		}
 	}
@@ -3853,11 +3846,11 @@ void EditorScreen::initAmbientTool()
 {
 
 	m_ambientColorR = static_cast<CEGUI::Editbox*> (m_gui.createWidget("TaharezLook/Editbox", 
-		glm::vec4(0.8, 0.8, 0.04, 0.03), glm::vec4(0), "m_ambientColorR"));
+		glm::vec4(0.8, 0.9, 0.04, 0.03), glm::vec4(0), "m_ambientColorR"));
 	m_ambientColorG = static_cast<CEGUI::Editbox*> (m_gui.createWidget("TaharezLook/Editbox",
-		glm::vec4(0.85, 0.8, 0.04, 0.03), glm::vec4(0), "m_ambientColorG"));
+		glm::vec4(0.85, 0.9, 0.04, 0.03), glm::vec4(0), "m_ambientColorG"));
 	m_ambientColorB = static_cast<CEGUI::Editbox*> (m_gui.createWidget("TaharezLook/Editbox",
-		glm::vec4(0.9, 0.8, 0.04, 0.03), glm::vec4(0), "m_ambientColorB"));
+		glm::vec4(0.9, 0.9, 0.04, 0.03), glm::vec4(0), "m_ambientColorB"));
 
 	m_ambientColorR->setText(feint_common::Instance()->convertPreciousFloatToString(m_ambientLight.r));
 	m_ambientColorG->setText(feint_common::Instance()->convertPreciousFloatToString(m_ambientLight.g));
@@ -3868,7 +3861,7 @@ void EditorScreen::initAmbientTool()
 	m_ambientColorB->setValidationString("^[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+){0,10}$");
 
 	m_ambientColor_label = static_cast<CEGUI::DefaultWindow *> (m_gui.createWidget("TaharezLook/Label",
-		glm::vec4(0.825, 0.745, 0.08, 0.05), glm::vec4(0), "m_ambientColor_label"));
+		glm::vec4(0.825, 0.845, 0.08, 0.05), glm::vec4(0), "m_ambientColor_label"));
 	m_ambientColor_label->setText("Ambient Color");
 
 	m_ambientColorR->subscribeEvent(CEGUI::Editbox::EventTextChanged, CEGUI::Event::Subscriber(&EditorScreen::onAmbientLightChanged, this));

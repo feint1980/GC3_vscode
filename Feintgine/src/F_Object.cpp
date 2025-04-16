@@ -105,6 +105,7 @@ namespace Feintgine {
 		object->set_allocated_pos(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(m_pos)));
 		object->set_allocated_scale(new Proc_Vec2(feint_common::Instance()->convertVec2ToProcVec2(m_dim)));
 		object->set_angle(m_angle);
+		std::cout << "write angle " << m_angle << "|" << object->angle() << "\n";
 		object->set_allocated_color(new Proc_Vec4(feint_common::Instance()->convertVec4ToProcVec4(m_color)));
 
 		return object;
@@ -132,14 +133,10 @@ namespace Feintgine {
 	
 	void F_Object::drawLight(LightBatch &lightBatch)
 	{
-		
 		for (int i = 0; i < m_lightListPos.size(); i++)
 		{
-			
 			lightBatch.addLight(m_lightListPos[i], m_lightListColor[i], m_lightListAttenuation[i]);
-			
 		}
-
 	}
 
 	void F_Object::setLight(Proc_SpotLight & l1, Proc_SpotLight & l2)

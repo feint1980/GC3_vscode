@@ -265,7 +265,7 @@ namespace Feintgine
 				}
 			}
 
-			std::cout << "Write scene OK \n";
+			std::cout << "Write scene to " << destiny.c_str() << " OK \n";
 		}
 		
 

@@ -65,6 +65,8 @@ namespace Feintgine
 
 		void setColider(Proc_ColiderBox & c1, Proc_ColiderBox & c2);
 
+		void setAngle(float angle) { m_angle = angle; }
+
 		void addLight(const glm::vec2 & pos, const glm::vec4 & color,const glm::vec3 & attenuation,int ID);
 
 		void drawColider(DebugRender & renderer);
@@ -74,6 +76,8 @@ namespace Feintgine
 		void calculatePriority();
 
 		glm::vec2 getFullDimObject();
+
+		float getAngle() const { return m_angle; }
 
 		void saveToFile(const std::string & name ,const std::string & filePath);
 
