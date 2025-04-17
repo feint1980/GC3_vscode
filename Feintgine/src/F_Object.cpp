@@ -87,15 +87,7 @@ namespace Feintgine {
 
 	Proc_LoadObject * F_Object::getProtoSer()
 	{
-					
 		Proc_LoadObject * object = new Proc_LoadObject();
-
-		// for (size_t i = 0; i < m_lightListID.size(); i++)
-		// {
-
-		// 	// Proc_SpotLight * t_light = new Proc_SpotLight(getLightSer(m_lightListPos[i], m_lightListColor[i], m_lightListAttenuation[i]));
-		// 	// t_light = m_refab->add_lightlist();
-		// }
 		for (size_t i = 0; i < m_coliders.size(); i++)
 		{
 			Proc_ColiderBox * t_col = new Proc_ColiderBox(getColSer(m_coliders[i].getPos(), m_coliders[i].getPos()));
@@ -107,9 +99,7 @@ namespace Feintgine {
 		object->set_angle(m_angle);
 		std::cout << "write angle " << m_angle << "|" << object->angle() << "\n";
 		object->set_allocated_color(new Proc_Vec4(feint_common::Instance()->convertVec4ToProcVec4(m_color)));
-
 		return object;
-
 	}
 
 	void F_Object::addSprite(const F_Sprite & t_sprite, const glm::vec2  & t_posOffset, const glm::vec2 &t_scaleOffset, const Feintgine::Color & t_color, float t_angleOffset, float t_depth, int ID)
@@ -127,7 +117,7 @@ namespace Feintgine {
 			desRect.z = m_sprites[i].scaleOffset.x * m_sprites[i].sprite.getDim().x * m_fitScale * m_enlarger;
 			desRect.w = m_sprites[i].scaleOffset.y * m_sprites[i].sprite.getDim().y * m_fitScale * m_enlarger;
 
-			spriteBatch.draw(desRect, m_sprites[i].sprite.getUV(), m_sprites[i].sprite.getTexture().id, m_depth + (m_sprites[i].depth * 0.1) + t_priority , m_sprites[i].color /*+ Feintgine::Color(m_color) */, m_angle + m_sprites[i].angleOffset);
+			spriteBatch.draw(desRect, m_sprites[i].sprite.getUV(), m_sprites[i].sprite.getTexture().id, m_depth + (m_sprites[i].depth * 0.1) + t_priority , m_sprites[i].color /*+ Feintgine::Color(m_color) */, -(m_angle) + m_sprites[i].angleOffset);
 		}
 	}
 	

@@ -111,7 +111,7 @@ void SceneManager::init(Feintgine::Camera2D * cam, Feintgine::GUI * gui)
 	addBrushButton->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&SceneManager::onAddBurshClick, this));
 
 	m_pos_label = static_cast<CEGUI::DefaultWindow *> (gui->createWidget("TaharezLook/Label",
-		glm::vec4(0.731, 0.70, 0.08, 0.05), glm::vec4(0), "m_pos_label"));
+		glm::vec4(0.75, 0.70, 0.04, 0.05), glm::vec4(0), "m_pos_label"));
 	m_pos_label->setText("Pos");
 
 	m_posUpButton = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
@@ -125,7 +125,7 @@ void SceneManager::init(Feintgine::Camera2D * cam, Feintgine::GUI * gui)
 	m_posDownButton->setText("v");
 
 	m_posLeftButton = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
-		glm::vec4(0.745, 0.72, 0.015, 0.015), glm::vec4(0), "m_posLeftButton"));
+		glm::vec4(0.743, 0.72, 0.015, 0.015), glm::vec4(0), "m_posLeftButton"));
 	m_posLeftButton->setText("<");
 
 	m_posRightButton = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
@@ -147,13 +147,12 @@ void SceneManager::init(Feintgine::Camera2D * cam, Feintgine::GUI * gui)
 	m_posYEditBox->setValidationString("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)");
 
 	m_angle_label = static_cast<CEGUI::DefaultWindow *> (gui->createWidget("TaharezLook/Label",
-		glm::vec4(0.73, 0.79, 0.08, 0.05), glm::vec4(0), "m_angle_label"));
+		glm::vec4(0.75, 0.79, 0.04, 0.05), glm::vec4(0), "m_angle_label"));
 	m_angle_label->setText("Angle");
 
 	m_angleEditBox = static_cast<CEGUI::Editbox*> (gui->createWidget("TaharezLook/Editbox", 
 		glm::vec4(0.82, 0.8, 0.06, 0.03), glm::vec4(0), "m_angleEditBox"));
 	m_angleEditBox->setValidationString("[+-]?([0-9]+([.][0-9]*)?|[.][0-9]+)");
-
 
 	m_angleLeftRotate = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
 		glm::vec4(0.738, 0.81, 0.015, 0.015), glm::vec4(0), "m_angleLeftRotate"));
@@ -163,12 +162,23 @@ void SceneManager::init(Feintgine::Camera2D * cam, Feintgine::GUI * gui)
 		glm::vec4(0.788, 0.81, 0.015, 0.015), glm::vec4(0), "m_angleRightRotate"));
 	m_angleRightRotate->setText(">");
 
+	
+	m_rotateButton = static_cast<CEGUI::PushButton *> (gui->createWidget("TaharezLook/Button",
+		glm::vec4(0.88, 0.8, 0.06, 0.03), glm::vec4(0), "m_rotateButton"));
+	m_rotateButton->setText("Rotate");
+
+	m_rotateButton->setEnabled(false);
+
 	m_posXEditBox->setText("0");
 	m_posYEditBox->setText("0");
 	m_angleEditBox->setText("0");
 
-}
+	m_angleLeftRotate->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&SceneManager::onAnglePadLeftClick, this));
 
+	m_angleRightRotate->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&SceneManager::onAnglePadRightClick, this));
+
+	m_rotateButton->subscribeEvent(CEGUI::PushButton::EventMouseClick, CEGUI::Event::Subscriber(&SceneManager::onRotateClick, this));
+}
 
 bool SceneManager::onPosUpPadClick(const CEGUI::EventArgs &e)
 {
@@ -192,6 +202,31 @@ bool SceneManager::onPosRightPadClick(const CEGUI::EventArgs &e)
 {
 	updatePosClick(4);
 	return true;
+}
+
+bool SceneManager::onAnglePadLeftClick(const CEGUI::EventArgs &e)
+{
+	updateAngleClick(-1);
+	return true;
+}
+
+bool SceneManager::onAnglePadRightClick(const CEGUI::EventArgs &e)
+{
+	updateAngleClick(1);
+	return true;
+}
+
+void SceneManager::updateAngleClick(int value)
+{
+	if (m_currentLayer && m_currentLayer->getSelectedObjectCount() > 0)
+	{
+		float angle = std::stof(m_angleEditBox->getText().c_str());
+		angle += value;
+		auto list = m_currentLayer->getSelectObject();
+		m_rotateObject = true;
+		updateSelectObjectsAngle(degreeToRad(angle));
+		m_angleEditBox->setText(std::to_string(angle).c_str());
+	}
 }
 
 void SceneManager::updatePosClick(int signal)
@@ -238,6 +273,22 @@ bool SceneManager::onXPosTextChange(const CEGUI::EventArgs &e)
 {
 	float x = std::stof(m_posXEditBox->getText().c_str());
 	float y = std::stof(m_posYEditBox->getText().c_str());
+	return true;
+}
+
+bool SceneManager::onRotateClick(const CEGUI::EventArgs &e)
+{
+	if (m_currentLayer && m_currentLayer->getSelectedObjectCount() > 1)
+	{
+		float tAngle = std::stof(m_angleEditBox->getText().c_str());
+		auto list = m_currentLayer->getSelectObject();
+		for(int i = 0; i < list.size(); i++)
+		{
+			std::cout << "apply angle " << tAngle << std::endl;
+			list[i]->setAngle(list[i]->getAngle() + degreeToRad(tAngle));
+		}
+		m_angleEditBox->setText("0");
+	}
 	return true;
 }
 
@@ -316,7 +367,6 @@ int SceneManager::browseScene(const char *name, int level, CEGUI::Listbox * list
 
 		}
 	} while (entry = readdir(dir));
-
 	closedir(dir);
 	return 0;
 }
@@ -359,11 +409,13 @@ void SceneManager::loadSceneFromFile(const std::string & filePath, CEGUI::MultiC
 
 glm::vec2 SceneManager::getOffsetPos()
 {
-
+	return glm::vec2(0);
 }
 
 void SceneManager::updateSelectObjectsAngle(float angle)
 {
+
+	m_centerAngle =angle;
 	auto list = m_currentLayer->getSelectObject();
 	if(list.size() == 1)
 	{
@@ -371,9 +423,13 @@ void SceneManager::updateSelectObjectsAngle(float angle)
 	}
 	else if (list.size() > 1)
 	{
-		for (int i = 0; i < list.size(); i++)
-		{
-			list[i]->setAngle( list[i]->getAngle() + angle );
+		if(m_rotateObject)
+		{	
+			for (int i = 0; i < list.size(); i++)
+			{
+				list[i]->setAngle( list[i]->getAngle() + m_centerAngle);
+			}
+			m_rotateObject = false;
 		}
 	}
 }
@@ -392,11 +448,17 @@ void SceneManager::updateSelectObjectAngle()
 			auto list = m_currentLayer->getSelectObject();
 			if(list.size() == 1)
 			{
-				m_angleEditBox->setText(feint_common::Instance()->convertPreciousFloatToString(radToDegree( list[0]->getAngle()), 2).c_str());
-			}
-			else
-			{
-				m_angleEditBox->setText("0");
+				float ttAngle = radToDegree(list[0]->getAngle());
+				if(ttAngle < -360)
+				{
+					ttAngle += 360;
+				}
+				if(ttAngle > 360)
+				{
+					ttAngle -= 360;
+				}
+				m_angleEditBox->setText(feint_common::Instance()->convertPreciousFloatToString(ttAngle, 2).c_str());
+				
 			}
 		}
 	}
@@ -441,6 +503,18 @@ void SceneManager::updateSelectObjectsPos()
 	}
 }
 
+void SceneManager::updateRotateButton()
+{
+	if(m_currentLayer && m_currentLayer->getSelectObject().size() > 1)
+	{
+		m_rotateButton->setEnabled(true);
+	}
+	else
+	{
+		m_rotateButton->setEnabled(false);
+	}
+}
+
 void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSelected, const Feintgine::F_Object &object, CEGUI::MultiColumnList * list)
 {
 
@@ -476,6 +550,8 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 			if (inputManager.isKeyPressed(SDLK_ESCAPE))
 			{
 				m_currentLayer->clearAllSelectedObject();
+				updateRotateButton();
+				m_angleEditBox->setText("0");
 			}
 			if (m_currentMode == SELECT_MODE)
 			{
@@ -517,6 +593,7 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 						{
 							m_currentLayer->handleDeselectObject();
 							m_angleEditBox->setText("0");
+							updateRotateButton();
 						}
 					}
 					else
@@ -524,12 +601,7 @@ void SceneManager::handleInput(Feintgine::InputManager & inputManager, bool isSe
 						if (inputManager.isKeyPressed(SDL_BUTTON_LEFT))
 						{
 							m_currentLayer->handleSelectObject();
-							// m_centerPos = glm::vec2(0, 0);
-							// for(int i = 0; i < m_currentLayer->getSelectObject().size(); i++)
-							// {
-							// 	m_centerPos += m_currentLayer->getSelectObject()[i]->getPos();
-							// }
-							// m_centerPos /= m_currentLayer->getSelectObject().size();
+							updateRotateButton();
 							m_angleEditBox->setText("0");
 						}
 					}
@@ -658,6 +730,9 @@ void SceneManager::showGUIcomponent(bool val)
 		m_posDownButton->show();
 		m_posLeftButton->show();
 		m_posRightButton->show();
+		m_angleLeftRotate->show();
+		m_angleRightRotate->show();
+		m_rotateButton->show();
 	}
 	else
 	{
@@ -675,6 +750,9 @@ void SceneManager::showGUIcomponent(bool val)
 		m_posDownButton->hide();
 		m_posLeftButton->hide();
 		m_posRightButton->hide();
+		m_angleLeftRotate->hide();
+		m_angleRightRotate->hide();
+		m_rotateButton->hide();
 	}
 }
 
@@ -821,7 +899,6 @@ int SceneManager::listdir(const char *name, int level)
 		}
 		else
 		{
-			//printf("%*s- %s\n", level * 2, "", entry->d_name);
 			std::string texturePath = name;
 			texturePath.append("/");
 			texturePath.append(entry->d_name);
@@ -903,10 +980,10 @@ void SceneManager::loadBrushTexture(CEGUI::Combobox * list, const std::string & 
 {
 	if (list)
 	{	
-			const CEGUI::Image* sel_img = &CEGUI::ImageManager::getSingleton().get("TaharezLook/MultiListSelectionBrush");
-			CEGUI::ListboxItem * item = new CEGUI::ListboxTextItem(itemName.c_str(), m_itemCount++);
-			item->setSelectionBrushImage(sel_img);
-			list->addItem(item);		
+		const CEGUI::Image* sel_img = &CEGUI::ImageManager::getSingleton().get("TaharezLook/MultiListSelectionBrush");
+		CEGUI::ListboxItem * item = new CEGUI::ListboxTextItem(itemName.c_str(), m_itemCount++);
+		item->setSelectionBrushImage(sel_img);
+		list->addItem(item);		
 	}
 }
 
@@ -924,11 +1001,10 @@ void SceneManager::saveScene()
 	if (m_currentScene)
 	{
 		m_currentScene->saveScene("./Scence/");
-		m_currentScene = nullptr;
+		// m_currentScene = nullptr;
 	}
 	else
 	{
 		feint_common::Instance()->showMessageBox("Erorr", "No scene created !!!");
 	}
 }
-

@@ -27,14 +27,11 @@
 #include "ObjectSlot.h"
 #include "TemplateObject.h"
 #include <algorithm>
-//#include <f_object.pb.h>
 #include <AnimatedObject.h>
 #include <F_Sprite.h>
 #include "SpriteListHolder.h"
 #include <AudioEngine.h>
-
 #include "EmptyObject.h"
-
 
 #include <chrono>
 #include <T_Scene.h>
@@ -127,22 +124,19 @@ public:
 		std::string rt = std::string(NPath).substr(0, pos);
 
 		return rt;
-
 	}
 
 	void checkInput();
 	
 	void handleInput(Feintgine::InputManager & inputManager);
 	
-	//init ******************************Init*******************************************
+	//**********************************Init*******************************************
 
 	void initSceneBrowse();
 	void initGUI();
 	void initShader();
 	void initMenuBar();
 	void initTextureList();
-	void initObjectUI();
-	void initFilters();
 	void initLayerList();
 	void initEditTool();
 	void initActionBar();
@@ -162,102 +156,47 @@ public:
 
 	//***********************************
 	
-	// stuffs 
-
 	bool isInsideScreen(const glm::vec2 & pos, glm::vec4 t_sc);
 
 	// Eitor functions****************************************************************
 
 	void showFilePicker();
-	
-	bool openScene(const CEGUI::EventArgs &e);
-
-	bool exitEditor(const CEGUI::EventArgs &e);
-	
-	bool pickItem(const CEGUI::EventArgs & e );
-
-	bool layer_add_protocol(const CEGUI::EventArgs &e);
-
-	bool layer_delete_protocol(const CEGUI::EventArgs & e);
-
-	bool scene_create_protocol(const CEGUI::EventArgs &e);
-
-	bool scene_select_protocol(const CEGUI::EventArgs &e);
-
-	bool animation_new_protocol(const CEGUI::EventArgs &e);
-
-	bool action_new_protocol(const CEGUI::EventArgs &e);
-
 	void Layout_auto_protocol();
-
-	bool createObject(const CEGUI::EventArgs &e);
-
-	bool recalculateDimforSample(const CEGUI::EventArgs &e);
-
-	bool createColider(const CEGUI::EventArgs &e);
-
 	bool checkValid();
-
-	bool createScene(const CEGUI::EventArgs &e);
-
-	bool save(const CEGUI::EventArgs &e);
-
-	void save_wat();
-
-	bool save_as(const CEGUI::EventArgs &e);
-
-	bool onAmbientLightChanged(const CEGUI::EventArgs &e);
-
 	void readFile();
-
-	bool destroyObjectPannel(const CEGUI::EventArgs & e);
-
-	bool updateColor(const CEGUI::EventArgs & e);
-
-	void DestroyColider();
-
-	bool writeFile(const CEGUI::EventArgs &e);
-
-	//void f_writeFile(const std::string & filePath);
-
-	// void setUV(f_object_uv &uv1, f_object_uv &uv2);
-
-	// void setColor(f_object_color &c1, f_object_color &c2);
-
-	// void setfVec2(f_vec2 &v1, f_vec2 &v2);
-
-	// void setColider(f_colider & c1, f_colider &c2);
-
-	//void loadObject(const std::string & filePath);
-	//void addWriteObjectColider(f_)
-
+	void save_wat();
 	void sortObject();
-
 	void initSlot();
-
 	void initAmbientTool();
-
 	int getFirstFreeSlot();
+
+	bool openScene(const CEGUI::EventArgs &e);
+	bool exitEditor(const CEGUI::EventArgs &e);
+	bool layer_add_protocol(const CEGUI::EventArgs &e);
+	bool layer_delete_protocol(const CEGUI::EventArgs & e);
+	bool scene_create_protocol(const CEGUI::EventArgs &e);
+	bool scene_select_protocol(const CEGUI::EventArgs &e);
+	bool animation_new_protocol(const CEGUI::EventArgs &e);
+	bool action_new_protocol(const CEGUI::EventArgs &e);
+	bool createObject(const CEGUI::EventArgs &e);
+	bool recalculateDimforSample(const CEGUI::EventArgs &e);
+	bool createScene(const CEGUI::EventArgs &e);
+	bool save(const CEGUI::EventArgs &e);
+	bool save_as(const CEGUI::EventArgs &e);
+	bool onAmbientLightChanged(const CEGUI::EventArgs &e);
+	bool destroyObjectPannel(const CEGUI::EventArgs & e);
 
 	int listdir(const char *name, int level);
 
-	void listDirver2();
 	// *********************************************************************
 	//Additional Function 
 	void refresh();
 
+
+	
 	std::vector <TemplateObject > getFiltedList(std::vector<TemplateObject > list);
 
-	void updatePage();
-
-	bool filterChanges(const CEGUI::EventArgs &e);
-
-	bool filterChanges_page(const CEGUI::EventArgs &e);
-
-	bool filterChanges_name(const CEGUI::EventArgs &e);
-
 	bool destroyCreateSceneWindow(const CEGUI::EventArgs &e);
-
 	bool destroyAutoLayout(const CEGUI::EventArgs & e);
 
 	void closeAutoLayout();
@@ -272,11 +211,11 @@ public:
 
 	void updateList();
 
-	void selectItemFromTempalte(glm::vec2 mousePos);
+	void selectItemFromTempalte(const glm::vec2 & mousePos);
 
-	int getHoverIndex(glm::vec2 mousepos);
+	int getHoverIndex(const glm::vec2 & mousepos);
 
-	void refreshFiltedList(std::string name);
+	void refreshFiltedList(const std::string & name);
 
 	bool changeToEditObject(const CEGUI::EventArgs &e);
 
@@ -322,8 +261,6 @@ public:
 
 	bool onAnimationDeleteClick(const CEGUI::EventArgs &e);
 
-	int getLastestPage();
-
 	void hideObjectEditor();
 
 	void showObjectEditor();
@@ -339,10 +276,6 @@ public:
 	void showDamakuEditor();
 
 	void hideDamakuEditor();
-
-	void showEditEnemyEditor();
-
-	void hideEditEnemyEditor();
 
 	void togglePlayAnimation();
 
@@ -388,8 +321,6 @@ public:
 
 	void clearLayer();
 
-	//void loadActions(std::string );
-
 	void toggleHide_ShowLayer();
 
 	void toggleGridMode();
@@ -408,14 +339,11 @@ public:
 	bool onOffsetPosChangedUp(const CEGUI::EventArgs &e);
 	bool onOffsetPosChangedDown(const CEGUI::EventArgs &e);
 	
-
 	std::string getFrameDataFromAnim(const Feintgine::F_AnimatedObject & obj);
 
 	void updateAnimationLabel();
 
 	void entryRuntime();
-	//
-
 
 private :
 

@@ -234,9 +234,6 @@ namespace Feintgine
 	{
 		Proc_Scene * p_scene = new Proc_Scene();
 
-		//p_scene.set_name(m_name);
-		//std::cout << "this scene has " << m_layers.size() << "layer \n";
-
 		p_scene = getProtoSer(); 
 		std::cout << "savePath is " << savePath << "\n";
 
@@ -245,27 +242,19 @@ namespace Feintgine
 		fileName += ".fsc";
 		destiny += fileName;
 
-
 		std::fstream output(destiny.c_str(), std::ios::out | std::ios::trunc | std::ios::binary);
-		//std::fstream output(destiny.c_str(), std::ios::out | std::ios::trunc);
-		//p_scene.Serial
 		if (!p_scene->SerializeToOstream(&output)) {
 			std::cout << "Failed to write scene " << m_name << " to " << destiny.c_str() << "  .\n";
-
 		}
 		else
 		{
-
 			for(int i = 0; i < p_scene->layerlist_size(); i++)
 			{
 				std::cout << "write layer " << p_scene->layerlist(i).name() << "\n";
-				for(int j = 0; j < p_scene->layerlist(i).objectlist_size(); j++)
-				{
-					//std::cout << "write object " << p_scene.layerlist(i).objectlist(j).k
-				}
 			}
 
 			std::cout << "Write scene to " << destiny.c_str() << " OK \n";
+			
 		}
 		
 

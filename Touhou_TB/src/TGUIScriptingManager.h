@@ -1,7 +1,6 @@
 #ifndef _TGUI_SCRIPTING_MANAGER_H_
 #define _TGUI_SCRIPTING_MANAGER_H_
 
-
 #include <Window.h>
 #include <InputManager.h>
 #include <map>

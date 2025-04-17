@@ -80,6 +80,12 @@ public:
 
 	bool onAnglePadLeftClick(const CEGUI::EventArgs &e);
 
+	bool onAnglePadRightClick(const CEGUI::EventArgs &e);
+
+	bool onRotateClick(const CEGUI::EventArgs &e);
+
+	void updateAngleClick(int value);
+
 	void updatePosClick(int signal);
 
 	void updateSelectObjectPos(const glm::vec2 & pos);
@@ -95,6 +101,8 @@ public:
 	void loadBrushTexture(CEGUI::Combobox * list,const std::string & itemName) ;
 
 	void switchMode(int BrushMode);
+
+	void updateRotateButton();
 
 	bool isGrided() const { return isGrid; }
 
@@ -160,17 +168,17 @@ private:
 
 	CEGUI::PushButton * m_angleLeftRotate;
 	CEGUI::PushButton * m_angleRightRotate;
-
+	CEGUI::PushButton * m_rotateButton;
 
 	CEGUI::DefaultWindow * m_angle_label;
 	CEGUI::Editbox * m_angleEditBox;
 
 	bool m_moveObject = false;
+	bool m_rotateObject = false;
 
 	int m_itemCount = 0;
 	glm::vec2 savedPos;
 	glm::vec2 m_centerPos;
 	float m_centerAngle = 0.0f;
-
 };
 
