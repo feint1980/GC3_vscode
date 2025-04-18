@@ -1102,15 +1102,13 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     // luaL_openlibs(m_script);
 
     // init lua component
-    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/GUI/tguiScript.lua")))
     {
         std::cout << "Run script OK \n";
     }
 
     // MARK: CPP_LUA
     // register lua functions
-
-    // TGUI Main
 
     // TGUI Label section
     lua_register(m_script, "cpp_Label_Create", lua_Label_Create);

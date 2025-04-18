@@ -1,8 +1,5 @@
 #include "CharacterDes.h"
 
-
-
-
 static void to_json(json& j, const CharacterStats& c) 
 {
     j = json{
@@ -85,7 +82,6 @@ static void from_json(const json& j, CharacterStats& c) {
     j.at("ID").get_to(c.ID);
 }
 
-
 CharacterDesc::CharacterDesc()
 {
 
@@ -132,7 +128,6 @@ void CharacterDesc::writeData(const std::string & path)
     std::ofstream o(path);
     o << std::setw(4) << j << std::endl;
     o.close();
-
 }
 
 CharacterStats CharacterDesc::readFromLua(const std::string & path)
@@ -143,7 +138,6 @@ CharacterStats CharacterDesc::readFromLua(const std::string & path)
 
 float CharacterDesc::getFloatAttributeByName(const std::string & attributeName)
 {
-
     switch (getAttributeByName(attributeName))
     {
         case Strength:
@@ -345,7 +339,6 @@ void CharacterDesc::setAttribute(Attribute attribute, float value)
             std::cout << "error when try to set the att (" << attribute << ") : " << value << "\n";
             break;
     }
-    
 }
 
 Attribute CharacterDesc::getAttributeByName(const std::string & attributeName)

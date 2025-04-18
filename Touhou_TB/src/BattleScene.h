@@ -89,25 +89,19 @@ protected:
     SlotHandler * m_slotHandler = nullptr;
 
     std::vector<GUI_icon *> m_icons;
-
     std::vector<Slot * > m_selectedSlot;
-
     std::vector<F_Lua_EntityManipulator *> m_entityManipulators;
-
     std::vector<F_Lua_EntityManipulator *> m_nonWaitManipulators;
-
     Feintgine::Camera2D * m_camera;
 
     GUI_handler * m_guiHandler = nullptr;
 
     // TGUI section start
     tgui::Gui * m_tgui = nullptr;
-
     tgui::RichTextLabel::Ptr m_iconDescription = nullptr;
     tgui::RichTextLabel::Ptr m_iconName = nullptr;
     tgui::RichTextLabel::Ptr m_iconTurnCost = nullptr;
     tgui::RichTextLabel::Ptr m_iconManaCost = nullptr;
-
 
     EmptyObject m_descriptionBox;
 

@@ -399,110 +399,63 @@ private :
 	Feintgine::GLSLProgram m_editDamakuShader;
 	//Feintgine::GLSLProgram m_sceneShader;
 
-
 	Feintgine::DebugRender m_debug;
-
 	Feintgine::DebugRender m_editorCrosshair;
-
 	Feintgine::DebugRender m_coliderRenderer;
 
 	// UI component
 
 	CEGUI::Menubar* m_MenuBar;
-	
 	CEGUI::PopupMenu * File_Popup = nullptr;
-
 	CEGUI::PopupMenu * Edit_Popup = nullptr;
-	
 	CEGUI::PopupMenu * Object_Popup = nullptr;
-
 	CEGUI::PopupMenu * Animate_Popup = nullptr;
 
 	//Edit Ovbject 
-	
 
 	CEGUI::Listbox * m_AObjList = nullptr;
 
 	CEGUI::Listbox * m_actionList = nullptr;
 	CEGUI::DefaultWindow * m_actionLabel = nullptr;
 
-
 	CEGUI::Editbox * object_edit_name = nullptr;
 	CEGUI::Combobox * object_combo_type = nullptr;
-
 	CEGUI::Editbox * object_edit_width = nullptr;
 	CEGUI::Editbox * object_edit_heigh = nullptr;
-
 	CEGUI::Editbox * color_red_value = nullptr;
 	CEGUI::Editbox * color_green_value = nullptr;
-
 	CEGUI::Editbox * color_blue_value = nullptr;
 	CEGUI::Editbox * color_alpha_value = nullptr;
-
 	CEGUI::PushButton * object_button_create = nullptr;
-
 	CEGUI::PushButton * object_button_addColider = nullptr;
 
 	CEGUI::Scrollbar  * animation_slide = nullptr;
-
 	CEGUI::PushButton * playAnimation_button = nullptr;
-
 	CEGUI::PushButton * pauseAnimation_button = nullptr;
-
 	CEGUI::PushButton * stopAnimation_button = nullptr;
-
 	CEGUI::ToggleButton * animation_enableLoop_toggle = nullptr;
-
 	CEGUI::ToggleButton * animation_markAsLoop_toggle = nullptr;
-
 	CEGUI::ToggleButton * animation_isSpriteInverted = nullptr;
-
 	CEGUI::DefaultWindow * animation_markAsLoop_label = nullptr;
-
 	CEGUI::DefaultWindow * enableLoop_toggle_label = nullptr;
-
 	CEGUI::DefaultWindow * animation_index_label = nullptr;
-
 	CEGUI::Editbox * animation_tick_textbox = nullptr;
-
 	CEGUI::PushButton * animation_saveAnimation = nullptr;
-
 	CEGUI::PushButton * animation_newAction = nullptr;
-
 	CEGUI::PushButton * animation_deleteAction = nullptr;
-
 	CEGUI::PushButton * animation_addAnim = nullptr;
-
 	CEGUI::PushButton * animation_removeAnim = nullptr;
-
 	CEGUI::PushButton * animation_applySprite = nullptr;
-
 	CEGUI::PushButton * animation_addNewAnimation = nullptr;
-
 	CEGUI::PushButton * animation_deleteAnimation = nullptr;
-
 	CEGUI::DefaultWindow * animation_tick_label = nullptr;
-
 	CEGUI::DefaultWindow * animation_sprite_label = nullptr;
-
 	CEGUI::PushButton * animation_addNewAnimation_sub = nullptr;
-
 	CEGUI::Editbox * animation_addNewAnimation_textBox = nullptr;
-
 	CEGUI::DefaultWindow * animation_addNewAnimation_sub_label = nullptr;
-
 	CEGUI::PushButton * animation_addNewAction_sub = nullptr;
-
 	CEGUI::Editbox * animation_addNewAction_textBox = nullptr;
-
 	CEGUI::DefaultWindow * animation_addNewAction_sub_label = nullptr;
-
-	//CEGUI::Combobox * filter_type = nullptr;
-
-	//CEGUI::Combobox * filter_page = nullptr;
-
-	/*CEGUI::Editbox * filer_name = nullptr;*/
-
 
 	// Label
 	CEGUI::DefaultWindow * listDes = nullptr;
@@ -551,68 +504,46 @@ private :
 
 	// Add Layer Window
 	CEGUI::Window * m_addLayerWindow;
-
 	CEGUI::Window * m_newSceneWindow;
-
 	CEGUI::Window * m_selectSceneWindow;
-
 	CEGUI::Window * m_autolayoutWindow;
-
 	CEGUI::Window * animation_newAnimationWindow;
-
 	CEGUI::Window * action_newAnimationWindow;
-
 	CEGUI::Listbox * m_sceneList;
-
-
 	CEGUI::Editbox * m_layerName;
 	CEGUI::Editbox * m_layerDepth;
-
 	CEGUI::Editbox * m_layoutRow;
 	CEGUI::Editbox * m_layoutCol;
-
 	CEGUI::PushButton * m_addLayerButton;
 	CEGUI::PushButton * m_deleteLayerButton;
-
 	CEGUI::Editbox * scene_edit_name;
-
 	CEGUI::Combobox * m_actionCombo = nullptr;
-
 	
 	int m_currentMode = T_EDIT_SCREEN_MODE;
 
 	// Texture components
 
 	SpriteSheet m_currentTexture;
-
 	bool m_move = false;
 
 	//ColiderBox col;
 
 	//
 	std::vector <TemplateObject > m_templateList;
-
 	std::vector <TemplateObject > m_filedList;
-
 	std::vector<ColiderBox > m_colider_boxes;
-
 	std::vector<ObjectSlot> m_slots;
 
 	ColiderBox * m_currentCol = nullptr;
 
 	int current_type = 10;
-	
 	int current_page = 1;
-
 	bool alreadySet = false;
-
 	std::string t_filter_name;
-
 	bool screenLock = false;
 
 	TemplateObject * m_previewObject = nullptr;
 	TemplateObject previewObject;
-
 	TemplateObject * m_placeObject = nullptr;
 	TemplateObject copy;
 
@@ -623,15 +554,9 @@ private :
 	void switchEditingMode(int mode);
 
 	bool showColider = false;
-
 	bool is_ObjectInside = false;
-
-	//Feintgine::Fg_scene * m_scene;
-
 	bool is_hold_CTRL = false;
-
 	bool mouseMove = false;
-
 	bool is_gridMode = false;
 
 	//AnimatedObject m_animatObject;
@@ -641,56 +566,35 @@ private :
 
 
 	SpriteListHolder m_spriteListDisplayer;
-	
 	EditObject m_buildingObject;
-
 	EditObject fakeObject;
-
 	BuildObjectTool m_buildObjectTool;
-
 	ObjectListHolder m_objectHolder;
-
 	bool CEGUI_interupt = false;
-
 	CEGUI::PushButton * m_addToObject = nullptr;
-
 	EditObject m_selectedObject;
 	bool m_objectSelected = false;
 	Feintgine::LightBatch m_lightBatch;
-
 	Feintgine::Brush m_brushTest;
-
 	std::vector<Feintgine::Brush> m_brushList;
-
-	//float m_ambientLight = 0.0f;
-
 	glm::vec3 m_ambientLight = glm::vec3(1);
 
 	CEGUI::Editbox * m_ambientColorR;
 	CEGUI::Editbox * m_ambientColorG;
 	CEGUI::Editbox * m_ambientColorB;
-
 	CEGUI::DefaultWindow * m_ambientColor_label;
-
 	float m_cameraAngle = 0;
-
 	SceneManager m_sceneManager;
-
 	Feintgine::Camera2D m_fullCam;
 	SDL_Event evnt;
 	CEGUI::PushButton * m_addBrushButton;
-
 	TextRenderer m_textRenderer;
 
 	int objectiveMode = OBJECTIVE_OBJECT;
 	int animateCount = 0;
-
 	bool m_markable = false;
-
 	int loopCount = 1;
-
 	bool m_hasSelectAnimation = false;
-
 	Feintgine::F_TileSet m_tileset;
 
 	PaternEditor m_paternEditor;
@@ -701,7 +605,6 @@ private :
 	Feintgine::F_TileManager m_tileManager;
 
 	bool m_isAnimationPlaying = false;
-
 	bool debugTiles = true;
 	void toggetDebugTiles();
 

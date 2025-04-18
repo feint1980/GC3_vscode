@@ -53,7 +53,7 @@ void LuaEventHandler::init(lua_State * script)
     }
     m_script = script;
 
-    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/event/LuaEventHandler.lua")))    
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/event/LuaEventHandler.lua")))    
     {
         std::cout << "Run script LuaEventHandler OK \n";
     

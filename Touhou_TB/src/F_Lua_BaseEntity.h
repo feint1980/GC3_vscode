@@ -7,33 +7,7 @@
 #include <F_oEvent.h>
 
 #include "Slot.h"
-
-
-enum Attribute
-{
-    Strength = 0,
-    Vitality,
-    Dexterity,
-    Agility,
-    Intelligence,
-    Wisdom,
-    action,
-    hp,
-    mana,
-    sp,
-    spCap,
-    physicDmg,
-    physicDef,
-    magicDmg,
-    magicDef,
-    accurate,
-    evadeChance,
-    name,
-    lastName,
-    title,
-    Invalid
-};
-
+#include "../PacketDescription/CharacterDes.h"
 
 class F_Lua_BaseEntity
 {
@@ -59,21 +33,18 @@ public:
 
     std::string getStrAttributeByName(const std::string & attributeName);
 
-
     void setPos(const glm::vec2 & pos);
 
     void playAnimation(const std::string & animationName, int time = -1);
 
     bool isAnimationStoped() const ;
 
-    Attribute getAttributeByName(const std::string & attributeName);
-    
     void setTargetSlot(Slot * slot);
 
     Slot * getTargetSlot() const { return m_moveTargetSlot; }
 
     float getYOffset() const { return m_yOffset; }
- 
+
     glm::vec2 getPos() const { return m_pos; }
 
     bool isActive() const { return m_isActive; }
@@ -83,7 +54,6 @@ public:
     void setSide(int side) 
     { 
         m_side = side;
-
         if(m_side == 2)
         {
             m_animation.setInvertAnimation();
@@ -95,7 +65,6 @@ public:
     Slot * getCurrentSlot() const { return m_currentSlot; }
 
     void setCurrentSlot(Slot * slot) { m_currentSlot = slot; }
-
     EmptyObject * getPortrait() const { return m_portrait; }
 
 protected:
@@ -103,11 +72,9 @@ protected:
     Slot * m_currentSlot;
     Slot * m_moveTargetSlot;
 
-
     int m_side = 1;
 
     bool m_isActive = false;
-
     bool m_isMoving = false;
 
     glm::vec2 m_startPos;
@@ -121,28 +88,6 @@ protected:
     Feintgine::F_AnimatedObject m_animation;
     EmptyObject * m_portrait;
 
-
-    float m_strength;
-    float m_vitality;
-    float m_dexterity;
-    float m_agility;
-    float m_intelligence;
-    float m_wisdom;
-
-    float m_action;
-    float m_hp;
-    float m_mana;
-    float m_sp;
-    float m_spCap;
-    float m_physicDmg;
-    float m_physicDef;
-    float m_magicDmg;
-    float m_magicDef;
-
-    float m_accurate;
-    float m_evadeChance;
-    std::string m_name;
-    std::string m_lastName;
-    std::string m_title;
+    CharacterDesc m_characterDesc;
 
 };

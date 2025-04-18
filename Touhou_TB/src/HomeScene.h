@@ -33,13 +33,9 @@
 #include "ClientHandler.h"
 
 #include "InfoHolder.h"
-
 #include "../../PacketDescription/NetworkPacket.h"
-
 #include "TGUIScriptingManager.h"
-
 #include "ClientScriptingManager.h"
-
 #include "LuaEventHandler.h"
 
 class HomeScene : public Feintgine::IGameScreen

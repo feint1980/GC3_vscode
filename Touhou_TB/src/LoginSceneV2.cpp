@@ -285,7 +285,7 @@ void LoginSceneV2::initGUI()
     //m_script = m_guiScriptingManager.getLuaScript();
     //luaL_openlibs(m_script);
 
-    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/Login/loginScene.lua")))
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Login/loginScene.lua")))
     {
         std::cout << "Run loginScene script OK \n";
     }

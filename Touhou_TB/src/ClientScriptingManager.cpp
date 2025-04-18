@@ -1,7 +1,5 @@
 #include "ClientScriptingManager.h"
 
-
-
 int lua_GetPacketId(lua_State * L)
 {
     if(lua_gettop(L) != 1)
@@ -18,7 +16,6 @@ int lua_GetPacketId(lua_State * L)
             lua_pushnumber(L, GetPacketIdentifier(p));
             return 1;
         }
-
     }
     return 0;
 }
@@ -39,7 +36,6 @@ int lua_SendData(lua_State * L)
         uint32_t result = host->sendData(requestCmd);
         lua_pushnumber(L, result);
         return 1;
-
     }
     return -1;
 }
@@ -57,31 +53,25 @@ int lua_Connect(lua_State * L)
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         host->connect();
     }
-
     return 0;
 }
-
 
 uint32_t ClientScriptingManager::sendData(const std::string & data)
 {
 
     unsigned char iv[AES_IV_SIZE] = {};
     m_cryptor.generateRandomIV(iv);
-    // std::string tData = m_cryptor.getStringFromEncrypt(m_cryptor.encrypt(data,iv));
 
     auto tData = m_cryptor.encrypt(data,iv);
-
     for(int i = 0 ; i < AES_IV_SIZE;i++)
     {
         tData.push_back(iv[i]);
     }
-    
     std::string sendStr;
     for(int i = 0 ; i < tData.size() ; i++)
     {
         sendStr.push_back((tData[i]));
     } 
-    
     return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
@@ -120,7 +110,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     lua_register(m_script, "cppConnect", lua_Connect);
     lua_register(m_script, "cppGetPacketId", lua_GetPacketId);
 
-    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/Networking/clientSide.lua")))
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/Networking/clientSide.lua")))
     {
         std::cout << "Run script OK \n";
     }

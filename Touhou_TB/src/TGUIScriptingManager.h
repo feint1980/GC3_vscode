@@ -28,7 +28,6 @@ public:
     tgui::Picture::Ptr createPicture(const std::string & path, float x, float y, float width, float height);
 
     tgui::EditBox::Ptr createEditBox(float x, float y, float width, float height, tgui::Panel::Ptr parent);
-
     tgui::Panel::Ptr createPanel(float x, float y, float width, float height, tgui::Panel::Ptr parent);
 
     lua_State * getLuaScript() { return m_script; }
@@ -44,10 +43,7 @@ public:
 private:
 
     tgui::Gui * m_tgui = nullptr;
-
     lua_State * m_script = nullptr;
-   
-
 };
 
 #endif

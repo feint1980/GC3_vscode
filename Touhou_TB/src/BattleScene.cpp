@@ -174,22 +174,18 @@ int lua_GetEntitySlot(lua_State * L)
 
 int lua_EntityPlayAnimation(lua_State * L)
 {
-
 	if (lua_gettop(L) < 4 || lua_gettop(L) > 6)
 	{
 		std::cout << "gettop failed (lua_EntityPlayAnimation) \n";
 		std::cout << lua_gettop(L) << "\n";
 		return -1;
 	}
-
 	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
 	F_Lua_BaseEntity * object = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 2));
 	std::string animationName = lua_tostring(L, 3);
 
 	bool isWait = false;
 	isWait = lua_toboolean(L, 4);
-	
-
 	int time = 0;
 	if (lua_gettop(L) >= 5)
 	{
@@ -203,11 +199,11 @@ int lua_EntityPlayAnimation(lua_State * L)
 		std::cout << " has duration " << duration << "\n";
 	}
 	
-
 	F_Lua_EntityManipulator * manipulator = new F_Lua_EntityManipulator();
 
 	manipulator->playAnimation(object, animationName, time, duration);
 
+	
 	//battleScene->addEntityManipulator(manipulator);
 
 	if(isWait)
@@ -219,6 +215,7 @@ int lua_EntityPlayAnimation(lua_State * L)
 		battleScene->addNonWaitEntityManipulator(manipulator);
 	}
 
+	std::cout << "added play animation " << animationName << "\n";
 	return 0;
 }
 
@@ -1195,7 +1192,6 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppSetStrAttribute", lua_SetStrAtrribute);
 	lua_register(m_script, "cppPickActiveEntity", lua_PickActiveEntity);
 
-	
 	lua_register(m_script, "cppGetEntitySlot", lua_GetEntitySlot);
 	lua_register(m_script, "cppGetEntityPos", lua_GetEntityPos);
 	lua_register(m_script, "cppEntityPlayAnimation", lua_EntityPlayAnimation);
@@ -1205,13 +1201,11 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 
 	lua_register(m_script, "cppGetEntityPortrait", lua_GetEntityPortrait);
 	lua_register(m_script, "cppSetPortraitPos", lua_SetPortraitPos);
-
 	// slots
 	lua_register(m_script, "cppGetSlotCol", lua_GetSlotCol);
 	lua_register(m_script, "cppGetSlotRow", lua_GetSlotRow);
 	lua_register(m_script, "cppGetSlotPos", lua_GetSlotPos);
 	lua_register(m_script, "cppGetSlotEntity", lua_GetSlotEntity);
-
 	// slot Handler
 	lua_register(m_script, "cppCreateSlotHandler", lua_CreateSlotHandler);
 	lua_register(m_script, "cppCreateSlot", lua_CreateSlot);
@@ -1220,7 +1214,6 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppIsSlotEmpty", lua_IsSlotEmpty);
 	lua_register(m_script, "cppSlotHandlerSetValidTarget", lua_SlotHandlerSetValidTarget);
 	lua_register(m_script, "cppIsSlotValid", lua_IsSlotValid);
-
 	// GUI_handler data 
 	lua_register(m_script, "cppCreateGUIHandler", lua_CreateGUIHandler);
 	lua_register(m_script, "cppGUIHandlerAddIcon", lua_GUIHandlerAddIcon);
@@ -1229,31 +1222,24 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 	lua_register(m_script, "cppGuiHandlerSetFocusColor", lua_GuiHandlerSetFocusColor);
 	lua_register(m_script, "cppGuiHandlerRemoveIcon", lua_GuiHandlerRemoveIcon);
 	lua_register(m_script, "cppGuiHandlerClearIcons", lua_GuiHandlerClearIcons);
-
 	// create gui icon
 	lua_register(m_script, "cppCreateIcon", lua_CreateIcon);
 	lua_register(m_script, "cppGetIconPos", lua_GetIconPos);
-
 	// misc
 	lua_register(m_script, "cppSetDescriptionBoxPos", lua_SetDescriptionBoxPos);
 	lua_register(m_script, "cppSetDescriptionBoxDim", lua_SetDescriptionBoxDim);
-	
 	// Camera work
 	lua_register(m_script, "cppCameraTargetZoom", lua_CameraTargetZoom); 
 	lua_register(m_script, "cppResetCamera", lua_ResetCamera);
 	lua_register(m_script, "cppWaitTime", lua_WaitTime);
-
 	lua_register(m_script, "cppClearEntityTasks", lua_ClearEntityTasks);
-
 	//lua_register(m_script, "cppSetCameraPos", lua_SetCameraPos);
 
 	m_descriptionBox.init(Feintgine::ResourceManager::getTexture("./Assets/TB_GUI/Description_box.png"), glm::vec2(200, -350), glm::vec2(400, 150), Feintgine::Color(255, 255, 255, 255));
 
-
-	if (LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/lua/test.lua")))
+	if (LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/test.lua")))
 	{
 		std::cout << "read script OK \n";
-	
 	}
 
 	lua_getglobal(m_script, "init");// get the function name to the top of the stack
@@ -1270,8 +1256,6 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 		}
 	}
 
-
-	
     // lua register 1 ( lua state ) , 2 name will be called in lua, 3 the pointer to function
     //lua_register(m_script, "cppCreateEntity", lua_createEntity);
 }
@@ -1279,7 +1263,6 @@ void BattleScene::init(Feintgine::Camera2D * camera )
 BattleScene::BattleScene()
 {
 
-   
 }
 
 BattleScene::~BattleScene()

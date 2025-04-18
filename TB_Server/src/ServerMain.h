@@ -22,14 +22,10 @@
 #include "NetworkPacket.h"
 #include "DataBaseHandler.h"
 #include <RakNet/SecureHandshake.h>
-//#include "Gets.h"
-
 
 #include <iostream>
 
-
 class ServerScriptingManager;
-
 
 class ServerMain
 {
@@ -47,31 +43,19 @@ public:
 
     void handleCommand(const std::string & command);
 
-    // void handleCommon(RakNet::Packet *p);
-
-    // int handleStep2Request(RakNet::Packet *p);
-
     PacketCode getCommand(const std::string & command);
 
-    private:
-
-private: 
+private:
 
     std::string m_password;
     int m_port;
-
     bool m_serverOn = true;
-
     unsigned int m_connectionSize = 0;
 
     RakNet::RakPeerInterface *m_server;
-
     RakNet::SocketDescriptor m_socketDescriptor[2];
-
     RakNet::RakNetStatistics * m_statistics;
-
     RakNet::Packet * m_currentPacket;
-
     RakNet::SystemAddress m_clientID =RakNet::UNASSIGNED_SYSTEM_ADDRESS;
 
     DataBaseHandler * m_dbh;
@@ -80,11 +64,6 @@ private:
 
     char messageBuffer[2048];
     char serverBroadcast[2048];
-
-
-    //std::array<RakNet::SystemAddress ,100> m_systems;
-
 };
-
 
 #endif // SERVERMAIN_H

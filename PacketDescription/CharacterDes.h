@@ -7,7 +7,6 @@
 
 #include <fstream>
 
-
 #include <algorithm>
 #include <nlohmann/json.hpp>
 
@@ -53,7 +52,6 @@ struct CharacterStats
     std::string ID;
 };
 
-
 enum Attribute
 {
     Strength ,
@@ -95,19 +93,15 @@ enum Attribute
     Invalid
 };
 
-
-
-
-
 class CharacterDesc
 {
     public:
-        CharacterDesc();
-        ~CharacterDesc();
+    CharacterDesc();
+    ~CharacterDesc();
 
-        // void init()
+    CharacterStats getCharacterStats() const { return m_charStats; }
+
     void writeData(const std::string & path);
-
 
     CharacterStats readFromLua(const std::string & path);
 
@@ -130,4 +124,3 @@ class CharacterDesc
 };
 
 #endif // CHARACTERDESC_H
-
