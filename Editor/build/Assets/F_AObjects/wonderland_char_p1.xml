@@ -1,0 +1,37 @@
+<F_AObj name="wonderland_char_p1">
+	<animations>
+		<animation name="idle_down">
+			<anims>
+				<anim name="wonderland_prop_char/idle_down_01.png" time="8.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="wonderland_prop_char/idle_down_02.png" time="8.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="wonderland_prop_char/idle_down_03.png" time="8.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="wonderland_prop_char/idle_down_04.png" time="8.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="idle_side_left">
+			<anims>
+				<anim name="wonderland_prop_char/idle_side_01.png" time="8.00" offset_x="2.00" offset_y="1.20" loop="1" inverted="1"/>
+				<anim name="wonderland_prop_char/idle_side_02.png" time="8.00" offset_x="0.00" offset_y="-0.40" inverted="1"/>
+				<anim name="wonderland_prop_char/idle_side_03.png" time="8.00" offset_x="-2.50" offset_y="-2.30" inverted="1"/>
+				<anim name="wonderland_prop_char/idle_side_04.png" time="8.00" offset_x="-1.00" offset_y="-2.30" inverted="1"/>
+			</anims>
+		</animation>
+		<animation name="idle_side_right">
+			<anims>
+				<anim name="wonderland_prop_char/idle_side_01.png" time="8.00" offset_x="-2.00" offset_y="1.20" loop="1"/>
+				<anim name="wonderland_prop_char/idle_side_02.png" time="8.00" offset_x="0.00" offset_y="-0.40"/>
+				<anim name="wonderland_prop_char/idle_side_03.png" time="8.00" offset_x="2.50" offset_y="-2.30"/>
+				<anim name="wonderland_prop_char/idle_side_04.png" time="8.00" offset_x="1.00" offset_y="-2.30"/>
+			</anims>
+		</animation>
+		<animation name="idle_up">
+			<anims>
+				<anim name="wonderland_prop_char/idle_top_01.png" time="8.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="wonderland_prop_char/idle_top_02.png" time="8.00" offset_x="0.00" offset_y="-0.60"/>
+				<anim name="wonderland_prop_char/idle_top_03.png" time="8.00" offset_x="0.00" offset_y="-0.60"/>
+				<anim name="wonderland_prop_char/idle_top_04.png" time="8.00" offset_x="0.00" offset_y="-0.60"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

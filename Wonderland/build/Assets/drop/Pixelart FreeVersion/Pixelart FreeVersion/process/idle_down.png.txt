@@ -1,0 +1,1 @@
+idle_down_01.png.png 24 15, idle_down_02.png.png 103 16, idle_down_03.png.png 183 16, idle_down_04.png.png 264 16.
