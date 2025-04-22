@@ -861,19 +861,19 @@ void Extra_DemoScreen::firstCheckPoint()
 	std::cout << "loaded !!!!!!! \n";
 
 
-	m_player.setCharacterSpell(1);
-	// m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
-	m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
+	m_player.setCharacterSpell(2);
+	m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png",true);
+	// m_player.init("Assets/F_AObjects/reimu.xml", "character/reimu_accessory_3.png",false);
 	
 	//m_player.init("Assets/F_AObjects/Marisa_own.xml", "character/marisa_accessory_3.png");
 
 	//reimu_normal_projectile   | reimu_double_projectile
 
-	m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
-	// m_player.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
+	// m_player.setPrimaryShot(true, "Assets/F_AObjects/reimu_normal_projectile.xml", 5.0f, 90.0f);
+	m_player.setPrimaryShot(true, "Assets/F_AObjects/marisa_normal_projectile.xml", 5.0f, 90.0f);
 
 	// 1 HOMING, 2 Missle , 3 needles, 4 laser
-	m_player.setAccessoryShot(1);
+	m_player.setAccessoryShot(4);
 
 	//m_bg2.setColor(Feintgine::Color(255, 255, 255, 100));
 

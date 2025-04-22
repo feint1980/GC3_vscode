@@ -20,7 +20,6 @@ public:
 	
 	void manipulateObject(unsigned int ID, std::function<void(float)> func, float duration, float delayTime = 0.0f); 
 	
-
 protected:
 	std::vector <FL_Object*> * m_mainList;
 	//std::vector <FL_Object*> m_objects;

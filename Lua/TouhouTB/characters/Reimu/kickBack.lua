@@ -75,11 +75,8 @@ end
 
 function kickBackBehavior(host, dyobj)
 
-    --cppClearEntityTasks(host,dyobj)
-
     print("kickBackBehavior called")
     local slots = T_slotHandler:getSelectedSlots()
-
     local count = tablelength(slots)
     print("slot count " .. count)
     print("testttt ")

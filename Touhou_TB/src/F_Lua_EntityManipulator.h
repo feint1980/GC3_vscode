@@ -25,7 +25,6 @@ public:
 
     void moveToPos(F_Lua_BaseEntity * entity, glm::vec2 pos, float time);
 
-
     void playAnimation(F_Lua_BaseEntity * entity , const std::string & animationName, int time = -1, float totalTime = 500.0f);
 
     EntityState getState() const { return m_state; }

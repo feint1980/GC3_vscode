@@ -94,8 +94,6 @@ F_Lua_BaseEntity * BattleScene::addEntity(Slot * slot, const std::string & anima
 	return object;
 }
 
-
-
 int lua_CreateSlot(lua_State * L)
 {
 	if (lua_gettop(L) != 4)
@@ -202,9 +200,6 @@ int lua_EntityPlayAnimation(lua_State * L)
 	F_Lua_EntityManipulator * manipulator = new F_Lua_EntityManipulator();
 
 	manipulator->playAnimation(object, animationName, time, duration);
-
-	
-	//battleScene->addEntityManipulator(manipulator);
 
 	if(isWait)
 	{

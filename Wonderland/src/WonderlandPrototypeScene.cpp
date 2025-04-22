@@ -1,37 +1,32 @@
-#include "TestTBScreen.h"
+#include "WonderlandPrototypeScene.h"
 
-
-TestTBScreen::TestTBScreen()
+WonderlandPrototypeScene::WonderlandPrototypeScene()
 {
 
 }
 
-
-TestTBScreen::~TestTBScreen()
+WonderlandPrototypeScene::~WonderlandPrototypeScene()
 {
 
 }
 
-TestTBScreen::TestTBScreen(Feintgine::Window * window)
+WonderlandPrototypeScene::WonderlandPrototypeScene(Feintgine::Window * window)
 {
     m_alpha = 1.0;
     m_window = window;
     m_screenIndex = 2;
-
     initShader();
 }
 
-void TestTBScreen::initShader()
+void WonderlandPrototypeScene::initShader()
 {
-    //m_shader.compileShaders("Shaders/basic.vert", "Shaders/basic.frag");
-	
     m_shader.compileShaders("Shaders/ShaderToy/normal.vert", "Shaders/ShaderToy/normal.frag");
     m_shader.addAttribute("vertexPosition");
 	m_shader.addAttribute("vertexColor");
 	m_shader.addAttribute("vertexUV");
 	m_shader.linkShaders();
 }
-void TestTBScreen::onEntry()
+void WonderlandPrototypeScene::onEntry()
 {    
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
@@ -44,78 +39,70 @@ void TestTBScreen::onEntry()
     m_spriteBatch.init();
     
     float tempScale = 0.85f;
-	m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,100), glm::vec2(1280, 720),Feintgine::Color(255, 255, 255, 255));
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	m_battleScene.initTGUI(m_window->getWindow());
-	m_battleScene.init(&m_camera);
-
+	// m_battleScene.initTGUI(m_window->getWindow());
+	// m_battleScene.init(&m_camera);
 }
 
-void TestTBScreen::build()
+void WonderlandPrototypeScene::build()
 {
-
 	// build screen (unused)
+    std::cout << "<<<<<<<<<<<<<<<<<<<<< Build called >>>>>>>>>>>>>>>>>>>>>>>> \n";
 }
 
-void TestTBScreen::destroy()
+void WonderlandPrototypeScene::destroy()
 {
     // unload screen (unused)
 }
 
-int TestTBScreen::getNextScreenIndex() const
+int WonderlandPrototypeScene::getNextScreenIndex() const
 {
     return -1;
 }
 
-int TestTBScreen::getPreviousScreenIndex() const
+int WonderlandPrototypeScene::getPreviousScreenIndex() const
 {
     return 11;
 }
 
-void TestTBScreen::onExit()
+void WonderlandPrototypeScene::onExit()
 {
     // unload screen (unused)   
 }
 
-void TestTBScreen::update(float deltaTime)
+void WonderlandPrototypeScene::update(float deltaTime)
 {
     m_camera.update();
-	m_battleScene.update(deltaTime);
+	// m_battleScene.update(deltaTime);
 }
 
-void TestTBScreen::checkInput()
+void WonderlandPrototypeScene::checkInput()
 {
-    
 	SDL_Event evnt;
 	while (SDL_PollEvent(&evnt))
 	{
-
 		m_game->onSDLEvent(evnt);
 		m_camera.handleInput(m_game->m_inputManager, evnt);
-
 	}
 	handleInput(m_game->m_inputManager);
 }
 
-void TestTBScreen::handleInput(Feintgine::InputManager & inputManager)
+void WonderlandPrototypeScene::handleInput(Feintgine::InputManager & inputManager)
 {
     if (inputManager.isKeyPressed(SDL_QUIT))
 	{
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
 	}
-	m_battleScene.handleInput(inputManager);
+	// m_battleScene.handleInput(inputManager);
 }
 
-void TestTBScreen::draw()
+void WonderlandPrototypeScene::draw()
 {
-
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	
 
 	m_shader.use();
-
 	// GLint alphaLocation = m_shader.getUniformLocation("time");
 	// glUniform1f(alphaLocation, 1);
 		
@@ -134,25 +121,19 @@ void TestTBScreen::draw()
 
 	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 
-    m_bg.draw(m_spriteBatch);
-	m_battleScene.draw(m_spriteBatch);
+	// m_battleScene.draw(m_spriteBatch);
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
-	
 
 	drawGUI();
 	SDL_GL_SetSwapInterval(1);	
-
 }
 
-void TestTBScreen::drawGameplay()
+void WonderlandPrototypeScene::drawGameplay()
 {
-
-  //  glViewport(0, 0, m_window->getScreenWidth(), m_window->getScreenHeight());
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-
     m_shader.use();
 
     glm::mat4 projectionMatrix;
@@ -168,18 +149,16 @@ void TestTBScreen::drawGameplay()
     glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
     m_spriteBatch.begin();
-    m_bg.draw(m_spriteBatch);
+    // draw drop here
+
     m_spriteBatch.end();
     m_spriteBatch.renderBatch();
 
     m_shader.unuse();
-
 }
 
-void TestTBScreen::drawGUI()
+void WonderlandPrototypeScene::drawGUI()
 {
 
-	m_battleScene.drawGUI();
+	// m_battleScene.drawGUI();
 }
-
-

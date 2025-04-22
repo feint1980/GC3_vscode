@@ -7,35 +7,25 @@ F_Lua_EntityManipulator::F_Lua_EntityManipulator()
     m_camera = nullptr;
     tempSlot = nullptr;
     m_elaspedTime= 0;
-
 }
-
 
 F_Lua_EntityManipulator::~F_Lua_EntityManipulator()
 {
     m_entity = nullptr;
     m_camera = nullptr;
     tempSlot = nullptr;
-
-   
 }
 
 void F_Lua_EntityManipulator::moveToSlot(F_Lua_BaseEntity * entity, Slot * slot, float time)
 {
     m_entity = entity;
-
     m_state = EntityState::Move;
-
     m_startPos = m_entity->getPos();
     m_endPos = slot->getPos();
     m_endPos.y += m_entity->getYOffset();
-
-    
     m_completionTime = time;
-
     m_elaspedTime = 0.0f;
     tempSlot = slot;
-
 }
 
 void F_Lua_EntityManipulator::waitTime(F_Lua_BaseEntity * entity, float time)

@@ -37,8 +37,7 @@ void F_Lua_BaseEntity::setPos(const glm::vec2 & pos)
 
 void F_Lua_BaseEntity::playAnimation(const std::string & animationName, int time)
 {
-
-    std::cout << "entity play animation " << animationName <<  " " << time << std::endl; 
+    // std::cout << "entity play animation " << animationName <<  " " << time << std::endl; 
     m_animation.playAnimation(animationName, time);
 }
 
