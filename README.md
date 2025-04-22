@@ -10,12 +10,17 @@
 
 ### 🛠 Game Editor (Built using my engine)
 - **2D Top-down Map Builder**: Create RPG-style maps with **custom objects and lighting**.
+  ![Scene Editing](media/scene_edit_1.gif)
+  ![Object Editing](media/object_edit_1.gif)
 - **Sprite Animation Editor**: Design and preview **frame-based animations**.
+  ![Object Editing](media/animation_edit_1.gif)
 - **Arc Calculator**: Useful for **Touhou-like projectile patterns**.
 - **Enemy/Boss Editor**: Customize enemy behaviors and attack patterns.
 
 ### 🔥 Touhou-like Game (Built using my engine)
 - **All core gameplay systems are implemented**, including movement, projectiles, and spell cards.
+  ![Reimu](media/reimu.gif)
+  ![Marisa](media/marisa.gif)
 - **Content is still in development**.
 
 ### ⚔ Turn-Based Multiplayer Game (Prototype) (C++, RakNet, SQLite3)
