@@ -10,7 +10,6 @@ W_BaseEntity::~W_BaseEntity()
 
 }
 
-
 void W_BaseEntity::init(const std::string & animPath, const glm::vec2 & pos)
 {
     m_animations.init(animPath);

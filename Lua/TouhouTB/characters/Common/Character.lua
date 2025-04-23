@@ -280,8 +280,6 @@ function Character:init(host,slot,tSide)
     TB_SetStrAttribute(self.dyobj,"lastName",self.lastName)
     TB_SetStrAttribute(self.dyobj,"title",self.title)
 
-
-
     --return self
 end
 

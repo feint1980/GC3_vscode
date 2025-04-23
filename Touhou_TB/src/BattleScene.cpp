@@ -1115,13 +1115,10 @@ int lua_ClearEntityTasks (lua_State * L)
 		return -1;
 	}
 
-	
 	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
 	F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 2));
 	battleScene->clearEntityTasks(entity);
-
 	return 0;
-
 }
 
 void BattleScene::clearEntityTasks(F_Lua_BaseEntity * entity)
@@ -1138,10 +1135,8 @@ void BattleScene::clearEntityTasks(F_Lua_BaseEntity * entity)
 	}
 }
 
-
 int lua_GetSlotEntity(lua_State * L)
 {
-
 	if(lua_gettop(L) != 2)
 	{
 		std::cout << "gettop failed (lua_GetSlotEntity) \n";
@@ -1154,7 +1149,6 @@ int lua_GetSlotEntity(lua_State * L)
 
 	F_Lua_BaseEntity * entity = battleScene->getEntityBySlot(slot);
 	lua_pushlightuserdata(L, entity);
-
 	return 1;
 }
 
@@ -1167,14 +1161,10 @@ F_Lua_BaseEntity * BattleScene::getEntityBySlot(Slot * slot)
 			return m_entities[i];
 		}
 	}
-
-
 }
-
 
 void BattleScene::init(Feintgine::Camera2D * camera )
 {
-
 	m_camera = camera;
 	 // init lua
     m_script = luaL_newstate();
