@@ -1745,7 +1745,6 @@ void EditorScreen::drawPreviewScreen()
 	{
 		m_objectHolder.getDisplaySample()->draw(m_spriteBatch);
 	}
-	
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_previewObjectShader.unuse();
