@@ -1,0 +1,56 @@
+<AObj name = "patchouli" texture = "Assets/Textures/patchouli.png" col = "12" row = "9" >
+	<animations>
+		<animation name = "royal_flare_cast">
+			<anims>
+				<anim index = "0" time = "6"/>
+				<anim index = "1" time = "6"/>
+				<anim index = "2" time = "18"/>
+				<anim index = "3" time = "8"/>
+				<anim index = "4" time = "10"/>
+				<anim index = "5" time = "10"/>
+				<anim index = "6" time = "8"/>
+				<anim index = "7" time = "8"/>
+				<anim index = "8" time = "8"/>
+				<anim index = "9" time = "5" loop = "1"/>
+				<anim index = "10" time = "5"/>
+				<anim index = "11" time = "5"/>
+			</anims>
+		</animation>
+		<animation name = "move">
+			<anims>
+				<anim index = "97" time = "6"/>
+				<anim index = "98" time = "6"/>
+				<anim index = "99" time = "9" loop ="1"/>
+				<anim index = "100" time = "9"/>
+			</anims>
+		</animation>
+		<animation name = "spring_raise">
+			<anims>
+				<anim index = "48" time = "6"/>
+				<anim index = "49" time = "7"/>
+				<anim index = "50" time = "5"/>
+				<anim index = "51" time = "3"/>
+				<anim index = "52" time = "3"/>
+				<anim index = "53" time = "3"/>
+				<anim index = "54" time = "3"/>
+				<anim index = "55" time = "3"/>
+				<anim index = "56" time = "3"/>
+				<anim index = "57" time = "3"/>
+				<anim index = "58" time = "10"/>
+			</anims>
+		</animation>
+		<animation name = "spell_cast">
+			<anims>
+				<anim index = "12" time = "3"/>
+				<anim index = "13" time = "6"/>
+				<anim index = "14" time = "6"/>
+				<anim index = "15" time = "3"/>
+				<anim index = "16" time = "3"/>
+				<anim index = "17" time = "3"/>
+				<anim index = "18" time = "3"/>
+				<anim index = "19" time = "3"/>
+				<anim index = "20" time = "30"/>
+			</anims>
+		</animation>
+	</animations>
+</AObj>

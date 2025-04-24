@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:7e70c89c7ed29c2199b93211a2bd84ee:a3383b41ff5ab0608f7bf6af7e196398:489cc7ac7c2cb6bb232d9754b5e9345c$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="reimu_own_2.png" width="250" height="304">
+    <sprite n="reumu_01.png" x="170" y="0" w="80" h="151"/>
+    <sprite n="reumu_02.png" x="0" y="151" w="90" h="151"/>
+    <sprite n="reumu_03.png" x="171" y="151" w="79" h="153"/>
+    <sprite n="reumu_04.png" x="90" y="151" w="81" h="152"/>
+    <sprite n="reumu_05.png" x="0" y="0" w="93" h="150"/>
+    <sprite n="reumu_06.png" x="93" y="0" w="77" h="150"/>
+</TextureAtlas>

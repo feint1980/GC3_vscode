@@ -59,34 +59,28 @@ namespace Feintgine
 				
 				re_layer->load(s_scence.layerlist(i));
 
+				if(list)
+				{
 				int i_layerDepth = re_layer->getDepth();
 				CEGUI::ListboxTextItem * firstRowItem1 = new CEGUI::ListboxTextItem(re_layer->getName());
 				CEGUI::ListboxTextItem * firstRowItem2 = new CEGUI::ListboxTextItem(std::to_string(i_layerDepth).c_str());
 				CEGUI::ListboxTextItem * firstRowItem3 = new CEGUI::ListboxTextItem("v");
 
-
 				firstRowItem1->setSelectionBrushImage("TaharezLook/ListboxSelectionBrush");
 				firstRowItem2->setSelectionBrushImage("TaharezLook/ListboxSelectionBrush");
-				firstRowItem3->setSelectionBrushImage("TaharezLook/ListboxSelectionBrush");
-
-
-				if (list)
-				{
-					
-					CEGUI::uint firstRow = list->addRow(firstRowItem1, 1);
-					list->setItem(firstRowItem2, 2, firstRow);
-					list->setItem(firstRowItem3, 3, firstRow);
-					re_layer->setGUIText(firstRowItem3);
-				
-				}
-
-				
-				m_layers.push_back(std::move(re_layer));
-				
+				firstRowItem3->setSelectionBrushImage("TaharezLook/ListboxSelectionBrush");					
+				CEGUI::uint firstRow = list->addRow(firstRowItem1, 1);
+				list->setItem(firstRowItem2, 2, firstRow);
+				list->setItem(firstRowItem3, 3, firstRow);
+				re_layer->setGUIText(firstRowItem3);
 			}
+				
+			m_layers.push_back(std::move(re_layer));
+				
+			
 			std::cout << "total layer " << m_layers.size() << "\n";
 			std::cout << "read scene ok \n";
-
+		}
 
 		}
 	}
@@ -121,8 +115,6 @@ namespace Feintgine
 			returnScene->add_layerlist()->CopyFrom(*layer);
 			//setLayer(layer, returnScene->add_layerlist());
 		}
-
-
 		return returnScene;
 	}
 

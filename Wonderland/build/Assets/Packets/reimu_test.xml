@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:64c1a218e0e93f3fb4675d4a4a231193:82128552bb0a0f9c80daa52a224e7946:72ec5f4036b61fe063c0085e06e377f0$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="reimu_test.png" width="2009" height="1024">
+    <sprite n="reimu_test_01.png" x="1589" y="0" w="420" h="498"/>
+    <sprite n="reimu_test_02.png" x="0" y="0" w="396" h="500"/>
+    <sprite n="reimu_test_03.png" x="0" y="512" w="420" h="512"/>
+    <sprite n="reimu_test_04.png" x="396" y="0" w="396" h="500"/>
+    <sprite n="reimu_test_05.png" x="420" y="512" w="420" h="512"/>
+    <sprite n="reimu_test_06.png" x="792" y="0" w="396" h="500"/>
+    <sprite n="reimu_test_08.png" x="840" y="512" w="420" h="498"/>
+    <sprite n="reimu_test_09.png" x="1260" y="512" w="504" h="493"/>
+    <sprite n="reimu_test_10.png" x="1188" y="0" w="401" h="512"/>
+</TextureAtlas>

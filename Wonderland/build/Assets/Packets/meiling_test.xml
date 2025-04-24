@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:cdfbd799c11729f5a06c4fac0cdb39fe:e3fb89b832076da0b4ff972981bef833:b01b059ae3c956348dea2ea6959fa219$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="meiling_test.png" width="1953" height="994">
+    <sprite n="meiling_test_01.png" x="1137" y="0" w="408" h="496"/>
+    <sprite n="meiling_test_02.png" x="1545" y="0" w="408" h="496"/>
+    <sprite n="meiling_test_03.png" x="408" y="499" w="512" h="483"/>
+    <sprite n="meiling_test_04.png" x="0" y="0" w="379" h="499"/>
+    <sprite n="meiling_test_05.png" x="920" y="499" w="512" h="483"/>
+    <sprite n="meiling_test_06.png" x="379" y="0" w="379" h="499"/>
+    <sprite n="meiling_test_09.png" x="1432" y="499" w="512" h="483"/>
+    <sprite n="meiling_test_10.png" x="758" y="0" w="379" h="499"/>
+    <sprite n="meiling_test_11.png" x="0" y="499" w="408" h="495"/>
+</TextureAtlas>

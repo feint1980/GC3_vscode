@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:de5133f3a05941c8fdd250cf2ef5d5f2:bd010912f6ed7ec85591a324c56bcb6a:0fc3bd3c650541678bbf4997928969d3$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="marisa_star.png" width="256" height="832">
+    <sprite n="bulletAb000.png" x="0" y="0" w="64" h="64"/>
+    <sprite n="bulletAb001.png" x="0" y="320" w="256" h="256"/>
+    <sprite n="bulletAb002.png" x="0" y="576" w="256" h="256"/>
+    <sprite n="bulletAb003.png" x="64" y="0" w="64" h="64"/>
+    <sprite n="bulletAb004.png" x="64" y="64" w="128" h="128"/>
+    <sprite n="bulletAb005.png" x="0" y="192" w="128" h="128"/>
+    <sprite n="start_1.png" x="128" y="0" w="64" h="64"/>
+    <sprite n="start_2.png" x="192" y="0" w="64" h="64"/>
+    <sprite n="start_3.png" x="0" y="64" w="64" h="64"/>
+</TextureAtlas>

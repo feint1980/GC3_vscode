@@ -1,0 +1,22 @@
+<F_AObj name="marisa_rocket_big">
+	<animations>
+		<animation name="default">
+			<anims>
+				<anim name="marisa_projectile/marisa_big_rocket_1.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="marisa_projectile/marisa_big_rocket_2.png" time="4.00" offset_x="-0.50òm" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="destroy">
+			<anims>
+				<anim name="marisa_projectile/Marisa_projectile_red_impact_1.png" time="2.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="marisa_projectile/Marisa_projectile_red_impact_2.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_projectile/Marisa_projectile_red_impact_3.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_projectile/Marisa_projectile_red_impact_4.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_projectile/Marisa_projectile_red_impact_5.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_projectile/Marisa_projectile_red_impact_6.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_projectile/Marisa_projectile_red_impact_7.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

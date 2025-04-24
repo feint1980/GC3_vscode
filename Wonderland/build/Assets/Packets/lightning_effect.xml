@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:d69206de79ca7166c9be81a9822afb78:a47c2a6ac4a3f8373a8a76d041b8860c:142fc14fdc35731df8566bf649ff3177$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="lightning_effect.png" width="1936" height="1488">
+    <sprite n="breath_fire_marked_01.png" x="0" y="0" w="64" h="18"/>
+    <sprite n="breath_fire_marked_02.png" x="620" y="0" w="94" h="32"/>
+    <sprite n="breath_fire_marked_03.png" x="1676" y="38" w="110" h="46"/>
+    <sprite n="breath_fire_marked_04.png" x="1177" y="84" w="116" h="57"/>
+    <sprite n="breath_fire_marked_05.png" x="1293" y="84" w="116" h="58"/>
+    <sprite n="breath_fire_marked_06.png" x="1524" y="84" w="117" h="60"/>
+    <sprite n="breath_fire_marked_07.png" x="373" y="144" w="119" h="61"/>
+    <sprite n="breath_fire_marked_08.png" x="492" y="144" w="120" h="61"/>
+    <sprite n="breath_fire_marked_09.png" x="1641" y="84" w="121" h="60"/>
+    <sprite n="breath_fire_marked_10.png" x="1762" y="84" w="122" h="60"/>
+    <sprite n="breath_fire_marked_11.png" x="1453" y="144" w="122" h="63"/>
+    <sprite n="breath_fire_marked_12.png" x="853" y="144" w="122" h="62"/>
+    <sprite n="breath_fire_marked_13.png" x="1575" y="144" w="122" h="63"/>
+    <sprite n="breath_fire_marked_14.png" x="612" y="144" w="120" h="61"/>
+    <sprite n="breath_fire_marked_15.png" x="732" y="144" w="121" h="61"/>
+    <sprite n="breath_fire_marked_16.png" x="0" y="144" w="121" h="60"/>
+    <sprite n="breath_fire_marked_17.png" x="975" y="144" w="121" h="62"/>
+    <sprite n="breath_fire_marked_18.png" x="1697" y="144" w="121" h="63"/>
+    <sprite n="breath_fire_marked_19.png" x="119" y="207" w="121" h="64"/>
+    <sprite n="breath_fire_marked_20.png" x="240" y="207" w="120" h="64"/>
+    <sprite n="breath_fire_marked_21.png" x="0" y="207" w="119" h="63"/>
+    <sprite n="breath_fire_marked_22.png" x="1096" y="144" w="117" h="62"/>
+    <sprite n="breath_fire_marked_23.png" x="1409" y="84" w="115" h="58"/>
+    <sprite n="fire_spark_marked_01.png" x="499" y="360" w="84" h="84"/>
+    <sprite n="fire_spark_marked_02.png" x="501" y="454" w="99" h="99"/>
+    <sprite n="fire_spark_marked_03.png" x="109" y="560" w="109" h="110"/>
+    <sprite n="fire_spark_marked_04.png" x="782" y="560" w="117" h="116"/>
+    <sprite n="fire_spark_marked_05.png" x="899" y="560" w="121" h="119"/>
+    <sprite n="fire_spark_marked_06.png" x="1130" y="560" w="116" h="121"/>
+    <sprite n="lightning_ball_2_marked_01.png" x="1246" y="560" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_02.png" x="1474" y="560" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_03.png" x="1702" y="560" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_04.png" x="0" y="784" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_05.png" x="228" y="784" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_06.png" x="456" y="784" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_07.png" x="684" y="784" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_08.png" x="912" y="784" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_09.png" x="1140" y="784" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_10.png" x="1368" y="784" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_11.png" x="1596" y="784" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_12.png" x="0" y="1008" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_13.png" x="228" y="1008" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_14.png" x="456" y="1008" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_15.png" x="684" y="1008" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_16.png" x="912" y="1008" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_17.png" x="1140" y="1008" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_18.png" x="1368" y="1008" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_19.png" x="1596" y="1008" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_20.png" x="0" y="1232" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_21.png" x="228" y="1232" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_22.png" x="456" y="1232" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_23.png" x="684" y="1232" w="228" h="224"/>
+    <sprite n="lightning_ball_2_marked_24.png" x="912" y="1232" w="228" h="224"/>
+    <sprite n="lightning_ball_masked_01.png" x="1109" y="454" w="100" h="100"/>
+    <sprite n="lightning_ball_masked_02.png" x="669" y="560" w="113" h="113"/>
+    <sprite n="lightning_ball_masked_03.png" x="496" y="278" w="78" h="74"/>
+    <sprite n="lightning_ball_masked_04.png" x="1340" y="360" w="92" h="92"/>
+    <sprite n="lightning_ball_masked_05.png" x="1209" y="454" w="100" h="100"/>
+    <sprite n="lightning_ball_masked_06.png" x="1565" y="454" w="106" h="106"/>
+    <sprite n="lightning_ball_masked_07.png" x="218" y="560" w="110" h="110"/>
+    <sprite n="lightning_ball_masked_08.png" x="328" y="560" w="111" h="111"/>
+    <sprite n="lightning_ball_masked_09.png" x="439" y="560" w="117" h="111"/>
+    <sprite n="lightning_ball_masked_10.png" x="556" y="560" w="113" h="112"/>
+    <sprite n="lightning_ball_masked_11.png" x="1020" y="560" w="110" h="120"/>
+    <sprite n="lightning_ball_masked_12.png" x="0" y="560" w="109" h="109"/>
+    <sprite n="lightning_line_marked_01.png" x="1601" y="1232" w="49" h="256"/>
+    <sprite n="lightning_line_marked_02.png" x="1140" y="1232" w="54" h="254"/>
+    <sprite n="lightning_line_marked_03.png" x="1298" y="1232" w="46" h="255"/>
+    <sprite n="lightning_line_marked_04.png" x="1344" y="1232" w="50" h="255"/>
+    <sprite n="lightning_line_marked_05.png" x="1194" y="1232" w="53" h="254"/>
+    <sprite n="lightning_line_marked_06.png" x="1247" y="1232" w="51" h="254"/>
+    <sprite n="lightning_line_marked_07.png" x="1650" y="1232" w="51" h="256"/>
+    <sprite n="lightning_line_marked_08.png" x="1394" y="1232" w="51" h="255"/>
+    <sprite n="lightning_line_marked_09.png" x="1445" y="1232" w="51" h="255"/>
+    <sprite n="lightning_line_marked_10.png" x="1701" y="1232" w="50" h="256"/>
+    <sprite n="lightning_line_marked_11.png" x="1496" y="1232" w="51" h="255"/>
+    <sprite n="lightning_line_marked_12.png" x="1547" y="1232" w="54" h="255"/>
+    <sprite n="lightning_spark_marked_01.png" x="250" y="38" w="61" h="39"/>
+    <sprite n="lightning_spark_marked_02.png" x="291" y="0" w="54" h="31"/>
+    <sprite n="lightning_spark_marked_03.png" x="179" y="0" w="56" h="30"/>
+    <sprite n="lightning_spark_marked_04.png" x="1266" y="0" w="55" h="37"/>
+    <sprite n="lightning_spark_marked_05.png" x="1156" y="0" w="54" h="36"/>
+    <sprite n="lightning_spark_marked_06.png" x="345" y="0" w="52" h="31"/>
+    <sprite n="lightning_spark_marked_07.png" x="1321" y="0" w="54" h="37"/>
+    <sprite n="lightning_spark_marked_08.png" x="714" y="0" w="57" h="32"/>
+    <sprite n="lightning_spark_marked_09.png" x="64" y="0" w="57" h="25"/>
+    <sprite n="lightning_spark_marked_10.png" x="1375" y="0" w="56" h="37"/>
+    <sprite n="lightning_spark_marked_11.png" x="1045" y="0" w="56" h="35"/>
+    <sprite n="lightning_spark_marked_12.png" x="771" y="0" w="54" h="32"/>
+    <sprite n="lightning_spark_marked_13.png" x="990" y="0" w="55" h="34"/>
+    <sprite n="lightning_spark_marked_14.png" x="529" y="38" w="56" h="40"/>
+    <sprite n="lightning_spark_marked_15.png" x="825" y="0" w="53" h="33"/>
+    <sprite n="lightning_spark_marked_16.png" x="878" y="0" w="58" h="33"/>
+    <sprite n="lightning_spark_marked_17.png" x="1431" y="0" w="56" h="37"/>
+    <sprite n="lightning_spark_marked_18.png" x="121" y="0" w="58" h="26"/>
+    <sprite n="lightning_spark_marked_19.png" x="397" y="0" w="54" h="31"/>
+    <sprite n="lightning_spark_marked_20.png" x="1101" y="0" w="55" h="35"/>
+    <sprite n="lightning_spark_marked_21.png" x="451" y="0" w="57" h="31"/>
+    <sprite n="lightning_spark_marked_22.png" x="508" y="0" w="55" h="31"/>
+    <sprite n="lightning_spark_marked_23.png" x="1210" y="0" w="56" h="36"/>
+    <sprite n="lightning_spark_marked_24.png" x="936" y="0" w="54" h="33"/>
+    <sprite n="lightning_spark_marked_25.png" x="563" y="0" w="57" h="31"/>
+    <sprite n="lightning_spark_marked_26.png" x="895" y="38" w="58" h="41"/>
+    <sprite n="lightning_spark_marked_27.png" x="1487" y="0" w="57" h="37"/>
+    <sprite n="lightning_spark_marked_28.png" x="585" y="38" w="56" h="40"/>
+    <sprite n="lightning_spark_marked_29.png" x="1544" y="0" w="53" h="37"/>
+    <sprite n="lightning_spark_marked_30.png" x="235" y="0" w="56" h="30"/>
+    <sprite n="link_effect_fire_marked_01.png" x="1597" y="0" w="255" h="38"/>
+    <sprite n="link_effect_fire_marked_02.png" x="0" y="38" w="250" h="38"/>
+    <sprite n="link_effect_fire_marked_03.png" x="641" y="38" w="254" h="40"/>
+    <sprite n="link_effect_fire_marked_04.png" x="953" y="38" w="252" h="42"/>
+    <sprite n="link_effect_fire_marked_05.png" x="222" y="84" w="252" h="49"/>
+    <sprite n="link_effect_fire_marked_06.png" x="121" y="144" w="252" h="60"/>
+    <sprite n="link_effect_fire_marked_07.png" x="1068" y="207" w="252" h="71"/>
+    <sprite n="link_effect_fire_marked_08.png" x="1320" y="207" w="250" h="71"/>
+    <sprite n="link_effect_fire_marked_09.png" x="1570" y="207" w="249" h="71"/>
+    <sprite n="link_effect_fire_marked_10.png" x="0" y="278" w="249" h="71"/>
+    <sprite n="link_effect_fire_marked_11.png" x="1575" y="278" w="249" h="82"/>
+    <sprite n="link_effect_fire_marked_12.png" x="0" y="360" w="250" h="83"/>
+    <sprite n="link_effect_fire_marked_13.png" x="250" y="360" w="249" h="83"/>
+    <sprite n="link_effect_fire_marked_14.png" x="249" y="278" w="247" h="71"/>
+    <sprite n="link_effect_fire_marked_15.png" x="1213" y="144" w="240" h="62"/>
+    <sprite n="link_effect_fire_marked_16.png" x="706" y="84" w="238" h="52"/>
+    <sprite n="link_effect_fire_marked_17.png" x="944" y="84" w="233" h="52"/>
+    <sprite n="link_effect_fire_marked_18.png" x="474" y="84" w="232" h="50"/>
+    <sprite n="link_effect_fire_marked_19.png" x="0" y="84" w="222" h="47"/>
+    <sprite n="link_effect_fire_marked_20.png" x="311" y="38" w="218" h="39"/>
+    <sprite n="link_effect_frost_marked_01.png" x="1205" y="38" w="255" h="45"/>
+    <sprite n="link_effect_frost_marked_02.png" x="574" y="278" w="255" h="75"/>
+    <sprite n="link_effect_frost_marked_03.png" x="1063" y="278" w="256" h="81"/>
+    <sprite n="link_effect_frost_marked_04.png" x="1319" y="278" w="256" h="81"/>
+    <sprite n="link_effect_frost_marked_05.png" x="583" y="360" w="255" h="87"/>
+    <sprite n="link_effect_frost_marked_06.png" x="1309" y="454" w="256" h="100"/>
+    <sprite n="link_effect_frost_marked_07.png" x="1671" y="454" w="256" h="106"/>
+    <sprite n="link_effect_frost_marked_08.png" x="600" y="454" w="256" h="99"/>
+    <sprite n="link_effect_frost_marked_09.png" x="1432" y="360" w="254" h="93"/>
+    <sprite n="link_effect_frost_marked_10.png" x="1088" y="360" w="252" h="90"/>
+    <sprite n="link_effect_frost_marked_11.png" x="856" y="454" w="253" h="99"/>
+    <sprite n="link_effect_frost_marked_12.png" x="0" y="454" w="251" h="98"/>
+    <sprite n="link_effect_frost_marked_13.png" x="251" y="454" w="250" h="98"/>
+    <sprite n="link_effect_frost_marked_14.png" x="1686" y="360" w="250" h="94"/>
+    <sprite n="link_effect_frost_marked_15.png" x="838" y="360" w="250" h="88"/>
+    <sprite n="link_effect_frost_marked_16.png" x="818" y="207" w="250" h="70"/>
+    <sprite n="link_effect_frost_marked_17.png" x="829" y="278" w="234" h="80"/>
+    <sprite n="link_effect_frost_marked_18.png" x="580" y="207" w="238" h="68"/>
+    <sprite n="link_effect_frost_marked_19.png" x="360" y="207" w="220" h="64"/>
+    <sprite n="link_effect_frost_marked_20.png" x="1460" y="38" w="216" h="45"/>
+</TextureAtlas>

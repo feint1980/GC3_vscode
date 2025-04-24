@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:2bf05d2d074b6ce553c7c77c1db763d1:b1d5d5e3a54e8cfddf8abdbbf0cdb0b2:e2462e08ceddad8ffab1a3457fa03d77$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="patchouli_test.png" width="1320" height="1503">
+    <sprite n="patchouli_test_01.png" x="834" y="0" w="445" h="495"/>
+    <sprite n="patchouli_test_02.png" x="466" y="991" w="427" h="512"/>
+    <sprite n="patchouli_test_03.png" x="0" y="0" w="417" h="494"/>
+    <sprite n="patchouli_test_04.png" x="893" y="991" w="427" h="512"/>
+    <sprite n="patchouli_test_05.png" x="445" y="495" w="419" h="496"/>
+    <sprite n="patchouli_test_06.png" x="864" y="495" w="419" h="496"/>
+    <sprite n="patchouli_test_07.png" x="0" y="495" w="445" h="495"/>
+    <sprite n="patchouli_test_08.png" x="417" y="0" w="417" h="494"/>
+    <sprite n="patchouli_test_09.png" x="0" y="991" w="466" h="500"/>
+</TextureAtlas>

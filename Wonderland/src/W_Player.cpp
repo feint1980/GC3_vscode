@@ -16,9 +16,19 @@ void W_Player::update(float deltaTime)
 }
 
 
-void W_Player::initCharacter(const std::string & luaFile, lua_State * script)
+void W_Player::initCharacter(const std::string & animationPath, int hpCap, int staminaCap)
 {
-    m_script = script;
-
-    // register lua functions
+    m_animations.init(animationPath);
+    m_animations.playAnimation("idle_down");
+    m_hpCap = hpCap;
+    m_staminaCap = staminaCap;
+    m_hp = m_hpCap;
+    m_stamina = m_staminaCap;
+    m_pos = glm::vec2(0, 0);
 }
+
+// void W_Player::handleInput(Feintgine::InputManager & inputManager)
+// {
+ 
+// }
+

@@ -51,11 +51,11 @@ namespace Feintgine
 
 		void editorUpdate(const glm::vec2 & mousePos);
 
- 		void findAndSetCurrentLayer(const std::string & layerName);
+		void findAndSetCurrentLayer(const std::string & layerName);
 // 
  		void addLayer(Fg_layer * newLayer);
 // 
- 		void saveScene(const std::string & savePath);
+		void saveScene(const std::string & savePath);
 // 
  		void setLayer(Proc_Layer * l1, Proc_Layer * l2);
 // 

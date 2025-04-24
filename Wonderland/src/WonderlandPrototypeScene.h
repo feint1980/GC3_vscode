@@ -27,6 +27,8 @@
 #include <EffectBatch.h>
 #include <SpriteManager.h>
 
+#include "Wonderland_Base.h"
+
 
 class WonderlandPrototypeScene : public Feintgine::IGameScreen
 {
@@ -68,5 +70,9 @@ protected:
     Feintgine::Camera2D m_camera;
     Feintgine::GLSLProgram m_shader;
     Feintgine::SpriteBatch m_spriteBatch;
+
+    Feintgine::LightBatch m_lightBatch;
+
+    Wonderland_Base m_wonderland;
 
 };

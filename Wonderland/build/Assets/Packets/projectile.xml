@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:078dc791658525267b1db52dbd0fbf4a:d5e30fa9dbe102b3b1db9ccae0f815d3:4bb8c1d9a2b0e7c74e5e000f2a31111e$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="projectile.png" width="128" height="393">
+    <sprite n="1_up.png" x="20" y="63" w="16" h="15"/>
+    <sprite n="1_up_uper.png" x="110" y="1" w="11" h="11"/>
+    <sprite n="atomic_blue.png" x="65" y="265" w="62" h="62"/>
+    <sprite n="atomic_green.png" x="1" y="329" w="62" h="62"/>
+    <sprite n="atomic_red.png" x="64" y="201" w="62" h="62"/>
+    <sprite n="atomic_white.png" x="65" y="329" w="61" h="63"/>
+    <sprite n="atomic_yellow.png" x="1" y="265" w="62" h="62"/>
+    <sprite n="bomb.png" x="66" y="63" w="15" h="15"/>
+    <sprite n="bomb_uper.png" x="11" y="1" w="6" h="9"/>
+    <sprite n="bull_medium_green.png" x="44" y="14" w="12" h="12"/>
+    <sprite n="bull_medium_purple.png" x="27" y="1" w="10" h="10"/>
+    <sprite n="bullet_big_green.png" x="34" y="29" w="15" h="14"/>
+    <sprite n="bullet_big_red.png" x="97" y="81" w="16" h="16"/>
+    <sprite n="bullet_big_yellow.png" x="29" y="14" w="13" h="12"/>
+    <sprite n="bullet_medium_blue.png" x="15" y="14" w="12" h="12"/>
+    <sprite n="bullet_medium_purple.png" x="19" y="29" w="13" h="13"/>
+    <sprite n="bullet_medium_red.png" x="72" y="1" w="12" h="10"/>
+    <sprite n="bullet_medium_white.png" x="48" y="1" w="10" h="10"/>
+    <sprite n="bullet_shard_blue.png" x="11" y="99" w="8" h="16"/>
+    <sprite n="bullet_shard_green.png" x="83" y="63" w="8" h="15"/>
+    <sprite n="bullet_shard_orange.png" x="115" y="81" w="8" h="16"/>
+    <sprite n="bullet_shard_white.png" x="1" y="99" w="8" h="16"/>
+    <sprite n="bullet_shard_yellow.png" x="56" y="63" w="8" h="15"/>
+    <sprite n="bullet_small.png" x="1" y="1" w="8" h="8"/>
+    <sprite n="death_anim_1.png" x="20" y="135" w="27" h="28"/>
+    <sprite n="death_anim_2.png" x="1" y="167" w="30" h="30"/>
+    <sprite n="death_anim_3.png" x="49" y="135" w="33" h="30"/>
+    <sprite n="fire_1.png" x="84" y="135" w="26" h="30"/>
+    <sprite n="fire_2.png" x="33" y="167" w="26" h="31"/>
+    <sprite n="fire_3.png" x="1" y="201" w="26" h="32"/>
+    <sprite n="fire_4.png" x="61" y="167" w="24" h="31"/>
+    <sprite n="full_power.png" x="38" y="63" w="16" h="15"/>
+    <sprite n="full_power_uper.png" x="86" y="1" w="8" h="11"/>
+    <sprite n="glow_ball.png" x="29" y="201" w="33" h="32"/>
+    <sprite n="knife_blue.png" x="115" y="99" w="8" h="16"/>
+    <sprite n="knife_cyan.png" x="11" y="117" w="8" h="16"/>
+    <sprite n="knife_green.png" x="1" y="117" w="8" h="16"/>
+    <sprite n="knife_purple.png" x="105" y="99" w="8" h="16"/>
+    <sprite n="knife_red.png" x="95" y="99" w="8" h="16"/>
+    <sprite n="knife_yellow.png" x="49" y="99" w="8" h="16"/>
+    <sprite n="laser_big_blue.png" x="77" y="99" w="16" h="16"/>
+    <sprite n="laser_big_cyan.png" x="59" y="99" w="16" h="16"/>
+    <sprite n="laser_big_green.png" x="33" y="99" w="14" h="16"/>
+    <sprite n="laser_big_orange.png" x="51" y="117" w="12" h="16"/>
+    <sprite n="laser_big_red.png" x="97" y="117" w="16" h="16"/>
+    <sprite n="laser_big_white.png" x="65" y="117" w="16" h="16"/>
+    <sprite n="laser_big_yellow.png" x="35" y="117" w="14" h="16"/>
+    <sprite n="laser_effect_green.png" x="83" y="117" w="12" h="16"/>
+    <sprite n="laser_purple_1.png" x="115" y="117" w="12" h="16"/>
+    <sprite n="laser_purple_2.png" x="21" y="117" w="12" h="16"/>
+    <sprite n="laser_small_blue.png" x="81" y="81" w="14" h="16"/>
+    <sprite n="laser_small_cyan.png" x="107" y="63" w="14" h="16"/>
+    <sprite n="laser_small_green.png" x="15" y="81" w="12" h="16"/>
+    <sprite n="laser_small_red.png" x="1" y="81" w="12" h="16"/>
+    <sprite n="laser_small_white.png" x="21" y="99" w="10" h="16"/>
+    <sprite n="laser_small_yellow.png" x="93" y="63" w="12" h="16"/>
+    <sprite n="particle_blue_1.png" x="68" y="29" w="16" h="14"/>
+    <sprite n="particle_blue_2.png" x="19" y="46" w="16" h="15"/>
+    <sprite n="particle_blue_3.png" x="1" y="46" w="16" h="15"/>
+    <sprite n="particle_blue_4.png" x="104" y="29" w="15" h="15"/>
+    <sprite n="particle_green_1.png" x="86" y="29" w="16" h="14"/>
+    <sprite n="particle_green_2.png" x="73" y="46" w="16" h="15"/>
+    <sprite n="particle_green_3.png" x="109" y="46" w="15" h="15"/>
+    <sprite n="particle_green_4.png" x="1" y="63" w="17" h="15"/>
+    <sprite n="particle_red_1.png" x="1" y="135" w="17" h="19"/>
+    <sprite n="particle_red_2.png" x="46" y="81" w="16" h="16"/>
+    <sprite n="particle_red_3.png" x="91" y="46" w="16" h="15"/>
+    <sprite n="particle_red_4.png" x="37" y="46" w="16" h="15"/>
+    <sprite n="particle_white_1.png" x="76" y="14" w="17" h="13"/>
+    <sprite n="particle_white_2.png" x="58" y="14" w="16" h="13"/>
+    <sprite n="particle_white_3.png" x="95" y="14" w="16" h="13"/>
+    <sprite n="particle_white_4.png" x="1" y="29" w="16" h="13"/>
+    <sprite n="power_big.png" x="55" y="46" w="16" h="15"/>
+    <sprite n="power_small.png" x="96" y="1" w="12" h="11"/>
+    <sprite n="power_uper.png" x="39" y="1" w="7" h="10"/>
+    <sprite n="score.png" x="1" y="14" w="12" h="11"/>
+    <sprite n="score_uper.png" x="19" y="1" w="6" h="9"/>
+    <sprite n="star_effect.png" x="60" y="1" w="10" h="10"/>
+    <sprite n="vortex_effect.png" x="87" y="167" w="39" h="32"/>
+    <sprite n="window_frame_effect_1.png" x="64" y="81" w="15" h="16"/>
+    <sprite n="window_frame_effect_2.png" x="29" y="81" w="15" h="16"/>
+    <sprite n="window_frame_effect_3.png" x="51" y="29" w="15" h="14"/>
+</TextureAtlas>

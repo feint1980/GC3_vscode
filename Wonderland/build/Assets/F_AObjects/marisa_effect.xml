@@ -1,0 +1,61 @@
+<F_AObj name="marisa_effect">
+	<animations>
+		<animation name="common_1">
+			<anims>
+				<anim name="marisa_effects/bulletAa000.png" time="2.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="marisa_effects/bulletAa001.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa002.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa003.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa004.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa005.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa006.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa007.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa008.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa009.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa010.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa011.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa012.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa013.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa014.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa015.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa016.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa017.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa018.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa019.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa020.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa021.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa022.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa023.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa024.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa025.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa026.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa027.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa028.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletAa029.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="common_1_destroy">
+			<anims>
+				<anim name="marisa_effects/bulletJa000.png" time="2.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="marisa_effects/bulletJb000.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa017.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa023.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa029.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa035.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa041.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa047.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa053.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/spellBulletAa059.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="non_direct_laser">
+			<anims>
+				<anim name="marisa_effects/bulletFb001.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="marisa_effects/bulletGa000.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletGa001.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="marisa_effects/bulletGa002.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

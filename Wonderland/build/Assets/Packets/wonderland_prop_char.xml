@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:4e792dbf6f02dc5a4661098d2ca8a5dd:e867619add82474d53b9e7ca9649a900:025ef2193ca90bc6ef4fdad346a074bd$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="wonderland_prop_char.png" width="254" height="221">
+    <sprite n="idle_down_01.png" x="75" y="48" w="26" h="49"/>
+    <sprite n="idle_down_02.png" x="78" y="0" w="28" h="48"/>
+    <sprite n="idle_down_03.png" x="106" y="0" w="28" h="48"/>
+    <sprite n="idle_down_04.png" x="134" y="0" w="26" h="48"/>
+    <sprite n="idle_side_01.png" x="178" y="153" w="53" h="68"/>
+    <sprite n="idle_side_02.png" x="107" y="98" w="41" h="55"/>
+    <sprite n="idle_side_03.png" x="26" y="98" w="44" h="53"/>
+    <sprite n="idle_side_04.png" x="70" y="98" w="37" h="53"/>
+    <sprite n="idle_top_01.png" x="101" y="48" w="26" h="49"/>
+    <sprite n="idle_top_02.png" x="160" y="0" w="28" h="48"/>
+    <sprite n="idle_top_03.png" x="188" y="0" w="28" h="48"/>
+    <sprite n="idle_top_04.png" x="216" y="0" w="26" h="48"/>
+    <sprite n="walk_down_01.png" x="204" y="48" w="25" h="50"/>
+    <sprite n="walk_down_02.png" x="0" y="48" w="25" h="48"/>
+    <sprite n="walk_down_03.png" x="25" y="48" w="25" h="48"/>
+    <sprite n="walk_down_04.png" x="229" y="48" w="25" h="50"/>
+    <sprite n="walk_down_05.png" x="127" y="48" w="25" h="49"/>
+    <sprite n="walk_down_06.png" x="50" y="48" w="25" h="48"/>
+    <sprite n="walk_side_01.png" x="84" y="153" w="53" h="59"/>
+    <sprite n="walk_side_02.png" x="0" y="153" w="44" h="56"/>
+    <sprite n="walk_side_03.png" x="148" y="98" w="41" h="55"/>
+    <sprite n="walk_side_04.png" x="189" y="98" w="45" h="55"/>
+    <sprite n="walk_side_05.png" x="137" y="153" w="41" h="59"/>
+    <sprite n="walk_side_06.png" x="44" y="153" w="40" h="56"/>
+    <sprite n="walk_up_01.png" x="152" y="48" w="26" h="49"/>
+    <sprite n="walk_up_02.png" x="26" y="0" w="26" h="47"/>
+    <sprite n="walk_up_03.png" x="178" y="48" w="26" h="49"/>
+    <sprite n="walk_up_04.png" x="0" y="98" w="26" h="50"/>
+    <sprite n="walk_up_05.png" x="0" y="0" w="26" h="46"/>
+    <sprite n="walk_up_06.png" x="52" y="0" w="26" h="47"/>
+</TextureAtlas>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:bfda2ffff6c87b03f4ccc80797773866:f6ad91c43b23ed3551bf823d84eed446:1b9c1acc0dee7339aa75149362327e7c$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="amulet_effect.png" width="854" height="465">
+    <sprite n="amulet_1.png" x="0" y="95" w="202" h="370"/>
+    <sprite n="amulet_1_small.png" x="0" y="0" w="40" h="74"/>
+    <sprite n="amulet_1_small_2.png" x="40" y="0" w="40" h="72"/>
+    <sprite n="amulet_1_small_3.png" x="80" y="0" w="40" h="72"/>
+    <sprite n="amulet_1_small_4.png" x="120" y="0" w="40" h="72"/>
+    <sprite n="amulet_2.png" x="202" y="95" w="202" h="370"/>
+    <sprite n="amulet_2_small.png" x="160" y="0" w="40" h="74"/>
+    <sprite n="amulet_vn.png" x="404" y="95" w="202" h="369"/>
+    <sprite n="amulet_vn_small.png" x="200" y="0" w="40" h="74"/>
+    <sprite n="amulet_vn_v2.png" x="606" y="95" w="202" h="369"/>
+    <sprite n="amulet_vn_v2_small.png" x="240" y="0" w="40" h="74"/>
+    <sprite n="effect_disable_unused.png" x="755" y="0" w="99" h="93"/>
+    <sprite n="effect_disabled_phong.png" x="372" y="0" w="93" h="95"/>
+    <sprite n="effect_disabled_prisoned.png" x="561" y="0" w="97" h="92"/>
+    <sprite n="effect_max_cuc.png" x="658" y="0" w="97" h="85"/>
+    <sprite n="effect_power_cuong.png" x="280" y="0" w="92" h="83"/>
+    <sprite n="effect_power_up_cuong_hoa.png" x="465" y="0" w="96" h="83"/>
+</TextureAtlas>

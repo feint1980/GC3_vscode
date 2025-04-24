@@ -1,0 +1,23 @@
+<F_AObj name="reimu_own_2">
+	<animations>
+		<animation name="idle">
+			<anims>
+				<anim name="reimu_own_2/reumu_01.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="reimu_own_2/reumu_02.png" time="4.00" offset_x="-4.00ÔR" offset_y="-1.00ÔR"/>
+				<anim name="reimu_own_2/reumu_03.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_own_2/reumu_04.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_own_2/reumu_05.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_own_2/reumu_06.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="left">
+			<anims>
+				<anim name="reimu_own_2/reumu_05.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="reimu_own_2/reumu_06.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="/" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="/" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

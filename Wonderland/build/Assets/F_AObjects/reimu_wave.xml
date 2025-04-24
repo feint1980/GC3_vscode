@@ -1,0 +1,23 @@
+<F_AObj name="reimu_wave">
+	<animations>
+		<animation name="default">
+			<anims>
+				<anim name="reimu_projectile/wave_01.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="reimu_projectile/wave_02.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_projectile/wave_03.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="destroy">
+			<anims>
+				<anim name="reimu_projectile/wave_04.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="reimu_projectile/wave_05.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_projectile/wave_07.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_projectile/wave_08.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_projectile/wave_09.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_projectile/wave_10.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_projectile/wave_11.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

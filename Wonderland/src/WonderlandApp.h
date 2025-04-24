@@ -3,6 +3,7 @@
 
 #include <IMainGame.h>
 #include "Wonderland_MainMenu.h"
+#include "WonderlandPrototypeScene.h"
 
 
 
@@ -19,6 +20,7 @@ public:
 private:
 
     std::unique_ptr<Wonderland_MainMenu> m_mainMenu = nullptr;
+    std::unique_ptr<WonderlandPrototypeScene> m_prototypeScene = nullptr;
 
 };
 

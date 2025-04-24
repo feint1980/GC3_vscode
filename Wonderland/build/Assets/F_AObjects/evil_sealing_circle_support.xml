@@ -1,0 +1,51 @@
+<F_AObj name="evil_sealing_circle_support">
+	<animations>
+		<animation name="end">
+			<anims>
+				<anim name="evil_sealing_circle/evil_sealing_support_19.png" time="1.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_18.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_17.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_16.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_15.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_14.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_13.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_12.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_11.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_10.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_09.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_08.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_07.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_06.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_05.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_04.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_03.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_02.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_01.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="idle">
+			<anims>
+				<anim name="evil_sealing_circle/evil_sealing_support_01.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_02.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_03.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_04.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_05.png" time="1.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_06.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_07.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_08.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_09.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_10.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_11.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_12.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_13.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_14.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_15.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_16.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_17.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_18.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="evil_sealing_circle/evil_sealing_support_19.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

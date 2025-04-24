@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:bfef9caee084d2cca50feedec302180e:e4a547f75fada77eeff233db939db681:9969ece217d3f69a7729182db783567a$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="marisa_test.png" width="1907" height="1461">
+    <sprite n="marisa_test_01.png" x="0" y="0" w="492" h="500"/>
+    <sprite n="marisa_test_02.png" x="492" y="0" w="492" h="500"/>
+    <sprite n="marisa_test_03.png" x="984" y="0" w="431" h="496"/>
+    <sprite n="marisa_test_04.png" x="1415" y="0" w="492" h="500"/>
+    <sprite n="marisa_test_05.png" x="0" y="500" w="431" h="496"/>
+    <sprite n="marisa_test_06.png" x="431" y="500" w="431" h="496"/>
+    <sprite n="marisa_test_07.png" x="862" y="500" w="492" h="500"/>
+    <sprite n="marisa_test_08.png" x="1354" y="500" w="492" h="500"/>
+    <sprite n="marisa_test_09.png" x="0" y="1000" w="383" h="461"/>
+</TextureAtlas>

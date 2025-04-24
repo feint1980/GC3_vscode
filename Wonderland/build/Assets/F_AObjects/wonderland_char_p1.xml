@@ -1,0 +1,77 @@
+<F_AObj name="wonderland_char_p1">
+	<animations>
+		<animation name="idle_down">
+			<anims>
+				<anim name="wonderland_prop_char/idle_down_01.png" time="8.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="wonderland_prop_char/idle_down_02.png" time="8.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="wonderland_prop_char/idle_down_03.png" time="8.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="wonderland_prop_char/idle_down_04.png" time="8.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="idle_side_left">
+			<anims>
+				<anim name="wonderland_prop_char/idle_side_01.png" time="8.00" offset_x="2.00" offset_y="1.20" loop="1" inverted="1"/>
+				<anim name="wonderland_prop_char/idle_side_02.png" time="8.00" offset_x="0.00" offset_y="-0.40" inverted="1"/>
+				<anim name="wonderland_prop_char/idle_side_03.png" time="8.00" offset_x="-2.50" offset_y="-2.30" inverted="1"/>
+				<anim name="wonderland_prop_char/idle_side_04.png" time="8.00" offset_x="-1.00" offset_y="-2.30" inverted="1"/>
+			</anims>
+		</animation>
+		<animation name="idle_side_right">
+			<anims>
+				<anim name="wonderland_prop_char/idle_side_01.png" time="8.00" offset_x="-2.00" offset_y="1.20" loop="1"/>
+				<anim name="wonderland_prop_char/idle_side_02.png" time="8.00" offset_x="0.00" offset_y="-0.40"/>
+				<anim name="wonderland_prop_char/idle_side_03.png" time="8.00" offset_x="2.50" offset_y="-2.30"/>
+				<anim name="wonderland_prop_char/idle_side_04.png" time="8.00" offset_x="1.00" offset_y="-2.30"/>
+			</anims>
+		</animation>
+		<animation name="idle_up">
+			<anims>
+				<anim name="wonderland_prop_char/idle_top_01.png" time="8.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="wonderland_prop_char/idle_top_02.png" time="8.00" offset_x="0.00" offset_y="-0.60"/>
+				<anim name="wonderland_prop_char/idle_top_03.png" time="8.00" offset_x="0.00" offset_y="-0.60"/>
+				<anim name="wonderland_prop_char/idle_top_04.png" time="8.00" offset_x="0.00" offset_y="-0.60"/>
+			</anims>
+		</animation>
+		<animation name="walk_down">
+			<anims>
+				<anim name="wonderland_prop_char/walk_down_01.png" time="8.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="wonderland_prop_char/walk_down_02.png" time="8.00" offset_x="0.00" offset_y="-1.00"/>
+				<anim name="wonderland_prop_char/walk_down_03.png" time="8.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="wonderland_prop_char/walk_down_04.png" time="8.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="wonderland_prop_char/walk_down_05.png" time="8.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="wonderland_prop_char/walk_down_06.png" time="8.00" offset_x="0.00" offset_y="-1.00"/>
+			</anims>
+		</animation>
+		<animation name="walk_side_left">
+			<anims>
+				<anim name="wonderland_prop_char/walk_side_01.png" time="8.00" offset_x="0.00" offset_y="-1.00" loop="1" inverted="1"/>
+				<anim name="wonderland_prop_char/walk_side_02.png" time="8.00" offset_x="-2.00" offset_y="1.00" inverted="1"/>
+				<anim name="wonderland_prop_char/walk_side_03.png" time="8.00" offset_x="-2.00" offset_y="1.00" inverted="1"/>
+				<anim name="wonderland_prop_char/walk_side_04.png" time="8.00" offset_x="-1.00" offset_y="0.00" inverted="1"/>
+				<anim name="wonderland_prop_char/walk_side_05.png" time="8.00" offset_x="-4.00" offset_y="-3.00" inverted="1"/>
+				<anim name="wonderland_prop_char/walk_side_06.png" time="8.00" offset_x="-1.00" offset_y="0.00" inverted="1"/>
+			</anims>
+		</animation>
+		<animation name="walk_side_right">
+			<anims>
+				<anim name="wonderland_prop_char/walk_side_01.png" time="8.00" offset_x="0.00" offset_y="-1.00" loop="1"/>
+				<anim name="wonderland_prop_char/walk_side_02.png" time="8.00" offset_x="2.00" offset_y="1.00"/>
+				<anim name="wonderland_prop_char/walk_side_03.png" time="8.00" offset_x="2.00" offset_y="1.00"/>
+				<anim name="wonderland_prop_char/walk_side_04.png" time="8.00" offset_x="1.00" offset_y="0.00"/>
+				<anim name="wonderland_prop_char/walk_side_05.png" time="8.00" offset_x="4.00" offset_y="-3.00"/>
+				<anim name="wonderland_prop_char/walk_side_06.png" time="8.00" offset_x="1.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="walk_up">
+			<anims>
+				<anim name="wonderland_prop_char/walk_up_01.png" time="8.00" offset_x="0.00" offset_y="1.00" loop="1"/>
+				<anim name="wonderland_prop_char/walk_up_02.png" time="8.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="wonderland_prop_char/walk_up_03.png" time="8.00" offset_x="1.00" offset_y="1.00"/>
+				<anim name="wonderland_prop_char/walk_up_04.png" time="8.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="wonderland_prop_char/walk_up_05.png" time="8.00" offset_x="-1.00" offset_y="0.00"/>
+				<anim name="wonderland_prop_char/walk_up_06.png" time="8.00" offset_x="-1.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

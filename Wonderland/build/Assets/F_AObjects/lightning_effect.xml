@@ -1,0 +1,184 @@
+<F_AObj name="lightning_effect">
+	<animations>
+		<animation name="breath_fire">
+			<anims>
+				<anim name="lightning_effect/breath_fire_marked_01.png" time="2.00" offset_x="-14.5†á" offset_y="-3.00†á" loop="1"/>
+				<anim name="lightning_effect/breath_fire_marked_02.png" time="2.00" offset_x="0.50" offset_y="0.00"/>
+				<anim name="lightning_effect/breath_fire_marked_03.png" time="2.00" offset_x="8.00" offset_y="7.00"/>
+				<anim name="lightning_effect/breath_fire_marked_04.png" time="2.00" offset_x="10.50†á" offset_y="12.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_05.png" time="2.00" offset_x="11.50†á" offset_y="15.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_06.png" time="2.00" offset_x="11.50†á" offset_y="15.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_07.png" time="2.00" offset_x="12.00" offset_y="15.00"/>
+				<anim name="lightning_effect/breath_fire_marked_08.png" time="2.00" offset_x="11.50†á" offset_y="15.00"/>
+				<anim name="lightning_effect/breath_fire_marked_09.png" time="2.00" offset_x="11.00†á" offset_y="16.00"/>
+				<anim name="lightning_effect/breath_fire_marked_10.png" time="2.00" offset_x="13.00" offset_y="16.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_11.png" time="2.00" offset_x="13.00†á" offset_y="18.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_12.png" time="2.00" offset_x="12.00†á" offset_y="17.00"/>
+				<anim name="lightning_effect/breath_fire_marked_13.png" time="2.00" offset_x="12.00†á" offset_y="17.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_14.png" time="2.00" offset_x="12.00†á" offset_y="17.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_15.png" time="2.00" offset_x="12.00†á" offset_y="17.00"/>
+				<anim name="lightning_effect/breath_fire_marked_16.png" time="2.00" offset_x="10.00†á" offset_y="15.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_17.png" time="2.00" offset_x="10.00†á" offset_y="15.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_18.png" time="2.00" offset_x="10.00†á" offset_y="15.00"/>
+				<anim name="lightning_effect/breath_fire_marked_19.png" time="2.00" offset_x="10.00†á" offset_y="15.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_20.png" time="2.00" offset_x="10.00†á" offset_y="15.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_21.png" time="2.00" offset_x="10.00†á" offset_y="15.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_22.png" time="2.00" offset_x="10.00" offset_y="15.00†á"/>
+				<anim name="lightning_effect/breath_fire_marked_23.png" time="2.00" offset_x="10.00†á" offset_y="15.00†á"/>
+			</anims>
+		</animation>
+		<animation name="effect_1">
+			<anims>
+				<anim name="lightning_effect/lightning_ball_2_marked_01.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_02.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_03.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_04.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_05.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_06.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_07.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_08.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_09.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_10.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_11.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_12.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_13.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_14.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_15.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_17.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_18.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_19.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_21.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_22.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_23.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_24.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_16.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_2_marked_20.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="effect_2">
+			<anims>
+				<anim name="lightning_effect/lightning_ball_masked_01.png" time="2.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="lightning_effect/lightning_ball_masked_02.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_masked_03.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_masked_04.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_masked_05.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_masked_06.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_masked_07.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_masked_08.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_masked_09.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_masked_10.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_masked_11.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_ball_masked_12.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="effect_3">
+			<anims>
+				<anim name="lightning_effect/lightning_line_marked_01.png" time="2.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="lightning_effect/lightning_line_marked_02.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_line_marked_03.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_line_marked_04.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_line_marked_05.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_line_marked_06.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_line_marked_07.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_line_marked_08.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_line_marked_09.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_line_marked_10.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_line_marked_11.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_line_marked_12.png" time="2.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="effect_4">
+			<anims>
+				<anim name="lightning_effect/lightning_spark_marked_01.png" time="3.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="lightning_effect/lightning_spark_marked_02.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_03.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_04.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_05.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_06.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_07.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_08.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_09.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_10.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_11.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_12.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_13.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_14.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_15.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_16.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_17.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_18.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_19.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_20.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_21.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_22.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_23.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_24.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_25.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_26.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_27.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_28.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_29.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/lightning_spark_marked_30.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="fire_link">
+			<anims>
+				<anim name="lightning_effect/link_effect_fire_marked_01.png" time="2.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="lightning_effect/link_effect_fire_marked_02.png" time="2.00" offset_x="-3.00" offset_y="0.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_03.png" time="2.00" offset_x="-1.00" offset_y="-0.50†á"/>
+				<anim name="lightning_effect/link_effect_fire_marked_04.png" time="2.00" offset_x="-2.00†á" offset_y="0.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_05.png" time="2.00" offset_x="-2.00†á" offset_y="-1.00†á"/>
+				<anim name="lightning_effect/link_effect_fire_marked_06.png" time="2.00" offset_x="-2.00" offset_y="0.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_07.png" time="2.00" offset_x="-2.00†á" offset_y="-1.00†á"/>
+				<anim name="lightning_effect/link_effect_fire_marked_08.png" time="2.00" offset_x="-3.00†á" offset_y="-1.00†á"/>
+				<anim name="lightning_effect/link_effect_fire_marked_09.png" time="2.00" offset_x="-3.00†á" offset_y="-1.00†á"/>
+				<anim name="lightning_effect/link_effect_fire_marked_10.png" time="2.00" offset_x="-3.00†á" offset_y="-2.00†á"/>
+				<anim name="lightning_effect/link_effect_fire_marked_11.png" time="2.00" offset_x="-2.50" offset_y="-3.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_12.png" time="2.00" offset_x="-2.00" offset_y="-1.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_13.png" time="2.00" offset_x="-1.00" offset_y="-1.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_14.png" time="2.00" offset_x="-4.00†á" offset_y="0.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_15.png" time="2.00" offset_x="-6.00†á" offset_y="0.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_16.png" time="2.00" offset_x="-6.00" offset_y="0.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_17.png" time="2.00" offset_x="-9.00" offset_y="0.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_18.png" time="2.00" offset_x="-9.00†á" offset_y="0.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_19.png" time="2.00" offset_x="-13.9†á" offset_y="0.00"/>
+				<anim name="lightning_effect/link_effect_fire_marked_20.png" time="2.00" offset_x="-16.0†á" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="fire_spark">
+			<anims>
+				<anim name="lightning_effect/fire_spark_marked_01.png" time="3.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+				<anim name="lightning_effect/fire_spark_marked_02.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/fire_spark_marked_03.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/fire_spark_marked_04.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/fire_spark_marked_05.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="lightning_effect/fire_spark_marked_06.png" time="3.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+		<animation name="frost_link">
+			<anims>
+				<anim name="lightning_effect/link_effect_frost_marked_01.png" time="2.00" offset_x="-3.00" offset_y="-15.0†á" loop="1"/>
+				<anim name="lightning_effect/link_effect_frost_marked_02.png" time="2.00" offset_x="-3.00" offset_y="0.00"/>
+				<anim name="lightning_effect/link_effect_frost_marked_03.png" time="2.00" offset_x="-3.00†á" offset_y="-2.00†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_04.png" time="2.00" offset_x="-3.00†á" offset_y="-3.00†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_05.png" time="2.00" offset_x="-3.00†á" offset_y="-6.00†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_06.png" time="2.00" offset_x="-2.00" offset_y="-7.00"/>
+				<anim name="lightning_effect/link_effect_frost_marked_07.png" time="2.00" offset_x="-2.00" offset_y="-6.00"/>
+				<anim name="lightning_effect/link_effect_frost_marked_08.png" time="2.00" offset_x="-2.00†á" offset_y="-9.00†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_09.png" time="2.00" offset_x="-3.00" offset_y="-12.0"/>
+				<anim name="lightning_effect/link_effect_frost_marked_10.png" time="2.00" offset_x="-4.00†á" offset_y="-14.0"/>
+				<anim name="lightning_effect/link_effect_frost_marked_11.png" time="2.00" offset_x="-3.50†á" offset_y="-9.00†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_12.png" time="2.00" offset_x="-5.00†á" offset_y="-10.0"/>
+				<anim name="lightning_effect/link_effect_frost_marked_13.png" time="2.00" offset_x="-5.00†á" offset_y="-10.0†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_14.png" time="2.00" offset_x="-4.00†á" offset_y="-11.0†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_15.png" time="2.00" offset_x="-4.00†á" offset_y="-12.0†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_16.png" time="2.00" offset_x="-4.00†á" offset_y="-14.0†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_17.png" time="2.00" offset_x="-12.0†á" offset_y="-8.00†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_18.png" time="2.00" offset_x="-10.0†á" offset_y="-14.0†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_19.png" time="2.00" offset_x="-18.9†á" offset_y="-14.0†á"/>
+				<anim name="lightning_effect/link_effect_frost_marked_20.png" time="2.00" offset_x="-21.0†á" offset_y="-14.0"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

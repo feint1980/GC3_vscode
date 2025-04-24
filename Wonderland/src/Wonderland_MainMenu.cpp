@@ -266,7 +266,7 @@ void Wonderland_MainMenu::initGUI()
     //m_script = m_guiScriptingManager.getLuaScript();
     //luaL_openlibs(m_script);
 
-    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/MainMenu/mainMenu.lua")))
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/Wonderland/MainMenu/mainMenu.lua")))
     {
         std::cout << "Run loginScene script OK \n";
     }

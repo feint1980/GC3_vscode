@@ -1,0 +1,35 @@
+<F_AObj name="komachi_boss_t">
+	<animations>
+		<animation name="cast">
+			<anims>
+				<anim name="t_komachi/1skmc1.png" time="5.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+		<animation name="charge_end">
+			<anims>
+				<anim name="t_komachi/1skmc1.png" time="5.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+		<animation name="charging">
+			<anims>
+				<anim name="t_komachi/1skmc1.png" time="5.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+		<animation name="idle">
+			<anims>
+				<anim name="t_komachi/2skmc1.png" time="5.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+		<animation name="left">
+			<anims>
+				<anim name="t_komachi/1skmc1.png" time="5.00" offset_x="0.00" offset_y="0.00" loop="1" inverted="1"/>
+			</anims>
+		</animation>
+		<animation name="right">
+			<anims>
+				<anim name="t_komachi/1skmc1.png" time="5.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

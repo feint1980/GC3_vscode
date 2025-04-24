@@ -1,0 +1,18 @@
+<F_AObj name="reimu_normal_projectile">
+	<animations>
+		<animation name="default">
+			<anims>
+				<anim name="reimu_projectile/reimu_default_1.png" time="4.00" offset_x="-16.0D—" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+		<animation name="destroy">
+			<anims>
+				<anim name="reimu_projectile/reimu_default_impact_1.png" time="4.00" offset_x="0.50" offset_y="0.00" loop="1"/>
+				<anim name="reimu_projectile/reimu_default_impact_2.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_projectile/reimu_default_impact_3.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="reimu_projectile/reimu_default_impact_4.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+

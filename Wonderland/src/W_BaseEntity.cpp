@@ -27,7 +27,7 @@ void W_BaseEntity::update(float deltaTime)
     m_animations.update(deltaTime);
 }
 
-void W_BaseEntity::playAnimation(const std::string & animationName, int time = -1)
+void W_BaseEntity::playAnimation(const std::string & animationName, int time /*= -1*/)
 {
     m_animations.playAnimation(animationName, time);
 }

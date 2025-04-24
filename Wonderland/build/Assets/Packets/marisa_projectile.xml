@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:e315468161819a7d914485a721efdc05:f91f7cd76593d8eb03fefd5528ee17b9:611c0b41789a7b37d39eea1bed3416d5$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="marisa_projectile.png" width="256" height="472">
+    <sprite n="Marisa_accessory.png" x="44" y="0" w="14" h="14"/>
+    <sprite n="marisa_big_rocket_1.png" x="177" y="50" w="60" h="19"/>
+    <sprite n="marisa_big_rocket_2.png" x="118" y="50" w="59" h="19"/>
+    <sprite n="Marisa_laser_big.png" x="0" y="96" w="256" h="22"/>
+    <sprite n="Marisa_laser_small.png" x="0" y="82" w="256" h="14"/>
+    <sprite n="Marisa_lotus.png" x="0" y="118" w="122" h="122"/>
+    <sprite n="Marisa_master_spark.png" x="0" y="344" w="254" h="128"/>
+    <sprite n="Marisa_master_spark_wave.png" x="122" y="118" w="84" h="226"/>
+    <sprite n="Marisa_projectile__special_green_1.png" x="137" y="0" w="32" h="14"/>
+    <sprite n="Marisa_projectile__special_green_2.png" x="111" y="0" w="26" h="16"/>
+    <sprite n="Marisa_projectile__special_green_3.png" x="0" y="0" w="14" h="9"/>
+    <sprite n="Marisa_projectile_green_impact_1.png" x="14" y="0" w="15" h="9"/>
+    <sprite n="Marisa_projectile_green_impact_2.png" x="73" y="0" w="19" h="15"/>
+    <sprite n="Marisa_projectile_green_impact_3.png" x="169" y="0" w="25" h="22"/>
+    <sprite n="Marisa_projectile_green_impact_4.png" x="0" y="22" w="26" h="28"/>
+    <sprite n="Marisa_projectile_green_impact_5.png" x="149" y="22" w="28" h="28"/>
+    <sprite n="Marisa_projectile_green_impact_6.png" x="177" y="22" w="28" h="28"/>
+    <sprite n="Marisa_projectile_green_impact_7.png" x="28" y="50" w="29" h="30"/>
+    <sprite n="Marisa_projectile_red_impact_1.png" x="29" y="0" w="15" h="9"/>
+    <sprite n="Marisa_projectile_red_impact_2.png" x="92" y="0" w="19" h="15"/>
+    <sprite n="Marisa_projectile_red_impact_3.png" x="194" y="0" w="25" h="22"/>
+    <sprite n="Marisa_projectile_red_impact_4.png" x="26" y="22" w="26" h="28"/>
+    <sprite n="Marisa_projectile_red_impact_5.png" x="205" y="22" w="28" h="28"/>
+    <sprite n="Marisa_projectile_red_impact_6.png" x="0" y="50" w="28" h="28"/>
+    <sprite n="Marisa_projectile_red_impact_7.png" x="57" y="50" w="29" h="30"/>
+    <sprite n="Marisa_projectile_star_1.png" x="58" y="0" w="15" h="16"/>
+    <sprite n="Marisa_projectile_star_2.png" x="86" y="50" w="32" h="32"/>
+    <sprite n="Marisa_rocket_explode.png" x="219" y="0" w="29" h="22"/>
+    <sprite n="marisa_small_rocket_1.png" x="52" y="22" w="49" h="15"/>
+    <sprite n="marisa_small_rocket_2.png" x="101" y="22" w="48" h="16"/>
+</TextureAtlas>

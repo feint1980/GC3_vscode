@@ -25,6 +25,9 @@ void WonderlandPrototypeScene::initShader()
 	m_shader.addAttribute("vertexColor");
 	m_shader.addAttribute("vertexUV");
 	m_shader.linkShaders();
+
+	m_lightBatch.initShader(&m_shader);
+
 }
 void WonderlandPrototypeScene::onEntry()
 {    
@@ -39,6 +42,8 @@ void WonderlandPrototypeScene::onEntry()
     
     float tempScale = 0.85f;
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	m_wonderland.init(&m_camera);
 
 	// m_battleScene.initTGUI(m_window->getWindow());
 	// m_battleScene.init(&m_camera);
@@ -93,7 +98,7 @@ void WonderlandPrototypeScene::handleInput(Feintgine::InputManager & inputManage
 	{
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
 	}
-	// m_battleScene.handleInput(inputManager);
+	m_wonderland.handleInput(inputManager);
 }
 
 void WonderlandPrototypeScene::draw()
@@ -118,9 +123,16 @@ void WonderlandPrototypeScene::draw()
 	GLint pUniform = m_shader.getUniformLocation("P");
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
+
+	m_lightBatch.begin();
+
+	m_wonderland.drawLight(m_lightBatch);
+
+	m_lightBatch.renderLight();
+
 	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
 
-	// m_battleScene.draw(m_spriteBatch);
+	m_wonderland.draw(m_spriteBatch);
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();

@@ -1,0 +1,34 @@
+<F_AObj name="shield">
+	<animations>
+		<animation name="default">
+			<anims>
+				<anim name="shield/shield_03.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+		<animation name="turn_default">
+			<anims>
+				<anim name="shield/shield_01.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="shield/shield_02.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+		<animation name="turn_default_invert">
+			<anims>
+				<anim name="shield/shield_01.png" time="4.00" offset_x="0.00" offset_y="0.00" inverted="1"/>
+				<anim name="shield/shield_02.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1" inverted="1"/>
+			</anims>
+		</animation>
+		<animation name="turn_side">
+			<anims>
+				<anim name="shield/shield_01.png" time="4.00" offset_x="0.00" offset_y="0.00"/>
+				<anim name="shield/shield_03.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+		<animation name="turn_side_invert">
+			<anims>
+				<anim name="shield/shield_01.png" time="4.00" offset_x="0.00" offset_y="0.00" inverted="1"/>
+				<anim name="shield/shield_03.png" time="4.00" offset_x="0.00" offset_y="0.00" loop="1"/>
+			</anims>
+		</animation>
+	</animations>
+</F_AObj>
+
