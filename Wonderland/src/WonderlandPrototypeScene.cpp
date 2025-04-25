@@ -78,6 +78,7 @@ void WonderlandPrototypeScene::onExit()
 void WonderlandPrototypeScene::update(float deltaTime)
 {
     m_camera.update();
+	m_wonderland.update(deltaTime);
 	// m_battleScene.update(deltaTime);
 }
 

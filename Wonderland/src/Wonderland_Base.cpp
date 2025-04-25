@@ -14,6 +14,60 @@ int lua_LoadScene(lua_State * L)
         std::string scenePath= lua_tostring(L, 2);
 
         host->loadScene(scenePath);
+        return 0;
+    }
+}
+
+int lua_SetAtrribute(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        W_Player * player = (W_Player *)lua_touserdata(L, 1);
+        std::string attributeName = lua_tostring(L, 2);
+        float value = (float)lua_tonumber(L, 3);
+        player->setAttribute(attributeName, value);
+        return 0;
+    }
+}
+
+int lua_SetMovement(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SetMovement) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        W_Player * player = (W_Player *)lua_touserdata(L, 1);
+        int flag = lua_tointeger(L, 2);
+        player->setMovement(flag);
+        return 0;   
+    }
+}
+
+int lua_PlayerPlayAnimation(lua_State * L)
+{
+    if(lua_gettop(L) != 3 )
+    {
+        std::cout << "gettop failed (lua_PlayerPlayAnimation) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        W_Player * player = (W_Player *)lua_touserdata(L, 1);
+        std::string animationName = lua_tostring(L, 2);
+        int time = lua_tointeger(L, 3);
+        player->playAnimation(animationName,time);
+        return 0;
     }
 }
 
@@ -31,6 +85,7 @@ int lua_CreatePlayer(lua_State * L)
         std::string animationPath = lua_tostring(L, 2);
         int hpCap = lua_tointeger(L, 3);
         int staminaCap = lua_tointeger(L, 4);
+        std::cout << "debug anim path " << animationPath << "\n"; 
 
         W_Player * player = host->initPlayer(animationPath, hpCap, staminaCap);
         lua_pushlightuserdata(L, player);
@@ -68,9 +123,14 @@ void Wonderland_Base::init(Feintgine::Camera2D * camera)
     luaL_openlibs(m_script);
 
     // register lua function
+    // main
     lua_register(m_script, "cppLoadScene", lua_LoadScene);
-    
     lua_register(m_script, "cppCreatePlayer", lua_CreatePlayer);
+
+    // character specific
+    lua_register(m_script, "cppPlayerPlayAnimation", lua_PlayerPlayAnimation);
+    lua_register(m_script, "cppPlayerSetAttribute", lua_SetAtrribute);
+    lua_register(m_script, "cppPlayerSetMovement", lua_SetMovement);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/Wonderland/Wonderland_Base.lua")))
     {
@@ -154,31 +214,42 @@ void Wonderland_Base::handleInput(Feintgine::InputManager & inputManager)
     // 2 = right
     // 4 = up
     // 8 = down
-    if(inputManager.isKeyPressed(SDLK_LEFT) or inputManager.isKeyDown(SDLK_a))
+    if(inputManager.isKeyDown(SDLK_LEFT) or inputManager.isKeyDown(SDLK_a))
     {
-        signal = 1;
+
+        // add bit 1 to 
+        signal |= 1;
+        // signal = 1;
     }
 
-    if(inputManager.isKeyPressed(SDLK_RIGHT) or inputManager.isKeyDown(SDLK_d))
+    if(inputManager.isKeyDown(SDLK_RIGHT) or inputManager.isKeyDown(SDLK_d))
     {
-        signal = 2;
+        signal |= 2;
     }
 
-    if(inputManager.isKeyPressed(SDLK_UP) or inputManager.isKeyDown(SDLK_w))
+    if(inputManager.isKeyDown(SDLK_UP) or inputManager.isKeyDown(SDLK_w))
     {
-        signal = 4;
+        signal |= 4;
     }
 
-    if(inputManager.isKeyPressed(SDLK_DOWN) or inputManager.isKeyDown(SDLK_s))
+    if(inputManager.isKeyDown(SDLK_DOWN) or inputManager.isKeyDown(SDLK_s))
     {
-        signal = 8;
+        signal |= 8;
     }
 
     if(signal != 0)
     {
         sendSignalToLua(signal);
+        m_endInput = true;
     }
-    
+    else
+    {
+        if(m_endInput)
+        {
+            sendSignalToLua(signal);
+            m_endInput = false;
+        }
+    }
 }
 
 void Wonderland_Base::sendSignalToLua(int signal)

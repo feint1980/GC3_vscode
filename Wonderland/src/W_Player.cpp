@@ -12,9 +12,35 @@ W_Player::~W_Player()
 void W_Player::update(float deltaTime)
 {
     m_animations.update(deltaTime); 
+    // movement input 
+    if(m_movementFlag != 0)
+    {
+        // 1 = left, 2 = right, 4 = up, 8 = down
+        //check if flag has bit 1
+        if(m_movementFlag & 1)
+        {
+            m_pos.x -= m_walkSpeed* deltaTime;
+        }
+        //check if flag has bit 2
+        if(m_movementFlag & 2)
+        {
+            m_pos.x += m_walkSpeed* deltaTime;
+        }
+        //check if flag has bit 4
+        if(m_movementFlag & 4)
+        {
+            m_pos.y += m_walkSpeed* deltaTime;
+        }
+        //check if flag has bit 8
+        if(m_movementFlag & 8)
+        {
+            m_pos.y -= m_walkSpeed* deltaTime;
+        }
+        std::cout << feint_common::Instance()->convertVec2toString(m_pos) << "\n";
+    }
+    m_animations.setPos(m_pos);
     // here
 }
-
 
 void W_Player::initCharacter(const std::string & animationPath, int hpCap, int staminaCap)
 {
@@ -25,10 +51,75 @@ void W_Player::initCharacter(const std::string & animationPath, int hpCap, int s
     m_hp = m_hpCap;
     m_stamina = m_staminaCap;
     m_pos = glm::vec2(0, 0);
+
 }
 
-// void W_Player::handleInput(Feintgine::InputManager & inputManager)
-// {
- 
-// }
+void W_Player::setAttribute(W_PlayerAtt att, float value)
+{
+    switch (att)
+    {
+    case W_PlayerAtt::hp:
+        m_hp = value;
+        break;
+    case W_PlayerAtt::hpCap:
+        m_hpCap = value;
+        break;
+    case W_PlayerAtt::stamina:
+        m_stamina = value;
+        break;
+    case W_PlayerAtt::staminaCap:
+        m_staminaCap = value;
+        break;
+    case W_PlayerAtt::walkSpeed:
+        m_walkSpeed = value;
+        break;
+    case W_PlayerAtt::runSpeedScale:
+        m_runSpeedScale = value;
+        break;
+    default:
+        std::cout << "Unknown attribute set \n";
+        break;
+    }
+}
+
+void W_Player::setAttribute(const std::string & att, float value)
+{
+    setAttribute(getAttribute(att), value);
+}
+
+W_PlayerAtt W_Player::getAttribute(const std::string & att)
+{
+    std::string lowerAtt = att;
+    std::transform(lowerAtt.begin(), lowerAtt.end(), lowerAtt.begin(), [](unsigned char c) { return std::tolower(c); });    
+
+    if (lowerAtt == "hp")
+    {
+        return W_PlayerAtt::hp; 
+    }
+    else if (lowerAtt == "hpcap")
+    {
+        return W_PlayerAtt::hpCap;
+    }
+    else if (lowerAtt == "stamina")
+    {
+        return W_PlayerAtt::stamina;
+    }
+    else if (lowerAtt == "staminacap")
+    {
+        return W_PlayerAtt::staminaCap;
+    }
+    else if (lowerAtt == "walkspeed")
+    {
+        return W_PlayerAtt::walkSpeed;
+    }
+    else if (lowerAtt == "runspeedscale")
+    {
+        return W_PlayerAtt::runSpeedScale;
+    }
+    else
+    {
+        std::cout << "Unknown attribute requested " << att << "\n";
+        return W_PlayerAtt::unknown;
+    }
+}
 

@@ -48,10 +48,5 @@ private:
 
     lua_State * m_script = nullptr;
     Feintgine::Camera2D * m_camera = nullptr;
-
-
-
-
+    bool m_endInput = true;
 };
-
-
