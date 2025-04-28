@@ -17,29 +17,42 @@ void W_Player::update(float deltaTime)
     {
         // 1 = left, 2 = right, 4 = up, 8 = down
         //check if flag has bit 1
+        glm::vec2 moveSpeed = glm::vec2(0, 0);
+        m_movement = 0;
         if(m_movementFlag & 1)
         {
-            m_pos.x -= m_walkSpeed* deltaTime;
+            m_movement |= 1;
+            moveSpeed.x = -m_walkSpeed  ;
         }
         //check if flag has bit 2
         if(m_movementFlag & 2)
         {
-            m_pos.x += m_walkSpeed* deltaTime;
+            m_movement |= 1;
+            moveSpeed.x = m_walkSpeed  ;
         }
         //check if flag has bit 4
         if(m_movementFlag & 4)
         {
-            m_pos.y += m_walkSpeed* deltaTime;
+            m_movement |= 2;
+            moveSpeed.y = m_walkSpeed  ;
         }
         //check if flag has bit 8
         if(m_movementFlag & 8)
         {
-            m_pos.y -= m_walkSpeed* deltaTime;
+            m_movement |= 2;
+            moveSpeed.y = -m_walkSpeed ;
         }
-        std::cout << feint_common::Instance()->convertVec2toString(m_pos) << "\n";
+        if(m_movement & 1 && m_movement & 2)
+        {
+            m_crossScale = 0.75f;
+        }
+        else
+        {
+            m_crossScale = 1.0f;
+        }
+        m_pos += (moveSpeed * m_crossScale) * deltaTime;
     }
     m_animations.setPos(m_pos);
-    // here
 }
 
 void W_Player::initCharacter(const std::string & animationPath, int hpCap, int staminaCap)
@@ -51,7 +64,6 @@ void W_Player::initCharacter(const std::string & animationPath, int hpCap, int s
     m_hp = m_hpCap;
     m_stamina = m_staminaCap;
     m_pos = glm::vec2(0, 0);
-
 }
 
 void W_Player::setAttribute(W_PlayerAtt att, float value)
@@ -122,4 +134,3 @@ W_PlayerAtt W_Player::getAttribute(const std::string & att)
         return W_PlayerAtt::unknown;
     }
 }
-

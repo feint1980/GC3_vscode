@@ -1,0 +1,3 @@
+
+Character_Table = {}
+

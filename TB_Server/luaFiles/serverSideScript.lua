@@ -3,7 +3,7 @@ print("server side script started ...")
 package.path = package.path .. ";../luaFiles/?.lua" 
 
 require "serverWrapper"
-require "global"
+require "SV_global"
 
 --- function SV_DoQuery, clear data before a query
 ---@Description: call a server to do a query
@@ -21,16 +21,12 @@ end
 ---@param paramList table the param list
 function SVI_DoQuerySTMT(host, baseStmt, paramList )
     ClearQuery()
-
     local stmt = SV_CreateSQLSTMT(host,baseStmt)
-
     for i = 1, #paramList do
         -- print( "bind index " .. i)
         SV_BindSQLSTMT(stmt,i,paramList[i])
     end
-
     SV_DoQuerySTMT(host,stmt)
-
     SV_SQLFinalizeStmt(stmt)
 end
 
@@ -189,11 +185,9 @@ end
 -- CommonHandle[PacketIdentifier.ID_NEW_INCOMING_CONNECTION] = function(host,packet)
 
 function AddColData(colName, value)
-
     Query_count = Query_count + 1
     Query_col[Query_count] = colName
     Query_val[Query_count] = value
-
 end
 
 require "accountHandle"
@@ -201,9 +195,6 @@ require "accountHandle"
 print("server side script ended ...")
 
 print("read data from lua : ")
-
-
-
 
 local function get_current_file_path()
     local str = debug.getinfo(1, "S").source:sub(2)
@@ -227,6 +218,3 @@ function Server_LoadCharacters(host)
         end
     end
 end
-
-
-

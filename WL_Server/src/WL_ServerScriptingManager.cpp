@@ -1,4 +1,5 @@
-#include "ServerScriptingManager.h"
+#include "WL_ServerScriptingManager.h"
+
 
 using json = nlohmann::json;
 
@@ -31,6 +32,8 @@ std::vector<unsigned char> hashPasswordPBKDF2(const std::string& password, const
     BCryptCloseAlgorithmProvider(hAlgorithm, 0);
     return derivedKey;
 }
+
+
 
 static void to_json(json& j, const CharacterStats& c) 
 {
@@ -114,9 +117,11 @@ static void from_json(const json& j, CharacterStats& c) {
     j.at("ID").get_to(c.ID);
 }
 
+
 static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **azColName)
 {
     std::cout << "serverScriptingCallback \n";
+
     for(int i = 0 ; i < m_response.data.size() ; i++)
     {
         m_response.data[i] = "";
@@ -166,7 +171,6 @@ std::string genKey(int numberOfRandom)
         p[i] = a[rand() % size];
     }
     p[numberOfRandom] = '\0';
-
     return std::string(p);
 }
 
@@ -180,13 +184,11 @@ int lua_SQLCreateStatement(lua_State *L)
     }
     else
     {
-        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        WL_ServerScriptingManager * host = static_cast<WL_ServerScriptingManager*>(lua_touserdata(L, 1));
         std::string query = lua_tostring(L,2);
 
         sqlite3_stmt * stmt;
-
         sqlite3_prepare_v2(host->getDB(), query.c_str(),-1, &stmt, nullptr);
-
         lua_pushlightuserdata(L, stmt);
         return 1;
     }
@@ -223,7 +225,7 @@ int lua_UpdateCharacter(lua_State *L)
     }
     else
     {
-        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        WL_ServerScriptingManager * host = static_cast<WL_ServerScriptingManager*>(lua_touserdata(L, 1));
         if (!lua_istable(L, 2)) {
             std::cout << "Expected a table!\n"; 
             // lua_pushstring(L, "Expected a table!");
@@ -326,8 +328,10 @@ int lua_UpdateCharacter(lua_State *L)
                         std::cout << " chacater found ! update ...\n";
                         
                         std::string updateQuery = "update character_base_table set stats = '" + j.dump(4) + "' where character_id ='" + stats.ID + "'";
-                        // std::cout << "test query " << updateQuery << "\n";
+                        std::cout << "test query " << updateQuery << "\n";
+                        
                         host->doQuery(updateQuery);
+
                     }
                     else if(m_response.recordCount == 0) // not exist
                     {
@@ -415,7 +419,7 @@ int lua_SQLStepStatement(lua_State * L)
     }
     else
     {
-        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        WL_ServerScriptingManager * host = static_cast<WL_ServerScriptingManager*>(lua_touserdata(L, 1));
         sqlite3_stmt* stmt =  static_cast<sqlite3_stmt*>(lua_touserdata(L, 2));
 
         
@@ -535,7 +539,7 @@ int lua_GetQueryResults(lua_State * L)
     }
     else
     {
-        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        WL_ServerScriptingManager * host = static_cast<WL_ServerScriptingManager*>(lua_touserdata(L, 1));
         int resultCode = m_response.rc;
         int recordCount = m_response.recordCount;
 
@@ -558,7 +562,7 @@ int lua_DoQuery(lua_State * L)
     }
     else
     {
-        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        WL_ServerScriptingManager * host = static_cast<WL_ServerScriptingManager*>(lua_touserdata(L, 1));
         std::string queryCmd = lua_tostring(L, 2);
 
         host->doQuery(queryCmd);
@@ -578,7 +582,7 @@ int lua_DoQuerySTMT(lua_State * L)
     }
     else
     {
-        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        WL_ServerScriptingManager * host = static_cast<WL_ServerScriptingManager*>(lua_touserdata(L, 1));
         sqlite3_stmt * stmt = static_cast<sqlite3_stmt *>(lua_touserdata(L,2));
         // std::string queryCmd = lua_tostring(L, 2);
 
@@ -598,7 +602,7 @@ int lua_getEncryptedPW(lua_State * L)
     }
     else
     {
-        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        WL_ServerScriptingManager * host = static_cast<WL_ServerScriptingManager*>(lua_touserdata(L, 1));
         std::string msg = lua_tostring(L, 2);
         std::string result = host->getEncryptPW(msg);
         lua_pushstring(L, result.c_str());
@@ -618,7 +622,7 @@ int lua_SendToClient(lua_State * L)
     }
     else
     {
-        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        WL_ServerScriptingManager * host = static_cast<WL_ServerScriptingManager*>(lua_touserdata(L, 1));
         RakNet::SystemAddress * clientId = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 2));
         std::string msg = lua_tostring(L, 3);
         //std::cout << "msg send is |" << msg << "|\n"; 
@@ -641,7 +645,7 @@ int lua_Packet_getData(lua_State * L)
     }
     else
     {
-        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        WL_ServerScriptingManager * host = static_cast<WL_ServerScriptingManager*>(lua_touserdata(L, 1));
         RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 2));
         std::string msg = host->getMegFromPackget(p);
 
@@ -695,23 +699,23 @@ int lua_Packet_extract(lua_State * L)
 }
 
 
-ServerScriptingManager::ServerScriptingManager()
+WL_ServerScriptingManager::WL_ServerScriptingManager()
 {
 
 }
-ServerScriptingManager::~ServerScriptingManager()
-{
-
-}
-
-
-void ServerScriptingManager::update(float deltaTime)
+WL_ServerScriptingManager::~WL_ServerScriptingManager()
 {
 
 }
 
 
-std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
+void WL_ServerScriptingManager::update(float deltaTime)
+{
+
+}
+
+
+std::string WL_ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
 {
     //p->systemAddress
     //p->systemAddress
@@ -738,7 +742,7 @@ std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
 
 }
 
-uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data)
+uint32_t WL_ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data)
 {
     
     // encrypt 
@@ -767,7 +771,7 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
     return 0;
 }
 
-unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
+unsigned int WL_ServerScriptingManager::handleCommon(RakNet::Packet *p)
 {
     unsigned char packetIdentifier = GetPacketIdentifier(p);
 
@@ -792,7 +796,7 @@ unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
     return 666;
 }
 
-ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
+ClientRequestCode WL_ServerScriptingManager::handleCommand(RakNet::Packet *p)
 {
     PacketCode requestCode = getSpecialRequestCode(p);
     // send relay data to lua to process
@@ -836,28 +840,28 @@ ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
     return ClientRequestCode::Client_Invalid;
 }
 
-bool ServerScriptingManager::doQuery(const std::string & queryCmd)
+bool WL_ServerScriptingManager::doQuery(const std::string & queryCmd)
 {
     char * zErrMsg = 0;
     m_response.rc = sqlite3_exec(m_dbh->getDatabase(), queryCmd.c_str(), serverScriptingCallback, (void*)m_response.rawData, &zErrMsg);
 
     if(m_response.rc != SQLITE_OK)
     {
-        std::cout << "ServerScriptingManager doQuery failed: " << zErrMsg << "\n";
+        std::cout << "WL_ServerScriptingManager doQuery failed: " << zErrMsg << "\n";
         std::cout << "The query tried to be: " << queryCmd << "\n";
         sqlite3_free(zErrMsg);
         return false;
     }
     else
     {
-        //std::cout << "ServerScriptingManager doQuery OK! , check the response\n";
+        //std::cout << "WL_ServerScriptingManager doQuery OK! , check the response\n";
         return true;
     }
     return false;
 }
 
 
-bool ServerScriptingManager::doQuery(sqlite3_stmt * stmt)
+bool WL_ServerScriptingManager::doQuery(sqlite3_stmt * stmt)
 {
 
     // std::string queryCmd =  sqlite3_sql(stmt);
@@ -907,20 +911,20 @@ bool ServerScriptingManager::doQuery(sqlite3_stmt * stmt)
 
     // if(m_response.rc != SQLITE_OK)
     // {
-    //     //std::cout << "ServerScriptingManager doQuery failed: " << zErrMsg << "\n";
+    //     //std::cout << "WL_ServerScriptingManager doQuery failed: " << zErrMsg << "\n";
     //     //std::cout << "The query tried to be: " << queryCmd << "\n";
     //     sqlite3_free(zErrMsg);
     //     return false;
     // }
     // else
     // {
-    //     //std::cout << "ServerScriptingManager doQuery OK! , check the response\n";
+    //     //std::cout << "WL_ServerScriptingManager doQuery OK! , check the response\n";
     //     return true;
     // }
     // return false;
 }
 
-void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHandler * dbh)
+void WL_ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHandler * dbh)
 {
     srand( (unsigned)time(NULL) );
 
@@ -1085,7 +1089,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
 }
 
-std::string ServerScriptingManager::getEncryptPW(const std::string & pw)
+std::string WL_ServerScriptingManager::getEncryptPW(const std::string & pw)
 {
 
     std::string retVal;
@@ -1102,7 +1106,7 @@ std::string ServerScriptingManager::getEncryptPW(const std::string & pw)
     return retVal;
 }
 
-PacketCode ServerScriptingManager::getSpecialRequestCode(RakNet::Packet *p)
+PacketCode WL_ServerScriptingManager::getSpecialRequestCode(RakNet::Packet *p)
 {
  //   std::cout << "getSpecialRequestCode called \n";
 

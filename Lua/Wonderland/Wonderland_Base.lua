@@ -23,7 +23,6 @@ function WonderLandTestHost()
 end
 
 function WonderLandInputHandling(signal)
-    print("input signal " .. signal)
     if Current_Player ~= nil then
         Current_Player:inputHandling(signal)
     end

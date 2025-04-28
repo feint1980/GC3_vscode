@@ -1,4 +1,4 @@
-package.path = package.path .. ';./Assets/Lua/system/GUI/?/?.lua;' .. ';./Assets/Lua/system/GUI/widgets/?.lua;' .. ';./Assets/Lua/system/Networking/?.lua;' .. ';./Assets/Lua/Home/?.lua;' .. ';./Assets/Lua/system/event/?.lua;'
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Shop/?.lua;'
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -33,6 +33,11 @@ Main_SoulsValLabel = nil
 Main_MonLabel = nil
 ---@type Label
 Main_MonValLabel = nil
+
+---@type Label
+Main_ShopButton = nil
+
+MenuPanels = {}
 
 function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     HomeSceneHost = host
@@ -79,17 +84,20 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Main_MonValLabel:setPosStr("93%","5%")
     Main_MonValLabel:setAlignment(TextAlginment.Right)
 
-    Tscheduler_addTask(25, function()
+    Main_ShopButton = Label:new()
+    Main_ShopButton:init(Home_GUIScriptingPtr,"Shop",0,0)
+    Main_ShopButton:setPosStr("10%","80`%")
+    Main_ShopButton:setAlignment(TextAlginment.Center)
+    Main_ShopButton:setHoverable(0,255,0,255,255,255,255,255)
+    Main_ShopButton:setOnClickCallback(function() print("dadata") end)
+
+    Tscheduler_addTask(5, function()
         Home_RequestUserlData()
     end)
     HomeMain_RequestDataLoop()
 end
 
 HomeMain_HandleTask = {}
----@Description handle packet when connected
----@param host pointer instance of ClientScriptingManager
----@param packet Client_Packet
-
 
 ---@Description get the code of other special ID
 ---@param packet Client_Packet
@@ -142,14 +150,11 @@ HomeMain_HandleStep2[Packet_OtherID.USER_DATA_POS] = function(host,packet)
 
     local tD = SplitMessgae(tData,"|",3)
     local t_id,t_pw , t_guid = Home_GetInfo(3)
-
     print("td " .. tD[1])
     print("td " .. tD[2])
     print("td " .. tD[3])
-
     Main_MonValLabel:setText(tD[2])
     Main_SoulsValLabel:setText(tD[3])
-
     print("HomeMain_HandleStep2 " .. Packet_OtherID.USER_DATA_POS)
 end
 
@@ -163,7 +168,6 @@ end
 
 ---@Description request update money data
 function Home_RequestUserlData()
-
     local id,pw, guid = Home_GetInfo(3)
     Client_SendData( Home_ClientScriptingPtr,CombinePackage("USERDATA", {id, pw, guid}))
 end
@@ -179,10 +183,8 @@ end
 ---@param msg string data want to extract
 ---@param otherID number ( to select which part need to be strip)
 function Home_StripMSG(msg,otherID)
-
     print("at least it here " .. otherID)
     return string.sub(msg,string.len(Home_OrderList[otherID].firstStr) + 1,string.len(msg) - string.len(Home_OrderList[otherID].secondStr))
-
 end
 
 HomeMain_Tasks = {}

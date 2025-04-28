@@ -1,6 +1,6 @@
 package.path = package.path .. ";../luaFiles/?.lua" 
 
-require "global"
+require "SV_global"
 
 Character_Table["S_Meiling"] =  
 {

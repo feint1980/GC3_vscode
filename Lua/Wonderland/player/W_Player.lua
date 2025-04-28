@@ -1,7 +1,5 @@
-local bit = require("bit32")
-
-local function is_bit_set(value, bit_index)
-    return bit.band(value, bit.lshift(1, bit_index)) ~= 0
+function _G.is_bit_set(value, bit_index)
+    return (value & (1 << (bit_index ))) ~= 0
 end
 
 ---@class pointer
@@ -25,7 +23,7 @@ W_Player = {
 
 ---@Description create a new instance of Player
 ---@param o? table
----@return Player
+---@return W_Player
 function W_Player:new(o)
     o = o or {}
     setmetatable(o, self)
@@ -86,14 +84,21 @@ function W_Player:inputHandling(signal)
     --- 4 up 
     --- 8 down
 
-    if signal == 1 then
-        self.currentFacing = 2
-    elseif  signal == 2 == 2 then
-        self.currentFacing = 3
-    elseif  signal == 4 then
+    -- instead of using bit 1 2 4 8, it now use 0 1 2 3 
+    -- as for |0 |0 |0 |0
+    ---is     |0 |1 |2 |3 (Lua)
+    ---is     |1 |2 |4 |8 (C++) 
+
+    if  is_bit_set(signal,2) then -- meaning bit 4 
         self.currentFacing = 1
-    elseif  signal == 8 then
+    elseif  is_bit_set(signal, 3) then -- meaning bit 8
         self.currentFacing = 0
+    end
+    -- prioritize side walk animation
+    if  is_bit_set(signal, 0) then -- meaning bit 1
+        self.currentFacing = 2
+    elseif  is_bit_set(signal,1) then -- meaning bit 2
+        self.currentFacing = 3
     end
 
     if self.currentFacing ~= self.previousFacing then 
@@ -121,7 +126,4 @@ function W_Player:inputHandling(signal)
         end
     end
     self:setMovement(signal)
-
-
 end
-

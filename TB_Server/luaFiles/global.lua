@@ -1,2 +1,0 @@
-
-Character_Table = {}

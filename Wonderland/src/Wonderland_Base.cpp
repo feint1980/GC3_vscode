@@ -263,7 +263,7 @@ void Wonderland_Base::sendSignalToLua(int signal)
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
-            std::cout << "sendSignalToLua " << signal << " OK \n";
+            // std::cout << "sendSignalToLua " << signal << " OK \n";
         }
     }
 }

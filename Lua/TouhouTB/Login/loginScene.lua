@@ -1,5 +1,5 @@
 
-package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Login/?.lua;' .. ';../../Lua/system/event/?.lua;'
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Login/?.lua;' .. ';../../Lua/system/event/?.lua;' 
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -9,6 +9,7 @@ require "clientSide"
 require "loginStripOrder"
 require "clientWrapper"
 require "LuaEventHandler"
+
 
 ---@class TGUIScriptingPtr
 ---@class ClientScriptingPtr
