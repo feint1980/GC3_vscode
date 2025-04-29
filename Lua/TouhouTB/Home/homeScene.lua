@@ -1,4 +1,4 @@
-package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Shop/?.lua;'
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Home/Shop/?.lua;'
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -9,6 +9,7 @@ require "clientSide"
 require "clientWrapper"
 require "homeOrderStrip"
 require "LuaEventHandler"
+require "Shop"
 
 HomeSceneHost = nil
 
@@ -37,7 +38,7 @@ Main_MonValLabel = nil
 ---@type Label
 Main_ShopButton = nil
 
-MenuPanels = {}
+
 
 function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     HomeSceneHost = host
@@ -89,7 +90,9 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Main_ShopButton:setPosStr("10%","80`%")
     Main_ShopButton:setAlignment(TextAlginment.Center)
     Main_ShopButton:setHoverable(0,255,0,255,255,255,255,255)
-    Main_ShopButton:setOnClickCallback(function() print("dadata") end)
+    Main_ShopButton:setOnClickCallback(function()
+        MenuPanels["Shop"](TGUIScriptingPtr)
+        end)
 
     Tscheduler_addTask(5, function()
         Home_RequestUserlData()
@@ -183,7 +186,7 @@ end
 ---@param msg string data want to extract
 ---@param otherID number ( to select which part need to be strip)
 function Home_StripMSG(msg,otherID)
-    print("at least it here " .. otherID)
+    -- print("at least it here " .. otherID)
     return string.sub(msg,string.len(Home_OrderList[otherID].firstStr) + 1,string.len(msg) - string.len(Home_OrderList[otherID].secondStr))
 end
 

@@ -28,7 +28,12 @@ public:
     tgui::Picture::Ptr createPicture(const std::string & path, float x, float y, float width, float height);
 
     tgui::EditBox::Ptr createEditBox(float x, float y, float width, float height, tgui::Panel::Ptr parent);
+
     tgui::Panel::Ptr createPanel(float x, float y, float width, float height, tgui::Panel::Ptr parent);
+
+    tgui::TabContainer::Ptr createTabContainer(float x, float y, float width, float height);
+
+    tgui::Tabs::Ptr createTabs(float x, float y, float width, float height, tgui::TabContainer::Ptr parent);
 
     lua_State * getLuaScript() { return m_script; }
 

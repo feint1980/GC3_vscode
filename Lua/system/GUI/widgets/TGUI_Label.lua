@@ -19,8 +19,6 @@ Label = {
     parent = nil
 }
 
----@class Label
-
 ---@Description create new instance of Label
 ---@return Label
 function Label:new(o)
@@ -188,4 +186,19 @@ end
 ---@param callback function
 function TGUI_Label_setOnClickCallBack(label, callback)
     cpp_Label_SetOnClickCallback(label, callback)
+end
+
+--- function wrapper of cpp_TabContainer_Create
+---@Description create new tgui TabContainer object in cpp
+---@param host pointer instance of TGUIScriptingManager
+---@param tPosX number x position
+---@param tPosY number y position
+---@param tWidth number width
+---@param tHeight number height
+---@param parent? pointer instance parent, default nil (main)
+---@return pointer instance of TGUI TabContainer
+function TGUI_TabContainer_Create(host, tPosX, tPosY,
+    tWidth, tHeight, parent)
+    parent = parent or nil
+    return cpp_TabContainer_Create(host, tPosX, tPosY, tWidth, tHeight, parent)
 end

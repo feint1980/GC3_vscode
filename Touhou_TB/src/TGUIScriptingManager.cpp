@@ -1,4 +1,3 @@
-
 #include "TGUIScriptingManager.h"
 
 int luaCallbackRef = LUA_NOREF;
@@ -239,7 +238,6 @@ int lua_Panel_SetSizeStr(lua_State * L)
     return 0;
 }
 
-
 int lua_Panel_HideWithEffect(lua_State * L)
 {
     if(lua_gettop(L) != 3)
@@ -326,7 +324,6 @@ int lua_EditBox_Create(lua_State * L)
         float height = lua_tonumber(L, 5);
 
         tgui::EditBox::Ptr * editBox = new tgui::EditBox::Ptr();
-        
 
         if(lua_gettop(L) == 6)
         {
@@ -352,7 +349,6 @@ int lua_EditBox_Create(lua_State * L)
 
 int lua_Label_SetText(lua_State * L)
 {
-
     if(lua_gettop(L) != 2)
     {
         std::cout << "gettop failed (lua_Label_SetText) " << lua_gettop(L) << "\n";
@@ -364,7 +360,6 @@ int lua_Label_SetText(lua_State * L)
         std::string text = lua_tostring(L, 2);
         label->get()->setText(text);
     }
-
     return 0;
 }
 
@@ -381,10 +376,8 @@ int lua_RTLabel_SetText(lua_State * L)
         std::string text = lua_tostring(L, 2);
         label->get()->setText(text);
     }
-
     return 0;
 }
-
 
 int lua_Label_SetAlignment(lua_State * L)
 {
@@ -407,8 +400,6 @@ int lua_Label_SetAlignment(lua_State * L)
             break;
             case 1:// center
             {
-
-                //label->get()->setText("asdadase \n");
                 label->get()->setOrigin(0.5,0);
                 label->get()->setAutoSize(true);
             }
@@ -427,7 +418,6 @@ int lua_Label_SetAlignment(lua_State * L)
             }
             break;
         }
-        //label->get()->setTextAlignment(tgui::TextAlignment(aligmentType));
     }
     return 0;
 }
@@ -453,8 +443,6 @@ int lua_RTLabel_SetAlignment(lua_State * L)
             break;
             case 1:// center
             {
-
-                //label->get()->setText("asdadase \n");
                 label->get()->setOrigin(0.5,0);
                 label->get()->setAutoSize(true);
             }
@@ -477,7 +465,6 @@ int lua_RTLabel_SetAlignment(lua_State * L)
 
 int lua_Label_SetTextColor(lua_State * L)
 {
-
     if(lua_gettop(L) != 5)
     {
         std::cout << "gettop failed (lua_Label_SetTextColor) " << lua_gettop(L) << "\n";
@@ -515,7 +502,6 @@ int lua_RTLabel_SetTextColor(lua_State * L)
     return 0;
 }
 
-
 int lua_Label_SetPosStr(lua_State * L)
 {
     if(lua_gettop(L) != 3)
@@ -531,7 +517,6 @@ int lua_Label_SetPosStr(lua_State * L)
     
         label->get()->setPosition(strX.c_str(),strY.c_str());
     }
-
     return 0;
 }
 
@@ -550,13 +535,11 @@ int lua_RTLabel_SetPosStr(lua_State * L)
     
         label->get()->setPosition(strX.c_str(),strY.c_str());
     }
-
     return 0;
 }
 
 int lua_Label_SetPos(lua_State * L)
 {
-
     if(lua_gettop(L) != 3)
     {
         std::cout << "gettop failed (lua_Label_SetPos) " << lua_gettop(L) << "\n";
@@ -565,13 +548,11 @@ int lua_Label_SetPos(lua_State * L)
     else
     {
         tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));
-    
         float fX = 0;
         float fY = 0;
         fX = lua_tonumber(L, 2);
         fY = lua_tonumber(L, 3);
         label->get()->setPosition(fX,fY);    
-        
     }
     return 0;
 }
@@ -592,14 +573,12 @@ int lua_RTLabel_SetPos(lua_State * L)
         fX = lua_tonumber(L, 2);
         fY = lua_tonumber(L, 3);
         label->get()->setPosition(fX,fY);    
-        
     }
     return 0;
 }
 
 int lua_Label_SetOnHoverCallback(lua_State * L)
 {
-
     if(lua_gettop(L) != 2)
     {
         std::cout << "gettop failed (lua_Label_SetOnHoverCallback) " << lua_gettop(L) << "\n";
@@ -615,7 +594,6 @@ int lua_Label_SetOnHoverCallback(lua_State * L)
         }
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
-
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onMouseEnter(callback);
     }
@@ -640,7 +618,6 @@ int lua_RTLabel_SetOnHoverCallback(lua_State * L)
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
         lua_rawgeti(L, LUA_REGISTRYINDEX, ref);
-
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onMouseEnter(callback);
     }
@@ -649,7 +626,6 @@ int lua_RTLabel_SetOnHoverCallback(lua_State * L)
 
 int lua_Label_SetOffHoverCallback(lua_State * L)
 {
-
     if(lua_gettop(L) != 2)
     {
         std::cout << "gettop failed (lua_Label_SetOffHoverCallback) " << lua_gettop(L) << "\n";
@@ -674,7 +650,6 @@ int lua_Label_SetOffHoverCallback(lua_State * L)
 
 int lua_RTLabel_SetOffHoverCallback(lua_State * L)
 {
-
     if(lua_gettop(L) != 2)
     {
         std::cout << "gettop failed (lua_RTLabel_SetOffHoverCallback) " << lua_gettop(L) << "\n";
@@ -690,17 +665,14 @@ int lua_RTLabel_SetOffHoverCallback(lua_State * L)
         }
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
-
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onMouseLeave(callback);
     }
     return 0;
 }
 
-
 int lua_Label_SetOnClickCallback(lua_State * L)
 {
-
     if(lua_gettop(L) != 2)
     {
         std::cout << "gettop failed (lua_Label_SetOnClickCallback) " << lua_gettop(L) << "\n";
@@ -708,19 +680,12 @@ int lua_Label_SetOnClickCallback(lua_State * L)
     }
     else
     {
-        tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));
-            
-        // if (luaCallbackRef != LUA_NOREF) {
-        //     luaL_unref(L, LUA_REGISTRYINDEX, luaCallbackRef);
-        //     luaCallbackRef = LUA_NOREF;
-        //     std::cout << "UNREF CALLED !!!!!!!!!!!!!!!!\n";
-        // }
+        tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));           
         if(!lua_isfunction(L, 2))
         {
             std::cout << "param 2 is not a function \n";
             return -1;
         }
-        // luaCallbackRef = luaL_ref(L, LUA_REGISTRYINDEX);
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);;
         label->get()->onClick.disconnectAll();
@@ -730,14 +695,12 @@ int lua_Label_SetOnClickCallback(lua_State * L)
         };
         lua_pop(L, 1);
         label->get()->onClick(callback);
-        
     }
-
+    return 0;
 }
 
 int lua_RTLabel_SetOnClickCallback(lua_State * L)
 {
-
     if(lua_gettop(L) != 2)
     {
         std::cout << "gettop failed (lua_RTLabel_SetOnClickCallback) " << lua_gettop(L) << "\n";
@@ -757,9 +720,8 @@ int lua_RTLabel_SetOnClickCallback(lua_State * L)
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onClick(callback);
     }
-
+    return 0;
 }
-
 
 int lua_Label_Create(lua_State * L)
 {
@@ -795,8 +757,8 @@ int lua_Label_Create(lua_State * L)
         lua_pushlightuserdata(L,label);
         return 1;
     }
+    return 0;
 }
-
 
 int lua_RTLabel_Create(lua_State * L)
 {
@@ -833,8 +795,8 @@ int lua_RTLabel_Create(lua_State * L)
         lua_pushlightuserdata(L,label);
         return 1;
     }
+    return 0;
 }
-
 
 int lua_Picture_Create(lua_State * L)
 {
@@ -860,7 +822,6 @@ int lua_Picture_Create(lua_State * L)
             if(parent)
             {
                 parent->get()->add(*picture);
-            
             }
             else
             {
@@ -891,7 +852,6 @@ int lua_Picture_SetPos(lua_State * L)
         float y = lua_tonumber(L, 3);
         picture->get()->setPosition(x,y);
     }
-
     return 0;
 }
 
@@ -909,10 +869,8 @@ int lua_Picture_SetPosStr(lua_State * L)
         std::string y = lua_tostring(L, 3);
         picture->get()->setPosition(x.c_str(),y.c_str());
     }
-
     return 0;
 }
-
 
 int lua_Picture_SetSize(lua_State * L)
 {
@@ -930,7 +888,6 @@ int lua_Picture_SetSize(lua_State * L)
     }
     return 0;
 }
-
 
 int lua_Picture_SetSizeStr(lua_State * L)
 {
@@ -966,13 +923,137 @@ int lua_Picture_SetTexture(lua_State * L)
     return 0;
 }
 
+int lua_TabContainer_Create(lua_State * L)
+{
+    std::cout << "lua_TabContainer_Create called !!!!!!! \n";
+    if(lua_gettop(L) < 5 || lua_gettop(L) > 6)
+    {
+        std::cout << "gettop failed (lua_TabContainer_Create) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        float width = lua_tonumber(L, 4);
+        float height = lua_tonumber(L, 5); 
+        tgui::TabContainer::Ptr * tabsContainer = new tgui::TabContainer::Ptr(); 
 
+        *tabsContainer = host->createTabContainer(x,y,width,height);
 
+        if(lua_gettop(L) == 6)
+        {
+            tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 6));
+            if(parent)
+            {
+                parent->get()->add(*tabsContainer);
+            }
+            else
+            {
+                host->getTGUI()->add(*tabsContainer);
+            }
+        }
+        else
+        {
+            host->getTGUI()->add(*tabsContainer);
+        }
+        std::cout << "tabsContainer: " << tabsContainer << "\n";
+        lua_pushlightuserdata(L,tabsContainer);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_TabContainer_SetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_TabContainer_SetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::TabContainer::Ptr * tabsContainer = static_cast<tgui::TabContainer::Ptr*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        tabsContainer->get()->setPosition(x,y);
+    }
+    return 0;
+}
+
+int lua_TabContainer_SetPosStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_TabContainer_SetPosStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::TabContainer::Ptr * tabsContainer = static_cast<tgui::TabContainer::Ptr*>(lua_touserdata(L, 1));
+        std::string x = lua_tostring(L, 2);
+        std::string y = lua_tostring(L, 3);
+        tabsContainer->get()->setPosition(x.c_str(),y.c_str());
+    }
+    return 0;
+}
+
+int lua_TabContainer_SetSize(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_TabContainer_SetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::TabContainer::Ptr * tabsContainer = static_cast<tgui::TabContainer::Ptr*>(lua_touserdata(L, 1));
+        float width = lua_tonumber(L, 2);
+        float height = lua_tonumber(L, 3);
+        tabsContainer->get()->setSize(width,height);
+    }
+    return 0;
+}
+
+int lua_TabContainer_SetSizeStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_TabContainer_SetSizeStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::TabContainer::Ptr * tabsContainer = static_cast<tgui::TabContainer::Ptr*>(lua_touserdata(L, 1));
+        std::string width = lua_tostring(L, 2);
+        std::string height = lua_tostring(L, 3);
+        tabsContainer->get()->setSize(width.c_str(),height.c_str());
+    }
+    return 0;
+}
+
+int lua_TabContainer_AddTab(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_TabContainer_AddTab) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::TabContainer::Ptr * tabsContainer = static_cast<tgui::TabContainer::Ptr*>(lua_touserdata(L, 1));
+        std::string TabName = lua_tostring(L, 2);
+        tgui::Panel::Ptr * panel = new tgui::Panel::Ptr();
+        *panel = tabsContainer->get()->addTab(TabName.c_str());
+        lua_pushlightuserdata(L,panel);
+        return 1;
+    }
+    return 0;
+}
 
 TGUIScriptingManager::TGUIScriptingManager()
 {
-
-
 
 }
 TGUIScriptingManager::~TGUIScriptingManager()
@@ -981,13 +1062,11 @@ TGUIScriptingManager::~TGUIScriptingManager()
     m_tgui = nullptr;
 }
 
-
 tgui::Label::Ptr TGUIScriptingManager::createLabel(const std::string & text,float x, float y)
 {
     tgui::Label::Ptr label = tgui::Label::create(text);
     label->setPosition(x, y);
     label->setTextColor(tgui::Color::White);
-    
     return label;
 }
 
@@ -996,22 +1075,43 @@ tgui::Picture::Ptr TGUIScriptingManager::createPicture(const std::string & path,
     tgui::Picture::Ptr picture = tgui::Picture::create();
     tgui::Texture texture(path);
     picture->getRenderer()->setTexture(texture);
-    // picture->set
     picture->setPosition(x, y);
     picture->setSize(width, height);
     return picture;
 }
 
+tgui::TabContainer::Ptr TGUIScriptingManager::createTabContainer(float x, float y, float width, float height)
+{
+    tgui::TabContainer::Ptr tabsContainer = tgui::TabContainer::create();
+    tabsContainer->setPosition(x, y);
+    tabsContainer->setSize(width, height);
+    tabsContainer->setVisible(true);
+
+    tgui::Tabs::Ptr tabs = tgui::Tabs::create();
+    tabs->changeText(1, "Tab 1");
+    tabsContainer->add(tabs);
+    // tabsContainer->getRenderer()->
+    return tabsContainer;
+}
+
+tgui::Tabs::Ptr TGUIScriptingManager::createTabs(float x, float y, float width, float height, tgui::TabContainer::Ptr parent)
+{
+    tgui::Tabs::Ptr tabs = tgui::Tabs::create();
+    tabs->setPosition(x, y);
+    tabs->setSize(width, height);
+    tabs->add("Tab 1",true);
+    tabs->add("Tab 2",false);
+    tabs->add("Tab 3",true);
+    return tabs;
+}
 
 tgui::RichTextLabel::Ptr TGUIScriptingManager::createRTLabel(const std::string & text,float x, float y)
 {
     tgui::RichTextLabel::Ptr label = tgui::RichTextLabel::create(text);
     label->setPosition(x, y);
     label->setTextColor(tgui::Color::White);
-    
     return label;
 }
-
 
 tgui::EditBox::Ptr TGUIScriptingManager::createEditBox(float x, float y, float width, float height, tgui::Panel::Ptr parent)
 {
@@ -1045,15 +1145,12 @@ tgui::Panel::Ptr TGUIScriptingManager::createPanel(float x, float y, float width
     return panel;
 }
 
-
-
 void TGUIScriptingManager::update(float deltaTime)
 {
     if(m_tgui)
     {
         m_tgui->updateTime(deltaTime);
     }
-
 }
 void TGUIScriptingManager::draw()
 {
@@ -1091,15 +1188,11 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
 
     selectTheme(*m_tgui, "themes/Dark.txt");  // force to load in main thread since the openGL problem, you can only have texture created in mainthread ( OpenGL Context)
 
-    // auto loadFontTask = async::spawn([&]() {
-        tgui::Font font_load("font/ARIALUNI.ttf");    
-        m_tgui->setFont(font_load);
-        m_tgui->setTextSize(20);        
-
-    // });
+    tgui::Font font_load("font/ARIALUNI.ttf");    
+    m_tgui->setFont(font_load);
+    m_tgui->setTextSize(20);        
 
     m_script = script; // luaL_newstate();
-    // luaL_openlibs(m_script);
 
     // init lua component
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/GUI/tguiScript.lua")))
@@ -1152,7 +1245,6 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Panel_ShowWithEffect", lua_Panel_ShowWithEffect);
     lua_register(m_script, "cpp_Panel_SetVisible", lua_Panel_setVisible);
     lua_register(m_script, "cpp_Panel_SetAlignment", lua_Panel_SetAlignment);
-    
 
     // TGUI Picture section
     lua_register(m_script, "cpp_Picture_Create", lua_Picture_Create);
@@ -1162,11 +1254,26 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Picture_SetSizeStr", lua_Picture_SetSizeStr);
     lua_register(m_script, "lua_Picture_SetTexture", lua_Picture_SetTexture);
 
-    // run Init script
-    // if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))
-    // {
-    //     std::cout << "Run script OK \n";
-    // }
+    // TGUI Tabs container section
+    lua_register(m_script, "cpp_TabContainer_Create", lua_TabContainer_Create);
+    lua_register(m_script, "cpp_TabContainer_SetPos", lua_TabContainer_SetPos);
+    lua_register(m_script, "cpp_TabContainer_SetPosStr", lua_TabContainer_SetPosStr);
+    lua_register(m_script, "cpp_TabContainer_SetSize", lua_TabContainer_SetSize);
+    lua_register(m_script, "cpp_TabContainer_SetSizeStr", lua_TabContainer_SetSizeStr);
+    lua_register(m_script, "cpp_TabContainer_AddTab", lua_TabContainer_AddTab);
+    
+
+    // TGUI Tabs section
+    // lua_register(m_script, "cpp_Tabs_Create", lua_Tabs_Create);
+    // lua_register(m_script, "cpp_Tabs_SetPos", lua_Tabs_SetPos);
+    // lua_register(m_script, "cpp_Tabs_SetPosStr", lua_Tabs_SetPosStr);
+    // lua_register(m_script, "cpp_Tabs_SetSize", lua_Tabs_SetSize);
+    // lua_register(m_script, "cpp_Tabs_SetSizeStr", lua_Tabs_SetSizeStr);
+    // lua_register(m_script, "cpp_Tabs_SetTextColor", lua_Tabs_SetTextColor);
+    // lua_register(m_script, "cpp_Tabs_SetOnHoverCallback", lua_Tabs_SetOnHoverCallback);
+    // lua_register(m_script, "cpp_Tabs_SetOffHoverCallback", lua_Tabs_SetOffHoverCallback);
+    // lua_register(m_script, "cpp_Tabs_SetOnClickCallback", lua_Tabs_SetOnClickCallback);
+    // lua_register(m_script, "cpp_Tabs_SetTabActive", lua_Tabs_SetTabActive);
 
     lua_getglobal(m_script, "TGUIScripting_Init");
     if(lua_isfunction(m_script, -1))
@@ -1182,7 +1289,4 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
             std::cout << "TGUI Scripting Init from C++ OK \n";
         }
     }
-    
-    // loadFontTask.get();
-
 }

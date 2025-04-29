@@ -60,7 +60,7 @@ end
 ---@param data string data need to send
 ---@return number response 
 function Client_SendData(host,data)
-    print("call this")
+    -- print("call this")
     return cppSendData(host,data)
 end
 
