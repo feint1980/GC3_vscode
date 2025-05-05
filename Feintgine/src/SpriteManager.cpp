@@ -260,7 +260,11 @@ namespace Feintgine {
 
 		for(int i = 0 ; i < target_threads ; i++)
 		{
-			std::thread loader(std::bind(&SpriteManager::loadTStoredPackets, this,i));
+			// std::thread loader  (std::bind(&SpriteManager::loadTStoredPackets, this,i));
+			//std::thread loader = //use lambda  
+			std::thread loader = std::thread([this,i](){this->loadTStoredPackets(i);});
+			
+			// [](this,i](){this->loadTStoredPackets(i);};//  std::thread(&SpriteManager::loadTStoredPackets, this,i);
 			m_threads.push_back(std::move(loader));
 
 		}

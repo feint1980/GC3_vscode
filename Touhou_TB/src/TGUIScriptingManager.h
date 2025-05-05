@@ -31,6 +31,8 @@ public:
 
     tgui::Panel::Ptr createPanel(float x, float y, float width, float height, tgui::Panel::Ptr parent);
 
+    tgui::ScrollablePanel::Ptr createScrollablePanel(float x, float y, float width, float height);
+
     tgui::TabContainer::Ptr createTabContainer(float x, float y, float width, float height);
 
     tgui::Tabs::Ptr createTabs(float x, float y, float width, float height, tgui::TabContainer::Ptr parent);

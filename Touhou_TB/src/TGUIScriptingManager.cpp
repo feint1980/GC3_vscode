@@ -1,7 +1,7 @@
 #include "TGUIScriptingManager.h"
 
 int luaCallbackRef = LUA_NOREF;
-
+// MARK: Panel
 int lua_Panel_Create(lua_State * L)
 {
     if(lua_gettop(L) < 5 || lua_gettop(L) > 6)
@@ -40,152 +40,6 @@ int lua_Panel_Create(lua_State * L)
     }
     return -1;
 }
-
-int lua_Panel_SetPos(lua_State * L)
-{
-    if(lua_gettop(L) != 3)
-    {
-        std::cout << "gettop failed (lua_Panel_SetPos) " << lua_gettop(L) << "\n";
-        return -1;
-    }
-    else
-    {
-        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
-        float pX = lua_tonumber(L, 2);
-        float pY = lua_tonumber(L, 3);
-        panel->get()->setPosition({pX, pY});
-    }
-    return 0;
-}
-
-int lua_EditBox_SetPos(lua_State * L)
-{
-    if(lua_gettop(L) != 3)
-    {
-        std::cout << "gettop failed (lua_EditBox_SetPos) " << lua_gettop(L) << "\n";
-        return -1;
-    }
-    else
-    {
-        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
-        float pX = lua_tonumber(L, 2);
-        float pY = lua_tonumber(L, 3);
-        editBox->get()->setPosition({pX, pY});
-    }
-    return 0;
-}
-
-int lua_EditBox_SetPosStr(lua_State * L)
-{
-    if(lua_gettop(L) != 3)
-    {
-        std::cout << "gettop failed (lua_EditBox_SetPosStr) " << lua_gettop(L) << "\n";
-        return -1;
-    }
-    else
-    {
-        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
-        
-        std::string pX = lua_tostring(L,2);
-        std::string pY = lua_tostring(L,3);
-
-        editBox->get()->setPosition(pX.c_str(), pY.c_str());
-    }
-    
-    return 0;
-}
-
-int lua_EditBox_SetSize(lua_State *L)
-{
-    if(lua_gettop(L) != 3)
-    {
-        std::cout << "gettop failed (lua_EditBox_SetSize) " << lua_gettop(L) << "\n";
-        return -1;
-    }
-    else
-    {
-        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
-        float pX = lua_tonumber(L, 2);
-        float pY = lua_tonumber(L, 3);
-        editBox->get()->setSize({pX, pY});
-    }
-    return 0;
-}
-
-
-int lua_EditBox_SetSizeStr(lua_State * L)
-{
-    if(lua_gettop(L) != 3)
-    {
-        std::cout << "gettop failed (lua_EditBox_SetSizeStr) " << lua_gettop(L) << "\n";
-        return -1;
-    }
-    else
-    {
-        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
-        
-        std::string pX = lua_tostring(L,2);
-        std::string pY = lua_tostring(L,3);
-
-        editBox->get()->setSize(pX.c_str(), pY.c_str());
-    }
-    
-    return 0;
-}
-
-int lua_EditBox_SetPWChar(lua_State * L)
-{
-    if(lua_gettop(L) != 2)
-    {
-        std::cout << "gettop failed (lua_EditBox_SetPWChar) " << lua_gettop(L) << "\n";
-        return -1;
-    }
-    else
-    {
-        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
-        char tC = lua_tostring(L, 2)[0];
-        editBox->get()->setPasswordCharacter(tC);
-        return 0;
-        
-    }
-    return -1;
-}
-
-int lua_EditBox_SetText(lua_State * L)
-{
-    if(lua_gettop(L) != 2)
-    {
-        std::cout << "gettop failed (lua_EditBox_SetText) " << lua_gettop(L) << "\n";
-        return -1;
-    }
-    else
-    {
-        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
-        std::string text = lua_tostring(L, 2);
-        editBox->get()->setText(text.c_str());
-        return 0;
-    }
-    return -1;
-}
-
-int lua_EditBox_GetText(lua_State * L)
-{
-    if(lua_gettop(L) != 1)
-    {
-        std::cout << "gettop failed (lua_EditBox_GetText) " << lua_gettop(L) << "\n";
-        return -1;
-    }
-    else
-    {
-        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
-
-        std::string text = editBox->get()->getText().toStdString();
-        lua_pushstring(L, text.c_str());
-        return 1;
-    }
-    return 0;
-}
-
 
 int lua_Panel_SetPosStr(lua_State * L)
 {
@@ -267,7 +121,6 @@ int lua_Panel_ShowWithEffect(lua_State * L)
         tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
         int type = lua_tonumber(L,2);
         int time = lua_tonumber(L, 3);
-
         panel->get()->showWithEffect((tgui::ShowEffectType)type, std::chrono::milliseconds(time));
         panel->get()->moveToFront();
     }
@@ -301,11 +154,149 @@ int lua_Panel_SetAlignment(lua_State * L)
         float originX = lua_tonumber(L,2);
         float originY = lua_tonumber(L,3);
         panel->get()->setOrigin(0.5,0.5);
-        
     }
     return 0;
 }
 
+// MARK: EditBox
+int lua_Panel_SetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Panel_SetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
+        float pX = lua_tonumber(L, 2);
+        float pY = lua_tonumber(L, 3);
+        panel->get()->setPosition({pX, pY});
+    }
+    return 0;
+}
+
+int lua_EditBox_SetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_EditBox_SetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
+        float pX = lua_tonumber(L, 2);
+        float pY = lua_tonumber(L, 3);
+        editBox->get()->setPosition({pX, pY});
+    }
+    return 0;
+}
+
+int lua_EditBox_SetPosStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_EditBox_SetPosStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
+        
+        std::string pX = lua_tostring(L,2);
+        std::string pY = lua_tostring(L,3);
+
+        editBox->get()->setPosition(pX.c_str(), pY.c_str());
+    }
+    return 0;
+}
+
+int lua_EditBox_SetSize(lua_State *L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_EditBox_SetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
+        float pX = lua_tonumber(L, 2);
+        float pY = lua_tonumber(L, 3);
+        editBox->get()->setSize({pX, pY});
+    }
+    return 0;
+}
+
+int lua_EditBox_SetSizeStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_EditBox_SetSizeStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
+        std::string pX = lua_tostring(L,2);
+        std::string pY = lua_tostring(L,3);
+        editBox->get()->setSize(pX.c_str(), pY.c_str());
+    }
+    return 0;
+}
+
+int lua_EditBox_SetPWChar(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_EditBox_SetPWChar) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
+        char tC = lua_tostring(L, 2)[0];
+        editBox->get()->setPasswordCharacter(tC);
+        return 0;
+    }
+    return -1;
+}
+
+int lua_EditBox_SetText(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_EditBox_SetText) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
+        std::string text = lua_tostring(L, 2);
+        editBox->get()->setText(text.c_str());
+        return 0;
+    }
+    return -1;
+}
+
+int lua_EditBox_GetText(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_EditBox_GetText) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
+
+        std::string text = editBox->get()->getText().toStdString();
+        lua_pushstring(L, text.c_str());
+        return 1;
+    }
+    return 0;
+}
 
 int lua_EditBox_Create(lua_State * L)
 {
@@ -346,6 +337,8 @@ int lua_EditBox_Create(lua_State * L)
     }
     return -1;
 }
+
+// MARK: Label / RTLabel
 
 int lua_Label_SetText(lua_State * L)
 {
@@ -798,6 +791,8 @@ int lua_RTLabel_Create(lua_State * L)
     return 0;
 }
 
+// MARK: Picture
+
 int lua_Picture_Create(lua_State * L)
 {
     std::cout << "[C++] lua_Picture_Create called \n";
@@ -965,6 +960,8 @@ int lua_TabContainer_Create(lua_State * L)
     return 0;
 }
 
+// MARK: TabContainer
+
 int lua_TabContainer_SetPos(lua_State * L)
 {
     if(lua_gettop(L) != 3)
@@ -1035,7 +1032,7 @@ int lua_TabContainer_SetSizeStr(lua_State * L)
 
 int lua_TabContainer_AddTab(lua_State * L)
 {
-    if(lua_gettop(L) != 2)
+    if(lua_gettop(L) < 2 || lua_gettop(L) > 3)
     {
         std::cout << "gettop failed (lua_TabContainer_AddTab) " << lua_gettop(L) << "\n";
         return -1;
@@ -1045,12 +1042,178 @@ int lua_TabContainer_AddTab(lua_State * L)
         tgui::TabContainer::Ptr * tabsContainer = static_cast<tgui::TabContainer::Ptr*>(lua_touserdata(L, 1));
         std::string TabName = lua_tostring(L, 2);
         tgui::Panel::Ptr * panel = new tgui::Panel::Ptr();
-        *panel = tabsContainer->get()->addTab(TabName.c_str());
+
+        bool setActive = false;
+        if(lua_gettop(L) == 3)
+        {
+            setActive = lua_toboolean(L, 3);
+        }
+        *panel = tabsContainer->get()->addTab(TabName.c_str(),setActive);
         lua_pushlightuserdata(L,panel);
         return 1;
     }
     return 0;
 }
+
+// MARK: ScrollablePanel
+
+int lua_ScrollablePanel_Create(lua_State * L)
+{
+    if(lua_gettop(L) < 5 || lua_gettop(L) > 6)
+    {
+        std::cout << "gettop failed (lua_ScrollablePanel_Create) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        float width = lua_tonumber(L, 4);
+        float height = lua_tonumber(L, 5);
+        tgui::ScrollablePanel::Ptr * scrollablePanel = new tgui::ScrollablePanel::Ptr();
+        *scrollablePanel = host->createScrollablePanel(x,y,width,height);
+        lua_pushlightuserdata(L,scrollablePanel);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_ScrollablePanel_SetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ScrollablePanel_SetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ScrollablePanel::Ptr * scrollablePanel = static_cast<tgui::ScrollablePanel::Ptr*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        scrollablePanel->get()->setPosition(x,y);
+    }
+    return 0;
+}
+
+int lua_ScrollablePanel_SetPosStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ScrollablePanel_SetPosStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ScrollablePanel::Ptr * scrollablePanel = static_cast<tgui::ScrollablePanel::Ptr*>(lua_touserdata(L, 1));
+        std::string x = lua_tostring(L, 2);
+        std::string y = lua_tostring(L, 3);
+        scrollablePanel->get()->setPosition(x.c_str(),y.c_str());
+    }
+    return 0;
+}
+
+int lua_ScrollablePanel_SetSize(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ScrollablePanel_SetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ScrollablePanel::Ptr * scrollablePanel = static_cast<tgui::ScrollablePanel::Ptr*>(lua_touserdata(L, 1));
+        float width = lua_tonumber(L, 2);
+        float height = lua_tonumber(L, 3);
+        scrollablePanel->get()->setSize(width,height);
+    }
+    return 0;
+}
+
+int lua_ScrollablePanel_SetSizeStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ScrollablePanel_SetSizeStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ScrollablePanel::Ptr * scrollablePanel = static_cast<tgui::ScrollablePanel::Ptr*>(lua_touserdata(L, 1));
+        std::string width = lua_tostring(L, 2);
+        std::string height = lua_tostring(L, 3);
+        scrollablePanel->get()->setSize(width.c_str(),height.c_str());
+    }
+    return 0;
+}
+
+int lua_ScrollablePanel_HideWithEffect(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ScrollablePanel_HideWithEffect) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ScrollablePanel::Ptr * scrollablePanel = static_cast<tgui::ScrollablePanel::Ptr*>(lua_touserdata(L, 1));
+        int type = lua_tonumber(L,2);
+        int time = lua_tonumber(L, 3);
+        scrollablePanel->get()->hideWithEffect((tgui::ShowEffectType)type, std::chrono::milliseconds(time));
+    }
+    return 0;
+}
+
+int lua_ScrollablePanel_ShowWithEffect(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ScrollablePanel_ShowWithEffect) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ScrollablePanel::Ptr * scrollablePanel = static_cast<tgui::ScrollablePanel::Ptr*>(lua_touserdata(L, 1));
+        int type = lua_tonumber(L,2);
+        int time = lua_tonumber(L, 3);
+        scrollablePanel->get()->showWithEffect((tgui::ShowEffectType)type, std::chrono::milliseconds(time));
+    }
+    return 0;
+}
+
+int lua_ScrollablePanel_setVisible(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_ScrollablePanel_setVisible) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ScrollablePanel::Ptr * scrollablePanel = static_cast<tgui::ScrollablePanel::Ptr*>(lua_touserdata(L, 1));
+        bool visible = lua_toboolean(L, 2);
+        scrollablePanel->get()->setVisible(visible);
+    }
+    return 0;
+}
+
+int lua_ScrollablePanel_SetAlignment(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Label_SetAlignment) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ScrollablePanel::Ptr * panel = static_cast<tgui::ScrollablePanel::Ptr *>(lua_touserdata(L, 1));
+        float originX = lua_tonumber(L,2);
+        float originY = lua_tonumber(L,3);
+        panel->get()->setOrigin(0.5,0.5);
+    }
+    return 0;
+}
+
 
 TGUIScriptingManager::TGUIScriptingManager()
 {
@@ -1070,6 +1233,14 @@ tgui::Label::Ptr TGUIScriptingManager::createLabel(const std::string & text,floa
     return label;
 }
 
+tgui::ScrollablePanel::Ptr TGUIScriptingManager::createScrollablePanel(float x, float y, float width, float height)
+{
+    tgui::ScrollablePanel::Ptr scrollablePanel = tgui::ScrollablePanel::create();
+    scrollablePanel->setPosition(x, y);
+    scrollablePanel->setSize(width, height);
+    return scrollablePanel;
+}
+
 tgui::Picture::Ptr TGUIScriptingManager::createPicture(const std::string & path, float x, float y, float width, float height)
 {
     tgui::Picture::Ptr picture = tgui::Picture::create();
@@ -1077,6 +1248,7 @@ tgui::Picture::Ptr TGUIScriptingManager::createPicture(const std::string & path,
     picture->getRenderer()->setTexture(texture);
     picture->setPosition(x, y);
     picture->setSize(width, height);
+    // picture->showWithEffect(tgui::ShowEffectType::Scale, 0.3f);
     return picture;
 }
 
@@ -1246,13 +1418,26 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Panel_SetVisible", lua_Panel_setVisible);
     lua_register(m_script, "cpp_Panel_SetAlignment", lua_Panel_SetAlignment);
 
+    // TGUI ScrollablePanel section
+    lua_register(m_script, "cpp_ScrollablePanel_Create", lua_ScrollablePanel_Create);
+    lua_register(m_script, "cpp_ScrollablePanel_SetPos", lua_ScrollablePanel_SetPos);
+    lua_register(m_script, "cpp_ScrollablePanel_SetPosStr", lua_ScrollablePanel_SetPosStr);
+    lua_register(m_script, "cpp_ScrollablePanel_SetSize", lua_ScrollablePanel_SetSize);
+    lua_register(m_script, "cpp_ScrollablePanel_SetSizeStr", lua_ScrollablePanel_SetSizeStr);
+    lua_register(m_script, "cpp_ScrollablePanel_HideWithEffect", lua_ScrollablePanel_HideWithEffect);
+    lua_register(m_script, "cpp_ScrollablePanel_ShowWithEffect", lua_ScrollablePanel_ShowWithEffect);
+    lua_register(m_script, "cpp_ScrollablePanel_SetVisible", lua_ScrollablePanel_setVisible);
+    lua_register(m_script, "cpp_ScrollablePanel_SetAlignment", lua_ScrollablePanel_SetAlignment);
+
+
+
     // TGUI Picture section
     lua_register(m_script, "cpp_Picture_Create", lua_Picture_Create);
     lua_register(m_script, "cpp_Picture_SetPos", lua_Picture_SetPos);
     lua_register(m_script, "cpp_Picture_SetPosStr", lua_Picture_SetPosStr);
     lua_register(m_script, "cpp_Picture_SetSize", lua_Picture_SetSize);
     lua_register(m_script, "cpp_Picture_SetSizeStr", lua_Picture_SetSizeStr);
-    lua_register(m_script, "lua_Picture_SetTexture", lua_Picture_SetTexture);
+    lua_register(m_script, "cpp_Picture_SetTexture", lua_Picture_SetTexture);
 
     // TGUI Tabs container section
     lua_register(m_script, "cpp_TabContainer_Create", lua_TabContainer_Create);

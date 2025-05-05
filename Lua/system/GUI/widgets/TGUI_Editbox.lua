@@ -1,5 +1,3 @@
-
-
 --- @class (exact) EditBox
 --- @field host pointer instance of TGUIScriptingManager
 --- @field ptr pointer instance of TGUI Editbox
@@ -9,15 +7,17 @@
 --- @field height number height
 --- @field parent? pointer instance of parent, default nil (main)
 EditBox = {
+    ---@type pointer
     host = nil,
+    ---@type pointer
     ptr = nil,
     posX = 0,
     posY = 0,
     width = 0,
     height = 0,
+    ---@type pointer
     parent = nil
 }
-
 
 ---@Description create new instance of EditBox
 ---@return EditBox

@@ -7,6 +7,12 @@ LabelColor.Blue = 3
 --- @class pointer
 
 ---@class (exact) Label
+---@field host pointer instance of TGUIScriptingManager
+---@field ptr pointer instance of TGUI Label
+---@field text string text to display
+---@field posX number x position
+---@field posY number y position
+---@field parent pointer instance of parent, default nil (main)
 Label = {
     ---@type pointer
     host = nil,

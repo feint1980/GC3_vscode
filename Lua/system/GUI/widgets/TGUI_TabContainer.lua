@@ -63,8 +63,12 @@ function TabContainer:setSizeStr(width,height)
     TGUI_TabContainer_SetSizeStr(self.ptr,width,height)
 end
 
-function TabContainer:addTab(name)
-    self.tabs[name] = TGUI_TabContainer_AddTab(self.ptr,name)
+---@Desciption add new tab to TabContainer
+---@param name string name of tab
+---@param isSelect? boolean is selected
+function TabContainer:addTab(name,isSelect)
+    local isSelect = isSelect or false
+    self.tabs[name] = TGUI_TabContainer_AddTab(self.ptr,name,isSelect)
 end
 
 --- MARK: Wrapper
@@ -118,7 +122,9 @@ end
 --- wrapper of cpp_TabContainer_AddTab
 ---@param tabContainer pointer instance of TabContainer
 ---@param text string text
----@param isSelected boolean is selected
-function TGUI_TabContainer_AddTab(tabContainer, text)
-    return cpp_TabContainer_AddTab(tabContainer, text)
+---@param isSelected? boolean is selected
+---@return pointer instance of TGUI Tab
+function TGUI_TabContainer_AddTab(tabContainer, text, isSelected)
+    isSelected = isSelected or false
+    return cpp_TabContainer_AddTab(tabContainer, text, isSelected)
 end

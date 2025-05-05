@@ -1,6 +1,6 @@
 
 ---@class PanelShowType
-PanelShowType = {
+ScrollablePanelShowType = {
     Fade = 0,
     Scale = 1,
     SlideToRight = 2,
@@ -13,7 +13,7 @@ PanelShowType = {
     SlideFromBottom = 5,
 }
 
---- @class (exact) Panel
+--- @class (exact) ScrollablePanel
 --- @field host pointer instance of TGUIScriptingManager
 --- @field ptr pointer instance of TGUI Panel
 --- @field posX number x position
@@ -22,7 +22,7 @@ PanelShowType = {
 --- @field height number height
 --- @field parent pointer instance of parent, default nil (main)
 --- @field visible boolean default true
-Panel = {
+ScrollablePanel = {
     ---@type pointer
     host = nil,
     ---@type pointer
@@ -39,26 +39,26 @@ Panel = {
 
 ---@Description create new instance of Panel
 ---@return Panel
-function Panel:new(o)
+function ScrollablePanel:new(o)
     o = o or {}
     setmetatable(o, self)
     self.__index = self
     return o
 end
 
----@Description create new instance of Panel
+---@Description create new instance of ScrollablePanel
 ---@param host pointer instance of TGUIScriptingManager
 ---@param posX number x position
 ---@param posY number y position
 ---@param width number width
 ---@param height number height
 ---@param parent? pointer instance of parent, default nil (main)
-function Panel:init(host, posX, posY, 
+function ScrollablePanel:init(host, posX, posY, 
     width, height, parent)
 
     parent = parent or nil
     self.host = host
-    self.ptr = TGUI_Panel_Create(host, posX, posY, width, height, parent)
+    self.ptr = TGUI_ScrollablePanel_Create(host, posX, posY, width, height, parent)
     self.posX = posX
     self.posY = posY
     self.width = width
@@ -66,66 +66,66 @@ function Panel:init(host, posX, posY,
     self.parent = parent
 end
 
----@Description set the position of the panel
+---@Description set the position of the Scrollablepanel
 ---@param posX number x position
 ---@param posY number y position
-function Panel:setPos(posX, posY)
-    TGUI_Panel_SetPos(self.ptr, posX, posY)
+function ScrollablePanel:setPos(posX, posY)
+    TGUI_ScrollablePanel_SetPos(self.ptr, posX, posY)
     self.posX = posX
     self.posY = posY
 end
 
----@Description set the position of the panel (string version)
+---@Description set the position of the Scrollablepanel (string version)
 ---@param posXStr string x position
 ---@param posYStr string y position
-function Panel:setPosStr(posXStr, posYStr)
-    TGUI_Panel_SetPosStr(self.ptr, posXStr, posYStr)
+function ScrollablePanel:setPosStr(posXStr, posYStr)
+    TGUI_ScrollablePanel_SetPosStr(self.ptr, posXStr, posYStr)
 end
 
----@Description set the size of the panel
+---@Description set the size of the Scrollablepanel
 ---@param width number width
 ---@param height number height
-function Panel:setSize(width, height)
+function ScrollablePanel:setSize(width, height)
     self.width = width
     self.height = height    
-    TGUI_Panel_SetSize(self.ptr, width, height)
+    TGUI_ScrollablePanel_SetSize(self.ptr, width, height)
 end
 
----@Description set the size of the panel (string version)
+---@Description set the size of the Scrollablepanel (string version)
 ---@param width string width
 ---@param height string height
-function Panel:setSizeStr(width, height)
-    TGUI_Panel_SetSizeStr(self.ptr, width, height)
+function ScrollablePanel:setSizeStr(width, height)
+    TGUI_ScrollablePanel_SetSizeStr(self.ptr, width, height)
 end
 
----@Description hide panel with effect
+---@Description hide Scrollablepanel with effect
 ---@param type number type
 ---@param time number time to disappear
-function Panel:hideWithEffect(type,time)
-    TGUI_Panel_HideWithEffect(self.ptr, type,time)
+function ScrollablePanel:hideWithEffect(type,time)
+    TGUI_ScrollablePanel_HideWithEffect(self.ptr, type,time)
     self.visible = false
 end
 
----@Description show panel with effect
+---@Description show Scrollablepanel with effect
 ---@param type number type
 ---@param time number time to appear
-function Panel:showWithEffect(type,time)
-    TGUI_Panel_ShowWithEffect(self.ptr, type,time)
+function ScrollablePanel:showWithEffect(type,time)
+    TGUI_ScrollablePanel_ShowWithEffect(self.ptr, type,time)
     self.visible = true
 end
 
----@Description set Alignment of Panel
+---@Description set Alignment of ScrollablePanel
 ---@param originX number
 ---@param originY number
-function Panel:setAligment(originX,originY)
-    TGUI_Panel_SetAlignment(self.ptr, originX,originY)
+function ScrollablePanel:setAligment(originX,originY)
+    TGUI_ScrollablePanel_SetAlignment(self.ptr, originX,originY)
 end
 
 
----@Description set the visibility of the panel
+---@Description set the visibility of the Scrollablepanel
 ---@param visible boolean
-function Panel:setVisible(visible)
-    TGUI_Panel_SetVisible(self.ptr, visible)
+function ScrollablePanel:setVisible(visible)
+    TGUI_ScrollablePanel_SetVisible(self.ptr, visible)
     self.visible = visible
 end
 
@@ -139,69 +139,69 @@ end
 ---@param height number height
 ---@param parent? pointer instance of parent, default nil (main)
 ---@return pointer instance of TGUI Panel
-function TGUI_Panel_Create(host, posX, posY, width, height, parent)
-    return cpp_Panel_Create(host, posX, posY, width, height, parent)
+function TGUI_ScrollablePanel_Create(host, posX, posY, width, height, parent)
+    return cpp_ScrollablePanel_Create(host, posX, posY, width, height, parent)
 end
 
---- wrapper of cpp_Panel_SetPos
+--- wrapper of cpp_ScrollablePanel_SetPos
 ---@param panel pointer instance of TGUI Panel
 ---@param posX number x position
 ---@param posY number y position
-function TGUI_Panel_SetPos(panel, posX, posY)
-    cpp_Panel_SetPos(panel, posX, posY)
+function TGUI_ScrollablePanel_SetPos(panel, posX, posY)
+    cpp_ScrollablePanel_SetPos(panel, posX, posY)
 end
 
---- wrapper of cpp_Panel_SetPosStr
+--- wrapper of cpp_ScrollablePanel_SetPosStr
 ---@param panel pointer instance of TGUI Panel
 ---@param posXStr string x position
 ---@param posYStr string y position
-function TGUI_Panel_SetPosStr(panel, posXStr, posYStr)
-    cpp_Panel_SetPosStr(panel, posXStr, posYStr)
+function TGUI_ScrollablePanel_SetPosStr(panel, posXStr, posYStr)
+    cpp_ScrollablePanel_SetPosStr(panel, posXStr, posYStr)
 end
 
---- wrapper of cpp_Panel_SetSize
+--- wrapper of cpp_ScrollablePanel_SetSize
 ---@param panel pointer instance of TGUI Panel
 ---@param width number width
 ---@param height number height
-function TGUI_Panel_SetSize(panel, width, height)
-    cpp_Panel_SetSize(panel, width, height)
+function TGUI_ScrollablePanel_SetSize(panel, width, height)
+    cpp_ScrollablePanel_SetSize(panel, width, height)
 end
 
---- wrapper of cpp_Panel_SetSizeStr
+--- wrapper of cpp_ScrollablePanel_SetSizeStr
 ---@param panel pointer instance of TGUI Panel
 ---@param width string width
 ---@param height string height
-function TGUI_Panel_SetSizeStr(panel, width, height)
-    cpp_Panel_SetSizeStr(panel, width, height)
+function TGUI_ScrollablePanel_SetSizeStr(panel, width, height)
+    cpp_ScrollablePanel_SetSizeStr(panel, width, height)
 end
 
---- wrapper of cpp_Panel_HideWithEffect
+--- wrapper of cpp_ScrollablePanel_HideWithEffect
 ---@param panel pointer instance of TGUI Panel
 ---@param type number
 ---@param time number
-function TGUI_Panel_HideWithEffect(panel,type, time)
-    cpp_Panel_HideWithEffect(panel,type, time)
+function TGUI_ScrollablePanel_HideWithEffect(panel,type, time)
+    cpp_ScrollablePanel_HideWithEffect(panel,type, time)
 end
 
---- wrapper of cpp_Panel_HideWithEffect
+--- wrapper of cpp_ScrollablePanel_HideWithEffect
 ---@param panel pointer instance of TGUI Panel
 ---@param type number
 ---@param time number
-function TGUI_Panel_ShowWithEffect(panel,type, time)
-    cpp_Panel_ShowWithEffect(panel, type,time)
+function TGUI_ScrollablePanel_ShowWithEffect(panel,type, time)
+    cpp_ScrollablePanel_ShowWithEffect(panel, type,time)
 end
 
---- wrapper of cpp_Panel_setVisible
+--- wrapper of cpp_ScrollablePanel_setVisible
 ---@param panel pointer instance of TGUI Panel
 ---@param visible boolean
-function TGUI_Panel_SetVisible(panel, visible)
-    cpp_Panel_SetVisible(panel, visible)
+function TGUI_ScrollablePanel_SetVisible(panel, visible)
+    cpp_ScrollablePanel_SetVisible(panel, visible)
 end
 
---- wrapper of cpp_Panel_setAlginmen
+--- wrapper of cpp_ScrollablePanel_setAlginmen
 ---@param panel pointer instance of TGUI Panel
 ---@param originX number
 ---@param originY number
-function TGUI_Panel_SetAlignment(panel,originX,originY)
-    cpp_Panel_SetAlignment(panel, originX,originY)
+function TGUI_ScrollablePanel_SetAlignment(panel,originX,originY)
+    cpp_ScrollablePanel_SetAlignment(panel, originX,originY)
 end

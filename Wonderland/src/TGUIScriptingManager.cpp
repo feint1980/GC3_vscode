@@ -1162,7 +1162,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Picture_SetPosStr", lua_Picture_SetPosStr);
     lua_register(m_script, "cpp_Picture_SetSize", lua_Picture_SetSize);
     lua_register(m_script, "cpp_Picture_SetSizeStr", lua_Picture_SetSizeStr);
-    lua_register(m_script, "lua_Picture_SetTexture", lua_Picture_SetTexture);
+    lua_register(m_script, "cpp_Picture_SetTexture", lua_Picture_SetTexture);
 
     // run Init script
     // if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "./Assets/Lua/system/GUI/tguiScript.lua")))

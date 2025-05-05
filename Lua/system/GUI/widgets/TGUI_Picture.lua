@@ -1,9 +1,5 @@
 
-
-
 ---@class pointer
-
-
 
 --- @class (exact) Picture
 --- @field host pointer instance of TGUIScriptingManager
@@ -15,20 +11,18 @@
 --- @field height number height
 --- @field parent pointer instance of parent, default nil (main)
 Picture = {
-    
+    ---@type pointer
     host = nil,
+    ---@type pointer
     ptr = nil,
     path = "",
     posX = 0,
     posY = 0,
     width = 0,
     height = 0,
+    ---@type pointer
     parent = nil
-    
 }
-
-
----@class Picture
 
 ---@Description created a new picture
 ---@return Picture
@@ -52,7 +46,6 @@ function Picture:init(host,path,posX,posY,width,height,parent)
     self.parent = parent
 end
 
-
 ---@Description set the position of the picture
 ---@param posX number x position
 ---@param posY number y position
@@ -67,7 +60,6 @@ end
 ---@param posYStr string y position
 function Picture:setPosStr(posXStr, posYStr)
     TGUI_Picture_SetPosStr(self.ptr, posXStr, posYStr)
-    
 end
 
 ---@Description set the size of the picture
@@ -92,7 +84,6 @@ function Picture:setTexture(path)
     TGUI_Picture_SetTexture(self.ptr, path)
     self.path = path
 end
-
 
 --- MARK: Wrapper
 --- function wrapper of cpp_Label_Create
@@ -146,11 +137,10 @@ function TGUI_Picture_SetSizeStr(picture, width, height)
     cpp_Picture_SetSizeStr(picture, width, height)
 end
 
---- function wrapper of lua_Picture_SetTexture
+--- function wrapper of cpp_Picture_SetTexture
 ---@Description set the texture of the picture
 ---@param picture pointer instance of TGUI Picture
 ---@param texturePath string path to texture
 function TGUI_Picture_SetTexture(picture, texturePath)
-    lua_Picture_SetTexture(picture, texturePath)
+    cpp_Picture_SetTexture(picture, texturePath)
 end
-
