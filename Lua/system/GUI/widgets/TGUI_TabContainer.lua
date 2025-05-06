@@ -34,33 +34,53 @@ end
 function TabContainer:init(host,tPosX,tPosY,
     tWidth,tHeight,parent)
     parent =  parent or nil
+    self.parent = parent
     self.host = host
     self.ptr = TGUI_TabContainer_Create(host,tPosX,
-    tPosY,tWidth,tHeight,parent)
+    tPosY,tWidth,tHeight,self.parent)
     self.posX = tPosX
     self.posY = tPosY
     self.width = tWidth
     self.height = tHeight
 end
 
+---@Desciption set the position of the TabContainer
+---@param x number x position
+---@param y number y position
 function TabContainer:setPos(x,y)
     self.posX = x
     self.posY = y
     TGUI_TabContainer_SetPos(self.ptr,x,y)
 end
 
+---@Desciption set the position of the TabContainer (string version)
+---@param x string x position
+---@param y string y position
 function TabContainer:setPosStr(x,y)
     TGUI_TabContainer_SetPosStr(self.ptr,x,y)
 end
 
+---@Description set the size of the TabContainer
+---@param width number width
+---@param height number height
 function TabContainer:setSize(width,height)
     self.width = width
     self.height = height
     TGUI_TabContainer_SetSize(self.ptr,width,height)
 end
 
+---@Description set the size of the TabContainer (string version)
+---@param width string width
+---@param height string height
 function TabContainer:setSizeStr(width,height)
     TGUI_TabContainer_SetSizeStr(self.ptr,width,height)
+end
+
+---@Description set the aligment of the TabContainer
+---@param x number x aligment
+---@param y number y aligment
+function TabContainer:setAligment(x,y)
+    TGUI_TabContainer_SetAlignment(self.ptr,x,y)
 end
 
 ---@Desciption add new tab to TabContainer
@@ -69,6 +89,12 @@ end
 function TabContainer:addTab(name,isSelect)
     local isSelect = isSelect or false
     self.tabs[name] = TGUI_TabContainer_AddTab(self.ptr,name,isSelect)
+end
+
+---@Description remove tab from TabContainer
+---@param width number width
+function TabContainer:setTabFixedSize(width)
+    TGUI_TabContainer_SetTabFixedSize(self.ptr,width)
 end
 
 --- MARK: Wrapper
@@ -127,4 +153,19 @@ end
 function TGUI_TabContainer_AddTab(tabContainer, text, isSelected)
     isSelected = isSelected or false
     return cpp_TabContainer_AddTab(tabContainer, text, isSelected)
+end
+
+--- wrapper of cpp_TabContainer_SetAlignment
+---@param tabContainer pointer instance of TabContainer
+---@param x number x alignment
+---@param y number y alignment
+function TGUI_TabContainer_SetAlignment(tabContainer, x,y)
+    cpp_TabContainer_SetAlignment(tabContainer, x, y)
+end
+
+--- wrapper of cpp_TabContainer_SetTabFixedSize
+--- @param tabContainer pointer instance of TabContainer
+--- @param width number width
+function TGUI_TabContainer_SetTabFixedSize(tabContainer, width)
+    cpp_TabContainer_SetTabFixedSize(tabContainer, width)
 end

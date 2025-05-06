@@ -35,15 +35,15 @@ end
 
 function Picture:init(host,path,posX,posY,width,height,parent)
     parent = parent or nil
-
+    self.parent = parent
     self.host = host
-    self.ptr = TGUI_Picture_Create(host, path, posX, posY, width, height, parent)
+    self.ptr = TGUI_Picture_Create(host, path, posX,
+    posY, width, height, parent)
     self.path = path
     self.posX = posX
     self.posY = posY
     self.width = width
     self.height = height
-    self.parent = parent
 end
 
 ---@Description set the position of the picture
@@ -96,8 +96,9 @@ end
 ---@param height number height
 ---@param parent? pointer instance parent, default nil (main)
 ---@return pointer instance of TGUI Label
-function TGUI_Picture_Create(host, path, posX, posY,    width, height,parent)
-    parent = parent or nil
+function TGUI_Picture_Create(host, path, posX,
+    posY, width, height,parent)
+    -- parent = parent or nil
     return cpp_Picture_Create(host, path, posX, posY, width, height,parent)
 end
 

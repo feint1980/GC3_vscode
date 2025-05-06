@@ -25,13 +25,13 @@ public:
     
     tgui::RichTextLabel::Ptr createRTLabel(const std::string & text,float x, float y); 
 
-    tgui::Picture::Ptr createPicture(const std::string & path, float x, float y, float width, float height);
+    tgui::Picture::Ptr createPicture(const std::string & path, float x, float y, float width, float height, tgui::Panel::Ptr parent = nullptr);
 
     tgui::EditBox::Ptr createEditBox(float x, float y, float width, float height, tgui::Panel::Ptr parent);
 
     tgui::Panel::Ptr createPanel(float x, float y, float width, float height, tgui::Panel::Ptr parent);
 
-    tgui::ScrollablePanel::Ptr createScrollablePanel(float x, float y, float width, float height);
+    tgui::ScrollablePanel::Ptr createScrollablePanel(float x, float y, float width, float height,tgui::Panel::Ptr parent = nullptr);
 
     tgui::TabContainer::Ptr createTabContainer(float x, float y, float width, float height);
 

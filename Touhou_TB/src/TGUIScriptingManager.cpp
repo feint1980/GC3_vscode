@@ -307,15 +307,12 @@ int lua_EditBox_Create(lua_State * L)
     }
     else
     {
-
         TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
         float pX = lua_tonumber(L, 2);
         float pY = lua_tonumber(L, 3);
         float width = lua_tonumber(L, 4);
         float height = lua_tonumber(L, 5);
-
         tgui::EditBox::Ptr * editBox = new tgui::EditBox::Ptr();
-
         if(lua_gettop(L) == 6)
         {
             tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 6));
@@ -810,21 +807,29 @@ int lua_Picture_Create(lua_State * L)
         float width = lua_tonumber(L, 5);
         float height = lua_tonumber(L, 6);
         tgui::Picture::Ptr * picture = new tgui::Picture::Ptr();
-        *picture = host->createPicture(path,x,y,width,height);
-        if(lua_gettop(L) == 7)
+
+        tgui::Panel::Ptr * parent = nullptr;
+        parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 7));
+        *picture = host->createPicture(path,x,y,width,height,*parent);
+        // if(lua_gettop(L) == 7)
+        // {
+        //     // if(parent)
+        //     // {
+        //     //     parent->get()->add(*picture);
+        //     // }
+        //     // else
+        //     // {
+        //     //     host->getTGUI()->add(*picture);
+        //     // }
+        // }
+        if(parent)
         {
-            tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 7));
-            if(parent)
-            {
-                parent->get()->add(*picture);
-            }
-            else
-            {
-                host->getTGUI()->add(*picture);
-            }
+            std::cout << "sdsdsdsdsdsds has parent \n";
+            parent->get()->add(*picture);
         }
         else
         {
+            std::cout << "orphan bruhhhhhh \n";
             host->getTGUI()->add(*picture);
         }
         lua_pushlightuserdata(L,picture);
@@ -1049,8 +1054,42 @@ int lua_TabContainer_AddTab(lua_State * L)
             setActive = lua_toboolean(L, 3);
         }
         *panel = tabsContainer->get()->addTab(TabName.c_str(),setActive);
+        std::cout << "panel created " << panel << "\n";
         lua_pushlightuserdata(L,panel);
         return 1;
+    }
+    return 0;
+}
+
+int lua_TabContainer_SetAlignment(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_TabContainer_SetAlignment) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::TabContainer::Ptr * scrollablePanel = static_cast<tgui::TabContainer::Ptr*>(lua_touserdata(L, 1));
+        float originX = lua_tonumber(L, 2);
+        float originY = lua_tonumber(L, 3);
+        scrollablePanel->get()->setOrigin(originX,originY);
+    }
+    return 0;
+}
+
+int lua_TabContainer_SetTabFixedSize(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_TabContainer_SetTabFixedSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::TabContainer::Ptr * scrollablePanel = static_cast<tgui::TabContainer::Ptr*>(lua_touserdata(L, 1));
+        float width = lua_tonumber(L, 2);
+        scrollablePanel->get()->setTabFixedSize(width);
     }
     return 0;
 }
@@ -1072,7 +1111,12 @@ int lua_ScrollablePanel_Create(lua_State * L)
         float width = lua_tonumber(L, 4);
         float height = lua_tonumber(L, 5);
         tgui::ScrollablePanel::Ptr * scrollablePanel = new tgui::ScrollablePanel::Ptr();
-        *scrollablePanel = host->createScrollablePanel(x,y,width,height);
+        tgui::Panel::Ptr * parent ;
+        if(lua_gettop(L) == 6)
+        {
+            parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 6));
+        }
+        *scrollablePanel = host->createScrollablePanel(x,y,width,height,*parent);
         lua_pushlightuserdata(L,scrollablePanel);
         return 1;
     }
@@ -1214,6 +1258,22 @@ int lua_ScrollablePanel_SetAlignment(lua_State * L)
     return 0;
 }
 
+int lua_ScrollablePanel_GetSize(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_ScrollablePanel_GetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ScrollablePanel::Ptr * scrollablePanel = static_cast<tgui::ScrollablePanel::Ptr*>(lua_touserdata(L, 1));
+        auto size = scrollablePanel->get()->getSize();
+        lua_pushnumber(L,size.x);
+        lua_pushnumber(L,size.y);
+    }
+    return 2;
+}
 
 TGUIScriptingManager::TGUIScriptingManager()
 {
@@ -1233,21 +1293,40 @@ tgui::Label::Ptr TGUIScriptingManager::createLabel(const std::string & text,floa
     return label;
 }
 
-tgui::ScrollablePanel::Ptr TGUIScriptingManager::createScrollablePanel(float x, float y, float width, float height)
+tgui::ScrollablePanel::Ptr TGUIScriptingManager::createScrollablePanel(float x, float y, float width, float height,tgui::Panel::Ptr parent)
 {
     tgui::ScrollablePanel::Ptr scrollablePanel = tgui::ScrollablePanel::create();
     scrollablePanel->setPosition(x, y);
     scrollablePanel->setSize(width, height);
+    scrollablePanel->setHorizontalScrollbarPolicy(tgui::Scrollbar::Policy::Never);
+    if(parent)
+    {
+        std::cout << "parent not null" << "\n";
+        parent->add(scrollablePanel);
+    }
+    else 
+    {
+        std::cout << "parent null" << "\n";
+        m_tgui->add(scrollablePanel);
+    }
     return scrollablePanel;
 }
 
-tgui::Picture::Ptr TGUIScriptingManager::createPicture(const std::string & path, float x, float y, float width, float height)
+tgui::Picture::Ptr TGUIScriptingManager::createPicture(const std::string & path, float x, float y, float width, float height,tgui::Panel::Ptr parent)
 {
     tgui::Picture::Ptr picture = tgui::Picture::create();
     tgui::Texture texture(path);
     picture->getRenderer()->setTexture(texture);
     picture->setPosition(x, y);
     picture->setSize(width, height);
+    if(parent)
+    {
+        parent->add(picture);
+    }
+    else 
+    {
+        m_tgui->add(picture);
+    }
     // picture->showWithEffect(tgui::ShowEffectType::Scale, 0.3f);
     return picture;
 }
@@ -1428,8 +1507,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_ScrollablePanel_ShowWithEffect", lua_ScrollablePanel_ShowWithEffect);
     lua_register(m_script, "cpp_ScrollablePanel_SetVisible", lua_ScrollablePanel_setVisible);
     lua_register(m_script, "cpp_ScrollablePanel_SetAlignment", lua_ScrollablePanel_SetAlignment);
-
-
+    lua_register(m_script, "cpp_ScrollablePanel_GetSize", lua_ScrollablePanel_GetSize);
 
     // TGUI Picture section
     lua_register(m_script, "cpp_Picture_Create", lua_Picture_Create);
@@ -1446,7 +1524,8 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_TabContainer_SetSize", lua_TabContainer_SetSize);
     lua_register(m_script, "cpp_TabContainer_SetSizeStr", lua_TabContainer_SetSizeStr);
     lua_register(m_script, "cpp_TabContainer_AddTab", lua_TabContainer_AddTab);
-    
+    lua_register(m_script, "cpp_TabContainer_SetAlignment", lua_TabContainer_SetAlignment);
+    lua_register(m_script, "cpp_TabContainer_SetTabFixedSize", lua_TabContainer_SetTabFixedSize);
 
     // TGUI Tabs section
     // lua_register(m_script, "cpp_Tabs_Create", lua_Tabs_Create);

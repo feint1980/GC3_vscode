@@ -56,14 +56,21 @@ end
 function ScrollablePanel:init(host, posX, posY, 
     width, height, parent)
 
+    print("ScrollablePanel init")
     parent = parent or nil
+    self.parent = parent
     self.host = host
-    self.ptr = TGUI_ScrollablePanel_Create(host, posX, posY, width, height, parent)
+    self.ptr = TGUI_ScrollablePanel_Create(host, posX, posY, width, height, self.parent)
     self.posX = posX
     self.posY = posY
     self.width = width
     self.height = height
-    self.parent = parent
+    if self.parent ~= nil then
+        print("parent is not nil")
+        print(self.parent)
+    else
+        print("parent is nil")
+    end
 end
 
 ---@Description set the position of the Scrollablepanel
@@ -121,12 +128,17 @@ function ScrollablePanel:setAligment(originX,originY)
     TGUI_ScrollablePanel_SetAlignment(self.ptr, originX,originY)
 end
 
-
 ---@Description set the visibility of the Scrollablepanel
 ---@param visible boolean
 function ScrollablePanel:setVisible(visible)
     TGUI_ScrollablePanel_SetVisible(self.ptr, visible)
     self.visible = visible
+end
+
+---@Description get the size of the Scrollablepanel
+---@return number width, number height
+function ScrollablePanel:getSize()
+    return TGUI_ScrollablePanel_GetSize(self.ptr)
 end
 
 ---- MARK: Wrapper
@@ -204,4 +216,11 @@ end
 ---@param originY number
 function TGUI_ScrollablePanel_SetAlignment(panel,originX,originY)
     cpp_ScrollablePanel_SetAlignment(panel, originX,originY)
+end
+
+--- wrapper of cpp_ScrollablePanel_GetSize
+---@param panel pointer instance of TGUI Panel
+---@return number width, number height
+function TGUI_ScrollablePanel_GetSize(panel)
+    return cpp_ScrollablePanel_GetSize(panel)
 end

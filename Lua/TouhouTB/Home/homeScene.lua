@@ -38,8 +38,6 @@ Main_MonValLabel = nil
 ---@type Label
 Main_ShopButton = nil
 
-
-
 function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     HomeSceneHost = host
     Home_GUIScriptingPtr = TGUIScriptingPtr

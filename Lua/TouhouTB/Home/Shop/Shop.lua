@@ -6,23 +6,32 @@ require "TGUI_RTLabel"
 require "TGUI_Editbox"
 require "TGUI_Picture"
 require "TGUI_TabContainer"
+require "TGUI_ScrollablePanel"
 require "homeGlobal"
+require "CharacterPanel"
 
 MenuPanels = _G.MenuPanels
 
 ---@type TabContainer
 Shop = nil
 ShopPanel = nil
+
+CharacterShop = nil
 MenuPanels["Shop"] = function (host)
 
     if ShopPanel == nil then
         ShopPanel = Panel:new()
         ShopPanel:init(host,TGUI_ScreenWidth/2 - 300,TGUI_ScreenHeight/2 - 200,600,400)
+        ShopPanel:setSizeStr("80%", "80%")
+        ShopPanel:setAligment(0.5, 0.5)
+        ShopPanel:setPosStr("50%", "50%")
         local shopLabel = Label:new()
         shopLabel:init(host,"Shop",ShopPanel.width/2,0,ShopPanel.ptr)
         shopLabel:setAlignment(TextAlginment.Center)
+        shopLabel:setPosStr("50%","1%")
         local closeLabel = Label:new()
         closeLabel:init(host,"X",ShopPanel.width - 20,0,ShopPanel.ptr)
+        closeLabel:setPosStr("99%","1%")
         closeLabel:setAlignment(TextAlginment.Center)
         closeLabel:setHoverable(0,255,0,255,255,255,255,255)
         closeLabel:setOnClickCallback(function()
@@ -33,15 +42,33 @@ MenuPanels["Shop"] = function (host)
             -- Shop:init(host,"Dataaaa",0,0)
             Shop:init(host,50,40,500,350,ShopPanel.ptr)
             print("Init done")
-            Shop:addTab("Tab1",true)
-            local tab1_ee = Label:new()
-            tab1_ee:init(host,"ddde",0,0,Shop.tabs["Tab1"])
+            Shop:setAligment(0.5,0.5)
+            Shop:setPosStr("50%","50%")
+            Shop:setSizeStr("94%","95%")
+            Shop:setTabFixedSize(140)
+            Shop:addTab("Characters",true)
             Shop:addTab("Tab2")
         end
+        if CharacterShop == nil then
+            CharacterShop = ScrollablePanel:new()
+            CharacterShop:init(host,0,0,Shop.width,Shop.height,Shop.tabs["Characters"])
+            CharacterShop:setAligment(0.5,0.5)
+            CharacterShop:setPosStr("50%","50%")
+            CharacterShop:setSizeStr("95%","90%")
+            local refreshButton = Label:new()
+            refreshButton:init(host,"Refresh",CharacterShop.width - 100,0,Shop.tabs["Characters"])
+            refreshButton:setPosStr("95%","95%")
+            refreshButton:setAlignment(TextAlginment.Center)
+            refreshButton:setHoverable(0,255,0,255,255,255,255,255)
+            refreshButton:setOnClickCallback(function()
+                print("refresh call ")
+            end)
+            local testLocal = CharacterPanel:new()
+            testLocal:init(host,CharacterShop.ptr,0,0,100,250,"Assets/TB_GUI/faces/Reimu_face.png","testName","100")
+            
+        end
         ShopPanel:setVisible(false)
-        -- ShopPanel:hideWithEffect(PanelShowType.Fade,250)
     end
-
     ShopPanel:showWithEffect(PanelShowType.Fade,250)
 end
 
