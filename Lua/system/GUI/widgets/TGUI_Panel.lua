@@ -121,12 +121,51 @@ function Panel:setAligment(originX,originY)
     TGUI_Panel_SetAlignment(self.ptr, originX,originY)
 end
 
-
 ---@Description set the visibility of the panel
 ---@param visible boolean
 function Panel:setVisible(visible)
     TGUI_Panel_SetVisible(self.ptr, visible)
     self.visible = visible
+end
+
+---@Description set the callback of the panel
+---@param callback function
+function Panel:setHoverOnCallBack(callback)
+    TGUI_Panel_SetHoverOnCallBack(self.ptr, callback)
+end
+
+---@Description set the callback of the panel
+---@param callback function
+function Panel:setHoverOffCallBack(callback)
+    TGUI_Panel_SetHoverOffCallBack(self.ptr, callback)
+end
+
+---@Description set the border color of the panel
+---@param r number red (0-255)
+---@param g number green (0-255)
+---@param b number blue (0-255)
+---@param a? number alpha (0-255)
+function Panel:setBorderColor(r,g,b,a)
+    a = a or 255
+    TGUI_Panel_SetBorderColor(self.ptr, r,g,b,a)
+end
+
+---@Description set the label change color on Hover : on -> green | off ->white
+---@param hR number red (0-255)
+---@param hG number green (0-255)
+---@param hB number blue (0-255)
+---@param hA number alpha (0-255)
+---@param oR number red (0-255)
+---@param oG number green (0-255)
+---@param oB number blue (0-255)
+---@param oA number alpha (0-255)
+function Panel:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
+    self:setHoverOnCallBack(function()
+        self:setBorderColor(hR,hG,hB,hA)
+        end)
+    self:setHoverOffCallBack(function()
+        self:setBorderColor(oR,oG,oB,oA)
+        end)
 end
 
 ---- MARK: Wrapper
@@ -204,4 +243,28 @@ end
 ---@param originY number
 function TGUI_Panel_SetAlignment(panel,originX,originY)
     cpp_Panel_SetAlignment(panel, originX,originY)
+end
+
+--- wrapper of cpp_Panel_SetHoverOnCallback
+---@param panel pointer instance of TGUI Panel
+---@param callback function
+function TGUI_Panel_SetHoverOnCallBack(panel, callback)
+    cpp_Panel_SetHoverOnCallback(panel, callback)
+end
+
+--- wrapper of cpp_Panel_SetHoverOffCallBack
+---@param panel pointer instance of TGUI Panel
+---@param callback function
+function TGUI_Panel_SetHoverOffCallBack(panel, callback)
+    cpp_Panel_SetHoverOffCallback(panel, callback)
+end
+
+--- wrapper of cpp_Panel_SetBorderColor
+---@param panel pointer instance of TGUI Panel
+---@param r number red (0-255)
+---@param g number green (0-255)
+---@param b number blue (0-255)
+---@param a? number alpha (0-255) default 255
+function TGUI_Panel_SetBorderColor(panel, r,g,b,a)
+    cpp_Panel_SetBorderColor(panel, r,g,b,a)
 end

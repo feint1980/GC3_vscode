@@ -12,6 +12,7 @@ Character_Table["S_Reimu"] =
     Wisdom = 11,
     animationPath = "./Assets/F_AObjects/reimu_tb.xml",
     portraitPath  = "./Assets/TB_GUI/faces/Reimu_face.png",
+    panelPath = "./Assets/TB_GUI/panels/reimu_panel.png",
     action = 0,
     hp = 100,
     mana = 120,

@@ -201,6 +201,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     tosPanel:setSizeStr("30%", "30%")
     tosPanel:setPosStr("50%", "50%")
     tosPanel:setVisible(false)
+    -- tosPanel:setHoverOnCallBack(function() print("data ") end)
 
     local tosText = RTLabel:new()
     tosText:init(Login_GUIScriptingPtr,"This is a fan-made game based on \nTouhou project,many assets from other \ngames as concepts/placeholder,if you are \nOK with this prototype then hit \"Agree\" ",0,TGUI_ScreenHeight/2,tosPanel.ptr)

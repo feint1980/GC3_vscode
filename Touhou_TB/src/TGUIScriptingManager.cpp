@@ -158,7 +158,57 @@ int lua_Panel_SetAlignment(lua_State * L)
     return 0;
 }
 
-// MARK: EditBox
+int lua_Panel_SetHoverOnCallback(lua_State * L)
+{
+    std::cout << "lua_Panel_SetHoverOnCallback called \n";
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Panel_SetHoverOnCallback) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::cout << "lua_Panel_SetHoverOnCallback called \n";
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr *>(lua_touserdata(L, 1));
+        if(!lua_isfunction(L, 2))
+        {
+            std::cout << "param 2 is not a function \n";
+            return -1;
+        }
+        lua_pushvalue(L, 2);
+        int ref = luaL_ref(L, LUA_REGISTRYINDEX);
+        std::function<void()> callback = [L,ref](){
+            lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);
+        };
+        // callback();
+        panel->get()->onMouseEnter(callback);
+    }
+    return 0;
+}
+
+int lua_Panel_SetHoverOffCallback(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Panel_SetHoverOffCallback) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr *>(lua_touserdata(L, 1));
+        if(!lua_isfunction(L, 2))
+        {
+            std::cout << "param 2 is not a function \n";
+            return -1;
+        }
+        lua_pushvalue(L, 2);
+        int ref = luaL_ref(L, LUA_REGISTRYINDEX);
+        std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
+        panel->get()->onMouseLeave(callback);
+    }
+    return 0;
+}
+
 int lua_Panel_SetPos(lua_State * L)
 {
     if(lua_gettop(L) != 3)
@@ -175,6 +225,29 @@ int lua_Panel_SetPos(lua_State * L)
     }
     return 0;
 }
+
+int lua_Panel_SetBorderColor(lua_State * L)
+{
+    if(lua_gettop(L) != 5)
+    {
+        std::cout << "gettop failed (lua_Panel_SetBorderColor) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
+        int r = lua_tonumber(L, 2);
+        int g = lua_tonumber(L, 3);
+        int b = lua_tonumber(L, 4);
+        int a = lua_tonumber(L, 5);
+        tgui::Color color = tgui::Color(r, g, b, a);
+        panel->get()->getRenderer()->setBorderColor(color);
+        // panel->get()->getRenderer()->setBackgroundColor
+    }
+    return 0;
+}
+
+// MARK: EditBox
 
 int lua_EditBox_SetPos(lua_State * L)
 {
@@ -203,10 +276,8 @@ int lua_EditBox_SetPosStr(lua_State * L)
     else
     {
         tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
-        
         std::string pX = lua_tostring(L,2);
         std::string pY = lua_tostring(L,3);
-
         editBox->get()->setPosition(pX.c_str(), pY.c_str());
     }
     return 0;
@@ -683,7 +754,7 @@ int lua_Label_SetOnClickCallback(lua_State * L)
             std::cout << "ref is " << ref << "\n";
             lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);
         };
-        lua_pop(L, 1);
+        // lua_pop(L, 1);
         label->get()->onClick(callback);
     }
     return 0;
@@ -792,7 +863,7 @@ int lua_RTLabel_Create(lua_State * L)
 
 int lua_Picture_Create(lua_State * L)
 {
-    std::cout << "[C++] lua_Picture_Create called \n";
+    std::cout << "[C++] lua_Picture_Create called " << lua_gettop(L) << "\n";
     if(lua_gettop(L) < 6 || lua_gettop(L) > 7)
     {
         std::cout << "gettop failed (lua_Picture_Create) " << lua_gettop(L) << "\n";
@@ -800,6 +871,7 @@ int lua_Picture_Create(lua_State * L)
     }
     else
     {
+        std::cout << " inbound \n";
         TGUIScriptingManager * host =   static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
         std::string path = lua_tostring(L, 2);
         float x = lua_tonumber(L, 3);
@@ -810,28 +882,23 @@ int lua_Picture_Create(lua_State * L)
 
         tgui::Panel::Ptr * parent = nullptr;
         parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 7));
-        *picture = host->createPicture(path,x,y,width,height,*parent);
-        // if(lua_gettop(L) == 7)
-        // {
-        //     // if(parent)
-        //     // {
-        //     //     parent->get()->add(*picture);
-        //     // }
-        //     // else
-        //     // {
-        //     //     host->getTGUI()->add(*picture);
-        //     // }
-        // }
-        if(parent)
+        *picture = host->createPicture(path,x,y,width,height);
+        if(lua_gettop(L) == 7)
         {
-            std::cout << "sdsdsdsdsdsds has parent \n";
-            parent->get()->add(*picture);
+            if(parent && parent->get())
+            {
+                parent->get()->add(*picture);
+            }
+            else
+            {
+                host->getTGUI()->add(*picture);
+            }
         }
         else
         {
-            std::cout << "orphan bruhhhhhh \n";
             host->getTGUI()->add(*picture);
         }
+        // host->getTGUI()->add(*picture);
         lua_pushlightuserdata(L,picture);
         return 1;
     }
@@ -1111,7 +1178,7 @@ int lua_ScrollablePanel_Create(lua_State * L)
         float width = lua_tonumber(L, 4);
         float height = lua_tonumber(L, 5);
         tgui::ScrollablePanel::Ptr * scrollablePanel = new tgui::ScrollablePanel::Ptr();
-        tgui::Panel::Ptr * parent ;
+        tgui::Panel::Ptr * parent = nullptr;
         if(lua_gettop(L) == 6)
         {
             parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 6));
@@ -1312,22 +1379,14 @@ tgui::ScrollablePanel::Ptr TGUIScriptingManager::createScrollablePanel(float x, 
     return scrollablePanel;
 }
 
-tgui::Picture::Ptr TGUIScriptingManager::createPicture(const std::string & path, float x, float y, float width, float height,tgui::Panel::Ptr parent)
+tgui::Picture::Ptr TGUIScriptingManager::createPicture(const std::string & path, float x, float y, float width, float height)
 {
     tgui::Picture::Ptr picture = tgui::Picture::create();
     tgui::Texture texture(path);
     picture->getRenderer()->setTexture(texture);
     picture->setPosition(x, y);
     picture->setSize(width, height);
-    if(parent)
-    {
-        parent->add(picture);
-    }
-    else 
-    {
-        m_tgui->add(picture);
-    }
-    // picture->showWithEffect(tgui::ShowEffectType::Scale, 0.3f);
+    std::cout << "create picture done \n";
     return picture;
 }
 
@@ -1496,6 +1555,9 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Panel_ShowWithEffect", lua_Panel_ShowWithEffect);
     lua_register(m_script, "cpp_Panel_SetVisible", lua_Panel_setVisible);
     lua_register(m_script, "cpp_Panel_SetAlignment", lua_Panel_SetAlignment);
+    lua_register(m_script, "cpp_Panel_SetHoverOnCallback", lua_Panel_SetHoverOnCallback); 
+    lua_register(m_script, "cpp_Panel_SetHoverOffCallback", lua_Panel_SetHoverOffCallback); 
+    lua_register(m_script, "cpp_Panel_SetBorderColor", lua_Panel_SetBorderColor);
 
     // TGUI ScrollablePanel section
     lua_register(m_script, "cpp_ScrollablePanel_Create", lua_ScrollablePanel_Create);

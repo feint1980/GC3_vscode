@@ -12,6 +12,7 @@ Character_Table["S_Patchouli"] =
     Wisdom = 25,
     animationPath = "./Assets/F_AObjects/patchouli_tb.xml",
     portraitPath  = "./Assets/TB_GUI/faces/Patchouli_face.png",
+    panelPath = "./Assets/TB_GUI/panels/patchouli_panel.png",
     action = 0,
     hp = 30,
     mana = 370,

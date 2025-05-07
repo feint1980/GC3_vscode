@@ -12,6 +12,7 @@ Character_Table["S_Meiling"] =
     Wisdom = 6,
     animationPath = "./Assets/F_AObjects/meiling_tb.xml",
     portraitPath  = "./Assets/TB_GUI/faces/Meiling_face.png",
+    panelPath = "./Assets/TB_GUI/panels/meiling_panel.png",
     action = 0,
     hp = 140,
     mana = 70,

@@ -12,6 +12,7 @@ Character_Table["S_Yukari"] =
     Wisdom = 22,
     animationPath = "./Assets/F_AObjects/yukari_tb.xml",
     portraitPath  = "./Assets/TB_GUI/faces/Yukari_face.png",
+    panelPath = "./Assets/TB_GUI/panels/yukari_panel.png",
     action = 0,
     hp = 130,
     mana = 200,

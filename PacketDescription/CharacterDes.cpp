@@ -11,6 +11,7 @@ static void to_json(json& j, const CharacterStats& c)
         {"wisdom", c.wisdom},
         {"animationPath", c.animationPath},
         {"portraitPath", c.portraitPath},
+        {"panelPath",c.panelPath},
         {"action",c.action},
         {"hp",c.hp},
         {"mana",c.mana},
@@ -52,6 +53,7 @@ static void from_json(const json& j, CharacterStats& c) {
     j.at("wisdom").get_to(c.wisdom);
     j.at("animationPath").get_to(c.animationPath);
     j.at("portraitPath").get_to(c.portraitPath);
+    j.at("panelPath").get_to(c.panelPath);
     j.at("action").get_to(c.action);
     j.at("hp").get_to(c.hp);
     j.at("mana").get_to(c.mana);
@@ -111,6 +113,9 @@ void CharacterDesc::setAttribute(Attribute attribute, const std::string & value)
         case Attribute::portraitPath:
         m_charStats.portraitPath = value;
         break;
+        case Attribute::panelPath:
+        m_charStats.panelPath = value;
+        break;
         case Attribute::ID:
         m_charStats.ID = value;
         break;
@@ -122,11 +127,11 @@ void CharacterDesc::setAttribute(Attribute attribute, const std::string & value)
 
 void CharacterDesc::writeData(const std::string & path)
 {
-    CharacterStats patchouli = { 3,4,7,4,22,21, "./Assets/F_AObjects/patchouli_tb.xml", "./Assets/TB_GUI/faces/Patchouli_face.png", 1.0, 30, 370, 0, 100, 4, 25, 3, 13, 0.85, 0.1, 0.125, 8, 7,2,3,1,1,0.035,0.025, 0.25,"Patchouli", "Knowledge", "Unmoving Library",1,1 };
+    CharacterStats patchouli = { 3,4,7,4,22,21, "./Assets/F_AObjects/patchouli_tb.xml", "./Assets/TB_GUI/faces/Patchouli_face.png","./Assets/TB_GUI/panels/patchouli_panel.png", 1.0, 30, 370, 0, 100, 4, 25, 3, 13, 0.85, 0.1, 0.125, 8, 7,2,3,1,1,0.035,0.025, 0.25,"Patchouli", "Knowledge", "Unmoving Library",1,1 };
 
     json j = patchouli;
     std::ofstream o(path);
-    o << std::setw(4) << j << std::endl;
+    o << std::setw(4) << j << "\n";
     o.close();
 }
 
@@ -208,7 +213,6 @@ float CharacterDesc::getFloatAttributeByName(const std::string & attributeName)
 
 std::string CharacterDesc::getStrAttributeByName(const std::string & attributeName)
 {
-
     switch (getAttributeByName(attributeName))
     {
         case name:
@@ -221,6 +225,8 @@ std::string CharacterDesc::getStrAttributeByName(const std::string & attributeNa
             return m_charStats.animationPath;
         case portraitPath:
             return m_charStats.portraitPath;
+        case panelPath:
+            return m_charStats.panelPath;
         case ID:
             return m_charStats.ID;    
         default:
@@ -228,7 +234,6 @@ std::string CharacterDesc::getStrAttributeByName(const std::string & attributeNa
             return "none";
     }
 }
-
 
 void CharacterDesc::setAttribute(const std::string & attributeName, float value)
 {
@@ -242,7 +247,6 @@ void CharacterDesc::setAttribute(const std::string & attributeName, const std::s
 
 void CharacterDesc::setAttribute(Attribute attribute, float value)
 {
-    
     switch(attribute)
     {
         case Attribute::Strength:
@@ -473,6 +477,10 @@ Attribute CharacterDesc::getAttributeByName(const std::string & attributeName)
     else if(toLower == "portraitpath" || toLower == "porttpath")
     {
         return portraitPath;
+    }
+    else if(toLower == "panelpath")
+    {
+        return panelPath;
     }
     else if(toLower == "id" )
     {

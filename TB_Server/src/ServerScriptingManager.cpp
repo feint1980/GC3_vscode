@@ -250,6 +250,8 @@ int lua_UpdateCharacter(lua_State *L)
             assignValue(L,2,"animationPath", stats.animationPath);
             // portraitPath
             assignValue(L,2,"portraitPath", stats.portraitPath);
+            // panelPath
+            assignValue(L,2,"panelPath", stats.panelPath);
             // action 
             assignValue(L,2,"action", stats.action);
             // hp
@@ -740,9 +742,7 @@ std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
 
 uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data)
 {
-    
     // encrypt 
-    
     unsigned char iv[AES_IV_SIZE] = {};
     m_cryptor.generateRandomIV(iv);
     // std::string tData = m_cryptor.getStringFromEncrypt(m_cryptor.encrypt(data,iv));
@@ -753,17 +753,12 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
     {
         tData.push_back(iv[i]);
     }
-
     std::string sendStr;
     for(int i = 0 ; i < tData.size() ; i++)
     {
         sendStr.push_back((tData[i]));
     } 
-
     m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY, RELIABLE_SEQUENCED,12, target,false);
-
-    // free iv 
-
     return 0;
 }
 

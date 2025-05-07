@@ -22,6 +22,7 @@ struct CharacterStats
     float wisdom ;
     std::string animationPath;
     std::string portraitPath;
+    std::string panelPath;
     float action;
     float hp;
     float mana;
@@ -62,6 +63,7 @@ enum Attribute
     Wisdom ,
     animationPath,
     portraitPath,
+    panelPath,
     action,
     hp,
     mana,

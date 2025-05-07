@@ -53,6 +53,8 @@ function CharacterPanel:init(host,parent,x,y,width,height,path,name,price)
     if self.panel == nil then
         self.panel = Panel:new()
         self.panel:init(host,x,y,width,height,parent)
+        self.panel:setBorderColor(125,125,125,255)
+        self.panel:setHoverable(0,255,0,255,125,125,125,255)
     else
         self.panel:setPos(x,y)
         self.panel:setSize(width,height)
@@ -60,27 +62,40 @@ function CharacterPanel:init(host,parent,x,y,width,height,path,name,price)
 
     if self.picture == nil then
         self.picture = Picture:new()
-        self.picture:init(host,path,x,y,width,height,self.panel)
-        -- self.picture:setPosStr("50%","10%")
+        self.picture:init(host,path,x,y,width,height,self.panel.ptr)
+        self.picture:setPosStr("5%","0%")
+        self.picture:setSizeStr("90%","80%")
     else
-        self.picture:setPos(x,y)
-        self.picture:setSize(width,height)
+        -- self.picture:setPos(x,y)
+        -- self.picture:setSize(width,height)
         self.picture:setTexture(path)
     end
 
     if self.displayNameLabel == nil then
         self.displayNameLabel = Label:new()
-        self.displayNameLabel:init(host,name,x,y,self.parent)
+        self.displayNameLabel:init(host,name,x,y,self.panel.ptr)
+        self.displayNameLabel:setAlignment(TextAlginment.Center)
+        self.displayNameLabel:setPosStr("50%","78%")
     else
-        self.displayNameLabel:setPos(x,y)
+        -- self.displayNameLabel:setPos(x,y)
+        self.displayNameLabel:setPosStr("50%","78%")
         self.displayNameLabel:setText(name)
     end
 
     if self.priceLabel == nil then
         self.priceLabel = Label:new()
-        self.priceLabel:init(host,price,x,y,self.parent)
+        self.priceLabel:init(host,price,x,y,self.panel.ptr)
+        self.priceLabel:setAlignment(TextAlginment.Center)
+        self.priceLabel:setPosStr("50%","90%")
     else
-        self.priceLabel:setPos(x,y)
+        -- self.priceLabel:setPos(x,y)
+        self.priceLabel:setPosStr("50%","90%")
         self.priceLabel:setText(price)
     end
+
+
+    
+    -- self.panel:setHoverOnCallBack(function()
+    --     print("data ")
+    -- end)
 end

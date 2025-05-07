@@ -9,6 +9,8 @@ require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
 require "homeGlobal"
 require "CharacterPanel"
+require "CharacterShop"
+
 
 MenuPanels = _G.MenuPanels
 
@@ -16,7 +18,7 @@ MenuPanels = _G.MenuPanels
 Shop = nil
 ShopPanel = nil
 
-CharacterShop = nil
+Shop_CharacterShop = nil
 MenuPanels["Shop"] = function (host)
 
     if ShopPanel == nil then
@@ -49,26 +51,27 @@ MenuPanels["Shop"] = function (host)
             Shop:addTab("Characters",true)
             Shop:addTab("Tab2")
         end
-        if CharacterShop == nil then
-            CharacterShop = ScrollablePanel:new()
-            CharacterShop:init(host,0,0,Shop.width,Shop.height,Shop.tabs["Characters"])
-            CharacterShop:setAligment(0.5,0.5)
-            CharacterShop:setPosStr("50%","50%")
-            CharacterShop:setSizeStr("95%","90%")
-            local refreshButton = Label:new()
-            refreshButton:init(host,"Refresh",CharacterShop.width - 100,0,Shop.tabs["Characters"])
-            refreshButton:setPosStr("95%","95%")
-            refreshButton:setAlignment(TextAlginment.Center)
-            refreshButton:setHoverable(0,255,0,255,255,255,255,255)
-            refreshButton:setOnClickCallback(function()
-                print("refresh call ")
-            end)
-            local testLocal = CharacterPanel:new()
-            testLocal:init(host,CharacterShop.ptr,0,0,100,250,"Assets/TB_GUI/faces/Reimu_face.png","testName","100")
-            
+        if Shop_CharacterShop == nil then
+            Shop_CharacterShop = CharacterShop:new()
+            Shop_CharacterShop:init(host,0,0,Shop.width,Shop.height,Shop.tabs["Characters"])
+            -- Shop_CharacterShop = ScrollablePanel:new()
+            -- CharacterShop = ScrollablePanel:new()
+            -- CharacterShop:init(host,0,0,Shop.width,Shop.height,Shop.tabs["Characters"])
+            -- CharacterShop:setAligment(0.5,0.5)
+            -- CharacterShop:setPosStr("50%","50%")
+            -- CharacterShop:setSizeStr("95%","90%")
+            -- local refreshButton = Label:new()
+            -- refreshButton:init(host,"Refresh",CharacterShop.width - 100,0,Shop.tabs["Characters"])
+            -- refreshButton:setPosStr("95%","95%")
+            -- refreshButton:setAlignment(TextAlginment.Center)
+            -- refreshButton:setHoverable(0,255,0,255,255,255,255,255)
+            -- refreshButton:setOnClickCallback(function()
+            --     print("refresh call ")
+            -- end)
+            -- local testLocal = CharacterPanel:new()
+            -- testLocal:init(host,CharacterShop.ptr,0,10,125,250,"Assets/TB_GUI/panels/reimu_panel.png","Reimu","100")
         end
         ShopPanel:setVisible(false)
     end
     ShopPanel:showWithEffect(PanelShowType.Fade,250)
 end
-
