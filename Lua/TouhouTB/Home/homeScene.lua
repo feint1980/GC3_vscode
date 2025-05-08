@@ -10,9 +10,9 @@ require "clientWrapper"
 require "homeOrderStrip"
 require "LuaEventHandler"
 require "Shop"
+require "homeGlobal"
 
 HomeSceneHost = nil
-
 -- HandlePacketTask = _G.HandlePacketTask
 
 ---@type pointer TGUIScriptingPtr
@@ -151,12 +151,12 @@ HomeMain_HandleStep2[Packet_OtherID.USER_DATA_POS] = function(host,packet)
 
     local tD = SplitMessgae(tData,"|",3)
     local t_id,t_pw , t_guid = Home_GetInfo(3)
-    print("td " .. tD[1])
-    print("td " .. tD[2])
-    print("td " .. tD[3])
+    -- print("td " .. tD[1])
+    -- print("td " .. tD[2])
+    -- print("td " .. tD[3])
     Main_MonValLabel:setText(tD[2])
     Main_SoulsValLabel:setText(tD[3])
-    print("HomeMain_HandleStep2 " .. Packet_OtherID.USER_DATA_POS)
+    -- print("HomeMain_HandleStep2 " .. Packet_OtherID.USER_DATA_POS)
 end
 
 ---@Description handle USER_DATA_POS
@@ -165,6 +165,18 @@ end
 HomeMain_HandleStep2[Packet_OtherID.USER_DATA_NEG] = function(host,packet)
     Main_MonValLabel:setText("!!!!!")
     Main_SoulsValLabel:setText("!!!!!")
+end
+
+local function splitJsonData(data)
+    local characters = {}
+    
+end
+
+HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES] = function(host,packet)
+    local tData = Home_StripMSG(packet.data,Packet_OtherID.CHARACTER_RES)
+    -- print("get data" .. tData)
+    local tD = SplitMessgae(tData,"|",1)
+    S_Characters_Info[tD[1]] = tD[2]
 end
 
 ---@Description request update money data

@@ -1,4 +1,3 @@
-
 package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Login/?.lua;' .. ';../../Lua/system/event/?.lua;'
 
 require "TGUI_Label"

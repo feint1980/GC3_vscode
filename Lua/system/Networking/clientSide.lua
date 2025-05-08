@@ -6,6 +6,9 @@ ClientSide_Host = nil
 ServerResponseHeader = {}
 
 ---@class (exact) Client_Packet
+---@field data string data need to send
+---@field ipAddr RakNet_SystemAddress instance of RakNet_SystemAddress
+---@field packetID number
 Client_Packet = {
     data = "",
     ---@type RakNet_SystemAddress
@@ -37,6 +40,7 @@ Packet_OtherID = {
     ID_REGISTER_POS = 4,
     USER_DATA_POS = 5,
     USER_DATA_NEG = 6,
+    CHARACTER_RES = 66,
     ID_INVALID = 77
 }
 
@@ -73,15 +77,15 @@ end
 --- get Data from C++ engine
 ---@Description get Data from C++ engine
 ---@param msg string data sent from C++ engine
----@param ip pointer instance of RakNet::SystemAddress sent from C++ engine
----@
+---@param ip RakNet_SystemAddress instance of RakNet::SystemAddress sent from C++ engine
+---@param pID number packet ID
 function Client_ReceiveData(msg, ip,pID)
     local tPacket = Client_Packet:new()
     print("Client_ReceiveData recieve : " .. msg )
     tPacket.data = msg
     tPacket.ipAddr = ip
     tPacket.packetID = pID
-    Client_HandlePacket(tPacket)    
+    Client_HandlePacket(tPacket)
 end
 
 HandlePacketTask = {}

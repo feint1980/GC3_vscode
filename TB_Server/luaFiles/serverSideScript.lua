@@ -30,7 +30,6 @@ function SVI_DoQuerySTMT(host, baseStmt, paramList )
     SV_SQLFinalizeStmt(stmt)
 end
 
-
 Account_Table = {
     tb_name = "account_table",
     no = "account_no",
@@ -47,7 +46,6 @@ Account_Stats_Table = {
     soul = "souls"
 
 }
-
 
 RegisterKey_Table = {
     tb_name = "register_key_table",
@@ -69,7 +67,6 @@ Table = {
     account = Account_Table,
     register_key = RegisterKey_Table
 }
-
 
 Query_count = 0
 
@@ -97,7 +94,6 @@ end
 
 T_Host = nil
 
-
 PacketIdentifier = {
     ID_DISCONNECTION_NOTIFICATION = 21,
     ID_NEW_INCOMING_CONNECTION = 19,
@@ -105,7 +101,6 @@ PacketIdentifier = {
     ID_CONNECTED_PING = 0,
     ID_UNCONNECTED_PING = 1,
     ID_CONNECTION_LOST = 22
-
 }
 
 ResponseHandle = {}
@@ -128,6 +123,7 @@ end
 
 function ServerSide_Init(host)
     T_Host = host
+    -- Server_LoadCharacters(host)
 end
 
 --- function HandleMessage 
@@ -137,7 +133,6 @@ end
 --- @param requestCode number request code
 function HandleMessage(host,packet,requestCode)
 
-
     local message = SV_GetPacketData(host,packet)
     print("relay message")
     print(message)
@@ -146,12 +141,10 @@ function HandleMessage(host,packet,requestCode)
     if ResponseHandle[requestCode] ~= nil then
         ResponseHandle[requestCode](host,packet)
     end
-
 end
 
 --- function handle Common 
 function HandleCommon(host, packet, identifierCode)
-
     if CommonHandle[identifierCode] ~= nil then
         CommonHandle[identifierCode](host,packet)
     end
@@ -214,7 +207,23 @@ function Server_LoadCharacters(host)
         if filename then
             print("reloading files ... " .. filename)
             dofile("../luaFiles/Characters/"..filename .. ".lua")
-            cppUpdateCharacter(host,Character_Table[filename])
+            Character_Serialized_Table[filename] = cppUpdateCharacter(host,Character_Table[filename])
         end
+    end
+end
+
+function Server_LoadData(host)
+    Server_LoadCharacters(host)
+end
+
+local function print_table(t)
+    for k,v in pairs(t) do
+        print(k,v)
+    end
+end
+
+function Server_CheckCharacterData(host)
+    for k,v in pairs(Character_Serialized_Table) do
+        print(v)
     end
 end

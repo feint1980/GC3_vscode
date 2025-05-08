@@ -229,9 +229,8 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
             if(p->length < 2)
             {
                 selfPacket = true;
-             
+
             }
-       
             // std::cout << "tMsg check \n";
             // for(int i = 0 ;i < tMsg.size() ; i++)
             // {

@@ -8,7 +8,6 @@ require "TGUI_Picture"
 require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
 
-
 ---@class (exact) CharacterPanel
 ---@field panel Panel
 ---@field picture Picture

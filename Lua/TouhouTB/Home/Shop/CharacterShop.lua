@@ -67,4 +67,14 @@ function CharacterShop:init(GUI_host, posX, posY,
     local testLocal2 = CharacterPanel:new()
     testLocal2:init(GUI_host,self.charactersPanel.ptr,130,10,125,250,"Assets/TB_GUI/panels/meiling_panel.png","Meiling","100")
 
+    self:requestCharacterList(Home_ClientScriptingPtr)
+
+end
+
+
+---@Description request character list
+---@param clientSideHost pointer instance of ClientScriptingManager
+function CharacterShop:requestCharacterList(clientSideHost)
+    Client_SendData(clientSideHost,"|REQUEST_CHARACTERLIST|")
+    -- Client_send
 end

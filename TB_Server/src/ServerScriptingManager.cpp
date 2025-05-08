@@ -317,7 +317,7 @@ int lua_UpdateCharacter(lua_State *L)
             std::string checkCharacterExist = "select character_id from character_base_table where character_id ='" + stats.ID + "';";
             if(host)
             {
-                std::cout << "host exist \n";
+
                 std::cout << "query \n";
                 std::cout << checkCharacterExist << "\n";
                 
@@ -325,7 +325,7 @@ int lua_UpdateCharacter(lua_State *L)
                 {
                     if(m_response.recordCount == 1) // exist
                     {
-                        std::cout << " chacater found ! update ...\n";
+                        std::cout << "chacater found ! update ...\n";
                         
                         std::string updateQuery = "update character_base_table set stats = '" + j.dump(4) + "' where character_id ='" + stats.ID + "'";
                         // std::cout << "test query " << updateQuery << "\n";
@@ -348,6 +348,8 @@ int lua_UpdateCharacter(lua_State *L)
                     }
                     
                 }
+                lua_pushstring(L,j.dump(0).c_str());
+                return 1;
             }
             else
             {
@@ -356,7 +358,6 @@ int lua_UpdateCharacter(lua_State *L)
         }
     }
 }
-
 
 int lua_Packet_getGUID(lua_State *L)
 {
@@ -612,7 +613,7 @@ int lua_getEncryptedPW(lua_State * L)
 int lua_SendToClient(lua_State * L)
 {
     // std::cout << "lua_SendToClient called \n";
-    if (lua_gettop(L) != 3)
+    if (lua_gettop(L) < 3 || lua_gettop(L) > 4)
     {
         std::cout << "gettop failed (lua_SendToClient) \n";
         std::cout << lua_gettop(L) << "\n";
@@ -625,11 +626,13 @@ int lua_SendToClient(lua_State * L)
         std::string msg = lua_tostring(L, 3);
         //std::cout << "msg send is |" << msg << "|\n"; 
        // msg += "\0";
-        host->sendData(*clientId, msg);
+        bool isEncrypted = lua_toboolean(L,4);
+        
+        host->sendData(*clientId, msg,isEncrypted);
+        
         // host->sendToClient(clientId, requestCode);
         return 0;
     }
-
     return 0;
 }
 
@@ -740,27 +743,37 @@ std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
 
 }
 
-uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data)
+uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data, bool isEncrypted)
 {
     // encrypt 
-    unsigned char iv[AES_IV_SIZE] = {};
-    m_cryptor.generateRandomIV(iv);
-    // std::string tData = m_cryptor.getStringFromEncrypt(m_cryptor.encrypt(data,iv));
-
-    auto tData = m_cryptor.encrypt(data,iv);
-
-    for(int i = 0 ; i < AES_IV_SIZE;i++)
-    {
-        tData.push_back(iv[i]);
-    }
     std::string sendStr;
-    for(int i = 0 ; i < tData.size() ; i++)
+    std::cout << "send data with encrypt " << isEncrypted << "\n";
+    if(isEncrypted)
     {
-        sendStr.push_back((tData[i]));
-    } 
+        unsigned char iv[AES_IV_SIZE] = {};
+        m_cryptor.generateRandomIV(iv);
+        // std::string tData = m_cryptor.getStringFromEncrypt(m_cryptor.encrypt(data,iv));
+    
+        auto tData = m_cryptor.encrypt(data,iv);
+    
+        for(int i = 0 ; i < AES_IV_SIZE;i++)
+        {
+            tData.push_back(iv[i]);
+        }
+    
+        for(int i = 0 ; i < tData.size() ; i++)
+        {
+            sendStr.push_back((tData[i]));
+        } 
+    }
+    else
+    {
+        sendStr = std::move(data);
+    }
     m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY, RELIABLE_SEQUENCED,12, target,false);
     return 0;
 }
+
 
 unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
 {
@@ -936,7 +949,6 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
     // register lua functions
     
-
     lua_register(m_script, "cppGetQueryResults", lua_GetQueryResults);
     lua_register(m_script, "cppGenKey", lua_GenKey);
     lua_register(m_script, "cppSendToClient", lua_SendToClient);
@@ -952,13 +964,11 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppSqlite_gettResultString", lua_SQLGetResultString);
     lua_register(m_script, "cppSqlite_finalizeStmt", lua_SQLFinalizeStmt);
 
-
     // extract data from packet
     lua_register(m_script, "cppPacket_getData", lua_Packet_getData);
     lua_register(m_script, "cppPacket_getIP", lua_Packet_getIP);
     lua_register(m_script, "cppPacket_extract", lua_Packet_extract);
     lua_register(m_script, "cppPacket_getGUID", lua_Packet_getGUID);
-
 
     // misc
     lua_register(m_script, "cpp_getEncrypedPW", lua_getEncryptedPW);
@@ -982,7 +992,6 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
             std::cout << "Call ServerSide_Init from C++ OK \n";
         }
     }
-
 
     shared_luaState = m_script;
 
@@ -1013,7 +1022,6 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
         tStr1.push_back(t1[i]);
     }
 
-    
     // std::cout << "tStr1:|" <<  tStr1 << "|\n"; 
 
     for(int i = 0 ; i < 8 ; i++)
@@ -1027,9 +1035,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     }
     // std::cout << "tStr2:|" << tStr2 << "|\n";
 
-
     m_cryptor.init(tStr1, tStr2);   
-
 
     std::cout << "pwCryptor init \n";
 
@@ -1064,9 +1070,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
     std::cout << "\nversion " << sqlite3_libversion() << "\n";
 
-
-    
-    lua_getglobal(m_script, "Server_LoadCharacters");
+    lua_getglobal(m_script, "Server_LoadData");
     if(lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this);
@@ -1074,10 +1078,21 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
-            std::cout << "Call Server_LoadCharacters from C++ OK \n";
+            std::cout << "Call Server_LoadData from C++ OK \n";
         }
     }
 
+    lua_getglobal(m_script, "Server_CheckCharacterData");
+    if(lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this);
+        const int argc = 1;
+        const int returnCount = 0;
+        if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+        {
+            std::cout << "Call Server_CheckCharacterData from C++ OK \n";
+        }
+    }
 }
 
 std::string ServerScriptingManager::getEncryptPW(const std::string & pw)
@@ -1132,6 +1147,12 @@ PacketCode ServerScriptingManager::getSpecialRequestCode(RakNet::Packet *p)
         {
             return PacketCode::USERDATA;
         }
+    }
+
+    // 1 part finder
+    if(cData.find("|REQUEST_CHARACTERLIST|") != std::string::npos)
+    {
+        return PacketCode::REQUEST_CHARACTER;
     }
 
     //std::cout << "Not a request, normal message : \n";

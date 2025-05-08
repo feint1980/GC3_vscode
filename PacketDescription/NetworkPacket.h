@@ -23,10 +23,8 @@
 #include <unistd.h>
 #endif
 
-
 enum PacketCode
 {
-    
     QUIT = 22,
     STATS,
     PING,
@@ -44,9 +42,9 @@ enum PacketCode
     REGISTER,
     REQUEST_KEY,
     USERDATA = 65,
+    REQUEST_CHARACTER,
     INVALID = 322,
     UNKNOWN = 792
-
 };
 
 enum ClientRequestCode
@@ -55,7 +53,6 @@ enum ClientRequestCode
     Register = 13,
     RequestKey = 193,
     Client_Invalid = 277
-
 };
 
 enum ServerResponseCode
@@ -65,7 +62,6 @@ enum ServerResponseCode
     Register_OK = 33,
     Register_Fail = 34,
     Server_Invalid = 277
-    
 };
 
 

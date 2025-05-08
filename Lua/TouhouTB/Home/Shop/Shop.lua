@@ -54,22 +54,7 @@ MenuPanels["Shop"] = function (host)
         if Shop_CharacterShop == nil then
             Shop_CharacterShop = CharacterShop:new()
             Shop_CharacterShop:init(host,0,0,Shop.width,Shop.height,Shop.tabs["Characters"])
-            -- Shop_CharacterShop = ScrollablePanel:new()
-            -- CharacterShop = ScrollablePanel:new()
-            -- CharacterShop:init(host,0,0,Shop.width,Shop.height,Shop.tabs["Characters"])
-            -- CharacterShop:setAligment(0.5,0.5)
-            -- CharacterShop:setPosStr("50%","50%")
-            -- CharacterShop:setSizeStr("95%","90%")
-            -- local refreshButton = Label:new()
-            -- refreshButton:init(host,"Refresh",CharacterShop.width - 100,0,Shop.tabs["Characters"])
-            -- refreshButton:setPosStr("95%","95%")
-            -- refreshButton:setAlignment(TextAlginment.Center)
-            -- refreshButton:setHoverable(0,255,0,255,255,255,255,255)
-            -- refreshButton:setOnClickCallback(function()
-            --     print("refresh call ")
-            -- end)
-            -- local testLocal = CharacterPanel:new()
-            -- testLocal:init(host,CharacterShop.ptr,0,10,125,250,"Assets/TB_GUI/panels/reimu_panel.png","Reimu","100")
+
         end
         ShopPanel:setVisible(false)
     end

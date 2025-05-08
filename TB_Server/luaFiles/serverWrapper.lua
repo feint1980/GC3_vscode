@@ -68,8 +68,19 @@ end
 ---@param host pointer instance of ServerScriptingManager
 ---@param clientIP pointer instance of RakNet::SystemAddress
 ---@param message string message to send
-function SV_SendMsg(host,clientIP,message)
-    cppSendToClient(host,clientIP,message)
+---@param t_encrypt? boolean if need to t_encrypt (default true)
+function SV_SendMsg(host,clientIP,message,t_encrypt)
+    t_encrypt = t_encrypt or true
+    print("check t_encrypt ")
+    print(t_encrypt)
+    cppSendToClient(host,clientIP,message,t_encrypt)
+end
+
+function SV_SendMsgNonEncrypt(host,clientIP,message,t_encrypt)
+
+    print("check t_encrypt ")
+    print(t_encrypt)
+    cppSendToClient(host,clientIP,message,false)
 end
 
 --- function wrapper of cppSqlite_CreateStatement

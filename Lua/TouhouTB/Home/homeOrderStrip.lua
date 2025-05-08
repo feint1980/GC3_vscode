@@ -30,3 +30,6 @@ Home_OrderList[Packet_OtherID.USER_DATA_POS]:init("|USERDATA_RES_POS_REQUEST|","
 
 Home_OrderList[Packet_OtherID.USER_DATA_NEG] = Home_Strip_Order:new()
 Home_OrderList[Packet_OtherID.USER_DATA_NEG]:init("|USERDATA_RES_NEG_REQUEST|","|USERDATA_RES_NEG_END_REQUEST|")
+
+Home_OrderList[Packet_OtherID.CHARACTER_RES] = Home_Strip_Order:new()
+Home_OrderList[Packet_OtherID.CHARACTER_RES]:init("|CHARACTER_LIST_RES_POS_REQUEST|","|CHARACTER_LIST_RES_POS_END_REQUEST|")
