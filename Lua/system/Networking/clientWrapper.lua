@@ -25,3 +25,4 @@ function SplitMessgae(message, character, no_of_split)
     end
     return tTable
 end
+

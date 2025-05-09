@@ -148,7 +148,6 @@ Character = {
     skills = {},
     ---@type pointer? instance of Slot 
     currentSlot = nil
-
 }
 
 ---@Description create a new instance of Character
@@ -160,7 +159,6 @@ function Character:new(o)
     self.__index = self
     return o
 end
-
 
 ---@Description Get the turn of the character
 ---@return number The turn of the character | Fomula 1 + (Agility/7 * 0.25) |

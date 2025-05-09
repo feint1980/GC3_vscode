@@ -167,11 +167,6 @@ HomeMain_HandleStep2[Packet_OtherID.USER_DATA_NEG] = function(host,packet)
     Main_SoulsValLabel:setText("!!!!!")
 end
 
-local function splitJsonData(data)
-    local characters = {}
-    
-end
-
 HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES] = function(host,packet)
     local tData = Home_StripMSG(packet.data,Packet_OtherID.CHARACTER_RES)
     -- print("get data" .. tData)

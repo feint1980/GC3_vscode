@@ -19,10 +19,10 @@
 #include <stdio.h>
 #include <string.h>
 #include "NetworkPacket.h"
+#include "CharacterDes.h"
 #include <iostream>
 #include <F_Cryptor.h>
 #include "LuaManager.h"
-
 
 enum ClientStatus
 {
@@ -35,7 +35,6 @@ enum ClientStatus
     IsFull,
     WSPacket,
 };
-
 
 class ClientScriptingManager
 {
@@ -54,6 +53,8 @@ public:
     void handleMessage(RakNet::Packet *p);
 
     void firstGateWay(RakNet::Packet *p);
+    
+    CharacterStats parseFromStr(const std::string & str);
 
     void secondGateWay(RakNet::Packet *p);
 
@@ -83,10 +84,8 @@ public:
     RakNet::SocketDescriptor m_socketDescriptor;
     bool m_RakNetCoreInitialized = false;
 
-
     Feintgine::F_Cryptor m_cryptor;
 
 };
-
 
 #endif

@@ -1,5 +1,87 @@
 #include "ClientScriptingManager.h"
 
+static void to_json(json& j, const CharacterStats& c) 
+{
+    j = json{
+        {"strength", c.strength},
+        {"vitality", c.vitality},
+        {"dexterity", c.dexterity},
+        {"agility", c.agility},
+        {"intelligence", c.intelligence},
+        {"wisdom", c.wisdom},
+        {"animationPath", c.animationPath},
+        {"portraitPath", c.portraitPath},
+        {"action",c.action},
+        {"hp",c.hp},
+        {"mana",c.mana},
+        {"sp",c.sp},
+        {"spCap",c.spCap},
+        {"physicDmg",c.physicDmg},
+        {"physicDef",c.physicDef},
+        {"magicDmg",c.magicDmg},
+        {"magicDef",c.magicDef},
+        {"accurate",c.accurate},
+        {"evadeChance",c.evadeChance},
+        {"critChance",c.critChance},
+        {"hpScale",c.hpScale},
+        {"manaScale",c.manaScale},
+        {"physicDmgScale",c.physicDmgScale},
+        {"magicDmgScale",c.magicDmgScale},
+        {"physicDefScale",c.physicDefScale},
+        {"magicDefScale",c.magicDefScale},
+        {"accurateScale",c.accurateScale},
+        {"evadeChanceScale",c.evadeChanceScale},
+        {"deathDoorSurviveChance",c.deathDoorSurviveChance},
+        {"name",c.name},
+        {"lastName",c.lastName},
+        {"title",c.title},
+        {"side",c.side},
+        {"level",c.level},
+        {"xp", c.xp},
+        {"ID",c.ID}
+    };
+}
+
+// Convert JSON to struct
+static void from_json(const json& j, CharacterStats& c) {
+    j.at("strength").get_to(c.strength);
+    j.at("vitality").get_to(c.vitality);
+    j.at("dexterity").get_to(c.dexterity);
+    j.at("agility").get_to(c.agility);
+    j.at("intelligence").get_to(c.intelligence);
+    j.at("wisdom").get_to(c.wisdom);
+    j.at("animationPath").get_to(c.animationPath);
+    j.at("portraitPath").get_to(c.portraitPath);
+    j.at("action").get_to(c.action);
+    j.at("hp").get_to(c.hp);
+    j.at("mana").get_to(c.mana);
+    j.at("sp").get_to(c.sp);
+    j.at("spCap").get_to(c.spCap);
+    j.at("physicDmg").get_to(c.physicDmg);
+    j.at("physicDef").get_to(c.physicDef);
+    j.at("magicDmg").get_to(c.magicDmg);
+    j.at("magicDef").get_to(c.magicDef);
+    j.at("accurate").get_to(c.accurate);
+    j.at("evadeChance").get_to(c.evadeChance);
+    j.at("critChance").get_to(c.critChance);
+    j.at("hpScale").get_to(c.hpScale);  
+    j.at("manaScale").get_to(c.manaScale);
+    j.at("physicDmgScale").get_to(c.physicDmgScale);
+    j.at("magicDmgScale").get_to(c.magicDmgScale);
+    j.at("physicDefScale").get_to(c.physicDefScale);
+    j.at("magicDefScale").get_to(c.magicDefScale);
+    j.at("accurateScale").get_to(c.accurateScale);
+    j.at("evadeChanceScale").get_to(c.evadeChanceScale);
+    j.at("deathDoorSurviveChance").get_to(c.deathDoorSurviveChance);
+    j.at("name").get_to(c.name);
+    j.at("lastName").get_to(c.lastName);
+    j.at("title").get_to(c.title);
+    j.at("side").get_to(c.side);
+    j.at("level").get_to(c.level);
+    j.at("xp").get_to(c.xp);
+    j.at("ID").get_to(c.ID);
+}
+
 int lua_GetPacketId(lua_State * L)
 {
     if(lua_gettop(L) != 1)
@@ -56,6 +138,30 @@ int lua_Connect(lua_State * L)
     return 0;
 }
 
+int lua_ParseCharacterFromJson(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_ParseCharacterFromJson) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::string jsonSrc = lua_tostring(L, 2);
+
+        CharacterStats * returnStats = new CharacterStats();  // = host->parseFromStr(jsonSrc);
+        
+        *returnStats = host->parseFromStr(jsonSrc);
+        std::cout << "check data " << returnStats->name << "\n";
+        lua_pushlightuserdata(L, returnStats);
+        return 8;
+
+    }
+    return 0;
+}
+
 uint32_t ClientScriptingManager::sendData(const std::string & data)
 {
 
@@ -73,6 +179,14 @@ uint32_t ClientScriptingManager::sendData(const std::string & data)
         sendStr.push_back((tData[i]));
     } 
     return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+}
+
+CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
+{
+    CharacterStats result;
+    json j = json::parse(str);
+    result = j.get<CharacterStats>();
+    return result;
 }
 
 void ClientScriptingManager::init(const std::string & serverIP, unsigned int port,  RakNet::RakPeerInterface * client, lua_State * script)
@@ -109,6 +223,8 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     lua_register(m_script, "cppSendData", lua_SendData);
     lua_register(m_script, "cppConnect", lua_Connect);
     lua_register(m_script, "cppGetPacketId", lua_GetPacketId);
+    lua_register(m_script, "cppParseCharacterFromJson", lua_ParseCharacterFromJson);
+
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/Networking/clientSide.lua")))
     {
@@ -148,15 +264,12 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
         tStr1.push_back(t1[i]);
     }
 
-    
     for(int i = 0 ; i < 8 ; i++)
     {
         tStr2.push_back(t2[i]);
     }
 
-
     m_cryptor.init(tStr1, tStr2);   
-    
 }
 
 ClientScriptingManager::ClientScriptingManager()
@@ -164,26 +277,14 @@ ClientScriptingManager::ClientScriptingManager()
     pw = "DavaiMachi";
 }
 
-
-
 ClientScriptingManager::~ClientScriptingManager()
 {
 
 }
 
-
 void ClientScriptingManager::handleMessage(RakNet::Packet *p)
 {
-
-    // first gateway
-    // firstGateWay(p);
     sendDataToLuaScripting(p);
-    
-
-
-
-
-    //PacketCode requestCode = getSpecialRequestCode(p);
 }
 
 void ClientScriptingManager::cleanUp()
@@ -210,7 +311,6 @@ void ClientScriptingManager::connect()
         }
         // std::cout << "init networking OK ! \n";
         std::cout << "GUID is : " << m_client->GetGuidFromSystemAddress (RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString() << "\n"; 
-        
     }
 }
 
@@ -236,7 +336,6 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
             // {
             //     printf("%02x", tMsg[i]);
             // }   
-
             // std::cout << "\ndecrypt : \n";
             std::cout << "get packet identifier \n";
             unsigned char identifier = GetPacketIdentifier(p);
@@ -373,7 +472,6 @@ void ClientScriptingManager::update(float deltaTime)
 
     if(m_RakNetCoreInitialized)
     {
-
         //PacketCode requestCode = getSpecialRequestCode(m_client->Receive());
         for (m_currentPacket=m_client->Receive(); 
         m_currentPacket;
@@ -384,5 +482,4 @@ void ClientScriptingManager::update(float deltaTime)
         }
     }
     // m_client->DeallocatePacket(m_currentPacket);
-
 }
