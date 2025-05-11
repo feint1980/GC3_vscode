@@ -154,10 +154,9 @@ int lua_ParseCharacterFromJson(lua_State * L)
         CharacterStats * returnStats = new CharacterStats();  // = host->parseFromStr(jsonSrc);
         
         *returnStats = host->parseFromStr(jsonSrc);
-        std::cout << "check data " << returnStats->name << "\n";
+        std::cout << "check data ||||" << returnStats->name << "|||||||\n";
         lua_pushlightuserdata(L, returnStats);
-        return 8;
-
+        return 1;
     }
     return 0;
 }

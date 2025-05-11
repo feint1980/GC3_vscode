@@ -103,6 +103,8 @@ class CharacterDesc
 
     CharacterStats getCharacterStats() const { return m_charStats; }
 
+    void setCharacterStats(const CharacterStats & characterStats) { m_charStats = characterStats; }
+
     void writeData(const std::string & path);
 
     CharacterStats readFromLua(const std::string & path);

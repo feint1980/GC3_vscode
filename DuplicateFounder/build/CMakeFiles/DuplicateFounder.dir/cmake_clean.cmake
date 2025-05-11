@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/DuplicateFounder.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj"
-  "CMakeFiles/DuplicateFounder.dir/D_/VS_Code_prj/GC3_vscode/PacketDescription/NetworkPacket.cpp.obj.d"
+  "CMakeFiles/DuplicateFounder.dir/E_/template/GC_port/PacketDescription/NetworkPacket.cpp.obj"
+  "CMakeFiles/DuplicateFounder.dir/E_/template/GC_port/PacketDescription/NetworkPacket.cpp.obj.d"
   "CMakeFiles/DuplicateFounder.dir/src/duplicateFounder.cpp.obj"
   "CMakeFiles/DuplicateFounder.dir/src/duplicateFounder.cpp.obj.d"
   "DuplicateFounder.exe"

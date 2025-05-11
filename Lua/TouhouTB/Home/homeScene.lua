@@ -172,6 +172,7 @@ HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES] = function(host,packet)
     -- print("get data" .. tData)
     local tD = SplitMessgae(tData,"|",1)
     S_Characters_Info[tD[1]] = tD[2]
+    cppParseCharacterFromJson(host, tD[2])
 end
 
 ---@Description request update money data

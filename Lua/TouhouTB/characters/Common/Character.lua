@@ -58,6 +58,7 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field dyobj? pointer instance of F_Lua_BaseEntity
 ---@field animationPath string
 ---@field portraitPath string
+---@field panelPath string
 ---@field action number
 ---@field hp number
 ---@field mana number
@@ -113,7 +114,8 @@ Character = {
     animationPath = "./Assets/F_AObjects/patchouli_tb.xml",
     ---@type string The path to the portrait file
     portraitPath  = "./Assets/TB_GUI/faces/missing.png",
-    
+    ---@type string The path to the panel file
+    panelPath = "./Assets/TB_GUI/panels/missing.png",
     action = 0,
     hp = 100,
     mana = 100,
