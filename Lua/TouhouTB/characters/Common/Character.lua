@@ -183,7 +183,6 @@ function Character:getMana()
     return self.mana + additionMana
 end
 
-
 ---@Description Get the Physical Damage of the character
 ---@return number The Physical Damage of the character
 function Character:getPhysicDmg()
@@ -196,7 +195,6 @@ function Character:getMagicDmg()
     local additionDmg = self.Intelligence * self.magicDmgScale
     return self.magicDmg + additionDmg
 end
-
 
 ---@Description Get the Physical Defense of the character
 ---@return number The Physical Defense of the character
@@ -222,7 +220,6 @@ function Character:getAccurate(additionalRoll)
     return self.accurate + additionAcc
 end
 
-
 ---@Description Get the Evasion of the character
 ---@param additionalRoll? number
 ---@return number The Evasion of the character
@@ -245,7 +242,6 @@ function Character:getDeathDoorSurviveChance(additonalRoll)
     return self.deathDoorSurviveChance + additionSurvive
 end
 
-
 ---@Description Initialize the character
 ---@param host pointer instance of BattleScene
 ---@param slot pointer The slot where the character is created
@@ -263,6 +259,10 @@ function Character:init(host,slot,tSide)
     TB_SetAttribute(self.dyobj,"Intelligence",self.Intelligence)
     TB_SetAttribute(self.dyobj,"Wisdom",self.Wisdom)
 
+    TB_SetStrAttribute(self.dyobj, "animationPath", self.animationPath)
+    TB_SetStrAttribute(self.dyobj, "portraitPath    ", self.portraitPath)
+    TB_SetStrAttribute(self.dyobj, "panelPath", self.panelPath)
+
     TB_SetAttribute(self.dyobj,"action",self:getTurn())
     TB_SetAttribute(self.dyobj,"hp",self:getHP())
     TB_SetAttribute(self.dyobj,"mana",self:getMana())
@@ -274,7 +274,7 @@ function Character:init(host,slot,tSide)
     TB_SetAttribute(self.dyobj,"magicDmg",self:getMagicDmg())
     TB_SetAttribute(self.dyobj,"magicDef",self:getMagicDef())
     TB_SetAttribute(self.dyobj,"accurate",self:getAccurate())
-    
+
     TB_SetAttribute(self.dyobj,"evadeChance",self:getEvadeChance())
     TB_SetStrAttribute(self.dyobj,"name",self.name)
     TB_SetStrAttribute(self.dyobj,"lastName",self.lastName)

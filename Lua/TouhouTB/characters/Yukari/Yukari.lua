@@ -17,6 +17,7 @@ Yukari = Character:new({
     dyobj = nil,
     animationPath = "./Assets/F_AObjects/yukari_tb.xml",
     portraitPath  = "./Assets/TB_GUI/faces/Yukari_face.png",
+    panelPath = "./Assets/TB_GUI/panels/yukari_panel.png",
     action = 1.0,
     hp = 220,
     mana = 300,

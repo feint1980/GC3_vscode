@@ -21,6 +21,7 @@ Reimu = Character:new({
     dyobj = nil,
     animationPath = "./Assets/F_AObjects/reimu_tb.xml",
     portraitPath  = "./Assets/TB_GUI/faces/Reimu_face.png",
+    panelPath = "./Assets/TB_GUI/panels/reimu_panel.png",
     action = 1.0,
     hp = 80,
     mana = 100,

@@ -151,10 +151,14 @@ int lua_ParseCharacterFromJson(lua_State * L)
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string jsonSrc = lua_tostring(L, 2);
 
-        CharacterStats * returnStats = new CharacterStats();  // = host->parseFromStr(jsonSrc);
-        
+
+        CharacterStats  *returnStats = new CharacterStats();
         *returnStats = host->parseFromStr(jsonSrc);
-        std::cout << "check data ||||" << returnStats->name << "|||||||\n";
+
+        // CharacterDesc des; 
+        // des.setCharacterStats(returnStats);
+
+        // std::cout << "check data ||||" << returnStats->name << "|||||||\n";
         lua_pushlightuserdata(L, returnStats);
         return 1;
     }

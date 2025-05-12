@@ -14,8 +14,11 @@ public:
 
     void init(lua_State * script);
 
+    void addCharacterDesc(std::string & name ,CharacterDesc * characterDesc);
+    // CharacterDesc * getCharacter(const std::string & name);
+
 private:
-    std::unordered_map<std::string, CharacterDesc * > m_characters;
+    std::unordered_map<std::string, CharacterDesc > m_characters;
 
     lua_State * m_script;
 };
