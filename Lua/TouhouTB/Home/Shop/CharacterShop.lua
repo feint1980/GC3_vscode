@@ -60,15 +60,20 @@ function CharacterShop:init(GUI_host, posX, posY,
     refreshButton:setAlignment(TextAlginment.Center)
     refreshButton:setHoverable(0,255,0,255,255,255,255,255)
     refreshButton:setOnClickCallback(function()
-        print("refresh call ")
+        -- self:requestCharacterList(Home_ClientScriptingPtr)
     end)
-    local testLocal = CharacterPanel:new()
-    testLocal:init(GUI_host,self.charactersPanel.ptr,0,10,125,250,"Assets/TB_GUI/panels/reimu_panel.png","Reimu","100")
-    local testLocal2 = CharacterPanel:new()
-    testLocal2:init(GUI_host,self.charactersPanel.ptr,130,10,125,250,"Assets/TB_GUI/panels/meiling_panel.png","Meiling","100")
+    -- local testLocal = CharacterPanel:new()
+    -- testLocal:init(GUI_host,self.charactersPanel.ptr,0,10,125,250,"Assets/TB_GUI/panels/reimu_panel.png","Reimu","100")
+    -- local testLocal2 = CharacterPanel:new()
+    -- testLocal2:init(GUI_host,self.charactersPanel.ptr,130,10,125,250,"Assets/TB_GUI/panels/meiling_panel.png","Meiling","100")
 
     self:requestCharacterList(Home_ClientScriptingPtr)
 
+end
+
+function CharacterShop:addCharPanel(GUI_host,x,y,width,height,panelPath,name,price)
+    self.charactersPanel[name] = CharacterPanel:new()
+    self.charactersPanel[name]:init(GUI_host,self.charactersPanel.ptr,x,y,width,height,panelPath,name,price)
 end
 
 

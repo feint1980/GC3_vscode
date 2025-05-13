@@ -1,4 +1,4 @@
-package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Home/Shop/?.lua;'
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Home/Shop/?.lua;' .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua'
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -12,6 +12,12 @@ require "LuaEventHandler"
 require "Shop"
 require "homeGlobal"
 
+require "Reimu"
+require "Patchouli"
+require "Yukari"
+
+
+
 HomeSceneHost = nil
 -- HandlePacketTask = _G.HandlePacketTask
 
@@ -20,6 +26,9 @@ Home_GUIScriptingPtr = nil
 
 ---@type pointer ClientScriptingPtr
 Home_ClientScriptingPtr = nil
+
+---@type pointer ClientCharacterHandler
+Home_ClientCharacterHandlerPtr = nil
 
 --- Main 
 ---@type Label
@@ -38,10 +47,11 @@ Main_MonValLabel = nil
 ---@type Label
 Main_ShopButton = nil
 
-function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
+function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr)
     HomeSceneHost = host
     Home_GUIScriptingPtr = TGUIScriptingPtr
     Home_ClientScriptingPtr = ClientScriptingPtr
+    Home_ClientCharacterHandlerPtr = ClientCharacterHandlerPtr
 
     if HomeSceneHost ~= nil then
         print("LoginHost is not nil")
@@ -168,11 +178,58 @@ HomeMain_HandleStep2[Packet_OtherID.USER_DATA_NEG] = function(host,packet)
 end
 
 HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES] = function(host,packet)
+    print("HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES] called ")
     local tData = Home_StripMSG(packet.data,Packet_OtherID.CHARACTER_RES)
     -- print("get data" .. tData)
     local tD = SplitMessgae(tData,"|",1)
     S_Characters_Info[tD[1]] = tD[2]
-    cppParseCharacterFromJson(host, tD[2])
+
+    -- table.insert(S_Characters_Info,tD[1],tD[2])
+    local t_charStats =  Client_ParseCharacterFromJson(host, tD[2])
+    ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr,tD[1],t_charStats)
+    -- print("number of S_Characters_Info |ASSIGN| " .. #S_Characters_Info)
+end
+
+HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES_DONE] = function(host,packet)
+    print("character res done")
+    print("check Data")
+
+    -- print("number of S_Characters_Info " .. #S_Characters_Info)
+
+    Shop_CharacterShop = _G.Shop_CharacterShop
+
+    -- Shop_CharacterTable = _G.Shop_CharacterTable
+
+    -- for k,v in pairs(S_Characters_Info) do
+    --     print(k)
+    -- end
+
+    for k,v in pairs(S_Characters_Info) do
+        if k == "S_Reimu" then
+            print("found Reimu")
+            Shop_CharacterTable["Reimu"] = Reimu:new()
+
+            local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
+            -- Shop_CharacterTable["Reimu"]:init()
+            -- Shop_CharacterTable["Reimu"]:setDesc(ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k))
+            -- print("test ttile" .. Shop_CharacterTable["Reimu"].title)
+        elseif k == "S_Patchouli" then
+            print("found Patchouli")
+        elseif k == "S_Yukari" then
+            print("found Yukari")
+        elseif k == "S_Meiling" then
+            print("found Meiling")
+        end
+    end
+
+    local x_offset = 130
+    local count = 0
+    -- for k,v in pairs(S_Characters_Info) do
+    --     Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250,)
+    -- end
+
+    print("check end ")
+
 end
 
 ---@Description request update money data
@@ -200,7 +257,7 @@ HomeMain_Tasks = {}
 
 ---@Description Backup update function
 function HomeMain_RequestDataLoop()
-    Tscheduler_addTask(300, function()
+    Tscheduler_addTask(1500, function()
         Home_RequestUserlData()
         HomeMain_RequestDataLoop()
     end)

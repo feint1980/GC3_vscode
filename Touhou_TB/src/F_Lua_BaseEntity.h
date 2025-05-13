@@ -19,6 +19,10 @@ public:
 
     void update(float deltaTime);
 
+    void setCharacterDesc(CharacterDesc characterDesc) { m_characterDesc = characterDesc; }
+
+    CharacterDesc getCharacterDesc() { return m_characterDesc; }
+
     void init(Slot * slot, const std::string & animationPath,const std::string & portraitPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
 
     void setAttribute(const std::string & attributeName, int value);

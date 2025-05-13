@@ -43,6 +43,7 @@ enum PacketCode
     REQUEST_KEY,
     USERDATA = 65,
     REQUEST_CHARACTER,
+    REQUEST_CHARACTER_DONE,
     INVALID = 322,
     UNKNOWN = 792
 };

@@ -1,4 +1,7 @@
-package.path = package.path  .. '../Common/?.lua' .. ';./Assets/Lua/characters/Common/?.lua;'
+-- package.path = package.path  .. '../Common/?.lua' .. ';./Assets/Lua/characters/Common/?.lua;'
+
+package.path = package.path .. ';../../Lua/TouhouTB/characters/Common/?.lua;'
+
 -- gui include
 require "IconGui"
 

@@ -162,6 +162,53 @@ function Character:new(o)
     return o
 end
 
+---@Description set the character desc from C++ side
+---@param desc pointer instance of CharacterDesc
+function Character:setDesc(desc)
+    Character_SetDesc(self.dyobj, desc)
+    self.Strength = Character_GetAttribute(self.dyobj, "Strength")
+    self.Vitality = Character_GetAttribute(self.dyobj, "Vitality") 
+    self.Dexterity = Character_GetAttribute(self.dyobj, "Dexterity")
+    self.Agility = Character_GetAttribute(self.dyobj, "Agility")
+    self.Intelligence = Character_GetAttribute(self.dyobj, "Intelligence")
+    self.Wisdom = Character_GetAttribute(self.dyobj, "Wisdom")
+
+    self.animationPath = Character_GetAttributeStr(self.dyobj, "animationPath")
+    self.portraitPath = Character_GetAttributeStr(self.dyobj, "portraitPath")
+    self.panelPath = Character_GetAttributeStr(self.dyobj, "panelPath")
+
+    self.hp = Character_GetAttribute(self.dyobj, "hp")
+    self.mana = Character_GetAttribute(self.dyobj, "mana")
+    self.sp = Character_GetAttribute(self.dyobj, "sp")
+    self.spCap = Character_GetAttribute(self.dyobj, "spCap")
+    self.physicDmg = Character_GetAttribute(self.dyobj, "physicDmg")
+    self.physicDef = Character_GetAttribute(self.dyobj, "physicDef")
+    self.magicDmg = Character_GetAttribute(self.dyobj, "magicDmg")
+    self.magicDef = Character_GetAttribute(self.dyobj, "magicDef")
+    self.accurate = Character_GetAttribute(self.dyobj, "accurate")
+    self.evadeChance = Character_GetAttribute(self.dyobj, "evadeChance")
+    self.critChance = Character_GetAttribute(self.dyobj, "critChance")
+    self.hpScale = Character_GetAttribute(self.dyobj, "hpScale")
+    self.manaScale = Character_GetAttribute(self.dyobj, "manaScale")
+    self.physicDmgScale = Character_GetAttribute(self.dyobj, "physicDmgScale")
+    self.magicDmgScale = Character_GetAttribute(self.dyobj, "magicDmgScale")
+    self.physicDefScale = Character_GetAttribute(self.dyobj, "physicDefScale")
+    self.magicDefScale = Character_GetAttribute(self.dyobj, "magicDefScale")
+    self.accurateScale = Character_GetAttribute(self.dyobj, "accurateScale")
+    self.evadeChanceScale = Character_GetAttribute(self.dyobj, "evadeChanceScale")
+    self.deathDoorSurviveChance = Character_GetAttribute(self.dyobj, "deathDoorSurviveChance")
+    
+    self.name = Character_GetAttributeStr(self.dyobj, "name")
+    self.lastName = Character_GetAttributeStr(self.dyobj, "lastName")
+    self.title = Character_GetAttributeStr(self.dyobj, "title")
+    -- self.hp = 
+
+end
+
+
+--------------------------------------------------------
+
+
 ---@Description Get the turn of the character
 ---@return number The turn of the character | Fomula 1 + (Agility/7 * 0.25) |
 function Character:getTurn()
@@ -209,7 +256,6 @@ function Character:getMagicDef()
     local additionDef = self.Wisdom * self.magicDefScale
     return self.magicDef + additionDef
 end
-
 
 ---@Description Get the Accuracy of the character
 ---@param additionalRoll? number
@@ -276,13 +322,23 @@ function Character:init(host,slot,tSide)
     TB_SetAttribute(self.dyobj,"accurate",self:getAccurate())
 
     TB_SetAttribute(self.dyobj,"evadeChance",self:getEvadeChance())
+    TB_SetAttribute(self.dyobj,"critChance",self:getCritChance())
+    TB_SetAttribute(self.dyobj, "hpScale", self.hpScale)
+    TB_SetAttribute(self.dyobj, "manaScale", self.manaScale)
+    TB_SetAttribute(self.dyobj, "physicDmgScale", self.physicDmgScale)
+    TB_SetAttribute(self.dyobj, "physicDefScale", self.physicDefScale)
+    TB_SetAttribute(self.dyobj, "magicDmgScale", self.magicDmgScale)
+    TB_SetAttribute(self.dyobj, "magicDefScale", self.magicDefScale)
+    TB_SetAttribute(self.dyobj, "accurateScale", self.accurateScale)
+    TB_SetAttribute(self.dyobj, "evadeChanceScale", self.evadeChanceScale)
+    TB_SetAttribute(self.dyobj, "deathDoorSurviveChance", self.deathDoorSurviveChance)
+
     TB_SetStrAttribute(self.dyobj,"name",self.name)
     TB_SetStrAttribute(self.dyobj,"lastName",self.lastName)
     TB_SetStrAttribute(self.dyobj,"title",self.title)
 
     --return self
 end
-
 
 ---@Description Load the common actions of the character
 ---@param host pointer instance of BattleScene
@@ -318,7 +374,7 @@ end
 ---@return boolean
 function Character:determineEvade(enemy)
     print("determine evade called")
-    local selfRoll = roll(1,6)
+    local selfRoll = roll(1,6) 
     local enemyRoll = roll(1,6)
     local evd = self:getEvadeChance(selfRoll)
     local att = enemy:getAccurate(enemyRoll)
@@ -340,4 +396,48 @@ end
 ---@param host pointer instance of BattleScene
 function Character:loadSkills(host)
     --todo : inherits and override
+end
+
+--- Wrappers
+---wrapper of cpp_setEntityCharacterDesc
+---@Description set the character desc
+---@param dyobj pointer instance of F_Lua_BaseEntity
+---@param desc pointer instance of CharacterDesc
+function Character_SetDesc(dyobj, desc)
+    cpp_setEntityCharacterDesc(dyobj, desc)
+end
+
+---wrapper of cpp_setCharactercAttribute
+---@Description set the character desc
+---@param dyobj pointer instance of F_Lua_BaseEntity
+---@param name string The name of the attribute
+---@param value number The value of the attribute
+function Character_SetAttribute(dyobj, name, value)
+    cpp_setCharactercAttribute(dyobj, name, value)
+end
+
+---wrapper of cpp_setCharactercAttributeStr
+---@Description set the character desc
+---@param dyobj pointer instance of F_Lua_BaseEntity
+---@param name string The name of the attribute
+---@param value string The value of the attribute
+function Character_SetAttributeStr(dyobj, name, value)
+    cpp_setCharactercAttributeStr(dyobj, name, value)
+end
+
+---wrapper of cpp_getEntityCharacterAttribute
+---@Description set the character desc
+---@param dyobj pointer instance of F_Lua_BaseEntity
+---@param name string The name of the attribute
+function Character_GetAttribute(dyobj, name)
+    return cpp_getEntityCharacterAttribute(dyobj, name)
+end
+
+
+---wrapper of cpp_getEntityCharacterAttributeStr
+---@Description set the character desc
+---@param dyobj pointer instance of F_Lua_BaseEntity
+---@param name string The name of the attribute
+function Character_GetAttributeStr(dyobj, name)
+    return cpp_getEntityCharacterAttributeStr(dyobj, name)
 end

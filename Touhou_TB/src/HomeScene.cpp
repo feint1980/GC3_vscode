@@ -204,6 +204,9 @@ void HomeScene::initGUI()
     m_client = InfoHolder::getInstance()->getClient();
     m_clientScriptingManager->init("127.0.0.1", port,m_client, m_script);
 
+    m_clientCharacterHandler = new ClientCharacterHandler();
+    m_clientCharacterHandler->init(m_script);
+
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Home/homeScene.lua")))
     {
         std::cout << "Run loginScene script OK \n";
@@ -216,8 +219,9 @@ void HomeScene::initGUI()
         lua_pushlightuserdata(m_script, this);
         lua_pushlightuserdata(m_script, &m_guiScriptingManager);
         lua_pushlightuserdata(m_script, m_clientScriptingManager);
+        lua_pushlightuserdata(m_script, m_clientCharacterHandler);
         std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-        const int argc = 3;
+        const int argc = 4;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {

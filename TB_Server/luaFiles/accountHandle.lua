@@ -246,11 +246,14 @@ ResponseHandle[PacketCode.requestCharacterList] = function(host,packet)
 
     print("requestCharacterList found, sending ...")
 
+    local count = 0
     for k,v in pairs(Character_Serialized_Table) do
         local chracterInfo = {}
-        
+        count = count +1
         SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v}))
     end
+    print("###### count ###### " .. count)
+    SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_DONE", {count}))
 
 end
 

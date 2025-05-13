@@ -973,7 +973,7 @@ void WL_ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseH
     lua_register(m_script, "cpp_getEncrypedPW", lua_getEncryptedPW);
 
     // Update Characters it belongs here because the server read and update it to database
-    lua_register(m_script, "cppUpdateCharacter", lua_UpdateCharacter);
+    lua_register(m_script, "cpp_updateCharacter", lua_UpdateCharacter);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))
     {

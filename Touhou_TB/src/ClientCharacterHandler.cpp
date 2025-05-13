@@ -11,20 +11,168 @@ int lua_CharacterFillData(lua_State * L)
 		std::cout << lua_gettop(L) << "\n";
 		return -1;
 	}
-    ClientCharacterHandler * handler = static_cast<ClientCharacterHandler*>(lua_touserdata(L, 1));
-    std::string name = lua_tostring(L, 2);
-    CharacterStats  *returnStats = static_cast<CharacterStats*>(lua_touserdata(L, 3));
-    // CharacterDesc desc 
-
-
-    // handler->addCharacterDesc(name, returnStats);
+    else
+    {
+        ClientCharacterHandler * handler = static_cast<ClientCharacterHandler*>(lua_touserdata(L, 1));
+        std::string name = lua_tostring(L, 2);
+        CharacterStats  *returnStats = static_cast<CharacterStats*>(lua_touserdata(L, 3));
+        CharacterDesc * desc = new CharacterDesc();
+        desc->setCharacterStats(*returnStats); 
+        handler->addCharacterDesc(name, desc);
+    }
     return 0;
 }
 
-
-void ClientCharacterHandler::addCharacterDesc(std::string & name ,CharacterDesc * characterDesc)
+int lua_GetCharacterData(lua_State * L)
 {
+    if (lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientCharacterHandler * handler = static_cast<ClientCharacterHandler*>(lua_touserdata(L, 1));
+        std::string name = lua_tostring(L, 2);
+        CharacterDesc * desc = handler->getCharacter(name);
+        lua_pushlightuserdata(L, desc);
+        return 1;
+    }
+    return 0;
+}
 
+int lua_setEntityCharacterDesc(lua_State * L)
+{
+    if (lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 1));
+        CharacterDesc * desc = static_cast<CharacterDesc*>(lua_touserdata(L, 2));
+        entity->setCharacterDesc(*desc);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_setCharactercAttribute(lua_State * L)
+{
+    if (lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 1));
+        std::string attributeName = lua_tostring(L, 2);
+        float value = (float)lua_tonumber(L, 3);
+        entity->setAttribute(attributeName, value);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_setCharactercAttributeStr(lua_State * L)
+{
+    if (lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 1));
+        std::string attributeName = lua_tostring(L, 2);
+        std::string value = lua_tostring(L, 3);
+        entity->setAttribute(attributeName, value);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_getEntityCharacterAttribute(lua_State * L)
+{
+    if (lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 1));
+        std::string attributeName = lua_tostring(L, 2);
+        float value = entity->getFloatAttributeByName(attributeName);
+        lua_pushnumber(L, value);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_getEntityCharacterAttributeStr(lua_State * L)
+{
+    if (lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        F_Lua_BaseEntity * entity = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 1));
+        std::string attributeName = lua_tostring(L, 2);
+        std::string value = entity->getStrAttributeByName(attributeName);
+        lua_pushstring(L, value.c_str());
+        return 1;
+    }
+    return 0;
+}
+
+int lua_CreateCharacterNon_CB(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientCharacterHandler * handler = static_cast<ClientCharacterHandler*>(lua_touserdata(L, 1));
+        std::string name = lua_tostring(L, 2);
+        CharacterDesc * desc = static_cast<CharacterDesc*>(lua_touserdata(L, 3));
+        F_Lua_BaseEntity * entity = handler->createCharacter(name, desc);
+        lua_pushlightuserdata(L, entity);
+        return 1;
+    }
+    return 0;
+}
+
+CharacterDesc * ClientCharacterHandler::getCharacter(const std::string & name)
+{
+    return m_charactersDesc[name];
+}
+
+
+F_Lua_BaseEntity * ClientCharacterHandler::createCharacter(const std::string & name ,CharacterDesc *characterDesc)
+{
+    F_Lua_BaseEntity * entity = new F_Lua_BaseEntity();
+    entity->setCharacterDesc(*characterDesc);
+    m_characters[name] = entity;
+    return entity;
+}
+
+void ClientCharacterHandler::addCharacterDesc(const std::string & name ,CharacterDesc *characterDesc)
+{
+    m_charactersDesc[name] = characterDesc;
 }
 
 ClientCharacterHandler::ClientCharacterHandler()
@@ -45,6 +193,29 @@ void ClientCharacterHandler::init(lua_State * script)
         std::cout << "Run script ClientCharacterHandler OK \n";
     }
     
-    lua_register(m_script, "cpp_CharacterFillData", lua_CharacterFillData);
 
+    // lua_getglobal(m_script, "ClientCharacterHandlerInit");// get the function name to the top of the stack
+	// if (lua_isfunction(m_script, -1))
+	// {
+	// 	//std::cout << "host is " << this << "\n";
+	// 	lua_pushlightuserdata(m_script, this);
+	// 	//std::cout << "C++ called " + functionName << "\n";
+	// 	const int argCount = 1;
+	// 	const int returnCount =1;
+	// 	if (LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argCount, returnCount, 0)))
+	// 	{
+    //         std::cout << "Init ClientCharacterHandler from C++ OK \n";
+	// 	}
+	// }
+
+
+    lua_register(m_script, "cpp_CreateCharacterNon_CB", lua_CreateCharacterNon_CB);
+    lua_register(m_script, "cpp_CharacterFillData", lua_CharacterFillData);
+    lua_register(m_script, "cpp_GetCharacterData", lua_GetCharacterData);
+    lua_register(m_script, "cpp_setEntityCharacterDesc", lua_setEntityCharacterDesc);
+    lua_register(m_script, "cpp_setCharactercAttribute", lua_setCharactercAttribute);
+    lua_register(m_script, "cpp_setCharactercAttributeStr", lua_setCharactercAttributeStr);
+    lua_register(m_script, "cpp_getEntityCharacterAttribute", lua_getEntityCharacterAttribute);
+    lua_register(m_script, "cpp_getEntityCharacterAttributeStr", lua_getEntityCharacterAttributeStr);
+    
 }

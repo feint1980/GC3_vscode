@@ -151,7 +151,6 @@ int lua_ParseCharacterFromJson(lua_State * L)
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string jsonSrc = lua_tostring(L, 2);
 
-
         CharacterStats  *returnStats = new CharacterStats();
         *returnStats = host->parseFromStr(jsonSrc);
 

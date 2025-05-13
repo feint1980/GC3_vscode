@@ -37,6 +37,8 @@
 #include "TGUIScriptingManager.h"
 #include "ClientScriptingManager.h"
 #include "LuaEventHandler.h"
+#include "ClientCharacterHandler.h"
+
 
 class HomeScene : public Feintgine::IGameScreen
 {
@@ -98,6 +100,8 @@ private:
     lua_State * m_script = nullptr;
 
     ClientScriptingManager *m_clientScriptingManager = nullptr;
+
+    ClientCharacterHandler * m_clientCharacterHandler = nullptr;
 
     RakNet::RakPeerInterface * m_client = nullptr;
 

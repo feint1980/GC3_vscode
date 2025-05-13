@@ -41,6 +41,7 @@ Packet_OtherID = {
     USER_DATA_POS = 5,
     USER_DATA_NEG = 6,
     CHARACTER_RES = 66,
+    CHARACTER_RES_DONE = 67,
     ID_INVALID = 77
 }
 
@@ -74,6 +75,15 @@ function Client_Connect(host)
     local pID =  cppConnect(host)
 end
 
+---wrapper of cppParseCharacterFromJson
+---@Description wrapper of cppParseCharacterFromJson
+---@param host pointer instance of ClientScriptingManager
+---@param data string data need to send
+---@return pointer instance of CharacterStats
+function Client_ParseCharacterFromJson(host,data)
+    return cppParseCharacterFromJson(host,data)
+end
+
 --- get Data from C++ engine
 ---@Description get Data from C++ engine
 ---@param msg string data sent from C++ engine
@@ -87,6 +97,9 @@ function Client_ReceiveData(msg, ip,pID)
     tPacket.packetID = pID
     Client_HandlePacket(tPacket)
 end
+
+
+
 
 HandlePacketTask = {}
 

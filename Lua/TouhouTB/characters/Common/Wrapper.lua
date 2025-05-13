@@ -31,8 +31,6 @@ function TB_CreateSlot(host,row,col,side)
     return cppCreateSlot(host,row,col,side)
 end
 
-
-
 --- fucntion wrapper of cppSetSlothandlerActive
 ---@Description: Set the active state of the slot handler (SlotHandler)
 ---@param host pointer instace of BattleScene

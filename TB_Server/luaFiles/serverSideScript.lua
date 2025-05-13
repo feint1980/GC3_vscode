@@ -207,13 +207,14 @@ function Server_LoadCharacters(host)
         if filename then
             print("reloading files ... " .. filename)
             dofile("../luaFiles/Characters/"..filename .. ".lua")
-            Character_Serialized_Table[filename] = cppUpdateCharacter(host,Character_Table[filename])
+            Character_Serialized_Table[filename] = SV_UpdateCharacter(host,Character_Table[filename])
         end
     end
 end
 
 function Server_LoadData(host)
     Server_LoadCharacters(host)
+    Server_CheckCharacterData(host)
 end
 
 local function print_table(t)
@@ -223,7 +224,14 @@ local function print_table(t)
 end
 
 function Server_CheckCharacterData(host)
+    print("Server_CheckCharacterData...")
+
+    for k,v in pairs(Character_Table) do
+        print(k,v)
+    end
+
     for k,v in pairs(Character_Serialized_Table) do
+
         print(v)
     end
 end

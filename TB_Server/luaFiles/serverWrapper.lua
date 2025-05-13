@@ -159,3 +159,10 @@ function SV_getEncryptPW(host, pw)
     return cpp_getEncrypedPW(host, pw)
 end
 
+--- function wrapper of cpp_updateCharacter
+--- @Desciption: update character data
+--- @param host pointer instance of ServerScriptingManager
+--- @param character_stats table of character data
+function SV_UpdateCharacter(host, character_stats)
+    return cpp_updateCharacter(host, character_stats)
+end

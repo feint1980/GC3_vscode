@@ -101,6 +101,30 @@ class CharacterDesc
     CharacterDesc();
     ~CharacterDesc();
 
+    // move constructor
+    CharacterDesc(CharacterDesc && other) noexcept
+    {
+        m_charStats = std::move(other.m_charStats);
+    }
+    // move assignment
+    CharacterDesc & operator=(CharacterDesc && other) noexcept
+    {
+        m_charStats = std::move(other.m_charStats);
+        return *this;
+    }
+
+    // copy constructor
+    CharacterDesc(const CharacterDesc & other)
+    {
+        m_charStats = other.m_charStats;
+    }
+    // copy assignment
+    CharacterDesc & operator=(const CharacterDesc & other)
+    {
+        m_charStats = other.m_charStats;
+        return *this;
+    }
+
     CharacterStats getCharacterStats() const { return m_charStats; }
 
     void setCharacterStats(const CharacterStats & characterStats) { m_charStats = characterStats; }

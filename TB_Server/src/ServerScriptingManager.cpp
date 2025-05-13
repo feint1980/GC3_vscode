@@ -974,7 +974,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cpp_getEncrypedPW", lua_getEncryptedPW);
 
     // Update Characters it belongs here because the server read and update it to database
-    lua_register(m_script, "cppUpdateCharacter", lua_UpdateCharacter);
+    lua_register(m_script, "cpp_updateCharacter", lua_UpdateCharacter);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))
     {
@@ -1152,8 +1152,20 @@ PacketCode ServerScriptingManager::getSpecialRequestCode(RakNet::Packet *p)
     // 1 part finder
     if(cData.find("|REQUEST_CHARACTERLIST|") != std::string::npos)
     {
-        return PacketCode::REQUEST_CHARACTER;
+        // if(cData.find("|CHARACTER_LIST_RES_POS_END_REQUEST|") != std::string::npos)
+        // {
+            return PacketCode::REQUEST_CHARACTER;
+        // }
     }
+
+    // if(cData.find("|CHARACTER_LIST_RES_DONE_REQUEST|") != std::string::npos)
+    // {
+    //     // if(cData.find("|CHARACTER_LIST_RES_DONE_END_REQUEST|") != std::string::npos)
+    //     // {
+    //         return PacketCode::REQUEST_CHARACTER_DONE;
+
+    //     // }
+    // }
 
     //std::cout << "Not a request, normal message : \n";
     return PacketCode::INVALID;
