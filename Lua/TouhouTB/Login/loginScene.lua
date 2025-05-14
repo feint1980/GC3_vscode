@@ -374,7 +374,7 @@ Login_HandleTask = {}
 ---@param host pointer instance of ClientScriptingManager
 ---@param packet Client_Packets
 HandlePacketTask["login_main"] = function(host,packet)
-    print("recive packet  >>>> " .. packet.packetID)
+    -- print("recive packet  >>>> " .. packet.packetID)
     if Login_HandleTask[packet.packetID] ~= nil then
         Login_HandleTask[packet.packetID](ClientSide_Host,packet)
     else
@@ -456,8 +456,8 @@ function Login_MainCall(host)
     if Client_Connected == true then
         Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
     end
-    print("setOnClickCallback send data : ")
-    print(Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+    -- print("setOnClickCallback send data : ")
+    -- print(Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
 end
 
 function Login_CheckValid(info)
@@ -499,7 +499,7 @@ end
 ---@return number 
 function Login_GetOtherID(packet)
     local msg = packet.data
-    print("msg is :" .. msg)
+    -- print("msg is :" .. msg)
     for k,v in pairs(OrderList) do
         if string.match(msg,v.firstStr) then
             if string.match(msg,v.secondStr) then

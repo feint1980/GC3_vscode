@@ -160,7 +160,7 @@ int lua_Panel_SetAlignment(lua_State * L)
 
 int lua_Panel_SetHoverOnCallback(lua_State * L)
 {
-    std::cout << "lua_Panel_SetHoverOnCallback called \n";
+    // std::cout << "lua_Panel_SetHoverOnCallback called \n";
     if(lua_gettop(L) != 2)
     {
         std::cout << "gettop failed (lua_Panel_SetHoverOnCallback) " << lua_gettop(L) << "\n";
@@ -168,7 +168,7 @@ int lua_Panel_SetHoverOnCallback(lua_State * L)
     }
     else
     {
-        std::cout << "lua_Panel_SetHoverOnCallback called \n";
+        // std::cout << "lua_Panel_SetHoverOnCallback called \n";
         tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr *>(lua_touserdata(L, 1));
         if(!lua_isfunction(L, 2))
         {
@@ -863,7 +863,6 @@ int lua_RTLabel_Create(lua_State * L)
 
 int lua_Picture_Create(lua_State * L)
 {
-    std::cout << "[C++] lua_Picture_Create called " << lua_gettop(L) << "\n";
     if(lua_gettop(L) < 6 || lua_gettop(L) > 7)
     {
         std::cout << "gettop failed (lua_Picture_Create) " << lua_gettop(L) << "\n";
@@ -871,7 +870,6 @@ int lua_Picture_Create(lua_State * L)
     }
     else
     {
-        std::cout << " inbound \n";
         TGUIScriptingManager * host =   static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
         std::string path = lua_tostring(L, 2);
         float x = lua_tonumber(L, 3);
@@ -1342,6 +1340,21 @@ int lua_ScrollablePanel_GetSize(lua_State * L)
     return 2;
 }
 
+int lua_ScrollablePanel_ClearItems(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_ScrollablePanel_ClearItems) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ScrollablePanel::Ptr * panel = static_cast<tgui::ScrollablePanel::Ptr *>(lua_touserdata(L, 1));
+        panel->get()->removeAllWidgets();
+    }
+    return 0;
+}
+
 TGUIScriptingManager::TGUIScriptingManager()
 {
 
@@ -1386,7 +1399,6 @@ tgui::Picture::Ptr TGUIScriptingManager::createPicture(const std::string & path,
     picture->getRenderer()->setTexture(texture);
     picture->setPosition(x, y);
     picture->setSize(width, height);
-    std::cout << "create picture done \n";
     return picture;
 }
 
@@ -1570,6 +1582,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_ScrollablePanel_SetVisible", lua_ScrollablePanel_setVisible);
     lua_register(m_script, "cpp_ScrollablePanel_SetAlignment", lua_ScrollablePanel_SetAlignment);
     lua_register(m_script, "cpp_ScrollablePanel_GetSize", lua_ScrollablePanel_GetSize);
+    lua_register(m_script, "cpp_ScrollablePanel_ClearItems", lua_ScrollablePanel_ClearItems);
 
     // TGUI Picture section
     lua_register(m_script, "cpp_Picture_Create", lua_Picture_Create);

@@ -34,7 +34,7 @@ local function forceReinit()
     for filename in io.popen('dir /b/a-d "./Assets/LuaFiles/Komachi/"'):lines() do  --Windows
         filename = filename:match"^(.*)%.lua$"
         if filename then
-            print("reloading files ... " .. filename)
+            -- print("reloading files ... " .. filename)
             dofile("./Assets/LuaFiles/Komachi/"..filename .. ".lua")
         end
     end

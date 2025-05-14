@@ -18,24 +18,34 @@ Reimu = Character:new({
     Strenth = 7,
     Vitality = 7,
     Dexterity = 12,
-    Agility = 10,
+    Agility = 11,
     Intelligence = 8,
     Wisdom = 9,
     dyobj = nil,
     animationPath = "./Assets/F_AObjects/reimu_tb.xml",
     portraitPath  = "./Assets/TB_GUI/faces/Reimu_face.png",
     panelPath = "./Assets/TB_GUI/panels/reimu_panel.png",
-    action = 1.0,
-    hp = 80,
-    mana = 100,
+    action = 0,
+    hp = 200,
+    mana = 120,
     sp = 0,
     spCap = 100,
-    physicDmg = 5,
-    physicDef = 5,
-    magicDmg = 5,
-    magicDef = 5,
-    accurate = 0.9,
-    evadeChance = 0.3,
+    physicDmg = 11,
+    physicDef = 10,
+    magicDmg = 11,
+    magicDef = 8,
+    accurate = 0.88,
+    evadeChance = 0.33,
+    critChance = 0.13,
+    hpScale = 8,
+    manaScale = 7,
+    physicDmgScale = 4,
+    magicDmgScale = 3,
+    physicDefScale = 2,
+    magicDefScale = 2,
+    accurateScale = 0.03,
+    evadeChanceScale = 0.02,
+    deathDoorSurviveChance = 0.3,
     name = "Reimu",
     lastName = "Hakurei",
     title = "Hakurei Shrine Maiden",
@@ -46,7 +56,6 @@ Reimu = Character:new({
 }
 )
 
-
 ---@Description Reimu inherits from Character
 ---@function Reimu:loadCommon
 ---@param host pointer instance of BattleScene
@@ -54,7 +63,6 @@ Reimu = Character:new({
 function Reimu:loadCommon(host)
 
     self.common_actions =  Character:loadCommon(host)
-
     return self.common_actions
     -- todo load more common of reimu
 end

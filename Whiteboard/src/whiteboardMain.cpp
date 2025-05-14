@@ -6,7 +6,7 @@
 #include <mbedtls/mbedtls/entropy.h>
 #include <mbedtls/mbedtls/ctr_drbg.h>
 #include <mbedtls/mbedtls/sha256.h>
-#define AES_KEY_SIZE 32  // AES-256 key size (32 bytes)
+#define AES_KEY_SIZE 16  // AES-256 key size (32 bytes)
 #define AES_IV_SIZE 16   // AES block size (16 bytes for IV)
 
 

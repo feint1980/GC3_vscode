@@ -288,6 +288,15 @@ function Character:getDeathDoorSurviveChance(additonalRoll)
     return self.deathDoorSurviveChance + additionSurvive
 end
 
+---@Description Initialize the character Non CB
+---@param host pointer instance of ClientCharacterHandler
+---@param name string
+---@param desc pointer instance of CharacterDesc
+---@return pointer instance of F_Lua_BaseEntity
+function Character:initNonCB(host,name,desc)
+    return cpp_CreateCharacterNon_CB(host,name,desc)
+end
+
 ---@Description Initialize the character
 ---@param host pointer instance of BattleScene
 ---@param slot pointer The slot where the character is created

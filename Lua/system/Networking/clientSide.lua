@@ -1,5 +1,3 @@
-print("init client side script")
-
 ClientSide_Host = nil
 ---@class RakNet_SystemAddress
 
@@ -65,7 +63,6 @@ end
 ---@param data string data need to send
 ---@return number response 
 function Client_SendData(host,data)
-    -- print("call this")
     return cppSendData(host,data)
 end
 
@@ -91,24 +88,21 @@ end
 ---@param pID number packet ID
 function Client_ReceiveData(msg, ip,pID)
     local tPacket = Client_Packet:new()
-    print("Client_ReceiveData recieve : " .. msg )
+    -- print("Client_ReceiveData recieve : " .. msg )
     tPacket.data = msg
     tPacket.ipAddr = ip
     tPacket.packetID = pID
     Client_HandlePacket(tPacket)
 end
 
-
-
-
 HandlePacketTask = {}
 
 --- handle packet
 --- @param packet Client_Packet
 function Client_HandlePacket(packet)
-    print("handle packet" .. packet.packetID)
+    -- print("handle packet" .. packet.packetID)
     for k,v in pairs(HandlePacketTask) do
-        print(k)
+        -- print(k)
         if HandlePacketTask[k] ~= nil then
             HandlePacketTask[k](ClientSide_Host,packet)
         end

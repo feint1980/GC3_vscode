@@ -25,7 +25,6 @@ _G.HandlerHost = nil
 Tsize = 0
 function InitEventHandler(host)
     _G.HandlerHost = host
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! host add !!!!!!!!!!!!!!!!!!!!!!!!!!")
     if _G.HandlerHost == nil then
         print("host is nil")
     else

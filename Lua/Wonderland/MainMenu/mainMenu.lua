@@ -451,8 +451,8 @@ function Login_MainCall(host)
     if Client_Connected == true then
         Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
     end
-    print("setOnClickCallback send data : ")
-    print(Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+    -- print("setOnClickCallback send data : ")
+    -- print(Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
 end
 
 function Login_CheckValid(info)

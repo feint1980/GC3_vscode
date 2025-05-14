@@ -265,7 +265,6 @@ void LoginSceneV2::initGUI()
 
     m_client = RakNet::RakPeerInterface::GetInstance();
 
-
     unsigned int port = 1123;
     m_client->AllowConnectionResponseIPMigration(false);
     RakNet::SocketDescriptor socketDescriptor = RakNet::SocketDescriptor(0, 0);
@@ -275,7 +274,6 @@ void LoginSceneV2::initGUI()
     m_client->SetTimeoutTime(2500, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
     // m_clientScriptingManager->init("192.168.0.27", port, m_client, m_script);
     m_clientScriptingManager->init("127.0.0.1", port, m_client, m_script);
-
 
     // m_clientScriptingManager.init("127.0.0.1", 1123,m_script);
 
@@ -290,7 +288,6 @@ void LoginSceneV2::initGUI()
         std::cout << "Run loginScene script OK \n";
     }
 
-
     lua_register(m_script, "cpp_switchScene", lua_switchScene);
 
     lua_getglobal(m_script, "LoginSceneInit");
@@ -299,7 +296,7 @@ void LoginSceneV2::initGUI()
         lua_pushlightuserdata(m_script, this);
         lua_pushlightuserdata(m_script, &m_guiScriptingManager);
         lua_pushlightuserdata(m_script, m_clientScriptingManager);
-        std::cout << "check ref : " << &m_guiScriptingManager << "\n";
+        // std::cout << "check ref : " << &m_guiScriptingManager << "\n";
         const int argc = 3;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))

@@ -71,15 +71,10 @@ end
 ---@param t_encrypt? boolean if need to t_encrypt (default true)
 function SV_SendMsg(host,clientIP,message,t_encrypt)
     t_encrypt = t_encrypt or true
-    print("check t_encrypt ")
-    print(t_encrypt)
     cppSendToClient(host,clientIP,message,t_encrypt)
 end
 
 function SV_SendMsgNonEncrypt(host,clientIP,message,t_encrypt)
-
-    print("check t_encrypt ")
-    print(t_encrypt)
     cppSendToClient(host,clientIP,message,false)
 end
 

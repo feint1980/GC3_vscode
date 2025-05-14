@@ -1,4 +1,4 @@
-package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Home/Shop/?.lua;' .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua'
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Home/Shop/?.lua;' .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua' .. ';../../Lua/TouhouTB/characters/Meiling/?.lua;' .. ';../../Lua/TouhouTB/?.lua'
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -15,6 +15,7 @@ require "homeGlobal"
 require "Reimu"
 require "Patchouli"
 require "Yukari"
+require "Meiling"
 
 
 
@@ -98,6 +99,8 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     Main_ShopButton:setPosStr("10%","80`%")
     Main_ShopButton:setAlignment(TextAlginment.Center)
     Main_ShopButton:setHoverable(0,255,0,255,255,255,255,255)
+    InitShop(TGUIScriptingPtr)
+
     Main_ShopButton:setOnClickCallback(function()
         MenuPanels["Shop"](TGUIScriptingPtr)
         end)
@@ -115,7 +118,7 @@ HomeMain_HandleTask = {}
 ---@return number 
 function HomeMain_GetOtherID(packet)
     local msg = packet.data
-    print("msg is :" .. msg)
+    -- print("msg is :" .. msg)
     for k,v in pairs(Home_OrderList) do
         if string.match(msg,v.firstStr) then
             if string.match(msg,v.secondStr) then
@@ -197,38 +200,47 @@ HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES_DONE] = function(host,packet)
     -- print("number of S_Characters_Info " .. #S_Characters_Info)
 
     Shop_CharacterShop = _G.Shop_CharacterShop
-
-    -- Shop_CharacterTable = _G.Shop_CharacterTable
-
-    -- for k,v in pairs(S_Characters_Info) do
-    --     print(k)
-    -- end
+    ClientCharacterHandler_Host = _G.ClientCharacterHandler_Host
 
     for k,v in pairs(S_Characters_Info) do
         if k == "S_Reimu" then
             print("found Reimu")
             Shop_CharacterTable["Reimu"] = Reimu:new()
-
             local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-            -- Shop_CharacterTable["Reimu"]:init()
-            -- Shop_CharacterTable["Reimu"]:setDesc(ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k))
-            -- print("test ttile" .. Shop_CharacterTable["Reimu"].title)
+            Shop_CharacterTable["Reimu"]:initNonCB(ClientCharacterHandler_Host,"Reimu",t)
         elseif k == "S_Patchouli" then
             print("found Patchouli")
+            Shop_CharacterTable["Patchouli"] = Patchouli:new()
+            local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
+            Shop_CharacterTable["Patchouli"]:initNonCB(ClientCharacterHandler_Host,"Patchouli",t)
         elseif k == "S_Yukari" then
             print("found Yukari")
+            Shop_CharacterTable["Yukari"] = Yukari:new()
+            local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
+            Shop_CharacterTable["Yukari"]:initNonCB(ClientCharacterHandler_Host,"Yukari",t)
+
         elseif k == "S_Meiling" then
             print("found Meiling")
+            Shop_CharacterTable["Meiling"] = Meiling:new()
+            local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
+            Shop_CharacterTable["Meiling"]:initNonCB(ClientCharacterHandler_Host,"Meiling",t)
         end
     end
 
+    -- table.sort(Shop_CharacterTable)
     local x_offset = 130
     local count = 0
-    -- for k,v in pairs(S_Characters_Info) do
-    --     Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250,)
-    -- end
 
-    print("check end ")
+    table.sort(Shop_CharacterTable, function(a,b) 
+        return a.name < b.name 
+        end)
+
+    for k,v in pairs(Shop_CharacterTable) do
+        Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250, v.panelPath,v.name,100)
+        count = count + 1
+    end
+
+    -- print("check end ")
 
 end
 

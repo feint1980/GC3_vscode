@@ -27,7 +27,7 @@ public:
     
         // m_clientScriptingManager = clientScriptingManager;
         m_client = client;
-        std::cout << "register client " << m_client << "\n";
+        // std::cout << "register client " << m_client << "\n";
     }
 
     void registerClientScriptingManager(ClientScriptingManager * clientScriptingManager) { m_clientScriptingManager = clientScriptingManager; }
@@ -59,7 +59,7 @@ public:
 
 private:
 
-    static InfoHolder* m_inforHolder;
+    static InfoHolder* m_inforHolder ;
 
     std::string m_guid;
     std::string m_id;

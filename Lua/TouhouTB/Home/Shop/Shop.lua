@@ -19,8 +19,9 @@ Shop = nil
 ShopPanel = nil
 
 Shop_CharacterShop = nil
-MenuPanels["Shop"] = function (host)
 
+
+function InitShop(host)
     if ShopPanel == nil then
         ShopPanel = Panel:new()
         ShopPanel:init(host,TGUI_ScreenWidth/2 - 300,TGUI_ScreenHeight/2 - 200,600,400)
@@ -58,5 +59,8 @@ MenuPanels["Shop"] = function (host)
         end
         ShopPanel:setVisible(false)
     end
+end
+
+MenuPanels["Shop"] = function (host)
     ShopPanel:showWithEffect(PanelShowType.Fade,250)
 end

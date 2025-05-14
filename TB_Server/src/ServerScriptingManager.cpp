@@ -116,7 +116,7 @@ static void from_json(const json& j, CharacterStats& c) {
 
 static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **azColName)
 {
-    std::cout << "serverScriptingCallback \n";
+    // std::cout << "serverScriptingCallback \n";
     for(int i = 0 ; i < m_response.data.size() ; i++)
     {
         m_response.data[i] = "";
@@ -127,7 +127,7 @@ static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **
     {
         m_response.columnNames[i] = "";
     }
-    std::cout << "reset done \n";
+    // std::cout << "reset done \n";
 
 	for(int i = 0; i<argc; i++) {
 		//printf("%s : %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
@@ -232,7 +232,7 @@ int lua_UpdateCharacter(lua_State *L)
         }
         else
         {
-            std::cout << "got table, here we go \n";
+            // std::cout << "got table, here we go \n";
             CharacterStats stats;
             // Strength
             assignValue(L,2,"Strenth", stats.strength);
@@ -318,14 +318,14 @@ int lua_UpdateCharacter(lua_State *L)
             if(host)
             {
 
-                std::cout << "query \n";
-                std::cout << checkCharacterExist << "\n";
+                // std::cout << "query \n";
+                // std::cout << checkCharacterExist << "\n";
                 
                 if (host->doQuery(checkCharacterExist))
                 {
                     if(m_response.recordCount == 1) // exist
                     {
-                        std::cout << "chacater found ! update ...\n";
+                        // std::cout << "chacater found ! update ...\n";
                         
                         std::string updateQuery = "update character_base_table set stats = '" + j.dump(4) + "' where character_id ='" + stats.ID + "'";
                         // std::cout << "test query " << updateQuery << "\n";
@@ -390,19 +390,19 @@ int lua_SQLBindStatement(lua_State * L)
         int index = lua_tointeger(L,2);
         std::string val = lua_tostring(L,3);
 
-        std::cout << "lua_SQLBindStatement called corrct \n" ;
+        // std::cout << "lua_SQLBindStatement called corrct \n" ;
 
-        std::cout << "binding index " << index << " with value " << val << "\n";
+        // std::cout << "binding index " << index << " with value " << val << "\n";
         int rc = sqlite3_bind_text(stmt, index, val.c_str(), -1, SQLITE_TRANSIENT);
         // sqlite3_bind
         
         char* expanded = sqlite3_expanded_sql(stmt);
         if (expanded) {
-            std::cout << "lua_SQLBindStatement Query: " << expanded << std::endl;
+            // std::cout << "lua_SQLBindStatement Query: " << expanded << std::endl;
             sqlite3_free(expanded);  // Must free memory!
         }
 
-        std::cout << "return values is  " << rc << "\n"; 
+        // std::cout << "return values is  " << rc << "\n"; 
 
         return 0;
     }
@@ -747,7 +747,6 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
 {
     // encrypt 
     std::string sendStr;
-    std::cout << "send data with encrypt " << isEncrypted << "\n";
     if(isEncrypted)
     {
         unsigned char iv[AES_IV_SIZE] = {};
@@ -1037,20 +1036,20 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
     m_cryptor.init(tStr1, tStr2);   
 
-    std::cout << "pwCryptor init \n";
+    // std::cout << "pwCryptor init \n";
 
-    std::string tData = "Test data hahaha ";
-    unsigned char iv[AES_IV_SIZE];
-    std::cout << tData << "\n";
-    auto ct = m_cryptor.encrypt(tData,iv);
-    for (unsigned char byte : ct)
-    {
-        printf("%02x", byte);
-    }
-    std::cout << "\n";
+    // std::string tData = "Test data hahaha ";
+    // unsigned char iv[AES_IV_SIZE];
+    // std::cout << tData << "\n";
+    // auto ct = m_cryptor.encrypt(tData,iv);
+    // for (unsigned char byte : ct)
+    // {
+    //     printf("%02x", byte);
+    // }
+    // std::cout << "\n";
 
-    std::cout << "decrypt back : \n";
-    std::cout << m_cryptor.decrypt(ct,iv) << "\n";
+    // std::cout << "decrypt back : \n";
+    // std::cout << m_cryptor.decrypt(ct,iv) << "\n";
 
     
     std::string tpwData = "da0feb2427bf1bf";
@@ -1062,13 +1061,13 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
         passwordSalt[i] = tpwData[i];
     }
     
-    std::cout << "password salt: ";
-    for (int i = 0 ; i <  tpwData.size() ; i++)
-    {
-        printf("%02x", passwordSalt[i]);
-    };
+    // std::cout << "password salt: ";
+    // for (int i = 0 ; i <  tpwData.size() ; i++)
+    // {
+    //     printf("%02x", passwordSalt[i]);
+    // };
 
-    std::cout << "\nversion " << sqlite3_libversion() << "\n";
+    // std::cout << "\nversion " << sqlite3_libversion() << "\n";
 
     lua_getglobal(m_script, "Server_LoadData");
     if(lua_isfunction(m_script, -1))
@@ -1082,17 +1081,17 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
         }
     }
 
-    lua_getglobal(m_script, "Server_CheckCharacterData");
-    if(lua_isfunction(m_script, -1))
-    {
-        lua_pushlightuserdata(m_script, this);
-        const int argc = 1;
-        const int returnCount = 0;
-        if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
-        {
-            std::cout << "Call Server_CheckCharacterData from C++ OK \n";
-        }
-    }
+    // lua_getglobal(m_script, "Server_CheckCharacterData");
+    // if(lua_isfunction(m_script, -1))
+    // {
+    //     lua_pushlightuserdata(m_script, this);
+    //     const int argc = 1;
+    //     const int returnCount = 0;
+    //     if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+    //     {
+    //         std::cout << "Call Server_CheckCharacterData from C++ OK \n";
+    //     }
+    // }
 }
 
 std::string ServerScriptingManager::getEncryptPW(const std::string & pw)

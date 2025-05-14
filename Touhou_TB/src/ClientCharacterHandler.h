@@ -18,7 +18,6 @@ public:
 
     F_Lua_BaseEntity * createCharacter(const std::string & name ,CharacterDesc *characterDesc);
 
-
     CharacterDesc * getCharacter(const std::string & name);
 
 private:

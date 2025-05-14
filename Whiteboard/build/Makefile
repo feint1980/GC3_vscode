@@ -128,29 +128,29 @@ Whiteboard/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/build
 .PHONY : Whiteboard/fast
 
-src/json_example.obj: src/json_example.cpp.obj
-.PHONY : src/json_example.obj
+src/whiteboardMain.obj: src/whiteboardMain.cpp.obj
+.PHONY : src/whiteboardMain.obj
 
 # target to build an object file
-src/json_example.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/json_example.cpp.obj
-.PHONY : src/json_example.cpp.obj
+src/whiteboardMain.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.obj
+.PHONY : src/whiteboardMain.cpp.obj
 
-src/json_example.i: src/json_example.cpp.i
-.PHONY : src/json_example.i
+src/whiteboardMain.i: src/whiteboardMain.cpp.i
+.PHONY : src/whiteboardMain.i
 
 # target to preprocess a source file
-src/json_example.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/json_example.cpp.i
-.PHONY : src/json_example.cpp.i
+src/whiteboardMain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.i
+.PHONY : src/whiteboardMain.cpp.i
 
-src/json_example.s: src/json_example.cpp.s
-.PHONY : src/json_example.s
+src/whiteboardMain.s: src/whiteboardMain.cpp.s
+.PHONY : src/whiteboardMain.s
 
 # target to generate assembly for a file
-src/json_example.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/json_example.cpp.s
-.PHONY : src/json_example.cpp.s
+src/whiteboardMain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.s
+.PHONY : src/whiteboardMain.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Whiteboard
-	@echo ... src/json_example.obj
-	@echo ... src/json_example.i
-	@echo ... src/json_example.s
+	@echo ... src/whiteboardMain.obj
+	@echo ... src/whiteboardMain.i
+	@echo ... src/whiteboardMain.s
 .PHONY : help
 
 

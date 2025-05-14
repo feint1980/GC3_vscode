@@ -22,13 +22,10 @@ function CheckAccountCount(host, id, pw)
 
     local queryCountCmd= "SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ? AND " .. Table.account.pw .. " = ?;"
     local ePW = SV_getEncryptPW(host, pw)
-
-    print("tpw " .. pw)
-    print("epw " .. ePW)
-
+    -- print("tpw " .. pw)
+    -- print("epw " .. ePW)
     SVI_DoQuerySTMT(host,queryCountCmd,{id,ePW})
-
-    print("result " .. Query_val[1])
+    -- print("result " .. Query_val[1])
     local result = Query_val[1]
     local count =  tonumber(result)
 
@@ -42,7 +39,6 @@ end
 ---@return boolean true if valid
 function CheckAccountValid(host, id, pw)
     local count = CheckAccountCount(host, id, pw)
-
     if count > 1 then
         print("WARNING unexpected result, If you see this message in production ? you are COOKED !!!")
         return false
@@ -50,7 +46,7 @@ function CheckAccountValid(host, id, pw)
         print("valid check failed")
         return false
     end
-    print("CheckAccountValid debug: everything OK ")
+    -- print("CheckAccountValid debug: everything OK ")
     return true
 end
 
@@ -74,8 +70,8 @@ ResponseHandle[PacketCode.requestKey] = function(host, packet)
     --- split id and account by the sigh |
     local t_id = string.sub(processResult, 0,string.find(processResult, "|") - 1)
     local t_pw = string.sub(processResult, string.len(t_id) + 2 , string.len(processResult))
-    print("id is " .. t_id)
-    print("pw is " .. t_pw)
+    -- print("id is " .. t_id)
+    -- print("pw is " .. t_pw)
 
     if CheckAccountValid(host, t_id, t_pw) then
         print("account is valid")
@@ -178,7 +174,6 @@ end
 
 --- MARK: Request User Data
 ResponseHandle[PacketCode.requestUserData] = function(host,packet)
-    print("request user data found, processing")
     local message = SV_GetPacketData(host,packet)
     local clientIP = SV_GetPacketIP(packet)
     local pattern_start = "|USERDATA_REQUEST|"
@@ -193,7 +188,7 @@ ResponseHandle[PacketCode.requestUserData] = function(host,packet)
     local t_guid = string.sub(halfProcess, string.len(t_pw) + 2 , string.len(halfProcess))
 
     if CheckAccountValid(host, t_id, t_pw) then
-        print("account check OK, getting data from DB")
+        -- print("account check OK, getting data from DB")
         local getDataQuerry = "SELECT mon,souls from " .. Account_Stats_Table.tb_name .. " WHERE " .. Account_Stats_Table.id  .. " = ?;"
         SVI_DoQuerySTMT(host,getDataQuerry,{t_id})
 

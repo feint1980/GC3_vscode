@@ -14,6 +14,7 @@ require "TGUI_ScrollablePanel"
 ---@field displayNameLabel Label
 ---@field priceLabel Label
 ---@field parent ScrollablePanel
+---@field detailPanel ScrollablePanel
 CharacterPanel = {
     ---@type Panel
     panel = nil,
@@ -24,7 +25,9 @@ CharacterPanel = {
     ---@type Label
     priceLabel = nil,
     ---@type ScrollablePanel
-    parent = nil
+    parent = nil,
+    ---@type ScrollablePanel
+    detailPanel = nil
 }
 
 ---@Description create new instance of CharacterPanel
@@ -46,9 +49,11 @@ end
 ---@param path string path to image
 ---@param name string name
 ---@param price string price
-function CharacterPanel:init(host,parent,x,y,width,height,path,name,price)
+---@param detailPanel pointer instance of ScrollablePanel
+function CharacterPanel:init(host,parent,x,y,
+width,height,path,name,price,detailPanel)
     self.parent = parent
-    print("Init called !!!!!!!! ")
+    -- print("Init called !!!!!!!! ")
     if self.panel == nil then
         self.panel = Panel:new()
         self.panel:init(host,x,y,width,height,parent)
@@ -92,8 +97,10 @@ function CharacterPanel:init(host,parent,x,y,width,height,path,name,price)
         self.priceLabel:setText(price)
     end
 
+    if detailPanel ~= nil then
+        
+    end
 
-    
     -- self.panel:setHoverOnCallBack(function()
     --     print("data ")
     -- end)

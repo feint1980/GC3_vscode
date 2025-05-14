@@ -10,16 +10,19 @@ require "TGUI_ScrollablePanel"
 require "homeGlobal"
 require "CharacterPanel"
 
-
 ---@class (exact) CharacterShop
 ---@field mainPanel pointer instance of Panel
 ---@field charactersPanel ScrollablePanel
+---@field characterDetailPanel ScrollablePanel
 ---@field t_characters table
 CharacterShop = {
     ---@type pointer
     mainPanel = nil,
     ---@type ScrollablePanel
     charactersPanel = nil,
+    ---@type ScrollablePanel
+    characterDetailPanel = nil,
+
     ---@type table
     t_characters = {}
 }
@@ -60,15 +63,17 @@ function CharacterShop:init(GUI_host, posX, posY,
     refreshButton:setAlignment(TextAlginment.Center)
     refreshButton:setHoverable(0,255,0,255,255,255,255,255)
     refreshButton:setOnClickCallback(function()
-        -- self:requestCharacterList(Home_ClientScriptingPtr)
+        self:requestCharacterList(Home_ClientScriptingPtr)
     end)
-    -- local testLocal = CharacterPanel:new()
-    -- testLocal:init(GUI_host,self.charactersPanel.ptr,0,10,125,250,"Assets/TB_GUI/panels/reimu_panel.png","Reimu","100")
-    -- local testLocal2 = CharacterPanel:new()
-    -- testLocal2:init(GUI_host,self.charactersPanel.ptr,130,10,125,250,"Assets/TB_GUI/panels/meiling_panel.png","Meiling","100")
+
+    self.characterDetailPanel = ScrollablePanel:new()
+    self.characterDetailPanel:init(GUI_host,posX,posY,width,height, self.mainPanel)
+    self.characterDetailPanel:setAligment(0.5,0.5)
+    self.characterDetailPanel:setPosStr("50%","50%")
+    self.characterDetailPanel:setSizeStr("95%","90%")
+    self.characterDetailPanel:setVisible(false)
 
     self:requestCharacterList(Home_ClientScriptingPtr)
-
 end
 
 function CharacterShop:addCharPanel(GUI_host,x,y,width,height,panelPath,name,price)
@@ -76,10 +81,10 @@ function CharacterShop:addCharPanel(GUI_host,x,y,width,height,panelPath,name,pri
     self.charactersPanel[name]:init(GUI_host,self.charactersPanel.ptr,x,y,width,height,panelPath,name,price)
 end
 
-
 ---@Description request character list
 ---@param clientSideHost pointer instance of ClientScriptingManager
 function CharacterShop:requestCharacterList(clientSideHost)
+    self.charactersPanel:clearItems()
     Client_SendData(clientSideHost,"|REQUEST_CHARACTERLIST|")
     -- Client_send
 end

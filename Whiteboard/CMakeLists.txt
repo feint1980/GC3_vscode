@@ -6,7 +6,7 @@ project(${PROJECT_N} VERSION 1.0)
 set(CMAKE_CXX_FLAGS "-fpermissive -std=c++17 -municode -m32")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/json_example.cpp
+file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/whiteboardMain.cpp
     # ${PROJECT_SOURCE_DIR}/src/AESRSA_hybrid_example.cpp
     # ${PROJECT_SOURCE_DIR}/src/bcryptExample.cpp
     # ${PROJECT_SOURCE_DIR}/src/json_example.cpp

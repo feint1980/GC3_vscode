@@ -133,9 +133,9 @@ end
 --- @param requestCode number request code
 function HandleMessage(host,packet,requestCode)
 
-    local message = SV_GetPacketData(host,packet)
-    print("relay message")
-    print(message)
+    -- local message = SV_GetPacketData(host,packet)
+    -- print("relay message")
+    -- print(message)
     print("request code : " .. requestCode)
 
     if ResponseHandle[requestCode] ~= nil then
@@ -200,12 +200,12 @@ print("Current file directory:", current_path)
 os.execute('dir /b/a-d  ..\\luaFiles\\Characters\\*.lua')
 
 function Server_LoadCharacters(host)
-    print("loadCharacters() called")
+    -- print("loadCharacters() called")
     for filename in io.popen('dir /b/a-d  ..\\luaFiles\\Characters\\*.lua'):lines() do  --Windows
     -- for filename in io.popen('dir /b/a-d "'):lines() do  --Windows
         filename = filename:match"^(.*)%.lua$"
         if filename then
-            print("reloading files ... " .. filename)
+            -- print("reloading files ... " .. filename)
             dofile("../luaFiles/Characters/"..filename .. ".lua")
             Character_Serialized_Table[filename] = SV_UpdateCharacter(host,Character_Table[filename])
         end
@@ -214,7 +214,7 @@ end
 
 function Server_LoadData(host)
     Server_LoadCharacters(host)
-    Server_CheckCharacterData(host)
+    -- Server_CheckCharacterData(host)
 end
 
 local function print_table(t)

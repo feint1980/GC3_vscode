@@ -135,6 +135,10 @@ function ScrollablePanel:setVisible(visible)
     self.visible = visible
 end
 
+function ScrollablePanel:clearItems()
+    TGUI_ScrollablePanel_ClearItems(self.ptr)
+end
+
 ---@Description get the size of the Scrollablepanel
 ---@return number width, number height
 function ScrollablePanel:getSize()
@@ -223,4 +227,10 @@ end
 ---@return number width, number height
 function TGUI_ScrollablePanel_GetSize(panel)
     return cpp_ScrollablePanel_GetSize(panel)
+end
+
+--- wrapper fo cpp_ScrollablePanel_ClearItems
+---@param panel pointer instance of TGUI Panel
+function TGUI_ScrollablePanel_ClearItems(panel)
+    cpp_ScrollablePanel_ClearItems(panel)
 end

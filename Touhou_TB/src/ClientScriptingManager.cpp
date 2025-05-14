@@ -180,7 +180,7 @@ uint32_t ClientScriptingManager::sendData(const std::string & data)
     {
         sendStr.push_back((tData[i]));
     } 
-    return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+    return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
 CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
@@ -203,7 +203,6 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     // m_client = RakNet::RakPeerInterface::GetInstance();
     m_serverIP = serverIP;
     m_port = port;
-
     // m_client->AllowConnectionResponseIPMigration(false);
     // m_socketDescriptor = RakNet::SocketDescriptor(m_port + 1, 0);
     // m_socketDescriptor.socketFamily = AF_INET;
@@ -244,7 +243,6 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
             std::cout << "Call Init from C++ OK \n";
         }
     }
-
     // init key
     int t1[16] = {
         7, 12, 5, 7,
@@ -272,6 +270,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     }
 
     m_cryptor.init(tStr1, tStr2);   
+
 }
 
 ClientScriptingManager::ClientScriptingManager()
