@@ -1,0 +1,17 @@
+<F_AObj name="nyn">
+<animations> 
+<animation name = "play"> 
+<anims> 
+<anim name="nyn/frame_0.png" time = "3.0" />
+<anim name="nyn/frame_1.png" time = "3.0" />
+<anim name="nyn/frame_2.png" time = "3.0" />
+<anim name="nyn/frame_3.png" time = "3.0" />
+<anim name="nyn/frame_4.png" time = "3.0" />
+<anim name="nyn/frame_5.png" time = "3.0" />
+<anim name="nyn/frame_6.png" time = "3.0" />
+<anim name="nyn/frame_7.png" time = "3.0" />
+<anim name="nyn/frame_8.png" time = "3.0" />
+</anims> 
+</animation> 
+</animations> 
+</F_AObj> 

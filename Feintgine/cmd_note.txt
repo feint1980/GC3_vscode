@@ -1,0 +1,4 @@
+
+
+! display GIF to OpenGL 
+1. use magick to convert gif into 

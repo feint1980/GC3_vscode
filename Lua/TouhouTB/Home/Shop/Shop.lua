@@ -20,7 +20,6 @@ ShopPanel = nil
 
 Shop_CharacterShop = nil
 
-
 function InitShop(host)
     if ShopPanel == nil then
         ShopPanel = Panel:new()
