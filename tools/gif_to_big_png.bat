@@ -100,14 +100,17 @@ echo ^<TextureAtlas imagePath="%~n1.png" width="%totalWidth%" height="%totalHeig
 ) > %xmlFile%
 set /a frameNum=0
 
-for /L %%r in (0,1,!bestRows!-1) do (
-    for /L %%c in (0,1,!bestCols!-1) do (
+set /a targetRow = bestRows -1
+set /a targetCol = bestCols -1
+
+for /L %%r in (0,1,!targetRow!-1) do (
+    for /L %%c in (0,1,!targetCol!-1) do (
         if !frameNum! LEQ !count! (
             set zeroCount=0 
-            if !animNum! LSS 10 (
+            if !frameNum! LSS 10 (
             set /a zeroCount=!zeroCount! + 1
             )
-            if !animNum! LSS 100 (
+            if !frameNum! LSS 100 (
             set /a zeroCount=!zeroCount! + 1
             )
             set "FF=!frameNum!"
@@ -115,6 +118,7 @@ for /L %%r in (0,1,!bestRows!-1) do (
             for /L %%i in (1,1,!zeroCount!) do (
                 set "FF=0!FF!"
             )
+
             set /a x=%%c * width
             set /a y=%%r * height
             >> "%xmlFile%" echo     ^<sprite n="frame_!FF!.png" x="!x!" y="!y!" w="!width!" h="!height!" /^>
