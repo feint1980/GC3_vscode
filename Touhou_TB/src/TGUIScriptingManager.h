@@ -37,6 +37,8 @@ public:
 
     tgui::Tabs::Ptr createTabs(float x, float y, float width, float height, tgui::TabContainer::Ptr parent);
 
+    tgui::CanvasOpenGL3::Ptr createCanvas(float x, float y, float width, float height, tgui::Panel::Ptr parent);
+
     lua_State * getLuaScript() { return m_script; }
 
     void checkInput(const SDL_Event &  evnt);

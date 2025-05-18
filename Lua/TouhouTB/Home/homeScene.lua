@@ -269,7 +269,7 @@ HomeMain_Tasks = {}
 
 ---@Description Backup update function
 function HomeMain_RequestDataLoop()
-    Tscheduler_addTask(1500, function()
+    Tscheduler_addTask(300, function()
         Home_RequestUserlData()
         HomeMain_RequestDataLoop()
     end)

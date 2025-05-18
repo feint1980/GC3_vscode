@@ -1355,6 +1355,24 @@ int lua_ScrollablePanel_ClearItems(lua_State * L)
     return 0;
 }
 
+
+/// Canvas
+
+
+int lua_Canvas_Create(lua_State * L)
+{
+    if(lua_gettop(L) != 5)
+    {
+        std::cout << "gettop failed (lua_Canvas_Create) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        
+    }
+    return 1;
+}
+
 TGUIScriptingManager::TGUIScriptingManager()
 {
 
@@ -1467,6 +1485,23 @@ tgui::Panel::Ptr TGUIScriptingManager::createPanel(float x, float y, float width
     return panel;
 }
 
+
+tgui::CanvasOpenGL3::Ptr  TGUIScriptingManager::createCanvas(float x, float y, float width, float height, tgui::Panel::Ptr parent)
+{
+    tgui::CanvasOpenGL3::Ptr canvas = tgui::CanvasOpenGL3::create();
+    canvas->setPosition(x, y);
+    canvas->setSize(width, height);
+    if(parent)
+    {
+        parent->add(canvas);
+    }
+    else 
+    {
+        m_tgui->add(canvas);
+    }
+    return canvas;
+}
+
 void TGUIScriptingManager::update(float deltaTime)
 {
     if(m_tgui)
@@ -1502,6 +1537,8 @@ void TGUIScriptingManager::cleanup()
         m_tgui->remove(*it);
     }
 }
+
+
 
 void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
 {
@@ -1602,13 +1639,17 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_TabContainer_SetAlignment", lua_TabContainer_SetAlignment);
     lua_register(m_script, "cpp_TabContainer_SetTabFixedSize", lua_TabContainer_SetTabFixedSize);
 
+    // TGUI Canvas section
+
+    lua_register(m_script, "cpp_Canvas_Create", lua_Canvas_Create);
+
     // TGUI Tabs section
     // lua_register(m_script, "cpp_Tabs_Create", lua_Tabs_Create);
     // lua_register(m_script, "cpp_Tabs_SetPos", lua_Tabs_SetPos);
     // lua_register(m_script, "cpp_Tabs_SetPosStr", lua_Tabs_SetPosStr);
     // lua_register(m_script, "cpp_Tabs_SetSize", lua_Tabs_SetSize);
     // lua_register(m_script, "cpp_Tabs_SetSizeStr", lua_Tabs_SetSizeStr);
-    // lua_register(m_script, "cpp_Tabs_SetTextColor", lua_Tabs_SetTextColor);
+      // lua_register(m_script, "cpp_Tabs_SetTextColor", lua_Tabs_SetTextColor);
     // lua_register(m_script, "cpp_Tabs_SetOnHoverCallback", lua_Tabs_SetOnHoverCallback);
     // lua_register(m_script, "cpp_Tabs_SetOffHoverCallback", lua_Tabs_SetOffHoverCallback);
     // lua_register(m_script, "cpp_Tabs_SetOnClickCallback", lua_Tabs_SetOnClickCallback);
@@ -1629,3 +1670,4 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
         }
     }
 }
+
