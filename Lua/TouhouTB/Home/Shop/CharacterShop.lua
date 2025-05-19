@@ -9,18 +9,19 @@ require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
 require "homeGlobal"
 require "CharacterPanel"
+require "CharacterDetailPanel"
 
 ---@class (exact) CharacterShop
 ---@field mainPanel pointer instance of Panel
 ---@field charactersPanel ScrollablePanel
----@field characterDetailPanel ScrollablePanel
+---@field characterDetailPanel CharacterDetailPanel
 ---@field t_characters table
 CharacterShop = {
     ---@type pointer
     mainPanel = nil,
     ---@type ScrollablePanel
     charactersPanel = nil,
-    ---@type ScrollablePanel
+    ---@type CharacterDetailPanel
     characterDetailPanel = nil,
 
     ---@type table
@@ -66,12 +67,8 @@ function CharacterShop:init(GUI_host, posX, posY,
         self:requestCharacterList(Home_ClientScriptingPtr)
     end)
 
-    self.characterDetailPanel = ScrollablePanel:new()
-    self.characterDetailPanel:init(GUI_host,posX,posY,width,height, self.mainPanel)
-    self.characterDetailPanel:setAligment(0.5,0.5)
-    self.characterDetailPanel:setPosStr("50%","50%")
-    self.characterDetailPanel:setSizeStr("95%","90%")
-    self.characterDetailPanel:setVisible(false)
+    self.characterDetailPanel = CharacterDetailPanel:new()
+    self.characterDetailPanel:init(GUI_host,self.mainPanel)
 
     self:requestCharacterList(Home_ClientScriptingPtr)
 end
@@ -79,6 +76,42 @@ end
 function CharacterShop:addCharPanel(GUI_host,x,y,width,height,panelPath,name,price)
     self.charactersPanel[name] = CharacterPanel:new()
     self.charactersPanel[name]:init(GUI_host,self.charactersPanel.ptr,x,y,width,height,panelPath,name,price)
+
+    CharacterDetailPanelVal = _G.CharacterDetailPanelVal
+    self.charactersPanel[name].panel:setOnClickCallback(function()
+        print("CLICKKKKKKKKEEE ")
+        -- print(name)
+        -- print(tostring(Shop_CharacterTable[name].Strength))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.str,  tostring(Shop_CharacterTable[name].Strength))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.vit,  tostring(Shop_CharacterTable[name].Vitality))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.dex,  tostring(Shop_CharacterTable[name].Dexterity))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.agi,  tostring(Shop_CharacterTable[name].Agility))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.int,  tostring(Shop_CharacterTable[name].Intelligence))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.wis,  tostring(Shop_CharacterTable[name].Wisdom))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.hp,  tostring(Shop_CharacterTable[name]:getHP()))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.mana,  tostring(Shop_CharacterTable[name]:getMana()))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDmg,  tostring(Shop_CharacterTable[name]:getPhysicDmg()))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDef,  tostring(Shop_CharacterTable[name]:getPhysicDef()))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDmg,  tostring(Shop_CharacterTable[name]:getMagicDmg()))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDef,  tostring(Shop_CharacterTable[name]:getMagicDef()))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.accurate,  tostring(Shop_CharacterTable[name]:getAccurate()))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.evadeChance,  tostring(Shop_CharacterTable[name]:getEvadeChance()))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.critChance,  tostring(Shop_CharacterTable[name]:getCritChance()))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.hpScale,  tostring(Shop_CharacterTable[name].hpScale))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.manaScale,  tostring(Shop_CharacterTable[name].manaScale))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDmgScale,  tostring(Shop_CharacterTable[name].physicDmgScale))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDefScale,  tostring(Shop_CharacterTable[name].physicDefScale))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDmgScale,  tostring(Shop_CharacterTable[name].magicDmgScale))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDefScale,  tostring(Shop_CharacterTable[name].magicDefScale))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.accurateScale,  tostring(Shop_CharacterTable[name].accurateScale))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.evadeChanceScale,  tostring(Shop_CharacterTable[name].evadeChanceScale))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.deathDoorSurviveChance,  tostring(Shop_CharacterTable[name]:getDeathDoorSurviveChance()))
+
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.name,  Shop_CharacterTable[name].lastName .. " " .. Shop_CharacterTable[name].name)
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.title,  Shop_CharacterTable[name].title)
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.panelPath,  Shop_CharacterTable[name].panelPath)
+        self.characterDetailPanel:setVisible(true)
+    end)
 end
 
 ---@Description request character list

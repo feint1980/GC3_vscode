@@ -140,6 +140,12 @@ function Panel:setHoverOffCallBack(callback)
     TGUI_Panel_SetHoverOffCallBack(self.ptr, callback)
 end
 
+---@Description set the callback of the panel on click
+---@param callback function
+function Panel:setOnClickCallback(callback)
+    TGUI_Panel_SetOnClickCallback(self.ptr, callback)
+end
+
 ---@Description set the border color of the panel
 ---@param r number red (0-255)
 ---@param g number green (0-255)
@@ -267,4 +273,11 @@ end
 ---@param a? number alpha (0-255) default 255
 function TGUI_Panel_SetBorderColor(panel, r,g,b,a)
     cpp_Panel_SetBorderColor(panel, r,g,b,a)
+end
+
+--- wrapper of cpp_Panel_SetOnClickCallback
+---@param panel pointer instance of TGUI Panel
+---@param callback function
+function TGUI_Panel_SetOnClickCallback(panel, callback)
+    cpp_Panel_SetOnClickCallback(panel, callback)
 end

@@ -1,0 +1,1 @@
+air_hit_fall_01.png.png 8 32, air_hit_fall_02.png.png 81 26, air_hit_fall_03.png.png 143 21, air_hit_fall_04.png.png 215 34, air_hit_fall_05.png.png 289 36, air_hit_fall_06.png.png 370 15, air_hit_fall_07.png.png 435 3, air_hit_fall_08.png.png 500 3.

@@ -294,7 +294,7 @@ end
 ---@param desc pointer instance of CharacterDesc
 ---@return pointer instance of F_Lua_BaseEntity
 function Character:initNonCB(host,name,desc)
-    return cpp_CreateCharacterNon_CB(host,name,desc)
+    self.dyobj=  cpp_CreateCharacterNon_CB(host,name,desc)
 end
 
 ---@Description Initialize the character

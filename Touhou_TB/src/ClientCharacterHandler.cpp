@@ -7,7 +7,7 @@ int lua_CharacterFillData(lua_State * L)
 {
     if (lua_gettop(L) != 3)
 	{
-		std::cout << "gettop failed (lua_SetAtrribute) \n";
+		std::cout << "gettop failed (lua_CharacterFillData) \n";
 		std::cout << lua_gettop(L) << "\n";
 		return -1;
 	}
@@ -27,7 +27,7 @@ int lua_GetCharacterData(lua_State * L)
 {
     if (lua_gettop(L) != 2)
     {
-        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << "gettop failed (lua_GetCharacterData) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
@@ -46,7 +46,7 @@ int lua_setEntityCharacterDesc(lua_State * L)
 {
     if (lua_gettop(L) != 2)
     {
-        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << "gettop failed (lua_setEntityCharacterDesc) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
@@ -64,7 +64,7 @@ int lua_setCharactercAttribute(lua_State * L)
 {
     if (lua_gettop(L) != 3)
     {
-        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << "gettop failed (lua_setCharactercAttribute) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
@@ -83,7 +83,7 @@ int lua_setCharactercAttributeStr(lua_State * L)
 {
     if (lua_gettop(L) != 3)
     {
-        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << "gettop failed (lua_setCharactercAttributeStr) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
@@ -102,7 +102,7 @@ int lua_getEntityCharacterAttribute(lua_State * L)
 {
     if (lua_gettop(L) != 2)
     {
-        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << "gettop failed (lua_getEntityCharacterAttribute) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
@@ -121,7 +121,7 @@ int lua_getEntityCharacterAttributeStr(lua_State * L)
 {
     if (lua_gettop(L) != 2)
     {
-        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << "gettop failed (lua_getEntityCharacterAttributeStr) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
@@ -138,18 +138,32 @@ int lua_getEntityCharacterAttributeStr(lua_State * L)
 
 int lua_CreateCharacterNon_CB(lua_State * L)
 {
-    if(lua_gettop(L) != 2)
+    if(lua_gettop(L) != 3)
     {
-        std::cout << "gettop failed (lua_SetAtrribute) \n";
+        std::cout << "gettop failed (lua_CreateCharacterNon_CB) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
     else
     {
+        std::cout << "lua_CreateCharacterNon_CB called 1 \n";
         ClientCharacterHandler * handler = static_cast<ClientCharacterHandler*>(lua_touserdata(L, 1));
+        std::cout << "lua_CreateCharacterNon_CB called 2 \n";
         std::string name = lua_tostring(L, 2);
+        std::cout << "lua_CreateCharacterNon_CB called 3 \n";
         CharacterDesc * desc = static_cast<CharacterDesc*>(lua_touserdata(L, 3));
+        if(desc == nullptr)
+        {
+            std::cout << "lua_CreateCharacterNon_CB desc is nullptr \n";
+            return -1;
+        }
+        else
+        {
+            std::cout << "lua_CreateCharacterNon_CB desc is not nullptr \n";
+        }
+        std::cout << "lua_CreateCharacterNon_CB called 4 \n";
         F_Lua_BaseEntity * entity = handler->createCharacter(name, desc);
+        std::cout << "lua_CreateCharacterNon_CB called 5 \n";
         lua_pushlightuserdata(L, entity);
         return 1;
     }
@@ -165,9 +179,15 @@ CharacterDesc * ClientCharacterHandler::getCharacter(const std::string & name)
 F_Lua_BaseEntity * ClientCharacterHandler::createCharacter(const std::string & name ,CharacterDesc *characterDesc)
 {
     F_Lua_BaseEntity * entity = new F_Lua_BaseEntity();
+    std::cout << "new OK \n";
     entity->setCharacterDesc(*characterDesc);
-    m_characters[name] = entity;
+    std::cout << "setCharacterDesc OK \n";
+    std::cout << "insert " << name << " with value " << entity << "\n";
+    // m_characters.insert(std::make_pair(name, entity));
+    std::cout << "insert OK \n";
     return entity;
+    // m_characters[name] = std::move(entity);
+    // return m_characters[name];
 }
 
 void ClientCharacterHandler::addCharacterDesc(const std::string & name ,CharacterDesc *characterDesc)

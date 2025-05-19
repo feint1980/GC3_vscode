@@ -1,0 +1,1 @@
+attack_a_dash_01.png.png 6 4, attack_a_dash_02.png.png 68 14, attack_a_dash_03.png.png 150 13, attack_a_dash_04.png.png 221 11.
