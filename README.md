@@ -27,10 +27,18 @@
 - **Login & Account System** ✅
 - **Basic movement, skills, animations, and hit calculations** (not yet fully playable).
 
+
 ### 🌐 Multiplayer Game Server (C++, RakNet, SQLite3, mbedTLS)
 - **Manages player accounts** with secure login/register.
 - **Encrypts & decrypts messages** between client and server using **mbedTLS** for security.
 
+## Online features:
+- **Connect to server**
+- **Request keys(for register account)**
+- **Login/Register Account**
+- **Request data from server(such as currency,info)**
+- **Character shop**
+  ![Showcase](media/TH_TB_SV_showcase.gif)
 ---
 
 ## 🛠 Tech Stack & Tools
@@ -83,6 +91,15 @@ cd TB_Server/build/
 cmake -G "MinGW Makefiles" ..
 mingw32-make.exe -j 4
 ```
+## Accounts(for test):
+>id:huyen12
+>pw:12345678
+for register keys:
+-32X6K7VHLVZW
+-ELOGAKEOEEOJ
+-O78O47VUJXAK
+-A68692YDCT3K
+or you can check the data dump located in "TB_Server\data\dumpvs.sql"
 ## Note
 For the Editor and Game that you want to see but don't have time to build : 
 
