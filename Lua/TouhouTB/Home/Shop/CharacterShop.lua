@@ -73,7 +73,7 @@ function CharacterShop:init(GUI_host, posX, posY,
     self:requestCharacterList(Home_ClientScriptingPtr)
 end
 
-local function  round(num, numDecimalPlaces)
+local function round(num, numDecimalPlaces)
     local mult = 10^(numDecimalPlaces or 0)
     return string.format("%.4f",  math.floor(num * mult + 0.5) / mult)
 end
@@ -102,10 +102,10 @@ function CharacterShop:addCharPanel(GUI_host,x,y,width,height,panelPath,name,pri
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.critChance,  round(Shop_CharacterTable[name]:getCritChance(),4))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.hpScale,  tostring(Shop_CharacterTable[name].hpScale))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.manaScale,  tostring(Shop_CharacterTable[name].manaScale))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDmgScale,  tostring(Shop_CharacterTable[name].physicDmgScale))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDefScale,  tostring(Shop_CharacterTable[name].physicDefScale))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDmgScale,  tostring(Shop_CharacterTable[name].magicDmgScale))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDefScale,  tostring(Shop_CharacterTable[name].magicDefScale))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDmgScale,  round(Shop_CharacterTable[name].physicDmgScale,4))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDefScale,  round(Shop_CharacterTable[name].physicDefScale,4))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDmgScale,  round(Shop_CharacterTable[name].magicDmgScale,4))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDefScale,  round(Shop_CharacterTable[name].magicDefScale,4))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.accurateScale,  round(Shop_CharacterTable[name].accurateScale,4))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.evadeChanceScale,  round(Shop_CharacterTable[name].evadeChanceScale,4))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.deathDoorSurviveChance,  round(Shop_CharacterTable[name]:getDeathDoorSurviveChance(),4))
