@@ -214,23 +214,23 @@ ResponseHandle[PacketCode.login] = function(host,packet)
     --- split id and account by the sigh | 
     local t_id = string.sub(processResult, 0,string.find(processResult, "|") - 1)
     local t_pw = string.sub(processResult, string.len(t_id) + 2 , string.len(processResult))
-    print("id is " .. t_id)
-    print("pw is " .. t_pw)
+    -- print("id is " .. t_id)
+    -- print("pw is " .. t_pw)
     if CheckAccountValid(host, t_id, t_pw) then
         for k,v in pairs(ClientEPList) do
             if v.name == t_id then
-                print("account already logged in")
+                -- print("account already logged in")
                 SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
                 return
             end
         end
-        print("account check OK, send OK message")
+        -- print("account check OK, send OK message")
         local guid = SV_GetPacketGUID(packet)
         SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
         local systemAddress = SV_GetPacketIP(packet)
         CH_AddClientEP(systemAddress, guid, t_id)
     else
-        print("account check failed send negative response")
+        -- print("account check failed send negative response")
         SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
     end
 end

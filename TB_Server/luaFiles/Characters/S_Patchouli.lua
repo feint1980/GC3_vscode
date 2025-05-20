@@ -7,7 +7,7 @@ require "S_Character"
 Character_Table["S_Patchouli"] = S_Character:new(
 
 {
-    Strenth = 3,
+    Strength = 3,
     Vitality = 4,
     Dexterity = 7,
     Agility = 7,

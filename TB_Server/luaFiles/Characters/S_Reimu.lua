@@ -5,7 +5,7 @@ require "S_Character"
 
 Character_Table["S_Reimu"] = S_Character:new(
 {
-    Strenth = 9,
+    Strength = 9,
     Vitality = 8,
     Dexterity = 13,
     Agility = 13,

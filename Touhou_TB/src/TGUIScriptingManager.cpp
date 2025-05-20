@@ -783,6 +783,23 @@ int lua_Label_SetOnClickCallback(lua_State * L)
     return 0;
 }
 
+int lua_Label_SetScale(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Label_SetScale) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));
+        float scale = lua_tonumber(L, 2);
+        label->get()->setScale(scale);
+    }
+    return 0;
+}
+
+
 int lua_RTLabel_SetOnClickCallback(lua_State * L)
 {
     if(lua_gettop(L) != 2)
@@ -803,6 +820,22 @@ int lua_RTLabel_SetOnClickCallback(lua_State * L)
         label->get()->onClick.disconnectAll();
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         label->get()->onClick(callback);
+    }
+    return 0;
+}
+
+int lua_RTLabel_SetScale(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_RTLabel_SetScale) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::RichTextLabel::Ptr * label = static_cast<tgui::RichTextLabel::Ptr*>(lua_touserdata(L, 1));
+        float scale = lua_tonumber(L, 2);
+        label->get()->setScale(scale);
     }
     return 0;
 }
@@ -860,6 +893,9 @@ int lua_RTLabel_Create(lua_State * L)
         float y = lua_tonumber(L, 4);
         tgui::RichTextLabel::Ptr * label = new tgui::RichTextLabel::Ptr();
         *label = host->createRTLabel(text,x,y);
+        
+        label->get()->getRenderer()->setTextColor(tgui::Color::White);
+        label->get()->getRenderer()->setBorderColor(tgui::Color::Black);
         if(lua_gettop(L) == 5)
         {
             tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 5));
@@ -1595,6 +1631,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Label_SetOnHoverCallback", lua_Label_SetOnHoverCallback);
     lua_register(m_script, "cpp_Label_SetOffHoverCallback", lua_Label_SetOffHoverCallback);
     lua_register(m_script, "cpp_Label_SetOnClickCallback", lua_Label_SetOnClickCallback);
+    lua_register(m_script, "cpp_Label_SetScale", lua_Label_SetScale);
     
     // TGUI Rich Text Label section
     lua_register(m_script, "cpp_RTLabel_Create", lua_RTLabel_Create);
@@ -1606,6 +1643,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_RTLabel_SetOnHoverCallback", lua_RTLabel_SetOnHoverCallback);
     lua_register(m_script, "cpp_RTLabel_SetOffHoverCallback", lua_RTLabel_SetOffHoverCallback);
     lua_register(m_script, "cpp_RTLabel_SetOnClickCallback", lua_RTLabel_SetOnClickCallback);
+    lua_register(m_script, "cpp_RTLabel_SetScale", lua_RTLabel_SetScale);
     
     // TGUI EditBox section
     lua_register(m_script, "cpp_EditBox_Create", lua_EditBox_Create);

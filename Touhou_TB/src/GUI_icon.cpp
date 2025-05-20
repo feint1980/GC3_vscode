@@ -16,9 +16,6 @@ void GUI_icon::init(const std::string & texturePath, const glm::vec2 & pos, cons
 {
     m_icon.init(Feintgine::ResourceManager::getTexture(texturePath), pos, dim, Feintgine::Color(255, 255, 255, 255));
     m_icon.setDepth(10);
-    
-
-
 }
 
 void GUI_icon::setPos(const glm::vec2 & pos)

@@ -94,6 +94,18 @@ CharacterDesc::~CharacterDesc()
 
 }
 
+void CharacterDesc::setCharacterStats(const CharacterStats & characterStats)
+{
+    m_charStats = characterStats;
+
+    json j = m_charStats;
+    std::cout << "dump stat \n";
+    std::cout << j.dump(4,'.') << "\n";
+    std::cout << "check path \n";
+    std::cout << m_charStats.panelPath << "\n";
+    
+}
+
 void CharacterDesc::setAttribute(Attribute attribute, const std::string & value)
 {
     switch(attribute)
@@ -450,7 +462,7 @@ Attribute CharacterDesc::getAttributeByName(const std::string & attributeName)
     {
         return accurateScale;
     }
-    else if(toLower == "evadeChancescale" || toLower == "evadescale" || toLower == "evascale")
+    else if(toLower == "evadechancescale" || toLower == "evadescale" || toLower == "evascale")
     {
         return evadeChanceScale;
     }

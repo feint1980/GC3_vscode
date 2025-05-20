@@ -6,7 +6,7 @@ require "S_Character"
 Character_Table["S_Meiling"] = S_Character:new(
 
 {
-    Strenth = 17,
+    Strength = 17,
     Vitality = 18,
     Dexterity = 15,
     Agility = 15,
@@ -38,7 +38,7 @@ Character_Table["S_Meiling"] = S_Character:new(
     deathDoorSurviveChance = 0.375,
     name = "Meiling",
     lastName = "Hong",
-    title = "Gatekeeper of Scarlet Devil Mansion",
+    title = "Gatekeeper of Scarlet\n Devil Mansion",
     side = 1,
     level = 1,
     xp = 0,

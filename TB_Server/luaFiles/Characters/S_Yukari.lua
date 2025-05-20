@@ -7,7 +7,7 @@ require "S_Character"
 Character_Table["S_Yukari"] = S_Character:new(
 
 {
-    Strenth = 7,
+    Strength = 7,
     Vitality = 9,
     Dexterity = 7,
     Agility = 5,

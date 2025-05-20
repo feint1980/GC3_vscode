@@ -8,7 +8,7 @@ require "kickBack"
 
 
 Yukari = Character:new({
-    Strenth = 6,
+    Strength = 6,
     Vitality = 7,
     Dexterity = 4,
     Agility = 6,

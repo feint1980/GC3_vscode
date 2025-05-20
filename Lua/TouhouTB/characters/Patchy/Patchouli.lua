@@ -11,7 +11,7 @@ require "Character"
 ---@Description Patchouli inherits from Character
 ---@return Patchouli
 Patchouli = Character:new({
-    Strenth = 1,
+    Strength = 1,
     Vitality = 4,
     Dexterity = 4,
     Agility = 4,

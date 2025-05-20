@@ -11,6 +11,7 @@ static void to_json(json& j, const CharacterStats& c)
         {"wisdom", c.wisdom},
         {"animationPath", c.animationPath},
         {"portraitPath", c.portraitPath},
+        {"panelPath",c.panelPath},
         {"action",c.action},
         {"hp",c.hp},
         {"mana",c.mana},
@@ -52,6 +53,7 @@ static void from_json(const json& j, CharacterStats& c) {
     j.at("wisdom").get_to(c.wisdom);
     j.at("animationPath").get_to(c.animationPath);
     j.at("portraitPath").get_to(c.portraitPath);
+    j.at("panelPath").get_to(c.panelPath);
     j.at("action").get_to(c.action);
     j.at("hp").get_to(c.hp);
     j.at("mana").get_to(c.mana);

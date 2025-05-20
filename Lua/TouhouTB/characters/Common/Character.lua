@@ -166,17 +166,16 @@ end
 ---@param desc pointer instance of CharacterDesc
 function Character:setDesc(desc)
     Character_SetDesc(self.dyobj, desc)
-    self.Strength = Character_GetAttribute(self.dyobj, "Strength")
-    self.Vitality = Character_GetAttribute(self.dyobj, "Vitality") 
-    self.Dexterity = Character_GetAttribute(self.dyobj, "Dexterity")
-    self.Agility = Character_GetAttribute(self.dyobj, "Agility")
-    self.Intelligence = Character_GetAttribute(self.dyobj, "Intelligence")
-    self.Wisdom = Character_GetAttribute(self.dyobj, "Wisdom")
 
+    self.Strength = Character_GetAttribute(self.dyobj, "str")
+    self.Vitality = Character_GetAttribute(self.dyobj, "vit") 
+    self.Dexterity = Character_GetAttribute(self.dyobj, "dex")
+    self.Agility = Character_GetAttribute(self.dyobj, "agi")
+    self.Intelligence = Character_GetAttribute(self.dyobj, "int")
+    self.Wisdom = Character_GetAttribute(self.dyobj, "wis")
     self.animationPath = Character_GetAttributeStr(self.dyobj, "animationPath")
     self.portraitPath = Character_GetAttributeStr(self.dyobj, "portraitPath")
     self.panelPath = Character_GetAttributeStr(self.dyobj, "panelPath")
-
     self.hp = Character_GetAttribute(self.dyobj, "hp")
     self.mana = Character_GetAttribute(self.dyobj, "mana")
     self.sp = Character_GetAttribute(self.dyobj, "sp")
@@ -202,9 +201,7 @@ function Character:setDesc(desc)
     self.lastName = Character_GetAttributeStr(self.dyobj, "lastName")
     self.title = Character_GetAttributeStr(self.dyobj, "title")
     -- self.hp = 
-
 end
-
 
 --------------------------------------------------------
 
@@ -295,6 +292,8 @@ end
 ---@return pointer instance of F_Lua_BaseEntity
 function Character:initNonCB(host,name,desc)
     self.dyobj=  cpp_CreateCharacterNon_CB(host,name,desc)
+    self:setDesc(desc)
+    return self.dyobj
 end
 
 ---@Description Initialize the character
@@ -450,3 +449,4 @@ end
 function Character_GetAttributeStr(dyobj, name)
     return cpp_getEntityCharacterAttributeStr(dyobj, name)
 end
+

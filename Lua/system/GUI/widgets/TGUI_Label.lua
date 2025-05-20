@@ -4,6 +4,22 @@ LabelColor.Red = 1
 LabelColor.Green = 2
 LabelColor.Blue = 3
 
+
+---TGUI text tag 
+Tag = {}
+Tag.color_red = "<color=#ff1200>"
+Tag.color_orange = "<color=#FF5D00>"
+Tag.color_green = "<color=#00ff1d>"
+Tag.color_blue = "<color=#2B83FF>"
+Tag.color_close = "</color>"
+Tag.italic_open = "<i>"
+Tag.italic_close = "</i>"
+
+Tag.iRed = Tag.italic_open .. Tag.color_red
+Tag.iOrange = Tag.italic_open .. Tag.color_orange
+Tag.iGreen = Tag.italic_open .. Tag.color_green
+Tag.iClose = Tag.color_close .. Tag.italic_close
+
 --- @class pointer
 
 ---@class (exact) Label
@@ -104,6 +120,12 @@ function Label:setOnClickCallback(func)
     TGUI_Label_setOnClickCallBack(self.ptr, func)
 end
 
+---@Description set the scale of the label
+---@param scale number  
+function Label:setScale(scale)
+    TGUI_Label_SetScale(self.ptr, scale)
+end
+
 ---@Description set the label change color on Hover : on -> green | off ->white
 function Label:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
     self:setOnHoverCallback(function() self:setColor(hR,hG,hB,hA) end)
@@ -194,17 +216,10 @@ function TGUI_Label_setOnClickCallBack(label, callback)
     cpp_Label_SetOnClickCallback(label, callback)
 end
 
---- function wrapper of cpp_TabContainer_Create
----@Description create new tgui TabContainer object in cpp
----@param host pointer instance of TGUIScriptingManager
----@param tPosX number x position
----@param tPosY number y position
----@param tWidth number width
----@param tHeight number height
----@param parent? pointer instance parent, default nil (main)
----@return pointer instance of TGUI TabContainer
-function TGUI_TabContainer_Create(host, tPosX, tPosY,
-    tWidth, tHeight, parent)
-    parent = parent or nil
-    return cpp_TabContainer_Create(host, tPosX, tPosY, tWidth, tHeight, parent)
+--- funtion wrapper of cpp_Label_SetScale
+---@Description set the scale of the label
+---@param label pointer instance of Label
+---@param scale number scale
+function TGUI_Label_SetScale(label, scale)
+    cpp_Label_SetScale(label, scale)
 end

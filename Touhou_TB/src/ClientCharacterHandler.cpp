@@ -146,24 +146,10 @@ int lua_CreateCharacterNon_CB(lua_State * L)
     }
     else
     {
-        std::cout << "lua_CreateCharacterNon_CB called 1 \n";
         ClientCharacterHandler * handler = static_cast<ClientCharacterHandler*>(lua_touserdata(L, 1));
-        std::cout << "lua_CreateCharacterNon_CB called 2 \n";
         std::string name = lua_tostring(L, 2);
-        std::cout << "lua_CreateCharacterNon_CB called 3 \n";
         CharacterDesc * desc = static_cast<CharacterDesc*>(lua_touserdata(L, 3));
-        if(desc == nullptr)
-        {
-            std::cout << "lua_CreateCharacterNon_CB desc is nullptr \n";
-            return -1;
-        }
-        else
-        {
-            std::cout << "lua_CreateCharacterNon_CB desc is not nullptr \n";
-        }
-        std::cout << "lua_CreateCharacterNon_CB called 4 \n";
         F_Lua_BaseEntity * entity = handler->createCharacter(name, desc);
-        std::cout << "lua_CreateCharacterNon_CB called 5 \n";
         lua_pushlightuserdata(L, entity);
         return 1;
     }

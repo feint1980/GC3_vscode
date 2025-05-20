@@ -15,7 +15,7 @@ require "kickBack"
 ---@Description Reimu inherits from Character
 ---@return Reimu
 Reimu = Character:new({
-    Strenth = 7,
+    Strength = 7,
     Vitality = 7,
     Dexterity = 12,
     Agility = 11,

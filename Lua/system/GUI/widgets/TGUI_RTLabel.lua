@@ -51,7 +51,7 @@ end
 ---@param parent? pointer instance parent, default nil (main)
 function RTLabel:init(host, text, posX, posY,parent)
     parent = parent or nil
-    self.ptr =  TGUI_Label_Create(host, text, posX, posY,parent)
+    self.ptr =  TGUI_RTLabel_Create(host, text, posX, posY,parent)
     self.text = text
     self.posX = posX
     self.posY = posY    
@@ -77,7 +77,7 @@ end
 ---@Description set the text of the rtlabel
 ---@param text string text to display
 function RTLabel:setText(text)
-    TGUI_Label_SetText(self.ptr, text)
+    TGUI_RTLabel_SetText(self.ptr, text)
 end
 
 ---@Description set the alignment of the rtlabel
@@ -93,7 +93,7 @@ end
 ---@param a? number alpha
 function RTLabel:setColor(r,g,b,a)
     a = a or 255
-    TGUI_Label_SetTextColor(self.ptr, r,g,b,a)
+    TGUI_RTLabel_SetTextColor(self.ptr, r,g,b,a)
 end
 
 ---@Description set the callback of the rtlabel on hover
@@ -121,6 +121,11 @@ function RTLabel:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
     self:setOffHoverCallback(function() self:setColor(oR,oG,oB,oA) end)
 end
 
+---@Description set the scale of the rtlabel
+---@param scale number
+function RTLabel:setScale(scale)
+    TGUI_Label_SetScale(self.ptr, scale)
+end
 
 --- MARK: Wrapper
 --- function wrapper of cpp_RTLabel_Create
@@ -206,4 +211,12 @@ end
 ---@param callback function
 function TGUI_RTLabel_setOnClickCallBack(rtlabel, callback)
     cpp_RTLabel_SetOnClickCallback(rtlabel, callback)
+end
+
+--- function wrapper of cpp_RTLabel_SetScale
+---@Description set the scale of the rtlabel
+---@param rtlabel pointer instance of RTLabel
+---@param scale number scale
+function TGUI_RTLabel_SetScale(rtlabel, scale)
+    cpp_RTLabel_SetScale(rtlabel, scale)
 end

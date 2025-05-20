@@ -7,7 +7,7 @@ require "IconGui"
 require "Character"
 
 Meiling = Character:new({
-    Strenth = 12,
+    Strength = 12,
     Vitality = 13,
     Dexterity = 11,
     Agility = 9,

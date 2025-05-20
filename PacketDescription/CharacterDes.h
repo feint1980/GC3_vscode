@@ -104,12 +104,14 @@ class CharacterDesc
     // move constructor
     CharacterDesc(CharacterDesc && other) noexcept
     {
-        m_charStats = std::move(other.m_charStats);
+        // m_charStats = std::move(other.m_charStats);
+        m_charStats = other.m_charStats;
     }
     // move assignment
     CharacterDesc & operator=(CharacterDesc && other) noexcept
     {
-        m_charStats = std::move(other.m_charStats);
+        // m_charStats = std::move(other.m_charStats);
+        m_charStats = other.m_charStats;
         return *this;
     }
 
@@ -127,7 +129,7 @@ class CharacterDesc
 
     CharacterStats getCharacterStats() const { return m_charStats; }
 
-    void setCharacterStats(const CharacterStats & characterStats) { m_charStats = characterStats; }
+    void setCharacterStats(const CharacterStats & characterStats);
 
     void writeData(const std::string & path);
 

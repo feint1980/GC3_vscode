@@ -19,7 +19,8 @@ public:
 
     void update(float deltaTime);
 
-    void setCharacterDesc(CharacterDesc characterDesc) { m_characterDesc = characterDesc; }
+    void setCharacterDesc(CharacterDesc characterDesc) { m_characterDesc = characterDesc; 
+    }
 
     CharacterDesc getCharacterDesc() { return m_characterDesc; }
 
