@@ -43,5 +43,6 @@ Character_Table["S_Patchouli"] = S_Character:new(
     side = 1,
     level = 1,
     xp = 0,
+    price = 40,
     ID = "T_PATCHY"
 })

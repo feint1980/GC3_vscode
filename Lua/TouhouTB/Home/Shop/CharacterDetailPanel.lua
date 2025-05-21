@@ -141,7 +141,6 @@ function CharacterDetailPanel:new()
     return o
 end
 
-
 function CharacterDetailPanel:init(GUI_host, parent)
     self.mainPanel = parent
     self.detailPanel = ScrollablePanel:new()

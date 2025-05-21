@@ -40,6 +40,7 @@ S_Character =  {
     side = 1,
     level = 1,
     xp = 0,
+    price = 25,
     ID = "T_INVALID"
 }
 

@@ -50,6 +50,7 @@ struct CharacterStats
     int side ;
     int level;
     int xp;
+    int price;
     std::string ID;
 };
 
@@ -92,6 +93,7 @@ enum Attribute
     level,
     xp,
     ID,
+    price,
     Invalid
 };
 

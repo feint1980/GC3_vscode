@@ -398,11 +398,16 @@ function Character:determineEvade(enemy)
     end
 end
 
-
 ---@Description Load the skills of the character
 ---@function Character:loadSkills
 ---@param host pointer instance of BattleScene
 function Character:loadSkills(host)
+    --todo : inherits and override
+end
+
+---@Description Start the turn event 
+function Character:startTurn()
+    print(self.name .. " start turn called")
     --todo : inherits and override
 end
 
@@ -440,6 +445,7 @@ end
 function Character_GetAttribute(dyobj, name)
     return cpp_getEntityCharacterAttribute(dyobj, name)
 end
+
 
 
 ---wrapper of cpp_getEntityCharacterAttributeStr

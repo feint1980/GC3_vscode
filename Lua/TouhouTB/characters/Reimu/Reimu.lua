@@ -75,5 +75,8 @@ function Reimu:loadSkills(host)
     self.skills = {}
     self.skills["KickBack"] = KickBack
     self.skills["KickBack"]:init(host,self.dyobj,self)
+end
 
+function Reimu:startTurn()
+    print("Fate's Favor active")
 end

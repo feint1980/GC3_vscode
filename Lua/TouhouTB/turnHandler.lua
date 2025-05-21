@@ -91,6 +91,7 @@ function TurnHandler:sortCharacter()
     table.sort(self.charLists, function(a,b) return a.Dexterity > b.Dexterity end)
 
     self.currentCharacter = self.charLists[1]
+    self.currentCharacter:startTurn()
     print("check self.currentCharacter dyobj " )
     if self.currentCharacter.dyobj ~= nil then
         print("dyobj is not nil ")
@@ -100,16 +101,13 @@ function TurnHandler:sortCharacter()
     for i = 1, #self.charLists do 
         portrait = cppGetEntityPortrait(self.charLists[i].dyobj)
         cppSetPortraitPos(portrait, i * 100, 400)
-
     end
-
 end
 
 function TurnHandler:display()
     for i = 1, #self.charLists do
         print(self.charLists[i].name .. " " .. self.charLists[i].Dexterity .. " " .. self.charLists[i].hp)
     end
-
 end
 
 ---@Description : next chracter turn
@@ -122,5 +120,4 @@ function TurnHandler:nextTurn()
         self:sortCharacter()
         
     end
-  
 end

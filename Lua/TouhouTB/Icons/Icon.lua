@@ -33,7 +33,6 @@ Icon = {
     -- default will be display the turnCost/manaCost 
 }
 
-
 ---@Descriptiopn Creates a new Icon
 ---@param o table Icon The Icon to create
 function Icon:new(o)
@@ -100,7 +99,7 @@ end
 ---@param character Character instance of character
 function Icon:selected(host, character)
     -- todo : inherits and override
-end 
+end
 
 ---@Description: On cancel
 ---@param host pointer instance of BattleScene
