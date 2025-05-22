@@ -1544,7 +1544,6 @@ tgui::Panel::Ptr TGUIScriptingManager::createPanel(float x, float y, float width
     return panel;
 }
 
-
 tgui::CanvasOpenGL3::Ptr  TGUIScriptingManager::createCanvas(float x, float y, float width, float height, tgui::Panel::Ptr parent)
 {
     tgui::CanvasOpenGL3::Ptr canvas = tgui::CanvasOpenGL3::create();

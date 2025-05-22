@@ -39,6 +39,7 @@ static void to_json(json& j, const CharacterStats& c)
         {"side",c.side},
         {"level",c.level},
         {"xp", c.xp},
+        {"price", c.price},
         {"ID",c.ID}
     };
 }
@@ -81,6 +82,7 @@ static void from_json(const json& j, CharacterStats& c) {
     j.at("side").get_to(c.side);
     j.at("level").get_to(c.level);
     j.at("xp").get_to(c.xp);
+    j.at("price").get_to(c.price);
     j.at("ID").get_to(c.ID);
 }
 
@@ -351,6 +353,9 @@ void CharacterDesc::setAttribute(Attribute attribute, float value)
         case Attribute::xp:
             m_charStats.xp = value;
             break;
+        case Attribute::price:
+        m_charStats.price = value;
+        break;
         default:
             std::cout << "error when try to set the att (" << attribute << ") : " << value << "\n";
             break;
@@ -505,6 +510,10 @@ Attribute CharacterDesc::getAttributeByName(const std::string & attributeName)
     else if(toLower == "exp" || toLower == "xp" )
     {
         return xp;
+    }
+    else if (toLower == "price")
+    {
+        return price;
     }
     else
     {
