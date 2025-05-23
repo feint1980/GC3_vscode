@@ -236,7 +236,7 @@ HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES_DONE] = function(host,packet)
         end)
 
     for k,v in pairs(Shop_CharacterTable) do
-        Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250, v.panelPath,v.name,100)
+        Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250, v.panelPath,v.name,v.price)
         count = count + 1
     end
 

@@ -44,7 +44,6 @@ S_Character =  {
     ID = "T_INVALID"
 }
 
-
 ---@Description create a new instance of Character
 ---@param o? table
 ---@return S_Character

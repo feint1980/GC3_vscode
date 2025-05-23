@@ -219,6 +219,8 @@ float CharacterDesc::getFloatAttributeByName(const std::string & attributeName)
             return m_charStats.level;
         case xp:
             return m_charStats.xp;
+        case price:
+            return m_charStats.price;
         default:
             std::cout << "warinng, wrong attriute call " << attributeName << "\n";
             return -115114.0f;

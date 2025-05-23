@@ -39,6 +39,7 @@ static void to_json(json& j, const CharacterStats& c)
         {"side",c.side},
         {"level",c.level},
         {"xp", c.xp},
+        {"price",c.price},
         {"ID",c.ID}
     };
 }
@@ -81,6 +82,7 @@ static void from_json(const json& j, CharacterStats& c) {
     j.at("side").get_to(c.side);
     j.at("level").get_to(c.level);
     j.at("xp").get_to(c.xp);
+    j.at("price").get_to(c.price);
     j.at("ID").get_to(c.ID);
 }
 

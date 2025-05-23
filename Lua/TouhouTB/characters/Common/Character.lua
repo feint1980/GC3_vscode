@@ -85,6 +85,9 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field lastName string
 ---@field title string
 ---@field side number
+---@field level number
+---@field xp number
+---@field price number
 ---@field common_actions table
 ---@field items table   
 ---@field skills table
@@ -142,6 +145,9 @@ Character = {
     title = "None",
     ---@type number The side of the character |1 = left, 2 = right|
     side = 1,
+    level = 1,
+    xp = 0,
+    price = 25,
     ---@type table The list of common actions
     common_actions = {},
     ---@type table The list of items
@@ -196,7 +202,11 @@ function Character:setDesc(desc)
     self.accurateScale = Character_GetAttribute(self.dyobj, "accurateScale")
     self.evadeChanceScale = Character_GetAttribute(self.dyobj, "evadeChanceScale")
     self.deathDoorSurviveChance = Character_GetAttribute(self.dyobj, "deathDoorSurviveChance")
-    
+
+    self.xp = Character_GetAttribute(self.dyobj, "xp")
+    self.level = Character_GetAttribute(self.dyobj, "level")
+    self.price = Character_GetAttribute(self.dyobj, "price")
+
     self.name = Character_GetAttributeStr(self.dyobj, "name")
     self.lastName = Character_GetAttributeStr(self.dyobj, "lastName")
     self.title = Character_GetAttributeStr(self.dyobj, "title")
@@ -340,6 +350,9 @@ function Character:init(host,slot,tSide)
     TB_SetAttribute(self.dyobj, "accurateScale", self.accurateScale)
     TB_SetAttribute(self.dyobj, "evadeChanceScale", self.evadeChanceScale)
     TB_SetAttribute(self.dyobj, "deathDoorSurviveChance", self.deathDoorSurviveChance)
+    TB_SetAttribute(self.dyobj, "xp", self.xp)
+    TB_SetAttribute(self.dyobj, "level", self.level)
+    TB_SetAttribute(self.dyobj, "price", self.price)
 
     TB_SetStrAttribute(self.dyobj,"name",self.name)
     TB_SetStrAttribute(self.dyobj,"lastName",self.lastName)

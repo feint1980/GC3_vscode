@@ -71,6 +71,7 @@ static void to_json(json& j, const CharacterStats& c)
         {"side",c.side},
         {"level",c.level},
         {"xp", c.xp},
+        {"price",c.price},
         {"ID",c.ID}
     };
 }
@@ -113,6 +114,7 @@ static void from_json(const json& j, CharacterStats& c) {
     j.at("side").get_to(c.side);
     j.at("level").get_to(c.level);
     j.at("xp").get_to(c.xp);
+    j.at("price").get_to(c.price);
     j.at("ID").get_to(c.ID);
 }
 
@@ -308,8 +310,11 @@ int lua_UpdateCharacter(lua_State *L)
             assignValue(L,2,"level", stats.level);
             // xp
             assignValue(L,2,"xp", stats.xp);
+            //price 
+            assignValue(L,2,"price", stats.price);
             // ID
             assignValue(L,2,"ID", stats.ID);
+
 
             // std::cout << "Strength: " << stats.strength << "\n";
             json j = stats;
@@ -336,6 +341,7 @@ int lua_UpdateCharacter(lua_State *L)
                     else if(m_response.recordCount == 0) // not exist
                     {
                         std::string insertString = "insert into character_base_table (character_id, character_name, stats) values ('" + stats.ID + "', '" + stats.name + " " + stats.lastName +  "', '" + j.dump(4) + "');";
+                        // std::cout << "dump " << j.dump(4) << "\n";
                         if(host)
                         {
                             if(host->doQuery(insertString))
