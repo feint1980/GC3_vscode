@@ -92,6 +92,7 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field items table   
 ---@field skills table
 ---@field currentSlot pointer slot object
+---@field speedRoll number
 Character = {
     ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Physical displace chance/resistant  
     Strength = 8,
@@ -155,7 +156,9 @@ Character = {
     ---@type table The list of skills
     skills = {},
     ---@type pointer? instance of Slot 
-    currentSlot = nil
+    currentSlot = nil,
+
+    speedRoll = 0,
 }
 
 ---@Description create a new instance of Character
@@ -218,9 +221,15 @@ end
 
 ---@Description Get the turn of the character
 ---@return number The turn of the character | Fomula 1 + (Agility/7 * 0.25) |
-function Character:getTurn()
+function Character:getAction()
     local count = math.modf(self.Agility / 7)
     return 1 +( count * 0.25)
+end
+
+---@Description Get the speed of the character
+---@return number The speed of the character | Fomula (Dexterity + roll /4) |
+function Character:getSpeed()
+    return (self.Dexterity + self.speedRoll) / 4
 end
 
 ---@Description Get the HP of the character
@@ -327,7 +336,7 @@ function Character:init(host,slot,tSide)
     TB_SetStrAttribute(self.dyobj, "portraitPath    ", self.portraitPath)
     TB_SetStrAttribute(self.dyobj, "panelPath", self.panelPath)
 
-    TB_SetAttribute(self.dyobj,"action",self:getTurn())
+    TB_SetAttribute(self.dyobj,"action",self:getAction())
     TB_SetAttribute(self.dyobj,"hp",self:getHP())
     TB_SetAttribute(self.dyobj,"mana",self:getMana())
     TB_SetAttribute(self.dyobj,"sp",self.sp)

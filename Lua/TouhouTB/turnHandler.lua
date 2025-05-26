@@ -88,7 +88,12 @@ function TurnHandler:sortCharacter()
 
     print("sortCharacter called")
 
-    table.sort(self.charLists, function(a,b) return a.Dexterity > b.Dexterity end)
+    for i = 1, #self.charLists do
+        self.charLists[i].speedRoll = roll(1,6)
+        print(self.charLists[i].name .. " " .. self.charLists[i].Dexterity .. " " .. self.charLists[i].speedRoll)
+    end
+
+    table.sort(self.charLists, function(a,b) return a:getSpeed() > b:getSpeed() end)
 
     self.currentCharacter = self.charLists[1]
     self.currentCharacter:startTurn()

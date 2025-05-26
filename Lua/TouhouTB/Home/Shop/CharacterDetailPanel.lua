@@ -99,7 +99,7 @@ CharacterDetailPanel = {
     ---@type RTLabel
     dmgVal = nil,
     ---@type Label
-    physicDefVal = nil,
+    defVal = nil,
     ---@type Label
     magicDmgVal = nil,
     ---@type Label
@@ -143,7 +143,16 @@ CharacterDetailPanel = {
     intTxt = "",
     wisTxt = "",
     hpTxt = "",
-
+    manaTxt = "",
+    phyAttTxt = "",
+    magAttTxt = "",
+    phyDefTxt = "",
+    magDefTxt = "",
+    accTxt = "",
+    evaTxt = "",
+    criTxt = "",
+    spdTxt ="",
+    deathDoorSurviveChanceTxt = "",
 
 }
 function CharacterDetailPanel:new()
@@ -174,86 +183,87 @@ function CharacterDetailPanel:init(GUI_host, parent)
     self.closeButton:setOnClickCallback(function()
         self:setVisible(false)
     end)
-    local strLabel = Label:new()
-    strLabel:init(GUI_host, "STR", 0, 0, self.detailPanel.ptr)
+    local strLabel = RTLabel:new()
+    strLabel:init(GUI_host, Tag.color_TB_STR .. "STR" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
     strLabel:setPosStr("18%", "2%")
     strLabel:setScale(0.8)
     self.strVal = RTLabel:new()
     self.strVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     self.strVal:setPosStr("24%", "2%")
     self.strVal:setScale(0.8)
-    local vitLabel = Label:new()
-    vitLabel:init(GUI_host, "VIT", 0, 0, self.detailPanel.ptr)
+    local vitLabel = RTLabel:new()
+    vitLabel:init(GUI_host, Tag.color_TB_VIT .. "VIT" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
     vitLabel:setPosStr("28%", "2%")
     vitLabel:setScale(0.8)
     self.vitVal = RTLabel:new()
     self.vitVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     self.vitVal:setPosStr("34%", "2%")
     self.vitVal:setScale(0.8)
-    local dexLabel = Label:new()
-    dexLabel:init(GUI_host, "DEX", 0, 0, self.detailPanel.ptr)
+    local dexLabel = RTLabel:new()
+    dexLabel:init(GUI_host, Tag.color_TB_DEX .. "DEX" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
     dexLabel:setPosStr("18%", "8%")
     dexLabel:setScale(0.8)
-    self.dexVal = Label:new()
+    self.dexVal = RTLabel:new()
     self.dexVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     self.dexVal:setPosStr("24%", "8%")
     self.dexVal:setScale(0.8)
-    local agiLabel = Label:new()
-    agiLabel:init(GUI_host, "AGI", 0, 0, self.detailPanel.ptr)
+    local agiLabel = RTLabel:new()
+    agiLabel:init(GUI_host, Tag.color_TB_AGI .. "AGI" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
     agiLabel:setPosStr("28%", "8%")
     agiLabel:setScale(0.8)
-    self.agiVal = Label:new()
+    self.agiVal = RTLabel:new()
     self.agiVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     self.agiVal:setPosStr("34%", "8%")
     self.agiVal:setScale(0.8)
-    local intLabel = Label:new()
-    intLabel:init(GUI_host, "INT", 0, 0, self.detailPanel.ptr)
+    local intLabel = RTLabel:new()
+    intLabel:init(GUI_host, Tag.color_TB_INT .. "INT" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
     intLabel:setPosStr("18%", "13%")
     intLabel:setScale(0.8)
-    self.intVal = Label:new()
+    self.intVal = RTLabel:new()
     self.intVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     self.intVal:setPosStr("24%", "13%")
     self.intVal:setScale(0.8)
-    local wisLabel = Label:new()
-    wisLabel:init(GUI_host, "WIS", 0, 0, self.detailPanel.ptr)
+    local wisLabel = RTLabel:new()
+    wisLabel:init(GUI_host, Tag.color_TB_WIS .. "WIS" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
     wisLabel:setPosStr("28%", "13%")
     wisLabel:setScale(0.8)
-    self.wisVal = Label:new()
+    self.wisVal = RTLabel:new()
     self.wisVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     self.wisVal:setPosStr("34%", "13%")
     self.wisVal:setScale(0.8)
-    local hpLabel = RTLabel:new()
-    hpLabel:init(GUI_host, "Hp/Mp", 0, 0, self.detailPanel.ptr)
-    hpLabel:setPosStr("18%", "18%")
-    hpLabel:setScale(0.8)
+    local hpMpLabel = RTLabel:new()
+    hpMpLabel:init(GUI_host, "Hp/Mp", 0, 0, self.detailPanel.ptr)
+    hpMpLabel:setPosStr("18%", "18%")
+    hpMpLabel:setScale(0.8)
     self.hp_mpVal = RTLabel:new()
     self.hp_mpVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.hp_mpVal:setPosStr("34%", "18%")
-    self.hp_mpVal:setScale(0.8)
+    -- self.hp_mpVal:setAlignment(TextAlginment.Center)
+    self.hp_mpVal:setPosStr("26%", "18%")
+    self.hp_mpVal:setScale(0.85)
     local attackLabel = Label:new()
-    attackLabel:init(GUI_host, "ATT", 0, 0, self.detailPanel.ptr)
+    attackLabel:init(GUI_host, "ATK", 0, 0, self.detailPanel.ptr)
     attackLabel:setPosStr("18%", "23%")
     attackLabel:setScale(0.8)
     self.dmgVal = RTLabel:new()
     self.dmgVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.dmgVal:setPosStr("34%", "23%")
+    self.dmgVal:setPosStr("26%", "23%")
     self.dmgVal:setScale(0.8)
     local defLabel = Label:new()
     defLabel:init(GUI_host, "DEF", 0, 0, self.detailPanel.ptr)
     defLabel:setPosStr("18%", "28%")
     defLabel:setScale(0.8)
-    self.physicDefVal = RTLabel:new()
-    self.physicDefVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.physicDefVal:setPosStr("34%", "28%")
-    self.physicDefVal:setScale(0.8)
+    self.defVal = RTLabel:new()
+    self.defVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
+    self.defVal:setPosStr("26%", "28%")
+    self.defVal:setScale(0.8)
 
     local acc_rvaLabel = RTLabel:new()
-    acc_rvaLabel:init(GUI_host, "Acc/Eva/Crit", 0, 0, self.detailPanel.ptr)
+    acc_rvaLabel:init(GUI_host, "Acc/Eva/Cri/Spd", 0, 0, self.detailPanel.ptr)
     acc_rvaLabel:setPosStr("18%", "33%")
-    acc_rvaLabel:setScale(0.7)
+    acc_rvaLabel:setScale(0.65)
     self.acc_eva_criVal = RTLabel:new()
     self.acc_eva_criVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.acc_eva_criVal:setPosStr("34%", "33%")
+    self.acc_eva_criVal:setPosStr("30%", "33%")
     self.acc_eva_criVal:setScale(0.8)
 
     -- local hpScaleLabel = Label:new()
@@ -342,7 +352,7 @@ function CharacterDetailPanel:init(GUI_host, parent)
     -- -- self.titleVal:setAlignment(TextAlginment.Center)
     -- self.titleVal:setPosStr("0%", "65%")
     -- self.titleVal:setScale(1.1)
-    -- self.detailPanel:setVisible(false)
+    self.detailPanel:setVisible(false)
 
 end
 
@@ -364,25 +374,43 @@ function CharacterDetailPanel:setVal(index, val)
         self.wisVal:setText(Tag.color_TB_WIS .. val .. Tag.color_close)
     elseif index == CharacterDetailPanelVal.hp then
         self.hpTxt = val
-        self.hp_mpVal:setText(Tag.color_red .. self.hpTxt .. Tag.color_close  .. "/" .. Tag.color_blue .. self.manaTxt .. Tag.color_close)
+        self.hp_mpVal:setText(Tag.color_TB_VIT .. self.hpTxt .. Tag.color_close  .. "/" .. Tag.color_TB_WIS .. self.manaTxt .. Tag.color_close)
     elseif index == CharacterDetailPanelVal.mana then
         self.manaTxt = val
-        self.hp_mpVal:setText(Tag.color_red .. self.hpTxt .. Tag.color_close  .. "/" .. Tag.color_blue .. self.manaTxt .. Tag.color_close)
-        -- return
-    -- elseif index == CharacterDetailPanelVal.physicDmg then
-    --     self.dmgVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.physicDef then
-    --     self.physicDefVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.magicDmg then
-    --     self.magicDmgVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.magicDef then
-    --     -- self.magicDefVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.accurate then
-    --     self.acc_eva_criVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.evadeChance then
-    --     self.evadeChanceVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.critChance then
-    --     self.critChanceVal:setText(val)
+        self.hp_mpVal:setText(Tag.italic_open .. Tag.color_TB_VIT .. self.hpTxt .. Tag.color_close   .. " / " .. Tag.color_TB_WIS .. self.manaTxt .. Tag.color_close ..Tag.italic_close)
+    elseif index == CharacterDetailPanelVal.physicDmg then
+        self.phyAttTxt = val
+        self.dmgVal:setText(Tag.italic_open .. Tag.color_TB_STR .. self.phyAttTxt .. Tag.color_close .. " / " .. Tag.color_TB_INT .. self.magAttTxt .. Tag.color_close .. Tag.italic_close)
+    elseif index == CharacterDetailPanelVal.magicDmg then
+        self.magAttTxt = val
+        self.dmgVal:setText(Tag.italic_open .. Tag.color_TB_STR .. self.phyAttTxt .. Tag.color_close .. " / " .. Tag.color_TB_INT .. self.magAttTxt .. Tag.color_close .. Tag.italic_close)
+    elseif index == CharacterDetailPanelVal.physicDef then
+        self.phyDefTxt = val
+        self.defVal:setText(Tag.color_TB_AGI .. self.phyDefTxt .. Tag.color_close .. " / " .. Tag.color_TB_INT .. self.magDefTxt .. Tag.color_close)
+    elseif index == CharacterDetailPanelVal.magicDef then
+        self.magDefTxt = val
+        self.defVal:setText(Tag.color_TB_AGI .. self.phyDefTxt .. Tag.color_close .. " / " .. Tag.color_TB_WIS .. self.magDefTxt .. Tag.color_close)
+    elseif index == CharacterDetailPanelVal.accurate then
+        local txt = ""
+        self.accTxt =  Tag.color_TB_DEX .. val .. Tag.color_close
+
+        txt = self.accTxt .. " / " .. self.evaTxt .. " / " .. self.criTxt .. " / " .. self.spdTxt
+        self.acc_eva_criVal:setText(txt)
+
+    elseif index == CharacterDetailPanelVal.evadeChance then
+        local txt = ""
+
+        self.evaTxt = Tag.color_TB_AGI .. val .. Tag.color_close
+
+        txt = self.accTxt .. " / " .. self.evaTxt .. " / " .. self.criTxt .. " / " .. self.spdTxt
+        self.acc_eva_criVal:setText(txt)
+    elseif index == CharacterDetailPanelVal.critChance then
+        local txt = ""
+
+        self.criTxt = Tag.color_TB_DEX .. val .. Tag.color_close
+
+        txt = self.accTxt .. " / " .. self.evaTxt .. " / " .. self.criTxt .. " / " .. self.spdTxt
+        self.acc_eva_criVal:setText(txt)
     -- elseif index == CharacterDetailPanelVal.hpScale then
     --     self.hpScaleVal:setText(val)
     -- elseif index == CharacterDetailPanelVal.manaScale then

@@ -15,12 +15,12 @@ Tag.color_close = "</color>"
 Tag.italic_open = "<i>"
 Tag.italic_close = "</i>"
 
-Tag.color_TB_STR = "<color=#E53935>"
-Tag.color_TB_VIT = "<color=#FB8C00>"
-Tag.color_TB_DEX = "<color=#43A047>"
-Tag.color_TB_AGI = "<color=#26C6DA>"
-Tag.color_TB_INT = "<color=#1E88E5>"
-Tag.color_TB_WIS = "<color=#8E24AA>"
+Tag.color_TB_VIT = "<color=#FFBB00>"
+Tag.color_TB_STR = "<color=#FB8C00>"
+Tag.color_TB_DEX = "<color=#50FF0A>"
+Tag.color_TB_AGI = "<color=#00FFED>"
+Tag.color_TB_INT = "<color=#FF00DC>" 
+Tag.color_TB_WIS = "<color=#0094FF>"
 
 Tag.iRed = Tag.italic_open .. Tag.color_red
 Tag.iOrange = Tag.italic_open .. Tag.color_orange

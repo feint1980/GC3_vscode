@@ -15,6 +15,7 @@ require "CharacterDetailPanel"
 ---@field mainPanel pointer instance of Panel
 ---@field charactersPanel ScrollablePanel
 ---@field characterDetailPanel CharacterDetailPanel
+---@field characterPanels table 
 ---@field t_characters table
 CharacterShop = {
     ---@type pointer
@@ -23,6 +24,8 @@ CharacterShop = {
     charactersPanel = nil,
     ---@type CharacterDetailPanel
     characterDetailPanel = nil,
+    ---@type table of CharacterPanel
+    characterPanels = {},
 
     ---@type table
     t_characters = {}
@@ -73,47 +76,49 @@ function CharacterShop:init(GUI_host, posX, posY,
     self:requestCharacterList(Home_ClientScriptingPtr)
 end
 
-local function round(num, numDecimalPlaces)
+local function round(num, numDecimalPlaces, displayNum)
+    displayNum = displayNum or 2
     local mult = 10^(numDecimalPlaces or 0)
-    return string.format("%.4f",  math.floor(num * mult + 0.5) / mult)
+    return string.format("%.".. tostring(displayNum) .. "f",  math.floor(num * mult + 0.5) / mult)
 end
 
 function CharacterShop:addCharPanel(GUI_host,x,y,width,height,panelPath,name,price)
-    self.charactersPanel[name] = CharacterPanel:new()
-    self.charactersPanel[name]:init(GUI_host,self.charactersPanel.ptr,x,y,width,height,panelPath,name,price)
+    self.characterPanels[name] = CharacterPanel:new()
+    self.characterPanels[name]:init(GUI_host,self.charactersPanel.ptr,x,y,width,height,panelPath,name,price)
 
     CharacterDetailPanelVal = _G.CharacterDetailPanelVal
-    self.charactersPanel[name].panel:setOnClickCallback(function()
+    self.characterPanels[name].panel:setOnClickCallback(function()
 
+        print("Click called")
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.str,  tostring(Shop_CharacterTable[name].Strength))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.vit,  tostring(Shop_CharacterTable[name].Vitality))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.dex,  tostring(Shop_CharacterTable[name].Dexterity))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.agi,  tostring(Shop_CharacterTable[name].Agility))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.int,  tostring(Shop_CharacterTable[name].Intelligence))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.wis,  tostring(Shop_CharacterTable[name].Wisdom))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.hp,  tostring(Shop_CharacterTable[name]:getHP()))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.mana,  tostring(Shop_CharacterTable[name]:getMana()))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDmg,  round(Shop_CharacterTable[name]:getPhysicDmg(),4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDef,  round(Shop_CharacterTable[name]:getPhysicDef(),4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDmg,  round(Shop_CharacterTable[name]:getMagicDmg(),4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDef,  round(Shop_CharacterTable[name]:getMagicDef(),4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.accurate,  round(Shop_CharacterTable[name]:getAccurate(),4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.evadeChance,  round(Shop_CharacterTable[name]:getEvadeChance(),4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.critChance,  round(Shop_CharacterTable[name]:getCritChance(),4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.hpScale,  tostring(Shop_CharacterTable[name].hpScale))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.manaScale,  tostring(Shop_CharacterTable[name].manaScale))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDmgScale,  round(Shop_CharacterTable[name].physicDmgScale,4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDefScale,  round(Shop_CharacterTable[name].physicDefScale,4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDmgScale,  round(Shop_CharacterTable[name].magicDmgScale,4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDefScale,  round(Shop_CharacterTable[name].magicDefScale,4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.accurateScale,  round(Shop_CharacterTable[name].accurateScale,4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.evadeChanceScale,  round(Shop_CharacterTable[name].evadeChanceScale,4))
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.deathDoorSurviveChance,  round(Shop_CharacterTable[name]:getDeathDoorSurviveChance(),4))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.hp,  round(Shop_CharacterTable[name]:getHP(),1,1))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.mana,  round(Shop_CharacterTable[name]:getMana(),1,1))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDmg,  round(Shop_CharacterTable[name]:getPhysicDmg(),2))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDef,  round(Shop_CharacterTable[name]:getPhysicDef(),2))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDmg,  round(Shop_CharacterTable[name]:getMagicDmg(),2))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDef,  round(Shop_CharacterTable[name]:getMagicDef(),2))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.accurate,  round(Shop_CharacterTable[name]:getAccurate(),3,2))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.evadeChance,  round(Shop_CharacterTable[name]:getEvadeChance(),3,2))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.critChance,  round(Shop_CharacterTable[name]:getCritChance(),3,2))
+        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.hpScale,  tostring(Shop_CharacterTable[name].hpScale))
+        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.manaScale,  tostring(Shop_CharacterTable[name].manaScale))
+        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDmgScale,  round(Shop_CharacterTable[name].physicDmgScale,4))
+        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDefScale,  round(Shop_CharacterTable[name].physicDefScale,4))
+        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDmgScale,  round(Shop_CharacterTable[name].magicDmgScale,4))
+        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDefScale,  round(Shop_CharacterTable[name].magicDefScale,4))
+        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.accurateScale,  round(Shop_CharacterTable[name].accurateScale,4))
+        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.evadeChanceScale,  round(Shop_CharacterTable[name].evadeChanceScale,4))
+        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.deathDoorSurviveChance,  round(Shop_CharacterTable[name]:getDeathDoorSurviveChance(),4))
 
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.name,  Shop_CharacterTable[name].lastName .. " " .. Shop_CharacterTable[name].name)
-        self.characterDetailPanel:setVal(CharacterDetailPanelVal.title,
-        Tag.iOrange .. Shop_CharacterTable[name].title .. Tag.iClose)
-        -- "
+        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.name,  Shop_CharacterTable[name].lastName .. " " .. Shop_CharacterTable[name].name)
+        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.title,
+        -- Tag.iOrange .. Shop_CharacterTable[name].title .. Tag.iClose)
+
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.panelPath,  Shop_CharacterTable[name].panelPath)
         self.characterDetailPanel:setVisible(true)
     end)
