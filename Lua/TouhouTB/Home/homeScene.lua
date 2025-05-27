@@ -78,11 +78,13 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
 
     Main_SoulsLabel = Label:new()
     Main_SoulsLabel:init(Home_GUIScriptingPtr,"Souls:",0,0)
+    Main_SoulsLabel:setScale(0.9)
     Main_SoulsLabel:setPosStr("70%","5%")
 
-    Main_SoulsValLabel = Label:new()
+    Main_SoulsValLabel = RTLabel:new()
     Main_SoulsValLabel:init(Home_GUIScriptingPtr,"?",0,0)
-    Main_SoulsValLabel:setPosStr("78%","5%")
+    Main_SoulsValLabel:setPosStr("78%","4%")
+    Main_SoulsValLabel:setScale(0.9)
     Main_SoulsValLabel:setAlignment(TextAlginment.Right)
 
     Main_MonLabel = Label:new()
@@ -168,7 +170,7 @@ HomeMain_HandleStep2[Packet_OtherID.USER_DATA_POS] = function(host,packet)
     -- print("td " .. tD[2])
     -- print("td " .. tD[3])
     Main_MonValLabel:setText(tD[2])
-    Main_SoulsValLabel:setText(tD[3])
+    Main_SoulsValLabel:setText(Tag.color_TB_title .. tD[3] .. " " .. Tag.icon_soul .. Tag.color_close)
     -- print("HomeMain_HandleStep2 " .. Packet_OtherID.USER_DATA_POS)
 end
 

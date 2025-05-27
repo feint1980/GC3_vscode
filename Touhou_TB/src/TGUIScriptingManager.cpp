@@ -35,6 +35,7 @@ int lua_Panel_Create(lua_State * L)
         {
             *panel = host->createPanel(pX, pY, width, height,nullptr);
         }
+        
         lua_pushlightuserdata(L, panel);
         return 1;
     }
@@ -242,6 +243,23 @@ int lua_Panel_SetBorderColor(lua_State * L)
         int a = lua_tonumber(L, 5);
         tgui::Color color = tgui::Color(r, g, b, a);
         panel->get()->getRenderer()->setBorderColor(color);
+        // panel->get()->getRenderer()->setBackgroundColor
+    }
+    return 0;
+}
+
+int lua_Panel_SetOpacity(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Panel_SetOpacity) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
+        float value = lua_tonumber(L, 2);
+        panel->get()->getRenderer()->setOpacity(value);
         // panel->get()->getRenderer()->setBackgroundColor
     }
     return 0;
@@ -1667,6 +1685,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Panel_SetHoverOnCallback", lua_Panel_SetHoverOnCallback); 
     lua_register(m_script, "cpp_Panel_SetHoverOffCallback", lua_Panel_SetHoverOffCallback); 
     lua_register(m_script, "cpp_Panel_SetBorderColor", lua_Panel_SetBorderColor);
+    lua_register(m_script, "cpp_Panel_SetOpacity", lua_Panel_SetOpacity);
     lua_register(m_script, "cpp_Panel_SetOnClickCallback", lua_Panel_SetOnClickCallback);
 
     // TGUI ScrollablePanel section

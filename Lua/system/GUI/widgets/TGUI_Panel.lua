@@ -117,7 +117,7 @@ end
 ---@Description set Alignment of Panel
 ---@param originX number
 ---@param originY number
-function Panel:setAligment(originX,originY)
+function Panel:setAlignment(originX,originY)
     TGUI_Panel_SetAlignment(self.ptr, originX,originY)
 end
 
@@ -172,6 +172,12 @@ function Panel:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
     self:setHoverOffCallBack(function()
         self:setBorderColor(oR,oG,oB,oA)
         end)
+end
+
+---@Description set the opacity of the panel
+---@param opacity number
+function Panel:setOpacity(opacity)
+    TGUI_Panel_SetOpacity(self.ptr, opacity)
 end
 
 ---- MARK: Wrapper
@@ -280,4 +286,11 @@ end
 ---@param callback function
 function TGUI_Panel_SetOnClickCallback(panel, callback)
     cpp_Panel_SetOnClickCallback(panel, callback)
+end
+
+--- wrapper of cpp_Panel_SetOpacity
+--- @param panel pointer instance of TGUI Panel
+---@param opacity number opacity (0-255)
+function TGUI_Panel_SetOpacity(panel, opacity)
+    cpp_Panel_SetOpacity(panel, opacity)
 end

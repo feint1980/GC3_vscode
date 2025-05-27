@@ -39,6 +39,7 @@ require "CharacterPanel"
 ---@field lastName number
 ---@field title number
 ---@field panelPath number
+---@field speed number
 CharacterDetailPanelVal = {
     str = 1,
     vit = 2,
@@ -67,7 +68,8 @@ CharacterDetailPanelVal = {
     name = 25,
     lastName = 26,
     title = 27,
-    panelPath = 28
+    panelPath = 28,
+    speed = 29
 }
 
 
@@ -166,7 +168,7 @@ function CharacterDetailPanel:init(GUI_host, parent)
     self.mainPanel = parent
     self.detailPanel = ScrollablePanel:new()
     self.detailPanel:init(GUI_host, 0, 0, 0, 0, self.mainPanel)
-    self.detailPanel:setAligment(0.5, 0.5)
+    self.detailPanel:setAlignment(0.5, 0.5)
     self.detailPanel:setPosStr("50%", "50%")
     self.detailPanel:setSizeStr("98%", "98%")
 
@@ -185,86 +187,99 @@ function CharacterDetailPanel:init(GUI_host, parent)
     end)
     local strLabel = RTLabel:new()
     strLabel:init(GUI_host, Tag.color_TB_STR .. "STR" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
-    strLabel:setPosStr("18%", "2%")
-    strLabel:setScale(0.8)
+    strLabel:setPosStr("18%", "15%")
+    
     self.strVal = RTLabel:new()
     self.strVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.strVal:setPosStr("24%", "2%")
-    self.strVal:setScale(0.8)
+    self.strVal:setPosStr("26%", "15%")
     local vitLabel = RTLabel:new()
     vitLabel:init(GUI_host, Tag.color_TB_VIT .. "VIT" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
-    vitLabel:setPosStr("28%", "2%")
-    vitLabel:setScale(0.8)
+    vitLabel:setPosStr("32%", "15%")
+    
     self.vitVal = RTLabel:new()
     self.vitVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.vitVal:setPosStr("34%", "2%")
-    self.vitVal:setScale(0.8)
+    self.vitVal:setPosStr("38%", "15%")
     local dexLabel = RTLabel:new()
     dexLabel:init(GUI_host, Tag.color_TB_DEX .. "DEX" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
-    dexLabel:setPosStr("18%", "8%")
-    dexLabel:setScale(0.8)
+    dexLabel:setPosStr("18%", "21%")
     self.dexVal = RTLabel:new()
     self.dexVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.dexVal:setPosStr("24%", "8%")
-    self.dexVal:setScale(0.8)
+    self.dexVal:setPosStr("26%", "21%")
+
     local agiLabel = RTLabel:new()
     agiLabel:init(GUI_host, Tag.color_TB_AGI .. "AGI" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
-    agiLabel:setPosStr("28%", "8%")
-    agiLabel:setScale(0.8)
+    agiLabel:setPosStr("32%", "21%")
+    
     self.agiVal = RTLabel:new()
     self.agiVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.agiVal:setPosStr("34%", "8%")
-    self.agiVal:setScale(0.8)
+    self.agiVal:setPosStr("38%", "21%")
+    
     local intLabel = RTLabel:new()
     intLabel:init(GUI_host, Tag.color_TB_INT .. "INT" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
-    intLabel:setPosStr("18%", "13%")
-    intLabel:setScale(0.8)
+    intLabel:setPosStr("18%", "26%")
+    
     self.intVal = RTLabel:new()
     self.intVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.intVal:setPosStr("24%", "13%")
-    self.intVal:setScale(0.8)
+    self.intVal:setPosStr("26%", "26%")
+    
     local wisLabel = RTLabel:new()
     wisLabel:init(GUI_host, Tag.color_TB_WIS .. "WIS" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
-    wisLabel:setPosStr("28%", "13%")
-    wisLabel:setScale(0.8)
+    wisLabel:setPosStr("32%", "26%")
+    
     self.wisVal = RTLabel:new()
     self.wisVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.wisVal:setPosStr("34%", "13%")
-    self.wisVal:setScale(0.8)
+    self.wisVal:setPosStr("38%", "26%")
+    
     local hpMpLabel = RTLabel:new()
     hpMpLabel:init(GUI_host, "Hp/Mp", 0, 0, self.detailPanel.ptr)
-    hpMpLabel:setPosStr("18%", "18%")
-    hpMpLabel:setScale(0.8)
+    hpMpLabel:setPosStr("18%", "31%")
+    
     self.hp_mpVal = RTLabel:new()
     self.hp_mpVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     -- self.hp_mpVal:setAlignment(TextAlginment.Center)
-    self.hp_mpVal:setPosStr("26%", "18%")
-    self.hp_mpVal:setScale(0.85)
+    self.hp_mpVal:setPosStr("30%", "31%")
+
     local attackLabel = Label:new()
     attackLabel:init(GUI_host, "ATK", 0, 0, self.detailPanel.ptr)
-    attackLabel:setPosStr("18%", "23%")
-    attackLabel:setScale(0.8)
+    attackLabel:setPosStr("18%", "36%")
     self.dmgVal = RTLabel:new()
     self.dmgVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.dmgVal:setPosStr("26%", "23%")
-    self.dmgVal:setScale(0.8)
+    self.dmgVal:setPosStr("30%", "36%")
     local defLabel = Label:new()
     defLabel:init(GUI_host, "DEF", 0, 0, self.detailPanel.ptr)
-    defLabel:setPosStr("18%", "28%")
-    defLabel:setScale(0.8)
+    defLabel:setPosStr("18%", "41%")
     self.defVal = RTLabel:new()
     self.defVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.defVal:setPosStr("26%", "28%")
-    self.defVal:setScale(0.8)
+    self.defVal:setPosStr("30%", "41%")
 
     local acc_rvaLabel = RTLabel:new()
     acc_rvaLabel:init(GUI_host, "Acc/Eva/Cri/Spd", 0, 0, self.detailPanel.ptr)
-    acc_rvaLabel:setPosStr("18%", "33%")
-    acc_rvaLabel:setScale(0.65)
+    acc_rvaLabel:setPosStr("18%", "46%")
+    acc_rvaLabel:setScale(0.8)
     self.acc_eva_criVal = RTLabel:new()
     self.acc_eva_criVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    self.acc_eva_criVal:setPosStr("30%", "33%")
+    self.acc_eva_criVal:setPosStr("30%", "46%")
     self.acc_eva_criVal:setScale(0.8)
+
+    local deathDoorSurviveChanceLabel = RTLabel:new()
+    deathDoorSurviveChanceLabel:init(GUI_host,  "Last stand chance", 0, 0, self.detailPanel.ptr)
+    deathDoorSurviveChanceLabel:setPosStr("18%", "51%")
+    deathDoorSurviveChanceLabel:setScale(0.8)
+    self.deathDoorSurviveChanceVal = RTLabel:new()
+    self.deathDoorSurviveChanceVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
+    self.deathDoorSurviveChanceVal:setPosStr("35%", "51%")
+    self.deathDoorSurviveChanceVal:setScale(0.9)
+    self.nameVal = RTLabel:new()
+    self.nameVal:init(GUI_host, " ", 0, 0, self.detailPanel.ptr)
+
+    self.nameVal:setPosStr("18%", "1%")
+    self.nameVal:setScale(1.15)
+
+    self.titleVal = RTLabel:new()
+    self.titleVal:init(GUI_host, " ", 0, 0, self.detailPanel.ptr)
+    -- self.titleVal:setAlignment(TextAlginment.Center)
+    self.titleVal:setPosStr("18%", "8%")
+    self.titleVal:setScale(1.2)
 
     -- local hpScaleLabel = Label:new()
     -- hpScaleLabel:init(GUI_host, "HP scale", 0, 0, self.detailPanel.ptr)
@@ -333,25 +348,6 @@ function CharacterDetailPanel:init(GUI_host, parent)
     -- self.evadeChanceScaleVal:setPosStr("51%", "53%")
     -- self.evadeChanceScaleVal:setScale(0.8)
 
-    -- local deathDoorSurviveChanceLabel = Label:new()
-    -- deathDoorSurviveChanceLabel:init(GUI_host, "Death door survive chance", 0, 0, self.detailPanel.ptr)
-    -- deathDoorSurviveChanceLabel:setPosStr("35%", "58%")
-    -- deathDoorSurviveChanceLabel:setScale(0.7)
-    -- self.deathDoorSurviveChanceVal = Label:new()
-    -- self.deathDoorSurviveChanceVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    -- self.deathDoorSurviveChanceVal:setPosStr("51%", "58%")
-    -- self.deathDoorSurviveChanceVal:setScale(0.8)
-    -- self.nameVal = RTLabel:new()
-    -- self.nameVal:init(GUI_host, " ", 0, 0, self.detailPanel.ptr)
-    -- -- self.nameVal:setAlignment(TextAlginment.Center)
-    -- self.nameVal:setPosStr("0%", "60%")
-    -- self.nameVal:setScale(1.1)
-
-    -- self.titleVal = RTLabel:new()
-    -- self.titleVal:init(GUI_host, " ", 0, 0, self.detailPanel.ptr)
-    -- -- self.titleVal:setAlignment(TextAlginment.Center)
-    -- self.titleVal:setPosStr("0%", "65%")
-    -- self.titleVal:setScale(1.1)
     self.detailPanel:setVisible(false)
 
 end
@@ -411,6 +407,11 @@ function CharacterDetailPanel:setVal(index, val)
 
         txt = self.accTxt .. " / " .. self.evaTxt .. " / " .. self.criTxt .. " / " .. self.spdTxt
         self.acc_eva_criVal:setText(txt)
+    elseif index == CharacterDetailPanelVal.speed then
+        local txt = ""
+        self.spdTxt = Tag.color_TB_AGI .. val .. Tag.color_close
+        txt = self.accTxt .. " / " .. self.evaTxt .. " / " .. self.criTxt .. " / " .. self.spdTxt
+        self.acc_eva_criVal:setText(txt)
     -- elseif index == CharacterDetailPanelVal.hpScale then
     --     self.hpScaleVal:setText(val)
     -- elseif index == CharacterDetailPanelVal.manaScale then
@@ -427,8 +428,8 @@ function CharacterDetailPanel:setVal(index, val)
     --     self.accurateScaleVal:setText(val)
     -- elseif index == CharacterDetailPanelVal.evadeChanceScale then
     --     self.evadeChanceScaleVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.deathDoorSurviveChance then
-    --     self.deathDoorSurviveChanceVal:setText(val)
+    elseif index == CharacterDetailPanelVal.deathDoorSurviveChance then
+        self.deathDoorSurviveChanceVal:setText( Tag.color_TB_VIT .. val .. Tag.color_close)
     elseif index == CharacterDetailPanelVal.name then
         self.nameVal:setText(val)
     elseif index == CharacterDetailPanelVal.lastName then

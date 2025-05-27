@@ -1,6 +1,7 @@
 package.path = package.path .. ';../../Lua/TouhouTB/Icons/?.lua;' .. ';../../Lua/TouhouTB/system/?.lua;'
 require "Move"
 require "End"
+require "Status"
 
 require "system"
 
@@ -91,6 +92,7 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field common_actions table
 ---@field items table   
 ---@field skills table
+---@field statuses table
 ---@field currentSlot pointer slot object
 ---@field speedRoll number
 Character = {
@@ -155,6 +157,8 @@ Character = {
     items = {},
     ---@type table The list of skills
     skills = {},
+    ---@type table
+    statuses = {},
     ---@type pointer? instance of Slot 
     currentSlot = nil,
 
@@ -229,7 +233,7 @@ end
 ---@Description Get the speed of the character
 ---@return number The speed of the character | Fomula (Dexterity + roll /4) |
 function Character:getSpeed()
-    return (self.Dexterity + self.speedRoll) / 4
+    return (self.Agility + self.speedRoll) * 0.9
 end
 
 ---@Description Get the HP of the character
@@ -300,7 +304,7 @@ end
 
 function Character:getDeathDoorSurviveChance(additonalRoll)
     additonalRoll = additonalRoll or 0
-    local additionSurvive = (self.Vitality + additonalRoll) * 0.03
+    local additionSurvive = (self.Vitality + additonalRoll) * 0.017
     return self.deathDoorSurviveChance + additionSurvive
 end
 
@@ -396,6 +400,10 @@ function Character:loadCommon(host)
     --table.shallow_copy(self.common_actions, t_common_actions)
     print("common action size (common) " .. #self.common_actions)
     return self.common_actions
+
+end
+
+function Character:addStatus(statusName)
 
 end
 

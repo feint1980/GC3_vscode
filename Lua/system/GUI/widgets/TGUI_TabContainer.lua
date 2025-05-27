@@ -79,7 +79,7 @@ end
 ---@Description set the aligment of the TabContainer
 ---@param x number x aligment
 ---@param y number y aligment
-function TabContainer:setAligment(x,y)
+function TabContainer:setAlignment(x,y)
     TGUI_TabContainer_SetAlignment(self.ptr,x,y)
 end
 

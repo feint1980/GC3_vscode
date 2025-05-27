@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.10)
 set(PROJECT_N TB_Server)
 project(${PROJECT_N} VERSION 1.0)
 
-set(CMAKE_CXX_FLAGS "-fpermissive -std=c++17 -municode -m32")
+set(CMAKE_CXX_FLAGS "-O0 -fpermissive -std=c++17 -municode -m32")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp

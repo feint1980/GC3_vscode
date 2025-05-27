@@ -58,7 +58,7 @@ function CharacterShop:init(GUI_host, posX, posY,
     end
     self.charactersPanel = ScrollablePanel:new()
     self.charactersPanel:init(GUI_host,posX,posY,width,height, self.mainPanel)
-    self.charactersPanel:setAligment(0.5,0.5)
+    self.charactersPanel:setAlignment(0.5,0.5)
     self.charactersPanel:setPosStr("50%","50%")
     self.charactersPanel:setSizeStr("95%","90%")
     local refreshButton= Label:new()
@@ -80,6 +80,11 @@ local function round(num, numDecimalPlaces, displayNum)
     displayNum = displayNum or 2
     local mult = 10^(numDecimalPlaces or 0)
     return string.format("%.".. tostring(displayNum) .. "f",  math.floor(num * mult + 0.5) / mult)
+end
+
+local function num_2_str(num, displayNum)
+    displayNum = displayNum or 2
+    return string.format("%.".. tostring(displayNum) .. "f", num)
 end
 
 function CharacterShop:addCharPanel(GUI_host,x,y,width,height,panelPath,name,price)
@@ -105,6 +110,7 @@ function CharacterShop:addCharPanel(GUI_host,x,y,width,height,panelPath,name,pri
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.accurate,  round(Shop_CharacterTable[name]:getAccurate(),3,2))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.evadeChance,  round(Shop_CharacterTable[name]:getEvadeChance(),3,2))
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.critChance,  round(Shop_CharacterTable[name]:getCritChance(),3,2))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.speed,  round(Shop_CharacterTable[name]:getSpeed(),2,1))
         -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.hpScale,  tostring(Shop_CharacterTable[name].hpScale))
         -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.manaScale,  tostring(Shop_CharacterTable[name].manaScale))
         -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.physicDmgScale,  round(Shop_CharacterTable[name].physicDmgScale,4))
@@ -113,11 +119,11 @@ function CharacterShop:addCharPanel(GUI_host,x,y,width,height,panelPath,name,pri
         -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.magicDefScale,  round(Shop_CharacterTable[name].magicDefScale,4))
         -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.accurateScale,  round(Shop_CharacterTable[name].accurateScale,4))
         -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.evadeChanceScale,  round(Shop_CharacterTable[name].evadeChanceScale,4))
-        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.deathDoorSurviveChance,  round(Shop_CharacterTable[name]:getDeathDoorSurviveChance(),4))
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.deathDoorSurviveChance,  num_2_str(Shop_CharacterTable[name]:getDeathDoorSurviveChance(),3))
 
-        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.name,  Shop_CharacterTable[name].lastName .. " " .. Shop_CharacterTable[name].name)
-        -- self.characterDetailPanel:setVal(CharacterDetailPanelVal.title,
-        -- Tag.iOrange .. Shop_CharacterTable[name].title .. Tag.iClose)
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.name,  Shop_CharacterTable[name].lastName .. " " .. Shop_CharacterTable[name].name)
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.title,
+        Tag.color_TB_title .. Shop_CharacterTable[name].title .. Tag.color_close)
 
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.panelPath,  Shop_CharacterTable[name].panelPath)
         self.characterDetailPanel:setVisible(true)

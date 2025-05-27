@@ -345,7 +345,7 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
             std::cout << "get packet identifier \n";
             unsigned char identifier = GetPacketIdentifier(p);
             // // std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
-            std::cout << "got packet !!!!!!! " << identifier << "\n";
+            std::cout << "got packet !!!!!!! " << (int)identifier << "\n";
 
             if(!selfPacket)
             {

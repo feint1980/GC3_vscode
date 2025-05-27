@@ -12,7 +12,7 @@ require "TGUI_ScrollablePanel"
 ---@field panel Panel
 ---@field picture Picture
 ---@field displayNameLabel Label
----@field priceLabel Label
+---@field priceLabel RTLabel
 ---@field parent ScrollablePanel
 ---@field detailPanel ScrollablePanel
 CharacterPanel = {
@@ -22,7 +22,7 @@ CharacterPanel = {
     picture = nil,
     ---@type Label
     displayNameLabel = nil,
-    ---@type Label
+    ---@type RTLabel
     priceLabel = nil,
     ---@type ScrollablePanel
     parent = nil,
@@ -87,14 +87,15 @@ width,height,path,name,price,detailPanel)
     end
 
     if self.priceLabel == nil then
-        self.priceLabel = Label:new()
-        self.priceLabel:init(host,price,x,y,self.panel.ptr)
+        self.priceLabel = RTLabel:new()
+        self.priceLabel:init(host,Tag.color_TB_title .. price .. " " ..Tag.icon_soul .. Tag.color_close,x,y,self.panel.ptr)
+        self.priceLabel:setScale(0.8)
         self.priceLabel:setAlignment(TextAlginment.Center)
         self.priceLabel:setPosStr("50%","90%")
     else
         -- self.priceLabel:setPos(x,y)
         self.priceLabel:setPosStr("50%","90%")
-        self.priceLabel:setText(price)
+        self.priceLabel:setText(Tag.color_TB_title .. price .. Tag.color_close)
     end
 
     if detailPanel ~= nil then

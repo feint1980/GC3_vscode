@@ -124,7 +124,7 @@ end
 ---@Description set Alignment of ScrollablePanel
 ---@param originX number
 ---@param originY number
-function ScrollablePanel:setAligment(originX,originY)
+function ScrollablePanel:setAlignment(originX,originY)
     TGUI_ScrollablePanel_SetAlignment(self.ptr, originX,originY)
 end
 
@@ -147,7 +147,7 @@ end
 
 ---- MARK: Wrapper
 
---- wrapper of cpp_Panel_Create
+--- wrapper of cpp_ScrollablePanel_Create
 ---@param host pointer instance of TGUIScriptingManager
 ---@param posX number x position
 ---@param posY number y position
