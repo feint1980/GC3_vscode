@@ -777,7 +777,7 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
     {
         sendStr = std::move(data);
     }
-    m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY, RELIABLE_SEQUENCED,12, target,false);
+    m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY, RELIABLE_ORDERED,12, target,false);
     return 0;
 }
 
@@ -880,8 +880,6 @@ bool ServerScriptingManager::doQuery(sqlite3_stmt * stmt)
     // std::cout <<" doquery stmt called |" << queryCmd << "|\n"; 
     char * zErrMsg = 0;
 
-    std::cout << "print start \n";
-
     // sqlite3_bind_text(stmt, 1, "feint",-1, SQLITE_STATIC);
     // sqlite3_bind_text(stmt, 2, "ok", -1, SQLITE_STATIC);
 
@@ -915,8 +913,6 @@ bool ServerScriptingManager::doQuery(sqlite3_stmt * stmt)
     }
 
 
-    std::cout << "print end \n";
-    
     return true;
     // m_response.rc = sqlite3_exec(m_dbh->getDatabase(), queryCmd.c_str(), serverScriptingCallback, (void*)m_response.rawData, &zErrMsg);
 

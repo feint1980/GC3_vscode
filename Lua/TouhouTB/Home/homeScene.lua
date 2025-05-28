@@ -83,7 +83,7 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
 
     Main_SoulsValLabel = RTLabel:new()
     Main_SoulsValLabel:init(Home_GUIScriptingPtr,"?",0,0)
-    Main_SoulsValLabel:setPosStr("78%","4%")
+    Main_SoulsValLabel:setPosStr("78%","4.5%")
     Main_SoulsValLabel:setScale(0.9)
     Main_SoulsValLabel:setAlignment(TextAlginment.Right)
 

@@ -358,7 +358,6 @@ SlotHandler * BattleScene::createSlotHandler()
 
 int lua_CreateIcon(lua_State * L)
 {
-
 	if (lua_gettop(L) < 10 || lua_gettop(L) > 11)
 	{
 		std::cout << "gettop failed (lua_CreateIcon) \n";
@@ -379,7 +378,6 @@ int lua_CreateIcon(lua_State * L)
 	std::string turnCostStr = lua_tostring(L, 9);
 	std::string manaCostStr = lua_tostring(L, 10);
 
-
 	unsigned int specialID = 0;
 	if(lua_gettop(L) == 11)
 	{
@@ -399,13 +397,10 @@ int lua_CreateIcon(lua_State * L)
 
 	std::cout << "Add icon called OK \n";
 	return 1;
-
 }
 
 GUI_icon * BattleScene::createIcon(const std::string & texturePath, const glm::vec2 & pos, const glm::vec2 & dim)
 {
-
-
 	GUI_icon * icon = new GUI_icon();
 	icon->init(texturePath, pos, dim);
 	m_icons.push_back(icon);

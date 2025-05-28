@@ -50,7 +50,7 @@ function CH_AddClientEP(tSystemAddress, guid, name)
     newClient:init(tSystemAddress, guid, name)
     ClientEPList[guid] = newClient
     -- ClientEPList[guid] = ClientEP:new(tSystemAddress, guid, name)
-    print("total user now ")
+    -- print("total user now ")
     CH_List()
 end
 
@@ -65,8 +65,8 @@ function CH_FindClient(guid)
 end
 
 function CH_List()
-    
-    print("total connected : " ..GetTableSize(ClientEPList) .. " users")
+
+    print("total connected :... " ..GetTableSize(ClientEPList) .. " users")
     for k,v in pairs(ClientEPList) do
         print(v.name .. "|" .. k .. "|")
     end

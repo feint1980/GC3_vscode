@@ -119,10 +119,10 @@ ResponseHandle[PacketCode.register] = function(host,packet)
     local t_pw = string.sub(halfProcess, 0,string.find(halfProcess, "|") - 1)
     local t_key = string.sub(halfProcess, string.len(t_pw) + 2 , string.len(halfProcess))
     
-    print("id is " .. t_id)
+    -- print("id is " .. t_id)
     --print("half is " .. halfProcess)
-    print("pw is " .. t_pw)
-    print("key is " .. t_key)
+    -- print("pw is " .. t_pw)
+    -- print("key is " .. t_key)
 
     local checkAccountExistQuery = "SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ?;"
 
@@ -200,7 +200,8 @@ end
 
 --- MARK: Login reponse
 ResponseHandle[PacketCode.login] = function(host,packet)
-    print("login response found, processing")
+    -- print("login response found, processing")
+    ClientEPList = _G.ClientEPList
 
     local message = SV_GetPacketData(host,packet)
     local pattern_start = "|LOGIN_REQUEST|"
@@ -216,6 +217,7 @@ ResponseHandle[PacketCode.login] = function(host,packet)
     local t_pw = string.sub(processResult, string.len(t_id) + 2 , string.len(processResult))
     -- print("id is " .. t_id)
     -- print("pw is " .. t_pw)
+    local guid = SV_GetPacketGUID(packet)
     if CheckAccountValid(host, t_id, t_pw) then
         for k,v in pairs(ClientEPList) do
             if v.name == t_id then
@@ -225,7 +227,6 @@ ResponseHandle[PacketCode.login] = function(host,packet)
             end
         end
         -- print("account check OK, send OK message")
-        local guid = SV_GetPacketGUID(packet)
         SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
         local systemAddress = SV_GetPacketIP(packet)
         CH_AddClientEP(systemAddress, guid, t_id)
@@ -238,18 +239,14 @@ end
 ResponseHandle[PacketCode.requestCharacterList] = function(host,packet)
     local message = SV_GetPacketData(host,packet)
     local clientIP = SV_GetPacketIP(packet)
-
-    print("requestCharacterList found, sending ...")
-
+    -- print("requestCharacterList found, sending ...")
     local count = 0
     for k,v in pairs(Character_Serialized_Table) do
         local chracterInfo = {}
         count = count +1
         SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v}))
     end
-    print("###### count ###### " .. count)
     SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_DONE", {count}))
-
 end
 
 function AddRegisterKey(host)

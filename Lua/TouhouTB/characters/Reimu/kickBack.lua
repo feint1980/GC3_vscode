@@ -42,6 +42,7 @@ function KickBack:init(host,dyobj,character)
     self.iconObj =  TB_CreateIcon(host,self.asset,64,64,
     self.name,retStr,self.turnCost,self.manaCost,
     self.turnCostStr,self.manaCostStr, self.specialID)
+    self.description = retStr
 end
 
 ---@Description Kick back coroutine

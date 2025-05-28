@@ -2,7 +2,6 @@
 #pragma once
 #include "EmptyObject.h"
 #include <ResourceManager.h>
-
 class GUI_icon 
 {
 

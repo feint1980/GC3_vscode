@@ -184,7 +184,7 @@ uint32_t ClientScriptingManager::sendData(const std::string & data)
     {
         sendStr.push_back((tData[i]));
     } 
-    return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_SEQUENCED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+    return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
 CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
@@ -328,8 +328,6 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
         lua_getglobal(m_script, "Client_ReceiveData");
         if(lua_isfunction(m_script, -1))
         {
-            std::cout << "length of packet is " << p->length << "\n";
-            std::cout << "attemp to call lua fuinction \n";
             bool selfPacket = false;
             if(p->length < 2)
             {

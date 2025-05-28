@@ -229,9 +229,7 @@ function Server_CheckCharacterData(host)
     for k,v in pairs(Character_Table) do
         print(k,v)
     end
-
     for k,v in pairs(Character_Serialized_Table) do
-
         print(v)
     end
 end

@@ -155,7 +155,20 @@ CharacterDetailPanel = {
     criTxt = "",
     spdTxt ="",
     deathDoorSurviveChanceTxt = "",
-
+    ---@type ScrollablePanel 
+    skillDescPanel = nil,
+    ---@type RTLabel
+    skillNameTxt = nil,
+    ---@type RTLabel
+    skillEffTxt = nil,
+    ---@type RTLabel
+    skillQuoteTxt = nil,
+    
+    skillDescTxt = nil,
+    ---@type ScrollablePanel
+    skillPanel = nil,
+    ---@type table
+    skillIcons = {},
 }
 function CharacterDetailPanel:new()
     local o = {}
@@ -170,7 +183,7 @@ function CharacterDetailPanel:init(GUI_host, parent)
     self.detailPanel:init(GUI_host, 0, 0, 0, 0, self.mainPanel)
     self.detailPanel:setAlignment(0.5, 0.5)
     self.detailPanel:setPosStr("50%", "50%")
-    self.detailPanel:setSizeStr("98%", "98%")
+    self.detailPanel:setSizeStr("99%", "99%")
 
     self.t_picture = Picture:new()
     self.t_picture:init(GUI_host, "./Assets/TB_GUI/panels/missing.png", 0, 0, 164,343, self.detailPanel.ptr)
@@ -188,14 +201,14 @@ function CharacterDetailPanel:init(GUI_host, parent)
     local strLabel = RTLabel:new()
     strLabel:init(GUI_host, Tag.color_TB_STR .. "STR" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
     strLabel:setPosStr("18%", "15%")
-    
+
     self.strVal = RTLabel:new()
     self.strVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     self.strVal:setPosStr("26%", "15%")
     local vitLabel = RTLabel:new()
     vitLabel:init(GUI_host, Tag.color_TB_VIT .. "VIT" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
     vitLabel:setPosStr("32%", "15%")
-    
+
     self.vitVal = RTLabel:new()
     self.vitVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     self.vitVal:setPosStr("38%", "15%")
@@ -209,31 +222,31 @@ function CharacterDetailPanel:init(GUI_host, parent)
     local agiLabel = RTLabel:new()
     agiLabel:init(GUI_host, Tag.color_TB_AGI .. "AGI" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
     agiLabel:setPosStr("32%", "21%")
-    
+
     self.agiVal = RTLabel:new()
     self.agiVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     self.agiVal:setPosStr("38%", "21%")
-    
+
     local intLabel = RTLabel:new()
     intLabel:init(GUI_host, Tag.color_TB_INT .. "INT" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
     intLabel:setPosStr("18%", "26%")
-    
+
     self.intVal = RTLabel:new()
     self.intVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     self.intVal:setPosStr("26%", "26%")
-    
+
     local wisLabel = RTLabel:new()
     wisLabel:init(GUI_host, Tag.color_TB_WIS .. "WIS" .. Tag.color_close, 0, 0, self.detailPanel.ptr)
     wisLabel:setPosStr("32%", "26%")
-    
+
     self.wisVal = RTLabel:new()
     self.wisVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     self.wisVal:setPosStr("38%", "26%")
-    
+
     local hpMpLabel = RTLabel:new()
     hpMpLabel:init(GUI_host, "Hp/Mp", 0, 0, self.detailPanel.ptr)
     hpMpLabel:setPosStr("18%", "31%")
-    
+
     self.hp_mpVal = RTLabel:new()
     self.hp_mpVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
     -- self.hp_mpVal:setAlignment(TextAlginment.Center)
@@ -281,74 +294,39 @@ function CharacterDetailPanel:init(GUI_host, parent)
     self.titleVal:setPosStr("18%", "8%")
     self.titleVal:setScale(1.2)
 
-    -- local hpScaleLabel = Label:new()
-    -- hpScaleLabel:init(GUI_host, "HP scale", 0, 0, self.detailPanel.ptr)
-    -- hpScaleLabel:setPosStr("28%", "18%")
-    -- hpScaleLabel:setScale(0.8)
-    -- self.hpScaleVal = Label:new()
-    -- self.hpScaleVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    -- self.hpScaleVal:setPosStr("51%", "18%")
-    -- self.hpScaleVal:setScale(0.8)
-    -- local manaScaleLabel = Label:new()
-    -- manaScaleLabel:init(GUI_host, "Mana scale", 0, 0, self.detailPanel.ptr)
-    -- manaScaleLabel:setPosStr("35%", "23%")
-    -- manaScaleLabel:setScale(0.8)
-    -- self.manaScaleVal = Label:new()
-    -- self.manaScaleVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    -- self.manaScaleVal:setPosStr("51%", "23%")
-    -- self.manaScaleVal:setScale(0.8)
-
-    -- local physicDmgScaleLabel = Label:new()
-    -- physicDmgScaleLabel:init(GUI_host, "Physic DMG scale", 0, 0, self.detailPanel.ptr)
-    -- physicDmgScaleLabel:setPosStr("35%", "28%")
-    -- physicDmgScaleLabel:setScale(0.7)
-    -- self.physicDmgScaleVal = Label:new()
-    -- self.physicDmgScaleVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    -- self.physicDmgScaleVal:setPosStr("51%", "28%")
-    -- self.physicDmgScaleVal:setScale(0.8)
-    -- local magicDmgScaleLabel = Label:new()
-    -- magicDmgScaleLabel:init(GUI_host, "Magic DMG scale", 0, 0, self.detailPanel.ptr)
-    -- magicDmgScaleLabel:setPosStr("35%", "33%")
-    -- magicDmgScaleLabel:setScale(0.7)
-    -- self.magicDmgScaleVal = Label:new()
-    -- self.magicDmgScaleVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    -- self.magicDmgScaleVal:setPosStr("51%", "33%")
-    -- self.magicDmgScaleVal:setScale(0.8)
-
-    -- local physicDefScaleLabel = Label:new()
-    -- physicDefScaleLabel:init(GUI_host, "Physic def scale", 0, 0, self.detailPanel.ptr)
-    -- physicDefScaleLabel:setPosStr("35%", "38%")
-    -- physicDefScaleLabel:setScale(0.7)
-    -- self.physicDefScaleVal = Label:new()
-    -- self.physicDefScaleVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    -- self.physicDefScaleVal:setPosStr("51%", "38%")
-    -- self.physicDefScaleVal:setScale(0.8)
-    -- local magicDefScaleLabel = Label:new()
-    -- magicDefScaleLabel:init(GUI_host, "Magic def scale", 0, 0, self.detailPanel.ptr)
-    -- magicDefScaleLabel:setPosStr("35%", "43%")
-    -- magicDefScaleLabel:setScale(0.8)
-    -- self.magicDefScaleVal = Label:new()
-    -- self.magicDefScaleVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    -- self.magicDefScaleVal:setPosStr("51%", "43%")
-    -- self.magicDefScaleVal:setScale(0.8)
-    -- local accurateScaleLabel = Label:new()
-    -- accurateScaleLabel:init(GUI_host, "Accurate scale", 0, 0, self.detailPanel.ptr)
-    -- accurateScaleLabel:setPosStr("35%", "48%")
-    -- accurateScaleLabel:setScale(0.7)
-    -- self.accurateScaleVal = Label:new()
-    -- self.accurateScaleVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    -- self.accurateScaleVal:setPosStr("51%", "48%")
-    -- self.accurateScaleVal:setScale(0.8)
-    -- local evasivenessScaleLabel = Label:new()
-    -- evasivenessScaleLabel:init(GUI_host, "Evade scale", 0, 0, self.detailPanel.ptr)
-    -- evasivenessScaleLabel:setPosStr("35%", "53%")
-    -- evasivenessScaleLabel:setScale(0.8)
-    -- self.evadeChanceScaleVal = Label:new()
-    -- self.evadeChanceScaleVal:init(GUI_host, "0", 0, 0, self.detailPanel.ptr)
-    -- self.evadeChanceScaleVal:setPosStr("51%", "53%")
-    -- self.evadeChanceScaleVal:setScale(0.8)
-
     self.detailPanel:setVisible(false)
+
+    self.skillDescPanel = ScrollablePanel:new()
+    self.skillDescPanel:init(GUI_host, 0, 0, 0, 0, self.detailPanel.ptr)
+    self.skillDescPanel:setAlignment(0.5, 0.5)
+    self.skillDescPanel:setPosStr("25%", "80%")
+    self.skillDescPanel:setSizeStr("48%", "40%")
+
+    self.skillNameTxt = RTLabel:new()
+    self.skillNameTxt:init(GUI_host, "Name", 0, 0, self.skillDescPanel.ptr)
+    self.skillNameTxt:setScale(1.1)
+    self.skillNameTxt:setPosStr("1%", "1%")
+
+    self.skillDescTxt = RTLabel:new()
+    self.skillDescTxt:init(GUI_host, "Description", 0, 0, self.skillDescPanel.ptr)
+    self.skillDescTxt:setScale(0.8)
+    self.skillDescTxt:setPosStr("1%", "13%")
+
+    self.skillEffTxt = RTLabel:new()
+    self.skillEffTxt:init(GUI_host, "Effect", 0, 0, self.skillDescPanel.ptr)
+    self.skillEffTxt:setScale(0.8)
+    self.skillEffTxt:setPosStr("1%", "43%")
+
+    self.skillQuoteTxt = RTLabel:new()
+    self.skillQuoteTxt:init(GUI_host, "Quote", 0, 0, self.skillDescPanel.ptr)
+    self.skillQuoteTxt:setScale(0.7)
+    self.skillQuoteTxt:setPosStr("1%", "83%")
+
+    self.skillPanel = ScrollablePanel:new()
+    self.skillPanel:init(GUI_host, 0, 0, 0, 0, self.detailPanel.ptr)
+    self.skillPanel:setAlignment(0.5, 0.5)
+    self.skillPanel:setPosStr("75%", "80%")
+    self.skillPanel:setSizeStr("48%", "40%")
 
 end
 
