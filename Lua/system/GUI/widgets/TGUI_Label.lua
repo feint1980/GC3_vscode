@@ -183,7 +183,9 @@ end
 ---@param label pointer instance of Label
 ---@param callback function
 function TGUI_Label_setOnHoverCallback(label, callback)
+    print("TGUI_Label_setOnHoverCallback pre- call")
     cpp_Label_SetOnHoverCallback(label, callback)
+    print("TGUI_Label_setOnHoverCallback post- call")
 end
 
 --- function wrapper of cpp_Label_SetOffHoverCallback
@@ -191,7 +193,9 @@ end
 ---@param label pointer instance of Label
 ---@param callback function
 function TGUI_Label_setOffHoverCallback(label, callback)
+    print("TGUI_Label_setOffHoverCallback pre- call")
     cpp_Label_SetOffHoverCallback(label, callback)
+    print("TGUI_Label_setOffHoverCallback post- call")
 end
 
 --- function wrapper of cpp_Label_SetOnClickCallBack
@@ -199,7 +203,9 @@ end
 ---@param label pointer instance of Label
 ---@param callback function
 function TGUI_Label_setOnClickCallBack(label, callback)
+    print("TGUI_Label_setOnClickCallBack pre- call")
     cpp_Label_SetOnClickCallback(label, callback)
+    print("TGUI_Label_setOnClickCallBack post- call")
 end
 
 --- funtion wrapper of cpp_Label_SetScale

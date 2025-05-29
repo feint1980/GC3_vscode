@@ -217,10 +217,18 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
 
     tosAgree:setPosStr("50%","80%")
     tosAgree:setAlignment(TextAlginment.Center)
+    print("TOS setAlignment OK ")
     tosAgree:setHoverable(0,255,0,255,255,255,255,255)
-    tosAgree:setOnClickCallback(function() tosPanel:hideWithEffect(PanelShowType.Fade,250)  end)
-    tosPanel:showWithEffect(PanelShowType.Fade,250)
+    tosAgree:setOnClickCallback(function() 
+        tosPanel:hideWithEffect(PanelShowType.Fade,250)  
 
+    end)
+    print("reach here")
+    
+    tosPanel:showWithEffect(PanelShowType.Fade,250)
+    print("reach these")
+
+    print("TOS OK ")
     --- Login Panel section
     Login_LoginPanel = Panel:new()
     Login_LoginPanel:init(Login_GUIScriptingPtr,0,0,600,400)

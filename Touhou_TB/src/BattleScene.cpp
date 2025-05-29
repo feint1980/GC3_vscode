@@ -124,6 +124,7 @@ int lua_PickActiveEntity(lua_State * L)
 	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
 	F_Lua_BaseEntity * object = static_cast<F_Lua_BaseEntity*>(lua_touserdata(L, 2));
 	battleScene->pickActiveEntity(object);
+	return 0;
 }
 
 int lua_GetSlotCol(lua_State * L)
@@ -709,6 +710,7 @@ int lua_SelectHoverSlot(lua_State * L)
 	// 	int row = lua_tonumber(L, 3);
 	// 	handler->setSelectTargetSlot(col, row);
 	// }
+	return 0;
 	
 }
 
@@ -773,6 +775,7 @@ int lua_GuiHandlerClearIcons(lua_State * L)
 	BattleScene * battleScene = static_cast<BattleScene*>(lua_touserdata(L, 1));
 
 	battleScene->GUIHandlerClearIcons();
+	return 0;
 }
 
 void BattleScene::GUIHandlerClearIcons()

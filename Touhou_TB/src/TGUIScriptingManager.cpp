@@ -107,6 +107,7 @@ int lua_Panel_HideWithEffect(lua_State * L)
         int time = lua_tonumber(L, 3);
         panel->get()->hideWithEffect((tgui::ShowEffectType)type, std::chrono::milliseconds(time));
         panel->get()->moveToBack();
+        return 0;
     }
 }
 
@@ -124,6 +125,7 @@ int lua_Panel_ShowWithEffect(lua_State * L)
         int time = lua_tonumber(L, 3);
         panel->get()->showWithEffect((tgui::ShowEffectType)type, std::chrono::milliseconds(time));
         panel->get()->moveToFront();
+        return 0;
     }
 }
 
@@ -139,7 +141,9 @@ int lua_Panel_setVisible(lua_State * L)
         tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
         bool visible = lua_toboolean(L, 2);
         panel->get()->setVisible(visible);
+        return 0;
     }
+
 }
 
 int lua_Panel_SetAlignment(lua_State * L)
@@ -493,17 +497,28 @@ int lua_Label_SetAlignment(lua_State * L)
         tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr *>(lua_touserdata(L, 1));
         int aligmentType = lua_tonumber(L, 2);
         // 0 left, 1 center, 2 right
+        if(label->get())
+        {
+            std::cout << "lua_Label_SetAlignment OK (lua_Label_SetAlignment) " << lua_gettop(L) << "\n";
+            std::cout << "aligmentType is " << aligmentType << "\n";
+        }
+        else
+        {
+            std::cout << "lua_Label_SetAlignment failed (lua_Label_SetAlignment) " << lua_gettop(L) << "\n";
+        }
         switch(aligmentType)
         {
             case 0:// left
             {
                 // left plank (default by C++)
+                return 0;
             }
             break;
             case 1:// center
             {
                 label->get()->setOrigin(0.5,0);
                 label->get()->setAutoSize(true);
+                return 0;
             }
             break;
             case 2:// right
@@ -511,6 +526,7 @@ int lua_Label_SetAlignment(lua_State * L)
                 // todo later
                 label->get()->setOrigin(1.0,0);
                 label->get()->setAutoSize(true);
+                return 0;
             }
             break;
             default:
@@ -520,6 +536,7 @@ int lua_Label_SetAlignment(lua_State * L)
             }
             break;
         }
+        return 0;
     }
     return 0;
 }

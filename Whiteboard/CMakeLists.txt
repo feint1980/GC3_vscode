@@ -3,10 +3,10 @@ cmake_minimum_required(VERSION 3.10)
 set(PROJECT_N Whiteboard)
 project(${PROJECT_N} VERSION 1.0)
 
-set(CMAKE_CXX_FLAGS "-fpermissive -std=c++17 -municode -m32")
+set(CMAKE_CXX_FLAGS "-O3 -fpermissive -std=c++17 -municode -m32")
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
-file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/whiteboardMain.cpp
+file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/testBoard.cpp
     # ${PROJECT_SOURCE_DIR}/src/AESRSA_hybrid_example.cpp
     # ${PROJECT_SOURCE_DIR}/src/bcryptExample.cpp
     # ${PROJECT_SOURCE_DIR}/src/json_example.cpp

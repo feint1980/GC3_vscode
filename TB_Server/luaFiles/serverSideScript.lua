@@ -222,7 +222,6 @@ local function print_table(t)
         print(k,v)
     end
 end
-
 function Server_CheckCharacterData(host)
     print("Server_CheckCharacterData...")
 

@@ -128,29 +128,29 @@ Whiteboard/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/build
 .PHONY : Whiteboard/fast
 
-src/whiteboardMain.obj: src/whiteboardMain.cpp.obj
-.PHONY : src/whiteboardMain.obj
+src/testBoard.obj: src/testBoard.cpp.obj
+.PHONY : src/testBoard.obj
 
 # target to build an object file
-src/whiteboardMain.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.obj
-.PHONY : src/whiteboardMain.cpp.obj
+src/testBoard.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/testBoard.cpp.obj
+.PHONY : src/testBoard.cpp.obj
 
-src/whiteboardMain.i: src/whiteboardMain.cpp.i
-.PHONY : src/whiteboardMain.i
+src/testBoard.i: src/testBoard.cpp.i
+.PHONY : src/testBoard.i
 
 # target to preprocess a source file
-src/whiteboardMain.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.i
-.PHONY : src/whiteboardMain.cpp.i
+src/testBoard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/testBoard.cpp.i
+.PHONY : src/testBoard.cpp.i
 
-src/whiteboardMain.s: src/whiteboardMain.cpp.s
-.PHONY : src/whiteboardMain.s
+src/testBoard.s: src/testBoard.cpp.s
+.PHONY : src/testBoard.s
 
 # target to generate assembly for a file
-src/whiteboardMain.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/whiteboardMain.cpp.s
-.PHONY : src/whiteboardMain.cpp.s
+src/testBoard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Whiteboard.dir\build.make CMakeFiles/Whiteboard.dir/src/testBoard.cpp.s
+.PHONY : src/testBoard.cpp.s
 
 # Help Target
 help:
@@ -161,9 +161,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... Whiteboard
-	@echo ... src/whiteboardMain.obj
-	@echo ... src/whiteboardMain.i
-	@echo ... src/whiteboardMain.s
+	@echo ... src/testBoard.obj
+	@echo ... src/testBoard.i
+	@echo ... src/testBoard.s
 .PHONY : help
 
 

@@ -110,6 +110,7 @@ end
 ---@param type number type
 ---@param time number time to appear
 function Panel:showWithEffect(type,time)
+    
     TGUI_Panel_ShowWithEffect(self.ptr, type,time)
     self.visible = true
 end
@@ -239,7 +240,9 @@ end
 ---@param type number
 ---@param time number
 function TGUI_Panel_ShowWithEffect(panel,type, time)
+    print("TGUI_Panel_ShowWithEffect pre- call")
     cpp_Panel_ShowWithEffect(panel, type,time)
+    print("TGUI_Panel_ShowWithEffect post- call")
 end
 
 --- wrapper of cpp_Panel_setVisible
