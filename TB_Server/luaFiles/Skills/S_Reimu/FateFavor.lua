@@ -1,4 +1,4 @@
-package.path = package.path .. ';../../luaFiles/Skill/?.lua'
+package.path = package.path .. ';../../luaFiles/Skills/?.lua'
 
 require "Skill"
 

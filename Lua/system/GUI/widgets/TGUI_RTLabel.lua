@@ -1,6 +1,3 @@
-
-
-
 ---TGUI text tag 
 Tag = {}
 Tag.color_red = "<color=#ff1200>"
@@ -19,12 +16,11 @@ Tag.color_TB_INT = "<color=#FF00DC>"
 Tag.color_TB_WIS = "<color=#0094FF>"
 Tag.color_TB_title = "<color=#ADB5FF>"
 
-Tag.icon_soul = "<img=\"./Assets/TB_GUI/icons/soul.png\">"
-
 Tag.iRed = Tag.italic_open .. Tag.color_red
 Tag.iOrange = Tag.italic_open .. Tag.color_orange
 Tag.iGreen = Tag.italic_open .. Tag.color_green
 Tag.iClose = Tag.color_close .. Tag.italic_close
+
 
 TextAlginment = {
     Left = 0,

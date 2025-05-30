@@ -208,6 +208,16 @@ function Server_LoadCharacters(host)
             -- print("reloading files ... " .. filename)
             dofile("../luaFiles/Characters/"..filename .. ".lua")
             Character_Serialized_Table[filename] = SV_UpdateCharacter(host,Character_Table[filename])
+            for skillFileName in io.popen('dir /b/a-d  ..\\luaFiles\\Skills\\'..filename..'\\*.lua'):lines() 
+            do  --Windows 
+                skillFileName = skillFileName:match"^(.*)%.lua$"
+                if skillFileName then
+                    -- print("reloading files ... " .. skillFileName)
+                    dofile("../luaFiles/Skills/"..filename..'/'..skillFileName .. ".lua")
+                    print("reloading skills  [" .. filename..'] :['..skillFileName .. ".lua]")
+                    -- Character_Serialized_Table[filename][skillFileName] = 
+                end
+            end
         end
     end
 end
