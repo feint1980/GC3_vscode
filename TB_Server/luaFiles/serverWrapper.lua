@@ -161,3 +161,12 @@ end
 function SV_UpdateCharacter(host, character_stats)
     return cpp_updateCharacter(host, character_stats)
 end
+
+--- function wrapper of cpp_updateSkill
+--- @Desciption: update skill data
+--- @param host pointer instance of ServerScriptingManager
+--- @param skill_stats table of skill data
+--- @param name string
+function SV_UpdateSkill(host, skill_stats, name)
+    return cpp_updateSkill(host, skill_stats,name)
+end

@@ -29,7 +29,7 @@
 #include <iostream>
 #include <bcrypt.h>
 #include "CharacterDes.h"
-
+#include "SkillDesc.h"
 
 //#include "ServerMain.h"
 
@@ -79,6 +79,8 @@ public:
 
     sqlite3 * getDB() { return m_dbh->getDatabase();}
 
+    void addSkillStats(const std::string & skillName, const SkillStats & skillAtt);
+
 private:
 
     Feintgine::F_Cryptor m_cryptor;
@@ -93,6 +95,8 @@ private:
     unsigned char *passwordSalt = nullptr;
 
     CharacterDesc m_charDesc;
+
+    std::unordered_map<std::string, SkillStats> m_skillStatsMap;
 
 };
 

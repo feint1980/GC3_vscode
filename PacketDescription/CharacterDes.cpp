@@ -3,87 +3,87 @@
 static void to_json(json& j, const CharacterStats& c) 
 {
     j = json{
-        {"strength", c.strength},
-        {"vitality", c.vitality},
-        {"dexterity", c.dexterity},
-        {"agility", c.agility},
-        {"intelligence", c.intelligence},
-        {"wisdom", c.wisdom},
-        {"animationPath", c.animationPath},
-        {"portraitPath", c.portraitPath},
-        {"panelPath",c.panelPath},
-        {"action",c.action},
-        {"hp",c.hp},
-        {"mana",c.mana},
-        {"sp",c.sp},
-        {"spCap",c.spCap},
-        {"physicDmg",c.physicDmg},
-        {"physicDef",c.physicDef},
-        {"magicDmg",c.magicDmg},
-        {"magicDef",c.magicDef},
-        {"accurate",c.accurate},
-        {"evadeChance",c.evadeChance},
-        {"critChance",c.critChance},
-        {"hpScale",c.hpScale},
-        {"manaScale",c.manaScale},
-        {"physicDmgScale",c.physicDmgScale},
-        {"magicDmgScale",c.magicDmgScale},
-        {"physicDefScale",c.physicDefScale},
-        {"magicDefScale",c.magicDefScale},
-        {"accurateScale",c.accurateScale},
-        {"evadeChanceScale",c.evadeChanceScale},
-        {"deathDoorSurviveChance",c.deathDoorSurviveChance},
-        {"name",c.name},
-        {"lastName",c.lastName},
-        {"title",c.title},
-        {"side",c.side},
-        {"level",c.level},
-        {"xp", c.xp},
-        {"price", c.price},
-        {"ID",c.ID}
+        {"strength", c.strength}, // 1 use to check if all stats are set
+        {"vitality", c.vitality}, // 2
+        {"dexterity", c.dexterity}, // 3
+        {"agility", c.agility}, // 4
+        {"intelligence", c.intelligence}, // 5
+        {"wisdom", c.wisdom}, // 6
+        {"animationPath", c.animationPath}, // 7
+        {"portraitPath", c.portraitPath}, // 8
+        {"panelPath",c.panelPath}, // 9
+        {"action",c.action}, // 10
+        {"hp",c.hp}, // 11
+        {"mana",c.mana}, // 12
+        {"sp",c.sp}, // 13
+        {"spCap",c.spCap}, // 14
+        {"physicDmg",c.physicDmg}, // 15
+        {"physicDef",c.physicDef}, // 16
+        {"magicDmg",c.magicDmg}, // 17
+        {"magicDef",c.magicDef}, // 18
+        {"accurate",c.accurate}, // 19
+        {"evadeChance",c.evadeChance}, // 20
+        {"critChance",c.critChance}, // 21
+        {"hpScale",c.hpScale}, // 22
+        {"manaScale",c.manaScale}, // 23
+        {"physicDmgScale",c.physicDmgScale}, // 24
+        {"magicDmgScale",c.magicDmgScale}, // 25
+        {"physicDefScale",c.physicDefScale}, // 26
+        {"magicDefScale",c.magicDefScale}, // 27
+        {"accurateScale",c.accurateScale}, // 28
+        {"evadeChanceScale",c.evadeChanceScale}, // 29
+        {"deathDoorSurviveChance",c.deathDoorSurviveChance}, // 30
+        {"name",c.name}, // 31
+        {"lastName",c.lastName}, // 32
+        {"title",c.title}, // 33
+        {"side",c.side}, // 34
+        {"level",c.level}, // 35
+        {"xp", c.xp}, // 36
+        {"ID",c.ID}, // 37
+        {"price",c.price} // 38
     };
 }
 
 // Convert JSON to struct
 static void from_json(const json& j, CharacterStats& c) {
-    j.at("strength").get_to(c.strength);
-    j.at("vitality").get_to(c.vitality);
-    j.at("dexterity").get_to(c.dexterity);
-    j.at("agility").get_to(c.agility);
-    j.at("intelligence").get_to(c.intelligence);
-    j.at("wisdom").get_to(c.wisdom);
-    j.at("animationPath").get_to(c.animationPath);
-    j.at("portraitPath").get_to(c.portraitPath);
-    j.at("panelPath").get_to(c.panelPath);
-    j.at("action").get_to(c.action);
-    j.at("hp").get_to(c.hp);
-    j.at("mana").get_to(c.mana);
-    j.at("sp").get_to(c.sp);
-    j.at("spCap").get_to(c.spCap);
-    j.at("physicDmg").get_to(c.physicDmg);
-    j.at("physicDef").get_to(c.physicDef);
-    j.at("magicDmg").get_to(c.magicDmg);
-    j.at("magicDef").get_to(c.magicDef);
-    j.at("accurate").get_to(c.accurate);
-    j.at("evadeChance").get_to(c.evadeChance);
-    j.at("critChance").get_to(c.critChance);
-    j.at("hpScale").get_to(c.hpScale);  
-    j.at("manaScale").get_to(c.manaScale);
-    j.at("physicDmgScale").get_to(c.physicDmgScale);
-    j.at("magicDmgScale").get_to(c.magicDmgScale);
-    j.at("physicDefScale").get_to(c.physicDefScale);
-    j.at("magicDefScale").get_to(c.magicDefScale);
-    j.at("accurateScale").get_to(c.accurateScale);
-    j.at("evadeChanceScale").get_to(c.evadeChanceScale);
-    j.at("deathDoorSurviveChance").get_to(c.deathDoorSurviveChance);
-    j.at("name").get_to(c.name);
-    j.at("lastName").get_to(c.lastName);
-    j.at("title").get_to(c.title);
-    j.at("side").get_to(c.side);
-    j.at("level").get_to(c.level);
-    j.at("xp").get_to(c.xp);
-    j.at("price").get_to(c.price);
-    j.at("ID").get_to(c.ID);
+    j.at("strength").get_to(c.strength); // 1
+    j.at("vitality").get_to(c.vitality); // 2
+    j.at("dexterity").get_to(c.dexterity); // 3
+    j.at("agility").get_to(c.agility); // 4
+    j.at("intelligence").get_to(c.intelligence); // 5
+    j.at("wisdom").get_to(c.wisdom); // 6
+    j.at("animationPath").get_to(c.animationPath); // 7
+    j.at("portraitPath").get_to(c.portraitPath); // 8
+    j.at("panelPath").get_to(c.panelPath); // 9
+    j.at("action").get_to(c.action); // 10
+    j.at("hp").get_to(c.hp); // 11
+    j.at("mana").get_to(c.mana); // 12
+    j.at("sp").get_to(c.sp); // 13
+    j.at("spCap").get_to(c.spCap); // 14
+    j.at("physicDmg").get_to(c.physicDmg); // 15
+    j.at("physicDef").get_to(c.physicDef); // 16
+    j.at("magicDmg").get_to(c.magicDmg); // 17
+    j.at("magicDef").get_to(c.magicDef); // 18
+    j.at("accurate").get_to(c.accurate); // 19
+    j.at("evadeChance").get_to(c.evadeChance); // 20
+    j.at("critChance").get_to(c.critChance); // 21
+    j.at("hpScale").get_to(c.hpScale);  // 22
+    j.at("manaScale").get_to(c.manaScale); // 23
+    j.at("physicDmgScale").get_to(c.physicDmgScale); // 24
+    j.at("magicDmgScale").get_to(c.magicDmgScale); // 25
+    j.at("physicDefScale").get_to(c.physicDefScale); // 26
+    j.at("magicDefScale").get_to(c.magicDefScale); // 27
+    j.at("accurateScale").get_to(c.accurateScale); // 28
+    j.at("evadeChanceScale").get_to(c.evadeChanceScale); // 29
+    j.at("deathDoorSurviveChance").get_to(c.deathDoorSurviveChance); // 30
+    j.at("name").get_to(c.name); // 31
+    j.at("lastName").get_to(c.lastName); // 32
+    j.at("title").get_to(c.title); // 33
+    j.at("side").get_to(c.side); // 34
+    j.at("level").get_to(c.level); // 35
+    j.at("xp").get_to(c.xp); // 36
+    j.at("ID").get_to(c.ID); // 37
+    j.at("price").get_to(c.price); // 38
 }
 
 CharacterDesc::CharacterDesc()
@@ -100,11 +100,11 @@ void CharacterDesc::setCharacterStats(const CharacterStats & characterStats)
 {
     m_charStats = characterStats;
 
-    json j = m_charStats;
-    std::cout << "dump stat \n";
-    std::cout << j.dump(4,'.') << "\n";
-    std::cout << "check path \n";
-    std::cout << m_charStats.panelPath << "\n";
+    //json j = m_charStats;
+    // std::cout << "dump stat \n";
+    // std::cout << j.dump(4,'.') << "\n";
+    // std::cout << "check path \n";
+    // std::cout << m_charStats.panelPath << "\n";
     
 }
 
@@ -149,11 +149,6 @@ void CharacterDesc::writeData(const std::string & path)
     o.close();
 }
 
-CharacterStats CharacterDesc::readFromLua(const std::string & path)
-{
-    CharacterDesc desc;
-    
-}
 
 float CharacterDesc::getFloatAttributeByName(const std::string & attributeName)
 {

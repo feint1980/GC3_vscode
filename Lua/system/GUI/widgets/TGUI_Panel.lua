@@ -240,9 +240,7 @@ end
 ---@param type number
 ---@param time number
 function TGUI_Panel_ShowWithEffect(panel,type, time)
-    print("TGUI_Panel_ShowWithEffect pre- call")
     cpp_Panel_ShowWithEffect(panel, type,time)
-    print("TGUI_Panel_ShowWithEffect post- call")
 end
 
 --- wrapper of cpp_Panel_setVisible

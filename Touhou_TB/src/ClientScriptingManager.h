@@ -84,6 +84,8 @@ public:
     RakNet::SocketDescriptor m_socketDescriptor;
     bool m_RakNetCoreInitialized = false;
 
+    std::unordered_map<std::string, CharacterStats> m_characterStatsDict;
+
     Feintgine::F_Cryptor m_cryptor;
 
 };

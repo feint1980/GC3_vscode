@@ -499,12 +499,12 @@ int lua_Label_SetAlignment(lua_State * L)
         // 0 left, 1 center, 2 right
         if(label->get())
         {
-            std::cout << "lua_Label_SetAlignment OK (lua_Label_SetAlignment) " << lua_gettop(L) << "\n";
-            std::cout << "aligmentType is " << aligmentType << "\n";
+        
         }
         else
         {
-            std::cout << "lua_Label_SetAlignment failed (lua_Label_SetAlignment) " << lua_gettop(L) << "\n";
+            std::cout << "label is null " << "\n";
+            return -1;
         }
         switch(aligmentType)
         {

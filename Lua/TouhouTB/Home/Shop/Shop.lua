@@ -11,6 +11,8 @@ require "homeGlobal"
 require "CharacterPanel"
 require "CharacterShop"
 
+Tag.icon_soul = "<img=\"./Assets/TB_GUI/icons/soul.png\">"
+
 
 MenuPanels = _G.MenuPanels
 

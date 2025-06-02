@@ -11,11 +11,13 @@ using json = nlohmann::json;
 
 enum SkillAtt 
 {
-    name,
-    description,
-    effect,
-    quote,
-    iconPath
+    skillName,
+    skillDescription,
+    skillEffect,
+    skillQuote,
+    skillIconPath,
+    skillID,
+    skillInvalid = 67
 };
 
 struct SkillStats {
@@ -24,15 +26,25 @@ struct SkillStats {
     std::string effect;
     std::string quote;
     std::string iconPath;
+    std::string ID;
 };
 
-class SkillDesc {
+class SkillDesc  {
 public:
     SkillDesc();
     ~SkillDesc();
+    
+
+    void setSkillStats(SkillStats s);
+    void setAttribute(SkillAtt attribute, const std::string & value);
+    SkillAtt getAttributeByName(const std::string & attributeName);
+    std::string getAttribute(const std::string & attributeName);
+    std::string getAttribute(SkillAtt attribute);
+
+
 private:
 
-    SkillStats m_
+    SkillStats m_skillStats;
 };
 
 

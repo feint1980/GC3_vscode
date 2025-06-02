@@ -1,6 +1,5 @@
 
 
-Tag.icon_soul = "<img=\"./Assets/TB_GUI/icons/soul.png\">"
 
 ---@class Skill
 Skill = {
@@ -10,6 +9,7 @@ Skill = {
     quoteTxt = "Quote",
     iconPath =  "./Assets/TB_GUI/faces/missing.png",
     -- special properties
+    ID = "None",
     properties = {}
 }
 

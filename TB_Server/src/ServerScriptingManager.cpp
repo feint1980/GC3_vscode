@@ -35,87 +35,109 @@ std::vector<unsigned char> hashPasswordPBKDF2(const std::string& password, const
 static void to_json(json& j, const CharacterStats& c) 
 {
     j = json{
-        {"strength", c.strength},
-        {"vitality", c.vitality},
-        {"dexterity", c.dexterity},
-        {"agility", c.agility},
-        {"intelligence", c.intelligence},
-        {"wisdom", c.wisdom},
-        {"animationPath", c.animationPath},
-        {"portraitPath", c.portraitPath},
-        {"panelPath",c.panelPath},
-        {"action",c.action},
-        {"hp",c.hp},
-        {"mana",c.mana},
-        {"sp",c.sp},
-        {"spCap",c.spCap},
-        {"physicDmg",c.physicDmg},
-        {"physicDef",c.physicDef},
-        {"magicDmg",c.magicDmg},
-        {"magicDef",c.magicDef},
-        {"accurate",c.accurate},
-        {"evadeChance",c.evadeChance},
-        {"critChance",c.critChance},
-        {"hpScale",c.hpScale},
-        {"manaScale",c.manaScale},
-        {"physicDmgScale",c.physicDmgScale},
-        {"magicDmgScale",c.magicDmgScale},
-        {"physicDefScale",c.physicDefScale},
-        {"magicDefScale",c.magicDefScale},
-        {"accurateScale",c.accurateScale},
-        {"evadeChanceScale",c.evadeChanceScale},
-        {"deathDoorSurviveChance",c.deathDoorSurviveChance},
-        {"name",c.name},
-        {"lastName",c.lastName},
-        {"title",c.title},
-        {"side",c.side},
-        {"level",c.level},
-        {"xp", c.xp},
-        {"price",c.price},
-        {"ID",c.ID}
+        {"strength", c.strength}, // 1 use to check if all stats are set
+        {"vitality", c.vitality}, // 2
+        {"dexterity", c.dexterity}, // 3
+        {"agility", c.agility}, // 4
+        {"intelligence", c.intelligence}, // 5
+        {"wisdom", c.wisdom}, // 6
+        {"animationPath", c.animationPath}, // 7
+        {"portraitPath", c.portraitPath}, // 8
+        {"panelPath",c.panelPath}, // 9
+        {"action",c.action}, // 10
+        {"hp",c.hp}, // 11
+        {"mana",c.mana}, // 12
+        {"sp",c.sp}, // 13
+        {"spCap",c.spCap}, // 14
+        {"physicDmg",c.physicDmg}, // 15
+        {"physicDef",c.physicDef}, // 16
+        {"magicDmg",c.magicDmg}, // 17
+        {"magicDef",c.magicDef}, // 18
+        {"accurate",c.accurate}, // 19
+        {"evadeChance",c.evadeChance}, // 20
+        {"critChance",c.critChance}, // 21
+        {"hpScale",c.hpScale}, // 22
+        {"manaScale",c.manaScale}, // 23
+        {"physicDmgScale",c.physicDmgScale}, // 24
+        {"magicDmgScale",c.magicDmgScale}, // 25
+        {"physicDefScale",c.physicDefScale}, // 26
+        {"magicDefScale",c.magicDefScale}, // 27
+        {"accurateScale",c.accurateScale}, // 28
+        {"evadeChanceScale",c.evadeChanceScale}, // 29
+        {"deathDoorSurviveChance",c.deathDoorSurviveChance}, // 30
+        {"name",c.name}, // 31
+        {"lastName",c.lastName}, // 32
+        {"title",c.title}, // 33
+        {"side",c.side}, // 34
+        {"level",c.level}, // 35
+        {"xp", c.xp}, // 36
+        {"ID",c.ID}, // 37
+        {"price",c.price} // 38
     };
 }
 
 // Convert JSON to struct
 static void from_json(const json& j, CharacterStats& c) {
-    j.at("strength").get_to(c.strength);
-    j.at("vitality").get_to(c.vitality);
-    j.at("dexterity").get_to(c.dexterity);
-    j.at("agility").get_to(c.agility);
-    j.at("intelligence").get_to(c.intelligence);
-    j.at("wisdom").get_to(c.wisdom);
-    j.at("animationPath").get_to(c.animationPath);
-    j.at("portraitPath").get_to(c.portraitPath);
-    j.at("panelPath").get_to(c.panelPath);
-    j.at("action").get_to(c.action);
-    j.at("hp").get_to(c.hp);
-    j.at("mana").get_to(c.mana);
-    j.at("sp").get_to(c.sp);
-    j.at("spCap").get_to(c.spCap);
-    j.at("physicDmg").get_to(c.physicDmg);
-    j.at("physicDef").get_to(c.physicDef);
-    j.at("magicDmg").get_to(c.magicDmg);
-    j.at("magicDef").get_to(c.magicDef);
-    j.at("accurate").get_to(c.accurate);
-    j.at("evadeChance").get_to(c.evadeChance);
-    j.at("critChance").get_to(c.critChance);
-    j.at("hpScale").get_to(c.hpScale);  
-    j.at("manaScale").get_to(c.manaScale);
-    j.at("physicDmgScale").get_to(c.physicDmgScale);
-    j.at("magicDmgScale").get_to(c.magicDmgScale);
-    j.at("physicDefScale").get_to(c.physicDefScale);
-    j.at("magicDefScale").get_to(c.magicDefScale);
-    j.at("accurateScale").get_to(c.accurateScale);
-    j.at("evadeChanceScale").get_to(c.evadeChanceScale);
-    j.at("deathDoorSurviveChance").get_to(c.deathDoorSurviveChance);
-    j.at("name").get_to(c.name);
-    j.at("lastName").get_to(c.lastName);
-    j.at("title").get_to(c.title);
-    j.at("side").get_to(c.side);
-    j.at("level").get_to(c.level);
-    j.at("xp").get_to(c.xp);
-    j.at("price").get_to(c.price);
-    j.at("ID").get_to(c.ID);
+    j.at("strength").get_to(c.strength); // 1
+    j.at("vitality").get_to(c.vitality); // 2
+    j.at("dexterity").get_to(c.dexterity); // 3
+    j.at("agility").get_to(c.agility); // 4
+    j.at("intelligence").get_to(c.intelligence); // 5
+    j.at("wisdom").get_to(c.wisdom); // 6
+    j.at("animationPath").get_to(c.animationPath); // 7
+    j.at("portraitPath").get_to(c.portraitPath); // 8
+    j.at("panelPath").get_to(c.panelPath); // 9
+    j.at("action").get_to(c.action); // 10
+    j.at("hp").get_to(c.hp); // 11
+    j.at("mana").get_to(c.mana); // 12
+    j.at("sp").get_to(c.sp); // 13
+    j.at("spCap").get_to(c.spCap); // 14
+    j.at("physicDmg").get_to(c.physicDmg); // 15
+    j.at("physicDef").get_to(c.physicDef); // 16
+    j.at("magicDmg").get_to(c.magicDmg); // 17
+    j.at("magicDef").get_to(c.magicDef); // 18
+    j.at("accurate").get_to(c.accurate); // 19
+    j.at("evadeChance").get_to(c.evadeChance); // 20
+    j.at("critChance").get_to(c.critChance); // 21
+    j.at("hpScale").get_to(c.hpScale);  // 22
+    j.at("manaScale").get_to(c.manaScale); // 23
+    j.at("physicDmgScale").get_to(c.physicDmgScale); // 24
+    j.at("magicDmgScale").get_to(c.magicDmgScale); // 25
+    j.at("physicDefScale").get_to(c.physicDefScale); // 26
+    j.at("magicDefScale").get_to(c.magicDefScale); // 27
+    j.at("accurateScale").get_to(c.accurateScale); // 28
+    j.at("evadeChanceScale").get_to(c.evadeChanceScale); // 29
+    j.at("deathDoorSurviveChance").get_to(c.deathDoorSurviveChance); // 30
+    j.at("name").get_to(c.name); // 31
+    j.at("lastName").get_to(c.lastName); // 32
+    j.at("title").get_to(c.title); // 33
+    j.at("side").get_to(c.side); // 34
+    j.at("level").get_to(c.level); // 35
+    j.at("xp").get_to(c.xp); // 36
+    j.at("ID").get_to(c.ID); // 37
+    j.at("price").get_to(c.price); // 38
+}
+
+static void to_json(json& j, const SkillStats& s)
+{
+    j = json{
+        {"skillName", s.skillName},
+        {"description", s.description},
+        {"effect", s.effect},
+        {"quote", s.quote},
+        {"iconPath", s.iconPath},
+        {"ID", s.ID}
+    };
+}
+
+static void from_json(const json& j, SkillStats& s)
+{
+    j.at("skillName").get_to(s.skillName);
+    j.at("description").get_to(s.description);
+    j.at("effect").get_to(s.effect);
+    j.at("quote").get_to(s.quote);
+    j.at("iconPath").get_to(s.iconPath);
+    j.at("ID").get_to(s.ID);
 }
 
 static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **azColName)
@@ -238,102 +260,95 @@ int lua_UpdateCharacter(lua_State *L)
         {
             // std::cout << "got table, here we go \n";
             CharacterStats stats;
-            // Strength
-            assignValue(L,2,"Strength", stats.strength);
-            // Vitality
+            // Strength 1
+            assignValue(L,2,"Strength", stats.strength); 
+            // Vitality 2
             assignValue(L,2,"Vitality", stats.vitality);
-            // Dexterity
+            // Dexterity 3
             assignValue(L,2,"Dexterity", stats.dexterity);
-            // Agility
+            // Agility 4
             assignValue(L,2,"Agility", stats.agility);
-            // Intelligence
+            // Intelligence 5
             assignValue(L,2,"Intelligence", stats.intelligence);
-            // Wisdom
+            // Wisdom 6
             assignValue(L,2,"Wisdom", stats.wisdom);
-            // animationPath
+            // animationPath 7
             assignValue(L,2,"animationPath", stats.animationPath);
-            // portraitPath
+            // portraitPath 8
             assignValue(L,2,"portraitPath", stats.portraitPath);
-            // panelPath
+            // panelPath 9 
             assignValue(L,2,"panelPath", stats.panelPath);
-            // action 
+            // action 10
             assignValue(L,2,"action", stats.action);
-            // hp
+            // hp 11
             assignValue(L,2,"hp", stats.hp);
-            // mana
+            // mana 12
             assignValue(L,2,"mana", stats.mana);
-            // sp
+            // sp 13
             assignValue(L,2,"sp", stats.sp);
-            // spCap
+            // spCap 14
             assignValue(L,2,"spCap", stats.spCap);
-            // physicDmg
+            // physicDmg 15
             assignValue(L,2,"physicDmg", stats.physicDmg);
-            // physicDef
+            // physicDef 16
             assignValue(L,2,"physicDef", stats.physicDef);
-            // magicDmg
+            // magicDmg 17
             assignValue(L,2,"magicDmg", stats.magicDmg);
-            // magicDef
+            // magicDef 18
             assignValue(L,2,"magicDef", stats.magicDef);
-            // accurate
+            // accurate 19
             assignValue(L,2,"accurate", stats.accurate);
-            // evadeChance
+            // evadeChance 20
             assignValue(L,2,"evadeChance", stats.evadeChance);
-            // critChance
+            // critChance 21
             assignValue(L,2,"critChance", stats.critChance);
-            // hpScale
+            // hpScale 22
             assignValue(L,2,"hpScale", stats.hpScale);
-            // manaScale
+            // manaScale 23
             assignValue(L,2,"manaScale", stats.manaScale);
-            // physicDmgScale
+            // physicDmgScale 24
             assignValue(L,2,"physicDmgScale", stats.physicDmgScale);
-            // magicDmgScale
+            // magicDmgScale 25
             assignValue(L,2,"magicDmgScale", stats.magicDmgScale);
-            // physicDefScale
+            // physicDefScale 26
             assignValue(L,2,"physicDefScale", stats.physicDefScale);
-            // magicDefScale
+            // magicDefScale 27
             assignValue(L,2,"magicDefScale", stats.magicDefScale);
-            // accurateScale
+            // accurateScale 28
             assignValue(L,2,"accurateScale", stats.accurateScale);
-            // evadeChanceScale
+            // evadeChanceScale 29
             assignValue(L,2,"evadeChanceScale", stats.evadeChanceScale);
-            // deathDoorSurviveChance
+            // deathDoorSurviveChance 30
             assignValue(L,2,"deathDoorSurviveChance", stats.deathDoorSurviveChance);
-            // name
+            // name 31
             assignValue(L,2,"name", stats.name);
-            // lastName
+            // lastName 32
             assignValue(L,2,"lastName", stats.lastName);
-            // title
+            // title 33
             assignValue(L,2,"title", stats.title);
-            // side 
+            // side 34
             assignValue(L,2,"side", stats.side);
-            // level
+            // level 35
             assignValue(L,2,"level", stats.level);
-            // xp
+            // xp 36
             assignValue(L,2,"xp", stats.xp);
-            //price 
-            assignValue(L,2,"price", stats.price);
-            // ID
+            // ID 37
             assignValue(L,2,"ID", stats.ID);
-
-
+            //price 38
+            assignValue(L,2,"price", stats.price);
             // std::cout << "Strength: " << stats.strength << "\n";
             json j = stats;
-
             // std::cout << "JSON: " << j.dump(4) << "\n";
-
             std::string checkCharacterExist = "select character_id from character_base_table where character_id ='" + stats.ID + "';";
             if(host)
             {
-
                 // std::cout << "query \n";
-                // std::cout << checkCharacterExist << "\n";
-                
+                // std::cout << checkCharacterExist << "\n";                
                 if (host->doQuery(checkCharacterExist))
                 {
                     if(m_response.recordCount == 1) // exist
                     {
                         // std::cout << "chacater found ! update ...\n";
-                        
                         std::string updateQuery = "update character_base_table set stats = '" + j.dump(4) + "' where character_id ='" + stats.ID + "'";
                         // std::cout << "test query " << updateQuery << "\n";
                         host->doQuery(updateQuery);
@@ -354,7 +369,6 @@ int lua_UpdateCharacter(lua_State *L)
                     {
                         std::cout << "cooked (multiple record of character found) \n";
                     }
-                    
                 }
                 lua_pushstring(L,j.dump(0).c_str());
                 return 1;
@@ -366,6 +380,62 @@ int lua_UpdateCharacter(lua_State *L)
         }
     }
 }
+
+
+int lua_UpdateSkill(lua_State *L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_UpdateCharacter) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        SkillStats stats;
+        if (!lua_istable(L, 2)) {
+            std::cout << "Expected a table!\n"; 
+            // lua_pushstring(L, "Expected a table!");
+            lua_error(L); // Throws error in Lua
+            return 0;
+        }
+        else
+        {
+            // std::cout << "got table, here we go \n";
+            
+            assignValue(L,2,"name", stats.skillName); 
+
+            assignValue(L,2,"description", stats.description);
+
+            assignValue(L,2,"effectTxt", stats.effect);
+
+            assignValue(L,2,"quoteTxt", stats.quote);
+
+            assignValue(L,2,"iconPath", stats.iconPath);
+
+            assignValue(L,2,"ID", stats.ID);
+
+            // json j = stats;
+            // std::cout << "JSON: " << j.dump(4) << "\n";
+
+            // std::cout << j.dump(4) << "\n";
+
+        }
+        std::string tID = lua_tostring(L,3);
+        if(host)
+        {
+            host->addSkillStats(tID, stats);
+        }
+        else
+        {
+            std::cout << "host null \n";
+        }
+        return 0;
+    }
+    return 0;
+}
+
 
 int lua_Packet_getGUID(lua_State *L)
 {
@@ -393,25 +463,19 @@ int lua_SQLBindStatement(lua_State * L)
     }
     else
     {
-
         sqlite3_stmt* stmt =  static_cast<sqlite3_stmt*>(lua_touserdata(L, 1));
         int index = lua_tointeger(L,2);
         std::string val = lua_tostring(L,3);
-
         // std::cout << "lua_SQLBindStatement called corrct \n" ;
-
         // std::cout << "binding index " << index << " with value " << val << "\n";
         int rc = sqlite3_bind_text(stmt, index, val.c_str(), -1, SQLITE_TRANSIENT);
         // sqlite3_bind
-        
         char* expanded = sqlite3_expanded_sql(stmt);
         if (expanded) {
             // std::cout << "lua_SQLBindStatement Query: " << expanded << std::endl;
             sqlite3_free(expanded);  // Must free memory!
         }
-
         // std::cout << "return values is  " << rc << "\n"; 
-
         return 0;
     }
 }
@@ -428,8 +492,6 @@ int lua_SQLStepStatement(lua_State * L)
     {
         ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
         sqlite3_stmt* stmt =  static_cast<sqlite3_stmt*>(lua_touserdata(L, 2));
-
-        
         char* expanded = sqlite3_expanded_sql(stmt);
         if (expanded) {
             std::cout << "Expanded Query: " << expanded << std::endl;
@@ -438,7 +500,6 @@ int lua_SQLStepStatement(lua_State * L)
         int rc = sqlite3_step(stmt);
         lua_pushinteger(L, rc);
         return 1;
-        
     }
     return 0;
 }
@@ -978,6 +1039,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
     // Update Characters it belongs here because the server read and update it to database
     lua_register(m_script, "cpp_updateCharacter", lua_UpdateCharacter);
+    lua_register(m_script, "cpp_updateSkill", lua_UpdateSkill);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))
     {
@@ -1172,4 +1234,13 @@ PacketCode ServerScriptingManager::getSpecialRequestCode(RakNet::Packet *p)
 
     //std::cout << "Not a request, normal message : \n";
     return PacketCode::INVALID;
+}
+void ServerScriptingManager::addSkillStats(const std::string & skillName, const SkillStats & skillAtt)
+{ 
+    m_skillStatsMap[skillName] = skillAtt;
+    //test data
+    json j = m_skillStatsMap[skillName];
+    std::cout << "dump stat \n";
+    std::cout << j.dump(4,'.') << "\n";
+    
 }

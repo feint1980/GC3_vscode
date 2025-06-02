@@ -212,10 +212,9 @@ function Server_LoadCharacters(host)
             do  --Windows 
                 skillFileName = skillFileName:match"^(.*)%.lua$"
                 if skillFileName then
-                    -- print("reloading files ... " .. skillFileName)
                     dofile("../luaFiles/Skills/"..filename..'/'..skillFileName .. ".lua")
-                    print("reloading skills  [" .. filename..'] :['..skillFileName .. ".lua]")
-                    -- Character_Serialized_Table[filename][skillFileName] = 
+                    local tSkillID = filename..'_'..skillFileName
+                    Skill_Table[tSkillID] = SV_UpdateSkill(host,Skill_Table[skillFileName],tSkillID)
                 end
             end
         end

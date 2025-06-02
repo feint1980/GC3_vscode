@@ -14,6 +14,36 @@ using json = nlohmann::json;
 
 struct CharacterStats 
 {
+    // move constructor 
+    // CharacterStats(CharacterStats&& other) noexcept
+    // {
+    //     std::cout << "move constructor \n";
+    //     *this = std::move(other); 
+    // }
+    // // move assignment
+    // CharacterStats & operator=(CharacterStats && other) noexcept
+    // {
+    //     std::cout << "move assignment \n";
+    //     *this = std::move(other);
+    //     return *this;
+    // }
+
+    // // copy constructor 
+    // CharacterStats(const CharacterStats & other)
+    // {
+    //     std::cout << "copy constructor \n";
+    //     *this = other;
+    // }
+    // // copy assignment
+    // CharacterStats & operator=(const CharacterStats & other)
+    // {
+    //     *this = other;
+    //     return *this;
+    // }
+    // CharacterStats() {}
+
+
+
     float strength;
     float vitality ;
     float dexterity ;
@@ -56,44 +86,46 @@ struct CharacterStats
 
 enum Attribute
 {
-    Strength ,
-    Vitality ,
-    Dexterity ,
-    Agility ,
-    Intelligence ,
-    Wisdom ,
-    animationPath,
-    portraitPath,
-    panelPath,
-    action,
-    hp,
-    mana,
-    sp,
-    spCap,
-    physicDmg,
-    physicDef,
-    magicDmg,
-    magicDef,
-    accurate,
-    evadeChance,
-    critChance,
-    hpScale,
-    manaScale,
-    physicDmgScale,
-    magicDmgScale ,
-    physicDefScale ,
-    magicDefScale ,
-    accurateScale,
-    evadeChanceScale ,
-    deathDoorSurviveChance,
-    name ,
-    lastName ,
-    title ,
-    side ,
-    level,
-    xp,
-    ID,
-    price,
+    Strength = 1 , // 1
+    Vitality , // 2
+    Dexterity , // 3
+    Agility , // 4
+    Intelligence , // 5
+    Wisdom , // 6
+    animationPath, // 7
+    portraitPath, // 8
+    panelPath, // 9
+    action, // 10
+    hp, // 11
+    mana, // 12
+    sp, // 13
+    spCap, // 14
+    physicDmg, // 15
+    physicDef, // 16
+    magicDmg, // 17
+    magicDef, // 18
+    accurate, // 19
+    evadeChance, // 20
+    critChance, // 21
+    hpScale, // 22
+    manaScale, // 23
+    physicDmgScale, // 24
+    magicDmgScale , // 25
+    physicDefScale , // 26
+    magicDefScale , // 27
+    accurateScale, // 28
+    evadeChanceScale , // 29
+    deathDoorSurviveChance, // 30
+    name , // 31
+    lastName , // 32
+    title , // 33
+    side , // 34
+    level, // 35
+    xp, // 36
+    ID, // 37
+    price, // 38
+    // any new attribute must be added here 
+    
     Invalid
 };
 
@@ -134,8 +166,6 @@ class CharacterDesc
     void setCharacterStats(const CharacterStats & characterStats);
 
     void writeData(const std::string & path);
-
-    CharacterStats readFromLua(const std::string & path);
 
     Attribute getAttributeByName(const std::string & attributeName);
 
