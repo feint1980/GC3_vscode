@@ -188,7 +188,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
                 Client_Connect(ClientScriptingPtr)
                 Login_showNotification("Connecting ...","")
             else
-                Login_LoginPanel:showWithEffect(PanelShowType.Fade,250)
+                Login_LoginPanel:showWithEffect(PanelShowType.Fade,500)
             end
         end)
 
@@ -397,10 +397,10 @@ end
 Login_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet)
     print("ID_CONNECTION_REQUEST_ACCEPTED riu ko bro ?")
     if Login_Noti_Panel.visible == true then
-        Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,300)
+        Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,500)
     end
     Client_Connected = true
-    Login_LoginPanel:showWithEffect(PanelShowType.Fade,250)
+    Login_LoginPanel:showWithEffect(PanelShowType.Fade,500)
 end
 
 Login_HandleTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)

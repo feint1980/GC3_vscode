@@ -2,6 +2,13 @@
 
 #include "ServerScriptingManager.h"
 
+uint64_t getTicks() {
+    static const auto start = std::chrono::steady_clock::now();
+    return std::chrono::duration_cast<std::chrono::milliseconds>(
+        std::chrono::steady_clock::now() - start
+    ).count();
+}
+
 ServerMain::ServerMain()
 {
     m_password = "TTKR";
@@ -76,12 +83,24 @@ void ServerMain::init(const std::string & password, int port,unsigned int server
 
 void ServerMain::run()
 {
+    uint64_t prevTicks = getTicks();
     while(m_serverOn)
     {
+        uint64_t newTicks = getTicks();
+        uint64_t frameTime = newTicks - prevTicks;
+        prevTicks = newTicks;
+
+        float totalDeltaTime =  frameTime / (1000.0f  / 60.0f);
+
         // This sleep keeps RakNet responsive
-        RakSleep(10);
+        //RakSleep(10);
         // todo, think about delta time problem :
-        update(0.1f);
+        while (totalDeltaTime > 0.0f)
+        {
+            float deltaTime = totalDeltaTime > 0.1f ? 0.1f : totalDeltaTime;
+            update(deltaTime);
+            totalDeltaTime -= deltaTime;
+        }
 
         handleInput();
     }

@@ -162,7 +162,6 @@ end
 ---@param label pointer instance of Label
 ---@param aligmentType number 0 left, 1 center, 2 right
 function TGUI_Label_SetAlignment(label, aligmentType)
-    print("TGUI_Label_SetAlignment called")
     cpp_Label_SetAlignment(label, aligmentType)
 end
 

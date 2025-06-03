@@ -295,7 +295,26 @@ ClientScriptingManager::~ClientScriptingManager()
 
 void ClientScriptingManager::handleMessage(RakNet::Packet *p)
 {
-    sendDataToLuaScripting(p);
+   // unsigned char packetIdentifier = GetPacketIdentifier(p);
+    if(p)
+    {
+        sendDataToLuaScripting(p);
+        // std::cout << "append " << GetPacketIdentifier(p) << "\n";
+        // ResponseMSG msg(p, GetPacketIdentifier(p));
+        // m_responseQueue.push(msg);
+    }
+    //sendDataToLuaScripting(p);
+}
+
+void ClientScriptingManager::handleData()
+{
+    if(!m_responseQueue.empty())
+    {
+        //Pacj
+        RakNet::Packet *p = m_responseQueue.front().packet;
+        sendDataToLuaScripting(p);
+        m_responseQueue.pop();
+    }
 }
 
 void ClientScriptingManager::cleanUp()
@@ -327,61 +346,62 @@ void ClientScriptingManager::connect()
 
 void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
 {
-    std::cout << "sendDataToLuaScripting \n";
+   // std::cout << "sendDataToLuaScripting \n";
     if(m_script)
     {
-        std::cout << "script is not null \n";
-        lua_getglobal(m_script, "Client_ReceiveData");
-        if(lua_isfunction(m_script, -1))
-        {
-            bool selfPacket = false;
-            if(p->length < 2)
+        //std::cout << "script is not null \n";
+        if(p != nullptr)
+        {   
+            lua_getglobal(m_script, "Client_ReceiveData");
+            if(lua_isfunction(m_script, -1))
             {
-                selfPacket = true;
-
-            }
-            // std::cout << "tMsg check \n";
-            // for(int i = 0 ;i < tMsg.size() ; i++)
-            // {
-            //     printf("%02x", tMsg[i]);
-            // }   
-            // std::cout << "\ndecrypt : \n";
-            std::cout << "get packet identifier \n";
-            unsigned char identifier = GetPacketIdentifier(p);
-            // // std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
-            std::cout << "got packet !!!!!!! " << (int)identifier << "\n";
-
-            if(!selfPacket)
-            {
-                unsigned char iv[AES_IV_SIZE];
-                for(int i = 0 ; i < AES_IV_SIZE ; i++)
+                bool selfPacket = false;
+                if(p->length < 2)
                 {
-                    iv[i] = p->data[(p->length -1) - (AES_IV_SIZE - i)]; 
+                    selfPacket = true;
                 }
-                // std::cout << "salt is :\n";
-                // for(int i = 0 ; i < AES_IV_SIZE; i++)
+                // std::cout << "tMsg check \n";
+                // for(int i = 0 ;i < tMsg.size() ; i++)
                 // {
-                //     printf("%02x", iv[i]);
-                // }  
-                // std::cout << "\n";
-                std::vector<unsigned char> tMsg;
-                for(int i = 0 ;i < (p->length -1) - AES_IV_SIZE; i++)
+                //     printf("%02x", tMsg[i]);
+                // }   
+                // std::cout << "\ndecrypt : \n";
+                unsigned char identifier = GetPacketIdentifier(p);
+                // // std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
+                std::cout << "got packet !!!!!!! " << (int)identifier << "\n";
+
+                if(!selfPacket)
                 {
-                    tMsg.push_back(p->data[i]);
+                    unsigned char iv[AES_IV_SIZE];
+                    for(int i = 0 ; i < AES_IV_SIZE ; i++)
+                    {
+                        iv[i] = p->data[(p->length -1) - (AES_IV_SIZE - i)]; 
+                    }
+                    // std::cout << "salt is :\n";
+                    // for(int i = 0 ; i < AES_IV_SIZE; i++)
+                    // {
+                    //     printf("%02x", iv[i]);
+                    // }  
+                    // std::cout << "\n";
+                    std::vector<unsigned char> tMsg;
+                    for(int i = 0 ;i < (p->length -1) - AES_IV_SIZE; i++)
+                    {
+                        tMsg.push_back(p->data[i]);
+                    }
+                    lua_pushstring(m_script,m_cryptor.decrypt(tMsg, iv).c_str());
                 }
-                lua_pushstring(m_script,m_cryptor.decrypt(tMsg, iv).c_str());
-            }
-            else
-            {
-                lua_pushstring(m_script, std::string((const char *) p->data).c_str());
-            }
-            lua_pushlightuserdata(m_script, &p->systemAddress);
-            lua_pushnumber(m_script, identifier);
-            const int argc = 3;
-            const int returnCount = 0;
-            if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
-            {
-                //std::cout << "Pass Data OK \n";
+                else
+                {
+                    lua_pushstring(m_script, std::string((const char *) p->data).c_str());
+                }
+                lua_pushlightuserdata(m_script, &p->systemAddress);
+                lua_pushnumber(m_script, identifier);
+                const int argc = 3;
+                const int returnCount = 0;
+                if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+                {
+                    //std::cout << "Pass Data OK \n";
+                }
             }
         }
     }
@@ -389,7 +409,7 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
 
 void ClientScriptingManager::firstGateWay(RakNet::Packet *p)
 {
-    unsigned char packetIdentifier = GetPacketIdentifier(m_currentPacket);
+    unsigned char packetIdentifier = GetPacketIdentifier(p);
 
     // Check if this is a network message packet
     switch (packetIdentifier)
@@ -405,7 +425,7 @@ void ClientScriptingManager::firstGateWay(RakNet::Packet *p)
     case ID_ALREADY_CONNECTED:
     {
         // Connection lost normally
-        printf("already connected with guid %" PRINTF_64_BIT_MODIFIER "u\n", m_currentPacket->guid);
+        printf("already connected with guid %" PRINTF_64_BIT_MODIFIER "u\n", p->guid);
         m_isConnected = true;
         m_status = ClientStatus::Connected;
     }
@@ -453,14 +473,14 @@ void ClientScriptingManager::firstGateWay(RakNet::Packet *p)
 
     case ID_CONNECTION_REQUEST_ACCEPTED:
         // This tells the client they have connected
-        printf("Able to connect to %s gennerated GUID %s\n", m_currentPacket->systemAddress.ToString(true), m_currentPacket->guid.ToString());
-        printf("My external address is %s\n", m_client->GetExternalID(m_currentPacket->systemAddress).ToString(true));
+        printf("Able to connect to %s gennerated GUID %s\n", p->systemAddress.ToString(true), p->guid.ToString());
+        printf("My external address is %s\n", m_client->GetExternalID(p->systemAddress).ToString(true));
         m_status = ClientStatus::Connected;
         m_isConnected = true;
         break;
     case ID_CONNECTED_PING:
     case ID_UNCONNECTED_PING:
-        printf("Ping from %s\n", m_currentPacket->systemAddress.ToString(true));
+        printf("Ping from %s\n", p->systemAddress.ToString(true));
         break;
     default:
         // It's a client, so just show the message
@@ -482,13 +502,31 @@ void ClientScriptingManager::update(float deltaTime)
     if(m_RakNetCoreInitialized)
     {
         //PacketCode requestCode = getSpecialRequestCode(m_client->Receive());
-        for (m_currentPacket=m_client->Receive(); 
-        m_currentPacket;
-        m_client->DeallocatePacket(m_currentPacket),
-        m_currentPacket=m_client->Receive())
+        RakNet::Packet *p = nullptr;
+        p = m_client->Receive();
+        if(p)
         {
-            handleMessage(m_currentPacket);
+            handleMessage(p);
         }
+        m_client->DeallocatePacket(p);
+        // for (p=m_client->Receive(); 
+        // p;
+        // m_client->DeallocatePacket(p),
+        // p=m_client->Receive())
+        // {
+        //     handleMessage(p); 
+        //     //m_client->DeallocatePacket(p);
+        //    // p = nullptr;
+        // }
+        
+        // if(m_responseQueue.size() > 0)
+        // {
+        //     std::cout << "m_responseQueue size " << m_responseQueue.size() << "\n";
+        //     sendDataToLuaScripting(m_responseQueue.front().packet);
+        //     m_responseQueue.pop();
+        // }
+       // 
     }
     // m_client->DeallocatePacket(m_currentPacket);
+    //handleData();
 }

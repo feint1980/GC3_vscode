@@ -24,6 +24,8 @@
 #include <F_Cryptor.h>
 #include "LuaManager.h"
 
+#include <queue>
+
 enum ClientStatus
 {
     Disconnected,
@@ -34,6 +36,13 @@ enum ClientStatus
     Incompatible,
     IsFull,
     WSPacket,
+};
+
+struct ResponseMSG
+{
+    RakNet::Packet *packet;
+    unsigned char packetIdentifier;
+    ResponseMSG(RakNet::Packet *p, unsigned char packetIdentifier) : packet(p), packetIdentifier(packetIdentifier) {}
 };
 
 class ClientScriptingManager
@@ -49,6 +58,8 @@ public:
     void connect();
 
     void update(float deltaTime);
+
+    void handleData();
 
     void handleMessage(RakNet::Packet *p);
 
@@ -87,6 +98,8 @@ public:
     std::unordered_map<std::string, CharacterStats> m_characterStatsDict;
 
     Feintgine::F_Cryptor m_cryptor;
+
+    std::queue <ResponseMSG> m_responseQueue;
 
 };
 

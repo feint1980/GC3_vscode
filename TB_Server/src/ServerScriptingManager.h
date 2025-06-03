@@ -23,13 +23,15 @@
 #include "DataBaseHandler.h"
 #include <sstream>
 #include <iomanip>
-
+#include <queue>
 #include "LuaManager.h"
 
 #include <iostream>
 #include <bcrypt.h>
 #include "CharacterDes.h"
 #include "SkillDesc.h"
+
+#include <thread>
 
 //#include "ServerMain.h"
 
@@ -48,11 +50,24 @@ static SQLResponse m_response;
 
 static lua_State * shared_luaState;
 
+struct MSGResponse
+{
+    RakNet::Packet *packet;
+    PacketCode requestCode;
+    MSGResponse(RakNet::Packet *p, PacketCode requestCode) : packet(p), requestCode(requestCode) {};
+};
+
+struct CommonResponse
+{
+    RakNet::Packet *packet;
+    unsigned char packetIdentifier;
+    CommonResponse(RakNet::Packet *p, unsigned char packetIdentifier) : packet(p), packetIdentifier(packetIdentifier) {};
+};
+
 class ServerScriptingManager
 {
 public:
 
-    
     PacketCode getSpecialRequestCode(RakNet::Packet *p);
 
     ServerScriptingManager();
@@ -60,6 +75,10 @@ public:
 
     void init(RakNet::RakPeerInterface * server,DataBaseHandler * dbh);
     void update(float deltaTime);
+
+    void handleMessage();
+
+    void handleCommonMSG();
 
     ClientRequestCode handleCommand(RakNet::Packet *p);
 
@@ -96,7 +115,16 @@ private:
 
     CharacterDesc m_charDesc;
 
+    std::queue <MSGResponse> m_responseQueue;
+    std::queue <CommonResponse> m_commonResponseQueue;
+
     std::unordered_map<std::string, SkillStats> m_skillStatsMap;
+
+    //std::thread m_handleMessgeThread;
+
+    //std::vector<std::thread> m_threads;
+
+  //  std::thread m_handleCommonThread;
 
 };
 

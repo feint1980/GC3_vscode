@@ -914,7 +914,6 @@ int lua_Label_Create(lua_State * L)
 
 int lua_RTLabel_Create(lua_State * L)
 {
-    std::cout << "[C++] lua_RTLabel_Create called \n";
     if(lua_gettop(L) < 4 || lua_gettop(L) > 5)
     {
         std::cout << "gettop failed (lua_RTLabel_Create) " << lua_gettop(L) << "\n";

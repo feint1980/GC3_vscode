@@ -772,16 +772,73 @@ int lua_Packet_extract(lua_State * L)
 ServerScriptingManager::ServerScriptingManager()
 {
 
+
 }
 ServerScriptingManager::~ServerScriptingManager()
 {
 
 }
 
+void ServerScriptingManager::handleMessage()
+{
+
+    while(!m_responseQueue.empty()) // handle 1 response at the time
+    {
+        MSGResponse response = m_responseQueue.front();
+        // RakNet::Packet * p = response.m_packet;
+        // PacketCode requestCode = response.m_requestCode;
+        lua_getglobal(m_script, "HandleMessage");
+        if (lua_isfunction(m_script, -1))
+        {
+            lua_pushlightuserdata(m_script, this); // host
+
+            //std::cout << "Issue next task pointer " << object << "\n";
+
+            lua_pushlightuserdata(m_script, response.packet);
+            //lua_pushlightuserdata(m_script, m_guiHandler);
+
+            lua_pushnumber(m_script, response.requestCode);
+
+            // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+
+            if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
+            {
+                std::cout << "call HandleMessage failed \n";
+            }
+        }
+        m_responseQueue.pop();
+    }
+}
+
+void ServerScriptingManager::handleCommonMSG()
+{
+    while(!m_commonResponseQueue.empty()) // handle 1 response at the time
+    {
+        CommonResponse response = m_commonResponseQueue.front();
+        lua_getglobal(m_script, "HandleCommon");
+        if (lua_isfunction(m_script, -1))
+        {
+            lua_pushlightuserdata(m_script, this); // host
+
+            lua_pushlightuserdata(m_script, response.packet);
+
+            lua_pushnumber(m_script, response.packetIdentifier);
+
+            // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+
+            if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
+            {
+                std::cout << "call HandleMessage failed \n";
+            }
+        }
+        m_commonResponseQueue.pop();
+    }
+}
 
 void ServerScriptingManager::update(float deltaTime)
 {
-
+    handleMessage();
+    handleCommonMSG();
 }
 
 
@@ -847,23 +904,25 @@ unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
 {
     unsigned char packetIdentifier = GetPacketIdentifier(p);
 
-    std::cout << "handleCommon called #########" << (int)packetIdentifier << "#############\n";
-    lua_getglobal(m_script, "HandleCommon");
-    if (lua_isfunction(m_script, -1))
-    {
-        lua_pushlightuserdata(m_script, this); // host
+    m_commonResponseQueue.push(CommonResponse(p, packetIdentifier));
 
-        lua_pushlightuserdata(m_script, p);
+    // std::cout << "handleCommon called #########" << (int)packetIdentifier << "#############\n";
+    // lua_getglobal(m_script, "HandleCommon");
+    // if (lua_isfunction(m_script, -1))
+    // {
+    //     lua_pushlightuserdata(m_script, this); // host
 
-        lua_pushnumber(m_script, packetIdentifier);
+    //     lua_pushlightuserdata(m_script, p);
 
-        // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+    //     lua_pushnumber(m_script, packetIdentifier);
 
-        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
-        {
-            std::cout << "call HandleMessage failed \n";
-        }
-    }
+    //     // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+
+    //     if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
+    //     {
+    //         std::cout << "call HandleMessage failed \n";
+    //     }
+    // }
 
     return 666;
 }
@@ -874,25 +933,31 @@ ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
     // send relay data to lua to process
     std::string msg = getMegFromPackget(p);
 
-    lua_getglobal(m_script, "HandleMessage");
-    if (lua_isfunction(m_script, -1))
+    if(requestCode != PacketCode::INVALID)
     {
-        lua_pushlightuserdata(m_script, this); // host
-
-        //std::cout << "Issue next task pointer " << object << "\n";
-
-        lua_pushlightuserdata(m_script, p);
-        //lua_pushlightuserdata(m_script, m_guiHandler);
-
-        lua_pushnumber(m_script, requestCode);
-
-        // lua_pushlightuserdata(m_script, entity->getTargetSlot());
-
-        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
-        {
-            std::cout << "call HandleMessage failed \n";
-        }
+        // only push to queue when the request code is valid
+        m_responseQueue.push(MSGResponse(p, requestCode));
     }
+
+    // lua_getglobal(m_script, "HandleMessage");
+    // if (lua_isfunction(m_script, -1))
+    // {
+    //     lua_pushlightuserdata(m_script, this); // host
+
+    //     //std::cout << "Issue next task pointer " << object << "\n";
+
+    //     lua_pushlightuserdata(m_script, p);
+    //     //lua_pushlightuserdata(m_script, m_guiHandler);
+
+    //     lua_pushnumber(m_script, requestCode);
+
+    //     // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+
+    //     if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
+    //     {
+    //         std::cout << "call HandleMessage failed \n";
+    //     }
+    // }
 
     // switch (requestCode)
     // {
@@ -1146,6 +1211,19 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
             std::cout << "Call Server_LoadData from C++ OK \n";
         }
     }
+
+  //  m_handleMessgeThread = std::thread(&ServerScriptingManager::handleMessage, this);
+
+//    m_handleCommonThread = std::thread(&ServerScriptingManager::handleCommon, this);
+
+    // auto t = std::thread(&ServerScriptingManager::handleMessage, this);
+    // //m_threads.push_back(std::move(t));
+
+    // auto f = std::thread(&ServerScriptingManager::handleCommonMSG, this);
+
+    // t.join();
+    // f.join();
+    //m_threads.push_back(std::move(t));
 
     // lua_getglobal(m_script, "Server_CheckCharacterData");
     // if(lua_isfunction(m_script, -1))
