@@ -57,6 +57,7 @@ ResponseHandle[PacketCode.requestKey] = function(host, packet)
 
     print("request key found, processing")
     local pattern_start = "|REQUEST_KEY_REQUEST|"
+    print("message " .. message)
     local firstIndex = string.find(message, pattern_start)
     local beginP = firstIndex + string.len(pattern_start)
 
@@ -86,6 +87,7 @@ ResponseHandle[PacketCode.requestKey] = function(host, packet)
             -- gen key 
             local keyGen = AddRegisterKey(host)
             if keyGen ~= nil then
+                print("sendata " .. keyGen)
                 SV_SendMsg(host,clientIP,"Your register key is: " .. keyGen)
             else
                 print("keygen is nil")
@@ -177,6 +179,7 @@ ResponseHandle[PacketCode.requestUserData] = function(host,packet)
     local message = SV_GetPacketData(host,packet)
     local clientIP = SV_GetPacketIP(packet)
     local pattern_start = "|USERDATA_REQUEST|"
+    print("ResponseHandle msg" .. message)
     local firstIndex = string.find(message, pattern_start)
     local beginP = firstIndex + string.len(pattern_start)
     local pattern_end = "|USERDATA_END_REQUEST|"
@@ -205,7 +208,10 @@ ResponseHandle[PacketCode.login] = function(host,packet)
 
     local message = SV_GetPacketData(host,packet)
     local pattern_start = "|LOGIN_REQUEST|"
+    print("message " .. message)
     local firstIndex = string.find(message, pattern_start)
+
+    print(firstIndex)
     local beginP = firstIndex + string.len(pattern_start)
     local pattern_end = "|LOGIN_END_REQUEST|"
     local endIndex = string.find(message, pattern_end)

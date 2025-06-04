@@ -868,8 +868,6 @@ void F_Player::update(float deltaTime, std::vector<FairyBase *>  enemy,
 
 		}
 		
-		
-		//std::cout << m_animation.getCurrentAnimation()->getCurrentIndex() << " / " << m_animation.getCurrentAnimation()->getSize() << "\n";
 
 		m_pos += (m_vel * deltaTime);
 		m_animation.setPos(m_pos);
@@ -904,32 +902,6 @@ void F_Player::update(float deltaTime, std::vector<FairyBase *>  enemy,
 
 		}
 
-// 		 for (auto i = 0; i < guardians.size(); i++)
-// 		{
-// 			if (!m_isInvinsible)
-// 			{
-// 				if (m_afterImageTime <= 0.0f)
-// 				{
-
-// 					if (checkColliderWithEnemy(*guardians[i]))
-// 					{
-// 						die();
-// // 						m_deathCallback();
-// // 						m_isDeath = true;
-// // 						m_deadSoundEffect.playInChannel(0, 1);
-// 					}
-// 				}
-// // 				if (m_velocitySegment > 0)
-// // 				{
-// // 					if (checkColliderWithEnemy(*guardians[i]))
-// // 					{
-// // 						guardians[i]->takeDamage(7.5f);
-// // 					}
-// // 				}
-
-// 			}
-
-// 		}
 		for (auto i = 0; i < bullets.size(); i++)
 		{
 
@@ -2208,8 +2180,6 @@ void F_Player::updateEscapeVelocity(float deltaTime)
 			}
 			m_animation.setAngle(m_angle);
 		}
-		
-		
 		//if(tg_pos)
 	}
 	else

@@ -313,7 +313,29 @@ void F_MarisaLaser::drawRayLight(Feintgine::LightBatch & lightBatch)
 	lightPos.y -= m_dim.x * 0.5f;
 	//float m_rotation = 
 	t_attenuation = m_attenuation  - (m_attenuation *0.5f) *  GlobalValueClass::Instance()->getAmbientLight().x;
-	lightBatch.addRayLight(lightPos, glm::vec4(m_color.r * m_rateR, m_color.g * m_rateG, m_color.b * m_rateB, m_color.a)
+
+	Feintgine::Color tColor = m_color;
+
+	if(tColor.r < 0 )
+	{
+		tColor.r = 0;
+	}
+
+	if (tColor.g < 0)
+	{
+		tColor.g = 0;
+	}
+
+	if (tColor.b < 0)
+	{
+		tColor.b = 0;
+	}
+	if(tColor.a < 0)
+	{
+		tColor.a = 0;
+	}
+
+	lightBatch.addRayLight(lightPos, glm::vec4(tColor.r * m_rateR, tColor.g * m_rateG, tColor.b * m_rateB, tColor.a)
 		, 1.0f/ t_attenuation, m_rotation);
 }
 

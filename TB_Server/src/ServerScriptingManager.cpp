@@ -787,25 +787,25 @@ void ServerScriptingManager::handleMessage()
         MSGResponse response = m_responseQueue.front();
         // RakNet::Packet * p = response.m_packet;
         // PacketCode requestCode = response.m_requestCode;
-        lua_getglobal(m_script, "HandleMessage");
-        if (lua_isfunction(m_script, -1))
-        {
-            lua_pushlightuserdata(m_script, this); // host
+        // lua_getglobal(m_script, "HandleMessage");
+        // if (lua_isfunction(m_script, -1))
+        // {
+        //     lua_pushlightuserdata(m_script, this); // host
 
-            //std::cout << "Issue next task pointer " << object << "\n";
+        //     //std::cout << "Issue next task pointer " << object << "\n";
 
-            lua_pushlightuserdata(m_script, response.packet);
-            //lua_pushlightuserdata(m_script, m_guiHandler);
+        //     lua_pushlightuserdata(m_script, response.packet);
+        //     //lua_pushlightuserdata(m_script, m_guiHandler);
 
-            lua_pushnumber(m_script, response.requestCode);
+        //     lua_pushnumber(m_script, response.requestCode);
 
-            // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+        //     // lua_pushlightuserdata(m_script, entity->getTargetSlot());
 
-            if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
-            {
-                std::cout << "call HandleMessage failed \n";
-            }
-        }
+        //     if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
+        //     {
+        //         std::cout << "call HandleMessage failed \n";
+        //     }
+        // }
         m_responseQueue.pop();
     }
 }
@@ -837,8 +837,8 @@ void ServerScriptingManager::handleCommonMSG()
 
 void ServerScriptingManager::update(float deltaTime)
 {
-    handleMessage();
-    handleCommonMSG();
+  //  handleMessage();
+//   /  handleCommonMSG();
 }
 
 
@@ -895,7 +895,7 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
     {
         sendStr = std::move(data);
     }
-    m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY, RELIABLE_ORDERED,12, target,false);
+    m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY, RELIABLE_ORDERED,0, target,false);
     return 0;
 }
 
@@ -904,25 +904,25 @@ unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
 {
     unsigned char packetIdentifier = GetPacketIdentifier(p);
 
-    m_commonResponseQueue.push(CommonResponse(p, packetIdentifier));
+    //m_commonResponseQueue.push(CommonResponse(p, packetIdentifier));
 
     // std::cout << "handleCommon called #########" << (int)packetIdentifier << "#############\n";
-    // lua_getglobal(m_script, "HandleCommon");
-    // if (lua_isfunction(m_script, -1))
-    // {
-    //     lua_pushlightuserdata(m_script, this); // host
+    lua_getglobal(m_script, "HandleCommon");
+    if (lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this); // host
 
-    //     lua_pushlightuserdata(m_script, p);
+        lua_pushlightuserdata(m_script, p);
 
-    //     lua_pushnumber(m_script, packetIdentifier);
+        lua_pushnumber(m_script, packetIdentifier);
 
-    //     // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+        // lua_pushlightuserdata(m_script, entity->getTargetSlot());
 
-    //     if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
-    //     {
-    //         std::cout << "call HandleMessage failed \n";
-    //     }
-    // }
+        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
+        {
+            std::cout << "call HandleMessage failed \n";
+        }
+    }
 
     return 666;
 }
@@ -933,31 +933,31 @@ ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
     // send relay data to lua to process
     std::string msg = getMegFromPackget(p);
 
-    if(requestCode != PacketCode::INVALID)
-    {
+    //if(requestCode != PacketCode::INVALID)
+   // {
         // only push to queue when the request code is valid
-        m_responseQueue.push(MSGResponse(p, requestCode));
+        //m_responseQueue.push(MSGResponse(std::move( p), requestCode));
+    //}
+
+    lua_getglobal(m_script, "HandleMessage");
+    if (lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this); // host
+
+        //std::cout << "Issue next task pointer " << object << "\n";
+
+        lua_pushlightuserdata(m_script, p);
+        //lua_pushlightuserdata(m_script, m_guiHandler);
+
+        lua_pushnumber(m_script, requestCode);
+
+        // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+
+        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
+        {
+            std::cout << "call HandleMessage failed \n";
+        }
     }
-
-    // lua_getglobal(m_script, "HandleMessage");
-    // if (lua_isfunction(m_script, -1))
-    // {
-    //     lua_pushlightuserdata(m_script, this); // host
-
-    //     //std::cout << "Issue next task pointer " << object << "\n";
-
-    //     lua_pushlightuserdata(m_script, p);
-    //     //lua_pushlightuserdata(m_script, m_guiHandler);
-
-    //     lua_pushnumber(m_script, requestCode);
-
-    //     // lua_pushlightuserdata(m_script, entity->getTargetSlot());
-
-    //     if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
-    //     {
-    //         std::cout << "call HandleMessage failed \n";
-    //     }
-    // }
 
     // switch (requestCode)
     // {
@@ -1136,17 +1136,11 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
         9, 12, 91, 42
     } ;
 
-    int t3[8] = {
-        5, 10, 11, 4, 
-        44, 12, 8, 92
-    };
-
     std::string tStr1;
     
     std::string tStr2;
 
-    std::string tStr3;
-    
+
     for(int i = 0 ; i < 16 ; i++)
     {
         tStr1.push_back(t1[i]);
@@ -1158,11 +1152,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     {
         tStr2.push_back(t2[i]);
     }
-
-    for(int i = 0 ; i < 8 ; i++)
-    {
-        tStr3.push_back(t3[i]);
-    }
+    
     // std::cout << "tStr2:|" << tStr2 << "|\n";
 
     m_cryptor.init(tStr1, tStr2);   

@@ -53,15 +53,15 @@ private:
     bool m_serverOn = true;
     unsigned int m_connectionSize = 0;
 
-    RakNet::RakPeerInterface *m_server;
+    RakNet::RakPeerInterface *m_server = nullptr;
     RakNet::SocketDescriptor m_socketDescriptor[2];
-    RakNet::RakNetStatistics * m_statistics;
-    RakNet::Packet * m_currentPacket;
+    RakNet::RakNetStatistics * m_statistics = nullptr;
+    RakNet::Packet * m_currentPacket = nullptr;
     RakNet::SystemAddress m_clientID =RakNet::UNASSIGNED_SYSTEM_ADDRESS;
 
-    DataBaseHandler * m_dbh;
+    DataBaseHandler * m_dbh = nullptr;
 
-    ServerScriptingManager * m_scriptManager;
+    ServerScriptingManager * m_scriptManager = nullptr;
 
     char messageBuffer[2048];
     char serverBroadcast[2048];

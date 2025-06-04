@@ -17,7 +17,7 @@
 
 ClientMain::ClientMain()
 {
-    pw = "DavaiMachi";
+    pw = "TTKR";
     m_serverIP = "127.0.0.1";
     m_port = 1123;
 }
@@ -88,13 +88,13 @@ void ClientMain::init(const std::string & serverIP,const std::string & pw,unsign
     }
 
     
-    std::cout << "tStr1:|" <<  tStr1 << "|\n"; 
+    //std::cout << "tStr1:|" <<  tStr1 << "|\n"; 
 
     for(int i = 0 ; i < 8 ; i++)
     {
         tStr2.push_back(t2[i]);
     }
-    std::cout << "tStr2:|" << tStr2 << "|\n";
+    //std::cout << "tStr2:|" << tStr2 << "|\n";
 
 
     m_cryptor.init(tStr1, tStr2);   

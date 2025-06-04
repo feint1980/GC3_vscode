@@ -106,10 +106,10 @@ private:
 
     // Feintgine::F_Cryptor m_pwCryptor;
 
-    RakNet::RakPeerInterface * m_server;
-    DataBaseHandler * m_dbh;
+    RakNet::RakPeerInterface * m_server = nullptr;
+    DataBaseHandler * m_dbh = nullptr;
 
-    lua_State * m_script;
+    lua_State * m_script = nullptr;
 
     unsigned char *passwordSalt = nullptr;
 

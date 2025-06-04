@@ -117,7 +117,7 @@ namespace Feintgine {
 			desRect.z = m_sprites[i].scaleOffset.x * m_sprites[i].sprite.getDim().x * m_fitScale * m_enlarger;
 			desRect.w = m_sprites[i].scaleOffset.y * m_sprites[i].sprite.getDim().y * m_fitScale * m_enlarger;
 
-			spriteBatch.draw(desRect, m_sprites[i].sprite.getUV(), m_sprites[i].sprite.getTexture().id, m_depth + (m_sprites[i].depth * 0.1) + t_priority , m_sprites[i].color /*+ Feintgine::Color(m_color) */, -(m_angle) + m_sprites[i].angleOffset);
+			spriteBatch.draw(desRect, m_sprites[i].sprite.getUV(), m_sprites[i].sprite.getTexture().id, m_depth + (m_sprites[i].depth * 0.1) + t_priority , m_sprites[i].color /*+ Feintgine::Color(m_color) */, (m_angle) + m_sprites[i].angleOffset);
 		}
 	}
 	
