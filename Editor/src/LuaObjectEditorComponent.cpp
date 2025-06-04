@@ -556,7 +556,6 @@ void LuaObjectEditorComponent::loadBosses(const std::string & path)
 		
 		if (t_ext == "lua")
 		{
-			//std::cout << "found " << t_fileName << "\n";
 			CEGUI::ListboxTextItem * item;
 			item = new CEGUI::ListboxTextItem(t_fileName);
 			item->setSelectionBrushImage(sel_img);
@@ -636,7 +635,7 @@ void LuaObjectEditorComponent::loadMoveset(const std::string & path)
 				CEGUI::ListboxTextItem * item;
 				// strip functions
 				int tFound = m_lines[i].find("(");
-				//std::cout << "found " << tFound << "\n";
+
 				std::string stripStr = m_lines[i].substr(17, tFound - 17);
 				//
 				item = new CEGUI::ListboxTextItem(stripStr);

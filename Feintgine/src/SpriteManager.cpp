@@ -264,10 +264,19 @@ namespace Feintgine {
 			m_threads.push_back(std::move(loader));
 		}
 
-		for(int i = 0 ; i < m_threads.size() ; i++)	
+		for (auto it = m_threads.begin(); it != m_threads.end(); it++)
 		{
-			m_threads[i].join();
+			if(it->joinable())
+			{
+				it->join();
+			}
+			it = m_threads.erase(it);
 		}
+
+		// for(int i = 0 ; i < m_threads.size() ; i++)	
+		// {
+		// 	m_threads[i].join();
+		// }
 
 		std::cout << "back to main thread \n";
 
@@ -298,6 +307,15 @@ namespace Feintgine {
 			m_SpritePackets[m_storedKey[i]].updateTexture();
 		}
 		std::cout << "loaded using " << target_threads << " thread(s) \n";
+
+		// clear up threads
+		// for(int i = 0 ; i < m_threads.size() ; i++)
+		// {
+			
+		// 	m_threads.erase(m_threads.begin() + i);
+		// }
+		// m_threads.clear();
+
 		return 0;
 	}
 

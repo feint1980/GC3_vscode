@@ -31,6 +31,14 @@ Home_ClientScriptingPtr = nil
 ---@type pointer ClientCharacterHandler
 Home_ClientCharacterHandlerPtr = nil
 
+---Notification
+---@type Panel
+Home_Noti_Panel = nil
+---@type RTLabel
+Home_Noti_Msg = nil
+---@type Label
+Home_Noti_Btn = nil
+
 --- Main 
 ---@type Label
 Main_NameLabel = nil
@@ -63,6 +71,34 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     if Home_ClientScriptingPtr ~= nil then
         print("Home_ClientScriptingPtr is not nil")
     end
+
+    --- Notification section ----
+    Home_Noti_Panel = Panel:new()
+    Home_Noti_Panel:init(Home_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
+    print("init panel OK")
+    Home_Noti_Panel:setAlignment(0.5,0.5)
+    print("set aligment OK")
+    Home_Noti_Panel:setSizeStr("30%", "25%")
+    print("set size OK")
+    Home_Noti_Panel:setPosStr("50%", "50%")
+    print("set pos OK")
+    Home_Noti_Panel:setVisible(false)
+    print("set visible OK")
+    Home_Noti_Msg = RTLabel:new()
+    Home_Noti_Msg:init(Home_GUIScriptingPtr,"",0,0,Home_Noti_Panel.ptr)
+    Home_Noti_Msg:setAlignment(TextAlginment.Center)
+    Home_Noti_Msg:setPosStr("50%","20%")
+
+    Home_Noti_Btn = Label:new()
+    Home_Noti_Btn:init(Home_GUIScriptingPtr,"OK",0,0,Home_Noti_Panel.ptr)
+    Home_Noti_Btn:setAlignment(TextAlginment.Center)
+    Home_Noti_Btn:setPosStr("50%","75%")
+    Home_Noti_Btn:setHoverable(0,255,0,255,255,255,255,255)
+    Home_Noti_Btn:setOnClickCallback(function() 
+        cpp_backToMenu(HomeSceneHost)    
+    end)
+
+
     ---- GUI section ----
     Main_NameLabel = Label:new()
     Main_NameLabel:init(Home_GUIScriptingPtr,"",0,0)
@@ -275,4 +311,41 @@ function HomeMain_RequestDataLoop()
         Home_RequestUserlData()
         HomeMain_RequestDataLoop()
     end)
+end
+
+
+
+---- basic network handling 
+Network_CommonTask = {}
+---@Description handle packet when connected
+---@param host pointer instance of ClientScriptingManager
+---@param packet Client_Packets
+HandlePacketTask["common"] = function(host,packet)
+    -- print("recive packet  >>>> " .. packet.packetID)
+    if Network_CommonTask[packet.packetID] ~= nil then
+        Network_CommonTask[packet.packetID](ClientSide_Host,packet)
+    end
+end
+
+Network_CommonTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)
+    print("ID_CONNECTION_ATTEMPT_FAILED")
+    -- Client_Connected = false
+    Home_showNotification("Failed to connect !!!!","OK")
+end
+
+Network_CommonTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
+    Home_showNotification("Connection lost !","OK")
+    -- Client_Connected = false
+end
+
+Network_CommonTask[PacketID.ID_CONNECTION_LOST] = function(host,packet)
+    Home_showNotification("Connection lost !","OK")
+    Client_Connected = false
+end
+
+function Home_showNotification(msg,btnText)
+    Home_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
+    Home_Noti_Msg:setText(msg)
+    Home_Noti_Btn:setText(btnText)
+    Home_Noti_Panel.visible = true
 end

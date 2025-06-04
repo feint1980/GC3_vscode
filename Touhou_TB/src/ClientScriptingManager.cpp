@@ -192,7 +192,6 @@ CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
     CharacterStats result;
     json j = json::parse(str);
     result = j.get<CharacterStats>();
-    std::cout << "result check <><><><><><>< " << result.ID << "\n";
 
     // CharacterStats * p = &result;
     // m_characterStatsDict[result.ID] = *p;

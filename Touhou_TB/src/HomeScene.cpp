@@ -23,6 +23,25 @@ int lua_getInfo(lua_State * L)
     return 0;
 }
 
+int lua_backToMenu(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_backToMenu) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        
+        //std::cout << " back to main menu \n";
+        HomeScene * host = (HomeScene *)lua_touserdata(L, 1);
+        host->backToMainMenu();
+    }
+    return 0;
+}
+
+
+
 HomeScene::HomeScene()
 {
 
@@ -31,6 +50,11 @@ HomeScene::HomeScene()
 HomeScene::~HomeScene()
 {
 
+}
+
+void HomeScene::backToMainMenu()
+{
+    m_currentState = Feintgine::ScreenState::CHANGE_PREVIOUS;
 }
 
 HomeScene::HomeScene(Feintgine::Window * window)
@@ -50,12 +74,18 @@ void HomeScene::initShader()
 	m_shader.addAttribute("vertexColor");
 	m_shader.addAttribute("vertexUV");
 	m_shader.linkShaders();
+
 }
 
 void HomeScene::onEntry()
 {
     std::cout << "home scene onEntry \n";
-	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
+    if(!loaded)
+    {
+        Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
+        loaded = true;
+    }
+
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	
     m_camera.setPosition(glm::vec2(0, 0));
@@ -112,7 +142,7 @@ int HomeScene::getNextScreenIndex() const
 
 int HomeScene::getPreviousScreenIndex() const
 {
-    return -1;
+    return 0;
 }
 
 void HomeScene::onExit()
@@ -213,6 +243,7 @@ void HomeScene::initGUI()
     }
 
     lua_register(m_script, "cpp_getInfo", lua_getInfo);
+    lua_register(m_script, "cpp_backToMenu", lua_backToMenu);
     lua_getglobal(m_script, "HomeSceneInit");
     if(lua_isfunction(m_script, -1))
     {

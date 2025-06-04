@@ -130,7 +130,6 @@ int ChatBubble::getnearst(const std::string & ts)
 	{
 		if (ts[i] == ' ')
 		{
-			//std::cout << " found " << i << "\n";
 			if (abs(i - sizeRule) < abs(biggest))
 			{
 				biggest =  i- sizeRule;

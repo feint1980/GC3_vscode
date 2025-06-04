@@ -410,12 +410,14 @@ Login_HandleTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)
 end
 
 Login_HandleTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
-    print("ID_DISCONNECTION_NOTIFICATION")
+    Login_showNotification("Connection lost !","OK")
+    Login_LoginPanel:hideWithEffect(PanelShowType.Fade,250)
     Client_Connected = false
 end
 
 Login_HandleTask[PacketID.ID_CONNECTION_LOST] = function(host,packet)
-    print("ID_CONNECTION_LOST")
+    Login_showNotification("Connection lost !","OK")
+    Login_LoginPanel:hideWithEffect(PanelShowType.Fade,250)
     Client_Connected = false
 end
 
@@ -442,9 +444,9 @@ Login_HandleStep2[Packet_OtherID.ID_LOGIN_POS] = function(host,packet)
     local tData = StripMSG(packet.data,Packet_OtherID.ID_LOGIN_POS)
 
     local tD = SplitMessgae(tData,"|",2)
-    Login_Noti_Msg:setText("Loading ...")
-    Login_Noti_Btn:setText("OK")
-    Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
+    -- Login_Noti_Msg:setText("Loading ...")
+    -- Login_Noti_Btn:setText("OK")
+    -- Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
 
     cpp_switchScene(LoginHost,tD[1],tD[2],tD[3],0)
 end

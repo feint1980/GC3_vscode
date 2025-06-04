@@ -73,7 +73,6 @@ end
 ---@Description set the alignment of the label
 ---@param alignment number alignment (0 = left, 1 = center, 2 = right)
 function Label:setAlignment(alignment)
-    print("set alignment")
     TGUI_Label_SetAlignment(self.ptr, alignment)
 end
 

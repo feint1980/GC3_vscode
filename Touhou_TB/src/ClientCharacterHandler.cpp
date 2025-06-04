@@ -165,12 +165,11 @@ CharacterDesc * ClientCharacterHandler::getCharacter(const std::string & name)
 F_Lua_BaseEntity * ClientCharacterHandler::createCharacter(const std::string & name ,CharacterDesc *characterDesc)
 {
     F_Lua_BaseEntity * entity = new F_Lua_BaseEntity();
-    std::cout << "new OK \n";
+    // std::cout << "new OK \n";
     entity->setCharacterDesc(*characterDesc);
-    std::cout << "setCharacterDesc OK \n";
-    std::cout << "insert " << name << " with value " << entity << "\n";
+    // std::cout << "setCharacterDesc OK \n";
+    // std::cout << "insert " << name << " with value " << entity << "\n";
     // m_characters.insert(std::make_pair(name, entity));
-    std::cout << "insert OK \n";
     return entity;
     // m_characters[name] = std::move(entity);
     // return m_characters[name];

@@ -66,6 +66,8 @@ public:
 
     virtual void checkInput() override;
 
+    void backToMainMenu();
+
     void handleInput(Feintgine::InputManager & inputManager);
 
     void initGUI();
@@ -96,6 +98,8 @@ private:
     tgui::Label::Ptr m_text_load;
 
     tgui::Gui * m_tgui_load;
+
+    bool loaded = false;
 
     lua_State * m_script = nullptr;
 

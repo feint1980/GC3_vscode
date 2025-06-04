@@ -66,7 +66,6 @@ function TurnHandler:getCharacterFromDyobj(dyobj)
     print("getCharacterFromDyobj called")
     for i = 1, #self.totalCharList do
         if self.totalCharList[i].dyobj == dyobj then
-            print("found " .. self.totalCharList[i].name)
             return self.totalCharList[i]
         end
     end

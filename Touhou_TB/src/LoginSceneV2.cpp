@@ -81,6 +81,7 @@ void LoginSceneV2::initShader()
 void LoginSceneV2::onEntry()
 {
     
+    std::cout << "login scene onEntry \n";
 	// Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	
