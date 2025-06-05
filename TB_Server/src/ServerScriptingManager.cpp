@@ -1310,5 +1310,4 @@ void ServerScriptingManager::addSkillStats(const std::string & skillName, const 
     json j = m_skillStatsMap[skillName];
     std::cout << "dump stat \n";
     std::cout << j.dump(4,'.') << "\n";
-    
 }

@@ -168,6 +168,7 @@ F_Lua_BaseEntity * ClientCharacterHandler::createCharacter(const std::string & n
     // std::cout << "new OK \n";
     entity->setCharacterDesc(*characterDesc);
     // std::cout << "setCharacterDesc OK \n";
+    //m_characters[name] = entity;
     // std::cout << "insert " << name << " with value " << entity << "\n";
     // m_characters.insert(std::make_pair(name, entity));
     return entity;

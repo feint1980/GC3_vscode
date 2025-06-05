@@ -74,8 +74,8 @@ public:
 
 protected:
 
-    Slot * m_currentSlot;
-    Slot * m_moveTargetSlot;
+    Slot * m_currentSlot = nullptr;
+    Slot * m_moveTargetSlot = nullptr; 
 
     int m_side = 1;
 
@@ -91,7 +91,7 @@ protected:
     float m_yOffset  ;
 
     Feintgine::F_AnimatedObject m_animation;
-    EmptyObject * m_portrait;
+    EmptyObject * m_portrait = nullptr;
 
     CharacterDesc m_characterDesc;
 

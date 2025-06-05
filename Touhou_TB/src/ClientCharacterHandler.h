@@ -22,7 +22,7 @@ public:
 
 private:
     std::unordered_map<std::string, CharacterDesc * > m_charactersDesc;
-    std::unordered_map<std::string, F_Lua_BaseEntity * > m_characters;
+    //std::unordered_map<std::string, F_Lua_BaseEntity * > m_characters;
 
     lua_State * m_script;
 };

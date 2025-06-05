@@ -174,8 +174,6 @@ void LoginSceneV2::checkInput()
 
 void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
 {
-
-
     if (inputManager.isKeyPressed(SDL_QUIT))
 	{
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;

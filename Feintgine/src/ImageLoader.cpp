@@ -39,9 +39,9 @@ namespace Feintgine{
 			//m_mutex_t.lock();
 
 			//A_Context_saver::getContext_saver()->addOut(out);
-			std::unique_lock<std::mutex> lock(m_mutex_t);
+			//std::unique_lock<std::mutex> lock(m_mutex_t);
 			A_Context_saver::getContext_saver()->addTextureBuffer(filePath,out);
-			lock.unlock();
+			//lock.unlock();
 			
 			//m_mutex_t.unlock();
 		}
