@@ -246,6 +246,7 @@ HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES_DONE] = function(host,packet)
             Shop_CharacterTable["Reimu"] = Reimu:new()
             local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
             Shop_CharacterTable["Reimu"]:initNonCB(ClientCharacterHandler_Host,"Reimu",t)
+
         elseif k == "S_Patchouli" then
             print("found Patchouli")
             Shop_CharacterTable["Patchouli"] = Patchouli:new()
@@ -272,6 +273,10 @@ HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES_DONE] = function(host,packet)
     table.sort(Shop_CharacterTable, function(a,b) 
         return a.name < b.name 
         end)
+
+    for k,v in pairs(Shop_CharacterTable) do
+        print(k,v.dyobj)
+    end
 
     for k,v in pairs(Shop_CharacterTable) do
         Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250, v.panelPath,v.name,v.price)

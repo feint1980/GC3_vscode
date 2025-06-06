@@ -404,8 +404,6 @@ void ClientMain::handleCommand(const std::string & command)
         sendData(packet);
 
         // m_client->Send(packet.c_str(), packet.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
-        
-      
     }
     break;
 

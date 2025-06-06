@@ -11,6 +11,7 @@ require "clientWrapper"
 require "LuaEventHandler"
 
 
+
 ---@class TGUIScriptingPtr
 ---@class ClientScriptingPtr
 
@@ -108,6 +109,7 @@ function Login_CombinePackage(type,list)
     returnValue = returnValue .. type .. "_END_REQUEST|"
     return returnValue
 end
+
 
 function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     LoginHost = host
@@ -269,6 +271,8 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_LoginBtn:setAlignment(TextAlginment.Center)
     Login_LoginBtn:setHoverable(0,255,0,255,255,255,255,255)
     Login_LoginBtn:setOnClickCallback(function()
+
+        Login_showNotification("Logging ...","")
         Login_MainCall(host)
     end)
 
@@ -360,6 +364,9 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
         Login_RegisterPanel:hideWithEffect(PanelShowType.Fade,250)
     end)
     ---- TOS section end
+    ---
+    --- loop 
+    -- FunctionList["loop_check"]()
 end
 
 ---@Description show Notification box
@@ -466,9 +473,34 @@ Login_HandleStep2[Packet_OtherID.ID_REGISTER_POS] = function(host,packet)
     Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
 end
 
+
+
+FunctionList["login_retries"] = function(waitTime)
+    Tscheduler_addTask(waitTime, function()
+        print("login check ...")
+        local tSendResult = -1
+        tSendResult = Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+        if tSendResult ~= 0 then
+            FunctionList["login_retries"](50)
+        end
+    end)
+end
+
 function Login_MainCall(host)
     if Client_Connected == true then
-        Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+        
+        FunctionList["login_retries"](1)
+        -- while tSendResult ~=0 do
+        --    -- Tscheduler_addTask(5, function()
+        --         print("retry ...")
+        --    -- end)
+        -- end
+        -- if tSendResult ~= 0 then
+
+        -- --   Tscheduler_addTask(100, function()
+        --     tSendResult = Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+        -- -- end)
+        -- end
     end
     -- print("setOnClickCallback send data : ")
     -- print(Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))

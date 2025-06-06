@@ -233,8 +233,14 @@ ResponseHandle[PacketCode.login] = function(host,packet)
             end
         end
         -- print("account check OK, send OK message")
-        SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
-        local systemAddress = SV_GetPacketIP(packet)
+        local sendOK = -1
+        sendOK = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
+        while sendOK ~= 0 do
+            sendOK = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
+        end
+        local systemAddress = SV_GetPacketIP(packet) ~= 0 do 
+
+        end
         CH_AddClientEP(systemAddress, guid, t_id)
     else
         -- print("account check failed send negative response")

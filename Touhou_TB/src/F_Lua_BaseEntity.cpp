@@ -2,7 +2,7 @@
 
 F_Lua_BaseEntity::F_Lua_BaseEntity()
 {
-
+    m_portrait = nullptr;
 }
 
 F_Lua_BaseEntity::~F_Lua_BaseEntity()
@@ -12,7 +12,6 @@ F_Lua_BaseEntity::~F_Lua_BaseEntity()
 
 void F_Lua_BaseEntity::init(Slot * slot, const std::string & animationPath,const std::string & portraitPath , const glm::vec2 & scale)
 {
-
     m_currentSlot = slot;
     m_moveTargetSlot = nullptr;
     m_scale = scale;
@@ -21,7 +20,10 @@ void F_Lua_BaseEntity::init(Slot * slot, const std::string & animationPath,const
     m_animation.playAnimation("idle");
     m_yOffset = m_animation.getDim().y * 0.5f;
 
-    m_pos = m_currentSlot->getPos();
+    if(m_currentSlot)
+    {
+        m_pos = m_currentSlot->getPos();
+    }
     m_pos.y += m_yOffset;
     m_isActive = false;
 
@@ -52,11 +54,9 @@ void F_Lua_BaseEntity::setActive(bool value)
 }
 void F_Lua_BaseEntity::draw(Feintgine::SpriteBatch & spriteBatch)
 {
-
     m_animation.setScale(m_scale);
     m_animation.setPos(m_pos);
     m_animation.draw(spriteBatch);
-
     if(m_portrait)
     {
         m_portrait->draw(spriteBatch);

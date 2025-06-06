@@ -316,7 +316,6 @@ end
 function Character:initNonCB(host,name,desc)
     self.dyobj=  cpp_CreateCharacterNon_CB(host,name,desc)
     self:setDesc(desc)
-    return self.dyobj
 end
 
 ---@Description Initialize the character

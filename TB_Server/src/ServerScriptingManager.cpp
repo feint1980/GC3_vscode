@@ -697,10 +697,10 @@ int lua_SendToClient(lua_State * L)
        // msg += "\0";
         bool isEncrypted = lua_toboolean(L,4);
         
-        host->sendData(*clientId, msg,isEncrypted);
+        uint32_t tResult =  host->sendData(*clientId, msg,isEncrypted);
         
-        // host->sendToClient(clientId, requestCode);
-        return 0;
+        lua_pushinteger(L, tResult);
+        return 1;
     }
     return 0;
 }

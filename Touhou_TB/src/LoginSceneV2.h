@@ -108,6 +108,6 @@ private:
 
     TGUIScriptingManager m_guiScriptingManager;
 
-    
+    //LuaEventHandler m_luaEventHandler;
 
 };

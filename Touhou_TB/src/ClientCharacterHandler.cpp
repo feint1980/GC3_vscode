@@ -60,6 +60,7 @@ int lua_setEntityCharacterDesc(lua_State * L)
     return 0;
 }
 
+
 int lua_setCharactercAttribute(lua_State * L)
 {
     if (lua_gettop(L) != 3)
@@ -164,13 +165,13 @@ CharacterDesc * ClientCharacterHandler::getCharacter(const std::string & name)
 
 F_Lua_BaseEntity * ClientCharacterHandler::createCharacter(const std::string & name ,CharacterDesc *characterDesc)
 {
-    F_Lua_BaseEntity * entity = new F_Lua_BaseEntity();
+     //std::unordered_map<std::string, F_Lua_BaseEntity * > m_characters;
+    F_Lua_BaseEntity * entity = new F_Lua_BaseEntity(); 
+    
     // std::cout << "new OK \n";
     entity->setCharacterDesc(*characterDesc);
-    // std::cout << "setCharacterDesc OK \n";
-    //m_characters[name] = entity;
-    // std::cout << "insert " << name << " with value " << entity << "\n";
-    // m_characters.insert(std::make_pair(name, entity));
+    //std::unordered_map<std::string, F_Lua_BaseEntity*> characters;
+    
     return entity;
     // m_characters[name] = std::move(entity);
     // return m_characters[name];

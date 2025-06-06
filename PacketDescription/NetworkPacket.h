@@ -74,4 +74,6 @@ std::string combine2Package(const std::string & type,const std::string & id, con
 
 std::string combine3Package(const std::string & type,const std::string & id, const std::string & pw, const std::string & key);
 
+// std::string wrapPackage(uint64_t )
+
 

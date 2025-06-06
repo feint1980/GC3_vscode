@@ -21,6 +21,9 @@ end
 
 EvenTaskList = {}
 
+
+FunctionList = {}
+
 _G.HandlerHost = nil
 Tsize = 0
 function InitEventHandler(host)
@@ -71,3 +74,4 @@ function EventHandlerUpdate(dt)
         end
     end
 end
+

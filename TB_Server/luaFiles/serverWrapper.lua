@@ -69,9 +69,10 @@ end
 ---@param clientIP pointer instance of RakNet::SystemAddress
 ---@param message string message to send
 ---@param t_encrypt? boolean if need to t_encrypt (default true)
+---@return number return value
 function SV_SendMsg(host,clientIP,message,t_encrypt)
     t_encrypt = t_encrypt or true
-    cppSendToClient(host,clientIP,message,t_encrypt)
+    return cppSendToClient(host,clientIP,message,t_encrypt)
 end
 
 function SV_SendMsgNonEncrypt(host,clientIP,message,t_encrypt)
