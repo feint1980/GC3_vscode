@@ -256,9 +256,16 @@ ResponseHandle[PacketCode.requestCharacterList] = function(host,packet)
     for k,v in pairs(Character_Serialized_Table) do
         local chracterInfo = {}
         count = count +1
-        SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v}))
+        local sendData = -1
+        sendData = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v}))
+        while sendData ~= 0 do
+            sendData = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v}))
+        end
+        -- if countSV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v})) == 0 then
     end
+
     SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_DONE", {count}))
+    print("provide list done ")
 end
 
 function AddRegisterKey(host)
