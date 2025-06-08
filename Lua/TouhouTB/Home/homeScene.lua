@@ -143,11 +143,33 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
         MenuPanels["Shop"](TGUIScriptingPtr)
         end)
 
-    Tscheduler_addTask(5, function()
-        Home_RequestUserlData()
-    end)
-    HomeMain_RequestDataLoop()
+    -- Tscheduler_addTask(5, function()
+    --     Home_RequestUserlData()
+    -- end)
+    -- HomeMain_RequestDataLoop()
+    Home_UpdateInfo()
 end
+
+
+---@Description request update money data
+function Home_RequestUserlData()
+end
+
+
+function Home_UpdateInfo()
+    Tscheduler_addTask(50, function()
+
+        local id,pw, guid = Home_GetInfo(3)
+        local tResp = -1 
+        tResp = Client_SendData( Home_ClientScriptingPtr,CombinePackage("USERDATA", {id, pw, guid}))
+        if tResp == 0 then
+            Home_UpdateInfo()
+            print("tResp " .. tResp)
+        end
+    end)
+    
+end
+
 
 HomeMain_HandleTask = {}
 

@@ -228,7 +228,11 @@ ResponseHandle[PacketCode.login] = function(host,packet)
         for k,v in pairs(ClientEPList) do
             if v.name == t_id then
                 -- print("account already logged in")
-                SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
+                local t_response = -1
+                t_response = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
+                if t_response ~= 0 then
+                    t_response = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
+                end
                 return
             end
         end
@@ -258,7 +262,7 @@ ResponseHandle[PacketCode.requestCharacterList] = function(host,packet)
         count = count +1
         local sendData = -1
         sendData = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v}))
-        while sendData ~= 0 do
+        while sendData > 0 do
             sendData = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v}))
         end
         -- if countSV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v})) == 0 then
