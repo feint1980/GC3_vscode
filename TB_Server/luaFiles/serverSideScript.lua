@@ -170,9 +170,11 @@ end
 --- @param packet pointer instance of RakNet::Packet
 CommonHandle[PacketIdentifier.ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
     local guid = SV_GetPacketGUID(packet)
-    print("detect disconnect from " .. ClientEPList[guid].name .. " lost")
-    ClientEPList[guid] = nil
-    CH_List()
+    if( guid == nil) then
+        print("detect disconnect from " .. ClientEPList[guid].name .. " lost")
+        ClientEPList[guid] = nil
+        CH_List()
+    end
 end
 
 -- CommonHandle[PacketIdentifier.ID_NEW_INCOMING_CONNECTION] = function(host,packet)

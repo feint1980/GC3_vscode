@@ -18,6 +18,9 @@ require "LuaEventHandler"
 --- Global variables section start ----
 LoginHost = nil
 
+---@type boolean 
+LoginAttem = false
+
 function Wait(seconds)
     local start = os.time()
     while os.time() - start < seconds do end
@@ -274,6 +277,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
 
         Login_showNotification("Logging ...","")
         Login_MainCall(host)
+
     end)
 
     Login_LGRegisterBtn = Label:new()
@@ -443,6 +447,7 @@ Login_HandleStep2[Packet_OtherID.ID_LOGIN_NEG] = function(host,packet)
     Login_Noti_Msg:setText( StripMSG(packet.data,Packet_OtherID.ID_LOGIN_NEG))
     Login_Noti_Btn:setText("OK")
     Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
+    LoginAttem = false
 end
 
 --- Handle msg when login OK
@@ -473,23 +478,25 @@ Login_HandleStep2[Packet_OtherID.ID_REGISTER_POS] = function(host,packet)
     Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
 end
 
-
-
 FunctionList["login_retries"] = function(waitTime)
     Tscheduler_addTask(waitTime, function()
         print("login check ...")
-        local tSendResult = -1
+        local tSendResult = 0
         tSendResult = Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
-        if tSendResult ~= 0 then
-            FunctionList["login_retries"](50)
+        if LoginAttem == true then
+            print("retries continue ...")
+            print(tSendResult)
+            if tSendResult == 0 then
+                FunctionList["login_retries"](25)
+            end
         end
     end)
 end
 
 function Login_MainCall(host)
     if Client_Connected == true then
-        
-        FunctionList["login_retries"](1)
+        LoginAttem = true
+        FunctionList["login_retries"](50)
         -- while tSendResult ~=0 do
         --    -- Tscheduler_addTask(5, function()
         --         print("retry ...")

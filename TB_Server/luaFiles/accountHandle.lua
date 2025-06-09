@@ -228,27 +228,32 @@ ResponseHandle[PacketCode.login] = function(host,packet)
         for k,v in pairs(ClientEPList) do
             if v.name == t_id then
                 -- print("account already logged in")
-                local t_response = -1
+                local t_response = 0
                 t_response = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
-                if t_response ~= 0 then
+                while t_response == 0 do
                     t_response = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
                 end
                 return
             end
         end
         -- print("account check OK, send OK message")
-        local sendOK = -1
+        local sendOK = 0
         sendOK = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
-        while sendOK ~= 0 do
+        while sendOK == 0 do
             sendOK = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
         end
-        local systemAddress = SV_GetPacketIP(packet) ~= 0 do 
-
+        ---@type pointer
+        local systemAddress = SV_GetPacketIP(packet)
+        if systemAddress ~= nil then
+            CH_AddClientEP(systemAddress, guid, t_id)
         end
-        CH_AddClientEP(systemAddress, guid, t_id)
     else
         -- print("account check failed send negative response")
-        SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
+        local t_response = 0
+        t_response = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
+        while t_response == 0 do
+            t_response = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
+        end
     end
 end
 
@@ -260,15 +265,20 @@ ResponseHandle[PacketCode.requestCharacterList] = function(host,packet)
     for k,v in pairs(Character_Serialized_Table) do
         local chracterInfo = {}
         count = count +1
-        local sendData = -1
+        local sendData = 0
         sendData = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v}))
-        while sendData > 0 do
+        while sendData == 0 do
             sendData = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v}))
+            print("send " .. k .. " failed, retrying")
         end
+        print("send " .. k .. " done !")
         -- if countSV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v})) == 0 then
     end
 
-    SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_DONE", {count}))
+    local resp  = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_DONE", {count}))
+    while resp == 0 do
+        resp = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_DONE", {count}))
+    end
     print("provide list done ")
 end
 

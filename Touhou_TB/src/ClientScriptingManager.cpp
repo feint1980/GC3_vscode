@@ -297,10 +297,15 @@ void ClientScriptingManager::handleMessage(RakNet::Packet *p)
    // unsigned char packetIdentifier = GetPacketIdentifier(p);
     if(p)
     {
-        sendDataToLuaScripting(p);
+        bool handlingPacket = false;
+        handlingPacket = sendDataToLuaScripting(p);
+        while(!handlingPacket)
+        {
+            handlingPacket = sendDataToLuaScripting(p);
+        };
         // std::cout << "append " << GetPacketIdentifier(p) << "\n";
         // ResponseMSG msg(p, GetPacketIdentifier(p));
-        // m_responseQueue.push(msg);
+        // m_responseQueue.push(p);
     }
     //sendDataToLuaScripting(p);
 }
@@ -310,7 +315,8 @@ void ClientScriptingManager::handleData()
     if(!m_responseQueue.empty())
     {
         //Pacj
-        RakNet::Packet *p = m_responseQueue.front().packet;
+        RakNet::Packet *p = m_responseQueue.front();
+        std::cout << "handling " << m_responseQueue.front() << "\n";
         sendDataToLuaScripting(p);
         m_responseQueue.pop();
     }
@@ -343,7 +349,7 @@ void ClientScriptingManager::connect()
     }
 }
 
-void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
+bool ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
 {
    // std::cout << "sendDataToLuaScripting \n";
     if(m_script)
@@ -397,13 +403,11 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
                 lua_pushnumber(m_script, identifier);
                 const int argc = 3;
                 const int returnCount = 0;
-                if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
-                {
-                    //std::cout << "Pass Data OK \n";
-                }
+                return LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
             }
         }
     }
+    return false;
 }
 
 void ClientScriptingManager::firstGateWay(RakNet::Packet *p)
@@ -502,12 +506,18 @@ void ClientScriptingManager::update(float deltaTime)
     {
         //PacketCode requestCode = getSpecialRequestCode(m_client->Receive());
         RakNet::Packet *p = nullptr;
+        // for(RakNet::Packet *p = m_client->Receive(); p; m_client->DeallocatePacket(p), p = m_client->Receive())
+        // {
         p = m_client->Receive();
         if(p)
         {
             handleMessage(p);
+            m_client->DeallocatePacket(p);
         }
-        m_client->DeallocatePacket(p);
+        
+        // }
+        // p = m_client->Receive();
+        
         // for (p=m_client->Receive(); 
         // p;
         // m_client->DeallocatePacket(p),
@@ -526,6 +536,7 @@ void ClientScriptingManager::update(float deltaTime)
         // }
        // 
     }
+    //handleData();
     // m_client->DeallocatePacket(m_currentPacket);
     //handleData();
 }

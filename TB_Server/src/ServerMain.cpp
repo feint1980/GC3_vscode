@@ -113,10 +113,15 @@ void ServerMain::run()
 void ServerMain::update(float deltaTime)
 {
     // check for packets
-    for (m_currentPacket=m_server->Receive(); m_currentPacket; m_server->DeallocatePacket(m_currentPacket), m_currentPacket=m_server->Receive())
+    // for (m_currentPacket=m_server->Receive(); m_currentPacket; m_server->DeallocatePacket(m_currentPacket), m_currentPacket=m_server->Receive())
+    // {
+
+    RakNet::Packet *p = nullptr;
+    p = m_server->Receive();
+    if(p)
     {
         // We got a packet, get the identifier with our handy function
-        unsigned char packetIdentifier = GetPacketIdentifier(m_currentPacket);
+        unsigned char packetIdentifier = GetPacketIdentifier(p);
         // Check if this is a network message packet
         switch (packetIdentifier)
         {
@@ -126,13 +131,16 @@ void ServerMain::update(float deltaTime)
         case ID_CONNECTED_PING:
         case ID_UNCONNECTED_PING:
         case ID_CONNECTION_LOST:
-            m_scriptManager->handleCommon(m_currentPacket);
+            m_scriptManager->handleCommon(p);
         break;
         default:
-            m_scriptManager->handleCommand(m_currentPacket);
+            m_scriptManager->handleCommand(p);
             break;
         }
+        m_server->DeallocatePacket(p);
     }
+
+    // }
     m_scriptManager->update(deltaTime);
 }
 

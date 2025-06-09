@@ -24,6 +24,8 @@
 #include <F_Cryptor.h>
 #include "LuaManager.h"
 
+#include <thread>
+
 #include <queue>
 
 enum ClientStatus
@@ -69,7 +71,7 @@ public:
 
     void secondGateWay(RakNet::Packet *p);
 
-    void sendDataToLuaScripting(RakNet::Packet *p);
+    bool sendDataToLuaScripting(RakNet::Packet *p);
 
     ClientStatus getStatus() { return m_status; }
 
@@ -99,7 +101,7 @@ public:
 
     Feintgine::F_Cryptor m_cryptor;
 
-    std::queue <ResponseMSG> m_responseQueue;
+    std::queue <RakNet::Packet *> m_responseQueue;
 
 };
 

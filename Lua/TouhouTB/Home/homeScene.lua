@@ -18,7 +18,6 @@ require "Yukari"
 require "Meiling"
 
 
-
 HomeSceneHost = nil
 -- HandlePacketTask = _G.HandlePacketTask
 
@@ -155,7 +154,6 @@ end
 function Home_RequestUserlData()
 end
 
-
 function Home_UpdateInfo()
     Tscheduler_addTask(50, function()
 
@@ -167,9 +165,7 @@ function Home_UpdateInfo()
             print("tResp " .. tResp)
         end
     end)
-    
 end
-
 
 HomeMain_HandleTask = {}
 
@@ -250,12 +246,26 @@ HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES] = function(host,packet)
     -- table.insert(S_Characters_Info,tD[1],tD[2])
     local t_charStats =  Client_ParseCharacterFromJson(host, tD[2])
     ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr,tD[1],t_charStats)
+
+    print("recieve " .. tD[1] .. " !!!!!!!!!!!!!!!!?????????????" )
     -- print("number of S_Characters_Info |ASSIGN| " .. #S_Characters_Info)
 end
 
 HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES_DONE] = function(host,packet)
     print("character res done")
     print("check Data")
+    local tData = Home_StripMSG(packet.data,Packet_OtherID.CHARACTER_RES_DONE)
+
+    local tD = SplitMessgae(tData,"|",1)
+    local totalNum = tonumber(tD[1])
+
+    print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<totalNum " .. totalNum .. "/" .. GetTableSize(S_Characters_Info))
+    while GetTableSize(S_Characters_Info) ~= totalNum do
+        local  tResp = Client_SendData(Home_ClientScriptingPtr,"|REQUEST_CHARACTERLIST|")
+        while tResp == 0 do
+            tResp = Client_SendData(Home_ClientScriptingPtr,"|REQUEST_CHARACTERLIST|")
+        end
+    end
 
     -- print("number of S_Characters_Info " .. #S_Characters_Info)
 
@@ -340,8 +350,6 @@ function HomeMain_RequestDataLoop()
     end)
 end
 
-
-
 ---- basic network handling 
 Network_CommonTask = {}
 ---@Description handle packet when connected
@@ -361,7 +369,7 @@ Network_CommonTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet
 end
 
 Network_CommonTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
-    Home_showNotification("Connection lost !","OK")
+    Home_showNotification("Disconnection from server !","OK")
     -- Client_Connected = false
 end
 

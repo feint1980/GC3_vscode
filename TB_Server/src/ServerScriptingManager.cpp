@@ -895,8 +895,11 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
     {
         sendStr = std::move(data);
     }
-    m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY, RELIABLE_ORDERED,0, target,false);
-    return 0;
+    // if(m_server->GetGuidFromSystemAddress(target) != RakNet::UNASSIGNED_RAKNET_GUID)
+    // {
+    return m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY,  RELIABLE_ORDERED,0, target,false);
+    // }
+    // return 0;
 }
 
 
