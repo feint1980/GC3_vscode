@@ -174,12 +174,16 @@ uint32_t ClientScriptingManager::sendData(const std::string & data)
     unsigned char iv[AES_IV_SIZE] = {};
     m_cryptor.generateRandomIV(iv);
 
+    // std::string fData ;
+    // fData.push_back(ID_TH_TB);
+
     auto tData = m_cryptor.encrypt(data,iv);
     for(int i = 0 ; i < AES_IV_SIZE;i++)
     {
         tData.push_back(iv[i]);
     }
     std::string sendStr;
+    // sendStr.push_back(ID_TH_TB);
     for(int i = 0 ; i < tData.size() ; i++)
     {
         sendStr.push_back((tData[i]));
@@ -295,18 +299,17 @@ ClientScriptingManager::~ClientScriptingManager()
 void ClientScriptingManager::handleMessage(RakNet::Packet *p)
 {
    // unsigned char packetIdentifier = GetPacketIdentifier(p);
-    if(p)
-    {
-        bool handlingPacket = false;
-        handlingPacket = sendDataToLuaScripting(p);
-        while(!handlingPacket)
-        {
-            handlingPacket = sendDataToLuaScripting(p);
-        };
+
+        // bool handlingPacket = false;
+        sendDataToLuaScripting(p);
+        // while(!handlingPacket)
+        // {
+        //     handlingPacket = sendDataToLuaScripting(p);
+        // };
         // std::cout << "append " << GetPacketIdentifier(p) << "\n";
         // ResponseMSG msg(p, GetPacketIdentifier(p));
         // m_responseQueue.push(p);
-    }
+
     //sendDataToLuaScripting(p);
 }
 

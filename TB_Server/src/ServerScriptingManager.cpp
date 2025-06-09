@@ -873,6 +873,7 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
 {
     // encrypt 
     std::string sendStr;
+    //sendStr.push_back(ID_TH_TB);
     if(isEncrypted)
     {
         unsigned char iv[AES_IV_SIZE] = {};
@@ -895,6 +896,7 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
     {
         sendStr = std::move(data);
     }
+
     // if(m_server->GetGuidFromSystemAddress(target) != RakNet::UNASSIGNED_RAKNET_GUID)
     // {
     return m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY,  RELIABLE_ORDERED,0, target,false);
@@ -1251,8 +1253,9 @@ std::string ServerScriptingManager::getEncryptPW(const std::string & pw)
 PacketCode ServerScriptingManager::getSpecialRequestCode(RakNet::Packet *p)
 {
  //   std::cout << "getSpecialRequestCode called \n";
-
+    
     std::string cData = getMegFromPackget(p);
+    std::cout << "getSpecialRequestCode " << cData << "\n";
     if(cData.find("|LOGIN_REQUEST|") != std::string::npos)
     {
         if(cData.find("|LOGIN_END_REQUEST|") != std::string::npos)

@@ -133,8 +133,12 @@ void ServerMain::update(float deltaTime)
         case ID_CONNECTION_LOST:
             m_scriptManager->handleCommon(p);
         break;
+        // case ID_TH_TB:
+        //     // todo : handle TB packet
+        //     break;
         default:
             m_scriptManager->handleCommand(p);
+            // std::cout << "unknow packet " << (int)packetIdentifier << "\n";
             break;
         }
         m_server->DeallocatePacket(p);
