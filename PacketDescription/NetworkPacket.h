@@ -65,15 +65,48 @@ enum ServerResponseCode
     Server_Invalid = 277
 };
 
+enum PacketChannel 
+{
+    AccountChannel = 0,
+    UserChannel,
+    ShopChannel,
+    TransactionChannel
+};
+
+enum AccountResponse
+{
+    ALogin,
+    ARegister,
+    ARequestKey
+};
+
+enum UserResponse
+{
+    MainInfo,
+    CharacterInfo,
+    ItemInfo
+};
+
+enum ShopResponse
+{
+    ShopChracterInfo,
+    ShopItemInfo
+};
+
+// packet schema
+
+// [PacketChannel] [<Request>] [<Value>] [<AdditionalValue>] ...
+
 
 //PacketCode getSpecialRequestCode(RakNet::Packet *p);
 
-unsigned char GetPacketIdentifier(RakNet::Packet *p);
+unsigned char GetPacketIdentifier(RakNet::Packet *p, unsigned int index = 0);
+
+// unsigned char GetPacketChanel(RakNet::Packet *p);
 
 std::string combine2Package(const std::string & type,const std::string & id, const std::string & pw);
 
 std::string combine3Package(const std::string & type,const std::string & id, const std::string & pw, const std::string & key);
 
-// std::string wrapPackage(uint64_t )
-
+//std::string wrapPackage(uint64_t )
 

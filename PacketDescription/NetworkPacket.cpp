@@ -1,19 +1,36 @@
 
 #include "NetworkPacket.h"
 
-unsigned char GetPacketIdentifier(RakNet::Packet *p)
+unsigned char GetPacketIdentifier(RakNet::Packet *p,unsigned int index )
 {
+	//  index is 0 by default
 	if (p==0)
+	{
 		return 255;
-
+	}
 	if ((unsigned char)p->data[0] == ID_TIMESTAMP)
 	{
 		RakAssert(p->length > sizeof(RakNet::MessageID) + sizeof(RakNet::Time));
-		return (unsigned char) p->data[sizeof(RakNet::MessageID) + sizeof(RakNet::Time)];
+		return (unsigned char) p->data[sizeof(RakNet::MessageID) + sizeof(RakNet::Time) + index];
 	}
 	else
-		return (unsigned char) p->data[0];
+	{
+		return (unsigned char) p->data[index];
+	}
 }
+
+// unsigned char GetPacketChanel(RakNet::Packet *p)
+// {
+// 	if (p==0)
+// 		return 255;
+// 	if ((unsigned char)p->data[0] == ID_TIMESTAMP)
+// 	{
+// 		RakAssert(p->length > sizeof(RakNet::MessageID) + sizeof(RakNet::Time));
+// 		return (unsigned char) p->data[sizeof(RakNet::MessageID) + sizeof(RakNet::Time) + 1];
+// 	}
+// 	else
+// 		return (unsigned char) p->data[1];
+// }
 
 
 std::string combine2Package(const std::string & type,const std::string & id, const std::string & pw)

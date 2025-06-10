@@ -427,16 +427,10 @@ enum DefaultMessageIDTypes
 	ID_RESERVED_9,
 
 	// For the user to use.  Start your first enumeration at this value.
-	ID_USER_PACKET_ENUM
+	ID_USER_PACKET_ENUM,
+	ID_TH_TB
 
-
-
-	// ID_TH_TB
-
-
-
-	//-------------------------------------------------------------------------------------------------------------
- 
+	// -------------------------------------------------------
 };
 
 #endif // RAKNET_USE_CUSTOM_PACKET_IDS
