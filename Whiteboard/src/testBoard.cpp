@@ -18,8 +18,10 @@ F_Lua_BaseEntity * test(std::unordered_map<std::string, F_Lua_BaseEntity*> &char
 
 int wmain() {
 
-    F_Lua_BaseEntity * f1 =  test(m_characters);
-    std::cout << "end \n";
-    std::cout << "Inserted successfully!" << std::endl;
+    std::string data = "this is the way";
+    std::string tData = std::string(data.begin() + 3, data.end());
+
+    std::cout << tData << "\n";
+
     return 0;
 }

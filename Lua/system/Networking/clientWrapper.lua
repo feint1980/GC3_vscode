@@ -4,6 +4,7 @@
 ---@Description combines packet
 ---@param type string type of packet to wrap
 ---@param list table data to wrap
+---@return string
 function CombinePackage(type,list)
     ----
     local returnValue = "|"
@@ -12,6 +13,22 @@ function CombinePackage(type,list)
         returnValue = returnValue .. list[i] .. "|"
     end
     returnValue = returnValue .. type .. "_END_REQUEST|"
+    return returnValue
+end
+
+---@Description wraps packet
+---@param channel number channel 
+---@param request number type of packet to wrap
+---@param list table data to wrap
+---@return string
+function WrapRequest(channel, request, list)
+
+    local returnValue = ""
+    returnValue = string.char(channel, request) .. "|"
+    for i = 1, #list do
+        returnValue = returnValue .. list[i] .. "|"
+    end
+    -- returnValue = returnValue .. "|"
     return returnValue
 end
 

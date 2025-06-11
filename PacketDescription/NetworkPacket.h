@@ -95,6 +95,10 @@ enum ShopResponse
 
 // packet schema
 
+// request schema
+// [PacketChannel] [<Request>] [<Data>] 
+
+// response schema
 // [PacketChannel] [<Request>] [<Value>] [<AdditionalValue>] ...
 
 
@@ -108,5 +112,6 @@ std::string combine2Package(const std::string & type,const std::string & id, con
 
 std::string combine3Package(const std::string & type,const std::string & id, const std::string & pw, const std::string & key);
 
-//std::string wrapPackage(uint64_t )
+std::string wrapRequest(unsigned short channel, unsigned char request,  const std::vector<std::string> & datas);
 
+std::string wrapResponse(unsigned short channel, unsigned short request, unsigned short value ,  const std::vector<std::string> & datas);

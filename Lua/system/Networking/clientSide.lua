@@ -57,14 +57,30 @@ function ClientSide_Init(host)
     ClientSide_Host = host
 end
 
+
+--- Client_SendRequest
+---@param host pointer instance of ClientScriptingManager
+---@param channel number channel
+---@param request number type of packet to wrap
+---@param data string data need to send 
+function Client_SendRequest(host, channel, request, data)
+
+    local tData = string.char(channel, request) .. data
+
+    return cppSendRequest(host, tData)
+end
+
 --- MARK:Wrapper
 --- wrapper of cppSendData
 ---@param host pointer instance of ClientScriptingManager
 ---@param data string data need to send
+---@param encryptIndex? number encrypt index
 ---@return number response 
-function Client_SendData(host,data)
-    return cppSendData(host,data)
+function Client_SendData(host,data,encryptIndex)
+    encryptIndex = encryptIndex or 0
+    return cppSendData(host,data,encryptIndex)
 end
+
 
 --- wrapper of cppSendData
 ---@param host pointer instance of ClientScriptingManager
@@ -117,3 +133,17 @@ function GetTableSize(t)
     end
     return count
 end
+
+
+-- ---@Description combines packet
+-- ---@param type string type of packet to wrap
+-- ---@param list table data to wrap
+-- function CombinePackage(type,list)
+--     local returnValue = "|"
+--     returnValue = returnValue .. type .. "_REQUEST|" 
+--     for i = 1, #list do
+--         returnValue = returnValue .. list[i] .. "|"
+--     end
+--     returnValue = returnValue .. type .. "_END_REQUEST|"
+--     return returnValue
+-- end

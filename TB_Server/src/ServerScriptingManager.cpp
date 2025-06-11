@@ -611,7 +611,6 @@ int lua_GetQueryResults(lua_State * L)
         int resultCode = m_response.rc;
         int recordCount = m_response.recordCount;
 
-        
         lua_pushinteger(L, resultCode);
         lua_pushinteger(L, recordCount);
        // lua_pushstring(L, result.c_str());

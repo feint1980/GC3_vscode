@@ -426,7 +426,7 @@ enum DefaultMessageIDTypes
 	ID_RESERVED_8,
 	ID_RESERVED_9,
 
-	// For the user to use.  Start your first enumeration at this value.
+	// For the user to use.  Start your first enumeration alt this value.
 	ID_USER_PACKET_ENUM,
 	ID_TH_TB
 

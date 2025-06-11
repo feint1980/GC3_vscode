@@ -482,7 +482,7 @@ FunctionList["login_retries"] = function(waitTime)
     Tscheduler_addTask(waitTime, function()
         print("login check ...")
         local tSendResult = 0
-        tSendResult = Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+        tSendResult = Client_SendData(Login_ClientScriptingPtr, CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
         if LoginAttem == true then
             print("retries continue ...")
             print(tSendResult)
@@ -505,12 +505,12 @@ function Login_MainCall(host)
         -- if tSendResult ~= 0 then
 
         -- --   Tscheduler_addTask(100, function()
-        --     tSendResult = Client_SendData(Login_ClientScriptingPtr, Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+        --     tSendResult = Client_SendData(Login_ClientScriptingPtr, CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
         -- -- end)
         -- end
     end
     -- print("setOnClickCallback send data : ")
-    -- print(Login_CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+    -- print(CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
 end
 
 function Login_CheckValid(info)
@@ -544,7 +544,7 @@ function Login_RegisterCall(host)
         Login_showNotification("Invalid Key Format !","OK")
         return
     end
-    Client_SendData(Login_ClientScriptingPtr,Login_CombinePackage("REGISTER",{id,pw,tKey}))
+    Client_SendData(Login_ClientScriptingPtr,CombinePackage("REGISTER",{id,pw,tKey}))
 end
 
 ---@Description get the code of other special ID

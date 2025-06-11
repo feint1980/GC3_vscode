@@ -51,3 +51,31 @@ std::string combine3Package(const std::string & type,const std::string & id, con
     return returnVal;
 }
 
+std::string wrapRequest(unsigned short channel, unsigned char request,  const std::vector<std::string> & datas)
+{
+	std::string reTurnValue = "";
+	reTurnValue.push_back(channel);
+	reTurnValue.push_back(request);
+	reTurnValue.push_back('|');
+	for (int i = 0; i < datas.size(); i++)
+	{
+		reTurnValue.append(datas[i]);
+		reTurnValue.push_back('|');
+	}
+	return reTurnValue;
+}
+
+std::string wrapResponse(unsigned short channel, unsigned short request, unsigned short value ,  const std::vector<std::string> & datas)
+{
+	std::string reTurnValue = "";
+	reTurnValue.push_back(channel);
+	reTurnValue.push_back(request);
+	reTurnValue.push_back(value);
+	reTurnValue.push_back('|');
+	for (int i = 0; i < datas.size(); i++)
+	{
+		reTurnValue.append(datas[i]);
+		reTurnValue.push_back('|');
+	}
+	return reTurnValue;
+}

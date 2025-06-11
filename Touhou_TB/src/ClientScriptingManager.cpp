@@ -108,7 +108,7 @@ int lua_GetPacketId(lua_State * L)
 
 int lua_SendData(lua_State * L)
 {
-    if(lua_gettop(L) != 2)
+    if(lua_gettop(L) != 3)
     {
         std::cout << "gettop failed (lua_SendRequest) \n";
         std::cout << lua_gettop(L) << "\n";
@@ -118,13 +118,15 @@ int lua_SendData(lua_State * L)
     {
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string requestCmd = lua_tostring(L, 2);
+        uint8_t encryptIndex = lua_tointeger(L, 3);
         // std::cout << "client side send data:" << requestCmd << "\n";
-        uint32_t result = host->sendData(requestCmd);
+        uint32_t result = host->sendData(requestCmd, encryptIndex);
         lua_pushnumber(L, result);
         return 1;
     }
     return -1;
 }
+
 
 int lua_Connect(lua_State * L)
 {
@@ -168,16 +170,16 @@ int lua_ParseCharacterFromJson(lua_State * L)
     return 0;
 }
 
-uint32_t ClientScriptingManager::sendData(const std::string & data)
+uint32_t ClientScriptingManager::sendData(const std::string & data, uint8_t encryptIndex)
 {
-
     unsigned char iv[AES_IV_SIZE] = {};
     m_cryptor.generateRandomIV(iv);
-
     // std::string fData ;
     // fData.push_back(ID_TH_TB);
 
-    auto tData = m_cryptor.encrypt(data,iv);
+    std::string cData = std::string(data.begin() + encryptIndex, data.end());
+
+    auto tData = m_cryptor.encrypt(cData,iv);
     for(int i = 0 ; i < AES_IV_SIZE;i++)
     {
         tData.push_back(iv[i]);
@@ -235,6 +237,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     // register lua functions
 
     lua_register(m_script, "cppSendData", lua_SendData);
+    //lua_register(m_script, "cppSendRequest", lua_SendRequest);
     lua_register(m_script, "cppConnect", lua_Connect);
     lua_register(m_script, "cppGetPacketId", lua_GetPacketId);
     lua_register(m_script, "cppParseCharacterFromJson", lua_ParseCharacterFromJson);
