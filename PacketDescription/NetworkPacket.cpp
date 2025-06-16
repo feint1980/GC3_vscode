@@ -19,6 +19,32 @@ unsigned char GetPacketIdentifier(RakNet::Packet *p,unsigned int index )
 	}
 }
 
+PacketHeader getPacketHeader(RakNet::Packet *p)
+{
+	PacketHeader header;
+	if (p==0)
+	{
+		return header;
+	}
+	RakNet::BitStream bs(p->data, p->length, false);
+
+	if ((unsigned char)p->data[0] == ID_TIMESTAMP)
+	{
+		RakAssert(p->length > sizeof(RakNet::MessageID) + sizeof(RakNet::Time));
+		bs.IgnoreBits(sizeof(RakNet::MessageID) + sizeof(RakNet::Time));
+	}
+	else 
+	{
+		bs.IgnoreBits(sizeof(RakNet::MessageID));
+	}
+
+	bs.Read(header.channel);
+	bs.Read(header.request);
+
+	return header;
+}
+
+
 // unsigned char GetPacketChanel(RakNet::Packet *p)
 // {
 // 	if (p==0)

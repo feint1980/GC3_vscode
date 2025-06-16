@@ -88,6 +88,10 @@ public:
 
     uint32_t sendData(const RakNet::SystemAddress & target, const std::string & data,bool isEncrypted = true);
 
+    uint32_t handleWrapData(RakNet::Packet *p);
+
+
+
     std::string getEncryptPW(const std::string & pw);
 
     // std::string getDecryptMsg(const std::string & data);

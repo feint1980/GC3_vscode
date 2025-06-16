@@ -12,6 +12,8 @@ PacketCode = {
     requestCharacterList = 66
 }
 
+
+
 --- function CheckAccountValid
 ---@Description : check if the query of account and password is valid (only one result)
 ---@param host pointer instance of ServerScriptingManager
@@ -282,6 +284,9 @@ ResponseHandle[PacketCode.requestCharacterList] = function(host,packet)
     print("provide list done ")
 end
 
+-- MessageHandling[]
+
+
 function AddRegisterKey(host)
     local registerKeyNum = 12
     local inserOK = false
@@ -302,4 +307,11 @@ function AddRegisterKey(host)
         end
     end
     return nil
+end
+
+
+---- Wrap Mesage Handling
+MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function(host,data)
+    print("AccountResponse.Alogin called")
+
 end

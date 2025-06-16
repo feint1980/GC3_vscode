@@ -21,6 +21,13 @@ int wmain() {
     std::string data = "this is the way";
     std::string tData = std::string(data.begin() + 3, data.end());
 
+
+    // short e = 233;
+    //long long short f = 1223344;
+    //long int short f = 1223344;
+
+    // std::cout << f << "\n";
+
     std::cout << tData << "\n";
 
     return 0;

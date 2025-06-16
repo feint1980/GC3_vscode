@@ -1,3 +1,29 @@
+-- Replicate enum from C++
+
+PacketChannel ={
+    AccountChannel = 0,
+    UserChannel = 1,
+    ShopChannel =1,
+    TransactionChannel = 2
+}
+
+AccountResponse = {
+    Alogin = 0,
+    Aregister = 1,
+    ARequesKey = 2
+}
+
+UserResponse = {
+    MainInfo = 0,
+    CharacterInfo = 1,
+    ItemInfo = 2
+}
+
+ShopResponse = {
+    ShopChracterInfo = 0,
+    ShopItemInfo = 1
+}
+
 
 --- Classes declare
 ---@class pointer

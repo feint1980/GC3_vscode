@@ -615,7 +615,7 @@ int lua_GetQueryResults(lua_State * L)
         lua_pushinteger(L, recordCount);
        // lua_pushstring(L, result.c_str());
 
-    }
+    } 
     return 3;
 }
 
@@ -929,6 +929,28 @@ unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
     }
 
     return 666;
+}
+
+
+uint32_t handleWrapData(RakNet::Packet *p)
+{
+    int indexStart = 1;
+    if ((unsigned char)p->data[0] == ID_TIMESTAMP)
+    {
+        indexStart = sizeof(RakNet::MessageID) + sizeof(RakNet::Time);
+    }
+    uint8_t channel = static_cast<uint8_t>(p->data[indexStart]);
+    uint8_t request = static_cast<uint8_t>(p->data[indexStart + 1]);
+
+    // hand special request here
+    unsigned int payLoadIndex = indexStart + 2;
+
+    std::string payLoad = std::string(p->data + payLoadIndex, p->length - payLoadIndex);
+
+    
+
+
+    return 0;
 }
 
 ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)

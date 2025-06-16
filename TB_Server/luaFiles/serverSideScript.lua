@@ -107,6 +107,9 @@ ResponseHandle = {}
 
 CommonHandle = {}
 
+MessageHandling = {}
+
+
 ---@Description combines packet
 ---@param type string type of packet to wrap
 ---@param list table data to wrap
@@ -140,6 +143,14 @@ function HandleMessage(host,packet,requestCode)
 
     if ResponseHandle[requestCode] ~= nil then
         ResponseHandle[requestCode](host,packet)
+    end
+end
+
+function HandleWrapMessage(host,chanel,request, data)
+    print("HandleWrapMessage called" )
+
+    if MessageHandling[chanel][request] ~= nil then
+        MessageHandling[chanel][request](host,data)
     end
 end
 

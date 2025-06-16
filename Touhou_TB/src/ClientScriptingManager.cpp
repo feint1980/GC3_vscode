@@ -110,7 +110,7 @@ int lua_SendData(lua_State * L)
 {
     if(lua_gettop(L) != 3)
     {
-        std::cout << "gettop failed (lua_SendRequest) \n";
+        std::cout << "gettop failed (lua_SendData) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
@@ -121,6 +121,30 @@ int lua_SendData(lua_State * L)
         uint8_t encryptIndex = lua_tointeger(L, 3);
         // std::cout << "client side send data:" << requestCmd << "\n";
         uint32_t result = host->sendData(requestCmd, encryptIndex);
+        lua_pushnumber(L, result);
+        return 1;
+    }
+    return -1;
+}
+
+int lua_SendWrapData(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SendWrapData) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::string requestCmd = lua_tostring(L, 2);
+        // std::cout << "client side send data:" << requestCmd << "\n";
+
+        // append ID_TH_TB to the first byte
+        requestCmd.insert(0, 1, ID_TH_TB);
+
+        uint32_t result = host->sendWrapData(requestCmd);
         lua_pushnumber(L, result);
         return 1;
     }
@@ -193,6 +217,38 @@ uint32_t ClientScriptingManager::sendData(const std::string & data, uint8_t encr
     return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
+uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
+{
+    if(data.size() < 2 ) // headers
+    {
+        std::cout << "sendWrapData failed (data size < 2) \n";
+        return 0;
+    }
+    uint8_t channel = static_cast<uint8_t>(data[0]);
+    uint8_t request = static_cast<uint8_t>(data[1]);
+    // todo , special request add here
+    int payLoadIndex = 2;
+
+    std::string payLoad = std::string(data.begin() + 2, data.end());
+    unsigned char iv[AES_IV_SIZE] = {};
+    m_cryptor.generateRandomIV(iv);
+    // std::string fData ;
+    // fData.push_back(ID_TH_TB);
+    auto tData = m_cryptor.encrypt(payLoad,iv);
+    for(int i = 0 ; i < AES_IV_SIZE;i++)
+    {
+        tData.push_back(iv[i]);
+    }
+    std::string sendStr;
+    
+    for(int i = 0 ; i < tData.size() ; i++)
+    {
+        sendStr.push_back((tData[i]));
+    } 
+    return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, channel, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+
+}
+
 CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
 {
     CharacterStats result;
@@ -237,6 +293,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     // register lua functions
 
     lua_register(m_script, "cppSendData", lua_SendData);
+    lua_register(m_script, "cppSendWrapData", lua_SendWrapData);
     //lua_register(m_script, "cppSendRequest", lua_SendRequest);
     lua_register(m_script, "cppConnect", lua_Connect);
     lua_register(m_script, "cppGetPacketId", lua_GetPacketId);

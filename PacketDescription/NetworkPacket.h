@@ -65,7 +65,7 @@ enum ServerResponseCode
     Server_Invalid = 277
 };
 
-enum PacketChannel 
+enum class PacketChannel : uint8_t 
 {
     AccountChannel = 0,
     UserChannel,
@@ -73,21 +73,21 @@ enum PacketChannel
     TransactionChannel
 };
 
-enum AccountResponse
+enum class AccountResponse : uint8_t 
 {
     ALogin,
     ARegister,
     ARequestKey
 };
 
-enum UserResponse
+enum class UserResponse : uint8_t
 {
     MainInfo,
     CharacterInfo,
     ItemInfo
 };
 
-enum ShopResponse
+enum class ShopResponse : uint8_t
 {
     ShopChracterInfo,
     ShopItemInfo
@@ -99,12 +99,24 @@ enum ShopResponse
 // [PacketChannel] [<Request>] [<Data>] 
 
 // response schema
-// [PacketChannel] [<Request>] [<Value>] [<AdditionalValue>] ...
+// [PacketChannel] [<Request>] [<Value>] [<Data>] ...
+
+// today, may remove this and use channel internal instead
+
+struct PacketHeader
+{
+    uint8_t channel;
+    uint8_t request;
+
+    PacketHeader() : channel(255), request(255) {}
+};
 
 
 //PacketCode getSpecialRequestCode(RakNet::Packet *p);
 
 unsigned char GetPacketIdentifier(RakNet::Packet *p, unsigned int index = 0);
+
+PacketHeader getPacketHeader(RakNet::Packet *p);
 
 // unsigned char GetPacketChanel(RakNet::Packet *p);
 

@@ -57,6 +57,8 @@ public:
 
     uint32_t sendData(const std::string & data, uint8_t encryptIndex);
 
+    uint32_t sendWrapData(const std::string & data);
+
     void connect();
 
     void update(float deltaTime);
