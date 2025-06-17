@@ -311,8 +311,60 @@ end
 
 
 ---- Wrap Mesage Handling
-MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function(host,data)
+---@param host pointer instance of ServerScriptingManager
+---@param data string data recieved
+---@param ip pointer client ip
+---@param guid string client guid
+MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function(host,data, ip, guid)
     print("AccountResponse.Alogin called")
+    ClientEPList = _G.ClientEPList
 
+    -- local clientIP = SV_GetPacketIP(packet)
+    -- local processResult = string.sub(message, beginP, endIndex - 1)
+    --- dump 
+    --- split id and account by the sigh | 
+
+    -- strip the '|' from the start and end 
+    print("data " .. data)
+    local t_id, t_pw = string.match(data, "^|([^|]+)|([^|]+)|$")
+    -- local t_id = string.sub(peelData, 0,string.find(peelData, "|") - 1)
+    -- local t_pw = string.sub(peelData, string.len(t_id) + 2 , string.len(peelData))
+    print("id is " .. t_id)
+    print("pw is " .. t_pw)
+
+    
+
+
+    if CheckAccountValid(host, t_id, t_pw) then
+        for k,v in pairs(ClientEPList) do
+            if v.name == t_id then
+                -- print("account already logged in")
+                local t_response = 0
+                t_response = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
+                while t_response == 0 do
+                    t_response = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
+                end
+                return
+            end
+        end
+        -- print("account check OK, send OK message")
+        local sendOK = 0
+        sendOK = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
+        while sendOK == 0 do
+            sendOK = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
+        end
+        ---@type pointer
+        local systemAddress = SV_GetPacketIP(packet)
+        if systemAddress ~= nil then
+            CH_AddClientEP(systemAddress, guid, t_id)
+        end
+    else
+        -- print("account check failed send negative response")
+        local t_response = 0
+        t_response = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
+        while t_response == 0 do
+            t_response = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
+        end
+    end
 
 end

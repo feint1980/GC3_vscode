@@ -155,11 +155,11 @@ function HandleMessage(host,packet,requestCode)
     end
 end
 
-function HandleWrapMessage(host,chanel,request, data)
+function HandleWrapMessage(host,chanel,request, data,ip,guid)
     -- print("HandleWrapMessage called" )
 
     if MessageHandling[chanel][request] ~= nil then
-        MessageHandling[chanel][request](host,data)
+        MessageHandling[chanel][request](host,data,ip,guid)
     end
 end
 

@@ -956,18 +956,22 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
     uint8_t request = static_cast<uint8_t>(p->data[indexStart + 1]);
 
 
-    std::cout << "channel " << channel << " request " << request << "\n";
+    std::string rawData =  std::string(reinterpret_cast<const char*>(p->data), p->length);
 
+    std::cout << "rawData " << rawData << "\n";
+
+    std::cout << "channel " << channel << " request " << request << "\n";
 
     // hand special request here
     unsigned int payLoadIndex = indexStart + 2;
 
     std::string payLoad = std::string(reinterpret_cast<const char*>(p->data + payLoadIndex), p->length - payLoadIndex);
+    std::cout << "payload " << payLoad << "\n";
 
     // decrypt the payload only
     payLoad = getDecryptMessage(payLoad);
 
-    std::cout << "payload " << payLoad << "\n";
+    std::cout << "decrypted payload " << payLoad << "\n";
 
     lua_getglobal(m_script, "HandleWrapMessage");
     if (lua_isfunction(m_script, -1))
@@ -976,12 +980,14 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
         lua_pushnumber(m_script, channel);
         lua_pushnumber(m_script, request);
         lua_pushstring(m_script, payLoad.c_str());
+        lua_pushlightuserdata(m_script, &p->systemAddress);
+        lua_pushstring(m_script, p->guid.ToString());
         //std::cout << "Issue next task pointer " << object << "\n";
         //lua_pushlightuserdata(m_script, p->);
         //lua_pushlightuserdata(m_script, m_guiHandler);
         // lua_pushnumber(m_script, p->);
         // lua_pushlightuserdata(m_script, entity->getTargetSlot());
-        int arguments = 4;
+        int arguments = 6;
         int returnCount = 1;
         if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, arguments, returnCount, 0)))
         {

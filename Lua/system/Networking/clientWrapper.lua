@@ -1,5 +1,31 @@
 --- Classes declare
 
+--- for CLient
+PacketChannel ={
+    AccountChannel = 1,
+    UserChannel = 2,
+    ShopChannel =3,
+    TransactionChannel = 3
+}
+
+AccountResponse = {
+    Alogin = 1,
+    Aregister = 2,
+    ARequesKey = 3
+}
+
+UserResponse = {
+    MainInfo = 1,
+    CharacterInfo = 2,
+    ItemInfo = 3
+}
+
+ShopResponse = {
+    ShopChracterInfo = 1,
+    ShopItemInfo = 2
+}
+
+
 
 ---@Description combines packet
 ---@param type string type of packet to wrap
@@ -23,14 +49,16 @@ end
 ---@return string
 function WrapRequest(channel, request, list)
 
+    print("WrapRequest called ")
     local returnValue = ""
-    returnValue = string.char(channel, request) .. "|"
+    returnValue = string.char(channel) .. string.char(request) .. "|"
     for i = 1, #list do
         returnValue = returnValue .. list[i] .. "|"
     end
     -- returnValue = returnValue .. "|"
     return returnValue
 end
+
 
 --- split data into multiple part with special character and no of split
 ---@return table table of string data split

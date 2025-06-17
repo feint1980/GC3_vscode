@@ -81,6 +81,17 @@ function Client_SendData(host,data,encryptIndex)
     return cppSendData(host,data,encryptIndex)
 end
 
+--- wrapper of cppSendWrapData
+--- @param host pointer instance of ClientScriptingManager
+--- @param channel number channel
+--- @param request number type of packet to wrap
+--- @param list table data to wrap
+function Client_SendWrapData(host,channel,request,list)
+
+    print("Client_SendWrapData called")
+    return cppSendWrapData(host,WrapRequest(channel,request,list))
+end
+
 
 --- wrapper of cppSendData
 ---@param host pointer instance of ClientScriptingManager
