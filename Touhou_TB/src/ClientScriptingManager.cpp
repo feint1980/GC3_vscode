@@ -129,6 +129,7 @@ int lua_SendData(lua_State * L)
 
 int lua_SendWrapData(lua_State * L)
 {
+    std::cout << "lua_SendWrapData called \n";
     if(lua_gettop(L) != 2)
     {
         std::cout << "gettop failed (lua_SendWrapData) \n";
@@ -139,10 +140,9 @@ int lua_SendWrapData(lua_State * L)
     {
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string requestCmd = lua_tostring(L, 2);
-        // std::cout << "client side send data:" << requestCmd << "\n";
 
-        // append ID_TH_TB to the first byte
-        requestCmd.insert(0, 1, ID_TH_TB);
+        std::cout << "data : " << requestCmd << "\n";
+        // std::cout << "client side send data:" << requestCmd << "\n";
 
         uint32_t result = host->sendWrapData(requestCmd);
         lua_pushnumber(L, result);
@@ -229,7 +229,7 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
     // todo , special request add here
     int payLoadIndex = 2;
 
-    std::string payLoad = std::string(data.begin() + 2, data.end());
+    std::string payLoad = std::string(data.begin() + payLoadIndex, data.end());
     unsigned char iv[AES_IV_SIZE] = {};
     m_cryptor.generateRandomIV(iv);
     // std::string fData ;
@@ -240,6 +240,9 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
         tData.push_back(iv[i]);
     }
     std::string sendStr;
+    sendStr.push_back(ID_TH_TB); // move to append ID_TH_TB here
+    sendStr.push_back(channel);
+    sendStr.push_back(request);
     
     for(int i = 0 ; i < tData.size() ; i++)
     {

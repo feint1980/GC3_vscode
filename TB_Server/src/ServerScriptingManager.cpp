@@ -171,7 +171,9 @@ static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **
             m_response.data.push_back(value);
             lua_pushstring(shared_luaState, colName.c_str());
             lua_pushstring(shared_luaState, value.c_str());
-            if (!LuaManager::Instance()->checkLua(shared_luaState, lua_pcall(shared_luaState, 2, 1, 0)))
+            int arguments = 2;
+            int returnCount = 1;
+            if (!LuaManager::Instance()->checkLua(shared_luaState, lua_pcall(shared_luaState, arguments, returnCount, 0)))
             {
                 std::cout << "call AddColData failed \n";
             }
@@ -825,9 +827,11 @@ void ServerScriptingManager::handleCommonMSG()
 
             // lua_pushlightuserdata(m_script, entity->getTargetSlot());
 
-            if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
+            int arguments = 3;
+            int returnCount = 1;
+            if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, arguments, returnCount, 0)))
             {
-                std::cout << "call HandleMessage failed \n";
+                std::cout << "call HandleCommon failed \n";
             }
         }
         m_commonResponseQueue.pop();
@@ -840,32 +844,39 @@ void ServerScriptingManager::update(float deltaTime)
 //   /  handleCommonMSG();
 }
 
-
 std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
 {
-    //p->systemAddress
-    //p->systemAddress
-
     // std::string retVal = "";
-
     unsigned char iv[AES_IV_SIZE];
     for(int i = 0 ; i < AES_IV_SIZE ; i++)
     {
         iv[i] = p->data[(p->length -1) - (AES_IV_SIZE - i)]; 
     }
 
-
-
     std::vector<unsigned char> tMsg;
     for(int i = 0 ;i < (p->length -1) - AES_IV_SIZE; i++)
     {
         tMsg.push_back(p->data[i]);
     }
-
     // retVal =  m_cryptor.decrypt(tMsg, iv);
-
     return m_cryptor.decrypt(tMsg, iv);;
+}
 
+std::string ServerScriptingManager::getDecryptMessage(const std::string & data)
+{
+    unsigned char iv[AES_IV_SIZE];
+    for(int i = 0 ; i < AES_IV_SIZE ; i++)
+    {
+        iv[i] = data[(data.size() -1) - (AES_IV_SIZE - i)]; 
+    }
+
+    std::vector<unsigned char> tMsg;
+    for(int i = 0 ;i < (data.size() -1) - AES_IV_SIZE; i++)
+    {
+        tMsg.push_back(data[i]);
+    }
+
+    return m_cryptor.decrypt(tMsg, iv);
 }
 
 uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data, bool isEncrypted)
@@ -922,34 +933,63 @@ unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
 
         // lua_pushlightuserdata(m_script, entity->getTargetSlot());
 
-        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
+        int arguments = 3;
+        int returnCount = 1;
+        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, arguments, returnCount, 0)))
         {
             std::cout << "call HandleMessage failed \n";
         }
     }
-
     return 666;
 }
 
 
-uint32_t handleWrapData(RakNet::Packet *p)
+uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
 {
     int indexStart = 1;
     if ((unsigned char)p->data[0] == ID_TIMESTAMP)
     {
-        indexStart = sizeof(RakNet::MessageID) + sizeof(RakNet::Time);
+        RakAssert(p->length > sizeof(RakNet::MessageID) + sizeof(RakNet::Time));
+        indexStart += sizeof(RakNet::MessageID) + sizeof(RakNet::Time);
     }
     uint8_t channel = static_cast<uint8_t>(p->data[indexStart]);
     uint8_t request = static_cast<uint8_t>(p->data[indexStart + 1]);
 
+
+    std::cout << "channel " << channel << " request " << request << "\n";
+
+
     // hand special request here
     unsigned int payLoadIndex = indexStart + 2;
 
-    std::string payLoad = std::string(p->data + payLoadIndex, p->length - payLoadIndex);
+    std::string payLoad = std::string(reinterpret_cast<const char*>(p->data + payLoadIndex), p->length - payLoadIndex);
 
-    
+    // decrypt the payload only
+    payLoad = getDecryptMessage(payLoad);
 
+    std::cout << "payload " << payLoad << "\n";
 
+    lua_getglobal(m_script, "HandleWrapMessage");
+    if (lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this); // host
+        lua_pushnumber(m_script, channel);
+        lua_pushnumber(m_script, request);
+        lua_pushstring(m_script, payLoad.c_str());
+        //std::cout << "Issue next task pointer " << object << "\n";
+        //lua_pushlightuserdata(m_script, p->);
+        //lua_pushlightuserdata(m_script, m_guiHandler);
+        // lua_pushnumber(m_script, p->);
+        // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+        int arguments = 4;
+        int returnCount = 1;
+        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, arguments, returnCount, 0)))
+        {
+            std::cout << "call HandleWrapMessage failed \n";
+        }
+    }
+
+    // retVal =  m_cryptor.decrypt(tMsg, iv);
     return 0;
 }
 
@@ -964,42 +1004,21 @@ ClientRequestCode ServerScriptingManager::handleCommand(RakNet::Packet *p)
         // only push to queue when the request code is valid
         //m_responseQueue.push(MSGResponse(std::move( p), requestCode));
     //}
-
     lua_getglobal(m_script, "HandleMessage");
     if (lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this); // host
-
         //std::cout << "Issue next task pointer " << object << "\n";
-
         lua_pushlightuserdata(m_script, p);
         //lua_pushlightuserdata(m_script, m_guiHandler);
-
         lua_pushnumber(m_script, requestCode);
-
         // lua_pushlightuserdata(m_script, entity->getTargetSlot());
-
         if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, 3, 1, 0)))
         {
             std::cout << "call HandleMessage failed \n";
         }
     }
 
-    // switch (requestCode)
-    // {
-    //     case PacketCode::LOGIN:
-    //     {
-    //         std::cout << "Login request found !!!\n";
-    //         // todo : verify login
-    //         std::string cData((const char*) p->data);
-            
-    //         return ClientRequestCode::Login;
-    //     }
-    //     break;
-    //     default :
-    //         return ClientRequestCode::Client_Invalid;
-    //     break;
-    // }
     return ClientRequestCode::Client_Invalid;
 }
 

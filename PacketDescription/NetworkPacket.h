@@ -67,7 +67,7 @@ enum ServerResponseCode
 
 enum class PacketChannel : uint8_t 
 {
-    AccountChannel = 0,
+    AccountChannel = 1,
     UserChannel,
     ShopChannel,
     TransactionChannel
@@ -75,21 +75,21 @@ enum class PacketChannel : uint8_t
 
 enum class AccountResponse : uint8_t 
 {
-    ALogin,
+    ALogin = 1,
     ARegister,
     ARequestKey
 };
 
 enum class UserResponse : uint8_t
 {
-    MainInfo,
+    MainInfo  = 1,
     CharacterInfo,
     ItemInfo
 };
 
 enum class ShopResponse : uint8_t
 {
-    ShopChracterInfo,
+    ShopChracterInfo = 1,
     ShopItemInfo
 };
 
@@ -105,8 +105,8 @@ enum class ShopResponse : uint8_t
 
 struct PacketHeader
 {
-    uint8_t channel;
-    uint8_t request;
+    uint8_t channel; // bring back channel, wow
+    uint8_t request; 
 
     PacketHeader() : channel(255), request(255) {}
 };

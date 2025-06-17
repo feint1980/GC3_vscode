@@ -1,27 +1,27 @@
 -- Replicate enum from C++
 
 PacketChannel ={
-    AccountChannel = 0,
-    UserChannel = 1,
-    ShopChannel =1,
-    TransactionChannel = 2
+    AccountChannel = 1,
+    UserChannel = 2,
+    ShopChannel =3,
+    TransactionChannel = 3
 }
 
 AccountResponse = {
-    Alogin = 0,
-    Aregister = 1,
-    ARequesKey = 2
+    Alogin = 1,
+    Aregister = 2,
+    ARequesKey = 3
 }
 
 UserResponse = {
-    MainInfo = 0,
-    CharacterInfo = 1,
-    ItemInfo = 2
+    MainInfo = 1,
+    CharacterInfo = 2,
+    ItemInfo = 3
 }
 
 ShopResponse = {
-    ShopChracterInfo = 0,
-    ShopItemInfo = 1
+    ShopChracterInfo = 1,
+    ShopItemInfo = 2
 }
 
 

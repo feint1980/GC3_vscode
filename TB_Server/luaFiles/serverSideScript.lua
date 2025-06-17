@@ -107,7 +107,17 @@ ResponseHandle = {}
 
 CommonHandle = {}
 
-MessageHandling = {}
+MessageHandling = {
+
+
+}
+MessageHandling[PacketChannel.AccountChannel] = {}
+
+MessageHandling[PacketChannel.ShopChannel] = {}
+
+MessageHandling[PacketChannel.TransactionChannel] = {}
+
+MessageHandling[PacketChannel.UserChannel] = {}
 
 
 ---@Description combines packet
@@ -135,7 +145,6 @@ end
 --- @param packet pointer instance of 
 --- @param requestCode number request code
 function HandleMessage(host,packet,requestCode)
-
     -- local message = SV_GetPacketData(host,packet)
     -- print("relay message")
     -- print(message)
@@ -147,7 +156,7 @@ function HandleMessage(host,packet,requestCode)
 end
 
 function HandleWrapMessage(host,chanel,request, data)
-    print("HandleWrapMessage called" )
+    -- print("HandleWrapMessage called" )
 
     if MessageHandling[chanel][request] ~= nil then
         MessageHandling[chanel][request](host,data)

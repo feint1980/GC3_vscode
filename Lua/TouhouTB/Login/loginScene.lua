@@ -275,11 +275,12 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_LoginBtn:setHoverable(0,255,0,255,255,255,255,255)
     Login_LoginBtn:setOnClickCallback(function()
 
+        print("setOnClickCallback here")
         Login_showNotification("Logging ...","")
+        -- local sendData =  string.char(PacketChannel.AccountChannel)  .. string.char(AccountResponse.Alogin) .. ""
+        -- cppSendWrapData(Login_ClientScriptingPtr ,sendData) send wrap data case 1 test OK
         Login_MainCall(host)
-
     end)
-
     Login_LGRegisterBtn = Label:new()
     Login_LGRegisterBtn:init(Login_GUIScriptingPtr,"Register",0,0,Login_LoginPanel.ptr)
     Login_LGRegisterBtn:setPosStr("50%","75%")
