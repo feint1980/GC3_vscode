@@ -680,6 +680,28 @@ int lua_getEncryptedPW(lua_State * L)
     return 0;
 }
 
+int lua_SendWrapMsgToClient(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_SendWrapMsgToClient) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        RakNet::SystemAddress * clientId = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 2));
+        std::string msg = lua_tostring(L, 3);
+        uint32_t tResult =  host->sendWrapData(*clientId, msg);
+        
+        lua_pushinteger(L, tResult);
+        return 1;
+    }
+
+    return -1;
+}
+
 int lua_SendToClient(lua_State * L)
 {
     // std::cout << "lua_SendToClient called \n";
@@ -878,6 +900,45 @@ std::string ServerScriptingManager::getDecryptMessage(const std::string & data)
 
     return m_cryptor.decrypt(tMsg, iv);
 }
+
+
+uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & target, const std::string & data)
+{
+    std::cout << "C++ sendWrapData called \n";
+    if(data.size() < 2 ) // headers
+    {
+        std::cout << "sendWrapData failed (data size < 2) \n";
+        return 0;
+    }
+    uint8_t channel = static_cast<uint8_t>(data[0]);
+    uint8_t request = static_cast<uint8_t>(data[1]);
+    // todo , special request add here
+    int payLoadIndex = 2;
+
+    std::string payLoad = std::string(data.begin() + payLoadIndex, data.end());
+    unsigned char iv[AES_IV_SIZE] = {};
+    m_cryptor.generateRandomIV(iv);
+    
+    auto tData = m_cryptor.encrypt(payLoad,iv);
+    for(int i = 0 ; i < AES_IV_SIZE;i++)
+    {
+        tData.push_back(iv[i]);
+    }
+    std::string sendStr;
+    sendStr.push_back(ID_TH_TB); // move to append ID_TH_TB here
+    sendStr.push_back(channel);
+    sendStr.push_back(request);
+    
+
+    for(int i = 0 ; i < tData.size() ; i++)
+    {
+        sendStr.push_back((tData[i]));
+    }
+    
+    std::cout << "send data " << sendStr << "\n";
+
+    return m_server->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, channel, target, true);
+}   
 
 uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data, bool isEncrypted)
 {
@@ -1132,6 +1193,8 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppGetQueryResults", lua_GetQueryResults);
     lua_register(m_script, "cppGenKey", lua_GenKey);
     lua_register(m_script, "cppSendToClient", lua_SendToClient);
+    lua_register(m_script, "cppSendWrapMsgToClient", lua_SendWrapMsgToClient);
+
 
     // Sqlite 
     lua_register(m_script, "cppSqlite_CreateStatement",lua_SQLCreateStatement );

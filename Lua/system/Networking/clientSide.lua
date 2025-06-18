@@ -1,6 +1,9 @@
 ClientSide_Host = nil
 ---@class RakNet_SystemAddress
 
+
+require "clientWrapper"
+
 ServerResponseHeader = {}
 
 ---@class (exact) Client_Packet
@@ -57,7 +60,6 @@ function ClientSide_Init(host)
     ClientSide_Host = host
 end
 
-
 --- Client_SendRequest
 ---@param host pointer instance of ClientScriptingManager
 ---@param channel number channel
@@ -91,7 +93,6 @@ function Client_SendWrapData(host,channel,request,list)
     print("Client_SendWrapData called")
     return cppSendWrapData(host,WrapRequest(channel,request,list))
 end
-
 
 --- wrapper of cppSendData
 ---@param host pointer instance of ClientScriptingManager
@@ -136,7 +137,6 @@ function Client_HandlePacket(packet)
     end
 end
 
-
 function GetTableSize(t)
     local count = 0
     for _, _ in pairs(t) do
@@ -145,6 +145,17 @@ function GetTableSize(t)
     return count
 end
 
+ClientMessageHandling = {
+
+}
+
+ClientMessageHandling[PacketChannel.AccountChannel] = {}
+
+ClientMessageHandling[PacketChannel.ShopChannel] = {}
+
+ClientMessageHandling[PacketChannel.TransactionChannel] = {}
+
+ClientMessageHandling[PacketChannel.UserChannel] = {}
 
 -- ---@Description combines packet
 -- ---@param type string type of packet to wrap
@@ -158,3 +169,11 @@ end
 --     returnValue = returnValue .. type .. "_END_REQUEST|"
 --     return returnValue
 -- end
+
+function ClientHandlerWrapResponse(host,chanel,request, data,ip,guid)
+    print("ClientHandlerWrapResponse called" )
+
+    if ClientMessageHandling[chanel][request] ~= nil then
+        ClientMessageHandling[chanel][request](host,data,ip,guid)
+    end
+end

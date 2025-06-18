@@ -129,7 +129,7 @@ int lua_SendData(lua_State * L)
 
 int lua_SendWrapData(lua_State * L)
 {
-    std::cout << "lua_SendWrapData called \n";
+    // std::cout << "lua_SendWrapData called \n";
     if(lua_gettop(L) != 2)
     {
         std::cout << "gettop failed (lua_SendWrapData) \n";
@@ -219,6 +219,7 @@ uint32_t ClientScriptingManager::sendData(const std::string & data, uint8_t encr
 
 uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
 {
+    std::cout << "C++ ClientScriptingManager::sendWrapData called \n";
     if(data.size() < 2 ) // headers
     {
         std::cout << "sendWrapData failed (data size < 2) \n";
@@ -249,7 +250,6 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
         sendStr.push_back((tData[i]));
     } 
     return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, channel, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
-
 }
 
 CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
@@ -358,6 +358,92 @@ ClientScriptingManager::~ClientScriptingManager()
 {
 
 }
+
+uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
+{
+    std::cout << "handleWrapData  called \n";
+    if(p->length < 2 )
+    {
+        std::cout << "Invalid Packet (data size < 2) \n";
+
+        return 0;
+    }
+    else
+    {
+        unsigned char packetIdentifier = GetPacketIdentifier(p);
+        switch(packetIdentifier)
+        {
+            case ID_TH_TB:
+            {
+                lua_getglobal(m_script, "ClientHandlerWrapResponse");
+                if(lua_isfunction(m_script, -1))
+                {
+
+                    int indexStart = 1;
+                    if ((unsigned char)p->data[0] == ID_TIMESTAMP)
+                    {
+                        RakAssert(p->length > sizeof(RakNet::MessageID) + sizeof(RakNet::Time));
+                        indexStart += sizeof(RakNet::MessageID) + sizeof(RakNet::Time);
+                    }
+                    if(p->length < 2 )
+                    {
+                        std::cout << "sendWrapData failed (data size < 2) \n";
+                        return 0;
+                    }
+                    uint8_t channel = static_cast<uint8_t>(p->data[indexStart]);
+                    uint8_t request = static_cast<uint8_t>(p->data[indexStart + 1]);
+
+
+                    std::string rawData =  std::string(reinterpret_cast<const char*>(p->data), p->length);
+
+                    unsigned int payLoadIndex = indexStart + 2;
+
+                    std::string payLoad = std::string(reinterpret_cast<const char*>(p->data + payLoadIndex), p->length - payLoadIndex);
+
+                    payLoad = getDecryptMessage(payLoad);
+
+                    lua_pushlightuserdata(m_script, this);
+                    lua_pushnumber(m_script, channel);
+                    lua_pushnumber(m_script, request);
+                    lua_pushstring(m_script, payLoad.c_str());
+                    lua_pushlightuserdata(m_script, &p->systemAddress);
+                    lua_pushstring(m_script, p->guid.ToString());
+                    const int argc = 6;
+                    const int returnCount = 1;
+                    return LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
+                }
+                    break;
+                default:
+                {
+                    handleMessage(p);
+                    return 0;
+                }
+                break;
+            }
+        }
+    }   
+    return 0;
+    // std::string data = std::string((char*)p->data, p->dataLength);
+    // sendData(data, 0);
+}
+
+std::string ClientScriptingManager::getDecryptMessage(const std::string & data)
+{
+    unsigned char iv[AES_IV_SIZE];
+    for(int i = 0 ; i < AES_IV_SIZE ; i++)
+    {
+        iv[i] = data[(data.size() -1) - (AES_IV_SIZE - i)]; 
+    }
+
+    std::vector<unsigned char> tMsg;
+    for(int i = 0 ;i < (data.size() -1) - AES_IV_SIZE; i++)
+    {
+        tMsg.push_back(data[i]);
+    }
+
+    return m_cryptor.decrypt(tMsg, iv);
+}
+
 
 void ClientScriptingManager::handleMessage(RakNet::Packet *p)
 {
@@ -565,6 +651,7 @@ void ClientScriptingManager::secondGateWay(RakNet::Packet *p)
     // todo 
 }
 
+
 void ClientScriptingManager::update(float deltaTime)
 {
 
@@ -574,13 +661,13 @@ void ClientScriptingManager::update(float deltaTime)
         RakNet::Packet *p = nullptr;
         // for(RakNet::Packet *p = m_client->Receive(); p; m_client->DeallocatePacket(p), p = m_client->Receive())
         // {
-        p = m_client->Receive();
-        if(p)
-        {
-            handleMessage(p);
-            m_client->DeallocatePacket(p);
-        }
-        
+            p = m_client->Receive();
+            if(p)
+            {
+                handleWrapData(p);
+                // handleMessage(p);
+                m_client->DeallocatePacket(p);
+            }
         // }
         // p = m_client->Receive();
         

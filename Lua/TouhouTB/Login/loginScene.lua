@@ -495,6 +495,8 @@ FunctionList["login_retries"] = function(waitTime)
     end)
 end
 
+
+
 function Login_MainCall(host)
     if Client_Connected == true then
         LoginAttem = true
@@ -580,6 +582,10 @@ function Login_handleKeyboard(signal)
             Login_MainCall(LoginHost)
         end
     end
+end
+
+ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function(host,data, ip, guid)
+    print("AccountResponse.Alogin called")
 end
 
 print("kinda OK")

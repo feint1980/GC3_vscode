@@ -25,8 +25,6 @@ ShopResponse = {
     ShopItemInfo = 2
 }
 
-
-
 ---@Description combines packet
 ---@param type string type of packet to wrap
 ---@param list table data to wrap
@@ -49,7 +47,7 @@ end
 ---@return string
 function WrapRequest(channel, request, list)
 
-    print("WrapRequest called ")
+    -- print("WrapRequest called ")
     local returnValue = ""
     returnValue = string.char(channel) .. string.char(request) .. "|"
     for i = 1, #list do
@@ -58,7 +56,6 @@ function WrapRequest(channel, request, list)
     -- returnValue = returnValue .. "|"
     return returnValue
 end
-
 
 --- split data into multiple part with special character and no of split
 ---@return table table of string data split
@@ -70,4 +67,3 @@ function SplitMessgae(message, character, no_of_split)
     end
     return tTable
 end
-

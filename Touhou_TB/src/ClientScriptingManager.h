@@ -59,6 +59,10 @@ public:
 
     uint32_t sendWrapData(const std::string & data);
 
+    uint32_t handleWrapData(RakNet::Packet *p);
+
+    std::string getDecryptMessage(const std::string & data);
+
     void connect();
 
     void update(float deltaTime);

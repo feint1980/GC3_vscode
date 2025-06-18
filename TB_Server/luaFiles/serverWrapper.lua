@@ -101,6 +101,34 @@ function SV_SendMsg(host,clientIP,message,t_encrypt)
     return cppSendToClient(host,clientIP,message,t_encrypt)
 end
 
+---@Description: wrap packet with headers [channel][request][data * n]
+---@param channel number channel
+---@param request number request
+---@param list table data
+---@return string wrapped packet
+function WrapMsg(channel, request, list)
+    print("WrapMsg called")
+    local msg = ""
+    msg = string.char(channel) .. string.char(request) .. "|"
+    for i = 1, #list do
+        msg = msg .. list[i] .. "|"
+    end
+    return msg
+end
+
+---@Description: send a wrapped packet to a client
+---@param host pointer instance of ServerScriptingManager
+---@param clientIP pointer instance of RakNet::SystemAddress
+---@param channel number channel
+---@param request number request
+---@param list table data
+---@return number return value
+function SV_SendWrapMsg(host, clientIP, channel, request, list)
+    print("SV_SendWrapMsg called")
+    return cppSendWrapMsgToClient(host, clientIP, WrapMsg(channel, request, list))
+end
+
+
 function SV_SendMsgNonEncrypt(host,clientIP,message,t_encrypt)
     cppSendToClient(host,clientIP,message,false)
 end

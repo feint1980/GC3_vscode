@@ -309,7 +309,6 @@ function AddRegisterKey(host)
     return nil
 end
 
-
 ---- Wrap Mesage Handling
 ---@param host pointer instance of ServerScriptingManager
 ---@param data string data recieved
@@ -332,9 +331,6 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
     print("id is " .. t_id)
     print("pw is " .. t_pw)
 
-    
-
-
     if CheckAccountValid(host, t_id, t_pw) then
         for k,v in pairs(ClientEPList) do
             if v.name == t_id then
@@ -353,6 +349,11 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
         while sendOK == 0 do
             sendOK = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
         end
+        -- sendOK = SV_SendWrapMsg(host,ip,PacketChannel.AccountChannel,AccountResponse.Alogin,{ t_id,t_pw, guid})
+        -- while sendOK == 0 do
+        --     sendOK = SV_SendWrapMsg(host,ip,PacketChannel.AccountChannel,AccountResponse.Alogin,{ t_id,t_pw, guid})
+        -- end
+
         ---@type pointer
         local systemAddress = SV_GetPacketIP(packet)
         if systemAddress ~= nil then
