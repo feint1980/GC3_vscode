@@ -474,6 +474,28 @@ FunctionList["login_retries"] = function(waitTime, retries)
     end)
 end
 
+
+---@param waitTime number wait time before next retry
+---@param retries number number of retries
+FunctionList["register_retries"] = function(id,pw,key,waitTime, retries)
+    if retries == 0 then
+        LoginAttem = false
+        Login_showNotification("Failed to login !!!","OK")
+        return
+    end
+    Tscheduler_addTask(waitTime, function()
+        local tSendResult = 0
+        tSendResult = Client_SendWrapData(Login_ClientScriptingPtr,PacketChannel.AccountChannel,AccountResponse.Aregister, {id,pw,key} )
+        if LoginAttem == true then
+            print("retries continue ...")
+            print(tSendResult)
+            if tSendResult == 0 then
+                FunctionList["register_retries"](id,pw,key,25,retries - 1)
+            end
+        end
+    end)
+end
+
 function Login_MainCall(host)
     if Client_Connected == true then
         LoginAttem = true
@@ -487,6 +509,11 @@ function Login_CheckValid(info)
         return false
     end
 end
+
+function Register_MainCall(host,id,pw,key)
+    FunctionList["register_retries"]( id,pw,key,50,5)
+end
+
 function Login_RegisterCall(host)
     local id = Login_RegisterIDEditBox:getText()
     local pw = Login_RegisterPWEditBox:getText()
@@ -513,9 +540,10 @@ function Login_RegisterCall(host)
         return
     end
 
-    Client_SendData(Login_ClientScriptingPtr,CombinePackage("REGISTER",{id,pw,tKey}))
+    --Register_MainCall(host,id,pw,tKey) new 
+    Client_SendData(Login_ClientScriptingPtr,Login_CombinePackage("REGISTER",{id,pw,tKey}))
+    
 end
-
 
 ---@Description get the code of other special ID
 ---@param packet Client_Packet
