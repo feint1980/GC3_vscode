@@ -105,15 +105,17 @@ end
 ---@param channel number channel
 ---@param request number request
 ---@param list table data
----@return string wrapped packet
+---@return string
 function WrapMsg(channel, request, list)
     print("WrapMsg called")
-    local msg = ""
-    msg = string.char(channel) .. string.char(request) .. "|"
+    local returnValue = ""
+    returnValue = string.char(channel) .. string.char(request) .. "|"
     for i = 1, #list do
-        msg = msg .. list[i] .. "|"
+        returnValue = returnValue .. list[i] .. "|"
     end
-    return msg
+    print("result check " .. returnValue)
+    -- returnValue = returnValue .. "|"
+    return returnValue
 end
 
 ---@Description: send a wrapped packet to a client

@@ -682,6 +682,7 @@ int lua_getEncryptedPW(lua_State * L)
 
 int lua_SendWrapMsgToClient(lua_State * L)
 {
+    std::cout << "lua_SendWrapMsgToClient called \n";
     if(lua_gettop(L) != 3)
     {
         std::cout << "gettop failed (lua_SendWrapMsgToClient) \n";
@@ -692,14 +693,19 @@ int lua_SendWrapMsgToClient(lua_State * L)
     {
         ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
         RakNet::SystemAddress * clientId = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 2));
+
         std::string msg = lua_tostring(L, 3);
-        uint32_t tResult =  host->sendWrapData(*clientId, msg);
+        std::cout << "send wrap data \n";
         
+        std::cout << "ip " << clientId << "\n";
+        std::cout << "value " << clientId->ToString(false) << "\n"; 
+        uint32_t tResult =  host->sendWrapData(*clientId, msg);
+        std::cout << "send result " << tResult << "\n";
         lua_pushinteger(L, tResult);
         return 1;
     }
 
-    return -1;
+    return 0;
 }
 
 int lua_SendToClient(lua_State * L)
@@ -912,6 +918,8 @@ uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & targ
     }
     uint8_t channel = static_cast<uint8_t>(data[0]);
     uint8_t request = static_cast<uint8_t>(data[1]);
+
+    std::cout << "sendWrapData channel " << channel << " request " << request << "\n";
     // todo , special request add here
     int payLoadIndex = 2;
 
@@ -928,16 +936,17 @@ uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & targ
     sendStr.push_back(ID_TH_TB); // move to append ID_TH_TB here
     sendStr.push_back(channel);
     sendStr.push_back(request);
-    
 
     for(int i = 0 ; i < tData.size() ; i++)
     {
         sendStr.push_back((tData[i]));
     }
     
-    std::cout << "send data " << sendStr << "\n";
+    std::cout << "send data \n ";
+    std::cout << sendStr << "\n";
 
-    return m_server->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, channel, target, true);
+    return m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY,  RELIABLE_ORDERED,channel, target,false);
+
 }   
 
 uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data, bool isEncrypted)

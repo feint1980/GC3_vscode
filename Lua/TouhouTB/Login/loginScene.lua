@@ -10,8 +10,6 @@ require "loginStripOrder"
 require "clientWrapper"
 require "LuaEventHandler"
 
-
-
 ---@class TGUIScriptingPtr
 ---@class ClientScriptingPtr
 
@@ -112,7 +110,6 @@ function Login_CombinePackage(type,list)
     returnValue = returnValue .. type .. "_END_REQUEST|"
     return returnValue
 end
-
 
 function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     LoginHost = host
@@ -222,18 +219,14 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
 
     tosAgree:setPosStr("50%","80%")
     tosAgree:setAlignment(TextAlginment.Center)
-    print("TOS setAlignment OK ")
+
     tosAgree:setHoverable(0,255,0,255,255,255,255,255)
     tosAgree:setOnClickCallback(function() 
         tosPanel:hideWithEffect(PanelShowType.Fade,250)  
-
     end)
-    print("reach here")
-    
-    tosPanel:showWithEffect(PanelShowType.Fade,250)
-    print("reach these")
 
-    print("TOS OK ")
+    tosPanel:showWithEffect(PanelShowType.Fade,250)
+
     --- Login Panel section
     Login_LoginPanel = Panel:new()
     Login_LoginPanel:init(Login_GUIScriptingPtr,0,0,600,400)
@@ -266,7 +259,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_PWEditBox:setPWCharacter("*")
     Login_PWEditBox:setPosStr("30%","50%")
     Login_PWEditBox:setSizeStr("60%","10%")
-    Login_PWEditBox:setText("12345678")
+    Login_PWEditBox:setText("12345678") -- fast login
 
     Login_LoginBtn = Label:new()
     Login_LoginBtn:init(Login_GUIScriptingPtr,"Login",0,0,Login_LoginPanel.ptr)
@@ -279,8 +272,8 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
         Login_showNotification("Logging ...","")
         -- local sendData =  string.char(PacketChannel.AccountChannel)  .. string.char(AccountResponse.Alogin) .. " asdasdsadsadsadsa"
         -- cppSendWrapData(Login_ClientScriptingPtr ,sendData) --send wrap data case 1 test OK
-        Client_SendWrapData(Login_ClientScriptingPtr,PacketChannel.AccountChannel,AccountResponse.Alogin, {Login_IDEditBox:getText(),Login_PWEditBox:getText()} )
-        -- -- Login_MainCall(host)
+        -- Client_SendWrapData(Login_ClientScriptingPtr,PacketChannel.AccountChannel,AccountResponse.Alogin, {Login_IDEditBox:getText(),Login_PWEditBox:getText()} )
+        Login_MainCall(host)
     end)
     Login_LGRegisterBtn = Label:new()
     Login_LGRegisterBtn:init(Login_GUIScriptingPtr,"Register",0,0,Login_LoginPanel.ptr)
@@ -379,6 +372,7 @@ end
 ---@param msg string message
 ---@param btnText string
 function Login_showNotification(msg,btnText)
+    Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,1)
     Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
     Login_Noti_Msg:setText(msg)
     Login_Noti_Btn:setText(btnText)
@@ -443,28 +437,6 @@ function Login_HandleTask_OtherID(host, packet)
     end
 end
 
---- Handle msg when login failed
-Login_HandleStep2[Packet_OtherID.ID_LOGIN_NEG] = function(host,packet)
-    print("ID_LOGIN_NEG")
-    Login_Noti_Msg:setText( StripMSG(packet.data,Packet_OtherID.ID_LOGIN_NEG))
-    Login_Noti_Btn:setText("OK")
-    Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
-    LoginAttem = false
-end
-
---- Handle msg when login OK
-Login_HandleStep2[Packet_OtherID.ID_LOGIN_POS] = function(host,packet)
-    print("ID_LOGIN_POS")
-    local tData = StripMSG(packet.data,Packet_OtherID.ID_LOGIN_POS)
-
-    local tD = SplitMessgae(tData,"|",2)
-    -- Login_Noti_Msg:setText("Loading ...")
-    -- Login_Noti_Btn:setText("OK")
-    -- Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
-
-    cpp_switchScene(LoginHost,tD[1],tD[2],tD[3],0)
-end
-
 Login_HandleStep2[Packet_OtherID.ID_REGISTER_NEG] = function(host,packet)
     print("ID_REGISTER_NEG")
     Login_Noti_Msg:setText( StripMSG(packet.data,Packet_OtherID.ID_REGISTER_NEG))
@@ -480,41 +452,33 @@ Login_HandleStep2[Packet_OtherID.ID_REGISTER_POS] = function(host,packet)
     Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
 end
 
-FunctionList["login_retries"] = function(waitTime)
+
+---@param waitTime number wait time before next retry
+---@param retries number number of retries
+FunctionList["login_retries"] = function(waitTime, retries)
+    if retries == 0 then
+        LoginAttem = false
+        Login_showNotification("Failed to login !!!","OK")
+        return
+    end
     Tscheduler_addTask(waitTime, function()
-        print("login check ...")
         local tSendResult = 0
-        tSendResult = Client_SendData(Login_ClientScriptingPtr, CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
+        tSendResult = Client_SendWrapData(Login_ClientScriptingPtr,PacketChannel.AccountChannel,AccountResponse.Alogin, {Login_IDEditBox:getText(),Login_PWEditBox:getText()} )
         if LoginAttem == true then
             print("retries continue ...")
             print(tSendResult)
             if tSendResult == 0 then
-                FunctionList["login_retries"](25)
+                FunctionList["login_retries"](25,retries - 1)
             end
         end
     end)
 end
 
-
-
 function Login_MainCall(host)
     if Client_Connected == true then
         LoginAttem = true
-        FunctionList["login_retries"](50)
-        -- while tSendResult ~=0 do
-        --    -- Tscheduler_addTask(5, function()
-        --         print("retry ...")
-        --    -- end)
-        -- end
-        -- if tSendResult ~= 0 then
-
-        -- --   Tscheduler_addTask(100, function()
-        --     tSendResult = Client_SendData(Login_ClientScriptingPtr, CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
-        -- -- end)
-        -- end
+        FunctionList["login_retries"](50,5)
     end
-    -- print("setOnClickCallback send data : ")
-    -- print(CombinePackage("LOGIN", { Login_IDEditBox:getText(), Login_PWEditBox:getText()}))
 end
 
 function Login_CheckValid(info)
@@ -548,8 +512,10 @@ function Login_RegisterCall(host)
         Login_showNotification("Invalid Key Format !","OK")
         return
     end
+
     Client_SendData(Login_ClientScriptingPtr,CombinePackage("REGISTER",{id,pw,tKey}))
 end
+
 
 ---@Description get the code of other special ID
 ---@param packet Client_Packet
@@ -584,8 +550,33 @@ function Login_handleKeyboard(signal)
     end
 end
 
-ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function(host,data, ip, guid)
+ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function(host,data, guid)
     print("AccountResponse.Alogin called")
+
+    -- "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$"
+    local t_id, tStatus, t_pw, tGUID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    print("id is " .. t_id .. "/" .. Login_IDEditBox:getText())
+    print("status is " .. tStatus)
+    print("pw is " .. t_pw .. "/" .. Login_PWEditBox:getText())
+    -- print("guid is " .. tGUID .. "/" .. guid)
+
+    -- check all data match, then log in
+    local matchCount = 0
+    if t_id == Login_IDEditBox:getText() then
+        matchCount = matchCount + 1
+    end
+    if t_pw == Login_PWEditBox:getText() then
+        matchCount = matchCount + 1
+    end
+    if tStatus == "granted" then
+        matchCount = matchCount + 1
+    end
+    if matchCount == 3 then
+        cpp_switchScene(LoginHost,t_id,t_pw,tGUID,0) -- use tGUID (server guid for further verification)
+    else
+        Login_showNotification(tStatus,"OK")
+        LoginAttem = false
+    end
 end
 
 print("kinda OK")

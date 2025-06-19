@@ -1,3 +1,5 @@
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Home/Shop/?.lua;' .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua' .. ';../../Lua/TouhouTB/characters/Meiling/?.lua;' .. ';../../Lua/TouhouTB/?.lua'
+
 ClientSide_Host = nil
 ---@class RakNet_SystemAddress
 
@@ -90,7 +92,7 @@ end
 --- @param list table data to wrap
 function Client_SendWrapData(host,channel,request,list)
 
-    print("Client_SendWrapData called")
+    -- print("Client_SendWrapData called")
     return cppSendWrapData(host,WrapRequest(channel,request,list))
 end
 
@@ -170,10 +172,16 @@ ClientMessageHandling[PacketChannel.UserChannel] = {}
 --     return returnValue
 -- end
 
-function ClientHandlerWrapResponse(host,chanel,request, data,ip,guid)
+--- Handle wrapper message
+---@Description Handle wrapper message
+---@param host pointer instance of ClientScriptingManager
+---@param chanel number channel
+---@param request number type of packet to wrap
+---@param data string data need to send
+function ClientHandlerWrapResponse(host,chanel,request, data,guid)
     print("ClientHandlerWrapResponse called" )
 
     if ClientMessageHandling[chanel][request] ~= nil then
-        ClientMessageHandling[chanel][request](host,data,ip,guid)
+        ClientMessageHandling[chanel][request](host,data,guid)
     end
 end

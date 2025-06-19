@@ -364,8 +364,9 @@ uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
     std::cout << "handleWrapData  called \n";
     if(p->length < 2 )
     {
-        std::cout << "Invalid Packet (data size < 2) \n";
-
+        // std::cout << "Invalid Packet (data size < 2) \n";
+        // self packet detected 
+        handleMessage(p);
         return 0;
     }
     else
@@ -378,7 +379,6 @@ uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
                 lua_getglobal(m_script, "ClientHandlerWrapResponse");
                 if(lua_isfunction(m_script, -1))
                 {
-
                     int indexStart = 1;
                     if ((unsigned char)p->data[0] == ID_TIMESTAMP)
                     {
@@ -387,12 +387,11 @@ uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
                     }
                     if(p->length < 2 )
                     {
-                        std::cout << "sendWrapData failed (data size < 2) \n";
+                        std::cout << "handleWrapData failed (data size < 2) \n";
                         return 0;
                     }
                     uint8_t channel = static_cast<uint8_t>(p->data[indexStart]);
                     uint8_t request = static_cast<uint8_t>(p->data[indexStart + 1]);
-
 
                     std::string rawData =  std::string(reinterpret_cast<const char*>(p->data), p->length);
 
@@ -406,9 +405,10 @@ uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
                     lua_pushnumber(m_script, channel);
                     lua_pushnumber(m_script, request);
                     lua_pushstring(m_script, payLoad.c_str());
-                    lua_pushlightuserdata(m_script, &p->systemAddress);
+                    // lua_pushlightuserdata(m_script, &p->systemAddress);
                     lua_pushstring(m_script, p->guid.ToString());
-                    const int argc = 6;
+                    std::cout << "recieve guid check " << p->guid.ToString() << "\n";
+                    const int argc = 5; // remember to modify this number when you change the number of arguments
                     const int returnCount = 1;
                     return LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
                 }
@@ -423,8 +423,6 @@ uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
         }
     }   
     return 0;
-    // std::string data = std::string((char*)p->data, p->dataLength);
-    // sendData(data, 0);
 }
 
 std::string ClientScriptingManager::getDecryptMessage(const std::string & data)
@@ -655,19 +653,22 @@ void ClientScriptingManager::secondGateWay(RakNet::Packet *p)
 void ClientScriptingManager::update(float deltaTime)
 {
 
+
     if(m_RakNetCoreInitialized)
     {
         //PacketCode requestCode = getSpecialRequestCode(m_client->Receive());
-        RakNet::Packet *p = nullptr;
-        // for(RakNet::Packet *p = m_client->Receive(); p; m_client->DeallocatePacket(p), p = m_client->Receive())
-        // {
-            p = m_client->Receive();
-            if(p)
-            {
+        //RakNet::Packet *p = nullptr;
+         for(RakNet::Packet *p = m_client->Receive(); p; m_client->DeallocatePacket(p), p = m_client->Receive())
+        {
+            // p = m_client->Receive();
+            // if(p)
+            // {
+                std::cout << "handle wrap data precalled " << (int)(GetPacketIdentifier(p)) << "\n";
                 handleWrapData(p);
                 // handleMessage(p);
-                m_client->DeallocatePacket(p);
-            }
+                // m_client->DeallocatePacket(p);
+        }
+            // }
         // }
         // p = m_client->Receive();
         

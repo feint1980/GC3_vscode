@@ -203,61 +203,7 @@ ResponseHandle[PacketCode.requestUserData] = function(host,packet)
     end
 end
 
---- MARK: Login reponse
-ResponseHandle[PacketCode.login] = function(host,packet)
-    -- print("login response found, processing")
-    ClientEPList = _G.ClientEPList
 
-    local message = SV_GetPacketData(host,packet)
-    local pattern_start = "|LOGIN_REQUEST|"
-    print("message " .. message)
-    local firstIndex = string.find(message, pattern_start)
-
-    print(firstIndex)
-    local beginP = firstIndex + string.len(pattern_start)
-    local pattern_end = "|LOGIN_END_REQUEST|"
-    local endIndex = string.find(message, pattern_end)
-    local clientIP = SV_GetPacketIP(packet)
-    local processResult = string.sub(message, beginP, endIndex - 1)
-    --- dump 
-    --- split id and account by the sigh | 
-    local t_id = string.sub(processResult, 0,string.find(processResult, "|") - 1)
-    local t_pw = string.sub(processResult, string.len(t_id) + 2 , string.len(processResult))
-    -- print("id is " .. t_id)
-    -- print("pw is " .. t_pw)
-    local guid = SV_GetPacketGUID(packet)
-    if CheckAccountValid(host, t_id, t_pw) then
-        for k,v in pairs(ClientEPList) do
-            if v.name == t_id then
-                -- print("account already logged in")
-                local t_response = 0
-                t_response = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
-                while t_response == 0 do
-                    t_response = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
-                end
-                return
-            end
-        end
-        -- print("account check OK, send OK message")
-        local sendOK = 0
-        sendOK = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
-        while sendOK == 0 do
-            sendOK = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
-        end
-        ---@type pointer
-        local systemAddress = SV_GetPacketIP(packet)
-        if systemAddress ~= nil then
-            CH_AddClientEP(systemAddress, guid, t_id)
-        end
-    else
-        -- print("account check failed send negative response")
-        local t_response = 0
-        t_response = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
-        while t_response == 0 do
-            t_response = SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
-        end
-    end
-end
 
 ResponseHandle[PacketCode.requestCharacterList] = function(host,packet)
     local message = SV_GetPacketData(host,packet)
@@ -309,6 +255,26 @@ function AddRegisterKey(host)
     return nil
 end
 
+
+---@Description force to send until it send OK
+---@param host pointer instance of ServerScriptingManager
+---@param ip pointer client ip
+---@param channel number channel
+---@param request number request
+---@param tList table data
+local function sendReliable(host,ip,channel,request,tList)
+
+    local t_response = 0
+    t_response = SV_SendWrapMsg(host,ip,channel,request,tList)
+    while t_response == 0 do
+        t_response = SV_SendWrapMsg(host,ip,channel,request,tList)
+    end
+    print("send end ")
+
+end
+
+--- MARK: Login reponse (New)
+
 ---- Wrap Mesage Handling
 ---@param host pointer instance of ServerScriptingManager
 ---@param data string data recieved
@@ -318,54 +284,22 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
     print("AccountResponse.Alogin called")
     ClientEPList = _G.ClientEPList
 
-    -- local clientIP = SV_GetPacketIP(packet)
-    -- local processResult = string.sub(message, beginP, endIndex - 1)
-    --- dump 
-    --- split id and account by the sigh | 
-
-    -- strip the '|' from the start and end 
-    print("data " .. data)
     local t_id, t_pw = string.match(data, "^|([^|]+)|([^|]+)|$")
-    -- local t_id = string.sub(peelData, 0,string.find(peelData, "|") - 1)
-    -- local t_pw = string.sub(peelData, string.len(t_id) + 2 , string.len(peelData))
-    print("id is " .. t_id)
-    print("pw is " .. t_pw)
+
+    local loginResult = "K2 request failed"
 
     if CheckAccountValid(host, t_id, t_pw) then
+        loginResult = "granted"
         for k,v in pairs(ClientEPList) do
             if v.name == t_id then
-                -- print("account already logged in")
-                local t_response = 0
-                t_response = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
-                while t_response == 0 do
-                    t_response = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_NEG",{"Account already logged in !"}) )
-                end
-                return
+                loginResult = "Account already logged in !"
+                print("Account already logged in !")
+                break
             end
         end
-        -- print("account check OK, send OK message")
-        local sendOK = 0
-        sendOK = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
-        while sendOK == 0 do
-            sendOK = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_POS",{ t_id,t_pw, guid}))
-        end
-        -- sendOK = SV_SendWrapMsg(host,ip,PacketChannel.AccountChannel,AccountResponse.Alogin,{ t_id,t_pw, guid})
-        -- while sendOK == 0 do
-        --     sendOK = SV_SendWrapMsg(host,ip,PacketChannel.AccountChannel,AccountResponse.Alogin,{ t_id,t_pw, guid})
-        -- end
-
-        ---@type pointer
-        local systemAddress = SV_GetPacketIP(packet)
-        if systemAddress ~= nil then
-            CH_AddClientEP(systemAddress, guid, t_id)
-        end
     else
-        -- print("account check failed send negative response")
-        local t_response = 0
-        t_response = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
-        while t_response == 0 do
-            t_response = SV_SendMsg(host,ip,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
-        end
+        loginResult = "Account or password is incorrect !"
     end
-
+    sendReliable(host,ip,PacketChannel.AccountChannel,AccountResponse.Alogin,{ t_id,loginResult,t_pw, guid})
+    CH_AddClientEP(ip, guid, t_id)
 end
