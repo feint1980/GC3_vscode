@@ -270,7 +270,6 @@ local function sendReliable(host,ip,channel,request,tList)
         t_response = SV_SendWrapMsg(host,ip,channel,request,tList)
     end
     print("send end ")
-
 end
 
 --- MARK: Login reponse (New)
@@ -280,7 +279,7 @@ end
 ---@param data string data recieved
 ---@param ip pointer client ip
 ---@param guid string client guid
-MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function(host,data, ip, guid)
+MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function(host ,data, ip, guid)
     print("AccountResponse.Alogin called")
     ClientEPList = _G.ClientEPList
 
@@ -302,4 +301,67 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
     end
     sendReliable(host,ip,PacketChannel.AccountChannel,AccountResponse.Alogin,{ t_id,loginResult,t_pw, guid})
     CH_AddClientEP(ip, guid, t_id)
+end
+
+--F_TODO : Add register sendback register response
+---@Description Handle register request
+---@param host pointer instance of ServerScriptingManager
+---@param data string data recieved
+---@param ip pointer client ip
+---@param guid string client guid
+MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = function(host ,data, ip, guid)
+    print("AccountResponse.Aregister called")
+    local t_id, t_pw, t_key = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+    print("t_id " .. t_id )
+    print("t_pw " .. t_pw )
+    print("t_key " .. t_key )
+
+    local checkAccountExistQuery = "SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ?;"
+
+    SVI_DoQuerySTMT(host,checkAccountExistQuery,{t_id})
+
+    local result = Query_val[1]
+    local accountCount = tonumber(result)
+    if accountCount == 0 then
+
+        local checkKeyExistQuery = "SELECT COUNT(*) FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.val .. " = ?;"
+
+        SVI_DoQuerySTMT(host,checkKeyExistQuery,{t_key})
+        result = Query_val[1]
+        local keyCount = tonumber(result)
+        if keyCount == 0 then
+            -- key not exist
+            -- SV_SendMsg(host,clientIP,"The register key is invalid" )
+            sendReliable(host,ip,PacketChannel.AccountChannel,AccountResponse.Aregister,{ "Register Key is invalid !"})
+            
+        elseif keyCount == 1 then
+            -- key exist
+            -- check if key is ready
+            local checkKeyReadyQuery = "SELECT " .. Table.register_key.ready .. " FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.val .. " = ?;"
+            SVI_DoQuerySTMT(host,checkKeyReadyQuery,{t_key})
+            local keyReadyValue = tonumber(Query_val[1])
+            if keyReadyValue == 1 then
+                local insertAccountQuery = "INSERT INTO " .. Table.account.tb_name ..'('.. Table.account.id .. ', ' .. Table.account.pw  .. ") VALUES ( ?,?);"
+                local ePW = SV_getEncryptPW(host, t_pw)
+                SVI_DoQuerySTMT(host,insertAccountQuery,{t_id,ePW})
+                local updateKeyQuery = "UPDATE " .. Table.register_key.tb_name .. " SET " .. Table.register_key.ready .. " = '0' WHERE " .. Table.register_key.val .. " = ?;"
+                SVI_DoQuerySTMT(host,updateKeyQuery,{t_key})
+                sendReliable(host,ip,PacketChannel.AccountChannel,AccountResponse.Aregister,{ "Register successfully !" })
+                -- add starter mon and souls to new account
+                local insertCurrency =  "INSERT INTO account_stats_table (account_id, mon, souls) VALUES (?, 100, 15);"
+                SVI_DoQuerySTMT(host,insertCurrency,{t_id})
+            else
+                SV_SendMsg(host,clientIP,CombinePackage("REGISTER_RES_NEG",{ "Register Key already used !"}))
+            end
+        else
+            print("multiple key found in query, WARNING")
+        end
+    elseif accountCount == 1 then
+        sendReliable(host,ip,PacketChannel.AccountChannel,AccountResponse.Aregister,{"Account already exists !"})
+        -- SV_SendMsg(host,clientIP,"Account already exists" )
+    else
+        print("accountCount is " .. accountCount)
+        print("If you see this warning in production, you are COOKED !")
+    end
+
 end

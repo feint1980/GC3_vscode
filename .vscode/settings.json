@@ -82,7 +82,21 @@
     "socket": "cpp",
     "timer": "cpp",
     "ranges": "cpp",
-    "valarray": "cpp"
+    "valarray": "cpp",
+    "barrier": "cpp",
+    "cfenv": "cpp",
+    "complex": "cpp",
+    "coroutine": "cpp",
+    "csetjmp": "cpp",
+    "cuchar": "cpp",
+    "expected": "cpp",
+    "source_location": "cpp",
+    "latch": "cpp",
+    "scoped_allocator": "cpp",
+    "shared_mutex": "cpp",
+    "spanstream": "cpp",
+    "stacktrace": "cpp",
+    "syncstream": "cpp"
   },
   "workbench.colorCustomizations": {
     "editor.background": "#181818db",
@@ -226,5 +240,34 @@
       "includePath": [],
       "defines": []
     }
-  ]
+  ],
+  "Lua.diagnostics.disable": [
+    "undefined-field"
+  ],
+
+  "todo-tree.general.tags": [
+    "F_CHECKLIST",
+    "F_README",
+    "F_TODO",
+    "F_WARNING"
+  ],
+  "todo-tree.tree.autoRefresh": true,
+  "todo-tree.tree.labelFormat": "${tag} ${after}",
+  "todo-tree.highlights.customHighlight": {
+    "F_TODO": {
+      "icon": "square",
+      "type": "line",
+      "background": "#303030",
+      "foreground": "#ff3e3e",
+      "gutterIcon": true
+    },
+    "F_README":{
+      "foreground": "#f5df71",
+      "background": "#181818",
+      "iconColour": "#7bff82",
+      "icon": "eye"
+    },
+
+  },
+  "todo-tree.highlights.useColourScheme": true
 }

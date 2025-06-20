@@ -540,9 +540,9 @@ function Login_RegisterCall(host)
         return
     end
 
-    --Register_MainCall(host,id,pw,tKey) new 
-    Client_SendData(Login_ClientScriptingPtr,Login_CombinePackage("REGISTER",{id,pw,tKey}))
-    
+    Register_MainCall(host,id,pw,tKey) --new 
+    -- Client_SendData(Login_ClientScriptingPtr,Login_CombinePackage("REGISTER",{id,pw,tKey}))
+
 end
 
 ---@Description get the code of other special ID

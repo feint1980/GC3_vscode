@@ -102,7 +102,7 @@ enum class ShopResponse : uint8_t
 // [PacketChannel] [<Request>] [<Value>] [<Data>] ...
 
 // today, may remove this and use channel internal instead
-
+//F_WARNING may not use header
 struct PacketHeader
 {
     uint8_t channel; // bring back channel, wow
