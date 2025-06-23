@@ -437,21 +437,6 @@ function Login_HandleTask_OtherID(host, packet)
     end
 end
 
-Login_HandleStep2[Packet_OtherID.ID_REGISTER_NEG] = function(host,packet)
-    print("ID_REGISTER_NEG")
-    Login_Noti_Msg:setText( StripMSG(packet.data,Packet_OtherID.ID_REGISTER_NEG))
-    Login_Noti_Btn:setText("OK")
-    Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
-end
-
-Login_HandleStep2[Packet_OtherID.ID_REGISTER_POS] = function(host,packet)
-    print("ID_REGISTER_POS")
-    Login_Noti_Msg:setText( StripMSG(packet.data,Packet_OtherID.ID_REGISTER_POS))
-    Login_Noti_Btn:setText("OK")
-    Login_RegisterPanel:hideWithEffect(PanelShowType.Fade,250)
-    Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
-end
-
 
 ---@param waitTime number wait time before next retry
 ---@param retries number number of retries
@@ -473,7 +458,6 @@ FunctionList["login_retries"] = function(waitTime, retries)
         end
     end)
 end
-
 
 ---@param waitTime number wait time before next retry
 ---@param retries number number of retries
@@ -607,4 +591,20 @@ ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = fu
     end
 end
 
-print("kinda OK")
+ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = function(host,data, guid)
+    print("AccountResponse.Aregister called")
+
+    -- strip first and last characters
+    local tData = string.sub(data,2,string.len(data) - 1)
+
+    Login_showNotification(tData,"OK")
+
+    if tData == "Register successfully !" then
+        Login_Noti_Btn:setOnClickCallback(function()
+            Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+            Login_RegisterPanel:hideWithEffect(PanelShowType.Fade,250)
+            Login_LoginPanel:showWithEffect(PanelShowType.Fade,250)
+            Login_Noti_Btn:setOnClickCallback(function() Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250) end)
+        end)
+    end
+end

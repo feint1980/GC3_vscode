@@ -130,6 +130,20 @@ function SV_SendWrapMsg(host, clientIP, channel, request, list)
     return cppSendWrapMsgToClient(host, clientIP, WrapMsg(channel, request, list))
 end
 
+---@Description force to send until it send OK
+---@param host pointer instance of ServerScriptingManager
+---@param ip pointer client ip
+---@param channel number channel
+---@param request number request
+---@param tList table data
+function SendReliable(host,ip,channel,request,tList)
+
+    local t_response = 0
+    t_response = SV_SendWrapMsg(host,ip,channel,request,tList)
+    while t_response == 0 do
+        t_response = SV_SendWrapMsg(host,ip,channel,request,tList)
+    end
+end
 
 function SV_SendMsgNonEncrypt(host,clientIP,message,t_encrypt)
     cppSendToClient(host,clientIP,message,false)

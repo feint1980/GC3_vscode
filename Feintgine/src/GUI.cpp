@@ -259,9 +259,7 @@ namespace Feintgine
 
 		// we'll convert utf8str to a utf32 string, saved in utf32buf.
 		// the utf32 chars will be injected into cegui
-
 		size_t len = strlen(utf8str);
-
 		size_t inbytesleft = len;
 		size_t outbytesleft = 4 * SDL_TEXTINPUTEVENT_TEXT_SIZE; // *4 because utf-32 needs 4x as much space as utf-8
 		char* outbuf = (char*)utf32buf;
