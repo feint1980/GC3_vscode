@@ -185,3 +185,71 @@ function ClientHandlerWrapResponse(host,chanel,request, data,guid)
         ClientMessageHandling[chanel][request](host,data,guid)
     end
 end
+
+RequestPacket = {
+    host = nil,
+    channel = 255, 
+    request = 255,
+    data = "",
+    retries = 5,
+    sendTime = 0,
+    delay = 50,
+}
+
+function RequestPacket:new(o)
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    return o
+end
+
+RequestQueue = {
+
+}
+RequestQueueIndex = 0
+
+---@Description: create a send request and retries it
+---@param host pointer instance of ClientScriptingManager
+---@param typeOfRequest number type of request
+---@param channel number channel
+---@param request number request
+---@param data string data
+function SendRequestAttempt(host, typeOfRequest , channel, request, data )
+    -- Reque
+end
+
+-- Add request
+function AddRequest(channel, request, data, retries)
+    table.insert(RequestQueue, {
+        channel = channel,
+        request = request,
+        data = data,
+        retries = retries or 5,
+        nextSendTime = os.clock(),
+    })
+end
+
+function UpdateRequests(host)
+    local now = os.clock()
+
+    for i = #RequestQueue, 1, -1 do
+        local req = RequestQueue[i]
+
+        if now >= req.nextSendTime then
+            local success = Client_SendWrapData(host, req.channel, req.request,req.data )
+            if success == 0 then
+                req.retries = req.retries - 1
+                if req.retries <= 0 then
+                    print("[✘] Request failed after retries:", req.channel, req.request)
+                    table.remove(RequestQueue, i)
+                else
+                    print("[↻] Retry scheduled:", req.channel, req.request, "retries left:", req.retries)
+                    req.nextSendTime = now + 25
+                end
+            else
+                print("[✔] Request sent:", req.channel, req.request)
+                table.remove(RequestQueue, i)
+            end
+        end
+    end
+end

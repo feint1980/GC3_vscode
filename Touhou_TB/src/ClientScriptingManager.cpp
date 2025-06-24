@@ -668,19 +668,8 @@ void ClientScriptingManager::update(float deltaTime)
                 // handleMessage(p);
                 // m_client->DeallocatePacket(p);
         }
+        updateScript(deltaTime);
             // }
-        // }
-        // p = m_client->Receive();
-        
-        // for (p=m_client->Receive(); 
-        // p;
-        // m_client->DeallocatePacket(p),
-        // p=m_client->Receive())
-        // {
-        //     handleMessage(p); 
-        //     //m_client->DeallocatePacket(p);
-        //    // p = nullptr;
-        // }
         
         // if(m_responseQueue.size() > 0)
         // {
@@ -694,3 +683,18 @@ void ClientScriptingManager::update(float deltaTime)
     // m_client->DeallocatePacket(m_currentPacket);
     //handleData();
 }
+
+void ClientScriptingManager::updateScript(float delta)
+{
+    lua_getglobal(m_script, "UpdateRequests");
+    if(lua_isfunction(m_script, -1))
+    {
+        
+        lua_pushlightuserdata(m_script, this);
+        const int argc = 1; // remember to modify this number when you change the number of arguments
+        const int returnCount = 1;
+        LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
+    }
+    
+}
+

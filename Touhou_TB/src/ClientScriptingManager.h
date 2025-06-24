@@ -67,6 +67,8 @@ public:
 
     void update(float deltaTime);
 
+    void updateScript(float delta);
+
     void handleData();
 
     void handleMessage(RakNet::Packet *p);
