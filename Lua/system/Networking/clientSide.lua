@@ -219,13 +219,22 @@ function SendRequestAttempt(host, typeOfRequest , channel, request, data )
 end
 
 -- Add request
-function AddRequest(channel, request, data, retries)
+---@param channel number channel
+---@param request number request
+---@param data table data
+---@param retries number
+---@param delayFirst? number
+---@param delayEach? number
+function AddRequest(channel, request, data, retries, delayFirst, delayEach)
+
+    delayFirst = delayFirst or 0
+    delayEach = delayEach or 0.25
     table.insert(RequestQueue, {
         channel = channel,
         request = request,
         data = data,
         retries = retries or 5,
-        nextSendTime = os.clock(),
+        nextSendTime = os.clock() + delayFirst,
     })
 end
 
@@ -244,7 +253,7 @@ function UpdateRequests(host)
                     table.remove(RequestQueue, i)
                 else
                     print("[↻] Retry scheduled:", req.channel, req.request, "retries left:", req.retries)
-                    req.nextSendTime = now + 25
+                    req.nextSendTime = now + 0.25
                 end
             else
                 print("[✔] Request sent:", req.channel, req.request)
