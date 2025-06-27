@@ -483,7 +483,7 @@ end
 function Login_MainCall(host)
     if Client_Connected == true then
         LoginAttem = true
-        AddRequest(PacketChannel.AccountChannel,AccountResponse.Alogin, {Login_IDEditBox:getText(),Login_PWEditBox:getText()},5,0.05)
+        AddRequest(PacketChannel.AccountChannel,AccountResponse.Alogin, {Login_IDEditBox:getText(),Login_PWEditBox:getText()},5,0.25)
         -- FunctionList["login_retries"](50,5)
     end
 end
