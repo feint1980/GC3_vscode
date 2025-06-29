@@ -483,8 +483,7 @@ end
 function Login_MainCall(host)
     if Client_Connected == true then
         LoginAttem = true
-        AddRequest(PacketChannel.AccountChannel,AccountResponse.Alogin, {Login_IDEditBox:getText(),Login_PWEditBox:getText()},5,0.25)
-        -- FunctionList["login_retries"](50,5)
+        SendRequest(PacketChannel.AccountChannel,AccountResponse.Alogin, {Login_IDEditBox:getText(),Login_PWEditBox:getText()},5,0.25)
     end
 end
 
@@ -496,7 +495,10 @@ function Login_CheckValid(info)
 end
 
 function Register_MainCall(host,id,pw,key)
-    FunctionList["register_retries"]( id,pw,key,50,5)
+
+    LoginAttem = true
+    SendRequest(PacketChannel.AccountChannel,AccountResponse.Aregister, {id,pw,key},5,0.25)
+    -- FunctionList["register_retries"]( id,pw,key,50,5)
 end
 
 function Login_RegisterCall(host)

@@ -208,15 +208,6 @@ RequestQueue = {
 }
 RequestQueueIndex = 0
 
----@Description: create a send request and retries it
----@param host pointer instance of ClientScriptingManager
----@param typeOfRequest number type of request
----@param channel number channel
----@param request number request
----@param data string data
-function SendRequestAttempt(host, typeOfRequest , channel, request, data )
-    -- Reque
-end
 
 -- Add request
 ---@param channel number channel
@@ -225,7 +216,7 @@ end
 ---@param retries number
 ---@param delayFirst? number
 ---@param delayEach? number
-function AddRequest(channel, request, data, retries, delayFirst, delayEach)
+function SendRequest(channel, request, data, retries, delayFirst, delayEach)
 
     delayFirst = delayFirst or 0
     delayEach = delayEach or 0.25
