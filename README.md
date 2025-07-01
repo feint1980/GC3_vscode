@@ -104,3 +104,54 @@ or you can check the data dump located in "TB_Server\data\dumpvs.sql"
 For the Editor and Game that you want to see but don't have time to build : 
 
 [![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://www.youtube.com/watch?v=HkZZ71s609o)
+
+## 📋 Server progress
+
+🟩 DONE ✅
+- [x] Login
+- [x] Key request
+- [x] Account registration with key
+- [x] Main menu data request (Mon, Souls)
+- [x] Character shop UI
+- [x] Server returns character list
+- [x] Basic packet communication system
+- [x] SQLite character data load (server side)
+
+🟨 IN PROGRESS 	🚧
+- [ ] Shop character purchase UI 	🚧	🚧	🚧	🚧
+- [ ] Team loadout screen 🚧
+- [ ] Battle prototype (2-character dummy test) 🚧	🚧
+- [ ] Manual test harness for skills and effects 	🚧
+- [ ] Server-side skill validation tests 	🚧
+
+🟥 TO DO
+- [ ] Purchase character & save to player ownership
+- [ ] Retrieve owned characters on login
+- [ ] Equip/load team before match
+- [ ] Battle matchmaking or challenge system
+- [ ] Server battle room/session manager
+- [ ] Turn bar system and turn queue logic
+- [ ] Skill use / targeting / resolution system
+- [ ] Buffs/Debuffs & status effect system
+- [ ] Hit/miss, crit, dodge, and damage formulas
+- [ ] Character death, win/loss condition logic
+- [ ] Reward distribution post-match
+- [ ] Server-side validation of all combat logic
+- [ ] Match replay or battle log system (optional)
+- [ ] Handle disconnects / timeouts / AFK
+- [ ] Leveling system for characters
+- [ ] Save/load character XP & level
+- [ ] Equip system (optional MVP)
+- [ ] Daily reward or login streak logic (optional)
+- [ ] Gacha or random draw system (optional)
+- [ ] Error messages for failed server responses
+- [ ] Lobby or matchmaking layer
+- [ ] Room teardown after battle ends
+- [ ] Simple server monitoring / auto-restart script
+- [ ] Server-side turn timer
+- [ ] Basic in-game debug tools (log, packet view)
+- [ ] Player profile (nickname/avatar)
+- [ ] Change password or account options (optional)
+
+## Icon for me : 
+⏳ 🧪 🔧 🧠 🚧 📦 📋 📝

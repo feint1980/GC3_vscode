@@ -1,4 +1,108 @@
-1.
+--F_CHECKLIST
+✅ Already Implemented:
+ Login
 
---F_CHECKLIST Account handling checklist 
-    --F_TODO 
+ Key-based registration
+
+ Secure key request flow
+
+ Fetch user data (Mon, Souls)
+
+ Shop + character listing
+
+ Server-client communication validated and working
+
+📋 Core Features You Still Need (For a Playable Game)
+🧍‍♂️ Player Profile & Character Ownership
+ "Buy character" from shop → store to player's owned list
+
+ Database table for user’s owned characters
+
+ Retrieve owned characters on login or team-select screen
+
+ Equip/load characters into a team
+
+🎮 Gameplay Mechanics (Turn-Based Combat)
+ Team loadout UI and server validation
+
+ Battle matchmaking or challenge system (1v1, AI, etc.)
+
+ Battle instance creation (server-side room/session)
+
+ Turn system (per-character turn bar, turn order, etc.)
+
+ Skill execution & target resolution
+
+ Hit/miss, critical, dodge, damage formulas
+
+ Buff/debuff application
+
+ Death, victory, surrender logic
+
+ Reward distribution after match (e.g., Souls, XP)
+
+🧠 State & Syncing
+ Server-side validation of all combat actions
+
+ Real-time or turn-based packet sync (queue, replayable log, etc.)
+
+ Timeout/disconnect handling
+
+ Anti-cheat logic (basic sanity checks)
+
+📦 Inventory & Progression
+ Character leveling system
+
+ Equipment system (optional for now)
+
+ Item shop / rewards
+
+ Save/load progression (XP, stats, etc.)
+
+🛒 Shop & Monetization (Extended)
+ Character purchase flow (costs Souls)
+
+ Gacha or random draw system (if planned)
+
+ Soft/hard currency distinction logic
+
+🧪 Testing & Debug Features
+ In-game log or packet inspector (dev builds only)
+
+ Server admin tools (kick, force battle end, etc.)
+
+ Unit test for skill logic (maybe in C++ test suite)
+
+📡 Networking Glue
+ Lobby system or room queue (matchmaking layer)
+
+ Room teardown after game ends
+
+ Turn timer & handling timeouts
+
+ Spectator or replay support (optional)
+
+🧾 Account Features
+ Change password (optional)
+
+ Player profile (maybe just a name and avatar)
+
+ Daily rewards, quests, or login streaks (optional)
+
+🖼️ Polish & UX (client side mostly)
+ Error messages for failed requests (e.g., shop fail, team invalid)
+
+ Loading indicators for async requests
+
+ Transitions and animations (not critical, but improves flow)
+
+ Sound effects for interactions
+
+⚙️ DevOps / Hosting Checklist (for live testing)
+ Auto-restart on crash (systemd or supervisor)
+
+ Log rotation (if logs are written)
+
+ Server metric tracking (CPU, sessions)
+
+ Simple monitoring or alert system (for downtime)

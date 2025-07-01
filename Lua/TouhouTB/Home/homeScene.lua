@@ -142,29 +142,14 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
         MenuPanels["Shop"](TGUIScriptingPtr)
         end)
 
-    -- Tscheduler_addTask(5, function()
-    --     Home_RequestUserlData()
-    -- end)
-    -- HomeMain_RequestDataLoop()
     Home_UpdateInfo()
 end
 
-
----@Description request update money data
-function Home_RequestUserlData()
-end
-
 function Home_UpdateInfo()
-    Tscheduler_addTask(50, function()
 
-        local id,pw, guid = Home_GetInfo(3)
-        local tResp = -1 
-        tResp = Client_SendData( Home_ClientScriptingPtr,CombinePackage("USERDATA", {id, pw, guid}))
-        if tResp == 0 then
-            Home_UpdateInfo()
-            print("tResp " .. tResp)
-        end
-    end)
+    local id,pw, guid = Home_GetInfo(3)
+    SendRequest(PacketChannel.UserChannel, UserResponse.MainInfo, {id, pw, guid}, 5, 0.25)
+
 end
 
 HomeMain_HandleTask = {}
@@ -185,18 +170,6 @@ function HomeMain_GetOtherID(packet)
     return Packet_OtherID.ID_INVALID
 end
 
----@Description handle Non special packet
----@param host pointer instance of ClientScriptingManager
----@param packet Client_Packet
-function HomeMain_HandleTask_OtherID(host, packet)
-    local otherID = HomeMain_GetOtherID(packet)
-    -- local msg = Login_StripMSG(packet.data,otherID)
-    print("other id " .. otherID)
-    if HomeMain_HandleStep2[otherID] ~= nil then
-        HomeMain_HandleStep2[otherID](host,packet)
-    end
-end
-
 ---@Description loop for Client script
 ---@param host pointer instance of ClientScriptingManager
 ---@param packet Client_Packet
@@ -204,125 +177,7 @@ HandlePacketTask["home_main"] = function(host,packet)
     print("handle home packet task " .. packet.packetID)
     if HomeMain_HandleTask[packet.packetID] ~= nil then
         HomeMain_HandleTask[packet.packetID](ClientSide_Host,packet)
-    else
-        HomeMain_HandleTask_OtherID(host,packet)
     end
-end
-
-HomeMain_HandleStep2 = {}
-
----@Description handle USER_DATA_POS
----@param host pointer instance of ClientScriptingManager
----@param packet Client_Packet
-HomeMain_HandleStep2[Packet_OtherID.USER_DATA_POS] = function(host,packet)
-    local tData = Home_StripMSG(packet.data,Packet_OtherID.USER_DATA_POS)
-    -- print(packet.data)
-
-    local tD = SplitMessgae(tData,"|",3)
-    local t_id,t_pw , t_guid = Home_GetInfo(3)
-    -- print("td " .. tD[1])
-    -- print("td " .. tD[2])
-    -- print("td " .. tD[3])
-    Main_MonValLabel:setText(tD[2])
-    Main_SoulsValLabel:setText(Tag.color_TB_title .. tD[3] .. " " .. Tag.icon_soul .. Tag.color_close)
-    -- print("HomeMain_HandleStep2 " .. Packet_OtherID.USER_DATA_POS)
-end
-
----@Description handle USER_DATA_POS
----@param host pointer instance of ClientScriptingManager
----@param packet Client_Packet
-HomeMain_HandleStep2[Packet_OtherID.USER_DATA_NEG] = function(host,packet)
-    Main_MonValLabel:setText("!!!!!")
-    Main_SoulsValLabel:setText("!!!!!")
-end
-
-HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES] = function(host,packet)
-    print("HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES] called ")
-    local tData = Home_StripMSG(packet.data,Packet_OtherID.CHARACTER_RES)
-    -- print("get data" .. tData)
-    local tD = SplitMessgae(tData,"|",1)
-    S_Characters_Info[tD[1]] = tD[2]
-
-    -- table.insert(S_Characters_Info,tD[1],tD[2])
-    local t_charStats =  Client_ParseCharacterFromJson(host, tD[2])
-    ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr,tD[1],t_charStats)
-
-    print("recieve " .. tD[1] .. " !!!!!!!!!!!!!!!!?????????????" )
-    -- print("number of S_Characters_Info |ASSIGN| " .. #S_Characters_Info)
-end
-
-HomeMain_HandleStep2[Packet_OtherID.CHARACTER_RES_DONE] = function(host,packet)
-    print("character res done")
-    print("check Data")
-    local tData = Home_StripMSG(packet.data,Packet_OtherID.CHARACTER_RES_DONE)
-
-    local tD = SplitMessgae(tData,"|",1)
-    local totalNum = tonumber(tD[1])
-
-    print("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<totalNum " .. totalNum .. "/" .. GetTableSize(S_Characters_Info))
-    while GetTableSize(S_Characters_Info) ~= totalNum do
-        local  tResp = Client_SendData(Home_ClientScriptingPtr,"|REQUEST_CHARACTERLIST|")
-        while tResp == 0 do
-            tResp = Client_SendData(Home_ClientScriptingPtr,"|REQUEST_CHARACTERLIST|")
-        end
-    end
-
-    -- print("number of S_Characters_Info " .. #S_Characters_Info)
-
-    Shop_CharacterShop = _G.Shop_CharacterShop
-    ClientCharacterHandler_Host = _G.ClientCharacterHandler_Host
-
-    for k,v in pairs(S_Characters_Info) do
-        if k == "S_Reimu" then
-            print("found Reimu")
-            Shop_CharacterTable["Reimu"] = Reimu:new()
-            local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-            Shop_CharacterTable["Reimu"]:initNonCB(ClientCharacterHandler_Host,"Reimu",t)
-
-        elseif k == "S_Patchouli" then
-            print("found Patchouli")
-            Shop_CharacterTable["Patchouli"] = Patchouli:new()
-            local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-            Shop_CharacterTable["Patchouli"]:initNonCB(ClientCharacterHandler_Host,"Patchouli",t)
-        elseif k == "S_Yukari" then
-            print("found Yukari")
-            Shop_CharacterTable["Yukari"] = Yukari:new()
-            local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-            Shop_CharacterTable["Yukari"]:initNonCB(ClientCharacterHandler_Host,"Yukari",t)
-
-        elseif k == "S_Meiling" then
-            print("found Meiling")
-            Shop_CharacterTable["Meiling"] = Meiling:new()
-            local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-            Shop_CharacterTable["Meiling"]:initNonCB(ClientCharacterHandler_Host,"Meiling",t)
-        end
-    end
-
-    -- table.sort(Shop_CharacterTable)
-    local x_offset = 130
-    local count = 0
-
-    table.sort(Shop_CharacterTable, function(a,b) 
-        return a.name < b.name 
-        end)
-
-    for k,v in pairs(Shop_CharacterTable) do
-        print(k,v.dyobj)
-    end
-
-    for k,v in pairs(Shop_CharacterTable) do
-        Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250, v.panelPath,v.name,v.price)
-        count = count + 1
-    end
-
-    -- print("check end ")
-
-end
-
----@Description request update money data
-function Home_RequestUserlData()
-    local id,pw, guid = Home_GetInfo(3)
-    Client_SendData( Home_ClientScriptingPtr,CombinePackage("USERDATA", {id, pw, guid}))
 end
 
 ---function wrapper of cpp_getInfo
@@ -341,14 +196,6 @@ function Home_StripMSG(msg,otherID)
 end
 
 HomeMain_Tasks = {}
-
----@Description Backup update function
-function HomeMain_RequestDataLoop()
-    Tscheduler_addTask(300, function()
-        Home_RequestUserlData()
-        HomeMain_RequestDataLoop()
-    end)
-end
 
 ---- basic network handling 
 Network_CommonTask = {}
@@ -383,4 +230,83 @@ function Home_showNotification(msg,btnText)
     Home_Noti_Msg:setText(msg)
     Home_Noti_Btn:setText(btnText)
     Home_Noti_Panel.visible = true
+end
+
+ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host,data, guid)
+    print("AccountResponse.Aregister called")
+
+    local t_id, mon, souls, t_guid = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    print("check account " .. t_id .. " " .. mon .. " " .. souls .. " " .. t_guid)
+    Main_MonValLabel:setText(mon)
+    Main_SoulsValLabel:setText(Tag.color_TB_title .. souls .. " " .. Tag.icon_soul .. Tag.color_close)
+end
+
+ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Begin] = function(host,data, guid)
+    print("Character request result begin")
+    table.clear(S_Characters_Info)
+end
+
+ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Data] = function(host,data, guid)
+
+    local t_name, t_data = string.match(data, "^|([^|]+)|([^|]+)|$")
+    S_Characters_Info[t_name] = t_data
+
+    local t_charStats =  Client_ParseCharacterFromJson(host, t_data)
+    ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr,t_name,t_charStats)
+end
+
+ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_End] = function(host,data, guid)
+
+    print("Character request result end")
+    local t_countStr = string.sub(data, 2, string.len(data) - 1)
+    local t_count = tonumber(t_countStr)
+    if t_count == GetTableSize(S_Characters_Info) then
+        print("Character request result end success")
+        for k,v in pairs(S_Characters_Info) do
+            if k == "S_Reimu" then
+                print("found Reimu")
+                Shop_CharacterTable["Reimu"] = Reimu:new()
+                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
+                Shop_CharacterTable["Reimu"]:initNonCB(Home_ClientCharacterHandlerPtr,"Reimu",t)
+
+            elseif k == "S_Patchouli" then
+                print("found Patchouli")
+                Shop_CharacterTable["Patchouli"] = Patchouli:new()
+                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
+                Shop_CharacterTable["Patchouli"]:initNonCB(Home_ClientCharacterHandlerPtr,"Patchouli",t)
+            elseif k == "S_Yukari" then
+                print("found Yukari")
+                Shop_CharacterTable["Yukari"] = Yukari:new()
+                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
+                Shop_CharacterTable["Yukari"]:initNonCB(Home_ClientCharacterHandlerPtr,"Yukari",t)
+
+            elseif k == "S_Meiling" then
+                print("found Meiling")
+                Shop_CharacterTable["Meiling"] = Meiling:new()
+                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
+                Shop_CharacterTable["Meiling"]:initNonCB(Home_ClientCharacterHandlerPtr,"Meiling",t)
+            end
+        end
+
+        -- table.sort(Shop_CharacterTable)
+        local x_offset = 130
+        local count = 0
+
+        table.sort(Shop_CharacterTable, function(a,b) 
+            return a.name < b.name 
+            end)
+
+        for k,v in pairs(Shop_CharacterTable) do
+            print(k,v.dyobj)
+        end
+
+        for k,v in pairs(Shop_CharacterTable) do
+            Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250, v.panelPath,v.name,v.price)
+            count = count + 1
+        end
+    else
+        print("Character request result end failed")
+        SendRequest(PacketChannel.ShopChannel,ShopResponse.ShopChracterInfo , {'get_character_shop_list'}, 5, 0.25)
+    end
+
 end

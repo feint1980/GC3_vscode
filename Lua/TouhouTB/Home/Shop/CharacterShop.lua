@@ -133,11 +133,13 @@ end
 ---@Description request character list
 ---@param clientSideHost pointer instance of ClientScriptingManager
 function CharacterShop:requestCharacterList(clientSideHost)
-    self.charactersPanel:clearItems()
-    local tResp = 0
-    tResp = Client_SendData(clientSideHost,"|REQUEST_CHARACTERLIST|")
-    while tResp == 0 do
-        tResp = Client_SendData(clientSideHost,"|REQUEST_CHARACTERLIST|")
-    end
-    -- Client_send
+    -- self.charactersPanel:clearItems()
+    -- local tResp = 0
+    -- tResp = Client_SendData(clientSideHost,"|REQUEST_CHARACTERLIST|")
+    -- while tResp == 0 do
+    --     tResp = Client_SendData(clientSideHost,"|REQUEST_CHARACTERLIST|")
+    -- end
+
+    SendRequest(PacketChannel.ShopChannel,ShopResponse.ShopChracterInfo , {'get_character_shop_list'}, 5, 0.25)
+
 end

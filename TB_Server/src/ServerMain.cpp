@@ -134,7 +134,7 @@ void ServerMain::update(float deltaTime)
             m_scriptManager->handleCommon(p);
         break;
         case ID_TH_TB:
-            m_scriptManager->handleWrapData(p);
+            m_scriptManager->addWrapDataPacket(p);
             // todo : handle TB packet
         break;
         default:

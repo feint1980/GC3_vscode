@@ -12,8 +12,6 @@ PacketCode = {
     requestCharacterList = 66
 }
 
-
-
 --- function CheckAccountValid
 ---@Description : check if the query of account and password is valid (only one result)
 ---@param host pointer instance of ServerScriptingManager
@@ -103,136 +101,6 @@ ResponseHandle[PacketCode.requestKey] = function(host, packet)
     end
 end
 
-
-ResponseHandle[PacketCode.register] = function(host,packet)
-    print("register response found, processing")
-
-    local message = SV_GetPacketData(host,packet)
-    local clientIP = SV_GetPacketIP(packet)
-
-    local pattern_start = "|REGISTER_REQUEST|"
-    local firstIndex = string.find(message, pattern_start)
-    local beginP = firstIndex + string.len(pattern_start)
-    local pattern_end = "|REGISTER_END_REQUEST|"
-    local endIndex = string.find(message, pattern_end)
-
-    local processResult = string.sub(message, beginP, endIndex - 1)
-
-    local t_id = string.sub(processResult, 0,string.find(processResult, "|") - 1)
-    local halfProcess = string.sub(processResult, string.len(t_id) + 2 , string.len(processResult))
-    local t_pw = string.sub(halfProcess, 0,string.find(halfProcess, "|") - 1)
-    local t_key = string.sub(halfProcess, string.len(t_pw) + 2 , string.len(halfProcess))
-    
-    -- print("id is " .. t_id)
-    --print("half is " .. halfProcess)
-    -- print("pw is " .. t_pw)
-    -- print("key is " .. t_key)
-
-    local checkAccountExistQuery = "SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ?;"
-
-    SVI_DoQuerySTMT(host,checkAccountExistQuery,{t_id})
-
-    local result = Query_val[1]
-    local accountCount = tonumber(result)
-    if accountCount == 0 then
-
-        local checkKeyExistQuery = "SELECT COUNT(*) FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.val .. " = ?;"
-
-        SVI_DoQuerySTMT(host,checkKeyExistQuery,{t_key})
-        result = Query_val[1]
-        local keyCount = tonumber(result)
-        if keyCount == 0 then
-            -- key not exist
-            -- SV_SendMsg(host,clientIP,"The register key is invalid" )
-            SV_SendMsg(host,clientIP,CombinePackage("REGISTER_RES_NEG",{ "Register Key is invalid !"}))
-        elseif keyCount == 1 then
-            -- key exist
-            -- check if key is ready
-            local checkKeyReadyQuery = "SELECT " .. Table.register_key.ready .. " FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.val .. " = ?;"
-            SVI_DoQuerySTMT(host,checkKeyReadyQuery,{t_key})
-            local keyReadyValue = tonumber(Query_val[1])
-            if keyReadyValue == 1 then
-                local insertAccountQuery = "INSERT INTO " .. Table.account.tb_name ..'('.. Table.account.id .. ', ' .. Table.account.pw  .. ") VALUES ( ?,?);"
-                local ePW = SV_getEncryptPW(host, t_pw)
-                SVI_DoQuerySTMT(host,insertAccountQuery,{t_id,ePW})
-                local updateKeyQuery = "UPDATE " .. Table.register_key.tb_name .. " SET " .. Table.register_key.ready .. " = '0' WHERE " .. Table.register_key.val .. " = ?;"
-                SVI_DoQuerySTMT(host,updateKeyQuery,{t_key})
-                SV_SendMsg(host,clientIP,CombinePackage("REGISTER_RES_POS",{ "Register successfully !" }) )
-                -- add starter mon and souls to new account
-                local insertCurrency =  "INSERT INTO account_stats_table (account_id, mon, souls) VALUES (?, 100, 15);"
-                SVI_DoQuerySTMT(host,insertCurrency,{t_id})
-            else
-                SV_SendMsg(host,clientIP,CombinePackage("REGISTER_RES_NEG",{ "Register Key already used !"}))
-            end
-        else
-            print("multiple key found in query, WARNING")
-        end
-    elseif accountCount == 1 then
-        SV_SendMsg(host,clientIP,CombinePackage("REGISTER_RES_NEG",{ "Account already exists !"}))
-        -- SV_SendMsg(host,clientIP,"Account already exists" )
-    else
-        print("accountCount is " .. accountCount)
-        print("If you see this warning in production, you are COOKED !")
-    end
-end
-
---- MARK: Request User Data
-ResponseHandle[PacketCode.requestUserData] = function(host,packet)
-    local message = SV_GetPacketData(host,packet)
-    local clientIP = SV_GetPacketIP(packet)
-    local pattern_start = "|USERDATA_REQUEST|"
-    print("ResponseHandle msg" .. message)
-    local firstIndex = string.find(message, pattern_start)
-    local beginP = firstIndex + string.len(pattern_start)
-    local pattern_end = "|USERDATA_END_REQUEST|"
-    local endIndex = string.find(message, pattern_end)
-    local processResult = string.sub(message, beginP, endIndex - 1)
-    local t_id = string.sub(processResult, 0,string.find(processResult, "|") - 1)
-    local halfProcess = string.sub(processResult, string.len(t_id) + 2 , string.len(processResult))
-    local t_pw = string.sub(halfProcess, 0,string.find(halfProcess, "|") - 1)
-    local t_guid = string.sub(halfProcess, string.len(t_pw) + 2 , string.len(halfProcess))
-
-    if CheckAccountValid(host, t_id, t_pw) then
-        -- print("account check OK, getting data from DB")
-        local getDataQuerry = "SELECT mon,souls from " .. Account_Stats_Table.tb_name .. " WHERE " .. Account_Stats_Table.id  .. " = ?;"
-        SVI_DoQuerySTMT(host,getDataQuerry,{t_id})
-
-        local mon = Query_val[1]
-        local souls = Query_val[2]
-        SV_SendMsg(host,clientIP,CombinePackage("USERDATA_RES_POS", {t_id,mon,souls,t_guid}))
-    end
-end
-
-
-
-ResponseHandle[PacketCode.requestCharacterList] = function(host,packet)
-    local message = SV_GetPacketData(host,packet)
-    local clientIP = SV_GetPacketIP(packet)
-    -- print("requestCharacterList found, sending ...")
-    local count = 0
-    for k,v in pairs(Character_Serialized_Table) do
-        local chracterInfo = {}
-        count = count +1
-        local sendData = 0
-        sendData = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v}))
-        while sendData == 0 do
-            sendData = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v}))
-            print("send " .. k .. " failed, retrying")
-        end
-        print("send " .. k .. " done !")
-        -- if countSV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_POS", {k,v})) == 0 then
-    end
-
-    local resp  = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_DONE", {count}))
-    while resp == 0 do
-        resp = SV_SendMsg(host,clientIP,CombinePackage("CHARACTER_LIST_RES_DONE", {count}))
-    end
-    print("provide list done ")
-end
-
--- MessageHandling[]
-
-
 function AddRegisterKey(host)
     local registerKeyNum = 12
     local inserOK = false
@@ -303,15 +171,12 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = funct
     local result = Query_val[1]
     local accountCount = tonumber(result)
     if accountCount == 0 then
-
         local checkKeyExistQuery = "SELECT COUNT(*) FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.val .. " = ?;"
-
         SVI_DoQuerySTMT(host,checkKeyExistQuery,{t_key})
         result = Query_val[1]
         local keyCount = tonumber(result)
         if keyCount == 0 then
             -- key not exist
-            -- SV_SendMsg(host,clientIP,"The register key is invalid" )
             SendReliable(host,ip,PacketChannel.AccountChannel,AccountResponse.Aregister,{ "Register Key is invalid !"})
         elseif keyCount == 1 then
             -- key exist
@@ -343,5 +208,57 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = funct
         print("accountCount is " .. accountCount)
         print("If you see this warning in production, you are COOKED !")
     end
+end
+
+--- May move to user channel lua file if needed
+
+--- MARK: User request Info response
+---@Description Handle register request
+---@param host pointer instance of ServerScriptingManager
+---@param data string data recieved
+---@param ip pointer client ip
+---@param guid string client guid
+MessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host ,data, ip, guid)
+
+    local t_id, t_pw, t_guid = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+    -- print("check account " .. t_id .. " " .. t_pw .. " " .. t_guid)
+
+    if CheckAccountValid(host, t_id, t_pw) then
+        -- print("account check OK, getting data from DB")
+        local getDataQuerry = "SELECT mon,souls from " .. Account_Stats_Table.tb_name .. " WHERE " .. Account_Stats_Table.id  .. " = ?;"
+        SVI_DoQuerySTMT(host,getDataQuerry,{t_id})
+
+        local mon = Query_val[1]
+        local souls = Query_val[2]
+
+        SendReliable(host,ip,PacketChannel.UserChannel,UserResponse.MainInfo,{ t_id,mon,souls,t_guid})
+    end
 
 end
+
+--- MARK: User request Character in shop response
+---@Description Handle register request
+---@param host pointer instance of ServerScriptingManager
+---@param data string data recieved
+---@param ip pointer client ip
+---@param guid string client guid
+MessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopChracterInfo] = function(host ,data, ip, guid)
+
+    local t_request = string.sub(data, 2, string.len(data) -1)
+    if t_request == 'get_character_shop_list' then
+        local count = 0
+        --- send begin
+        SendReliable(host,ip,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_Begin,{"IDK bro,  how about that ?"})
+        for k,v in pairs(Character_Serialized_Table) do
+            local chracterInfo = {}
+            count = count +1
+            local sendData = 0
+            SendReliable(host,ip,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_Data,{k,v})
+            print("send " .. k .. " done !")
+        end
+        --- send end
+        SendReliable(host,ip,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_End,{tostring(count)})
+    end
+end
+
+

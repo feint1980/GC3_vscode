@@ -193,7 +193,7 @@ RequestPacket = {
     data = "",
     retries = 5,
     sendTime = 0,
-    delay = 50,
+    delay = 0.25,
 }
 
 function RequestPacket:new(o)
@@ -226,6 +226,7 @@ function SendRequest(channel, request, data, retries, delayFirst, delayEach)
         data = data,
         retries = retries or 5,
         nextSendTime = os.clock() + delayFirst,
+        delay = delayEach
     })
 end
 
@@ -244,7 +245,7 @@ function UpdateRequests(host)
                     table.remove(RequestQueue, i)
                 else
                     print("[↻] Retry scheduled:", req.channel, req.request, "retries left:", req.retries)
-                    req.nextSendTime = now + 0.25
+                    req.nextSendTime = now + req.delay
                 end
             else
                 print("[✔] Request sent:", req.channel, req.request)

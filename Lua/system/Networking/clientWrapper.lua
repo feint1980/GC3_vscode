@@ -22,7 +22,10 @@ UserResponse = {
 
 ShopResponse = {
     ShopChracterInfo = 1,
-    ShopItemInfo = 2
+    ShopItemInfo = 2,
+    ShopCharacterInfo_Begin = 3,
+    ShopCharacterInfo_Data = 4,
+    ShopCharacterInfo_End = 5
 }
 
 ---@Description combines packet

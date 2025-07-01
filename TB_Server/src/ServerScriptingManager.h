@@ -94,8 +94,13 @@ public:
 
     uint32_t handleWrapData(RakNet::Packet *p);
 
+    void addWrapDataPacket(RakNet::Packet *p);
+
+    void handleWrapDataQueue(float deltaTime);
 
     std::string getEncryptPW(const std::string & pw);
+
+    int ExecuteComand(const std::string & command,);
 
     // std::string getDecryptMsg(const std::string & data);
 
@@ -126,6 +131,9 @@ private:
     std::queue <CommonResponse> m_commonResponseQueue;
 
     std::unordered_map<std::string, SkillStats> m_skillStatsMap;
+
+
+    std::queue <RakNet::Packet *> m_wrapDataQueue;
 
     //std::thread m_handleMessgeThread;
 

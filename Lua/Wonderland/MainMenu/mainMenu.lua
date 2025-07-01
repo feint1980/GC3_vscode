@@ -365,17 +365,17 @@ function Login_showNote(msg,btnText)
 end
 
 Login_HandleTask = {}
----@Description handle packet when connected
----@param host pointer instance of ClientScriptingManager
----@param packet Client_Packets
-HandlePacketTask["login_main"] = function(host,packet)
-    print("recive packet  >>>> " .. packet.packetID)
-    if Login_HandleTask[packet.packetID] ~= nil then
-        Login_HandleTask[packet.packetID](ClientSide_Host,packet)
-    else
-        Login_HandleTask_OtherID(host,packet)
-    end
-end
+-- ---@Description handle packet when connected
+-- ---@param host pointer instance of ClientScriptingManager
+-- ---@param packet Client_Packets
+-- T_HandlePacketTask["login_main"] = function(host,packet)
+--     print("recive packet  >>>> " .. packet.packetID)
+--     if Login_HandleTask[packet.packetID] ~= nil then
+--         Login_HandleTask[packet.packetID](ClientSide_Host,packet)
+--     else
+--         Login_HandleTask_OtherID(host,packet)
+--     end
+-- end
 
 Login_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet)
     print("ID_CONNECTION_REQUEST_ACCEPTED riu ko bro ?")

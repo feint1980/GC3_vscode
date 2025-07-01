@@ -21,13 +21,14 @@ UserResponse = {
 
 ShopResponse = {
     ShopChracterInfo = 1,
-    ShopItemInfo = 2
+    ShopItemInfo = 2,
+    ShopCharacterInfo_Begin = 3,
+    ShopCharacterInfo_Data = 4,
+    ShopCharacterInfo_End = 5
 }
-
 
 --- Classes declare
 ---@class pointer
-
 
 --- function wrapper of cppDoQuery
 ---@Description: call a server to do a query
@@ -37,7 +38,6 @@ function SV_DoQuery(host,query)
     cppDoQuery(host,query)
     SV_GetQueryResults(host)
 end
-
 
 --- function wrapper of cppDoQuerySTMT
 ---@Description: call a server to do a query

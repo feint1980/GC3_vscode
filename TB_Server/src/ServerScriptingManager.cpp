@@ -579,6 +579,29 @@ int lua_SQLFinalizeStmt(lua_State * L)
     return 0;
 }
 
+int lua_SQLExec(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SQLExec) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }   
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+
+        char * errMsg = nullptr;
+        int rc =sqlite3_exec(host->getDB(), lua_tostring(L, 1), nullptr, nullptr, &errMsg);
+        if(rc != SQLITE_OK) {
+            std::cout << "SQL error: " << errMsg << std::endl;
+            sqlite3_free(errMsg);
+        }
+        // host->executeSQL(lua_tostring(L, 1));
+        return 0;
+    }
+    return 0;
+}
 
 int lua_GenKey(lua_State * L)
 {
@@ -868,6 +891,7 @@ void ServerScriptingManager::handleCommonMSG()
 
 void ServerScriptingManager::update(float deltaTime)
 {
+    handleWrapDataQueue(deltaTime);
   //  handleMessage();
 //   /  handleCommonMSG();
 }
@@ -1011,6 +1035,21 @@ unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
         }
     }
     return 666;
+}
+
+void ServerScriptingManager::addWrapDataPacket(RakNet::Packet *p)
+{
+    m_wrapDataQueue.push(p);
+}
+
+void ServerScriptingManager::handleWrapDataQueue(float deltaTime)
+{
+    while (!m_wrapDataQueue.empty())
+    {
+        RakNet::Packet *p = m_wrapDataQueue.front();
+        handleWrapData(p);
+        m_wrapDataQueue.pop();
+    }
 }
 
 
@@ -1215,6 +1254,8 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppSqlite_gettResultInt", lua_SQLGetResultInt);
     lua_register(m_script, "cppSqlite_gettResultString", lua_SQLGetResultString);
     lua_register(m_script, "cppSqlite_finalizeStmt", lua_SQLFinalizeStmt);
+    lua_register(m_script, "cppSqlite_exec", lua_SQLExec);
+
 
     // extract data from packet
     lua_register(m_script, "cppPacket_getData", lua_Packet_getData);

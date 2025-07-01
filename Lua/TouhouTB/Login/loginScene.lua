@@ -396,8 +396,6 @@ HandlePacketTask["login_main"] = function(host,packet)
     -- print("recive packet  >>>> " .. packet.packetID)
     if Login_HandleTask[packet.packetID] ~= nil then
         Login_HandleTask[packet.packetID](ClientSide_Host,packet)
-    else
-        Login_HandleTask_OtherID(host,packet)
     end
 end
 
