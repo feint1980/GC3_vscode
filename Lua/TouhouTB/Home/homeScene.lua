@@ -10,13 +10,13 @@ require "clientWrapper"
 require "homeOrderStrip"
 require "LuaEventHandler"
 require "Shop"
+require "Nexus"
 require "homeGlobal"
 
 require "Reimu"
 require "Patchouli"
 require "Yukari"
 require "Meiling"
-
 
 HomeSceneHost = nil
 -- HandlePacketTask = _G.HandlePacketTask
@@ -54,6 +54,9 @@ Main_MonValLabel = nil
 
 ---@type Label
 Main_ShopButton = nil
+
+---@type Label
+Main_NexusButton = nil
 
 function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr)
     HomeSceneHost = host
@@ -97,7 +100,6 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
         cpp_backToMenu(HomeSceneHost)    
     end)
 
-
     ---- GUI section ----
     Main_NameLabel = Label:new()
     Main_NameLabel:init(Home_GUIScriptingPtr,"",0,0)
@@ -140,6 +142,18 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
 
     Main_ShopButton:setOnClickCallback(function()
         MenuPanels["Shop"](TGUIScriptingPtr)
+        end)
+
+    Main_NexusButton = Label:new()
+    Main_NexusButton:init(Home_GUIScriptingPtr,"Spirit Nexus",0,0)
+    Main_NexusButton:setPosStr("83%","15`%")
+    Main_NexusButton:setAlignment(TextAlginment.Center)
+    Main_NexusButton:setHoverable(0,255,0,255,255,255,255,255)
+
+    InitNexus(TGUIScriptingPtr)
+    Main_NexusButton:setOnClickCallback(function()
+        
+        MenuPanels["Nexus"](TGUIScriptingPtr)
         end)
 
     Home_UpdateInfo()

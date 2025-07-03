@@ -2189,7 +2189,6 @@ void F_Player::updateEscapeVelocity(float deltaTime)
 		isLocked = true;
 		m_afterImageParticle.setTotalTrace(10);
 		m_afterImageParticle.setTraceInterval(0.3);
-		
 	}
 }
 

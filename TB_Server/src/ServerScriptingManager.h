@@ -100,7 +100,7 @@ public:
 
     std::string getEncryptPW(const std::string & pw);
 
-    int ExecuteComand(const std::string & command,);
+    // int ExecuteComand(const std::string & command,);
 
     // std::string getDecryptMsg(const std::string & data);
 

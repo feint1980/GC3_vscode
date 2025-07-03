@@ -22,6 +22,8 @@ ShopPanel = nil
 
 Shop_CharacterShop = nil
 
+---@Description : Init the Shop menu
+---@Param host TGUIScripting host
 function InitShop(host)
     if ShopPanel == nil then
         ShopPanel = Panel:new()
@@ -56,7 +58,6 @@ function InitShop(host)
         if Shop_CharacterShop == nil then
             Shop_CharacterShop = CharacterShop:new()
             Shop_CharacterShop:init(host,0,0,Shop.width,Shop.height,Shop.tabs["Characters"])
-
         end
         ShopPanel:setVisible(false)
     end

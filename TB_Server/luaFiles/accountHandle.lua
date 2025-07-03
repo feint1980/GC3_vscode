@@ -17,7 +17,7 @@ PacketCode = {
 ---@param host pointer instance of ServerScriptingManager
 ---@param id string account id (1)
 ---@param pw string account password (2)
----@return number tResult of count query
+---@return number? tResult of count query
 function CheckAccountCount(host, id, pw)
 
     local queryCountCmd= "SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ? AND " .. Table.account.pw .. " = ?;"
@@ -55,17 +55,15 @@ ResponseHandle[PacketCode.requestKey] = function(host, packet)
 
     local message = SV_GetPacketData(host,packet)
 
-    print("request key found, processing")
+    -- print("request key found, processing")
     local pattern_start = "|REQUEST_KEY_REQUEST|"
-    print("message " .. message)
+    -- print("message " .. message)
     local firstIndex = string.find(message, pattern_start)
     local beginP = firstIndex + string.len(pattern_start)
 
     local pattern_end = "|REQUEST_KEY_END_REQUEST|"
     local endIndex = string.find(message, pattern_end)
-
     local processResult = string.sub(message, beginP, endIndex - 1)
-
     local clientIP = SV_GetPacketIP(packet)
 
     --- split id and account by the sigh |
@@ -97,7 +95,6 @@ ResponseHandle[PacketCode.requestKey] = function(host, packet)
         end
     else
         SV_SendMsg(host,clientIP,"Access denied !" )
-        -- SV_SendMsg(host,clientIP,CombinePackage("LOGIN_RES_NEG",{"Account or password is incorrect !"}) )
     end
 end
 
@@ -135,9 +132,7 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
     ClientEPList = _G.ClientEPList
 
     local t_id, t_pw = string.match(data, "^|([^|]+)|([^|]+)|$")
-
     local loginResult = "K2 request failed"
-
     if CheckAccountValid(host, t_id, t_pw) then
         loginResult = "granted"
         for k,v in pairs(ClientEPList) do
@@ -154,7 +149,6 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
     CH_AddClientEP(ip, guid, t_id)
 end
 
-
 --- MARK: Register reponse
 ---@Description Handle register request
 ---@param host pointer instance of ServerScriptingManager
@@ -167,7 +161,6 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = funct
     local checkAccountExistQuery = "SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ?;"
 
     SVI_DoQuerySTMT(host,checkAccountExistQuery,{t_id})
-
     local result = Query_val[1]
     local accountCount = tonumber(result)
     if accountCount == 0 then
@@ -233,7 +226,6 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(hos
 
         SendReliable(host,ip,PacketChannel.UserChannel,UserResponse.MainInfo,{ t_id,mon,souls,t_guid})
     end
-
 end
 
 --- MARK: User request Character in shop response
@@ -260,5 +252,4 @@ MessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopChracterInfo] = func
         SendReliable(host,ip,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_End,{tostring(count)})
     end
 end
-
 

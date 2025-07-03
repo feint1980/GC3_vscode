@@ -943,7 +943,7 @@ uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & targ
     uint8_t channel = static_cast<uint8_t>(data[0]);
     uint8_t request = static_cast<uint8_t>(data[1]);
 
-    std::cout << "sendWrapData channel " << channel << " request " << request << "\n";
+    // std::cout << "sendWrapData channel " << channel << " request " << request << "\n";
     // todo , special request add here
     int payLoadIndex = 2;
 
@@ -966,8 +966,8 @@ uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & targ
         sendStr.push_back((tData[i]));
     }
     
-    std::cout << "send data \n ";
-    std::cout << sendStr << "\n";
+    // std::cout << "send data \n ";
+    // std::cout << sendStr << "\n";
 
     return m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY,  RELIABLE_ORDERED,channel, target,false);
 
