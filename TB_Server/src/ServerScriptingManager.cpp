@@ -592,15 +592,17 @@ int lua_SQLExec(lua_State * L)
         ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
 
         char * errMsg = nullptr;
-        int rc =sqlite3_exec(host->getDB(), lua_tostring(L, 1), nullptr, nullptr, &errMsg);
+        std::string cmd = lua_tostring(L, 2);
+            
+        int rc =sqlite3_exec(host->getDB(), cmd.c_str(), nullptr, nullptr, &errMsg);
         if(rc != SQLITE_OK) {
             std::cout << "SQL error: " << errMsg << std::endl;
             sqlite3_free(errMsg);
         }
         // host->executeSQL(lua_tostring(L, 1));
-        return 0;
+        return 1;
     }
-    return 0;
+    return -1;
 }
 
 int lua_GenKey(lua_State * L)
