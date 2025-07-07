@@ -67,8 +67,8 @@ width,height,path,name,price,detailPanel)
     if self.picture == nil then
         self.picture = Picture:new()
         self.picture:init(host,path,x,y,width,height,self.panel.ptr)
-        self.picture:setPosStr("5%","0%")
-        self.picture:setSizeStr("90%","80%")
+        self.picture:setPosStr("5%","10%")
+        self.picture:setSizeStr("85%","76%")
     else
         -- self.picture:setPos(x,y)
         -- self.picture:setSize(width,height)
@@ -79,10 +79,11 @@ width,height,path,name,price,detailPanel)
         self.displayNameLabel = Label:new()
         self.displayNameLabel:init(host,name,x,y,self.panel.ptr)
         self.displayNameLabel:setAlignment(TextAlginment.Center)
-        self.displayNameLabel:setPosStr("50%","78%")
+        self.displayNameLabel:setPosStr("50%","-1%")
+        self.displayNameLabel:setScale(0.92)
     else
         -- self.displayNameLabel:setPos(x,y)
-        self.displayNameLabel:setPosStr("50%","78%")
+        self.displayNameLabel:setPosStr("50%","-1%")
         self.displayNameLabel:setText(name)
     end
 
