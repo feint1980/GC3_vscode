@@ -7,6 +7,7 @@ require "TGUI_Editbox"
 require "TGUI_Picture"
 require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
+require "TGUI_Button"
 
 ---@class (exact) CharacterPanel
 ---@field panel Panel
@@ -24,6 +25,8 @@ CharacterPanel = {
     displayNameLabel = nil,
     ---@type RTLabel
     priceLabel = nil,
+    ---@type Button
+    buyButton = nil,
     ---@type ScrollablePanel
     parent = nil,
     ---@type ScrollablePanel
@@ -85,6 +88,17 @@ width,height,path,name,price,detailPanel)
         -- self.displayNameLabel:setPos(x,y)
         self.displayNameLabel:setPosStr("50%","-1%")
         self.displayNameLabel:setText(name)
+    end
+
+
+    if self.buyButton == nil then
+        self.buyButton = Button:new()
+        self.buyButton:init(host,"BUY",x,y,width,height,self.panel.ptr)
+        self.buyButton:setPosStr("50%","90%")
+    else
+        -- self.buyButton:setPos(x,y)
+        self.buyButton:setPosStr("50%","90%")
+        self.buyButton:setText("BUY")
     end
 
     if self.priceLabel == nil then

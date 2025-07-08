@@ -1277,6 +1277,139 @@ int lua_TabContainer_SetTabFixedSize(lua_State * L)
     return 0;
 }
 
+int lua_Button_Create(lua_State * L)
+{
+
+    if(lua_gettop(L) < 6 || lua_gettop(L) > 7)
+    {
+        std::cout << "gettop failed (lua_Label_Create) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        TGUIScriptingManager * host =   static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        std::string text = lua_tostring(L, 2);
+        float x = lua_tonumber(L, 3);
+        float y = lua_tonumber(L, 4);
+        float width = lua_tonumber(L, 5);
+        float height = lua_tonumber(L, 6);
+        tgui::Button::Ptr * button = new tgui::Button::Ptr();
+        
+        std::cout << "create button with " << lua_gettop(L) << "\n";
+        if(lua_gettop(L) == 7)
+        {
+            tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 5));
+            
+            *button = host->createButton(text,x,y,width,height,*parent);
+
+        }
+        else
+        {
+            *button = host->createButton(text,x,y,width,height,nullptr);
+        }
+        lua_pushlightuserdata(L,button);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_Button_SetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Button_SetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Button::Ptr * button = static_cast<tgui::Button::Ptr*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        button->get()->setPosition(x,y);
+    }
+    return 0;
+}
+
+
+int lua_Button_SetPosStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Button_SetPosStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Button::Ptr * button = static_cast<tgui::Button::Ptr*>(lua_touserdata(L, 1));
+        std::string x = lua_tostring(L, 2);
+        std::string y = lua_tostring(L, 3);
+        button->get()->setPosition(x.c_str(),y.c_str());
+    }
+    return 0;
+}
+
+int lua_Button_SetSize(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Button_SetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Button::Ptr * button = static_cast<tgui::Button::Ptr*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        button->get()->setSize(x,y);
+    }
+    return 0;
+}
+
+int lua_Button_SetSizeStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Button_SetSizeStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Button::Ptr * button = static_cast<tgui::Button::Ptr*>(lua_touserdata(L, 1));
+        std::string x = lua_tostring(L, 2);
+        std::string y = lua_tostring(L, 3);
+        button->get()->setSize(x.c_str(),y.c_str());
+    }
+    return 0;
+}
+
+int lua_Button_SetOnClickCallback(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Button_SetOnClickCallback) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Button::Ptr * button = static_cast<tgui::Button::Ptr*>(lua_touserdata(L, 1));
+        
+        
+        if(!lua_isfunction(L, 2))
+        {
+            std::cout << "param 2 is not a function \n";
+            return -1;
+        }
+        lua_pushvalue(L, 2);
+        button->get()->onClick.disconnectAll();
+        int ref = luaL_ref(L, LUA_REGISTRYINDEX);
+        std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
+        button->get()->onClick(callback);
+        
+    }
+    return 0;
+}
+
+
 // MARK: ScrollablePanel
 
 int lua_ScrollablePanel_Create(lua_State * L)
@@ -1603,6 +1736,28 @@ tgui::Panel::Ptr TGUIScriptingManager::createPanel(float x, float y, float width
     return panel;
 }
 
+tgui::Button::Ptr TGUIScriptingManager::createButton(const std::string & text,float x, float y, float width, float height, tgui::Panel::Ptr parent)
+{
+    tgui::Button::Ptr button = tgui::Button::create(text);
+    std::cout << "create ok \n";
+    button->setPosition(x, y);
+
+    std::cout << "access ok \n";
+    //button->setSize(width, height);
+    // if(parent)
+    // {
+    //     parent->add(button);
+    // }
+    // else 
+    // {
+    //     m_tgui->add(button);
+    // }
+    // m_tgui->add(button);
+    m_tgui->add(button);
+    std::cout << "rech add \n";
+    return button;
+}
+
 tgui::CanvasOpenGL3::Ptr  TGUIScriptingManager::createCanvas(float x, float y, float width, float height, tgui::Panel::Ptr parent)
 {
     tgui::CanvasOpenGL3::Ptr canvas = tgui::CanvasOpenGL3::create();
@@ -1760,6 +1915,15 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_TabContainer_AddTab", lua_TabContainer_AddTab);
     lua_register(m_script, "cpp_TabContainer_SetAlignment", lua_TabContainer_SetAlignment);
     lua_register(m_script, "cpp_TabContainer_SetTabFixedSize", lua_TabContainer_SetTabFixedSize);
+
+    // TGUI Button 
+    lua_register(m_script, "cpp_Button_Create", lua_Button_Create);
+    lua_register(m_script, "cpp_Button_SetPos", lua_Button_SetPos);
+    lua_register(m_script, "cpp_Button_SetPosStr", lua_Button_SetPosStr);
+    lua_register(m_script, "cpp_Button_SetSize", lua_Button_SetSize);
+    lua_register(m_script, "cpp_Button_SetSizeStr", lua_Button_SetSizeStr);
+    lua_register(m_script, "cpp_Button_SetOnClickCallback", lua_Button_SetOnClickCallback);
+
 
     // TGUI Canvas section
 
