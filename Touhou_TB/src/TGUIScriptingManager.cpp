@@ -1745,25 +1745,25 @@ tgui::Button::Ptr TGUIScriptingManager::createButton(const std::string & text,fl
 
     std::cout << "access ok \n";
     button->setSize(width, height);
-    // if(parent)
-    // {
-    //     std::cout << "here \n";
-    //     parent->add(button);
-    // }
-    // else 
-    // {
-    //     std::cout << "tgui \n";
-    //     if(!m_tgui)
-    //     {
+    if(parent)
+    {
+        std::cout << "here \n";
+        parent->add(button);
+    }
+    else 
+    {
+        std::cout << "tgui \n";
+        if(!m_tgui)
+        {
 
-    //         std::cout << "tgui is null \n";
-    //     }
-    //     else
-    //     {
-    //         std::cout << "tgui is not null \n";
-    //         // m_tgui->add(button);
-    //     }
-    // }
+            std::cout << "tgui is null \n";
+        }
+        else
+        {
+            std::cout << "tgui is not null \n";
+            // m_tgui->add(button);
+        }
+    }
     // m_tgui->add(button);
     // m_tgui->add(button);
     std::cout << "rech add \n";

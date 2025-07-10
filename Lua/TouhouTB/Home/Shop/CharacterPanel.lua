@@ -14,6 +14,7 @@ require "TGUI_Button"
 ---@field picture Picture
 ---@field displayNameLabel Label
 ---@field priceLabel RTLabel
+---@field buyButton Button
 ---@field parent ScrollablePanel
 ---@field detailPanel ScrollablePanel
 CharacterPanel = {
@@ -95,10 +96,11 @@ width,height,path,name,price,detailPanel)
         self.buyButton = Button:new()
         self.buyButton:init(host,"BUY",x,y,width,height,self.panel.ptr)
         self.buyButton:setPosStr("50%","90%")
+        self.buyButton:setSizeStr("30%","8%")
     else
-        -- self.buyButton:setPos(x,y)
-        -- self.buyButton:setPosStr("50%","90%")
-        -- self.buyButton:setText("BUY")
+        self.buyButton:setPos(x,y)
+        self.buyButton:setPosStr("50%","90%")
+        self.buyButton:setText("BUY")
     end
 
     if self.priceLabel == nil then

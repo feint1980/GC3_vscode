@@ -40,6 +40,7 @@ end
 ---@param tHeight number height
 ---@param tParent? pointer instance parent, default nil (main)
 function Button:init(host,tText,tX,tY,tWidth,tHeight,tParent)
+    tParent = tParent or nil
     self.host = host
     self.ptr = TGUI_Button_Create(host,tText,tX,tY,tWidth,tHeight,tParent)
     self.text = tText
@@ -47,7 +48,6 @@ function Button:init(host,tText,tX,tY,tWidth,tHeight,tParent)
     self.posY = tY
     self.width = tWidth
     self.height = tHeight
-    self.parent = tParent
 end
 
 function Button:setPos(tX,tY)
@@ -80,9 +80,16 @@ end
 
 --- MARK: Wrapper
 --- function wrapper of cpp_Button_Create
+---@param host pointer instance of TGUIScriptingManager
+---@param text string text to display
+---@param posX number x position
+---@param posY number y position
+---@param width number width
+---@param height number height
+---@param parent? pointer instance parent, default nil (main)
 function TGUI_Button_Create(host, text, posX, posY, width, height, parent)
     parent = parent or nil
-    return cpp_Button_Create(text, posX, posY, width, height, parent)
+    return cpp_Button_Create(host,text, posX, posY, width, height, parent)
 end
 
 
