@@ -1298,7 +1298,7 @@ int lua_Button_Create(lua_State * L)
         std::cout << "create button with " << lua_gettop(L) << "\n";
         if(lua_gettop(L) == 7)
         {
-            tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 5));
+            tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 7));
             
             *button = host->createButton(text,x,y,width,height,*parent);
 
@@ -1738,22 +1738,34 @@ tgui::Panel::Ptr TGUIScriptingManager::createPanel(float x, float y, float width
 
 tgui::Button::Ptr TGUIScriptingManager::createButton(const std::string & text,float x, float y, float width, float height, tgui::Panel::Ptr parent)
 {
-    tgui::Button::Ptr button = tgui::Button::create(text);
+    tgui::Button::Ptr button = tgui::Button::create();
+    button->setText(text);
     std::cout << "create ok \n";
     button->setPosition(x, y);
 
     std::cout << "access ok \n";
-    //button->setSize(width, height);
-    // if(parent)
-    // {
-    //     parent->add(button);
-    // }
-    // else 
-    // {
-    //     m_tgui->add(button);
-    // }
+    button->setSize(width, height);
+    if(parent)
+    {
+        std::cout << "here \n";
+        parent->add(button);
+    }
+    else 
+    {
+        std::cout << "tgui \n";
+        if(!m_tgui)
+        {
+
+            std::cout << "tgui is null \n";
+        }
+        else
+        {
+            std::cout << "tgui is not null \n";
+            // m_tgui->add(button);
+        }
+    }
     // m_tgui->add(button);
-    m_tgui->add(button);
+    // m_tgui->add(button);
     std::cout << "rech add \n";
     return button;
 }

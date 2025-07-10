@@ -97,8 +97,8 @@ width,height,path,name,price,detailPanel)
         self.buyButton:setPosStr("50%","90%")
     else
         -- self.buyButton:setPos(x,y)
-        self.buyButton:setPosStr("50%","90%")
-        self.buyButton:setText("BUY")
+        -- self.buyButton:setPosStr("50%","90%")
+        -- self.buyButton:setText("BUY")
     end
 
     if self.priceLabel == nil then

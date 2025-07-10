@@ -31,7 +31,14 @@ function Button:new(o)
     return o
 end
 
-
+---@Description Init Button
+---@param host pointer instance of TGUIScriptingManager
+---@param tText string text to display
+---@param tX number x position
+---@param tY number y position
+---@param tWidth number width
+---@param tHeight number height
+---@param tParent? pointer instance parent, default nil (main)
 function Button:init(host,tText,tX,tY,tWidth,tHeight,tParent)
     self.host = host
     self.ptr = TGUI_Button_Create(host,tText,tX,tY,tWidth,tHeight,tParent)
