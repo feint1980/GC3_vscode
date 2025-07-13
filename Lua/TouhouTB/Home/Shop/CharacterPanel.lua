@@ -91,18 +91,6 @@ width,height,path,name,price,detailPanel)
         self.displayNameLabel:setText(name)
     end
 
-
-    if self.buyButton == nil then
-        self.buyButton = Button:new()
-        self.buyButton:init(host,"BUY",x,y,width,height,self.panel.ptr)
-        self.buyButton:setPosStr("50%","90%")
-        self.buyButton:setSizeStr("30%","8%")
-    else
-        self.buyButton:setPos(x,y)
-        self.buyButton:setPosStr("50%","90%")
-        self.buyButton:setText("BUY")
-    end
-
     if self.priceLabel == nil then
         self.priceLabel = RTLabel:new()
         self.priceLabel:init(host,Tag.color_TB_title .. price .. " " ..Tag.icon_soul .. Tag.color_close,x,y,self.panel.ptr)

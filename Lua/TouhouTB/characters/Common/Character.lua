@@ -89,6 +89,7 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field level number
 ---@field xp number
 ---@field price number
+---@field ID string
 ---@field common_actions table
 ---@field items table   
 ---@field skills table
@@ -151,6 +152,7 @@ Character = {
     level = 1,
     xp = 0,
     price = 25,
+    ID = "NONE",
     ---@type table The list of common actions
     common_actions = {},
     ---@type table The list of items
@@ -217,6 +219,7 @@ function Character:setDesc(desc)
     self.name = Character_GetAttributeStr(self.dyobj, "name")
     self.lastName = Character_GetAttributeStr(self.dyobj, "lastName")
     self.title = Character_GetAttributeStr(self.dyobj, "title")
+    self.ID = Character_GetAttributeStr(self.dyobj, "ID")
     -- self.hp = 
 end
 
@@ -474,8 +477,6 @@ end
 function Character_GetAttribute(dyobj, name)
     return cpp_getEntityCharacterAttribute(dyobj, name)
 end
-
-
 
 ---wrapper of cpp_getEntityCharacterAttributeStr
 ---@Description set the character desc

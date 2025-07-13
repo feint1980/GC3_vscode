@@ -151,7 +151,9 @@ int lua_CreateCharacterNon_CB(lua_State * L)
         std::string name = lua_tostring(L, 2);
         CharacterDesc * desc = static_cast<CharacterDesc*>(lua_touserdata(L, 3));
         F_Lua_BaseEntity * entity = handler->createCharacter(name, desc);
+
         lua_pushlightuserdata(L, entity);
+        
         return 1;
     }
     return 0;
@@ -170,6 +172,7 @@ F_Lua_BaseEntity * ClientCharacterHandler::createCharacter(const std::string & n
     
     // std::cout << "new OK \n";
     entity->setCharacterDesc(*characterDesc);
+    m_charactersMap.insert(std::make_pair(name, entity));
     //std::unordered_map<std::string, F_Lua_BaseEntity*> characters;
     
     return entity;

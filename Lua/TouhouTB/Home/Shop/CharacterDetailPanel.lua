@@ -10,6 +10,7 @@ require "TGUI_ScrollablePanel"
 require "homeGlobal"
 require "CharacterPanel"
 
+
 ---@class (exact) CharacterDetailPanel
 ---@field str number
 ---@field vit number
@@ -40,6 +41,7 @@ require "CharacterPanel"
 ---@field title number
 ---@field panelPath number
 ---@field speed number
+---@field id number
 CharacterDetailPanelVal = {
     str = 1,
     vit = 2,
@@ -69,7 +71,8 @@ CharacterDetailPanelVal = {
     lastName = 26,
     title = 27,
     panelPath = 28,
-    speed = 29
+    speed = 29,
+    id = 30
 }
 
 
@@ -137,6 +140,9 @@ CharacterDetailPanel = {
     ---@type RTLabel
     titleVal = nil,
 
+    ---@type RTLabel
+    unlockButton = nil,
+
     --- string section
     strTxt = "",
     vitTxt = "",
@@ -163,12 +169,14 @@ CharacterDetailPanel = {
     skillEffTxt = nil,
     ---@type RTLabel
     skillQuoteTxt = nil,
-    
+
     skillDescTxt = nil,
     ---@type ScrollablePanel
     skillPanel = nil,
+    characterID = "NONE",
     ---@type table
     skillIcons = {},
+
 }
 function CharacterDetailPanel:new()
     local o = {}
@@ -299,8 +307,8 @@ function CharacterDetailPanel:init(GUI_host, parent)
     self.skillDescPanel = ScrollablePanel:new()
     self.skillDescPanel:init(GUI_host, 0, 0, 0, 0, self.detailPanel.ptr)
     self.skillDescPanel:setAlignment(0.5, 0.5)
-    self.skillDescPanel:setPosStr("25%", "80%")
-    self.skillDescPanel:setSizeStr("48%", "40%")
+    self.skillDescPanel:setPosStr("25%", "75%")
+    self.skillDescPanel:setSizeStr("48%", "33%")
 
     self.skillNameTxt = RTLabel:new()
     self.skillNameTxt:init(GUI_host, "Name", 0, 0, self.skillDescPanel.ptr)
@@ -327,6 +335,15 @@ function CharacterDetailPanel:init(GUI_host, parent)
     self.skillPanel:setAlignment(0.5, 0.5)
     self.skillPanel:setPosStr("75%", "80%")
     self.skillPanel:setSizeStr("48%", "40%")
+
+    self.unlockButton = RTLabel:new()
+    self.unlockButton:init(GUI_host, "Unlock for " .. Tag.color_TB_title .. "" , 0, 0, self.detailPanel.ptr)
+    self.unlockButton:setPosStr("25%", "94%")
+    self.unlockButton:setAlignment(TextAlginment.Center)
+    self.unlockButton:setHoverable(0, 255, 0, 255, 255, 255, 255, 255)
+    self.unlockButton:setOnClickCallback(function()
+        print("unlock")
+    end)
 
 end
 
@@ -390,22 +407,11 @@ function CharacterDetailPanel:setVal(index, val)
         self.spdTxt = Tag.color_TB_AGI .. val .. Tag.color_close
         txt = self.accTxt .. " / " .. self.evaTxt .. " / " .. self.criTxt .. " / " .. self.spdTxt
         self.acc_eva_criVal:setText(txt)
-    -- elseif index == CharacterDetailPanelVal.hpScale then
-    --     self.hpScaleVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.manaScale then
-    --     self.manaScaleVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.physicDmgScale then
-    --     self.physicDmgScaleVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.physicDefScale then
-    --     self.physicDefScaleVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.magicDmgScale then
-    --     self.magicDmgScaleVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.magicDefScale then
-    --     self.magicDefScaleVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.accurateScale then
-    --     self.accurateScaleVal:setText(val)
-    -- elseif index == CharacterDetailPanelVal.evadeChanceScale then
-    --     self.evadeChanceScaleVal:setText(val)
+    elseif index == CharacterDetailPanelVal.id then
+        self.characterID = val
+        --process if user owned the character 
+        self.unlockButton:setText("Unlock for " .. Tag.color_TB_title ..  Shop_CharacterTable[self.characterID].price .. " " ..Tag.icon_soul .. Tag.color_close )
+
     elseif index == CharacterDetailPanelVal.deathDoorSurviveChance then
         self.deathDoorSurviveChanceVal:setText( Tag.color_TB_VIT .. val .. Tag.color_close)
     elseif index == CharacterDetailPanelVal.name then

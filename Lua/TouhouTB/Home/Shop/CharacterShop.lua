@@ -126,7 +126,9 @@ function CharacterShop:addCharPanel(GUI_host,x,y,width,height,panelPath,name,pri
         Tag.color_TB_title .. Shop_CharacterTable[name].title .. Tag.color_close)
 
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.panelPath,  Shop_CharacterTable[name].panelPath)
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.id,  Shop_CharacterTable[name].name)
         self.characterDetailPanel:setVisible(true)
+        
     end)
 end
 
