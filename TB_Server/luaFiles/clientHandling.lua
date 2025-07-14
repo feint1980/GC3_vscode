@@ -49,6 +49,7 @@ function CH_AddClientEP(tSystemAddress, guid, name)
     local newClient = ClientEP:new()
     newClient:init(tSystemAddress, guid, name)
     ClientEPList[guid] = newClient
+    ClientEPList[guid].name = name
     -- ClientEPList[guid] = ClientEP:new(tSystemAddress, guid, name)
     -- print("total user now ")
     CH_List()

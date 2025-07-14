@@ -185,7 +185,7 @@ function CharacterDetailPanel:new()
     return o
 end
 
-function CharacterDetailPanel:init(GUI_host, parent)
+function CharacterDetailPanel:init(GUI_host, parent, clientHost, ip)
     self.mainPanel = parent
     self.detailPanel = ScrollablePanel:new()
     self.detailPanel:init(GUI_host, 0, 0, 0, 0, self.mainPanel)
@@ -341,10 +341,7 @@ function CharacterDetailPanel:init(GUI_host, parent)
     self.unlockButton:setPosStr("25%", "94%")
     self.unlockButton:setAlignment(TextAlginment.Center)
     self.unlockButton:setHoverable(0, 255, 0, 255, 255, 255, 255, 255)
-    self.unlockButton:setOnClickCallback(function()
-        print("unlock")
-    end)
-
+ 
 end
 
 ---@Description set the value of a label
@@ -411,6 +408,14 @@ function CharacterDetailPanel:setVal(index, val)
         self.characterID = val
         --process if user owned the character 
         self.unlockButton:setText("Unlock for " .. Tag.color_TB_title ..  Shop_CharacterTable[self.characterID].price .. " " ..Tag.icon_soul .. Tag.color_close )
+        self.unlockButton:setOnClickCallback(function()
+            print("unlock " ..  Shop_CharacterTable[self.characterID].ID)
+
+            local id, pw= Home_GetInfo(2)
+            print("data is " .. id .. " " .. pw)
+            SendRequest(PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{id,pw, Shop_CharacterTable[self.characterID].ID},5,0.25)
+            -- SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"davai", Shop_CharacterTable[self.characterID].ID}) client host needed
+        end)
 
     elseif index == CharacterDetailPanelVal.deathDoorSurviveChance then
         self.deathDoorSurviveChanceVal:setText( Tag.color_TB_VIT .. val .. Tag.color_close)
@@ -434,3 +439,4 @@ function CharacterDetailPanel:setVisible(visible)
         self.detailPanel:hideWithEffect(PanelShowType.Fade,250)
     end
 end
+

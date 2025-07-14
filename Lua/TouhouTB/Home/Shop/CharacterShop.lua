@@ -48,7 +48,7 @@ end
 ---@param height number height
 ---@param parent pointer instance of parent
 function CharacterShop:init(GUI_host, posX, posY,
-    width, height, parent)
+    width, height, parent,clientHost, ip)
     print("init called ")
     self.mainPanel = parent
     if self.mainPanel == nil then

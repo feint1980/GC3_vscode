@@ -25,7 +25,8 @@ ShopResponse = {
     ShopItemInfo = 2,
     ShopCharacterInfo_Begin = 3,
     ShopCharacterInfo_Data = 4,
-    ShopCharacterInfo_End = 5
+    ShopCharacterInfo_End = 5,
+    ShopCharacter_Buy = 6
 }
 
 ---@Description combines packet

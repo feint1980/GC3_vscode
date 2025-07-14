@@ -253,3 +253,19 @@ MessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopChracterInfo] = func
     end
 end
 
+MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy] = function(host ,data, ip, guid)
+
+    -- check account valid (1st gatekeep, easy)
+    if CH_FindClient(guid) == nil then
+        print("client not found, request from ip " .. tostring(ip))
+        return
+    end
+    print("request buy chracter from " .. CH_FindClient(guid).name)
+    print("data rr " .. data)
+    -- check if account is valid (2nd gatekeep)
+    local t_id, t_pw , characterID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+
+    if CheckAccountValid(host, t_id, t_pw) then
+        print("gatekeep 2 ok")
+    end
+end

@@ -596,10 +596,9 @@ int lua_SQLExec(lua_State * L)
             
         int rc =sqlite3_exec(host->getDB(), cmd.c_str(), nullptr, nullptr, &errMsg);
         if(rc != SQLITE_OK) {
-            std::cout << "SQL error: " << errMsg << std::endl;
+            std::cout << "SQL error: " << errMsg << "\n";
             sqlite3_free(errMsg);
         }
-        // host->executeSQL(lua_tostring(L, 1));
         return 1;
     }
     return -1;
