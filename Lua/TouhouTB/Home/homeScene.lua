@@ -97,7 +97,8 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     Home_Noti_Btn:setPosStr("50%","75%")
     Home_Noti_Btn:setHoverable(0,255,0,255,255,255,255,255)
     Home_Noti_Btn:setOnClickCallback(function() 
-        cpp_backToMenu(HomeSceneHost)    
+        Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+        --cpp_backToMenu(HomeSceneHost)    
     end)
 
     ---- GUI section ----
@@ -226,16 +227,31 @@ end
 Network_CommonTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)
     print("ID_CONNECTION_ATTEMPT_FAILED")
     -- Client_Connected = false
+    Home_Noti_Btn:setOnClickCallback(function()
+        Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+        cpp_backToMenu(HomeSceneHost) 
+        end)
     Home_showNotification("Failed to connect !!!!","OK")
+
 end
 
 Network_CommonTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
+    Home_Noti_Btn:setOnClickCallback(function()
+        Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+        cpp_backToMenu(HomeSceneHost) 
+        end)
     Home_showNotification("Disconnection from server !","OK")
+
     -- Client_Connected = false
 end
 
 Network_CommonTask[PacketID.ID_CONNECTION_LOST] = function(host,packet)
+    Home_Noti_Btn:setOnClickCallback(function()
+        Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+        cpp_backToMenu(HomeSceneHost) 
+        end)
     Home_showNotification("Connection lost !","OK")
+
     Client_Connected = false
 end
 
@@ -279,26 +295,26 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
         for k,v in pairs(S_Characters_Info) do
             if k == "S_Reimu" then
                 print("found Reimu")
-                Shop_CharacterTable["Reimu"] = Reimu:new()
+                Shop_CharacterTable["T_REIMU"] = Reimu:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["Reimu"]:initNonCB(Home_ClientCharacterHandlerPtr,"Reimu",t)
+                Shop_CharacterTable["T_REIMU"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_REIMU",t)
 
             elseif k == "S_Patchouli" then
                 print("found Patchouli")
-                Shop_CharacterTable["Patchouli"] = Patchouli:new()
+                Shop_CharacterTable["T_PATCHY"] = Patchouli:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["Patchouli"]:initNonCB(Home_ClientCharacterHandlerPtr,"Patchouli",t)
+                Shop_CharacterTable["T_PATCHY"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_PATCHY",t)
             elseif k == "S_Yukari" then
                 print("found Yukari")
-                Shop_CharacterTable["Yukari"] = Yukari:new()
+                Shop_CharacterTable["T_YUKARI"] = Yukari:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["Yukari"]:initNonCB(Home_ClientCharacterHandlerPtr,"Yukari",t)
+                Shop_CharacterTable["T_YUKARI"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_YUKARI",t)
 
             elseif k == "S_Meiling" then
                 print("found Meiling")
-                Shop_CharacterTable["Meiling"] = Meiling:new()
+                Shop_CharacterTable["T_MEILING"] = Meiling:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["Meiling"]:initNonCB(Home_ClientCharacterHandlerPtr,"Meiling",t)
+                Shop_CharacterTable["T_MEILING"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_MEILING",t)
             end
         end
 
@@ -306,16 +322,18 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
         local x_offset = 130
         local count = 0
 
-        table.sort(Shop_CharacterTable, function(a,b) 
-            return a.name < b.name 
+        table.sort(Shop_CharacterTable, function(a,b)
+            return a.name < b.name
             end)
 
         for k,v in pairs(Shop_CharacterTable) do
             print(k,v.dyobj)
         end
-
+        ---@type CharacterShop
+        Shop_CharacterShop = _G.Shop_CharacterShop
         for k,v in pairs(Shop_CharacterTable) do
-            Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250, v.panelPath,v.name,v.price)
+            Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250, v.panelPath,k,
+            v.price,false)
             count = count + 1
         end
     else
@@ -323,4 +341,16 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
         SendRequest(PacketChannel.ShopChannel,ShopResponse.ShopChracterInfo , {'get_character_shop_list'}, 5, 0.25)
     end
 
+end
+
+ClientMessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy] = function(host,data, guid)
+
+    -- strip first and last character 
+    local tData = string.sub(data,2,string.len(data) - 1) 
+    Home_Noti_Btn:setOnClickCallback(function()
+        Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+
+    end)
+    Home_showNotification(tData, "OK")
+    Home_UpdateInfo() 
 end

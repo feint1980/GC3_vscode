@@ -71,10 +71,6 @@ void F_Marisa_MasterSpark::draw(Feintgine::SpriteBatch & spriteBatch)
 	spriteBatch.draw(m_pos, m_sprite.getDim() * (m_scale * addOnScale), m_sprite.getUV(), m_sprite.getTexture().id, -5, l_color, m_angle - degreeToRad(10));
 
 
-
-	// draw Waves
-
-
 	for (int i = 0; i < m_waves.size(); i++)
 	{
 		m_waves[i].draw(spriteBatch);

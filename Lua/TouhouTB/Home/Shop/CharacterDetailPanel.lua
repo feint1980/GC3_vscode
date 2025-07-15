@@ -42,6 +42,7 @@ require "CharacterPanel"
 ---@field panelPath number
 ---@field speed number
 ---@field id number
+---@field isOwn number
 CharacterDetailPanelVal = {
     str = 1,
     vit = 2,
@@ -72,7 +73,8 @@ CharacterDetailPanelVal = {
     title = 27,
     panelPath = 28,
     speed = 29,
-    id = 30
+    id = 30,
+    isOwn = 31
 }
 
 
@@ -340,7 +342,7 @@ function CharacterDetailPanel:init(GUI_host, parent, clientHost, ip)
     self.unlockButton:init(GUI_host, "Unlock for " .. Tag.color_TB_title .. "" , 0, 0, self.detailPanel.ptr)
     self.unlockButton:setPosStr("25%", "94%")
     self.unlockButton:setAlignment(TextAlginment.Center)
-    self.unlockButton:setHoverable(0, 255, 0, 255, 255, 255, 255, 255)
+    
  
 end
 
@@ -406,13 +408,15 @@ function CharacterDetailPanel:setVal(index, val)
         self.acc_eva_criVal:setText(txt)
     elseif index == CharacterDetailPanelVal.id then
         self.characterID = val
-        --process if user owned the character 
+        --process if user owned the character
+        self.unlockButton:setHoverable(0, 255, 0, 255, 255, 255, 255, 255)
         self.unlockButton:setText("Unlock for " .. Tag.color_TB_title ..  Shop_CharacterTable[self.characterID].price .. " " ..Tag.icon_soul .. Tag.color_close )
         self.unlockButton:setOnClickCallback(function()
             print("unlock " ..  Shop_CharacterTable[self.characterID].ID)
+            
 
             local id, pw= Home_GetInfo(2)
-            print("data is " .. id .. " " .. pw)
+
             SendRequest(PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{id,pw, Shop_CharacterTable[self.characterID].ID},5,0.25)
             -- SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"davai", Shop_CharacterTable[self.characterID].ID}) client host needed
         end)
@@ -427,6 +431,12 @@ function CharacterDetailPanel:setVal(index, val)
         self.titleVal:setText(val)
     elseif index == CharacterDetailPanelVal.panelPath then
         self.t_picture:setTexture(val)
+    elseif index == CharacterDetailPanelVal.isOwn then
+        if val == true then
+            self.unlockButton:setText("Owned")
+            self.unlockButton:setColor(122,122,122 ,  255)
+            -- self.unlockButton:setHo
+        end
     end
 end
 

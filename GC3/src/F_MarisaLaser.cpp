@@ -61,7 +61,6 @@ void F_MarisaLaser::draw(Feintgine::SpriteBatch & spriteBatch)
 void F_MarisaLaser::update(float deltaTime, const glm::vec2 pos, std::vector<FairyBase *>  enemies, bool updateColor )
 {
 
-
 	m_pos.x = pos.x;
 	m_pos.y = pos.y + (m_dim.x * 0.5f);
 	updateUV(deltaTime);
@@ -117,7 +116,6 @@ void F_MarisaLaser::update(float deltaTime, const glm::vec2 pos, std::vector<Fai
 // 			GlobalValueClass::Instance()->setLaserEnergy(m_energy);
 			if (m_color.change(15, -0.025f, minColorVal))
 			{
-				//std::cout << "stop \n";
 				m_isSwitchHappen = false;
 			}
 		
@@ -142,29 +140,28 @@ bool F_MarisaLaser::checkColiderWithEmeny(const F_BaseEnemy & enemy)
 	double distance_center_y = abs(cir_y_rotate - center_rec_y);
 	double distance_center_corner_x = distance_center_x - m_dim.x / 2.0f;
 	double distance_center_corner_y = distance_center_y - m_dim.y / 2.0f;
-	if (distance_center_x > dim.x + m_dim.x / 2.0f) return false;
-	if (distance_center_y > dim.x + m_dim.y / 2.0f) return false;
-	if (distance_center_x < m_dim.x / 2.0f) return true;
-	if (distance_center_y < m_dim.y / 2.0f) return true;
-	if (pow(distance_center_corner_x, 2) + pow(distance_center_corner_y, 2) <= pow(dim.x, 2)) return true;
-
-// 	if (sin(m_angle) * (pos.y - m_pos.y) >= cos(m_angle) * (pos.x - m_pos.x) - halfDim.x
-// 		&& sin(m_angle) * (pos.y - m_pos.y) >= cos(m_angle) * (pos.x - m_pos.x) + halfDim.x)
-// 	{
-// 		if (m_pos.y * sin(m_angle) > pos.y)
-// 		{
-// 			return true;
-// 		}
-// 	}
-
-// 	if (m_pos.x + halfDim.y > pos.x - t_halfDim.x &&
-// 		m_pos.y + halfDim.x < pos.y + t_halfDim.y &&
-// 		m_pos.x - halfDim.y < pos.x + t_halfDim.x &&
-// 		m_pos.y - halfDim.x > pos.y - t_halfDim.y)
-// 	{
-// 		return true;
-// 	}
-
+	if (distance_center_x > dim.x + m_dim.x / 2.0f) 
+	{
+		return false;
+	}
+	
+	if (distance_center_y > dim.x + m_dim.y / 2.0f)
+	{
+		return false;
+	}
+	if (distance_center_x < m_dim.x / 2.0f)
+	{
+		return true;
+	} 
+	if (distance_center_y < m_dim.y / 2.0f)
+	{
+		return true;
+	} 
+	if (pow(distance_center_corner_x, 2) + pow(distance_center_corner_y, 2) <= pow(dim.x, 2)) 
+	{
+		return true;
+	}
+	
 	return false;
 }
 
@@ -181,28 +178,29 @@ bool F_MarisaLaser::checkColiderWithGuardian(const EnemyGuardian & enemy)
 	double distance_center_y = abs(cir_y_rotate - center_rec_y);
 	double distance_center_corner_x = distance_center_x - m_dim.x / 2.0f;
 	double distance_center_corner_y = distance_center_y - m_dim.y / 2.0f;
-	if (distance_center_x > dim.x + m_dim.x / 2.0f) return false;
-	if (distance_center_y > dim.x + m_dim.y / 2.0f) return false;
-	if (distance_center_x < m_dim.x / 2.0f) return true;
-	if (distance_center_y < m_dim.y / 2.0f) return true;
-	if (pow(distance_center_corner_x, 2) + pow(distance_center_corner_y, 2) <= pow(dim.x, 2)) return true;
+	if (distance_center_x > dim.x + m_dim.x / 2.0f)
+	{
+		return false;
+	} 
+	if (distance_center_y > dim.x + m_dim.y / 2.0f)
+	{
+		return false;
+	} 
+	if (distance_center_x < m_dim.x / 2.0f)
+	{
+		return true;
+	} 
+	if (distance_center_y < m_dim.y / 2.0f)
+	{
+		return true;
+	} 
+	if (pow(distance_center_corner_x, 2) + pow(distance_center_corner_y, 2) <= pow(dim.x, 2))
+	{
+		return true;
+	} 
 
 	return false;
 }
-// 	glm::vec2 halfDim = m_dim * 0.5f;
-// 	glm::vec2 t_halfDim = dim * 0.5f;
-// 
-// 	if (sin(m_angle) * (pos.y - m_pos.y) >= cos(m_angle) * (pos.x - m_pos.x) - halfDim.x
-// 		&& sin(m_angle) * (pos.y - m_pos.y) >= cos(m_angle) * (pos.x - m_pos.x) + halfDim.x)
-// 	{
-// 		if (m_pos.y * sin(m_angle) > pos.y)
-// 		{
-// 			return true;
-// 		}
-// 		
-// 	}
-// 	return false;
-// }
 
 bool F_MarisaLaser::checkColiderWithAmplifier(const EnemyAmplifier & enemy)
 {
@@ -218,31 +216,28 @@ bool F_MarisaLaser::checkColiderWithAmplifier(const EnemyAmplifier & enemy)
 	double distance_center_y = abs(cir_y_rotate - center_rec_y);
 	double distance_center_corner_x = distance_center_x - m_dim.x / 2.0f;
 	double distance_center_corner_y = distance_center_y - m_dim.y / 2.0f;
-	if (distance_center_x > dim.x + m_dim.x / 2.0f) return false;
-	if (distance_center_y > dim.x + m_dim.y / 2.0f) return false;
-	if (distance_center_x < m_dim.x / 2.0f) return true;
-	if (distance_center_y < m_dim.y / 2.0f) return true;
-	if (pow(distance_center_corner_x, 2) + pow(distance_center_corner_y, 2) <= pow(dim.x, 2)) return true;
+	if (distance_center_x > dim.x + m_dim.x / 2.0f)
+	{
+		return false;
+	} 
+	if (distance_center_y > dim.x + m_dim.y / 2.0f)
+	{
+		return false;
+	} 
+	if (distance_center_x < m_dim.x / 2.0f)
+	{
+		return true;
+	} 
+	if (distance_center_y < m_dim.y / 2.0f)
+	{
+		return true;
+	} 
+	if (pow(distance_center_corner_x, 2) + pow(distance_center_corner_y, 2) <= pow(dim.x, 2))
+	{
+		return true;
+	} 
 
 	return false;
-
-// 	glm::vec2 pos = enemy.getPos(); // x,y 
-// 	glm::vec2 dim = enemy.getDim(); // 
-// 
-// 	glm::vec2 halfDim = m_dim * 0.5f;
-// 	glm::vec2 t_halfDim = dim * 0.5f;
-// 
-// 
-// 	if (sin(m_angle) * (pos.y - m_pos.y) >= cos(m_angle) * (pos.x - m_pos.x) - halfDim.x
-// 		&& sin(m_angle) * (pos.y - m_pos.y) >= cos(m_angle) * (pos.x - m_pos.x) + halfDim.x)
-// 	{
-// 		if (m_pos.y * sin(m_angle) > pos.y)
-// 		{
-// 			return true;
-// 		}
-// 	}
-// 
- 	
 }
 
 void F_MarisaLaser::drawHitbox(Feintgine::DebugRender & debugRenderer)
@@ -304,7 +299,6 @@ void F_MarisaLaser::drawStar(Feintgine::SpriteBatch & spriteBatch)
 		desRect.z = m_starSprite.getDim().x * m_starScale;
 		desRect.w = m_starSprite.getDim().y * m_starScale;
 		spriteBatch.draw(desRect, m_starSprite.getUV(), m_starSprite.getTexture().id, m_depth, glm::vec4(m_color.r * m_rateR * 0.1f, m_color.g * m_rateG * 5.5f, m_color.b * m_rateB, m_color.a), m_starAngle);
-	
 }
 
 void F_MarisaLaser::drawRayLight(Feintgine::LightBatch & lightBatch)

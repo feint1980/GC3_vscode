@@ -15,7 +15,7 @@ function SVI_DoQuery(host,query)
 end
 
 --- function SVI_DoQuerySTMT, clear data before a query
----@Description: call a server to do a query
+---@Description: call a server to do a query NOTE, only bind string value, for binding int, consider make another function or just use internal logic, since re-design pattern now will costly
 ---@param host pointer instance of ServerScriptingManager
 ---@param baseStmt string the the base stmt
 ---@param paramList table the param list
@@ -47,11 +47,29 @@ Account_Stats_Table = {
 
 }
 
+Account_Character_Table = {
+    tb_name = "player_character_table",
+    id = "account_id",
+    character_id = "character_id",
+    level = "level",
+    exp = "exp",
+    stats = "stats",
+    fk_account = "fk_account",
+    fk_character = "fk_character"
+}
+
 RegisterKey_Table = {
     tb_name = "register_key_table",
     no = "key_no",
     val = "key_str_val",
     ready = "key_ready"
+}
+
+Character_Base_Table =  {
+    tb_name = "character_base_table",
+    character_id = "character_id",
+    character_name = "character_name",
+    stats = "stats"
 }
 
 ---@class Table
@@ -65,7 +83,10 @@ RegisterKey_Table = {
 
 Table = {
     account = Account_Table,
-    register_key = RegisterKey_Table
+    register_key = RegisterKey_Table,
+    account_stats = Account_Stats_Table,
+    character_base = Character_Base_Table,
+    user_character = Account_Character_Table
 }
 
 Query_count = 0

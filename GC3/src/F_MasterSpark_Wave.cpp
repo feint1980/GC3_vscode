@@ -56,6 +56,7 @@ void F_MasterSpark_Wave::drawLight(Feintgine::LightBatch & lightBatch)
 		lightBatch.addLight(m_pos, glm::vec4(tColor.r + randomR * sin(m_lifeTime),
 			tColor.g + randomG * cos(m_lifeTime),
 			tColor.b + randomB * sin(m_lifeTime), m_color.a), glm::vec3(1.0f / m_attentionua.x, 1.0f / m_attentionua.y, 1.0f / m_attentionua.z));
+			
 // 		lightBatch.addLight(tt, glm::vec4(tColor.r + randomR * sin(m_lifeTime),
 // 			tColor.g + randomG * sin(m_lifeTime),
 // 			tColor.b + randomB * cos(m_lifeTime), m_color.a), glm::vec3(1.0f / m_attentionua.x, 1.0f / m_attentionua.y, 1.0f / m_attentionua.z));

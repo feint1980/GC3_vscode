@@ -208,6 +208,14 @@ end
 function SV_SQLFinalizeStmt(stmt)
     cppSqlite_finalizeStmt(stmt)
 end
+--- function wrapper of cppSqlite_exec
+---@Description: execute a sql command
+---@param host pointer instance of ServerScriptingManager
+---@param cmd string sql command
+function SV_SQLExec(host, cmd)
+    cppSqlite_exec(host,cmd)
+end
+
 
 --- function wrapper of cppGenKey
 --- @Desciption: get the generated key 
@@ -242,3 +250,5 @@ end
 function SV_UpdateSkill(host, skill_stats, name)
     return cpp_updateSkill(host, skill_stats,name)
 end
+
+

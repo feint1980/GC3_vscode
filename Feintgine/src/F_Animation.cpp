@@ -72,7 +72,7 @@ namespace Feintgine
 		if (m_anims.size() > 1)
 		{	
 			//std::cout << "data " << m_animName << " " << m_anims.size() << "\n";
-			/*I don't know why, I don't want to know why, I wonder how I got here is the first place, but it will
+			/*I don't know why, I don't want to know why, I wonder how I got here is the first place. This will
 			cause problem that animation on 60hz monitor will be slower than 144hz monitor unless I do this horrible thing */
 			if (deltaTime > 0.95f)
 			{

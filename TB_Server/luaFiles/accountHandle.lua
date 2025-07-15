@@ -268,4 +268,107 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
     if CheckAccountValid(host, t_id, t_pw) then
         print("gatekeep 2 ok")
     end
+    
+    --- check if the buying character exist in db
+    local checkChracterQuery = "SELECT " ..  Table.character_base.character_id .. " FROM " .. Table.character_base.tb_name .. " WHERE " .. Table.character_base.character_id .. " = ?;"
+    SVI_DoQuerySTMT(host,checkChracterQuery,{characterID})
+
+    if Query_val[1] == nil then
+        print("character not found in db -- return")
+        return
+    else
+        print("character found in db")
+    end
+
+    -- check if the server already loaded the character in server buffer 
+    -- if Character_Serialized_Table[characterID] == nil then
+    --     print("character not found in server buffer -- return")
+    --     return
+    -- else
+    --     print("character found in server buffer")
+    -- end
+    local foundInBuffer = false
+    ---@type S_Character
+    local characterRef = nil
+    for k, v in pairs(Character_Table) do
+        if v.ID == characterID then
+            foundInBuffer = true
+            characterRef = v
+            break
+        end
+    end
+    if foundInBuffer == false then
+        print("character not found in server buffer -- return")
+        return
+    else
+        print("character found in server buffer")
+    end
+
+    -- transaction start 
+
+    SV_SQLExec(host, "BEGIN TRANSACTION;")
+
+    local alreadyOwned = false
+
+    local checkOwnedQuery = "SELECT 1 FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ? AND " .. Table.user_character.character_id .. " = ?;"
+    SVI_DoQuerySTMT(host,checkOwnedQuery,{t_id,characterID})
+    if Query_val[1] ~= nil then
+        alreadyOwned = true
+    end
+    print("Character owned status " .. tostring(alreadyOwned))
+    if alreadyOwned == true then
+        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"Character already owned"})
+        SV_SQLExec(host, "ROLLBACK;")
+        return
+    end
+
+    --- get soul cost of selected character 
+    local souldCost = characterRef.price
+    print("soul cost " .. tostring(souldCost))
+
+    local currentOwnedSoul = 0
+    
+    local checkSoulQuery = "SELECT " .. Table.account_stats.soul .. " FROM " .. Table.account_stats.tb_name .. " WHERE " .. Table.account_stats.id .. " = ?;"
+    SVI_DoQuerySTMT(host,checkSoulQuery,{t_id})
+    currentOwnedSoul = Query_val[1]
+    print("current owned souls " .. tostring(currentOwnedSoul))
+
+
+    if tonumber(currentOwnedSoul) < souldCost then
+        -- send noti back to client ( not enough soul)
+        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"Not Enough Souls"})
+        SV_SQLExec(host, "ROLLBACK;")
+        return
+    end
+
+    if alreadyOwned == false and tonumber(currentOwnedSoul) >= tonumber(souldCost) then
+
+        local updateSoulQuery = "UPDATE " .. Table.account_stats.tb_name .. " SET " .. Table.account_stats.soul .. " = " .. Table.account_stats.soul .. " - " .. tostring(souldCost) .."  WHERE " .. Table.account_stats.id .. " = ?;"
+
+        print("update soul query " .. updateSoulQuery)
+        SVI_DoQuerySTMT(host,updateSoulQuery,{t_id})
+
+        -- stats right now use serialized table, consider have it access from db
+        local tStats = "T_F_OFF"
+
+        local getStatsSQL = "SELECT " .. Table.character_base.stats .. " FROM " .. Table.character_base.tb_name .. " WHERE " .. Table.character_base.character_id .. " = ?;"
+        SVI_DoQuerySTMT(host,getStatsSQL,{characterID})
+        tStats = Query_val[1]
+
+        print("stat : " .. tostring(tStats))
+        local insertQuery = "INSERT INTO " .. Table.user_character.tb_name .. " (" .. Table.user_character.id .. ", " .. Table.user_character.character_id .. ", " .. Table.user_character.stats .. ") VALUES (?, ?, ?);"
+        SVI_DoQuerySTMT(host,insertQuery,{t_id,characterID, tStats})
+        SV_SQLExec(host, "COMMIT;")
+
+        print("Transaction from " .. CH_FindClient(guid).name .. " for buying " .. characterRef.name .. " completed  OK !" )
+        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"You unlocked " .. characterRef.name .. "!"})
+        return
+    else
+        print("rolling back, Buying character failed")
+        print("already owned " .. tostring(alreadyOwned))
+        print("balance " .. tostring(currentOwnedSoul) .. " < " .. tostring(souldCost))
+        SV_SQLExec(host, "ROLLBACK;")
+        return
+    end
+
 end
