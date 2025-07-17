@@ -372,7 +372,6 @@ ClientMessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharact
     local tData, tResp = string.match(data, "^|([^|]+)|([^|]+)|$")
 
     local tCallBack = nil
-
     if tResp == "BUY_RES_OK" then
         tCallBack = function()
             Shop_CharacterShop = _G.Shop_CharacterShop

@@ -2,7 +2,7 @@
 
 
 ---@class Skill
-Skill = {
+S_Skill = {
     name = "Skill",
     description = "Skill Description",
     effectTxt = "Effect",
@@ -13,7 +13,7 @@ Skill = {
     properties = {}
 }
 
-function Skill:new(o)
+function S_Skill:new(o)
     o = o or {}
     setmetatable(o, self)
     self.__index = self
