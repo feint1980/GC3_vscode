@@ -273,13 +273,34 @@ end
 
 ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Begin] = function(host,data, guid)
     print("Character request result begin")
-    table.clear(S_Characters_Info)
+    -- clear all metadata tables
+    for k,v in pairs(S_Characters_Info) do
+        S_Characters_Info[k] = nil
+    end
 end
 
 ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Data] = function(host,data, guid)
 
-    local t_name, t_data = string.match(data, "^|([^|]+)|([^|]+)|$")
-    S_Characters_Info[t_name] = t_data
+    local t_name, t_data, isOwned = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$") 
+
+    S_Characters_Info[t_name] = Characters_Info:new()
+    
+    S_Characters_Info[t_name]:init(t_data, isOwned)
+
+    print(t_name .. " " .. isOwned)
+
+    if isOwned == "true" then
+        S_Characters_Info[t_name].isOwned = true
+    else
+        S_Characters_Info[t_name].isOwned = false
+    end
+
+    print("table check ")
+    if S_Characters_Info[t_name].isOwned then 
+        print(t_name .. " true")
+    else
+        print(t_name .. " false")
+    end
 
     local t_charStats =  Client_ParseCharacterFromJson(host, t_data)
     ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr,t_name,t_charStats)
@@ -298,23 +319,25 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
                 Shop_CharacterTable["T_REIMU"] = Reimu:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
                 Shop_CharacterTable["T_REIMU"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_REIMU",t)
-
+                Shop_CharacterTable["T_REIMU"].isOwned =  v.isOwned
             elseif k == "S_Patchouli" then
                 print("found Patchouli")
                 Shop_CharacterTable["T_PATCHY"] = Patchouli:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
                 Shop_CharacterTable["T_PATCHY"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_PATCHY",t)
+                Shop_CharacterTable["T_PATCHY"].isOwned =  v.isOwned
             elseif k == "S_Yukari" then
                 print("found Yukari")
                 Shop_CharacterTable["T_YUKARI"] = Yukari:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
                 Shop_CharacterTable["T_YUKARI"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_YUKARI",t)
-
+                Shop_CharacterTable["T_YUKARI"].isOwned =  v.isOwned
             elseif k == "S_Meiling" then
                 print("found Meiling")
                 Shop_CharacterTable["T_MEILING"] = Meiling:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
                 Shop_CharacterTable["T_MEILING"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_MEILING",t)
+                Shop_CharacterTable["T_MEILING"].isOwned =  v.isOwned
             end
         end
 
@@ -333,7 +356,7 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
         Shop_CharacterShop = _G.Shop_CharacterShop
         for k,v in pairs(Shop_CharacterTable) do
             Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250, v.panelPath,k,
-            v.price,false)
+            v.price,v.isOwned)
             count = count + 1
         end
     else
@@ -346,11 +369,24 @@ end
 ClientMessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy] = function(host,data, guid)
 
     -- strip first and last character 
-    local tData = string.sub(data,2,string.len(data) - 1) 
+    local tData, tResp = string.match(data, "^|([^|]+)|([^|]+)|$")
+
+    local tCallBack = nil
+
+    if tResp == "BUY_RES_OK" then
+        tCallBack = function()
+            Shop_CharacterShop = _G.Shop_CharacterShop
+            Shop_CharacterShop:setDetailVisible(false)
+            SendRequest(PacketChannel.ShopChannel,ShopResponse.ShopChracterInfo , {'get_character_shop_list'}, 5, 0.25)
+        end
+    end
     Home_Noti_Btn:setOnClickCallback(function()
         Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
-
+        if tCallBack ~= nil then
+            tCallBack()
+        end
     end)
+
     Home_showNotification(tData, "OK")
-    Home_UpdateInfo() 
+    Home_UpdateInfo()
 end

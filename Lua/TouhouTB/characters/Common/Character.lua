@@ -96,6 +96,7 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field statuses table
 ---@field currentSlot pointer slot object
 ---@field speedRoll number
+---@field isOwned boolean
 Character = {
     ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Physical displace chance/resistant  
     Strength = 8,
@@ -165,6 +166,7 @@ Character = {
     currentSlot = nil,
 
     speedRoll = 0,
+    isOwned = false
 }
 
 ---@Description create a new instance of Character
@@ -407,6 +409,10 @@ end
 
 function Character:addStatus(statusName)
 
+end
+
+function Character:setOwnedStatus(value)
+    self.isOwned = value
 end
 
 ---@function Character:determineEvade

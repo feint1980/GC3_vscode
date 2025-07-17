@@ -15,7 +15,7 @@ require "TGUI_Button"
 ---@field displayNameLabel Label
 ---@field priceLabel RTLabel
 ---@field buyButton Button
----@field parent ScrollablePanel
+---@field parent pointer instance of ScrollablePanel
 ---@field detailPanel ScrollablePanel
 CharacterPanel = {
     ---@type Panel
@@ -28,7 +28,7 @@ CharacterPanel = {
     priceLabel = nil,
     ---@type Button
     buyButton = nil,
-    ---@type ScrollablePanel
+    ---@type pointer instance of ScrollablePanel
     parent = nil,
     ---@type ScrollablePanel
     detailPanel = nil
@@ -53,9 +53,9 @@ end
 ---@param path string path to image
 ---@param name string name
 ---@param price string price
----@param detailPanel pointer instance of ScrollablePanel
-function CharacterPanel:init(host,parent,x,y,
-width,height,path,name,price,detailPanel)
+---@param isOwned bool if the character is owned
+function CharacterPanel:init(host,parent,x,y
+    ,width,height,path,name,price,isOwned)
     self.parent = parent
     -- print("Init called !!!!!!!! ")
     if self.panel == nil then
@@ -97,14 +97,16 @@ width,height,path,name,price,detailPanel)
         self.priceLabel:setScale(0.8)
         self.priceLabel:setAlignment(TextAlginment.Center)
         self.priceLabel:setPosStr("50%","90%")
+        if isOwned then 
+            self.priceLabel:setText("Unlocked")
+        end
     else
         -- self.priceLabel:setPos(x,y)
         self.priceLabel:setPosStr("50%","90%")
         self.priceLabel:setText(Tag.color_TB_title .. price .. Tag.color_close)
-    end
-
-    if detailPanel ~= nil then
-        
+        if isOwned then 
+            self.priceLabel:setText("Unlocked")
+        end
     end
 
     -- self.panel:setHoverOnCallBack(function()

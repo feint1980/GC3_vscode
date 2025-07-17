@@ -64,7 +64,6 @@ namespace Feintgine
 			if (m_ripplePos[i])
 			{
 
-
 				glm::vec2 pos = *m_ripplePos[i];
 				glm::vec2 convertPos = m_camera->converWorldToScreen(pos);
 
@@ -95,7 +94,6 @@ namespace Feintgine
 
 		GLint scaleIndex = m_frameBufferScreen->getUniformLocation("rippleScale");
 		glUniform1f(scaleIndex,m_camera->getScale());
-
 
 	}
 

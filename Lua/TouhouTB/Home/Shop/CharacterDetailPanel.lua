@@ -409,12 +409,12 @@ function CharacterDetailPanel:setVal(index, val)
     elseif index == CharacterDetailPanelVal.id then
         self.characterID = val
         --process if user owned the character
+        self.unlockButton:setColor(255, 255, 255, 255)
         self.unlockButton:setHoverable(0, 255, 0, 255, 255, 255, 255, 255)
         self.unlockButton:setText("Unlock for " .. Tag.color_TB_title ..  Shop_CharacterTable[self.characterID].price .. " " ..Tag.icon_soul .. Tag.color_close )
         self.unlockButton:setOnClickCallback(function()
             print("unlock " ..  Shop_CharacterTable[self.characterID].ID)
-            
-
+        
             local id, pw= Home_GetInfo(2)
 
             SendRequest(PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{id,pw, Shop_CharacterTable[self.characterID].ID},5,0.25)
@@ -433,9 +433,8 @@ function CharacterDetailPanel:setVal(index, val)
         self.t_picture:setTexture(val)
     elseif index == CharacterDetailPanelVal.isOwn then
         if val == true then
-            self.unlockButton:setText("Owned")
+            self.unlockButton:setText("Unlocked")
             self.unlockButton:setColor(122,122,122 ,  255)
-            -- self.unlockButton:setHo
         end
     end
 end

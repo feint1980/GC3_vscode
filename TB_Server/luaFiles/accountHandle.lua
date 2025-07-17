@@ -228,6 +228,18 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(hos
     end
 end
 
+function CheckIfUserOwnedCharacter(host, userID, chacaterID)
+
+    local checkQuery = "SELECT 1 FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ? AND " .. Table.user_character.character_id .. " = ?;"
+    SVI_DoQuerySTMT(host,checkQuery,{userID,chacaterID})
+    if Query_val[1] ~= nil then
+        return true
+    else
+        return false
+    end
+
+end
+
 --- MARK: User request Character in shop response
 ---@Description Handle register request
 ---@param host pointer instance of ServerScriptingManager
@@ -245,11 +257,19 @@ MessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopChracterInfo] = func
             local chracterInfo = {}
             count = count +1
             local sendData = 0
-            SendReliable(host,ip,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_Data,{k,v})
+
+            local isOwned  = CheckIfUserOwnedCharacter(host, CH_FindClient(guid).name, Character_Table[k].ID)
+
+            -- print(Character_Table[k].ID)
+            -- determine if the player already owned this character 
+
+            SendReliable(host,ip,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_Data,{k,v,tostring (isOwned)})
             print("send " .. k .. " done !")
+            
         end
         --- send end
         SendReliable(host,ip,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_End,{tostring(count)})
+
     end
 end
 
@@ -317,7 +337,7 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
     end
     print("Character owned status " .. tostring(alreadyOwned))
     if alreadyOwned == true then
-        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"Character already owned"})
+        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"Character already owned","BUY_RES_NE"})
         SV_SQLExec(host, "ROLLBACK;")
         return
     end
@@ -336,7 +356,7 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
 
     if tonumber(currentOwnedSoul) < souldCost then
         -- send noti back to client ( not enough soul)
-        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"Not Enough Souls"})
+        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"Not Enough Souls!","BUY_RES_NE"})
         SV_SQLExec(host, "ROLLBACK;")
         return
     end
@@ -361,7 +381,7 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
         SV_SQLExec(host, "COMMIT;")
 
         print("Transaction from " .. CH_FindClient(guid).name .. " for buying " .. characterRef.name .. " completed  OK !" )
-        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"You unlocked " .. characterRef.name .. "!"})
+        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"You unlocked " .. characterRef.name .. "!", "BUY_RES_OK"})
         return
     else
         print("rolling back, Buying character failed")

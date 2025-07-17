@@ -40,6 +40,14 @@ function CharacterShop:new(o)
     return o
 end
 
+---@Description set CharacterDetailPanel visible
+---@param value boolean
+function CharacterShop:setDetailVisible(value)
+    if self.characterDetailPanel ~= nil then
+        self.characterDetailPanel:setVisible(value)
+    end
+end
+
 ---@Description init CharacterShop
 ---@param GUI_host pointer instance of TGUIScriptingManager
 ---@param posX number x position
@@ -99,8 +107,9 @@ end
 ---@param isOwn boolean if the character is owned
 function CharacterShop:addCharPanel(GUI_host,x,y,width,height,
     panelPath,characterID,price,isOwn)
+    
     self.characterPanels[characterID] = CharacterPanel:new()
-    self.characterPanels[characterID]:init(GUI_host,self.charactersPanel.ptr,x,y,width,height,panelPath,characterID,price)
+    self.characterPanels[characterID]:init(GUI_host,self.charactersPanel.ptr,x,y,width,height,panelPath,Shop_CharacterTable[characterID].name,price,isOwn)
 
     CharacterDetailPanelVal = _G.CharacterDetailPanelVal
     self.characterPanels[characterID].panel:setOnClickCallback(function()
@@ -144,8 +153,6 @@ function CharacterShop:addCharPanel(GUI_host,x,y,width,height,
         end
         self.characterDetailPanel:setVisible(true)
 
-
-        
     end)
 end
 

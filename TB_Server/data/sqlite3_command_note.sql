@@ -51,6 +51,7 @@ CREATE TABLE player_character_table (
     CONSTRAINT fk_account FOREIGN KEY (account_id) REFERENCES account_table(account_id) ON DELETE CASCADE,
     CONSTRAINT fk_character FOREIGN KEY (character_id) REFERENCES character_base_table(character_id) ON DELETE CASCADE
 );
+
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('register_key_table',9);
 COMMIT;
