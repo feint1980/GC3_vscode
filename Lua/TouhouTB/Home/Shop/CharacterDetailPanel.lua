@@ -309,8 +309,8 @@ function CharacterDetailPanel:init(GUI_host, parent, clientHost, ip)
     self.skillDescPanel = ScrollablePanel:new()
     self.skillDescPanel:init(GUI_host, 0, 0, 0, 0, self.detailPanel.ptr)
     self.skillDescPanel:setAlignment(0.5, 0.5)
-    self.skillDescPanel:setPosStr("25%", "75%")
-    self.skillDescPanel:setSizeStr("48%", "33%")
+    self.skillDescPanel:setPosStr("25%", "80%")
+    self.skillDescPanel:setSizeStr("48%", "40%")
 
     self.skillNameTxt = RTLabel:new()
     self.skillNameTxt:init(GUI_host, "Name", 0, 0, self.skillDescPanel.ptr)
@@ -335,15 +335,14 @@ function CharacterDetailPanel:init(GUI_host, parent, clientHost, ip)
     self.skillPanel = ScrollablePanel:new()
     self.skillPanel:init(GUI_host, 0, 0, 0, 0, self.detailPanel.ptr)
     self.skillPanel:setAlignment(0.5, 0.5)
-    self.skillPanel:setPosStr("75%", "80%")
-    self.skillPanel:setSizeStr("48%", "40%")
+    self.skillPanel:setPosStr("75%", "77%")
+    self.skillPanel:setSizeStr("48%", "34%")
 
     self.unlockButton = RTLabel:new()
     self.unlockButton:init(GUI_host, "Unlock for " .. Tag.color_TB_title .. "" , 0, 0, self.detailPanel.ptr)
-    self.unlockButton:setPosStr("25%", "94%")
+    self.unlockButton:setPosStr("75%", "94%")
     self.unlockButton:setAlignment(TextAlginment.Center)
     
- 
 end
 
 ---@Description set the value of a label

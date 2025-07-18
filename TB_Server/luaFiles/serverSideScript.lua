@@ -242,6 +242,7 @@ print("Current file directory:", current_path)
 
 os.execute('dir /b/a-d  ..\\luaFiles\\Characters\\*.lua')
 
+---@Description load character data based on lua file (internal)
 function Server_LoadCharacters(host)
     -- print("loadCharacters() called")
     for filename in io.popen('dir /b/a-d  ..\\luaFiles\\Characters\\*.lua'):lines() do  --Windows
@@ -266,7 +267,6 @@ end
 
 function Server_LoadData(host)
     Server_LoadCharacters(host)
-    -- Server_CheckCharacterData(host)
 end
 
 local function print_table(t)
@@ -274,6 +274,7 @@ local function print_table(t)
         print(k,v)
     end
 end
+
 function Server_CheckCharacterData(host)
     print("Server_CheckCharacterData...")
 
