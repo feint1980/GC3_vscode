@@ -116,17 +116,17 @@ For the Editor and Game that you want to see but don't have time to build :
 - [x] Server returns character list
 - [x] Basic packet communication system
 - [x] SQLite character data load (server side)
+- [x] Shop character purchase UI
+- [x] Purchase character & save to player ownership
+- [x] Retrieve owned characters on login
 
-🟨 IN PROGRESS 	🚧
-- [ ] Shop character purchase UI 	🚧	🚧	🚧	🚧
-- [ ] Team loadout screen 🚧
+🟨 IN PROGRESS 	🚧 
+- [ ] Team loadout screen 🚧🚧🚧
 - [ ] Battle prototype (2-character dummy test) 🚧	🚧
 - [ ] Manual test harness for skills and effects 	🚧
-- [ ] Server-side skill validation tests 	🚧
 
 🟥 TO DO
-- [ ] Purchase character & save to player ownership
-- [ ] Retrieve owned characters on login
+
 - [ ] Equip/load team before match
 - [ ] Battle matchmaking or challenge system
 - [ ] Server battle room/session manager
