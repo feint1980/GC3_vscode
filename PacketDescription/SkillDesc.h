@@ -17,6 +17,7 @@ enum SkillAtt
     skillQuote,
     skillIconPath,
     skillID,
+    skillType,
     skillInvalid = 67
 };
 
@@ -27,6 +28,7 @@ struct SkillStats {
     std::string quote;
     std::string iconPath;
     std::string ID;
+    int skillType;
 };
 
 class SkillDesc  {
@@ -37,10 +39,12 @@ public:
 
     void setSkillStats(SkillStats s);
     void setAttribute(SkillAtt attribute, const std::string & value);
+    void setAttribute(SkillAtt attribute, int value);
     SkillAtt getAttributeByName(const std::string & attributeName);
     std::string getAttribute(const std::string & attributeName);
     std::string getAttribute(SkillAtt attribute);
-
+    
+    int getAttributeInt(const std::string & attributeName);
 
 private:
 

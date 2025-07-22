@@ -370,7 +370,6 @@ ClientMessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharact
 
     -- strip first and last character 
     local tData, tResp = string.match(data, "^|([^|]+)|([^|]+)|$")
-
     local tCallBack = nil
     if tResp == "BUY_RES_OK" then
         tCallBack = function()

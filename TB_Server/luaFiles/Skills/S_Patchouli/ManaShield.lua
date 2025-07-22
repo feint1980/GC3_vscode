@@ -11,6 +11,7 @@ Skill_Table["ManaShield"] = S_Skill:new({
     effectTxt = "Absorbs " .. Tag.color_TB_WIS .. "80% " .. Tag.color_close .. " of incoming damage, converting it into mana loss instead of HP damage. If her mana is depleted, the shield fails and she begins to take full damage.",
     quoteTxt = "\"The body breaks. Magic doesn't.\"",
     iconPath = "./Assets/TB_GUI/faces/Patchouli_face.png",
+    type = Type.innate,
     ID = "Patchy_ManaShield",
     properties = {}
 })

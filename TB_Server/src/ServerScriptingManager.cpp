@@ -126,7 +126,9 @@ static void to_json(json& j, const SkillStats& s)
         {"effect", s.effect},
         {"quote", s.quote},
         {"iconPath", s.iconPath},
-        {"ID", s.ID}
+        {"ID", s.ID},
+        {"skillType", s.skillType}
+
     };
 }
 
@@ -138,6 +140,7 @@ static void from_json(const json& j, SkillStats& s)
     j.at("quote").get_to(s.quote);
     j.at("iconPath").get_to(s.iconPath);
     j.at("ID").get_to(s.ID);
+    j.at("skillType").get_to(s.skillType);
 }
 
 static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **azColName)
@@ -418,6 +421,8 @@ int lua_UpdateSkill(lua_State *L)
 
             assignValue(L,2,"ID", stats.ID);
 
+            assignValue(L,2,"skillType", stats.skillType);
+
             // json j = stats;
             // std::cout << "JSON: " << j.dump(4) << "\n";
 
@@ -428,10 +433,17 @@ int lua_UpdateSkill(lua_State *L)
         if(host)
         {
             host->addSkillStats(tID, stats);
+            SkillStats s = host->getSkillStats(tID);
+        
+            json j = s;
+            
+            lua_pushstring(L,j.dump(0).c_str());
+        return 1;
         }
         else
         {
             std::cout << "host null \n";
+            return 0;
         }
         return 0;
     }
@@ -932,6 +944,12 @@ std::string ServerScriptingManager::getDecryptMessage(const std::string & data)
     return m_cryptor.decrypt(tMsg, iv);
 }
 
+
+SkillStats ServerScriptingManager::getSkillStats(const std::string & skillName)
+{
+    
+    return m_skillStatsMap[skillName];
+}
 
 uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & target, const std::string & data)
 {
@@ -1474,6 +1492,6 @@ void ServerScriptingManager::addSkillStats(const std::string & skillName, const 
     m_skillStatsMap[skillName] = skillAtt;
     //test data
     json j = m_skillStatsMap[skillName];
-    std::cout << "dump stat \n";
-    std::cout << j.dump(4,'.') << "\n";
+    // std::cout << "dump stat \n";
+    // std::cout << j.dump(4,'.') << "\n";
 }

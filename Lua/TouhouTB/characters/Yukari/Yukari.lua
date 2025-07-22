@@ -4,7 +4,6 @@ require "IconGui"
 
 -- characters include
 require "Character"
-require "kickBack"
 
 
 Yukari = Character:new({

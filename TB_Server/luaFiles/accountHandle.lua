@@ -301,12 +301,6 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
     end
 
     -- check if the server already loaded the character in server buffer 
-    -- if Character_Serialized_Table[characterID] == nil then
-    --     print("character not found in server buffer -- return")
-    --     return
-    -- else
-    --     print("character found in server buffer")
-    -- end
     local foundInBuffer = false
     ---@type S_Character
     local characterRef = nil

@@ -100,6 +100,8 @@ public:
 
     std::string getEncryptPW(const std::string & pw);
 
+    SkillStats getSkillStats(const std::string & skillName);
+
     // int ExecuteComand(const std::string & command,);
 
     // std::string getDecryptMsg(const std::string & data);

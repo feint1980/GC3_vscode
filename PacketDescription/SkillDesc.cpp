@@ -8,7 +8,8 @@ static void to_json(json& j, const SkillStats& s)
         {"effect", s.effect},
         {"quote", s.quote},
         {"iconPath", s.iconPath},
-        {"ID", s.ID}
+        {"ID", s.ID},
+        {"skillType", s.skillType}
     };
 }
 
@@ -20,6 +21,7 @@ static void from_json(const json& j, SkillStats& s)
     j.at("quote").get_to(s.quote);
     j.at("iconPath").get_to(s.iconPath);
     j.at("ID").get_to(s.ID);
+    j.at("skillType").get_to(s.skillType);
 }
 
 SkillDesc::SkillDesc()
@@ -95,6 +97,10 @@ SkillAtt SkillDesc::getAttributeByName(const std::string & attributeName)
     {
         return SkillAtt::skillID;
     }
+    else if (lower == "skilltype" || lower == "type")
+    {
+        return SkillAtt::skillType;
+    }
     else
     {
         return SkillAtt::skillInvalid;
@@ -145,3 +151,31 @@ std::string SkillDesc::getAttribute(const std::string & attributeName)
         return "error";
     }
 }
+
+void SkillDesc::setAttribute(SkillAtt attribute, int value)
+{
+    switch (attribute)
+    {
+    case SkillAtt::skillType:
+        m_skillStats.skillType = value;
+        break;
+    default:
+        std::cout << "warning, wrong attri " << attribute << "\n";
+        break;
+    }
+}
+
+int SkillDesc::getAttributeInt(const std::string & attributeName)
+{
+    std::string lower = attributeName;
+    std::transform(lower.begin(), lower.end(), lower.begin(), [](unsigned char c) { return std::tolower(c); });
+    switch (getAttributeByName(lower))
+    {
+    case SkillAtt::skillType:
+        return m_skillStats.skillType;
+    default:
+        std::cout << "warning, wrong attri " << attributeName << "\n";
+        return -1;
+    }
+}
+

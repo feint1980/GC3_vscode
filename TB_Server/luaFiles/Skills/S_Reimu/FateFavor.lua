@@ -14,6 +14,7 @@ Skill_Table["FateFavor"] = S_Skill:new({
     > Remove all debuffs.";
     quoteTxt = "Fate protects me. Not out of kindness, but out of obligation to my duty.",
     iconPath = "./Assets/TB_GUI/faces/Reimu_face.png",
+    type = Type.innate,
     ID = "Reimu_FateFavor",
     properties = {}
 })
