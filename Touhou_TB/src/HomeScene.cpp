@@ -227,6 +227,7 @@ void HomeScene::initGUI()
 
     m_luaEventHandler.init(m_script);
     m_guiScriptingManager.init(m_window,m_script);
+    m_skillHandler.init(m_script);
 
     unsigned int port = 1123;
 
@@ -251,8 +252,9 @@ void HomeScene::initGUI()
         lua_pushlightuserdata(m_script, &m_guiScriptingManager);
         lua_pushlightuserdata(m_script, m_clientScriptingManager);
         lua_pushlightuserdata(m_script, m_clientCharacterHandler);
+        lua_pushlightuserdata(m_script, &m_skillHandler);
         std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-        const int argc = 4;
+        const int argc = 5;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {

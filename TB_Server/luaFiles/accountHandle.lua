@@ -4,6 +4,7 @@ require "serverWrapper"
 require "clientHandling"
 require "SV_global"
 
+--- keep just for the old package ( from client inquiry)
 PacketCode = {
     login = 35,
     register = 36,
@@ -386,3 +387,4 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
     end
 
 end
+

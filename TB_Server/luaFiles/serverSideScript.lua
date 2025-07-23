@@ -5,6 +5,7 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "serverWrapper"
 require "SV_global"
 
+
 --- function SV_DoQuery, clear data before a query
 ---@Description: call a server to do a query
 ---@param host pointer instance of ServerScriptingManager
@@ -227,6 +228,7 @@ function AddColData(colName, value)
 end
 
 require "accountHandle"
+require "skillHandle"
 
 print("server side script ended ...")
 

@@ -420,6 +420,16 @@ function CharacterDetailPanel:setVal(index, val)
             -- SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"davai", Shop_CharacterTable[self.characterID].ID}) client host needed
         end)
 
+        --- display innate skill 
+        if Skill_Serialized_Table[self.characterID] ~= nil then
+            for k,v in pairs(Skill_Serialized_Table[self.characterID]) do
+                print(k .. " " .. v)
+            end
+        else
+            print("no innate skill detacted")
+        end
+
+
     elseif index == CharacterDetailPanelVal.deathDoorSurviveChance then
         self.deathDoorSurviveChanceVal:setText( Tag.color_TB_VIT .. val .. Tag.color_close)
     elseif index == CharacterDetailPanelVal.name then

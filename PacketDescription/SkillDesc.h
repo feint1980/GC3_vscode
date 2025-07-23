@@ -35,21 +35,16 @@ class SkillDesc  {
 public:
     SkillDesc();
     ~SkillDesc();
-    
-
     void setSkillStats(SkillStats s);
     void setAttribute(SkillAtt attribute, const std::string & value);
     void setAttribute(SkillAtt attribute, int value);
     SkillAtt getAttributeByName(const std::string & attributeName);
     std::string getAttribute(const std::string & attributeName);
     std::string getAttribute(SkillAtt attribute);
-    
     int getAttributeInt(const std::string & attributeName);
 
 private:
-
     SkillStats m_skillStats;
 };
-
 
 #endif 

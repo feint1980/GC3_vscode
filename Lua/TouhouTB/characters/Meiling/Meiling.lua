@@ -7,7 +7,7 @@ require "IconGui"
 require "Character"
 
 Meiling = Character:new({
-     Strength = 17,
+    Strength = 17,
     Vitality = 18,
     Dexterity = 15,
     Agility = 15,
@@ -44,7 +44,7 @@ Meiling = Character:new({
     level = 1,
     xp = 0,
     price = 35,
-    ID = "T_MEILING"
+    ID = "S_MEILING"
 }
 )
 

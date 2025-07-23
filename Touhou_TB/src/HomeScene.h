@@ -38,7 +38,7 @@
 #include "ClientScriptingManager.h"
 #include "LuaEventHandler.h"
 #include "ClientCharacterHandler.h"
-
+#include "../../PacketDescription/SkillHandler.h"
 
 class HomeScene : public Feintgine::IGameScreen
 {
@@ -112,6 +112,8 @@ private:
     // bool isReady = false;
 
     TGUIScriptingManager m_guiScriptingManager;
+
+    SkillHandler m_skillHandler;
 
     LuaEventHandler m_luaEventHandler;
 

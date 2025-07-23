@@ -146,11 +146,10 @@ function CharacterShop:addCharPanel(GUI_host,x,y,width,height,
         Tag.color_TB_title .. Shop_CharacterTable[characterID].title .. Tag.color_close)
 
         self.characterDetailPanel:setVal(CharacterDetailPanelVal.panelPath,  Shop_CharacterTable[characterID].panelPath)
-        if isOwn then
-            self.characterDetailPanel:setVal(CharacterDetailPanelVal.isOwn,  isOwn)
-        else
-            self.characterDetailPanel:setVal(CharacterDetailPanelVal.id,  Shop_CharacterTable[characterID].ID)
-        end
+
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.id,  Shop_CharacterTable[characterID].ID)
+        self.characterDetailPanel:setVal(CharacterDetailPanelVal.isOwn,  isOwn)
+
         self.characterDetailPanel:setVisible(true)
 
     end)

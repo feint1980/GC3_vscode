@@ -30,6 +30,9 @@ Home_ClientScriptingPtr = nil
 ---@type pointer ClientCharacterHandler
 Home_ClientCharacterHandlerPtr = nil
 
+--@type pointer SkillHandler
+Home_SkillHandlerPtr = nil
+
 ---Notification
 ---@type Panel
 Home_Noti_Panel = nil
@@ -58,11 +61,16 @@ Main_ShopButton = nil
 ---@type Label
 Main_NexusButton = nil
 
-function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr)
+local h_id = ""
+local h_pw = ""
+local h_guid = ""
+
+function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr)
     HomeSceneHost = host
     Home_GUIScriptingPtr = TGUIScriptingPtr
     Home_ClientScriptingPtr = ClientScriptingPtr
     Home_ClientCharacterHandlerPtr = ClientCharacterHandlerPtr
+    Home_SkillHandlerPtr = SkillHandlerPtr
 
     if HomeSceneHost ~= nil then
         print("LoginHost is not nil")
@@ -153,17 +161,22 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
 
     InitNexus(TGUIScriptingPtr)
     Main_NexusButton:setOnClickCallback(function()
-        
         MenuPanels["Nexus"](TGUIScriptingPtr)
         end)
-
     Home_UpdateInfo()
+    Home_RequestSkillsStats()
 end
 
 function Home_UpdateInfo()
-
     local id,pw, guid = Home_GetInfo(3)
     SendRequest(PacketChannel.UserChannel, UserResponse.MainInfo, {id, pw, guid}, 5, 0.25)
+    h_id = id
+    h_pw = pw
+    h_guid = guid
+end
+
+function Home_RequestSkillsStats()
+    SendRequest(PacketChannel.UserChannel, UserResponse.SkillInfo, {h_guid, "request"}, 5, 1.0)
 
 end
 
@@ -316,28 +329,28 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
         for k,v in pairs(S_Characters_Info) do
             if k == "S_Reimu" then
                 print("found Reimu")
-                Shop_CharacterTable["T_REIMU"] = Reimu:new()
+                Shop_CharacterTable["S_Reimu"] = Reimu:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["T_REIMU"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_REIMU",t)
-                Shop_CharacterTable["T_REIMU"].isOwned =  v.isOwned
+                Shop_CharacterTable["S_Reimu"]:initNonCB(Home_ClientCharacterHandlerPtr,"S_Reimu",t)
+                Shop_CharacterTable["S_Reimu"].isOwned =  v.isOwned
             elseif k == "S_Patchouli" then
                 print("found Patchouli")
-                Shop_CharacterTable["T_PATCHY"] = Patchouli:new()
+                Shop_CharacterTable["S_Patchouli"] = Patchouli:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["T_PATCHY"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_PATCHY",t)
-                Shop_CharacterTable["T_PATCHY"].isOwned =  v.isOwned
+                Shop_CharacterTable["S_Patchouli"]:initNonCB(Home_ClientCharacterHandlerPtr,"S_Patchouli",t)
+                Shop_CharacterTable["S_Patchouli"].isOwned =  v.isOwned
             elseif k == "S_Yukari" then
                 print("found Yukari")
-                Shop_CharacterTable["T_YUKARI"] = Yukari:new()
+                Shop_CharacterTable["S_Yukari"] = Yukari:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["T_YUKARI"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_YUKARI",t)
-                Shop_CharacterTable["T_YUKARI"].isOwned =  v.isOwned
+                Shop_CharacterTable["S_Yukari"]:initNonCB(Home_ClientCharacterHandlerPtr,"S_Yukari",t)
+                Shop_CharacterTable["S_Yukari"].isOwned =  v.isOwned
             elseif k == "S_Meiling" then
                 print("found Meiling")
-                Shop_CharacterTable["T_MEILING"] = Meiling:new()
+                Shop_CharacterTable["S_Meiling"] = Meiling:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["T_MEILING"]:initNonCB(Home_ClientCharacterHandlerPtr,"T_MEILING",t)
-                Shop_CharacterTable["T_MEILING"].isOwned =  v.isOwned
+                Shop_CharacterTable["S_Meiling"]:initNonCB(Home_ClientCharacterHandlerPtr,"S_Meiling",t)
+                Shop_CharacterTable["S_Meiling"].isOwned =  v.isOwned
             end
         end
 
@@ -363,7 +376,6 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
         print("Character request result end failed")
         SendRequest(PacketChannel.ShopChannel,ShopResponse.ShopChracterInfo , {'get_character_shop_list'}, 5, 0.25)
     end
-
 end
 
 ClientMessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy] = function(host,data, guid)
@@ -388,3 +400,6 @@ ClientMessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharact
     Home_showNotification(tData, "OK")
     Home_UpdateInfo()
 end
+
+require "skill_client_handler"
+

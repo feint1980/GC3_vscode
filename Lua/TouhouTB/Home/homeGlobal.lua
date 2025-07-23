@@ -21,7 +21,8 @@ function Characters_Info:init(tData, tIsOwned)
 end
 
 S_Characters_Info = {}
-
-
 Shop_CharacterTable = {}
+
+Skill_Serialized_Table = {}
+Skill_Table = {}
 

@@ -128,7 +128,6 @@ static void to_json(json& j, const SkillStats& s)
         {"iconPath", s.iconPath},
         {"ID", s.ID},
         {"skillType", s.skillType}
-
     };
 }
 
@@ -421,7 +420,7 @@ int lua_UpdateSkill(lua_State *L)
 
             assignValue(L,2,"ID", stats.ID);
 
-            assignValue(L,2,"skillType", stats.skillType);
+            assignValue(L,2,"type", stats.skillType);
 
             // json j = stats;
             // std::cout << "JSON: " << j.dump(4) << "\n";
@@ -1094,12 +1093,12 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
     unsigned int payLoadIndex = indexStart + 2;
 
     std::string payLoad = std::string(reinterpret_cast<const char*>(p->data + payLoadIndex), p->length - payLoadIndex);
-    std::cout << "payload " << payLoad << "\n";
+   // std::cout << "payload " << payLoad << "\n";
 
     // decrypt the payload only
     payLoad = getDecryptMessage(payLoad);
 
-    std::cout << "decrypted payload " << payLoad << "\n";
+  //  std::cout << "decrypted payload " << payLoad << "\n";
 
     lua_getglobal(m_script, "HandleWrapMessage");
     if (lua_isfunction(m_script, -1))

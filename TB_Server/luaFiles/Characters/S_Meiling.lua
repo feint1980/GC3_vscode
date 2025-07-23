@@ -43,5 +43,5 @@ Character_Table["S_Meiling"] = S_Character:new(
     level = 1,
     xp = 0,
     price = 35,
-    ID = "T_MEILING"
+    ID = "S_Meiling"
 })

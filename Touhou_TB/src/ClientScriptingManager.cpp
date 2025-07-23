@@ -257,12 +257,8 @@ CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
     CharacterStats result;
     json j = json::parse(str);
     result = j.get<CharacterStats>();
-
-    // CharacterStats * p = &result;
-    // m_characterStatsDict[result.ID] = *p;
-    //m_characterStatsDict.insert_or_assign(result.ID, result);
+    
     return result;
-    //return //m_characterStatsDict[result.ID];
 }
 
 void ClientScriptingManager::init(const std::string & serverIP, unsigned int port,  RakNet::RakPeerInterface * client, lua_State * script)

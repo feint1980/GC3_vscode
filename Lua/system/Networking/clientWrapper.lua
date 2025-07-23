@@ -17,7 +17,10 @@ AccountResponse = {
 UserResponse = {
     MainInfo = 1,
     CharacterInfo = 2,
-    ItemInfo = 3
+    SkillInfo = 3,
+    SkillInfo_Start = 4,
+    SkillInfo_Data = 5,
+    SkillInfo_End = 6
 }
 
 ShopResponse = {
