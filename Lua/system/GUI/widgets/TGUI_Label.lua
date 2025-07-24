@@ -207,3 +207,4 @@ end
 function TGUI_Label_SetScale(label, scale)
     cpp_Label_SetScale(label, scale)
 end
+

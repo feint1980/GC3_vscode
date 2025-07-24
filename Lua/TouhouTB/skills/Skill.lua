@@ -2,28 +2,38 @@
 Skill = {
     name = "Skill",
     description = "Skill Description",
-    effectTxt = "Effect",
-    quoteTxt = "Quote",
+    effect = "Effect",
+    quote = "Quote",
     iconPath =  "./Assets/TB_GUI/faces/missing.png",
     -- special properties
     ID = "None",
     type = 0, ---- none 
     properties = {},
     cost = nil ,
-    character = nil
+    character = nil,
+    ---pointer of SkillDesc
+    dyobj = nil
 }
 
 function Skill:new(o)
     o = o or {}
     setmetatable(o, self)
     self.__index = self
+    print("Skill new hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee ")
     return o
 end
 
-function Skill:init( tCharacter,tCost , tProperties)
-    self.character = tCharacter
-    self.cost = tCost
-    self.properties = tProperties
+function Skill:init(host, characterName, Skillname)
+    local desc = ClientSkillHandler_GetSkillDesc(host, characterName, Skillname)
+    self.dyobj = desc
+    self.name = ClientSkillHandler_GetSkillAttributeStr(desc, "name")
+    self.description = ClientSkillHandler_GetSkillAttributeStr(desc, "description")
+    self.effect = ClientSkillHandler_GetSkillAttributeStr(desc, "effect")
+    self.quote = ClientSkillHandler_GetSkillAttributeStr(desc, "quote")
+    self.iconPath = ClientSkillHandler_GetSkillAttributeStr(desc, "iconPath")
+    self.ID = ClientSkillHandler_GetSkillAttributeStr(desc, "ID")
+    self.type = ClientSkillHandler_GetSkillAttributeInt(desc, "type")
+
 end
 
 function Skill:onSelect()
@@ -34,12 +44,11 @@ function Skill:onCancel()
 
 end
 
-function Skill:setStat(desc)
+function Skill:setDesc(desc)
 
 end
 
-
-function Skill_SetStat(dyobj, desc)
+function Skill_SetDesc(dyobj, desc)
 
 end
----- List of event 
+

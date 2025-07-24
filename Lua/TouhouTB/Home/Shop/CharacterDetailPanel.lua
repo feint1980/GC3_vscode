@@ -187,6 +187,9 @@ function CharacterDetailPanel:new()
     return o
 end
 
+local oldXSize = 0
+local oldYSize = 0
+
 function CharacterDetailPanel:init(GUI_host, parent, clientHost, ip)
     self.mainPanel = parent
     self.detailPanel = ScrollablePanel:new()
@@ -312,6 +315,8 @@ function CharacterDetailPanel:init(GUI_host, parent, clientHost, ip)
     self.skillDescPanel:setPosStr("25%", "80%")
     self.skillDescPanel:setSizeStr("48%", "40%")
 
+    oldXSize, oldYSize = self.skillDescPanel:getSize()
+
     self.skillNameTxt = RTLabel:new()
     self.skillNameTxt:init(GUI_host, "Name", 0, 0, self.skillDescPanel.ptr)
     self.skillNameTxt:setScale(1.1)
@@ -319,18 +324,19 @@ function CharacterDetailPanel:init(GUI_host, parent, clientHost, ip)
 
     self.skillDescTxt = RTLabel:new()
     self.skillDescTxt:init(GUI_host, "Description", 0, 0, self.skillDescPanel.ptr)
-    self.skillDescTxt:setScale(0.8)
+    self.skillDescTxt:setScale(0.72)
     self.skillDescTxt:setPosStr("1%", "13%")
 
     self.skillEffTxt = RTLabel:new()
     self.skillEffTxt:init(GUI_host, "Effect", 0, 0, self.skillDescPanel.ptr)
-    self.skillEffTxt:setScale(0.8)
-    self.skillEffTxt:setPosStr("1%", "43%")
+    self.skillEffTxt:setScale(0.77)
+    self.skillEffTxt:setPosStr("1%", "44%")
 
     self.skillQuoteTxt = RTLabel:new()
     self.skillQuoteTxt:init(GUI_host, "Quote", 0, 0, self.skillDescPanel.ptr)
     self.skillQuoteTxt:setScale(0.7)
-    self.skillQuoteTxt:setPosStr("1%", "83%")
+    self.skillQuoteTxt:setPosStr("1%", "88%")
+    self.skillQuoteTxt:setColor(122,122,122,255)
 
     self.skillPanel = ScrollablePanel:new()
     self.skillPanel:init(GUI_host, 0, 0, 0, 0, self.detailPanel.ptr)
@@ -407,6 +413,19 @@ function CharacterDetailPanel:setVal(index, val)
         self.acc_eva_criVal:setText(txt)
     elseif index == CharacterDetailPanelVal.id then
         self.characterID = val
+
+        self.skillDescPanel:setSize(0,0)
+        self.skillDescPanel:setSizeStr("48%", "40%")
+        self.skillNameTxt:setText("Name")
+        self.skillDescTxt:setText("Description")
+        self.skillEffTxt:setText("Effect")
+        self.skillQuoteTxt:setText("Quote")
+
+        self.skillNameTxt:setPosStr("1%", "1%")
+        self.skillDescTxt:setPosStr("1%", "13%")
+        self.skillEffTxt:setPosStr("1%", "44%")
+        self.skillQuoteTxt:setPosStr("1%", "88%")
+        
         --process if user owned the character
         self.unlockButton:setColor(255, 255, 255, 255)
         self.unlockButton:setHoverable(0, 255, 0, 255, 255, 255, 255, 255)
@@ -420,10 +439,29 @@ function CharacterDetailPanel:setVal(index, val)
             -- SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"davai", Shop_CharacterTable[self.characterID].ID}) client host needed
         end)
 
+        Skill_Table = _G.Skill_Table
         --- display innate skill 
         if Skill_Serialized_Table[self.characterID] ~= nil then
             for k,v in pairs(Skill_Serialized_Table[self.characterID]) do
-                print(k .. " " .. v)
+                if Skill_Table[self.characterID][k] ~= nil then
+                    self.skillNameTxt:setText(Skill_Table[self.characterID][k].name)
+                    self.skillDescTxt:setText(Skill_Table[self.characterID][k].description)
+                    local tX, tY = self.skillDescPanel:getSize()
+                     
+                    print("before skill panel " .. tX .. " " .. tY)
+                    local nX, nY = self.skillDescPanel:getSize()
+                    local tNewPosX = 0
+                    local tNewPosY = 0
+                    tNewPosX = 0.01 * oldXSize
+                    tNewPosY = 0.44 * nY
+                    self.skillEffTxt:setPos(tNewPosX, tNewPosY)
+                    self.skillEffTxt:setText(Skill_Table[self.characterID][k].effect)
+                    nX, nY = self.skillDescPanel:getSize()
+                    tNewPosY = 0.9 * nY
+                    self.skillQuoteTxt:setPos(tNewPosX, tNewPosY)
+                    self.skillQuoteTxt:setText(Skill_Table[self.characterID][k].quote)
+                    return
+                end
             end
         else
             print("no innate skill detacted")

@@ -1,4 +1,7 @@
+package.path = package.path .. ';../../Lua/TouhouTB/skills/?.lua;'
+
 require "homeGlobal"
+require "Skill"
 
 Skill_Serialized_Table = _G.Skill_Serialized_Table
 local t_skill_count = 0
@@ -23,7 +26,15 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.SkillInfo_Data] = 
 
     Skill_Serialized_Table[characterKey][skillKey] = skillValue
 
-    Skill_Table[characterKey][skillKey] = Client_AddSkillStats(characterKey, skillKey, skillValue)
+    ClientSkillHandler_AddSkillDesc(Home_SkillHandlerPtr,characterKey, skillKey, skillValue)
+
+    Skill_Table[characterKey][skillKey] = Skill:new()
+    Skill_Table[characterKey][skillKey]:init(Home_SkillHandlerPtr,characterKey, skillKey)
+
+
+    print("skill check bro |")
+    print(Skill_Table[characterKey][skillKey].name)
+
 
     t_skill_count = t_skill_count + 1
 end
@@ -52,6 +63,36 @@ function Client_Parse_SkillSetFromStr(str)
 end
 
 ---@Description Wrapper of cpp_Skill_AddSkillStats
-function Client_AddSkillStats(characterKey, skillKey, skillValue)
-    return cpp_Skill_AddSkillStats(Home_SkillHandlerPtr,characterKey, skillKey, skillValue)
+---@param characterKey string
+---@param skillKey string
+---@param skillValue string
+---@return pointer instance of SkillDesc
+function ClientSkillHandler_AddSkillDesc(host,characterKey, skillKey, skillValue)
+    return cpp_Skill_AddSkillDesc(host,characterKey, skillKey, skillValue)
 end
+
+---@Description Wrapper of cpp_Skill_GetSkillDesc
+---@param characterKey string
+---@param skillKey string
+---@return pointer instance of SkillDesc
+function ClientSkillHandler_GetSkillDesc(host,characterKey, skillKey)
+    return cpp_Skill_GetSkillDesc(host,characterKey, skillKey)
+end
+
+---@Description Wrapper of cpp_Skill_GetSkillAttributeInt
+---@param skillDesc pointer instance of SkillDesc
+---@param attribute string
+---@return number
+function ClientSkillHandler_GetSkillAttributeInt(skillDesc, attribute)
+    return cpp_Skill_GetSkillAttributeInt(skillDesc, attribute)
+end
+
+---@Description Wrapper of cpp_Skill_GetSkillAttributeStr
+---@param skillDesc pointer instance of SkillDesc
+---@param attribute string
+---@return string
+function ClientSkillHandler_GetSkillAttributeStr(skillDesc, attribute)
+    return cpp_Skill_GetSkillAttributeStr(skillDesc, attribute)
+end
+
+

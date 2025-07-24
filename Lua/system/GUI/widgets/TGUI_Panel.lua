@@ -188,6 +188,10 @@ function Panel:setOpacity(opacity)
     TGUI_Panel_SetOpacity(self.ptr, opacity)
 end
 
+function Panel:getSize()
+    return TGUI_Panel_GetSize(self.ptr)
+end
+
 ---- MARK: Wrapper
 
 --- wrapper of cpp_Panel_Create
@@ -305,4 +309,10 @@ end
 ---@param opacity number opacity (0-255)
 function TGUI_Panel_SetOpacity(panel, opacity)
     cpp_Panel_SetOpacity(panel, opacity)
+end
+
+--- wrapper of cpp_Panel_GetSize
+--- return 2 number width and height
+function TGUI_Panel_GetSize(panel)
+    return cpp_Panel_GetSize(panel)
 end

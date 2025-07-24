@@ -71,6 +71,8 @@ public:
 
     void handleData();
 
+    void handleReceive();
+
     void handleMessage(RakNet::Packet *p);
 
     void firstGateWay(RakNet::Packet *p);

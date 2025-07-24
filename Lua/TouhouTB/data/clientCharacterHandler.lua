@@ -1,6 +1,5 @@
 
 
-
 print("clientCharacterHandler loaded")
 
 ClientCharacterHandler_Host = nil

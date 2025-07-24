@@ -315,6 +315,23 @@ int lua_Panel_SetOnDoubleClickCallback(lua_State * L)
     }
     return 0;
 }
+int lua_Panel_GetSize(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Panel_GetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
+        tgui::Vector2f size = panel->get()->getSize();
+        lua_pushnumber(L, size.x);
+        lua_pushnumber(L, size.y);
+        return 2;
+    }
+    return 0;
+}
 
 
 // MARK: EditBox
@@ -1584,11 +1601,13 @@ int lua_ScrollablePanel_GetSize(lua_State * L)
     else
     {
         tgui::ScrollablePanel::Ptr * scrollablePanel = static_cast<tgui::ScrollablePanel::Ptr*>(lua_touserdata(L, 1));
-        auto size = scrollablePanel->get()->getSize();
+        auto size = scrollablePanel->get()->getContentSize();
         lua_pushnumber(L,size.x);
         lua_pushnumber(L,size.y);
+        return 2;
     }
-    return 2;
+
+    return 1;
 }
 
 int lua_ScrollablePanel_ClearItems(lua_State * L)
@@ -1858,6 +1877,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Label_SetOnClickCallback", lua_Label_SetOnClickCallback);
     lua_register(m_script, "cpp_Label_SetScale", lua_Label_SetScale);
     
+    
     // TGUI Rich Text Label section
     lua_register(m_script, "cpp_RTLabel_Create", lua_RTLabel_Create);
     lua_register(m_script, "cpp_RTLabel_SetPos" , lua_RTLabel_SetPos);
@@ -1896,6 +1916,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Panel_SetOpacity", lua_Panel_SetOpacity);
     lua_register(m_script, "cpp_Panel_SetOnClickCallback", lua_Panel_SetOnClickCallback);
     lua_register(m_script, "cpp_Panel_SetOnDoubleClickCallback", lua_Panel_SetOnDoubleClickCallback);
+    lua_register(m_script, "cpp_Panel_GetSize", lua_Panel_GetSize);
 
     // TGUI ScrollablePanel section
     lua_register(m_script, "cpp_ScrollablePanel_Create", lua_ScrollablePanel_Create);

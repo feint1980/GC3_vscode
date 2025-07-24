@@ -645,13 +645,29 @@ void ClientScriptingManager::secondGateWay(RakNet::Packet *p)
     // todo 
 }
 
+void ClientScriptingManager::handleReceive()
+{
+        for(RakNet::Packet *p = m_client->Receive(); p; m_client->DeallocatePacket(p), p = m_client->Receive())
+        {
+            if(p->length < 2)
+            {
+                handleMessage(p);
+            }
+            else
+            {
+                m_responseQueue.push(p);
+            }
+
+        }
+}
 
 void ClientScriptingManager::update(float deltaTime)
 {
 
-
     if(m_RakNetCoreInitialized)
     {
+
+        // handleReceive();
         //PacketCode requestCode = getSpecialRequestCode(m_client->Receive());
         //RakNet::Packet *p = nullptr;
          for(RakNet::Packet *p = m_client->Receive(); p; m_client->DeallocatePacket(p), p = m_client->Receive())
@@ -664,6 +680,17 @@ void ClientScriptingManager::update(float deltaTime)
                 // handleMessage(p);
                 // m_client->DeallocatePacket(p);
         }
+
+        // if (m_responseQueue.size() > 0)
+        // {
+        //     RakNet::Packet *p = m_responseQueue.front();
+        //     std::cout << "m_responseQueue size " << m_responseQueue.size() << "\n";
+            
+        //     m_responseQueue.pop();
+        //     handleWrapData(p);
+        //     m_client->DeallocatePacket(p);
+
+        // }
         updateScript(deltaTime);
             // }
         

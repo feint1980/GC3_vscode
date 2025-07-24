@@ -32,6 +32,44 @@ SkillStats parseSkillStatFromStr(const std::string & str)
     return result;
 }
 
+int lua_Skill_GetSkillAttributeInt(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_ParseCharacterFromJson) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        SkillDesc * desc = static_cast<SkillDesc*>(lua_touserdata(L, 1));
+        std::string characterName = lua_tostring(L, 2);
+        int result = desc->getAttributeInt(characterName);
+        lua_pushnumber(L, result);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_Skill_GetSkillAttributeStr(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_ParseCharacterFromJson) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        SkillDesc * desc = static_cast<SkillDesc*>(lua_touserdata(L, 1));
+        std::string characterName = lua_tostring(L, 2);
+        std::string result = desc->getAttribute(characterName);
+        lua_pushstring(L, result.c_str());
+        return 1;
+    }
+    return 0;
+}
+
 int lua_SkillStat_parseFromStr(lua_State * L)
 {
     if(lua_gettop(L) != 1)
@@ -52,11 +90,11 @@ int lua_SkillStat_parseFromStr(lua_State * L)
     return 0;
 }
 
-int lua_Skill_AddSkillStats(lua_State * L)
+int lua_Skill_AddSkillDesc(lua_State * L)
 {
     if(lua_gettop(L) != 4)
     {
-        std::cout << "gettop failed (lua_Skill_AddSkillStats) \n";
+        std::cout << "gettop failed (lua_Skill_AddSkillDesc) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
@@ -76,6 +114,24 @@ int lua_Skill_AddSkillStats(lua_State * L)
     }
 }
 
+int lua_Skill_GetSkillDesc(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Skill_GetSkillDesc) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        SkillHandler * host = static_cast<SkillHandler*>(lua_touserdata(L, 1));
+        std::string characterName = lua_tostring(L, 2);
+        std::string skillName = lua_tostring(L, 3);
+        SkillDesc * skillDesc = host->getSkillDesc(characterName, skillName);
+        lua_pushlightuserdata(L, skillDesc);
+        return 1;
+    }
+}
 
 // -----------------------------------------------------------
 SkillHandler::SkillHandler()
@@ -109,5 +165,9 @@ void SkillHandler::init(lua_State * script)
         std::cout << "Run script OK \n";
     }
     lua_register(m_script, "cpp_SkillStat_parseFromStr", lua_SkillStat_parseFromStr);
-    lua_register(m_script, "cpp_Skill_AddSkillStats", lua_Skill_AddSkillStats);
+    lua_register(m_script, "cpp_Skill_AddSkillDesc", lua_Skill_AddSkillDesc);
+    lua_register(m_script, "cpp_Skill_GetSkillDesc", lua_Skill_GetSkillDesc);
+    lua_register(m_script, "cpp_Skill_GetSkillAttributeInt", lua_Skill_GetSkillAttributeInt);
+    lua_register(m_script, "cpp_Skill_GetSkillAttributeStr", lua_Skill_GetSkillAttributeStr);
+
 }
