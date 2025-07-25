@@ -994,8 +994,45 @@ int lua_RTLabel_Create(lua_State * L)
     return 0;
 }
 
-// MARK: Picture
+int lua_RTLabel_GetSize(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_RTLabel_GetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::RichTextLabel::Ptr * label = static_cast<tgui::RichTextLabel::Ptr*>(lua_touserdata(L, 1));
 
+        auto size = label->get()->getFullSize();
+        lua_pushnumber(L,size.x);
+        lua_pushnumber(L,size.y);
+        return 2;
+
+    }
+    return 0;
+}
+
+int lua_RTLabel_GetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_RTLabel_GetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::RichTextLabel::Ptr * label = static_cast<tgui::RichTextLabel::Ptr*>(lua_touserdata(L, 1));
+        auto pos = label->get()->getPosition();
+        lua_pushnumber(L,pos.x);
+        lua_pushnumber(L,pos.y);
+        return 2;
+    }
+    return 0;
+}
+
+// MARK: Picture
 int lua_Picture_Create(lua_State * L)
 {
     if(lua_gettop(L) < 6 || lua_gettop(L) > 7)
@@ -1889,6 +1926,8 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_RTLabel_SetOffHoverCallback", lua_RTLabel_SetOffHoverCallback);
     lua_register(m_script, "cpp_RTLabel_SetOnClickCallback", lua_RTLabel_SetOnClickCallback);
     lua_register(m_script, "cpp_RTLabel_SetScale", lua_RTLabel_SetScale);
+    lua_register(m_script, "cpp_RTLabel_GetSize", lua_RTLabel_GetSize);
+    lua_register(m_script, "cpp_RTLabel_GetPos", lua_RTLabel_GetPos);
     
     // TGUI EditBox section
     lua_register(m_script, "cpp_EditBox_Create", lua_EditBox_Create);

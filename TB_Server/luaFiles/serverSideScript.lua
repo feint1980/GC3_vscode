@@ -271,11 +271,11 @@ end
 function Server_LoadData(host)
     Server_LoadCharacters(host)
 
-    for k,v in pairs(Skill_Serialized_Table) do
-        for k2,v2 in pairs(v) do
-            print(k .. " | " .. k2 .. " | " .. v2  )
-        end
-    end
+    -- for k,v in pairs(Skill_Serialized_Table) do
+    --     for k2,v2 in pairs(v) do
+    --         print(k .. " | " .. k2 .. " | " .. v2  )
+    --     end
+    -- end
 end
 
 local function print_table(t)

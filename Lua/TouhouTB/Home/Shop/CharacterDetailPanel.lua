@@ -441,24 +441,21 @@ function CharacterDetailPanel:setVal(index, val)
 
         Skill_Table = _G.Skill_Table
         --- display innate skill 
+        
         if Skill_Serialized_Table[self.characterID] ~= nil then
             for k,v in pairs(Skill_Serialized_Table[self.characterID]) do
                 if Skill_Table[self.characterID][k] ~= nil then
                     self.skillNameTxt:setText(Skill_Table[self.characterID][k].name)
                     self.skillDescTxt:setText(Skill_Table[self.characterID][k].description)
-                    local tX, tY = self.skillDescPanel:getSize()
-                     
-                    print("before skill panel " .. tX .. " " .. tY)
-                    local nX, nY = self.skillDescPanel:getSize()
-                    local tNewPosX = 0
-                    local tNewPosY = 0
-                    tNewPosX = 0.01 * oldXSize
-                    tNewPosY = 0.44 * nY
-                    self.skillEffTxt:setPos(tNewPosX, tNewPosY)
+
+                    local nX, nY = self.skillDescTxt:getSize()
+                    local tOldXPos, tOldYPos = self.skillEffTxt:getPos()
+
+                    self.skillEffTxt:setPos(5, nY + 25)
                     self.skillEffTxt:setText(Skill_Table[self.characterID][k].effect)
-                    nX, nY = self.skillDescPanel:getSize()
-                    tNewPosY = 0.9 * nY
-                    self.skillQuoteTxt:setPos(tNewPosX, tNewPosY)
+                    local nX2, nY2 = self.skillEffTxt:getSize()
+
+                    self.skillQuoteTxt:setPos(5, nY + nY2 + 10)
                     self.skillQuoteTxt:setText(Skill_Table[self.characterID][k].quote)
                     return
                 end
@@ -466,8 +463,6 @@ function CharacterDetailPanel:setVal(index, val)
         else
             print("no innate skill detacted")
         end
-
-
     elseif index == CharacterDetailPanelVal.deathDoorSurviveChance then
         self.deathDoorSurviveChanceVal:setText( Tag.color_TB_VIT .. val .. Tag.color_close)
     elseif index == CharacterDetailPanelVal.name then

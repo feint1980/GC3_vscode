@@ -136,6 +136,13 @@ function RTLabel:setOnClickCallback(func)
     TGUI_Label_setOnClickCallBack(self.ptr, func)
 end
 
+function RTLabel:getSize()
+    return TGUI_RTLabel_GetSize(self.ptr)
+end
+
+function RTLabel:getPos()
+    return TGUI_RTLabel_GetPos(self.ptr)
+end
 
 ---@Description set the rtlabel change color on Hover : on -> green | off ->white
 function RTLabel:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
@@ -241,4 +248,18 @@ end
 ---@param scale number scale
 function TGUI_RTLabel_SetScale(rtlabel, scale)
     cpp_RTLabel_SetScale(rtlabel, scale)
+end
+
+---function wrapper of cpp_RTLabel_GetSize
+---@Description get the size of the rtlabel
+---@param rtlabel pointer instance of RTLabel
+function TGUI_RTLabel_GetSize(rtlabel)
+    return cpp_RTLabel_GetSize(rtlabel)
+end
+
+---function wrapper of cpp_RTLabel_GetPos
+---@Description get the position of the rtlabel
+---@param rtlabel pointer instance of RTLabel
+function TGUI_RTLabel_GetPos(rtlabel)
+    return cpp_RTLabel_GetPos(rtlabel)
 end
