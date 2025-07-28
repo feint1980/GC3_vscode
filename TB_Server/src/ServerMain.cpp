@@ -131,6 +131,8 @@ void ServerMain::update(float deltaTime)
         case ID_CONNECTED_PING:
         case ID_UNCONNECTED_PING:
         case ID_CONNECTION_LOST:
+        case ID_CONNECTION_REQUEST_ACCEPTED:
+        case ID_CONNECTION_ATTEMPT_FAILED:
             m_scriptManager->handleCommon(p);
         break;
         case ID_TH_TB:

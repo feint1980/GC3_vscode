@@ -25,7 +25,10 @@ namespace Feintgine
         std::vector<unsigned char> getEncryptFromString(const std::string & data); 
 
         std::vector<unsigned char> encrypt(const std::string &input, unsigned char * iv);
+
         std::string decrypt(const std::vector<unsigned char> & input, unsigned char * iv);
+
+        // std::vector<unsigned char> encryptV2(const std::string & input, unsigned char * iv, );
 
         std::string getStringFromEncrypt(const std::vector<unsigned char> & input);
 

@@ -564,8 +564,8 @@ function Login_handleKeyboard(signal)
 end
 
 ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function(host,data, guid)
-    print("AccountResponse.Alogin called")
-
+    print("Client AccountResponse.Alogin called")
+    print("data here " .. data)
     -- "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$"
     local t_id, tStatus, t_pw, tGUID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
     print("id is " .. t_id .. "/" .. Login_IDEditBox:getText())

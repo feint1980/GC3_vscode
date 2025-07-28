@@ -68,10 +68,11 @@ end
 function CH_List()
 
     print("total connected :... " ..GetTableSize(ClientEPList) .. " users")
+    print("========================================")
     for k,v in pairs(ClientEPList) do
         print(v.name .. "|" .. k .. "|")
     end
-    print("list end !!!")
+    print("========================================")
 end
 
 function GetTableSize(t)

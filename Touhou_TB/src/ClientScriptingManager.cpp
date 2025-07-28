@@ -194,6 +194,35 @@ int lua_ParseCharacterFromJson(lua_State * L)
     return 0;
 }
 
+
+
+int lua_GetClientGUID(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_GetClientGUID) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::string result = host->getClientGUID();
+        lua_pushstring(L, result.c_str());
+        return 1;
+    }
+    return 0;
+}
+
+std::string ClientScriptingManager::getClientGUID()
+{
+    if(m_client)
+    {
+        return m_client->GetMyGUID().ToString();
+    }
+    return "Sike";
+}
+
 uint32_t ClientScriptingManager::sendData(const std::string & data, uint8_t encryptIndex)
 {
     unsigned char iv[AES_IV_SIZE] = {};
@@ -270,6 +299,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     std::cout << "|     Init Client RakNet Core ...         |\n";
 
     m_client = client;
+    std::cout << "my GUID is : "<<  m_client->GetMyGUID().ToString() << "\n"; 
     // m_client = RakNet::RakPeerInterface::GetInstance();
     m_serverIP = serverIP;
     m_port = port;
@@ -297,6 +327,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     lua_register(m_script, "cppConnect", lua_Connect);
     lua_register(m_script, "cppGetPacketId", lua_GetPacketId);
     lua_register(m_script, "cppParseCharacterFromJson", lua_ParseCharacterFromJson);
+    lua_register(m_script, "cppGetClientGUID", lua_GetClientGUID);
 
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/Networking/clientSide.lua")))
@@ -341,8 +372,9 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
         tStr2.push_back(t2[i]);
     }
 
-    m_cryptor.init(tStr1, tStr2);   
-
+    //m_cryptor.init(tStr1, tStr2); // old 
+    std::cout << "init cryptor for guid " << m_client->GetMyGUID().ToString() << "\n";
+    m_cryptor.init(tStr1, m_client->GetMyGUID().ToString());
 }
 
 ClientScriptingManager::ClientScriptingManager()
@@ -491,7 +523,7 @@ void ClientScriptingManager::connect()
             printf("%i. %s\n", i+1, m_client->GetLocalIP(i));
         }
         // std::cout << "init networking OK ! \n";
-        std::cout << "GUID is : " << m_client->GetGuidFromSystemAddress (RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString() << "\n"; 
+        // std::cout << "GUID is : " << m_client->GetGuidFromSystemAddress (RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString() << "\n"; 
     }
 }
 

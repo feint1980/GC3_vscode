@@ -74,3 +74,9 @@ function SplitMessgae(message, character, no_of_split)
     end
     return tTable
 end
+
+--- return client guid
+--- @return string
+function ClientGetGUID(host)
+    return cppGetClientGUID(host)
+end

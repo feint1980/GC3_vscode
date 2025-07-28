@@ -77,6 +77,8 @@ public:
 
     void firstGateWay(RakNet::Packet *p);
     
+    std::string getClientGUID() ;
+
     CharacterStats parseFromStr(const std::string & str);
 
     void secondGateWay(RakNet::Packet *p);

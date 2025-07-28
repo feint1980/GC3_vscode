@@ -111,14 +111,13 @@ end
 ---@param list table data
 ---@return string
 function WrapMsg(channel, request, list)
-    print("WrapMsg called")
+    -- print("WrapMsg called")
     local returnValue = ""
     returnValue = string.char(channel) .. string.char(request) .. "|"
     for i = 1, #list do
         returnValue = returnValue .. list[i] .. "|"
     end
-    print("result check " .. returnValue)
-    -- returnValue = returnValue .. "|"
+    -- print("result check " .. returnValue)
     return returnValue
 end
 
@@ -129,23 +128,24 @@ end
 ---@param request number request
 ---@param list table data
 ---@return number return value
-function SV_SendWrapMsg(host, clientIP, channel, request, list)
-    print("SV_SendWrapMsg called")
-    return cppSendWrapMsgToClient(host, clientIP, WrapMsg(channel, request, list))
+function SV_SendWrapMsg(host, clientIP, guid, channel, request, list)
+    -- print("SV_SendWrapMsg called")
+    return cppSendWrapMsgToClient(host, clientIP,guid, WrapMsg(channel, request, list))
 end
 
 ---@Description force to send until it send OK
 ---@param host pointer instance of ServerScriptingManager
 ---@param ip pointer client ip
+---@param guid string 
 ---@param channel number channel
 ---@param request number request
 ---@param tList table data
-function SendReliable(host,ip,channel,request,tList)
+function SendReliable(host,ip, guid,channel,request,tList)
 
     local t_response = 0
-    t_response = SV_SendWrapMsg(host,ip,channel,request,tList)
+    t_response = SV_SendWrapMsg(host,ip, guid,channel,request,tList)
     while t_response == 0 do
-        t_response = SV_SendWrapMsg(host,ip,channel,request,tList)
+        t_response = SV_SendWrapMsg(host,ip, guid,channel,request,tList)
     end
 end
 
@@ -254,4 +254,18 @@ function SV_UpdateSkill(host, skill_stats, name)
     return cpp_updateSkill(host, skill_stats,name)
 end
 
+--- function wrapper of cpp_addCryptor
+--- @Desciption: add cryptor data
+--- @param host pointer instance of ServerScriptingManager
+--- @param key string 
+function SV_AddCryptor(host, key)
+    return cpp_addCryptor(host, key)
+end
 
+--- function wrapper of cpp_removeCryptor
+--- @Desciption: remove cryptor data
+--- @param host pointer instance of ServerScriptingManager
+--- @param key string 
+function SV_RemoveCryptor(host, key)
+    return cpp_removeCryptor(host, key)
+end

@@ -86,11 +86,11 @@ public:
 
     std::string getMegFromPackget(RakNet::Packet *p);
 
-    std::string getDecryptMessage(const std::string & data);
+    std::string getDecryptMessage(const std::string & data, const std::string & guid);
 
     uint32_t sendData(const RakNet::SystemAddress & target, const std::string & data,bool isEncrypted = true);
 
-    uint32_t sendWrapData(const RakNet::SystemAddress & target, const std::string & data);
+    uint32_t sendWrapData(const RakNet::SystemAddress & target, const std::string & guid, const std::string & data);
 
     uint32_t handleWrapData(RakNet::Packet *p);
 
@@ -114,9 +114,16 @@ public:
 
     void addSkillStats(const std::string & skillName, const SkillStats & skillAtt);
 
+    void addCryptor(const std::string & guid);
+
+    void removeCryptor(const std::string & guid);
+
 private:
 
     Feintgine::F_Cryptor m_cryptor;
+
+    std::unordered_map<std::string , Feintgine::F_Cryptor *> m_cryptors;
+
 
     // Feintgine::F_Cryptor m_pwCryptor;
 

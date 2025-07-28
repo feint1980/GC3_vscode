@@ -43,7 +43,6 @@ namespace Feintgine
             return retVal;
         }
 
-        
         // mbedtls_aes_init(&m_aes);
 
         mbedtls_aes_setkey_enc(&m_aes, m_aesKey, AES_KEY_SIZE * 8);  // Set 256-bit key

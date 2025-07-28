@@ -1668,14 +1668,22 @@ int lua_ScrollablePanel_ClearItems(lua_State * L)
 
 int lua_Canvas_Create(lua_State * L)
 {
-    if(lua_gettop(L) != 5)
+    if(lua_gettop(L) != 6)
     {
         std::cout << "gettop failed (lua_Canvas_Create) " << lua_gettop(L) << "\n";
         return -1;
     }
     else
     {
-        
+        TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L,2);
+        float y = lua_tonumber(L,3);
+        float width = lua_tonumber(L,4);
+        float height = lua_tonumber(L,5);
+        tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 6));
+
+        tgui::CanvasOpenGL3::Ptr * canvas = new tgui::CanvasOpenGL3::Ptr();
+
     }
     return 1;
 }

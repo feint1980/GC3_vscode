@@ -4,11 +4,11 @@
 static int record_count;
 static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
 	int i;
-	for(i = 0; i<argc; i++) 
-	{
-	 //  printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-	}
-	std::cout << "argc is " << argc << " record_count is " << record_count << "\n";
+	// for(i = 0; i<argc; i++) 
+	// {
+	// 	printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+	// }
+	// std::cout << "argc is " << argc << " record_count is " << record_count << "\n";
 	record_count = argc;
 	printf("\n");
 	return 0;

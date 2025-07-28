@@ -129,7 +129,7 @@ end
 ---@param ip pointer client ip
 ---@param guid string client guid
 MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function(host ,data, ip, guid)
-    print("AccountResponse.Alogin called")
+    -- print("Server AccountResponse.Alogin called")
     ClientEPList = _G.ClientEPList
 
     local t_id, t_pw = string.match(data, "^|([^|]+)|([^|]+)|$")
@@ -146,7 +146,7 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
     else
         loginResult = "Account or password is incorrect !"
     end
-    SendReliable(host,ip,PacketChannel.AccountChannel,AccountResponse.Alogin,{ t_id,loginResult,t_pw, guid})
+    SendReliable(host,ip,guid,PacketChannel.AccountChannel,AccountResponse.Alogin,{ t_id,loginResult,t_pw, guid})
     CH_AddClientEP(ip, guid, t_id)
 end
 
@@ -171,7 +171,7 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = funct
         local keyCount = tonumber(result)
         if keyCount == 0 then
             -- key not exist
-            SendReliable(host,ip,PacketChannel.AccountChannel,AccountResponse.Aregister,{ "Register Key is invalid !"})
+            SendReliable(host,ip,guid,PacketChannel.AccountChannel,AccountResponse.Aregister,{ "Register Key is invalid !"})
         elseif keyCount == 1 then
             -- key exist
             -- check if key is ready
@@ -184,7 +184,7 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = funct
                 SVI_DoQuerySTMT(host,insertAccountQuery,{t_id,ePW})
                 local updateKeyQuery = "UPDATE " .. Table.register_key.tb_name .. " SET " .. Table.register_key.ready .. " = '0' WHERE " .. Table.register_key.val .. " = ?;"
                 SVI_DoQuerySTMT(host,updateKeyQuery,{t_key})
-                SendReliable(host,ip,PacketChannel.AccountChannel,AccountResponse.Aregister,{ "Register successfully !" })
+                SendReliable(host,ip, guid,PacketChannel.AccountChannel,AccountResponse.Aregister,{ "Register successfully !" })
                 -- add starter mon and souls to new account
                 local insertCurrency =  "INSERT INTO account_stats_table (account_id, mon, souls) VALUES (?, 100, 15);"
                 SVI_DoQuerySTMT(host,insertCurrency,{t_id})
@@ -195,10 +195,10 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = funct
             print("multiple key found in query, WARNING")
         end
     elseif accountCount == 1 then
-        SendReliable(host,ip,PacketChannel.AccountChannel,AccountResponse.Aregister,{"Account already exists !"})
+        SendReliable(host,ip,guid,PacketChannel.AccountChannel,AccountResponse.Aregister,{"Account already exists !"})
         -- SV_SendMsg(host,ip,"Account already exists" )
     else
-        SendReliable(host,ip,PacketChannel.AccountChannel,AccountResponse.Aregister,{"Oh no, we got a hecker !!!!"})
+        SendReliable(host,ip,guid,PacketChannel.AccountChannel,AccountResponse.Aregister,{"Oh no, we got a hecker !!!!"})
         print("accountCount is " .. accountCount)
         print("If you see this warning in production, you are COOKED !")
     end
@@ -225,7 +225,7 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(hos
         local mon = Query_val[1]
         local souls = Query_val[2]
 
-        SendReliable(host,ip,PacketChannel.UserChannel,UserResponse.MainInfo,{ t_id,mon,souls,t_guid})
+        SendReliable(host,ip,guid,PacketChannel.UserChannel,UserResponse.MainInfo,{ t_id,mon,souls,t_guid})
     end
 end
 
@@ -253,7 +253,7 @@ MessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopChracterInfo] = func
     if t_request == 'get_character_shop_list' then
         local count = 0
         --- send begin
-        SendReliable(host,ip,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_Begin,{"IDK bro,  how about that ?"})
+        SendReliable(host,ip, guid,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_Begin,{"IDK bro,  how about that ?"})
         for k,v in pairs(Character_Serialized_Table) do
             local chracterInfo = {}
             count = count +1
@@ -264,12 +264,12 @@ MessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopChracterInfo] = func
             -- print(Character_Table[k].ID)
             -- determine if the player already owned this character 
 
-            SendReliable(host,ip,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_Data,{k,v,tostring (isOwned)})
-            print("send " .. k .. " done !")
+            SendReliable(host,ip, guid,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_Data,{k,v,tostring (isOwned)})
+            -- print("send " .. k .. " done !")
             
         end
         --- send end
-        SendReliable(host,ip,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_End,{tostring(count)})
+        SendReliable(host,ip,guid,PacketChannel.ShopChannel,ShopResponse.ShopCharacterInfo_End,{tostring(count)})
 
     end
 end
@@ -332,7 +332,7 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
     end
     print("Character owned status " .. tostring(alreadyOwned))
     if alreadyOwned == true then
-        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"Character already owned","BUY_RES_NE"})
+        SendReliable(host,ip,guid,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"Character already owned","BUY_RES_NE"})
         SV_SQLExec(host, "ROLLBACK;")
         return
     end
@@ -351,7 +351,7 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
 
     if tonumber(currentOwnedSoul) < souldCost then
         -- send noti back to client ( not enough soul)
-        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"Not Enough Souls!","BUY_RES_NE"})
+        SendReliable(host,ip,guid,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"Not Enough Souls!","BUY_RES_NE"})
         SV_SQLExec(host, "ROLLBACK;")
         return
     end
@@ -376,7 +376,7 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
         SV_SQLExec(host, "COMMIT;")
 
         print("Transaction from " .. CH_FindClient(guid).name .. " for buying " .. characterRef.name .. " completed  OK !" )
-        SendReliable(host,ip,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"You unlocked " .. characterRef.name .. "!", "BUY_RES_OK"})
+        SendReliable(host,ip,guid,PacketChannel.TransactionChannel,ShopResponse.ShopCharacter_Buy,{"You unlocked " .. characterRef.name .. "!", "BUY_RES_OK"})
         return
     else
         print("rolling back, Buying character failed")

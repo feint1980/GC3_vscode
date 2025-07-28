@@ -717,8 +717,8 @@ int lua_getEncryptedPW(lua_State * L)
 
 int lua_SendWrapMsgToClient(lua_State * L)
 {
-    std::cout << "lua_SendWrapMsgToClient called \n";
-    if(lua_gettop(L) != 3)
+    // std::cout << "lua_SendWrapMsgToClient called \n";
+    if(lua_gettop(L) != 4)
     {
         std::cout << "gettop failed (lua_SendWrapMsgToClient) \n";
         std::cout << lua_gettop(L) << "\n";
@@ -728,14 +728,14 @@ int lua_SendWrapMsgToClient(lua_State * L)
     {
         ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
         RakNet::SystemAddress * clientId = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 2));
-
-        std::string msg = lua_tostring(L, 3);
-        std::cout << "send wrap data \n";
+        std::string guid = lua_tostring(L, 3);
+        std::string msg = lua_tostring(L, 4);
+        // std::cout << "send wrap data \n";
         
-        std::cout << "ip " << clientId << "\n";
-        std::cout << "value " << clientId->ToString(false) << "\n"; 
-        uint32_t tResult =  host->sendWrapData(*clientId, msg);
-        std::cout << "send result " << tResult << "\n";
+        // std::cout << "ip " << clientId << "\n";
+        // std::cout << "value " << clientId->ToString(false) << "\n"; 
+        uint32_t tResult =  host->sendWrapData(*clientId,guid, msg);
+        // std::cout << "send result " << tResult << "\n";
         lua_pushinteger(L, tResult);
         return 1;
     }
@@ -829,9 +829,41 @@ int lua_Packet_extract(lua_State * L)
         return 2;
     }
     return -1;
-
 }
 
+int lua_addCryptor(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_addCryptor) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        std::string key = lua_tostring(L, 2);
+        host->addCryptor(key);
+        return 0;
+    }
+}
+
+int lua_removeCryptor(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_removeCryptor) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        std::string key = lua_tostring(L, 2);
+        host->removeCryptor(key);
+        return 0;
+    }
+}
 
 ServerScriptingManager::ServerScriptingManager()
 {
@@ -908,6 +940,7 @@ void ServerScriptingManager::update(float deltaTime)
 //   /  handleCommonMSG();
 }
 
+
 std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
 {
     // std::string retVal = "";
@@ -922,11 +955,20 @@ std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
     {
         tMsg.push_back(p->data[i]);
     }
-    // retVal =  m_cryptor.decrypt(tMsg, iv);
-    return m_cryptor.decrypt(tMsg, iv);;
+    
+    // return m_cryptor.decrypt(tMsg, iv); // old
+    if(m_cryptors[p->guid.ToString()])
+    {
+        return m_cryptors[p->guid.ToString()]->decrypt(tMsg, iv);
+    }
+    else
+    {
+        std::cout << "no cryptor for guid " << p->guid.ToString() << "\n";
+        return "";//
+    }
 }
 
-std::string ServerScriptingManager::getDecryptMessage(const std::string & data)
+std::string ServerScriptingManager::getDecryptMessage(const std::string & data, const std::string & guid)
 {
     unsigned char iv[AES_IV_SIZE];
     for(int i = 0 ; i < AES_IV_SIZE ; i++)
@@ -940,7 +982,15 @@ std::string ServerScriptingManager::getDecryptMessage(const std::string & data)
         tMsg.push_back(data[i]);
     }
 
-    return m_cryptor.decrypt(tMsg, iv);
+    if(m_cryptors[guid])
+    {
+        return m_cryptors[guid]->decrypt(tMsg, iv);
+    }
+    
+    std::cout << "no cryptor for guid " << guid << "\n";
+    return "";
+
+    //return m_cryptor.decrypt(tMsg, iv); //old
 }
 
 
@@ -950,9 +1000,9 @@ SkillStats ServerScriptingManager::getSkillStats(const std::string & skillName)
     return m_skillStatsMap[skillName];
 }
 
-uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & target, const std::string & data)
+uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & target,const std::string & guid, const std::string & data)
 {
-    std::cout << "C++ sendWrapData called \n";
+    // std::cout << "C++ sendWrapData called \n";
     if(data.size() < 2 ) // headers
     {
         std::cout << "sendWrapData failed (data size < 2) \n";
@@ -967,9 +1017,19 @@ uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & targ
 
     std::string payLoad = std::string(data.begin() + payLoadIndex, data.end());
     unsigned char iv[AES_IV_SIZE] = {};
-    m_cryptor.generateRandomIV(iv);
-    
-    auto tData = m_cryptor.encrypt(payLoad,iv);
+
+    //m_cryptor.generateRandomIV(iv); // old
+    if(m_cryptors[guid])
+    {
+        m_cryptors[guid]->generateRandomIV(iv);
+    }
+    else
+    {
+        std::cout << "no cryptor for guid " << guid << "\n";
+        return;
+    }
+
+    auto tData = m_cryptors[guid]->encrypt(payLoad,iv);
     for(int i = 0 ; i < AES_IV_SIZE;i++)
     {
         tData.push_back(iv[i]);
@@ -1085,9 +1145,10 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
 
     std::string rawData =  std::string(reinterpret_cast<const char*>(p->data), p->length);
 
-    std::cout << "rawData " << rawData << "\n";
 
-    std::cout << "channel " << channel << " request " << request << "\n";
+    // enable for debug, consider make a logging 
+    // std::cout << "rawData " << rawData << "\n";
+    // std::cout << "channel " << channel << " request " << request << "\n";
 
     // hand special request here
     unsigned int payLoadIndex = indexStart + 2;
@@ -1096,7 +1157,7 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
    // std::cout << "payload " << payLoad << "\n";
 
     // decrypt the payload only
-    payLoad = getDecryptMessage(payLoad);
+    payLoad = getDecryptMessage(payLoad, p->guid.ToString());
 
   //  std::cout << "decrypted payload " << payLoad << "\n";
 
@@ -1261,7 +1322,6 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppSendToClient", lua_SendToClient);
     lua_register(m_script, "cppSendWrapMsgToClient", lua_SendWrapMsgToClient);
 
-
     // Sqlite 
     lua_register(m_script, "cppSqlite_CreateStatement",lua_SQLCreateStatement );
     lua_register(m_script, "cppSqlite_BindStatement", lua_SQLBindStatement);
@@ -1274,7 +1334,6 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppSqlite_finalizeStmt", lua_SQLFinalizeStmt);
     lua_register(m_script, "cppSqlite_exec", lua_SQLExec);
 
-
     // extract data from packet
     lua_register(m_script, "cppPacket_getData", lua_Packet_getData);
     lua_register(m_script, "cppPacket_getIP", lua_Packet_getIP);
@@ -1283,6 +1342,8 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
     // misc
     lua_register(m_script, "cpp_getEncrypedPW", lua_getEncryptedPW);
+    lua_register(m_script, "cpp_addCryptor", lua_addCryptor);
+    lua_register(m_script, "cpp_removeCryptor", lua_removeCryptor);
 
     // Update Characters it belongs here because the server read and update it to database
     lua_register(m_script, "cpp_updateCharacter", lua_UpdateCharacter);
@@ -1408,6 +1469,44 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     //         std::cout << "Call Server_CheckCharacterData from C++ OK \n";
     //     }
     // }
+}
+
+void ServerScriptingManager::addCryptor(const std::string & guid)
+{
+    int t1[16] = {
+        7, 12, 5, 7,
+        8, 33, 51, 21,
+        77, 71, 22, 43,
+        12, 15, 99, 4
+    };
+
+    std::string tStr1;
+
+    for(int i = 0 ; i < 16 ; i++)
+    {
+        tStr1.push_back(t1[i]);
+    }
+
+    Feintgine::F_Cryptor * cryptor = new Feintgine::F_Cryptor();
+    cryptor->init(tStr1, guid);
+    m_cryptors[guid] = cryptor;
+
+    // std::cout << "add cryptor for guid " << guid << "\n";
+}
+
+void ServerScriptingManager::removeCryptor(const std::string & guid)
+{
+    if(m_cryptors.find(guid) != m_cryptors.end())
+    {
+        delete m_cryptors[guid];
+        m_cryptors.erase(guid);
+        // std::cout << "removed cryptor for guid " << guid << "\n";
+    }
+    else
+    {
+        std::cout << "no cryptor for guid " << guid << "\n";
+    }
+
 }
 
 std::string ServerScriptingManager::getEncryptPW(const std::string & pw)

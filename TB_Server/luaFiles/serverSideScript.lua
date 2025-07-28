@@ -198,12 +198,14 @@ end
 --- @param packet pointer instance of RakNet::Packet
 CommonHandle[PacketIdentifier.ID_CONNECTION_LOST] = function(host,packet)
     local guid = SV_GetPacketGUID(packet)
+    SV_RemoveCryptor(host,guid)
     if(ClientEPList[guid] == nil) then
         return
     end
     print("detect connection lost from " .. ClientEPList[guid].name .. " lost")
     ClientEPList[guid] = nil
     CH_List()
+    
 end
 
 --- function CommonHandle (PacketIdentifier.ID_CONNECTION_LOST)
@@ -212,6 +214,7 @@ end
 --- @param packet pointer instance of RakNet::Packet
 CommonHandle[PacketIdentifier.ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
     local guid = SV_GetPacketGUID(packet)
+    SV_RemoveCryptor(host,guid)
     if( guid == nil) then
         print("detect disconnect from " .. ClientEPList[guid].name .. " lost")
         ClientEPList[guid] = nil
@@ -220,6 +223,11 @@ CommonHandle[PacketIdentifier.ID_DISCONNECTION_NOTIFICATION] = function(host,pac
 end
 
 -- CommonHandle[PacketIdentifier.ID_NEW_INCOMING_CONNECTION] = function(host,packet)
+CommonHandle[PacketIdentifier.ID_NEW_INCOMING_CONNECTION] = function(host,packet)
+    local guid = SV_GetPacketGUID(packet)
+    -- print("new connection from " .. guid)
+    SV_AddCryptor(host,guid)
+end
 
 function AddColData(colName, value)
     Query_count = Query_count + 1
@@ -240,7 +248,7 @@ local function get_current_file_path()
 end
 
 local current_path = get_current_file_path()
-print("Current file directory:", current_path)
+-- print("Current file directory:", current_path)
 
 os.execute('dir /b/a-d  ..\\luaFiles\\Characters\\*.lua')
 

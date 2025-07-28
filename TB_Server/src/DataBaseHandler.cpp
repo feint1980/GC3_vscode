@@ -5,11 +5,12 @@ static int record_count;
 static int callback(void *NotUsed, int argc, char **argv, char **azColName)
 {
 	int i;
-	for(i = 0; i<argc; i++) {
-		printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-	}
+	// uncomment for debug
+	// for(i = 0; i<argc; i++) {
+	// 	printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+	// }
 	record_count = argc;
-	printf("\n");
+	// printf("\n");
 	return 0;
 }
 
