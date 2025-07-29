@@ -1,3 +1,4 @@
+
 ---@class (exact) Canvas
 ---@field host pointer instance of TGUIScriptingManager
 ---@field ptr pointer instance of TGUI Canvas
@@ -5,7 +6,8 @@
 ---@field posY number y position
 ---@field width number width
 ---@field height number height
----@field parent pointer instance of parent, default nil (main)
+---@field parent? pointer instance of parent, default nil (main)
+
 Canvas = {
     ---@type pointer
     host = nil,
@@ -17,6 +19,7 @@ Canvas = {
     height = 0,
     ---@type pointer
     parent = nil
+    ---@type pointer
 }
 
 ---@Description create new instance of Canvas
@@ -30,7 +33,7 @@ end
 
 -- ---@Description create new instance of Canvas
 
-function Canvas:init(host , posX, posY, width, height, parent)
+function Canvas:init(host,name , posX, posY, width, height, parent)
     self.host = host
     -- self.ptr = --
     self.posX = posX
@@ -38,12 +41,12 @@ function Canvas:init(host , posX, posY, width, height, parent)
     self.width = width
     self.height = height
     self.parent = parent
+    self.ptr = TGUI_Canvas_Create(host,name, posX, posY, width, height, parent)
 end
 
 
-
 ---@Description wrapper of 
-function TGUI_Canvas_Create(host, posX, posY, width, height, parent)
-    return cpp_Canvas_Create(host, posX, posY, width, height, parent)
+function TGUI_Canvas_Create(host,name, posX, posY, width, height, parent)
+    return cpp_Canvas_Create(host,name, posX, posY, width, height, parent)
 end
 

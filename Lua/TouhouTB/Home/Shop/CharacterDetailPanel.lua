@@ -7,6 +7,7 @@ require "TGUI_Editbox"
 require "TGUI_Picture"
 require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
+require "TGUI_Canvas"
 require "homeGlobal"
 require "CharacterPanel"
 
@@ -144,6 +145,10 @@ CharacterDetailPanel = {
 
     ---@type RTLabel
     unlockButton = nil,
+
+
+    ---@type Canvas
+    demoCanvas = nil,
 
     --- string section
     strTxt = "",
@@ -348,7 +353,10 @@ function CharacterDetailPanel:init(GUI_host, parent, clientHost, ip)
     self.unlockButton:init(GUI_host, "Unlock for " .. Tag.color_TB_title .. "" , 0, 0, self.detailPanel.ptr)
     self.unlockButton:setPosStr("75%", "94%")
     self.unlockButton:setAlignment(TextAlginment.Center)
-    
+
+    self.demoCanvas =   Canvas:new()
+    self.demoCanvas:init(GUI_host,"characterDetail", 500, 100, 400, 400, self.detailPanel.ptr)
+
 end
 
 ---@Description set the value of a label

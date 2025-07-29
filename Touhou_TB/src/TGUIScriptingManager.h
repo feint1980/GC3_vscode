@@ -9,6 +9,40 @@
 #include <async++.h>
 #include "LuaManager.h"
 
+
+struct TGUI_CanvasWrapper
+{
+
+
+    TGUI_CanvasWrapper() {}
+    TGUI_CanvasWrapper(tgui::CanvasOpenGL3::Ptr * canvas) : canvas(canvas) {}
+
+    void bindDrawCall(std::function<void()> draw) { drawF = draw; }
+    // TGUI_CanvasWrapper(tgui::CanvasOpenGL3::Ptr * canvas, std::function<void()> draw) : canvas(canvas), drawF(draw) {}
+
+    // bool isBound = false;
+    std::function<void()> drawF;
+    tgui::CanvasOpenGL3::Ptr * canvas;
+    void draw()
+    {
+
+        if(canvas && canvas->get())
+        {
+            canvas->get()->bindFramebuffer();
+            glViewport(0, 0, canvas->get()->getSize().x, canvas->get()->getSize().y);
+            
+            glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            if(drawF)
+            {
+                drawF();
+            }
+            glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        }
+        
+    }
+};
+
 class TGUIScriptingManager
 {
     
@@ -39,13 +73,17 @@ public:
 
     tgui::Tabs::Ptr createTabs(float x, float y, float width, float height, tgui::TabContainer::Ptr parent);
 
-    tgui::CanvasOpenGL3::Ptr createCanvas(float x, float y, float width, float height, tgui::Panel::Ptr parent);
+    tgui::CanvasOpenGL3::Ptr * createCanvas(const std::string & name,float x, float y, float width, float height, tgui::Panel::Ptr parent);
+
+    void addDrawCall(const std::string & name, std::function<void()> draw);
 
     lua_State * getLuaScript() { return m_script; }
 
     void checkInput(const SDL_Event &  evnt);
 
     void handleInput(Feintgine::InputManager & inputManager);
+
+    void bindCanvasDrawCall(const std::string & name, std::function<void()> draw);
 
     void cleanup();
 
@@ -55,6 +93,14 @@ private:
 
     tgui::Gui * m_tgui = nullptr;
     lua_State * m_script = nullptr;
+
+    std::vector<TGUI_CanvasWrapper> m_canvasList;
+    std::unordered_map<std::string, TGUI_CanvasWrapper> m_canvasMap;
+    std::unordered_map<std::string, std::function<void()>> m_drawCallMap;
+
+    tgui::CanvasOpenGL3::Ptr  *m_currentCanvas = nullptr;
+
 };
+
 
 #endif

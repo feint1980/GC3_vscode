@@ -650,10 +650,10 @@ int lua_GetQueryResults(lua_State * L)
 
         lua_pushinteger(L, resultCode);
         lua_pushinteger(L, recordCount);
-       // lua_pushstring(L, result.c_str());
+        //lua_pushstring(L, result.c_str());
 
     } 
-    return 3;
+    return 2;
 }
 
 int lua_DoQuery(lua_State * L)
@@ -1253,8 +1253,8 @@ bool ServerScriptingManager::doQuery(sqlite3_stmt * stmt)
         int columnCount = sqlite3_column_count(stmt);
         for(int i = 0 ;i < columnCount ; i++)
         {
-            std::cout << sqlite3_column_name(stmt, i) << ": "
-            << sqlite3_column_text(stmt, i) << std::endl;
+            // std::cout << sqlite3_column_name(stmt, i) << ": "
+            // << sqlite3_column_text(stmt, i) << std::endl;
 
             lua_getglobal(shared_luaState, "AddColData");
             if (lua_isfunction(shared_luaState, -1))
@@ -1399,6 +1399,8 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     // std::cout << "tStr2:|" << tStr2 << "|\n";
 
     m_cryptor.init(tStr1, tStr2);   
+
+    m_cryptors.reserve(3000);
 
     // std::cout << "pwCryptor init \n";
 
