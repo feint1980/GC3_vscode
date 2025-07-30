@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="nyn.png" width="1360" height="692">
+    <sprite n="frame_0.png" x="0" y="0" w="340" h="346" />
+    <sprite n="frame_1.png" x="340" y="0" w="340" h="346" />
+    <sprite n="frame_2.png" x="680" y="0" w="340" h="346" />
+    <sprite n="frame_3.png" x="1020" y="0" w="340" h="346" />
+    <sprite n="frame_4.png" x="1360" y="0" w="340" h="346" />
+    <sprite n="frame_5.png" x="0" y="346" w="340" h="346" />
+    <sprite n="frame_6.png" x="340" y="346" w="340" h="346" />
+    <sprite n="frame_7.png" x="680" y="346" w="340" h="346" />
+    <sprite n="frame_8.png" x="1020" y="346" w="340" h="346" />
+</TextureAtlas> 

@@ -1,0 +1,52 @@
+<F_AObj name="komachi_chill">
+<animations> 
+<animation name = "play"> 
+<anims> 
+<anim name="komachi_chill/frame_000.png" time = "5" />
+<anim name="komachi_chill/frame_001.png" time = "5" />
+<anim name="komachi_chill/frame_002.png" time = "5" />
+<anim name="komachi_chill/frame_003.png" time = "5" />
+<anim name="komachi_chill/frame_004.png" time = "5" />
+<anim name="komachi_chill/frame_005.png" time = "5" />
+<anim name="komachi_chill/frame_006.png" time = "5" />
+<anim name="komachi_chill/frame_007.png" time = "5" />
+<anim name="komachi_chill/frame_008.png" time = "5" />
+<anim name="komachi_chill/frame_009.png" time = "5" />
+<anim name="komachi_chill/frame_010.png" time = "5" />
+<anim name="komachi_chill/frame_011.png" time = "5" />
+<anim name="komachi_chill/frame_012.png" time = "5" />
+<anim name="komachi_chill/frame_013.png" time = "5" />
+<anim name="komachi_chill/frame_014.png" time = "5" />
+<anim name="komachi_chill/frame_015.png" time = "5" />
+<anim name="komachi_chill/frame_016.png" time = "5" />
+<anim name="komachi_chill/frame_017.png" time = "5" />
+<anim name="komachi_chill/frame_018.png" time = "5" />
+<anim name="komachi_chill/frame_019.png" time = "5" />
+<anim name="komachi_chill/frame_020.png" time = "5" />
+<anim name="komachi_chill/frame_021.png" time = "5" />
+<anim name="komachi_chill/frame_022.png" time = "5" />
+<anim name="komachi_chill/frame_023.png" time = "5" />
+<anim name="komachi_chill/frame_024.png" time = "5" />
+<anim name="komachi_chill/frame_025.png" time = "5" />
+<anim name="komachi_chill/frame_026.png" time = "5" />
+<anim name="komachi_chill/frame_027.png" time = "5" />
+<anim name="komachi_chill/frame_028.png" time = "5" />
+<anim name="komachi_chill/frame_029.png" time = "5" />
+<anim name="komachi_chill/frame_030.png" time = "5" />
+<anim name="komachi_chill/frame_031.png" time = "5" />
+<anim name="komachi_chill/frame_032.png" time = "5" />
+<anim name="komachi_chill/frame_033.png" time = "5" />
+<anim name="komachi_chill/frame_034.png" time = "5" />
+<anim name="komachi_chill/frame_035.png" time = "5" />
+<anim name="komachi_chill/frame_036.png" time = "5" />
+<anim name="komachi_chill/frame_037.png" time = "5" />
+<anim name="komachi_chill/frame_038.png" time = "5" />
+<anim name="komachi_chill/frame_039.png" time = "5" />
+<anim name="komachi_chill/frame_040.png" time = "5" />
+<anim name="komachi_chill/frame_041.png" time = "5" />
+<anim name="komachi_chill/frame_042.png" time = "5" />
+<anim name="komachi_chill/frame_043.png" time = "5" />
+</anims> 
+</animation> 
+</animations> 
+</F_AObj> 

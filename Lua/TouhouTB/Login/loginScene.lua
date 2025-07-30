@@ -568,9 +568,9 @@ ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = fu
     print("data here " .. data)
     -- "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$"
     local t_id, tStatus, t_pw, tGUID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
-    print("id is " .. t_id .. "/" .. Login_IDEditBox:getText())
-    print("status is " .. tStatus)
-    print("pw is " .. t_pw .. "/" .. Login_PWEditBox:getText())
+    -- print("id is " .. t_id .. "/" .. Login_IDEditBox:getText())
+    -- print("status is " .. tStatus)
+    -- print("pw is " .. t_pw .. "/" .. Login_PWEditBox:getText())
     -- print("guid is " .. tGUID .. "/" .. guid)
 
     -- check all data match, then log in

@@ -9,16 +9,19 @@
 #include <async++.h>
 #include "LuaManager.h"
 
+#include <FrameBuffer.h>
+#include <FrameBufferScreen.h>
 
 struct TGUI_CanvasWrapper
 {
 
 
     TGUI_CanvasWrapper() {}
-    TGUI_CanvasWrapper(tgui::CanvasOpenGL3::Ptr * canvas) : canvas(canvas) {}
+    TGUI_CanvasWrapper(tgui::CanvasOpenGL3::Ptr * canvas) : canvas(canvas) {
 
-    void bindDrawCall(std::function<void()> draw) { drawF = draw; }
-    // TGUI_CanvasWrapper(tgui::CanvasOpenGL3::Ptr * canvas, std::function<void()> draw) : canvas(canvas), drawF(draw) {}
+    }
+
+    void bindDrawCall(std::function<void()> draw) { drawF = draw;}
 
     // bool isBound = false;
     std::function<void()> drawF;
@@ -26,13 +29,13 @@ struct TGUI_CanvasWrapper
     void draw()
     {
 
-        if(canvas && canvas->get())
+        if(canvas && canvas->get() && canvas->get()->isVisible())
         {
             canvas->get()->bindFramebuffer();
-            glViewport(0, 0, canvas->get()->getSize().x, canvas->get()->getSize().y);
-            
             glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            
+            glViewport(0, 0, canvas->get()->getSize().x, canvas->get()->getSize().y);
             if(drawF)
             {
                 drawF();
@@ -41,6 +44,10 @@ struct TGUI_CanvasWrapper
         }
         
     }
+
+    Feintgine::FrameBuffer m_frameBuffer;
+	Feintgine::FrameBufferScreen m_frameBufferScreen;
+
 };
 
 class TGUIScriptingManager
@@ -84,6 +91,8 @@ public:
     void handleInput(Feintgine::InputManager & inputManager);
 
     void bindCanvasDrawCall(const std::string & name, std::function<void()> draw);
+
+    std::function<void()> getDrawCall(const std::string & name);
 
     void cleanup();
 

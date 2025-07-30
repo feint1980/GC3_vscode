@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TextureAtlas imagePath="komachi_chill.png" width="7040" height="1704">
+    <sprite n="frame_000.png" x="0" y="0" w="640" h="426" />
+    <sprite n="frame_001.png" x="640" y="0" w="640" h="426" />
+    <sprite n="frame_002.png" x="1280" y="0" w="640" h="426" />
+    <sprite n="frame_003.png" x="1920" y="0" w="640" h="426" />
+    <sprite n="frame_004.png" x="2560" y="0" w="640" h="426" />
+    <sprite n="frame_005.png" x="3200" y="0" w="640" h="426" />
+    <sprite n="frame_006.png" x="3840" y="0" w="640" h="426" />
+    <sprite n="frame_007.png" x="4480" y="0" w="640" h="426" />
+    <sprite n="frame_008.png" x="5120" y="0" w="640" h="426" />
+    <sprite n="frame_009.png" x="5760" y="0" w="640" h="426" />
+    <sprite n="frame_010.png" x="6400" y="0" w="640" h="426" />
+    <sprite n="frame_011.png" x="0" y="426" w="640" h="426" />
+    <sprite n="frame_012.png" x="640" y="426" w="640" h="426" />
+    <sprite n="frame_013.png" x="1280" y="426" w="640" h="426" />
+    <sprite n="frame_014.png" x="1920" y="426" w="640" h="426" />
+    <sprite n="frame_015.png" x="2560" y="426" w="640" h="426" />
+    <sprite n="frame_016.png" x="3200" y="426" w="640" h="426" />
+    <sprite n="frame_017.png" x="3840" y="426" w="640" h="426" />
+    <sprite n="frame_018.png" x="4480" y="426" w="640" h="426" />
+    <sprite n="frame_019.png" x="5120" y="426" w="640" h="426" />
+    <sprite n="frame_020.png" x="5760" y="426" w="640" h="426" />
+    <sprite n="frame_021.png" x="6400" y="426" w="640" h="426" />
+    <sprite n="frame_022.png" x="0" y="852" w="640" h="426" />
+    <sprite n="frame_023.png" x="640" y="852" w="640" h="426" />
+    <sprite n="frame_024.png" x="1280" y="852" w="640" h="426" />
+    <sprite n="frame_025.png" x="1920" y="852" w="640" h="426" />
+    <sprite n="frame_026.png" x="2560" y="852" w="640" h="426" />
+    <sprite n="frame_027.png" x="3200" y="852" w="640" h="426" />
+    <sprite n="frame_028.png" x="3840" y="852" w="640" h="426" />
+    <sprite n="frame_029.png" x="4480" y="852" w="640" h="426" />
+    <sprite n="frame_030.png" x="5120" y="852" w="640" h="426" />
+    <sprite n="frame_031.png" x="5760" y="852" w="640" h="426" />
+    <sprite n="frame_032.png" x="6400" y="852" w="640" h="426" />
+    <sprite n="frame_033.png" x="0" y="1278" w="640" h="426" />
+    <sprite n="frame_034.png" x="640" y="1278" w="640" h="426" />
+    <sprite n="frame_035.png" x="1280" y="1278" w="640" h="426" />
+    <sprite n="frame_036.png" x="1920" y="1278" w="640" h="426" />
+    <sprite n="frame_037.png" x="2560" y="1278" w="640" h="426" />
+    <sprite n="frame_038.png" x="3200" y="1278" w="640" h="426" />
+    <sprite n="frame_039.png" x="3840" y="1278" w="640" h="426" />
+    <sprite n="frame_040.png" x="4480" y="1278" w="640" h="426" />
+    <sprite n="frame_041.png" x="5120" y="1278" w="640" h="426" />
+    <sprite n="frame_042.png" x="5760" y="1278" w="640" h="426" />
+    <sprite n="frame_043.png" x="6400" y="1278" w="640" h="426" />
+</TextureAtlas> 

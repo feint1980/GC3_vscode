@@ -1685,15 +1685,116 @@ int lua_Canvas_Create(lua_State * L)
         tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 7));
 
         tgui::CanvasOpenGL3::Ptr * canvas = host->createCanvas(name,x,y,width,height,*parent); 
-
-
-        std::cout << "create Canvas ok ********************************************* \n";
-        
-    
-
-        //host->createCanvas(x,y,width,height,*parent);
+        lua_pushlightuserdata(L,canvas);
     }
     return 1;
+}
+
+int lua_Canvas_SetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Canvas_SetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::CanvasOpenGL3::Ptr * canvas = static_cast<tgui::CanvasOpenGL3::Ptr*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        canvas->get()->setPosition(x, y);
+    }
+    return 0;
+}
+
+int lua_Canvas_SetPosStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Canvas_SetPosStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::CanvasOpenGL3::Ptr * canvas = static_cast<tgui::CanvasOpenGL3::Ptr*>(lua_touserdata(L, 1));
+        std::string x = lua_tostring(L, 2);
+        std::string y = lua_tostring(L, 3);
+        canvas->get()->setPosition(x.c_str(), y.c_str());
+    }
+    return 0;
+}
+
+int lua_Canvas_SetSize(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Canvas_SetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::CanvasOpenGL3::Ptr * canvas = static_cast<tgui::CanvasOpenGL3::Ptr*>(lua_touserdata(L, 1));
+        float width = lua_tonumber(L, 2);
+        float height = lua_tonumber(L, 3);
+        canvas->get()->setSize(width, height);
+    }
+    return 0;
+}
+
+int lua_Canvas_SetSizeStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Canvas_SetSizeStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::CanvasOpenGL3::Ptr * canvas = static_cast<tgui::CanvasOpenGL3::Ptr*>(lua_touserdata(L, 1));
+        std::string width = lua_tostring(L, 2);
+        std::string height = lua_tostring(L, 3);
+        canvas->get()->setSize(width.c_str(), height.c_str());
+    }
+    return 0;
+}
+
+int lua_Canvas_BindDrawCall(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Canvas_BindDrawCall) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        std::string name = lua_tostring(L, 2);
+        std::string drawCallName = lua_tostring(L, 3);
+
+        //std::function<void()> draw = host->getDrawCall(drawCallName);
+
+        host->bindCanvasDrawCall(name,host->getDrawCall(drawCallName));
+    }
+    return 0;
+}
+
+
+int lua_Add_DrawCall(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_Add_DrawCall) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        std::string name = lua_tostring(L, 2);
+        std::function<void()> *draw = static_cast<std::function<void()> *>(lua_touserdata(L, 3));
+        
+        host->addDrawCall(name,*draw);
+    }
+    return 0;
 }
 
 TGUIScriptingManager::TGUIScriptingManager()
@@ -1741,6 +1842,17 @@ tgui::Picture::Ptr TGUIScriptingManager::createPicture(const std::string & path,
     picture->setPosition(x, y);
     picture->setSize(width, height);
     return picture;
+}
+
+std::function<void()> TGUIScriptingManager::getDrawCall(const std::string & name)
+{
+    std::cout << "getDrawCall " << name << " !!!!!!!!!!!!!!!!!!!!!!!!!\n";
+    if(m_drawCallMap.find(name) == m_drawCallMap.end())
+    {
+        std::cout << "Draw call not found: " << name << "\n";
+        return nullptr;
+    }
+    return m_drawCallMap[name];
 }
 
 tgui::TabContainer::Ptr TGUIScriptingManager::createTabContainer(float x, float y, float width, float height)
@@ -2048,17 +2160,15 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Button_SetSizeStr", lua_Button_SetSizeStr);
     lua_register(m_script, "cpp_Button_SetOnClickCallback", lua_Button_SetOnClickCallback);
 
-
     // TGUI Canvas section
 
     lua_register(m_script, "cpp_Canvas_Create", lua_Canvas_Create);
-    // lua_register(m_script, "cpp_Canvas_SetPos", lua_Canvas_SetPos);
-    // lua_register(m_script, "cpp_Canvas_SetPosStr", lua_Canvas_SetPosStr);
-    // lua_register(m_script, "cpp_Canvas_SetSize", lua_Canvas_SetSize);
-    // lua_register(m_script, "cpp_Canvas_SetSizeStr", lua_Canvas_SetSizeStr);
-    // lua_register(m_script, "cpp_Canvas_BindDrawCall", lua_Canvas_BindDrawCall);
-    
-
+    lua_register(m_script, "cpp_Canvas_SetPos", lua_Canvas_SetPos);
+    lua_register(m_script, "cpp_Canvas_SetPosStr", lua_Canvas_SetPosStr);
+    lua_register(m_script, "cpp_Canvas_SetSize", lua_Canvas_SetSize);
+    lua_register(m_script, "cpp_Canvas_SetSizeStr", lua_Canvas_SetSizeStr);
+    lua_register(m_script, "cpp_Canvas_BindDrawCall", lua_Canvas_BindDrawCall);
+    lua_register(m_script, "cpp_Add_DrawCall", lua_Add_DrawCall);
 
     // TGUI Tabs section
     // lua_register(m_script, "cpp_Tabs_Create", lua_Tabs_Create);

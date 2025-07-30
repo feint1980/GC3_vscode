@@ -23,8 +23,6 @@ if not "%~2"=="" (
     set "timeTick=%~2"
 )
 
-
-
 :: Get the full path of the file and its parent folder
 set "file=%~1"
 if not exist "%file%" (
@@ -144,7 +142,8 @@ echo ^<animation name = "play"^> >> %animFile%
 echo ^<anims^> >> %animFile%
 
 set /a animNum=0
-for /L %%r in (0,1,!count!-1) do (
+set /a count=!count!-1
+for /L %%r in (0,1,!count!) do (
 
      set zeroCount=0 
     if !animNum! LSS 10 (

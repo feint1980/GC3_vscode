@@ -74,6 +74,8 @@ public:
 
     void drawGameplay();
 
+    void drawGIFScene();
+
     void initShader();
 
     void drawLoading();
@@ -111,10 +113,15 @@ private:
 
     // bool isReady = false;
 
+    Feintgine::FrameBuffer m_frameBuffer;
+
+	Feintgine::FrameBufferScreen m_frameBufferScreen;
+
     TGUIScriptingManager m_guiScriptingManager;
 
     SkillHandler m_skillHandler;
 
     LuaEventHandler m_luaEventHandler;
 
+    Feintgine::F_AnimatedObject m_gif;
 };

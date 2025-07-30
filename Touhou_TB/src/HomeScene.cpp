@@ -40,8 +40,6 @@ int lua_backToMenu(lua_State * L)
     return 0;
 }
 
-
-
 HomeScene::HomeScene()
 {
 
@@ -85,6 +83,7 @@ void HomeScene::onEntry()
         Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
         loaded = true;
     }
+    std::cout << "after entry \n";
 
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	
@@ -105,6 +104,11 @@ void HomeScene::onEntry()
     else{
         std::cout << " no SDL_HasScreenKeyboardSupport ##################\n";
     }
+
+    m_gif.init("./Assets/F_AObjects/komachi_chill.xml");
+    m_gif.playAnimation("play");
+   // m_gif.setScale(glm::vec2(1.7f));
+
 }
 
 void HomeScene::initLoading()
@@ -157,6 +161,7 @@ void HomeScene::update(float deltaTime)
     {
         m_clientScriptingManager->update(deltaTime);
     }
+    m_gif.update(deltaTime);
     m_luaEventHandler.update(deltaTime);
 }
 
@@ -210,7 +215,7 @@ void HomeScene::draw()
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
 	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
-    // m_bg.draw(m_spriteBatch);
+    //m_bg.draw(m_spriteBatch);
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
@@ -219,9 +224,39 @@ void HomeScene::draw()
 	SDL_GL_SetSwapInterval(1);	
 }
 
+void HomeScene::drawGIFScene()
+{
+    m_shader.use();
+    GLint textureUniform = m_shader.getUniformLocation("mySampler");
+	glUniform1i(textureUniform, 0);
+	glActiveTexture(GL_TEXTURE0);
+
+	GLint dayLightIndex = m_shader.getUniformLocation("dayLight");
+	glUniform3f(dayLightIndex, 1, 1, 1);
+
+	// Camera matrix
+	glm::mat4 projectionMatrix = m_camera.getCameraMatrix();
+	GLint pUniform = m_shader.getUniformLocation("P");
+	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
+
+	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
+
+    m_gif.draw(m_spriteBatch); // F-TODO : draw gif
+
+	m_spriteBatch.end();
+	m_spriteBatch.renderBatch();
+	m_shader.unuse();
+
+	SDL_GL_SetSwapInterval(1);	
+}
+
 
 void HomeScene::initGUI()
 {
+
+    
+    m_guiScriptingManager.addDrawCall("drawGIFScene", std::bind(&HomeScene::drawGIFScene, this));
+
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
@@ -261,6 +296,8 @@ void HomeScene::initGUI()
             std::cout << "Login scene init script from C++ OK \n";
         }
     }
+
+
 }
 
 void HomeScene::drawGUI()
