@@ -1,0 +1,17 @@
+build/.cmake/*
+build/CMakeFiles/*
+*.o
+*.rar
+*.exe
+*.zip
+*.obj.d
+*.log
+*/CMakeCache.txt
+*/cmake_install.cmake
+*/CEGUI.log
+*/Makefile
+*/CMakeFiles/*
+*.d
+*.make
+*.Makefile*
+*.rsp
