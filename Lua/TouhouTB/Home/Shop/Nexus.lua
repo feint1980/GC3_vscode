@@ -8,6 +8,8 @@ require "TGUI_Picture"
 require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
 require "homeGlobal"
+require "NexusCharacter"
+
 
 MenuPanels = _G.MenuPanels
 
@@ -16,6 +18,10 @@ NexusMenu = nil
 
 ---@type Panel
 NexusPanel = nil
+
+---@type Nexu
+NexusCharacterPanel = nil
+
 
 ---@Description : Init the Roster menu
 ---@Param host TGUIScripting host
@@ -52,6 +58,11 @@ function InitNexus(host)
         end
         NexusPanel:setVisible(false)
     end
+
+    NexusCharacterPanel = CharacterNexus:new()
+    NexusCharacterPanel:init(host,NexusMenu.tabs["Characters"])
+
+
 end
 
 MenuPanels["Nexus"] = function(host)

@@ -319,6 +319,11 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
     ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr,t_name,t_charStats)
 end
 
+local function sortTableByName(a,b)
+    print("comparing " .. a.ID .. " and " .. b.ID)
+    return a.ID < b.ID
+end
+
 ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_End] = function(host,data, guid)
 
     print("Character request result end")
@@ -358,17 +363,19 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
         local x_offset = 130
         local count = 0
 
-        table.sort(Shop_CharacterTable, function(a,b)
-            return a.name < b.name
-            end)
-
-        for k,v in pairs(Shop_CharacterTable) do
-            print(k,v.dyobj)
-        end
         ---@type CharacterShop
         Shop_CharacterShop = _G.Shop_CharacterShop
+
+        local tCharacters = {}
         for k,v in pairs(Shop_CharacterTable) do
-            Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250, v.panelPath,k,
+            table.insert(tCharacters,v)
+        end
+
+        table.sort(tCharacters, function(a,b) return a.ID < b.ID end)
+
+        for k,l in pairs(tCharacters) do
+            local v = l
+            Shop_CharacterShop:addCharPanel(Home_GUIScriptingPtr, count * x_offset, 10, 125,250, v.panelPath,v.ID,
             v.price,v.isOwned)
             count = count + 1
         end

@@ -264,7 +264,7 @@ function Server_LoadCharacters(host)
             Character_Serialized_Table[filename] = SV_UpdateCharacter(host,Character_Table[filename])
 
             Skill_Serialized_Table[filename] = {}
-            for skillFileName in io.popen('dir /b/a-d  ..\\luaFiles\\Skills\\'..filename..'\\*.lua'):lines() 
+            for skillFileName in io.popen('dir /b/a-d  ..\\luaFiles\\Skills\\'..filename..'\\*.lua'):lines()
             do  --Windows 
                 skillFileName = skillFileName:match"^(.*)%.lua$"
                 if skillFileName then
