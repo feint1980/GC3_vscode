@@ -8,19 +8,18 @@ require "TGUI_Picture"
 require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
 require "homeGlobal"
-
-
+require "OwnedCharacterPanel"
 
 ---@class (exact) CharacterNexus
 ---@field parentPanel pointer instance of Panel
----@field mainPanel ScrollablePanel instance of ScrollablePanel
+---@field mainPanel Panel instance of Panel
 ---@field ownedCharacterPanels table
 ---@field t_characters table
 ---@field itemCount number
 CharacterNexus = {
     ---@type Panel 
     parentPanel = nil,
-    ---@type ScrollablePanel
+    ---@type Panel
     mainPanel = nil,
     ---@type table of OwnedCharacterPanel
     ownedCharacterPanels = {},
@@ -38,16 +37,45 @@ end
 function CharacterNexus:init( GUI_host,parent )
     self.parentPanel = parent
     self.mainPanel = ScrollablePanel:new()
-    self.mainPanel:init(GUI_host,0,0,0,0,self.parentPanel.ptr)
+    self.mainPanel:init(GUI_host,0,0,0,0,self.parentPanel)
     self.mainPanel:setAlignment(0.5,0.5)
-    self.mainPanel:setPosStr("50%","50%")
-    self.mainPanel:setSizeStr("99%","99%")
+    self.mainPanel:setPosStr("25%","50%")
+    self.mainPanel:setSizeStr("48%","99%")
 
 end
 
-function CharacterNexus:addCharPanel(GUI_host,x,y,width,height)
-    local panelHeight = 140
-    local pWidth, pHeight = self.parentPanel:getSize()
-    local onwedCharacter
+local displayOwnedCharacterTable = {}
+function CharacterNexus:updateCharacters()
+    for k,v in pairs(Owned_CharacterTable) do
+        print(k )
+    end
+
+    for k,v in pairs(Owned_CharacterTable) do
+        table.insert(displayOwnedCharacterTable,v)
+    end
+
+    table.sort(displayOwnedCharacterTable, function(a,b) return a.ID < b.ID end)
+
+    for k,v in pairs(displayOwnedCharacterTable) do
+        print(v.ID )
+    end
+
+    for k,v in pairs(displayOwnedCharacterTable) do
+        self:addCharPanel(Home_GUIScriptingPtr,v.ID)
+    end
+
+    print("done update")
+end
+
+function CharacterNexus:addCharPanel(GUI_host,characterID)
+
+    print("addCharPanel " .. characterID)
+    local panelHeight = 80
+    local pWidth, pHeight = self.mainPanel:getSize()
+
+    Owned_CharacterPannels[characterID]= OwnedCharacterPanel:new()
+    print("Owned_CharacterPannels[characterID].init")
+    Owned_CharacterPannels[characterID]:init(GUI_host,self.mainPanel,0,self.itemCount * panelHeight,pWidth,panelHeight ,characterID)
+    self.itemCount = self.itemCount + 1
 
 end

@@ -237,6 +237,7 @@ end
 
 require "accountHandle"
 require "skillHandle"
+require "characterHandle"
 
 print("server side script ended ...")
 

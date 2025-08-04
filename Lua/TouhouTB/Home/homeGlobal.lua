@@ -23,6 +23,9 @@ end
 S_Characters_Info = {}
 Shop_CharacterTable = {}
 
+Owned_CharacterTable = {}
+Owned_CharacterPannels = {}
+
 Skill_Serialized_Table = {}
 Skill_Table = {}
 

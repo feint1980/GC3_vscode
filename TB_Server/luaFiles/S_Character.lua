@@ -53,3 +53,4 @@ function S_Character:new(o)
     self.__index = self
     return o
 end
+

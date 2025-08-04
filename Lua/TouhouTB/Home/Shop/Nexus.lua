@@ -20,7 +20,7 @@ NexusMenu = nil
 NexusPanel = nil
 
 ---@type Nexu
-NexusCharacterPanel = nil
+NexusCharacterTab = nil
 
 
 ---@Description : Init the Roster menu
@@ -59,12 +59,16 @@ function InitNexus(host)
         NexusPanel:setVisible(false)
     end
 
-    NexusCharacterPanel = CharacterNexus:new()
-    NexusCharacterPanel:init(host,NexusMenu.tabs["Characters"])
-
+    NexusCharacterTab = CharacterNexus:new()
+    NexusCharacterTab:init(host,NexusMenu.tabs["Characters"])
 
 end
 
 MenuPanels["Nexus"] = function(host)
+    NexusCharacterTab:updateCharacters()
     NexusPanel:showWithEffect(PanelShowType.Fade,250)
+end
+
+function NexusRequestUserCharacterList(id,guid)
+    SendRequest(PacketChannel.UserChannel, UserResponse.OwnedCharacter_Request, {id,guid, "request"}, 5, 1.75,0.25)
 end

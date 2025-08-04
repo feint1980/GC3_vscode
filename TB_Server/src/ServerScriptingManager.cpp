@@ -809,6 +809,25 @@ int lua_Packet_getIP(lua_State * L)
     }
 }
 
+int lua_Packet_getIPAsString(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Packet_getIPAsString) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+        RakNet::SystemAddress * clientId = &p->systemAddress;
+        std::string ip = clientId->ToString(false);
+        lua_pushstring(L, ip.c_str());
+        return 1;
+    }
+    return 0;
+}
+
 int lua_Packet_extract(lua_State * L)
 {
     if(lua_gettop(L) != 1)
@@ -1337,6 +1356,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     // extract data from packet
     lua_register(m_script, "cppPacket_getData", lua_Packet_getData);
     lua_register(m_script, "cppPacket_getIP", lua_Packet_getIP);
+    lua_register(m_script, "cppPacket_getIPAsString", lua_Packet_getIPAsString);
     lua_register(m_script, "cppPacket_extract", lua_Packet_extract);
     lua_register(m_script, "cppPacket_getGUID", lua_Packet_getGUID);
 

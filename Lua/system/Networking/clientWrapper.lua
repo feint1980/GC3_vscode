@@ -15,12 +15,16 @@ AccountResponse = {
 }
 
 UserResponse = {
-    MainInfo = 1,
+    MainInfo = 1,  --- account info (mon,souls)
     CharacterInfo = 2,
     SkillInfo = 3,
     SkillInfo_Start = 4,
     SkillInfo_Data = 5,
-    SkillInfo_End = 6
+    SkillInfo_End = 6,
+    OwnedCharacter_Request = 7,
+    OwnedCharacter_Start = 8,
+    OwnedCharacter_Data = 9,
+    OwnedCharacter_End = 10
 }
 
 ShopResponse = {

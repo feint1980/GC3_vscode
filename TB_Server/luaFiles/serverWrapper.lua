@@ -14,13 +14,18 @@ AccountResponse = {
 }
 
 UserResponse = {
-    MainInfo = 1, --- account info (mon,souls)
+    MainInfo = 1,  --- account info (mon,souls)
     CharacterInfo = 2,
     SkillInfo = 3,
     SkillInfo_Start = 4,
     SkillInfo_Data = 5,
-    SkillInfo_End = 6
+    SkillInfo_End = 6,
+    OwnedCharacter_Request = 7,
+    OwnedCharacter_Start = 8,
+    OwnedCharacter_Data = 9,
+    OwnedCharacter_End = 10
 }
+
 
 ShopResponse = {
     ShopChracterInfo = 1,
@@ -82,6 +87,14 @@ end
 ---@return pointer instance of RakNet::SystemAddress
 function SV_GetPacketIP(packet)
     return cppPacket_getIP(packet)
+end
+
+--- function wrapper of cppPacket_getIPAsString
+--- @Description: get the IP (as string) from IP
+--- @param ip pointer instance of RakNet::SystemAddress
+--- @return string
+function SV_GetIPString(ip)
+    return cppPacket_getIPAsString(ip)
 end
 
 --- function wrapper of cppPacket_extract

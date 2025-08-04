@@ -165,6 +165,7 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
         end)
     Home_UpdateInfo()
     Home_RequestSkillsStats()
+    Home_RequestOwnedCharacterList()
 end
 
 function Home_UpdateInfo()
@@ -177,8 +178,12 @@ end
 
 function Home_RequestSkillsStats()
     SendRequest(PacketChannel.UserChannel, UserResponse.SkillInfo, {h_guid, "request"}, 5, 1.0)
-
 end
+
+function Home_RequestOwnedCharacterList()
+    NexusRequestUserCharacterList(h_id,h_guid)
+end
+
 
 HomeMain_HandleTask = {}
 
@@ -356,6 +361,13 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
                 Shop_CharacterTable["S_Meiling"]:initNonCB(Home_ClientCharacterHandlerPtr,"S_Meiling",t)
                 Shop_CharacterTable["S_Meiling"].isOwned =  v.isOwned
+            end
+        end
+
+        --- Remove this after real request done 
+        for k,v in pairs(Shop_CharacterTable) do
+            if v.isOwned then
+                Owned_CharacterTable[k] = v
             end
         end
 
