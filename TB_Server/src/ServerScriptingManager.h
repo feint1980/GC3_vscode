@@ -141,8 +141,9 @@ private:
 
     std::unordered_map<std::string, SkillStats> m_skillStatsMap;
 
-
     std::queue <RakNet::Packet *> m_wrapDataQueue;
+
+    std::unordered_map<std::string, CharacterDesc* > m_characterMaps;
 
     //std::thread m_handleMessgeThread;
 

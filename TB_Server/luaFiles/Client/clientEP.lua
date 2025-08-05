@@ -1,16 +1,14 @@
-
-
 ---@class (exact) ClientEP
----@field systemAddress? pointer instance of systemAddress
+---@field IP? pointer instance of IP
 ---@field GUID string
----@field IP? pointer instance of RakNet::SystemAddress IP
 ---@field name string
+---@field cppObj? pointer instance of ClientEP in C++
 ClientEP = 
 {
-    systemAddress = nil,
+    IP = nil,
     GUID = "",
     name = "",
-    IP = nil
+    cppObj = nil
 }
 
 --- Constructor
@@ -23,11 +21,11 @@ function ClientEP:new(o)
 end
 
 --- initialize ClientEP
----@param tSystemAddress pointer instance of systemAddress
+---@param tIP pointer instance of IP
 ---@param guid string guid of the client
 ---@param name string name of the client
-function ClientEP:init(tSystemAddress, guid, name)
-    self.systemAddress = tSystemAddress
+function ClientEP:init(tIP, guid, name)
+    self.IP = tIP
     self.GUID = guid
     self.name = name
 end

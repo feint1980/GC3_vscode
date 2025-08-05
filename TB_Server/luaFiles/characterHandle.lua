@@ -210,5 +210,9 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
     --- v[3] exp
     --- v[4] stats
 
+    for k, v in pairs(Character_Table) do
+        print(k .. " : " .. v.name)
+    end
+
 
 end

@@ -41,7 +41,8 @@ S_Character =  {
     level = 1,
     xp = 0,
     price = 25,
-    ID = "T_INVALID"
+    ID = "T_INVALID",
+    dyobj = nil
 }
 
 ---@Description create a new instance of Character
@@ -54,3 +55,6 @@ function S_Character:new(o)
     return o
 end
 
+function S_Character:parseFrromString(stats)
+
+end
