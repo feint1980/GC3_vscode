@@ -1353,9 +1353,13 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     std::cout << "|     Init Server Scripting Manager OK    |\n";
     std::cout << "|=========================================|\n";
 
+    m_clientEPHandler = new ClientEPHandler();
+
     m_script = luaL_newstate();
 
     luaL_openlibs(m_script);
+
+
 
     // register lua functions
     
@@ -1493,30 +1497,12 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
         }
     }
 
-  //  m_handleMessgeThread = std::thread(&ServerScriptingManager::handleMessage, this);
 
-//    m_handleCommonThread = std::thread(&ServerScriptingManager::handleCommon, this);
+    // client EPHandling here
 
-    // auto t = std::thread(&ServerScriptingManager::handleMessage, this);
-    // //m_threads.push_back(std::move(t));
+    m_clientEPHandler->init(m_script);
 
-    // auto f = std::thread(&ServerScriptingManager::handleCommonMSG, this);
 
-    // t.join();
-    // f.join();
-    //m_threads.push_back(std::move(t));
-
-    // lua_getglobal(m_script, "Server_CheckCharacterData");
-    // if(lua_isfunction(m_script, -1))
-    // {
-    //     lua_pushlightuserdata(m_script, this);
-    //     const int argc = 1;
-    //     const int returnCount = 0;
-    //     if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
-    //     {
-    //         std::cout << "Call Server_CheckCharacterData from C++ OK \n";
-    //     }
-    // }
 }
 
 void ServerScriptingManager::addCryptor(const std::string & guid)

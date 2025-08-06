@@ -1,7 +1,7 @@
 package.path = package.path .. ";../luaFiles/?.lua"
 
 require "serverWrapper"
-require "clientHandling"
+-- require "clientHandling"
 require "SV_global"
 
 --- keep just for the old package ( from client inquiry)
