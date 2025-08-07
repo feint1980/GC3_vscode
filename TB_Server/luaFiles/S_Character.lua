@@ -58,3 +58,7 @@ end
 function S_Character:parseFrromString(stats)
 
 end
+
+function S_Character:init()
+
+end

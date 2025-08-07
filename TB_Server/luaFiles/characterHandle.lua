@@ -3,7 +3,6 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "serverWrapper"
 require "SV_global"
 
-
 local function checkIfUserOwnedCharacter(host, userID, chacaterID)
 
     local checkQuery = "SELECT 1 FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ? AND " .. Table.user_character.character_id .. " = ?;"
