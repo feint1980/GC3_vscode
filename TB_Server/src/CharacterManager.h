@@ -2,6 +2,7 @@
 #define CHARACTERMANAGER_H
 
 #include "CharacterDes.h"
+#include "SkillDesc.h"
 #include "LuaManager.h"
 #include <unordered_map>
 
@@ -14,6 +15,7 @@ public:
     void init(lua_State * script);
 
     void addCharacterDesc(const std::string & guid,const std::string & characterID ,CharacterDesc *characterDesc);
+
 
 private:
 

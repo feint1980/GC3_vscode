@@ -32,6 +32,8 @@
 #include <bcrypt.h>
 #include "CharacterDes.h"
 #include "SkillDesc.h"
+#include "CharacterManager.h"
+
 
 #include <thread>
 
@@ -145,11 +147,11 @@ private:
 
     std::queue <RakNet::Packet *> m_wrapDataQueue;
 
-    std::unordered_map<std::string, CharacterDesc* > m_characterMaps;
+    // std::unordered_map<std::string, CharacterDesc* > m_characterMaps;
 
     ClientEPHandler * m_clientEPHandler = nullptr;
 
-    //std::thread m_handleMessgeThread;
+    CharacterManager * m_characterManager = nullptr;
 
     //std::vector<std::thread> m_threads;
 

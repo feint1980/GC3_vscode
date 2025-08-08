@@ -1315,29 +1315,6 @@ bool ServerScriptingManager::doQuery(sqlite3_stmt * stmt)
     // return false;
 }
 
-/// Parse Character Stat from String
-int lua_ParseCharacterFromString(lua_State * L)
-{
-    if(lua_gettop(L) != 1)
-    {
-        std::cout << "gettop failed (lua_ParseCharacterFromString) \n";
-        std::cout << lua_gettop(L) << "\n";
-        return -1;
-    }
-    else
-    {
-        CharacterStats *result;
-        std::string str = lua_tostring(L, 1);
-        json j = json::parse(str);
-        *result = j.get<CharacterStats>();
-        lua_pushlightuserdata(L, result);
-        return 1;
-    }
-
-    return 0;
-}
-
-
 void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHandler * dbh)
 {
     srand( (unsigned)time(NULL) );
@@ -1354,6 +1331,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     std::cout << "|=========================================|\n";
 
     m_clientEPHandler = new ClientEPHandler();
+    m_characterManager = new CharacterManager();
 
     m_script = luaL_newstate();
 
@@ -1396,9 +1374,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cpp_updateCharacter", lua_UpdateCharacter);
     lua_register(m_script, "cpp_updateSkill", lua_UpdateSkill);
 
-    // Character Handling 
-    lua_register(m_script, "cpp_ParseCharacterFromString", lua_ParseCharacterFromString);
-
+    
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))
     {
         std::cout << "Run script OK \n";
@@ -1501,6 +1477,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     // client EPHandling here
 
     m_clientEPHandler->init(m_script);
+    m_characterManager->init(m_script);
 
 
 }

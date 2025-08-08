@@ -39,7 +39,6 @@ function CH_FindClient(guid)
         print("client " .. guid .. " not found")
         return nil
     end
-
 end
 
 function CH_List()
@@ -59,7 +58,6 @@ function GetTableSize(t)
     end
     return count
 end
-
 
 function CH_Init(host)
     CH_Host = host

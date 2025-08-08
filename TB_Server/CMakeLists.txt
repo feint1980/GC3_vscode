@@ -11,6 +11,7 @@ file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp
     ${PROJECT_SOURCE_DIR}/../PacketDescription/CharacterDes.cpp
     ${PROJECT_SOURCE_DIR}/../PacketDescription/ClientEP.cpp
     ${PROJECT_SOURCE_DIR}/../PacketDescription/ClientEPHandler.cpp
+    ${PROJECT_SOURCE_DIR}/../PacketDescription/CharacterManager.cpp
 
 )
 

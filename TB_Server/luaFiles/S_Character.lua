@@ -55,10 +55,15 @@ function S_Character:new(o)
     return o
 end
 
-function S_Character:parseFrromString(stats)
 
+
+function S_Character:init(host, statsStr)
+    
 end
 
-function S_Character:init()
 
+
+---@Description wrapper of 
+function ParseCharacterStatsFromString(statsStr)
+    return 
 end
