@@ -16,6 +16,8 @@ public:
 
     void addCharacterDesc(const std::string & guid,const std::string & characterID ,CharacterDesc *characterDesc);
 
+    CharacterDesc * getCharacterDesc(const std::string & guid,const std::string & characterID);
+
 
 private:
 

@@ -172,7 +172,8 @@ void CharacterManager::init(lua_State * script)
     }
     // Character Handling 
     lua_register(m_script, "cpp_ParseCharacterFromString", lua_ParseCharacterFromString);
-
+    // lua_register(m_script, "cpp_CharacterManager_AddCharacter", lua_CharacterManager_AddCharacter);
+    // lua_register(m_script, "cpp_CharacterManager_GetCharacter", lua_CharacterManager_GetCharacter);
 }
 
 void CharacterManager::addCharacterDesc(const std::string & guid,const std::string & characterID ,CharacterDesc *characterDesc)
@@ -180,3 +181,13 @@ void CharacterManager::addCharacterDesc(const std::string & guid,const std::stri
     std::string combineID = guid + "_" +  characterID;   
     m_charactersDesc[combineID] = characterDesc;
 }
+
+CharacterDesc * CharacterManager::getCharacterDesc(const std::string & guid,const std::string & characterID)
+{
+    std::string combinedKey = guid + "_" + characterID;
+    if(m_charactersDesc.find(combinedKey) != m_charactersDesc.end())
+    {
+        return m_charactersDesc[combinedKey];
+    }
+    return nullptr;
+}    
