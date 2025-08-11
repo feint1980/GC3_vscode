@@ -3,7 +3,7 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "SV_global"
 require "S_Character"
 
-Character_Table["S_Reimu"] = S_Character:new(
+S_Reimu = S_Character:new(
 {
     Strength = 9,
     Vitality = 8,
@@ -45,3 +45,4 @@ Character_Table["S_Reimu"] = S_Character:new(
     ID = "S_Reimu"
 })
 
+Character_Table["S_Reimu"] = S_Reimu

@@ -29,3 +29,9 @@ Owned_CharacterPannels = {}
 Skill_Serialized_Table = {}
 Skill_Table = {}
 
+MainInfo = {
+    id = "",
+    guid = "",
+    pw = ""
+}
+

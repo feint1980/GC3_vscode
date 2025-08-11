@@ -8,7 +8,8 @@ ClientEP =
     IP = nil,
     GUID = "",
     name = "",
-    cppObj = nil
+    cppObj = nil,
+
 }
 
 --- Constructor
@@ -28,4 +29,10 @@ function ClientEP:init(tIP, guid, name)
     self.IP = tIP
     self.GUID = guid
     self.name = name
+    --- add in C++
+    self.cppObj = CH_cpp_addClientEP( tIP, guid, name)
+
 end
+
+
+

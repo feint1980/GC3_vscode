@@ -65,6 +65,8 @@ local h_id = ""
 local h_pw = ""
 local h_guid = ""
 
+
+
 function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr)
     HomeSceneHost = host
     Home_GUIScriptingPtr = TGUIScriptingPtr
@@ -174,6 +176,9 @@ function Home_UpdateInfo()
     h_id = id
     h_pw = pw
     h_guid = guid
+    MainInfo.id = id
+    MainInfo.guid = guid
+    MainInfo.pw = pw
 end
 
 function Home_RequestSkillsStats()
@@ -321,7 +326,7 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
     end
 
     local t_charStats =  Client_ParseCharacterFromJson(host, t_data)
-    ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr,t_name,t_charStats)
+    ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr, "Shop",t_name,t_charStats)
 end
 
 local function sortTableByName(a,b)
@@ -340,36 +345,36 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
             if k == "S_Reimu" then
                 print("found Reimu")
                 Shop_CharacterTable["S_Reimu"] = Reimu:new()
-                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["S_Reimu"]:initNonCB(Home_ClientCharacterHandlerPtr,"S_Reimu",t)
+                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr, "Shop",k)
+                Shop_CharacterTable["S_Reimu"]:initNonCB(Home_ClientCharacterHandlerPtr,"Shop","S_Reimu",t)
                 Shop_CharacterTable["S_Reimu"].isOwned =  v.isOwned
             elseif k == "S_Patchouli" then
                 print("found Patchouli")
                 Shop_CharacterTable["S_Patchouli"] = Patchouli:new()
-                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["S_Patchouli"]:initNonCB(Home_ClientCharacterHandlerPtr,"S_Patchouli",t)
+                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,"Shop",k)
+                Shop_CharacterTable["S_Patchouli"]:initNonCB(Home_ClientCharacterHandlerPtr,"Shop","S_Patchouli",t)
                 Shop_CharacterTable["S_Patchouli"].isOwned =  v.isOwned
             elseif k == "S_Yukari" then
                 print("found Yukari")
                 Shop_CharacterTable["S_Yukari"] = Yukari:new()
-                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["S_Yukari"]:initNonCB(Home_ClientCharacterHandlerPtr,"S_Yukari",t)
+                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr, "Shop",k)
+                Shop_CharacterTable["S_Yukari"]:initNonCB(Home_ClientCharacterHandlerPtr,"Shop","S_Yukari",t)
                 Shop_CharacterTable["S_Yukari"].isOwned =  v.isOwned
             elseif k == "S_Meiling" then
                 print("found Meiling")
                 Shop_CharacterTable["S_Meiling"] = Meiling:new()
-                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,k)
-                Shop_CharacterTable["S_Meiling"]:initNonCB(Home_ClientCharacterHandlerPtr,"S_Meiling",t)
+                local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr, "Shop",k)
+                Shop_CharacterTable["S_Meiling"]:initNonCB(Home_ClientCharacterHandlerPtr,"Shop","S_Meiling",t)
                 Shop_CharacterTable["S_Meiling"].isOwned =  v.isOwned
             end
         end
 
         --- Remove this after real request done 
-        for k,v in pairs(Shop_CharacterTable) do
-            if v.isOwned then
-                Owned_CharacterTable[k] = v
-            end
-        end
+        -- for k,v in pairs(Shop_CharacterTable) do
+        --     if v.isOwned then
+        --         Owned_CharacterTable[k] = v
+        --     end
+        -- end
 
         -- table.sort(Shop_CharacterTable)
         local x_offset = 130
@@ -397,28 +402,6 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
     end
 end
 
-ClientMessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy] = function(host,data, guid)
-
-    -- strip first and last character 
-    local tData, tResp = string.match(data, "^|([^|]+)|([^|]+)|$")
-    local tCallBack = nil
-    if tResp == "BUY_RES_OK" then
-        tCallBack = function()
-            Shop_CharacterShop = _G.Shop_CharacterShop
-            Shop_CharacterShop:setDetailVisible(false)
-            SendRequest(PacketChannel.ShopChannel,ShopResponse.ShopChracterInfo , {'get_character_shop_list'}, 5, 0.25)
-        end
-    end
-    Home_Noti_Btn:setOnClickCallback(function()
-        Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
-        if tCallBack ~= nil then
-            tCallBack()
-        end
-    end)
-
-    Home_showNotification(tData, "OK")
-    Home_UpdateInfo()
-end
 
 require "skill_client_handler"
-
+require "character_client_handler"

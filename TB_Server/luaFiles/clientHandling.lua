@@ -4,6 +4,7 @@ package.path = package.path .. ";../luaFiles/Client/?.lua"
 
 require "serverWrapper"
 require "clientEP"
+require "SV_global"
 
 ---@type Table of ClientEP
 ClientEPList = {}
@@ -19,13 +20,12 @@ function CH_AddClientEP(tSystemAddress, guid, name)
 
     print(" add user " .. name .. "|" .. guid .. "|")
 
-    --- add in C++
-    CH_cpp_addClientEP(CH_Host, tSystemAddress, guid, name)
-
     local newClient = ClientEP:new()
     newClient:init(tSystemAddress, guid, name)
     ClientEPList[guid] = newClient
     ClientEPList[guid].name = name
+
+    -- ExistingCharacters[guid] = {} ---- Table of S_Characters
 
     -- ClientEPList[guid] = ClientEP:new(tSystemAddress, guid, name)
     -- print("total user now ")
@@ -66,11 +66,12 @@ end
 ---- C++ Wrappers
 
 ---@Description Wrapper of cpp_ClientEPHandler_AddClientEP
----@param host pointer instance of ClientEPHandler
 ---@param ip pointer ip of the systemAddress
 ---@param guid string guid of the client
 ---@param name string name of the client
-function CH_cpp_addClientEP(host, ip, guid, name)
-    cpp_ClientEPHandler_AddClientEP(host, ip, guid, name)
+function CH_cpp_addClientEP( ip, guid, name)
+    CH_host = _G.CH_Host
+    cpp_ClientEPHandler_AddClientEP(CH_host, ip, guid, name)
+    
 end
 

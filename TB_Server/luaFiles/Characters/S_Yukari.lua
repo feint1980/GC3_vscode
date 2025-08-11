@@ -4,7 +4,7 @@ require "SV_global"
 require "S_Character"
 
 
-Character_Table["S_Yukari"] = S_Character:new(
+S_Yukari = S_Character:new(
 
 {
     Strength = 7,
@@ -47,3 +47,4 @@ Character_Table["S_Yukari"] = S_Character:new(
     ID = "S_Yukari"
 })
 
+Character_Table["S_Yukari"] = S_Yukari

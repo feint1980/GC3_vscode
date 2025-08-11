@@ -162,6 +162,9 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
     end
 end
 
+
+
+
 --- MARK: Owned Response
 MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] = function(host ,data, ip, guid)
     print("Request character owned info get ")
@@ -201,17 +204,51 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
 
     print("owned character query result")
 
-    -- for k,v in pairs(Query_val) do
-    --     print(v)
-    -- end
-    --- v[1] id
-    --- v[2] level
-    --- v[3] exp
-    --- v[4] stats
-
-    for k, v in pairs(Character_Table) do
-        print(k .. " : " .. v.name)
+    local queryResultCount = 4
+    for i = 1, #Query_val, queryResultCount do
+        print("owned character ID " .. Query_val[i] )
+        -- print("owned character level " .. Query_val[i+1])
+        -- print("owned character exp " .. Query_val[i+2])
+        -- print("owned character stats " .. Query_val[i+3])
     end
 
+    ExistingCharacters[t_guid] = {}
 
+    local queryResultCount = 4
+    for i = 1, #Query_val, queryResultCount do
+        AddExistingCharacter(t_guid, Query_val[i], Query_val[i+1], Query_val[i+2], Query_val[i+3])
+    end
+
+    SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.OwnedCharacter_Start,{t_guid,"request_ok"})
+
+    for k,v in pairs(ExistingCharacters[t_guid]) do
+        SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.OwnedCharacter_Data,{t_guid,k,CM_GetCharacterStatsAsString(v.dyobj)})
+
+    end
+
+    SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.OwnedCharacter_End,{t_guid,"ev"})
+
+end
+
+function AddExistingCharacter(guid, characterID, characterLevel, characterExp, characterStats)
+    print("called AddExistingCharacter " .. characterID .. " " .. guid)
+
+    if characterID == "S_Reimu" then
+        ExistingCharacters[guid][characterID] = S_Reimu:new()
+    elseif characterID == "S_Meiling" then
+        ExistingCharacters[guid][characterID] = S_Meiling:new()
+
+    elseif characterID == "S_Patchouli" then
+        ExistingCharacters[guid][characterID] = S_Patchouli:new()
+    elseif characterID == "S_Yukari" then
+        ExistingCharacters[guid][characterID] = S_Yukari:new()
+    end
+    if ExistingCharacters[guid][characterID] ~= nil then
+        print("AddExistingCharacter exist")
+        ExistingCharacters[guid][characterID]:init(guid, characterID, characterStats)
+        ExistingCharacters[guid][characterID]:setXP(characterExp)
+        ExistingCharacters[guid][characterID]:setLVL(characterLevel)
+    else
+        print("AddExistingCharacter not exist " .. characterID)
+    end
 end

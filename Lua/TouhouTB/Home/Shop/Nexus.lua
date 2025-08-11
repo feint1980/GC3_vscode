@@ -70,5 +70,5 @@ MenuPanels["Nexus"] = function(host)
 end
 
 function NexusRequestUserCharacterList(id,guid)
-    SendRequest(PacketChannel.UserChannel, UserResponse.OwnedCharacter_Request, {id,guid, "request"}, 5, 1.75,0.25)
+    SendRequest(PacketChannel.UserChannel, UserResponse.OwnedCharacter_Request, {id,guid, "request"}, 5, 0.5,0.25)
 end

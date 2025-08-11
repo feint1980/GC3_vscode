@@ -18,6 +18,8 @@ int lua_ClientEPHandler_AddClientEP(lua_State * L)
         ClientEP *clientEP = new ClientEP();
         clientEP->init(ip, guid, name);
         host->addClientEP(clientEP, guid);
+
+        std::cout << "lua added clientEP for guid " << guid << " OK \n";
         return 0;
     }
     return 0;

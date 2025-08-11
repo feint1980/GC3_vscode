@@ -316,10 +316,11 @@ end
 ---@Description Initialize the character Non CB
 ---@param host pointer instance of ClientCharacterHandler
 ---@param name string
+---@param characterID string
 ---@param desc pointer instance of CharacterDesc
 ---@return pointer instance of F_Lua_BaseEntity
-function Character:initNonCB(host,name,desc)
-    self.dyobj=  cpp_CreateCharacterNon_CB(host,name,desc)
+function Character:initNonCB(host,name, characterID ,desc)
+    self.dyobj=  cpp_CreateCharacterNon_CB(host,name, characterID,desc)
     self:setDesc(desc)
 end
 

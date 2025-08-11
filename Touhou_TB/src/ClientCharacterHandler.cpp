@@ -5,7 +5,7 @@
 
 int lua_CharacterFillData(lua_State * L)
 {
-    if (lua_gettop(L) != 3)
+    if (lua_gettop(L) != 4)
 	{
 		std::cout << "gettop failed (lua_CharacterFillData) \n";
 		std::cout << lua_gettop(L) << "\n";
@@ -15,17 +15,19 @@ int lua_CharacterFillData(lua_State * L)
     {
         ClientCharacterHandler * handler = static_cast<ClientCharacterHandler*>(lua_touserdata(L, 1));
         std::string name = lua_tostring(L, 2);
-        CharacterStats  *returnStats = static_cast<CharacterStats*>(lua_touserdata(L, 3));
+        std::string characterID = lua_tostring(L, 3);
+        CharacterStats  *returnStats = static_cast<CharacterStats*>(lua_touserdata(L, 4));
         CharacterDesc * desc = new CharacterDesc();
         desc->setCharacterStats(*returnStats); 
-        handler->addCharacterDesc(name, desc);
+
+        handler->addCharacterDesc(name, characterID, desc);
     }
     return 0;
 }
 
 int lua_GetCharacterData(lua_State * L)
 {
-    if (lua_gettop(L) != 2)
+    if (lua_gettop(L) != 3)
     {
         std::cout << "gettop failed (lua_GetCharacterData) \n";
         std::cout << lua_gettop(L) << "\n";
@@ -35,7 +37,8 @@ int lua_GetCharacterData(lua_State * L)
     {
         ClientCharacterHandler * handler = static_cast<ClientCharacterHandler*>(lua_touserdata(L, 1));
         std::string name = lua_tostring(L, 2);
-        CharacterDesc * desc = handler->getCharacter(name);
+        std::string characterID = lua_tostring(L, 3);
+        CharacterDesc * desc = handler->getCharacter(name, characterID);
         lua_pushlightuserdata(L, desc);
         return 1;
     }
@@ -139,7 +142,7 @@ int lua_getEntityCharacterAttributeStr(lua_State * L)
 
 int lua_CreateCharacterNon_CB(lua_State * L)
 {
-    if(lua_gettop(L) != 3)
+    if(lua_gettop(L) != 4)
     {
         std::cout << "gettop failed (lua_CreateCharacterNon_CB) \n";
         std::cout << lua_gettop(L) << "\n";
@@ -149,8 +152,9 @@ int lua_CreateCharacterNon_CB(lua_State * L)
     {
         ClientCharacterHandler * handler = static_cast<ClientCharacterHandler*>(lua_touserdata(L, 1));
         std::string name = lua_tostring(L, 2);
-        CharacterDesc * desc = static_cast<CharacterDesc*>(lua_touserdata(L, 3));
-        F_Lua_BaseEntity * entity = handler->createCharacter(name, desc);
+        std::string characterID = lua_tostring(L, 3);
+        CharacterDesc * desc = static_cast<CharacterDesc*>(lua_touserdata(L, 4));
+        F_Lua_BaseEntity * entity = handler->createCharacter(name, characterID, desc);
 
         lua_pushlightuserdata(L, entity);
         
@@ -159,30 +163,38 @@ int lua_CreateCharacterNon_CB(lua_State * L)
     return 0;
 }
 
-CharacterDesc * ClientCharacterHandler::getCharacter(const std::string & name)
+CharacterDesc * ClientCharacterHandler::getCharacter(const std::string & name,const std::string & characterID)
 {
-    return m_charactersDesc[name];
+    return m_charactersDesc[name][characterID];
 }
 
 
-F_Lua_BaseEntity * ClientCharacterHandler::createCharacter(const std::string & name ,CharacterDesc *characterDesc)
+F_Lua_BaseEntity * ClientCharacterHandler::createCharacter(const std::string & name , const std::string characterID ,CharacterDesc *characterDesc)
 {
      //std::unordered_map<std::string, F_Lua_BaseEntity * > m_characters;
     F_Lua_BaseEntity * entity = new F_Lua_BaseEntity(); 
     
     // std::cout << "new OK \n";
     entity->setCharacterDesc(*characterDesc);
-    m_charactersMap.insert(std::make_pair(name, entity));
+    
+
+    // if(m_charactersDesc)
+
+    m_charactersMap[name][characterID] = entity;
+    // m_charactersMap.insert(std::make_pair(name, entity));
     //std::unordered_map<std::string, F_Lua_BaseEntity*> characters;
     
     return entity;
+    //return m_charactersMap[name][characterID];
     // m_characters[name] = std::move(entity);
     // return m_characters[name];
 }
 
-void ClientCharacterHandler::addCharacterDesc(const std::string & name ,CharacterDesc *characterDesc)
+void ClientCharacterHandler::addCharacterDesc(const std::string & name ,const std::string characterID ,CharacterDesc *characterDesc)
 {
-    m_charactersDesc[name] = characterDesc;
+
+    m_charactersDesc[name][characterID] = characterDesc;
+    // m_charactersDesc[name] = characterDesc;
 }
 
 ClientCharacterHandler::ClientCharacterHandler()

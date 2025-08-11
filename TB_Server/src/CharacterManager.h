@@ -18,7 +18,6 @@ public:
 
     CharacterDesc * getCharacterDesc(const std::string & guid,const std::string & characterID);
 
-
 private:
 
     lua_State * m_script;

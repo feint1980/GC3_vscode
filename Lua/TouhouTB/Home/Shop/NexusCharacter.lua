@@ -50,6 +50,10 @@ function CharacterNexus:updateCharacters()
         print(k )
     end
 
+    for k,v in pairs(displayOwnedCharacterTable) do
+        table.remove(displayOwnedCharacterTable,k)
+    end
+
     for k,v in pairs(Owned_CharacterTable) do
         table.insert(displayOwnedCharacterTable,v)
     end
@@ -73,7 +77,9 @@ function CharacterNexus:addCharPanel(GUI_host,characterID)
     local panelHeight = 80
     local pWidth, pHeight = self.mainPanel:getSize()
 
-    Owned_CharacterPannels[characterID]= OwnedCharacterPanel:new()
+    if   Owned_CharacterPannels[characterID] == nil then
+        Owned_CharacterPannels[characterID]= OwnedCharacterPanel:new()
+    end
     print("Owned_CharacterPannels[characterID].init")
     Owned_CharacterPannels[characterID]:init(GUI_host,self.mainPanel,0,self.itemCount * panelHeight,pWidth,panelHeight ,characterID)
     self.itemCount = self.itemCount + 1
