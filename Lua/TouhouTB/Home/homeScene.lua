@@ -11,6 +11,7 @@ require "homeOrderStrip"
 require "LuaEventHandler"
 require "Shop"
 require "Nexus"
+require "Formation"
 require "homeGlobal"
 
 require "Reimu"
@@ -60,6 +61,9 @@ Main_ShopButton = nil
 
 ---@type Label
 Main_NexusButton = nil
+
+---@type Label
+Main_FormationButton = nil
 
 local h_id = ""
 local h_pw = ""
@@ -144,6 +148,7 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     Main_MonValLabel:setPosStr("93%","5%")
     Main_MonValLabel:setAlignment(TextAlginment.Right)
 
+    --- Shop Init
     Main_ShopButton = Label:new()
     Main_ShopButton:init(Home_GUIScriptingPtr,"Shop",0,0)
     Main_ShopButton:setPosStr("10%","80`%")
@@ -155,9 +160,10 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
         MenuPanels["Shop"](TGUIScriptingPtr)
         end)
 
+    --- Nexus Init
     Main_NexusButton = Label:new()
     Main_NexusButton:init(Home_GUIScriptingPtr,"Spirit Nexus",0,0)
-    Main_NexusButton:setPosStr("83%","15`%")
+    Main_NexusButton:setPosStr("65%","15%")
     Main_NexusButton:setAlignment(TextAlginment.Center)
     Main_NexusButton:setHoverable(0,255,0,255,255,255,255,255)
 
@@ -165,6 +171,19 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     Main_NexusButton:setOnClickCallback(function()
         MenuPanels["Nexus"](TGUIScriptingPtr)
         end)
+
+    --- Formation Init
+    Main_FormationButton = Label:new()
+    Main_FormationButton:init(Home_GUIScriptingPtr,"Formation",0,0)
+    Main_FormationButton:setPosStr("75%","15%")
+    Main_FormationButton:setAlignment(TextAlginment.Center)
+    Main_FormationButton:setHoverable(0,255,0,255,255,255,255,255)
+    InitFormationMenu(TGUIScriptingPtr)
+    Main_FormationButton:setOnClickCallback(function()
+        MenuPanels["Formation"](TGUIScriptingPtr)
+        end)
+
+
     Home_UpdateInfo()
     Home_RequestSkillsStats()
     Home_RequestOwnedCharacterList()

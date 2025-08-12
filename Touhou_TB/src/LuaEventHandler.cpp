@@ -63,7 +63,7 @@ void LuaEventHandler::init(lua_State * script)
     if(lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this);
-        std::cout << "ref is " << this << "\n";
+        // std::cout << "ref is " << this << "\n";
         const int argc = 1;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))

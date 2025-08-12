@@ -51,18 +51,16 @@ function OwnedCharacterPanel:init(GUI_host, parent, posX, posY, width, height, t
     self.displayNameLabel:setScale(1.1)
 
     self.lvlLabel = RTLabel:new()
-    self.lvlLabel:init(GUI_host, "Level :" .. Tag.color_red.. Owned_CharacterTable[self.characterID].level .. Tag.color_close,posX,posY,self.mainPanel.ptr)
+    self.lvlLabel:init(GUI_host, "Level :" .. Tag.color_red..  string.format("%d", Owned_CharacterTable[self.characterID].level) .. Tag.color_close,posX,posY,self.mainPanel.ptr)
     self.lvlLabel:setPosStr("99%","15%")
     self.lvlLabel:setAlignment(TextAlginment.Right)
     self.lvlLabel:setScale(0.9)
 
     self.expLabel = RTLabel:new()
     local xpCap = Owned_CharacterTable[self.characterID].level * 125
-    self.expLabel:init(GUI_host, "EXP :" .. Tag.color_blue .. Owned_CharacterTable[self.characterID].xp .. Tag.color_close .. "/"  .. tostring(xpCap),posX,posY,self.mainPanel.ptr)
+    self.expLabel:init(GUI_host, "EXP :" .. Tag.color_blue ..  string.format("%d", Owned_CharacterTable[self.characterID].xp) .. Tag.color_close .. "/"  .. string.format("%d",xpCap),posX,posY,self.mainPanel.ptr)
     self.expLabel:setPosStr("99%","55%")
     self.expLabel:setAlignment(TextAlginment.Right)
     self.expLabel:setScale(0.9)
-    return self
-
 
 end

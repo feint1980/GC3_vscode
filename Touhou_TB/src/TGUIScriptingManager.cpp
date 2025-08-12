@@ -851,7 +851,7 @@ int lua_Label_SetOnClickCallback(lua_State * L)
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);;
         label->get()->onClick.disconnectAll();
         std::function<void()> callback = [L,ref](){
-            std::cout << "ref is " << ref << "\n";
+            // std::cout << "ref is " << ref << "\n";
             lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);
         };
         // lua_pop(L, 1);

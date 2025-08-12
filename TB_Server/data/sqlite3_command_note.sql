@@ -30,7 +30,7 @@ CREATE TABLE account_stats_table (
 );
 INSERT INTO account_stats_table VALUES('feint',500.0,250.0);
 INSERT INTO account_stats_table VALUES('belai101',100.0,150.0);
-INSERT INTO account_stats_table VALUES('huyen12',172.0,150.0);
+INSERT INTO account_stats_table VALUES('huyen12',172.0,75.0);
 CREATE TABLE character_base_table (
     character_id VARCHAR(128) PRIMARY KEY, 
     character_name VARCHAR(128) NOT NULL,
@@ -51,7 +51,9 @@ CREATE TABLE player_character_table (
     CONSTRAINT fk_account FOREIGN KEY (account_id) REFERENCES account_table(account_id) ON DELETE CASCADE,
     CONSTRAINT fk_character FOREIGN KEY (character_id) REFERENCES character_base_table(character_id) ON DELETE CASCADE
 );
-
+INSERT INTO player_character_table VALUES(1,'huyen12','S_Meiling',1,0,replace('{\n    "ID": "S_Meiling",\n    "accurate": 0.8999999761581421,\n    "accurateScale": 0.039000000804662704,\n    "action": 0.0,\n    "agility": 15.0,\n    "animationPath": "./Assets/F_AObjects/meiling_tb.xml",\n    "critChance": 0.125,\n    "deathDoorSurviveChance": 0.30000001192092896,\n    "dexterity": 15.0,\n    "evadeChance": 0.25,\n    "evadeChanceScale": 0.028999999165534973,\n    "hp": 140.0,\n    "hpScale": 9.0,\n    "intelligence": 6.0,\n    "lastName": "Hong",\n    "level": 1,\n    "magicDef": 3.299999952316284,\n    "magicDefScale": 0.699999988079071,\n    "magicDmg": 8.699999809265137,\n    "magicDmgScale": 0.800000011920929,\n    "mana": 70.0,\n    "manaScale": 7.0,\n    "name": "Meiling",\n    "panelPath": "./Assets/TB_GUI/panels/meiling_panel.png",\n    "physicDef": 11.5,\n    "physicDefScale": 1.2000000476837158,\n    "physicDmg": 16.0,\n    "physicDmgScale": 3.200000047683716,\n    "portraitPath": "./Assets/TB_GUI/faces/Meiling_face.png",\n    "price": 35,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 17.0,\n    "title": "Gatekeeper of Scarlet Devil Mansion",\n    "vitality": 18.0,\n    "wisdom": 6.0,\n    "xp": 0\n}','\n',char(10)));
+INSERT INTO player_character_table VALUES(2,'huyen12','S_Patchouli',1,0,replace('{\n    "ID": "S_Patchouli",\n    "accurate": 0.8500000238418579,\n    "accurateScale": 0.03500000014901161,\n    "action": 0.0,\n    "agility": 7.0,\n    "animationPath": "./Assets/F_AObjects/patchouli_tb.xml",\n    "critChance": 0.125,\n    "deathDoorSurviveChance": 0.25,\n    "dexterity": 7.0,\n    "evadeChance": 0.15000000596046448,\n    "evadeChanceScale": 0.02500000037252903,\n    "hp": 30.0,\n    "hpScale": 8.0,\n    "intelligence": 26.0,\n    "lastName": "Knowledge",\n    "level": 1,\n    "magicDef": 9.699999809265137,\n    "magicDefScale": 0.800000011920929,\n    "magicDmg": 25.0,\n    "magicDmgScale": 3.700000047683716,\n    "mana": 370.0,\n    "manaScale": 10.0,\n    "name": "Patchouli",\n    "panelPath": "./Assets/TB_GUI/panels/patchouli_panel.png",\n    "physicDef": 3.0,\n    "physicDefScale": 0.20000000298023224,\n    "physicDmg": 4.0,\n    "physicDmgScale": 0.5,\n    "portraitPath": "./Assets/TB_GUI/faces/Patchouli_face.png",\n    "price": 40,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 3.0,\n    "title": "Unmoving Library",\n    "vitality": 4.0,\n    "wisdom": 25.0,\n    "xp": 0\n}','\n',char(10)));
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('register_key_table',9);
+INSERT INTO sqlite_sequence VALUES('player_character_table',2);
 COMMIT;
