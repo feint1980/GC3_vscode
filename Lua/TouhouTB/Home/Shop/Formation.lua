@@ -8,6 +8,7 @@ require "TGUI_Picture"
 require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
 require "homeGlobal"
+require "Formation_Preview_Panel"
 
 MenuPanels = _G.MenuPanels
 
@@ -16,11 +17,24 @@ FormationPanel = nil
 
 ---@type number
 Formation_Page = 1
-
 Formation_PageCap = 1
 
 ---@type Label
 Formation_page_label = nil
+
+---@type Panel 
+Formation_preview_panel = nil
+
+---@type table of FormationPreviewPanel
+Formation_PreviewPanel = {}
+
+---@type Panel
+Formation_Edit_Panel = nil
+
+---@type ScrollablePanel
+Formation_CharacterList = nil
+local listCount = 0
+
 
 
 function InitFormationMenu(host)
@@ -42,7 +56,7 @@ function InitFormationMenu(host)
         local nextPageButton = Label:new()
         nextPageButton:init(host,">>",FormationPanel.width/2,0,FormationPanel.ptr)
         nextPageButton:setAlignment(TextAlginment.Center)
-        nextPageButton:setPosStr("94%","5%")
+        nextPageButton:setPosStr("64%","2%")
         nextPageButton:setHoverable(0,255,0,255,255,255,255,255)
         nextPageButton:setOnClickCallback(function()
             FormationUpdatePage(1)
@@ -51,20 +65,59 @@ function InitFormationMenu(host)
         local prevPageButton = Label:new()
         prevPageButton:init(host,"<<",FormationPanel.width/2,0,FormationPanel.ptr)
         prevPageButton:setAlignment(TextAlginment.Center)
-        prevPageButton:setPosStr("6%","5%")
+        prevPageButton:setPosStr("36%","2%")
         prevPageButton:setHoverable(0,255,0,255,255,255,255,255)
         prevPageButton:setOnClickCallback(function()
             FormationUpdatePage(-1)
         end)
 
+        local newPageButton = Label:new()
+        newPageButton:init(host,"New page",FormationPanel.width/2,0,FormationPanel.ptr)
+        newPageButton:setAlignment(TextAlginment.Center)
+        newPageButton:setPosStr("90%","2%")
+        newPageButton:setHoverable(0,255,0,255,255,255,255,255)
+        newPageButton:setOnClickCallback(function()
+            print("new page request, todo later")
+        end)
 
-    end
-    if Formation_page_label == nil then
-        Formation_page_label = Label:new()
-        Formation_page_label:init(host,"",FormationPanel.width/2,0,FormationPanel.ptr)
-        Formation_page_label:setAlignment(TextAlginment.Center)
-        Formation_page_label:setPosStr("50%","1%")
-        FormationUpdatePage(0)
+        if Formation_page_label == nil then
+            Formation_page_label = Label:new()
+            Formation_page_label:init(host,"",FormationPanel.width/2,0,FormationPanel.ptr)
+            Formation_page_label:setAlignment(TextAlginment.Center)
+            Formation_page_label:setPosStr("50%","1%")
+            FormationUpdatePage(0)
+        end
+
+        if Formation_preview_panel == nil then
+            Formation_preview_panel = Panel:new()
+            Formation_preview_panel:init(host,0,0,600,400,FormationPanel.ptr)
+            Formation_preview_panel:setAlignment(0.5,0.5)
+            Formation_preview_panel:setPosStr("50%","26%")
+            Formation_preview_panel:setSizeStr("95%","35%")
+        end
+
+        for i = 1, 4 do
+            if Formation_PreviewPanel[i] == nil then
+                Formation_PreviewPanel[i] = FormationPreviewPanel:new()
+                Formation_PreviewPanel[i]:init(host,Formation_preview_panel.ptr,i)
+            end
+        end
+
+        if Formation_Edit_Panel == nil then
+            Formation_Edit_Panel = Panel:new()
+            Formation_Edit_Panel:init(host,0,0,600,400,FormationPanel.ptr)
+            Formation_Edit_Panel:setAlignment(0.5,0.5)
+            Formation_Edit_Panel:setPosStr("26.5%","72%")
+            Formation_Edit_Panel:setSizeStr("48%","48%")
+        end
+
+        if Formation_CharacterList == nil then
+            Formation_CharacterList = ScrollablePanel:new()
+            Formation_CharacterList:init(host,0,0,600,400,FormationPanel.ptr)
+            Formation_CharacterList:setAlignment(0.5,0.5)
+            Formation_CharacterList:setPosStr("74.5%","72%")
+            Formation_CharacterList:setSizeStr("46%","48%")
+        end
     end
 
     FormationPanel:setVisible(false)
@@ -78,17 +131,57 @@ function FormationUpdatePage(value)
     if (Formation_Page < 1) then
         Formation_Page = Formation_PageCap
     end
-    
     Formation_page_label:setText("Page " .. Formation_Page .. "/" .. Formation_PageCap)
+end
+
+function FomrationUpdatePreviews(host)
+
+end
+
+local displayOwnedCharacterTable = {}
+
+function FormationUpdateCharacterList(host)
+    for k,v in pairs(Owned_CharacterTable) do
+        print(k )
+    end
+
+    for k,v in pairs(displayOwnedCharacterTable) do
+        table.remove(displayOwnedCharacterTable,k)
+    end
+    displayOwnedCharacterTable = {}
+    listCount = 0
+
+    for k,v in pairs(Owned_CharacterTable) do
+        table.insert(displayOwnedCharacterTable,v)
+    end
+
+    table.sort(displayOwnedCharacterTable, function(a,b) return a.ID < b.ID end)
+    for k,v in pairs(displayOwnedCharacterTable) do
+        Formation_AddCharacterPanel(host,v.ID)
+    end
+
 end
 
 function FormationSetPageCap(value)
     Formation_PageCap = value
 end
 
+function Formation_AddCharacterPanel(host, characterID)
+        print("addCharPanel " .. characterID)
+    local panelHeight = 80
+    local pWidth, pHeight = Formation_CharacterList:getSize()
+
+    if  Formation_OwnedCharacterPannels[characterID] == nil then
+        Formation_OwnedCharacterPannels[characterID]= OwnedCharacterPanel:new()
+    end
+    print("Formation_OwnedCharacterPannels[characterID].init")
+    Formation_OwnedCharacterPannels[characterID]:init(host,Formation_CharacterList,0,listCount * panelHeight,pWidth,panelHeight ,characterID)
+    listCount = listCount + 1
+end
+
 MenuPanels["Formation"] = function(host)
     -- NexusCharacterTab:updateCharacters()
     FormationPanel:showWithEffect(PanelShowType.Fade,250)
+    FomrationUpdatePreviews(host)
+    FormationUpdateCharacterList(host)
 end
-
-

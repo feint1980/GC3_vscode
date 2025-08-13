@@ -75,8 +75,6 @@ function CharacterNexus:updateCharacters()
         self:addCharPanel(Home_GUIScriptingPtr,v.ID)
     end
 
-
-
     print("done update")
 end
 
@@ -92,5 +90,4 @@ function CharacterNexus:addCharPanel(GUI_host,characterID)
     print("Owned_CharacterPannels[characterID].init")
     Owned_CharacterPannels[characterID]:init(GUI_host,self.mainPanel,0,self.itemCount * panelHeight,pWidth,panelHeight ,characterID)
     self.itemCount = self.itemCount + 1
-
 end

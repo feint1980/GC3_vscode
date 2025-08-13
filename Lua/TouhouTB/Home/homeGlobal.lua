@@ -26,6 +26,9 @@ Shop_CharacterTable = {}
 Owned_CharacterTable = {}
 Owned_CharacterPannels = {}
 
+Formation_OwnedCharacterTable = {}
+Formation_OwnedCharacterPannels = {}
+
 Skill_Serialized_Table = {}
 Skill_Table = {}
 
