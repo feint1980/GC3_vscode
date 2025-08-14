@@ -1,5 +1,6 @@
 
 
+
 Formation_CharacterInfo = {
     characterID = "",
     tIndex = 0,

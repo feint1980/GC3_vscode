@@ -71,7 +71,6 @@ CREATE TABLE formation_info_table(
     col_pos TINYINT NOT NULL, -- 1 to 3
     CONSTRAINT fk_formation FOREIGN KEY (formation_id) REFERENCES formation_table(formation_id) ON DELETE CASCADE
     CONSTRAINT fk_character FOREIGN KEY (character_id) REFERENCES player_character_table(character_id) ON DELETE CASCADE
-
 );
 
 DELETE FROM sqlite_sequence;

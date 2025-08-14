@@ -9,6 +9,7 @@ require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
 require "homeGlobal"
 require "Formation_Preview_Panel"
+require "Prompt"
 
 MenuPanels = _G.MenuPanels
 
@@ -34,8 +35,6 @@ Formation_Edit_Panel = nil
 ---@type ScrollablePanel
 Formation_CharacterList = nil
 local listCount = 0
-
-
 
 function InitFormationMenu(host)
     if FormationPanel == nil then 
@@ -71,13 +70,17 @@ function InitFormationMenu(host)
             FormationUpdatePage(-1)
         end)
 
+
+        Prompt_UI_Table["New_Formation_Page"] = Prompt:new()
+        Prompt_UI_Table["New_Formation_Page"]:init(host,"Unlock new formation page for 5".. Tag.icon_soul .. "?" ,true)
+
         local newPageButton = Label:new()
         newPageButton:init(host,"New page",FormationPanel.width/2,0,FormationPanel.ptr)
         newPageButton:setAlignment(TextAlginment.Center)
         newPageButton:setPosStr("90%","2%")
         newPageButton:setHoverable(0,255,0,255,255,255,255,255)
         newPageButton:setOnClickCallback(function()
-            print("new page request, todo later")
+            Prompt_UI_Table["New_Formation_Page"]:show(true)
         end)
 
         if Formation_page_label == nil then
@@ -102,6 +105,29 @@ function InitFormationMenu(host)
                 Formation_PreviewPanel[i]:init(host,Formation_preview_panel.ptr,i)
             end
         end
+
+        Prompt_UI_Table["Formation_Noti"] = Prompt:new()
+        Prompt_UI_Table["Formation_Noti"]:init(host,"Notification",true)
+
+        Prompt_UI_Table["New_Formation"] = Prompt:new()
+        Prompt_UI_Table["New_Formation"]:init(host,"Name your Formation",false)
+
+        Prompt_UI_Table["New_Formation"]:addInputBox("FormationName",100,100,300,40)
+        Prompt_UI_Table["New_Formation"]:addButton("Create",function()
+            local t_data =  Prompt_UI_Table["New_Formation"]:getInputBox("FormationName"):getText()
+
+            if t_data == "" then
+                print("empty ")
+                Prompt_UI_Table["Formation_Noti"]:setMsg("it can't be empty")
+                Prompt_UI_Table["Formation_Noti"]:show(true)
+            end
+            print("create " .. t_data  .."|")
+
+        end)
+        Prompt_UI_Table["New_Formation"]:addButton("Cancel",function()
+            Prompt_UI_Table["New_Formation"]:show(false)
+        end)
+
 
         if Formation_Edit_Panel == nil then
             Formation_Edit_Panel = Panel:new()
@@ -159,7 +185,6 @@ function FormationUpdateCharacterList(host)
     for k,v in pairs(displayOwnedCharacterTable) do
         Formation_AddCharacterPanel(host,v.ID)
     end
-
 end
 
 function FormationSetPageCap(value)
@@ -185,3 +210,4 @@ MenuPanels["Formation"] = function(host)
     FomrationUpdatePreviews(host)
     FormationUpdateCharacterList(host)
 end
+

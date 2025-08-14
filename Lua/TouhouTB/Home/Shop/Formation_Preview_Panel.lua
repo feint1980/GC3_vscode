@@ -9,6 +9,7 @@ require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
 require "homeGlobal"
 require "Formation_CharInfo"
+require "Prompt"
 
 
 ---@class FormationPreviewPanel
@@ -62,6 +63,12 @@ function FormationPreviewPanel:init(GUI_host,parentPanel, index)
     self.formationName:setAlignment(TextAlginment.Center)
     self.formationName:setScale(1.)
 
+    -- local newFormationName = "New_Formation_" .. self.tIndex
+
+
+    -- Prompt_UI_Table[newFormationName]:show(false)
+
+
 end
 
 function FormationPreviewPanel:createNewFormation(GUI_host, characterIDTable)
@@ -73,5 +80,10 @@ function FormationPreviewPanel:addCharacter(GUI_host, characterID, col,row)
 end
 
 function FormationPreviewPanel:onClickCallBack()
-    print("index " .. self.tIndex .. " clicked has " .. #self.t_charactersInfo .. " characters" )
+    
+    if #self.t_charactersInfo > 0 then
+        print("suppose to select ")
+    else
+        Prompt_UI_Table["New_Formation"]:show(true)
+    end
 end
