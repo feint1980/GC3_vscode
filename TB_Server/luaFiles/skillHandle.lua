@@ -7,6 +7,11 @@ require "SV_global"
 MessageHandling[PacketChannel.UserChannel][UserResponse.SkillInfo] = function(host ,data, ip, guid)
     -- print("Request skill info get ")
     local t_guid, tData = string.match(data, "^|([^|]+)|([^|]+)|$")
+
+    if t_guid == nil or tData == nil then
+        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.SkillInfo)")
+        return
+    end
     -- print("recieve data " .. tData .. " from " .. t_guid)
 
     if CH_FindClient(t_guid) ~= nil then

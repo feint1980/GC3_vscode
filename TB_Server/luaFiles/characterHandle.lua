@@ -61,6 +61,11 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
     -- check if account is valid (2nd gatekeep)
     local t_id, t_pw , characterID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
 
+    if t_id == nil or t_pw == nil or characterID == nil then
+        print("Ke3 F3i117 exception (PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy)")
+        return
+    end
+
     if CheckAccountValid(host, t_id, t_pw) then
         print("gatekeep 2 ok")
     end
@@ -164,12 +169,17 @@ end
 
 
 
-
 --- MARK: Owned Response
 MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] = function(host ,data, ip, guid)
     print("Request character owned info get ")
 
     local t_id, t_guid, tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+
+    if t_id == nil or t_guid == nil or tData == nil then
+        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request)")
+        return
+    end
+
     print("recieve data " .. tData .. " from " .. t_guid)
 
     --- guid check 

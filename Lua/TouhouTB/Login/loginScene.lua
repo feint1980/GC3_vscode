@@ -568,6 +568,11 @@ ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = fu
     print("data here " .. data)
     -- "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$"
     local t_id, tStatus, t_pw, tGUID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+
+    if t_id == nil or tStatus == nil or t_pw == nil or tGUID == nil then
+        print("Ke3 F3i117 exception (PacketChannel.AccountChannel][AccountResponse.Alogin)")
+        return
+    end
     -- print("id is " .. t_id .. "/" .. Login_IDEditBox:getText())
     -- print("status is " .. tStatus)
     -- print("pw is " .. t_pw .. "/" .. Login_PWEditBox:getText())

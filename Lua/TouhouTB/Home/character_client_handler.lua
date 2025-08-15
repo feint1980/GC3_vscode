@@ -9,6 +9,11 @@ ClientMessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharact
 
     -- strip first and last character 
     local tData, tResp = string.match(data, "^|([^|]+)|([^|]+)|$")
+    if tData == nil or tResp == nil then
+        print("Ke3 F3i117 exception (PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy)")
+        return
+    end
+
     local tCallBack = nil
     if tResp == "BUY_RES_OK" then
         tCallBack = function()
@@ -31,10 +36,16 @@ end
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Start] = function(host,data, guid)
 
     local t_guid, tData = string.match(data, "^|([^|]+)|([^|]+)|$")
+
+    if t_guid == nil or tData == nil then
+        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.OwnedCharacter_Start)")
+        return
+    end
+
     print("Data is " .. tData)
     if tData ~= "request_ok" then
         print("K2 F3i117 exception")
-        return 
+        return
     end
     if t_guid ~= MainInfo.guid then
         print("Ke3 F3i117 exception")

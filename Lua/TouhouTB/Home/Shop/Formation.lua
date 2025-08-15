@@ -120,14 +120,14 @@ function InitFormationMenu(host)
                 print("empty ")
                 Prompt_UI_Table["Formation_Noti"]:setMsg("it can't be empty")
                 Prompt_UI_Table["Formation_Noti"]:show(true)
+            else
+                Formation_Request_Add(t_data)
             end
-            print("create " .. t_data  .."|")
 
         end)
         Prompt_UI_Table["New_Formation"]:addButton("Cancel",function()
             Prompt_UI_Table["New_Formation"]:show(false)
         end)
-
 
         if Formation_Edit_Panel == nil then
             Formation_Edit_Panel = Panel:new()
@@ -146,6 +146,15 @@ function InitFormationMenu(host)
         end
     end
 
+    -- Send To Get Formation Data from Server
+
+    ---@type table
+    -- MainInfo = _G.MainInfo
+
+    -- print("Main info " .. MainInfo.guid .. " " .. MainInfo.id)
+
+    -- SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Request, {MainInfo.guid, MainInfo.id,"request"}, 5, 0.8,0.25)
+
     FormationPanel:setVisible(false)
 end
 
@@ -159,6 +168,15 @@ function FormationUpdatePage(value)
     end
     Formation_page_label:setText("Page " .. Formation_Page .. "/" .. Formation_PageCap)
 end
+
+function Formation_Request_Add(name)
+
+    local id, guid = MainInfo.id, MainInfo.guid
+
+    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Add, {guid,id, name}, 5, 0.25)
+
+end
+
 
 function FomrationUpdatePreviews(host)
 
@@ -203,6 +221,11 @@ function Formation_AddCharacterPanel(host, characterID)
     Formation_OwnedCharacterPannels[characterID]:init(host,Formation_CharacterList,0,listCount * panelHeight,pWidth,panelHeight ,characterID)
     listCount = listCount + 1
 end
+
+function Formation_UpdateInfo(pageIndex)
+
+end
+
 
 MenuPanels["Formation"] = function(host)
     -- NexusCharacterTab:updateCharacters()

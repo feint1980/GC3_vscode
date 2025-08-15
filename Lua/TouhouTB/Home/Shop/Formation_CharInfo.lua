@@ -1,6 +1,10 @@
 
 
-
+---@class Formation_CharacterInfo
+---@field characterID string
+---@field tIndex number
+---@field col number
+---@field row number
 Formation_CharacterInfo = {
     characterID = "",
     tIndex = 0,
@@ -21,3 +25,17 @@ function Formation_CharacterInfo:init(characterID, tIndex, col, row)
     self.col = col
     self.row = row
 end
+
+---@class Formation_Info
+---@field formationID number
+---@field formationName string
+---@field formationIndex number
+---@field formationCharacters table of Formation_CharacterInfo
+Formation_Info = {
+    formationID = 0,
+    formationName = "",
+    -- formationIndex = 0,
+
+    ---@type table of Formation_CharacterInfo
+    formationCharacters = {}
+}

@@ -23,7 +23,13 @@ UserResponse = {
     OwnedCharacter_Request = 7,
     OwnedCharacter_Start = 8,
     OwnedCharacter_Data = 9,
-    OwnedCharacter_End = 10
+    OwnedCharacter_End = 10,
+    Formation_Request = 11,
+    Formation_Start = 12,
+    Formation_Data = 13,
+    Formation_End = 14,
+    Formation_Add = 15,
+    Formation_Remove = 16,
 }
 
 

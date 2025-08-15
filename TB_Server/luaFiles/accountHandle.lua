@@ -133,6 +133,12 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
     ClientEPList = _G.ClientEPList
 
     local t_id, t_pw = string.match(data, "^|([^|]+)|([^|]+)|$")
+
+    if t_id == nil or t_pw == nil then
+        print("Ke3 F3i117 exception (PacketChannel.AccountChannel][AccountResponse.Alogin)")
+        return
+    end
+
     local loginResult = "K2 request failed"
     if CheckAccountValid(host, t_id, t_pw) then
         loginResult = "granted"
@@ -158,6 +164,11 @@ end
 ---@param guid string client guid
 MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = function(host ,data, ip, guid)
     local t_id, t_pw, t_key = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+
+    if t_id == nil or t_pw == nil or t_key == nil then
+        print("Ke3 F3i117 exception (PacketChannel.AccountChannel][AccountResponse.Aregister)")
+        return
+    end
 
     local checkAccountExistQuery = "SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ?;"
 
@@ -215,6 +226,11 @@ end
 MessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host ,data, ip, guid)
 
     local t_id, t_pw, t_guid = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+
+    if t_id == nil or t_pw == nil or t_guid == nil then
+        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.MainInfo)")
+        return
+    end
     -- print("check account " .. t_id .. " " .. t_pw .. " " .. t_guid)
 
     if CheckAccountValid(host, t_id, t_pw) then

@@ -44,7 +44,8 @@ Account_Stats_Table = {
     tb_name = "account_stats_table",
     id = "account_id",
     mon = "mon",
-    soul = "souls"
+    soul = "souls",
+    formmations = "formmations"
 
 }
 
@@ -73,6 +74,23 @@ Character_Base_Table =  {
     stats = "stats"
 }
 
+Formation_Table = {
+    tb_name = "formation_table",
+    id = "formation_id",
+    account_id = "account_id",
+    name = "formation_name",
+    index = "formation_index"
+}
+
+Formation_Info_Table = {
+    tb_name = "formation_info_table",
+    formation_id = "formation_id",
+    character_id = "character_id",
+    slot_index = "slot_index",
+    row_pos = "row_pos",
+    col_pos = "col_pos"
+}
+
 ---@class Table
 -- Table = {
 --     register_key = "register_key_table",
@@ -87,7 +105,9 @@ Table = {
     register_key = RegisterKey_Table,
     account_stats = Account_Stats_Table,
     character_base = Character_Base_Table,
-    user_character = Account_Character_Table
+    user_character = Account_Character_Table,
+    formation = Formation_Table,
+    formation_info = Formation_Info_Table
 }
 
 Query_count = 0
@@ -238,6 +258,7 @@ end
 require "accountHandle"
 require "skillHandle"
 require "characterHandle"
+require "formationHandle"
 
 print("server side script ended ...")
 

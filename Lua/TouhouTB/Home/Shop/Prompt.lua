@@ -118,7 +118,6 @@ function Prompt:arrangeBtns()
         if #self.inputBoxes > 0 then
             y = "90%"
         end
-        print("rearrange button " .. string.format("%.1f%%",x) .. " ????000000000000000000000000000000000000000000" )
         self.btnTable[i]:setPosStr(string.format("%.1f%%",x),y)
     end
 end
@@ -147,12 +146,10 @@ function Prompt:getInputBox(name)
     return self.inputBoxes[name]
 end
 
--- function Prompt:arrangeInputs()
---     local inputCount = #self.inputBoxes
---     local spacing = 100/ (inputCount + 1)
---     for i, input in ipairs(self.inputBoxes) do
---         local x = "50%"
---         local y = spacing * i
---         input:setPosStr(x,string.format("%.1f%%",y))
---     end
--- end
+function Prompt:ShowBtn(index, value)
+    if self.btnTable[index] == nil then
+        print("warning : btnTable[" .. index .. "] is nil")
+        return
+    end
+    self.btnTable[index]:setVisible(value)
+end

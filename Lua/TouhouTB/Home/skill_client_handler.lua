@@ -7,6 +7,12 @@ Skill_Serialized_Table = _G.Skill_Serialized_Table
 local t_skill_count = 0
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.SkillInfo_Start] = function(host,data, guid)
     local t_guid, tData = string.match(data, "^|([^|]+)|([^|]+)|$")
+
+    if t_guid == nil or tData == nil then
+        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.SkillInfo_Start)")
+        return
+    end
+
     print("recieve data " .. tData .. " from " .. t_guid)
     for k,v in pairs(Skill_Serialized_Table) do
         Skill_Serialized_Table[k] = nil
@@ -17,6 +23,12 @@ end
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.SkillInfo_Data] = function(host,data, guid)
 
     local characterKey , skillKey, skillValue = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$") 
+
+    if characterKey == nil or skillKey == nil or skillValue == nil then
+        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.SkillInfo_Data)")
+        return
+    end
+
     if Skill_Serialized_Table[characterKey] == nil then
         Skill_Serialized_Table[characterKey] = {}
     end

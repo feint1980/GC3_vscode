@@ -187,6 +187,7 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     Home_UpdateInfo()
     Home_RequestSkillsStats()
     Home_RequestOwnedCharacterList()
+    Home_RequestFormations()
 end
 
 function Home_UpdateInfo()
@@ -208,6 +209,10 @@ function Home_RequestOwnedCharacterList()
     NexusRequestUserCharacterList(h_id,h_guid)
 end
 
+function Home_RequestFormations()
+    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Request, {MainInfo.guid, MainInfo.id,"request"}, 5, 1.2,0.25)
+
+end
 
 HomeMain_HandleTask = {}
 
@@ -308,6 +313,10 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = functi
     print("AccountResponse.Aregister called")
 
     local t_id, mon, souls, t_guid = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    if t_id == nil or mon == nil or souls == nil or t_guid == nil then
+        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.MainInfo)")
+        return
+    end
     print("check account " .. t_id .. " " .. mon .. " " .. souls .. " " .. t_guid)
     Main_MonValLabel:setText(mon)
     Main_SoulsValLabel:setText(Tag.color_TB_title .. souls .. " " .. Tag.icon_soul .. Tag.color_close)
@@ -324,6 +333,11 @@ end
 ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Data] = function(host,data, guid)
 
     local t_name, t_data, isOwned = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$") 
+
+    if t_name == nil or t_data == nil or isOwned == nil then
+        print("Ke3 F3i117 exception (PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Data)")
+        return
+    end
 
     S_Characters_Info[t_name] = Characters_Info:new()
     

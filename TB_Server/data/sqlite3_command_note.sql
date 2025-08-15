@@ -57,16 +57,17 @@ INSERT INTO player_character_table VALUES(1,'huyen12','S_Meiling',1,0,replace('{
 INSERT INTO player_character_table VALUES(2,'huyen12','S_Patchouli',1,0,replace('{\n    "ID": "S_Patchouli",\n    "accurate": 0.8500000238418579,\n    "accurateScale": 0.03500000014901161,\n    "action": 0.0,\n    "agility": 7.0,\n    "animationPath": "./Assets/F_AObjects/patchouli_tb.xml",\n    "critChance": 0.125,\n    "deathDoorSurviveChance": 0.25,\n    "dexterity": 7.0,\n    "evadeChance": 0.15000000596046448,\n    "evadeChanceScale": 0.02500000037252903,\n    "hp": 30.0,\n    "hpScale": 8.0,\n    "intelligence": 26.0,\n    "lastName": "Knowledge",\n    "level": 1,\n    "magicDef": 9.699999809265137,\n    "magicDefScale": 0.800000011920929,\n    "magicDmg": 25.0,\n    "magicDmgScale": 3.700000047683716,\n    "mana": 370.0,\n    "manaScale": 10.0,\n    "name": "Patchouli",\n    "panelPath": "./Assets/TB_GUI/panels/patchouli_panel.png",\n    "physicDef": 3.0,\n    "physicDefScale": 0.20000000298023224,\n    "physicDmg": 4.0,\n    "physicDmgScale": 0.5,\n    "portraitPath": "./Assets/TB_GUI/faces/Patchouli_face.png",\n    "price": 40,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 3.0,\n    "title": "Unmoving Library",\n    "vitality": 4.0,\n    "wisdom": 25.0,\n    "xp": 0\n}','\n',char(10)));
 
 CREATE TABLE formation_table(
-    formation_id BIGINT AUTOINCREMENT PRIMARY KEY,
+    formation_id INTEGER PRIMARY KEY AUTOINCREMENT,
     account_id VARCHAR(64) NOT NULL,
     formation_name VARCHAR(64) NOT NULL,
+    formation_index TINYINT NOT NULL,
     CONSTRAINT fk_account FOREIGN KEY (account_id) REFERENCES account_table(account_id) ON DELETE CASCADE
 );
 
 CREATE TABLE formation_info_table(
-    formation_id BIGINT NOT NULL,
+    formation_id INTEGER NOT NULL,
     character_id VARCHAR(128) NOT NULL,
-    slot_index TINYINT NOT NULL, -- 1 to 4 
+    slot_index TINYINT NOT NULL, -- 1 to 4
     row_pos TINYINT NOT NULL, -- 1 to 3
     col_pos TINYINT NOT NULL, -- 1 to 3
     CONSTRAINT fk_formation FOREIGN KEY (formation_id) REFERENCES formation_table(formation_id) ON DELETE CASCADE
