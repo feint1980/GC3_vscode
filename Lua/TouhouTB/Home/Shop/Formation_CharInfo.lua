@@ -34,8 +34,22 @@ end
 Formation_Info = {
     formationID = 0,
     formationName = "",
-    -- formationIndex = 0,
+    formationIndex = 0,
 
     ---@type table of Formation_CharacterInfo
     formationCharacters = {}
 }
+
+function Formation_Info:new(o)
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    return o
+end
+
+function Formation_Info:init(formationID, formationName, formationIndex, formationCharacters)
+    self.formationID = formationID
+    self.formationName = formationName
+    self.formationIndex = formationIndex
+    self.formationCharacters = formationCharacters
+end

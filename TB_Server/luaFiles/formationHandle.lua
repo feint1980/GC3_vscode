@@ -21,11 +21,17 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = fu
         return
     end
     --- start query 
+    
+    local cap = 4 -- FormationQuery_CheckCap(host,t_id)
+    print("formation limit " .. cap)
 
     local getFormationQuery = "SELECT " .. Table.formation.id .. "," .. Table.formation.account_id .. "," .. Table.formation.name .. "," .. Table.formation.index .. " FROM " .. Table.formation.tb_name .. " WHERE " .. Table.formation.account_id .. " = ?;"
     SVI_DoQuerySTMT(host,getFormationQuery,{t_id})
 
     local FormationQueryResult = Query_val
+    
+    
+    SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.Formation_Start, {t_guid , "request_ok",tostring(cap)})
 
     for i = 1, #FormationQueryResult, 4 do
         print("formation " .. FormationQueryResult[i] .. " " .. FormationQueryResult[i+1] .. " " .. FormationQueryResult[i+2] .. " " ..  tostring(FormationQueryResult[i+3]))
