@@ -80,7 +80,8 @@ function FormationPreviewPanel:addCharacter(GUI_host, characterID, col,row)
 end
 
 function FormationPreviewPanel:onClickCallBack()
-    
+
+    Formation_Selection = self.tIndex 
     if #self.t_charactersInfo > 0 then
         print("suppose to select ")
     else

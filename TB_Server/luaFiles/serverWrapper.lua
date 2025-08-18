@@ -27,9 +27,10 @@ UserResponse = {
     Formation_Request = 11,
     Formation_Start = 12,
     Formation_Data = 13,
-    Formation_End = 14,
-    Formation_Add = 15,
-    Formation_Remove = 16,
+    Formation_SubData = 14,
+    Formation_End = 15,
+    Formation_Add = 16,
+    Formation_Remove = 17,
 }
 
 

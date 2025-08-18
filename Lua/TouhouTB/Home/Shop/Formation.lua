@@ -34,6 +34,10 @@ Formation_Edit_Panel = nil
 
 ---@type ScrollablePanel
 Formation_CharacterList = nil
+
+---@type number formation Selection
+Formation_Selection = 0
+
 local listCount = 0
 
 function InitFormationMenu(host)
@@ -173,7 +177,9 @@ function Formation_Request_Add(name)
 
     local id, guid = MainInfo.id, MainInfo.guid
 
-    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Add, {guid,id, name}, 5, 0.25)
+    print("Formation_Request_Add " .. id .. " " .. guid .. " " .. name .. " Index " .. Formation_Selection)
+
+    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Add, {guid,id, name, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
 
 end
 

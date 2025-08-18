@@ -54,15 +54,15 @@ end
 
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.SkillInfo_End] = function(host,data, guid)
     local tData = string.sub(data,2,string.len(data) - 1)
-    if tData == "ev" then 
-        print("skill transfer ended, total skill:" .. tostring(t_skill_count))
-        print("check data")
+    -- if tData == "ev" then 
+        -- print("skill transfer ended, total skill:" .. tostring(t_skill_count))
+        -- print("check data")
         -- for k,v in pairs(Skill_Serialized_Table) do
         --     for k2,v2 in pairs(v) do
         --         print(k .. " " .. k2 .. " " .. v2)
         --     end
         -- end
-    end
+    -- end
 end
 
 

@@ -22,16 +22,48 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = fu
     end
     --- start query 
 
-    local getFormationQuery = "SELECT " .. Table.formation.id .. "," .. Table.formation.account_id .. " FROM " .. Table.formation.tb_name .. " WHERE " .. Table.formation.account_id .. " = ?;"
+    local getFormationQuery = "SELECT " .. Table.formation.id .. "," .. Table.formation.account_id .. "," .. Table.formation.name .. "," .. Table.formation.index .. " FROM " .. Table.formation.tb_name .. " WHERE " .. Table.formation.account_id .. " = ?;"
     SVI_DoQuerySTMT(host,getFormationQuery,{t_id})
-    for i = 1, #Query_val, 2 do
-        print("formation " .. Query_val[i] .. " " .. Query_val[i+1])
+
+    local FormationQueryResult = Query_val
+
+    for i = 1, #FormationQueryResult, 4 do
+        print("formation " .. FormationQueryResult[i] .. " " .. FormationQueryResult[i+1] .. " " .. FormationQueryResult[i+2] .. " " ..  tostring(FormationQueryResult[i+3]))
+        --1 (i) formation id
+        --2 (i+1) account id
+        --3 (i+2) formation name
+        --4 (i+3) index
+
+        SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.Formation_Data,{FormationQueryResult[i],FormationQueryResult[i+1],FormationQueryResult[i+2], tostring(FormationQueryResult[i+3])})
+
+        local formationDataQuery = "SELECT " .. Table.formation_info.formation_id .. "," .. Table.formation_info.character_id .. "," .. Table.formation_info.slot_index .. "," .. Table.formation_info.row_pos .. "," .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.formation_id .. " = ?;"
+        SVI_DoQuerySTMT(host,formationDataQuery,{FormationQueryResult[i]})
+
+        print("sub query " .. formationDataQuery)
+        local FormationDataQueryResult = Query_val
+        local formationData = {}
+        for j = 1, #FormationDataQueryResult, 5 do
+
+            --1 (j) formation id
+            --2 (j+1) character id
+            --3 (j+2) slot index
+            --4 (j+3) row pos
+            --5 (j+4) col pos
+            local formationID = FormationDataQueryResult[j]
+            local characterID = FormationDataQueryResult[j+1]
+            local slotIndex = tostring(FormationDataQueryResult)[j+2]
+            local rowPos = tostring(FormationDataQueryResult)[j+3]
+            local colPos = tostring(FormationDataQueryResult)[j+4]
+
+            SendReliable(host, ip, t_guid, PacketChannel.UserChannel, UserResponse.Formation_SubData,{formationID,characterID,slotIndex,rowPos,colPos})
+
+            print(" info " .. FormationDataQueryResult[j] .. " " ..  FormationDataQueryResult[j+1] .. " " ..  FormationDataQueryResult[j+2] .. " " ..  FormationDataQueryResult[j+3] .. " " ..  FormationDataQueryResult[j+4])
+
+        end
+        print("sub query end")
     end
-
     print("query end")
-
 end
-
 
 function FormationQuery_CheckCount(host,userID)
 
@@ -49,11 +81,11 @@ function FormationQuery_CheckCap(host,userID)
     return Query_val[1]
 end
 
-MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Add] = function(host ,data, ip, guid)
-    local t_guid, t_id , tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Add] = function(host ,data, ip, guid)
+    local t_guid, t_id , formationName, formationIndex = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
 
-    if ExtractDataCheck({t_guid,t_id,tData},PacketChannel.UserChannel,UserResponse.Formation_Add) == false then 
+    if ExtractDataCheck({t_guid,t_id,formationName,formationIndex},PacketChannel.UserChannel,UserResponse.Formation_Add) == false then 
         return
     end
 
@@ -73,8 +105,13 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Add] = functi
     else
         print("formation limit not reached " .. queryCount .. "/" .. queryCap)
 
-        -- local addFormationQuery = "INSERT INTO " .. Table.formation.tb_name .. " (" .. Table.formation.id .. "," .. Table.formation.account_id .. ") VALUES (NULL, ?);"
-        -- SVI_DoQuerySTMT(host,addFormationQuery,{t_id})
+        local addFormationQuery = "INSERT INTO " .. Table.formation.tb_name .. " (" .. Table.formation.account_id .. "," .. Table.formation.name .. "," .. Table.formation.index .. ") VALUES (?, ?, " .. formationIndex .. ") ON CONFLICT (" .. Table.formation.account_id .. "," .. Table.formation.index .. ") DO UPDATE SET " .. Table.formation.name .. " = excluded." .. Table.formation.name .. ";"
+
+        -- print("addFormationQuery " .. addFormationQuery)
+
+        SVI_DoQuerySTMT(host,addFormationQuery,{t_id,formationName})
+
+        SendReliable(host,ip, guid,PacketChannel.UserChannel,UserResponse.Formation_Request,{ "Formation added !","close" })
     end
     -- if t_guid == nil or t_id == nil or tData == nil then
     --     print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.Formation_Add)")
