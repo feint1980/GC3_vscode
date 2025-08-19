@@ -289,3 +289,34 @@ end
 function SV_RemoveCryptor(host, key)
     return cpp_removeCryptor(host, key)
 end
+
+---@Description: check if data 
+---@param data table of data
+function SVI_checkData(data)
+    print("SVI_checkData data size " .. #data)
+    local tDataCount = GetTableSize(data)
+
+    for i = 1, #data do
+        if data[i] == nil then
+            print("data " .. i .. " is nil")
+            return false
+        end
+    end
+    return true
+end
+
+function Table_DeepCopy(orig, copies)
+    copies = copies or {} -- to handle cycles
+    if type(orig) ~= "table" then
+        return orig
+    elseif copies[orig] then
+        return copies[orig]
+    end
+    
+    local copy = {}
+    copies[orig] = copy
+    for k, v in pairs(orig) do
+        copy[Table_DeepCopy(k, copies)] = Table_DeepCopy(v, copies)
+    end
+    return setmetatable(copy, getmetatable(orig))
+end

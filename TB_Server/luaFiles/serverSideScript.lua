@@ -125,6 +125,8 @@ function ClearQuery()
         Query_col[i] = nil
         Query_val[i] = nil
     end
+    Query_col = {}
+    Query_val = {}
     Query_count = 0
 end
 

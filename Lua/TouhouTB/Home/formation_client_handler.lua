@@ -39,8 +39,24 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Data] = 
     
     Formation_Table[formationID] = Formation_Info:new()
     Formation_Table[formationID]:init(formationID, accoundID, formationName, index)
+end
+
+ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_End] = function(host,data, guid)
+    local t_guid, tData = string.match(data, "^|([^|]+)|([^|]+)|$")
+
+    if t_guid == nil or tData == nil then
+        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.Formation_End)")
+        return
+    end
+    if t_guid == guid then
+        if tData == "request_done" then
+            print("formation request done")
+        end
+    end
 
 end
+
+
 
 
 

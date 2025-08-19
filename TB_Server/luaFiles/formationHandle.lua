@@ -28,22 +28,45 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = fu
     local getFormationQuery = "SELECT " .. Table.formation.id .. "," .. Table.formation.account_id .. "," .. Table.formation.name .. "," .. Table.formation.index .. " FROM " .. Table.formation.tb_name .. " WHERE " .. Table.formation.account_id .. " = ?;"
     SVI_DoQuerySTMT(host,getFormationQuery,{t_id})
 
-    local FormationQueryResult = Query_val
+    local formationQueryResult = Table_DeepCopy(Query_val)
     
     
     SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.Formation_Start, {t_guid , "request_ok",tostring(cap)})
 
-    for i = 1, #FormationQueryResult, 4 do
-        print("formation " .. FormationQueryResult[i] .. " " .. FormationQueryResult[i+1] .. " " .. FormationQueryResult[i+2] .. " " ..  tostring(FormationQueryResult[i+3]))
+    local queryResultSize = GetTableSize(Query_val)
+    print("total formation count " .. queryResultSize)
+
+    for k = 1, queryResultSize do
+        print(Query_val[k])
+    end
+    
+    for i = 1, #formationQueryResult, 4 do
+        
+        if(SVI_checkData{formationQueryResult[i],formationQueryResult[i+1],formationQueryResult[i+2],formationQueryResult[i+3]} == false) then
+            print("data check failed")
+            return
+        end
+
         --1 (i) formation id
         --2 (i+1) account id
         --3 (i+2) formation name
         --4 (i+3) index
+        local t_formationID = tostring(formationQueryResult[i])
+        local t_accountID = tostring(formationQueryResult[i+1])
+        local t_formationName = tostring(formationQueryResult[i+2])
+        local t_index = tostring(formationQueryResult[i+3])
 
-        SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.Formation_Data,{FormationQueryResult[i],FormationQueryResult[i+1],FormationQueryResult[i+2], tostring(FormationQueryResult[i+3])})
+        print("index i " .. i)
+        print("formation ID " .. tostring( t_formationID) )
+        print("formation account ID " ..  tostring(t_accountID))
+        print("formation name " ..  tostring(   t_formationName))
+        print("formation index " .. tostring(  t_index))
+
+        SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.Formation_Data,{tostring(formationQueryResult[i]),tostring(formationQueryResult[i+1]),tostring(formationQueryResult[i+2]), tostring(formationQueryResult[i+3])})
 
         local formationDataQuery = "SELECT " .. Table.formation_info.formation_id .. "," .. Table.formation_info.character_id .. "," .. Table.formation_info.slot_index .. "," .. Table.formation_info.row_pos .. "," .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.formation_id .. " = ?;"
-        SVI_DoQuerySTMT(host,formationDataQuery,{FormationQueryResult[i]})
+        print("fill data " .. t_accountID)
+        SVI_DoQuerySTMT(host,formationDataQuery,{t_accountID})
 
         print("sub query " .. formationDataQuery)
         local FormationDataQueryResult = Query_val
@@ -55,8 +78,14 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = fu
             --3 (j+2) slot index
             --4 (j+3) row pos
             --5 (j+4) col pos
-            local formationID = FormationDataQueryResult[j]
-            local characterID = FormationDataQueryResult[j+1]
+
+            if(SVI_checkData{FormationDataQueryResult[j],FormationDataQueryResult[j+1],FormationDataQueryResult[j+2],FormationDataQueryResult[j+3],FormationDataQueryResult[j+4]} == false) then
+                print("data check failed")
+                return
+            end
+
+            local formationID = tostring(FormationDataQueryResult[j])
+            local characterID = tostring(FormationDataQueryResult[j+1])
             local slotIndex = tostring(FormationDataQueryResult)[j+2]
             local rowPos = tostring(FormationDataQueryResult)[j+3]
             local colPos = tostring(FormationDataQueryResult)[j+4]
@@ -68,6 +97,7 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = fu
         end
         print("sub query end")
     end
+    SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.Formation_End, {t_guid , "request_done"})
     print("query end")
 end
 
