@@ -75,6 +75,12 @@ function FormationPreviewPanel:createNewFormation(GUI_host, characterIDTable)
     
 end
 
+
+function FormationPreviewPanel:update(accountID, formationName)
+    self.formationName:setText(formationName)
+    
+end
+
 function FormationPreviewPanel:addCharacter(GUI_host, characterID, col,row)
 
 end

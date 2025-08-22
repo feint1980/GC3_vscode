@@ -29,8 +29,7 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = fu
     SVI_DoQuerySTMT(host,getFormationQuery,{t_id})
 
     local formationQueryResult = Table_DeepCopy(Query_val)
-    
-    
+
     SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.Formation_Start, {t_guid , "request_ok",tostring(cap)})
 
     local queryResultSize = GetTableSize(Query_val)
@@ -39,9 +38,9 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = fu
     for k = 1, queryResultSize do
         print(Query_val[k])
     end
-    
+
     for i = 1, #formationQueryResult, 4 do
-        
+
         if(SVI_checkData{formationQueryResult[i],formationQueryResult[i+1],formationQueryResult[i+2],formationQueryResult[i+3]} == false) then
             print("data check failed")
             return

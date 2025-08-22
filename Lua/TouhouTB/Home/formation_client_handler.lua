@@ -20,14 +20,37 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Start] =
 
     local t_guid,tData, cap = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
     print("recieve data " .. tData .. " from " .. t_guid .. " cap " .. cap  )
+
+
+    if t_guid == nil or tData == nil or cap == nil then
+        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.Formation_Start)")
+        return
+    end
+
+    print(tData)
+    if tData == "request_ok" then
+        print(cap)
+        -- Prompt_UI_Table["New_Formation"]:show(true)
+    else
+        -- Prompt_UI_Table["New_Formation"]:show(false)
+    end
+
+    print("number of page reset")
+    local nCap = tonumber(cap)
+    if nCap == nil then
+        return 
+    end
+    Formation_PageCap = nCap / 4
+    -- Formation_Page = tonumbercap
+
+    print("Formation_PageCap " .. Formation_PageCap)
     
     -- reset table
     for k in pairs (Formation_Table) do
         Formation_Table[k] = nil
     end
     Formation_Table = {}
-    
-    
+
 end
 
 
@@ -39,6 +62,9 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Data] = 
     
     Formation_Table[formationID] = Formation_Info:new()
     Formation_Table[formationID]:init(formationID, accoundID, formationName, index)
+
+    Formation_PreviewPanel[tonumber(index)]:update(accoundID, formationName)
+
 end
 
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_End] = function(host,data, guid)
