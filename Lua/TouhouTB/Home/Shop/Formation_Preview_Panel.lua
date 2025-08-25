@@ -11,7 +11,6 @@ require "homeGlobal"
 require "Formation_CharInfo"
 require "Prompt"
 
-
 ---@class FormationPreviewPanel
 FormationPreviewPanel ={
     guiHost = nil,
@@ -68,17 +67,13 @@ function FormationPreviewPanel:init(GUI_host,parentPanel, index)
 
     -- Prompt_UI_Table[newFormationName]:show(false)
 
-
 end
 
 function FormationPreviewPanel:createNewFormation(GUI_host, characterIDTable)
-    
 end
-
 
 function FormationPreviewPanel:update(accountID, formationName)
     self.formationName:setText(formationName)
-    
 end
 
 function FormationPreviewPanel:addCharacter(GUI_host, characterID, col,row)

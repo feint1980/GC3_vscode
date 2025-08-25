@@ -53,7 +53,6 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Start] =
 
 end
 
-
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Data] = function(host,data, guid)
 
     local formationID, accoundID, formationName, index = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")

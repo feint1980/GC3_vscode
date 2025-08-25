@@ -172,6 +172,7 @@ void F_Marisa_Luminous_Strike::update(float deltaTime, std::vector<FairyBase *> 
 		m_animation.update(deltaTime);
 		m_animation.setScale(m_scale);
 		m_animation.setAngle(m_angle);
+		m_animation.setPos(m_pos);
 		//std::cout << m_angle << "\n";
 		updateColor(deltaTime);
 		//m_afterImageParticle.update(deltaTime, m_animation.getCurrentAnimation()->getCurrentIndex(), 0);
