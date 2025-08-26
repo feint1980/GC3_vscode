@@ -278,6 +278,11 @@ namespace Feintgine {
 		// 	m_threads[i].join();
 		// }
 
+		while(m_packetCount < m_storedPacketCount)
+		{
+			// wait till done
+		};
+
 		std::cout << "back to main thread \n";
 
 		// back to main thread
