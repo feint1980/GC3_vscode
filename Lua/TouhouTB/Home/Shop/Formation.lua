@@ -10,6 +10,7 @@ require "TGUI_ScrollablePanel"
 require "homeGlobal"
 require "Formation_Preview_Panel"
 require "Prompt"
+require "Formation_Edit"
 
 MenuPanels = _G.MenuPanels
 
@@ -32,6 +33,9 @@ Formation_PreviewPanel = {}
 ---@type Panel
 Formation_Edit_Panel = nil
 
+---@type Formation_Edit
+Formation_Edit_Instance = nil
+
 ---@type ScrollablePanel
 Formation_CharacterList = nil
 
@@ -41,12 +45,14 @@ Formation_Selection = 0
 local listCount = 0
 
 function InitFormationMenu(host)
+    -- Init main panel
     if FormationPanel == nil then 
         FormationPanel = Panel:new() 
         FormationPanel:init(host,TGUI_ScreenWidth/2 - 300,TGUI_ScreenHeight/2 - 200,600,400)
         FormationPanel:setSizeStr("80%", "80%")
         FormationPanel:setAlignment(0.5, 0.5)
         FormationPanel:setPosStr("50%", "50%")
+        
         local closeLabel = Label:new()
         closeLabel:init(host,"X",FormationPanel.width - 20,0,FormationPanel.ptr)
         closeLabel:setPosStr("99%","1%")
@@ -74,7 +80,6 @@ function InitFormationMenu(host)
             FormationUpdatePage(-1)
         end)
 
-
         Prompt_UI_Table["New_Formation_Page"] = Prompt:new()
         Prompt_UI_Table["New_Formation_Page"]:init(host,"Unlock new formation page for 5".. Tag.icon_soul .. "?" ,true)
 
@@ -101,6 +106,7 @@ function InitFormationMenu(host)
             Formation_preview_panel:setAlignment(0.5,0.5)
             Formation_preview_panel:setPosStr("50%","26%")
             Formation_preview_panel:setSizeStr("95%","35%")
+        
         end
 
         for i = 1, 4 do
@@ -139,6 +145,9 @@ function InitFormationMenu(host)
             Formation_Edit_Panel:setAlignment(0.5,0.5)
             Formation_Edit_Panel:setPosStr("26.5%","72%")
             Formation_Edit_Panel:setSizeStr("48%","48%")
+            
+            Formation_Edit_Instance = Formation_Edit:new()
+            Formation_Edit_Instance:init(host,Formation_Edit_Panel.ptr)
         end
 
         if Formation_CharacterList == nil then
