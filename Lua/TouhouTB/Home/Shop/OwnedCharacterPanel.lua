@@ -64,3 +64,16 @@ function OwnedCharacterPanel:init(GUI_host, parent, posX, posY, width, height, t
     self.expLabel:setScale(0.9)
 
 end
+
+function OwnedCharacterPanel:setOnClickCallback(callback)
+    self.mainPanel:setOnClickCallback(callback)
+end
+
+function OwnedCharacterPanel:setHovereColor(r,g,b,a,r1,g1,b1,a1)
+    self.mainPanel:setHoverable(r,g,b,a,r1,g1,b1,a1)
+    self.mainPanel:setBorderColor(r1,g1,b1,a1)
+end
+
+function OwnedCharacterPanel:setHoverableStop()
+    self.mainPanel:setHoverableStop()
+end

@@ -179,7 +179,6 @@ void F_Marisa_Luminous_Strike::update(float deltaTime, std::vector<FairyBase *> 
 		if (m_lifeTime < 0.0f || m_pos.y >= 350.0f)
 		{
 			destroy();
-
 		}
 		else
 		{

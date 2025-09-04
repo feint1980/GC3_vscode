@@ -103,9 +103,6 @@ void F_Player::init(const std::string & animationPath,
 	m_luminousLauncher.loadAnimation("Assets/F_AObjects/marisa_star.xml");
 	m_luminousLauncher.registerParticleBatch(m_starParticleBatch2);
 
-
-
-
 	//m_animation.setColor(Feintgine::Color(-2550, -2550, -2550, 255));
 	//m_testBulletAnimation.init("Assets/F_AObjects/reimu.xml");
 	m_dim = glm::vec2(6);

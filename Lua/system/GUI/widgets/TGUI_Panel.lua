@@ -182,6 +182,11 @@ function Panel:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
         end)
 end
 
+function Panel:setHoverableStop()
+    TGUI_Panel_RemoveHoverOnCallback(self.ptr)
+    TGUI_Panel_RemoveHoverOffCallback(self.ptr)
+end
+
 ---@Description set the opacity of the panel
 ---@param opacity number
 function Panel:setOpacity(opacity)
@@ -315,4 +320,16 @@ end
 --- return 2 number width and height
 function TGUI_Panel_GetSize(panel)
     return cpp_Panel_GetSize(panel)
+end
+
+--- wrapper of cpp_Panel_RemoveHoverOnCallback
+--- @param panelPtr pointer instance of TGUI Panel
+function TGUI_Panel_RemoveHoverOnCallback(panelPtr)
+    cpp_Panel_RemoveHoverOnCallback(panelPtr)
+end
+
+--- wrapper of cpp_Panel_RemoveHoverOffCallback
+--- @param panelPtr pointer instance of TGUI Panel
+function TGUI_Panel_RemoveHoverOffCallback(panelPtr)
+    cpp_Panel_RemoveHoverOffCallback(panelPtr)
 end

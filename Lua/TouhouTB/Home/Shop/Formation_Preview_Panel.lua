@@ -74,6 +74,7 @@ end
 
 function FormationPreviewPanel:update(accountID, formationName)
     self.formationName:setText(formationName)
+    self.isEmpty = false
 end
 
 function FormationPreviewPanel:addCharacter(GUI_host, characterID, col,row)
@@ -82,8 +83,9 @@ end
 
 function FormationPreviewPanel:onClickCallBack()
 
-    Formation_Selection = self.tIndex 
-    if #self.t_charactersInfo > 0 then
+    Formation_Selection = self.tIndex
+
+    if self.isEmpty == false then
         print("suppose to select ")
     else
         Prompt_UI_Table["New_Formation"]:show(true)

@@ -186,6 +186,7 @@ int lua_Panel_SetHoverOnCallback(lua_State * L)
             lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);
         };
         // callback();
+        panel->get()->onMouseEnter.disconnectAll();
         panel->get()->onMouseEnter(callback);
     }
     return 0;
@@ -209,6 +210,7 @@ int lua_Panel_SetHoverOffCallback(lua_State * L)
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
+        panel->get()->onMouseLeave.disconnectAll();
         panel->get()->onMouseLeave(callback);
     }
     return 0;
@@ -287,7 +289,9 @@ int lua_Panel_SetOnClickCallback(lua_State * L)
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
+        panel->get()->onClick.disconnectAll();
         panel->get()->onClick(callback);
+        
     }
     return 0;
 }
@@ -311,6 +315,7 @@ int lua_Panel_SetOnDoubleClickCallback(lua_State * L)
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
         // panel->get()->
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
+        panel->get()->onDoubleClick.disconnectAll();
         panel->get()->onDoubleClick(callback);
     }
     return 0;
@@ -333,6 +338,35 @@ int lua_Panel_GetSize(lua_State * L)
     return 0;
 }
 
+int lua_Panel_RemoveHoverOnCallback(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Panel_RemoveHoverOnCallback) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
+        panel->get()->onMouseEnter.disconnectAll();
+    }
+    return 0;
+}
+
+int lua_Panel_RemoveHoverOffCallback(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Panel_RemoveHoverOffCallback) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
+        panel->get()->onMouseLeave.disconnectAll();
+    }
+    return 0;
+}
 
 // MARK: EditBox
 
@@ -2120,6 +2154,8 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Panel_SetOnClickCallback", lua_Panel_SetOnClickCallback);
     lua_register(m_script, "cpp_Panel_SetOnDoubleClickCallback", lua_Panel_SetOnDoubleClickCallback);
     lua_register(m_script, "cpp_Panel_GetSize", lua_Panel_GetSize);
+    lua_register(m_script, "cpp_Panel_RemoveHoverOnCallback", lua_Panel_RemoveHoverOnCallback);
+    lua_register(m_script, "cpp_Panel_RemoveHoverOffCallback", lua_Panel_RemoveHoverOffCallback);
 
     // TGUI ScrollablePanel section
     lua_register(m_script, "cpp_ScrollablePanel_Create", lua_ScrollablePanel_Create);
