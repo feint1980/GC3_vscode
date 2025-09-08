@@ -11,13 +11,15 @@ require "homeGlobal"
 require "Formation_Preview_Panel"
 require "Prompt"
 require "Formation_CharInfo"
+require "Formation_Slot"
+
 
 ---@class Formation_Edit
 Formation_Edit = {
     ---@type Panel
     mainPanel = nil,
-    ---@type table Picture
-    characterPics = {},
+    ---@type table Formation_Slot
+    formationSlot = {},
     ---@type table Formation_CharacterInfo
 }
 
@@ -37,23 +39,23 @@ function Formation_Edit:init(host,parentPanel)
     self.mainPanel:setAlignment(0.5,0.5)
     self.mainPanel:setSizeStr("99%","99%")
     self.mainPanel:setPosStr("50%","50%")
-    
+
     local sizeX, sizeY = self.mainPanel:getSize()
-    local picSize = (sizeY/ 3) * 0.9
-    
+    local picSize = (sizeY/ 3) * 0.85
+
+    for i = 1, 3 do
+        self.formationSlot[i] = {}
+        for j = 1, 3 do
+            self.formationSlot[i][j] = Formation_Slot:new()
+            self.formationSlot[i][j]:init(host,self.mainPanel.ptr,sizeX / 3 * (j - 1) + (picSize *0.9) , sizeY / 3  *( i - 1) + (picSize *0.55) ,picSize,picSize,"./Assets/TB_GUI/slide/plus.png")
+        end
+    end
+end
+
+function Formation_Edit:resetSelections()
     for i = 1, 3 do
         for j = 1, 3 do
-            local pic = Picture:new()
-            pic:init(host,"./Assets/TB_GUI/slide/plus.png", sizeX / 3 * (j - 1) + (picSize *0.5) , sizeY / 3  *( i - 1),0 ,0,self.mainPanel.ptr)
-            
-            -- table.insert(self.characterPics,pic)
-            -- local strPosX = ((j - 1) * 25) + 12.5
-            -- local strPosXStr = tostring(strPosX) .. "%"
-            -- local strPosY = ((i - 1) * 25) + 12.5
-            -- local strPosYStr = tostring(strPosY) .. "%"
-            -- pic:setPosStr(strPosXStr,strPosYStr)
-            
-            pic:setSize(picSize,picSize)
+            self.formationSlot[i][j]:setSelected(false)
         end
     end
 end
