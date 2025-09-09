@@ -2177,7 +2177,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Picture_SetSize", lua_Picture_SetSize);
     lua_register(m_script, "cpp_Picture_SetSizeStr", lua_Picture_SetSizeStr);
     lua_register(m_script, "cpp_Picture_SetTexture", lua_Picture_SetTexture);
-    lua_register(m_script, "cpp_Picture_SetBGColor", lua_Picture_SetBGColor);
+
     
     // TGUI Tabs container section
     lua_register(m_script, "cpp_TabContainer_Create", lua_TabContainer_Create);

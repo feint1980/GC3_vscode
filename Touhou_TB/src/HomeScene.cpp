@@ -193,6 +193,11 @@ void HomeScene::handleInput(Feintgine::InputManager & inputManager)
 
     }
     m_guiScriptingManager.handleInput(inputManager);
+
+    if(m_controlHandler)
+    {
+        m_controlHandler->handleInput(inputManager);
+    }
 }
 
 void HomeScene::draw()
@@ -263,6 +268,8 @@ void HomeScene::initGUI()
     m_luaEventHandler.init(m_script);
     m_guiScriptingManager.init(m_window,m_script);
     m_skillHandler.init(m_script);
+    m_controlHandler = new ControlHandler();
+    m_controlHandler->init(m_script);
 
     unsigned int port = 1123;
 

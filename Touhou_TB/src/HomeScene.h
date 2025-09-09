@@ -39,6 +39,7 @@
 #include "LuaEventHandler.h"
 #include "ClientCharacterHandler.h"
 #include "../../PacketDescription/SkillHandler.h"
+#include "ControlHandler.h"
 
 class HomeScene : public Feintgine::IGameScreen
 {
@@ -124,4 +125,9 @@ private:
     LuaEventHandler m_luaEventHandler;
 
     Feintgine::F_AnimatedObject m_gif;
+
+    ControlHandler * m_controlHandler = nullptr;
+
+
 };
+
