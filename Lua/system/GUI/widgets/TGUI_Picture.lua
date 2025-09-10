@@ -32,8 +32,16 @@ function Picture:new(o)
     self.__index = self
     return o
 end
-
-function Picture:init(host,path,posX,posY,width,height,parent)
+---@Description init the picture
+---@param host pointer instance of TGUIScriptingManager
+---@param path string path to image
+---@param posX number x position
+---@param posY number y position
+---@param width number width
+---@param height number height
+---@param parent? pointer instance of parent, default nil (main)
+function Picture:init(host,path,posX,posY
+,width,height,parent)
     parent = parent or nil
     self.parent = parent
     self.host = host

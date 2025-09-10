@@ -17,13 +17,16 @@ function ControlHandler_Init(host)
 end
 
 function ControlHandler_DispatchSignal(signal)
-
     print("Get signal " .. signal)
     for i = 1, #SignalReceivers.stack do
         if SignalReceivers.stack[i] ~= nil then
+            --- esc/B button hit
             if signal == 32 then
+                TGUI_Panel_SetVisible(SignalReceivers.stack[i],true)
                 TGUI_Panel_HideWithEffect(SignalReceivers.stack[i],0,250)
             end
+            --- consider handle left/right/up/down
+            --- todo here
         end
     end
 end
