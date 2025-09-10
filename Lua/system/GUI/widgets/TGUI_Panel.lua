@@ -1,3 +1,8 @@
+package.path = package.path .. ';../../Lua/system/Input/?.lua;'
+
+
+require "controlHandler"
+
 
 ---@class PanelShowType
 PanelShowType = {
@@ -104,6 +109,7 @@ end
 function Panel:hideWithEffect(type,time)
     TGUI_Panel_HideWithEffect(self.ptr, type,time)
     self.visible = false
+    ControlHandler_reciever_remove(self.ptr)
 end
 
 ---@Description show panel with effect
@@ -113,6 +119,7 @@ function Panel:showWithEffect(type,time)
     
     TGUI_Panel_ShowWithEffect(self.ptr, type,time)
     self.visible = true
+    ControlHandler_reciever_push(self.ptr)
 end
 
 ---@Description set Alignment of Panel
