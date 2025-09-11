@@ -192,12 +192,14 @@ void HomeScene::handleInput(Feintgine::InputManager & inputManager)
     {
 
     }
-    m_guiScriptingManager.handleInput(inputManager);
 
     if(m_controlHandler)
     {
         m_controlHandler->handleInput(inputManager);
     }
+
+    m_guiScriptingManager.handleInput(inputManager);
+
 }
 
 void HomeScene::draw()
@@ -259,7 +261,6 @@ void HomeScene::drawGIFScene()
 void HomeScene::initGUI()
 {
 
-    
     m_guiScriptingManager.addDrawCall("drawGIFScene", std::bind(&HomeScene::drawGIFScene, this));
 
     m_script = luaL_newstate();
@@ -269,7 +270,7 @@ void HomeScene::initGUI()
     m_guiScriptingManager.init(m_window,m_script);
     m_skillHandler.init(m_script);
     m_controlHandler = new ControlHandler();
-    m_controlHandler->init(m_script);
+    m_controlHandler->init(m_script,m_window->getWindow(),m_guiScriptingManager.getTGUI());
 
     unsigned int port = 1123;
 
@@ -295,8 +296,9 @@ void HomeScene::initGUI()
         lua_pushlightuserdata(m_script, m_clientScriptingManager);
         lua_pushlightuserdata(m_script, m_clientCharacterHandler);
         lua_pushlightuserdata(m_script, &m_skillHandler);
+        lua_pushlightuserdata(m_script, m_controlHandler);
         std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-        const int argc = 5;
+        const int argc = 6;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {

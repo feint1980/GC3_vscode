@@ -116,7 +116,6 @@ end
 ---@param type number type
 ---@param time number time to appear
 function Panel:showWithEffect(type,time)
-    
     TGUI_Panel_ShowWithEffect(self.ptr, type,time)
     self.visible = true
     ControlHandler_reciever_push(self.ptr)
@@ -160,7 +159,6 @@ function Panel:setOnDoubleClickCallback(callback)
     TGUI_Panel_SetOnDoubleClickCallback(self.ptr, callback)
 end
 
-
 ---@Description set the border color of the panel
 ---@param r number red (0-255)
 ---@param g number green (0-255)
@@ -200,6 +198,8 @@ function Panel:setOpacity(opacity)
     TGUI_Panel_SetOpacity(self.ptr, opacity)
 end
 
+---@Description get the size of the panel
+---@return number width, number height
 function Panel:getSize()
     return TGUI_Panel_GetSize(self.ptr)
 end

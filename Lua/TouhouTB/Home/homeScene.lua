@@ -1,4 +1,4 @@
-package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Home/Shop/?.lua;' .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua' .. ';../../Lua/TouhouTB/characters/Meiling/?.lua;' .. ';../../Lua/TouhouTB/?.lua'
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Home/Shop/?.lua;' .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua' .. ';../../Lua/TouhouTB/characters/Meiling/?.lua;' .. ';../../Lua/TouhouTB/?.lua' 
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -13,6 +13,7 @@ require "Shop"
 require "Nexus"
 require "Formation"
 require "homeGlobal"
+
 
 require "Reimu"
 require "Patchouli"
@@ -30,6 +31,9 @@ Home_ClientScriptingPtr = nil
 
 ---@type pointer ClientCharacterHandler
 Home_ClientCharacterHandlerPtr = nil
+
+---@type pointer ControlHandlerPtr
+Home_ControlHandlerPtr = nil
 
 --@type pointer SkillHandler
 Home_SkillHandlerPtr = nil
@@ -65,18 +69,21 @@ Main_NexusButton = nil
 ---@type Label
 Main_FormationButton = nil
 
+
+
 local h_id = ""
 local h_pw = ""
 local h_guid = ""
 
 
-
-function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr)
+function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
     HomeSceneHost = host
     Home_GUIScriptingPtr = TGUIScriptingPtr
     Home_ClientScriptingPtr = ClientScriptingPtr
     Home_ClientCharacterHandlerPtr = ClientCharacterHandlerPtr
     Home_SkillHandlerPtr = SkillHandlerPtr
+    Home_ControlHandlerPtr = ControlHandlerPtr
+
 
     if HomeSceneHost ~= nil then
         print("LoginHost is not nil")
@@ -439,3 +446,5 @@ end
 require "skill_client_handler"
 require "character_client_handler"
 require "formation_client_handler"
+
+require "home_Input_control"

@@ -48,6 +48,7 @@ function Label:init(host, text, posX, posY,parent)
     self.posX = posX
     self.posY = posY
     self.parent = parent
+
 end
 
 ---@Description set the position of the label
