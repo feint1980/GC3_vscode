@@ -368,6 +368,25 @@ int lua_Panel_RemoveHoverOffCallback(lua_State * L)
     return 0;
 }
 
+int lua_Panel_GetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Panel_GetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
+        tgui::Vector2f pos = panel->get()->getAbsolutePosition();
+        lua_pushnumber(L, pos.x);
+        lua_pushnumber(L, pos.y);
+        return 2;
+    }
+    return 2;
+}
+
+
 // MARK: EditBox
 
 int lua_EditBox_SetPos(lua_State * L)
@@ -908,6 +927,43 @@ int lua_Label_SetScale(lua_State * L)
         label->get()->setScale(scale);
     }
     return 0;
+}
+
+int lua_Label_GetPos(lua_State * L)
+{
+    if (lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Label_GetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));
+        tgui::Vector2f pos = label->get()->getAbsolutePosition();
+        tgui::Vector2f size = label->get()->getFullSize() ;
+        // tgui::Vector2f scale = label->get()->getSiz();
+        lua_pushnumber(L, pos.x + (size.x * 0.5f));
+        lua_pushnumber(L, pos.y + (size.y * 0.5f));
+
+    }
+    return 2;
+}
+
+int lua_Label_GetText(lua_State * L)
+{
+    if (lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Label_GetText) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));
+        std::string text = label->get()->getText().toStdString();
+        //  text = label->get()->getText();
+        lua_pushstring(L, text.c_str());
+    }
+    return 1;
 }
 
 
@@ -2111,7 +2167,9 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Label_SetOffHoverCallback", lua_Label_SetOffHoverCallback);
     lua_register(m_script, "cpp_Label_SetOnClickCallback", lua_Label_SetOnClickCallback);
     lua_register(m_script, "cpp_Label_SetScale", lua_Label_SetScale);
-    
+    lua_register(m_script, "cpp_Label_GetPos", lua_Label_GetPos);
+    lua_register(m_script, "cpp_Label_GetText", lua_Label_GetText);
+
     
     // TGUI Rich Text Label section
     lua_register(m_script, "cpp_RTLabel_Create", lua_RTLabel_Create);
@@ -2156,6 +2214,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Panel_GetSize", lua_Panel_GetSize);
     lua_register(m_script, "cpp_Panel_RemoveHoverOnCallback", lua_Panel_RemoveHoverOnCallback);
     lua_register(m_script, "cpp_Panel_RemoveHoverOffCallback", lua_Panel_RemoveHoverOffCallback);
+    lua_register(m_script, "cpp_Panel_GetPos", lua_Panel_GetPos);
 
     // TGUI ScrollablePanel section
     lua_register(m_script, "cpp_ScrollablePanel_Create", lua_ScrollablePanel_Create);

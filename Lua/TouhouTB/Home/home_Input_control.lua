@@ -14,6 +14,5 @@ Dispatch_Recievers["homeScene"] = function (controlHandlerHost,signal)
         print("x " .. x .. " y " .. y)
         Controller_fireLeftClickEvent(controlHandlerHost,1,x,y)
     end
-
 end
 

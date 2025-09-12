@@ -119,6 +119,7 @@ function Panel:showWithEffect(type,time)
     TGUI_Panel_ShowWithEffect(self.ptr, type,time)
     self.visible = true
     ControlHandler_reciever_push(self.ptr)
+    print("the focus index now is " .. SignalReceivers.focusIndex)
 end
 
 ---@Description set Alignment of Panel
@@ -185,11 +186,14 @@ function Panel:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
     self:setHoverOffCallBack(function()
         self:setBorderColor(oR,oG,oB,oA)
         end)
+
+    ControlHandler_AddFocusableWidget(self.ptr,self.parent)
 end
 
 function Panel:setHoverableStop()
     TGUI_Panel_RemoveHoverOnCallback(self.ptr)
     TGUI_Panel_RemoveHoverOffCallback(self.ptr)
+    ControlHandler_RemoveFocusableWidget(self.ptr,self.parent)
 end
 
 ---@Description set the opacity of the panel
@@ -329,6 +333,10 @@ function TGUI_Panel_GetSize(panel)
     return cpp_Panel_GetSize(panel)
 end
 
+-- function TGUI_Panel_GetPos(panel)
+--     return cpp_Panel_GetPos(panel)
+-- end
+
 --- wrapper of cpp_Panel_RemoveHoverOnCallback
 --- @param panelPtr pointer instance of TGUI Panel
 function TGUI_Panel_RemoveHoverOnCallback(panelPtr)
@@ -339,4 +347,11 @@ end
 --- @param panelPtr pointer instance of TGUI Panel
 function TGUI_Panel_RemoveHoverOffCallback(panelPtr)
     cpp_Panel_RemoveHoverOffCallback(panelPtr)
+end
+
+--- wrapper of cpp_Panel_GetPos
+--- @param panel pointer instance of TGUI Panel
+--- @return 2  number x and y
+function TGUI_Panel_GetPos(panel)
+    return cpp_Panel_GetPos(panel)
 end

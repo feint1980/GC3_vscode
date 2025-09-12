@@ -41,6 +41,8 @@
 
 #include "ClientScriptingManager.h"
 
+#include "ControlHandler.h"
+
 #include "LuaEventHandler.h"
 class LoginSceneV2 : public Feintgine::IGameScreen
 {
@@ -107,6 +109,8 @@ private:
     LuaEventHandler m_luaEventHandler ;
 
     TGUIScriptingManager m_guiScriptingManager;
+
+    ControlHandler * m_controlHandler = nullptr;
 
     //LuaEventHandler m_luaEventHandler;
 

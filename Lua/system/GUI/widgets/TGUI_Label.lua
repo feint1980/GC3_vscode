@@ -115,7 +115,13 @@ end
 function Label:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
     self:setOnHoverCallback(function() self:setColor(hR,hG,hB,hA) end)
     self:setOffHoverCallback(function() self:setColor(oR,oG,oB,oA) end)
+    ControlHandler_AddFocusableWidget(self.ptr,self.parent)
 end
+
+function Label:getPos()
+    return TGUI_Label_GetPos(self.ptr)
+end
+
 
 --- MARK: Wrapper
 --- function wrapper of cpp_Label_Create
@@ -209,3 +215,21 @@ function TGUI_Label_SetScale(label, scale)
     cpp_Label_SetScale(label, scale)
 end
 
+
+--- function wrapper of cpp_Label_GetPos
+---@Description get the position of the label
+---@return number x position, y position
+function TGUI_Label_GetPos(label)
+    -- if parent ~= nil then 
+    --     local x,y = cpp_Label_GetPos(label)
+    -- end
+    return cpp_Label_GetPos(label)
+end
+
+--- function wrapper of cpp_Label_GetText
+---@Description get the text of the label
+---@param label pointer instance of Label
+---@return string
+function TGUI_Label_GetText(label)
+    return cpp_Label_GetText(label)
+end

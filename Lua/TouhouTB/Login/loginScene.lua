@@ -30,6 +30,9 @@ Login_GUIScriptingPtr = nil
 ---@type pointer ClientScriptingPtr
 Login_ClientScriptingPtr = nil
 
+---@type pointer Control_HandlerPtr
+Login_ControlHandlerPtr = nil
+
 --- Main Menu
 ---@type Label
 Login_PlayOfflineBtn = nil
@@ -111,10 +114,11 @@ function Login_CombinePackage(type,list)
     return returnValue
 end
 
-function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
+function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerPtr)
     LoginHost = host
     Login_GUIScriptingPtr = TGUIScriptingPtr
     Login_ClientScriptingPtr = ClientScriptingPtr
+    Login_ControlHandlerPtr = ControlHandlerPtr
     if LoginHost ~= nil then
         print("LoginHost is not nil")
     end
@@ -199,33 +203,6 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_ExitBtn:setAlignment(TextAlginment.Center)
     Login_ExitBtn:setHoverable(0,255,0,255,255,255,255,255)
     Login_ExitBtn:setOnClickCallback(function() os.exit() end)
-
-    ---- TOS section -----
-    local tosPanel = Panel:new()
-    tosPanel:init(Login_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
-    tosPanel:setAlignment(0.5,0.5)
-    tosPanel:setSizeStr("30%", "30%")
-    tosPanel:setPosStr("50%", "50%")
-    tosPanel:setVisible(false)
-    -- tosPanel:setHoverOnCallBack(function() print("data ") end)
-
-    local tosText = RTLabel:new()
-    tosText:init(Login_GUIScriptingPtr,"This is a fan-made game based on \nTouhou project,many assets from other \ngames as concepts/placeholder,if you are \nOK with this prototype then hit \"Agree\" ",0,TGUI_ScreenHeight/2,tosPanel.ptr)
-    tosText:setAlignment(TextAlginment.Center)
-    tosText:setPosStr("50%","15%")
-
-    local tosAgree = Label:new()
-    tosAgree:init(Login_GUIScriptingPtr,"Agree",0,0,tosPanel.ptr)
-
-    tosAgree:setPosStr("50%","80%")
-    tosAgree:setAlignment(TextAlginment.Center)
-
-    tosAgree:setHoverable(0,255,0,255,255,255,255,255)
-    tosAgree:setOnClickCallback(function() 
-        tosPanel:hideWithEffect(PanelShowType.Fade,250)  
-    end)
-
-    tosPanel:showWithEffect(PanelShowType.Fade,250)
 
     --- Login Panel section
     Login_LoginPanel = Panel:new()
@@ -362,6 +339,38 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr)
     Login_RegisterCancelBtn:setOnClickCallback(function()
         Login_RegisterPanel:hideWithEffect(PanelShowType.Fade,250)
     end)
+
+
+    ---- TOS section -----
+    local tosPanel = Panel:new()
+    tosPanel:init(Login_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
+    tosPanel:setAlignment(0.5,0.5)
+    tosPanel:setSizeStr("30%", "30%")
+    tosPanel:setPosStr("50%", "50%")
+    tosPanel:setVisible(false)
+    -- tosPanel:setHoverOnCallBack(function() print("data ") end)
+
+    local tosText = RTLabel:new()
+    tosText:init(Login_GUIScriptingPtr,"This is a fan-made game based on \nTouhou project,many assets from other \ngames as concepts/placeholder,if you are \nOK with this prototype then hit \"Agree\" ",0,TGUI_ScreenHeight/2,tosPanel.ptr)
+    tosText:setAlignment(TextAlginment.Center)
+    tosText:setPosStr("50%","15%")
+
+    local tosAgree = Label:new()
+    tosAgree:init(Login_GUIScriptingPtr,"Agree",0,0,tosPanel.ptr)
+
+    tosAgree:setPosStr("50%","80%")
+    tosAgree:setAlignment(TextAlginment.Center)
+
+    tosAgree:setHoverable(0,255,0,255,255,255,255,255)
+    tosAgree:setOnClickCallback(function() 
+        tosPanel:hideWithEffect(PanelShowType.Fade,250)  
+    end)
+
+    tosPanel:showWithEffect(PanelShowType.Fade,250)
+
+
+    ControlHandler_receiver_switchFocus(tosPanel.ptr)
+
     ---- TOS section end
     ---
     --- loop 
@@ -614,3 +623,7 @@ ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] =
         end)
     end
 end
+
+
+---- Input control 
+require "loginScene_input_control"

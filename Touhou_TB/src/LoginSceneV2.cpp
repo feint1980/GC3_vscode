@@ -188,12 +188,18 @@ void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
     {
 
     }
+
+
+    if(m_controlHandler)
+    {
+        m_controlHandler->handleInput(inputManager);
+    }
     m_guiScriptingManager.handleInput(inputManager);
 
-    if(inputManager.isKeyPressed(SDLK_RETURN))
-    {
-        sendSignalToLua(1);
-    }
+    // if(inputManager.isKeyPressed(SDLK_RETURN))
+    // {
+    //     sendSignalToLua(1);
+    // }
 }
 
 void LoginSceneV2::sendSignalToLua(int signal)
@@ -259,7 +265,8 @@ void LoginSceneV2::initGUI()
     m_guiScriptingManager.init(m_window,m_script);
     
     m_clientScriptingManager = new ClientScriptingManager();
-
+    m_controlHandler = new ControlHandler();
+    m_controlHandler->init(m_script,m_window->getWindow(),m_guiScriptingManager.getTGUI());
     // m_clientScriptingManager->init("127.0.0.1", 1123,m_script);
 
     m_client = RakNet::RakPeerInterface::GetInstance();
@@ -295,8 +302,9 @@ void LoginSceneV2::initGUI()
         lua_pushlightuserdata(m_script, this);
         lua_pushlightuserdata(m_script, &m_guiScriptingManager);
         lua_pushlightuserdata(m_script, m_clientScriptingManager);
+        lua_pushlightuserdata(m_script, m_controlHandler);
         // std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-        const int argc = 3;
+        const int argc = 4;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {

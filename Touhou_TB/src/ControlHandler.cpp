@@ -70,7 +70,7 @@ int lua_ControlHandler_Cursor_SendLeftClickEvent(lua_State * script)
             // std::cout << "sent a left click  " << SDL_PushEvent(&down) << "\n";
             
             // tgui::Gui::handleEvent(down);
-            // SDL_Delay(100);
+            SDL_Delay(100);
 
             SDL_Event up;
             up.type = SDL_MOUSEBUTTONUP;
@@ -148,22 +148,22 @@ void ControlHandler::update(float deltaTime)
 void ControlHandler::handleInput(Feintgine::InputManager & inputManager)
 {
     unsigned int signal = 0;
-    if(inputManager.isKeyPressed(SDLK_LEFT) || inputManager.isKeyPressed(SDLK_a))
+    if(inputManager.isKeyPressed(SDLK_LEFT) ) //|| inputManager.isKeyPressed(SDLK_a)
     {
         signal |= 1;
     }
 
-    if(inputManager.isKeyPressed(SDLK_RIGHT) || inputManager.isKeyPressed(SDLK_d))
+    if(inputManager.isKeyPressed(SDLK_RIGHT) ) // || inputManager.isKeyPressed(SDLK_d)
     {
         signal |= 2;
     }
 
-    if(inputManager.isKeyPressed(SDLK_UP) || inputManager.isKeyPressed(SDLK_w))
+    if(inputManager.isKeyPressed(SDLK_UP) ) //|| inputManager.isKeyPressed(SDLK_w)
     {
         signal |= 4;
     }
 
-    if(inputManager.isKeyPressed(SDLK_DOWN) || inputManager.isKeyPressed(SDLK_s))
+    if(inputManager.isKeyPressed(SDLK_DOWN) ) //|| inputManager.isKeyPressed(SDLK_s)
     {
         signal |= 8;
     }
@@ -199,6 +199,4 @@ void ControlHandler::handleInput(Feintgine::InputManager & inputManager)
 			}
 		}
     }
-
-
 }
