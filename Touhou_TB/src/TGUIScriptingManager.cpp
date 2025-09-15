@@ -1,4 +1,5 @@
 #include "TGUIScriptingManager.h"
+#include "lua.h"
 
 int luaCallbackRef = LUA_NOREF;
 // MARK: Panel
@@ -16,6 +17,7 @@ int lua_Panel_Create(lua_State * L)
         float pY = lua_tonumber(L, 3);
         float width = lua_tonumber(L, 4);
         float height = lua_tonumber(L, 5);
+        
 
         tgui::Panel::Ptr * panel = new tgui::Panel::Ptr();
 
@@ -33,6 +35,7 @@ int lua_Panel_Create(lua_State * L)
         }
         else
         {
+    
             *panel = host->createPanel(pX, pY, width, height,nullptr);
         }
         
@@ -331,6 +334,7 @@ int lua_Panel_GetSize(lua_State * L)
     {
         tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
         tgui::Vector2f size = panel->get()->getSize();
+        // tgui::Gui::get
         lua_pushnumber(L, size.x);
         lua_pushnumber(L, size.y);
         return 2;
@@ -379,6 +383,7 @@ int lua_Panel_GetPos(lua_State * L)
     {
         tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
         tgui::Vector2f pos = panel->get()->getAbsolutePosition();
+        // tgui::Gui::getfo
         lua_pushnumber(L, pos.x);
         lua_pushnumber(L, pos.y);
         return 2;
@@ -1887,6 +1892,55 @@ int lua_Add_DrawCall(lua_State * L)
     return 0;
 }
 
+int lua_FocusStack_SetFocus(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_FocusStack_SetFocus) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 2));
+        host->addPanelToFocusStack(panel);
+    }
+    return 0;
+}
+
+int lua_FocusStack_GetFocus(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_FocusStack_GetFocus) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        tgui::Panel::Ptr * panel = host->getTopFocusPanel();
+        lua_pushlightuserdata(L, panel);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_FocusStack_RemovePanel(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_FocusStack_RemovePanel) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 2));
+        host->removePanelFromFocusStack(panel);
+    }
+    return 0;
+}
+
 TGUIScriptingManager::TGUIScriptingManager()
 {
 
@@ -2134,6 +2188,70 @@ void TGUIScriptingManager::bindCanvasDrawCall(const std::string & name, std::fun
     }
 }
 
+void TGUIScriptingManager::addFocusableLabel(tgui::Label::Ptr * label, tgui::Panel::Ptr * panel)
+{
+    if(m_focusPanels.find(panel) == m_focusPanels.end())
+    {
+        addFocusPanel(panel);
+    }
+
+    if(panel && label)
+    {
+        m_focusableLabels[panel].insert(label);
+    }
+    // m_focusStack.back
+    // m_focusStack.swa
+    // if(m_focusableLabels.find(panel) != m_focusableLabels.end())
+    // {
+        // m_focusableLabels[panel].insert(label);
+    // }
+}
+
+void TGUIScriptingManager::addPanelToFocusStack(tgui::Panel::Ptr * panel)
+{
+    // if the panel already in the list, swap it to the back
+    for(int i = 0 ; i < m_focusStack.size(); i++)
+    {
+        if(m_focusStack[i] == panel)
+        {
+            if (i < m_focusStack.size() - 1)
+            {
+                std::swap(m_focusStack[i],m_focusStack.back());
+                setFocusStackActive();
+                return;
+            }
+        }
+    }
+    // new panel to stack
+    m_focusStack.push_back(panel);
+    setFocusStackActive();
+}
+
+void TGUIScriptingManager::removePanelFromFocusStack(tgui::Panel::Ptr * panel)
+{
+    for (int i = 0 ; i < m_focusStack.size(); i++)
+    {
+        if(m_focusStack[i] == panel)
+        {
+            // m_focusStack.erase(m_focusStack.begin() + i);
+            std::swap(m_focusStack[i],m_focusStack.back());
+            m_focusStack.pop_back();
+            setFocusStackActive();
+            return;
+        }
+    }
+    std::cout << "Warning, panel not found in focus stack \n"; 
+}
+
+void TGUIScriptingManager::setFocusStackActive()
+{
+    for(int i = 0 ; i < m_focusStack.size() -1; i++)
+    {
+        m_focusStack[i]->get()->setEnabled(false);
+    }
+    m_focusStack.back()->get()->setEnabled(true);
+}
+
 void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
 {
     m_tgui = new tgui::Gui(m_window->getWindow());
@@ -2266,6 +2384,16 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Canvas_BindDrawCall", lua_Canvas_BindDrawCall);
     lua_register(m_script, "cpp_Add_DrawCall", lua_Add_DrawCall);
 
+    // Focus Panels
+
+    lua_register(m_script, "cpp_FocusStack_SetFocus", lua_FocusStack_SetFocus);
+    lua_register(m_script, "cpp_FocusStack_GetFocus", lua_FocusStack_GetFocus);
+    lua_register(m_script, "cpp_FocusStack_RemovePanel", lua_FocusStack_RemovePanel);
+    
+
+    // lua_register(m_script, "cpp_FocusLabels_GetCurrent", lua_FocusLabels_GetCurrent);
+
+    
     // TGUI Tabs section
     // lua_register(m_script, "cpp_Tabs_Create", lua_Tabs_Create);
     // lua_register(m_script, "cpp_Tabs_SetPos", lua_Tabs_SetPos);
@@ -2277,6 +2405,9 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     // lua_register(m_script, "cpp_Tabs_SetOffHoverCallback", lua_Tabs_SetOffHoverCallback);
     // lua_register(m_script, "cpp_Tabs_SetOnClickCallback", lua_Tabs_SetOnClickCallback);
     // lua_register(m_script, "cpp_Tabs_SetTabActive", lua_Tabs_SetTabActive);
+
+    // lua_register(m_script, "cpp_FocusPanel_Register", lua_FocusPanel_Register);
+
 
     lua_getglobal(m_script, "TGUIScripting_Init");
     if(lua_isfunction(m_script, -1))

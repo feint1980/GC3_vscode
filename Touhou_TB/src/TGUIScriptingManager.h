@@ -5,6 +5,7 @@
 #include <InputManager.h>
 #include <map>
 #include <set>
+#include <stack>
 #include "../../TGUI_theme/ThemeCreator.hpp"
 #include <async++.h>
 #include "LuaManager.h"
@@ -12,10 +13,10 @@
 #include <FrameBuffer.h>
 #include <FrameBufferScreen.h>
 
+
+
 struct TGUI_CanvasWrapper
 {
-
-
     TGUI_CanvasWrapper() {}
     TGUI_CanvasWrapper(tgui::CanvasOpenGL3::Ptr * canvas) : canvas(canvas) {
 
@@ -28,7 +29,6 @@ struct TGUI_CanvasWrapper
     tgui::CanvasOpenGL3::Ptr * canvas;
     void draw()
     {
-
         if(canvas && canvas->get() && canvas->get()->isVisible())
         {
             canvas->get()->bindFramebuffer();
@@ -42,13 +42,12 @@ struct TGUI_CanvasWrapper
             }
             glBindFramebuffer(GL_FRAMEBUFFER, 0);
         }
-        
     }
 
     Feintgine::FrameBuffer m_frameBuffer;
 	Feintgine::FrameBufferScreen m_frameBufferScreen;
-
 };
+
 
 class TGUIScriptingManager
 {
@@ -98,6 +97,24 @@ public:
 
     tgui::Gui * getTGUI() { return m_tgui; }
 
+    void addFocusPanel(tgui::Panel::Ptr * panel) { m_focusPanels.insert(panel); }
+
+    int getFocusPanelCount() { return (int)m_focusPanels.size(); }
+
+    void addFocusableLabel(tgui::Label::Ptr * label, tgui::Panel::Ptr * panel);
+
+    void addPanelToFocusStack(tgui::Panel::Ptr * panel); // { m_focusStack.push_back(panel); }
+
+    void popPanelFromFocusStack() { m_focusStack.pop_back(); }
+
+    void removePanelFromFocusStack(tgui::Panel::Ptr * panel);
+
+    void setFocusStackActive();
+
+    tgui::Panel::Ptr * getTopFocusPanel( ) { return m_focusStack.back(); }
+
+    // void switchPanelToTopFocus(tgui::Panel::Ptr * panel  );
+
 private:
 
     tgui::Gui * m_tgui = nullptr;
@@ -106,6 +123,16 @@ private:
     std::vector<TGUI_CanvasWrapper> m_canvasList;
     std::unordered_map<std::string, TGUI_CanvasWrapper> m_canvasMap;
     std::unordered_map<std::string, std::function<void()>> m_drawCallMap;
+
+    std::set<tgui::Panel::Ptr *> m_focusPanels;
+
+    std::unordered_map<tgui::Panel::Ptr *, std::set<tgui::Label::Ptr *>> m_focusableLabels;
+
+    // std::stack<tgui::Panel::Ptr *> m_focusStack;
+    std::vector<tgui::Panel::Ptr *> m_focusStack;
+
+    // std::
+
 
     tgui::CanvasOpenGL3::Ptr  *m_currentCanvas = nullptr;
 

@@ -1,0 +1,530 @@
+[
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\BackGroundMap.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\BackGroundMap.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/BackGroundMap.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/BackGroundMap.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\BulletManupilator.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\BulletManupilator.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/BulletManupilator.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/BulletManupilator.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\EnemyAmplifier.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\EnemyAmplifier.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/EnemyAmplifier.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/EnemyAmplifier.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\EnemyBulletBase.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\EnemyBulletBase.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/EnemyBulletBase.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/EnemyBulletBase.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\EnemyBullet_KomachiCoin.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\EnemyBullet_KomachiCoin.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/EnemyBullet_KomachiCoin.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/EnemyBullet_KomachiCoin.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\EnemyGuardian.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\EnemyGuardian.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/EnemyGuardian.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/EnemyGuardian.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\ExplosionRing.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\ExplosionRing.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/ExplosionRing.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ExplosionRing.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_BaseEnemy.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_BaseEnemy.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_BaseEnemy.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_BaseEnemy.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_BulletBase.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_BulletBase.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_BulletBase.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_BulletBase.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_BulletStraight.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_BulletStraight.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_BulletStraight.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_BulletStraight.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_CollectableItem.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_CollectableItem.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_CollectableItem.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_CollectableItem.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_HomingBullet.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_HomingBullet.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_HomingBullet.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_HomingBullet.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Komachi_Souls_Object.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Komachi_Souls_Object.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Komachi_Souls_Object.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Komachi_Souls_Object.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Komachi_pillar.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Komachi_pillar.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Komachi_pillar.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Komachi_pillar.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Lua_Boss.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Lua_Boss.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Lua_Boss.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Lua_Boss.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Lua_Boss_Manager.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Lua_Boss_Manager.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Lua_Boss_Manager.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Lua_Boss_Manager.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Lua_Boss_State.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Lua_Boss_State.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Lua_Boss_State.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Lua_Boss_State.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Lua_GenericObject.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Lua_GenericObject.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Lua_GenericObject.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Lua_GenericObject.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_MarisaLaser.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_MarisaLaser.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaLaser.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaLaser.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_MarisaRocket_small.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_MarisaRocket_small.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaRocket_small.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaRocket_small.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_MarisaStar.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_MarisaStar.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaStar.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaStar.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_MarisaStarSpawner.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_MarisaStarSpawner.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaStarSpawner.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MarisaStarSpawner.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Laser_trail.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Laser_trail.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Laser_trail.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Laser_trail.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Luminous_Charge.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Luminous_Charge.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Luminous_Charge.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Luminous_Charge.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Luminous_Strike.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Luminous_Strike.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Luminous_Strike.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Luminous_Strike.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Luminous_Strike_Launcher.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Luminous_Strike_Launcher.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Luminous_Strike_Launcher.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Luminous_Strike_Launcher.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_MasterSpark.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_MasterSpark.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_MasterSpark.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_MasterSpark.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Star_Trail.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Star_Trail.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Star_Trail.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Star_Trail.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Star_Trail_Manager.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Marisa_Star_Trail_Manager.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Star_Trail_Manager.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Marisa_Star_Trail_Manager.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_MasterSpark_Wave.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_MasterSpark_Wave.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_MasterSpark_Wave.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_MasterSpark_Wave.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Non_Direction_Laser.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Non_Direction_Laser.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Non_Direction_Laser.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Non_Direction_Laser.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Orreries_Sun.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Orreries_Sun.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Orreries_Sun.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Orreries_Sun.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Player.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Player.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Player.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Player.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_PlayerAccessory.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_PlayerAccessory.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_PlayerAccessory.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_PlayerAccessory.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Player_Sun_Manager.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Player_Sun_Manager.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Player_Sun_Manager.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Player_Sun_Manager.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_ReimuWave.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_ReimuWave.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_ReimuWave.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_ReimuWave.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Reimu_Demon_Binding.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Reimu_Demon_Binding.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Reimu_Demon_Binding.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Reimu_Demon_Binding.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Reimu_Fantasy_Seal_Obj.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_Reimu_Fantasy_Seal_Obj.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_Reimu_Fantasy_Seal_Obj.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_Reimu_Fantasy_Seal_Obj.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_SpriteObject.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\F_SpriteObject.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/F_SpriteObject.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/F_SpriteObject.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\FairyBase.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\FairyBase.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/FairyBase.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/FairyBase.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\GlobalValueClass.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\GlobalValueClass.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/GlobalValueClass.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/GlobalValueClass.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\Gohei_Rod.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\Gohei_Rod.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/Gohei_Rod.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Gohei_Rod.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\GuardianShield.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\GuardianShield.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/GuardianShield.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/GuardianShield.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\KanjiEffect.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\KanjiEffect.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/KanjiEffect.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/KanjiEffect.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\KanjiEffectManager.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\KanjiEffectManager.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/KanjiEffectManager.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/KanjiEffectManager.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\KanjiEffectrObject.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\KanjiEffectrObject.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/KanjiEffectrObject.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/KanjiEffectrObject.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\LabelItem.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\LabelItem.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/LabelItem.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/LabelItem.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\PaternBehaviorBase.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\PaternBehaviorBase.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/PaternBehaviorBase.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehaviorBase.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\PaternBehavior_Test.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\PaternBehavior_Test.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_Test.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\PaternBehavior_from_lua.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\PaternBehavior_from_lua.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PaternBehavior_from_lua.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\PowerItem.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\PowerItem.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/PowerItem.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\ScoreItem.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\ScoreItem.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/ScoreItem.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\SealingAmulet.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\SealingAmulet.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SealingAmulet.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\SpellcardIcon.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\SpellcardIcon.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/SpellcardIcon.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardIcon.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\SpellcardSelector.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\SpellcardSelector.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/SpellcardSelector.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/SpellcardSelector.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\TraceObject.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\TraceObject.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/TraceObject.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/TraceObject.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\Yin_Yang_Orb.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\Yin_Yang_Orb.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\D_\\VS_Code_prj\\GC3_vscode\\GC3\\src\\Yin_Yang_Orb_Ex.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\GC3\\src\\Yin_Yang_Orb_Ex.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb_Ex.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/D_/VS_Code_prj/GC3_vscode/GC3/src/Yin_Yang_Orb_Ex.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\BuildObjectTool.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\BuildObjectTool.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/BuildObjectTool.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/BuildObjectTool.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\DamakuEditor.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\DamakuEditor.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/DamakuEditor.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/DamakuEditor.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\DisplaySample.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\DisplaySample.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/DisplaySample.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/DisplaySample.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\EditLayer.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\EditLayer.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/EditLayer.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/EditLayer.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\EditObject.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\EditObject.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/EditObject.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/EditObject.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\EditRenderedObjectComponent.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\EditRenderedObjectComponent.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/EditRenderedObjectComponent.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/EditRenderedObjectComponent.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\EditorMain.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\EditorMain.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/EditorMain.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/EditorMain.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\EditorProperty.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\EditorProperty.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/EditorProperty.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/EditorProperty.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\EditorScreen.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\EditorScreen.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/EditorScreen.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/EditorScreen.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\EnemyEditorComponent.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\EnemyEditorComponent.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/EnemyEditorComponent.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/EnemyEditorComponent.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\EventManager.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\EventManager.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/EventManager.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/EventManager.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\F_DamakuBase.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\F_DamakuBase.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/F_DamakuBase.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/F_DamakuBase.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\F_DamakuLineTrace.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\F_DamakuLineTrace.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/F_DamakuLineTrace.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/F_DamakuLineTrace.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\LayerManager.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\LayerManager.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/LayerManager.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/LayerManager.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\LuaObjectEditorComponent.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\LuaObjectEditorComponent.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/LuaObjectEditorComponent.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/LuaObjectEditorComponent.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\NewRenderModel.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\NewRenderModel.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/NewRenderModel.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/NewRenderModel.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\ObjectColider.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\ObjectColider.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/ObjectColider.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/ObjectColider.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\ObjectDisplayer.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\ObjectDisplayer.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/ObjectDisplayer.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/ObjectDisplayer.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\ObjectListHolder.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\ObjectListHolder.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/ObjectListHolder.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/ObjectListHolder.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\ObjectSlot.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\ObjectSlot.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/ObjectSlot.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/ObjectSlot.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\ObjectUVRect.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\ObjectUVRect.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/ObjectUVRect.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/ObjectUVRect.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\PaternEditor.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\PaternEditor.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/PaternEditor.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/PaternEditor.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\SceneManager.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\SceneManager.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/SceneManager.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/SceneManager.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\ScreenBuilder.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\ScreenBuilder.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/ScreenBuilder.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/ScreenBuilder.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\SpriteDisplayer.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\SpriteDisplayer.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/SpriteDisplayer.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/SpriteDisplayer.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\SpriteListHolder.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\SpriteListHolder.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/SpriteListHolder.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/SpriteListHolder.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\SpriteSheet.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\SpriteSheet.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/SpriteSheet.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/SpriteSheet.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\TemplateObject.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\TemplateObject.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/TemplateObject.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/TemplateObject.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\TestCEGUIScreen.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\TestCEGUIScreen.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/TestCEGUIScreen.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/TestCEGUIScreen.cpp.obj"
+},
+{
+  "directory": "D:/VS_Code_prj/GC3_vscode/build",
+  "command": "C:\\SysGCC\\mingw32\\bin\\g++.exe  @CMakeFiles/FeintEditor.dir/includes_CXX.rsp -fpermissive -std=c++17  -g -o CMakeFiles\\FeintEditor.dir\\src\\main.cpp.obj -c D:\\VS_Code_prj\\GC3_vscode\\Editor\\src\\main.cpp",
+  "file": "D:/VS_Code_prj/GC3_vscode/Editor/src/main.cpp",
+  "output": "CMakeFiles/FeintEditor.dir/src/main.cpp.obj"
+}
+]
