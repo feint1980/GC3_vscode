@@ -12,8 +12,7 @@
 
 #include <FrameBuffer.h>
 #include <FrameBufferScreen.h>
-
-
+#include "FocusPanel.h"
 
 struct TGUI_CanvasWrapper
 {
@@ -97,23 +96,27 @@ public:
 
     tgui::Gui * getTGUI() { return m_tgui; }
 
-    void addFocusPanel(tgui::Panel::Ptr * panel) { m_focusPanels.insert(panel); }
+    void addFocusPanel(tgui::Panel::Ptr * panel);// { m_focusPanels.insert(panel); }
 
-    int getFocusPanelCount() { return (int)m_focusPanels.size(); }
+    void addFocusPanel(tgui::Gui * panel);// { m_focusPanels.insert(panel); }
+
+    // int getFocusPanelCount() { return (int)m_focusPanels.size(); }
 
     void addFocusableLabel(tgui::Label::Ptr * label, tgui::Panel::Ptr * panel);
 
-    void addPanelToFocusStack(tgui::Panel::Ptr * panel); // { m_focusStack.push_back(panel); }
+    void addPanelToFocusStack(FocusPanel * panel); // { m_focusStack.push_back(panel); }
 
     void popPanelFromFocusStack() { m_focusStack.pop_back(); }
 
-    void removePanelFromFocusStack(tgui::Panel::Ptr * panel);
+    void removePanelFromFocusStack(FocusPanel * panel);
 
     void setFocusStackActive();
 
-    tgui::Panel::Ptr * getTopFocusPanel( ) { return m_focusStack.back(); }
+    FocusPanel * getTopFocusPanel( ) { return m_focusStack.back(); }
 
     // void switchPanelToTopFocus(tgui::Panel::Ptr * panel  );
+
+    FocusPanel * getFocusPanel(tgui::Panel::Ptr * panel) { return m_focusPanelMap[panel]; }
 
 private:
 
@@ -124,19 +127,15 @@ private:
     std::unordered_map<std::string, TGUI_CanvasWrapper> m_canvasMap;
     std::unordered_map<std::string, std::function<void()>> m_drawCallMap;
 
-    std::set<tgui::Panel::Ptr *> m_focusPanels;
-
-    std::unordered_map<tgui::Panel::Ptr *, std::set<tgui::Label::Ptr *>> m_focusableLabels;
+    // std::set<FocusPanel *> m_focusPanels;
+    
+    std::unordered_map<tgui::Panel::Ptr *, FocusPanel *> m_focusPanelMap;
 
     // std::stack<tgui::Panel::Ptr *> m_focusStack;
-    std::vector<tgui::Panel::Ptr *> m_focusStack;
-
-    // std::
-
+    std::vector<FocusPanel *> m_focusStack;
 
     tgui::CanvasOpenGL3::Ptr  *m_currentCanvas = nullptr;
 
 };
-
 
 #endif

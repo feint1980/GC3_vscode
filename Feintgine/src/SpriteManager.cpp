@@ -13,12 +13,11 @@
 
 namespace Feintgine {
 
-	 inline std::string t_getFileNameFromPath(const std::string & str)
+	inline std::string t_getFileNameFromPath(const std::string & str)
 	{
 
 		// std::cout << "scan on " << str << "\n";
 		char sep = '/';
-
 
 		size_t i = str.rfind(sep, str.length());
 		if (i != std::string::npos) {

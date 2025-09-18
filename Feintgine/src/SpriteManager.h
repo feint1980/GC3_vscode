@@ -78,7 +78,6 @@ namespace Feintgine {
 		int half_threads = 0;
 		int target_threads = 0;
 
-
 		std::vector<std::thread> m_threads;
 
 		std::vector<std::string> m_texturePaths;

@@ -1,0 +1,90 @@
+#include "FocusPanel.h"
+
+FocusPanel::FocusPanel(tgui::Panel::Ptr * panel)
+{
+    m_selfPanel = panel;
+}
+
+
+FocusPanel::FocusPanel(tgui::Gui * gui)
+{
+    m_tgui = gui;
+}
+
+FocusPanel::~FocusPanel()
+{
+
+}
+
+void FocusPanel::addLabel(tgui::Label::Ptr * label) 
+{
+    if(label) 
+    {
+        if(m_labelSet.find(label) == m_labelSet.end())
+        {
+            m_labelSet.insert(label);
+            m_labels.push_back(label);
+        }
+    }
+}
+
+void FocusPanel::removeLabel(tgui::Label::Ptr * label)
+{
+    if(label)
+    {
+        if(m_labelSet.find(label) != m_labelSet.end())
+        {
+            m_labelSet.erase(label);
+        }
+        for(int i = 0; i < m_labels.size(); i++)
+        {
+            if(m_labels[i] == label)
+            {
+                std::swap(m_labels[i],m_labels.back());
+                m_labels.pop_back();
+            }
+        }
+    }
+}
+
+tgui::Label::Ptr * FocusPanel::getFirstLabel()
+{
+    if(m_labels.size() > 0)
+    {
+        m_currentLabelIndex = 0;
+        return m_labels[m_currentLabelIndex];
+    } 
+    return nullptr;
+}
+
+tgui::Label::Ptr * FocusPanel::getNextLabel()
+{
+    if(m_labels.size() > 1)
+    {
+        m_currentLabelIndex = (m_currentLabelIndex + 1) % m_labels.size();
+        return m_labels[m_currentLabelIndex];
+    } 
+    else if (m_labels.size() == 1) 
+    {
+        m_currentLabelIndex = 0;
+        return m_labels[m_currentLabelIndex];
+    }
+    return nullptr;
+}
+
+tgui::Label::Ptr * FocusPanel::getPreviousLabel()
+{
+    if(m_labels.size() > 1)
+    {
+        m_currentLabelIndex = (m_currentLabelIndex - 1 + m_labels.size()) % m_labels.size();
+        return m_labels[m_currentLabelIndex];
+    } 
+    else if (m_labels.size() == 1) 
+    {
+        m_currentLabelIndex = 0;
+        return m_labels[m_currentLabelIndex];
+    }
+    return nullptr;
+}
+
+

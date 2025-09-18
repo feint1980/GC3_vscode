@@ -18,7 +18,6 @@ int lua_Panel_Create(lua_State * L)
         float width = lua_tonumber(L, 4);
         float height = lua_tonumber(L, 5);
         
-
         tgui::Panel::Ptr * panel = new tgui::Panel::Ptr();
 
         if(lua_gettop(L) == 6)
@@ -27,6 +26,7 @@ int lua_Panel_Create(lua_State * L)
             if(parent)
             {
                 *panel = host->createPanel(pX, pY, width, height, *parent);
+                
             }
             else
             {
@@ -1903,7 +1903,10 @@ int lua_FocusStack_SetFocus(lua_State * L)
     {
         TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
         tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 2));
-        host->addPanelToFocusStack(panel);
+
+        FocusPanel * focusPanel = host->getFocusPanel(panel);
+
+        host->addPanelToFocusStack(focusPanel);
     }
     return 0;
 }
@@ -1918,7 +1921,10 @@ int lua_FocusStack_GetFocus(lua_State * L)
     else
     {
         TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
-        tgui::Panel::Ptr * panel = host->getTopFocusPanel();
+        FocusPanel* focusPanel = host->getTopFocusPanel();
+
+        tgui::Panel::Ptr * panel = focusPanel->getPanel();
+
         lua_pushlightuserdata(L, panel);
         return 1;
     }
@@ -1936,7 +1942,10 @@ int lua_FocusStack_RemovePanel(lua_State * L)
     {
         TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
         tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 2));
-        host->removePanelFromFocusStack(panel);
+
+        FocusPanel * focusPanel = host->getFocusPanel(panel);
+
+        host->removePanelFromFocusStack(focusPanel);
     }
     return 0;
 }
@@ -2188,16 +2197,37 @@ void TGUIScriptingManager::bindCanvasDrawCall(const std::string & name, std::fun
     }
 }
 
+void TGUIScriptingManager::addFocusPanel(tgui::Panel::Ptr * panel)
+{
+    if(panel)
+    {
+        // if(m_focusPanelMap[panel] == nullptr)
+        // {
+        FocusPanel * focusPanel = new FocusPanel(panel);
+        m_focusPanelMap[panel] = focusPanel;
+        // }
+        
+    }
+    
+}
+void TGUIScriptingManager::addFocusPanel(tgui::Gui * panel)
+{
+    if(panel)
+    {
+        // if(m_focusPanelMap[panel] == nullptr)
+        // {
+        FocusPanel * focusPanel = new FocusPanel(panel);
+        m_focusPanelMap[reinterpret_cast<tgui::Panel::Ptr *>(panel)] = focusPanel;
+        // }
+        
+    }
+}
+
 void TGUIScriptingManager::addFocusableLabel(tgui::Label::Ptr * label, tgui::Panel::Ptr * panel)
 {
-    if(m_focusPanels.find(panel) == m_focusPanels.end())
+    if(label && panel)
     {
-        addFocusPanel(panel);
-    }
-
-    if(panel && label)
-    {
-        m_focusableLabels[panel].insert(label);
+        m_focusPanelMap[panel]->addLabel(label);
     }
     // m_focusStack.back
     // m_focusStack.swa
@@ -2207,7 +2237,7 @@ void TGUIScriptingManager::addFocusableLabel(tgui::Label::Ptr * label, tgui::Pan
     // }
 }
 
-void TGUIScriptingManager::addPanelToFocusStack(tgui::Panel::Ptr * panel)
+void TGUIScriptingManager::addPanelToFocusStack(FocusPanel * panel)
 {
     // if the panel already in the list, swap it to the back
     for(int i = 0 ; i < m_focusStack.size(); i++)
@@ -2227,7 +2257,7 @@ void TGUIScriptingManager::addPanelToFocusStack(tgui::Panel::Ptr * panel)
     setFocusStackActive();
 }
 
-void TGUIScriptingManager::removePanelFromFocusStack(tgui::Panel::Ptr * panel)
+void TGUIScriptingManager::removePanelFromFocusStack(FocusPanel * panel)
 {
     for (int i = 0 ; i < m_focusStack.size(); i++)
     {
@@ -2247,9 +2277,16 @@ void TGUIScriptingManager::setFocusStackActive()
 {
     for(int i = 0 ; i < m_focusStack.size() -1; i++)
     {
-        m_focusStack[i]->get()->setEnabled(false);
+        if(m_focusStack[i]->getType() == 1)
+        {
+            m_focusStack[i]->getPanel()->get()->setEnabled(false);
+        }
     }
-    m_focusStack.back()->get()->setEnabled(true);
+    if(m_focusStack.back()->getType() == 1)
+    {
+        m_focusStack.back()->getPanel()->get()->setEnabled(true);
+    }
+    
 }
 
 void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
@@ -2389,7 +2426,8 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_FocusStack_SetFocus", lua_FocusStack_SetFocus);
     lua_register(m_script, "cpp_FocusStack_GetFocus", lua_FocusStack_GetFocus);
     lua_register(m_script, "cpp_FocusStack_RemovePanel", lua_FocusStack_RemovePanel);
-    
+
+
 
     // lua_register(m_script, "cpp_FocusLabels_GetCurrent", lua_FocusLabels_GetCurrent);
 
@@ -2407,7 +2445,6 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     // lua_register(m_script, "cpp_Tabs_SetTabActive", lua_Tabs_SetTabActive);
 
     // lua_register(m_script, "cpp_FocusPanel_Register", lua_FocusPanel_Register);
-
 
     lua_getglobal(m_script, "TGUIScripting_Init");
     if(lua_isfunction(m_script, -1))
