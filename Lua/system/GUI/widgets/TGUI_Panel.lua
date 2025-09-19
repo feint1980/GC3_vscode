@@ -118,7 +118,7 @@ end
 function Panel:showWithEffect(type,time)
     TGUI_Panel_ShowWithEffect(self.ptr, type,time)
     self.visible = true
-    ControlHandler_reciever_push(self.ptr)
+    ControlHandler_reciever_push(self.host,self.ptr)
     print("the focus index now is " .. SignalReceivers.focusIndex)
 end
 
@@ -187,7 +187,7 @@ function Panel:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
         self:setBorderColor(oR,oG,oB,oA)
         end)
 
-    ControlHandler_AddFocusableWidget(self.ptr,self.parent)
+    -- ControlHandler_AddFocusableWidget(self.host,self.ptr,self.parent)
 end
 
 function Panel:setHoverableStop()

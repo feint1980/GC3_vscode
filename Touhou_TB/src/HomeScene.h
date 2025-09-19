@@ -118,7 +118,7 @@ private:
 
 	Feintgine::FrameBufferScreen m_frameBufferScreen;
 
-    TGUIScriptingManager m_guiScriptingManager;
+    TGUIScriptingManager * m_guiScriptingManager = nullptr;
 
     SkillHandler m_skillHandler;
 

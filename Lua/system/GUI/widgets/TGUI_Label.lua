@@ -48,6 +48,7 @@ function Label:init(host, text, posX, posY,parent)
     self.posX = posX
     self.posY = posY
     self.parent = parent
+    self.host = host
 
 end
 
@@ -115,7 +116,7 @@ end
 function Label:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
     self:setOnHoverCallback(function() self:setColor(hR,hG,hB,hA) end)
     self:setOffHoverCallback(function() self:setColor(oR,oG,oB,oA) end)
-    ControlHandler_AddFocusableWidget(self.ptr,self.parent)
+    ControlHandler_AddFocusableWidget(self.host ,self.ptr,self.parent)
 end
 
 function Label:getPos()

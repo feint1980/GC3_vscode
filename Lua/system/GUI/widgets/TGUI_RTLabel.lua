@@ -78,6 +78,7 @@ function RTLabel:init(host, text, posX, posY,parent)
     self.posX = posX
     self.posY = posY    
     self.parent = parent
+    self.host = host
     
 end
 

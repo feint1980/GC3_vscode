@@ -35,7 +35,8 @@ local function focusNext(host)
             -- ControlHandler_Parentless_ChangeIndex(1)
             Parentless_WidgetsIndex = 1
             if Parentless_Widgets[Parentless_WidgetsIndex] ~= nil then
-                print(Parentless_Widgets[Parentless_WidgetsIndex])
+                print(Parentless_Widgets[Parentless_WidgetsIndex]
+            )
 
                 local txt = TGUI_Label_GetText(Parentless_Widgets[Parentless_WidgetsIndex])
                 print("txt: " .. txt)
@@ -54,6 +55,19 @@ local function focusNext(host)
 end
 
 
+local function tFocusNext(host)
+    local label =  cpp_FocusStack_GetFocusLabel(host)
+    -- if label == nil then
+    --     print("label is nil")
+    --     return
+    -- end
+    -- local txt = TGUI_Label_GetText(label)
+    -- print("txt: " .. txt)
+
+    -- local tX, tY = TGUI_Label_GetPos(label)
+    -- ControlHandler_setCursorPos(host,tX,tY)
+end
+
 Dispatch_Recievers["loginScene"] = function (controlHandlerHost,signal)
     print("login handle signal " .. signal)
     if signal < 16 then ---- contain at least left, right, up, down
@@ -64,7 +78,8 @@ Dispatch_Recievers["loginScene"] = function (controlHandlerHost,signal)
             print("left !")
         elseif (signal & Signal.right) ~= 0 then
             print("right !")
-            focusNext(controlHandlerHost)
+            tFocusNext(controlHandlerHost)
+            -- focusNext(controlHandlerHost)
         elseif (signal & Signal.up) ~= 0 then
             print("up !")
         elseif (signal & Signal.down) ~= 0 then

@@ -4,15 +4,15 @@
 #include <InputManager.h>
 #include "LuaManager.h"
 #include <Window.h>
-#include "../../TGUI_theme/ThemeCreator.hpp"
-
+// #include "../../TGUI_theme/ThemeCreator.hpp"
+#include "TGUIScriptingManager.h"
 class ControlHandler
 {
 public:
     ControlHandler();
     ~ControlHandler();
 
-    void init(lua_State * script,SDL_Window * window, tgui::Gui * tgui);
+    void init(lua_State * script,SDL_Window * window, TGUIScriptingManager * tgui);
     void update(float deltaTime);
     void handleInput(Feintgine::InputManager & inputManager);
     SDL_Window * getWindow() const { return m_window; }
@@ -23,7 +23,7 @@ private:
 
     lua_State * m_script = nullptr;
     SDL_Window * m_window = nullptr;
-    tgui::Gui * m_tgui = nullptr;
+    TGUIScriptingManager * m_tgui = nullptr;
 
 };
 

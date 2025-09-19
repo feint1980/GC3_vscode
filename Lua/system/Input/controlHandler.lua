@@ -116,21 +116,24 @@ function ControlHandler_registerPanel(panel)
 end
 
 ---@Description add the panel to focusable stack (now it will be focused)
-function ControlHandler_reciever_push(panel)
+function ControlHandler_reciever_push(GUI_Host,panel)
     print("ControlHandler_reciever_push called")
     --- check if the panel is already in the stack
-    for i = 1, #SignalReceivers.stack do
-        if SignalReceivers.stack[i] == panel then
-            print("ControlHandler_reciever_push panel already in the stack, switched to " .. i)
-            SignalReceivers.focusIndex = i
-            return
-        end
-    end
-    table.insert(SignalReceivers.stack, panel)
-    SignalReceivers.focusIndex = #SignalReceivers.stack
-    print("ControlHandler_reciever_push pushed " .. #SignalReceivers.stack)
-    local panel = SignalReceivers.stack[SignalReceivers.focusIndex]
-    ControlHandler_registerPanel(panel)
+    -- for i = 1, #SignalReceivers.stack do
+    --     if SignalReceivers.stack[i] == panel then
+    --         print("ControlHandler_reciever_push panel already in the stack, switched to " .. i)
+    --         SignalReceivers.focusIndex = i
+    --         return
+    --     end
+    -- end
+    -- table.insert(SignalReceivers.stack, panel)
+    -- SignalReceivers.focusIndex = #SignalReceivers.stack
+    -- print("ControlHandler_reciever_push pushed " .. #SignalReceivers.stack)
+    -- local panel = SignalReceivers.stack[SignalReceivers.focusIndex]
+    -- ControlHandler_registerPanel(panel)
+
+    --- new implement
+    cpp_FocusStack_SetFocus(GUI_Host,panel)
 end
 
 
@@ -143,14 +146,18 @@ function ControlHandler_reciever_pop()
     end
 end
 function ControlHandler_reciever_remove(panel)
-    for i = 1, #SignalReceivers.stack do
-        if SignalReceivers.stack[i] == panel then
-            print("ControlHandler_reciever_remove removed " .. i)
-            table.remove(SignalReceivers.stack, i)
-            SignalReceivers.focusIndex = #SignalReceivers.stack
-            return
-        end
-    end
+    -- for i = 1, #SignalReceivers.stack do
+    --     if SignalReceivers.stack[i] == panel then
+    --         print("ControlHandler_reciever_remove removed " .. i)
+    --         table.remove(SignalReceivers.stack, i)
+    --         SignalReceivers.focusIndex = #SignalReceivers.stack
+    --         return
+    --     end
+    -- end
+
+
+    --- new implement
+    cpp_FocusStack_RemovePanel(panel)
 end
 
 function ControlHandler_reciever_getTop()
@@ -200,24 +207,28 @@ function Controller_fireLeftClickEvent(host,times,x,y)
     cpp_ControlHandler_Cursor_SendLeftClickEvent(host,times,x,y)
 end
 
-function ControlHandler_AddFocusableWidget(widget,parent)
+function ControlHandler_AddFocusableWidget(host,widget,parent)
     print("ControlHandler_AddFocusableWidget called")
-    if parent == nil then
-        print("parentless detected")
-        table.insert(Parentless_Widgets,widget)
-        if #Parentless_Widgets > 0 then
-            Parentless_WidgetsIndex = 1
-        end
-    else
-        print("parented detected")
-        if Panel_Focus_List[parent] ~= nil then 
-            print("panel detected")
-            Panel_Focus_List[parent]:addLabel(widget)
-        else
-            ControlHandler_registerPanel(parent)
-            Panel_Focus_List[parent]:addLabel(widget)
-        end
-    end
+    
+    -- if parent == nil then
+    --     print("parentless detected")
+    --     table.insert(Parentless_Widgets,widget)
+    --     if #Parentless_Widgets > 0 then
+    --         Parentless_WidgetsIndex = 1
+    --     end
+    -- else
+    --     print("parented detected")
+    --     if Panel_Focus_List[parent] ~= nil then 
+    --         print("panel detected")
+    --         Panel_Focus_List[parent]:addLabel(widget)
+    --     else
+    --         ControlHandler_registerPanel(parent)
+    --         Panel_Focus_List[parent]:addLabel(widget)
+    --     end
+    -- end
+
+    --- new implement 
+    cpp_FocusStack_AddFocusableLabel(host,widget,parent)
 end
 
 function ControlHandler_RemoveFocusableWidget(widget,parent)

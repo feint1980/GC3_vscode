@@ -96,27 +96,14 @@ public:
 
     tgui::Gui * getTGUI() { return m_tgui; }
 
-    void addFocusPanel(tgui::Panel::Ptr * panel);// { m_focusPanels.insert(panel); }
 
-    void addFocusPanel(tgui::Gui * panel);// { m_focusPanels.insert(panel); }
-
-    // int getFocusPanelCount() { return (int)m_focusPanels.size(); }
+    void setNowFocusPanel(tgui::Panel::Ptr * panel);
 
     void addFocusableLabel(tgui::Label::Ptr * label, tgui::Panel::Ptr * panel);
+    
+    FocusPanel * getFocusPanel(tgui::Panel::Ptr * panel);
 
-    void addPanelToFocusStack(FocusPanel * panel); // { m_focusStack.push_back(panel); }
-
-    void popPanelFromFocusStack() { m_focusStack.pop_back(); }
-
-    void removePanelFromFocusStack(FocusPanel * panel);
-
-    void setFocusStackActive();
-
-    FocusPanel * getTopFocusPanel( ) { return m_focusStack.back(); }
-
-    // void switchPanelToTopFocus(tgui::Panel::Ptr * panel  );
-
-    FocusPanel * getFocusPanel(tgui::Panel::Ptr * panel) { return m_focusPanelMap[panel]; }
+    tgui::Label::Ptr * getCurrentFocusLabel();
 
 private:
 
@@ -129,7 +116,9 @@ private:
 
     // std::set<FocusPanel *> m_focusPanels;
     
-    std::unordered_map<tgui::Panel::Ptr *, FocusPanel *> m_focusPanelMap;
+    // std::unordered_map<tgui::Panel::Ptr *, FocusPanel *> m_focusPanelMap;
+
+    // std::set<tgui::Label::Ptr *> m_focusLabels;
 
     // std::stack<tgui::Panel::Ptr *> m_focusStack;
     std::vector<FocusPanel *> m_focusStack;

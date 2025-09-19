@@ -103,7 +103,7 @@ void ControlHandler::sendEvent(const SDL_Event & evnt)
     if(m_tgui)
     {
         std::cout << "send event " << evnt.type << "\n";
-        m_tgui->handleEvent(evnt);
+        m_tgui->getTGUI()->handleEvent(evnt);
     }
 }
 
@@ -111,7 +111,7 @@ ControlHandler::~ControlHandler()
 {
 }
 
-void ControlHandler::init(lua_State * script,SDL_Window * window, tgui::Gui * tgui)
+void ControlHandler::init(lua_State * script,SDL_Window * window, TGUIScriptingManager * tgui)
 {
     m_script = script; 
     m_window = window;

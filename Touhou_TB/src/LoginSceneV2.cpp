@@ -150,7 +150,11 @@ void LoginSceneV2::onExit()
 void LoginSceneV2::update(float deltaTime)
 {
 
-    m_guiScriptingManager.update(deltaTime);
+    if(m_guiScriptingManager)
+    {
+        m_guiScriptingManager->update(deltaTime);
+    }
+    
     if(m_clientScriptingManager)
     {
         m_clientScriptingManager->update(deltaTime);
@@ -166,10 +170,9 @@ void LoginSceneV2::checkInput()
     while (SDL_PollEvent(&evnt))
     {
         m_game->onSDLEvent(evnt);
-        m_guiScriptingManager.checkInput(evnt);
+        m_guiScriptingManager->checkInput(evnt);
     }
     handleInput(m_game->m_inputManager);
-    
 }
 
 void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
@@ -194,7 +197,11 @@ void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
     {
         m_controlHandler->handleInput(inputManager);
     }
-    m_guiScriptingManager.handleInput(inputManager);
+    if(m_guiScriptingManager)
+    {
+        m_guiScriptingManager->handleInput(inputManager);
+    }
+    
 
     // if(inputManager.isKeyPressed(SDLK_RETURN))
     // {
@@ -262,11 +269,12 @@ void LoginSceneV2::initGUI()
     luaL_openlibs(m_script);
 
     m_luaEventHandler.init(m_script);
-    m_guiScriptingManager.init(m_window,m_script);
+    m_guiScriptingManager  = new TGUIScriptingManager();
+    m_guiScriptingManager->init(m_window,m_script);
     
     m_clientScriptingManager = new ClientScriptingManager();
     m_controlHandler = new ControlHandler();
-    m_controlHandler->init(m_script,m_window->getWindow(),m_guiScriptingManager.getTGUI());
+    m_controlHandler->init(m_script,m_window->getWindow(),m_guiScriptingManager);
     // m_clientScriptingManager->init("127.0.0.1", 1123,m_script);
 
     m_client = RakNet::RakPeerInterface::GetInstance();
@@ -300,7 +308,7 @@ void LoginSceneV2::initGUI()
     if(lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this);
-        lua_pushlightuserdata(m_script, &m_guiScriptingManager);
+        lua_pushlightuserdata(m_script, m_guiScriptingManager);
         lua_pushlightuserdata(m_script, m_clientScriptingManager);
         lua_pushlightuserdata(m_script, m_controlHandler);
         // std::cout << "check ref : " << &m_guiScriptingManager << "\n";
@@ -315,5 +323,5 @@ void LoginSceneV2::initGUI()
 
 void LoginSceneV2::drawGUI()
 {
-    m_guiScriptingManager.draw();
+    m_guiScriptingManager->draw();
 }

@@ -108,7 +108,7 @@ private:
 
     LuaEventHandler m_luaEventHandler ;
 
-    TGUIScriptingManager m_guiScriptingManager;
+    TGUIScriptingManager * m_guiScriptingManager = nullptr;
 
     ControlHandler * m_controlHandler = nullptr;
 

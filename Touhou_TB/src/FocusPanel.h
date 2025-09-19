@@ -8,6 +8,9 @@
 class FocusPanel 
 {
     public:
+
+    FocusPanel();
+
     FocusPanel(tgui::Panel::Ptr * panel);
 
     FocusPanel(tgui::Gui * gui);

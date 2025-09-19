@@ -156,7 +156,11 @@ void HomeScene::onExit()
 
 void HomeScene::update(float deltaTime)
 {
-    m_guiScriptingManager.update(deltaTime);
+    if(m_guiScriptingManager)
+    {
+        m_guiScriptingManager->update(deltaTime);
+
+    }
     if(m_clientScriptingManager)
     {
         m_clientScriptingManager->update(deltaTime);
@@ -171,7 +175,11 @@ void HomeScene::checkInput()
     while (SDL_PollEvent(&evnt))
     {
         m_game->onSDLEvent(evnt);
-        m_guiScriptingManager.checkInput(evnt);
+        if(m_guiScriptingManager)
+        {
+            m_guiScriptingManager->checkInput(evnt);
+        }
+        
     }
     handleInput(m_game->m_inputManager);
 }
@@ -198,7 +206,11 @@ void HomeScene::handleInput(Feintgine::InputManager & inputManager)
         m_controlHandler->handleInput(inputManager);
     }
 
-    m_guiScriptingManager.handleInput(inputManager);
+    if(m_guiScriptingManager)
+    {
+        m_guiScriptingManager->handleInput(inputManager);
+    }
+    
 
 }
 
@@ -261,16 +273,21 @@ void HomeScene::drawGIFScene()
 void HomeScene::initGUI()
 {
 
-    m_guiScriptingManager.addDrawCall("drawGIFScene", std::bind(&HomeScene::drawGIFScene, this));
-
+    
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
     m_luaEventHandler.init(m_script);
-    m_guiScriptingManager.init(m_window,m_script);
+
+    m_guiScriptingManager = new TGUIScriptingManager();
+
+    m_guiScriptingManager->addDrawCall("drawGIFScene", std::bind(&HomeScene::drawGIFScene, this));
+
+
+    m_guiScriptingManager->init(m_window,m_script);
     m_skillHandler.init(m_script);
     m_controlHandler = new ControlHandler();
-    m_controlHandler->init(m_script,m_window->getWindow(),m_guiScriptingManager.getTGUI());
+    m_controlHandler->init(m_script,m_window->getWindow(),m_guiScriptingManager);
 
     unsigned int port = 1123;
 
@@ -292,7 +309,7 @@ void HomeScene::initGUI()
     if(lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this);
-        lua_pushlightuserdata(m_script, &m_guiScriptingManager);
+        lua_pushlightuserdata(m_script, m_guiScriptingManager);
         lua_pushlightuserdata(m_script, m_clientScriptingManager);
         lua_pushlightuserdata(m_script, m_clientCharacterHandler);
         lua_pushlightuserdata(m_script, &m_skillHandler);
@@ -311,7 +328,11 @@ void HomeScene::initGUI()
 
 void HomeScene::drawGUI()
 {
-    m_guiScriptingManager.draw();
+    if(m_guiScriptingManager)
+    {
+        m_guiScriptingManager->draw();
+    }
+    
 }
 
 void HomeScene::drawLoading()
