@@ -189,9 +189,10 @@ void ControlHandler::handleInput(Feintgine::InputManager & inputManager)
 		if (lua_isfunction(m_script, -1))
 		{
             lua_pushlightuserdata(m_script, this);
+            lua_pushlightuserdata(m_script, m_tgui);
 			lua_pushnumber(m_script, signal);
 
-            const int argc = 2;
+            const int argc = 3;
             const int returnCount = 0;
 			if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
 			{

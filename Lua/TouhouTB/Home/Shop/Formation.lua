@@ -106,7 +106,7 @@ function InitFormationMenu(host)
             Formation_preview_panel:setAlignment(0.5,0.5)
             Formation_preview_panel:setPosStr("50%","26%")
             Formation_preview_panel:setSizeStr("95%","35%")
-        
+            Formation_preview_panel:setVisible(false)
         end
 
         for i = 1, 4 do
@@ -157,6 +157,8 @@ function InitFormationMenu(host)
             Formation_CharacterList:setPosStr("74.5%","72%")
             Formation_CharacterList:setSizeStr("46%","48%")
         end
+
+    FormationPanel:setVisible(false)
     end
 
     -- Send To Get Formation Data from Server
@@ -168,7 +170,8 @@ function InitFormationMenu(host)
 
     -- SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Request, {MainInfo.guid, MainInfo.id,"request"}, 5, 0.8,0.25)
 
-    FormationPanel:setVisible(false)
+    -- FormationPanel:hideWithEffect(PanelShowType.Fade,250)
+
 end
 
 function FormationUpdatePage(value)

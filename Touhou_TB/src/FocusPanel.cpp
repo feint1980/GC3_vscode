@@ -58,10 +58,10 @@ tgui::Label::Ptr * FocusPanel::getFirstLabel()
     std::cout << "getFirstLabel called \n";
     if(m_labels.size() > 0)
     {
-        m_currentLabelIndex = 0;
+        // m_currentLabelIndex = 0;
         std::cout << "m_currentLabelIndex: " << m_currentLabelIndex << "\n";
 
-        std::cout << "m_labels size: " << m_labels[m_currentLabelIndex] << "\n";
+        std::cout << "m_labels ptr: " << m_labels[m_currentLabelIndex] << "\n";
         return m_labels[m_currentLabelIndex];
     } 
     std::cout << "return nullptr \n";
@@ -98,4 +98,8 @@ tgui::Label::Ptr * FocusPanel::getPreviousLabel()
     return nullptr;
 }
 
-
+void FocusPanel::changeLabelIndex(int index)
+{
+    m_currentLabelIndex += index;
+    m_currentLabelIndex = m_currentLabelIndex % m_labels.size();
+}

@@ -109,7 +109,7 @@ end
 function Panel:hideWithEffect(type,time)
     TGUI_Panel_HideWithEffect(self.ptr, type,time)
     self.visible = false
-    ControlHandler_reciever_remove(self.ptr)
+    ControlHandler_reciever_remove(self.host,self.ptr)
 end
 
 ---@Description show panel with effect
@@ -119,7 +119,7 @@ function Panel:showWithEffect(type,time)
     TGUI_Panel_ShowWithEffect(self.ptr, type,time)
     self.visible = true
     ControlHandler_reciever_push(self.host,self.ptr)
-    print("the focus index now is " .. SignalReceivers.focusIndex)
+    -- print("the focus index now is " .. SignalReceivers.focusIndex)
 end
 
 ---@Description set Alignment of Panel
@@ -134,6 +134,9 @@ end
 function Panel:setVisible(visible)
     TGUI_Panel_SetVisible(self.ptr, visible)
     self.visible = visible
+    if visible == false then
+        ControlHandler_reciever_remove(self.host,self.ptr)
+    end
 end
 
 ---@Description set the callback of the panel
@@ -193,7 +196,7 @@ end
 function Panel:setHoverableStop()
     TGUI_Panel_RemoveHoverOnCallback(self.ptr)
     TGUI_Panel_RemoveHoverOffCallback(self.ptr)
-    ControlHandler_RemoveFocusableWidget(self.ptr,self.parent)
+    -- ControlHandler_RemoveFocusableWidget(self.ptr,self.parent)
 end
 
 ---@Description set the opacity of the panel

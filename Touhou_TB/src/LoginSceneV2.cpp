@@ -43,9 +43,12 @@ void LoginSceneV2::changeOffline()
 void LoginSceneV2::changeScene( const std::string & tID, const std::string & tPW, const std::string & tGUID)
 {
     InfoHolder::getInstance()->registerPersonalData(tGUID, tID, tPW);
-
-
+    // if(m_guiScriptingManager)
+    // {
+    //     m_guiScriptingManager->cleanup();
+    // }
     m_currentState = Feintgine::ScreenState::CHANGE_NEXT;
+    
 }
 
 LoginSceneV2::LoginSceneV2()

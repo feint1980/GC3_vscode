@@ -262,6 +262,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
         Login_RegisterPanel:showWithEffect(PanelShowType.Fade,250)
     end)
 
+
     Login_CancelBtn = Label:new()
     Login_CancelBtn:init(Login_GUIScriptingPtr,"Cancel",0,0,Login_LoginPanel.ptr)
     Login_CancelBtn:setPosStr("75%","75%")
@@ -270,6 +271,8 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     Login_CancelBtn:setOnClickCallback(function()
         Login_LoginPanel:hideWithEffect(PanelShowType.Fade,250)
     end)
+
+    Login_LoginPanel:hideWithEffect(PanelShowType.Fade,250)
 
     --- Register Panel section
     Login_RegisterPanel = Panel:new()
@@ -340,6 +343,8 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
         Login_RegisterPanel:hideWithEffect(PanelShowType.Fade,250)
     end)
 
+    Login_RegisterPanel:hideWithEffect(PanelShowType.Fade,250)
+
 
     ---- TOS section -----
     local tosPanel = Panel:new()
@@ -367,7 +372,8 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     end)
 
     tosPanel:showWithEffect(PanelShowType.Fade,250)
-
+    Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+    Login_Note_Panel:hideWithEffect(PanelShowType.Fade,250)
 
     ControlHandler_receiver_switchFocus(tosPanel.ptr)
 
@@ -381,7 +387,7 @@ end
 ---@param msg string message
 ---@param btnText string
 function Login_showNotification(msg,btnText)
-    Login_Noti_Panel:hideWithEffect(PanelShowType.Fade,1)
+    Login_Noti_Panel:setVisible(false)
     Login_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
     Login_Noti_Msg:setText(msg)
     Login_Noti_Btn:setText(btnText)
@@ -392,6 +398,7 @@ end
 ---@param msg string message
 ---@param btnText string
 function Login_showNote(msg,btnText)
+    Login_Note_Panel:setVisible(false)
     Login_Note_Panel:showWithEffect(PanelShowType.Fade,250)
     Login_Note_Msg:setText(msg)
     Login_Note_Btn:setText(btnText)

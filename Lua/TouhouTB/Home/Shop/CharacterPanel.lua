@@ -108,6 +108,9 @@ function CharacterPanel:init(host,parent,x,y
             self.priceLabel:setText("Unlocked")
         end
     end
+    
+    -- ControlHandler_reciever_remove(self.panel.host, self.panel.ptr)
+
 
     -- self.panel:setHoverOnCallBack(function()
     --     print("data ")

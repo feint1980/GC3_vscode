@@ -122,6 +122,8 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
         --cpp_backToMenu(HomeSceneHost)    
     end)
 
+    Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+
     ---- GUI section ----
     Main_NameLabel = Label:new()
     Main_NameLabel:init(Home_GUIScriptingPtr,"",0,0)

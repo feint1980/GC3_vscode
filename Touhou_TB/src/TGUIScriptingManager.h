@@ -14,6 +14,11 @@
 #include <FrameBufferScreen.h>
 #include "FocusPanel.h"
 
+#define FOCUS_STATE_NONE 0
+#define FOCUS_STATE_BASE 1
+#define FOCUS_STATE_PANEL 2
+
+
 struct TGUI_CanvasWrapper
 {
     TGUI_CanvasWrapper() {}
@@ -57,6 +62,8 @@ public:
 
     void init(Feintgine::Window * m_window,lua_State * script);
 
+    void clearup();
+
     void update(float deltaTime);
     void draw();
     
@@ -99,11 +106,18 @@ public:
 
     void setNowFocusPanel(tgui::Panel::Ptr * panel);
 
+    void removeFocusPanel(tgui::Panel::Ptr * panel);
+
     void addFocusableLabel(tgui::Label::Ptr * label, tgui::Panel::Ptr * panel);
-    
+
+    void addBaselessLabel(tgui::Label::Ptr * label);
+
+    void changeFocusLabelIndex(int index);
+
     FocusPanel * getFocusPanel(tgui::Panel::Ptr * panel);
 
     tgui::Label::Ptr * getCurrentFocusLabel();
+
 
 private:
 
@@ -123,7 +137,14 @@ private:
     // std::stack<tgui::Panel::Ptr *> m_focusStack;
     std::vector<FocusPanel *> m_focusStack;
 
+    std::unordered_map<tgui::Panel::Ptr *, FocusPanel *>  m_savedFocusPanel;
+
+    std::vector<tgui::Label::Ptr *> m_baselessLabels;
+    int m_baselessLabelIndex = 0;
+
     tgui::CanvasOpenGL3::Ptr  *m_currentCanvas = nullptr;
+    int m_focusState = FOCUS_STATE_NONE;
+    int m_previousFocusState = FOCUS_STATE_NONE;
 
 };
 

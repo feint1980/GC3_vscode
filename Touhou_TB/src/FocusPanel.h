@@ -29,6 +29,10 @@ class FocusPanel
     
     tgui::Panel::Ptr * getPanel() { return m_selfPanel; }
 
+    void resetLabelIndex() { m_currentLabelIndex = 0; }
+
+    void changeLabelIndex(int index);
+
     int getType() 
     {
         int tType = 0;
@@ -51,7 +55,7 @@ class FocusPanel
 
     std::set<tgui::Label::Ptr *> m_labelSet;
     std::vector<tgui::Label::Ptr *> m_labels;
-    int m_currentLabelIndex = -1;
+    int m_currentLabelIndex = 0;
 
 };
 

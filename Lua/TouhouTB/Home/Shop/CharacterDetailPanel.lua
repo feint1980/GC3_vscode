@@ -312,7 +312,7 @@ function CharacterDetailPanel:init(GUI_host, parent, clientHost, ip)
     self.titleVal:setPosStr("18%", "8%")
     self.titleVal:setScale(1.2)
 
-    self.detailPanel:setVisible(false)
+    -- self.detailPanel:setVisible(false)
 
     self.skillDescPanel = ScrollablePanel:new()
     self.skillDescPanel:init(GUI_host, 0, 0, 0, 0, self.detailPanel.ptr)
@@ -358,6 +358,7 @@ function CharacterDetailPanel:init(GUI_host, parent, clientHost, ip)
     self.demoCanvas:init(GUI_host,"characterDetail", 500, 100, 400, 400, self.detailPanel.ptr)
     self.demoCanvas:setPosStr("60%", "5%")
     self.demoCanvas:setSizeStr("38%", "50%")
+    self.detailPanel:setVisible(false)
 
     TGUI_Canvas_BindDrawCall(GUI_host, "characterDetail","drawGIFScene" )
 

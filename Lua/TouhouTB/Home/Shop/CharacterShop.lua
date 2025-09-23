@@ -80,6 +80,10 @@ function CharacterShop:init(GUI_host, posX, posY,
 
     self.characterDetailPanel = CharacterDetailPanel:new()
     self.characterDetailPanel:init(GUI_host,self.mainPanel)
+    
+    -- self.charactersPanel:setVisible(false)
+
+    ControlHandler_reciever_remove(GUI_host,self.mainPanel)
 
     self:requestCharacterList(Home_ClientScriptingPtr)
 end

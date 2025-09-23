@@ -85,11 +85,11 @@ function ControlHandler_Init(host)
     print("ControlHandler_Init called")
 end
 
-function ControlHandler_DispatchSignal(host,signal)
+function ControlHandler_DispatchSignal(host,tguiHost,signal)
     print("Get signal " .. signal)
     for k,v in pairs(Dispatch_Recievers) do
         if v ~= nil then
-            v(host,signal)
+            v(host,tguiHost,signal)
         end
     end
     -- for i = 1, #SignalReceivers.stack do
@@ -145,7 +145,7 @@ function ControlHandler_reciever_pop()
         print("stack is empty")
     end
 end
-function ControlHandler_reciever_remove(panel)
+function ControlHandler_reciever_remove(TGUIHost,panel)
     -- for i = 1, #SignalReceivers.stack do
     --     if SignalReceivers.stack[i] == panel then
     --         print("ControlHandler_reciever_remove removed " .. i)
@@ -157,7 +157,7 @@ function ControlHandler_reciever_remove(panel)
 
 
     --- new implement
-    cpp_FocusStack_RemovePanel(panel)
+    cpp_FocusStack_RemovePanel(TGUIHost,panel)
 end
 
 function ControlHandler_reciever_getTop()

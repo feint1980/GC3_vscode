@@ -149,6 +149,7 @@ end
 function RTLabel:setHoverable( hR, hG, hB, hA, oR, oG, oB, oA)
     self:setOnHoverCallback(function() self:setColor(hR,hG,hB,hA) end)
     self:setOffHoverCallback(function() self:setColor(oR,oG,oB,oA) end)
+    ControlHandler_AddFocusableWidget(self.host ,self.ptr,self.parent)
 end
 
 ---@Description set the scale of the rtlabel

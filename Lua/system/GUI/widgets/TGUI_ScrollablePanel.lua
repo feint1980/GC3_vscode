@@ -111,6 +111,7 @@ end
 function ScrollablePanel:hideWithEffect(type,time)
     TGUI_ScrollablePanel_HideWithEffect(self.ptr, type,time)
     self.visible = false
+    ControlHandler_reciever_remove(self.host,self.ptr)
 end
 
 ---@Description show Scrollablepanel with effect
@@ -119,6 +120,7 @@ end
 function ScrollablePanel:showWithEffect(type,time)
     TGUI_ScrollablePanel_ShowWithEffect(self.ptr, type,time)
     self.visible = true
+    ControlHandler_reciever_push(self.host,self.ptr)
 end
 
 ---@Description set Alignment of ScrollablePanel
@@ -133,6 +135,9 @@ end
 function ScrollablePanel:setVisible(visible)
     TGUI_ScrollablePanel_SetVisible(self.ptr, visible)
     self.visible = visible
+     if visible == false then
+        ControlHandler_reciever_remove(self.host,self.ptr)
+    end
 end
 
 function ScrollablePanel:clearItems()

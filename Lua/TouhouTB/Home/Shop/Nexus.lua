@@ -56,8 +56,9 @@ function InitNexus(host)
             NexusMenu:addTab("Charms")
             NexusMenu:addTab("Items")
         end
-        NexusPanel:setVisible(false)
+        -- NexusPanel:setVisible(false)
     end
+    NexusPanel:setVisible(false)
 
     NexusCharacterTab = CharacterNexus:new()
     NexusCharacterTab:init(host,NexusMenu.tabs["Characters"])
