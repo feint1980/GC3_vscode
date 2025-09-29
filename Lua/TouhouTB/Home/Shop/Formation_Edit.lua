@@ -33,6 +33,9 @@ function Formation_Edit:new(o)
     return o
 end
 
+---@Description init the formation edit panel 
+---@param host pointer instance of TGUIScriptingManager
+---@param parentPanel pointer instance of Panel
 function Formation_Edit:init(host,parentPanel)
     self.mainPanel = Panel:new()
     self.mainPanel:init(host,0,0,0,0,parentPanel)
@@ -58,4 +61,17 @@ function Formation_Edit:resetSelections()
             self.formationSlot[i][j]:setSelected(false)
         end
     end
+end
+
+---@Description check if any slot is selected
+---@return boolean 
+function Formation_Edit:hasSelected()
+    for i = 1, 3 do
+        for j = 1, 3 do
+            if self.formationSlot[i][j]:getIsSelected() == true then
+                return true
+            end
+        end
+    end
+    return false
 end

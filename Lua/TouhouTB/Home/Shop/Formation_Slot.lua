@@ -12,7 +12,6 @@ require "Formation_Preview_Panel"
 require "Prompt"
 require "Formation_CharInfo"
 
-
 ---@class Formation_Slot
 Formation_Slot = {
     ---@type pointer instance of Panel 
@@ -63,19 +62,22 @@ function Formation_Slot:init(host, parentPanel, posX,
 
         self.isSelected = not self.isSelected
         self:setSelected(self.isSelected)
+        Formation_MainUpdate(host)
     end)
 end
 
-
-
+---@Description set the selected state of the slot
+---@param value boolean
 function Formation_Slot:setSelected(value)
     if value == true then
         self.mainPanel:setHoverableStop()
         self.mainPanel:setBorderColor(255,255,0,255)
-    else 
+    else
         self.mainPanel:setHoverable(0,255,0,255,125,125,125,125)
         self.mainPanel:setBorderColor(125,125,125,125)
     end
 end
 
-
+function Formation_Slot:getIsSelected()
+    return self.isSelected
+end

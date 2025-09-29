@@ -30,14 +30,13 @@ void App::addScreen()
 
 ///	m_selectScreen = std::make_unique<SelectScreen>(&m_window);
 
-//	m_higanScreen = std::make_unique<HiganMainMenuScreen>(&m_window);
+	// m_higanScreen = std::make_unique<HiganMainMenuScreen>(&m_window);
 
 //	m_shaderToy = std::make_unique<ShaderToy>(&m_window);
 
 //	m_paternTest = std::make_unique<PaternTestScreen>(&m_window);
 
 //	m_testCharScreen = std::make_unique<CharacterTestScreen>(&m_window);
-
 
 	m_extraDemo = std::make_unique<Extra_DemoScreen>(&m_window);
 
@@ -55,7 +54,7 @@ void App::addScreen()
 
 	//m_screenList->addScreen(m_3dScreen.get());
 	
-//	m_screenList->addScreen(m_higanScreen.get());
+	// m_screenList->addScreen(m_higanScreen.get());
 
 //	m_screenList->addScreen(m_shaderToy.get());
 //	m_screenList->addScreen(m_paternTest.get());
@@ -88,6 +87,8 @@ void App::addScreen()
 
 	// use test screen
 	m_screenList->setScreen(m_test->getScreenIndex());
+	// m_screenList->setScreen(m_higanScreen->getScreenIndex());
+
 
 
 	// Replay screen

@@ -82,7 +82,7 @@ namespace Feintgine {
 
 		std::vector<std::string> m_texturePaths;
 	//	std::vector<bool> m_isLoaded;
-
+		
 	};
 }
 

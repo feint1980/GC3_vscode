@@ -118,6 +118,8 @@ void HiganMainMenuScreen::onEntry()
 
 	initGUI();
 
+	firstCheckPoint();
+	startLoad = true;
 
 }
 
@@ -132,8 +134,8 @@ void HiganMainMenuScreen::update(float deltaTime)
 	if (!loaded && !startLoad)
 	{
 		
-		firstCheckPoint();
-		startLoad = true;
+		// firstCheckPoint();
+		// startLoad = true;
 		//std::thread load(&ShaderToy::firstCheckPoint, this);
 		//load.join();
 

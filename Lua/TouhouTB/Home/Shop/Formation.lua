@@ -109,6 +109,7 @@ function InitFormationMenu(host)
             Formation_preview_panel:setVisible(false)
         end
 
+            --- init Formation Preview
         for i = 1, 4 do
             if Formation_PreviewPanel[i] == nil then
                 Formation_PreviewPanel[i] = FormationPreviewPanel:new()
@@ -248,11 +249,21 @@ function Formation_UpdateInfo(pageIndex)
 
 end
 
+function Formation_MainUpdate(tguiHost)
+    print("Formation_MainUpdate called")
+    if Formation_Edit_Instance:hasSelected() then
+        for k,v in pairs(Formation_OwnedCharacterPannels) do
+            v:setHovereColor(0,255,0,255, 0,255,0,255)
+        end
+    else
+
+    end
+    print("end")
+end
 
 MenuPanels["Formation"] = function(host)
     -- NexusCharacterTab:updateCharacters()
     FormationPanel:showWithEffect(PanelShowType.Fade,250)
-    FomrationUpdatePreviews(host)
+    FomrationUpdatePreviews(host) 
     FormationUpdateCharacterList(host)
 end
-
