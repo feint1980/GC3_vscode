@@ -53,7 +53,7 @@
 ## ⚙ Build Instructions
 ### **Prerequisites**
 - Install **CMake** .
-- Install **MinGW-w32** (https://gnutoolchains.com/mingw32/) Please select this specific compiler as I already use in my development, the other dependencies was compiled in this compiler too so it would save you time
+- Install **MinGW-w32** (https://gnutoolchains.com/mingw32/) Please select this specific compiler or it won't work. 
 
 ### **Building the Project (Use Powershell)**
 ```sh
