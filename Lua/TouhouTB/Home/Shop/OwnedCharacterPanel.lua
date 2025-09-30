@@ -69,6 +69,10 @@ function OwnedCharacterPanel:setOnClickCallback(callback)
     self.mainPanel:setOnClickCallback(callback)
 end
 
+function OwnedCharacterPanel:setOnDoubleClickCallBack(callback)
+    self.mainPanel:setOnDoubleClickCallback(callback)
+end
+
 function OwnedCharacterPanel:setHovereColor(r,g,b,a,r1,g1,b1,a1)
     self.mainPanel:setHoverable(r,g,b,a,r1,g1,b1,a1)
     self.mainPanel:setBorderColor(r1,g1,b1,a1)

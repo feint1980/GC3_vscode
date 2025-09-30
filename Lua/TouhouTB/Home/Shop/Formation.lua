@@ -240,7 +240,13 @@ function Formation_AddCharacterPanel(host, characterID)
     Formation_OwnedCharacterPannels[characterID]:init(host,Formation_CharacterList,0,(listCount * panelHeight) + 5,pWidth,panelHeight ,characterID)
 
     Formation_OwnedCharacterPannels[characterID]:setHovereColor(0,255,0,255, 255,255,255,255)
-    -- Formation_OwnedCharacterPannels[characterID]:setHoverableStop()
+    Formation_OwnedCharacterPannels[characterID]:setHoverableStop()
+
+    Formation_OwnedCharacterPannels[characterID]:setOnClickCallback(function ()
+
+        Formation_SelectCharacter(characterID)
+    
+    end)
 
     listCount = listCount + 1
 end
@@ -249,14 +255,23 @@ function Formation_UpdateInfo(pageIndex)
 
 end
 
+function Formation_SelectCharacter(characterID)
+    
+    print("selected " .. characterID)
+    -- Formation_Selection = characterID
+end
+
 function Formation_MainUpdate(tguiHost)
     print("Formation_MainUpdate called")
     if Formation_Edit_Instance:hasSelected() then
         for k,v in pairs(Formation_OwnedCharacterPannels) do
-            v:setHovereColor(0,255,0,255, 0,255,0,255)
+            v:setHovereColor(255,255,0,255, 0,255,0,255)
         end
     else
-
+        for k,v in pairs(Formation_OwnedCharacterPannels) do
+            v:setHovereColor(0,255,0,255, 255,255,255,255)
+            v:setHoverableStop()
+        end
     end
     print("end")
 end

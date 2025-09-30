@@ -26,7 +26,7 @@ local function tFocusPrev(controlHost,tguiHost)
 end
 -- Main register to handle signal
 Dispatch_Recievers["homeScene"] = function (controlHandlerHost,tguiHost,signal)
-   print("homeScene handle signal " .. signal)
+    print("homeScene handle signal " .. signal)
     if signal < 16 then ---- contain at least left, right, up, down
     -- if (signal & Signal.left) ~= 0 then
         print("movement detect " )
@@ -47,6 +47,15 @@ Dispatch_Recievers["homeScene"] = function (controlHandlerHost,tguiHost,signal)
         local x,y = ControlHandler_getCursorPos()
         print("x " .. x .. " y " .. y)
         Controller_fireLeftClickEvent(controlHandlerHost,1,x,y)
+    else 
+        if signal == Signal.escape then 
+            _G.Formation_Edit_Instance:resetSelections()
+            Formation_MainUpdate(tguiHost)
+        end
     end
+    
+
+
+
 end
 

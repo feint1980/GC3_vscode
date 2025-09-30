@@ -55,13 +55,13 @@ function Formation_Slot:init(host, parentPanel, posX,
 
     self.mainPanel:setOnClickCallback(function()
 
+        local t = not self.isSelected
         _G.Formation_Edit_Instance:resetSelections()
         -- if self.isSelected == true then
         --     self.isSelected = false
         -- end
 
-        self.isSelected = not self.isSelected
-        self:setSelected(self.isSelected)
+        self:setSelected(t)
         Formation_MainUpdate(host)
     end)
 end
@@ -69,6 +69,7 @@ end
 ---@Description set the selected state of the slot
 ---@param value boolean
 function Formation_Slot:setSelected(value)
+    self.isSelected = value
     if value == true then
         self.mainPanel:setHoverableStop()
         self.mainPanel:setBorderColor(255,255,0,255)
