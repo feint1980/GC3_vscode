@@ -299,6 +299,30 @@ int lua_Panel_SetOnClickCallback(lua_State * L)
     return 0;
 }
 
+int lua_Panel_SetOnRightClickCallback(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Panel_SetOnClickCallback) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
+        if(!lua_isfunction(L, 2))
+        {
+            std::cout << "param 2 is not a function \n";
+            return -1;
+        }
+        lua_pushvalue(L, 2);
+        int ref = luaL_ref(L, LUA_REGISTRYINDEX);
+        std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
+        panel->get()->onRightClick.disconnectAll();
+        panel->get()->onRightClick(callback);
+    }
+    return 0;
+}
+
 int lua_Panel_SetOnDoubleClickCallback(lua_State * L)
 {
     if(lua_gettop(L) != 2)
@@ -2585,6 +2609,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Panel_SetOpacity", lua_Panel_SetOpacity);
     lua_register(m_script, "cpp_Panel_SetOnClickCallback", lua_Panel_SetOnClickCallback);
     lua_register(m_script, "cpp_Panel_SetOnDoubleClickCallback", lua_Panel_SetOnDoubleClickCallback);
+    lua_register(m_script, "cpp_Panel_SetOnRightClickCallback", lua_Panel_SetOnRightClickCallback);
     lua_register(m_script, "cpp_Panel_GetSize", lua_Panel_GetSize);
     lua_register(m_script, "cpp_Panel_RemoveHoverOnCallback", lua_Panel_RemoveHoverOnCallback);
     lua_register(m_script, "cpp_Panel_RemoveHoverOffCallback", lua_Panel_RemoveHoverOffCallback);

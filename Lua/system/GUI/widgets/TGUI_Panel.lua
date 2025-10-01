@@ -163,6 +163,12 @@ function Panel:setOnDoubleClickCallback(callback)
     TGUI_Panel_SetOnDoubleClickCallback(self.ptr, callback)
 end
 
+---@Description set the callback of the panel on right click
+---@param callback function
+function Panel:setOnRightClickCallback(callback)
+    TGUI_Panel_SetOnRightClickCallback(self.ptr, callback)
+end
+
 ---@Description set the border color of the panel
 ---@param r number red (0-255)
 ---@param g number green (0-255)
@@ -319,9 +325,20 @@ function TGUI_Panel_SetOnClickCallback(panel, callback)
     cpp_Panel_SetOnClickCallback(panel, callback)
 end
 
+--- wrapper of cpp_Panel_SetOnDoubleClickCallback
+---@param panel pointer instance of TGUI Panel
+---@param callback function
 function TGUI_Panel_SetOnDoubleClickCallback(panel, callback)
     cpp_Panel_SetOnDoubleClickCallback(panel, callback)
 end
+
+--- wrapper of cpp_Panel_SetOnRightClickCallback
+---@param panel pointer instance of TGUI Panel
+---@param callback function
+function TGUI_Panel_SetOnRightClickCallback(panel, callback)
+    cpp_Panel_SetOnRightClickCallback(panel, callback)
+end
+
 
 --- wrapper of cpp_Panel_SetOpacity
 --- @param panel pointer instance of TGUI Panel

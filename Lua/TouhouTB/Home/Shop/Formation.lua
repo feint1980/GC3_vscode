@@ -106,7 +106,7 @@ function InitFormationMenu(host)
             Formation_preview_panel:setAlignment(0.5,0.5)
             Formation_preview_panel:setPosStr("50%","26%")
             Formation_preview_panel:setSizeStr("95%","35%")
-            Formation_preview_panel:setVisible(false)
+            -- Formation_preview_panel:setVisible(false)
         end
 
             --- init Formation Preview
@@ -160,6 +160,7 @@ function InitFormationMenu(host)
         end
 
     FormationPanel:setVisible(false)
+    
     end
 
     -- Send To Get Formation Data from Server
@@ -258,7 +259,15 @@ end
 function Formation_SelectCharacter(characterID)
     
     print("selected " .. characterID)
+
     -- Formation_Selection = characterID
+    if Formation_Edit_Instance:hasSelected() then
+        local selected = Formation_Edit_Instance:getSelected()
+        if selected ~= nil then
+            _G.Formation_Edit_Instance:updateList(characterID,selected.row,selected.col)
+            -- selected:setCharacterID(characterID)
+        end
+    end
 end
 
 function Formation_MainUpdate(tguiHost)

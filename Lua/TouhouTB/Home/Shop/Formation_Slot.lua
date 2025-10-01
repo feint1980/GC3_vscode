@@ -20,7 +20,13 @@ Formation_Slot = {
     mainPanel = nil,
     ---@type Picture
     picture = nil,
-    isSelected = false
+    isSelected = false,
+    isAssigned = false,
+    assignedCharacterID = "x",
+    picturePath = "",
+    defaultPath = "./Assets/TB_GUI/slide/plus.png",
+    row = 0,
+    col = 0
 }
 
 function Formation_Slot:new(o)
@@ -38,8 +44,10 @@ end
 ---@param width number
 ---@param height number
 ---@param picturePath string path to the image file
+---@param r number row
+---@param c number collum
 function Formation_Slot:init(host, parentPanel, posX,
-    posY, width, height,picturePath)
+    posY, width, height,picturePath,r,c)
 
     self.parentPanel = parentPanel
     self.mainPanel = Panel:new()
@@ -47,11 +55,15 @@ function Formation_Slot:init(host, parentPanel, posX,
     self.mainPanel:setAlignment(0.5,0.5)
 
     self.picture = Picture:new()
+    self.picturePath = picturePath
     self.picture:init(host, picturePath, posX, posY, width * 0.98,  height * 0.98  , self.mainPanel.ptr)
     self.picture:setPosStr("0%","0%")
     self.picture:setSizeStr("98%","98%")
 
     self.mainPanel:setHoverable(0,255,0,255,125,125,125,125)
+
+    self.row = r
+    self.col = c
 
     self.mainPanel:setOnClickCallback(function()
 
@@ -64,6 +76,13 @@ function Formation_Slot:init(host, parentPanel, posX,
         self:setSelected(t)
         Formation_MainUpdate(host)
     end)
+
+    self.mainPanel:setOnRightClickCallback(function()
+        if self.isAssigned == true then
+            self:removeAssignment()
+        end
+    end)
+
 end
 
 ---@Description set the selected state of the slot
@@ -81,4 +100,22 @@ end
 
 function Formation_Slot:getIsSelected()
     return self.isSelected
+end
+
+function Formation_Slot:setCharacterID(id)
+    self.assignedCharacterID = id
+    local tPath = Owned_CharacterTable[self.assignedCharacterID].portraitPath
+    -- print("set " .. tPath)
+    self.picturePath = tPath
+    self.picture:setTexture(tPath)
+    self.isAssigned = true
+end
+
+function Formation_Slot:getIsAssigned()
+    return self.isAssigned
+end
+
+function Formation_Slot:removeAssignment()
+    self.picture:setTexture(self.defaultPath)
+    self.isAssigned = false
 end

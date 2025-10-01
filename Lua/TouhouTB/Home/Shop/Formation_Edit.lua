@@ -16,11 +16,15 @@ require "Formation_Slot"
 
 ---@class Formation_Edit
 Formation_Edit = {
+    ---@type pointer instance of TGUI_Panel
+    parentPanel = nil,
     ---@type Panel
     mainPanel = nil,
     ---@type table Formation_Slot
     formationSlot = {},
     ---@type table Formation_CharacterInfo
+    saveButton = nil,
+    resetAllButton = nil,
 }
 
 ---@Description create a new instance of Formation_Edit
@@ -37,22 +41,53 @@ end
 ---@param host pointer instance of TGUIScriptingManager
 ---@param parentPanel pointer instance of Panel
 function Formation_Edit:init(host,parentPanel)
+    self.parentPanel = parentPanel
     self.mainPanel = Panel:new()
     self.mainPanel:init(host,0,0,0,0,parentPanel)
+
     self.mainPanel:setAlignment(0.5,0.5)
     self.mainPanel:setSizeStr("99%","99%")
     self.mainPanel:setPosStr("50%","50%")
 
     local sizeX, sizeY = self.mainPanel:getSize()
-    local picSize = (sizeY/ 3) * 0.85
+    local picSize = (sizeY/ 3) * 0.8
 
     for i = 1, 3 do
         self.formationSlot[i] = {}
         for j = 1, 3 do
             self.formationSlot[i][j] = Formation_Slot:new()
-            self.formationSlot[i][j]:init(host,self.mainPanel.ptr,sizeX / 3 * (j - 1) + (picSize *0.9) , sizeY / 3  *( i - 1) + (picSize *0.55) ,picSize,picSize,"./Assets/TB_GUI/slide/plus.png")
+            self.formationSlot[i][j]:init(host,self.mainPanel.ptr,sizeX / 3 * (j - 1) + (picSize *0.9), -- x pos
+            ((picSize * (i - 1)) + 10) + picSize * 0.5 , -- y pos
+            picSize, -- width
+            picSize, -- height
+            "./Assets/TB_GUI/slide/plus.png", -- picture path
+            i,j)
+            
         end
     end
+
+    --- button inits
+    self.saveButton = Label:new()
+    self.saveButton:init(host,"Save",0,0,self.mainPanel.ptr)
+    self.saveButton:setPosStr("32%","90%")
+    self.saveButton:setAlignment(TextAlginment.Center)
+    self.saveButton:setHoverable(0,255,0,255,255,255,255,255)
+    self.saveButton:setOnClickCallback(function()
+        print("save hit")
+    end)
+
+    self.resetAllButton = Label:new()
+    self.resetAllButton:init(host,"Reset",0,0,self.mainPanel.ptr)
+    self.resetAllButton:setPosStr("68%","90%")
+    self.resetAllButton:setAlignment(TextAlginment.Center)
+    self.resetAllButton:setHoverable(0,255,0,255,255,255,255,255)
+    self.resetAllButton:setOnClickCallback(function()
+        print("reset all hit")
+    end)
+    ControlHandler_reciever_remove(host,self.mainPanel.ptr)
+
+    self.mainPanel:setVisible(false)
+
 end
 
 function Formation_Edit:resetSelections()
@@ -74,4 +109,36 @@ function Formation_Edit:hasSelected()
         end
     end
     return false
+end
+
+---@return Formation_Slot?
+function Formation_Edit:getSelected()
+    for i = 1, 3 do
+        for j = 1, 3 do
+            if self.formationSlot[i][j]:getIsSelected() == true then
+                return self.formationSlot[i][j]
+            end
+        end
+    end
+    return nil
+end
+
+function Formation_Edit:updateList(characterID, row,col)
+    print("updateList called " .. row .. " " .. col)
+
+    for i = 1, 3 do
+        for j = 1, 3 do
+            -- print("slot " .. self.formationSlot[i][j].picturePath)
+            if self.formationSlot[i][j].assignedCharacterID == characterID then
+                self.formationSlot[i][j]:removeAssignment()
+                break
+            end
+        end
+    end
+    self.formationSlot[row][col]:setCharacterID(characterID)
+    print("formation updated end")
+end
+
+function Formation_Edit:setVisible(value)
+    self.mainPanel:setVisible(value)
 end

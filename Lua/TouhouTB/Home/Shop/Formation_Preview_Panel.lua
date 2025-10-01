@@ -18,8 +18,9 @@ FormationPreviewPanel ={
     ---@type table of Picture
     characterPics = {},
     ---@type Label
-    formationName = nil,
-
+    formationLabel = nil,
+    formationName = "",
+    
     ---@type table of Formation_CharInfo
     t_charactersInfo = {},
 
@@ -56,11 +57,11 @@ function FormationPreviewPanel:init(GUI_host,parentPanel, index)
         self:onClickCallBack()
     end)
 
-    self.formationName = Label:new()
-    self.formationName:init(GUI_host,"Create",0,0,self.mainPanel.ptr)
-    self.formationName:setPosStr("50%","45%")
-    self.formationName:setAlignment(TextAlginment.Center)
-    self.formationName:setScale(1.)
+    self.formationLabel = Label:new()
+    self.formationLabel:init(GUI_host,"Create",0,0,self.mainPanel.ptr)
+    self.formationLabel:setPosStr("50%","45%")
+    self.formationLabel:setAlignment(TextAlginment.Center)
+    self.formationLabel:setScale(1.)
 
     -- local newFormationName = "New_Formation_" .. self.tIndex
 
@@ -73,7 +74,8 @@ function FormationPreviewPanel:createNewFormation(GUI_host, characterIDTable)
 end
 
 function FormationPreviewPanel:update(accountID, formationName)
-    self.formationName:setText(formationName)
+    self.formationName =  formationName
+    self.formationLabel:setText(self.formationName)
     self.isEmpty = false
 end
 
@@ -86,8 +88,11 @@ function FormationPreviewPanel:onClickCallBack()
     Formation_Selection = self.tIndex
 
     if self.isEmpty == false then
-        print("suppose to select ")
+        -- Formation_Edit_Panel:setVisible(true)
+        _G.Formation_Edit_Instance:setVisible(true)
+        print("selected " .. self.formationName)
     else
         Prompt_UI_Table["New_Formation"]:show(true)
+        _G.Formation_Edit_Instance:setVisible(false)
     end
 end
