@@ -25,6 +25,8 @@ Formation_Edit = {
     ---@type table Formation_CharacterInfo
     saveButton = nil,
     resetAllButton = nil,
+    renameButton = nil,
+    deleteButton = nil
 }
 
 ---@Description create a new instance of Formation_Edit
@@ -69,21 +71,41 @@ function Formation_Edit:init(host,parentPanel)
     --- button inits
     self.saveButton = Label:new()
     self.saveButton:init(host,"Save",0,0,self.mainPanel.ptr)
-    self.saveButton:setPosStr("32%","90%")
+    self.saveButton:setPosStr("18%","90%")
     self.saveButton:setAlignment(TextAlginment.Center)
     self.saveButton:setHoverable(0,255,0,255,255,255,255,255)
     self.saveButton:setOnClickCallback(function()
         print("save hit")
     end)
 
+    self.renameButton = Label:new()
+    self.renameButton:init(host,"Rename",0,0,self.mainPanel.ptr)
+    self.renameButton:setPosStr("38%","90%")
+    self.renameButton:setAlignment(TextAlginment.Center)
+    self.renameButton:setHoverable(0,255,0,255,255,255,255,255)
+    self.renameButton:setOnClickCallback(function()
+        print("save hit")
+    end)
+
     self.resetAllButton = Label:new()
     self.resetAllButton:init(host,"Reset",0,0,self.mainPanel.ptr)
-    self.resetAllButton:setPosStr("68%","90%")
+    self.resetAllButton:setPosStr("58%","90%")
     self.resetAllButton:setAlignment(TextAlginment.Center)
     self.resetAllButton:setHoverable(0,255,0,255,255,255,255,255)
     self.resetAllButton:setOnClickCallback(function()
         print("reset all hit")
     end)
+
+    self.deleteButton = Label:new()
+    self.deleteButton:init(host,"Delete",0,0,self.mainPanel.ptr)
+    self.deleteButton:setPosStr("78%","90%")
+    self.deleteButton:setAlignment(TextAlginment.Center)
+    self.deleteButton:setHoverable(0,255,0,255,255,255,255,255)
+    self.deleteButton:setOnClickCallback(function()
+        print("delete hit")
+        -- Formation_Request_Remove()
+    end)
+
     ControlHandler_reciever_remove(host,self.mainPanel.ptr)
 
     self.mainPanel:setVisible(false)

@@ -90,7 +90,7 @@ function FormationPreviewPanel:onClickCallBack()
     if self.isEmpty == false then
         -- Formation_Edit_Panel:setVisible(true)
         _G.Formation_Edit_Instance:setVisible(true)
-        print("selected " .. self.formationName)
+        print("suppose to selected " .. self.formationName)
     else
         Prompt_UI_Table["New_Formation"]:show(true)
         _G.Formation_Edit_Instance:setVisible(false)

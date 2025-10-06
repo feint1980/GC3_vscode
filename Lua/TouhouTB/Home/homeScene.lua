@@ -192,7 +192,6 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
         MenuPanels["Formation"](TGUIScriptingPtr)
         end)
 
-
     Home_UpdateInfo()
     Home_RequestSkillsStats()
     Home_RequestOwnedCharacterList()

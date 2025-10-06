@@ -133,12 +133,15 @@ function InitFormationMenu(host)
                 Prompt_UI_Table["Formation_Noti"]:show(true)
             else
                 Formation_Request_Add(t_data)
+                Home_RequestFormations()
             end
 
         end)
+
         Prompt_UI_Table["New_Formation"]:addButton("Cancel",function()
             Prompt_UI_Table["New_Formation"]:show(false)
         end)
+
 
         if Formation_Edit_Panel == nil then
             Formation_Edit_Panel = Panel:new()
@@ -160,7 +163,7 @@ function InitFormationMenu(host)
         end
 
     FormationPanel:setVisible(false)
-    
+
     end
 
     -- Send To Get Formation Data from Server
@@ -197,6 +200,11 @@ function Formation_Request_Add(name)
 
 end
 
+function Formation_Request_Remove(name)
+
+    print(" Formation_Selection * Formation_Page " .. (Formation_Selection * Formation_Page))
+    print("name " .. name)
+end
 
 function FomrationUpdatePreviews(host)
 
