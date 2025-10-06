@@ -154,3 +154,9 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Add] = functio
     -- end
 
 end
+
+
+MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Remove] = function(host ,data, ip, guid)
+    print("Remove formation signal received ...")
+
+end

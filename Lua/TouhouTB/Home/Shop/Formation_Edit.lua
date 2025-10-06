@@ -102,8 +102,10 @@ function Formation_Edit:init(host,parentPanel)
     self.deleteButton:setAlignment(TextAlginment.Center)
     self.deleteButton:setHoverable(0,255,0,255,255,255,255,255)
     self.deleteButton:setOnClickCallback(function()
-        print("delete hit")
-        -- Formation_Request_Remove()
+        print("delete hit, selection " ..Formation_Selection)
+        -- print(Formation_PreviewPanel[Formation_Selection].formationName)
+        -- Formation_PreviewPanel[Formation_Selection]
+        Formation_Request_Remove(Formation_PreviewPanel[Formation_Selection].formationName)
     end)
 
     ControlHandler_reciever_remove(host,self.mainPanel.ptr)

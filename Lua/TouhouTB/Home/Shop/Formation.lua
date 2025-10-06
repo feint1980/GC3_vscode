@@ -202,12 +202,15 @@ end
 
 function Formation_Request_Remove(name)
 
+    local id, guid = MainInfo.id, MainInfo.guid
+
     print(" Formation_Selection * Formation_Page " .. (Formation_Selection * Formation_Page))
+     SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Remove, {guid,id, name, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
     print("name " .. name)
 end
 
 function FomrationUpdatePreviews(host)
-
+    
 end
 
 local displayOwnedCharacterTable = {}
