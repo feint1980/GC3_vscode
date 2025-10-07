@@ -66,17 +66,18 @@ CREATE TABLE formation_table(
     CONSTRAINT uq_account_index UNIQUE (account_id, formation_index)
 );
 INSERT INTO formation_table VALUES(1,'huyen12','aa',2);
+INSERT INTO formation_table VALUES(7,'huyen12','aae',3);
 CREATE TABLE formation_info_table(
     formation_id INTEGER NOT NULL,
     character_id VARCHAR(128) NOT NULL,
     slot_index TINYINT NOT NULL, -- 1 to 4 
     row_pos TINYINT NOT NULL, -- 1 to 3
     col_pos TINYINT NOT NULL, -- 1 to 3
-    CONSTRAINT fk_formation FOREIGN KEY (formation_id) REFERENCES formation_table(formation_id) ON DELETE CASCADE
+    CONSTRAINT fk_formation FOREIGN KEY (formation_id) REFERENCES formation_table(formation_id) ON DELETE CASCADE,
     CONSTRAINT fk_character FOREIGN KEY (character_id) REFERENCES player_character_table(character_id) ON DELETE CASCADE
 );
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('register_key_table',9);
 INSERT INTO sqlite_sequence VALUES('player_character_table',2);
-INSERT INTO sqlite_sequence VALUES('formation_table',1);
+INSERT INTO sqlite_sequence VALUES('formation_table',10);
 COMMIT;

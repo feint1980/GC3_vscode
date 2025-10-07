@@ -38,8 +38,6 @@ function Prompt:new(o)
     return o
 end
 
-
-
 ---@Description initialize Prompt
 ---@param GUI_host pointer instance of GUI host
 ---@param msg string message to show
@@ -63,7 +61,7 @@ function Prompt:init(GUI_host, msg ,isStandard )
 
     print("is standard " .. tostring(isStandard) .. " " .. msg)
     if isStandard == true then
-    
+
         self:addButton("OK",function()
             self.mainPanel:hideWithEffect(PanelShowType.Fade,250)
         end)

@@ -31,6 +31,8 @@ UserResponse = {
     Formation_End = 15,
     Formation_Add = 16,
     Formation_Remove = 17,
+    Formation_Rename = 18,
+    Formation_InfoUpdate = 19,
 }
 
 

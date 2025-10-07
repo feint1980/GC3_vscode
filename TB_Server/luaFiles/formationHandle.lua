@@ -140,7 +140,8 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Add] = functio
     else
         print("formation limit not reached " .. queryCount .. "/" .. queryCap)
 
-        local addFormationQuery = "INSERT INTO " .. Table.formation.tb_name .. " (" .. Table.formation.account_id .. "," .. Table.formation.name .. "," .. Table.formation.index .. ") VALUES (?, ?, " .. formationIndex .. ") ON CONFLICT (" .. Table.formation.account_id .. "," .. Table.formation.index .. ") DO UPDATE SET " .. Table.formation.name .. " = excluded." .. Table.formation.name .. ";"
+        local addFormationQuery = 
+        "INSERT INTO " .. Table.formation.tb_name .. " (" .. Table.formation.account_id .. "," .. Table.formation.name .. "," .. Table.formation.index .. ") VALUES (?, ?, " .. formationIndex .. ") ON CONFLICT (" .. Table.formation.account_id .. "," .. Table.formation.index .. ") DO UPDATE SET " .. Table.formation.name .. " = excluded." .. Table.formation.name .. ";"
 
         -- print("addFormationQuery " .. addFormationQuery)
 
@@ -157,6 +158,79 @@ end
 
 
 MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Remove] = function(host ,data, ip, guid)
-    print("Remove formation signal received ...")
+
+    local t_guid, t_id , formationName, formationIndex = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+
+    if ExtractDataCheck({t_guid,t_id,formationName,formationIndex},PacketChannel.UserChannel,UserResponse.Formation_Add) == false then 
+        return
+    end
+
+    if CH_check_userValid(t_guid , guid ,t_id,ip) == false then
+        return
+    end
+
+    print("extracted data " .. t_guid .. " " .. t_id .. " " .. formationName .. " " .. formationIndex)
+
+    local removeFormationQuery = 
+    "DELETE FROM " .. Table.formation.tb_name .. 
+    " WHERE " .. Table.formation.account_id .. " = ? AND " 
+    .. Table.formation.name .. " = ? AND " 
+    .. Table.formation.index .. " = ?;"
+
+
+    print("removeFormationQuery " .. removeFormationQuery)
+    print("bound table " .. t_id .. " " .. formationName .. " " .. formationIndex )
+
+    SVI_DoQuerySTMT(host,removeFormationQuery,{t_id,formationName,formationIndex})
+
+end
+
+MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Rename] = function(host ,data, ip, guid)
+
+    print("formation rename called ")
+
+    local t_guid, t_id , formationOldName, formationNewName, formationIndex = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+
+    if ExtractDataCheck({t_guid,t_id,formationOldName,formationNewName,formationIndex},PacketChannel.UserChannel,UserResponse.Formation_Rename) == false then 
+        return
+    end
+
+    if CH_check_userValid(t_guid , guid ,t_id,ip) == false then
+        return
+    end
+
+    print("passed all the check, the data is " .. t_guid .. " " .. t_id .. " " .. formationOldName .. " " .. formationNewName .. " " .. formationIndex)
+
+    local updateNameFormationQuery = 
+    "UPDATE " .. Table.formation.tb_name .. 
+    " SET " .. Table.formation.name .. " = ?" ..
+    " WHERE " .. Table.formation.account_id .. " = ? AND " 
+    .. Table.formation.name .. " = ? AND " 
+    .. Table.formation.index .. " = ?;"
+
+    SVI_DoQuerySTMT(host,updateNameFormationQuery,{formationNewName,t_id,formationOldName,formationIndex})
+
+end
+
+MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_InfoUpdate] = function(host ,data, ip, guid)
+
+    print("formation info update called ")
+    local t_guid, t_id , formationName, formationIndex, infoSize, infoData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+
+    if ExtractDataCheck({t_guid,t_id,formationName,formationIndex,infoSize,infoData},PacketChannel.UserChannel,UserResponse.Formation_InfoUpdate) == false then
+        return
+    end
+
+    if CH_check_userValid(t_guid , guid ,t_id,ip) == false then
+        return
+    end
+
+    print("passed all the check, the data is " .. t_guid .. " " .. t_id .. " " .. formationName .. " " .. formationIndex .. " " .. infoSize .. " " .. infoData)
+
+    -- for i = 1, #infoData do
+    --     print(infoData[i])
+    -- end
+
+
 
 end

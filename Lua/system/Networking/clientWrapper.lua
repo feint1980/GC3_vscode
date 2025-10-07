@@ -32,6 +32,8 @@ UserResponse = {
     Formation_End = 15,
     Formation_Add = 16,
     Formation_Remove = 17,
+    Formation_Rename = 18,
+    Formation_InfoUpdate = 19,
 }
 
 ShopResponse = {
@@ -69,7 +71,7 @@ function WrapRequest(channel, request, list)
     local returnValue = ""
     returnValue = string.char(channel) .. string.char(request) .. "|"
     for i = 1, #list do
-        returnValue = returnValue .. list[i] .. "|"
+        returnValue = returnValue .. tostring(list[i]) .. "|"
     end
     -- returnValue = returnValue .. "|"
     return returnValue

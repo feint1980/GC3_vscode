@@ -76,6 +76,7 @@ function Formation_Edit:init(host,parentPanel)
     self.saveButton:setHoverable(0,255,0,255,255,255,255,255)
     self.saveButton:setOnClickCallback(function()
         print("save hit")
+        self:updateToServer()
     end)
 
     self.renameButton = Label:new()
@@ -84,7 +85,7 @@ function Formation_Edit:init(host,parentPanel)
     self.renameButton:setAlignment(TextAlginment.Center)
     self.renameButton:setHoverable(0,255,0,255,255,255,255,255)
     self.renameButton:setOnClickCallback(function()
-        print("save hit")
+        Prompt_UI_Table["Formation_Rename"]:show(true)
     end)
 
     self.resetAllButton = Label:new()
@@ -105,7 +106,7 @@ function Formation_Edit:init(host,parentPanel)
         print("delete hit, selection " ..Formation_Selection)
         -- print(Formation_PreviewPanel[Formation_Selection].formationName)
         -- Formation_PreviewPanel[Formation_Selection]
-        Formation_Request_Remove(Formation_PreviewPanel[Formation_Selection].formationName)
+        Prompt_UI_Table["Delete_Formation_Confirm"]:show(true)
     end)
 
     ControlHandler_reciever_remove(host,self.mainPanel.ptr)
@@ -165,4 +166,35 @@ end
 
 function Formation_Edit:setVisible(value)
     self.mainPanel:setVisible(value)
+end
+
+function Formation_Edit:updateToServer()
+
+    local updateBuffer = {}
+    local tSlotIndex = 1
+    for i = 1, 3 do
+        for j = 1, 3 do
+            if self.formationSlot[i][j]:getIsAssigned() == true then
+
+                -- print("update slot  " .. i .. " " .. j .. " " .. self.formationSlot[i][j].assignedCharacterID)
+                -- table.insert(updateBuffer,{self.formationSlot[i][j].assignedCharacterID,tSlotIndex,i,j})
+                -- tSlotIndex = tSlotIndex + 1
+                table.insert(updateBuffer, self.formationSlot[i][j].assignedCharacterID)
+                table.insert(updateBuffer, tSlotIndex)
+                tSlotIndex = tSlotIndex + 1
+                table.insert(updateBuffer, self.formationSlot[i][j].row)
+                table.insert(updateBuffer, self.formationSlot[i][j].col)
+                
+            end
+        end
+    end
+
+    print("update buffer size " .. #updateBuffer)
+    for i = 1, #updateBuffer do
+        print("update buffer " .. i .. " " .. updateBuffer[i] )
+    end
+    print("update buffer end")
+
+    Formation_Request_InfoUpdate(Formation_PreviewPanel[Formation_Selection].formationName, updateBuffer, tSlotIndex - 1)
+
 end

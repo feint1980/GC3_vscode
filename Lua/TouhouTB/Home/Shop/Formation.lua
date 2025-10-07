@@ -52,7 +52,7 @@ function InitFormationMenu(host)
         FormationPanel:setSizeStr("80%", "80%")
         FormationPanel:setAlignment(0.5, 0.5)
         FormationPanel:setPosStr("50%", "50%")
-        
+
         local closeLabel = Label:new()
         closeLabel:init(host,"X",FormationPanel.width - 20,0,FormationPanel.ptr)
         closeLabel:setPosStr("99%","1%")
@@ -133,15 +133,57 @@ function InitFormationMenu(host)
                 Prompt_UI_Table["Formation_Noti"]:show(true)
             else
                 Formation_Request_Add(t_data)
-                Home_RequestFormations()
+                Home_RequestFormations() --- request update formation
             end
-
         end)
 
         Prompt_UI_Table["New_Formation"]:addButton("Cancel",function()
             Prompt_UI_Table["New_Formation"]:show(false)
         end)
 
+        Prompt_UI_Table["Delete_Formation_Confirm"] = Prompt:new()
+        Prompt_UI_Table["Delete_Formation_Confirm"]:init(host,"Delete this Formation?",false)
+
+        Prompt_UI_Table["Delete_Formation_Confirm"]:addButton("Yes",function()
+            Formation_Request_Remove(Formation_PreviewPanel[Formation_Selection].formationName)
+            Prompt_UI_Table["Delete_Formation_Confirm"]:show(false)
+            Home_RequestFormations() -- update formation
+            Prompt_UI_Table["Formation_Noti"]:setMsg("Formation deleted")
+            Prompt_UI_Table["Formation_Noti"]:show(true)
+        end)
+
+        Prompt_UI_Table["Delete_Formation_Confirm"]:addButton("Cancel",function()
+            Prompt_UI_Table["Delete_Formation_Confirm"]:show(false)
+        end)
+
+        Prompt_UI_Table["Formation_Rename"] = Prompt:new()
+        Prompt_UI_Table["Formation_Rename"]:init(host,"New formation name",false)
+
+        Prompt_UI_Table["Formation_Rename"]:addInputBox("FormationNewName",100,100,300,40)
+        Prompt_UI_Table["Formation_Rename"]:addButton("OK",function()
+            local t_data =  Prompt_UI_Table["Formation_Rename"]:getInputBox("FormationNewName"):getText()
+
+            if t_data == "" then
+                print("empty ")
+                Prompt_UI_Table["Formation_Noti"]:setMsg("New name can't be empty !")
+                Prompt_UI_Table["Formation_Noti"]:show(true)
+
+            elseif t_data == Formation_PreviewPanel[Formation_Selection].formationName then
+                Prompt_UI_Table["Formation_Noti"]:setMsg("New name can't be the same as old name")
+                Prompt_UI_Table["Formation_Noti"]:show(true)
+
+            else
+                Formation_Request_Rename(Formation_PreviewPanel[Formation_Selection].formationName,t_data)
+                Prompt_UI_Table["Formation_Rename"]:show(false)
+                Home_RequestFormations() --- request update formation
+                Prompt_UI_Table["Formation_Noti"]:setMsg("Formation updated !")
+                Prompt_UI_Table["Formation_Noti"]:show(true)
+            end
+        end)
+
+        Prompt_UI_Table["Formation_Rename"]:addButton("Cancel",function()
+            Prompt_UI_Table["Formation_Rename"]:show(false)
+        end)
 
         if Formation_Edit_Panel == nil then
             Formation_Edit_Panel = Panel:new()
@@ -149,7 +191,6 @@ function InitFormationMenu(host)
             Formation_Edit_Panel:setAlignment(0.5,0.5)
             Formation_Edit_Panel:setPosStr("26.5%","72%")
             Formation_Edit_Panel:setSizeStr("48%","48%")
-            
             Formation_Edit_Instance = Formation_Edit:new()
             Formation_Edit_Instance:init(host,Formation_Edit_Panel.ptr)
         end
@@ -208,6 +249,44 @@ function Formation_Request_Remove(name)
      SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Remove, {guid,id, name, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
     print("name " .. name)
 end
+
+function Formation_Request_Rename(oldName, newName)
+    local id, guid = MainInfo.id, MainInfo.guid
+
+    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Rename, {guid,id, oldName, newName, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
+
+end
+
+function Formation_Request_InfoUpdate(name,data,size)
+    local id, guid = MainInfo.id, MainInfo.guid
+
+
+    local dataBuffer = "#"
+    for i = 1, #data do
+        dataBuffer = dataBuffer .. tostring(data[i]) .. "@"
+        
+    end
+
+    dataBuffer = dataBuffer .. "#"
+    dataBuffer = tostring(dataBuffer)
+    print("databuffer " .. dataBuffer)
+    -- print("buffer data ") 
+    -- for i = 1, #bufferTable do
+    --     print(bufferTable[i])
+    -- end
+
+    -- SendRequest(PacketChannel.UserChannel, UserResponse.Formation_InfoUpdate, bufferTable, 5, 0.25)
+
+    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_InfoUpdate, {guid,id ,name,tostring(Formation_Selection * Formation_Page ), "ok result asdsadsadsadsadsadsadsadsadsadsadsadasdsad",size} , 5,
+    0.25)
+    -- SendRequest(PacketChannel.UserChannel, UserResponse.Formation_InfoUpdate, 
+
+    
+
+    -- {guid,id, name, tostring(Formation_Selection * Formation_Page ), size, data }, 5, 0.25)
+
+end
+
 
 function FomrationUpdatePreviews(host)
     

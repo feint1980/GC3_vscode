@@ -44,12 +44,18 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Start] =
     -- Formation_Page = tonumbercap
 
     print("Formation_PageCap " .. Formation_PageCap)
-    
+
     -- reset table
     for k in pairs (Formation_Table) do
         Formation_Table[k] = nil
     end
     Formation_Table = {}
+
+    for i = 1, 4 do
+        if Formation_PreviewPanel[i] ~= nil then
+            Formation_PreviewPanel[i]:reset() -- reset all state
+        end
+    end
 
 end
 
@@ -58,7 +64,7 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Data] = 
     local formationID, accoundID, formationName, index = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
     
     print("formationID " .. formationID .. " accoundID " .. accoundID .. " formationName " .. formationName .. " index " .. index)
-    
+
     Formation_Table[formationID] = Formation_Info:new()
     Formation_Table[formationID]:init(formationID, accoundID, formationName, index)
 

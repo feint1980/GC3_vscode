@@ -96,3 +96,10 @@ function FormationPreviewPanel:onClickCallBack()
         _G.Formation_Edit_Instance:setVisible(false)
     end
 end
+
+
+function FormationPreviewPanel:reset()
+    self.formationName = ""
+    self.formationLabel:setText("Create")
+    self.isEmpty = true
+end

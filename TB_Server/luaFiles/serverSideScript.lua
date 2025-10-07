@@ -204,7 +204,10 @@ function HandleWrapMessage(host,chanel,request, data,ip,guid)
 
     if MessageHandling[chanel][request] ~= nil then
         MessageHandling[chanel][request](host,data,ip,guid)
+    else
+        print("request not found channel " .. tostring(chanel) .. " request " .. tostring(request)) 
     end
+
 end
 
 --- function handle Common 
