@@ -12,6 +12,8 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = fu
     if t_guid == nil or t_id == nil or tData == nil then
         print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.Formation_Request)")
         return
+
+
     end
 
     print("request for Formation called from " .. t_guid .. " " .. t_id )
@@ -226,6 +228,28 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_InfoUpdate] = 
     end
 
     print("passed all the check, the data is " .. t_guid .. " " .. t_id .. " " .. formationName .. " " .. formationIndex .. " " .. infoSize .. " " .. infoData)
+
+    infoData = infoData:match("^#(.-)#$")
+
+    local result = {}
+
+    for name, index, row, col in infoData:gmatch("([^@]+)@(%d+)@(%d+)@(%d+)@") do
+        table.insert(result, {
+            name = name,
+            index = tonumber(index),
+            row = tonumber(row),
+            col = tonumber(col)
+        })
+    end
+
+    -- Print result
+    for i, entry in ipairs(result) do
+        print(string.format("Structure %d: name=%s, index=%d, row=%d, col=%d",
+            i, entry.name, entry.index, entry.row, entry.col))
+    end
+
+    -- split from format :  #S_Patchouli@1@2@1@S_Meiling@2@2@2@#
+
 
     -- for i = 1, #infoData do
     --     print(infoData[i])

@@ -270,14 +270,8 @@ function Formation_Request_InfoUpdate(name,data,size)
     dataBuffer = dataBuffer .. "#"
     dataBuffer = tostring(dataBuffer)
     print("databuffer " .. dataBuffer)
-    -- print("buffer data ") 
-    -- for i = 1, #bufferTable do
-    --     print(bufferTable[i])
-    -- end
 
-    -- SendRequest(PacketChannel.UserChannel, UserResponse.Formation_InfoUpdate, bufferTable, 5, 0.25)
-
-    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_InfoUpdate, {guid,id ,name,tostring(Formation_Selection * Formation_Page ), "ok result asdsadsadsadsadsadsadsadsadsadsadsadasdsad",size} , 5,
+    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_InfoUpdate, {guid,id ,name,tostring(Formation_Selection * Formation_Page ),size,dataBuffer} , 5,
     0.25)
     -- SendRequest(PacketChannel.UserChannel, UserResponse.Formation_InfoUpdate, 
 
