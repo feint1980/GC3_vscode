@@ -4,7 +4,8 @@ PacketChannel ={
     AccountChannel = 1,
     UserChannel = 2,
     ShopChannel =3,
-    TransactionChannel = 3
+    TransactionChannel = 4,
+    FormationChannel = 5
 }
 
 AccountResponse = {
@@ -24,15 +25,19 @@ UserResponse = {
     OwnedCharacter_Start = 8,
     OwnedCharacter_Data = 9,
     OwnedCharacter_End = 10,
-    Formation_Request = 11,
-    Formation_Start = 12,
-    Formation_Data = 13,
-    Formation_SubData = 14,
-    Formation_End = 15,
-    Formation_Add = 16,
-    Formation_Remove = 17,
-    Formation_Rename = 18,
-    Formation_InfoUpdate = 19,
+
+}
+
+FormationResponse = {
+    Formation_Request = 1, 
+    Formation_Start = 2,
+    Formation_Data = 3,
+    Formation_SubData = 4,
+    Formation_End = 5,
+    Formation_Add = 6,
+    Formation_Remove = 7,
+    Formation_Rename = 8,
+    Formation_Info_Update = 9,
 }
 
 

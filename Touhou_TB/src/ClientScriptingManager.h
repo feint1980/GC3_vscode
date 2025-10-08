@@ -2,7 +2,7 @@
 #define CLIENTSCRIPTINGMANAGER_H
 
 #include <RakNet/MessageIdentifiers.h>
-
+//#pragma pack(push, 1)
 #include <RakNet/RakPeerInterface.h>
 #include <RakNet/RakNetStatistics.h>
 #include <RakNet/RakNetTypes.h>
@@ -23,7 +23,7 @@
 #include <iostream>
 #include <F_Cryptor.h>
 #include "LuaManager.h"
-
+#include "InfoHolder.h"
 #include <thread>
 
 #include <queue>
@@ -62,6 +62,8 @@ public:
     uint32_t handleWrapData(RakNet::Packet *p);
 
     std::string getDecryptMessage(const std::string & data);
+
+    void setIPAddress(const RakNet::SystemAddress &addr) { m_serverIPAddr = addr; }
 
     void connect();
 
@@ -112,6 +114,9 @@ public:
     std::unordered_map<std::string, CharacterStats> m_characterStatsDict;
 
     Feintgine::F_Cryptor m_cryptor;
+
+
+    RakNet::SystemAddress m_serverIPAddr;
 
     std::queue <RakNet::Packet *> m_responseQueue;
 

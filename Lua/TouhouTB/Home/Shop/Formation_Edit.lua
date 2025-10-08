@@ -170,7 +170,7 @@ end
 
 function Formation_Edit:updateToServer()
 
-    local updateBuffer = {}
+    local updateBuffer = ""
     local tSlotIndex = 1
     for i = 1, 3 do
         for j = 1, 3 do
@@ -179,21 +179,23 @@ function Formation_Edit:updateToServer()
                 -- print("update slot  " .. i .. " " .. j .. " " .. self.formationSlot[i][j].assignedCharacterID)
                 -- table.insert(updateBuffer,{self.formationSlot[i][j].assignedCharacterID,tSlotIndex,i,j})
                 -- tSlotIndex = tSlotIndex + 1
-                table.insert(updateBuffer, self.formationSlot[i][j].assignedCharacterID)
-                table.insert(updateBuffer, tSlotIndex)
-                tSlotIndex = tSlotIndex + 1
-                table.insert(updateBuffer, self.formationSlot[i][j].row)
-                table.insert(updateBuffer, self.formationSlot[i][j].col)
+                -- table.insert(updateBuffer, self.formationSlot[i][j].assignedCharacterID)
+                -- table.insert(updateBuffer, tSlotIndex)
+                -- tSlotIndex = tSlotIndex + 1
+                -- table.insert(updateBuffer, self.formationSlot[i][j].row)
+                -- table.insert(updateBuffer, self.formationSlot[i][j].col)
                 
+                updateBuffer = updateBuffer .. self.formationSlot[i][j].assignedCharacterID .. "," .. tSlotIndex .. "," .. i .. "," .. j .. ","
+
             end
         end
     end
 
-    print("update buffer size " .. #updateBuffer)
-    for i = 1, #updateBuffer do
-        print("update buffer " .. i .. " " .. updateBuffer[i] )
-    end
-    print("update buffer end")
+    -- print("update buffer size " .. #updateBuffer)
+    -- for i = 1, #updateBuffer do
+    --     print("update buffer " .. i .. " " .. updateBuffer[i] )
+    -- end
+    -- print("update buffer end")
 
     Formation_Request_InfoUpdate(Formation_PreviewPanel[Formation_Selection].formationName, updateBuffer, tSlotIndex - 1)
 

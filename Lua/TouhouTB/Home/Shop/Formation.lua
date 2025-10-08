@@ -214,7 +214,7 @@ function InitFormationMenu(host)
 
     -- print("Main info " .. MainInfo.guid .. " " .. MainInfo.id)
 
-    -- SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Request, {MainInfo.guid, MainInfo.id,"request"}, 5, 0.8,0.25)
+    -- SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Request, {MainInfo.guid, MainInfo.id,"request"}, 5, 0.8,0.25)
 
     -- FormationPanel:hideWithEffect(PanelShowType.Fade,250)
 
@@ -237,7 +237,7 @@ function Formation_Request_Add(name)
 
     print("Formation_Request_Add " .. id .. " " .. guid .. " " .. name .. " Index " .. Formation_Selection)
 
-    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Add, {guid,id, name, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
+    SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Add, {guid,id, name, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
 
 end
 
@@ -246,14 +246,14 @@ function Formation_Request_Remove(name)
     local id, guid = MainInfo.id, MainInfo.guid
 
     print(" Formation_Selection * Formation_Page " .. (Formation_Selection * Formation_Page))
-     SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Remove, {guid,id, name, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
+     SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Remove, {guid,id, name, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
     print("name " .. name)
 end
 
 function Formation_Request_Rename(oldName, newName)
     local id, guid = MainInfo.id, MainInfo.guid
 
-    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Rename, {guid,id, oldName, newName, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
+    SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Rename, {guid,id, oldName, newName, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
 
 end
 
@@ -261,21 +261,21 @@ function Formation_Request_InfoUpdate(name,data,size)
     local id, guid = MainInfo.id, MainInfo.guid
 
 
-    local dataBuffer = "#"
-    for i = 1, #data do
-        dataBuffer = dataBuffer .. tostring(data[i]) .. "@"
-        
-    end
+    -- local dataBuffer = "."
+    -- for i = 1, #data do
+    --     dataBuffer = dataBuffer .. tostring(data[i]) .. ","
+    -- end
 
-    dataBuffer = dataBuffer .. "#"
-    dataBuffer = tostring(dataBuffer)
-    print("databuffer " .. dataBuffer)
+    -- dataBuffer = dataBuffer .. "."
+    -- dataBuffer = tostring(dataBuffer)
+    -- print("databuffer " .. dataBuffer)
 
-    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_InfoUpdate, {guid,id ,name,tostring(Formation_Selection * Formation_Page ),size,dataBuffer} , 5,
-    0.25)
-    -- SendRequest(PacketChannel.UserChannel, UserResponse.Formation_InfoUpdate, 
+    local buffer = data
+    -- buffer = buffer .. to_str
 
-    
+    SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Info_Update, {guid,id ,size, data}, 5, 0.25)
+
+    -- SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Info_Update, 
 
     -- {guid,id, name, tostring(Formation_Selection * Formation_Page ), size, data }, 5, 0.25)
 

@@ -3,7 +3,7 @@ package.path = package.path .. ';../../Lua/TouhouTB/skills/?.lua;'
 require "homeGlobal"
 
 
-ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Request] = function(host,data, guid)
+ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Request] = function(host,data, guid)
 
     local tData, response = string.match(data, "^|([^|]+)|([^|]+)|$")
 
@@ -16,14 +16,14 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Request]
 end
 
 
-ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Start] = function(host,data, guid)
+ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Start] = function(host,data, guid)
 
     local t_guid,tData, cap = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
     print("recieve data " .. tData .. " from " .. t_guid .. " cap " .. cap  )
 
 
     if t_guid == nil or tData == nil or cap == nil then
-        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.Formation_Start)")
+        print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_Start)")
         return
     end
 
@@ -59,7 +59,7 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Start] =
 
 end
 
-ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Data] = function(host,data, guid)
+ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Data] = function(host,data, guid)
 
     local formationID, accoundID, formationName, index = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
     
@@ -72,11 +72,11 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Data] = 
 
 end
 
-ClientMessageHandling[PacketChannel.UserChannel][UserResponse.Formation_End] = function(host,data, guid)
+ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_End] = function(host,data, guid)
     local t_guid, tData = string.match(data, "^|([^|]+)|([^|]+)|$")
 
     if t_guid == nil or tData == nil then
-        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.Formation_End)")
+        print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_End)")
         return
     end
     if t_guid == guid then

@@ -136,6 +136,8 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
 
     if t_id == nil or t_pw == nil then
         print("Ke3 F3i117 exception (PacketChannel.AccountChannel][AccountResponse.Alogin)")
+
+        print("raw data try to decode " .. data)
         return
     end
 
@@ -146,14 +148,16 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
             if v.name == t_id then
                 loginResult = "Account already logged in !"
                 print("Account already logged in !")
-                break
+                return
             end
         end
     else
         loginResult = "Account or password is incorrect !"
     end
     SendReliable(host,ip,guid,PacketChannel.AccountChannel,AccountResponse.Alogin,{ t_id,loginResult,t_pw, guid})
-    CH_AddClientEP(ip, guid, t_id)
+    if loginResult == "granted" then
+        CH_AddClientEP(ip, guid, t_id)
+    end
 end
 
 --- MARK: Register reponse

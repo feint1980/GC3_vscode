@@ -4,13 +4,13 @@ require "serverWrapper"
 -- require "clientHandling"
 require "SV_global"
 
-MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = function(host ,data, ip, guid)
+MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Request] = function(host ,data, ip, guid)
 
 
     local t_guid, t_id, tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
 
     if t_guid == nil or t_id == nil or tData == nil then
-        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.Formation_Request)")
+        print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_Request)")
         return
 
 
@@ -32,7 +32,7 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = fu
 
     local formationQueryResult = Table_DeepCopy(Query_val)
 
-    SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.Formation_Start, {t_guid , "request_ok",tostring(cap)})
+    SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Start, {t_guid , "request_ok",tostring(cap)})
 
     local queryResultSize = GetTableSize(Query_val)
     print("total formation count " .. queryResultSize)
@@ -63,7 +63,7 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = fu
         print("formation name " ..  tostring(   t_formationName))
         print("formation index " .. tostring(  t_index))
 
-        SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.Formation_Data,{tostring(formationQueryResult[i]),tostring(formationQueryResult[i+1]),tostring(formationQueryResult[i+2]), tostring(formationQueryResult[i+3])})
+        SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Data,{tostring(formationQueryResult[i]),tostring(formationQueryResult[i+1]),tostring(formationQueryResult[i+2]), tostring(formationQueryResult[i+3])})
 
         local formationDataQuery = "SELECT " .. Table.formation_info.formation_id .. "," .. Table.formation_info.character_id .. "," .. Table.formation_info.slot_index .. "," .. Table.formation_info.row_pos .. "," .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.formation_id .. " = ?;"
         print("fill data " .. t_accountID)
@@ -91,14 +91,14 @@ MessageHandling[PacketChannel.UserChannel][ UserResponse.Formation_Request] = fu
             local rowPos = tostring(FormationDataQueryResult)[j+3]
             local colPos = tostring(FormationDataQueryResult)[j+4]
 
-            SendReliable(host, ip, t_guid, PacketChannel.UserChannel, UserResponse.Formation_SubData,{formationID,characterID,slotIndex,rowPos,colPos})
+            SendReliable(host, ip, t_guid, PacketChannel.FormationChannel, FormationResponse.Formation_SubData,{formationID,characterID,slotIndex,rowPos,colPos})
 
             print(" info " .. FormationDataQueryResult[j] .. " " ..  FormationDataQueryResult[j+1] .. " " ..  FormationDataQueryResult[j+2] .. " " ..  FormationDataQueryResult[j+3] .. " " ..  FormationDataQueryResult[j+4])
 
         end
         print("sub query end")
     end
-    SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.Formation_End, {t_guid , "request_done"})
+    SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_End, {t_guid , "request_done"})
     print("query end")
 end
 
@@ -118,11 +118,11 @@ function FormationQuery_CheckCap(host,userID)
     return Query_val[1]
 end
 
-MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Add] = function(host ,data, ip, guid)
+MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Add] = function(host ,data, ip, guid)
     local t_guid, t_id , formationName, formationIndex = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
 
-    if ExtractDataCheck({t_guid,t_id,formationName,formationIndex},PacketChannel.UserChannel,UserResponse.Formation_Add) == false then 
+    if ExtractDataCheck({t_guid,t_id,formationName,formationIndex},PacketChannel.FormationChannel,FormationResponse.Formation_Add) == false then 
         return
     end
 
@@ -149,21 +149,21 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Add] = functio
 
         SVI_DoQuerySTMT(host,addFormationQuery,{t_id,formationName})
 
-        SendReliable(host,ip, guid,PacketChannel.UserChannel,UserResponse.Formation_Request,{ "Formation added !","close" })
+        SendReliable(host,ip, guid,PacketChannel.FormationChannel,FormationResponse.Formation_Request,{ "Formation added !","close" })
     end
     -- if t_guid == nil or t_id == nil or tData == nil then
-    --     print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.Formation_Add)")
+    --     print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_Add)")
     --     return
     -- end
 
 end
 
 
-MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Remove] = function(host ,data, ip, guid)
+MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Remove] = function(host ,data, ip, guid)
 
     local t_guid, t_id , formationName, formationIndex = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
-    if ExtractDataCheck({t_guid,t_id,formationName,formationIndex},PacketChannel.UserChannel,UserResponse.Formation_Add) == false then 
+    if ExtractDataCheck({t_guid,t_id,formationName,formationIndex},PacketChannel.FormationChannel,FormationResponse.Formation_Add) == false then 
         return
     end
 
@@ -187,13 +187,13 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Remove] = func
 
 end
 
-MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Rename] = function(host ,data, ip, guid)
+MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Rename] = function(host ,data, ip, guid)
 
     print("formation rename called ")
 
     local t_guid, t_id , formationOldName, formationNewName, formationIndex = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
-    if ExtractDataCheck({t_guid,t_id,formationOldName,formationNewName,formationIndex},PacketChannel.UserChannel,UserResponse.Formation_Rename) == false then 
+    if ExtractDataCheck({t_guid,t_id,formationOldName,formationNewName,formationIndex},PacketChannel.FormationChannel,FormationResponse.Formation_Rename) == false then 
         return
     end
 
@@ -214,12 +214,12 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_Rename] = func
 
 end
 
-MessageHandling[PacketChannel.UserChannel][UserResponse.Formation_InfoUpdate] = function(host ,data, ip, guid)
+MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info_Update] = function(host ,data, ip, guid)
 
     print("formation info update called ")
     local t_guid, t_id , formationName, formationIndex, infoSize, infoData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
-    if ExtractDataCheck({t_guid,t_id,formationName,formationIndex,infoSize,infoData},PacketChannel.UserChannel,UserResponse.Formation_InfoUpdate) == false then
+    if ExtractDataCheck({t_guid,t_id,formationName,formationIndex,infoSize,infoData},PacketChannel.FormationChannel,FormationResponse.Formation_Info_Update) == false then
         return
     end
 

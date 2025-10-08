@@ -186,13 +186,9 @@ void ClientScriptingManager::handleMessage(RakNet::Packet *p)
 {
 
     // first gateway
-    // firstGateWay(p);
+    firstGateWay(p);
     sendDataToLuaScripting(p);
     
-
-
-
-
     //PacketCode requestCode = getSpecialRequestCode(p);
 }
 
@@ -292,7 +288,7 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
 
 void ClientScriptingManager::firstGateWay(RakNet::Packet *p)
 {
-    unsigned char packetIdentifier = GetPacketIdentifier(m_currentPacket);
+    unsigned char packetIdentifier = GetPacketIdentifier(p);
 
     // Check if this is a network message packet
     switch (packetIdentifier)

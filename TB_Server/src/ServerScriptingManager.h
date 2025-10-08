@@ -2,7 +2,7 @@
 #define SERVERSCRIPTINGMANAGER_H
 
 #include <RakNet/MessageIdentifiers.h>
-
+//#pragma pack(push, 1)
 #include <RakNet/RakPeerInterface.h>
 #include <RakNet/RakNetStatistics.h>
 #include <RakNet/RakNetTypes.h>

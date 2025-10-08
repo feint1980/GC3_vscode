@@ -159,6 +159,8 @@ ClientMessageHandling[PacketChannel.TransactionChannel] = {}
 
 ClientMessageHandling[PacketChannel.UserChannel] = {}
 
+ClientMessageHandling[PacketChannel.FormationChannel] = {}
+
 -- ---@Description combines packet
 -- ---@param type string type of packet to wrap
 -- ---@param list table data to wrap
@@ -190,7 +192,7 @@ RequestPacket = {
     host = nil,
     channel = 255, 
     request = 255,
-    data = "",
+    data = {},
     retries = 5,
     sendTime = 0,
     delay = 0.25,

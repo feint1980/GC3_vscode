@@ -259,17 +259,24 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
     // todo , special request add here
     int payLoadIndex = 2;
 
+    std::cout << "sendWrapData channel " << static_cast<int>(channel) << " request " << static_cast<int>(request) << "\n"; 
+
     std::string payLoad = std::string(data.begin() + payLoadIndex, data.end());
     unsigned char iv[AES_IV_SIZE] = {};
     m_cryptor.generateRandomIV(iv);
     // std::string fData ;
     // fData.push_back(ID_TH_TB);
     auto tData = m_cryptor.encrypt(payLoad,iv);
+    tData.reserve(tData.size() + AES_IV_SIZE);
     for(int i = 0 ; i < AES_IV_SIZE;i++)
     {
         tData.push_back(iv[i]);
     }
     std::string sendStr;
+    sendStr.clear();
+    sendStr.reserve(tData.size() + 6);
+    // sendStr.append(reinterpret_cast<const char*>(ID_TH_TB), sizeof(ID_TH_TB));
+
     sendStr.push_back(ID_TH_TB); // move to append ID_TH_TB here
     sendStr.push_back(channel);
     sendStr.push_back(request);
@@ -278,7 +285,13 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
     {
         sendStr.push_back((tData[i]));
     } 
-    return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, channel, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
+
+    std::cout << "encrypted " << sendStr.data() << "\n";
+    // std::cout << "attemp to send to " << m_serverIPAddr.ToString() << "\n";
+
+    std::cout << "send size " << sendStr.size() << "\n";
+
+    return m_client->Send(sendStr.c_str(), sendStr.size() +1, HIGH_PRIORITY, RELIABLE_ORDERED, channel, m_serverIPAddr, false);
 }
 
 CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
@@ -476,6 +489,7 @@ void ClientScriptingManager::handleMessage(RakNet::Packet *p)
    // unsigned char packetIdentifier = GetPacketIdentifier(p);
 
         // bool handlingPacket = false;
+        firstGateWay(p);
         sendDataToLuaScripting(p);
         // while(!handlingPacket)
         // {
@@ -516,12 +530,16 @@ void ClientScriptingManager::connect()
     {
         RakNet::ConnectionAttemptResult car = m_client->Connect(m_serverIP.c_str(), m_port, pw.c_str(), pw.size());
         RakAssert(car == RakNet::CONNECTION_ATTEMPT_STARTED);
+
+
+        // if(car == RakNet::CONNECTION_)
     
         std::cout << "IP address: \n";
         for(int i = 0; i < m_client->GetNumberOfAddresses(); i++)
         {
             printf("%i. %s\n", i+1, m_client->GetLocalIP(i));
         }
+
         // std::cout << "init networking OK ! \n";
         // std::cout << "GUID is : " << m_client->GetGuidFromSystemAddress (RakNet::UNASSIGNED_SYSTEM_ADDRESS).ToString() << "\n"; 
     }
@@ -657,6 +675,10 @@ void ClientScriptingManager::firstGateWay(RakNet::Packet *p)
         printf("Able to connect to %s gennerated GUID %s\n", p->systemAddress.ToString(true), p->guid.ToString());
         printf("My external address is %s\n", m_client->GetExternalID(p->systemAddress).ToString(true));
         m_status = ClientStatus::Connected;
+        m_serverIPAddr = p->systemAddress;
+        InfoHolder::getInstance()->saveServerIP(m_serverIPAddr);
+        std::cout << "server ip : " << m_serverIPAddr.ToString(true) << "\n";
+
         m_isConnected = true;
         break;
     case ID_CONNECTED_PING:

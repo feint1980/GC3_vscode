@@ -1049,11 +1049,13 @@ uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & targ
     }
 
     auto tData = m_cryptors[guid]->encrypt(payLoad,iv);
+    tData.reserve(payLoad.size() + AES_IV_SIZE);
     for(int i = 0 ; i < AES_IV_SIZE;i++)
     {
         tData.push_back(iv[i]);
     }
     std::string sendStr;
+    sendStr.reserve(tData.size() + 6);
     sendStr.push_back(ID_TH_TB); // move to append ID_TH_TB here
     sendStr.push_back(channel);
     sendStr.push_back(request);
@@ -1066,7 +1068,7 @@ uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & targ
     // std::cout << "send data \n ";
     // std::cout << sendStr << "\n";
 
-    return m_server->Send(sendStr.c_str(), sendStr.size() + 1, HIGH_PRIORITY,  RELIABLE_ORDERED,channel, target,false);
+    return m_server->Send(sendStr.c_str(), sendStr.size() +1, HIGH_PRIORITY,  RELIABLE_ORDERED,channel, target,false);
 
 }   
 
@@ -1161,6 +1163,11 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
     uint8_t channel = static_cast<uint8_t>(p->data[indexStart]);
     uint8_t request = static_cast<uint8_t>(p->data[indexStart + 1]);
 
+    std::cout << "handleWrapData called \n";
+    std::cout << "index start " << indexStart << " channel " <<  static_cast<int>(channel) << " request " << static_cast<int>(request) << "\n";
+
+    std::cout << "packet length " << p->length << "\n";
+    std::cout << "unencrypt data " << std::string(reinterpret_cast<const char*>(p->data), p->length) << "\n";
 
     std::string rawData =  std::string(reinterpret_cast<const char*>(p->data), p->length);
 
@@ -1177,6 +1184,8 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
 
     // decrypt the payload only
     payLoad = getDecryptMessage(payLoad, p->guid.ToString());
+
+    std::cout << "payload is " << payLoad << "\n";
 
   //  std::cout << "decrypted payload " << payLoad << "\n";
 

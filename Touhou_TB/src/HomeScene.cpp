@@ -294,7 +294,7 @@ void HomeScene::initGUI()
     m_clientScriptingManager = new ClientScriptingManager();
     m_client = InfoHolder::getInstance()->getClient();
     m_clientScriptingManager->init("127.0.0.1", port,m_client, m_script);
-
+    m_clientScriptingManager->setIPAddress(InfoHolder::getInstance()->getServerIP());
     m_clientCharacterHandler = new ClientCharacterHandler();
     m_clientCharacterHandler->init(m_script);
 

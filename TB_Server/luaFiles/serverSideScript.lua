@@ -163,6 +163,10 @@ MessageHandling[PacketChannel.TransactionChannel] = {}
 
 MessageHandling[PacketChannel.UserChannel] = {}
 
+MessageHandling[PacketChannel.FormationChannel] = {}
+
+
+
 
 ---@Description combines packet
 ---@param type string type of packet to wrap
@@ -201,6 +205,8 @@ end
 
 function HandleWrapMessage(host,chanel,request, data,ip,guid)
     -- print("HandleWrapMessage called" )
+
+    print("channel " .. chanel .. " request " .. request)
 
     if MessageHandling[chanel][request] ~= nil then
         MessageHandling[chanel][request](host,data,ip,guid)

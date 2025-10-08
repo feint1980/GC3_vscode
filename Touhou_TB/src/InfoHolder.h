@@ -2,8 +2,17 @@
 
 #pragma once
 
+// class ClientScriptingManager;
+// #include "ClientScriptingManager.h"
+#include <RakNet/MessageIdentifiers.h>
+//#pragma pack(push, 1)
+#include <RakNet/RakPeerInterface.h>
+#include <RakNet/RakNetStatistics.h>
+#include <RakNet/RakNetTypes.h>
+#include <RakNet/BitStream.h>
+#include <RakNet/RakSleep.h>
+#include <RakNet/PacketLogger.h>
 
-#include "ClientScriptingManager.h"
 #include <F_Cryptor.h>
 #include <map>
 
@@ -30,7 +39,7 @@ public:
         // std::cout << "register client " << m_client << "\n";
     }
 
-    void registerClientScriptingManager(ClientScriptingManager * clientScriptingManager) { m_clientScriptingManager = clientScriptingManager; }
+    // void registerClientScriptingManager(ClientScriptingManager * clientScriptingManager) { m_clientScriptingManager = clientScriptingManager; }
 
     void registerCryptorMap(Feintgine::F_Cryptor * cryptor, const std::string & id) { m_cryptorMap[id] = cryptor; }
 
@@ -52,10 +61,12 @@ public:
         return m_client; }
 
 
+    // ClientScriptingManager * getClientScriptingManager() { return m_clientScriptingManager; }
 
-    ClientScriptingManager * getClientScriptingManager() { return m_clientScriptingManager; }
 
+    void saveServerIP(const RakNet::SystemAddress &serverIPAddr) { m_serverIPAddr = serverIPAddr; }
 
+    RakNet::SystemAddress getServerIP() { return m_serverIPAddr; }
 
 private:
 
@@ -65,7 +76,9 @@ private:
     std::string m_id;
     std::string m_pw;
 
-    ClientScriptingManager * m_clientScriptingManager = nullptr;
+    RakNet::SystemAddress m_serverIPAddr;
+
+    // ClientScriptingManager * m_clientScriptingManager = nullptr;
 
     RakNet::RakPeerInterface * m_client = nullptr;
 

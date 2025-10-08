@@ -98,15 +98,10 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     --- Notification section ----
     Home_Noti_Panel = Panel:new()
     Home_Noti_Panel:init(Home_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
-    print("init panel OK")
     Home_Noti_Panel:setAlignment(0.5,0.5)
-    print("set aligment OK")
     Home_Noti_Panel:setSizeStr("30%", "25%")
-    print("set size OK")
     Home_Noti_Panel:setPosStr("50%", "50%")
-    print("set pos OK")
     Home_Noti_Panel:setVisible(false)
-    print("set visible OK")
     Home_Noti_Msg = RTLabel:new()
     Home_Noti_Msg:init(Home_GUIScriptingPtr,"",0,0,Home_Noti_Panel.ptr)
     Home_Noti_Msg:setAlignment(TextAlginment.Center)
@@ -218,7 +213,7 @@ function Home_RequestOwnedCharacterList()
 end
 
 function Home_RequestFormations()
-    SendRequest(PacketChannel.UserChannel, UserResponse.Formation_Request, {MainInfo.guid, MainInfo.id,"request"}, 5, 1.2,0.25)
+    SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Request, {MainInfo.guid, MainInfo.id,"request"}, 5, 1.2,0.25)
 
 end
 
