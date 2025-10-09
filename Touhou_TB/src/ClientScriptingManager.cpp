@@ -248,7 +248,7 @@ uint32_t ClientScriptingManager::sendData(const std::string & data, uint8_t encr
 
 uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
 {
-    std::cout << "C++ ClientScriptingManager::sendWrapData called \n";
+    // std::cout << "C++ ClientScriptingManager::sendWrapData called \n";
     if(data.size() < 2 ) // headers
     {
         std::cout << "sendWrapData failed (data size < 2) \n";
@@ -259,7 +259,7 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
     // todo , special request add here
     int payLoadIndex = 2;
 
-    std::cout << "sendWrapData channel " << static_cast<int>(channel) << " request " << static_cast<int>(request) << "\n"; 
+    // std::cout << "sendWrapData channel " << static_cast<int>(channel) << " request " << static_cast<int>(request) << "\n"; 
 
     std::string payLoad = std::string(data.begin() + payLoadIndex, data.end());
     unsigned char iv[AES_IV_SIZE] = {};
@@ -286,10 +286,10 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
         sendStr.push_back((tData[i]));
     } 
 
-    std::cout << "encrypted " << sendStr.data() << "\n";
+    // std::cout << "encrypted " << sendStr.data() << "\n";
     // std::cout << "attemp to send to " << m_serverIPAddr.ToString() << "\n";
 
-    std::cout << "send size " << sendStr.size() << "\n";
+    // std::cout << "send size " << sendStr.size() << "\n";
 
     return m_client->Send(sendStr.c_str(), sendStr.size() +1, HIGH_PRIORITY, RELIABLE_ORDERED, channel, m_serverIPAddr, false);
 }

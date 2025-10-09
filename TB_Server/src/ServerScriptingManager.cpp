@@ -1163,11 +1163,11 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
     uint8_t channel = static_cast<uint8_t>(p->data[indexStart]);
     uint8_t request = static_cast<uint8_t>(p->data[indexStart + 1]);
 
-    std::cout << "handleWrapData called \n";
-    std::cout << "index start " << indexStart << " channel " <<  static_cast<int>(channel) << " request " << static_cast<int>(request) << "\n";
+    // std::cout << "handleWrapData called \n";
+    // std::cout << "index start " << indexStart << " channel " <<  static_cast<int>(channel) << " request " << static_cast<int>(request) << "\n";
 
-    std::cout << "packet length " << p->length << "\n";
-    std::cout << "unencrypt data " << std::string(reinterpret_cast<const char*>(p->data), p->length) << "\n";
+    // std::cout << "packet length " << p->length << "\n";
+    // std::cout << "unencrypt data " << std::string(reinterpret_cast<const char*>(p->data), p->length) << "\n";
 
     std::string rawData =  std::string(reinterpret_cast<const char*>(p->data), p->length);
 
@@ -1185,7 +1185,7 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
     // decrypt the payload only
     payLoad = getDecryptMessage(payLoad, p->guid.ToString());
 
-    std::cout << "payload is " << payLoad << "\n";
+    // std::cout << "payload is " << payLoad << "\n";
 
   //  std::cout << "decrypted payload " << payLoad << "\n";
 

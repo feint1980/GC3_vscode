@@ -273,7 +273,7 @@ function Formation_Request_InfoUpdate(name,data,size)
     local buffer = data
     -- buffer = buffer .. to_str
 
-    SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Info_Update, {guid,id ,size, data}, 5, 0.25)
+    SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Info_Update, {guid,id,  name, tostring(Formation_Selection * Formation_Page ),size, data}, 5, 0.25)
 
     -- SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Info_Update, 
 

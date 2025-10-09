@@ -217,9 +217,9 @@ end
 MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info_Update] = function(host ,data, ip, guid)
 
     print("formation info update called ")
-    local t_guid, t_id , formationName, formationIndex, infoSize, infoData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    local t_guid, t_id , formation_id, formationIndex, infoSize, infoData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
-    if ExtractDataCheck({t_guid,t_id,formationName,formationIndex,infoSize,infoData},PacketChannel.FormationChannel,FormationResponse.Formation_Info_Update) == false then
+    if ExtractDataCheck({t_guid,t_id,formation_id,formationIndex,infoSize,infoData},PacketChannel.FormationChannel,FormationResponse.Formation_Info_Update) == false then
         return
     end
 
@@ -227,8 +227,10 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info
         return
     end
 
-    print("passed all the check, the data is " .. t_guid .. " " .. t_id .. " " .. formationName .. " " .. formationIndex .. " " .. infoSize .. " " .. infoData)
+    -- print("passed all the check, the data is " .. t_guid .. " " .. t_id .. " " .. formation_id .. " " .. formationIndex .. " " .. infoSize .. " " .. infoData)
 
+
+    -- print("process " .. infoData)
     infoData = infoData:match("^#(.-)#$")
 
     local result = {}
@@ -248,13 +250,49 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info
             i, entry.name, entry.index, entry.row, entry.col))
     end
 
-    -- split from format :  #S_Patchouli@1@2@1@S_Meiling@2@2@2@#
+    -- transaction start 
+
+    SV_SQLExec(host, "BEGIN TRANSACTION;")
 
 
-    -- for i = 1, #infoData do
-    --     print(infoData[i])
-    -- end
+        SVI_DoQuerySTMT(host, "DELETE FROM formation_info_table WHERE account_id = ? AND formation_index = ? AND slot_index >= ?;",{t_id,formationIndex,infoSize})
+    
+    -- local upsertFormationSQL  = [[
+    -- INSERT INTO formation_info_table 
+    -- (account_id,formation_index, character_id, slot_index, row_pos, col_pos)
+    -- VALUES (?, ?, ?, ?, ?, ?)
+    -- ON CONFLICT(formation_id, slot_index)
+    -- DO UPDATE SET
+    --     character_id = excluded.character_id,
+    --     row_pos = excluded.row_pos,
+    --     col_pos = excluded.col_pos;
+    -- ]]
 
+        local upsertFormationSQL  =
+    "INSERT INTO formation_info_table (account_id,formation_index, character_id, slot_index, row_pos, col_pos) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(account_id, formation_index, character_id) DO UPDATE SET character_id = excluded.character_id, row_pos = excluded.row_pos, col_pos = excluded.col_pos;"
 
+    print("before insert ...")
+    -- Insert or update each slot
+    for i, entry in ipairs(result) do
+        SVI_DoQuerySTMT(host, upsertFormationSQL, {
+            t_id,
+            formationIndex,
+            entry.name,  -- character_id
+            entry.index, -- slot_index
+            entry.row,   -- row_pos
+            entry.col-- col_pos
+        })
+        -- print("insert account_id " .. t_id)
+        -- print("insert formation_index " .. formationIndex )
+        -- print("insert character_id " .. entry.name )
+        -- print("insert slot_index " .. tostring(entry.index) )
+        -- print("insert row_pos " .. tostring(entry.row) )
+        -- print("insert col_pos " .. tostring(entry.col) )
+    end
 
+    -- print("after insert ...")
+    -- Commit all changes
+    SV_SQLExec(host, "COMMIT;")
+
+    print("update sucess")
 end

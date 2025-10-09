@@ -170,7 +170,7 @@ end
 
 function Formation_Edit:updateToServer()
 
-    local updateBuffer = ""
+    local updateBuffer = "#"
     local tSlotIndex = 1
     for i = 1, 3 do
         for j = 1, 3 do
@@ -185,11 +185,13 @@ function Formation_Edit:updateToServer()
                 -- table.insert(updateBuffer, self.formationSlot[i][j].row)
                 -- table.insert(updateBuffer, self.formationSlot[i][j].col)
                 
-                updateBuffer = updateBuffer .. self.formationSlot[i][j].assignedCharacterID .. "," .. tSlotIndex .. "," .. i .. "," .. j .. ","
-
+                updateBuffer = updateBuffer .. self.formationSlot[i][j].assignedCharacterID .. "@" .. tSlotIndex .. "@" .. i .. "@" .. j .. "@"
+                tSlotIndex = tSlotIndex + 1
             end
         end
     end
+
+    updateBuffer = updateBuffer .. "#"
 
     -- print("update buffer size " .. #updateBuffer)
     -- for i = 1, #updateBuffer do
