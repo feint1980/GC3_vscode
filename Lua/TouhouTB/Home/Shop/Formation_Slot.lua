@@ -117,5 +117,6 @@ end
 
 function Formation_Slot:removeAssignment()
     self.picture:setTexture(self.defaultPath)
+    self.assignedCharacterID = "x"
     self.isAssigned = false
 end
