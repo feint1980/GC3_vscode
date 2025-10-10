@@ -996,6 +996,7 @@ std::string ServerScriptingManager::getDecryptMessage(const std::string & data, 
     }
 
     std::vector<unsigned char> tMsg;
+    tMsg.reserve(data.size() -1 - AES_IV_SIZE);
     for(int i = 0 ;i < (data.size() -1) - AES_IV_SIZE; i++)
     {
         tMsg.push_back(data[i]);
@@ -1045,7 +1046,7 @@ uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & targ
     else
     {
         std::cout << "no cryptor for guid " << guid << "\n";
-        return;
+        return 223;
     }
 
     auto tData = m_cryptors[guid]->encrypt(payLoad,iv);
@@ -1060,10 +1061,11 @@ uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & targ
     sendStr.push_back(channel);
     sendStr.push_back(request);
 
-    for(int i = 0 ; i < tData.size() ; i++)
-    {
-        sendStr.push_back((tData[i]));
-    }
+    // for(int i = 0 ; i < tData.size() ; i++)
+    // {
+    //     sendStr.push_back((tData[i]));
+    // }
+    sendStr.insert(sendStr.end(), tData.begin(), tData.end());
     
     // std::cout << "send data \n ";
     // std::cout << sendStr << "\n";
@@ -1170,6 +1172,8 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
     // std::cout << "unencrypt data " << std::string(reinterpret_cast<const char*>(p->data), p->length) << "\n";
 
     std::string rawData =  std::string(reinterpret_cast<const char*>(p->data), p->length);
+
+    // std::string rawData(p->data);
 
 
     // enable for debug, consider make a logging 
@@ -1386,7 +1390,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))
     {
-        std::cout << "Run script OK \n";
+        std::cout << "ServerScriptingManager Run script serverSideScript.lua OK \n";
     }
 
     lua_getglobal(m_script, "ServerSide_Init");

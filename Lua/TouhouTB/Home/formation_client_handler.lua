@@ -19,7 +19,7 @@ end
 ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Start] = function(host,data, guid)
 
     local t_guid,tData, cap = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
-    print("recieve data " .. tData .. " from " .. t_guid .. " cap " .. cap  )
+    -- print("recieve data " .. tData .. " from " .. t_guid .. " cap " .. cap  )
 
 
     if t_guid == nil or tData == nil or cap == nil then
@@ -84,6 +84,11 @@ ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formatio
             print("formation request done")
         end
     end
+end
+
+ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_SubData] = function(host,data, guid)
+
+    print("fomation sub data called ")
 
 end
 

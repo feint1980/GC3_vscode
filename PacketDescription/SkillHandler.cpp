@@ -162,7 +162,7 @@ void SkillHandler::init(lua_State * script)
     // init lua component
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/GUI/tguiScript.lua")))
     {
-        std::cout << "Run script OK \n";
+        std::cout << "SkillHandler tguiScript.lua script OK \n";
     }
     lua_register(m_script, "cpp_SkillStat_parseFromStr", lua_SkillStat_parseFromStr);
     lua_register(m_script, "cpp_Skill_AddSkillDesc", lua_Skill_AddSkillDesc);

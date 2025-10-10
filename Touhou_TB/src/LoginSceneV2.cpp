@@ -12,7 +12,7 @@ int lua_switchScene(lua_State * L)
     else
     {
         
-        std::cout << " cpp_switchScene called \n";
+        // std::cout << " cpp_switchScene called \n";
         LoginSceneV2 * host = (LoginSceneV2 *)lua_touserdata(L, 1);
         std::string t_id = lua_tostring(L, 2);
         std::string t_pw = lua_tostring(L, 3);
@@ -109,7 +109,7 @@ void LoginSceneV2::onEntry()
         std::cout << "SDL_HasScreenKeyboardSupport !!!!!!!!!!!!!!!!! \n"; 
     }
     else{
-        std::cout << " no SDL_HasScreenKeyboardSupport ##################\n";
+        std::cout << "no SDL_HasScreenKeyboardSupport ##################\n";
     }
 }
 
@@ -137,7 +137,7 @@ int LoginSceneV2::getPreviousScreenIndex() const
 void LoginSceneV2::onExit()
 {
 
-    std::cout << "on exi call \n";
+    // std::cout << "on exi call \n";
     // m_tgui->;
     // m_guiScriptingManager.cleanup();
     // m_shader.dispose();

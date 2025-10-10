@@ -34,7 +34,6 @@ Skill_Table = {}
 
 Prompt_UI_Table = {}
 
-
 MainInfo = {
     id = "",
     guid = "",

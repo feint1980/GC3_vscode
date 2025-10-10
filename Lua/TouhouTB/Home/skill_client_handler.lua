@@ -13,7 +13,7 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.SkillInfo_Start] =
         return
     end
 
-    print("recieve data " .. tData .. " from " .. t_guid)
+    -- print("recieve data " .. tData .. " from " .. t_guid)
     for k,v in pairs(Skill_Serialized_Table) do
         Skill_Serialized_Table[k] = nil
     end
@@ -43,9 +43,8 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.SkillInfo_Data] = 
     Skill_Table[characterKey][skillKey] = Skill:new()
     Skill_Table[characterKey][skillKey]:init(Home_SkillHandlerPtr,characterKey, skillKey)
 
-
-    print("skill check bro |")
-    print(Skill_Table[characterKey][skillKey].name)
+    -- print("skill check bro |")
+    -- print(Skill_Table[characterKey][skillKey].name)
 
 
     t_skill_count = t_skill_count + 1

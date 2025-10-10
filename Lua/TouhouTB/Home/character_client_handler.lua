@@ -42,7 +42,7 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Sta
         return
     end
 
-    print("Data is " .. tData)
+    -- print("Data is " .. tData)
     if tData ~= "request_ok" then
         print("K2 F3i117 exception")
         return
@@ -83,17 +83,17 @@ end
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Data] = function(host,data, guid)
 
     local t_guid, characterID, tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
-    print("compare guid " .. t_guid .. "|" .. MainInfo.guid)
+    -- print("compare guid " .. t_guid .. "|" .. MainInfo.guid)
     if t_guid == MainInfo.guid then
         parseOwnedCharacter(host, characterID, tData)
     else
         print("Ke3 F3i117 exception")
         return
     end
-    print("check data dump")
-    for k,v in pairs(Owned_CharacterTable) do
-        print(k .. " " .. v.name)
-    end
+    -- print("check data dump")
+    -- for k,v in pairs(Owned_CharacterTable) do
+    --     print(k .. " " .. v.name)
+    -- end
 end
 
 

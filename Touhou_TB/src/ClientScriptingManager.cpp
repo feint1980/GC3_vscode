@@ -141,7 +141,7 @@ int lua_SendWrapData(lua_State * L)
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string requestCmd = lua_tostring(L, 2);
 
-        std::cout << "data : " << requestCmd << "\n";
+        // std::cout << "data : " << requestCmd << "\n";
         // std::cout << "client side send data:" << requestCmd << "\n";
 
         uint32_t result = host->sendWrapData(requestCmd);
@@ -273,7 +273,6 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
         tData.push_back(iv[i]);
     }
     std::string sendStr;
-    sendStr.clear();
     sendStr.reserve(tData.size() + 6);
     // sendStr.append(reinterpret_cast<const char*>(ID_TH_TB), sizeof(ID_TH_TB));
 
@@ -281,10 +280,11 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
     sendStr.push_back(channel);
     sendStr.push_back(request);
     
-    for(int i = 0 ; i < tData.size() ; i++)
-    {
-        sendStr.push_back((tData[i]));
-    } 
+    // for(int i = 0 ; i < tData.size() ; i++)
+    // {
+    //     sendStr.push_back((tData[i]));
+    // } 
+    sendStr.insert(sendStr.end(), tData.begin(), tData.end());
 
     // std::cout << "encrypted " << sendStr.data() << "\n";
     // std::cout << "attemp to send to " << m_serverIPAddr.ToString() << "\n";
@@ -312,7 +312,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     std::cout << "|     Init Client RakNet Core ...         |\n";
 
     m_client = client;
-    std::cout << "my GUID is : "<<  m_client->GetMyGUID().ToString() << "\n"; 
+    // std::cout << "my GUID is : "<<  m_client->GetMyGUID().ToString() << "\n"; 
     // m_client = RakNet::RakPeerInterface::GetInstance();
     m_serverIP = serverIP;
     m_port = port;
@@ -345,7 +345,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/Networking/clientSide.lua")))
     {
-        std::cout << "Run script OK \n";
+        std::cout << "ClientScriptingManager Run script clientSide.lua OK \n";
     }
 
     lua_getglobal(m_script, "ClientSide_Init");
@@ -386,7 +386,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     }
 
     //m_cryptor.init(tStr1, tStr2); // old 
-    std::cout << "init cryptor for guid " << m_client->GetMyGUID().ToString() << "\n";
+    // std::cout << "init cryptor for guid " << m_client->GetMyGUID().ToString() << "\n";
     m_cryptor.init(tStr1, m_client->GetMyGUID().ToString());
 }
 
@@ -402,7 +402,7 @@ ClientScriptingManager::~ClientScriptingManager()
 
 uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
 {
-    std::cout << "handleWrapData  called \n";
+    // std::cout << "handleWrapData  called \n";
     if(p->length < 2 )
     {
         // std::cout << "Invalid Packet (data size < 2) \n";
@@ -448,7 +448,7 @@ uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
                     lua_pushstring(m_script, payLoad.c_str());
                     // lua_pushlightuserdata(m_script, &p->systemAddress);
                     lua_pushstring(m_script, p->guid.ToString());
-                    std::cout << "recieve guid check " << p->guid.ToString() << "\n";
+                    // std::cout << "recieve guid check " << p->guid.ToString() << "\n";
                     const int argc = 5; // remember to modify this number when you change the number of arguments
                     const int returnCount = 1;
                     return LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
@@ -673,7 +673,7 @@ void ClientScriptingManager::firstGateWay(RakNet::Packet *p)
     case ID_CONNECTION_REQUEST_ACCEPTED:
         // This tells the client they have connected
         printf("Able to connect to %s gennerated GUID %s\n", p->systemAddress.ToString(true), p->guid.ToString());
-        printf("My external address is %s\n", m_client->GetExternalID(p->systemAddress).ToString(true));
+        // printf("My external address is %s\n", m_client->GetExternalID(p->systemAddress).ToString(true));
         m_status = ClientStatus::Connected;
         m_serverIPAddr = p->systemAddress;
         InfoHolder::getInstance()->saveServerIP(m_serverIPAddr);
@@ -729,7 +729,7 @@ void ClientScriptingManager::update(float deltaTime)
             // p = m_client->Receive();
             // if(p)
             // {
-                std::cout << "handle wrap data precalled " << (int)(GetPacketIdentifier(p)) << "\n";
+                // std::cout << "handle wrap data precalled " << (int)(GetPacketIdentifier(p)) << "\n";
                 handleWrapData(p);
                 // handleMessage(p);
                 // m_client->DeallocatePacket(p);

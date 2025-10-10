@@ -313,20 +313,19 @@ function Home_showNotification(msg,btnText)
 end
 
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host,data, guid)
-    print("AccountResponse.Aregister called")
 
     local t_id, mon, souls, t_guid = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
     if t_id == nil or mon == nil or souls == nil or t_guid == nil then
         print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.MainInfo)")
         return
     end
-    print("check account " .. t_id .. " " .. mon .. " " .. souls .. " " .. t_guid)
+    -- print("check account " .. t_id .. " " .. mon .. " " .. souls .. " " .. t_guid)
     Main_MonValLabel:setText(mon)
     Main_SoulsValLabel:setText(Tag.color_TB_title .. souls .. " " .. Tag.icon_soul .. Tag.color_close)
 end
 
 ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Begin] = function(host,data, guid)
-    print("Character request result begin")
+    -- print("Character request result begin")
     -- clear all metadata tables
     for k,v in pairs(S_Characters_Info) do
         S_Characters_Info[k] = nil
@@ -346,7 +345,9 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
     
     S_Characters_Info[t_name]:init(t_data, isOwned)
 
-    print(t_name .. " " .. isOwned)
+    -- print(t_name .. " " .. isOwned)
+
+    print("character " .. t_name .. " is owned " .. isOwned)
 
     if isOwned == "true" then
         S_Characters_Info[t_name].isOwned = true
@@ -354,12 +355,12 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
         S_Characters_Info[t_name].isOwned = false
     end
 
-    print("table check ")
-    if S_Characters_Info[t_name].isOwned then 
-        print(t_name .. " true")
-    else
-        print(t_name .. " false")
-    end
+    -- print("table check ")
+    -- if S_Characters_Info[t_name].isOwned then 
+    --     print(t_name .. " true")
+    -- else
+    --     print(t_name .. " false")
+    -- end
 
     local t_charStats =  Client_ParseCharacterFromJson(host, t_data)
     ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr, "Shop",t_name,t_charStats)
@@ -372,11 +373,11 @@ end
 
 ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_End] = function(host,data, guid)
 
-    print("Character request result end")
+    -- print("Character request result end")
     local t_countStr = string.sub(data, 2, string.len(data) - 1)
     local t_count = tonumber(t_countStr)
     if t_count == GetTableSize(S_Characters_Info) then
-        print("Character request result end success")
+        -- print("Character request result end success")
         for k,v in pairs(S_Characters_Info) do
             if k == "S_Reimu" then
                 print("found Reimu")
@@ -433,7 +434,7 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
             count = count + 1
         end
     else
-        print("Character request result end failed")
+        -- print("Character request result end failed")
         SendRequest(PacketChannel.ShopChannel,ShopResponse.ShopChracterInfo , {'get_character_shop_list'}, 5, 0.25)
     end
 end

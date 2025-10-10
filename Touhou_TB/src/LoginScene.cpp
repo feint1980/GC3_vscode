@@ -67,7 +67,7 @@ void LoginScene::onEntry()
         std::cout << "SDL_HasScreenKeyboardSupport !!!!!!!!!!!!!!!!! \n"; 
     }
     else{
-        std::cout << " no SDL_HasScreenKeyboardSupport ##################\n";
+        std::cout << "no SDL_HasScreenKeyboardSupport ##################\n";
     }
 }
 

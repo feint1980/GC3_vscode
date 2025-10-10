@@ -35,33 +35,60 @@ namespace Feintgine
     }        
     
 
+    // std::vector<unsigned char> F_Cryptor::encrypt(const std::string &input, unsigned char * iv)
+    // {
+    //     std::vector<unsigned char> retVal;
+    //     if(!m_isReady)
+    //     {
+    //         return retVal;
+    //     }
+
+    //     // mbedtls_aes_init(&m_aes);
+
+    //     mbedtls_aes_setkey_enc(&m_aes, m_aesKey, AES_KEY_SIZE * 8);  // Set 256-bit key
+
+    //     // Padding: Ensure the input is a multiple of 16 bytes
+    //     size_t padded_size = ((input.size() / AES_IV_SIZE) + 1) * AES_IV_SIZE;
+    //     std::vector<unsigned char> padded_input(padded_size, 0);
+    //     std::memcpy(padded_input.data(), input.c_str(), input.size());
+
+    //     // Encrypt
+    //     retVal.resize(padded_size);
+    //     unsigned char iv_copy[AES_IV_SIZE];  // IV is modified during encryption, so we need a copy
+    //     std::memcpy(iv_copy, iv, AES_IV_SIZE);
+
+    //     mbedtls_aes_crypt_cbc(&m_aes, MBEDTLS_AES_ENCRYPT, padded_size, iv_copy, padded_input.data(), retVal.data());
+    //     // mbedtls_aes_free(&m_aes);
+    //     return retVal;
+
+    // }
+
     std::vector<unsigned char> F_Cryptor::encrypt(const std::string &input, unsigned char * iv)
     {
         std::vector<unsigned char> retVal;
-        if(!m_isReady)
-        {
-            return retVal;
-        }
+        if (!m_isReady) return retVal;
 
-        // mbedtls_aes_init(&m_aes);
+        mbedtls_aes_setkey_enc(&m_aes, m_aesKey, AES_KEY_SIZE * 8);
 
-        mbedtls_aes_setkey_enc(&m_aes, m_aesKey, AES_KEY_SIZE * 8);  // Set 256-bit key
+        // Calculate PKCS#7 padding length
+        size_t padLen = AES_IV_SIZE - (input.size() % AES_IV_SIZE);
+        size_t padded_size = input.size() + padLen;
 
-        // Padding: Ensure the input is a multiple of 16 bytes
-        size_t padded_size = ((input.size() / AES_IV_SIZE) + 1) * AES_IV_SIZE;
-        std::vector<unsigned char> padded_input(padded_size, 0);
-        std::memcpy(padded_input.data(), input.c_str(), input.size());
+        std::vector<unsigned char> padded_input(padded_size);
+        std::memcpy(padded_input.data(), input.data(), input.size());
+        std::memset(padded_input.data() + input.size(), static_cast<unsigned char>(padLen), padLen);
 
         // Encrypt
+        
         retVal.resize(padded_size);
-        unsigned char iv_copy[AES_IV_SIZE];  // IV is modified during encryption, so we need a copy
+        unsigned char iv_copy[AES_IV_SIZE];
         std::memcpy(iv_copy, iv, AES_IV_SIZE);
 
         mbedtls_aes_crypt_cbc(&m_aes, MBEDTLS_AES_ENCRYPT, padded_size, iv_copy, padded_input.data(), retVal.data());
-        // mbedtls_aes_free(&m_aes);
-        return retVal;
 
+        return retVal;
     }
+
 
 
     std::vector<unsigned char> F_Cryptor::getEncryptFromString(const std::string & data)
@@ -75,26 +102,51 @@ namespace Feintgine
         return retVal;
     }
 
-    std::string F_Cryptor::decrypt(const std::vector<unsigned char> & input, unsigned char * iv)
+    // std::string F_Cryptor::decrypt(const std::vector<unsigned char> & input, unsigned char * iv)
+    // {
+    //     std::string retVal;
+
+    //     mbedtls_aes_setkey_dec(&m_aes, m_aesKey, AES_KEY_SIZE * 8);  // Set 256-bit key
+
+    //     // Decrypt
+    //     std::vector<unsigned char> decrypted(input.size(), 0);
+    //     unsigned char iv_copy[AES_IV_SIZE];
+    //     std::memcpy(iv_copy, iv, AES_IV_SIZE);
+    
+    //     mbedtls_aes_crypt_cbc(&m_aes, MBEDTLS_AES_DECRYPT, input.size(), iv_copy, input.data(), decrypted.data());
+    //     // Remove padding
+    //     // retVal.assign(reinterpret_cast<char*>(decrypted.data()));
+    //     size_t padLen = decrypted.back();
+    //     if (padLen > AES_KEY_SIZE) padLen = 0; // safety
+    //     decrypted.resize(decrypted.size() - padLen);
+
+    //     retVal.reserve(decrypted.size());
+
+    //     retVal.assign(reinterpret_cast<const char*>(decrypted.data()), decrypted.size());
+    
+    //     // mbedtls_aes_free(&m_aes);
+
+    //     return retVal;
+    // }
+
+    std::string F_Cryptor::decrypt(const std::vector<unsigned char>& input, unsigned char* iv)
     {
         std::string retVal;
+        mbedtls_aes_setkey_dec(&m_aes, m_aesKey, AES_KEY_SIZE * 8);
 
-        mbedtls_aes_setkey_dec(&m_aes, m_aesKey, AES_KEY_SIZE * 8);  // Set 256-bit key
-
-        // Decrypt
-        std::vector<unsigned char> decrypted(input.size(), 0);
+        std::vector<unsigned char> decrypted(input.size());
         unsigned char iv_copy[AES_IV_SIZE];
         std::memcpy(iv_copy, iv, AES_IV_SIZE);
-    
+
         mbedtls_aes_crypt_cbc(&m_aes, MBEDTLS_AES_DECRYPT, input.size(), iv_copy, input.data(), decrypted.data());
-    
-        // Remove padding
-        retVal.assign(reinterpret_cast<char*>(decrypted.data()));
-    
-        // mbedtls_aes_free(&m_aes);
 
+        // PKCS#7 unpadding
+        size_t padLen = decrypted.back();
+        if (padLen > AES_IV_SIZE) padLen = 0; // safety check
+        decrypted.resize(decrypted.size() - padLen);
+
+        retVal.assign(reinterpret_cast<char*>(decrypted.data()), decrypted.size());
         return retVal;
-
     }
 
     void F_Cryptor::generateRandomIV(unsigned char * iv)

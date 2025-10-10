@@ -304,7 +304,7 @@ void CharacterManager::init(lua_State * script)
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/characterManager.lua")))
     {
-        std::cout << "Run script OK \n";
+        std::cout << "CharacterManager Run script characterManager.lua OK \n";
     }
 
     lua_getglobal(m_script, "CharacterManagerInit");

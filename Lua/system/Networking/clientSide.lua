@@ -181,7 +181,7 @@ ClientMessageHandling[PacketChannel.FormationChannel] = {}
 ---@param request number type of packet to wrap
 ---@param data string data need to send
 function ClientHandlerWrapResponse(host,chanel,request, data,guid)
-    print("ClientHandlerWrapResponse called" )
+    -- print("ClientHandlerWrapResponse called" )
 
     if ClientMessageHandling[chanel][request] ~= nil then
         ClientMessageHandling[chanel][request](host,data,guid)
@@ -250,7 +250,7 @@ function UpdateRequests(host)
                     req.nextSendTime = now + req.delay
                 end
             else
-                print("[✔] Request sent:", req.channel, req.request)
+                -- print("[✔] Request sent:", req.channel, req.request)
                 table.remove(RequestQueue, i)
             end
         end

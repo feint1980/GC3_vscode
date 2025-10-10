@@ -930,7 +930,6 @@ void WL_ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseH
 {
     srand( (unsigned)time(NULL) );
 
-
     // test path 
     m_charDesc.writeData("./patchy.json");
 
@@ -946,7 +945,6 @@ void WL_ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseH
     luaL_openlibs(m_script);
 
     // register lua functions
-    
 
     lua_register(m_script, "cppGetQueryResults", lua_GetQueryResults);
     lua_register(m_script, "cppGenKey", lua_GenKey);
@@ -963,13 +961,11 @@ void WL_ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseH
     lua_register(m_script, "cppSqlite_gettResultString", lua_SQLGetResultString);
     lua_register(m_script, "cppSqlite_finalizeStmt", lua_SQLFinalizeStmt);
 
-
     // extract data from packet
     lua_register(m_script, "cppPacket_getData", lua_Packet_getData);
     lua_register(m_script, "cppPacket_getIP", lua_Packet_getIP);
     lua_register(m_script, "cppPacket_extract", lua_Packet_extract);
     lua_register(m_script, "cppPacket_getGUID", lua_Packet_getGUID);
-
 
     // misc
     lua_register(m_script, "cpp_getEncrypedPW", lua_getEncryptedPW);
@@ -979,7 +975,7 @@ void WL_ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseH
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))
     {
-        std::cout << "Run script OK \n";
+        std::cout << "WL_ServerScriptingManager Run script serverSideScript.lua OK \n";
     }
 
     lua_getglobal(m_script, "ServerSide_Init");

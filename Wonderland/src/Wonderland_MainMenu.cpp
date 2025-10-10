@@ -12,7 +12,7 @@ int lua_switchScene(lua_State * L)
     else
     {
         
-        std::cout << " cpp_switchScene called \n";
+        // std::cout << " cpp_switchScene called \n";
         Wonderland_MainMenu * host = (Wonderland_MainMenu *)lua_touserdata(L, 1);
         std::string t_id = lua_tostring(L, 2);
         std::string t_pw = lua_tostring(L, 3);
@@ -97,7 +97,7 @@ void Wonderland_MainMenu::onEntry()
         std::cout << "SDL_HasScreenKeyboardSupport !!!!!!!!!!!!!!!!! \n"; 
     }
     else{
-        std::cout << " no SDL_HasScreenKeyboardSupport ##################\n";
+        std::cout << "no SDL_HasScreenKeyboardSupport ##################\n";
     }
 }
 
@@ -125,7 +125,7 @@ int Wonderland_MainMenu::getPreviousScreenIndex() const
 void Wonderland_MainMenu::onExit()
 {
 
-    std::cout << "on exi call \n";
+    // std::cout << "on exi call \n";
 
 }
 

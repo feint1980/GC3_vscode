@@ -59,7 +59,7 @@ void ClientEPHandler::init(lua_State * script)
     
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/clientHandling.lua")))
     {
-        std::cout << "Run script OK \n";
+        std::cout << "ClientEPHandler Run script clientHandling.lua OK \n";
     }
 
     lua_getglobal(m_script, "CH_Init");

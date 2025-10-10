@@ -12,8 +12,6 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
     if t_guid == nil or t_id == nil or tData == nil then
         print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_Request)")
         return
-
-
     end
 
     print("request for Formation called from " .. t_guid .. " " .. t_id )
@@ -65,7 +63,10 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
 
         SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Data,{tostring(formationQueryResult[i]),tostring(formationQueryResult[i+1]),tostring(formationQueryResult[i+2]), tostring(formationQueryResult[i+3])})
 
-        local formationDataQuery = "SELECT " .. Table.formation_info.formation_id .. "," .. Table.formation_info.character_id .. "," .. Table.formation_info.slot_index .. "," .. Table.formation_info.row_pos .. "," .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.formation_id .. " = ?;"
+        -- local formationDataQuery = "SELECT " .. Table.formation_info.formation_id .. "," .. Table.formation_info.character_id .. "," .. Table.formation_info.slot_index .. "," .. Table.formation_info.row_pos .. "," .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.formation_id .. " = ?;"
+
+        local formationDataQuery = "SELECT " .. Table.formation_info.formation_index .. "," .. Table.formation_info.character_id .. ", " .. Table.formation_info.slot_index .. ", " .. Table.formation_info.row_pos .. ", " .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.account_id .. " = ?;"
+
         print("fill data " .. t_accountID)
         SVI_DoQuerySTMT(host,formationDataQuery,{t_accountID})
 
@@ -255,7 +256,7 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info
     SV_SQLExec(host, "BEGIN TRANSACTION;")
 
 
-        SVI_DoQuerySTMT(host, "DELETE FROM formation_info_table WHERE account_id = ? AND formation_index = ? AND slot_index >= ?;",{t_id,formationIndex,infoSize})
+        SVI_DoQuerySTMT(host, "DELETE FROM formation_info_table WHERE account_id = ? AND formation_index = ? AND slot_index = ?;",{t_id,formationIndex,infoSize})
     
     -- local upsertFormationSQL  = [[
     -- INSERT INTO formation_info_table 

@@ -25,7 +25,7 @@ void FocusPanel::addLabel(tgui::Label::Ptr * label)
 {
     if(label) 
     {
-        std::cout << "FocusPanel addLabel called \n";
+        // std::cout << "FocusPanel addLabel called \n";
         if(m_labelSet.find(label) == m_labelSet.end())
         {
             m_labelSet.insert(label);
@@ -55,16 +55,16 @@ void FocusPanel::removeLabel(tgui::Label::Ptr * label)
 
 tgui::Label::Ptr * FocusPanel::getFirstLabel()
 {
-    std::cout << "getFirstLabel called \n";
+    // std::cout << "getFirstLabel called \n";
     if(m_labels.size() > 0)
     {
         // m_currentLabelIndex = 0;
-        std::cout << "m_currentLabelIndex: " << m_currentLabelIndex << "\n";
+        // std::cout << "m_currentLabelIndex: " << m_currentLabelIndex << "\n";
 
-        std::cout << "m_labels ptr: " << m_labels[m_currentLabelIndex] << "\n";
+        // std::cout << "m_labels ptr: " << m_labels[m_currentLabelIndex] << "\n";
         return m_labels[m_currentLabelIndex];
     } 
-    std::cout << "return nullptr \n";
+    std::cout << "FocusPanel::getFirstLabel return nullptr \n";
     return nullptr;
 }
 

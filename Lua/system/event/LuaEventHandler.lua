@@ -29,10 +29,10 @@ Tsize = 0
 function InitEventHandler(host)
     _G.HandlerHost = host
     if _G.HandlerHost == nil then
-        print("host is nil")
+        print("InitEventHandler host is nil")
     else
-        print("host is not nil")
-        print(_G.HandlerHost)
+        -- print("host is not nil")
+        -- print(_G.HandlerHost)
     end
 end
 

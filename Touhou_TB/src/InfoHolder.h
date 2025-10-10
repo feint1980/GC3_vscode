@@ -57,7 +57,7 @@ public:
 
     RakNet::RakPeerInterface * getClient() { 
         
-        std::cout << "get client " << m_client << "\n";
+        // std::cout << "get client " << m_client << "\n";
         return m_client; }
 
 

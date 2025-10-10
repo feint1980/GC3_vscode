@@ -84,7 +84,8 @@ Formation_Table = {
 
 Formation_Info_Table = {
     tb_name = "formation_info_table",
-    formation_id = "formation_id",
+    account_id = "account_id",
+    formation_index = "formation_index",
     character_id = "character_id",
     slot_index = "slot_index",
     row_pos = "row_pos",
@@ -206,12 +207,20 @@ end
 function HandleWrapMessage(host,chanel,request, data,ip,guid)
     -- print("HandleWrapMessage called" )
 
-    print("channel " .. chanel .. " request " .. request)
+    -- print("channel " .. chanel .. " request " .. request)
+
+    if MessageHandling[chanel] == nil then
+        print("channel not found " .. chanel)
+        return
+    end
+
+    if MessageHandling[chanel][request] == nil then
+        print("request not found channel " .. chanel .. " request " .. request)
+        return
+    end
 
     if MessageHandling[chanel][request] ~= nil then
         MessageHandling[chanel][request](host,data,ip,guid)
-    else
-        print("request not found channel " .. tostring(chanel) .. " request " .. tostring(request)) 
     end
 
 end
@@ -273,7 +282,7 @@ require "formationHandle"
 
 print("server side script ended ...")
 
-print("read data from lua : ")
+-- print("read data from lua : ")
 
 local function get_current_file_path()
     local str = debug.getinfo(1, "S").source:sub(2)

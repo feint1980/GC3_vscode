@@ -19,7 +19,7 @@ function Skill:new(o)
     o = o or {}
     setmetatable(o, self)
     self.__index = self
-    print("Skill new hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee ")
+    -- print("Skill new hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee ")
     return o
 end
 

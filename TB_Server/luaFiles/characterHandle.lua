@@ -180,7 +180,7 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
         return
     end
 
-    print("recieve data " .. tData .. " from " .. t_guid)
+    -- print("recieve data " .. tData .. " from " .. t_guid)
 
     --- guid check 
     if t_guid ~= guid then

@@ -129,15 +129,10 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     --- Notification section ----
     Login_Noti_Panel = Panel:new()
     Login_Noti_Panel:init(Login_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
-    print("init panel OK")
     Login_Noti_Panel:setAlignment(0.5,0.5)
-    print("set aligment OK")
     Login_Noti_Panel:setSizeStr("30%", "25%")
-    print("set size OK")
     Login_Noti_Panel:setPosStr("50%", "50%")
-    print("set pos OK")
     Login_Noti_Panel:setVisible(false)
-    print("set visible OK")
     Login_Noti_Msg = RTLabel:new()
     Login_Noti_Msg:init(Login_GUIScriptingPtr,"",0,0,Login_Noti_Panel.ptr)
     Login_Noti_Msg:setAlignment(TextAlginment.Center)
@@ -245,7 +240,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     Login_LoginBtn:setHoverable(0,255,0,255,255,255,255,255)
     Login_LoginBtn:setOnClickCallback(function()
 
-        print("setOnClickCallback here")
+        -- print("setOnClickCallback here")
         Login_showNotification("Logging ...","")
         -- local sendData =  string.char(PacketChannel.AccountChannel)  .. string.char(AccountResponse.Alogin) .. " asdasdsadsadsadsa"
         -- cppSendWrapData(Login_ClientScriptingPtr ,sendData) --send wrap data case 1 test OK
@@ -580,8 +575,8 @@ function Login_handleKeyboard(signal)
 end
 
 ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function(host,data, guid)
-    print("Client AccountResponse.Alogin called")
-    print("data here " .. data)
+    -- print("Client AccountResponse.Alogin called")
+    -- print("data here " .. data)
     -- "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$"
     local t_id, tStatus, t_pw, tGUID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
@@ -614,7 +609,7 @@ ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = fu
 end
 
 ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = function(host,data, guid)
-    print("AccountResponse.Aregister called")
+    -- print("AccountResponse.Aregister called")
 
     -- strip first and last characters
     local tData = string.sub(data,2,string.len(data) - 1)

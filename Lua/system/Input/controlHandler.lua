@@ -86,7 +86,7 @@ function ControlHandler_Init(host)
 end
 
 function ControlHandler_DispatchSignal(host,tguiHost,signal)
-    print("Get signal " .. signal)
+    -- print("Get signal " .. signal)
     for k,v in pairs(Dispatch_Recievers) do
         if v ~= nil then
             v(host,tguiHost,signal)
@@ -117,7 +117,7 @@ end
 
 ---@Description add the panel to focusable stack (now it will be focused)
 function ControlHandler_reciever_push(GUI_Host,panel)
-    print("ControlHandler_reciever_push called")
+    -- print("ControlHandler_reciever_push called")
     --- check if the panel is already in the stack
     -- for i = 1, #SignalReceivers.stack do
     --     if SignalReceivers.stack[i] == panel then
@@ -182,9 +182,9 @@ end
 ---@param x number x position
 ---@param y number y position
 function ControlHandler_setCursorPos(host,x,y)
-    print("ControlHandler_setCursorPos called ")
+    -- print("ControlHandler_setCursorPos called ")
     if host == nil then
-        print("Input_host is nil")
+        -- print("Input_host is nil")
         return
     else
         cpp_ControlHandler_Cursor_Set(host,x,y)
@@ -208,7 +208,7 @@ function Controller_fireLeftClickEvent(host,times,x,y)
 end
 
 function ControlHandler_AddFocusableWidget(host,widget,parent)
-    print("ControlHandler_AddFocusableWidget called")
+    -- print("ControlHandler_AddFocusableWidget called")
     
     -- if parent == nil then
     --     print("parentless detected")

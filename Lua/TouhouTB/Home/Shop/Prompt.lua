@@ -59,7 +59,7 @@ function Prompt:init(GUI_host, msg ,isStandard )
 
     self.btnTable = {}
 
-    print("is standard " .. tostring(isStandard) .. " " .. msg)
+    -- print("is standard " .. tostring(isStandard) .. " " .. msg)
     if isStandard == true then
 
         self:addButton("OK",function()
@@ -100,7 +100,7 @@ function Prompt:addButton(btnText, callback)
     btn:setOnClickCallback(callback)
     table.insert(self.btnTable,btn)
     -- self.btnCOunt =  #self.btnTable
-    print("now btn count is " .. #self.btnTable)
+    -- print("now btn count is " .. #self.btnTable)
 
     self:arrangeBtns()
     return btn
@@ -109,7 +109,7 @@ end
 function Prompt:arrangeBtns()
     local btnCount = #self.btnTable
     local spacing = 100/ (btnCount + 1)
-    print("rearrange button  ????000000000000000000000000000000000000000000" )
+    -- print("rearrange button  ????000000000000000000000000000000000000000000" )
     for i = 1, btnCount do
         local x = spacing * i
         local y = "80%"

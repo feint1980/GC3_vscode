@@ -131,8 +131,8 @@ void ClientHandler::update(float deltaTime)
 
 			case ID_CONNECTION_REQUEST_ACCEPTED:
 				// This tells the client they have connected
-				printf("Able to connect to %s gennerated GUID %s\n", m_currentPacket->systemAddress.ToString(true), m_currentPacket->guid.ToString());
-				printf("My external address is %s\n", m_client->GetExternalID(m_currentPacket->systemAddress).ToString(true));
+				// printf("Able to connect to %s gennerated GUID %s\n", m_currentPacket->systemAddress.ToString(true), m_currentPacket->guid.ToString());
+				// printf("My external address is %s\n", m_client->GetExternalID(m_currentPacket->systemAddress).ToString(true));
                 // m_status = Status::Connected;
                 m_isConnected = true;
 				break;

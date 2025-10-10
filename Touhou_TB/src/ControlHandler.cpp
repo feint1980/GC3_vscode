@@ -55,7 +55,7 @@ int lua_ControlHandler_Cursor_SendLeftClickEvent(lua_State * script)
         int x = lua_tonumber(script, 3);
         int y = lua_tonumber(script, 4);
         
-        std::cout << "number of click : " << numberOfClick << "\n";
+        // std::cout << "number of click : " << numberOfClick << "\n";
         for (int i = 0; i < numberOfClick; i++)
         {
             SDL_Event down;
@@ -82,7 +82,7 @@ int lua_ControlHandler_Cursor_SendLeftClickEvent(lua_State * script)
             controlHandler->sendEvent(up);
             SDL_PushEvent(&up);
             // std::cout << "sent a left click up " << SDL_PushEvent(&up) << "\n";
-            std::cout << "sent a left click \n";
+            // std::cout << "sent a left click \n";
             
         }
         return 0;
@@ -102,7 +102,7 @@ void ControlHandler::sendEvent(const SDL_Event & evnt)
 {
     if(m_tgui)
     {
-        std::cout << "send event " << evnt.type << "\n";
+        // std::cout << "send event " << evnt.type << "\n";
         m_tgui->getTGUI()->handleEvent(evnt);
     }
 }
@@ -120,14 +120,14 @@ void ControlHandler::init(lua_State * script,SDL_Window * window, TGUIScriptingM
     // init lua component
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/Input/controlHandler.lua")))
     {
-        std::cout << "Run script OK \n";
+        std::cout << "ControlHandler Run script controlHandler OK \n";
     }
 
     lua_getglobal(m_script, "ControlHandler_Init");
     if(lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this);
-        std::cout << "pass ref : " << this << "\n";
+        // std::cout << "pass ref : " << this << "\n";
         const int argc = 1;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))

@@ -56,7 +56,7 @@ end
 function ScrollablePanel:init(host, posX, posY, 
     width, height, parent)
 
-    print("ScrollablePanel init")
+    -- print("ScrollablePanel init")
     parent = parent or nil
     self.parent = parent
     self.host = host
@@ -65,12 +65,12 @@ function ScrollablePanel:init(host, posX, posY,
     self.posY = posY
     self.width = width
     self.height = height
-    if self.parent ~= nil then
-        print("parent is not nil")
-        print(self.parent)
-    else
-        print("parent is nil")
-    end
+    -- if self.parent ~= nil then
+    --     -- print("parent is not nil")
+    --     -- print(self.parent)
+    -- else
+    --     print("parent is nil")
+    -- end
 end
 
 ---@Description set the position of the Scrollablepanel

@@ -57,13 +57,13 @@ end
 ---@param parent pointer instance of parent
 function CharacterShop:init(GUI_host, posX, posY,
     width, height, parent,clientHost, ip)
-    print("init called ")
+    -- print("init called ")
     self.mainPanel = parent
-    if self.mainPanel == nil then
-        print(" mainPanel is nil")
-    else
-        print(" mainPanel is not nil")
-    end
+    -- if self.mainPanel == nil then
+    --     print(" mainPanel is nil")
+    -- else
+    --     print(" mainPanel is not nil")
+    -- end
     self.charactersPanel = ScrollablePanel:new()
     self.charactersPanel:init(GUI_host,posX,posY,width,height, self.mainPanel)
     self.charactersPanel:setAlignment(0.5,0.5)

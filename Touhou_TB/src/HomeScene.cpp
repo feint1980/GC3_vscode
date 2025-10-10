@@ -102,7 +102,7 @@ void HomeScene::onEntry()
         std::cout << "SDL_HasScreenKeyboardSupport !!!!!!!!!!!!!!!!! \n"; 
     }
     else{
-        std::cout << " no SDL_HasScreenKeyboardSupport ##################\n";
+        std::cout << "no SDL_HasScreenKeyboardSupport ##################\n";
     }
 
     m_gif.init("./Assets/F_AObjects/komachi_chill.xml");
