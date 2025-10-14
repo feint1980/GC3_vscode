@@ -78,6 +78,7 @@ local function parseOwnedCharacter(host, characterID,data)
     -- print("attemp to converse with data" .. data)
     ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr,"Owned",characterID,t_charStats)
     Owned_CharacterTable[characterID]:initNonCB(Home_ClientCharacterHandlerPtr,"Owned",characterID,t_charStats)
+
 end
 
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Data] = function(host,data, guid)

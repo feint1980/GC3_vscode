@@ -46,9 +46,12 @@ end
 
 local displayOwnedCharacterTable = {}
 function CharacterNexus:updateCharacters()
+    print("update character called ")
     for k,v in pairs(Owned_CharacterTable) do
         print(k )
     end
+    print("data check done ")
+
 
     for k,v in pairs(displayOwnedCharacterTable) do
         table.remove(displayOwnedCharacterTable,k)

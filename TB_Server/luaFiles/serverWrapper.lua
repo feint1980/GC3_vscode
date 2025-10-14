@@ -1,3 +1,9 @@
+---- include Lua libraries
+
+package.path = package.path .. ";../../Lua/include/?.lua"
+
+local json = require ("dkjson")
+
 -- Replicate enum from C++
 
 PacketChannel ={
@@ -326,4 +332,20 @@ function Table_DeepCopy(orig, copies)
         copy[Table_DeepCopy(k, copies)] = Table_DeepCopy(v, copies)
     end
     return setmetatable(copy, getmetatable(orig))
+end
+
+function JSON_Encode(t,isIndent)
+    isIndent = isIndent or false
+    return json.encode(t, { indent = isIndent })
+end
+
+---@Description: decode json to table
+---@param data string 
+---@return table decoded Lua table
+---@return number position in the string after parsing finished
+---@return number error if decode failed (nil if OK)
+function JSON_Decode(data)
+    
+    local tbl, pos, err = json.decode(data,1,nil)
+    return tbl, pos, err
 end

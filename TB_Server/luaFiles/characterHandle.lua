@@ -236,6 +236,7 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
 
     end
 
+
     SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.OwnedCharacter_End,{t_guid,"ev"})
 
 end

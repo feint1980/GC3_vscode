@@ -1,3 +1,10 @@
+---- include Lua libraries
+
+package.path = package.path .. ";../../Lua/include/?.lua"
+
+local json = require ("dkjson")
+
+
 --- Classes declare
 
 --- for CLient
@@ -98,4 +105,23 @@ end
 --- @return string
 function ClientGetGUID(host)
     return cppGetClientGUID(host)
+end
+
+---@ Description: encode table to json
+---@param t table table to encode
+---@param isIndent boolean indent or not
+function JSON_Encode(t,isIndent)
+    isIndent = isIndent or false
+    return json.encode(t, { indent = isIndent })
+end
+
+---@Description: decode json to table
+---@param data string 
+---@return table decoded Lua table
+---@return number position in the string after parsing finished
+---@return number error if decode failed (nil if OK)
+function JSON_Decode(data)
+    
+    local tbl, pos, err = json.decode(data)
+    return tbl, pos, err
 end

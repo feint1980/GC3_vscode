@@ -82,6 +82,8 @@ CREATE TABLE formation_info_table(
         ON DELETE CASCADE,
     CONSTRAINT uq_formation_character UNIQUE (account_id, formation_index, character_id)
 );
+INSERT INTO formation_info_table VALUES('huyen12',2,'S_Meiling',1,2,2);
+INSERT INTO formation_info_table VALUES('huyen12',2,'S_Patchouli',2,2,1);
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('register_key_table',9);
 INSERT INTO sqlite_sequence VALUES('player_character_table',2);

@@ -6,6 +6,7 @@ require "SV_global"
 
 MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Request] = function(host ,data, ip, guid)
 
+    local queryResult = {}
 
     local t_guid, t_id, tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
 
@@ -14,6 +15,10 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
         return
     end
 
+    queryResult.guid = t_guid
+    queryResult.id = t_id
+    queryResult.formation = {}
+
     print("request for Formation called from " .. t_guid .. " " .. t_id )
 
     --- guid check
@@ -21,16 +26,21 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
         return
     end
     --- start query 
-    
-    local cap = 4 -- FormationQuery_CheckCap(host,t_id)
+
+    ---local cap = 4
+    local cap = FormationQuery_CheckCap(host,t_id)
     print("formation limit " .. cap)
+
+    queryResult.cap = cap
 
     local getFormationQuery = "SELECT " .. Table.formation.id .. "," .. Table.formation.account_id .. "," .. Table.formation.name .. "," .. Table.formation.index .. " FROM " .. Table.formation.tb_name .. " WHERE " .. Table.formation.account_id .. " = ?;"
     SVI_DoQuerySTMT(host,getFormationQuery,{t_id})
 
     local formationQueryResult = Table_DeepCopy(Query_val)
 
-    SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Start, {t_guid , "request_ok",tostring(cap)})
+    
+
+    -- SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Start, {t_guid , "request_ok",tostring(cap)})
 
     local queryResultSize = GetTableSize(Query_val)
     print("total formation count " .. queryResultSize)
@@ -61,19 +71,27 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
         print("formation name " ..  tostring(   t_formationName))
         print("formation index " .. tostring(  t_index))
 
-        SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Data,{tostring(formationQueryResult[i]),tostring(formationQueryResult[i+1]),tostring(formationQueryResult[i+2]), tostring(formationQueryResult[i+3])})
+        -- SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Data,{tostring(formationQueryResult[i]),tostring(formationQueryResult[i+1]),tostring(formationQueryResult[i+2]), tostring(formationQueryResult[i+3])})
 
+        queryResult.formation[t_index] = {formationID = tostring(formationQueryResult[i]),accountID = tostring(formationQueryResult[i+1]),formationName = tostring(formationQueryResult[i+2]), formationIndex =  tostring(formationQueryResult[i+3])}
+
+        queryResult.formation[t_index].subData = {}
         -- local formationDataQuery = "SELECT " .. Table.formation_info.formation_id .. "," .. Table.formation_info.character_id .. "," .. Table.formation_info.slot_index .. "," .. Table.formation_info.row_pos .. "," .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.formation_id .. " = ?;"
 
-        local formationDataQuery = "SELECT " .. Table.formation_info.formation_index .. "," .. Table.formation_info.character_id .. ", " .. Table.formation_info.slot_index .. ", " .. Table.formation_info.row_pos .. ", " .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.account_id .. " = ?;"
+        local formationDataQuery = "SELECT " .. Table.formation_info.character_id .. ", " .. Table.formation_info.slot_index .. ", " .. Table.formation_info.row_pos .. ", " .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.account_id .. " = ? AND " .. Table.formation_info.formation_index .. " = ?;"
 
-        print("fill data " .. t_accountID)
-        SVI_DoQuerySTMT(host,formationDataQuery,{t_accountID})
+        print("fill data t_accountID " .. t_accountID)
+        print("fill data t_index " .. t_index)
+
+        SVI_DoQuerySTMT(host,formationDataQuery,{t_accountID,t_index})
 
         print("sub query " .. formationDataQuery)
-        local FormationDataQueryResult = Query_val
+        local FormationDataQueryResult = Table_DeepCopy(Query_val)
         local formationData = {}
-        for j = 1, #FormationDataQueryResult, 5 do
+        local tFormationInfoResult = {}
+    
+
+        for j = 1, #FormationDataQueryResult, 4 do
 
             --1 (j) formation id
             --2 (j+1) character id
@@ -81,25 +99,49 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
             --4 (j+3) row pos
             --5 (j+4) col pos
 
-            if(SVI_checkData{FormationDataQueryResult[j],FormationDataQueryResult[j+1],FormationDataQueryResult[j+2],FormationDataQueryResult[j+3],FormationDataQueryResult[j+4]} == false) then
+            if(SVI_checkData{FormationDataQueryResult[j],FormationDataQueryResult[j+1],FormationDataQueryResult[j+2],FormationDataQueryResult[j+3]} == false) then
                 print("data check failed")
                 return
             end
 
-            local formationID = tostring(FormationDataQueryResult[j])
-            local characterID = tostring(FormationDataQueryResult[j+1])
-            local slotIndex = tostring(FormationDataQueryResult)[j+2]
-            local rowPos = tostring(FormationDataQueryResult)[j+3]
-            local colPos = tostring(FormationDataQueryResult)[j+4]
+            -- local formationID = tostring(FormationDataQueryResult[j])
+            -- local characterID = tostring(FormationDataQueryResult[j+1])
+            -- local slotIndex = tostring(FormationDataQueryResult)[j+2]
+            -- local rowPos = tostring(FormationDataQueryResult)[j+3]
+            -- local colPos = tostring(FormationDataQueryResult)[j+4]
 
-            SendReliable(host, ip, t_guid, PacketChannel.FormationChannel, FormationResponse.Formation_SubData,{formationID,characterID,slotIndex,rowPos,colPos})
+            -- SendReliable(host, ip, t_guid, PacketChannel.FormationChannel, FormationResponse.Formation_SubData,{formationID,characterID,slotIndex,rowPos,colPos})
 
-            print(" info " .. FormationDataQueryResult[j] .. " " ..  FormationDataQueryResult[j+1] .. " " ..  FormationDataQueryResult[j+2] .. " " ..  FormationDataQueryResult[j+3] .. " " ..  FormationDataQueryResult[j+4])
+            -- print(" info " .. FormationDataQueryResult[j] .. " " ..  FormationDataQueryResult[j+1] .. " " ..  FormationDataQueryResult[j+2] .. " " ..  FormationDataQueryResult[j+3] .. " " ..  FormationDataQueryResult[j+4])
+
+
+            print("characterID " ..  FormationDataQueryResult[j])
+            print("slotIndex " ..  FormationDataQueryResult[j+1])
+            print("rowPos " ..  FormationDataQueryResult[j+2])
+            print("colPos " ..  FormationDataQueryResult[j+3])
+
+            local key = FormationDataQueryResult[j]
+
+            queryResult.formation[t_index].subData[key] = {}
+
+            -- queryResult.formation[t_index].subData[key].characterID =  FormationDataQueryResult[j]
+            queryResult.formation[t_index].subData[key].slotIndex =  FormationDataQueryResult[j + 1]
+            queryResult.formation[t_index].subData[key].rowPos =  FormationDataQueryResult[j+2]
+            queryResult.formation[t_index].subData[key].colPos =  FormationDataQueryResult[j+3]
 
         end
-        print("sub query end")
     end
-    SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_End, {t_guid , "request_done"})
+    -- SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_End, {t_guid , "request_done"})
+
+    print("json test")
+    print(JSON_Encode(queryResult,true))
+
+    SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Start, {JSON_Encode(queryResult,true)})
+
+
+    print("json end")
+    print("sub query end")
+
     print("query end")
 end
 
@@ -230,7 +272,6 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info
 
     -- print("passed all the check, the data is " .. t_guid .. " " .. t_id .. " " .. formation_id .. " " .. formationIndex .. " " .. infoSize .. " " .. infoData)
 
-
     -- print("process " .. infoData)
     infoData = infoData:match("^#(.-)#$")
 
@@ -255,8 +296,7 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info
 
     SV_SQLExec(host, "BEGIN TRANSACTION;")
 
-
-        SVI_DoQuerySTMT(host, "DELETE FROM formation_info_table WHERE account_id = ? AND formation_index = ? AND slot_index = ?;",{t_id,formationIndex,infoSize})
+    SVI_DoQuerySTMT(host, "DELETE FROM formation_info_table WHERE account_id = ? AND formation_index = ? AND slot_index = ?;",{t_id,formationIndex,infoSize})
     
     -- local upsertFormationSQL  = [[
     -- INSERT INTO formation_info_table 
@@ -269,8 +309,8 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info
     --     col_pos = excluded.col_pos;
     -- ]]
 
-        local upsertFormationSQL  =
-    "INSERT INTO formation_info_table (account_id,formation_index, character_id, slot_index, row_pos, col_pos) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(account_id, formation_index, character_id) DO UPDATE SET character_id = excluded.character_id, row_pos = excluded.row_pos, col_pos = excluded.col_pos;"
+    local upsertFormationSQL  =
+    "INSERT INTO formation_info_table (account_id,formation_index, character_id, slot_index, row_pos, col_pos) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(account_id, formation_index, character_id) DO UPDATE SET character_id = excluded.character_id, row_pos = excluded.row_pos, col_pos = excluded.col_pos slot_index = excluded.slot_index;"
 
     print("before insert ...")
     -- Insert or update each slot

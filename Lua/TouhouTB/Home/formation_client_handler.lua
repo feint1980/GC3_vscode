@@ -18,44 +18,81 @@ end
 
 ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Start] = function(host,data, guid)
 
-    local t_guid,tData, cap = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
-    -- print("recieve data " .. tData .. " from " .. t_guid .. " cap " .. cap  )
+    -- local t_guid,tData, data = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+    -- print("recieve data " .. tData .. " from " .. t_guid .. " data " .. data  )
 
 
-    if t_guid == nil or tData == nil or cap == nil then
+    local tData = string.match(data, "^|([^|]+)|$")
+
+    print("got data " .. tData)
+
+    local formationInfo, pos, err = JSON_Decode(tData)
+
+    if err then
+        print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_Start)  JSON decode error:", err)
+    end
+    if formationInfo == nil then
         print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_Start)")
         return
     end
 
-    print(tData)
-    if tData == "request_ok" then
-        print(cap)
-        -- Prompt_UI_Table["New_Formation"]:show(true)
-    else
-        -- Prompt_UI_Table["New_Formation"]:show(false)
-    end
 
-    print("number of page reset")
-    local nCap = tonumber(cap)
-    if nCap == nil then
-        return 
-    end
-    Formation_PageCap = nCap / 4
-    -- Formation_Page = tonumbercap
+    print("data start ----")
+    print("guid " .. formationInfo.guid)
+    print("id " .. formationInfo.id)
+    print("cap " .. formationInfo.cap)
 
-    print("Formation_PageCap " .. Formation_PageCap)
-
-    -- reset table
-    for k in pairs (Formation_Table) do
-        Formation_Table[k] = nil
-    end
-    Formation_Table = {}
-
-    for i = 1, 4 do
-        if Formation_PreviewPanel[i] ~= nil then
-            Formation_PreviewPanel[i]:reset() -- reset all state
+    for k,v in pairs(formationInfo.formation) do
+        print("formationID " .. v.formationID)
+        print("accountID " .. v.accountID)
+        print("formationName " .. v.formationName)
+        print("formationIndex " .. v.formationIndex)
+        local size = GetTableSize(v.subData)
+        print("sub data size " .. size)
+        for k2,v2 in pairs(v.subData) do
+            print(" charracterID : " .. k2)
+            print(" slotIndex " .. v2.slotIndex)
+            print(" rowPos " .. v2.rowPos)
+            print(" colPos " .. v2.colPos)
         end
     end
+
+    print("data end ")
+    
+    -- if t_guid == nil or tData == nil or cap == nil then
+    --     print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_Start)")
+    --     return
+    -- end
+
+    -- print(tData)
+    -- if tData == "request_ok" then
+    --     print(cap)
+    --     -- Prompt_UI_Table["New_Formation"]:show(true)
+    -- else
+    --     -- Prompt_UI_Table["New_Formation"]:show(false)
+    -- end
+
+    -- print("number of page reset")
+    -- local nCap = tonumber(cap)
+    -- if nCap == nil then
+    --     return 
+    -- end
+    -- Formation_PageCap = nCap / 4
+    -- -- Formation_Page = tonumbercap
+
+    -- print("Formation_PageCap " .. Formation_PageCap)
+
+    -- -- reset table
+    -- for k in pairs (Formation_Table) do
+    --     Formation_Table[k] = nil
+    -- end
+    -- Formation_Table = {}
+
+    -- for i = 1, 4 do
+    --     if Formation_PreviewPanel[i] ~= nil then
+    --         Formation_PreviewPanel[i]:reset() -- reset all state
+    --     end
+    -- end
 
 end
 

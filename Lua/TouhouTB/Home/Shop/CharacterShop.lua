@@ -157,6 +157,11 @@ function CharacterShop:addCharPanel(GUI_host,x,y,width,height,
         self.characterDetailPanel:setVisible(true)
 
     end)
+
+    -- for k ,v in pairs(self.characterPanels) do
+    --     JSON_Encode(v)
+    -- end
+
 end
 
 ---@Description request character list
