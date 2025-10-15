@@ -107,6 +107,23 @@ function ClientGetGUID(host)
     return cppGetClientGUID(host)
 end
 
+--- deep copy table
+function Table_DeepCopy(orig, copies)
+    copies = copies or {} -- to handle cycles
+    if type(orig) ~= "table" then
+        return orig
+    elseif copies[orig] then
+        return copies[orig]
+    end
+    
+    local copy = {}
+    copies[orig] = copy
+    for k, v in pairs(orig) do
+        copy[Table_DeepCopy(k, copies)] = Table_DeepCopy(v, copies)
+    end
+    return setmetatable(copy, getmetatable(orig))
+end
+
 ---@ Description: encode table to json
 ---@param t table table to encode
 ---@param isIndent boolean indent or not
@@ -125,3 +142,4 @@ function JSON_Decode(data)
     local tbl, pos, err = json.decode(data)
     return tbl, pos, err
 end
+

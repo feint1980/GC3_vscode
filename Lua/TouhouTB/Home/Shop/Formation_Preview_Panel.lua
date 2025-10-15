@@ -1,4 +1,4 @@
-package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;'
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' 
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -11,6 +11,7 @@ require "homeGlobal"
 require "Formation_CharInfo"
 require "Prompt"
 
+
 ---@class FormationPreviewPanel
 FormationPreviewPanel ={
     guiHost = nil,
@@ -22,7 +23,7 @@ FormationPreviewPanel ={
     formationName = "",
     
     ---@type table of Formation_CharInfo
-    t_charactersInfo = {},
+    charactersInfo = {},
 
     tIndex = 0,
     -----@type Label
@@ -102,4 +103,23 @@ function FormationPreviewPanel:reset()
     self.formationName = ""
     self.formationLabel:setText("Create")
     self.isEmpty = true
+end
+
+function FormationPreviewPanel:setInfo(t_charactersInfo)
+    self.charactersInfo = t_charactersInfo
+
+    print("pass data check ")
+    for k ,v in pairs(t_charactersInfo) do
+        print(k)
+    end
+    print("pass data check end")
+
+    print("table check " )
+    for k,v in pairs(self.charactersInfo) do
+        print("v.characterID" .. v.characterID)
+        print("v.tIndex" .. v.tIndex)
+        print("v.col" .. v.col)
+        print("v.row" .. v.row)
+    end
+    print("table check end")
 end

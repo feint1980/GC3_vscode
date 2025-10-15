@@ -74,7 +74,6 @@ local function parseOwnedCharacter(host, characterID,data)
 
     local t_charStats =  Client_ParseCharacterFromJson(host, data)
 
-
     -- print("attemp to converse with data" .. data)
     ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr,"Owned",characterID,t_charStats)
     Owned_CharacterTable[characterID]:initNonCB(Home_ClientCharacterHandlerPtr,"Owned",characterID,t_charStats)

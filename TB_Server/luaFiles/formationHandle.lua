@@ -89,7 +89,6 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
         local FormationDataQueryResult = Table_DeepCopy(Query_val)
         local formationData = {}
         local tFormationInfoResult = {}
-    
 
         for j = 1, #FormationDataQueryResult, 4 do
 

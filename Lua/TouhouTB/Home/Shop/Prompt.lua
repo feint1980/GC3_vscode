@@ -136,7 +136,6 @@ function Prompt:addInputBox(name,x,y,width, height)
 
     -- table.insert(self.inputBoxes,inputBox)
     self.inputBoxes[name] = inputBox
-
     return inputBox
 end
 

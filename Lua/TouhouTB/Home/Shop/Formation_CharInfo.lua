@@ -19,11 +19,17 @@ function Formation_CharacterInfo:new(o)
     return o
 end
 
-function Formation_CharacterInfo:init(characterID, tIndex, col, row)
+function Formation_CharacterInfo:init(characterID, tIndex, row,col)
     self.characterID = characterID
     self.tIndex = tIndex
-    self.col = col
     self.row = row
+    self.col = col
+
+    -- print("init was call self.characterID " .. self.characterID)
+    -- print("init was call self.tIndex " .. self.tIndex)
+    -- print("init was call self.row " .. self.row)
+    -- print("init was call self.col " .. self.col)
+
 end
 
 ---@class Formation_Info
@@ -47,6 +53,11 @@ function Formation_Info:new(o)
     return o
 end
 
+---@Desciption : Initialize Formation_Info
+---@param formationID number 
+---@param formationName string
+---@param formationIndex number
+---@param formationCharacters table of Formation_CharacterInfo
 function Formation_Info:init(formationID, formationName, formationIndex, formationCharacters)
     self.formationID = formationID
     self.formationName = formationName

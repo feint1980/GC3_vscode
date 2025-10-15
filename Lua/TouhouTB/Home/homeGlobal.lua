@@ -32,6 +32,7 @@ Formation_OwnedCharacterPannels = {}
 Skill_Serialized_Table = {}
 Skill_Table = {}
 
+---@table of Prompt
 Prompt_UI_Table = {}
 
 MainInfo = {
