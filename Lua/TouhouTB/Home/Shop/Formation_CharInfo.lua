@@ -63,4 +63,14 @@ function Formation_Info:init(formationID, formationName, formationIndex, formati
     self.formationName = formationName
     self.formationIndex = formationIndex
     self.formationCharacters = formationCharacters
+
+    -- print("Formation_Info:init ")
+    -- for k,v in pairs(formationCharacters) do
+    --     print("characterID " .. v.characterID)
+    --     print("tIndex " .. v.tIndex)
+    --     print("row " .. v.row)
+    --     print("col " .. v.col)
+    -- end
+    -- print("Formation_Info:init end !")
+
 end

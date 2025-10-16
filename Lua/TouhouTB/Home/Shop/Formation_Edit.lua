@@ -26,7 +26,9 @@ Formation_Edit = {
     saveButton = nil,
     resetAllButton = nil,
     renameButton = nil,
-    deleteButton = nil
+    deleteButton = nil,
+    formationCharacterCount  = 0
+
 }
 
 ---@Description create a new instance of Formation_Edit
@@ -149,8 +151,8 @@ function Formation_Edit:getSelected()
 end
 
 function Formation_Edit:updateList(characterID, row,col)
-    print("updateList called " .. row .. " " .. col)
-
+    print("updateList called " .. row .. " " .. col .. " value " .. characterID)
+    --- reposition
     for i = 1, 3 do
         for j = 1, 3 do
             -- print("slot " .. self.formationSlot[i][j].picturePath)
@@ -160,8 +162,37 @@ function Formation_Edit:updateList(characterID, row,col)
             end
         end
     end
+
+    -- if #self.formationCharacterCount < 4 then
+    --     self.formationCharacterCount  = self.formationCharacterCount + 1
+        
+    -- else
+    --     Prompt_UI_Table["Formation_Noti"]:setMsg("Formation is full, clear a slot ! ")
+    --     Prompt_UI_Table["Formation_Noti"]:show(true)
+    --     return
+    -- end
     self.formationSlot[row][col]:setCharacterID(characterID)
-    print("formation updated end")
+end
+
+function Formation_Edit:loadFormation(formationCharacters)
+
+    for i = 1, 3 do
+        for j = 1, 3 do
+            -- print("slot " .. self.formationSlot[i][j].picturePath)
+                self.formationSlot[i][j]:setSelected(false)
+                self.formationSlot[i][j]:removeAssignment()
+        end
+    end
+
+    self.formationCharacters = {}
+
+    for k,v in pairs(formationCharacters) do
+        self.formationSlot[tonumber(v.row)][tonumber(v.col)]:setCharacterID(v.characterID)
+        print("*****slot " .. v.row .. " " .. v.col .. " " .. v.characterID)
+        -- table.insert(self.formationCharacters,v.characterID)
+
+    end
+    print("loaded ")
 end
 
 function Formation_Edit:setVisible(value)
@@ -193,11 +224,14 @@ function Formation_Edit:updateToServer()
 
     updateBuffer = updateBuffer .. "#"
 
-    -- print("update buffer size " .. #updateBuffer)
-    -- for i = 1, #updateBuffer do
-    --     print("update buffer " .. i .. " " .. updateBuffer[i] )
-    -- end
-    -- print("update buffer end")
+
+    print("update buffer size " .. #updateBuffer)
+
+    print("update buffer " .. updateBuffer)
+    for i = 1, #updateBuffer do
+        print("update buffer " .. i .. " " .. updateBuffer[i] )
+    end
+    print("update buffer end")
 
     Formation_Request_InfoUpdate(Formation_PreviewPanel[Formation_Selection].formationName, updateBuffer, tSlotIndex - 1)
 

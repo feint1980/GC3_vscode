@@ -279,6 +279,13 @@ function Formation_Request_InfoUpdate(name,data,size)
 
     -- {guid,id, name, tostring(Formation_Selection * Formation_Page ), size, data }, 5, 0.25)
 
+
+    print("Formation_Request_InfoUpdate called")
+    Prompt_UI_Table["Formation_Noti"]:setMsg("Formation updated !")
+    Prompt_UI_Table["Formation_Noti"]:show(true)
+
+    Home_RequestFormations()
+    
 end
 
 

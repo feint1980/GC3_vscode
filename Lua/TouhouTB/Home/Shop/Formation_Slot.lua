@@ -80,6 +80,10 @@ function Formation_Slot:init(host, parentPanel, posX,
     self.mainPanel:setOnRightClickCallback(function()
         if self.isAssigned == true then
             self:removeAssignment()
+            -- _G.Formation_Edit_Instance.formationCharacterCount = _G.Formation_Edit_Instance.formationCharacterCount - 1
+            -- if _G.Formation_Edit_Instance.formationCharacterCount < 0 then 
+            --     _G.Formation_Edit_Instance.formationCharacterCount = 0
+            -- end
         end
     end)
 

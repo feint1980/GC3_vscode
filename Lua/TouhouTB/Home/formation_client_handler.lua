@@ -20,39 +20,37 @@ ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formatio
     -- print("recieve data " .. tData .. " from " .. t_guid .. " data " .. data  )
 
     local tData = string.match(data, "^|([^|]+)|$")
-    print("got data " .. tData)
+    -- print("got data " .. tData)
     local formationInfo, pos, err = JSON_Decode(tData)
 
     if err then
         print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_Start)  JSON decode error:", err)
-        
     end
     if formationInfo == nil then
         print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_Start)")
         return
     end
+    -- print("data start ----")
+    -- print("guid " .. formationInfo.guid)
+    -- print("id " .. formationInfo.id)
+    -- print("cap " .. formationInfo.cap)
 
-    print("data start ----")
-    print("guid " .. formationInfo.guid)
-    print("id " .. formationInfo.id)
-    print("cap " .. formationInfo.cap)
+    -- for k,v in pairs(formationInfo.formation) do
+    --     print("formationID " .. v.formationID)
+    --     print("accountID " .. v.accountID)
+    --     print("formationName " .. v.formationName)
+    --     print("formationIndex " .. v.formationIndex)
+    --     local size = GetTableSize(v.subData)
+    --     print("sub data size " .. size)
+    --     for k2,v2 in pairs(v.subData) do
+    --         print(" charracterID : " .. k2)
+    --         print(" slotIndex " .. v2.slotIndex)
+    --         print(" rowPos " .. v2.rowPos)
+    --         print(" colPos " .. v2.colPos)
+    --     end
+    -- end
 
-    for k,v in pairs(formationInfo.formation) do
-        print("formationID " .. v.formationID)
-        print("accountID " .. v.accountID)
-        print("formationName " .. v.formationName)
-        print("formationIndex " .. v.formationIndex)
-        local size = GetTableSize(v.subData)
-        print("sub data size " .. size)
-        for k2,v2 in pairs(v.subData) do
-            print(" charracterID : " .. k2)
-            print(" slotIndex " .. v2.slotIndex)
-            print(" rowPos " .. v2.rowPos)
-            print(" colPos " .. v2.colPos)
-        end
-    end
-
-    print("data end ")
+    -- print("data end ")
     if err then 
         print("[PacketChannel.FormationChannel][FormationResponse.Formation_Start] error", err)
         Prompt_UI_Table["New_Formation"]:setMsg("Error !!!!")
@@ -119,8 +117,6 @@ ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formatio
     -- local tPage = nCap
     local currentPage = Formation_Page
 
-    local previewIndex = 4 * currentPage 
-
     for k,v in pairs(Formation_Table) do
         print("index " .. k)
         print("name " .. v.formationName)
@@ -134,14 +130,14 @@ ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formatio
         print(i .. " " .. infoIndex )
         if Formation_Table[infoIndex] ~= nil then
             Formation_PreviewPanel[i]:update(Formation_Table[infoIndex].accountID, Formation_Table[infoIndex].formationName)
-            Formation_PreviewPanel[i]:setInfo(Formation_Table[infoIndex].charactersInfo)
+            -- if Formation_Table[infoIndex].charactersInfo ~= nil then
+            Formation_PreviewPanel[i]:setInfo(Formation_Table[infoIndex].formationCharacters)
+            -- end
         else
             print("Formation_Table[" .. infoIndex .. "] is nil")
         end
 
     end
-
-
 end
 
 ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Data] = function(host,data, guid)
@@ -157,25 +153,25 @@ ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formatio
 
 end
 
-ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_End] = function(host,data, guid)
-    local t_guid, tData = string.match(data, "^|([^|]+)|([^|]+)|$")
+-- ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_End] = function(host,data, guid)
+--     local t_guid, tData = string.match(data, "^|([^|]+)|([^|]+)|$")
 
-    if t_guid == nil or tData == nil then
-        print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_End)")
-        return
-    end
-    if t_guid == guid then
-        if tData == "request_done" then
-            print("formation request done")
-        end
-    end
-end
+--     if t_guid == nil or tData == nil then
+--         print("Ke3 F3i117 exception (PacketChannel.FormationChannel][FormationResponse.Formation_End)")
+--         return
+--     end
+--     if t_guid == guid then
+--         if tData == "request_done" then
+--             print("formation request done")
+--         end
+--     end
+-- end
 
-ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_SubData] = function(host,data, guid)
+-- ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_SubData] = function(host,data, guid)
 
-    print("fomation sub data called ")
+--     print("fomation sub data called ")
 
-end
+-- end
 
 
 

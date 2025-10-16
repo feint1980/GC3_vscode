@@ -11,7 +11,6 @@ require "homeGlobal"
 require "Formation_CharInfo"
 require "Prompt"
 
-
 ---@class FormationPreviewPanel
 FormationPreviewPanel ={
     guiHost = nil,
@@ -21,9 +20,9 @@ FormationPreviewPanel ={
     ---@type Label
     formationLabel = nil,
     formationName = "",
-    
+
     ---@type table of Formation_CharInfo
-    charactersInfo = {},
+    formationCharacters = {},
 
     tIndex = 0,
     -----@type Label
@@ -64,11 +63,6 @@ function FormationPreviewPanel:init(GUI_host,parentPanel, index)
     self.formationLabel:setAlignment(TextAlginment.Center)
     self.formationLabel:setScale(1.)
 
-    -- local newFormationName = "New_Formation_" .. self.tIndex
-
-
-    -- Prompt_UI_Table[newFormationName]:show(false)
-
 end
 
 function FormationPreviewPanel:createNewFormation(GUI_host, characterIDTable)
@@ -92,12 +86,14 @@ function FormationPreviewPanel:onClickCallBack()
         -- Formation_Edit_Panel:setVisible(true)
         _G.Formation_Edit_Instance:setVisible(true)
         print("suppose to selected " .. self.formationName)
+
+        _G.Formation_Edit_Instance:loadFormation(self.formationCharacters)
+
     else
         Prompt_UI_Table["New_Formation"]:show(true)
         _G.Formation_Edit_Instance:setVisible(false)
     end
 end
-
 
 function FormationPreviewPanel:reset()
     self.formationName = ""
@@ -105,21 +101,21 @@ function FormationPreviewPanel:reset()
     self.isEmpty = true
 end
 
-function FormationPreviewPanel:setInfo(t_charactersInfo)
-    self.charactersInfo = t_charactersInfo
+function FormationPreviewPanel:setInfo(t_formationCharacters)
+    print("FormationPreviewPanel:setInfo t_formationCharacters called ############################")
+    self.formationCharacters = t_formationCharacters
 
-    print("pass data check ")
-    for k ,v in pairs(t_charactersInfo) do
-        print(k)
+    if self.formationCharacters == nil then
+        print("FormationPreviewPanel:setInfo t_formationCharacters is nil")
+        return
     end
-    print("pass data check end")
 
-    print("table check " )
-    for k,v in pairs(self.charactersInfo) do
-        print("v.characterID" .. v.characterID)
-        print("v.tIndex" .. v.tIndex)
-        print("v.col" .. v.col)
-        print("v.row" .. v.row)
-    end
-    print("table check end")
+    -- print("pass data check ")
+    -- for k ,v in pairs(t_formationCharacters) do
+    --     print(k)
+    -- end
+    -- print("pass data check end")
+
+    -- _G.Formation_Edit_Instance:loadFormation(self.formationCharacters)
+    -- print("table check end")
 end

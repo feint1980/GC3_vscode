@@ -31,6 +31,7 @@ ClientMessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharact
 
     Home_showNotification(tData, "OK")
     Home_UpdateInfo()
+    Home_RequestOwnedCharacterList()
 end
 
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Start] = function(host,data, guid)
