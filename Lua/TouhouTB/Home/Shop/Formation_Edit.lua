@@ -228,11 +228,13 @@ function Formation_Edit:updateToServer()
     print("update buffer size " .. #updateBuffer)
 
     print("update buffer " .. updateBuffer)
-    for i = 1, #updateBuffer do
-        print("update buffer " .. i .. " " .. updateBuffer[i] )
-    end
+    -- for i = 1, #updateBuffer do
+    --     print("update buffer " .. i .. " " .. updateBuffer[i] )
+    -- end
     print("update buffer end")
 
     Formation_Request_InfoUpdate(Formation_PreviewPanel[Formation_Selection].formationName, updateBuffer, tSlotIndex - 1)
+
+    print("Formation_Request_InfoUpdate end")
 
 end
