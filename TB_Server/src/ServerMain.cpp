@@ -140,6 +140,7 @@ void ServerMain::update(float deltaTime)
             // todo : handle TB packet
         break;
         default:
+            std::cout << "uncommon packet " << (int)packetIdentifier << "\n";
             m_scriptManager->handleCommand(p);
             // std::cout << "unknow packet " << (int)packetIdentifier << "\n";
             break;

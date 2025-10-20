@@ -225,74 +225,105 @@ std::string ClientScriptingManager::getClientGUID()
 
 uint32_t ClientScriptingManager::sendData(const std::string & data, uint8_t encryptIndex)
 {
-    unsigned char iv[AES_IV_SIZE] = {};
-    m_cryptor.generateRandomIV(iv);
-    // std::string fData ;
-    // fData.push_back(ID_TH_TB);
+    // unsigned char iv[AES_IV_SIZE] = {};
+    // m_cryptor.generateRandomIV(iv);
+    // // std::string fData ;
+    // // fData.push_back(ID_TH_TB);
 
-    std::string cData = std::string(data.begin() + encryptIndex, data.end());
+    // std::string cData = std::string(data.begin() + encryptIndex, data.end());
 
-    auto tData = m_cryptor.encrypt(cData,iv);
-    for(int i = 0 ; i < AES_IV_SIZE;i++)
-    {
-        tData.push_back(iv[i]);
-    }
-    std::string sendStr;
+    // auto tData = m_cryptor.encrypt(cData,iv);
+    // for(int i = 0 ; i < AES_IV_SIZE;i++)
+    // {
+    //     tData.push_back(iv[i]);
+    // }
+    // std::string sendStr;
     // sendStr.push_back(ID_TH_TB);
-    for(int i = 0 ; i < tData.size() ; i++)
-    {
-        sendStr.push_back((tData[i]));
-    } 
-    return m_client->Send(sendStr.c_str(), sendStr.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
-}
-
-uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
-{
-    // std::cout << "C++ ClientScriptingManager::sendWrapData called \n";
-    if(data.size() < 2 ) // headers
-    {
-        std::cout << "sendWrapData failed (data size < 2) \n";
-        return 0;
-    }
-    uint8_t channel = static_cast<uint8_t>(data[0]);
-    uint8_t request = static_cast<uint8_t>(data[1]);
-    // todo , special request add here
-    int payLoadIndex = 2;
-
-    // std::cout << "sendWrapData channel " << static_cast<int>(channel) << " request " << static_cast<int>(request) << "\n"; 
-
-    std::string payLoad = std::string(data.begin() + payLoadIndex, data.end());
-    unsigned char iv[AES_IV_SIZE] = {};
-    m_cryptor.generateRandomIV(iv);
-    // std::string fData ;
-    // fData.push_back(ID_TH_TB);
-    auto tData = m_cryptor.encrypt(payLoad,iv);
-    tData.reserve(tData.size() + AES_IV_SIZE);
-    for(int i = 0 ; i < AES_IV_SIZE;i++)
-    {
-        tData.push_back(iv[i]);
-    }
-    std::string sendStr;
-    sendStr.reserve(tData.size() + 6);
-    // sendStr.append(reinterpret_cast<const char*>(ID_TH_TB), sizeof(ID_TH_TB));
-
-    sendStr.push_back(ID_TH_TB); // move to append ID_TH_TB here
-    sendStr.push_back(channel);
-    sendStr.push_back(request);
-    
     // for(int i = 0 ; i < tData.size() ; i++)
     // {
     //     sendStr.push_back((tData[i]));
     // } 
-    sendStr.insert(sendStr.end(), tData.begin(), tData.end());
-
-    // std::cout << "encrypted " << sendStr.data() << "\n";
-    // std::cout << "attemp to send to " << m_serverIPAddr.ToString() << "\n";
-
-    // std::cout << "send size " << sendStr.size() << "\n";
-
-    return m_client->Send(sendStr.c_str(), sendStr.size() +1, HIGH_PRIORITY, RELIABLE_ORDERED, channel, m_serverIPAddr, false);
+    return m_client->Send(data.c_str(), data.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
+
+// uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
+// {
+//     // std::cout << "C++ ClientScriptingManager::sendWrapData called \n";
+//     if(data.size() < 2 ) // headers
+//     {
+//         std::cout << "sendWrapData failed (data size < 2) \n";
+//         return 0;
+//     }
+//     uint8_t channel = static_cast<uint8_t>(data[0]);
+//     uint8_t request = static_cast<uint8_t>(data[1]);
+//     // todo , special request add here
+//     int payLoadIndex = 2;
+
+//     std::string payLoad = std::string(data.begin() + payLoadIndex, data.end());
+    
+//     std::string tData;
+//     tData.reserve(payLoad.size() + 40 );
+
+//     tData = m_cryptor->encrypt(payLoad);
+
+//     std::string sendStr;
+//     sendStr.reserve(tData.size() + 4);
+//     // sendStr.append(reinterpret_cast<const char*>(ID_TH_TB), sizeof(ID_TH_TB));
+
+//     sendStr.push_back(static_cast<char>(ID_TH_TB)); // move to append ID_TH_TB here
+//     sendStr.push_back(channel);
+//     sendStr.push_back(request);
+    
+//     sendStr.insert(sendStr.end(), tData.begin(), tData.end());
+
+//     return m_client->Send(sendStr.data(), sendStr.size(), HIGH_PRIORITY, RELIABLE_ORDERED, channel, m_serverIPAddr, false);
+// }
+
+uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
+{
+    if (data.size() < 2) // headers
+    {
+        std::cout << "sendWrapData failed (data size < 2)\n";
+        return 0;
+    }
+
+    uint8_t channel = static_cast<uint8_t>(data[0]);
+    uint8_t request = static_cast<uint8_t>(data[1]);
+    int payLoadIndex = 2;
+
+    std::string payLoad(data.begin() + payLoadIndex, data.end());
+    std::string tData = m_cryptor->encrypt(payLoad);
+
+
+
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)ID_TH_TB);
+    bsOut.Write(channel);
+    bsOut.Write(request);
+    bsOut.WriteAlignedBytes(reinterpret_cast<const unsigned char*>(tData.data()), tData.size());
+
+    m_client->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, m_serverIPAddr, false);
+
+
+    unsigned int bits = bsOut.GetNumberOfBitsUsed();
+    unsigned int bytes = bits / 8 + (bits % 8 ? 1 : 0);
+    printf("CLIENT pre-send bytes=%u\n", bytes);
+    const unsigned char* cb = bsOut.GetData();
+    for (unsigned int i = 0; i < std::min<unsigned int>(64, bytes); ++i) printf("%02X ", cb[i]);
+    printf("\n");
+
+    // Safe send (BitStream handles memory ownership)
+    return m_client->Send(
+        &bsOut, 
+        HIGH_PRIORITY, 
+        RELIABLE_ORDERED, 
+        0, 
+        m_serverIPAddr, 
+        false
+    );
+}
+
+
 
 CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
 {
@@ -360,34 +391,11 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
         }
     }
     // init key
-    int t1[16] = {
-        7, 12, 5, 7,
-        8, 33, 51, 21,
-        77, 71, 22, 43,
-        12, 15, 99, 4
-    };
-    int t2[8] = {
-        12, 6, 7, 2,
-        9, 12, 91, 42
-    } ;
-
-    std::string tStr1;
-    
-    std::string tStr2;
-    
-    for(int i = 0 ; i < 16 ; i++)
-    {
-        tStr1.push_back(t1[i]);
-    }
-
-    for(int i = 0 ; i < 8 ; i++)
-    {
-        tStr2.push_back(t2[i]);
-    }
 
     //m_cryptor.init(tStr1, tStr2); // old 
     // std::cout << "init cryptor for guid " << m_client->GetMyGUID().ToString() << "\n";
-    m_cryptor.init(tStr1, m_client->GetMyGUID().ToString());
+    m_cryptor = new Feintgine::F_Cryptor_sodium();
+    m_cryptor->init("BNML is real", m_client->GetMyGUID().ToString());
 }
 
 ClientScriptingManager::ClientScriptingManager()
@@ -420,27 +428,24 @@ uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
                 lua_getglobal(m_script, "ClientHandlerWrapResponse");
                 if(lua_isfunction(m_script, -1))
                 {
-                    int indexStart = 1;
-                    if ((unsigned char)p->data[0] == ID_TIMESTAMP)
-                    {
-                        RakAssert(p->length > sizeof(RakNet::MessageID) + sizeof(RakNet::Time));
-                        indexStart += sizeof(RakNet::MessageID) + sizeof(RakNet::Time);
-                    }
-                    if(p->length < 2 )
-                    {
-                        std::cout << "handleWrapData failed (data size < 2) \n";
-                        return 0;
-                    }
-                    uint8_t channel = static_cast<uint8_t>(p->data[indexStart]);
-                    uint8_t request = static_cast<uint8_t>(p->data[indexStart + 1]);
+                    RakNet::BitStream bsIn(p->data, p->length, false);
 
-                    std::string rawData =  std::string(reinterpret_cast<const char*>(p->data), p->length);
+                    RakNet::MessageID msgId;
+                    uint8_t channel;
+                    uint8_t request;
 
-                    unsigned int payLoadIndex = indexStart + 2;
+                    bsIn.Read(msgId);
+                    bsIn.Read(channel);
+                    bsIn.Read(request);
 
-                    std::string payLoad = std::string(reinterpret_cast<const char*>(p->data + payLoadIndex), p->length - payLoadIndex);
+                    unsigned int remainingBytes = bsIn.GetNumberOfUnreadBits() / 8;
+                    std::string encData;
+                    encData.resize(remainingBytes);
+                    bsIn.ReadAlignedBytes(reinterpret_cast<unsigned char*>(&encData[0]), remainingBytes);
 
-                    payLoad = getDecryptMessage(payLoad);
+                    // std::string payLoad = m_cryptor->decrypt(encData);
+
+                    std::string payLoad = getDecryptMessage(encData);
 
                     lua_pushlightuserdata(m_script, this);
                     lua_pushnumber(m_script, channel);
@@ -468,19 +473,8 @@ uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
 
 std::string ClientScriptingManager::getDecryptMessage(const std::string & data)
 {
-    unsigned char iv[AES_IV_SIZE];
-    for(int i = 0 ; i < AES_IV_SIZE ; i++)
-    {
-        iv[i] = data[(data.size() -1) - (AES_IV_SIZE - i)]; 
-    }
 
-    std::vector<unsigned char> tMsg;
-    for(int i = 0 ;i < (data.size() -1) - AES_IV_SIZE; i++)
-    {
-        tMsg.push_back(data[i]);
-    }
-
-    return m_cryptor.decrypt(tMsg, iv);
+    return m_cryptor->decrypt(data);
 }
 
 
@@ -573,23 +567,16 @@ bool ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
 
                 if(!selfPacket)
                 {
-                    unsigned char iv[AES_IV_SIZE];
-                    for(int i = 0 ; i < AES_IV_SIZE ; i++)
-                    {
-                        iv[i] = p->data[(p->length -1) - (AES_IV_SIZE - i)]; 
-                    }
+
                     // std::cout << "salt is :\n";
                     // for(int i = 0 ; i < AES_IV_SIZE; i++)
                     // {
                     //     printf("%02x", iv[i]);
                     // }  
                     // std::cout << "\n";
-                    std::vector<unsigned char> tMsg;
-                    for(int i = 0 ;i < (p->length -1) - AES_IV_SIZE; i++)
-                    {
-                        tMsg.push_back(p->data[i]);
-                    }
-                    lua_pushstring(m_script,m_cryptor.decrypt(tMsg, iv).c_str());
+                    std::string tMsg = std::string(reinterpret_cast<const char*>(p->data), p->length);
+                    // 
+                    lua_pushstring(m_script,m_cryptor->decrypt(tMsg).c_str());
                 }
                 else
                 {

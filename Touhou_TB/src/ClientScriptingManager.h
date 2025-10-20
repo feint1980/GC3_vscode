@@ -21,7 +21,8 @@
 #include "NetworkPacket.h"
 #include "CharacterDes.h"
 #include <iostream>
-#include <F_Cryptor.h>
+// #include <F_Cryptor.h>
+#include <F_Cryptor_sodium.h>
 #include "LuaManager.h"
 #include "InfoHolder.h"
 #include <thread>
@@ -113,7 +114,7 @@ public:
 
     std::unordered_map<std::string, CharacterStats> m_characterStatsDict;
 
-    Feintgine::F_Cryptor m_cryptor;
+    Feintgine::F_Cryptor_sodium * m_cryptor;
 
 
     RakNet::SystemAddress m_serverIPAddr;

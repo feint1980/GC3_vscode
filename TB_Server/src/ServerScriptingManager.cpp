@@ -186,6 +186,12 @@ static int serverScriptingCallback(void *NotUsed, int argc, char **argv, char **
 	return 0;
 }
 
+void printHex(const std::string& data) {
+    for (unsigned char c : data)
+        printf("%02X", c);
+    printf("\n");
+}
+
 std::string genKey(int numberOfRandom)
 {
     char a[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -963,22 +969,17 @@ void ServerScriptingManager::update(float deltaTime)
 std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
 {
     // std::string retVal = "";
-    unsigned char iv[AES_IV_SIZE];
-    for(int i = 0 ; i < AES_IV_SIZE ; i++)
-    {
-        iv[i] = p->data[(p->length -1) - (AES_IV_SIZE - i)]; 
-    }
-
-    std::vector<unsigned char> tMsg;
-    for(int i = 0 ;i < (p->length -1) - AES_IV_SIZE; i++)
+    std::string tMsg;
+    for(int i = 0 ;i < (p->length -1); i++)
     {
         tMsg.push_back(p->data[i]);
     }
     
+
     // return m_cryptor.decrypt(tMsg, iv); // old
     if(m_cryptors[p->guid.ToString()])
     {
-        return m_cryptors[p->guid.ToString()]->decrypt(tMsg, iv);
+        return m_cryptors[p->guid.ToString()]->decrypt(tMsg);
     }
     else
     {
@@ -989,22 +990,11 @@ std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
 
 std::string ServerScriptingManager::getDecryptMessage(const std::string & data, const std::string & guid)
 {
-    unsigned char iv[AES_IV_SIZE];
-    for(int i = 0 ; i < AES_IV_SIZE ; i++)
-    {
-        iv[i] = data[(data.size() -1) - (AES_IV_SIZE - i)]; 
-    }
 
-    std::vector<unsigned char> tMsg;
-    tMsg.reserve(data.size() -1 - AES_IV_SIZE);
-    for(int i = 0 ;i < (data.size() -1) - AES_IV_SIZE; i++)
-    {
-        tMsg.push_back(data[i]);
-    }
 
     if(m_cryptors[guid])
     {
-        return m_cryptors[guid]->decrypt(tMsg, iv);
+        return m_cryptors[guid]->decrypt(data);
     }
     
     std::cout << "no cryptor for guid " << guid << "\n";
@@ -1023,55 +1013,40 @@ SkillStats ServerScriptingManager::getSkillStats(const std::string & skillName)
 uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & target,const std::string & guid, const std::string & data)
 {
     // std::cout << "C++ sendWrapData called \n";
-    if(data.size() < 2 ) // headers
+    if (data.size() < 2) // headers
     {
-        std::cout << "sendWrapData failed (data size < 2) \n";
+        std::cout << "sendWrapData failed (data size < 2)\n";
         return 0;
     }
+
     uint8_t channel = static_cast<uint8_t>(data[0]);
     uint8_t request = static_cast<uint8_t>(data[1]);
-
-    // std::cout << "sendWrapData channel " << channel << " request " << request << "\n";
-    // todo , special request add here
     int payLoadIndex = 2;
 
-    std::string payLoad = std::string(data.begin() + payLoadIndex, data.end());
-    unsigned char iv[AES_IV_SIZE] = {};
+    std::string payLoad(data.begin() + payLoadIndex, data.end());
+    std::string tData = m_cryptors[guid]->encrypt(payLoad);
 
-    //m_cryptor.generateRandomIV(iv); // old
-    if(m_cryptors[guid])
-    {
-        m_cryptors[guid]->generateRandomIV(iv);
-    }
-    else
-    {
-        std::cout << "no cryptor for guid " << guid << "\n";
-        return 223;
-    }
+    // Build BitStream safely
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)ID_TH_TB);     // custom message ID
+    bsOut.Write(channel);                         // 1 byte
+    bsOut.Write(request);                         // 1 byte
+    bsOut.WriteAlignedBytes(
+        reinterpret_cast<const unsigned char*>(tData.data()), 
+        (const unsigned int)tData.size()
+    );
 
-    auto tData = m_cryptors[guid]->encrypt(payLoad,iv);
-    tData.reserve(payLoad.size() + AES_IV_SIZE);
-    for(int i = 0 ; i < AES_IV_SIZE;i++)
-    {
-        tData.push_back(iv[i]);
-    }
-    std::string sendStr;
-    sendStr.reserve(tData.size() + 6);
-    sendStr.push_back(ID_TH_TB); // move to append ID_TH_TB here
-    sendStr.push_back(channel);
-    sendStr.push_back(request);
+    // Safe send (BitStream handles memory ownership)
+    return m_server->Send(
+        &bsOut, 
+        HIGH_PRIORITY, 
+        RELIABLE_ORDERED, 
+        0, 
+        target, 
+        false
+    );
 
-    // for(int i = 0 ; i < tData.size() ; i++)
-    // {
-    //     sendStr.push_back((tData[i]));
-    // }
-    sendStr.insert(sendStr.end(), tData.begin(), tData.end());
-    
-    // std::cout << "send data \n ";
-    // std::cout << sendStr << "\n";
-
-    return m_server->Send(sendStr.c_str(), sendStr.size() +1, HIGH_PRIORITY,  RELIABLE_ORDERED,channel, target,false);
-
+    // std::cout << "send with  || " << sendBuf.size() << " bytes\n"; 
 }   
 
 uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data, bool isEncrypted)
@@ -1081,21 +1056,8 @@ uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, 
     //sendStr.push_back(ID_TH_TB);
     if(isEncrypted)
     {
-        unsigned char iv[AES_IV_SIZE] = {};
-        m_cryptor.generateRandomIV(iv);
-        // std::string tData = m_cryptor.getStringFromEncrypt(m_cryptor.encrypt(data,iv));
-    
-        auto tData = m_cryptor.encrypt(data,iv);
-    
-        for(int i = 0 ; i < AES_IV_SIZE;i++)
-        {
-            tData.push_back(iv[i]);
-        }
-    
-        for(int i = 0 ; i < tData.size() ; i++)
-        {
-            sendStr.push_back((tData[i]));
-        } 
+        
+
     }
     else
     {
@@ -1156,38 +1118,33 @@ void ServerScriptingManager::handleWrapDataQueue(float deltaTime)
 
 uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
 {
-    int indexStart = 1;
-    if ((unsigned char)p->data[0] == ID_TIMESTAMP)
+    RakNet::BitStream bsIn(p->data, p->length, false);
+
+    RakNet::MessageID msgId;
+    uint8_t channel, request;
+
+    bsIn.Read(msgId);
+    if (msgId != ID_TH_TB)
     {
-        RakAssert(p->length > sizeof(RakNet::MessageID) + sizeof(RakNet::Time));
-        indexStart += sizeof(RakNet::MessageID) + sizeof(RakNet::Time);
+        printf("Unexpected message ID: %u\n", msgId);
+        return 0;
     }
-    uint8_t channel = static_cast<uint8_t>(p->data[indexStart]);
-    uint8_t request = static_cast<uint8_t>(p->data[indexStart + 1]);
 
-    // std::cout << "handleWrapData called \n";
-    // std::cout << "index start " << indexStart << " channel " <<  static_cast<int>(channel) << " request " << static_cast<int>(request) << "\n";
+    bsIn.Read(channel);
+    bsIn.Read(request);
 
-    // std::cout << "packet length " << p->length << "\n";
-    // std::cout << "unencrypt data " << std::string(reinterpret_cast<const char*>(p->data), p->length) << "\n";
+    unsigned int remainingBytes = bsIn.GetNumberOfUnreadBits() / 8;
+    std::string encData(remainingBytes, '\0');
+    bsIn.ReadAlignedBytes(reinterpret_cast<unsigned char*>(&encData[0]), remainingBytes);
 
-    std::string rawData =  std::string(reinterpret_cast<const char*>(p->data), p->length);
+    std::string payLoad = getDecryptMessage(encData, p->guid.ToString());
 
-    // std::string rawData(p->data);
-
-
-    // enable for debug, consider make a logging 
-    // std::cout << "rawData " << rawData << "\n";
-    // std::cout << "channel " << channel << " request " << request << "\n";
-
-    // hand special request here
-    unsigned int payLoadIndex = indexStart + 2;
-
-    std::string payLoad = std::string(reinterpret_cast<const char*>(p->data + payLoadIndex), p->length - payLoadIndex);
-   // std::cout << "payload " << payLoad << "\n";
+    printf("SERVER recv bytes=%u\n", p->length);
+    for (unsigned int i = 0; i < std::min<unsigned int>(64, (unsigned int)p->length); ++i) printf("%02X ", (unsigned char)p->data[i]);
+    printf("\n");
 
     // decrypt the payload only
-    payLoad = getDecryptMessage(payLoad, p->guid.ToString());
+    // payLoad = getDecryptMessage(payLoad, );
 
     // std::cout << "payload is " << payLoad << "\n";
 
@@ -1333,6 +1290,8 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     srand( (unsigned)time(NULL) );
 
 
+
+
     // test path 
     m_charDesc.writeData("./patchy.json");
 
@@ -1437,7 +1396,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     
     // std::cout << "tStr2:|" << tStr2 << "|\n";
 
-    m_cryptor.init(tStr1, tStr2);   
+    // m_cryptor.init(tStr1, tStr2);   
 
     m_cryptors.reserve(3000);
 
@@ -1492,27 +1451,29 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     m_clientEPHandler->init(m_script);
     m_characterManager->init(m_script);
 
+    // m_cryptorSodium.init("aa", m_server->GetMyGUID().ToString());
+
+
+    // std::string raw = "Hahaha do you know what a bout there asdsdsdsdasd aai davai hehe amacss";
+
+    // std::string encrypted = m_cryptorSodium.encrypt(raw);
+    // std::cout << "Encrypted: ";
+    // printHex(encrypted) ;
+    // std::cout << "\n";
+    // std::string decrypted = m_cryptorSodium.decrypt(encrypted);
+    // std::cout << "Decrypted: " << decrypted << "\n";
 
 }
 
+
+
 void ServerScriptingManager::addCryptor(const std::string & guid)
 {
-    int t1[16] = {
-        7, 12, 5, 7,
-        8, 33, 51, 21,
-        77, 71, 22, 43,
-        12, 15, 99, 4
-    };
 
-    std::string tStr1;
 
-    for(int i = 0 ; i < 16 ; i++)
-    {
-        tStr1.push_back(t1[i]);
-    }
 
-    Feintgine::F_Cryptor * cryptor = new Feintgine::F_Cryptor();
-    cryptor->init(tStr1, guid);
+    Feintgine::F_Cryptor_sodium * cryptor = new Feintgine::F_Cryptor_sodium();
+    cryptor->init("BNML is real", guid);
     m_cryptors[guid] = cryptor;
 
     // std::cout << "add cryptor for guid " << guid << "\n";

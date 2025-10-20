@@ -20,6 +20,7 @@
 #include <string.h>
 #include "NetworkPacket.h"
 #include <F_Cryptor.h>
+#include <F_Cryptor_sodium.h>
 #include "DataBaseHandler.h"
 #include <sstream>
 #include <iomanip>
@@ -124,9 +125,9 @@ public:
 
 private:
 
-    Feintgine::F_Cryptor m_cryptor;
+    // Feintgine::F_Cryptor m_cryptor;
 
-    std::unordered_map<std::string , Feintgine::F_Cryptor *> m_cryptors;
+    std::unordered_map<std::string , Feintgine::F_Cryptor_sodium *> m_cryptors;
 
 
     // Feintgine::F_Cryptor m_pwCryptor;
@@ -154,6 +155,8 @@ private:
     CharacterManager * m_characterManager = nullptr;
 
     //std::vector<std::thread> m_threads;
+
+    // Feintgine::F_Cryptor_sodium m_cryptorSodium;
 
   //  std::thread m_handleCommonThread;
 
