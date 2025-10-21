@@ -205,9 +205,9 @@ function HandleMessage(host,packet,requestCode)
 end
 
 function HandleWrapMessage(host,chanel,request, data,ip,guid)
-    print("HandleWrapMessage called" )
+    -- print("HandleWrapMessage called" )
 
-    print("channel " .. chanel .. " request " .. request)
+    -- print("channel " .. chanel .. " request " .. request)
 
     if MessageHandling[chanel] == nil then
         print("channel not found " .. chanel)

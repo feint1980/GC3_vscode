@@ -7,7 +7,6 @@ require "SV_global"
 MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Request] = function(host ,data, ip, guid)
 
     local queryResult = {}
-
     local t_guid, t_id, tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
 
     if t_guid == nil or t_id == nil or tData == nil then
@@ -18,36 +17,21 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
     queryResult.guid = t_guid
     queryResult.id = t_id
     queryResult.formation = {}
-
-    print("request for Formation called from " .. t_guid .. " " .. t_id )
-
+    -- print("request for Formation called from " .. t_guid .. " " .. t_id )
     --- guid check
     if CH_check_userValid(t_guid , guid ,t_id,ip) == false then
         return
     end
     --- start query 
-
     ---local cap = 4
     local cap = FormationQuery_CheckCap(host,t_id)
-    print("formation limit " .. cap)
+    -- print("formation limit " .. cap)
 
     queryResult.cap = cap
-
     local getFormationQuery = "SELECT " .. Table.formation.id .. "," .. Table.formation.account_id .. "," .. Table.formation.name .. "," .. Table.formation.index .. " FROM " .. Table.formation.tb_name .. " WHERE " .. Table.formation.account_id .. " = ?;"
     SVI_DoQuerySTMT(host,getFormationQuery,{t_id})
 
     local formationQueryResult = Table_DeepCopy(Query_val)
-
-    
-
-    -- SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Start, {t_guid , "request_ok",tostring(cap)})
-
-    local queryResultSize = GetTableSize(Query_val)
-    print("total formation count " .. queryResultSize)
-
-    for k = 1, queryResultSize do
-        print(Query_val[k])
-    end
 
     for i = 1, #formationQueryResult, 4 do
 
@@ -56,77 +40,44 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
             return
         end
 
-        --1 (i) formation id
-        --2 (i+1) account id
-        --3 (i+2) formation name
-        --4 (i+3) index
         local t_formationID = tostring(formationQueryResult[i])
         local t_accountID = tostring(formationQueryResult[i+1])
         local t_formationName = tostring(formationQueryResult[i+2])
         local t_index = tostring(formationQueryResult[i+3])
 
-        -- print("index i " .. i)
-        -- print("formation ID " .. tostring( t_formationID) )
-        -- print("formation account ID " ..  tostring(t_accountID))
-        -- print("formation name " ..  tostring(   t_formationName))
-        -- print("formation index " .. tostring(  t_index))
-
         queryResult.formation[t_index] = {formationID = tostring(formationQueryResult[i]),accountID = tostring(formationQueryResult[i+1]),formationName = tostring(formationQueryResult[i+2]), formationIndex =  tostring(formationQueryResult[i+3])}
 
         queryResult.formation[t_index].subData = {}
-        -- local formationDataQuery = "SELECT " .. Table.formation_info.formation_id .. "," .. Table.formation_info.character_id .. "," .. Table.formation_info.slot_index .. "," .. Table.formation_info.row_pos .. "," .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.formation_id .. " = ?;"
 
         local formationDataQuery = "SELECT " .. Table.formation_info.character_id .. ", " .. Table.formation_info.slot_index .. ", " .. Table.formation_info.row_pos .. ", " .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.account_id .. " = ? AND " .. Table.formation_info.formation_index .. " = ?;"
 
-        print("fill data t_accountID " .. t_accountID)
-        print("fill data t_index " .. t_index)
-
         SVI_DoQuerySTMT(host,formationDataQuery,{t_accountID,t_index})
-
-        print("sub query " .. formationDataQuery)
         local FormationDataQueryResult = Table_DeepCopy(Query_val)
-        local formationData = {}
-        local tFormationInfoResult = {}
-
+  
         for j = 1, #FormationDataQueryResult, 4 do
-
             --1 (j) formation id
             --2 (j+1) character id
             --3 (j+2) slot index
             --4 (j+3) row pos
             --5 (j+4) col pos
-
             if(SVI_checkData{FormationDataQueryResult[j],FormationDataQueryResult[j+1],FormationDataQueryResult[j+2],FormationDataQueryResult[j+3]} == false) then
                 print("data check failed")
                 return
             end
-
             -- print("characterID " ..  FormationDataQueryResult[j])
             -- print("slotIndex " ..  FormationDataQueryResult[j+1])
             -- print("rowPos " ..  FormationDataQueryResult[j+2])
             -- print("colPos " ..  FormationDataQueryResult[j+3])
 
             local key = FormationDataQueryResult[j]
-
             queryResult.formation[t_index].subData[key] = {}
-
             queryResult.formation[t_index].subData[key].slotIndex =  FormationDataQueryResult[j + 1]
             queryResult.formation[t_index].subData[key].rowPos =  FormationDataQueryResult[j+2]
             queryResult.formation[t_index].subData[key].colPos =  FormationDataQueryResult[j+3]
-
         end
     end
 
-    print("json test")
-    -- print(JSON_Encode(queryResult,true))
-
     SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Start, {JSON_Encode(queryResult,true)})
-
-
-    print("json end")
-    print("sub query end")
-
-    print("query end")
 end
 
 function FormationQuery_CheckCount(host,userID)
@@ -139,7 +90,7 @@ end
 
 function FormationQuery_CheckCap(host,userID)
     local queryCountCmd= "SELECT " .. Table.account_stats.formmations .. " FROM " .. Table.account_stats.tb_name .. " WHERE " .. Table.account_stats.id .. " = ?;"
-    print("queryCountCmd " .. queryCountCmd)
+    -- print("queryCountCmd " .. queryCountCmd)
     SVI_DoQuerySTMT(host,queryCountCmd,{userID})
 
     return Query_val[1]
@@ -147,7 +98,6 @@ end
 
 MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Add] = function(host ,data, ip, guid)
     local t_guid, t_id , formationName, formationIndex = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
-
 
     if ExtractDataCheck({t_guid,t_id,formationName,formationIndex},PacketChannel.FormationChannel,FormationResponse.Formation_Add) == false then 
         return
@@ -197,8 +147,7 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Remo
     if CH_check_userValid(t_guid , guid ,t_id,ip) == false then
         return
     end
-
-    print("extracted data " .. t_guid .. " " .. t_id .. " " .. formationName .. " " .. formationIndex)
+    -- print("extracted data " .. t_guid .. " " .. t_id .. " " .. formationName .. " " .. formationIndex)
 
     local removeFormationQuery = 
     "DELETE FROM " .. Table.formation.tb_name .. 
@@ -206,9 +155,8 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Remo
     .. Table.formation.name .. " = ? AND " 
     .. Table.formation.index .. " = ?;"
 
-
-    print("removeFormationQuery " .. removeFormationQuery)
-    print("bound table " .. t_id .. " " .. formationName .. " " .. formationIndex )
+    -- print("removeFormationQuery " .. removeFormationQuery)
+    -- print("bound table " .. t_id .. " " .. formationName .. " " .. formationIndex )
 
     SVI_DoQuerySTMT(host,removeFormationQuery,{t_id,formationName,formationIndex})
 
@@ -220,15 +168,14 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Rena
 
     local t_guid, t_id , formationOldName, formationNewName, formationIndex = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
-    if ExtractDataCheck({t_guid,t_id,formationOldName,formationNewName,formationIndex},PacketChannel.FormationChannel,FormationResponse.Formation_Rename) == false then 
+    if ExtractDataCheck({t_guid,t_id,formationOldName,formationNewName,formationIndex},PacketChannel.FormationChannel,FormationResponse.Formation_Rename) == false then
         return
     end
 
     if CH_check_userValid(t_guid , guid ,t_id,ip) == false then
         return
     end
-
-    print("passed all the check, the data is " .. t_guid .. " " .. t_id .. " " .. formationOldName .. " " .. formationNewName .. " " .. formationIndex)
+    -- print("passed all the check, the data is " .. t_guid .. " " .. t_id .. " " .. formationOldName .. " " .. formationNewName .. " " .. formationIndex)
 
     local updateNameFormationQuery = 
     "UPDATE " .. Table.formation.tb_name .. 
@@ -243,7 +190,7 @@ end
 
 MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info_Update] = function(host ,data, ip, guid)
 
-    print("formation info update called ")
+    -- print("formation info update called ")
     local t_guid, t_id , formation_id, formationIndex, infoSize, infoData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
     if ExtractDataCheck({t_guid,t_id,formation_id,formationIndex,infoSize,infoData},PacketChannel.FormationChannel,FormationResponse.Formation_Info_Update) == false then
@@ -269,32 +216,21 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info
     end
 
     -- Print result
-    for i, entry in ipairs(result) do
-        print(string.format("Structure %d: name=%s, index=%d, row=%d, col=%d",
-            i, entry.name, entry.index, entry.row, entry.col))
-    end
+    -- for i, entry in ipairs(result) do
+    --     print(string.format("Structure %d: name=%s, index=%d, row=%d, col=%d",
+    --         i, entry.name, entry.index, entry.row, entry.col))
+    -- end
 
     -- transaction start 
 
     SV_SQLExec(host, "BEGIN TRANSACTION;")
 
-
     SVI_DoQuerySTMT(host, "DELETE FROM formation_info_table WHERE account_id = ? AND formation_index = ? AND slot_index >= ?;",{t_id,formationIndex,infoSize })
-    -- local upsertFormationSQL  = [[
-    -- INSERT INTO formation_info_table 
-    -- (account_id,formation_index, character_id, slot_index, row_pos, col_pos)
-    -- VALUES (?, ?, ?, ?, ?, ?)
-    -- ON CONFLICT(formation_id, slot_index)
-    -- DO UPDATE SET
-    --     character_id = excluded.character_id,
-    --     row_pos = excluded.row_pos,
-    --     col_pos = excluded.col_pos;
-    -- ]]
 
     local upsertFormationSQL  =
     "INSERT INTO formation_info_table (account_id,formation_index, character_id, slot_index, row_pos, col_pos) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(account_id, formation_index, slot_index) DO UPDATE SET character_id = excluded.character_id, row_pos = excluded.row_pos, col_pos = excluded.col_pos;"
 
-    print("before insert ...")
+    -- print("before insert ...")
     -- Insert or update each slot
     for i, entry in ipairs(result) do
         SVI_DoQuerySTMT(host, upsertFormationSQL, {
@@ -312,11 +248,9 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info
         -- print("insert row_pos " .. tostring(entry.row) )
         -- print("insert col_pos " .. tostring(entry.col) )
     end
-
-
     -- print("after insert ...")
     -- Commit all changes
     SV_SQLExec(host, "COMMIT;")
 
-    print("update sucess")
+    -- print("update sucess")
 end

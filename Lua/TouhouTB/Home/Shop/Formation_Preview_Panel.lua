@@ -102,20 +102,10 @@ function FormationPreviewPanel:reset()
 end
 
 function FormationPreviewPanel:setInfo(t_formationCharacters)
-    print("FormationPreviewPanel:setInfo t_formationCharacters called ############################")
     self.formationCharacters = t_formationCharacters
 
     if self.formationCharacters == nil then
-        print("FormationPreviewPanel:setInfo t_formationCharacters is nil")
+        -- print("FormationPreviewPanel:setInfo t_formationCharacters is nil")
         return
     end
-
-    -- print("pass data check ")
-    -- for k ,v in pairs(t_formationCharacters) do
-    --     print(k)
-    -- end
-    -- print("pass data check end")
-
-    -- _G.Formation_Edit_Instance:loadFormation(self.formationCharacters)
-    -- print("table check end")
 end

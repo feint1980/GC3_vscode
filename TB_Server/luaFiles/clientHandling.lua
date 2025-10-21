@@ -83,11 +83,9 @@ end
 ---@param ip pointer instance of RakNet::SystemAddress
 function CH_check_userValid(msgGUID , selfGUID ,userID,ip)
 
-    
-
-    print("msgGUID " .. msgGUID)
-    print("selfGUID " .. selfGUID)
-    print("userID " .. userID)
+    -- print("msgGUID " .. msgGUID)
+    -- print("selfGUID " .. selfGUID)
+    -- print("userID " .. userID)
     --- guid check
     if msgGUID ~= selfGUID then
         print("invalid guid/selfGUID,  warning, craft packet found from ip " .. SV_GetIPString(ip) .. " " .. msgGUID .. "/" .. selfGUID)
@@ -121,7 +119,7 @@ end
 ---@param request number request 
 function ExtractDataCheck(data, channel, request)
 
-    print("data need to be check has size " .. #data)
+    -- print("data need to be check has size " .. #data)
     for i = 1, #data do
         if data[i] == nil then
             print("data " .. i .. " is nil, error from channel " .. channel .. " request " .. request)

@@ -306,9 +306,6 @@ end
 ---@Description: check if data 
 ---@param data table of data
 function SVI_checkData(data)
-    print("SVI_checkData data size " .. #data)
-    local tDataCount = GetTableSize(data)
-
     for i = 1, #data do
         if data[i] == nil then
             print("data " .. i .. " is nil")

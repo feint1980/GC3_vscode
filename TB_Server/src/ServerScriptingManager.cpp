@@ -1041,7 +1041,7 @@ uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & targ
         &bsOut, 
         HIGH_PRIORITY, 
         RELIABLE_ORDERED, 
-        0, 
+        channel, 
         target, 
         false
     );
@@ -1111,6 +1111,8 @@ void ServerScriptingManager::handleWrapDataQueue(float deltaTime)
     {
         RakNet::Packet *p = m_wrapDataQueue.front();
         handleWrapData(p);
+        delete[] p->data;
+        delete p;
         m_wrapDataQueue.pop();
     }
 }
@@ -1139,9 +1141,9 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
 
     std::string payLoad = getDecryptMessage(encData, p->guid.ToString());
 
-    printf("SERVER recv bytes=%u\n", p->length);
-    for (unsigned int i = 0; i < std::min<unsigned int>(64, (unsigned int)p->length); ++i) printf("%02X ", (unsigned char)p->data[i]);
-    printf("\n");
+    // printf("SERVER recv bytes=%u\n", p->length);
+    // for (unsigned int i = 0; i < std::min<unsigned int>(64, (unsigned int)p->length); ++i) printf("%02X ", (unsigned char)p->data[i]);
+    // printf("\n");
 
     // decrypt the payload only
     // payLoad = getDecryptMessage(payLoad, );
@@ -1288,12 +1290,8 @@ bool ServerScriptingManager::doQuery(sqlite3_stmt * stmt)
 void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHandler * dbh)
 {
     srand( (unsigned)time(NULL) );
-
-
-
-
     // test path 
-    m_charDesc.writeData("./patchy.json");
+    // m_charDesc.writeData("./patchy.json");
 
     std::cout << "|=========================================|\n";
     std::cout << "|     Init Server Scripting Manager       |\n";
@@ -1308,9 +1306,6 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     m_script = luaL_newstate();
 
     luaL_openlibs(m_script);
-
-
-
     // register lua functions
     
     lua_register(m_script, "cppGetQueryResults", lua_GetQueryResults);
@@ -1366,38 +1361,6 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
     shared_luaState = m_script;
 
-    int t1[16] = {
-        7, 12, 5, 7,
-        8, 33, 51, 21,
-        77, 71, 22, 43,
-        12, 15, 99, 4
-    };
-    int t2[8] = {
-        12, 6, 7, 2,
-        9, 12, 91, 42
-    } ;
-
-    std::string tStr1;
-    
-    std::string tStr2;
-
-
-    for(int i = 0 ; i < 16 ; i++)
-    {
-        tStr1.push_back(t1[i]);
-    }
-
-    // std::cout << "tStr1:|" <<  tStr1 << "|\n"; 
-
-    for(int i = 0 ; i < 8 ; i++)
-    {
-        tStr2.push_back(t2[i]);
-    }
-    
-    // std::cout << "tStr2:|" << tStr2 << "|\n";
-
-    // m_cryptor.init(tStr1, tStr2);   
-
     m_cryptors.reserve(3000);
 
     // std::cout << "pwCryptor init \n";
@@ -1444,7 +1407,6 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
             std::cout << "Call Server_LoadData from C++ OK \n";
         }
     }
-
 
     // client EPHandling here
 

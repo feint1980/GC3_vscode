@@ -188,11 +188,8 @@ function Formation_Edit:loadFormation(formationCharacters)
 
     for k,v in pairs(formationCharacters) do
         self.formationSlot[tonumber(v.row)][tonumber(v.col)]:setCharacterID(v.characterID)
-        print("*****slot " .. v.row .. " " .. v.col .. " " .. v.characterID)
-        -- table.insert(self.formationCharacters,v.characterID)
-
     end
-    print("loaded ")
+    -- print("loaded ")
 end
 
 function Formation_Edit:setVisible(value)
@@ -200,41 +197,16 @@ function Formation_Edit:setVisible(value)
 end
 
 function Formation_Edit:updateToServer()
-
     local updateBuffer = "#"
     local tSlotIndex = 1
     for i = 1, 3 do
         for j = 1, 3 do
-            if self.formationSlot[i][j]:getIsAssigned() == true then
-
-                -- print("update slot  " .. i .. " " .. j .. " " .. self.formationSlot[i][j].assignedCharacterID)
-                -- table.insert(updateBuffer,{self.formationSlot[i][j].assignedCharacterID,tSlotIndex,i,j})
-                -- tSlotIndex = tSlotIndex + 1
-                -- table.insert(updateBuffer, self.formationSlot[i][j].assignedCharacterID)
-                -- table.insert(updateBuffer, tSlotIndex)
-                -- tSlotIndex = tSlotIndex + 1
-                -- table.insert(updateBuffer, self.formationSlot[i][j].row)
-                -- table.insert(updateBuffer, self.formationSlot[i][j].col)
-                
+            if self.formationSlot[i][j]:getIsAssigned() == true then                
                 updateBuffer = updateBuffer .. self.formationSlot[i][j].assignedCharacterID .. "@" .. tSlotIndex .. "@" .. i .. "@" .. j .. "@"
                 tSlotIndex = tSlotIndex + 1
             end
         end
     end
-
     updateBuffer = updateBuffer .. "#"
-
-
-    print("update buffer size " .. #updateBuffer)
-
-    print("update buffer " .. updateBuffer)
-    -- for i = 1, #updateBuffer do
-    --     print("update buffer " .. i .. " " .. updateBuffer[i] )
-    -- end
-    print("update buffer end")
-
     Formation_Request_InfoUpdate(Formation_PreviewPanel[Formation_Selection].formationName, updateBuffer, tSlotIndex - 1)
-
-    print("Formation_Request_InfoUpdate end")
-
 end

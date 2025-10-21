@@ -171,7 +171,7 @@ end
 
 --- MARK: Owned Response
 MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] = function(host ,data, ip, guid)
-    print("Request character owned info get ")
+    -- print("Request character owned info get ")
 
     local t_id, t_guid, tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
 
@@ -187,7 +187,7 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
         print("invalid user,  warning, craft packet found from ip " .. SV_GetIPString(ip))
         return
     else
-        print("guid check OK")
+        -- print("guid check OK")
     end
 
     --- connected guid check 
@@ -195,7 +195,7 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
         print("client not found, warning, craft packet found from ip " .. SV_GetIPString(ip))
         return
     else
-        print("client found " .. CH_FindClient(t_guid).name .. "|" .. SV_GetIPString(ip))
+        -- print("client found " .. CH_FindClient(t_guid).name .. "|" .. SV_GetIPString(ip))
     end
 
     -- check if id and t_id match
@@ -212,15 +212,15 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
 
     SVI_DoQuerySTMT(host,ownedCharacterQuery,{t_id})
 
-    print("owned character query result")
+    -- print("owned character query result")
 
     local queryResultCount = 4
-    for i = 1, #Query_val, queryResultCount do
-        print("owned character ID " .. Query_val[i] )
+    -- for i = 1, #Query_val, queryResultCount do
+        -- print("owned character ID " .. Query_val[i] )
         -- print("owned character level " .. Query_val[i+1])
         -- print("owned character exp " .. Query_val[i+2])
         -- print("owned character stats " .. Query_val[i+3])
-    end
+    -- end
 
     ExistingCharacters[t_guid] = {}
 
@@ -236,13 +236,12 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
 
     end
 
-
     SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.OwnedCharacter_End,{t_guid,"ev"})
 
 end
 
 function AddExistingCharacter(guid, characterID, characterLevel, characterExp, characterStats)
-    print("called AddExistingCharacter " .. characterID .. " " .. guid)
+    -- print("called AddExistingCharacter " .. characterID .. " " .. guid)
 
     if characterID == "S_Reimu" then
         ExistingCharacters[guid][characterID] = S_Reimu:new()
@@ -255,11 +254,11 @@ function AddExistingCharacter(guid, characterID, characterLevel, characterExp, c
         ExistingCharacters[guid][characterID] = S_Yukari:new()
     end
     if ExistingCharacters[guid][characterID] ~= nil then
-        print("AddExistingCharacter exist")
+        -- print("AddExistingCharacter exist")
         ExistingCharacters[guid][characterID]:init(guid, characterID, characterStats)
         ExistingCharacters[guid][characterID]:setXP(characterExp)
         ExistingCharacters[guid][characterID]:setLVL(characterLevel)
     else
-        print("AddExistingCharacter not exist " .. characterID)
+        -- print("AddExistingCharacter not exist " .. characterID)
     end
 end

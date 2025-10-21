@@ -235,7 +235,7 @@ function Formation_Request_Add(name)
 
     local id, guid = MainInfo.id, MainInfo.guid
 
-    print("Formation_Request_Add " .. id .. " " .. guid .. " " .. name .. " Index " .. Formation_Selection)
+    -- print("Formation_Request_Add " .. id .. " " .. guid .. " " .. name .. " Index " .. Formation_Selection)
 
     SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Add, {guid,id, name, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
 
@@ -247,7 +247,7 @@ function Formation_Request_Remove(name)
 
     print(" Formation_Selection * Formation_Page " .. (Formation_Selection * Formation_Page))
      SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Remove, {guid,id, name, tostring(Formation_Selection * Formation_Page )}, 5, 0.25)
-    print("name " .. name)
+    -- print("name " .. name)
 end
 
 function Formation_Request_Rename(oldName, newName)
@@ -260,32 +260,11 @@ end
 function Formation_Request_InfoUpdate(name,data,size)
     local id, guid = MainInfo.id, MainInfo.guid
 
-
-    -- local dataBuffer = "."
-    -- for i = 1, #data do
-    --     dataBuffer = dataBuffer .. tostring(data[i]) .. ","
-    -- end
-
-    -- dataBuffer = dataBuffer .. "."
-    -- dataBuffer = tostring(dataBuffer)
-    -- print("databuffer " .. dataBuffer)
-
-    local buffer = data
-    -- buffer = buffer .. to_str
-
     SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Info_Update, {guid,id,  name, tostring(Formation_Selection * Formation_Page ),size, data}, 5, 0.25)
 
-    -- SendRequest(PacketChannel.FormationChannel, FormationResponse.Formation_Info_Update, 
-
-    -- {guid,id, name, tostring(Formation_Selection * Formation_Page ), size, data }, 5, 0.25)
-
-
-    print("Formation_Request_InfoUpdate called")
     Prompt_UI_Table["Formation_Noti"]:setMsg("Formation updated !")
     Prompt_UI_Table["Formation_Noti"]:show(true)
-
     Home_RequestFormations()
-    
 end
 
 
@@ -296,10 +275,7 @@ end
 local displayOwnedCharacterTable = {}
 
 function FormationUpdateCharacterList(host)
-    for k,v in pairs(Owned_CharacterTable) do
-        print(k )
-    end
-
+    
     for k,v in pairs(displayOwnedCharacterTable) do
         table.remove(displayOwnedCharacterTable,k)
     end
@@ -321,7 +297,7 @@ function FormationSetPageCap(value)
 end
 
 function Formation_AddCharacterPanel(host, characterID)
-        print("addCharPanel " .. characterID)
+    -- print("addCharPanel " .. characterID)
     local panelHeight = 80
     local pWidth, pHeight = Formation_CharacterList:getSize()
 
@@ -337,7 +313,6 @@ function Formation_AddCharacterPanel(host, characterID)
     Formation_OwnedCharacterPannels[characterID]:setOnClickCallback(function ()
 
         Formation_SelectCharacter(characterID)
-    
     end)
 
     listCount = listCount + 1
@@ -348,9 +323,8 @@ function Formation_UpdateInfo(pageIndex)
 end
 
 function Formation_SelectCharacter(characterID)
-    
-    print("selected " .. characterID)
 
+    -- print("selected " .. characterID)
     -- Formation_Selection = characterID
     if Formation_Edit_Instance:hasSelected() then
         local selected = Formation_Edit_Instance:getSelected()
@@ -362,7 +336,7 @@ function Formation_SelectCharacter(characterID)
 end
 
 function Formation_MainUpdate(tguiHost)
-    print("Formation_MainUpdate called")
+    -- print("Formation_MainUpdate called")
     if Formation_Edit_Instance:hasSelected() then
         for k,v in pairs(Formation_OwnedCharacterPannels) do
             v:setHovereColor(255,255,0,255, 0,255,0,255)

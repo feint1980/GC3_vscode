@@ -428,7 +428,8 @@ enum DefaultMessageIDTypes
 
 	// For the user to use.  Start your first enumeration alt this value.
 	ID_USER_PACKET_ENUM,
-	ID_TH_TB
+	ID_TH_TB,
+	ID_TH_TB_BATTLE
 
 	// -------------------------------------------------------
 };

@@ -136,16 +136,21 @@ void ServerMain::update(float deltaTime)
             m_scriptManager->handleCommon(p);
         break;
         case ID_TH_TB:
-            m_scriptManager->addWrapDataPacket(p);
-            // todo : handle TB packet
+            {
+            RakNet::Packet* original = p;
+            auto copy = new RakNet::Packet(*original); // shallow copy
+            copy->data = new unsigned char[original->length];
+            memcpy(copy->data, original->data, original->length);
+            copy->length = original->length;
+            m_scriptManager->addWrapDataPacket(std::move(copy));// 
+            }
         break;
         default:
             std::cout << "uncommon packet " << (int)packetIdentifier << "\n";
             m_scriptManager->handleCommand(p);
-            // std::cout << "unknow packet " << (int)packetIdentifier << "\n";
             break;
         }
-        m_server->DeallocatePacket(p);
+            m_server->DeallocatePacket(p);
     }
 
     // }

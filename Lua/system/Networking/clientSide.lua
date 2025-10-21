@@ -240,7 +240,7 @@ function UpdateRequests(host)
 
         if now >= req.nextSendTime then
             local success = Client_SendWrapData(host, req.channel, req.request,req.data )
-            print("try to send in chanel " .. req.channel .. " request " .. req.request)
+            -- print("try to send in chanel " .. req.channel .. " request " .. req.request)
             if success == 0 then
                 req.retries = req.retries - 1
                 if req.retries <= 0 then

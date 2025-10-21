@@ -294,30 +294,27 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
     std::string payLoad(data.begin() + payLoadIndex, data.end());
     std::string tData = m_cryptor->encrypt(payLoad);
 
-
-
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)ID_TH_TB);
     bsOut.Write(channel);
     bsOut.Write(request);
     bsOut.WriteAlignedBytes(reinterpret_cast<const unsigned char*>(tData.data()), tData.size());
 
-    m_client->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 0, m_serverIPAddr, false);
-
+    // m_client->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, channel, m_serverIPAddr, false);
 
     unsigned int bits = bsOut.GetNumberOfBitsUsed();
     unsigned int bytes = bits / 8 + (bits % 8 ? 1 : 0);
-    printf("CLIENT pre-send bytes=%u\n", bytes);
-    const unsigned char* cb = bsOut.GetData();
-    for (unsigned int i = 0; i < std::min<unsigned int>(64, bytes); ++i) printf("%02X ", cb[i]);
-    printf("\n");
+    // printf("CLIENT pre-send bytes=%u\n", bytes);
+    // const unsigned char* cb = bsOut.GetData();
+    // for (unsigned int i = 0; i < std::min<unsigned int>(64, bytes); ++i) printf("%02X ", cb[i]);
+    // printf("\n");
 
     // Safe send (BitStream handles memory ownership)
     return m_client->Send(
         &bsOut, 
         HIGH_PRIORITY, 
         RELIABLE_ORDERED, 
-        0, 
+        channel, 
         m_serverIPAddr, 
         false
     );

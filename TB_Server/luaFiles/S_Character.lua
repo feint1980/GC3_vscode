@@ -64,10 +64,10 @@ end
 function S_Character:init(userID, characterID, statsStr)
     self.dyobj = CharacterManagerCreateCharacter(userID, characterID, statsStr)
     if  self.dyobj ~= nil then
-        print("character " .. userID .. "|" .. characterID .. " created OK")
+        -- print("character " .. userID .. "|" .. characterID .. " created OK")
         self:updateInformation(self.dyobj)
     else
-        print("character " .. userID .. "|" .. characterID .. " created failed")
+        -- print("character " .. userID .. "|" .. characterID .. " created failed")
     end
 end
 

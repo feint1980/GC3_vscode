@@ -1,3 +1,4 @@
+
 #include <RakNet/MessageIdentifiers.h>
 
 #include <RakNet/RakPeerInterface.h>
@@ -17,21 +18,17 @@
 #include <string.h>
 //#include "Gets.h"
 
-#include "ServerMain.h"
+#include "BattleMain.h"
 
 #include <iostream>
     
 
 int wmain(int argc, char const *argv[])
 {
-    ServerMain server;
-    server.init("DavaiMachi", 1123, 500);
+    BattleMain server;
+    server.init("DavaiMachi", 1123, 100);
 
     server.run();
 
 	return 0;
 }
-
-// Copied from Multiplayer.cpp
-// If the first byte is ID_TIMESTAMP, then we want the 5th byte
-// Otherwise we want the 1st byte
