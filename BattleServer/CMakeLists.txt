@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-set(PROJECT_N TB_Server)
+set(PROJECT_N BattleServer)
 project(${PROJECT_N} VERSION 1.0)
 
 set(CMAKE_CXX_FLAGS "-O3 -fpermissive -std=c++17 -municode -m32")
@@ -9,10 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 file(GLOB_RECURSE SRCS ${PROJECT_SOURCE_DIR}/src/*.cpp
     ${PROJECT_SOURCE_DIR}/../PacketDescription/NetworkPacket.cpp
     ${PROJECT_SOURCE_DIR}/../PacketDescription/CharacterDes.cpp
-    ${PROJECT_SOURCE_DIR}/../PacketDescription/ClientEP.cpp
-    ${PROJECT_SOURCE_DIR}/../PacketDescription/ClientEPHandler.cpp
     ${PROJECT_SOURCE_DIR}/../PacketDescription/CharacterManager.cpp
-
 )
 
 # a macro that gets all of the header containing directories. 

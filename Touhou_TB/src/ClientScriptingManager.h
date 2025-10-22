@@ -94,6 +94,10 @@ public:
 
     void cleanUp();
 
+    int getPingFromServer(const RakNet::SystemAddress & addr);
+
+    RakNet::SystemAddress getServerIPAddr() { return m_serverIPAddr; }
+
     private:
     RakNet::RakPeerInterface * m_client = nullptr;
 

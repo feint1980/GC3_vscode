@@ -107,6 +107,16 @@ function ClientGetGUID(host)
     return cppGetClientGUID(host)
 end
 
+
+---@Description: wrapper of cppGetPingFromServer
+---@param host pointer instance of ClientScriptingManager
+---@param ip? ipaddres
+--- return client ping
+--- @return numer
+function ClientGetPing(host, ip)
+    return cppGetPingFromServer(host)
+end
+
 --- deep copy table
 function Table_DeepCopy(orig, copies)
     copies = copies or {} -- to handle cycles

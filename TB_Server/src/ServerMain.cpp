@@ -44,7 +44,7 @@ void ServerMain::init(const std::string & password, int port,unsigned int server
     m_socketDescriptor[1] = RakNet::SocketDescriptor(m_port, "0.0.0.0");
     m_socketDescriptor[1].socketFamily = AF_INET6;
 
-    bool init2IPVer = m_server->Startup(10, m_socketDescriptor,2) == RakNet::RAKNET_STARTED;
+    bool init2IPVer = m_server->Startup(m_connectionSize, m_socketDescriptor,2) == RakNet::RAKNET_STARTED;
     if (!init2IPVer)
     {
         std::cout << "Failed to start dual IPV4 and IPV6 ports. Trying IPV4 only.\n";
@@ -137,12 +137,7 @@ void ServerMain::update(float deltaTime)
         break;
         case ID_TH_TB:
             {
-            RakNet::Packet* original = p;
-            auto copy = new RakNet::Packet(*original); // shallow copy
-            copy->data = new unsigned char[original->length];
-            memcpy(copy->data, original->data, original->length);
-            copy->length = original->length;
-            m_scriptManager->addWrapDataPacket(std::move(copy));// 
+                m_scriptManager->addWrapDataPacket(p);// 
             }
         break;
         default:

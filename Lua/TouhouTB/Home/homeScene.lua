@@ -191,6 +191,11 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     Home_RequestSkillsStats()
     Home_RequestOwnedCharacterList()
     Home_RequestFormations()
+
+
+    print("All done, ping is ")
+    local ping = ClientGetPing(ClientScriptingPtr)
+    print("ping is " .. ping)
 end
 
 function Home_UpdateInfo()

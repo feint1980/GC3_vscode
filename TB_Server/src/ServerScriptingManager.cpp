@@ -1102,7 +1102,13 @@ unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
 
 void ServerScriptingManager::addWrapDataPacket(RakNet::Packet *p)
 {
-    m_wrapDataQueue.push(p);
+    RakNet::Packet* original = p;
+    auto copy = new RakNet::Packet(*original); // shallow copy
+    copy->data = new unsigned char[original->length];
+    memcpy(copy->data, original->data, original->length);
+    copy->length = original->length;
+
+    m_wrapDataQueue.push( std::move(copy));
 }
 
 void ServerScriptingManager::handleWrapDataQueue(float deltaTime)

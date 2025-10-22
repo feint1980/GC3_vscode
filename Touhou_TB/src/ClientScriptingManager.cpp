@@ -194,8 +194,6 @@ int lua_ParseCharacterFromJson(lua_State * L)
     return 0;
 }
 
-
-
 int lua_GetClientGUID(lua_State * L)
 {
     if(lua_gettop(L) != 1)
@@ -213,6 +211,37 @@ int lua_GetClientGUID(lua_State * L)
     }
     return 0;
 }
+
+int lua_GetPingFromServer(lua_State * L)
+{
+    if(lua_gettop(L)  > 3)
+    {
+        std::cout << "gettop failed (lua_GetPingFromServer) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::SystemAddress addr;
+        
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+
+        if (lua_gettop(L) == 1)
+        {
+            addr = host->getServerIPAddr();
+        }
+        else
+        {
+            addr = *(RakNet::SystemAddress*)lua_touserdata(L, 2);
+        }
+        uint32_t result = host->getPingFromServer(addr);
+        lua_pushnumber(L, result);
+        return 1;
+    }
+    return 0;
+}
+
+
 
 std::string ClientScriptingManager::getClientGUID()
 {
@@ -246,39 +275,6 @@ uint32_t ClientScriptingManager::sendData(const std::string & data, uint8_t encr
     return m_client->Send(data.c_str(), data.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
-// uint32_t ClientScriptingManager::sendWrapData(const std::string & data)
-// {
-//     // std::cout << "C++ ClientScriptingManager::sendWrapData called \n";
-//     if(data.size() < 2 ) // headers
-//     {
-//         std::cout << "sendWrapData failed (data size < 2) \n";
-//         return 0;
-//     }
-//     uint8_t channel = static_cast<uint8_t>(data[0]);
-//     uint8_t request = static_cast<uint8_t>(data[1]);
-//     // todo , special request add here
-//     int payLoadIndex = 2;
-
-//     std::string payLoad = std::string(data.begin() + payLoadIndex, data.end());
-    
-//     std::string tData;
-//     tData.reserve(payLoad.size() + 40 );
-
-//     tData = m_cryptor->encrypt(payLoad);
-
-//     std::string sendStr;
-//     sendStr.reserve(tData.size() + 4);
-//     // sendStr.append(reinterpret_cast<const char*>(ID_TH_TB), sizeof(ID_TH_TB));
-
-//     sendStr.push_back(static_cast<char>(ID_TH_TB)); // move to append ID_TH_TB here
-//     sendStr.push_back(channel);
-//     sendStr.push_back(request);
-    
-//     sendStr.insert(sendStr.end(), tData.begin(), tData.end());
-
-//     return m_client->Send(sendStr.data(), sendStr.size(), HIGH_PRIORITY, RELIABLE_ORDERED, channel, m_serverIPAddr, false);
-// }
-
 uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
 {
     if (data.size() < 2) // headers
@@ -301,13 +297,8 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
     bsOut.WriteAlignedBytes(reinterpret_cast<const unsigned char*>(tData.data()), tData.size());
 
     // m_client->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, channel, m_serverIPAddr, false);
-
     unsigned int bits = bsOut.GetNumberOfBitsUsed();
     unsigned int bytes = bits / 8 + (bits % 8 ? 1 : 0);
-    // printf("CLIENT pre-send bytes=%u\n", bytes);
-    // const unsigned char* cb = bsOut.GetData();
-    // for (unsigned int i = 0; i < std::min<unsigned int>(64, bytes); ++i) printf("%02X ", cb[i]);
-    // printf("\n");
 
     // Safe send (BitStream handles memory ownership)
     return m_client->Send(
@@ -319,8 +310,6 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
         false
     );
 }
-
-
 
 CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
 {
@@ -364,6 +353,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
 
     lua_register(m_script, "cppSendData", lua_SendData);
     lua_register(m_script, "cppSendWrapData", lua_SendWrapData);
+    lua_register(m_script, "cppGetPingFromServer", lua_GetPingFromServer);
     //lua_register(m_script, "cppSendRequest", lua_SendRequest);
     lua_register(m_script, "cppConnect", lua_Connect);
     lua_register(m_script, "cppGetPacketId", lua_GetPacketId);
@@ -521,8 +511,6 @@ void ClientScriptingManager::connect()
     {
         RakNet::ConnectionAttemptResult car = m_client->Connect(m_serverIP.c_str(), m_port, pw.c_str(), pw.size());
         RakAssert(car == RakNet::CONNECTION_ATTEMPT_STARTED);
-
-
         // if(car == RakNet::CONNECTION_)
     
         std::cout << "IP address: \n";
@@ -759,3 +747,8 @@ void ClientScriptingManager::updateScript(float delta)
     
 }
 
+
+int ClientScriptingManager::getPingFromServer(const RakNet::SystemAddress & addr)
+{
+    return m_client->GetAveragePing(addr);
+}
