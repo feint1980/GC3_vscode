@@ -40,6 +40,8 @@ public:
     ~BattleMain();
     void init(const std::string & password, const std::string & mainServerPassword, int port, unsigned int serverSize,const std::string & mainServerIP);
 
+    void handleConnections(RakNet::Packet *p);
+
     void run();
 
     void update(float deltaTime);
@@ -51,6 +53,10 @@ public:
     void handleCommonPacketQueue();
 
     void handleCommonPacket(RakNet::Packet *p);
+
+    uint32_t sendWrapData(const RakNet::SystemAddress & target,const std::string & guid, const std::string & data);
+
+    void addCryptor(const std::string & guid);
 
 private:
 
@@ -67,6 +73,11 @@ private:
 
     bool m_serverOn = false;
     std::queue<RakNet::Packet*> m_commonPacketQueue;
+
+    Feintgine::F_Cryptor_sodium m_mainServerCryptor;
+
+    std::unordered_map<std::string , Feintgine::F_Cryptor_sodium *> m_cryptors;
+
 
 };
 

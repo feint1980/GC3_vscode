@@ -1,3 +1,0 @@
-"C:\Program Files\CMake\bin\cmake.exe" -E rm -f CMakeFiles\TB_Server.dir/objects.a
-C:\SysGCC\mingw32\bin\ar.exe qc CMakeFiles\TB_Server.dir/objects.a @CMakeFiles\TB_Server.dir\objects1.rsp
-C:\SysGCC\mingw32\bin\c++.exe -O3 -fpermissive -std=c++17 -municode -m32 -Wl,--whole-archive CMakeFiles\TB_Server.dir/objects.a -Wl,--no-whole-archive -o TB_Server.exe -Wl,--out-implib,libTB_Server.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\TB_Server.dir\linkLibs.rsp

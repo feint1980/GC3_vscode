@@ -13,7 +13,7 @@ require "Shop"
 require "Nexus"
 require "Formation"
 require "homeGlobal"
-
+require "Arena"
 
 require "Reimu"
 require "Patchouli"
@@ -69,6 +69,8 @@ Main_NexusButton = nil
 ---@type Label
 Main_FormationButton = nil
 
+---@type Label
+Main_ArenaButton = nil
 
 
 local h_id = ""
@@ -176,6 +178,7 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
         MenuPanels["Nexus"](TGUIScriptingPtr)
         end)
 
+        
     --- Formation Init
     Main_FormationButton = Label:new()
     Main_FormationButton:init(Home_GUIScriptingPtr,"Formation",0,0)
@@ -185,6 +188,18 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     InitFormationMenu(TGUIScriptingPtr)
     Main_FormationButton:setOnClickCallback(function()
         MenuPanels["Formation"](TGUIScriptingPtr)
+        end)
+
+    --- Arena Init
+    InitArenaMenu(TGUIScriptingPtr)
+    Main_ArenaButton = Label:new()
+    Main_ArenaButton:init(Home_GUIScriptingPtr,"Arena",0,0)
+    Main_ArenaButton:setPosStr("85%","80%")
+    Main_ArenaButton:setAlignment(TextAlginment.Center)
+    Main_ArenaButton:setHoverable(0,255,0,255,255,255,255,255)
+    InitArenaMenu(TGUIScriptingPtr)
+    Main_ArenaButton:setOnClickCallback(function()
+        MenuPanels["Arena"](TGUIScriptingPtr)
         end)
 
     Home_UpdateInfo()

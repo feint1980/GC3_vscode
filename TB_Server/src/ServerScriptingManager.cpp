@@ -1164,7 +1164,7 @@ uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
         lua_pushlightuserdata(m_script, this); // host
         lua_pushnumber(m_script, channel);
         lua_pushnumber(m_script, request);
-        lua_pushstring(m_script, payLoad.c_str());
+        lua_pushstring(m_script, payLoad.c_str());  
         lua_pushlightuserdata(m_script, &p->systemAddress);
         lua_pushstring(m_script, p->guid.ToString());
         //std::cout << "Issue next task pointer " << object << "\n";
@@ -1437,14 +1437,11 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
 void ServerScriptingManager::addCryptor(const std::string & guid)
 {
-
-
-
     Feintgine::F_Cryptor_sodium * cryptor = new Feintgine::F_Cryptor_sodium();
     cryptor->init("BNML is real", guid);
     m_cryptors[guid] = cryptor;
 
-    // std::cout << "add cryptor for guid " << guid << "\n";
+    std::cout << "add cryptor for guid " << guid << "\n";
 }
 
 void ServerScriptingManager::removeCryptor(const std::string & guid)

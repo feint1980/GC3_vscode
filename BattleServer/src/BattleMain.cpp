@@ -5,7 +5,74 @@
 
 int lua_BM_SendWrapData(lua_State *L)
 {
-    
+    if(lua_gettop(L) != 4)
+    {
+        std::cout << "gettop failed (lua_BM_SendWrapData) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        RakNet::SystemAddress * addr = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 2));
+        std::string guid = lua_tostring(L, 3);
+        std::string data = lua_tostring(L, 4);
+
+        uint32_t tResult = host->sendWrapData(*addr,guid, data);
+        lua_pushinteger(L, tResult);
+        return 1;
+    }
+    return 0;
+
+}
+
+int lua_Packet_getIP(lua_State *L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Packet_getIP) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+
+    RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+    RakNet::SystemAddress * addr = &p->systemAddress;
+
+    lua_pushlightuserdata(L,addr);
+    return 1;
+}
+
+int lua_Packet_getIPAsString(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Packet_getIPAsString) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+        RakNet::SystemAddress * clientId = &p->systemAddress;
+        std::string ip = clientId->ToString(false);
+        lua_pushstring(L, ip.c_str());
+        return 1;
+    }
+    return 0;
+}
+
+int lua_handleIncomingConnection(lua_State *L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_handleIncomingConnection) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    BattleMain * bm = static_cast<BattleMain*>(lua_touserdata(L, 1));
+    bm->handleConnections(static_cast<RakNet::Packet*>(lua_touserdata(L, 2)));
+
+    return 0;
 }
 
 
@@ -86,8 +153,17 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
 
     luaL_openlibs(m_script);
 
+    // communication 
     lua_register(m_script, "cpp_BM_SendWrapData", lua_BM_SendWrapData);
     
+    // handle packets
+    lua_register(m_script, "cpp_handleIncomingConnection", lua_handleIncomingConnection);
+
+    // get packet data
+    lua_register(m_script, "cpp_getPacketIP", lua_Packet_getIP);
+    lua_register(m_script, "cpp_getPacketIPAsString", lua_Packet_getIPAsString);
+
+
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/battleSideScript.lua")))
     {
         std::cout << "BattleMain Run script battleSideScript.lua OK \n";
@@ -227,4 +303,76 @@ void BattleMain::listen()
         }
     }
     m_server->DeallocatePacket(p);
+}
+
+
+void BattleMain::handleConnections(RakNet::Packet *p)
+{
+    RakNet::SystemAddress addr = p->systemAddress;
+    std::cout << "New connection from " << addr.ToString(true) << "\n";
+    int port = addr.GetPort();
+    std::cout << "port : " << port << "\n";
+
+    if(port = 1123)
+    {
+        // connected to main server 
+        std::cout << "connected to main server\n";
+        // do request to register here
+        std::cout << "init cryptor with main server";
+        m_mainServerCryptor.init("BNML is real", p->guid.ToString()); 
+        std::cout << "cryptor created\n";
+    }
+}
+
+uint32_t BattleMain::sendWrapData( const RakNet::SystemAddress & target,const std::string & guid, const std::string & data)
+{
+    if (data.size() < 3) // headers
+    {
+        std::cout << "sendWrapData failed (data size < 2)\n";
+        return ;
+    }
+    RakNet::MessageID id = static_cast<RakNet::MessageID>(data[0]); 
+    uint8_t channel = static_cast<uint8_t>(data[1]);
+    uint8_t request = static_cast<uint8_t>(data[2]);
+    int payLoadIndex = 3;
+
+    std::string payLoad(data.begin() + payLoadIndex, data.end());
+    
+    std::string tData = "";
+
+    if (id == ID_TH_INTERNAL)
+    {
+        tData = m_mainServerCryptor.encrypt(payLoad);
+    }
+    else if (id == ID_TH_TB_BATTLE)
+    {
+        tData = m_cryptors[guid]->encrypt(payLoad);
+    }
+    else 
+    {
+        std::cout << "sendWrapData failed (invalid id) " << id << "\n";
+        return 0;
+    }
+
+    // Build BitStream safely
+    RakNet::BitStream bsOut;
+    bsOut.Write(id);                              // custom message ID
+    bsOut.Write(channel);                         // 1 byte
+    bsOut.Write(request);                         // 1 byte
+    bsOut.WriteAlignedBytes(
+        reinterpret_cast<const unsigned char*>(tData.data()), 
+        (const unsigned int)tData.size()
+    );
+
+    // Safe send (BitStream handles memory ownership)
+    return m_server->Send(
+        &bsOut, 
+        HIGH_PRIORITY, 
+        RELIABLE_ORDERED, 
+        channel, 
+        target, 
+        false
+    );
+
+
 }

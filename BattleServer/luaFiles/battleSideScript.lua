@@ -20,6 +20,7 @@ ID_CONNECTION_LOST = 22
 ID_CONNECTION_REQUEST_ACCEPTED = 16
 ID_CONNECTION_ATTEMPT_FAILED = 17
 
+---- Handle Common
 CommonPacketHandling = {}
 
 function BattleMain_HandleCommon(host, packet, packetID)
@@ -30,7 +31,7 @@ function BattleMain_HandleCommon(host, packet, packetID)
 end
 
 CommonPacketHandling[ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet)
-    print("connected to main server")
+    BM_handleIncomingConnection(host,packet)
 end
 
 CommonPacketHandling[ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)
@@ -40,4 +41,13 @@ end
 CommonPacketHandling[ID_CONNECTION_LOST] = function(host,packet)
     print("main server lost")
 end
+
+---- 
+MainServerPacketHandling = {}
+
+for i = 0, #BattlePacketChanel do
+    MainServerPacketHandling[i] = {}
+end
+
+
 

@@ -22,7 +22,6 @@ NexusPanel = nil
 ---@type Nexu
 NexusCharacterTab = nil
 
-
 ---@Description : Init the Roster menu
 ---@Param host TGUIScripting host
 function InitNexus(host)

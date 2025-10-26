@@ -428,9 +428,9 @@ enum DefaultMessageIDTypes
 
 	// For the user to use.  Start your first enumeration alt this value.
 	ID_USER_PACKET_ENUM,
-	ID_TH_TB,
-	ID_TH_TB_BATTLE,
-	ID_TH_INTERNAL
+	ID_TH_TB, // info from client to main server
+	ID_TH_TB_BATTLE, // info from client to battle server
+	ID_TH_INTERNAL // main server to battle server
 
 	// -------------------------------------------------------
 };
