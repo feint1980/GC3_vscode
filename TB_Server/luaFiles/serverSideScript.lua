@@ -152,10 +152,10 @@ ResponseHandle = {}
 
 CommonHandle = {}
 
-MessageHandling = {
+--------------------
 
+MessageHandling = {}
 
-}
 MessageHandling[PacketChannel.AccountChannel] = {}
 
 MessageHandling[PacketChannel.ShopChannel] = {}
@@ -165,6 +165,13 @@ MessageHandling[PacketChannel.TransactionChannel] = {}
 MessageHandling[PacketChannel.UserChannel] = {}
 
 MessageHandling[PacketChannel.FormationChannel] = {}
+
+
+----------------
+
+BattleServerHandling = {}
+
+
 
 
 
@@ -204,10 +211,8 @@ function HandleMessage(host,packet,requestCode)
     end
 end
 
+--- Handle info data 
 function HandleWrapMessage(host,chanel,request, data,ip,guid)
-    -- print("HandleWrapMessage called" )
-
-    -- print("channel " .. chanel .. " request " .. request)
 
     if MessageHandling[chanel] == nil then
         print("channel not found " .. chanel)
@@ -224,6 +229,12 @@ function HandleWrapMessage(host,chanel,request, data,ip,guid)
     end
 
 end
+
+function HandleBattleServerMessage(host,chanel,request, data,ip,guid)
+    if
+
+end
+
 
 --- function handle Common 
 function HandleCommon(host, packet, identifierCode)

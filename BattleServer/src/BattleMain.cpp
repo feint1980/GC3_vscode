@@ -321,6 +321,16 @@ void BattleMain::handleConnections(RakNet::Packet *p)
         std::cout << "init cryptor with main server";
         m_mainServerCryptor.init("BNML is real", p->guid.ToString()); 
         std::cout << "cryptor created\n";
+
+        std::string sendMessage;
+        sendMessage.push_back(ID_TH_INTERNAL);
+        sendMessage.push_back(1);
+        sendMessage.push_back(1);
+
+
+        // sending register data
+        sendWrapData(p->systemAddress, p->guid.ToString(),sendMessage);
+
     }
 }
 

@@ -45,7 +45,7 @@ end
 ---- 
 MainServerPacketHandling = {}
 
-for i = 0, #BattlePacketChanel do
+for i = 0, #BattleChanel do
     MainServerPacketHandling[i] = {}
 end
 

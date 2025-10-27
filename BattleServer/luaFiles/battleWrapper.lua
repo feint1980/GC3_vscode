@@ -5,18 +5,15 @@ BattlePacketType = {
 	ID_TH_INTERNAL = 137, -- main server to battle server
 }
 
-BattlePacketChanel = {
+BattleChanel = {
     PaperWork = 1,
     ClientRequest = 2,
     Combat = 3
 }
 
 PaperWorkRequest = {
-
     SelfRegister = 1,
-
 }
-
 
 ---@description handle incoming connection
 ---@param host pointer instance of BattleMain

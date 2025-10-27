@@ -140,6 +140,11 @@ void ServerMain::update(float deltaTime)
                 m_scriptManager->addWrapDataPacket(p);// 
             }
         break;
+        case ID_TH_INTERNAL:
+            {
+                m_scriptManager->addBattleServerPacket(p);//
+            }
+
         default:
             std::cout << "uncommon packet " << (int)packetIdentifier << "\n";
             m_scriptManager->handleCommand(p);

@@ -99,9 +99,15 @@ public:
 
     uint32_t handleWrapData(RakNet::Packet *p);
 
+    uint32_t handleBattleServerPacket(RakNet::Packet *p);
+
     void addWrapDataPacket(RakNet::Packet *p);
 
+    void addBattleServerPacket(RakNet::Packet *p);
+
     void handleWrapDataQueue(float deltaTime);
+
+    void handleBattleServerQueue(float deltaTime);
 
     std::string getEncryptPW(const std::string & pw);
 
@@ -147,6 +153,8 @@ private:
     std::unordered_map<std::string, SkillStats> m_skillStatsMap;
 
     std::queue <RakNet::Packet *> m_wrapDataQueue;
+
+    std::queue <RakNet::Packet *> m_battleServerPacketQueue;
 
     // std::unordered_map<std::string, CharacterDesc* > m_characterMaps;
 

@@ -961,6 +961,7 @@ void ServerScriptingManager::handleCommonMSG()
 void ServerScriptingManager::update(float deltaTime)
 {
     handleWrapDataQueue(deltaTime);
+    handleBattleServerQueue(deltaTime);
   //  handleMessage();
 //   /  handleCommonMSG();
 }
@@ -1111,6 +1112,17 @@ void ServerScriptingManager::addWrapDataPacket(RakNet::Packet *p)
     m_wrapDataQueue.push( std::move(copy));
 }
 
+void ServerScriptingManager::addBattleServerPacket(RakNet::Packet *p)
+{
+    RakNet::Packet* original = p;
+    auto copy = new RakNet::Packet(*original); // shallow copy
+    copy->data = new unsigned char[original->length];
+    memcpy(copy->data, original->data, original->length);
+    copy->length = original->length;
+
+    m_wrapDataQueue.push( std::move(copy));
+}
+
 void ServerScriptingManager::handleWrapDataQueue(float deltaTime)
 {
     while (!m_wrapDataQueue.empty())
@@ -1123,11 +1135,80 @@ void ServerScriptingManager::handleWrapDataQueue(float deltaTime)
     }
 }
 
+void ServerScriptingManager::handleBattleServerQueue(float deltaTime)
+{
+    while (!m_battleServerPacketQueue.empty())
+    {
+        RakNet::Packet *p = m_battleServerPacketQueue.front();
+        handleBattleServerPacket(p);
+        delete[] p->data;
+        delete p;
+        m_battleServerPacketQueue.pop();
+    }
+}
+
+uint32_t ServerScriptingManager::handleBattleServerPacket(RakNet::Packet *p)
+{
+    RakNet::BitStream bsIn(p->data, p->length, false);
+    RakNet::MessageID msgId;
+    uint8_t channel, request;
+
+    bsIn.Read(msgId);
+    if (msgId != ID_TH_INTERNAL)
+    {
+        printf("Unexpected message ID: %u\n", msgId);
+        return 0;
+    }
+
+    bsIn.Read(channel);
+    bsIn.Read(request);
+
+    unsigned int remainingBytes = bsIn.GetNumberOfUnreadBits() / 8;
+    std::string encData(remainingBytes, '\0');
+    bsIn.ReadAlignedBytes(reinterpret_cast<unsigned char*>(&encData[0]), remainingBytes);
+
+    std::string payLoad = getDecryptMessage(encData, p->guid.ToString());
+
+    // printf("SERVER recv bytes=%u\n", p->length);
+    // for (unsigned int i = 0; i < std::min<unsigned int>(64, (unsigned int)p->length); ++i) printf("%02X ", (unsigned char)p->data[i]);
+    // printf("\n");
+
+    // decrypt the payload only
+    // payLoad = getDecryptMessage(payLoad, );
+
+    // std::cout << "payload is " << payLoad << "\n";
+
+  //  std::cout << "decrypted payload " << payLoad << "\n";
+
+    lua_getglobal(m_script, "HandleBattleServerMessage");
+    if (lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this); // host
+        lua_pushnumber(m_script, channel);
+        lua_pushnumber(m_script, request);
+        lua_pushstring(m_script, payLoad.c_str());  
+        lua_pushlightuserdata(m_script, &p->systemAddress);
+        lua_pushstring(m_script, p->guid.ToString());
+        //std::cout << "Issue next task pointer " << object << "\n";
+        //lua_pushlightuserdata(m_script, p->);
+        //lua_pushlightuserdata(m_script, m_guiHandler);
+        // lua_pushnumber(m_script, p->);
+        // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+        int arguments = 6;
+        int returnCount = 1;
+        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, arguments, returnCount, 0)))
+        {
+            std::cout << "call HandleBattleServerMessage failed \n";
+        }
+    }
+
+    // retVal =  m_cryptor.decrypt(tMsg, iv);
+    return 0;
+}
 
 uint32_t ServerScriptingManager::handleWrapData(RakNet::Packet *p)
 {
     RakNet::BitStream bsIn(p->data, p->length, false);
-
     RakNet::MessageID msgId;
     uint8_t channel, request;
 

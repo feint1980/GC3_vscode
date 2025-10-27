@@ -4,6 +4,9 @@ package.path = package.path .. ";../../Lua/include/?.lua"
 
 local json = require ("dkjson")
 
+
+------------------ Main info section
+
 -- Replicate enum from C++
 
 PacketChannel ={
@@ -46,7 +49,6 @@ FormationResponse = {
     Formation_Info_Update = 9,
 }
 
-
 ShopResponse = {
     ShopChracterInfo = 1,
     ShopItemInfo = 2,
@@ -55,6 +57,21 @@ ShopResponse = {
     ShopCharacterInfo_End = 5,
     ShopCharacter_Buy = 6
 }
+
+
+------------------ Battle server section
+
+BattleChanel = {
+    PaperWork = 1,
+    ClientRequest = 2,
+    Combat = 3
+}
+
+PaperWorkRequest = {
+    SelfRegister = 1,
+}
+
+
 
 --- Classes declare
 ---@class pointer
