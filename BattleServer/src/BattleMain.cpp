@@ -327,7 +327,6 @@ void BattleMain::handleConnections(RakNet::Packet *p)
         sendMessage.push_back(1);
         sendMessage.push_back(1);
 
-
         // sending register data
         sendWrapData(p->systemAddress, p->guid.ToString(),sendMessage);
 
@@ -348,7 +347,8 @@ uint32_t BattleMain::sendWrapData( const RakNet::SystemAddress & target,const st
 
     std::string payLoad(data.begin() + payLoadIndex, data.end());
     
-    std::string tData = "";
+    std::string tData ;
+    tData.reserve(payLoad.size() + 40);
 
     if (id == ID_TH_INTERNAL)
     {
@@ -363,6 +363,9 @@ uint32_t BattleMain::sendWrapData( const RakNet::SystemAddress & target,const st
         std::cout << "sendWrapData failed (invalid id) " << id << "\n";
         return 0;
     }
+
+    // print data with id and channel and request
+    printf("send wrap data with id %d, channel %d, request %d\n", id, channel, request);
 
     // Build BitStream safely
     RakNet::BitStream bsOut;

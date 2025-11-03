@@ -44,7 +44,13 @@ enum PacketCode
     USERDATA = 65,
     REQUEST_CHARACTER,
     REQUEST_CHARACTER_DONE,
+
+
+
     INVALID = 322,
+
+    BATTLE_SERVER_LIST = 400,
+
     UNKNOWN = 792
 };
 

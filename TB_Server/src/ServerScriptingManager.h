@@ -85,6 +85,8 @@ public:
 
     void handleCommonMSG();
 
+    void handleInput(const std::string & command);
+
     ClientRequestCode handleCommand(RakNet::Packet *p);
 
     unsigned int handleCommon(RakNet::Packet *p);

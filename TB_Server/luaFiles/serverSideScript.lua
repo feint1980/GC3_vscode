@@ -156,24 +156,20 @@ CommonHandle = {}
 
 MessageHandling = {}
 
-MessageHandling[PacketChannel.AccountChannel] = {}
 
-MessageHandling[PacketChannel.ShopChannel] = {}
-
-MessageHandling[PacketChannel.TransactionChannel] = {}
-
-MessageHandling[PacketChannel.UserChannel] = {}
-
-MessageHandling[PacketChannel.FormationChannel] = {}
-
+for k,v in pairs(PacketChannel) do
+    local i = v
+    MessageHandling[i] = {}
+end
 
 ----------------
 
 BattleServerHandling = {}
 
-
-
-
+for k,v in pairs(BattleChanel) do
+    local i = v
+    BattleServerHandling[i] = {}
+end
 
 
 ---@Description combines packet
@@ -231,7 +227,20 @@ function HandleWrapMessage(host,chanel,request, data,ip,guid)
 end
 
 function HandleBattleServerMessage(host,chanel,request, data,ip,guid)
-    if
+
+    if BattleServerHandling[chanel] == nil then
+        print("channel not found " .. chanel)
+        return
+    end
+
+    if BattleServerHandling[chanel][request] == nil then
+        print("request not found channel " .. chanel .. " request " .. request)
+        return
+    end
+
+    if BattleServerHandling[chanel][request] ~= nil then
+        BattleServerHandling[chanel][request](host,data,ip,guid)
+    end
 
 end
 
@@ -290,6 +299,7 @@ require "accountHandle"
 require "skillHandle"
 require "characterHandle"
 require "formationHandle"
+require "battleServerHandle"
 
 print("server side script ended ...")
 
@@ -355,3 +365,16 @@ function Server_CheckCharacterData(host)
         print(v)
     end
 end
+
+HandleInputCMD = {}
+
+function HandleInput(host, command)
+    print("command : " .. command)
+    if HandleInputCMD[command] ~= nil then
+        HandleInputCMD[command](host, command)
+    else
+        print("command " .. command .. "not found , try 'help' for cmd list")
+    end
+end
+
+require "handleInput"

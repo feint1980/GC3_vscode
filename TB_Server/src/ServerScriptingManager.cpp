@@ -1120,7 +1120,7 @@ void ServerScriptingManager::addBattleServerPacket(RakNet::Packet *p)
     memcpy(copy->data, original->data, original->length);
     copy->length = original->length;
 
-    m_wrapDataQueue.push( std::move(copy));
+    m_battleServerPacketQueue.push( std::move(copy));
 }
 
 void ServerScriptingManager::handleWrapDataQueue(float deltaTime)
@@ -1623,4 +1623,21 @@ void ServerScriptingManager::addSkillStats(const std::string & skillName, const 
     json j = m_skillStatsMap[skillName];
     // std::cout << "dump stat \n";
     // std::cout << j.dump(4,'.') << "\n";
+}
+
+void ServerScriptingManager::handleInput(const std::string & command)
+{
+    std::cout << "handle input called \n";
+    lua_getglobal(m_script, "HandleInput");
+    if (lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this); // host
+        lua_pushstring(m_script, command.c_str());
+        int arguments = 2;
+        int returnCount = 1;
+        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, arguments, returnCount, 0)))
+        {
+            std::cout << "call AddColData failed \n";
+        }
+    }
 }

@@ -144,7 +144,7 @@ void ServerMain::update(float deltaTime)
             {
                 m_scriptManager->addBattleServerPacket(p);//
             }
-
+        break;
         default:
             std::cout << "uncommon packet " << (int)packetIdentifier << "\n";
             m_scriptManager->handleCommand(p);
@@ -177,7 +177,7 @@ PacketCode ServerMain::getCommand(const std::string & command)
     {
         return PacketCode::PINGIP;
     }
-    if(command == "ls" || command == "list")
+    if( command == "list")
     {
         return PacketCode::LIST;
     }
@@ -231,6 +231,7 @@ void ServerMain::handleCommand(const std::string & command)
         m_server->Ping(m_clientID); // not sure what this line actually do 
         break;
     }
+
     case PacketCode::PINGIP:
     {
         printf("Enter IP: ");
@@ -279,6 +280,8 @@ void ServerMain::handleCommand(const std::string & command)
         break;
     }
     default:
+        m_scriptManager->handleInput(command);    
+
         break;
     }
 }
