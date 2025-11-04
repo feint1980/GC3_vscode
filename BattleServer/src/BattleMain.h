@@ -54,6 +54,12 @@ public:
 
     void handleCommonPacket(RakNet::Packet *p);
 
+    void addInternalPacket(RakNet::Packet *p);
+
+    void handleInternalPacketQueue();
+
+    uint32_t handleInternalPacket(RakNet::Packet *p);
+
     uint32_t sendWrapData(const RakNet::SystemAddress & target,const std::string & guid, const std::string & data);
 
     void addCryptor(const std::string & guid);
@@ -73,6 +79,8 @@ private:
 
     bool m_serverOn = false;
     std::queue<RakNet::Packet*> m_commonPacketQueue;
+
+    std::queue<RakNet::Packet*> m_internalPacketQueue;
 
     Feintgine::F_Cryptor_sodium m_mainServerCryptor;
 

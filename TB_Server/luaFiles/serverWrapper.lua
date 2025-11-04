@@ -58,7 +58,6 @@ ShopResponse = {
     ShopCharacter_Buy = 6
 }
 
-
 ------------------ Battle server section
 
 BattleChanel = {
@@ -69,8 +68,8 @@ BattleChanel = {
 
 PaperWorkRequest = {
     SelfRegister = 1,
+    SelfRegisterAccepted = 2,
 }
-
 
 
 --- Classes declare
@@ -183,6 +182,19 @@ function SV_SendWrapMsg(host, clientIP, guid, channel, request, list)
     return cppSendWrapMsgToClient(host, clientIP,guid, WrapMsg(channel, request, list))
 end
 
+---@Description: send a wrapped packet to a battle server
+---@param host pointer instance of ServerScriptingManager
+---@param clientIP pointer instance of RakNet::SystemAddress
+---@param channel number channel
+---@param request number request
+---@param list table data
+---@return number return value
+function SV_SendWrapMsg2BattleServer(host, clientIP, guid, channel, request, list)
+    -- print("SV_SendWrapMsg called")
+    return cppSendWrapMsgToBattleServer(host, clientIP,guid, WrapMsg(channel, request, list))
+end
+
+
 ---@Description force to send until it send OK
 ---@param host pointer instance of ServerScriptingManager
 ---@param ip pointer client ip
@@ -198,6 +210,23 @@ function SendReliable(host,ip, guid,channel,request,tList)
         t_response = SV_SendWrapMsg(host,ip, guid,channel,request,tList)
     end
 end
+
+---@Description force to send until it send OK
+---@param host pointer instance of ServerScriptingManager
+---@param ip pointer client ip
+---@param guid string 
+---@param channel number channel
+---@param request number request
+---@param tList table data
+function SendReliable2BattleServer(host,ip, guid,channel,request,tList)
+
+    local t_response = 0
+    t_response = SV_SendWrapMsg2BattleServer(host,ip, guid,channel,request,tList)
+    while t_response == 0 do
+        t_response = SV_SendWrapMsg(host,ip, guid,channel,request,tList)
+    end
+end
+
 
 function SV_SendMsgNonEncrypt(host,clientIP,message,t_encrypt)
     cppSendToClient(host,clientIP,message,false)

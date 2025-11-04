@@ -236,6 +236,7 @@ void BattleMain::update(float deltaTime)
 {
     listen();
     handleCommonPacketQueue();
+    handleInternalPacketQueue();
 }
 
 void BattleMain::handleCommonPacket(RakNet::Packet *p)
@@ -292,9 +293,13 @@ void BattleMain::listen()
             case ID_CONNECTION_LOST:
             case ID_CONNECTION_REQUEST_ACCEPTED:
             case ID_CONNECTION_ATTEMPT_FAILED:
-                
                 addCommonPacket(p);
             break;
+            case ID_TH_INTERNAL : // internal packet
+            case ID_TH_TB_BATTLE:
+                addInternalPacket(p);
+            break;
+
             default :
             {
                 std::cout << "uncommon packet " << packetIdentifier << "\n";
@@ -319,13 +324,15 @@ void BattleMain::handleConnections(RakNet::Packet *p)
         std::cout << "connected to main server\n";
         // do request to register here
         std::cout << "init cryptor with main server";
-        m_mainServerCryptor.init("BNML is real", p->guid.ToString()); 
+        m_mainServerCryptor.init("BNML is real", m_server->GetMyGUID().ToString()); 
         std::cout << "cryptor created\n";
 
         std::string sendMessage;
+        sendMessage.reserve(12);
         sendMessage.push_back(ID_TH_INTERNAL);
         sendMessage.push_back(1);
         sendMessage.push_back(1);
+        sendMessage.append("v221");
 
         // sending register data
         sendWrapData(p->systemAddress, p->guid.ToString(),sendMessage);
@@ -365,7 +372,7 @@ uint32_t BattleMain::sendWrapData( const RakNet::SystemAddress & target,const st
     }
 
     // print data with id and channel and request
-    printf("send wrap data with id %d, channel %d, request %d\n", id, channel, request);
+    // printf("send wrap data with id %d, channel %d, request %d\n", id, channel, request);
 
     // Build BitStream safely
     RakNet::BitStream bsOut;
@@ -387,5 +394,89 @@ uint32_t BattleMain::sendWrapData( const RakNet::SystemAddress & target,const st
         false
     );
 
+}
+
+void BattleMain::addInternalPacket(RakNet::Packet *p)
+{
+    RakNet::Packet* original = p;
+    auto copy = new RakNet::Packet(*original); // shallow copy
+    copy->data = new unsigned char[original->length];
+    memcpy(copy->data, original->data, original->length);
+    copy->length = original->length;
+
+    m_internalPacketQueue.push(std::move(copy));    
+}
+
+void BattleMain::handleInternalPacketQueue()
+{
+    while (!m_internalPacketQueue.empty())
+    {
+        RakNet::Packet *p = m_internalPacketQueue.front();
+        handleInternalPacket(p);
+        delete[] p->data;
+        delete p;
+        m_internalPacketQueue.pop();
+    }
+}
+
+uint32_t BattleMain::handleInternalPacket(RakNet::Packet *p)
+{
+
+    RakNet::BitStream bsIn(p->data, p->length, false);
+    RakNet::MessageID msgId;
+    uint8_t channel, request;
+
+    bsIn.Read(msgId);
+    if (msgId != ID_TH_TB_BATTLE && msgId != ID_TH_INTERNAL)
+    {
+        printf("Unexpected message ID: %u\n", msgId);
+        return 0;
+    }
+
+    bsIn.Read(channel);
+    bsIn.Read(request);
+
+    unsigned int remainingBytes = bsIn.GetNumberOfUnreadBits() / 8;
+    std::string encData(remainingBytes, '\0');
+    bsIn.ReadAlignedBytes(reinterpret_cast<unsigned char*>(&encData[0]), remainingBytes);
+
+    std::string payLoad ;
+
+    if (msgId == ID_TH_INTERNAL)
+    {
+        payLoad = std::move(m_mainServerCryptor.decrypt(encData));
+    }
+    else if (msgId == ID_TH_TB_BATTLE)
+    {
+        payLoad = std::move(m_cryptors[p->guid.ToString()]->decrypt(encData));
+    }
+
+    std::cout << "packet has channel " << channel << " and request " << request << "\n";
+    std::cout << "payload is " << payLoad << "\n";
+
+    lua_getglobal(m_script, "BattleMain_HandleInternal");
+    if (lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this); // host
+        lua_pushnumber(m_script, channel); // 
+        lua_pushnumber(m_script, request);
+        lua_pushstring(m_script, payLoad.c_str());  
+        lua_pushlightuserdata(m_script, &p->systemAddress);
+        lua_pushstring(m_script, p->guid.ToString());
+        //std::cout << "Issue next task pointer " << object << "\n";
+        //lua_pushlightuserdata(m_script, p->);
+        //lua_pushlightuserdata(m_script, m_guiHandler);
+        // lua_pushnumber(m_script, p->);
+        // lua_pushlightuserdata(m_script, entity->getTargetSlot());
+        int arguments = 6;
+        int returnCount = 1;
+        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, arguments, returnCount, 0)))
+        {
+            std::cout << "call handleInternalPacket failed \n";
+        }
+    }
+
+    // retVal =  m_cryptor.decrypt(tMsg, iv);
+    return 0;
 
 }

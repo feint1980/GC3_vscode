@@ -367,11 +367,22 @@ function Server_CheckCharacterData(host)
 end
 
 HandleInputCMD = {}
+CMDDescription = {}
 
 function HandleInput(host, command)
     print("command : " .. command)
-    if HandleInputCMD[command] ~= nil then
-        HandleInputCMD[command](host, command)
+
+    -- split command for linux like (command <option> <option> ...)
+    local args = {}
+    for arg in command:gmatch("%S+") do
+        table.insert(args, arg)
+    end
+
+    local tCommand = args[1]
+    table.remove(args, 1)
+
+    if HandleInputCMD[tCommand] ~= nil then
+        HandleInputCMD[tCommand](host, command, args)
     else
         print("command " .. command .. "not found , try 'help' for cmd list")
     end

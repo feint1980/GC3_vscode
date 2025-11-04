@@ -61,6 +61,7 @@ namespace Feintgine
                 reinterpret_cast<unsigned char*>(&decrypted[0]),
                 ciphertext, ciphertext_len, nonce, m_key) != 0)
                 {
+            std::cout << "crypto_secretbox_open_easy failed\n";
             return {}; // failed to decrypt (tampered or wrong key)
         }
 

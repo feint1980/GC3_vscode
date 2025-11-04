@@ -42,12 +42,30 @@ CommonPacketHandling[ID_CONNECTION_LOST] = function(host,packet)
     print("main server lost")
 end
 
----- 
-MainServerPacketHandling = {}
+---- Internal 
+InternalPacketHandling = {}
 
-for i = 0, #BattleChanel do
-    MainServerPacketHandling[i] = {}
+for i = 1, #BattleChanel do
+    InternalPacketHandling[i] = {}
 end
+
+require "battlePaperWork"
+
+function BattleMain_HandleInternal(host, channel, request,data,ip, guid)
+
+    print("BattleMain_HandleInternal called")
+    if InternalPacketHandling[channel] == nil then
+        print("channel not found " .. channel)
+        return
+        -- 
+    end
+    if InternalPacketHandling[channel][request] ~= nil then
+        InternalPacketHandling[channel][request](host, channel, request,data,ip, guid)
+    else
+        print("request not found channel " .. channel .. " request " .. request)
+    end
+end
+
 
 
 

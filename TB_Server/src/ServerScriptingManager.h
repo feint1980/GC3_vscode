@@ -99,6 +99,9 @@ public:
 
     uint32_t sendWrapData(const RakNet::SystemAddress & target, const std::string & guid, const std::string & data);
 
+    uint32_t sendWrapData2BatlleServer(const RakNet::SystemAddress & target, const std::string & guid, const std::string & data);
+
+
     uint32_t handleWrapData(RakNet::Packet *p);
 
     uint32_t handleBattleServerPacket(RakNet::Packet *p);

@@ -748,6 +748,33 @@ int lua_SendWrapMsgToClient(lua_State * L)
 
     return 0;
 }
+int lua_SendWrapMsgToBattleServer(lua_State * L)
+{
+
+    if(lua_gettop(L) != 4)
+    {
+        std::cout << "gettop failed (lua_SendWrapMsgToClient) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        RakNet::SystemAddress * clientId = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 2));
+        std::string guid = lua_tostring(L, 3);
+        std::string msg = lua_tostring(L, 4);
+        // std::cout << "send wrap data \n";
+        
+        // std::cout << "ip " << clientId << "\n";
+        // std::cout << "value " << clientId->ToString(false) << "\n"; 
+        uint32_t tResult =  host->sendWrapData2BatlleServer(*clientId,guid, msg);
+        // std::cout << "send result " << tResult << "\n";
+        lua_pushinteger(L, tResult);
+        return 1;
+    }
+    return 0;
+}
+
 
 int lua_SendToClient(lua_State * L)
 {
@@ -992,7 +1019,7 @@ std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
 std::string ServerScriptingManager::getDecryptMessage(const std::string & data, const std::string & guid)
 {
 
-
+    // std::cout << 
     if(m_cryptors[guid])
     {
         return m_cryptors[guid]->decrypt(data);
@@ -1046,9 +1073,47 @@ uint32_t ServerScriptingManager::sendWrapData(const RakNet::SystemAddress & targ
         target, 
         false
     );
-
     // std::cout << "send with  || " << sendBuf.size() << " bytes\n"; 
 }   
+
+uint32_t ServerScriptingManager::sendWrapData2BatlleServer(const RakNet::SystemAddress & target, const std::string & guid, const std::string & data)
+{
+        // std::cout << "C++ sendWrapData called \n";
+    if (data.size() < 2) // headers
+    {
+        std::cout << "sendWrapData failed (data size < 2)\n";
+        return 0;
+    }
+
+    uint8_t channel = static_cast<uint8_t>(data[0]);
+    uint8_t request = static_cast<uint8_t>(data[1]);
+    int payLoadIndex = 2;
+
+    std::string payLoad(data.begin() + payLoadIndex, data.end());
+    std::string tData = m_cryptors[guid]->encrypt(payLoad);
+
+    // Build BitStream safely
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)ID_TH_INTERNAL);     // custom message ID
+    bsOut.Write(channel);                         // 1 byte
+    bsOut.Write(request);                         // 1 byte
+    bsOut.WriteAlignedBytes(
+        reinterpret_cast<const unsigned char*>(tData.data()), 
+        (const unsigned int)tData.size()
+    );
+
+    // Safe send (BitStream handles memory ownership)
+    return m_server->Send(
+        &bsOut, 
+        HIGH_PRIORITY, 
+        RELIABLE_ORDERED, 
+        channel, 
+        target, 
+        false
+    );    
+}
+
+
 
 uint32_t ServerScriptingManager::sendData(const RakNet::SystemAddress & target, const std::string & data, bool isEncrypted)
 {
@@ -1169,6 +1234,7 @@ uint32_t ServerScriptingManager::handleBattleServerPacket(RakNet::Packet *p)
 
     std::string payLoad = getDecryptMessage(encData, p->guid.ToString());
 
+    std::cout << "payload " << payLoad << "\n";
     // printf("SERVER recv bytes=%u\n", p->length);
     // for (unsigned int i = 0; i < std::min<unsigned int>(64, (unsigned int)p->length); ++i) printf("%02X ", (unsigned char)p->data[i]);
     // printf("\n");
@@ -1399,7 +1465,7 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppGenKey", lua_GenKey);
     lua_register(m_script, "cppSendToClient", lua_SendToClient);
     lua_register(m_script, "cppSendWrapMsgToClient", lua_SendWrapMsgToClient);
-
+    lua_register(m_script, "cppSendWrapMsgToBattleServer", lua_SendWrapMsgToBattleServer);
     // Sqlite 
     lua_register(m_script, "cppSqlite_CreateStatement",lua_SQLCreateStatement );
     lua_register(m_script, "cppSqlite_BindStatement", lua_SQLBindStatement);

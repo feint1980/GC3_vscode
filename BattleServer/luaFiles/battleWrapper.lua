@@ -13,6 +13,7 @@ BattleChanel = {
 
 PaperWorkRequest = {
     SelfRegister = 1,
+    SelfRegisterAccepted = 2,
 }
 
 ---@description handle incoming connection
