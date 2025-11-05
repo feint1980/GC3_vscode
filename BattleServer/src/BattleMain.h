@@ -62,6 +62,8 @@ public:
 
     uint32_t sendWrapData(const RakNet::SystemAddress & target,const std::string & guid, const std::string & data);
 
+    RakNet::RakPeerInterface * getServerInstance() { return m_server; }
+
     void addCryptor(const std::string & guid);
 
 private:
@@ -85,7 +87,6 @@ private:
     Feintgine::F_Cryptor_sodium m_mainServerCryptor;
 
     std::unordered_map<std::string , Feintgine::F_Cryptor_sodium *> m_cryptors;
-
 
 };
 

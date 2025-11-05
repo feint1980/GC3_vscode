@@ -2,6 +2,25 @@
 
 
 
+int lua_BM_GetInfo(lua_State *L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_BM_GetInfo) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        std::string info = host->getServerInstance()->GetMyGUID().ToString();
+
+        lua_pushstring(L, info.c_str()); // right now push string
+        return 1;
+    }
+    return 0;
+}
+
 
 int lua_BM_SendWrapData(lua_State *L)
 {
@@ -155,7 +174,11 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
 
     // communication 
     lua_register(m_script, "cpp_BM_SendWrapData", lua_BM_SendWrapData);
-    
+
+
+    // retrieve info
+    lua_register(m_script, "cpp_BM_GetInfo" , lua_BM_GetInfo);
+
     // handle packets
     lua_register(m_script, "cpp_handleIncomingConnection", lua_handleIncomingConnection);
 

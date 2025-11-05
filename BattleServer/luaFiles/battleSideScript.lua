@@ -9,19 +9,12 @@ BS_Host = nil
 function BattleSide_Init(host)
     print("BattleSide_Init lua init")
     BS_Host = host
+
+    MainInfo.guid = cpp_BM_GetInfo(host)
 end
 
-ID_DISCONNECTION_NOTIFICATION = 21
-ID_NEW_INCOMING_CONNECTION  = 19
-ID_INCOMPATIBLE_PROTOCOL_VERSION = 25
-ID_CONNECTED_PING = 0
-ID_UNCONNECTED_PING = 1
-ID_CONNECTION_LOST = 22
-ID_CONNECTION_REQUEST_ACCEPTED = 16
-ID_CONNECTION_ATTEMPT_FAILED = 17
 
 ---- Handle Common
-CommonPacketHandling = {}
 
 function BattleMain_HandleCommon(host, packet, packetID)
 
@@ -43,11 +36,12 @@ CommonPacketHandling[ID_CONNECTION_LOST] = function(host,packet)
 end
 
 ---- Internal 
-InternalPacketHandling = {}
 
-for i = 1, #BattleChanel do
-    InternalPacketHandling[i] = {}
-end
+-- for i = 1, #BattleChanel do
+--     InternalPacketHandling[i] = {}
+-- end
+
+InternalPacketHandling[BattleChanel.PaperWork] = {}
 
 require "battlePaperWork"
 
@@ -57,7 +51,6 @@ function BattleMain_HandleInternal(host, channel, request,data,ip, guid)
     if InternalPacketHandling[channel] == nil then
         print("channel not found " .. channel)
         return
-        -- 
     end
     if InternalPacketHandling[channel][request] ~= nil then
         InternalPacketHandling[channel][request](host, channel, request,data,ip, guid)
@@ -67,5 +60,7 @@ function BattleMain_HandleInternal(host, channel, request,data,ip, guid)
 end
 
 
-
+function Battlemain_GetInfo()
+    return cpp_BM_GetInfo(BS_Host)
+end
 

@@ -1,6 +1,22 @@
+package.path = package.path .. ";../luaFiles/?.lua" 
 
-BattleMain_HandleInternal[BattleChanel.PaperWork][PaperWorkRequest.SelfRegisterAccepted] = function(host,packet,channel,request)
+require "battleWrapper"
+require "BS_global"
 
-    print("register successfully")
+InternalPacketHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegisterAccepted] = function(host, channel, request,data,ip, guid)
 
+
+    local t_guid = string.match(data, "^|([^|]+)|$")
+
+    if t_guid == nil then
+        print("Ke3 F3i117 exception (InternalPacketHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegisterAccepted])")
+        return
+    end
+
+    if t_guid == MainInfo.guid then
+        print("register accepted by server")
+    else
+        print("rejected by server main")
+    end
+    
 end

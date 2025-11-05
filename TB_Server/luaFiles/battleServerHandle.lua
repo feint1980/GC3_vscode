@@ -11,8 +11,11 @@ BattleServerHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegister] = fu
     print("GUID:" .. guid)
     print("Data:" .. data)
     if data == "v221" then
-        print("self register accepted")
+        print("battle server register accepted")
         SendReliable2BattleServer(host,ip,guid,BattleChanel.PaperWork,PaperWorkRequest.SelfRegisterAccepted,{guid} )
+        --- handle battle server here
+
+
     end
 
 end
