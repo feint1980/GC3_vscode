@@ -27,16 +27,19 @@ int wmain(int argc, char const *argv[])
 {
     std::cout << "Battle Server Start ...\n";
     int index = 1;
-    std::string ip = "127.0.0.1";
+    std::string ip = "127.0.0.1"; // main server ip
+    std::string name = "BS_TE1_server";
     if(argc > 3)
     {
         index = atoi(argv[1]);
         ip = argv[2];
     }
 
+    name = name + "_" + std::to_string(index);
 
     BattleMain server;
     std::cout << "Davai \n";
+    server.setName(name);   
     server.init("FFX2","DavaiMachi", 1123 + index, 100,ip);
 
     server.run();

@@ -9,7 +9,6 @@ ClientEP =
     GUID = "",
     name = "",
     cppObj = nil,
-
 }
 
 --- Constructor

@@ -228,6 +228,29 @@ int lua_SQLCreateStatement(lua_State *L)
     }
 }
 
+int lua_GetTargetPing(lua_State *L)
+{
+    if (lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_GetTargetPing) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        RakNet::SystemAddress * target = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 2));
+        int pingResult = host->getTargetPing(*target);
+
+        lua_pushinteger(L, pingResult);
+
+        std::cout << "target ping is " << pingResult << "\n";
+
+        return 1;
+    }
+    return 0;
+}
+
 // Read value from lua table, you need to call lua table first
 void assignValue(lua_State *L,int index, const std::string & target, float & modVal)
 {
@@ -1016,9 +1039,13 @@ std::string ServerScriptingManager::getMegFromPackget(RakNet::Packet *p)
     }
 }
 
+uint32_t ServerScriptingManager::getTargetPing(const RakNet::SystemAddress & target)
+{
+    return m_server->GetAveragePing(target);
+}
+
 std::string ServerScriptingManager::getDecryptMessage(const std::string & data, const std::string & guid)
 {
-
     // std::cout << 
     if(m_cryptors[guid])
     {
@@ -1027,10 +1054,8 @@ std::string ServerScriptingManager::getDecryptMessage(const std::string & data, 
     
     std::cout << "no cryptor for guid " << guid << "\n";
     return "";
-
     //return m_cryptor.decrypt(tMsg, iv); //old
 }
-
 
 SkillStats ServerScriptingManager::getSkillStats(const std::string & skillName)
 {
@@ -1466,6 +1491,13 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppSendToClient", lua_SendToClient);
     lua_register(m_script, "cppSendWrapMsgToClient", lua_SendWrapMsgToClient);
     lua_register(m_script, "cppSendWrapMsgToBattleServer", lua_SendWrapMsgToBattleServer);
+
+    // management of battle server
+    
+    // intraction 
+    lua_register(m_script, "cppGetTargetPing", lua_GetTargetPing);
+
+
     // Sqlite 
     lua_register(m_script, "cppSqlite_CreateStatement",lua_SQLCreateStatement );
     lua_register(m_script, "cppSqlite_BindStatement", lua_SQLBindStatement);

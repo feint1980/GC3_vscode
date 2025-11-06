@@ -298,7 +298,6 @@ function SV_SQLExec(host, cmd)
     cppSqlite_exec(host,cmd)
 end
 
-
 --- function wrapper of cppGenKey
 --- @Desciption: get the generated key 
 --- @param no number of key generated
@@ -368,7 +367,7 @@ function Table_DeepCopy(orig, copies)
     elseif copies[orig] then
         return copies[orig]
     end
-    
+
     local copy = {}
     copies[orig] = copy
     for k, v in pairs(orig) do
@@ -391,4 +390,8 @@ function JSON_Decode(data)
     
     local tbl, pos, err = json.decode(data,1,nil)
     return tbl, pos, err
+end
+
+function SV_GetTargetPing(target)
+    return cppGetTargetPing(T_Host,target)
 end

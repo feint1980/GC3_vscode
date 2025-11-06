@@ -94,9 +94,7 @@ int lua_handleIncomingConnection(lua_State *L)
     return 0;
 }
 
-
 /// Lua section
-
 
 BattleMain::BattleMain()
 {
@@ -351,11 +349,13 @@ void BattleMain::handleConnections(RakNet::Packet *p)
         std::cout << "cryptor created\n";
 
         std::string sendMessage;
-        sendMessage.reserve(12);
+        sendMessage.reserve(100);
         sendMessage.push_back(ID_TH_INTERNAL);
         sendMessage.push_back(1);
         sendMessage.push_back(1);
-        sendMessage.append("v221");
+        sendMessage.append("|v221|");
+        sendMessage.append(m_name.c_str());
+        sendMessage.append("|");
 
         // sending register data
         sendWrapData(p->systemAddress, p->guid.ToString(),sendMessage);

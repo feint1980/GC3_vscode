@@ -20,6 +20,24 @@ HandleInputCMD["ls"] = function(host, command,args)
 end
 CMDDescription["ls"] = "list all connected client"
 
+HandleInputCMD["pingall"] = function(host, command,args)
+
+    local option = args[1]
+    print("pingall " .. option .. " ...")
+    
+    if option == "c" or option == "client" then
+        for k,v in pairs(ClientEPList) do
+            print("ID : " .. v.name .. " \t|IP: " .. SV_GetIPString(v.IP) .. "\t|Ping: " .. SV_GetTargetPing(v.IP) )
+        end
+    end
+
+    if option == "bs" or option == "server" then
+        for k,v in pairs(BSEP_List  ) do
+            print("ID : " .. v.name .. " \t|IP: " .. SV_GetIPString(v.IP) .. "\t|Ping: " .. SV_GetTargetPing(v.IP) )
+        end
+    end
+end
+CMDDescription["pingall"] = "ping all the ping from server or client"
 
 
 

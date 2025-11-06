@@ -95,6 +95,8 @@ public:
 
     std::string getDecryptMessage(const std::string & data, const std::string & guid);
 
+    uint32_t getTargetPing(const RakNet::SystemAddress & target);
+
     uint32_t sendData(const RakNet::SystemAddress & target, const std::string & data,bool isEncrypted = true);
 
     uint32_t sendWrapData(const RakNet::SystemAddress & target, const std::string & guid, const std::string & data);

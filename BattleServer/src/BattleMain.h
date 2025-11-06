@@ -66,6 +66,8 @@ public:
 
     void addCryptor(const std::string & guid);
 
+    void setName(const std::string & name) { m_name = name; }
+
 private:
 
     RakNet::RakPeerInterface * m_server = nullptr;
@@ -87,6 +89,8 @@ private:
     Feintgine::F_Cryptor_sodium m_mainServerCryptor;
 
     std::unordered_map<std::string , Feintgine::F_Cryptor_sodium *> m_cryptors;
+
+    std::string m_name = "BattleServer";
 
 };
 

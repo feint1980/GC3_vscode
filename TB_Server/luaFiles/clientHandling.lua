@@ -24,6 +24,7 @@ function CH_AddClientEP(tSystemAddress, guid, name)
     newClient:init(tSystemAddress, guid, name)
     ClientEPList[guid] = newClient
     ClientEPList[guid].name = name
+    ClientEPList[guid].IP = tSystemAddress
 
     -- ExistingCharacters[guid] = {} ---- Table of S_Characters
 

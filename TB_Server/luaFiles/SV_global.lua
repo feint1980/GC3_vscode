@@ -9,3 +9,6 @@ Skill_Serialized_Table = {}
 ExistingCharacters = {
     
 }
+
+
+BSEP_List = {}

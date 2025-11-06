@@ -5,7 +5,6 @@ require "BS_global"
 
 InternalPacketHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegisterAccepted] = function(host, channel, request,data,ip, guid)
 
-
     local t_guid = string.match(data, "^|([^|]+)|$")
 
     if t_guid == nil then

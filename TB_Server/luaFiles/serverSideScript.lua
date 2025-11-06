@@ -244,7 +244,6 @@ function HandleBattleServerMessage(host,chanel,request, data,ip,guid)
 
 end
 
-
 --- function handle Common 
 function HandleCommon(host, packet, identifierCode)
     if CommonHandle[identifierCode] ~= nil then

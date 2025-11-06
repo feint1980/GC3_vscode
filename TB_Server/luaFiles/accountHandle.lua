@@ -154,6 +154,9 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
     else
         loginResult = "Account or password is incorrect !"
     end
+
+    print("loging from " .. SV_GetIPString(ip) .. " with ping " .. SV_GetTargetPing(ip))
+
     SendReliable(host,ip,guid,PacketChannel.AccountChannel,AccountResponse.Alogin,{ t_id,loginResult,t_pw, guid})
     if loginResult == "granted" then
         CH_AddClientEP(ip, guid, t_id)
