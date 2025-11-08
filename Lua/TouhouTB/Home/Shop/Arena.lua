@@ -7,6 +7,7 @@ require "TGUI_Editbox"
 require "TGUI_Picture"
 require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
+require "TGUI_ListView"
 require "homeGlobal"
 
 
@@ -14,6 +15,7 @@ MenuPanels = _G.MenuPanels
 
 ArenaPanel = nil
 
+BattleServerListView = nil
 
 function InitArenaMenu(host)
     if ArenaPanel == nil then
@@ -31,6 +33,10 @@ function InitArenaMenu(host)
         closeLabel:setOnClickCallback(function()
             ArenaPanel:hideWithEffect(PanelShowType.Fade,250)
         end)
+
+    BattleServerListView = ListView:new()
+    BattleServerListView:init(host,50,50,400,400,{"Server","Ping"} ,{150,150},ArenaPanel.ptr)
+
 
     ArenaPanel:setVisible(false)
 end

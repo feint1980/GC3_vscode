@@ -6,7 +6,7 @@ LabelColor.Blue = 3
 
 --- @class pointer
 
----@class (exact) Label
+---@class Label
 ---@field host pointer instance of TGUIScriptingManager
 ---@field ptr pointer instance of TGUI Label
 ---@field text string text to display
@@ -234,3 +234,4 @@ end
 function TGUI_Label_GetText(label)
     return cpp_Label_GetText(label)
 end
+

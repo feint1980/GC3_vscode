@@ -16,12 +16,9 @@ BattleServerHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegister] = fu
         print("battle server ".. name .. " accepted")
         SendReliable2BattleServer(host,ip,guid,BattleChanel.PaperWork,PaperWorkRequest.SelfRegisterAccepted,{guid} )
 
-
         BSEP_List[guid] = BSEP:new()
         BSEP_List[guid]:init(ip,guid,name)
 
-        --- handle battle server here
-        -- BSEP_List[guid]
     end
 end
 

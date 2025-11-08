@@ -1782,7 +1782,7 @@ int lua_ScrollablePanel_ClearItems(lua_State * L)
 }
 
 
-/// Canvas
+/// MARK:Canvas
 
 
 int lua_Canvas_Create(lua_State * L)
@@ -1896,7 +1896,113 @@ int lua_Canvas_BindDrawCall(lua_State * L)
     }
     return 0;
 }
+// MARK:ListView 
 
+int lua_ListView_Create(lua_State * L)
+{
+    std::cout << "lua_ListView_Create called \n";
+    if(lua_gettop(L) < 7 || lua_gettop(L) > 8)
+    {
+        std::cout << "gettop failed (lua_ListView_Create) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::cout << "clean called \n";
+        TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L,3);
+        float width = lua_tonumber(L, 4);
+        float height = lua_tonumber(L, 5);
+        std::cout << "before check table \n";
+        std::vector<std::string> collumsNames;
+        if(!lua_istable(L, 6))
+        {
+            std::cout  << "lua_istable failed (lua_ListView_Create), expected table (collumNames)" << "\n";
+        }
+        else
+        {
+            std::cout << "table found  \n";
+            lua_pushnil(L);
+            int index = 0;
+            while(lua_next(L,6) != 0) //extract table format
+            {
+                std::cout << "processing " << index++ << "\n";
+
+                if(lua_isstring(L,-1))
+                {
+                    collumsNames.push_back(lua_tostring(L,-1));
+                    std::cout << "pushed back " << collumsNames.back() << "\n";
+                }
+                else
+                {
+                    std::cout << "lua_isstring failed (lua_ListView_Create), expected string " << lua_gettop(L) << "\n";
+                    return -1;
+                }
+                lua_pop(L,1);
+            }
+        }
+        std::vector<float> collumsSizes;
+        if(!lua_istable(L, 7))
+        {
+            std::cout  << "lua_istable failed (lua_ListView_Create), expected table (collumSizes)" << "\n";
+            return -1;
+        }
+        else
+        {
+            lua_pushnil(L);
+            int index = 0;
+            while(lua_next(L,7) != 0) //extract table format
+            {
+                std::cout << "processing " << index++ << "\n";
+                if(lua_isnumber(L,-1))
+                {
+                    collumsSizes.push_back(lua_tonumber(L,-1));
+                    std::cout << "pushed back " << collumsSizes.back() << "\n";
+                }
+                else
+                {
+                    std::cout << "lua_isstring failed (lua_ListView_Create), expected string " << lua_gettop(L) << "\n";
+                    return -1;
+                }
+                lua_pop(L,1);
+            }
+
+        }
+
+
+    tgui::ListView::Ptr * listView = new tgui::ListView::Ptr();
+
+    if(lua_gettop(L) == 8)
+    {
+    tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 8));
+
+    if(parent)
+    {
+        *listView = host->createListView(x,y,width,height,collumsNames,collumsSizes,*parent);
+    }
+    else
+    {
+        *listView = host->createListView(x,y,width,height,collumsNames,collumsSizes,nullptr);
+    }
+    }
+    else
+    {
+        *listView = host->createListView(x,y,width,height,collumsNames,collumsSizes,nullptr);
+    }
+
+        // tgui::ListView::Ptr * listview = host->createListView(name,x,y,width,height); 
+        lua_pushlightuserdata(L,listView);
+
+        return 1;
+
+    }
+
+    return 0;
+}
+
+
+// MARK:Focus Stack
 
 int lua_Add_DrawCall(lua_State * L)
 {
@@ -2052,8 +2158,6 @@ int lua_FocusLabel_ChangeIndex(lua_State * L)
     }
     return 0;
 }
-
-
 
 TGUIScriptingManager::TGUIScriptingManager()
 {
@@ -2275,6 +2379,27 @@ tgui::CanvasOpenGL3::Ptr * TGUIScriptingManager::createCanvas(const std::string 
     m_canvasMap[name] = canvas;
 
     return m_canvasMap[name].canvas;
+}
+
+tgui::ListView::Ptr TGUIScriptingManager::createListView(float x, float y, float width, float height, const std::vector<std::string>& collumName ,const std::vector<float> collumSizes, tgui::Panel::Ptr parent)
+{
+    tgui::ListView::Ptr listView = tgui::ListView::create();
+    listView->setPosition(x, y);
+    listView->setSize(width, height);
+    for(int i = 0; i < collumName.size(); i++)
+    {
+        listView->addColumn(collumName[i],collumSizes[i],tgui::ListView::ColumnAlignment::Center);
+    }
+    if(parent)
+    {
+        parent->add(listView);
+    }
+    else 
+    {
+        m_tgui->add(listView);
+    }
+    return listView;
+
 }
 
 void TGUIScriptingManager::update(float deltaTime)
@@ -2662,6 +2787,11 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Canvas_SetSizeStr", lua_Canvas_SetSizeStr);
     lua_register(m_script, "cpp_Canvas_BindDrawCall", lua_Canvas_BindDrawCall);
     lua_register(m_script, "cpp_Add_DrawCall", lua_Add_DrawCall);
+
+    // TGUI ListView
+
+    lua_register(m_script, "cpp_ListView_Create", lua_ListView_Create);
+
 
     // Focus Panels
 
