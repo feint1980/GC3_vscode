@@ -1896,6 +1896,8 @@ int lua_Canvas_BindDrawCall(lua_State * L)
     }
     return 0;
 }
+
+
 // MARK:ListView 
 
 int lua_ListView_Create(lua_State * L)
@@ -1924,15 +1926,15 @@ int lua_ListView_Create(lua_State * L)
         {
             std::cout << "table found  \n";
             lua_pushnil(L);
-            int index = 0;
+            // int index = 0;
             while(lua_next(L,6) != 0) //extract table format
             {
-                std::cout << "processing " << index++ << "\n";
+                // std::cout << "processing " << index++ << "\n";
 
                 if(lua_isstring(L,-1))
                 {
                     collumsNames.push_back(lua_tostring(L,-1));
-                    std::cout << "pushed back " << collumsNames.back() << "\n";
+                    // std::cout << "pushed back " << collumsNames.back() << "\n";
                 }
                 else
                 {
@@ -1951,14 +1953,14 @@ int lua_ListView_Create(lua_State * L)
         else
         {
             lua_pushnil(L);
-            int index = 0;
+            // int index = 0;
             while(lua_next(L,7) != 0) //extract table format
             {
-                std::cout << "processing " << index++ << "\n";
+                // std::cout << "processing " << index++ << "\n";
                 if(lua_isnumber(L,-1))
                 {
                     collumsSizes.push_back(lua_tonumber(L,-1));
-                    std::cout << "pushed back " << collumsSizes.back() << "\n";
+                    // std::cout << "pushed back " << collumsSizes.back() << "\n";
                 }
                 else
                 {
@@ -1990,17 +1992,146 @@ int lua_ListView_Create(lua_State * L)
     {
         *listView = host->createListView(x,y,width,height,collumsNames,collumsSizes,nullptr);
     }
-
-        // tgui::ListView::Ptr * listview = host->createListView(name,x,y,width,height); 
         lua_pushlightuserdata(L,listView);
-
         return 1;
-
     }
-
     return 0;
 }
 
+
+int lua_ListView_SetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ListView_SetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L,3);
+        listView->get()->setPosition(x,y);
+    }
+    return 0;
+}
+
+int lua_ListView_SetPosStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ListView_SetPosStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        std::string x = lua_tostring(L, 2);
+        std::string y = lua_tostring(L,3);
+        listView->get()->setPosition(x.c_str(),y.c_str());
+    }
+    return 0;
+}
+
+int lua_ListView_SetSize(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ListView_SetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        float width = lua_tonumber(L, 2);
+        float height = lua_tonumber(L,3);
+        listView->get()->setSize(width,height);
+    }
+    return 0;
+}
+
+int lua_ListView_SetSizeStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ListView_SetSizeStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        std::string width = lua_tostring(L, 2);
+        std::string height = lua_tostring(L,3);
+        listView->get()->setSize(width.c_str(),height.c_str());
+    }
+    return 0;
+}
+
+int lua_ListView_GetSize(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_ListView_GetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        float width = listView->get()->getSize().x;
+        float height = listView->get()->getSize().y;
+        lua_pushnumber(L,width);
+        lua_pushnumber(L,height);
+        return 2;
+    }
+    return 0;
+}
+
+int lua_ListView_SetColumnSizeRatios(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_ListView_SetColumnSizeRatioss) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        std::vector<float> ratios;
+
+        if(!lua_istable(L,2))
+        {
+            std::cout << "gettop failed (lua_ListView_SetColumnSizeRatioss) " << lua_gettop(L) << "\n";
+            return -1;
+        }
+        else
+        {
+            lua_pushnil(L);
+            while(lua_next(L,2) != 0)
+            {
+                if(lua_isnumber(L,-1))
+                {
+                    ratios.push_back(lua_tonumber(L,-1));
+                }
+                lua_pop(L,1);
+            }
+        }
+
+        float totalWidth = listView->get()->getSize().x;
+
+        if(ratios.size() > listView->get()->getColumnCount())
+        {
+            std::cout << "warning: more ratios than collums\n";
+        }
+        for(int i = 0; i < ratios.size(); i++)
+        {
+            listView->get()->setColumnWidth(i,ratios[i] * totalWidth);
+        }
+        
+        return 0;
+
+    }
+    return 0;
+}
 
 // MARK:Focus Stack
 
@@ -2389,6 +2520,7 @@ tgui::ListView::Ptr TGUIScriptingManager::createListView(float x, float y, float
     for(int i = 0; i < collumName.size(); i++)
     {
         listView->addColumn(collumName[i],collumSizes[i],tgui::ListView::ColumnAlignment::Center);
+        
     }
     if(parent)
     {
@@ -2398,6 +2530,11 @@ tgui::ListView::Ptr TGUIScriptingManager::createListView(float x, float y, float
     {
         m_tgui->add(listView);
     }
+
+    listView->setHorizontalScrollbarPolicy(tgui::Scrollbar::Policy::Never);
+    
+    // listView->setAutoLayoutUpdateEnabled(true);
+    // listView->setColumnAutoResize(true);
     return listView;
 
 }
@@ -2791,7 +2928,12 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     // TGUI ListView
 
     lua_register(m_script, "cpp_ListView_Create", lua_ListView_Create);
-
+    lua_register(m_script, "cpp_ListView_SetPos", lua_ListView_SetPos);
+    lua_register(m_script, "cpp_ListView_SetPosStr", lua_ListView_SetPosStr);
+    lua_register(m_script, "cpp_ListView_SetSize", lua_ListView_SetSize);
+    lua_register(m_script, "cpp_ListView_SetSizeStr", lua_ListView_SetSizeStr);
+    lua_register(m_script, "cpp_ListView_GetSize", lua_ListView_GetSize);
+    lua_register(m_script, "cpp_ListView_SetColumnSizeRatios", lua_ListView_SetColumnSizeRatios);
 
     // Focus Panels
 

@@ -34,12 +34,33 @@ end
 function ListView:init(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tCollumsSizes,parent)
 
     self.host = host
-    self.ptr = TGUI_CreateListView(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tCollumsSizes,parent)
+    self.ptr = TGUI_ListView_Create(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tCollumsSizes,parent)
 end
 
+function ListView:setPos(x,y)
+    TGUI_ListView_SetPos(self.ptr,x,y)
+end
 
+function ListView:setPosStr(x,y)
+    TGUI_ListView_SetPosStr(self.ptr,x,y)
+end
 
+function ListView:setSize(width,height)
+    TGUI_ListView_SetSize(self.ptr,width,height)
+end
 
+function ListView:setSizeStr(width,height)
+    TGUI_ListView_SetSizeStr(self.ptr,width,height)
+end
+
+function ListView:getSize()
+    return TGUI_ListView_GetSize(self.ptr)
+end
+
+---@param columnSizes table of collum sizes
+function ListView:setColumnSizeRatios(columnSizes)
+    TGUI_ListView_SetColumnSizeRatios(self.ptr,columnSizes)
+end
 
 ---- MARK: Wrapper
 --- function wrapper of cpp_ListView_Create
@@ -53,13 +74,13 @@ end
 ---@param tCollumsSizes table of collum sizes
 ---@param parent? pointer instance parent, default nil (main)
 ---@return pointer? instance of TGUI ListView
-function TGUI_CreateListView(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tCollumsSizes,parent)
+function TGUI_ListView_Create(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tCollumsSizes,parent)
     parent = parent or nil
     if #tCollumNames ~= #tCollumsSizes then
-        print("(TGUI_CreateListView)collum names and collum sizes must have same length")
+        print("(TGUI_ListView_Create)collum names and collum sizes must have same length")
         return nil
     end
-    print("TGUI_CreateListView called")
+    print("TGUI_ListView_Create called")
     print("table check")
     for k,v in pairs(tCollumNames) do
         print(k,v)
@@ -67,5 +88,53 @@ function TGUI_CreateListView(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tCollu
     for k,v in pairs(tCollumsSizes) do
         print(k,v)
     end
-    cpp_ListView_Create(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tCollumsSizes,parent)
+    return cpp_ListView_Create(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tCollumsSizes,parent)
+end
+
+---@Description wrapper of cpp_ListView_SetPos
+---@param listView pointer instance of TGUI ListView
+---@param x number x position
+---@param y number y position
+function TGUI_ListView_SetPos(listView,x,y)
+    cpp_ListView_SetPos(listView,x,y)
+end
+
+
+---@Description wrapper of cpp_ListView_SetPosStr
+---@param listView pointer instance of TGUI ListView
+---@param x string x position
+---@param y string y position
+function TGUI_ListView_SetPosStr(listView,x,y)
+    cpp_ListView_SetPosStr(listView,x,y)
+end
+
+---@Description wrapper of cpp_ListView_SetSize
+---@param listView pointer instance of TGUI ListView
+---@param x number width
+---@param y number height
+function TGUI_ListView_SetSize(listView,x,y)
+    cpp_ListView_SetSize(listView,x,y)
+end
+
+---@Description wrapper of cpp_ListView_SetSizeStr
+---@param listView pointer instance of TGUI ListView
+---@param x string width
+---@param y string height
+function TGUI_ListView_SetSizeStr(listView,x,y)
+    cpp_ListView_SetSizeStr(listView,x,y)
+end
+
+---@Description wrapper of cpp_ListView_GetSize
+---@param listView pointer instance of TGUI ListView
+---@return number width
+---@return number height
+function TGUI_ListView_GetSize(listView)
+    return cpp_ListView_GetSize(listView)
+end
+
+---@Description wrapper of cpp_ListView_SetColumnSizes
+---@param listView pointer instance of TGUI ListView
+---@param tCollumsSizes table of collum sizes
+function TGUI_ListView_SetColumnSizeRatios(listView,tCollumsSizes)
+    cpp_ListView_SetColumnSizeRatios(listView,tCollumsSizes)
 end

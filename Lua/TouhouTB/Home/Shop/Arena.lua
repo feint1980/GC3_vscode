@@ -35,14 +35,15 @@ function InitArenaMenu(host)
         end)
 
     BattleServerListView = ListView:new()
-    BattleServerListView:init(host,50,50,400,400,{"Server","Ping"} ,{150,150},ArenaPanel.ptr)
+    BattleServerListView:init(host,50,50,400,400,{"Server","Ping"} ,{300,100},ArenaPanel.ptr)
 
+    BattleServerListView:setPosStr("50%","0%")
+    BattleServerListView:setSizeStr("50%","50%")
+    BattleServerListView:setColumnSizeRatios({0.75,0.25})
 
     ArenaPanel:setVisible(false)
 end
 
-
 MenuPanels["Arena"] = function(host)
-
     ArenaPanel:showWithEffect(PanelShowType.Fade,250)
 end
