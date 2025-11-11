@@ -161,6 +161,8 @@ ClientMessageHandling[PacketChannel.UserChannel] = {}
 
 ClientMessageHandling[PacketChannel.FormationChannel] = {}
 
+ClientMessageHandling[PacketChannel.ArenaChannel] = {}
+
 -- ---@Description combines packet
 -- ---@param type string type of packet to wrap
 -- ---@param list table data to wrap

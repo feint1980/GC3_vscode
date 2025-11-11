@@ -62,9 +62,7 @@ ShopResponse = {
 ArenaResponse = {
     Arena_Request_GetServerList = 1,
     -- Arena_Connect_ConnectToServer = 2,
-
 }
-
 
 ---@Description combines packet
 ---@param type string type of packet to wrap

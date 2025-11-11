@@ -299,6 +299,7 @@ require "skillHandle"
 require "characterHandle"
 require "formationHandle"
 require "battleServerHandle"
+require "arena_handle"
 
 print("server side script ended ...")
 

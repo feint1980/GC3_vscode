@@ -463,5 +463,8 @@ end
 require "skill_client_handler"
 require "character_client_handler"
 require "formation_client_handler"
+require "arena_client_handler"
+
 
 require "home_Input_control"
+

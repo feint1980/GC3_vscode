@@ -14,7 +14,8 @@ PacketChannel ={
     UserChannel = 2,
     ShopChannel =3,
     TransactionChannel = 4,
-    FormationChannel = 5
+    FormationChannel = 5,
+    ArenaChannel = 6
 }
 
 AccountResponse = {
@@ -57,6 +58,12 @@ ShopResponse = {
     ShopCharacterInfo_End = 5,
     ShopCharacter_Buy = 6
 }
+
+ArenaResponse = {
+    Arena_Request_GetServerList = 1,
+    -- Arena_Connect_ConnectToServer = 2,
+}
+
 
 ------------------ Battle server section
 

@@ -10,7 +10,6 @@ require "TGUI_ScrollablePanel"
 require "TGUI_ListView"
 require "homeGlobal"
 
-
 MenuPanels = _G.MenuPanels
 
 ArenaPanel = nil
@@ -37,13 +36,28 @@ function InitArenaMenu(host)
     BattleServerListView = ListView:new()
     BattleServerListView:init(host,50,50,400,400,{"Server","Ping"} ,{300,100},ArenaPanel.ptr)
 
-    BattleServerListView:setPosStr("50%","0%")
-    BattleServerListView:setSizeStr("50%","50%")
+    BattleServerListView:setPosStr("50%","5%")
+    BattleServerListView:setSizeStr("48%","50%")
     BattleServerListView:setColumnSizeRatios({0.75,0.25})
+
+    local refreshLabel = Label:new()
+    refreshLabel:init(host,"Refresh",ArenaPanel.width/2,0,ArenaPanel.ptr)
+    refreshLabel:setScale(0.9)
+    refreshLabel:setAlignment(TextAlginment.Center)
+    refreshLabel:setPosStr("75%","57%")
+    refreshLabel:setHoverable(0,255,0,255,255,255,255,255)
+    refreshLabel:setOnClickCallback(function()
+        Arena_RequestBattleServerList()
+    end)
 
     ArenaPanel:setVisible(false)
 end
 
 MenuPanels["Arena"] = function(host)
     ArenaPanel:showWithEffect(PanelShowType.Fade,250)
+    Arena_RequestBattleServerList()
+end
+
+function Arena_RequestBattleServerList()
+    SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_Request_GetServerList, {MainInfo.guid, "request"}, 5, 0.5,0.25)
 end
