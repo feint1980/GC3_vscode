@@ -62,6 +62,16 @@ function ListView:setColumnSizeRatios(columnSizes)
     TGUI_ListView_SetColumnSizeRatios(self.ptr,columnSizes)
 end
 
+function ListView:clearItems()
+    TGUI_ListView_ClearItems(self.ptr)
+end
+
+---@Description add item to list
+---@param item table of collum values
+function ListView:addItem(item)
+    TGUI_ListView_AddItem(self.ptr,item)
+end
+
 ---- MARK: Wrapper
 --- function wrapper of cpp_ListView_Create
 ---@Description create new tgui ListView object in cpp
@@ -137,4 +147,17 @@ end
 ---@param tCollumsSizes table of collum sizes
 function TGUI_ListView_SetColumnSizeRatios(listView,tCollumsSizes)
     cpp_ListView_SetColumnSizeRatios(listView,tCollumsSizes)
+end
+
+---@Description wrapper of cpp_ListView_ClearItems
+---@param listView pointer instance of TGUI ListView
+function TGUI_ListView_ClearItems(listView)
+    cpp_ListView_ClearItems(listView)
+end
+
+---@Description wrapper of cpp_ListView_AddItem
+---@param listView pointer instance of TGUI ListView
+---@param item pointer instance of TGUI ListItem
+function TGUI_ListView_AddItem(listView,item)
+    cpp_ListView_AddItem(listView,item)
 end

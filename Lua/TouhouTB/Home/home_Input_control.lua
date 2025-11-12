@@ -26,16 +26,16 @@ local function tFocusPrev(controlHost,tguiHost)
 end
 -- Main register to handle signal
 Dispatch_Recievers["homeScene"] = function (controlHandlerHost,tguiHost,signal)
-    print("homeScene handle signal " .. signal)
+    -- print("homeScene handle signal " .. signal)
     if signal < 16 then ---- contain at least left, right, up, down
     -- if (signal & Signal.left) ~= 0 then
-        print("movement detect " )
+        -- print("movement detect " )
         -- ControlHandler_Info()
         if (signal & Signal.left) ~= 0 then
             tFocusPrev(controlHandlerHost,tguiHost)
             -- print("left !")
         elseif (signal & Signal.right) ~= 0 then
-            print("right !")
+            -- print("right !")
             tFocusNext(controlHandlerHost,tguiHost)
             -- focusNext(controlHandlerHost)
         elseif (signal & Signal.up) ~= 0 then
@@ -45,7 +45,7 @@ Dispatch_Recievers["homeScene"] = function (controlHandlerHost,tguiHost,signal)
         end
     elseif signal == 16 then
         local x,y = ControlHandler_getCursorPos()
-        print("x " .. x .. " y " .. y)
+        -- print("x " .. x .. " y " .. y)
         Controller_fireLeftClickEvent(controlHandlerHost,1,x,y)
     else 
         if signal == Signal.escape then 
@@ -53,9 +53,5 @@ Dispatch_Recievers["homeScene"] = function (controlHandlerHost,tguiHost,signal)
             Formation_MainUpdate(tguiHost)
         end
     end
-    
-
-
-
 end
 

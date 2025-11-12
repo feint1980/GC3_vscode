@@ -493,6 +493,24 @@ int lua_Packet_getGUID(lua_State *L)
         lua_pushstring(L, packet->guid.ToString());
         return 1;
     }
+    return 0;
+}
+
+int lua_GetSystemAddressPort(lua_State *L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_GetSystemAddressPort) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::SystemAddress * address = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 1));
+        lua_pushinteger(L, address->GetPort());
+        return 1;
+    }
+    return 0;
 }
 
 int lua_SQLBindStatement(lua_State * L)
@@ -1516,6 +1534,9 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cppPacket_getIPAsString", lua_Packet_getIPAsString);
     lua_register(m_script, "cppPacket_extract", lua_Packet_extract);
     lua_register(m_script, "cppPacket_getGUID", lua_Packet_getGUID);
+
+    // RakNet System Address
+    lua_register(m_script, "cppGetSystemAddressPort", lua_GetSystemAddressPort);
 
     // misc
     lua_register(m_script, "cpp_getEncrypedPW", lua_getEncryptedPW);

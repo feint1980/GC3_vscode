@@ -71,7 +71,7 @@ public:
 private:
 
     RakNet::RakPeerInterface * m_server = nullptr;
-    RakNet::SocketDescriptor m_socketDescriptor[2];
+    RakNet::SocketDescriptor m_socketDescriptor;
     RakNet::RakNetStatistics * m_statistics = nullptr;
 
     lua_State * m_script = nullptr;

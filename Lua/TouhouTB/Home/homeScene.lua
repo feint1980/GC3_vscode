@@ -459,12 +459,9 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
     end
 end
 
+require "home_Input_control"
 
 require "skill_client_handler"
 require "character_client_handler"
 require "formation_client_handler"
 require "arena_client_handler"
-
-
-require "home_Input_control"
-

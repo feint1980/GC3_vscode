@@ -131,10 +131,10 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     m_server->SetMaximumIncomingConnections(m_connectionSize);
 
     // Just create *one* IPv4 socket descriptor for now
-    RakNet::SocketDescriptor sd(m_port, "0.0.0.0");
-    sd.socketFamily = AF_INET;
+    m_socketDescriptor = RakNet::SocketDescriptor(m_port, "0.0.0.0");
+    m_socketDescriptor.socketFamily = AF_INET;
 
-    RakNet::StartupResult res = m_server->Startup(m_connectionSize, &sd, 1);
+    RakNet::StartupResult res = m_server->Startup(m_connectionSize, &m_socketDescriptor, 1);
     if (res != RakNet::RAKNET_STARTED) {
         std::cout << "Server failed to start: " << res << std::endl;
         exit(1);
@@ -202,6 +202,8 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
         }
     }
 
+    std::cout << "battle server init with port " << m_server->GetMyBoundAddress().GetPort()   << "/" << m_port << "\n";
+
     std::cout << "|===============================================|\n";
     std::cout << "| Attemp to connect to main server ...          |\n";
 
@@ -209,6 +211,7 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     RakNet::ConnectionAttemptResult car = m_server->Connect(m_mainServerIP.c_str(), 1123, m_mainServerPassword.c_str(), m_mainServerPassword.size());
 
     // std::cout << "connect to " << m_mainServerIP << " via port " << 1123 << " with password " << m_mainServerPassword << "\n";
+
     RakAssert(car == RakNet::CONNECTION_ATTEMPT_STARTED);
 
     m_serverOn = true;

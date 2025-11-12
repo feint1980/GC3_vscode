@@ -10,5 +10,6 @@ ExistingCharacters = {
     
 }
 
-
-BSEP_List = {}
+BSEP_List = {
+    
+}

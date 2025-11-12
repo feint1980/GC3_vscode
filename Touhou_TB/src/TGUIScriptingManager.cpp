@@ -2133,6 +2133,57 @@ int lua_ListView_SetColumnSizeRatios(lua_State * L)
     return 0;
 }
 
+int lua_ListView_ClearItems(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_ListView_ClearItems) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        listView->get()->removeAllItems();
+    }
+    return 0;
+}
+
+int lua_ListView_AddItem(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_ListView_AddItem) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        std::vector<tgui::String> itemValues;
+        
+        if(!lua_istable(L,2))
+        {
+            std::cout << "gettop failed (lua_ListView_AddItem), expected table " << lua_gettop(L) << "\n";
+            return -1;
+        }
+        else
+        {
+            lua_pushnil(L);
+            while(lua_next(L,2) != 0)
+            {
+                if(lua_isstring(L,-1))
+                {
+                    itemValues.push_back(lua_tostring(L,-1));
+                }
+                lua_pop(L,1);
+            }
+        }
+        
+        listView->get()->addItem(itemValues);
+        // listView->get()->addItem(itemValues);
+        
+    }
+    return 0;
+}
 // MARK:Focus Stack
 
 int lua_Add_DrawCall(lua_State * L)
@@ -2934,6 +2985,8 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_ListView_SetSizeStr", lua_ListView_SetSizeStr);
     lua_register(m_script, "cpp_ListView_GetSize", lua_ListView_GetSize);
     lua_register(m_script, "cpp_ListView_SetColumnSizeRatios", lua_ListView_SetColumnSizeRatios);
+    lua_register(m_script, "cpp_ListView_ClearItems", lua_ListView_ClearItems);
+    lua_register(m_script, "cpp_ListView_AddItem", lua_ListView_AddItem);
 
     // Focus Panels
 

@@ -77,7 +77,7 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
         end
     end
 
-    SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Start, {JSON_Encode(queryResult,true)})
+    SendReliable(host,ip,t_guid,PacketChannel.FormationChannel,FormationResponse.Formation_Start, {JSON_Encode(queryResult,false)})
 end
 
 function FormationQuery_CheckCount(host,userID)

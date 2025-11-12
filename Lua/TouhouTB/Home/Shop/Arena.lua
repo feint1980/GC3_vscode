@@ -36,8 +36,8 @@ function InitArenaMenu(host)
     BattleServerListView = ListView:new()
     BattleServerListView:init(host,50,50,400,400,{"Server","Ping"} ,{300,100},ArenaPanel.ptr)
 
-    BattleServerListView:setPosStr("50%","5%")
-    BattleServerListView:setSizeStr("48%","50%")
+    BattleServerListView:setPosStr("65%","5%")
+    BattleServerListView:setSizeStr("30%","30%")
     BattleServerListView:setColumnSizeRatios({0.75,0.25})
 
     local refreshLabel = Label:new()
@@ -50,6 +50,7 @@ function InitArenaMenu(host)
         Arena_RequestBattleServerList()
     end)
 
+
     ArenaPanel:setVisible(false)
 end
 
@@ -60,4 +61,12 @@ end
 
 function Arena_RequestBattleServerList()
     SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_Request_GetServerList, {MainInfo.guid, "request"}, 5, 0.5,0.25)
+end
+
+function Arena_ResetList()
+    BattleServerListView:clearItems()
+end
+
+function Arena_AddServer(serverName, ping)
+    BattleServerListView:addItem({serverName,ping})
 end

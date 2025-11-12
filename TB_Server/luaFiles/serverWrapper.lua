@@ -140,6 +140,14 @@ function SV_GetIPString(ip)
     return cppPacket_getIPAsString(ip)
 end
 
+---function wrapper of cppGetSystemAddressPort
+--- @Description: get the port from IP
+--- @param ip pointer instance of RakNet::SystemAddress
+--- @return number 
+function SV_GetPortFromIP(ip)
+    return cppGetSystemAddressPort(ip)
+end
+
 --- function wrapper of cppPacket_extract
 ---@Description: get the data of a packet 
 ---@param packet pointer instance of RakNet::Packet
@@ -201,7 +209,6 @@ function SV_SendWrapMsg2BattleServer(host, clientIP, guid, channel, request, lis
     return cppSendWrapMsgToBattleServer(host, clientIP,guid, WrapMsg(channel, request, list))
 end
 
-
 ---@Description force to send until it send OK
 ---@param host pointer instance of ServerScriptingManager
 ---@param ip pointer client ip
@@ -233,7 +240,6 @@ function SendReliable2BattleServer(host,ip, guid,channel,request,tList)
         t_response = SV_SendWrapMsg(host,ip, guid,channel,request,tList)
     end
 end
-
 
 function SV_SendMsgNonEncrypt(host,clientIP,message,t_encrypt)
     cppSendToClient(host,clientIP,message,false)
