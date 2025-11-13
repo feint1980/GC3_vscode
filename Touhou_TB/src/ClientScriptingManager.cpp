@@ -241,6 +241,47 @@ int lua_GetPingFromServer(lua_State * L)
     return 0;
 }
 
+int lua_PingServer(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_PingServer) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::string ip = lua_tostring(L, 2);
+        uint32_t port = lua_tonumber(L, 3);
+        std::cout << "ping server : " << ip << " : " << port << "\n";
+
+        bool result = host->pingToServer(ip, port);
+        std::cout << "result : " << result << "\n";
+        lua_pushnumber(L, result);
+        return 1;
+        
+    }
+    return 0;
+}
+
+int lua_CollectPong(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CollectPong) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 2));
+        host->collectPong(p);
+        return 0;
+    }
+    return 0;
+}
 
 
 std::string ClientScriptingManager::getClientGUID()
@@ -354,12 +395,14 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     lua_register(m_script, "cppSendData", lua_SendData);
     lua_register(m_script, "cppSendWrapData", lua_SendWrapData);
     lua_register(m_script, "cppGetPingFromServer", lua_GetPingFromServer);
+    lua_register(m_script, "cppPing_server", lua_PingServer);
     //lua_register(m_script, "cppSendRequest", lua_SendRequest);
     lua_register(m_script, "cppConnect", lua_Connect);
     lua_register(m_script, "cppGetPacketId", lua_GetPacketId);
     lua_register(m_script, "cppParseCharacterFromJson", lua_ParseCharacterFromJson);
     lua_register(m_script, "cppGetClientGUID", lua_GetClientGUID);
 
+    lua_register(m_script, "cppCollectPong", lua_CollectPong);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/Networking/clientSide.lua")))
     {
@@ -470,8 +513,15 @@ void ClientScriptingManager::handleMessage(RakNet::Packet *p)
    // unsigned char packetIdentifier = GetPacketIdentifier(p);
 
         // bool handlingPacket = false;
-        firstGateWay(p);
-        sendDataToLuaScripting(p);
+        RakNet::Packet* original = p;
+        auto copy = new RakNet::Packet(*original); // shallow copy
+        copy->data = new unsigned char[original->length];
+        memcpy(copy->data, original->data, original->length);
+        copy->length = original->length;
+
+        firstGateWay(copy);
+        sendDataToLuaScripting(copy);
+        m_storedPacket.push(copy);
         // while(!handlingPacket)
         // {
         //     handlingPacket = sendDataToLuaScripting(p);
@@ -536,7 +586,7 @@ bool ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
             if(lua_isfunction(m_script, -1))
             {
                 bool selfPacket = false;
-                if(p->length < 2)
+                if(p->length < 30)
                 {
                     selfPacket = true;
                 }
@@ -569,7 +619,8 @@ bool ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
                 }
                 lua_pushlightuserdata(m_script, &p->systemAddress);
                 lua_pushnumber(m_script, identifier);
-                const int argc = 3;
+                lua_pushlightuserdata(m_script, p);
+                const int argc = 4;
                 const int returnCount = 0;
                 return LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
             }
@@ -657,6 +708,8 @@ void ClientScriptingManager::firstGateWay(RakNet::Packet *p)
     case ID_UNCONNECTED_PING:
         printf("Ping from %s\n", p->systemAddress.ToString(true));
         break;
+
+    
     default:
         // It's a client, so just show the message
         {
@@ -747,8 +800,44 @@ void ClientScriptingManager::updateScript(float delta)
     
 }
 
-
 int ClientScriptingManager::getPingFromServer(const RakNet::SystemAddress & addr)
 {
     return m_client->GetAveragePing(addr);
+}
+
+int ClientScriptingManager::pingToServer(const std::string & ip, int port)
+{
+    return m_client->Ping(ip.c_str(), port,false);
+}
+
+void ClientScriptingManager::collectPong(RakNet::Packet *p)
+{
+    if(!p)
+    {
+        std::cout << "packet invalid \n";
+        return;
+    }
+
+    std::cout << "collect pong from " << p->systemAddress.ToString() << " port " << p->systemAddress.GetPort() << "\n";
+
+    RakNet::BitStream bsIn(p->data, p->length, false);
+    RakNet::MessageID msgId;
+
+    bsIn.Read(msgId);
+    if (msgId != ID_UNCONNECTED_PONG)
+    {
+        printf("Unexpected message ID: %u\n (not ID_UNCONNECTED_PONG)", msgId);
+        return;
+    }
+
+    unsigned int remainingBytes = bsIn.GetNumberOfUnreadBits() / 8;
+    std::string data(remainingBytes, '\0');
+    bsIn.ReadAlignedBytes(reinterpret_cast<unsigned char*>(&data[0]), remainingBytes);
+
+    std::cout << "data " << p->data << "\n";
+
+
+    // m_battleServerPingMap[p->guid] 
+    // std::cout << p->length << "\n"; 
+
 }

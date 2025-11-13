@@ -251,6 +251,47 @@ int lua_GetTargetPing(lua_State *L)
     return 0;
 }
 
+int lua_registerIP(lua_State *L)
+{
+    if (lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_registerIP) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        std::string guid = lua_tostring(L, 2);
+        RakNet::SystemAddress * ip = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 3));
+        host->registerIP(guid, ip);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_getRegisteredIP(lua_State *L)
+{
+    if (lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_getRegisteredIP) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
+        std::string guid = lua_tostring(L, 2);
+        RakNet::SystemAddress * ip = host->getRegisterIP(guid);
+
+        lua_pushlightuserdata(L, ip);
+
+        return 1;
+    }
+    return 0;
+}
+
+
 // Read value from lua table, you need to call lua table first
 void assignValue(lua_State *L,int index, const std::string & target, float & modVal)
 {
@@ -1514,7 +1555,8 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     
     // intraction 
     lua_register(m_script, "cppGetTargetPing", lua_GetTargetPing);
-
+    lua_register(m_script, "cpp_registerIP", lua_registerIP);
+    lua_register(m_script, "cpp_getRegisteredIP", lua_getRegisteredIP);
 
     // Sqlite 
     lua_register(m_script, "cppSqlite_CreateStatement",lua_SQLCreateStatement );
@@ -1759,4 +1801,21 @@ void ServerScriptingManager::handleInput(const std::string & command)
             std::cout << "call AddColData failed \n";
         }
     }
+}
+
+void ServerScriptingManager::registerIP(const std::string & guid, RakNet::SystemAddress * ip)
+{
+    RakNet::SystemAddress * copy = new RakNet::SystemAddress(*ip);
+    m_registerIPMap[guid] = copy;
+}
+
+RakNet::SystemAddress * ServerScriptingManager::getRegisterIP(const std::string & guid)
+{
+    if(m_registerIPMap.find(guid) != m_registerIPMap.end())
+    {
+        return m_registerIPMap[guid];
+    }
+
+    std::cout << "no ip for guid " << guid << "\n";
+    return nullptr;
 }

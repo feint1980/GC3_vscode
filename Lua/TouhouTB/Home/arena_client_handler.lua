@@ -23,7 +23,8 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
         print("server IP " .. v.IP)
         print("server port " .. v.port)
         print("server ping " .. v.ping)
-        Arena_AddServer(v.name,v.ping)
+        ClientPingToServer(host, v.IP, v.port)
+        -- Arena_AddServer(v.name,v.ping)
     end
 
 end

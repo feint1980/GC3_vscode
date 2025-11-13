@@ -237,7 +237,6 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
                 selfPacket = true;
              
             }
-       
             // std::cout << "tMsg check \n";
             // for(int i = 0 ;i < tMsg.size() ; i++)
             // {
@@ -276,7 +275,8 @@ void ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
             }
             lua_pushlightuserdata(m_script, &p->systemAddress);
             lua_pushnumber(m_script, identifier);
-            const int argc = 3;
+            lua_pushlightuserdata(m_script, p);
+            const int argc = 4;
             const int returnCount = 0;
             if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
             {

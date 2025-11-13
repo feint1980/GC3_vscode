@@ -258,10 +258,10 @@ end
 ---@Description loop for Client script
 ---@param host pointer instance of ClientScriptingManager
 ---@param packet Client_Packet
-HandlePacketTask["home_main"] = function(host,packet)
+HandlePacketTask["home_main"] = function(host,packet,RakNetPacket)
     print("handle home packet task " .. packet.packetID)
     if HomeMain_HandleTask[packet.packetID] ~= nil then
-        HomeMain_HandleTask[packet.packetID](ClientSide_Host,packet)
+        HomeMain_HandleTask[packet.packetID](ClientSide_Host,packet,RakNetPacket)
     end
 end
 
@@ -287,14 +287,14 @@ Network_CommonTask = {}
 ---@Description handle packet when connected
 ---@param host pointer instance of ClientScriptingManager
 ---@param packet Client_Packets
-HandlePacketTask["common"] = function(host,packet)
+HandlePacketTask["common"] = function(host,packet,RakNetPacket)
     -- print("recive packet  >>>> " .. packet.packetID)
     if Network_CommonTask[packet.packetID] ~= nil then
-        Network_CommonTask[packet.packetID](ClientSide_Host,packet)
+        Network_CommonTask[packet.packetID](ClientSide_Host,packet,RakNetPacket)
     end
 end
 
-Network_CommonTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)
+Network_CommonTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet,RakNetPacket)
     print("ID_CONNECTION_ATTEMPT_FAILED")
     -- Client_Connected = false
     Home_Noti_Btn:setOnClickCallback(function()
@@ -305,7 +305,7 @@ Network_CommonTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet
 
 end
 
-Network_CommonTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
+Network_CommonTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet,RakNetPacket)
     Home_Noti_Btn:setOnClickCallback(function()
         Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
         cpp_backToMenu(HomeSceneHost) 
@@ -315,7 +315,7 @@ Network_CommonTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packe
     -- Client_Connected = false
 end
 
-Network_CommonTask[PacketID.ID_CONNECTION_LOST] = function(host,packet)
+Network_CommonTask[PacketID.ID_CONNECTION_LOST] = function(host,packet,RakNetPacket)
     Home_Noti_Btn:setOnClickCallback(function()
         Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
         cpp_backToMenu(HomeSceneHost) 
@@ -323,6 +323,13 @@ Network_CommonTask[PacketID.ID_CONNECTION_LOST] = function(host,packet)
     Home_showNotification("Connection lost !","OK")
 
     Client_Connected = false
+end
+
+Network_CommonTask[PacketID.ID_UNCONNECTED_PONG] = function(host,packet,RakNetPacket)
+    print("ID_UNCONNECTED_PONG get")
+    -- local tData = SV_GetPacketData(host,RakNetPacket)
+    -- print("tData " .. tData)
+    cppCollectPong(host,RakNetPacket)
 end
 
 function Home_showNotification(msg,btnText)

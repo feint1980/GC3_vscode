@@ -10,6 +10,7 @@
 #include <RakNet/RakSleep.h>
 #include <RakNet/PacketLogger.h>
 #include <RakNet/Gets.h>
+#include <RakNet/RakNetTime.h>
 #include <RakNet/Kbhit.h>
 #include <assert.h>
 #include <cstdio>
@@ -96,6 +97,10 @@ public:
 
     int getPingFromServer(const RakNet::SystemAddress & addr);
 
+    int pingToServer(const std::string & ip, int port);
+
+    void collectPong(RakNet::Packet *p);
+
     RakNet::SystemAddress getServerIPAddr() { return m_serverIPAddr; }
 
     private:
@@ -120,10 +125,13 @@ public:
 
     Feintgine::F_Cryptor_sodium * m_cryptor;
 
+    std::unordered_map<std::string, int> m_battleServerPingMap;
 
     RakNet::SystemAddress m_serverIPAddr;
 
     std::queue <RakNet::Packet *> m_responseQueue;
+
+    std::queue <RakNet::Packet *> m_storedPacket;
 
 };
 

@@ -80,6 +80,23 @@ int lua_Packet_getIPAsString(lua_State * L)
     return 0;
 }
 
+int lua_sendBackPong(lua_State *L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_sendBackPong) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 2));
+        host->sendBackPong(p);
+    }
+    return 0;
+}
+
 int lua_handleIncomingConnection(lua_State *L)
 {
     if(lua_gettop(L) != 2)
@@ -144,6 +161,7 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
 
     m_server->SetOccasionalPing(true);
 	m_server->SetUnreliableTimeout(1000);
+    
     m_server->AllowConnectionResponseIPMigration(false);
 
     DataStructures::List< RakNet::RakNetSocket2* > sockets;
@@ -183,6 +201,8 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     // get packet data
     lua_register(m_script, "cpp_getPacketIP", lua_Packet_getIP);
     lua_register(m_script, "cpp_getPacketIPAsString", lua_Packet_getIPAsString);
+
+    lua_register(m_script, "cpp_sendBackPong", lua_sendBackPong);
 
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/battleSideScript.lua")))
@@ -443,6 +463,22 @@ void BattleMain::handleInternalPacketQueue()
         delete p;
         m_internalPacketQueue.pop();
     }
+}
+
+
+void BattleMain::sendBackPong(RakNet::Packet *p)
+{
+    std::cout << "send back pong\n";
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)ID_UNCONNECTED_PONG);
+    // bsOut.Write(RakNet::);
+    bsOut.Write(RakNet::GetTimeMS());
+    std::string guid = m_server->GetMyGUID().ToString(); 
+    bsOut.Write(guid.c_str());
+    bsOut.Write(guid.size());
+    std::cout << "send pong back to " << p->guid.ToString() << " with " << guid <<  " with size " << guid.size() << "\n";
+    m_server->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 1, p->systemAddress, false);
+    
 }
 
 uint32_t BattleMain::handleInternalPacket(RakNet::Packet *p)

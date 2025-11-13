@@ -11,6 +11,9 @@
 #include <RakNet/PacketLogger.h>
 #include <RakNet/Gets.h>
 #include <RakNet/Kbhit.h>
+#include <RakNet/RakNetTime.h>
+#include <RakNet/RakMemoryOverride.h>
+#include <RakNet/GetTime.h>
 #include <assert.h>
 #include <cstdio>
 #include <cstring>
@@ -67,6 +70,8 @@ public:
     void addCryptor(const std::string & guid);
 
     void setName(const std::string & name) { m_name = name; }
+
+    void sendBackPong(RakNet::Packet *p);
 
 private:
 

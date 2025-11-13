@@ -136,6 +136,10 @@ public:
 
     void removeCryptor(const std::string & guid);
 
+    void registerIP(const std::string & guid, RakNet::SystemAddress * ip);
+    RakNet::SystemAddress * getRegisterIP(const std::string & guid);
+
+
 private:
 
     // Feintgine::F_Cryptor m_cryptor;
@@ -168,6 +172,8 @@ private:
     ClientEPHandler * m_clientEPHandler = nullptr;
 
     CharacterManager * m_characterManager = nullptr;
+
+    std::unordered_map<std::string, RakNet::SystemAddress *> m_registerIPMap;
 
     //std::vector<std::thread> m_threads;
 

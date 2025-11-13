@@ -24,7 +24,7 @@ HandleInputCMD["pingall"] = function(host, command,args)
 
     local option = args[1]
     print("pingall " .. option .. " ...")
-    
+
     if option == "c" or option == "client" then
         for k,v in pairs(ClientEPList) do
             print("ID : " .. v.name .. " \t|IP: " .. SV_GetIPString(v.IP) .. "\t|Ping: " .. SV_GetTargetPing(v.IP) )
@@ -33,7 +33,7 @@ HandleInputCMD["pingall"] = function(host, command,args)
 
     if option == "bs" or option == "server" then
         for k,v in pairs(BSEP_List  ) do
-            print("ID : " .. v.name .. " \t|IP: " .. SV_GetIPString(v.IP) .. "\t|Ping: " .. SV_GetTargetPing(v.IP) )
+            print("ID : " .. v.name .. " \t|IP: " .. SV_GetIPString(v:getIP()) .. "\t|Ping: " .. SV_GetTargetPing(v:getIP()) )
         end
     end
 end

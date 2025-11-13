@@ -35,6 +35,13 @@ CommonPacketHandling[ID_CONNECTION_LOST] = function(host,packet)
     print("main server lost")
 end
 
+CommonPacketHandling[ID_UNCONNECTED_PING] = function(host,packet)
+    print("ID_UNCONNECTED_PING get")
+    cpp_sendBackPong(host,packet)
+end
+
+
+
 ---- Internal 
 
 -- for i = 1, #BattleChanel do

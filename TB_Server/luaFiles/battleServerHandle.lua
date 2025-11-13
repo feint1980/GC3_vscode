@@ -17,12 +17,11 @@ BattleServerHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegister] = fu
         SendReliable2BattleServer(host,ip,guid,BattleChanel.PaperWork,PaperWorkRequest.SelfRegisterAccepted,{guid} )
 
         BSEP_List[guid] = BSEP:new()
-        BSEP_List[guid]:init(ip,guid,name, SV_GetPortFromIP(ip))
+        BSEP_List[guid]:init(host,ip,guid,name, SV_GetPortFromIP(ip))
         BSEP_List[guid].IP = ip
         BSEP_List[guid].GUID = guid
         BSEP_List[guid].name = name
         BSEP_List[guid].port = SV_GetPortFromIP(ip)
-
     end
 end
 

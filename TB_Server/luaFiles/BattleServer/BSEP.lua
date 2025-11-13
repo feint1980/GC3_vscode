@@ -14,14 +14,22 @@ function BSEP:new(o)
     return o
 end
 
-function BSEP:init(tIP, guid, name,port)
+function BSEP:init(host,tIP, guid, name,port)
     self.IP = tIP
     self.GUID = guid
     self.name = name
     self.port = port
+    self:registerIP(host)
 end
 
-function BSEP:getSlot()
-
+--- register IP
+function BSEP:registerIP(host)
+    cpp_registerIP(host,self.GUID, self.IP)
 end
+
+function BSEP:getIP(host)
+    self.IP = cpp_getRegisteredIP(host,self.GUID)
+    return self.IP
+end
+
 

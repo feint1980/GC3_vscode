@@ -30,9 +30,10 @@ PacketID = {
     ID_CONNECTION_BANNED = 23,
     ID_CONNECTION_ATTEMPT_FAILED = 17,
     ID_NO_FREE_INCOMING_CONNECTIONS = 20,
-    ID_INVALID_PASSWORD = 24,
     ID_CONNECTION_LOST = 22,
     ID_CONNECTION_REQUEST_ACCEPTED = 16,
+    ID_UNCONNECTED_PING = 24,
+    ID_UNCONNECTED_PONG = 28,
     ID_OTHER = 124
 }
 
@@ -116,25 +117,26 @@ end
 ---@param msg string data sent from C++ engine
 ---@param ip RakNet_SystemAddress instance of RakNet::SystemAddress sent from C++ engine
 ---@param pID number packet ID
-function Client_ReceiveData(msg, ip,pID)
+---@param RakNetPacket RakNetPacket instance
+function Client_ReceiveData(msg, ip,pID,RakNetPacket)
     local tPacket = Client_Packet:new()
     -- print("Client_ReceiveData recieve : " .. msg )
     tPacket.data = msg
     tPacket.ipAddr = ip
     tPacket.packetID = pID
-    Client_HandlePacket(tPacket)
+    Client_HandlePacket(tPacket,RakNetPacket)
 end
 
 HandlePacketTask = {}
 
 --- handle packet
 --- @param packet Client_Packet
-function Client_HandlePacket(packet)
+function Client_HandlePacket(packet,RakNetPacket)
     -- print("handle packet" .. packet.packetID)
     for k,v in pairs(HandlePacketTask) do
         -- print(k)
         if HandlePacketTask[k] ~= nil then
-            HandlePacketTask[k](ClientSide_Host,packet)
+            HandlePacketTask[k](ClientSide_Host,packet,RakNetPacket)
         end
     end
 end

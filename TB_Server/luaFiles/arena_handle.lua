@@ -22,8 +22,8 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_GetServe
     BSEP_List = _G.BSEP_List
     for k,v in pairs(BSEP_List) do
         serverList[k] = {}
-        print("Server ID : " .. k .. " \t|IP: " .. SV_GetIPString(v.IP)
-        .. " port: " .. v.port  .. "\t|Ping: " .. SV_GetTargetPing(v.IP))
+        print("Server ID : " .. k .. " \t|IP: " .. SV_GetIPString(v:getIP(host))
+        .. " port: " .. v.port  .. "\t|Ping: " .. SV_GetTargetPing(v:getIP(host)))
         serverList[k].name = v.name
         serverList[k].IP = SV_GetIPString(v.IP)
         serverList[k].port = v.port

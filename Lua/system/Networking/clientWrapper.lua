@@ -113,7 +113,6 @@ function ClientGetGUID(host)
     return cppGetClientGUID(host)
 end
 
-
 ---@Description: wrapper of cppGetPingFromServer
 ---@param host pointer instance of ClientScriptingManager
 ---@param ip? ipaddres
@@ -121,6 +120,14 @@ end
 --- @return numer
 function ClientGetPing(host, ip)
     return cppGetPingFromServer(host)
+end
+
+---@Description: wrapper of cppPing_server
+---@param host pointer instance of ClientScriptingManager
+---@param ipString string ip address
+---@param port number port
+function ClientPingToServer(host, ipString, port)
+    return cppPing_server(host, ipString, port)
 end
 
 --- deep copy table
