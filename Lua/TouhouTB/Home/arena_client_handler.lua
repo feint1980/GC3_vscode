@@ -24,6 +24,8 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
         print("server port " .. v.port)
         print("server ping " .. v.ping)
         ClientPingToServer(host, v.IP, v.port)
+        Arena_Ping_List[k] = ArenaServer:new()
+        Arena_Ping_List[k]:init(k,v.name,v.port,0)
         -- Arena_AddServer(v.name,v.ping)
     end
 

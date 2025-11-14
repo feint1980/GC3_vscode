@@ -137,6 +137,9 @@ end
 --- @param ip pointer instance of RakNet::SystemAddress
 --- @return string
 function SV_GetIPString(ip)
+    if ip == nil then 
+        return "IP_nil"
+    end 
     return cppPacket_getIPAsString(ip)
 end
 

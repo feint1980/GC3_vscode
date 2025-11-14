@@ -262,3 +262,14 @@ function UpdateRequests(host)
     end
 end
 
+-- require "arena_client_handler"
+
+-- function Client_CollectPingStart()
+--     print("Client_CollectPingStart called")
+--     Arena_ResetList()
+-- end
+
+-- function Client_PingUpdate(serverGUID, ping)
+--     print("Client_PingUpdate called")
+--     Arena_AddServer(serverGUID, ping)
+-- end

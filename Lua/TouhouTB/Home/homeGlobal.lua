@@ -41,3 +41,33 @@ MainInfo = {
     pw = ""
 }
 
+--- Arena Server
+
+Arena_Ping_List = {
+
+}
+
+ArenaServer = {
+    guid = "",
+    name = "",
+    port = 0,
+    ping = 0,
+}
+
+function ArenaServer:new(o)
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    return o
+end
+
+function ArenaServer:init(tGuid, tName, tPort, tPing)
+    self.guid = tGuid
+    self.name = tName
+    self.port = tPort
+    self.ping = tPing
+end
+
+function ArenaServer:setPing(ping)
+    self.ping = ping
+end

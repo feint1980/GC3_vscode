@@ -818,8 +818,10 @@ void ClientScriptingManager::collectPong(RakNet::Packet *p)
         return;
     }
 
+    std::cout << "packet data length " << p->length << "\n";
     std::cout << "collect pong from " << p->systemAddress.ToString() << " port " << p->systemAddress.GetPort() << "\n";
 
+    // std::cout << "data " << p->data << "\n";
     RakNet::BitStream bsIn(p->data, p->length, false);
     RakNet::MessageID msgId;
 
@@ -829,15 +831,55 @@ void ClientScriptingManager::collectPong(RakNet::Packet *p)
         printf("Unexpected message ID: %u\n (not ID_UNCONNECTED_PONG)", msgId);
         return;
     }
+    RakNet::TimeMS pingTime;
+    RakNet::TimeMS now = RakNet::GetTimeMS();
+    bsIn.Read(pingTime);
 
+    std::cout << "ping time " << pingTime << "\n";
+    std::cout << "now " << now << "\n";
+
+    unsigned int latency = now - pingTime;
+    std::cout << "ping " << latency << " ms \n";
     unsigned int remainingBytes = bsIn.GetNumberOfUnreadBits() / 8;
+    // std::cout << "remaining bytes " << remainingBytes << "\n";
     std::string data(remainingBytes, '\0');
     bsIn.ReadAlignedBytes(reinterpret_cast<unsigned char*>(&data[0]), remainingBytes);
 
-    std::cout << "data " << p->data << "\n";
+    std::cout << "data " << data << "\n";
+    /*if(data == "NO_WAY_BRO") // assign to map
+    {
+        m_battleServerPingMap[p->guid.ToString()] = latency;
 
+        lua_getglobal(m_script, "Client_CollectPingStart");
+        if(lua_isfunction(m_script, -1))
+        {
+            bool selfPacket = false;
 
-    // m_battleServerPingMap[p->guid] 
-    // std::cout << p->length << "\n"; 
+            const int argc = 0;
+            const int returnCount = 0;
+            bool result = LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
+            if(!result)
+            {
+
+                std::cout << "Call Client_CollectPingStart from C++ Failed \n";
+                return ;
+            }
+            for(auto it = m_battleServerPingMap.begin(); it != m_battleServerPingMap.end(); it++)
+            {
+                lua_getglobal(m_script, "Client_PingUpdate");
+                {
+                    if(lua_isfunction(m_script, -1))
+                    {
+                        lua_pushstring(m_script, it->first.c_str());
+                        lua_pushinteger(m_script, it->second);
+                        const int argc = 2; // remember to modify this number when you change the number of arguments
+                        const int returnCount = 0;
+                        LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
+                    }
+                }
+            }
+            
+        }
+    }*/
 
 }

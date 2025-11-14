@@ -146,6 +146,14 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     m_server->SetIncomingPassword(m_password.c_str(), m_password.size());
     m_server->SetTimeoutTime(5000, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
     m_server->SetMaximumIncomingConnections(m_connectionSize);
+    
+
+    std::string pongData = "NO_WAY_BRO";
+
+    m_server->SetOfflinePingResponse(pongData.c_str(), (unsigned int)strlen(pongData.c_str()) + 1);
+
+    std::cout << "register pong data " << pongData << "\n";
+
 
     // Just create *one* IPv4 socket descriptor for now
     m_socketDescriptor = RakNet::SocketDescriptor(m_port, "0.0.0.0");
@@ -235,6 +243,8 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     RakAssert(car == RakNet::CONNECTION_ATTEMPT_STARTED);
 
     m_serverOn = true;
+
+
 }
 
 void BattleMain::run()
@@ -383,6 +393,7 @@ void BattleMain::handleConnections(RakNet::Packet *p)
         // sending register data
         sendWrapData(p->systemAddress, p->guid.ToString(),sendMessage);
 
+
     }
 }
 
@@ -470,13 +481,14 @@ void BattleMain::sendBackPong(RakNet::Packet *p)
 {
     std::cout << "send back pong\n";
     RakNet::BitStream bsOut;
-    bsOut.Write((RakNet::MessageID)ID_UNCONNECTED_PONG);
+    
+    bsOut.Write((RakNet::MessageID)ID_UNCONNECTED_PING_OPEN_CONNECTIONS);
     // bsOut.Write(RakNet::);
     bsOut.Write(RakNet::GetTimeMS());
-    std::string guid = m_server->GetMyGUID().ToString(); 
-    bsOut.Write(guid.c_str());
-    bsOut.Write(guid.size());
-    std::cout << "send pong back to " << p->guid.ToString() << " with " << guid <<  " with size " << guid.size() << "\n";
+    // std::string guid = m_server->GetMyGUID().ToString(); 
+    // bsOut.Write(guid.c_str(), (int) strlen(guid.c_str()));
+    // bsOut.Write(guid.size());
+    // std::cout << "send pong back to " << p->guid.ToString() << " with " << guid <<  " with size " << guid.size() << "\n";
     m_server->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, 1, p->systemAddress, false);
     
 }

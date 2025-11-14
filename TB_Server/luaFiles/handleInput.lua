@@ -32,9 +32,12 @@ HandleInputCMD["pingall"] = function(host, command,args)
     end
 
     if option == "bs" or option == "server" then
-        for k,v in pairs(BSEP_List  ) do
-            print("ID : " .. v.name .. " \t|IP: " .. SV_GetIPString(v:getIP()) .. "\t|Ping: " .. SV_GetTargetPing(v:getIP()) )
+        for k,v in pairs(BSEP_List) do
+            print("Name " .. v.name .. "|" .. SV_GetIPString(v:getIP()))
         end
+        -- for k,v in pairs(BSEP_List  ) do
+        --     print("ID : " .. v.name .. " \t|IP: " .. SV_GetIPString(v:getIP()) .. "\t|Ping: " .. SV_GetTargetPing(v:getIP()) )
+        -- end
     end
 end
 CMDDescription["pingall"] = "ping all the ping from server or client"

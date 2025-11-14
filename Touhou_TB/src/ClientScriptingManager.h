@@ -12,6 +12,7 @@
 #include <RakNet/Gets.h>
 #include <RakNet/RakNetTime.h>
 #include <RakNet/Kbhit.h>
+#include <RakNet/GetTime.h>
 #include <assert.h>
 #include <cstdio>
 #include <cstring>

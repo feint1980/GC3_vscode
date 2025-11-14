@@ -2583,11 +2583,10 @@ tgui::ListView::Ptr TGUIScriptingManager::createListView(float x, float y, float
     }
 
     listView->setHorizontalScrollbarPolicy(tgui::Scrollbar::Policy::Never);
-    
+    // listView->setItemData()
     // listView->setAutoLayoutUpdateEnabled(true);
     // listView->setColumnAutoResize(true);
     return listView;
-
 }
 
 void TGUIScriptingManager::update(float deltaTime)

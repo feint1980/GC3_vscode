@@ -1806,11 +1806,15 @@ void ServerScriptingManager::handleInput(const std::string & command)
 void ServerScriptingManager::registerIP(const std::string & guid, RakNet::SystemAddress * ip)
 {
     RakNet::SystemAddress * copy = new RakNet::SystemAddress(*ip);
+
+    std::cout << "register ip for guid " << guid << "\n";
     m_registerIPMap[guid] = copy;
 }
 
 RakNet::SystemAddress * ServerScriptingManager::getRegisterIP(const std::string & guid)
 {
+    std::cout << "finding IP " << guid << "\n";
+    
     if(m_registerIPMap.find(guid) != m_registerIPMap.end())
     {
         return m_registerIPMap[guid];

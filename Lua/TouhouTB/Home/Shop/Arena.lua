@@ -70,3 +70,8 @@ end
 function Arena_AddServer(serverName, ping)
     BattleServerListView:addItem({serverName,ping})
 end
+
+function Arena_UpdateList()
+    -- Arena_ResetList()
+    
+end
