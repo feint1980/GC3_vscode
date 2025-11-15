@@ -168,6 +168,24 @@ int lua_Connect(lua_State * L)
     return 0;
 }
 
+int lua_ConnectToBattleServer(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_ConnectToBattleServer) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::string guid = lua_tostring(L, 2);
+        host->connect2BattleServer(guid);
+        return 0;
+    }
+    return 0;
+}
+
 int lua_ParseCharacterFromJson(lua_State * L)
 {
     if(lua_gettop(L) != 2)
@@ -403,6 +421,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     lua_register(m_script, "cppGetClientGUID", lua_GetClientGUID);
 
     lua_register(m_script, "cppCollectPong", lua_CollectPong);
+    lua_register(m_script, "cppConnectToBattleServer", lua_ConnectToBattleServer);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/Networking/clientSide.lua")))
     {
@@ -599,7 +618,7 @@ bool ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
                 unsigned char identifier = GetPacketIdentifier(p);
                 // // std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
                 std::cout << "got packet !!!!!!! " << (int)identifier << "\n";
-
+                lua_pushlightuserdata(m_script, this);
                 if(!selfPacket)
                 {
 
@@ -620,7 +639,7 @@ bool ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
                 lua_pushlightuserdata(m_script, &p->systemAddress);
                 lua_pushnumber(m_script, identifier);
                 lua_pushlightuserdata(m_script, p);
-                const int argc = 4;
+                const int argc = 5;
                 const int returnCount = 0;
                 return LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
             }
@@ -810,6 +829,27 @@ int ClientScriptingManager::pingToServer(const std::string & ip, int port)
     return m_client->Ping(ip.c_str(), port,false);
 }
 
+void ClientScriptingManager::connect2BattleServer(const std::string & guid)
+{
+    if(m_battleServerIPMap.find(guid) == m_battleServerIPMap.end())
+    {
+        std::cout << "battle server ip not found \n";
+        return;
+    }
+
+    RakNet::SystemAddress addr = *m_battleServerIPMap[guid];
+    std::string target = addr.ToString();
+    int port = addr.GetPort();
+    std::string pw = "FFX2";
+
+    RakNet::ConnectionAttemptResult car = m_client->Connect(target.c_str(), port, pw.c_str(), pw.size());
+
+    RakAssert(car == RakNet::CONNECTION_ATTEMPT_STARTED);
+
+    // RakNet::SystemAddress addr;
+
+}
+
 void ClientScriptingManager::collectPong(RakNet::Packet *p)
 {
     if(!p)
@@ -845,11 +885,37 @@ void ClientScriptingManager::collectPong(RakNet::Packet *p)
     std::string data(remainingBytes, '\0');
     bsIn.ReadAlignedBytes(reinterpret_cast<unsigned char*>(&data[0]), remainingBytes);
 
-    std::cout << "data " << data << "\n";
-    /*if(data == "NO_WAY_BRO") // assign to map
+    // std::cout << "data |" << data << "|\n";
+    std::string tData = data.c_str();
+    // std::cout << "tData|" << tData << "|\n";
+    if(tData == "NO_WAY_BRO") // assign to map
     {
+        // std::cout << "collect ping call to lua \n";
+        // std::cout << "update ping for server " << p->guid.ToString() << "\n";
+        // std::cout << "this = " << this << "\n";
+        // std::cout << "map ptr = " << &m_battleServerPingMap << "\n";
+        // if (m_battleServerPingMap.find(p->guid.ToString()) != m_battleServerPingMap.end())
+        // {
+        //     std::cout << "duplicate packet \n";
+        //     return;
+        // }
         m_battleServerPingMap[p->guid.ToString()] = latency;
 
+        // if(m_battleServerIPMap.find(p->guid.ToString()) == m_battleServerIPMap.end())
+        // {
+        if(m_battleServerIPMap.find(p->guid.ToString()) == m_battleServerIPMap.end())
+        {
+            m_battleServerIPMap[p->guid.ToString()] = new RakNet::SystemAddress(p->systemAddress);
+            
+        }
+        else
+        {
+            m_battleServerIPMap[p->guid.ToString()] = &p->systemAddress;
+        }
+            
+        // }
+
+        // std::cout << "pass data access \n";
         lua_getglobal(m_script, "Client_CollectPingStart");
         if(lua_isfunction(m_script, -1))
         {
@@ -880,6 +946,11 @@ void ClientScriptingManager::collectPong(RakNet::Packet *p)
             }
             
         }
-    }*/
+
+    }
+    else
+    {
+        std::cout << "data is not correct \n";
+    }
 
 }

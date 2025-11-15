@@ -44,12 +44,26 @@ function InitArenaMenu(host)
     refreshLabel:init(host,"Refresh",ArenaPanel.width/2,0,ArenaPanel.ptr)
     refreshLabel:setScale(0.9)
     refreshLabel:setAlignment(TextAlginment.Center)
-    refreshLabel:setPosStr("75%","57%")
+    refreshLabel:setPosStr("80%","37%")
     refreshLabel:setHoverable(0,255,0,255,255,255,255,255)
     refreshLabel:setOnClickCallback(function()
         Arena_RequestBattleServerList()
     end)
 
+
+    BattleServerListView:setDoubleClickCallBack( function ()
+        
+        local target = BattleServerListView:getSelectItemValue(0) 
+        print("target is " .. target)
+        for k ,v in pairs(Arena_Ping_List) do
+            if(v.name == target)then
+                print("connect to " .. v.name .. " " .. v.guid .. " " .. v.port)
+                ClientConnectToBattleServer(v.clientHost, v.guid)
+            end
+            
+        end
+        
+    end)
 
     ArenaPanel:setVisible(false)
 end
@@ -65,13 +79,17 @@ end
 
 function Arena_ResetList()
     BattleServerListView:clearItems()
+    print("Arena reset called ")
 end
 
-function Arena_AddServer(serverName, ping)
+function Arena_UpdateServerPing(serverGUID, ping)
+
+    local serverName = Arena_Ping_List[serverGUID].name
+
     BattleServerListView:addItem({serverName,ping})
 end
 
-function Arena_UpdateList()
-    -- Arena_ResetList()
+
+function Arena_ServerList_DoubleClick()
     
 end

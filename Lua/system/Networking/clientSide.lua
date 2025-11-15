@@ -114,29 +114,32 @@ end
 
 --- get Data from C++ engine
 ---@Description get Data from C++ engine
+---@param host pointer instance of ClientScriptingManager
 ---@param msg string data sent from C++ engine
 ---@param ip RakNet_SystemAddress instance of RakNet::SystemAddress sent from C++ engine
 ---@param pID number packet ID
 ---@param RakNetPacket RakNetPacket instance
-function Client_ReceiveData(msg, ip,pID,RakNetPacket)
+function Client_ReceiveData(host,msg, ip,pID,RakNetPacket)
     local tPacket = Client_Packet:new()
     -- print("Client_ReceiveData recieve : " .. msg )
     tPacket.data = msg
     tPacket.ipAddr = ip
     tPacket.packetID = pID
-    Client_HandlePacket(tPacket,RakNetPacket)
+    Client_HandlePacket(host,tPacket,RakNetPacket)
 end
 
 HandlePacketTask = {}
 
 --- handle packet
+--- @param host pointer instance of ClientScriptingManager
 --- @param packet Client_Packet
-function Client_HandlePacket(packet,RakNetPacket)
+--- @param RakNetPacket instance of RakNetPacket
+function Client_HandlePacket(host,packet,RakNetPacket)
     -- print("handle packet" .. packet.packetID)
     for k,v in pairs(HandlePacketTask) do
         -- print(k)
         if HandlePacketTask[k] ~= nil then
-            HandlePacketTask[k](ClientSide_Host,packet,RakNetPacket)
+            HandlePacketTask[k](host,packet,RakNetPacket)
         end
     end
 end
@@ -264,12 +267,12 @@ end
 
 -- require "arena_client_handler"
 
--- function Client_CollectPingStart()
---     print("Client_CollectPingStart called")
---     Arena_ResetList()
--- end
+function Client_CollectPingStart()
+    print("Client_CollectPingStart called")
+    Arena_ResetList()
+end
 
--- function Client_PingUpdate(serverGUID, ping)
---     print("Client_PingUpdate called")
---     Arena_AddServer(serverGUID, ping)
--- end
+function Client_PingUpdate(serverGUID, ping)
+    print("Client_PingUpdate called")
+    Arena_UpdateServerPing(serverGUID, ping)
+end

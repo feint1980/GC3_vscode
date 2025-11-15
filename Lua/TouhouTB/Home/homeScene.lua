@@ -290,7 +290,7 @@ Network_CommonTask = {}
 HandlePacketTask["common"] = function(host,packet,RakNetPacket)
     -- print("recive packet  >>>> " .. packet.packetID)
     if Network_CommonTask[packet.packetID] ~= nil then
-        Network_CommonTask[packet.packetID](ClientSide_Host,packet,RakNetPacket)
+        Network_CommonTask[packet.packetID](host,packet,RakNetPacket)
     end
 end
 

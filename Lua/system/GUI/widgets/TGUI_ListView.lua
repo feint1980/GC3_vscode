@@ -66,6 +66,16 @@ function ListView:clearItems()
     TGUI_ListView_ClearItems(self.ptr)
 end
 
+function ListView:setDoubleClickCallBack(callback)
+    TGUI_ListView_SetDoubleClickCallBack(self.ptr,callback)
+end
+
+---@param index number collum Index
+function ListView:getSelectItemValue(index)
+    index = index or 0
+    return TGUI_ListView_GetSelectedItemValue(self.ptr,index)
+end
+
 ---@Description add item to list
 ---@param item table of collum values
 function ListView:addItem(item)
@@ -160,4 +170,15 @@ end
 ---@param item pointer instance of TGUI ListItem
 function TGUI_ListView_AddItem(listView,item)
     cpp_ListView_AddItem(listView,item)
+end
+
+---@Description wrapper of cpp_ListView_SetDoubleClickCallBack
+function TGUI_ListView_SetDoubleClickCallBack(listView,callback)
+    cpp_ListView_SetDoubleClickCallBack(listView,callback)
+end 
+
+---@Description wrapper of cpp_ListView_GetSelectedItemValue
+function TGUI_ListView_GetSelectedItemValue(listView,collumnIndex)
+    local tCollumnIndex = collumnIndex or 0
+    return cpp_ListView_GetSelectedItemValue(listView,tCollumnIndex)
 end

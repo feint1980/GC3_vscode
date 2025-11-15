@@ -282,6 +282,7 @@ int lua_getRegisteredIP(lua_State *L)
     {
         ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
         std::string guid = lua_tostring(L, 2);
+        std::cout << "attemp to get IP with guid " << guid << "\n";
         RakNet::SystemAddress * ip = host->getRegisterIP(guid);
 
         lua_pushlightuserdata(L, ip);
@@ -1805,15 +1806,14 @@ void ServerScriptingManager::handleInput(const std::string & command)
 
 void ServerScriptingManager::registerIP(const std::string & guid, RakNet::SystemAddress * ip)
 {
-    RakNet::SystemAddress * copy = new RakNet::SystemAddress(*ip);
-
-    std::cout << "register ip for guid " << guid << "\n";
+    
+    RakNet::SystemAddress * copy = new RakNet::SystemAddress(*ip); 
+    // stored a copy
     m_registerIPMap[guid] = copy;
 }
 
 RakNet::SystemAddress * ServerScriptingManager::getRegisterIP(const std::string & guid)
 {
-    std::cout << "finding IP " << guid << "\n";
     
     if(m_registerIPMap.find(guid) != m_registerIPMap.end())
     {

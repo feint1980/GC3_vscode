@@ -40,6 +40,11 @@ CommonPacketHandling[ID_UNCONNECTED_PING] = function(host,packet)
     cpp_sendBackPong(host,packet)
 end
 
+CommonPacketHandling[ID_NEW_INCOMING_CONNECTION] = function(host,packet)
+    print("ID_NEW_INCOMING_CONNECTION get")
+
+end
+
 
 
 ---- Internal 

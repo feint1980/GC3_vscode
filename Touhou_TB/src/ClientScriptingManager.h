@@ -70,6 +70,8 @@ public:
 
     void connect();
 
+    void connect2BattleServer(const std::string & guid);
+
     void update(float deltaTime);
 
     void updateScript(float delta);
@@ -127,6 +129,8 @@ public:
     Feintgine::F_Cryptor_sodium * m_cryptor;
 
     std::unordered_map<std::string, int> m_battleServerPingMap;
+
+    std::unordered_map<std::string, RakNet::SystemAddress * > m_battleServerIPMap;
 
     RakNet::SystemAddress m_serverIPAddr;
 

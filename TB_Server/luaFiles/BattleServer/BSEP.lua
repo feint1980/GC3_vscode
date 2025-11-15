@@ -5,6 +5,7 @@ BSEP =
     name = "",
     port = 0,
     cppObj = nil,
+    networkInstance = nil
 }
 
 function BSEP:new(o)
@@ -20,6 +21,7 @@ function BSEP:init(host,tIP, guid, name,port)
     self.name = name
     self.port = port
     self:registerIP(host)
+    self.networkInstance = host
 end
 
 --- register IP
@@ -27,8 +29,8 @@ function BSEP:registerIP(host)
     cpp_registerIP(host,self.GUID, self.IP)
 end
 
-function BSEP:getIP(host)
-    self.IP = cpp_getRegisteredIP(host,self.GUID)
+function BSEP:getIP()
+    self.IP = cpp_getRegisteredIP(self.networkInstance,self.GUID)
     return self.IP
 end
 

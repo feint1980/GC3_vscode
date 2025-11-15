@@ -23,18 +23,22 @@
 #include <iostream>
     
 
-int wmain(int argc, char const *argv[])
+int wmain(int argc, wchar_t const *argv[])
 {
     std::cout << "Battle Server Start ...\n";
     int index = 1;
     std::string ip = "127.0.0.1"; // main server ip
     std::string name = "BS_TE1_server";
-    if(argc > 3)
-    {
-        index = atoi(argv[1]);
-        ip = argv[2];
-    }
 
+    if(argc >= 2)
+    {
+        std::cout << "argv[1] : " << argv[1] << "\n";
+        std::wstring tArgv1 = std::wstring(argv[1]);
+        std::wcout << "tArgv1 : " << tArgv1 << "\n";
+        index = std::stoi(tArgv1.c_str());
+        // ip = argv[2];
+    }
+    std::cout << "server index : " << index << "\n";
     name = name + "_" + std::to_string(index);
 
     BattleMain server;

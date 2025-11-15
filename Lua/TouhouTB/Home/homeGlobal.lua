@@ -48,6 +48,7 @@ Arena_Ping_List = {
 }
 
 ArenaServer = {
+    clientHost = nil,
     guid = "",
     name = "",
     port = 0,
@@ -61,7 +62,8 @@ function ArenaServer:new(o)
     return o
 end
 
-function ArenaServer:init(tGuid, tName, tPort, tPing)
+function ArenaServer:init(tClientHost,tGuid, tName, tPort, tPing)
+    self.clientHost = tClientHost
     self.guid = tGuid
     self.name = tName
     self.port = tPort

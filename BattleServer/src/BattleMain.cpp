@@ -134,7 +134,7 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
 {
     std::cout << "|===============================================|\n";
     std::cout << "|            Init Server                        |\n";
-
+    std::cout << "|           Using Port : " << port << "     |\n";
     m_server = RakNet::RakPeerInterface::GetInstance();
 
     m_mainServerPassword = mainServerPassword;

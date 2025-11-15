@@ -130,6 +130,14 @@ function ClientPingToServer(host, ipString, port)
     return cppPing_server(host, ipString, port)
 end
 
+---@Description wrapper of cppConnectToBattleServer
+---@param host pointer instance of ClientScriptingManager
+---@param guid
+function ClientConnectToBattleServer(host, guid)
+    print("ClientConnectToBattleServer called guid " .. guid)
+    return cppConnectToBattleServer(host, guid)
+end
+
 --- deep copy table
 function Table_DeepCopy(orig, copies)
     copies = copies or {} -- to handle cycles

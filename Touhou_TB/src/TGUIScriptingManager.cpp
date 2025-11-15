@@ -2184,6 +2184,56 @@ int lua_ListView_AddItem(lua_State * L)
     }
     return 0;
 }
+
+int lua_ListView_GetSelectedItemValue(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_ListView_GetSelectedItemValue) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        int collumIndex = lua_tonumber(L, 2);
+        int index = listView->get()->getSelectedItemIndex();
+        std::string data =  listView->get()->getItemCell(index, collumIndex).toStdString();
+        // listView->get()->getItemCell()
+        std::cout << "index: " << index << " | " << data << "\n";
+        lua_pushstring(L,data.c_str());
+        return 1;
+    }
+    return 0;
+}
+
+int lua_ListView_SetDoubleClickCallBack(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_ListView_SetDoubleClickCallBack) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+            if(!lua_isfunction(L, 2))
+        {
+            std::cout << "param 2 is not a function \n";
+            return -1;
+        }
+        lua_pushvalue(L, 2);
+        int ref = luaL_ref(L, LUA_REGISTRYINDEX);
+        // panel->get()->
+        std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
+        listView->get()->onDoubleClick.disconnectAll();
+        listView->get()->onDoubleClick(callback);
+        return 0;
+    }
+
+    return 0;
+}
+
+
 // MARK:Focus Stack
 
 int lua_Add_DrawCall(lua_State * L)
@@ -2986,6 +3036,10 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_ListView_SetColumnSizeRatios", lua_ListView_SetColumnSizeRatios);
     lua_register(m_script, "cpp_ListView_ClearItems", lua_ListView_ClearItems);
     lua_register(m_script, "cpp_ListView_AddItem", lua_ListView_AddItem);
+
+
+    lua_register(m_script, "cpp_ListView_GetSelectedItemValue", lua_ListView_GetSelectedItemValue);
+    lua_register(m_script, "cpp_ListView_SetDoubleClickCallBack", lua_ListView_SetDoubleClickCallBack);
 
     // Focus Panels
 
