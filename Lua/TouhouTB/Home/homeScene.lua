@@ -261,7 +261,7 @@ end
 HandlePacketTask["home_main"] = function(host,packet,RakNetPacket)
     print("handle home packet task " .. packet.packetID)
     if HomeMain_HandleTask[packet.packetID] ~= nil then
-        HomeMain_HandleTask[packet.packetID](ClientSide_Host,packet,RakNetPacket)
+        HomeMain_HandleTask[packet.packetID](host,packet,RakNetPacket)
     end
 end
 
@@ -325,12 +325,23 @@ Network_CommonTask[PacketID.ID_CONNECTION_LOST] = function(host,packet,RakNetPac
     Client_Connected = false
 end
 
-Network_CommonTask[PacketID.ID_UNCONNECTED_PONG] = function(host,packet,RakNetPacket)
-    print("ID_UNCONNECTED_PONG get")
-    -- local tData = SV_GetPacketData(host,RakNetPacket)
-    -- print("tData " .. tData)
-    cppCollectPong(host,RakNetPacket)
-end
+-- Network_CommonTask[PacketID.ID_UNCONNECTED_PONG] = function(host,packet,RakNetPacket)
+--     print("ID_UNCONNECTED_PONG get")
+--     -- local tData = SV_GetPacketData(host,RakNetPacket)
+--     -- print("tData " .. tData)
+--     cppCollectPong(host,RakNetPacket)
+-- end
+
+
+-- Network_CommonTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet,RakNetPacket)
+
+--     print("accepted by battle server ")
+--     local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
+--     print("guid : " .. tGuid)
+--     local tIP = Client_GetIP_FromPacket(RakNetPacket)
+--     print("IP " .. tIP)
+-- end
+
 
 function Home_showNotification(msg,btnText)
     Home_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
@@ -472,3 +483,7 @@ require "skill_client_handler"
 require "character_client_handler"
 require "formation_client_handler"
 require "arena_client_handler"
+
+
+
+

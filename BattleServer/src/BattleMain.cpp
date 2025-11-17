@@ -392,8 +392,6 @@ void BattleMain::handleConnections(RakNet::Packet *p)
 
         // sending register data
         sendWrapData(p->systemAddress, p->guid.ToString(),sendMessage);
-
-
     }
 }
 

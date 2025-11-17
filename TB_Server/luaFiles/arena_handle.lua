@@ -4,6 +4,7 @@ require "serverWrapper"
 require "SV_global"
 require "BSEP"
 
+
 MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_GetServerList] = function(host, data,ip,guid)
 
     print("request from " .. guid .. " for arena server list")

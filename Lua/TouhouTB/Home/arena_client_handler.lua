@@ -2,6 +2,8 @@ package.path = package.path .. ';../../Lua/TouhouTB/skills/?.lua;'
 
 require "homeGlobal"
 
+
+---MARK: Main server
 ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_GetServerList] = function(host,data, guid)
 
     print("server list get !!!")
@@ -29,4 +31,25 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
         -- Arena_AddServer(v.name,v.ping)
     end
 
+end
+
+
+---- MARK:Battle Server 
+
+
+HomeMain_HandleTask[PacketID.ID_UNCONNECTED_PONG] = function(host,packet,RakNetPacket)
+    print("ID_UNCONNECTED_PONG get")
+    -- local tData = SV_GetPacketData(host,RakNetPacket)
+    -- print("tData " .. tData)
+    cppCollectPong(host,RakNetPacket)
+end
+
+
+HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet,RakNetPacket)
+
+    print("accepted by battle server ")
+    local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
+    print("guid : " .. tGuid)
+    local tIP = Client_GetIP_FromPacket(RakNetPacket)
+    print("IP " .. tIP)
 end

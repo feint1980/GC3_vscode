@@ -7,6 +7,7 @@ local json = require ("dkjson")
 
 --- Classes declare
 
+---MARK:Main Server
 --- for CLient
 PacketChannel ={
     AccountChannel = 1,
@@ -63,6 +64,23 @@ ArenaResponse = {
     Arena_Request_GetServerList = 1,
     -- Arena_Connect_ConnectToServer = 2,
 }
+
+--- MARK: Battle Server
+
+BattlePacketChannel = {
+    InfoChannel = 1,
+}
+
+BattleInfoResponse = {
+    BattleInfo_AddCryptor_Request = 1,
+    
+}
+
+
+
+
+
+--- MARK: Functions
 
 ---@Description combines packet
 ---@param type string type of packet to wrap
@@ -174,3 +192,30 @@ function JSON_Decode(data)
     return tbl, pos, err
 end
 
+---@Description: wrapper of cpp_client_Packet_getIP
+---@param packet pointer instance of RakNetPacket
+---@return string (IP with port )
+function Client_GetIP_FromPacket(packet)
+    return cpp_client_Packet_getIP(packet)
+end
+
+---@Description: wrapper of cpp_client_Packet_getGUID
+---@param packet pointer instance of RakNetPacket
+---@return string (GUID)
+function Client_GetGUID_FromPacket(packet)
+    return cpp_client_Packet_getGUID(packet)
+end
+
+---@Description: wrapper of cpp_addCryptor
+---@param host pointer instance of ClientScriptingManager
+---@param key string 
+function Client_AddCryptor(host, key)
+    return cpp_addCryptor(host, key)
+end
+
+---@Description: wrapper of cpp_removeCryptor
+---@param host pointer instance of ClientScriptingManager
+---@param key string 
+function Client_RemoveCryptor(host, key)
+    return cpp_removeCryptor(host, key)
+end

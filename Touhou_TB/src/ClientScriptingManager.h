@@ -62,7 +62,10 @@ public:
 
     uint32_t sendWrapData(const std::string & data);
 
+    uint32_t sendBattleWrapData(const std::string & data);
+
     uint32_t handleWrapData(RakNet::Packet *p);
+
 
     std::string getDecryptMessage(const std::string & data);
 
@@ -104,6 +107,10 @@ public:
 
     void collectPong(RakNet::Packet *p);
 
+    void addCryptor(const std::string & guid);
+
+    void removeCryptor(const std::string & guid);
+
     RakNet::SystemAddress getServerIPAddr() { return m_serverIPAddr; }
 
     private:
@@ -138,6 +145,8 @@ public:
 
     std::queue <RakNet::Packet *> m_storedPacket;
 
+    std::unordered_map<std::string, Feintgine::F_Cryptor_sodium *> m_cryptors;
+    
 };
 
 #endif

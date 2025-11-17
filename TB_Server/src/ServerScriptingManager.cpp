@@ -282,7 +282,7 @@ int lua_getRegisteredIP(lua_State *L)
     {
         ServerScriptingManager * host = static_cast<ServerScriptingManager*>(lua_touserdata(L, 1));
         std::string guid = lua_tostring(L, 2);
-        std::cout << "attemp to get IP with guid " << guid << "\n";
+        // std::cout << "attemp to get IP with guid " << guid << "\n";
         RakNet::SystemAddress * ip = host->getRegisterIP(guid);
 
         lua_pushlightuserdata(L, ip);
@@ -1662,17 +1662,6 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     m_clientEPHandler->init(m_script);
     m_characterManager->init(m_script);
 
-    // m_cryptorSodium.init("aa", m_server->GetMyGUID().ToString());
-
-
-    // std::string raw = "Hahaha do you know what a bout there asdsdsdsdasd aai davai hehe amacss";
-
-    // std::string encrypted = m_cryptorSodium.encrypt(raw);
-    // std::cout << "Encrypted: ";
-    // printHex(encrypted) ;
-    // std::cout << "\n";
-    // std::string decrypted = m_cryptorSodium.decrypt(encrypted);
-    // std::cout << "Decrypted: " << decrypted << "\n";
 
 }
 

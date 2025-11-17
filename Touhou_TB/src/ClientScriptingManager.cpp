@@ -141,9 +141,6 @@ int lua_SendWrapData(lua_State * L)
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string requestCmd = lua_tostring(L, 2);
 
-        // std::cout << "data : " << requestCmd << "\n";
-        // std::cout << "client side send data:" << requestCmd << "\n";
-
         uint32_t result = host->sendWrapData(requestCmd);
         lua_pushnumber(L, result);
         return 1;
@@ -202,10 +199,6 @@ int lua_ParseCharacterFromJson(lua_State * L)
         CharacterStats  *returnStats = new CharacterStats();
         *returnStats = host->parseFromStr(jsonSrc);
 
-        // CharacterDesc des; 
-        // des.setCharacterStats(returnStats);
-
-        // std::cout << "check data ||||" << returnStats->name << "|||||||\n";
         lua_pushlightuserdata(L, returnStats);
         return 1;
     }
@@ -301,6 +294,81 @@ int lua_CollectPong(lua_State * L)
     return 0;
 }
 
+int lua_client_Packet_getAddress(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_client_Packet_getAddress) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+        RakNet::SystemAddress * addr = &p->systemAddress;
+    
+        std::string result = addr->ToString(true);
+        lua_pushstring(L, result.c_str());
+        return 1;
+    }
+    return 0;
+}
+
+int lua_client_Packet_getGUID(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_client_Packet_getGUID) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+        std::string result = p->guid.ToString();
+        lua_pushstring(L, result.c_str());
+        return 1;
+    }
+    return 0;
+}
+
+int lua_addCryptor(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_addCryptor) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::string guid = lua_tostring(L, 2);
+        host->addCryptor(guid);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_removeCryptor(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_removeCryptor) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::string guid = lua_tostring(L, 2);
+        host->removeCryptor(guid);
+        return 0;
+    }
+    return 0;
+}
+
+// MARK:CPP_PART
 
 std::string ClientScriptingManager::getClientGUID()
 {
@@ -313,24 +381,6 @@ std::string ClientScriptingManager::getClientGUID()
 
 uint32_t ClientScriptingManager::sendData(const std::string & data, uint8_t encryptIndex)
 {
-    // unsigned char iv[AES_IV_SIZE] = {};
-    // m_cryptor.generateRandomIV(iv);
-    // // std::string fData ;
-    // // fData.push_back(ID_TH_TB);
-
-    // std::string cData = std::string(data.begin() + encryptIndex, data.end());
-
-    // auto tData = m_cryptor.encrypt(cData,iv);
-    // for(int i = 0 ; i < AES_IV_SIZE;i++)
-    // {
-    //     tData.push_back(iv[i]);
-    // }
-    // std::string sendStr;
-    // sendStr.push_back(ID_TH_TB);
-    // for(int i = 0 ; i < tData.size() ; i++)
-    // {
-    //     sendStr.push_back((tData[i]));
-    // } 
     return m_client->Send(data.c_str(), data.length() +1, HIGH_PRIORITY, RELIABLE_ORDERED, 0, RakNet::UNASSIGNED_SYSTEM_ADDRESS, true);
 }
 
@@ -370,6 +420,44 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
     );
 }
 
+// Ah yes, some will say, "wHy dOn't yoU moDifY the sendWrapData WiTh first byte using input 1st byte ? "
+// -> so many function was called and use this, many features has used and tested OK, I dont want to refactor, I can see why but as lazy as I am (or not, if you are John Carmack himself, you tell me that)
+uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
+{
+    if (data.size() < 2) // headers
+    {
+        std::cout << "sendBattleWrapData failed (data size < 2)\n";
+        return 0;
+    }
+    uint8_t channel = static_cast<uint8_t>(data[0]);
+    uint8_t request = static_cast<uint8_t>(data[1]);
+    int payLoadIndex = 2;
+
+    std::string payLoad(data.begin() + payLoadIndex, data.end());
+    std::string tData = m_cryptor->encrypt(payLoad);
+
+    RakNet::BitStream bsOut;
+    bsOut.Write((RakNet::MessageID)ID_TH_TB_BATTLE);
+    bsOut.Write(channel);
+    bsOut.Write(request);
+    bsOut.WriteAlignedBytes(reinterpret_cast<const unsigned char*>(tData.data()), tData.size());
+
+    // m_client->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, channel, m_serverIPAddr, false);
+    unsigned int bits = bsOut.GetNumberOfBitsUsed();
+    unsigned int bytes = bits / 8 + (bits % 8 ? 1 : 0);
+
+    // Safe send (BitStream handles memory ownership)
+    return m_client->Send(
+        &bsOut, 
+        HIGH_PRIORITY, 
+        RELIABLE_ORDERED, 
+        channel, 
+        m_serverIPAddr, 
+        false
+    );
+
+}
+
 CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
 {
     CharacterStats result;
@@ -392,11 +480,6 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     // m_client = RakNet::RakPeerInterface::GetInstance();
     m_serverIP = serverIP;
     m_port = port;
-    // m_client->AllowConnectionResponseIPMigration(false);
-    // m_socketDescriptor = RakNet::SocketDescriptor(m_port + 1, 0);
-    // m_socketDescriptor.socketFamily = AF_INET;
-    // m_client->Startup(8, &m_socketDescriptor, 1);
-    // m_client->SetOccasionalPing(true);
 
     std::cout << "|     Init Client RakNet Core OK          |\n";
     m_RakNetCoreInitialized = true;
@@ -422,6 +505,16 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
 
     lua_register(m_script, "cppCollectPong", lua_CollectPong);
     lua_register(m_script, "cppConnectToBattleServer", lua_ConnectToBattleServer);
+
+    lua_register(m_script, "cpp_client_Packet_getIP" , lua_client_Packet_getAddress);
+    lua_register(m_script, "cpp_client_Packet_getGUID" , lua_client_Packet_getGUID);
+    // lua_register()
+
+    lua_register(m_script, "cpp_addCryptor" , lua_addCryptor);
+    lua_register(m_script, "cpp_removeCryptor" , lua_removeCryptor);
+
+    // lua_register(m_script, "cpp_client_Packet_getPort" , lua_client_Packet_getPort);
+
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/Networking/clientSide.lua")))
     {
@@ -455,6 +548,32 @@ ClientScriptingManager::ClientScriptingManager()
 ClientScriptingManager::~ClientScriptingManager()
 {
 
+}
+
+void ClientScriptingManager::addCryptor(const std::string & guid)   
+{
+
+    if(m_cryptors.find(guid) != m_cryptors.end())
+    {
+        std::cout << "cryptor for guid " << guid << " already exist \n";
+        return;
+    }
+    Feintgine::F_Cryptor_sodium * cryptor = new Feintgine::F_Cryptor_sodium();
+    cryptor->init("BNML is real", guid);
+    m_cryptors[guid] = cryptor;
+}
+
+void ClientScriptingManager::removeCryptor(const std::string & guid)
+{
+    if(m_cryptors.find(guid) != m_cryptors.end())
+    {
+        delete m_cryptors[guid];
+        m_cryptors.erase(guid);
+    }
+    else
+    {
+        std::cout << "no cryptor for guid " << guid << "\n";
+    }
 }
 
 uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
@@ -491,9 +610,6 @@ uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
                     std::string encData;
                     encData.resize(remainingBytes);
                     bsIn.ReadAlignedBytes(reinterpret_cast<unsigned char*>(&encData[0]), remainingBytes);
-
-                    // std::string payLoad = m_cryptor->decrypt(encData);
-
                     std::string payLoad = getDecryptMessage(encData);
 
                     lua_pushlightuserdata(m_script, this);
@@ -609,12 +725,6 @@ bool ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
                 {
                     selfPacket = true;
                 }
-                // std::cout << "tMsg check \n";
-                // for(int i = 0 ;i < tMsg.size() ; i++)
-                // {
-                //     printf("%02x", tMsg[i]);
-                // }   
-                // std::cout << "\ndecrypt : \n";
                 unsigned char identifier = GetPacketIdentifier(p);
                 // // std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
                 std::cout << "got packet !!!!!!! " << (int)identifier << "\n";
@@ -622,14 +732,7 @@ bool ClientScriptingManager::sendDataToLuaScripting(RakNet::Packet *p)
                 if(!selfPacket)
                 {
 
-                    // std::cout << "salt is :\n";
-                    // for(int i = 0 ; i < AES_IV_SIZE; i++)
-                    // {
-                    //     printf("%02x", iv[i]);
-                    // }  
-                    // std::cout << "\n";
                     std::string tMsg = std::string(reinterpret_cast<const char*>(p->data), p->length);
-                    // 
                     lua_pushstring(m_script,m_cryptor->decrypt(tMsg).c_str());
                 }
                 else
@@ -837,7 +940,7 @@ void ClientScriptingManager::connect2BattleServer(const std::string & guid)
         return;
     }
 
-    RakNet::SystemAddress addr = *m_battleServerIPMap[guid];
+    RakNet::SystemAddress addr =  *m_battleServerIPMap[guid];
     std::string target = addr.ToString();
     int port = addr.GetPort();
     std::string pw = "FFX2";

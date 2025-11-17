@@ -152,21 +152,39 @@ function GetTableSize(t)
     return count
 end
 
+--- MARK:Main server
+
 ClientMessageHandling = {
 
 }
 
-ClientMessageHandling[PacketChannel.AccountChannel] = {}
+for k,v in pairs(PacketChannel) do
 
-ClientMessageHandling[PacketChannel.ShopChannel] = {}
+    -- print("packet channel")
+    print(k,v)
+    ClientMessageHandling[v] = {}
+    
+end
 
-ClientMessageHandling[PacketChannel.TransactionChannel] = {}
+-- ClientMessageHandling[PacketChannel.AccountChannel] = {}
 
-ClientMessageHandling[PacketChannel.UserChannel] = {}
+-- ClientMessageHandling[PacketChannel.ShopChannel] = {}
 
-ClientMessageHandling[PacketChannel.FormationChannel] = {}
+-- ClientMessageHandling[PacketChannel.TransactionChannel] = {}
 
-ClientMessageHandling[PacketChannel.ArenaChannel] = {}
+-- ClientMessageHandling[PacketChannel.UserChannel] = {}
+
+-- ClientMessageHandling[PacketChannel.FormationChannel] = {}
+
+-- ClientMessageHandling[PacketChannel.ArenaChannel] = {}
+
+---- MARK:Battle server
+
+ClientBattleHandling = {
+
+}
+
+
 
 -- ---@Description combines packet
 -- ---@param type string type of packet to wrap
@@ -276,3 +294,5 @@ function Client_PingUpdate(serverGUID, ping)
     print("Client_PingUpdate called")
     Arena_UpdateServerPing(serverGUID, ping)
 end
+
+
