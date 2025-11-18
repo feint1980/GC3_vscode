@@ -34,9 +34,9 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
 end
 
 
----- MARK:Battle Server 
+---- MARK:Home Common
 
-
+--- Home common
 HomeMain_HandleTask[PacketID.ID_UNCONNECTED_PONG] = function(host,packet,RakNetPacket)
     print("ID_UNCONNECTED_PONG get")
     -- local tData = SV_GetPacketData(host,RakNetPacket)
@@ -52,4 +52,44 @@ HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,pac
     print("guid : " .. tGuid)
     local tIP = Client_GetIP_FromPacket(RakNetPacket)
     print("IP " .. tIP)
+    cppSelecBattleServer(host,tGuid)
+    -- Client_AddCryptor(host,tGuid)
+
 end
+
+--- MARK:Battle Server 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

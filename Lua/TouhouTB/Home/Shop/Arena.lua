@@ -14,7 +14,12 @@ MenuPanels = _G.MenuPanels
 
 ArenaPanel = nil
 
+
+--- @type ListView
 BattleServerListView = nil
+
+---@type ListView
+RoomListView = nil
 
 function InitArenaMenu(host)
     if ArenaPanel == nil then
@@ -52,18 +57,22 @@ function InitArenaMenu(host)
 
 
     BattleServerListView:setDoubleClickCallBack( function ()
-        
-        local target = BattleServerListView:getSelectItemValue(0) 
+
+        local target = BattleServerListView:getSelectItemValue(0)
         print("target is " .. target)
         for k ,v in pairs(Arena_Ping_List) do
             if(v.name == target)then
                 print("connect to " .. v.name .. " " .. v.guid .. " " .. v.port)
                 ClientConnectToBattleServer(v.clientHost, v.guid)
             end
-            
         end
-        
     end)
+
+    RoomListView = ListView:new()
+    RoomListView:init(host,50,50,500,400,{"Room","Opponent", "PW", "Ping"},{100,200,100,100},ArenaPanel.ptr)
+    RoomListView:setPosStr("0%","5%")
+    RoomListView:setSizeStr("40%","45%")
+    RoomListView:setColumnSizeRatios({0.37,0.37,0.13,0.13})
 
     ArenaPanel:setVisible(false)
 end

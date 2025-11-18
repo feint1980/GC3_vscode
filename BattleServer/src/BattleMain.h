@@ -69,6 +69,8 @@ public:
 
     void addCryptor(const std::string & guid);
 
+    void removeCryptor(const std::string & guid);
+
     void setName(const std::string & name) { m_name = name; }
 
     void sendBackPong(RakNet::Packet *p);

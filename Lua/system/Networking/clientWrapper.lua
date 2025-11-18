@@ -73,11 +73,9 @@ BattlePacketChannel = {
 
 BattleInfoResponse = {
     BattleInfo_AddCryptor_Request = 1,
+    BattleInfo_AddCryptor_Response = 2,
     
 }
-
-
-
 
 
 --- MARK: Functions
@@ -196,14 +194,18 @@ end
 ---@param packet pointer instance of RakNetPacket
 ---@return string (IP with port )
 function Client_GetIP_FromPacket(packet)
-    return cpp_client_Packet_getIP(packet)
+    return cpp_Packet_getIP(packet)
 end
 
 ---@Description: wrapper of cpp_client_Packet_getGUID
 ---@param packet pointer instance of RakNetPacket
 ---@return string (GUID)
 function Client_GetGUID_FromPacket(packet)
-    return cpp_client_Packet_getGUID(packet)
+    return cpp_Packet_getGUID(packet)
+end
+
+function Client_GetPort_FromPacket(packet)
+    return cpp_Packet_getPort(packet)
 end
 
 ---@Description: wrapper of cpp_addCryptor

@@ -32,7 +32,17 @@ CommonPacketHandling[ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)
 end
 
 CommonPacketHandling[ID_CONNECTION_LOST] = function(host,packet)
-    print("main server lost")
+
+    local tPort = BS_Packet_getPort(packet)
+    if tPort == 1123 then
+        print("disconnected from main server") 
+        -- TODO consider make a reconnect attempts
+    else
+        local tGUID = BS_Packet_getGUID(packet)
+        print("lost connection to " .. tGUID)
+        BM_removeCryptor(host,tGUID)
+    end
+
 end
 
 CommonPacketHandling[ID_UNCONNECTED_PING] = function(host,packet)
@@ -42,18 +52,22 @@ end
 
 CommonPacketHandling[ID_NEW_INCOMING_CONNECTION] = function(host,packet)
     print("ID_NEW_INCOMING_CONNECTION get")
-
+    BM_handleIncomingConnection(host,packet)
 end
-
 
 
 ---- Internal 
 
--- for i = 1, #BattleChanel do
---     InternalPacketHandling[i] = {}
--- end
+for k,v in pairs(MainServerChanel) do
+    InternalPacketHandling[v] = {}
+end
 
-InternalPacketHandling[BattleChanel.PaperWork] = {}
+for k , v in pairs(ClientChannel) do
+    ClientPacketHandling[v] = {}
+end
+
+
+-- InternalPacketHandling[MainServerChanel.PaperWork] = {}
 
 require "battlePaperWork"
 
@@ -71,8 +85,26 @@ function BattleMain_HandleInternal(host, channel, request,data,ip, guid)
     end
 end
 
+function BattleMain_HandleClient(host, channel, request,data,ip, guid)
+
+    print("BattleMain_HandleInternal called")
+    if ClientPacketHandling[channel] == nil then
+        print("channel not found " .. channel)
+        return
+    end
+    if ClientPacketHandling[channel][request] ~= nil then
+        ClientPacketHandling[channel][request](host, channel, request,data,ip, guid)
+    else
+        print("request not found channel " .. channel .. " request " .. request)
+    end
+end
 
 function Battlemain_GetInfo()
     return cpp_BM_GetInfo(BS_Host)
 end
+
+
+
+--- MARK:Client handle
+require "battle_handle_clients"
 

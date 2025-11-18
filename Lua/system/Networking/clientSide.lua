@@ -92,10 +92,18 @@ end
 --- @param request number type of packet to wrap
 --- @param list table data to wrap
 function Client_SendWrapData(host,channel,request,list)
-
-    -- print("Client_SendWrapData called")
     return cppSendWrapData(host,WrapRequest(channel,request,list))
 end
+
+--- wrapper of cppSendBattleWrapData
+--- @param host pointer instance of ClientScriptingManager
+--- @param channel number channel
+--- @param request number type of packet to wrap
+--- @param list table data to wrap
+function Client_SendBattleWrapData(host,channel,request,list)
+    return cppSendBattleWrapData(host,WrapRequest(channel,request,list))
+end
+
 
 --- wrapper of cppSendData
 ---@param host pointer instance of ClientScriptingManager
@@ -215,12 +223,18 @@ end
 
 RequestPacket = {
     host = nil,
-    channel = 255, 
+    channel = 255,
     request = 255,
     data = {},
     retries = 5,
     sendTime = 0,
     delay = 0.25,
+    packetType = 0,
+}
+
+RequestPacketType = {
+    MainServer = 1,
+    BattleServer = 2
 }
 
 function RequestPacket:new(o)
@@ -252,6 +266,21 @@ function SendRequest(channel, request, data, retries, delayFirst, delayEach)
         request = request,
         data = data,
         retries = retries or 5,
+        packetType = RequestPacketType.MainServer,
+        nextSendTime = os.clock() + delayFirst,
+        delay = delayEach
+    })
+end
+
+function SendBattleRequest(channel, request, data, retries, delayFirst, delayEach)
+    delayFirst = delayFirst or 0
+    delayEach = delayEach or 0.1
+    table.insert(RequestQueue, {
+        channel = channel,
+        request = request,
+        data = data,
+        retries = retries or 5,
+        packetType = RequestPacketType.BattleServer,
         nextSendTime = os.clock() + delayFirst,
         delay = delayEach
     })
@@ -264,7 +293,12 @@ function UpdateRequests(host)
         local req = RequestQueue[i]
 
         if now >= req.nextSendTime then
-            local success = Client_SendWrapData(host, req.channel, req.request,req.data )
+            local success = 0
+            if req.packetType == RequestPacketType.MainServer then
+                success = Client_SendWrapData(host, req.channel, req.request,req.data )
+            elseif req.packetType == RequestPacketType.BattleServer then
+                success = Client_SendBattleWrapData(host, req.channel, req.request,req.data )
+            end
             -- print("try to send in chanel " .. req.channel .. " request " .. req.request)
             if success == 0 then
                 req.retries = req.retries - 1
@@ -286,12 +320,12 @@ end
 -- require "arena_client_handler"
 
 function Client_CollectPingStart()
-    print("Client_CollectPingStart called")
+    -- print("Client_CollectPingStart called")
     Arena_ResetList()
 end
 
 function Client_PingUpdate(serverGUID, ping)
-    print("Client_PingUpdate called")
+    -- print("Client_PingUpdate called")
     Arena_UpdateServerPing(serverGUID, ping)
 end
 

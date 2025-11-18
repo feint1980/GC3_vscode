@@ -11,6 +11,8 @@ CommonPacketHandling = {}
 
 InternalPacketHandling = {}
 
+ClientPacketHandling = {}
+
 MainInfo = {
     guid = ""
 }

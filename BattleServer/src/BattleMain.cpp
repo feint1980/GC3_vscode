@@ -80,6 +80,42 @@ int lua_Packet_getIPAsString(lua_State * L)
     return 0;
 }
 
+int lua_Packet_getPort(lua_State *L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Packet_getPort) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+        uint16_t result = p->systemAddress.GetPort();
+        lua_pushnumber(L, result);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_Packet_getGUID(lua_State *L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Packet_getGUID) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+        std::string result = p->guid.ToString();
+        lua_pushstring(L, result.c_str());
+        return 1;
+    }
+    return 0;
+}
+
 int lua_sendBackPong(lua_State *L)
 {
     if(lua_gettop(L) != 2)
@@ -93,6 +129,25 @@ int lua_sendBackPong(lua_State *L)
         BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
         RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 2));
         host->sendBackPong(p);
+    }
+    return 0;
+}
+
+int lua_removeCryptor(lua_State *L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_removeCryptor) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        std::string guid = lua_tostring(L, 2);
+        host->removeCryptor(guid);
+        // std::cout << "removed cryptor " << guid << "\n";
+
     }
     return 0;
 }
@@ -199,7 +254,6 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     // communication 
     lua_register(m_script, "cpp_BM_SendWrapData", lua_BM_SendWrapData);
 
-
     // retrieve info
     lua_register(m_script, "cpp_BM_GetInfo" , lua_BM_GetInfo);
 
@@ -209,8 +263,13 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     // get packet data
     lua_register(m_script, "cpp_getPacketIP", lua_Packet_getIP);
     lua_register(m_script, "cpp_getPacketIPAsString", lua_Packet_getIPAsString);
+    lua_register(m_script, "cpp_getPacketPort", lua_Packet_getPort);
+    lua_register(m_script, "cpp_getPacketGUID", lua_Packet_getGUID);
+
 
     lua_register(m_script, "cpp_sendBackPong", lua_sendBackPong);
+
+    lua_register(m_script, "cpp_removeCryptor", lua_removeCryptor);
 
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/battleSideScript.lua")))
@@ -275,6 +334,20 @@ void BattleMain::run()
     }
 }
 
+void BattleMain::removeCryptor(const std::string & guid)
+{   
+    if(m_cryptors.find(guid) != m_cryptors.end())
+    {
+        delete m_cryptors[guid];
+        m_cryptors.erase(guid);
+        std::cout << "removed cryptor for guid " << guid << "\n";
+    }
+    else
+    {
+        std::cout << "no cryptor for guid " << guid << "\n";
+    }
+}
+
 void BattleMain::addCommonPacket(RakNet::Packet *p)
 {
     RakNet::Packet* original = p;
@@ -291,6 +364,21 @@ void BattleMain::update(float deltaTime)
     listen();
     handleCommonPacketQueue();
     handleInternalPacketQueue();
+}
+
+void BattleMain::addCryptor(const std::string & guid)
+{
+    if (m_cryptors.find(guid) == m_cryptors.end())
+    {
+        m_cryptors[guid] = new Feintgine::F_Cryptor_sodium();
+        m_cryptors[guid]->init("BNML is real", guid);
+        std::cout << "add cryptor for guid " << guid << "\n";
+        // m_cryptors[guid] = 
+    }
+    else
+    {
+        std::cout << "cryptor for guid " << guid << " already exist \n";
+    }
 }
 
 void BattleMain::handleCommonPacket(RakNet::Packet *p)
@@ -372,7 +460,7 @@ void BattleMain::handleConnections(RakNet::Packet *p)
     int port = addr.GetPort();
     std::cout << "port : " << port << "\n";
 
-    if(port = 1123)
+    if(port == 1123)
     {
         // connected to main server 
         std::cout << "connected to main server\n";
@@ -392,6 +480,10 @@ void BattleMain::handleConnections(RakNet::Packet *p)
 
         // sending register data
         sendWrapData(p->systemAddress, p->guid.ToString(),sendMessage);
+    }
+    else
+    {
+        addCryptor(p->guid.ToString());
     }
 }
 
@@ -523,10 +615,19 @@ uint32_t BattleMain::handleInternalPacket(RakNet::Packet *p)
         payLoad = std::move(m_cryptors[p->guid.ToString()]->decrypt(encData));
     }
 
-    std::cout << "packet has channel " << channel << " and request " << request << "\n";
-    std::cout << "payload is " << payLoad << "\n";
+    // std::cout << "packet has channel " << channel << " and request " << request << "\n";
+    // std::cout << "payload is " << payLoad << "\n";
 
-    lua_getglobal(m_script, "BattleMain_HandleInternal");
+    std::string luaFunctionCall = "";
+    if (msgId == ID_TH_INTERNAL)
+    {
+        luaFunctionCall = "BattleMain_HandleInternal";
+    }
+    else if (msgId == ID_TH_TB_BATTLE)
+    {
+        luaFunctionCall = "BattleMain_HandleClient";
+    }
+    lua_getglobal(m_script, luaFunctionCall.c_str());
     if (lua_isfunction(m_script, -1))
     {
         lua_pushlightuserdata(m_script, this); // host

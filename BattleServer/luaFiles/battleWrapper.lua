@@ -5,7 +5,7 @@ BattlePacketType = {
 	ID_TH_INTERNAL = 137, -- main server to battle server
 }
 
-BattleChanel = {
+MainServerChanel = {
     PaperWork = 1,
     ClientRequest = 2,
     Combat = 3
@@ -15,6 +15,17 @@ PaperWorkRequest = {
     SelfRegister = 1,
     SelfRegisterAccepted = 2,
 }
+
+
+ClientChannel = {
+    InfoChannel = 1
+}
+
+BattleInfoResponse = {
+    BattleInfo_AddCryptor_Request = 1
+}
+
+
 
 ---@description handle incoming connection
 ---@param host pointer instance of BattleMain
@@ -44,3 +55,41 @@ end
 function BM_sendWrapData(host,targetIP, guid, id,channel, request, list)
     return cpp_BM_SendWrapData(host,targetIP,guid, BM_WrapMsg(id,channel, request, list))
 end
+
+---@Description: wrapper of cpp_getPacketIP 
+---@param packet pointer instance of RakNet::Packet
+---@return pointer instance of RakNet::Address System
+function BS_Packet_getIP(packet)
+    return cpp_getPacketIP(packet)
+end
+
+---@Description: wrapper of cpp_getPacketIPAsString
+---@param packet pointer instance of RakNet::Packet
+---@return string IP (no port)
+function BS_Packet_getIPAsString(packet)
+    return cpp_getPacketIPAsString(packet)
+end
+
+---@Description: wrapper of cpp_getPacketGUID
+---@param packet pointer instance of RakNet::Packet
+---@return string GUID
+function BS_Packet_getGUID(packet)
+    return cpp_getPacketGUID(packet)
+end
+
+---@Description: wrapper of cpp_getPacketPort
+---@param packet pointer instance of RakNet::Packet
+---@return number port
+function BS_Packet_getPort(packet)
+    return cpp_getPacketPort(packet)
+end
+
+---@Description: wrapper of cpp_removeCryptor
+---@param host pointer instance of BattleMain
+---@param key string 
+function BM_removeCryptor(host,key)
+    cpp_removeCryptor(host,key)
+end
+
+
+

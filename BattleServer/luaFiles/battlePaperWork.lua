@@ -3,12 +3,12 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "battleWrapper"
 require "BS_global"
 
-InternalPacketHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegisterAccepted] = function(host, channel, request,data,ip, guid)
+InternalPacketHandling[MainServerChanel.PaperWork][PaperWorkRequest.SelfRegisterAccepted] = function(host, channel, request,data,ip, guid)
 
     local t_guid = string.match(data, "^|([^|]+)|$")
 
     if t_guid == nil then
-        print("Ke3 F3i117 exception (InternalPacketHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegisterAccepted])")
+        print("Ke3 F3i117 exception (InternalPacketHandling[MainServerChanel.PaperWork][PaperWorkRequest.SelfRegisterAccepted])")
         return
     end
 

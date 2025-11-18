@@ -127,6 +127,27 @@ int lua_SendData(lua_State * L)
     return -1;
 }
 
+int lua_SendBattleWrapData(lua_State * L)
+{
+    // std::cout << "lua_SendBattleWrapData called \n";
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SendBattleWrapData) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::string requestCmd = lua_tostring(L, 2);
+
+        uint32_t result = host->sendBattleWrapData(requestCmd);
+        lua_pushnumber(L, result);
+        return 1;
+    }
+    return -1;
+}
+
 int lua_SendWrapData(lua_State * L)
 {
     // std::cout << "lua_SendWrapData called \n";
@@ -178,6 +199,24 @@ int lua_ConnectToBattleServer(lua_State * L)
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string guid = lua_tostring(L, 2);
         host->connect2BattleServer(guid);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_SelecBattleServer(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_SelecBattleServer) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::string guid = lua_tostring(L, 2);
+        host->selectBattleServer(guid);
         return 0;
     }
     return 0;
@@ -294,11 +333,11 @@ int lua_CollectPong(lua_State * L)
     return 0;
 }
 
-int lua_client_Packet_getAddress(lua_State * L)
+int lua_Packet_getAddress(lua_State * L)
 {
     if(lua_gettop(L) != 1)
     {
-        std::cout << "gettop failed (lua_client_Packet_getAddress) \n";
+        std::cout << "gettop failed (lua_Packet_getAddress) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
@@ -314,11 +353,11 @@ int lua_client_Packet_getAddress(lua_State * L)
     return 0;
 }
 
-int lua_client_Packet_getGUID(lua_State * L)
+int lua_Packet_getGUID(lua_State * L)
 {
     if(lua_gettop(L) != 1)
     {
-        std::cout << "gettop failed (lua_client_Packet_getGUID) \n";
+        std::cout << "gettop failed (lua_Packet_getGUID) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
@@ -327,6 +366,24 @@ int lua_client_Packet_getGUID(lua_State * L)
         RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
         std::string result = p->guid.ToString();
         lua_pushstring(L, result.c_str());
+        return 1;
+    }
+    return 0;
+}
+
+int lua_Packet_getPort(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_Packet_getPort) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
+        uint16_t result = p->systemAddress.GetPort();
+        lua_pushnumber(L, result);
         return 1;
     }
     return 0;
@@ -429,12 +486,27 @@ uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
         std::cout << "sendBattleWrapData failed (data size < 2)\n";
         return 0;
     }
+    if(!m_currentBattleServerIP) // current battle server check
+    {
+    
+        std::cout << "sendBattleWrapData failed (no current battle server)\n";
+        return 0;
+    }
+    if(!m_cryptors[m_currentBattleServerGUID])
+    {
+    
+        std::cout << "sendBattleWrapData failed (no current battle server cryptor)\n";
+        return 0;
+    }
     uint8_t channel = static_cast<uint8_t>(data[0]);
     uint8_t request = static_cast<uint8_t>(data[1]);
     int payLoadIndex = 2;
 
+    // m_currentBattleServerIP->
+// std::string tGUID = m_currentBattleServerIP->to
+
     std::string payLoad(data.begin() + payLoadIndex, data.end());
-    std::string tData = m_cryptor->encrypt(payLoad);
+    std::string tData = m_cryptors[m_currentBattleServerGUID]->encrypt(payLoad);
 
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)ID_TH_TB_BATTLE);
@@ -452,7 +524,7 @@ uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
         HIGH_PRIORITY, 
         RELIABLE_ORDERED, 
         channel, 
-        m_serverIPAddr, 
+        *m_currentBattleServerIP, 
         false
     );
 
@@ -495,6 +567,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
 
     lua_register(m_script, "cppSendData", lua_SendData);
     lua_register(m_script, "cppSendWrapData", lua_SendWrapData);
+    lua_register(m_script, "cppSendBattleWrapData", lua_SendBattleWrapData);
     lua_register(m_script, "cppGetPingFromServer", lua_GetPingFromServer);
     lua_register(m_script, "cppPing_server", lua_PingServer);
     //lua_register(m_script, "cppSendRequest", lua_SendRequest);
@@ -505,16 +578,18 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
 
     lua_register(m_script, "cppCollectPong", lua_CollectPong);
     lua_register(m_script, "cppConnectToBattleServer", lua_ConnectToBattleServer);
+    lua_register(m_script, "cppSelecBattleServer", lua_SelecBattleServer);
 
-    lua_register(m_script, "cpp_client_Packet_getIP" , lua_client_Packet_getAddress);
-    lua_register(m_script, "cpp_client_Packet_getGUID" , lua_client_Packet_getGUID);
+    lua_register(m_script, "cpp_Packet_getIP" , lua_Packet_getAddress);
+    lua_register(m_script, "cpp_Packet_getGUID" , lua_Packet_getGUID);
+    lua_register(m_script, "cpp_Packet_getPort" , lua_Packet_getPort);
+
     // lua_register()
 
     lua_register(m_script, "cpp_addCryptor" , lua_addCryptor);
     lua_register(m_script, "cpp_removeCryptor" , lua_removeCryptor);
 
     // lua_register(m_script, "cpp_client_Packet_getPort" , lua_client_Packet_getPort);
-
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/Networking/clientSide.lua")))
     {
@@ -573,6 +648,16 @@ void ClientScriptingManager::removeCryptor(const std::string & guid)
     else
     {
         std::cout << "no cryptor for guid " << guid << "\n";
+    }
+}
+
+void ClientScriptingManager::selectBattleServer(const std::string & guid)
+{
+    m_currentBattleServerGUID = guid;
+    m_currentBattleServerIP = m_battleServerIPMap[guid]; // this is intended, if guid not found, m_currentBattleServerIP will be nullptr 
+    if(m_currentBattleServerIP == nullptr)
+    {
+        std::cout << "Warning : no battle server for guid " << guid << " \n";
     }
 }
 

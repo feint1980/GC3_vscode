@@ -111,6 +111,8 @@ public:
 
     void removeCryptor(const std::string & guid);
 
+    void selectBattleServer(const std::string & guid);
+
     RakNet::SystemAddress getServerIPAddr() { return m_serverIPAddr; }
 
     private:
@@ -138,6 +140,10 @@ public:
     std::unordered_map<std::string, int> m_battleServerPingMap;
 
     std::unordered_map<std::string, RakNet::SystemAddress * > m_battleServerIPMap;
+
+    RakNet::SystemAddress * m_currentBattleServerIP = nullptr;
+
+    std::string m_currentBattleServerGUID;
 
     RakNet::SystemAddress m_serverIPAddr;
 
