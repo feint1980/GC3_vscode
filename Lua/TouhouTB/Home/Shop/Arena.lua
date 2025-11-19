@@ -57,13 +57,12 @@ function InitArenaMenu(host)
 
 
     BattleServerListView:setDoubleClickCallBack( function ()
-
         local target = BattleServerListView:getSelectItemValue(0)
         print("target is " .. target)
         for k ,v in pairs(Arena_Ping_List) do
             if(v.name == target)then
                 print("connect to " .. v.name .. " " .. v.guid .. " " .. v.port)
-                ClientConnectToBattleServer(v.clientHost, v.guid)
+                --ClientConnectToBattleServer(v.clientHost, v.guid) -- just a test connect
             end
         end
     end)
@@ -74,16 +73,43 @@ function InitArenaMenu(host)
     RoomListView:setSizeStr("40%","45%")
     RoomListView:setColumnSizeRatios({0.37,0.37,0.13,0.13})
 
+
+    --- Create Room Button
+    local createRoomLabel = Label:new()
+    createRoomLabel:init(host,"Create Room",ArenaPanel.width/2,0,ArenaPanel.ptr)
+    createRoomLabel:setScale(0.9)
+    createRoomLabel:setAlignment(TextAlginment.Center)
+    createRoomLabel:setPosStr("5%","50%")
+    createRoomLabel:setHoverable(0,255,0,255,255,255,255,255)
+    createRoomLabel:setOnClickCallback(function()
+
+    end)
+
+    local refreshLabel = Label:new()
+    refreshLabel:init(host,"Refresh",ArenaPanel.width/2,0,ArenaPanel.ptr)
+    refreshLabel:setScale(0.9)
+    refreshLabel:setAlignment(TextAlginment.Center)
+    refreshLabel:setPosStr("80%","37%")
+    refreshLabel:setHoverable(0,255,0,255,255,255,255,255)
+    refreshLabel:setOnClickCallback(function()
+        
+    end)
+
     ArenaPanel:setVisible(false)
 end
 
 MenuPanels["Arena"] = function(host)
     ArenaPanel:showWithEffect(PanelShowType.Fade,250)
     Arena_RequestBattleServerList()
+    Arena_RequestLobbyList()
 end
 
 function Arena_RequestBattleServerList()
     SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_Request_GetServerList, {MainInfo.guid, "request"}, 5, 0.5,0.25)
+end
+
+function Arena_RequestLobbyList()
+    SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobbyList, {MainInfo.guid, "request"}, 5, 0.5,0.25)
 end
 
 function Arena_ResetList()
@@ -100,5 +126,5 @@ end
 
 
 function Arena_ServerList_DoubleClick()
-    
+
 end

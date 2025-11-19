@@ -44,7 +44,7 @@ int wmain(int argc, wchar_t const *argv[])
     BattleMain server;
     std::cout << "Davai \n";
     server.setName(name);   
-    server.init("FFX2","DavaiMachi", 1123 + index, 100,ip);
+    server.init("FFX2","DavaiMachi", 1123 + index, 101,ip); // 1 + 100
 
     server.run();
 
