@@ -2,7 +2,6 @@
 #define BATTLEMAIN_H
 
 #include <RakNet/MessageIdentifiers.h>
-//#pragma pack(push, 1)
 #include <RakNet/RakPeerInterface.h>
 #include <RakNet/RakNetStatistics.h>
 #include <RakNet/RakNetTypes.h>
@@ -32,9 +31,8 @@
 #include <iostream>
 #include <bcrypt.h>
 #include "CharacterDes.h"
-
+#include "ThreadPool.h"
 #include <thread>
-
 
 class BattleMain
 {

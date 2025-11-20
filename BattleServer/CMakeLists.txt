@@ -37,7 +37,6 @@ foreach(dir ${INCLUDES})
         message(STATUS ${dir})
 endforeach()
 
-
 set(Packet_include_dir  ${PROJECT_SOURCE_DIR}/../PacketDescription/)
 
 set(FEINTGINE_include_dir  ${PROJECT_SOURCE_DIR}/../Feintgine/src)
