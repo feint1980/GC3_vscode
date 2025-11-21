@@ -24,12 +24,16 @@ public:
                     {
                         std::unique_lock<std::mutex> lock(this->queueMutex);
 
-                        this->condition.wait(lock, [this] {
+                        this->condition.wait(lock, [this] 
+                        {
                             return this->stopFlag || !this->tasks.empty();
                         });
 
                         if (this->stopFlag && this->tasks.empty())
+                        {
                             return;
+                        }
+                            
 
                         task = std::move(this->tasks.front());
                         this->tasks.pop();
@@ -48,7 +52,8 @@ public:
     {
         using return_type = typename std::invoke_result<F, Args...>::type;
 
-        auto packagedTask = std::make_shared<std::packaged_task<return_type()>>(
+        auto packagedTask = std::make_shared<std::packaged_task<return_type()>>
+        (
             std::bind(std::forward<F>(f), std::forward<Args>(args)...)
         );
 
@@ -59,7 +64,9 @@ public:
 
             // Do not allow enqueue after stopping
             if (stopFlag)
+            {
                 throw std::runtime_error("ThreadPool is stopped");
+            }
 
             tasks.emplace([packagedTask]() { (*packagedTask)(); });
         }
