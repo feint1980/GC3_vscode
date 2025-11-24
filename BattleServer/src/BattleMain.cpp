@@ -303,8 +303,8 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
 
     m_serverOn = true;
 
-
-}
+    m_lobbiesManager.init(50);
+}   
 
 void BattleMain::run()
 {
@@ -364,6 +364,8 @@ void BattleMain::update(float deltaTime)
     listen();
     handleCommonPacketQueue();
     handleInternalPacketQueue();
+
+    m_lobbiesManager.update(deltaTime);
 }
 
 void BattleMain::addCryptor(const std::string & guid)

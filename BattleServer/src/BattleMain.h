@@ -31,8 +31,10 @@
 #include <iostream>
 #include <bcrypt.h>
 #include "CharacterDes.h"
-#include "ThreadPool.h"
+
 #include <thread>
+
+#include "LobbiesManager.h"
 
 class BattleMain
 {
@@ -96,6 +98,8 @@ private:
     std::unordered_map<std::string , Feintgine::F_Cryptor_sodium *> m_cryptors;
 
     std::string m_name = "BattleServer";
+
+    LobbiesManager m_lobbiesManager;
 
 };
 

@@ -13,9 +13,11 @@ public:
     explicit ThreadPool(size_t numThreads = std::thread::hardware_concurrency())
         : stopFlag(false)
     {
+        m_numThreads = numThreads;
+        workers.reserve(numThreads);
         for (size_t i = 0; i < numThreads; ++i)
         {
-            workers.emplace_back([this] {
+            workers.emplace_back([this,i] {
                 while (true)
                 {
                     std::function<void()> task;
@@ -36,9 +38,11 @@ public:
                             
 
                         task = std::move(this->tasks.front());
+                        std::cout << "Worker " << i << " is running a task\n";
                         this->tasks.pop();
                     }
 
+                    
                     task(); // execute the job
                 }
             });
@@ -86,8 +90,13 @@ public:
         condition.notify_all();
 
         for (std::thread &worker : workers)
+        {
             worker.join();
+        }
+            
     }
+
+    int getNumThreads() const { return m_numThreads; }
 
 private:
     std::vector<std::thread> workers;
@@ -95,6 +104,8 @@ private:
 
     std::mutex queueMutex;
     std::condition_variable condition;
+
+    int m_numThreads;
 
     std::atomic<bool> stopFlag;
 };

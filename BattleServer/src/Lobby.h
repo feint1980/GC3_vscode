@@ -15,7 +15,7 @@
 
 
 #include <string>
-
+#include <iostream>
 
 struct InGamePlayer {
     RakNet::SystemAddress * m_addr;
@@ -27,11 +27,23 @@ class PlayerPair {
 
 class Lobby {
 public:
-    Lobby (const std::string & name, const std::string & password) : m_name(name), m_password(password) {}
-    ~Lobby() {}
+    Lobby (uint64_t id, const std::string & name, const std::string & password) : m_name(name), m_password(password), m_id(id) 
+    {
 
+    }
+    ~Lobby() 
+    {
 
+    }
+
+    std::string getInfo() const;
+    
+    void update(float deltaTime);
+    
+    uint64_t getId() { return m_id; }
 private:
+
+    uint64_t m_id = 0;
     std::string m_name;
     std::string m_password;
 };
