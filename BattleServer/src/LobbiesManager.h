@@ -78,9 +78,7 @@ private:
     // std::vector<Lobby> m_lobbies;
     std::vector<std::unique_ptr<Lobby>> m_lobbies;
 
-    
 
-    std::vector<std::future<void>> futures;
 
 } ;
 
