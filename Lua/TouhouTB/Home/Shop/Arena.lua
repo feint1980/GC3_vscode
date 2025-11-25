@@ -52,6 +52,7 @@ function InitArenaMenu(host)
     refreshLabel:setPosStr("80%","37%")
     refreshLabel:setHoverable(0,255,0,255,255,255,255,255)
     refreshLabel:setOnClickCallback(function()
+        print("refresh")
         Arena_RequestBattleServerList()
     end)
 
@@ -85,13 +86,13 @@ function InitArenaMenu(host)
 
     end)
 
-    local refreshLabel = Label:new()
-    refreshLabel:init(host,"Refresh",ArenaPanel.width/2,0,ArenaPanel.ptr)
-    refreshLabel:setScale(0.9)
-    refreshLabel:setAlignment(TextAlginment.Center)
-    refreshLabel:setPosStr("80%","37%")
-    refreshLabel:setHoverable(0,255,0,255,255,255,255,255)
-    refreshLabel:setOnClickCallback(function()
+    local refreshRoomLabel = Label:new()
+    refreshRoomLabel:init(host,"Refresh",ArenaPanel.width/2,0,ArenaPanel.ptr)
+    refreshRoomLabel:setScale(0.9)
+    refreshRoomLabel:setAlignment(TextAlginment.Center)
+    refreshRoomLabel:setPosStr("20%","50%")
+    refreshRoomLabel:setHoverable(0,255,0,255,255,255,255,255)
+    refreshRoomLabel:setOnClickCallback(function()
         
     end)
 
@@ -105,7 +106,9 @@ MenuPanels["Arena"] = function(host)
 end
 
 function Arena_RequestBattleServerList()
+    print("Arena_RequestBattleServerList called")
     SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_Request_GetServerList, {MainInfo.guid, "request"}, 5, 0.5,0.25)
+    print("Arena_RequestBattleServerList sent ")
 end
 
 function Arena_RequestLobbyList()
@@ -123,7 +126,6 @@ function Arena_UpdateServerPing(serverGUID, ping)
 
     BattleServerListView:addItem({serverName,ping})
 end
-
 
 function Arena_ServerList_DoubleClick()
 

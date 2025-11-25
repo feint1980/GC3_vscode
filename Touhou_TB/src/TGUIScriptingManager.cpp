@@ -1969,29 +1969,26 @@ int lua_ListView_Create(lua_State * L)
                 }
                 lua_pop(L,1);
             }
-
         }
+        tgui::ListView::Ptr * listView = new tgui::ListView::Ptr();
 
+        if(lua_gettop(L) == 8)
+        {
+        tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 8));
 
-    tgui::ListView::Ptr * listView = new tgui::ListView::Ptr();
-
-    if(lua_gettop(L) == 8)
-    {
-    tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 8));
-
-    if(parent)
-    {
-        *listView = host->createListView(x,y,width,height,collumsNames,collumsSizes,*parent);
-    }
-    else
-    {
-        *listView = host->createListView(x,y,width,height,collumsNames,collumsSizes,nullptr);
-    }
-    }
-    else
-    {
-        *listView = host->createListView(x,y,width,height,collumsNames,collumsSizes,nullptr);
-    }
+        if(parent)
+        {
+            *listView = host->createListView(x,y,width,height,collumsNames,collumsSizes,*parent);
+        }
+        else
+        {
+            *listView = host->createListView(x,y,width,height,collumsNames,collumsSizes,nullptr);
+        }
+        }
+        else
+        {
+            *listView = host->createListView(x,y,width,height,collumsNames,collumsSizes,nullptr);
+        }
         lua_pushlightuserdata(L,listView);
         return 1;
     }
@@ -2637,6 +2634,24 @@ tgui::ListView::Ptr TGUIScriptingManager::createListView(float x, float y, float
     // listView->setAutoLayoutUpdateEnabled(true);
     // listView->setColumnAutoResize(true);
     return listView;
+}
+
+tgui::ComboBox::Ptr TGUIScriptingManager::createComboBox(float x, float y, float width, float height, tgui::Panel::Ptr parent)
+{
+    //
+    tgui::ComboBox::Ptr comboBox = tgui::ComboBox::create();
+    comboBox->setPosition(x, y);
+    comboBox->setSize(width, height);
+    if(parent)
+    {
+        parent->add(comboBox);
+    }
+    else 
+    {
+        m_tgui->add(comboBox);
+    }
+    return comboBox;
+
 }
 
 void TGUIScriptingManager::update(float deltaTime)

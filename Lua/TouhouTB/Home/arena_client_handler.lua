@@ -4,6 +4,9 @@ require "homeGlobal"
 
 
 ---MARK: Main server
+
+
+--- Get battle server list
 ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_GetServerList] = function(host,data, guid)
 
     print("server list get !!!")
@@ -28,15 +31,18 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
         ClientPingToServer(host, v.IP, v.port)
         Arena_Ping_List[k] = ArenaServer:new()
         Arena_Ping_List[k]:init(host,k,v.name,v.port,0)
-        -- Arena_AddServer(v.name,v.ping)
+
     end
 
 end
 
 
+---Arena_CreateLobby_Request 
+
 ---- MARK:Home Common
 
 --- Home common
+--- handle pong from battle servers
 HomeMain_HandleTask[PacketID.ID_UNCONNECTED_PONG] = function(host,packet,RakNetPacket)
     print("ID_UNCONNECTED_PONG get")
     -- local tData = SV_GetPacketData(host,RakNetPacket)
@@ -44,7 +50,7 @@ HomeMain_HandleTask[PacketID.ID_UNCONNECTED_PONG] = function(host,packet,RakNetP
     cppCollectPong(host,RakNetPacket)
 end
 
-
+--- Connected to battle server
 HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet,RakNetPacket)
 
     print("accepted by battle server ")

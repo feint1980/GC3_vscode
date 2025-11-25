@@ -9,7 +9,7 @@ void LobbiesManager::init(int maxLobbies)
     m_lobbies.reserve(m_maxLobbies);
 
     std::cout << "Thread pool workers : " << m_threadPool.getNumThreads() << "\n";
-    createDummyLobbies();
+    // createDummyLobbies();
 }
 
 Lobby * LobbiesManager::getLobby(uint64_t id)
@@ -33,24 +33,20 @@ void LobbiesManager::createDummyLobbies()
 void LobbiesManager::update(float deltaTime)
 {
     std::vector<std::future<void>> futures;
-    std::vector<std::string> infoBuffer;
+    // std::vector<std::string> infoBuffer;
     futures.reserve(m_lobbies.size());
-    infoBuffer.reserve(m_lobbies.size());
+    // infoBuffer.reserve(m_lobbies.size());
     for (auto& lobbyPtr : m_lobbies)
     {
         futures.push_back(
-        m_threadPool.enqueue([lobbyPtr = lobbyPtr.get(), deltaTime, &infoBuffer]() {
-            std::string info = lobbyPtr->getInfo();
-            {
-                std::lock_guard<std::mutex> lock(t_mutex); // protect buffer
-                infoBuffer.push_back(info);
-            }
+        m_threadPool.enqueue([lobbyPtr = lobbyPtr.get(), deltaTime]() {
+            lobbyPtr->update(deltaTime);
+            
         })
     );
     }
 
-    
     for (auto& f : futures) f.get(); // ensures all updates done this tick
-    for (auto& str : infoBuffer) std::cout << str << "\n";
+    // for (auto& str : infoBuffer) std::cout << str << "\n";
 }
 

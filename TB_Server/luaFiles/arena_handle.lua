@@ -9,7 +9,6 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_GetServe
 
     print("request from " .. guid .. " for arena server list")
 
-
     local tGUID, rquest = string.match(data, "^|([^|]+)|([^|]+)|$") 
 
     print("guid check " .. tGUID .. "/" .. guid) 
@@ -35,8 +34,9 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_GetServe
 
 end
 
-MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_GetServerList] = function(host, data,ip,guid)
+MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyList] = function(host, data,ip,guid)
 
-    print("request from " .. guid .. " for arena server list")
-    
+    print("request from " .. guid .. " for lobby list")
+
 end
+

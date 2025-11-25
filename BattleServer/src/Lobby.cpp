@@ -2,7 +2,7 @@
 
 void Lobby::update(float deltaTime)
 {
-    //std::cout << " lobby " << m_id << "(" << m_name << ") update" << "\n";
+    std::cout << " lobby " << m_id << "(" << m_name << ") update" << "\n";
 
 }
 

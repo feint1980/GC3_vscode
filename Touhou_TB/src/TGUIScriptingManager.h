@@ -89,6 +89,8 @@ public:
 
     tgui::ListView::Ptr createListView(float x, float y, float width, float height, const std::vector<std::string>& collumName ,const std::vector<float> collumSizes, tgui::Panel::Ptr parent);
 
+    tgui::ComboBox::Ptr createComboBox(float x, float y, float width, float height, tgui::Panel::Ptr parent);
+
     void addDrawCall(const std::string & name, std::function<void()> draw);
 
     lua_State * getLuaScript() { return m_script; }

@@ -38,7 +38,7 @@ public:
                             
 
                         task = std::move(this->tasks.front());
-                        std::cout << "Worker " << i << " is running a task\n";
+                        // std::cout << "Worker " << i << " is running a task\n";
                         this->tasks.pop();
                     }
 
