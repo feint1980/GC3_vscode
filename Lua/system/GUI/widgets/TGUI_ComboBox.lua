@@ -24,10 +24,12 @@ end
 
 function ComboBox:init(host, x, y, width, height, parent)
     self.host = host
-    -- self.ptr = host:createComboBox(x, y, width, height, parent)
+    self.ptr = TGUI_ComboBox_Create(x, y, width, height, parent)
 end
+
 
 function TGUI_ComboBox_Create(host, x, y, width, height, parent)
     parent = parent or nil
-
+    return cpp_ComboBox_Create(host, x, y, width, height, parent)
+    
 end

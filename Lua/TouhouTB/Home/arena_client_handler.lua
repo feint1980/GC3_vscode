@@ -36,6 +36,11 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
 
 end
 
+ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobby_Create] = function(host,data, guid)
+    print("request to create lobby get")
+
+end
+
 
 ---Arena_CreateLobby_Request 
 

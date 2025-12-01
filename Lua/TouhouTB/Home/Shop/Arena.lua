@@ -8,6 +8,7 @@ require "TGUI_Picture"
 require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
 require "TGUI_ListView"
+require "TGUI_ComboBox"
 require "homeGlobal"
 
 MenuPanels = _G.MenuPanels
@@ -95,6 +96,9 @@ function InitArenaMenu(host)
     refreshRoomLabel:setOnClickCallback(function()
         
     end)
+
+    local rComboBox = ComboBox:new()
+    rComboBox:init(host,200,200,200,200,ArenaPanel.ptr)
 
     ArenaPanel:setVisible(false)
 end

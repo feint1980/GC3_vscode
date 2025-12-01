@@ -61,7 +61,9 @@ ShopResponse = {
 
 ArenaResponse = {
     Arena_Request_GetServerList = 1,
-    -- Arena_Connect_ConnectToServer = 2,
+    Arena_RequestLobbyList = 2,
+    Arena_RequestLobbyResponse = 3,
+    Arena_RequestLobby_Create = 4
 }
 
 

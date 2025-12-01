@@ -2229,6 +2229,49 @@ int lua_ListView_SetDoubleClickCallBack(lua_State * L)
 
     return 0;
 }
+// MARK: ComboBox
+
+int lua_ComboBox_Create(lua_State * L)
+{
+    if(lua_gettop(L) < 5 || lua_gettop(L) > 6)
+    {
+        std::cout << "gettop failed (lua_ComboBox_Create) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        float width = lua_tonumber(L, 4);
+        float height = lua_tonumber(L, 5);
+        tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 6));
+        
+        tgui::ComboBox::Ptr * comboBox = new tgui::ComboBox::Ptr();
+        if (lua_gettop(L) == 6)
+        {
+            if(parent)
+            {
+                *comboBox = host->createComboBox(x,y,width,height,*parent);
+            }
+            else
+            {
+                *comboBox = host->createComboBox(x,y,width,height,nullptr);
+            }
+        }
+        else
+        {
+            *comboBox = host->createComboBox(x,y,width,height,nullptr);
+        }
+    
+
+        lua_pushlightuserdata(L, comboBox);
+        
+        return 1;
+    }
+    return 0;
+}
+
 
 
 // MARK:Focus Stack
@@ -3051,10 +3094,12 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_ListView_SetColumnSizeRatios", lua_ListView_SetColumnSizeRatios);
     lua_register(m_script, "cpp_ListView_ClearItems", lua_ListView_ClearItems);
     lua_register(m_script, "cpp_ListView_AddItem", lua_ListView_AddItem);
-
-
     lua_register(m_script, "cpp_ListView_GetSelectedItemValue", lua_ListView_GetSelectedItemValue);
     lua_register(m_script, "cpp_ListView_SetDoubleClickCallBack", lua_ListView_SetDoubleClickCallBack);
+
+    // TGUI ComboBox
+    lua_register(m_script, "cpp_ComboBox_Create", lua_ComboBox_Create);
+
 
     // Focus Panels
 
