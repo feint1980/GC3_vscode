@@ -28,7 +28,7 @@ int wmain(int argc, wchar_t const *argv[])
     std::cout << "Battle Server Start ...\n";
     int index = 1;
     std::string ip = "127.0.0.1"; // main server ip
-    std::string name = "BS_TE1_server";
+    std::string name = "BS_TE";
 
     if(argc >= 2)
     {

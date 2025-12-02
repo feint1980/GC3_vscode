@@ -2272,7 +2272,105 @@ int lua_ComboBox_Create(lua_State * L)
     return 0;
 }
 
+int lua_ComboBox_SetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ComboBox_SetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ComboBox::Ptr * comboBox = static_cast<tgui::ComboBox::Ptr*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        comboBox->get()->setPosition(x,y);
+    }
+    return 0;
+}
 
+int lua_ComboBox_SetPosStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ComboBox_SetPosStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ComboBox::Ptr * comboBox = static_cast<tgui::ComboBox::Ptr*>(lua_touserdata(L, 1));
+        std::string x = lua_tostring(L, 2);
+        std::string y = lua_tostring(L, 3);
+        comboBox->get()->setPosition(x.c_str(),y.c_str());
+    }
+    return 0;
+}
+
+int lua_ComboBox_SetSize(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ComboBox_SetSize) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ComboBox::Ptr * comboBox = static_cast<tgui::ComboBox::Ptr*>(lua_touserdata(L, 1));
+        float width = lua_tonumber(L, 2);
+        float height = lua_tonumber(L, 3);
+        comboBox->get()->setSize(width,height);
+    }
+    return 0;
+}
+
+int lua_ComboBox_SetSizeStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ComboBox_SetSizeStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ComboBox::Ptr * comboBox = static_cast<tgui::ComboBox::Ptr*>(lua_touserdata(L, 1));
+        std::string width = lua_tostring(L, 2);
+        std::string height = lua_tostring(L, 3);
+        comboBox->get()->setSize(width.c_str(),height.c_str());
+        
+    }
+    return 0;
+}
+
+int lua_ComboBox_AddItem(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_ComboBox_AddItem) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ComboBox::Ptr * comboBox = static_cast<tgui::ComboBox::Ptr*>(lua_touserdata(L, 1));
+        std::string item = lua_tostring(L, 2);
+        comboBox->get()->addItem(item);
+    }
+    return 0;
+}
+
+int lua_ComboBox_ClearItems(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_ComboBox_ClearItems) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ComboBox::Ptr * comboBox = static_cast<tgui::ComboBox::Ptr*>(lua_touserdata(L, 1));
+        comboBox->get()->removeAllItems();
+    }
+    return 0;
+}
 
 // MARK:Focus Stack
 
@@ -2682,17 +2780,22 @@ tgui::ListView::Ptr TGUIScriptingManager::createListView(float x, float y, float
 tgui::ComboBox::Ptr TGUIScriptingManager::createComboBox(float x, float y, float width, float height, tgui::Panel::Ptr parent)
 {
     //
+
+    std::cout << "C++ Create combobox called \n";
     tgui::ComboBox::Ptr comboBox = tgui::ComboBox::create();
     comboBox->setPosition(x, y);
     comboBox->setSize(width, height);
     if(parent)
     {
+        std::cout << "parent found \n";
         parent->add(comboBox);
     }
     else 
     {
+        std::cout << "parent not found \n";
         m_tgui->add(comboBox);
     }
+    std::cout << "C++ Add combobox called done, returning\n";
     return comboBox;
 
 }
@@ -3099,7 +3202,15 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
 
     // TGUI ComboBox
     lua_register(m_script, "cpp_ComboBox_Create", lua_ComboBox_Create);
-
+    lua_register(m_script, "cpp_ComboBox_SetPos", lua_ComboBox_SetPos);
+    lua_register(m_script, "cpp_ComboBox_SetPosStr", lua_ComboBox_SetPosStr);
+    lua_register(m_script, "cpp_ComboBox_SetSize", lua_ComboBox_SetSize);
+    lua_register(m_script, "cpp_ComboBox_SetSizeStr", lua_ComboBox_SetSizeStr);
+    lua_register(m_script, "cpp_ComboBox_AddItems", lua_ComboBox_AddItem);
+    lua_register(m_script, "cpp_ComboBox_ClearItems", lua_ComboBox_ClearItems);
+    // lua_register(m_script, "cpp_ComboBox_SetItems", lua_ComboBox_SetItems);
+    // lua_register(m_script, "cpp_ComboBox_SetSelectedIndex", lua_ComboBox_SetSelectedIndex);
+    // lua_register(m_script, "cpp_ComboBox_GetSelectedIndex", lua_ComboBox_GetSelectedIndex);
 
     // Focus Panels
 

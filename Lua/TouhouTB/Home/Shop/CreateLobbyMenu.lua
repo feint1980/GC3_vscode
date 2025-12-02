@@ -1,0 +1,120 @@
+
+
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;'
+
+require "TGUI_Label"
+require "TGUI_Panel"
+require "TGUI_RTLabel" 
+require "TGUI_Editbox"
+require "TGUI_Picture"
+require "TGUI_TabContainer"
+require "TGUI_ScrollablePanel"
+require "TGUI_ListView"
+require "TGUI_ComboBox"
+require "homeGlobal"
+
+MenuPanels = _G.MenuPanels
+
+
+
+CreateLobbyPanel = nil
+
+---@type ComboBox
+LobbyServerComboBox = nil
+
+
+CreateLobbyServerList = {
+
+}
+
+LobbyServer = {
+    name = "",
+    ping = 0,
+    value = "",
+    guid = "",
+}
+
+function LobbyServer:new(o)
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    return o
+end
+
+function InitCreateLobbyMenu(host)
+    if CreateLobbyPanel == nil then
+        CreateLobbyPanel = Panel:new()
+        CreateLobbyPanel:init(host,TGUI_ScreenWidth/2 - 300,TGUI_ScreenHeight/2 - 200,400,300)
+        CreateLobbyPanel:setSizeStr("60%", "50%")
+        CreateLobbyPanel:setAlignment(0.5, 0.5)
+        CreateLobbyPanel:setPosStr("50%", "50%")
+    end
+
+    local closeLabel = Label:new()
+    closeLabel:init(host,"X",CreateLobbyPanel.width - 20,0,CreateLobbyPanel.ptr)
+    closeLabel:setPosStr("99%","1%")
+    closeLabel:setAlignment(TextAlginment.Center)
+    closeLabel:setHoverable(0,255,0,255,255,255,255,255)
+    closeLabel:setOnClickCallback(function()
+        CreateLobbyPanel:hideWithEffect(PanelShowType.Fade,250)
+    end)
+
+    local tLobbyNameLabel = Label:new()
+    tLobbyNameLabel:init(host,"Lobby Name",CreateLobbyPanel.width/2,0,CreateLobbyPanel.ptr)
+    tLobbyNameLabel:setAlignment(TextAlginment.Left)
+    tLobbyNameLabel:setPosStr("5%","10%")
+
+    local tLobbyNameInput = EditBox:new()
+    tLobbyNameInput:init(host,1,1,1,1,CreateLobbyPanel.ptr)
+    tLobbyNameInput:setPosStr("20%","10%")
+    tLobbyNameInput:setSizeStr("30%","8%")
+
+    local tPasswordLabel = Label:new()
+    tPasswordLabel:init(host,"Password",CreateLobbyPanel.width/2,0,CreateLobbyPanel.ptr)
+    tPasswordLabel:setAlignment(TextAlginment.Left)
+    tPasswordLabel:setPosStr("5%","20%")
+
+    local tPasswordInput = EditBox:new()
+    tPasswordInput:init(host,1,1,1,1,CreateLobbyPanel.ptr)
+    tPasswordInput:setPosStr("20%","20%")
+    tPasswordInput:setSizeStr("30%","8%")
+
+
+    local tServerListLabel = Label:new()
+    tServerListLabel:init(host,"Server List",CreateLobbyPanel.width/2,0,CreateLobbyPanel.ptr)
+    tServerListLabel:setAlignment(TextAlginment.Center)
+    tServerListLabel:setPosStr("60%","10%")
+
+
+    LobbyServerComboBox = ComboBox:new()
+    LobbyServerComboBox:init(host,400,200,200,50,CreateLobbyPanel.ptr)
+
+    LobbyServerComboBox:setPosStr("55%","20%")
+    LobbyServerComboBox:setSizeStr("35%","10%")
+
+    CreateLobbyPanel:setVisible(false)
+
+end
+
+MenuPanels["CreateLobby"] = function(host)
+    CreateLobbyPanel:showWithEffect(PanelShowType.Fade,250)
+end
+
+function CreateLobby_ClearServerList()
+    LobbyServerComboBox:clearItems()
+end
+
+
+function CreateLobby_AddServerToList(serverGUID, serverName, ping)
+
+    local serverValue =  serverName .. "  (" .. ping .. "ms)"
+    if CreateLobbyServerList[serverGUID] == nil then
+        CreateLobbyServerList[serverGUID] = LobbyServer:new({name = serverName, ping = ping, value = serverValue, guid = serverGUID})
+    else 
+        CreateLobbyServerList[serverGUID].name = serverName
+        CreateLobbyServerList[serverGUID].ping = ping
+    end
+
+    LobbyServerComboBox:addItem(serverValue)
+end
+

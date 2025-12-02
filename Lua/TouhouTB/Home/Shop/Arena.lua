@@ -10,6 +10,7 @@ require "TGUI_ScrollablePanel"
 require "TGUI_ListView"
 require "TGUI_ComboBox"
 require "homeGlobal"
+require "CreateLobbyMenu"
 
 MenuPanels = _G.MenuPanels
 
@@ -23,6 +24,7 @@ BattleServerListView = nil
 RoomListView = nil
 
 function InitArenaMenu(host)
+    InitCreateLobbyMenu(host)
     if ArenaPanel == nil then
         ArenaPanel = Panel:new()
         ArenaPanel:init(host,TGUI_ScreenWidth/2 - 300,TGUI_ScreenHeight/2 - 200,600,400)
@@ -84,23 +86,18 @@ function InitArenaMenu(host)
     createRoomLabel:setPosStr("5%","50%")
     createRoomLabel:setHoverable(0,255,0,255,255,255,255,255)
     createRoomLabel:setOnClickCallback(function()
-
+        MenuPanels["CreateLobby"](host)
     end)
 
-    local refreshRoomLabel = Label:new()
-    refreshRoomLabel:init(host,"Refresh",ArenaPanel.width/2,0,ArenaPanel.ptr)
-    refreshRoomLabel:setScale(0.9)
-    refreshRoomLabel:setAlignment(TextAlginment.Center)
-    refreshRoomLabel:setPosStr("20%","50%")
-    refreshRoomLabel:setHoverable(0,255,0,255,255,255,255,255)
-    refreshRoomLabel:setOnClickCallback(function()
-        
-    end)
+    -- local rComboBox = ComboBox:new()
+    -- rComboBox:init(host,400,200,200,50,ArenaPanel.ptr)
 
-    local rComboBox = ComboBox:new()
-    rComboBox:init(host,200,200,200,200,ArenaPanel.ptr)
+    -- rComboBox:setPosStr("70%","50%")
+    -- rComboBox:setSizeStr("30%","5%")
 
     ArenaPanel:setVisible(false)
+
+   
 end
 
 MenuPanels["Arena"] = function(host)
@@ -122,14 +119,19 @@ end
 function Arena_ResetList()
     BattleServerListView:clearItems()
     print("Arena reset called ")
+    CreateLobby_ClearServerList()
 end
 
 function Arena_UpdateServerPing(serverGUID, ping)
 
     local serverName = Arena_Ping_List[serverGUID].name
 
+    Arena_Ping_List[serverGUID].ping = ping
     BattleServerListView:addItem({serverName,ping})
+
+    CreateLobby_AddServerToList(serverGUID, serverName, ping)
 end
+
 
 function Arena_ServerList_DoubleClick()
 
