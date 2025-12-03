@@ -62,6 +62,17 @@ function ComboBox:clearItems()
     TGUI_ComboBox_ClearItems(self.ptr)
 end
 
+function ComboBox:getSelectedItem()
+    return TGUI_ComboBox_GetSelectedItem(self.ptr)
+end
+
+function ComboBox:getSelectedItemIndex()
+    return TGUI_ComboBox_GetSelectedItemIndex(self.ptr)
+end
+
+function ComboBox:setOnSelectCallback(callBack)
+    TGUI_ComboBox_OnSelectCallback(self.ptr, callBack)
+end
 
 function TGUI_ComboBox_Create(host, x, y, width, height, parent)
     parent = parent or nil
@@ -92,3 +103,16 @@ end
 function TGUI_ComboBox_ClearItems(comboBox)
     cpp_ComboBox_ClearItems(comboBox)
 end
+
+function TGUI_ComboBox_GetSelectedItem(comboBox)
+    return cpp_ComboBox_GetSelectedItem(comboBox)
+end
+
+function TGUI_ComboBox_GetSelectedItemIndex(comboBox)
+    return cpp_ComboBox_GetSelectedItemIndex(comboBox)
+end
+
+function TGUI_ComboBox_OnSelectCallback(comboBox, callBack)
+    cpp_ComboBox_RegisterOnSelectionChanged(comboBox, callBack)
+end
+
