@@ -16,8 +16,7 @@ require "Prompt"
 
 MenuPanels = _G.MenuPanels
 
-
-
+---@type Panel
 CreateLobbyPanel = nil
 
 ---@type ComboBox
@@ -28,7 +27,6 @@ CreateLobbyServerList = {
 
 }
 
-CL_SelectedServer = nil
 
 LobbyServer = {
     name = "",
@@ -36,6 +34,10 @@ LobbyServer = {
     value = "",
     guid = "",
 }
+
+---@type LobbyServer
+CL_SelectedServer = nil
+
 
 function LobbyServer:new(o)
     o = o or {}
@@ -111,7 +113,7 @@ function InitCreateLobbyMenu(host)
     tCreateLobbyButton:setPosStr("50%","80%")
     tCreateLobbyButton:setHoverable(0,255,0,255,255,255,255,255)
     tCreateLobbyButton:setOnClickCallback(function()
-        
+
         CreateLobby_SendRequest()
     end)
 
@@ -176,17 +178,23 @@ function CreateLobby_SendRequest()
             end
         end
 
-
         if CL_SelectedServer == nil then
 
             print("no server avaiable")
             Prompt_UI_Table["CreateLobby_Noti"]:setMsg("No server avaiable !")
             Prompt_UI_Table["CreateLobby_Noti"]:show(true)
             return
-        end
         print("selected server " .. CL_SelectedServer.guid .. " ping " .. CL_SelectedServer.ping)
-
+        end
         -- Prompt_UI_Table["CreateLobby_Noti"]:setMsg("No server selected !")
         -- Prompt_UI_Table["CreateLobby_Noti"]:show(true)
     end
+
+        -- Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Selected server " .. CL_SelectedServer.name .. " (" .. CL_SelectedServer.guid .. ")")
+        -- Prompt_UI_Table["CreateLobby_Noti"]:show(true)
+
+        SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobby_Create, {MainInfo.guid, MainInfo.id,CL_SelectedServer.guid}, 5, 0.5,0.25)
+
+    
 end
+

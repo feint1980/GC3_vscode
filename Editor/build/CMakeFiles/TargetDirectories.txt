@@ -1,0 +1,3 @@
+E:/template/GC_port/Editor/build/CMakeFiles/FeintEditor.dir
+E:/template/GC_port/Editor/build/CMakeFiles/edit_cache.dir
+E:/template/GC_port/Editor/build/CMakeFiles/rebuild_cache.dir

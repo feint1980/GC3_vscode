@@ -83,8 +83,15 @@ function Prompt:show(value)
     end
 end
 
-function Prompt:setMsg(msg)
+function Prompt:setMsg(msg )
+
     self.promptLabel:setText(msg)
+
+end
+
+function Prompt:showMsg(msg)
+    self:setMsg(msg)
+    self:show(true)
 end
 
 function Prompt:addButton(btnText, callback)
