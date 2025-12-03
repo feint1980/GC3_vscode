@@ -43,9 +43,9 @@
 
 ## 🛠 Tech Stack & Tools
 - **Languages**: C++, Lua, SQL
-- **Game Dev**: SDL2, OpenGL, RakNet, Protobuf
+- **Libraries/API**: SDL2, OpenGL, RakNet, Protobuf,CEGUI, TGUI
 - **Networking & Security**: **mbedTLS** (for message encryption/decryption)
-- **Tools**: CEGUI, TGUI, Visual Studio Code, MinGW-w64
+- **Tools**: Visual Studio Code, MinGW-w32
 - **Database**: SQLite3
 
 ---
@@ -119,15 +119,16 @@ For the Editor and Game that you want to see but don't have time to build :
 - [x] Shop character purchase UI
 - [x] Purchase character & save to player ownership
 - [x] Retrieve owned characters on login
-
+- [x] Team loadout screen 
+- [x] Equip/load team before match
 🟨 IN PROGRESS 	🚧 
-- [ ] Team loadout screen 🚧🚧🚧
+- [ ] Create Battle Servers 🚧🚧🚧🚧
+- [ ] Handle the Main Server with Battle Servers
 - [ ] Battle prototype (2-character dummy test) 🚧	🚧
 - [ ] Manual test harness for skills and effects 	🚧
 
 🟥 TO DO
 
-- [ ] Equip/load team before match
 - [ ] Battle matchmaking or challenge system
 - [ ] Server battle room/session manager
 - [ ] Turn bar system and turn queue logic
