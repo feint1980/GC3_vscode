@@ -33,7 +33,7 @@ Dispatch_Recievers["homeScene"] = function (controlHandlerHost,tguiHost,signal)
     -- if (signal & Signal.left) ~= 0 then
         -- print("movement detect " )
         -- ControlHandler_Info()
-        if (signal & Signal.left) ~= 0 then
+    if (signal & Signal.left) ~= 0 then
             tFocusPrev(controlHandlerHost,tguiHost)
             -- print("left !")
         elseif (signal & Signal.right) ~= 0 then
