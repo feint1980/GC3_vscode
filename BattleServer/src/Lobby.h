@@ -37,7 +37,9 @@ public:
     }
 
     std::string getInfo() const;
-    
+
+    bool isRequiredPassword() const { return !m_password.empty(); }
+
     void update(float deltaTime);
     
     uint64_t getId() { return m_id; }

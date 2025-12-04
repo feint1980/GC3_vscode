@@ -17,11 +17,5 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
 
     print("lobby name " .. lobbyName)
     print("lobby password " .. lobbyPassword)
-
-    -- print("targetGUID " .. targetGUID)
-    -- print("targetID " .. targetID)
-    -- print("serverGUID " .. serverGUID)
-    -- print("lobbyName " .. lobbyName)
-    -- print("lobbyPassword " .. lobbyPassword)
-
+    cpp_BM_CreateLobby(host,lobbyName,lobbyPassword)
 end

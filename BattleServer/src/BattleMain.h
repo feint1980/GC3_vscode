@@ -75,6 +75,8 @@ public:
 
     void sendBackPong(RakNet::Packet *p);
 
+    void createLobby(const std::string & name, const std::string & password);
+
 private:
 
     RakNet::RakPeerInterface * m_server = nullptr;

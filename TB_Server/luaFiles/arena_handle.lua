@@ -43,9 +43,8 @@ end
 MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobby_Create] = function(host, data,ip,guid)
 
     print("request from " .. guid .. " for lobby create")
-    
-    local tTargetGUID, targetID, serverGUID , combineData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
+    local tTargetGUID, targetID, serverGUID , combineData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
     if CH_FindClient(tTargetGUID) == nil then
         print("invalid user,  warning, craft packet found from ip " .. SV_GetIPString(ip))

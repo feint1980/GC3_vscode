@@ -152,6 +152,24 @@ int lua_removeCryptor(lua_State *L)
     return 0;
 }
 
+int lua_BM_CreateLobby(lua_State *L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_BM_CreateLobby) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        std::string name = lua_tostring(L, 2);
+        std::string password = lua_tostring(L, 3);
+        host->createLobby(name, password);
+    }
+    return 0;
+}
+
 int lua_handleIncomingConnection(lua_State *L)
 {
     if(lua_gettop(L) != 2)
@@ -271,6 +289,10 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
 
     lua_register(m_script, "cpp_removeCryptor", lua_removeCryptor);
 
+    // Lobbies
+
+    lua_register(m_script, "cpp_BM_CreateLobby", lua_BM_CreateLobby);
+
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/battleSideScript.lua")))
     {
@@ -346,6 +368,11 @@ void BattleMain::removeCryptor(const std::string & guid)
     {
         std::cout << "no cryptor for guid " << guid << "\n";
     }
+}
+
+void BattleMain::createLobby(const std::string & name, const std::string & password)
+{
+    m_lobbiesManager.addLobby(name, password);
 }
 
 void BattleMain::addCommonPacket(RakNet::Packet *p)
@@ -508,12 +535,12 @@ uint32_t BattleMain::sendWrapData( const RakNet::SystemAddress & target,const st
 
     if (id == ID_TH_INTERNAL)
     {
-        std::cout << "internal packet found \n";
+        // std::cout << "internal packet found \n";
         tData = m_mainServerCryptor.encrypt(payLoad);
     }
     else if (id == ID_TH_TB_BATTLE)
     {
-        std::cout << "battle packet found \n";
+        // std::cout << "battle packet found \n";
         tData = m_cryptors[guid]->encrypt(payLoad);
     }
     else 
@@ -610,20 +637,20 @@ uint32_t BattleMain::handleInternalPacket(RakNet::Packet *p)
 
     std::string payLoad ;
 
-    std::cout << "raw data" <<  encData  << "\n";
+    // std::cout << "raw data" <<  encData  << "\n";
     if (msgId == ID_TH_INTERNAL)
     {
-        std::cout << "internal packet\n";
+        // std::cout << "internal packet\n";
         payLoad = m_mainServerCryptor.decrypt(encData);
     }
     else if (msgId == ID_TH_TB_BATTLE)
     {
-        std::cout << "battle packet\n";
+        // std::cout << "battle packet\n";
         payLoad = m_cryptors[p->guid.ToString()]->decrypt(encData);
     }
 
     // std::cout << "packet has channel " << channel << " and request " << request << "\n";
-    std::cout << "payload is " << payLoad << "\n";
+    // std::cout << "payload is " << payLoad << "\n";
 
     std::string luaFunctionCall = "";
     if (msgId == ID_TH_INTERNAL)
