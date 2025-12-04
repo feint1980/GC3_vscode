@@ -44,7 +44,7 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobby_Cre
 
     print("request from " .. guid .. " for lobby create")
     
-    local tTargetGUID, targetID, serverGUID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+    local tTargetGUID, targetID, serverGUID , lobbyName , lobbyPassword = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
     if CH_FindClient(tTargetGUID) == nil then
         print("invalid user,  warning, craft packet found from ip " .. SV_GetIPString(ip))
@@ -52,5 +52,14 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobby_Cre
     end
 
     print("user " .. targetID .. " wants to create a lobby in " .. serverGUID)
+    print("lobby name " .. lobbyName)
+    print("lobby password " .. lobbyPassword)
+
+    if BSEP_List[serverGUID] == nil then
+        print("invalid server,  warning, craft packet found from ip " .. SV_GetIPString(ip))
+        return
+    end
+
+    SendReliable2BattleServer(host, BSEP_List[serverGUID].IP, guid, BattleChanel.Lobby,LobbyResponse.Lobby_Create_Request,{"hehehee"})
 
 end

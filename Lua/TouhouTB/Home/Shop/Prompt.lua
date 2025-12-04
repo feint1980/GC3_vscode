@@ -157,3 +157,4 @@ function Prompt:ShowBtn(index, value)
     end
     self.btnTable[index]:setVisible(value)
 end
+

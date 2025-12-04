@@ -25,6 +25,8 @@ local function tFocusPrev(controlHost,tguiHost)
     issueFocus(controlHost,tguiHost)
 end
 -- Main register to handle signal
+
+Dispatch_Recievers = {} -- reset recievers
 Dispatch_Recievers["homeScene"] = function (controlHandlerHost,tguiHost,signal)
     -- print("homeScene handle signal " .. signal)
     if signal < 16 then ---- contain at least left, right, up, down

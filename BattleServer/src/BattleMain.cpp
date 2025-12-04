@@ -608,6 +608,7 @@ uint32_t BattleMain::handleInternalPacket(RakNet::Packet *p)
 
     std::string payLoad ;
 
+    std::cout << "raw data" <<  encData  << "\n";
     if (msgId == ID_TH_INTERNAL)
     {
         payLoad = std::move(m_mainServerCryptor.decrypt(encData));
@@ -618,7 +619,7 @@ uint32_t BattleMain::handleInternalPacket(RakNet::Packet *p)
     }
 
     // std::cout << "packet has channel " << channel << " and request " << request << "\n";
-    // std::cout << "payload is " << payLoad << "\n";
+    std::cout << "payload is " << payLoad << "\n";
 
     std::string luaFunctionCall = "";
     if (msgId == ID_TH_INTERNAL)

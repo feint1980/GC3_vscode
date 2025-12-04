@@ -29,7 +29,7 @@ local function tFocusPrev(controlHost,tguiHost)
     issueFocus(controlHost,tguiHost)
 end
 
-
+Dispatch_Recievers = {} -- reset the recievers only 1 scene active
 Dispatch_Recievers["loginScene"] = function (controlHandlerHost,tguiHost,signal)
     -- print("login handle signal " .. signal)
     if signal < 16 then ---- contain at least left, right, up, down

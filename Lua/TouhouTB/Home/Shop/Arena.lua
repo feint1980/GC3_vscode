@@ -122,6 +122,10 @@ end
 
 function Arena_UpdateServerPing(serverGUID, ping)
 
+    if Arena_Ping_List[serverGUID] == nil then
+        return
+    end
+    
     local serverName = Arena_Ping_List[serverGUID].name
 
     Arena_Ping_List[serverGUID].ping = ping

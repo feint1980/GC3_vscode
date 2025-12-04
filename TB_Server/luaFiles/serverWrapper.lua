@@ -72,12 +72,17 @@ ArenaResponse = {
 BattleChanel = {
     PaperWork = 1,
     ClientRequest = 2,
-    Combat = 3
+    Combat = 3,
+    Lobby = 4
 }
 
 PaperWorkRequest = {
     SelfRegister = 1,
     SelfRegisterAccepted = 2,
+}
+
+LobbyResponse = {
+    Lobby_Create_Request = 1,
 }
 
 

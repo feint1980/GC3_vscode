@@ -166,7 +166,9 @@ void HomeScene::update(float deltaTime)
         m_clientScriptingManager->update(deltaTime);
     }
     m_gif.update(deltaTime);
-    m_luaEventHandler.update(deltaTime);
+    m_luaTaskManager.update(deltaTime);
+    // m_luaEventHandler.update(deltaTime);
+    
 }
 
 void HomeScene::checkInput()
@@ -273,16 +275,14 @@ void HomeScene::drawGIFScene()
 void HomeScene::initGUI()
 {
 
-    
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
-    m_luaEventHandler.init(m_script);
-
+    // m_luaEventHandler.init(m_script);
+    m_luaTaskManager.init("../../Lua/system/event/TaskManager.lua",m_script);
     m_guiScriptingManager = new TGUIScriptingManager();
 
     m_guiScriptingManager->addDrawCall("drawGIFScene", std::bind(&HomeScene::drawGIFScene, this));
-
 
     m_guiScriptingManager->init(m_window,m_script);
     m_skillHandler.init(m_script);

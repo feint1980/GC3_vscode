@@ -42,6 +42,9 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
 end
 
 
+
+
+
 ---Arena_CreateLobby_Request 
 
 ---- MARK:Home Common

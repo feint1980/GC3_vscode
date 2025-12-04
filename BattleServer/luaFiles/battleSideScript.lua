@@ -70,7 +70,7 @@ end
 -- InternalPacketHandling[MainServerChanel.PaperWork] = {}
 
 require "battlePaperWork"
-
+require "battleLobby"
 function BattleMain_HandleInternal(host, channel, request,data,ip, guid)
 
     print("BattleMain_HandleInternal called")

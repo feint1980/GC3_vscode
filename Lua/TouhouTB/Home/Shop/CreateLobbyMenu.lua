@@ -1,6 +1,6 @@
 
 
-package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;'
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;'
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -13,6 +13,8 @@ require "TGUI_ListView"
 require "TGUI_ComboBox"
 require "homeGlobal"
 require "Prompt"
+-- require "TaskManager"
+
 
 MenuPanels = _G.MenuPanels
 
@@ -26,6 +28,12 @@ LobbyServerComboBox = nil
 CreateLobbyServerList = {
 
 }
+
+---@type EditBox
+LobbyNameInput = nil
+
+---@type EditBox
+LobbyPWInput = nil
 
 
 LobbyServer = {
@@ -69,20 +77,20 @@ function InitCreateLobbyMenu(host)
     tLobbyNameLabel:setAlignment(TextAlginment.Left)
     tLobbyNameLabel:setPosStr("5%","10%")
 
-    local tLobbyNameInput = EditBox:new()
-    tLobbyNameInput:init(host,1,1,1,1,CreateLobbyPanel.ptr)
-    tLobbyNameInput:setPosStr("20%","10%")
-    tLobbyNameInput:setSizeStr("30%","8%")
+    LobbyNameInput = EditBox:new()
+    LobbyNameInput:init(host,1,1,1,1,CreateLobbyPanel.ptr)
+    LobbyNameInput:setPosStr("20%","10%")
+    LobbyNameInput:setSizeStr("30%","8%")
 
-    local tPasswordLabel = Label:new()
-    tPasswordLabel:init(host,"Password",CreateLobbyPanel.width/2,0,CreateLobbyPanel.ptr)
-    tPasswordLabel:setAlignment(TextAlginment.Left)
-    tPasswordLabel:setPosStr("5%","20%")
+    local tLobbyPWLabel = Label:new()
+    tLobbyPWLabel:init(host,"Password",CreateLobbyPanel.width/2,0,CreateLobbyPanel.ptr)
+    tLobbyPWLabel:setAlignment(TextAlginment.Left)
+    tLobbyPWLabel:setPosStr("5%","20%")
 
-    local tPasswordInput = EditBox:new()
-    tPasswordInput:init(host,1,1,1,1,CreateLobbyPanel.ptr)
-    tPasswordInput:setPosStr("20%","20%")
-    tPasswordInput:setSizeStr("30%","8%")
+    LobbyPWInput = EditBox:new()
+    LobbyPWInput:init(host,1,1,1,1,CreateLobbyPanel.ptr)
+    LobbyPWInput:setPosStr("20%","20%")
+    LobbyPWInput:setSizeStr("30%","8%")
 
 
     local tServerListLabel = Label:new()
@@ -113,7 +121,7 @@ function InitCreateLobbyMenu(host)
     tCreateLobbyButton:setPosStr("50%","80%")
     tCreateLobbyButton:setHoverable(0,255,0,255,255,255,255,255)
     tCreateLobbyButton:setOnClickCallback(function()
-
+        -- `print("create lobby called")
         CreateLobby_SendRequest()
     end)
 
@@ -121,6 +129,9 @@ function InitCreateLobbyMenu(host)
 
     Prompt_UI_Table["CreateLobby_Noti"] = Prompt:new()
     Prompt_UI_Table["CreateLobby_Noti"]:init(host,"Notification",true)
+
+    Prompt_UI_Table["CreateLobby_Status"] = Prompt:new()
+    Prompt_UI_Table["CreateLobby_Status"]:init(host,"Status",true)
 
 
     CreateLobbyPanel:setVisible(false)
@@ -156,12 +167,9 @@ function CreateLobby_SetCurrentSelectedServer(serverValue)
     for key, value in pairs(CreateLobbyServerList) do
         if value.value == serverValue then
             CL_SelectedServer = value
-            -- print("server " .. CL_SelectedServer.guid .. " selected")
-            -- CreateLobby_CurrentSelectedServer = value
             break
         end
     end
-    -- return CL_SelectedServer
 end
 
 function CreateLobby_SendRequest()
@@ -193,8 +201,21 @@ function CreateLobby_SendRequest()
         -- Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Selected server " .. CL_SelectedServer.name .. " (" .. CL_SelectedServer.guid .. ")")
         -- Prompt_UI_Table["CreateLobby_Noti"]:show(true)
 
-        SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobby_Create, {MainInfo.guid, MainInfo.id,CL_SelectedServer.guid}, 5, 0.5,0.25)
+        SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobby_Create, {MainInfo.guid, MainInfo.id,CL_SelectedServer.guid, LobbyNameInput:getText(), LobbyPWInput:getText() }, 5, 0.5,0.25)
 
-    
+        Prompt_UI_Table["CreateLobby_Status"]:showMsg("Requesting ...")
+
+        TM_addTask( 
+        function()
+
+            Prompt_UI_Table["CreateLobby_Status"]:show(false)
+            Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Request timeout !")
+        end,
+        500
+        )
+
 end
+
+
+
 

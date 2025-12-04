@@ -8,14 +8,15 @@ BattlePacketType = {
 MainServerChanel = {
     PaperWork = 1,
     ClientRequest = 2,
-    Combat = 3
+    Combat = 3,
+    Lobby = 4
 }
 
 PaperWorkRequest = {
     SelfRegister = 1,
     SelfRegisterAccepted = 2,
-}
 
+}
 
 ClientChannel = {
     InfoChannel = 1
@@ -25,7 +26,9 @@ BattleInfoResponse = {
     BattleInfo_AddCryptor_Request = 1
 }
 
-
+LobbyResponse = {
+    Lobby_Create_Request = 1,
+}
 
 ---@description handle incoming connection
 ---@param host pointer instance of BattleMain

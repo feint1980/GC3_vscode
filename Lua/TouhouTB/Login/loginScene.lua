@@ -8,7 +8,7 @@ require "TGUI_Editbox"
 require "clientSide"
 require "loginStripOrder"
 require "clientWrapper"
-require "LuaEventHandler"
+
 
 ---@class TGUIScriptingPtr
 ---@class ClientScriptingPtr
@@ -444,49 +444,6 @@ function Login_HandleTask_OtherID(host, packet)
     if Login_HandleStep2[otherID] ~= nil then
         Login_HandleStep2[otherID](host,packet)
     end
-end
-
-
----@param waitTime number wait time before next retry
----@param retries number number of retries
-FunctionList["login_retries"] = function(waitTime, retries)
-    if retries == 0 then
-        LoginAttem = false
-        Login_showNotification("Failed to login !!!","OK")
-        return
-    end
-    Tscheduler_addTask(waitTime, function()
-        local tSendResult = 0
-        tSendResult = Client_SendWrapData(Login_ClientScriptingPtr,PacketChannel.AccountChannel,AccountResponse.Alogin, {Login_IDEditBox:getText(),Login_PWEditBox:getText()} )
-        if LoginAttem == true then
-            print("retries continue ...")
-            print(tSendResult)
-            if tSendResult == 0 then
-                FunctionList["login_retries"](25,retries - 1)
-            end
-        end
-    end)
-end
-
----@param waitTime number wait time before next retry
----@param retries number number of retries
-FunctionList["register_retries"] = function(id,pw,key,waitTime, retries)
-    if retries == 0 then
-        LoginAttem = false
-        Login_showNotification("Failed to login !!!","OK")
-        return
-    end
-    Tscheduler_addTask(waitTime, function()
-        local tSendResult = 0
-        tSendResult = Client_SendWrapData(Login_ClientScriptingPtr,PacketChannel.AccountChannel,AccountResponse.Aregister, {id,pw,key} )
-        if LoginAttem == true then
-            print("retries continue ...")
-            print(tSendResult)
-            if tSendResult == 0 then
-                FunctionList["register_retries"](id,pw,key,25,retries - 1)
-            end
-        end
-    end)
 end
 
 function Login_MainCall(host)

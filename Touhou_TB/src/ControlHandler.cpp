@@ -65,12 +65,12 @@ int lua_ControlHandler_Cursor_SendLeftClickEvent(lua_State * script)
             down.button.clicks = 1;
             down.button.x = x;
             down.button.y = y;
-            controlHandler->sendEvent(down);
+            // controlHandler->sendEvent(down);
             SDL_PushEvent(&down);
             // std::cout << "sent a left click  " << SDL_PushEvent(&down) << "\n";
             
             // tgui::Gui::handleEvent(down);
-            SDL_Delay(100);
+            // SDL_Delay(100);
 
             SDL_Event up;
             up.type = SDL_MOUSEBUTTONUP;
@@ -79,7 +79,7 @@ int lua_ControlHandler_Cursor_SendLeftClickEvent(lua_State * script)
             up.button.clicks = 1;
             up.button.x = x;
             up.button.y = y;
-            controlHandler->sendEvent(up);
+            // controlHandler->sendEvent(up);
             SDL_PushEvent(&up);
             // std::cout << "sent a left click up " << SDL_PushEvent(&up) << "\n";
             // std::cout << "sent a left click \n";
