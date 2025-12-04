@@ -35,6 +35,7 @@ LobbyNameInput = nil
 ---@type EditBox
 LobbyPWInput = nil
 
+LobbyState = 0
 
 LobbyServer = {
     name = "",
@@ -198,18 +199,28 @@ function CreateLobby_SendRequest()
         -- Prompt_UI_Table["CreateLobby_Noti"]:show(true)
     end
 
+
+        if LobbyNameInput:getText() == "" then
+
+            Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Lobby name not set !")
+            return 
+        end
         -- Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Selected server " .. CL_SelectedServer.name .. " (" .. CL_SelectedServer.guid .. ")")
         -- Prompt_UI_Table["CreateLobby_Noti"]:show(true)
 
-        SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobby_Create, {MainInfo.guid, MainInfo.id,CL_SelectedServer.guid, LobbyNameInput:getText(), LobbyPWInput:getText() }, 5, 0.5,0.25)
+        local tCombine = "{" .. LobbyNameInput:getText() .. "$" .. LobbyPWInput:getText() .. "}"
+
+        SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobby_Create, {MainInfo.guid, MainInfo.id,CL_SelectedServer.guid, tCombine }, 5, 0.5,0.25)
 
         Prompt_UI_Table["CreateLobby_Status"]:showMsg("Requesting ...")
 
-        TM_addTask( 
+        LobbyState = 1
+        TM_addTask(
         function()
-
-            Prompt_UI_Table["CreateLobby_Status"]:show(false)
-            Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Request timeout !")
+            if LobbyState == 1 then
+                Prompt_UI_Table["CreateLobby_Status"]:show(false)
+                Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Request timeout !")
+            end
         end,
         500
         )

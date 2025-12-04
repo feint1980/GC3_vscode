@@ -9,8 +9,14 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
 
     print("create lobby detected")
 
-    print(data)
-    -- local targetGUID, targetID, serverGUID, lobbyName, lobbyPassword = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    -- print(data)
+    local tTargetGUID, targetID, serverGUID , combineData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+
+    
+    local lobbyName, lobbyPassword = string.match(combineData, "^{(.-)%$(.-)}$")
+
+    print("lobby name " .. lobbyName)
+    print("lobby password " .. lobbyPassword)
 
     -- print("targetGUID " .. targetGUID)
     -- print("targetID " .. targetID)

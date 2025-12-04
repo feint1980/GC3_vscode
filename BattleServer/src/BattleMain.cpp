@@ -467,7 +467,7 @@ void BattleMain::handleConnections(RakNet::Packet *p)
         // connected to main server 
         std::cout << "connected to main server\n";
         // do request to register here
-        std::cout << "init cryptor with main server";
+        std::cout << "init cryptor with main server\n";
         m_mainServerCryptor.init("BNML is real", m_server->GetMyGUID().ToString()); 
         std::cout << "cryptor created\n";
 
@@ -508,10 +508,12 @@ uint32_t BattleMain::sendWrapData( const RakNet::SystemAddress & target,const st
 
     if (id == ID_TH_INTERNAL)
     {
+        std::cout << "internal packet found \n";
         tData = m_mainServerCryptor.encrypt(payLoad);
     }
     else if (id == ID_TH_TB_BATTLE)
     {
+        std::cout << "battle packet found \n";
         tData = m_cryptors[guid]->encrypt(payLoad);
     }
     else 
@@ -611,11 +613,13 @@ uint32_t BattleMain::handleInternalPacket(RakNet::Packet *p)
     std::cout << "raw data" <<  encData  << "\n";
     if (msgId == ID_TH_INTERNAL)
     {
-        payLoad = std::move(m_mainServerCryptor.decrypt(encData));
+        std::cout << "internal packet\n";
+        payLoad = m_mainServerCryptor.decrypt(encData);
     }
     else if (msgId == ID_TH_TB_BATTLE)
     {
-        payLoad = std::move(m_cryptors[p->guid.ToString()]->decrypt(encData));
+        std::cout << "battle packet\n";
+        payLoad = m_cryptors[p->guid.ToString()]->decrypt(encData);
     }
 
     // std::cout << "packet has channel " << channel << " and request " << request << "\n";

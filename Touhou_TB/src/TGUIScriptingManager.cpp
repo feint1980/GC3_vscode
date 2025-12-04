@@ -430,6 +430,8 @@ int lua_EditBox_SetPos(lua_State * L)
         tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
         float pX = lua_tonumber(L, 2);
         float pY = lua_tonumber(L, 3);
+
+        // editBox->get()->setInputValidator()
         editBox->get()->setPosition({pX, pY});
     }
     return 0;

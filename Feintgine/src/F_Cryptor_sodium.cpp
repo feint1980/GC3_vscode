@@ -56,7 +56,7 @@ namespace Feintgine
 
         std::string decrypted;
         decrypted.resize(ciphertext_len - crypto_secretbox_MACBYTES);
-
+        std::cout << "decrypting size " << decrypted.size() << "\n";
         if (crypto_secretbox_open_easy(
                 reinterpret_cast<unsigned char*>(&decrypted[0]),
                 ciphertext, ciphertext_len, nonce, m_key) != 0)
