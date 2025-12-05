@@ -75,7 +75,7 @@ public:
 
     void sendBackPong(RakNet::Packet *p);
 
-    void createLobby(const std::string & name, const std::string & password);
+    uint64_t createLobby(const std::string & name, const std::string & password);
 
 private:
 

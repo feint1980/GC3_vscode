@@ -540,6 +540,23 @@ int lua_EditBox_GetText(lua_State * L)
     return 0;
 }
 
+int lua_EditBox_SetInputValidator(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_EditBox_SetInputValidator) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
+        std::string text = lua_tostring(L, 2);
+        editBox->get()->setInputValidator(text.c_str());
+        return 0;
+    }
+    return -1;
+}
+
 int lua_EditBox_Create(lua_State * L)
 {
     if(lua_gettop(L) < 5 || lua_gettop(L) > 6)
@@ -3175,6 +3192,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_EditBox_SetPWChar", lua_EditBox_SetPWChar);
     lua_register(m_script, "cpp_EditBox_SetText", lua_EditBox_SetText);
     lua_register(m_script, "cpp_EditBox_GetText", lua_EditBox_GetText);
+    lua_register(m_script, "cpp_EditBox_SetInputValidator", lua_EditBox_SetInputValidator);
 
     // TGUI Panel section
     lua_register(m_script, "cpp_Panel_Create", lua_Panel_Create);

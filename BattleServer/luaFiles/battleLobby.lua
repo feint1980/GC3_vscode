@@ -12,10 +12,19 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
     -- print(data)
     local tTargetGUID, targetID, serverGUID , combineData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
-    
     local lobbyName, lobbyPassword = string.match(combineData, "^{(.-)%$(.-)}$")
+
+    print("tTargetGUID " .. tTargetGUID)
+    print("targetID " .. targetID)
+    print("serverGUID " .. serverGUID)
+    
 
     print("lobby name " .. lobbyName)
     print("lobby password " .. lobbyPassword)
-    cpp_BM_CreateLobby(host,lobbyName,lobbyPassword)
+    local lobbyID =  BM_CreateLobby(host,lobbyName,lobbyPassword)
+
+    BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID})
+
+
+
 end

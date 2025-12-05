@@ -21,6 +21,8 @@ DataBaseHandler::~DataBaseHandler()
 void DataBaseHandler::loadDataBase(const std::string & databasePath)
 {
 	int rc = sqlite3_open(databasePath.c_str(), & m_db);
+	// WAL mode
+	sqlite3_exec(m_db, "PRAGMA journal_mode = WAL;", NULL, NULL, NULL);
 	if(rc)
 	{
 		std::cout << "|            Can't open database          |\n";

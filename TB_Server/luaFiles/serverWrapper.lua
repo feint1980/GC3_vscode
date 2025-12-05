@@ -83,6 +83,7 @@ PaperWorkRequest = {
 
 LobbyResponse = {
     Lobby_Create_Request = 1,
+    Lobby_Create_Response = 2
 }
 
 

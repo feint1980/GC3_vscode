@@ -4,6 +4,8 @@ require "serverWrapper"
 require "SV_global"
 require "BSEP"
 
+
+--- MARK: PaperWork 
 BattleServerHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegister] = function(host, data,ip,guid)
 
     print("self register detected")
@@ -25,3 +27,19 @@ BattleServerHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegister] = fu
     end
 end
 
+
+---MARK: Lobbies
+BattleServerHandling[BattleChanel.Lobby][LobbyResponse.Lobby_Create_Response] = function(host, data,ip,guid)
+
+    print("lobby create response detected")
+    print("From server IP:" .. SV_GetIPString(ip))
+    print("GUID:" .. guid)
+    -- print("Data:" .. data)
+    local tTargetGUID, targetID, serverGUID , lobbyID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+
+    print("tTargetGUID " .. tTargetGUID)
+    print("targetID " .. targetID)
+    print("serverGUID " .. serverGUID)
+    print("lobbyID " .. lobbyID)
+
+end

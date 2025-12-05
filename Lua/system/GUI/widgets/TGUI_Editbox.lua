@@ -98,6 +98,9 @@ function EditBox:getText()
     return TGUI_EditBox_GetText(self.ptr)
 end
 
+function EditBox:setInputValidator(regexValidator)
+    TGUI_EditBox_SetInputValidator(self.ptr, regexValidator)
+end
 
 --- MARK: Wrapper
 
@@ -176,4 +179,8 @@ end
 ---@return string 
 function TGUI_EditBox_GetText(editBox)
     return cpp_EditBox_GetText(editBox)
+end
+
+function TGUI_EditBox_SetInputValidator(editBox, validator)
+    cpp_EditBox_SetInputValidator(editBox, validator)
 end

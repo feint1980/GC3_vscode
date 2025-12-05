@@ -219,8 +219,10 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     Login_IDEditBox = EditBox:new()
     Login_IDEditBox:init(Login_GUIScriptingPtr,0,0,200,40,Login_LoginPanel.ptr)
     Login_IDEditBox:setPosStr("30%","30%")
-    Login_IDEditBox:setSizeStr("60%","10%")
+    Login_IDEditBox:setSizeStr("60%","13%")
+    Login_IDEditBox:setInputValidator("^[^\\s$\"'\\\\]{0,24}$")
     Login_IDEditBox:setText("huyen12")
+        
 
     Login_PWLabel = Label:new()
     Login_PWLabel:init(Login_GUIScriptingPtr,"Password",0,0,Login_LoginPanel.ptr)
@@ -229,8 +231,10 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     Login_PWEditBox = EditBox:new()
     Login_PWEditBox:init(Login_GUIScriptingPtr,0,0,200,40,Login_LoginPanel.ptr)
     Login_PWEditBox:setPWCharacter("*")
-    Login_PWEditBox:setPosStr("30%","50%")
-    Login_PWEditBox:setSizeStr("60%","10%")
+    Login_PWEditBox:setPosStr("30%","53%")
+    Login_PWEditBox:setInputValidator("^[A-Za-z0-9!@#$%^&*()_+\\-=?]{0,32}$")
+
+    Login_PWEditBox:setSizeStr("60%","13%")
     Login_PWEditBox:setText("12345678") -- fast login
 
     Login_LoginBtn = Label:new()
@@ -288,6 +292,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
 
     Login_RegisterIDEditBox = EditBox:new()
     Login_RegisterIDEditBox:init(Login_GUIScriptingPtr,0,0,200,40,Login_RegisterPanel.ptr)
+    Login_RegisterIDEditBox:setInputValidator("^[^\\s$\"'\\\\]{0,24}$")
     Login_RegisterIDEditBox:setPosStr("30%","20%")
     Login_RegisterIDEditBox:setSizeStr("60%","10%")
 
@@ -297,6 +302,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
 
     Login_RegisterPWEditBox = EditBox:new()
     Login_RegisterPWEditBox:init(Login_GUIScriptingPtr,0,0,200,40,Login_RegisterPanel.ptr)
+    Login_RegisterPWEditBox:setInputValidator("^[A-Za-z0-9!@#$%^&*()_+\\-=?]{0,32}$")
     Login_RegisterPWEditBox:setPWCharacter("*")
     Login_RegisterPWEditBox:setPosStr("30%","35%")
     Login_RegisterPWEditBox:setSizeStr("60%","10%")

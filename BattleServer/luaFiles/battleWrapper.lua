@@ -28,6 +28,7 @@ BattleInfoResponse = {
 
 LobbyResponse = {
     Lobby_Create_Request = 1,
+    Lobby_Create_Response = 2
 }
 
 ---@description handle incoming connection
@@ -94,5 +95,12 @@ function BM_removeCryptor(host,key)
     cpp_removeCryptor(host,key)
 end
 
-
+---@Description: wrapper of cpp_BM_CreateLobby
+---@param host pointer instance of BattleMain
+---@param lobbyName string
+---@param lobbyPassword string
+---@return string 
+function BM_CreateLobby(host, lobbyName, lobbyPassword)
+    return cpp_BM_CreateLobby(host,lobbyName,lobbyPassword)
+end
 

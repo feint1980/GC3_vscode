@@ -165,7 +165,10 @@ int lua_BM_CreateLobby(lua_State *L)
         BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
         std::string name = lua_tostring(L, 2);
         std::string password = lua_tostring(L, 3);
-        host->createLobby(name, password);
+        uint64_t result = host->createLobby(name, password);
+        std::string resultString = std::to_string(result);
+        lua_pushstring(L, resultString.c_str());
+        return 1;
     }
     return 0;
 }
@@ -370,9 +373,19 @@ void BattleMain::removeCryptor(const std::string & guid)
     }
 }
 
-void BattleMain::createLobby(const std::string & name, const std::string & password)
+uint64_t BattleMain::createLobby(const std::string & name, const std::string & password)
 {
-    m_lobbiesManager.addLobby(name, password);
+
+    if(m_lobbiesManager.lobbiesAvailable())
+    {
+        std::cout << "\n";
+        return 0;
+    }
+
+    uint64_t id = m_lobbiesManager.addLobby(name, password);
+
+    return id;
+
 }
 
 void BattleMain::addCommonPacket(RakNet::Packet *p)

@@ -31,13 +31,15 @@ public:
 
     }
 
-    void addLobby(const std::string & name, const std::string & password)
+    uint64_t addLobby(const std::string & name, const std::string & password)
     {
 
         uint64_t id = generateRoomId();
         std::cout << "generated id " << id << "\n";
         m_lobbies.emplace_back(std::make_unique<Lobby>(id, name, password)); // Lobby(id, name, password));
         m_lobbiesMap[id] = m_lobbies.size() - 1;
+
+        return id;
     }
 
     void removeLobby(uint64_t id)
@@ -61,13 +63,15 @@ public:
 
     void createDummyLobbies();
 
+    bool lobbiesAvailable() { return m_lobbies.size() >= m_maxLobbies; }
+
 private:
 
     uint64_t generateRoomId() 
     {
-    static thread_local std::mt19937_64 rng(std::random_device{}());
-    std::uniform_int_distribution<uint64_t> dist;
-    return dist(rng);
+        static thread_local std::mt19937_64 rng(std::random_device{}());
+        std::uniform_int_distribution<uint64_t> dist;
+        return dist(rng);
     }
 
     ThreadPool m_threadPool;

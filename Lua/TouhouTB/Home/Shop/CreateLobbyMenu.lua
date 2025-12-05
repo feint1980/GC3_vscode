@@ -80,8 +80,10 @@ function InitCreateLobbyMenu(host)
 
     LobbyNameInput = EditBox:new()
     LobbyNameInput:init(host,1,1,1,1,CreateLobbyPanel.ptr)
+    LobbyNameInput:setInputValidator("^[^$]*$")
     LobbyNameInput:setPosStr("20%","10%")
     LobbyNameInput:setSizeStr("30%","8%")
+
 
     local tLobbyPWLabel = Label:new()
     tLobbyPWLabel:init(host,"Password",CreateLobbyPanel.width/2,0,CreateLobbyPanel.ptr)
@@ -90,6 +92,7 @@ function InitCreateLobbyMenu(host)
 
     LobbyPWInput = EditBox:new()
     LobbyPWInput:init(host,1,1,1,1,CreateLobbyPanel.ptr)
+    LobbyPWInput:setPWCharacter("*")
     LobbyPWInput:setPosStr("20%","20%")
     LobbyPWInput:setSizeStr("30%","8%")
 
@@ -98,7 +101,6 @@ function InitCreateLobbyMenu(host)
     tServerListLabel:init(host,"Server List",CreateLobbyPanel.width/2,0,CreateLobbyPanel.ptr)
     tServerListLabel:setAlignment(TextAlginment.Center)
     tServerListLabel:setPosStr("60%","10%")
-
 
     LobbyServerComboBox = ComboBox:new()
     LobbyServerComboBox:init(host,400,200,200,50,CreateLobbyPanel.ptr)
@@ -114,7 +116,6 @@ function InitCreateLobbyMenu(host)
             print("selected server " .. CL_SelectedServer.guid)
         end
     end)
-
 
     local tCreateLobbyButton = Label:new()
     tCreateLobbyButton:init(host,"Create Lobby",CreateLobbyPanel.width/2,0,CreateLobbyPanel.ptr)
