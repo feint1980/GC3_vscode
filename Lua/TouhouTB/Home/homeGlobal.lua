@@ -53,6 +53,7 @@ ArenaServer = {
     name = "",
     port = 0,
     ping = 0,
+    IP = nil,
 }
 
 function ArenaServer:new(o)
@@ -62,12 +63,13 @@ function ArenaServer:new(o)
     return o
 end
 
-function ArenaServer:init(tClientHost,tGuid, tName, tPort, tPing)
+function ArenaServer:init(tClientHost,tGuid, tName, tPort, tPing, tIP)
     self.clientHost = tClientHost
     self.guid = tGuid
     self.name = tName
     self.port = tPort
     self.ping = tPing
+    self.IP = tIP
 end
 
 function ArenaServer:setPing(ping)

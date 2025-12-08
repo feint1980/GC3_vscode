@@ -177,7 +177,6 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
         MenuPanels["Nexus"](TGUIScriptingPtr)
         end)
 
-        
     --- Formation Init
     Main_FormationButton = Label:new()
     Main_FormationButton:init(Home_GUIScriptingPtr,"Formation",0,0)
@@ -191,13 +190,13 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
 
     --- Arena Init
     InitArenaMenu(TGUIScriptingPtr)
-    
+
     Main_ArenaButton = Label:new()
     Main_ArenaButton:init(Home_GUIScriptingPtr,"Arena",0,0)
     Main_ArenaButton:setPosStr("85%","80%")
     Main_ArenaButton:setAlignment(TextAlginment.Center)
     Main_ArenaButton:setHoverable(0,255,0,255,255,255,255,255)
-  
+
     Main_ArenaButton:setOnClickCallback(function()
         MenuPanels["Arena"](TGUIScriptingPtr)
         end)
@@ -486,4 +485,5 @@ require "arena_client_handler"
 
 
 
-
+--- internal 
+-- require "clientInternalMsgHandler"

@@ -64,7 +64,7 @@ ArenaResponse = {
     Arena_Request_GetServerList = 1,
     Arena_RequestLobbyList = 2,
     Arena_RequestLobbyResponse = 3,
-    Arena_RequestLobby_Create = 4
+    Arena_RequestLobby_Create = 4,
     -- Arena_Connect_ConnectToServer = 2,
 }
 
@@ -77,9 +77,8 @@ BattlePacketChannel = {
 BattleInfoResponse = {
     BattleInfo_AddCryptor_Request = 1,
     BattleInfo_AddCryptor_Response = 2,
-    
-}
 
+}
 
 --- MARK: Functions
 
@@ -155,6 +154,10 @@ end
 function ClientConnectToBattleServer(host, guid)
     print("ClientConnectToBattleServer called guid " .. guid)
     return cppConnectToBattleServer(host, guid)
+end
+
+function ClientConnect2SV(host,ip,port)
+    return cpp_connect2SV(host,ip,port)
 end
 
 --- deep copy table

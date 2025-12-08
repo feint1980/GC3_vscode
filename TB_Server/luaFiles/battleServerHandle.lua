@@ -42,4 +42,12 @@ BattleServerHandling[BattleChanel.Lobby][LobbyResponse.Lobby_Create_Response] = 
     print("serverGUID " .. serverGUID)
     print("lobbyID " .. lobbyID)
 
+    local targetClient = CH_FindClient(tTargetGUID)
+    if targetClient == nil then
+        print("invalid user,  warning, craft packet found from ip " .. SV_GetIPString(ip))
+        return
+    end
+
+    SendReliable(host,targetClient.IP, tTargetGUID,  PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobbyResponse, {tTargetGUID,targetID,serverGUID,lobbyID})
+
 end

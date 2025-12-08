@@ -3,6 +3,8 @@ package.path = package.path .. ';../../Lua/TouhouTB/skills/?.lua;'
 require "homeGlobal"
 
 
+Target_Lobby_ID = ""
+
 ---MARK: Main server
 
 
@@ -30,19 +32,35 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
         print("server ping " .. v.ping)
         ClientPingToServer(host, v.IP, v.port)
         Arena_Ping_List[k] = ArenaServer:new()
-        Arena_Ping_List[k]:init(host,k,v.name,v.port,0)
+        Arena_Ping_List[k]:init(host,k,v.name,v.port,0,v.IP)
 
     end
 
 end
 
-ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobby_Create] = function(host,data, guid)
-    print("request to create lobby get")
+ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyResponse] = function(host,data, guid)
+    print("lobby response get !!!")
+
+    -- print("data " .. data)
+    local tTargetGUID, targetID, serverGUID , lobbyID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+
+    print("tTargetGUID " .. tTargetGUID)
+    print("targetID " .. targetID)
+    print("serverGUID " .. serverGUID)
+    print("lobbyID " .. lobbyID)
+
+
+    local targetBattleServer = Arena_Ping_List[serverGUID] 
+    if targetBattleServer == nil then
+        print("Ke3 F3i117 exception (PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyResponse) invalid server GUID")
+        return
+    end
+
+    print(targetBattleServer.IP .. "|" .. targetBattleServer.port)
+    Target_Lobby_ID = lobbyID
+    ClientConnect2SV(host,targetBattleServer.IP,targetBattleServer.port)
 
 end
-
-
-
 
 
 ---Arena_CreateLobby_Request 
@@ -61,14 +79,54 @@ end
 --- Connected to battle server
 HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet,RakNetPacket)
 
-    print("accepted by battle server ")
-    local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
-    print("guid : " .. tGuid)
-    local tIP = Client_GetIP_FromPacket(RakNetPacket)
-    print("IP " .. tIP)
-    cppSelecBattleServer(host,tGuid)
-    -- Client_AddCryptor(host,tGuid)
+    local currentServerGUID = cppGetCurrentBattleServer(host)
 
+    if currentServerGUID == "" then 
+        print("no current server selected(this is OK) ")
+
+
+        print("accepted by battle server ")
+        local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
+        print("guid : " .. tGuid)
+        cppSelecBattleServer(host,tGuid)
+        local tIP = Client_GetIP_FromPacket(RakNetPacket)
+        print("IP " .. tIP)
+        currentServerGUID = cppGetCurrentBattleServer(host)
+        if currentServerGUID ~= tGuid then
+            print(currentServerGUID .. "/" .. tGuid)
+            print("multiple battle server selected, aborting ...")
+            return
+            -- cppSelecBattleServer(host,tGuid)
+        -- elseif currentServerGUID == tGuid then 
+        --     -- cppSelecBattleServer(host,tGuid) -- register to C++ side
+        --     print("reconnect or reenter the server")
+        --     -- cppSelecBattleServer(host,tGuid) -- register to C++ side
+        else 
+            if Target_Lobby_ID ~= "" then
+                print("got lobby " .. Target_Lobby_ID)
+
+                -- send request to join lobby to server
+            end
+        end
+
+    else
+
+            cppSelecBattleServer(host,tGuid) -- register to C++ side
+            print("battle server registered to C++ side")
+            if Target_Lobby_ID ~= "" then
+                print("got lobby " .. Target_Lobby_ID)
+            end
+
+    end
+
+end
+
+HomeMain_HandleTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet,RakNetPacket)
+    local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
+
+    print("ID_DISCONNECTION_NOTIFICATION from " .. tGuid)
+    cppSelecBattleServer(host,"")
+    
 end
 
 --- MARK:Battle Server 

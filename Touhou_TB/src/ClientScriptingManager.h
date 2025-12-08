@@ -75,6 +75,8 @@ public:
 
     void connect2BattleServer(const std::string & guid);
 
+    void connect2BattleServer(const std::string & ipAddr, unsigned int port);
+
     void update(float deltaTime);
 
     void updateScript(float delta);
@@ -113,6 +115,12 @@ public:
 
     void selectBattleServer(const std::string & guid);
 
+    void handleInternalPacket(float deltaTime);
+
+    void processInternalPacket(RakNet::Packet *p);
+
+    std::string getCurrentBattleServerGUID()const{ return m_currentBattleServerGUID; }
+
     RakNet::SystemAddress getServerIPAddr() { return m_serverIPAddr; }
 
     private:
@@ -143,7 +151,7 @@ public:
 
     RakNet::SystemAddress * m_currentBattleServerIP = nullptr;
 
-    std::string m_currentBattleServerGUID;
+    std::string m_currentBattleServerGUID = "";
 
     RakNet::SystemAddress m_serverIPAddr;
 

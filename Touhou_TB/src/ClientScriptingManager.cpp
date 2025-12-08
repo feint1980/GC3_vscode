@@ -204,6 +204,25 @@ int lua_ConnectToBattleServer(lua_State * L)
     return 0;
 }
 
+int lua_connect2SV(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_connect2SV) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::string ipAddr = lua_tostring(L, 2);
+        uint32_t port = lua_tonumber(L, 3);
+        host->connect2BattleServer(ipAddr, port);
+        return 0;
+    }
+    return 0;
+}
+
 int lua_SelecBattleServer(lua_State * L)
 {
     if(lua_gettop(L) != 2)
@@ -218,6 +237,24 @@ int lua_SelecBattleServer(lua_State * L)
         std::string guid = lua_tostring(L, 2);
         host->selectBattleServer(guid);
         return 0;
+    }
+    return 0;
+}
+
+int lua_GetCurrentBattleServer(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_GetCurrentBattleServer) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::string guid = host->getCurrentBattleServerGUID();
+        lua_pushstring(L, guid.c_str());
+        return 1;
     }
     return 0;
 }
@@ -578,7 +615,11 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
 
     lua_register(m_script, "cppCollectPong", lua_CollectPong);
     lua_register(m_script, "cppConnectToBattleServer", lua_ConnectToBattleServer);
+
     lua_register(m_script, "cppSelecBattleServer", lua_SelecBattleServer);
+    lua_register(m_script, "cppGetCurrentBattleServer", lua_GetCurrentBattleServer);
+
+    lua_register(m_script, "cpp_connect2SV", lua_connect2SV);
 
     lua_register(m_script, "cpp_Packet_getIP" , lua_Packet_getAddress);
     lua_register(m_script, "cpp_Packet_getGUID" , lua_Packet_getGUID);
@@ -977,6 +1018,8 @@ void ClientScriptingManager::update(float deltaTime)
         //     m_client->DeallocatePacket(p);
 
         // }
+        
+
         updateScript(deltaTime);
             // }
         
@@ -988,9 +1031,42 @@ void ClientScriptingManager::update(float deltaTime)
         // }
        // 
     }
-    //handleData();
+    handleData();
     // m_client->DeallocatePacket(m_currentPacket);
     //handleData();
+}
+
+void ClientScriptingManager::processInternalPacket(RakNet::Packet *p)
+{
+    lua_getglobal(m_script, "HandleWrapMessage");
+    if (lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this); // host
+        unsigned char packetIdentifier = GetPacketIdentifier(p,0);
+        // lua_pushlightuserdata(m_script, &p->systemAddress);
+        lua_pushnumber(m_script, packetIdentifier);
+        lua_pushstring(m_script, p->guid.ToString());
+        std::string data = std::string(reinterpret_cast<const char*>(p->data), p->length);
+        lua_pushstring(m_script, data.c_str());
+        int arguments = 4;
+        int returnCount = 1;
+        if (!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, arguments, returnCount, 0)))
+        {
+            std::cout << "call HandleWrapMessage failed \n";
+        }
+    }
+}
+
+void ClientScriptingManager::handleInternalPacket(float deltaTime)
+{
+    while(!m_storedPacket.empty())
+    {
+        RakNet::Packet *p = m_storedPacket.front();
+        processInternalPacket(p);
+        delete[] p->data;
+        delete p;
+        m_storedPacket.pop();
+    }
 }
 
 void ClientScriptingManager::updateScript(float delta)
@@ -1036,6 +1112,16 @@ void ClientScriptingManager::connect2BattleServer(const std::string & guid)
 
     // RakNet::SystemAddress addr;
 
+}
+
+void ClientScriptingManager::connect2BattleServer(const std::string & ipAddr, unsigned int port)
+{
+
+    std::string pw = "FFX2";
+    RakNet::ConnectionAttemptResult car = m_client->Connect(ipAddr.c_str(), port, pw.c_str(), pw.size());
+
+    RakAssert(car == RakNet::CONNECTION_ATTEMPT_STARTED);
+    
 }
 
 void ClientScriptingManager::collectPong(RakNet::Packet *p)
