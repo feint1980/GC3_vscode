@@ -5,6 +5,8 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "battleWrapper"
 require "BS_global"
 
+--- MARK:Main server
+
 InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Request] = function(host, channel, request,data,ip, guid)
 
     print("create lobby detected")
@@ -23,8 +25,19 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
     print("lobby password " .. lobbyPassword)
     local lobbyID =  BM_CreateLobby(host,lobbyName,lobbyPassword)
 
+    BM_addToWhitelist(host,tTargetGUID)
+
     BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID})
 
+end
+
+--- MARK:Client 
+
+ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = function(host, channel, request,data,ip, guid)
+
+    print("join lobby detected from " .. guid)
+
+    
 
 
 end

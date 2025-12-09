@@ -19,7 +19,8 @@ PaperWorkRequest = {
 }
 
 ClientChannel = {
-    InfoChannel = 1
+    InfoChannel = 1,
+    Lobby = 2
 }
 
 BattleInfoResponse = {
@@ -29,6 +30,10 @@ BattleInfoResponse = {
 LobbyResponse = {
     Lobby_Create_Request = 1,
     Lobby_Create_Response = 2
+}
+
+CLobbyResponse = {
+    Lobby_Join_Request = 1,
 }
 
 ---@description handle incoming connection
@@ -104,3 +109,10 @@ function BM_CreateLobby(host, lobbyName, lobbyPassword)
     return cpp_BM_CreateLobby(host,lobbyName,lobbyPassword)
 end
 
+function BM_addToWhitelist(host,guid)
+    return cpp_addToWhitelist(host,guid)
+end
+
+function BM_removeFromWhitelist(host,guid)
+    return cpp_removeFromWhitelist(host,guid)
+end

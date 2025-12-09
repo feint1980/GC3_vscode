@@ -103,8 +103,6 @@ function Battlemain_GetInfo()
     return cpp_BM_GetInfo(BS_Host)
 end
 
-
-
 --- MARK:Client handle
 require "battle_handle_clients"
 

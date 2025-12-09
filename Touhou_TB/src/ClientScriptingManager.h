@@ -123,6 +123,8 @@ public:
 
     RakNet::SystemAddress getServerIPAddr() { return m_serverIPAddr; }
 
+    RakNet::SystemAddress * getCurrentBattleServerIP() { return m_currentBattleServerIP; }
+
     private:
     RakNet::RakPeerInterface * m_client = nullptr;
 

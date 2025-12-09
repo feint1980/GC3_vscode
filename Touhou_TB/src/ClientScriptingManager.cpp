@@ -241,11 +241,11 @@ int lua_SelecBattleServer(lua_State * L)
     return 0;
 }
 
-int lua_GetCurrentBattleServer(lua_State * L)
+int lua_GetCurrentBattleServerGUID(lua_State * L)
 {
     if(lua_gettop(L) != 1)
     {
-        std::cout << "gettop failed (lua_GetCurrentBattleServer) \n";
+        std::cout << "gettop failed (lua_GetCurrentBattleServerGUID) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
@@ -254,6 +254,24 @@ int lua_GetCurrentBattleServer(lua_State * L)
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string guid = host->getCurrentBattleServerGUID();
         lua_pushstring(L, guid.c_str());
+        return 1;
+    }
+    return 0;
+}
+
+int lua_GetCurrentBattleServerIP(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_GetCurrentBattleServerIP) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        RakNet::SystemAddress * ip = host->getCurrentBattleServerIP();
+        lua_pushlightuserdata(L, ip);
         return 1;
     }
     return 0;
@@ -617,8 +635,8 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     lua_register(m_script, "cppConnectToBattleServer", lua_ConnectToBattleServer);
 
     lua_register(m_script, "cppSelecBattleServer", lua_SelecBattleServer);
-    lua_register(m_script, "cppGetCurrentBattleServer", lua_GetCurrentBattleServer);
-
+    lua_register(m_script, "cppGetCurrentBattleServerGUID", lua_GetCurrentBattleServerGUID);
+    lua_register(m_script, "cppGetCurrentBattleServerIP", lua_GetCurrentBattleServerIP);
     lua_register(m_script, "cpp_connect2SV", lua_connect2SV);
 
     lua_register(m_script, "cpp_Packet_getIP" , lua_Packet_getAddress);
@@ -696,6 +714,7 @@ void ClientScriptingManager::selectBattleServer(const std::string & guid)
 {
     m_currentBattleServerGUID = guid;
     m_currentBattleServerIP = m_battleServerIPMap[guid]; // this is intended, if guid not found, m_currentBattleServerIP will be nullptr 
+    addCryptor(guid); // add cryptor for battle server
     if(m_currentBattleServerIP == nullptr)
     {
         std::cout << "Warning : no battle server for guid " << guid << " \n";

@@ -8,3 +8,4 @@ ClientPacketHandling[ClientChannel.InfoChannel][BattleInfoResponse.BattleInfo_Ad
     print("add cryptor detected")
     -- print("add cryptor from " .. guid)
 end
+

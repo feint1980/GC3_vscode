@@ -72,12 +72,16 @@ ArenaResponse = {
 
 BattlePacketChannel = {
     InfoChannel = 1,
+    Lobby = 2,
+}
+
+CLobbyResponse = {
+    Lobby_Join_Request = 1,
 }
 
 BattleInfoResponse = {
     BattleInfo_AddCryptor_Request = 1,
     BattleInfo_AddCryptor_Response = 2,
-
 }
 
 --- MARK: Functions

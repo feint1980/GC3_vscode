@@ -33,7 +33,7 @@
 #include "CharacterDes.h"
 
 #include <thread>
-
+#include <set>
 #include "LobbiesManager.h"
 
 class BattleMain
@@ -75,7 +75,18 @@ public:
 
     void sendBackPong(RakNet::Packet *p);
 
+    void addAcceptedClientGUID(const std::string & guid) {
+        
+        m_acceptedClientGUID.insert(guid);
+    
+    }
+
+    void removeAcceptedClientGUID(const std::string & guid) { m_acceptedClientGUID.erase(guid); }
+
+
     uint64_t createLobby(const std::string & name, const std::string & password);
+
+    void joinLobby(uint64_t id, const std::string & guid, const RakNet::SystemAddress & address);
 
 private:
 
@@ -102,6 +113,8 @@ private:
     std::string m_name = "BattleServer";
 
     LobbiesManager m_lobbiesManager;
+
+    std::set<std::string> m_acceptedClientGUID;
 
 };
 

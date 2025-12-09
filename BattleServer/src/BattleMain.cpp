@@ -133,6 +133,40 @@ int lua_sendBackPong(lua_State *L)
     return 0;
 }
 
+int lua_addToWhitelist(lua_State *L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_addToWhitelist) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        std::string guid = lua_tostring(L, 2);
+        host->addAcceptedClientGUID(guid);
+    }
+    return 0;
+}
+
+int lua_removeFromWhitelist(lua_State *L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_removeFromWhitelist) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        std::string guid = lua_tostring(L, 2);
+        host->removeAcceptedClientGUID(guid);
+    }
+    return 0;
+}
+
 int lua_removeCryptor(lua_State *L)
 {
     if(lua_gettop(L) != 2)
@@ -287,14 +321,16 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     lua_register(m_script, "cpp_getPacketPort", lua_Packet_getPort);
     lua_register(m_script, "cpp_getPacketGUID", lua_Packet_getGUID);
 
-
     lua_register(m_script, "cpp_sendBackPong", lua_sendBackPong);
 
+    // Client interactions
+    lua_register(m_script, "cpp_addToWhitelist", lua_addToWhitelist);
+    lua_register(m_script, "cpp_removeFromWhitelist", lua_removeFromWhitelist);
     lua_register(m_script, "cpp_removeCryptor", lua_removeCryptor);
 
     // Lobbies
-
     lua_register(m_script, "cpp_BM_CreateLobby", lua_BM_CreateLobby);
+    // lua_register(m_script, "cpp_BM_JoinLobby", lua_BM_JoinLobby);
 
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/battleSideScript.lua")))
@@ -357,6 +393,11 @@ void BattleMain::run()
             totalDeltaTime -= deltaTime;
         }
     }
+}
+
+void BattleMain::joinLobby(uint64_t id, const std::string & guid, const RakNet::SystemAddress & address)
+{
+    m_lobbiesManager.getLobby(id)->addPlayer(address);
 }
 
 void BattleMain::removeCryptor(const std::string & guid)
@@ -525,7 +566,20 @@ void BattleMain::handleConnections(RakNet::Packet *p)
     }
     else
     {
-        addCryptor(p->guid.ToString());
+
+        std::string guid = p->guid.ToString();
+
+        if(m_acceptedClientGUID.find(guid) != m_acceptedClientGUID.end())
+        {
+            std::cout << "accepted client " << guid << "\n";
+            addCryptor(p->guid.ToString());
+        }
+        else
+        {
+            std::cout << "unexpected client " << guid << "\n";
+        }
+
+        
     }
 }
 

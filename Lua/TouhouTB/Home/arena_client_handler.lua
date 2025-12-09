@@ -79,7 +79,7 @@ end
 --- Connected to battle server
 HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet,RakNetPacket)
 
-    local currentServerGUID = cppGetCurrentBattleServer(host)
+    local currentServerGUID = cppGetCurrentBattleServerGUID(host)
 
     if currentServerGUID == "" then 
         print("no current server selected(this is OK) ")
@@ -91,7 +91,7 @@ HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,pac
         cppSelecBattleServer(host,tGuid)
         local tIP = Client_GetIP_FromPacket(RakNetPacket)
         print("IP " .. tIP)
-        currentServerGUID = cppGetCurrentBattleServer(host)
+        currentServerGUID = cppGetCurrentBattleServerGUID(host)
         if currentServerGUID ~= tGuid then
             print(currentServerGUID .. "/" .. tGuid)
             print("multiple battle server selected, aborting ...")
@@ -104,11 +104,14 @@ HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,pac
         else 
             if Target_Lobby_ID ~= "" then
                 print("got lobby " .. Target_Lobby_ID)
+                local tIP = cppGetCurrentBattleServerIP(host)
 
+                SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Join_Request, {tGuid,currentServerGUID,Target_Lobby_ID },5,0.1,0.15)
+
+                -- SendReliable2BattleServer(host, tIP, currentServerGUID,   )
                 -- send request to join lobby to server
             end
         end
-
     else
 
             cppSelecBattleServer(host,tGuid) -- register to C++ side
