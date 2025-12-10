@@ -13,10 +13,8 @@
 #include <RakNet/GetTime.h>
 #include <assert.h>
 
-
 #include <string>
 #include <iostream>
-
 
 class PlayerPair {
 

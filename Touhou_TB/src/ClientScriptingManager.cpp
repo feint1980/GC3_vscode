@@ -547,12 +547,12 @@ uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
         std::cout << "sendBattleWrapData failed (no current battle server)\n";
         return 0;
     }
-    if(!m_cryptors[m_currentBattleServerGUID])
-    {
+    // if(!m_cryptors[m_currentBattleServerGUID])
+    // {
     
-        std::cout << "sendBattleWrapData failed (no current battle server cryptor)\n";
-        return 0;
-    }
+    //     std::cout << "sendBattleWrapData failed (no current battle server cryptor)\n";
+    //     return 0;
+    // }
     uint8_t channel = static_cast<uint8_t>(data[0]);
     uint8_t request = static_cast<uint8_t>(data[1]);
     int payLoadIndex = 2;
@@ -561,7 +561,9 @@ uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
 // std::string tGUID = m_currentBattleServerIP->to
 
     std::string payLoad(data.begin() + payLoadIndex, data.end());
-    std::string tData = m_cryptors[m_currentBattleServerGUID]->encrypt(payLoad);
+
+
+    std::string tData = m_battleServerCryptor->encrypt(payLoad);
 
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)ID_TH_TB_BATTLE);
@@ -572,6 +574,8 @@ uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
     // m_client->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, channel, m_serverIPAddr, false);
     unsigned int bits = bsOut.GetNumberOfBitsUsed();
     unsigned int bytes = bits / 8 + (bits % 8 ? 1 : 0);
+
+    // std::cout << "attempting to send " << payLoad.c_str() << "\n";
 
     // Safe send (BitStream handles memory ownership)
     return m_client->Send(
@@ -672,6 +676,9 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     // std::cout << "init cryptor for guid " << m_client->GetMyGUID().ToString() << "\n";
     m_cryptor = new Feintgine::F_Cryptor_sodium();
     m_cryptor->init("BNML is real", m_client->GetMyGUID().ToString());
+
+    m_battleServerCryptor = new Feintgine::F_Cryptor_sodium();
+    m_battleServerCryptor->init("XOPXOP336", m_client->GetMyGUID().ToString());
 }
 
 ClientScriptingManager::ClientScriptingManager()
@@ -694,7 +701,10 @@ void ClientScriptingManager::addCryptor(const std::string & guid)
     }
     Feintgine::F_Cryptor_sodium * cryptor = new Feintgine::F_Cryptor_sodium();
     cryptor->init("BNML is real", guid);
+    
     m_cryptors[guid] = cryptor;
+
+    std::cout << "add or reassign cryptor for guid " << guid << "\n";
 }
 
 void ClientScriptingManager::removeCryptor(const std::string & guid)
@@ -719,6 +729,7 @@ void ClientScriptingManager::selectBattleServer(const std::string & guid)
     {
         std::cout << "Warning : no battle server for guid " << guid << " \n";
     }
+    
 }
 
 uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
@@ -736,6 +747,7 @@ uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
         unsigned char packetIdentifier = GetPacketIdentifier(p);
         switch(packetIdentifier)
         {
+            // std::string luaFuncCall = "";
             case ID_TH_TB:
             {
                 lua_getglobal(m_script, "ClientHandlerWrapResponse");
@@ -768,14 +780,48 @@ uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
                     const int returnCount = 1;
                     return LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
                 }
-                    break;
-                default:
+            break;
+            }
+            case ID_TH_TB_BATTLE:
+            {   
+                lua_getglobal(m_script, "ClientHandlerBattleResponse");
+                if(lua_isfunction(m_script, -1))
                 {
-                    handleMessage(p);
-                    return 0;
+                    RakNet::BitStream bsIn(p->data, p->length, false);
+
+                    RakNet::MessageID msgId;
+                    uint8_t channel;
+                    uint8_t request;
+
+                    bsIn.Read(msgId);
+                    bsIn.Read(channel);
+                    bsIn.Read(request);
+
+                    unsigned int remainingBytes = bsIn.GetNumberOfUnreadBits() / 8;
+                    std::string encData;
+                    encData.resize(remainingBytes);
+                    bsIn.ReadAlignedBytes(reinterpret_cast<unsigned char*>(&encData[0]), remainingBytes);
+                    std::string payLoad = m_battleServerCryptor->decrypt(encData);
+
+                    lua_pushlightuserdata(m_script, this);
+                    lua_pushnumber(m_script, channel);
+                    lua_pushnumber(m_script, request);
+                    lua_pushstring(m_script, payLoad.c_str());
+                    // lua_pushlightuserdata(m_script, &p->systemAddress);
+                    lua_pushstring(m_script, p->guid.ToString());
+                    // std::cout << "recieve guid check " << p->guid.ToString() << "\n";
+                    const int argc = 5; // remember to modify this number when you change the number of arguments
+                    const int returnCount = 1;
+                    return LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
                 }
                 break;
             }
+            default:
+            {
+                handleMessage(p);
+                return 0;
+            }
+            
         }
     }   
     return 0;

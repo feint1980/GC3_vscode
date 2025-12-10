@@ -34,6 +34,7 @@ LobbyResponse = {
 
 CLobbyResponse = {
     Lobby_Join_Request = 1,
+    Lobby_Join_Response = 2
 }
 
 ---@description handle incoming connection
@@ -109,6 +110,18 @@ function BM_CreateLobby(host, lobbyName, lobbyPassword)
     return cpp_BM_CreateLobby(host,lobbyName,lobbyPassword)
 end
 
+
+---@Description: wrapper of cpp_BM_JoinLobby
+---@param host pointer instance of BattleMain
+---@param clientGUID string
+---@param clientID string
+---@param lobbyID string
+---@param ip pointer instance of RakNet::SystemAddress
+---@return boolean
+function BM_JoinLobby(host,clientGUID,clientID,lobbyID,ip)
+    return cpp_BM_JoinLobby(host,clientGUID,clientID,lobbyID,ip)
+end
+
 function BM_addToWhitelist(host,guid)
     return cpp_addToWhitelist(host,guid)
 end
@@ -116,3 +129,4 @@ end
 function BM_removeFromWhitelist(host,guid)
     return cpp_removeFromWhitelist(host,guid)
 end
+

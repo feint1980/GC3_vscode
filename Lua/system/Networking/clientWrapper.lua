@@ -77,6 +77,7 @@ BattlePacketChannel = {
 
 CLobbyResponse = {
     Lobby_Join_Request = 1,
+    Lobby_Join_Response = 2,
 }
 
 BattleInfoResponse = {

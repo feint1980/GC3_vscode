@@ -37,7 +37,16 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
 
     print("join lobby detected from " .. guid)
 
-    
+    -- print("data " .. data)
 
+    local clientGUID, clientID, lobbyID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+    
+    print("clientGUID " .. clientGUID)
+    print("clientID " .. clientID)
+    print("lobbyID " .. lobbyID)
+
+    local joinResult =  BM_JoinLobby(host,clientGUID,clientID,lobbyID,ip)
+
+    BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_TB_BATTLE, ClientChannel.Lobby, CLobbyResponse.Lobby_Join_Response , {clientGUID,clientID,lobbyID , tostring(joinResult) , "Unable to join lobby"})
 
 end

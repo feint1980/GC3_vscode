@@ -12,7 +12,7 @@ public:
 
     void update(float deltaTime);
 
-    void addClient(const std::string& guid, const std::string& name, const RakNet::SystemAddress& address);
+    void addClient(const std::string& guid, const std::string& name,  RakNet::SystemAddress * address);
 
 
     private:
@@ -21,4 +21,4 @@ public:
 
     std::unordered_map<std::string, std::unique_ptr<BattleClient>> m_clientsMap;
 
-}
+};

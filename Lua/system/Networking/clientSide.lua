@@ -192,7 +192,9 @@ ClientBattleHandling = {
 
 }
 
-
+for k,v in pairs(BattlePacketChannel) do
+    ClientBattleHandling[v] = {}
+end
 
 -- ---@Description combines packet
 -- ---@param type string type of packet to wrap
@@ -220,6 +222,18 @@ function ClientHandlerWrapResponse(host,chanel,request, data,guid)
         ClientMessageHandling[chanel][request](host,data,guid)
     end
 end
+
+function ClientHandlerBattleResponse(host,chanel,request, data,guid)
+    print("ClientHandlerBattleResponse called" .. chanel .. " " .. request)
+    if  ClientBattleHandling[chanel] == nil then
+        print("channel not found " .. chanel)
+        return
+    end
+    if ClientBattleHandling[chanel][request] ~= nil then
+        ClientBattleHandling[chanel][request](host,data,guid)
+    end
+end
+
 
 RequestPacket = {
     host = nil,
@@ -330,3 +344,5 @@ function Client_PingUpdate(serverGUID, ping)
 end
 
 
+-- Battle server handling 
+require "clientBattleSide"

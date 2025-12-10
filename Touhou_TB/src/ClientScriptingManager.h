@@ -147,6 +147,8 @@ public:
 
     Feintgine::F_Cryptor_sodium * m_cryptor;
 
+    Feintgine::F_Cryptor_sodium * m_battleServerCryptor;
+
     std::unordered_map<std::string, int> m_battleServerPingMap;
 
     std::unordered_map<std::string, RakNet::SystemAddress * > m_battleServerIPMap;

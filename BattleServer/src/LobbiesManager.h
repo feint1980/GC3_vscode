@@ -8,7 +8,7 @@
 #include <memory>
 #include <random>
 #include "ThreadPool.h"
-
+#include "BattleClient.h"
 
 
 class LobbiesManager
@@ -55,6 +55,8 @@ public:
         m_lobbiesMap.erase(id);
     }
 
+    bool joinLobby(uint64_t lobbyID, RakNet::SystemAddress * address, const std::string &accountID , const std::string & guid);
+
     void init(int maxLobbies);
     
     Lobby * getLobby(uint64_t id);
@@ -81,6 +83,13 @@ private:
     std::unordered_map<uint64_t, size_t> m_lobbiesMap;
     // std::vector<Lobby> m_lobbies;
     std::vector<std::unique_ptr<Lobby>> m_lobbies;
+
+
+    std::unordered_map<std::string, std::unique_ptr<BattleClient>> m_clientsMap;
+    // std::vector<std::unique_ptr<BattleClient>> m_clientsPtr;
+
+    // std::pai
+    
 
 } ;
 

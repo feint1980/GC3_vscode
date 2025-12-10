@@ -207,6 +207,38 @@ int lua_BM_CreateLobby(lua_State *L)
     return 0;
 }
 
+int lua_BM_JoinLobby(lua_State *L)
+{
+    if(lua_gettop(L) != 5)
+    {
+        std::cout << "gettop failed (lua_BM_JoinLobby) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        std::string guid = lua_tostring(L, 2);
+        std::string id = lua_tostring(L, 3);
+        std::string lobbyID = lua_tostring(L, 4);
+        RakNet::SystemAddress * address = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 5));
+
+        std::cout << "guid" << guid << "\n";
+        std::cout << "id" << id << "\n";
+        std::cout << "lobbyID" << lobbyID << "\n";
+        std::cout << "address" << address->ToString() << "\n";
+
+        uint64_t tLobbyID = std::stoull(lobbyID);
+
+        bool result = host->joinLobby(tLobbyID, guid, id, address);
+
+        lua_pushboolean(L, result);
+
+        return 1;
+    }
+    return 0;
+}
+
 int lua_handleIncomingConnection(lua_State *L)
 {
     if(lua_gettop(L) != 2)
@@ -330,7 +362,7 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
 
     // Lobbies
     lua_register(m_script, "cpp_BM_CreateLobby", lua_BM_CreateLobby);
-    // lua_register(m_script, "cpp_BM_JoinLobby", lua_BM_JoinLobby);
+    lua_register(m_script, "cpp_BM_JoinLobby", lua_BM_JoinLobby);
 
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/battleSideScript.lua")))
@@ -395,9 +427,24 @@ void BattleMain::run()
     }
 }
 
-void BattleMain::joinLobby(uint64_t id, const std::string & guid, const RakNet::SystemAddress & address)
+bool BattleMain::joinLobby(uint64_t id, const std::string & guid,const std::string & clientID, RakNet::SystemAddress * address)
 {
-    m_lobbiesManager.getLobby(id)->addPlayer(address);
+
+    bool retVal = false;
+
+    retVal = m_lobbiesManager.joinLobby(id, address, clientID, guid);
+
+    if(retVal)
+    {
+        std::cout << "client " << clientID << " joined lobby " << id << "\n";
+    }
+    else
+    {
+        std::cout << "client " << clientID << " failed to join lobby " << id << "\n";
+    }
+
+    return retVal;
+
 }
 
 void BattleMain::removeCryptor(const std::string & guid)
@@ -454,7 +501,7 @@ void BattleMain::addCryptor(const std::string & guid)
     if (m_cryptors.find(guid) == m_cryptors.end())
     {
         m_cryptors[guid] = new Feintgine::F_Cryptor_sodium();
-        m_cryptors[guid]->init("BNML is real", guid);
+        m_cryptors[guid]->init("XOPXOP336", guid);
         std::cout << "add cryptor for guid " << guid << "\n";
         // m_cryptors[guid] = 
     }
@@ -713,6 +760,13 @@ uint32_t BattleMain::handleInternalPacket(RakNet::Packet *p)
     else if (msgId == ID_TH_TB_BATTLE)
     {
         // std::cout << "battle packet\n";
+        std::cout << "attemp to decrypt data from " << p->guid.ToString() << "\n";
+        if(m_cryptors.find(p->guid.ToString()) == m_cryptors.end())
+        {
+            std::cout << "no cryptor for " << p->guid.ToString() << "\n";
+            return 0;
+        }
+
         payLoad = m_cryptors[p->guid.ToString()]->decrypt(encData);
     }
 

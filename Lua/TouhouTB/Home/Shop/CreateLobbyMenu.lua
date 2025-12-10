@@ -83,7 +83,7 @@ function InitCreateLobbyMenu(host)
     LobbyNameInput:setInputValidator("^[^$]*$")
     LobbyNameInput:setPosStr("20%","10%")
     LobbyNameInput:setSizeStr("30%","8%")
-
+    LobbyNameInput:setText("test lobby")
 
     local tLobbyPWLabel = Label:new()
     tLobbyPWLabel:init(host,"Password",CreateLobbyPanel.width/2,0,CreateLobbyPanel.ptr)
@@ -95,7 +95,7 @@ function InitCreateLobbyMenu(host)
     LobbyPWInput:setPWCharacter("*")
     LobbyPWInput:setPosStr("20%","20%")
     LobbyPWInput:setSizeStr("30%","8%")
-
+    LobbyPWInput:setText("123456")
 
     local tServerListLabel = Label:new()
     tServerListLabel:init(host,"Server List",CreateLobbyPanel.width/2,0,CreateLobbyPanel.ptr)
@@ -217,15 +217,12 @@ function CreateLobby_SendRequest()
         print(CL_SelectedServer.guid)
         print(tCombine)
 
-
-
         print("before wrap")
 
         -- local tData = WrapRequest()
 
 
         SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobby_Create, {MainInfo.guid, MainInfo.id,CL_SelectedServer.guid, tCombine }, 5, 0.5,0.25)
-
 
 
         Prompt_UI_Table["CreateLobby_Status"]:showMsg("Requesting ...")

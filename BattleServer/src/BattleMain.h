@@ -86,7 +86,7 @@ public:
 
     uint64_t createLobby(const std::string & name, const std::string & password);
 
-    void joinLobby(uint64_t id, const std::string & guid, const RakNet::SystemAddress & address);
+    bool joinLobby(uint64_t id, const std::string & guid , const std::string & clientID,  RakNet::SystemAddress * address);
 
 private:
 

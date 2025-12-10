@@ -84,42 +84,36 @@ HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,pac
     if currentServerGUID == "" then 
         print("no current server selected(this is OK) ")
 
-
-        print("accepted by battle server ")
         local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
-        print("guid : " .. tGuid)
+        -- print("guid : " .. tGuid)
         cppSelecBattleServer(host,tGuid)
+        print("accepted by battle server " .. tGuid)
+    
         local tIP = Client_GetIP_FromPacket(RakNetPacket)
         print("IP " .. tIP)
         currentServerGUID = cppGetCurrentBattleServerGUID(host)
-        if currentServerGUID ~= tGuid then
-            print(currentServerGUID .. "/" .. tGuid)
-            print("multiple battle server selected, aborting ...")
-            return
-            -- cppSelecBattleServer(host,tGuid)
-        -- elseif currentServerGUID == tGuid then 
-        --     -- cppSelecBattleServer(host,tGuid) -- register to C++ side
-        --     print("reconnect or reenter the server")
-        --     -- cppSelecBattleServer(host,tGuid) -- register to C++ side
-        else 
-            if Target_Lobby_ID ~= "" then
-                print("got lobby " .. Target_Lobby_ID)
-                local tIP = cppGetCurrentBattleServerIP(host)
 
-                SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Join_Request, {tGuid,currentServerGUID,Target_Lobby_ID },5,0.1,0.15)
+        if Target_Lobby_ID ~= "" then
+            print("got lobby " .. Target_Lobby_ID)
+            -- local tIP = cppGetCurrentBattleServerIP(host)
 
-                -- SendReliable2BattleServer(host, tIP, currentServerGUID,   )
-                -- send request to join lobby to server
-            end
+            -- MainInfo.id
+
+            -- print("my id " .. MainInfo.id)
+            print("current server guid " .. currentServerGUID)
+
+            SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Join_Request, {MainInfo.guid, MainInfo.id ,Target_Lobby_ID },5,0.1,0.15)
+
+            -- SendReliable2BattleServer(host, tIP, currentServerGUID,   )
+            -- send request to join lobby to server
         end
+        -- end
     else
-
-            cppSelecBattleServer(host,tGuid) -- register to C++ side
-            print("battle server registered to C++ side")
-            if Target_Lobby_ID ~= "" then
-                print("got lobby " .. Target_Lobby_ID)
-            end
-
+        cppSelecBattleServer(host,tGuid) -- register to C++ side
+        print("battle server registered to C++ side")
+        if Target_Lobby_ID ~= "" then
+            print("got lobby " .. Target_Lobby_ID)
+        end
     end
 
 end
