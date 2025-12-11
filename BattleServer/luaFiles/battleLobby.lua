@@ -40,7 +40,7 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
     -- print("data " .. data)
 
     local clientGUID, clientID, lobbyID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
-    
+
     print("clientGUID " .. clientGUID)
     print("clientID " .. clientID)
     print("lobbyID " .. lobbyID)

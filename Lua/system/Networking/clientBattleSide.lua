@@ -1,10 +1,6 @@
 
--- require "clientSide"
-
-
-ClientBattleHandling[BattlePacketChannel.InfoChannel][CLobbyResponse.Lobby_Join_Response] = function(host,data,guid)
+ClientBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Join_Response] = function(host,data,guid)
     
-
     print("join response detected")
     print("from server GUID:" .. guid)
     -- print("Data:" .. data)
@@ -15,5 +11,20 @@ ClientBattleHandling[BattlePacketChannel.InfoChannel][CLobbyResponse.Lobby_Join_
     print("lobbyID " .. lobbyID)
     print("joinResult " .. joinResult)
     print("errorMessage " .. errorMessage)
+
+    _G.LobbyState = 0
+    Prompt_UI_Table["CreateLobby_Status"]:show(false)
+    local msg = errorMessage
+    if joinResult == "true" then
+        -- _G.LobbyState = 0
+        msg = "Joined lobby " .. lobbyID
+        Prompt_UI_Table["CreateLobby_Noti"]:showMsg(msg)
+
+        -- todo : join lobby
+    else
+        -- _G.LobbyState = 1
+        Prompt_UI_Table["CreateLobby_Noti"]:showMsg(msg)
+    end
+
     
 end

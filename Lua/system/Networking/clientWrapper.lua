@@ -7,6 +7,24 @@ local json = require ("dkjson")
 
 --- Classes declare
 
+
+PacketID = {
+    ID_DISCONNECTION_NOTIFICATION = 21,
+    ID_ALREADY_CONNECTED = 18,
+    ID_INCOMPATIBLE_PROTOCOL_VERSION = 25,
+    ID_REMOTE_DISCONNECTION_NOTIFICATION = 31,
+    ID_REMOTE_CONNECTION_LOST = 32,
+    ID_REMOTE_NEW_INCOMING_CONNECTION = 33,
+    ID_CONNECTION_BANNED = 23,
+    ID_CONNECTION_ATTEMPT_FAILED = 17,
+    ID_NO_FREE_INCOMING_CONNECTIONS = 20,
+    ID_CONNECTION_LOST = 22,
+    ID_CONNECTION_REQUEST_ACCEPTED = 16,
+    ID_UNCONNECTED_PING = 24,
+    ID_UNCONNECTED_PONG = 28,
+    ID_OTHER = 124
+}
+
 ---MARK:Main Server
 --- for CLient
 PacketChannel ={
@@ -85,7 +103,33 @@ BattleInfoResponse = {
     BattleInfo_AddCryptor_Response = 2,
 }
 
+
 --- MARK: Functions
+
+--- MARK:Main server
+
+ClientMessageHandling = {
+
+}
+
+for k,v in pairs(PacketChannel) do
+    -- print(k,v)
+    ClientMessageHandling[v] = {}
+end
+
+
+---- MARK:Battle server
+
+ClientBattleHandling = {
+
+}
+
+for k,v in pairs(BattlePacketChannel) do
+    ClientBattleHandling[v] = {}
+end
+
+
+
 
 ---@Description combines packet
 ---@param type string type of packet to wrap

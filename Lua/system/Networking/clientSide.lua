@@ -20,34 +20,21 @@ Client_Packet = {
 }
 Client_Connected = false
 
-PacketID = {
-    ID_DISCONNECTION_NOTIFICATION = 21,
-    ID_ALREADY_CONNECTED = 18,
-    ID_INCOMPATIBLE_PROTOCOL_VERSION = 25,
-    ID_REMOTE_DISCONNECTION_NOTIFICATION = 31,
-    ID_REMOTE_CONNECTION_LOST = 32,
-    ID_REMOTE_NEW_INCOMING_CONNECTION = 33,
-    ID_CONNECTION_BANNED = 23,
-    ID_CONNECTION_ATTEMPT_FAILED = 17,
-    ID_NO_FREE_INCOMING_CONNECTIONS = 20,
-    ID_CONNECTION_LOST = 22,
-    ID_CONNECTION_REQUEST_ACCEPTED = 16,
-    ID_UNCONNECTED_PING = 24,
-    ID_UNCONNECTED_PONG = 28,
-    ID_OTHER = 124
-}
+-- Packet_OtherID = {
+--     ID_LOGIN_NEG = 1,
+--     ID_LOGIN_POS = 2,
+--     ID_REGISTER_NEG = 3,
+--     ID_REGISTER_POS = 4,
+--     USER_DATA_POS = 5,
+--     USER_DATA_NEG = 6,
+--     CHARACTER_RES = 66,
+--     CHARACTER_RES_DONE = 67,
+--     ID_INVALID = 77
+-- }
 
-Packet_OtherID = {
-    ID_LOGIN_NEG = 1,
-    ID_LOGIN_POS = 2,
-    ID_REGISTER_NEG = 3,
-    ID_REGISTER_POS = 4,
-    USER_DATA_POS = 5,
-    USER_DATA_NEG = 6,
-    CHARACTER_RES = 66,
-    CHARACTER_RES_DONE = 67,
-    ID_INVALID = 77
-}
+
+
+
 
 ---@Description create new instance of Label
 ---@return Client_Packet
@@ -160,41 +147,8 @@ function GetTableSize(t)
     return count
 end
 
---- MARK:Main server
 
-ClientMessageHandling = {
 
-}
-
-for k,v in pairs(PacketChannel) do
-
-    -- print("packet channel")
-    print(k,v)
-    ClientMessageHandling[v] = {}
-    
-end
-
--- ClientMessageHandling[PacketChannel.AccountChannel] = {}
-
--- ClientMessageHandling[PacketChannel.ShopChannel] = {}
-
--- ClientMessageHandling[PacketChannel.TransactionChannel] = {}
-
--- ClientMessageHandling[PacketChannel.UserChannel] = {}
-
--- ClientMessageHandling[PacketChannel.FormationChannel] = {}
-
--- ClientMessageHandling[PacketChannel.ArenaChannel] = {}
-
----- MARK:Battle server
-
-ClientBattleHandling = {
-
-}
-
-for k,v in pairs(BattlePacketChannel) do
-    ClientBattleHandling[v] = {}
-end
 
 -- ---@Description combines packet
 -- ---@param type string type of packet to wrap
@@ -224,7 +178,7 @@ function ClientHandlerWrapResponse(host,chanel,request, data,guid)
 end
 
 function ClientHandlerBattleResponse(host,chanel,request, data,guid)
-    print("ClientHandlerBattleResponse called" .. chanel .. " " .. request)
+    print("ClientBattleHandling called" .. chanel .. " " .. request)
     if  ClientBattleHandling[chanel] == nil then
         print("channel not found " .. chanel)
         return
