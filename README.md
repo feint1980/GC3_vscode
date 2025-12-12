@@ -78,6 +78,19 @@ cd GC3/build/
 cmake -G "MinGW Makefiles" ..
 mingw32-make.exe -j 4
 
+
+#Build the Server for turnbase game ( you will need this for login)
+cd ../../
+cd TB_Server/build/
+cmake -G "MinGW Makefiles" ..
+mingw32-make.exe -j 4
+
+#Build the Battle Server for the turnbase game ( you will need this to create the lobbies)
+cd ../../
+cd BattleServer/build/
+cmake -G "MinGW Makefiles" ..
+mingw32-make.exe -j 4
+
 #Build the Touhou turnbase game
 cd ../../
 cd Touhou_TB/build/
@@ -85,11 +98,6 @@ cmake -G "MinGW Makefiles" ..
 mingw32-make.exe -j 4
 
 
-#Build the Server for turnbase game
-cd ../../
-cd TB_Server/build/
-cmake -G "MinGW Makefiles" ..
-mingw32-make.exe -j 4
 ```
 ## Accounts(for test):
 >id:huyen12
