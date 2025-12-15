@@ -234,14 +234,27 @@ namespace Feintgine
 		{
 			anykey = false;
 		}
-	
-		
+
 	}
 
 
 	void IMainGame::updateTimer(float deltaTime)
 	{
 
+	}
+
+	void IMainGame::setSceneByIndex(int index)
+	{
+		std::cout << "setSceneByIndex " << index << "\n";
+		m_currentScreen->onExit();
+		m_screenList->setScreen(index);
+		m_currentScreen = m_screenList->getCurrentGameScreen();
+		if (m_currentScreen)
+		{
+			
+			m_currentScreen->onEntry();
+			m_currentScreen->setRunning();
+		}
 	}
 
 	void IMainGame::configureScreen(std::string name, int screenWidth, int screenHeight, int t_flag, bool saveContext)

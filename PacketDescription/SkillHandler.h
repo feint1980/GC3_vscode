@@ -1,3 +1,5 @@
+#pragma once
+
 #include "SkillDesc.h"
 #include "LuaManager.h"
 #include <nlohmann/json.hpp>

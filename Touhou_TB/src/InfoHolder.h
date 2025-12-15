@@ -13,8 +13,11 @@
 #include <RakNet/RakSleep.h>
 #include <RakNet/PacketLogger.h>
 
+
 #include <F_Cryptor.h>
+#include "TGUIScriptingManager.h"
 #include <map>
+#include <IMainGame.h>
 
 class InfoHolder
 {
@@ -68,6 +71,24 @@ public:
 
     RakNet::SystemAddress getServerIP() { return m_serverIPAddr; }
 
+    void saveLuaState(lua_State * state) { m_saveLuaState = state; }
+
+    lua_State * getLuaState() { return m_saveLuaState; }
+
+    void registerGUIScriptingManager(TGUIScriptingManager * guiScriptingManager) {
+        
+        std::cout << "registering GUI scripting instance " << guiScriptingManager << "\n";
+        m_guiScriptingManager = guiScriptingManager; }
+
+    TGUIScriptingManager * getGUIScriptingManager() { 
+        
+        std::cout << "returning gui scripting instance " << m_guiScriptingManager << "\n";
+        return m_guiScriptingManager; }
+
+    void registerGame(Feintgine::IMainGame * game) { m_game = game; }
+
+    Feintgine::IMainGame * getGame() { return m_game; }
+
 private:
 
     static InfoHolder* m_inforHolder ;
@@ -84,5 +105,9 @@ private:
 
     std::map<std::string,Feintgine::F_Cryptor *> m_cryptorMap;
 
+    lua_State * m_saveLuaState = nullptr;
 
+    TGUIScriptingManager * m_guiScriptingManager = nullptr;
+
+    Feintgine::IMainGame * m_game = nullptr;
 };

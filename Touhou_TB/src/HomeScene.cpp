@@ -40,6 +40,32 @@ int lua_backToMenu(lua_State * L)
     return 0;
 }
 
+int lua_changeScene(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_changeScene) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        int index = lua_tonumber(L, 1);
+        Feintgine::IMainGame * game =  InfoHolder::getInstance()->getGame();
+
+        if(game)
+        {
+            std::cout << "(lua_changeScene) change scene to " << index << "\n";
+            game->setSceneByIndex(index);
+        }
+        else
+        {
+            std::cout << "IMainGame unregistered \n";
+        }
+
+    }
+    return 0;
+}
+
 HomeScene::HomeScene()
 {
 
@@ -137,6 +163,12 @@ void HomeScene::build()
 void HomeScene::destroy()
 {
     // unload screen (unused)
+}
+
+void HomeScene::changeSceneIndex(int index)
+{
+    m_game->setSceneByIndex(index);
+    // m_screenIndex = index;
 }
 
 int HomeScene::getNextScreenIndex() const
@@ -305,6 +337,7 @@ void HomeScene::initGUI()
 
     lua_register(m_script, "cpp_getInfo", lua_getInfo);
     lua_register(m_script, "cpp_backToMenu", lua_backToMenu);
+    lua_register(m_script, "cpp_changeScene", lua_changeScene);
     lua_getglobal(m_script, "HomeSceneInit");
     if(lua_isfunction(m_script, -1))
     {
@@ -323,6 +356,9 @@ void HomeScene::initGUI()
         }
     }
 
+    InfoHolder::getInstance()->saveLuaState(m_script);
+    InfoHolder::getInstance()->registerGUIScriptingManager(m_guiScriptingManager);
+    InfoHolder::getInstance()->registerGame(m_game);
 
 }
 

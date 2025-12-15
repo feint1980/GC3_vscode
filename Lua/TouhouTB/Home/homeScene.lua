@@ -307,7 +307,7 @@ end
 Network_CommonTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet,RakNetPacket)
     Home_Noti_Btn:setOnClickCallback(function()
         Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
-        cpp_backToMenu(HomeSceneHost) 
+        cpp_changeScene(SceneIndex.Login)
         end)
     Home_showNotification("Disconnection from server !","OK")
 
@@ -317,7 +317,8 @@ end
 Network_CommonTask[PacketID.ID_CONNECTION_LOST] = function(host,packet,RakNetPacket)
     Home_Noti_Btn:setOnClickCallback(function()
         Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
-        cpp_backToMenu(HomeSceneHost) 
+        -- cpp_backToMenu(HomeSceneHost) 
+        cpp_changeScene(SceneIndex.Login) -- login scene
         end)
     Home_showNotification("Connection lost !","OK")
 

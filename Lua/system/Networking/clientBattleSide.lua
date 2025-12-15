@@ -18,7 +18,9 @@ ClientBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Join_Respon
     if joinResult == "true" then
         -- _G.LobbyState = 0
         msg = "Joined lobby " .. lobbyID
-        Prompt_UI_Table["CreateLobby_Noti"]:showMsg(msg)
+        -- Prompt_UI_Table["CreateLobby_Noti"]:showMsg(msg)
+        
+        cpp_changeScene(SceneIndex.Lobby)
 
         -- todo : join lobby
     else

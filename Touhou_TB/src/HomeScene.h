@@ -73,9 +73,9 @@ public:
 
     void handleInput(Feintgine::InputManager & inputManager);
 
-    void initGUI();
+    void changeSceneIndex(int index);
 
-    void drawGameplay();
+    void initGUI();
 
     void drawGIFScene();
 

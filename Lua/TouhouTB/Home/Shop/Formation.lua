@@ -205,6 +205,8 @@ function InitFormationMenu(host)
 
     FormationPanel:setVisible(false)
 
+    MenuMainPanels["Formation"] = FormationPanel
+    
     end
 
     -- Send To Get Formation Data from Server

@@ -62,6 +62,8 @@ function InitNexus(host)
     NexusCharacterTab = CharacterNexus:new()
     NexusCharacterTab:init(host,NexusMenu.tabs["Characters"])
 
+    MenuMainPanels["Nexus"] = NexusPanel
+
 end
 
 MenuPanels["Nexus"] = function(host)

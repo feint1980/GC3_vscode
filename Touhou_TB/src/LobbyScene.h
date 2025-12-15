@@ -44,7 +44,7 @@
 
 
 
-class LobbyScene : Feintgine::IGameScreen
+class LobbyScene : public Feintgine::IGameScreen
 {
 public:
     LobbyScene();
@@ -70,13 +70,11 @@ public:
 
     virtual void checkInput() override;
 
-        void backToMainMenu();
+    void backToMainMenu();
 
     void handleInput(Feintgine::InputManager & inputManager);
 
     void initGUI();
-
-    void drawGameplay();
 
     void drawGIFScene();
 

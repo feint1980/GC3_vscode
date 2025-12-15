@@ -38,7 +38,6 @@ namespace Feintgine{
 		virtual void checkInput() = 0;
 		void startScreen();
 
-	
 
 		int getScreenIndex() const{ return m_screenIndex; }
 

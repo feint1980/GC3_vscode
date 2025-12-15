@@ -49,6 +49,10 @@ namespace Feintgine
 		void setScreenInMiddle();
 		bool init();
 
+		void setSceneByIndex(int index);
+
+		//std::unique_ptr<ScreenList> getScreenList()  { return m_screenList; }
+
 		InputManager m_inputManager;
 	protected:
 		virtual void update(float deltaTime);

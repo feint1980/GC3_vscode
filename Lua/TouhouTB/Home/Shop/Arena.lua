@@ -96,6 +96,7 @@ function InitArenaMenu(host)
     -- rComboBox:setSizeStr("30%","5%")
     ArenaPanel:setVisible(false)
 
+    MenuMainPanels["Arena"] = ArenaPanel
 end
 
 MenuPanels["Arena"] = function(host)

@@ -1,4 +1,6 @@
 
+
+#pragma once
 #include "LuaManager.h"
 #include <iostream>
 

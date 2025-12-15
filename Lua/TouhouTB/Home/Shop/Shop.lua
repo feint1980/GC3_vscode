@@ -60,6 +60,8 @@ function InitShop(host)
             Shop_CharacterShop:init(host,0,0,Shop.width,Shop.height,Shop.tabs["Characters"])
         end
         ShopPanel:setVisible(false)
+        
+        MenuMainPanels["Shop"] = ShopPanel
     end
 end
 
