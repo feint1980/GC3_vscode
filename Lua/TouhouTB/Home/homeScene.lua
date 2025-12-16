@@ -125,6 +125,9 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     Main_NameLabel:init(Home_GUIScriptingPtr,"",0,0)
 
     local id,pw, guid = Home_GetInfo(3)
+    
+    
+
     Main_NameLabel:setText(id)
     Main_NameLabel:setPosStr("10%", "10%")
 
@@ -221,6 +224,11 @@ function Home_UpdateInfo()
     MainInfo.id = id
     MainInfo.guid = guid
     MainInfo.pw = pw
+
+    InfoHolder_setStrVal("MainInfo.id",id)
+    InfoHolder_setStrVal("MainInfo.pw",pw)
+    InfoHolder_setStrVal("MainInfo.guid",guid)
+
 end
 
 function Home_RequestSkillsStats()

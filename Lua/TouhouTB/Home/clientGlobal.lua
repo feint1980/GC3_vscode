@@ -53,3 +53,67 @@ MainInfo = {
 }
 
 LobbyName = ""
+Target_Lobby_ID = ""
+
+
+--- wrapper for Info Holder
+
+
+--- wrapper for Info Holder
+--- @Desciption: set the string value by key
+--- @param key string key
+--- @param value string
+function InfoHolder_setStrVal(key, value)
+    cpp_infoHolder_setStrValue(key, value)
+end
+
+
+--- wrapper for Info Holder
+--- @Desciption: get the string value by key
+--- @param key string key
+--- @return string
+function InfoHolder_getStrVal(key)
+    return cpp_infoHolder_getStrValue(key)
+end
+
+--- wrapper for Info Holder
+--- @Desciption: set the number value by key
+--- @param key string key
+--- @param value number
+function InfoHolder_setNumberVal(key, value)
+    cpp_infoHolder_setNumberValue(key, value)
+end
+
+--- wrapper for Info Holder
+--- @Desciption: get the number value by key
+--- @param key string key
+--- @return number
+function InfoHolder_getNumberVal(key)
+    return cpp_infoHolder_getNumberValue(key)
+end
+
+
+--- wrapper for Info Holder
+--- @Desciption: set the pointer value by key
+--- @param key string key
+--- @param value pointer
+function InfoHolder_setPointerVal(key, value)
+    cpp_infoHolder_setPointerValue(key, value)
+end
+
+
+--- wrapper for Info Holder
+--- @Desciption: get the pointer value by key
+--- @param key string key
+--- @param value pointer
+function InforHolder_setPointerVal(key, value)
+    cpp_infoHolder_getUserLightData(key, value)
+end
+
+--- wrapper for Info Holder
+--- @Desciption: get the pointer value by key
+--- @param key string key
+--- @return pointer
+function InfoHolder_getPointerVal(key)
+    return cpp_infoHolder_setUserLightData(key)
+end

@@ -7,7 +7,7 @@ require "TGUI_Editbox"
 require "TGUI_Picture"
 require "clientSide"
 require "clientWrapper"
-
+require "clientGlobal"
 
 LobbySceneHost = nil
 
@@ -27,10 +27,11 @@ Lobby_ControlHandlerPtr = nil
 --@type pointer SkillHandler
 Lobby_SkillHandlerPtr = nil
 
-
+---@type Label
+LobbyTitleLabel = nil
 
 ---@type Label
-LobbyTitle = nil
+LobbyIDLabel = nil
 
 function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
 
@@ -43,16 +44,29 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     Lobby_SkillHandlerPtr = SkillHandlerPtr
     Lobby_ControlHandlerPtr = ControlHandlerPtr
 
+    LobbyIDLabel = Label:new()
+    LobbyIDLabel:init(Lobby_GUIScriptingPtr,"",0,0)
+    LobbyIDLabel:setText("ID : " .. InfoHolder_getStrVal("Target_Lobby_ID"))
+    LobbyIDLabel:setPosStr("10%", "10%")
+    LobbyIDLabel:setScale(.8)
 
-    LobbyTitle = Label:new()
-    LobbyTitle:init(Lobby_GUIScriptingPtr,"",0,0)
-    LobbyTitle:setText("Lobby name")
-    LobbyTitle:setPosStr("50%", "10%")
+    LobbyTitleLabel = Label:new()
+    LobbyTitleLabel:init(Lobby_GUIScriptingPtr,"",0,0)
+    LobbyTitleLabel:setText(InfoHolder_getStrVal("LobbyName"))
+    LobbyTitleLabel:setPosStr("50%", "15%")
     
+
 
     local id,pw,guid = cpp_lobby_getInfo(3)
 
     print("id " .. id)
     print("pw " .. pw)
     print("guid " .. guid)
+
+    local accountID = Label:new()
+    accountID:init(Lobby_GUIScriptingPtr,"",0,0)
+    accountID:setText(id)
+    accountID:setPosStr("25%", "24%")
+    accountID:setScale(.8)
+
 end

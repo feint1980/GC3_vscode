@@ -1,6 +1,4 @@
 
-
-
 DelayTask = {
     callback = nil,
     time = 0

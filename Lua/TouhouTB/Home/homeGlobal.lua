@@ -1,7 +1,6 @@
 
 require "clientGlobal"
 
-
 --- Arena Server
 
 Arena_Ping_List = {

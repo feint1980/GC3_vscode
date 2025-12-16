@@ -1,9 +1,10 @@
 package.path = package.path .. ';../../Lua/TouhouTB/skills/?.lua;'
 
+require "clientGlobal"
+require"clientGlobal"
 require "homeGlobal"
 
 
-Target_Lobby_ID = ""
 
 ---MARK: Main server
 
@@ -42,13 +43,13 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
     print("lobby response get !!!")
 
     -- print("data " .. data)
-    local tTargetGUID, targetID, serverGUID , lobbyID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    local tTargetGUID, targetID, serverGUID , lobbyID, lobbyName = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
     print("tTargetGUID " .. tTargetGUID)
     print("targetID " .. targetID)
     print("serverGUID " .. serverGUID)
     print("lobbyID " .. lobbyID)
-
+    print("lobbyName " .. lobbyName)
 
     local targetBattleServer = Arena_Ping_List[serverGUID] 
     if targetBattleServer == nil then
@@ -56,12 +57,16 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
         return
     end
 
+    -- LobbyName = lobbyName
+
+    InfoHolder_setStrVal("LobbyName", lobbyName)
+    InfoHolder_setStrVal("Target_Lobby_ID", lobbyID)
+
     print(targetBattleServer.IP .. "|" .. targetBattleServer.port)
     Target_Lobby_ID = lobbyID
     ClientConnect2SV(host,targetBattleServer.IP,targetBattleServer.port)
 
 end
-
 
 ---Arena_CreateLobby_Request 
 
@@ -127,38 +132,5 @@ HomeMain_HandleTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,pack
 end
 
 --- MARK:Battle Server 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

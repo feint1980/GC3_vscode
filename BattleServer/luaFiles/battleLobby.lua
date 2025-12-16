@@ -19,7 +19,6 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
     print("tTargetGUID " .. tTargetGUID)
     print("targetID " .. targetID)
     print("serverGUID " .. serverGUID)
-    
 
     print("lobby name " .. lobbyName)
     print("lobby password " .. lobbyPassword)
@@ -27,7 +26,7 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
 
     BM_addToWhitelist(host,tTargetGUID)
 
-    BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID})
+    BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName})
 
 end
 

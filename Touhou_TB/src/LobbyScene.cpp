@@ -228,6 +228,7 @@ void LobbyScene::initGUI()
     m_controlHandler = new ControlHandler();
     m_controlHandler->init(m_script,m_window->getWindow(),m_guiScriptingManager);
 
+    InfoHolder::getInstance()->initLuaInterface(m_script);
 
     unsigned int port = 1123;
 

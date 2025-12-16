@@ -321,6 +321,8 @@ void HomeScene::initGUI()
     m_controlHandler = new ControlHandler();
     m_controlHandler->init(m_script,m_window->getWindow(),m_guiScriptingManager);
 
+    InfoHolder::getInstance()->initLuaInterface(m_script);
+
     unsigned int port = 1123;
 
     m_clientScriptingManager = new ClientScriptingManager();
@@ -356,7 +358,7 @@ void HomeScene::initGUI()
         }
     }
 
-    InfoHolder::getInstance()->saveLuaState(m_script);
+    // InfoHolder::getInstance()->saveLuaState(m_script);
     InfoHolder::getInstance()->registerGUIScriptingManager(m_guiScriptingManager);
     InfoHolder::getInstance()->registerGame(m_game);
 

@@ -35,12 +35,13 @@ BattleServerHandling[BattleChanel.Lobby][LobbyResponse.Lobby_Create_Response] = 
     print("From server IP:" .. SV_GetIPString(ip))
     print("GUID:" .. guid)
     -- print("Data:" .. data)
-    local tTargetGUID, targetID, serverGUID , lobbyID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    local tTargetGUID, targetID, serverGUID , lobbyID , lobbyName = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
     print("tTargetGUID " .. tTargetGUID)
     print("targetID " .. targetID)
     print("serverGUID " .. serverGUID)
     print("lobbyID " .. lobbyID)
+    print("lobbyName " .. lobbyName)
 
     local targetClient = CH_FindClient(tTargetGUID)
     if targetClient == nil then
@@ -48,6 +49,6 @@ BattleServerHandling[BattleChanel.Lobby][LobbyResponse.Lobby_Create_Response] = 
         return
     end
 
-    SendReliable(host,targetClient.IP, tTargetGUID,  PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobbyResponse, {tTargetGUID,targetID,serverGUID,lobbyID})
+    SendReliable(host,targetClient.IP, tTargetGUID,  PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobbyResponse, {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName})
 
 end

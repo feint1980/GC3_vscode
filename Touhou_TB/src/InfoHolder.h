@@ -71,9 +71,12 @@ public:
 
     RakNet::SystemAddress getServerIP() { return m_serverIPAddr; }
 
-    void saveLuaState(lua_State * state) { m_saveLuaState = state; }
 
-    lua_State * getLuaState() { return m_saveLuaState; }
+    // removed ... for now
+    // void saveLuaState(lua_State * state) { m_saveLuaState = state; }
+    // lua_State * getLuaState() { return m_saveLuaState; }
+
+    
 
     void registerGUIScriptingManager(TGUIScriptingManager * guiScriptingManager) {
         
@@ -89,6 +92,41 @@ public:
 
     Feintgine::IMainGame * getGame() { return m_game; }
 
+    void saveStrValue(const std::string & key, const std::string & value) { m_savedStrValue[key] = value; }
+
+    void saveNumberValue(const std::string & key, double value) { m_savedNumberValue[key] = value; }
+
+    void savePointerValue(const std::string & key, void * value) { m_savedPointerValue[key] = value; }
+
+    std::string getStrValue(const std::string & key) { 
+        
+        if(m_savedStrValue.find(key) == m_savedStrValue.end())
+        {
+            return key + "_null";
+        }
+        return m_savedStrValue[key]; }
+
+    double getNumberValue(const std::string & key) { 
+        if(m_savedNumberValue.find(key) == m_savedNumberValue.end())
+        {
+            return -322.0;
+        }
+        return m_savedNumberValue[key]; }
+
+
+
+    void setUserLightData(const std::string & key, void * value) { m_savedPointerValue[key] = value; }
+
+    void * getUserLightData(const std::string & key) {
+        if(m_savedPointerValue.find(key) == m_savedPointerValue.end())
+        {
+            return nullptr;
+        }
+        return m_savedPointerValue[key]; }
+
+
+    void initLuaInterface(lua_State * script);
+
 private:
 
     static InfoHolder* m_inforHolder ;
@@ -101,13 +139,20 @@ private:
 
     // ClientScriptingManager * m_clientScriptingManager = nullptr;
 
+
+
     RakNet::RakPeerInterface * m_client = nullptr;
 
     std::map<std::string,Feintgine::F_Cryptor *> m_cryptorMap;
 
-    lua_State * m_saveLuaState = nullptr;
+    lua_State * m_script = nullptr;
 
     TGUIScriptingManager * m_guiScriptingManager = nullptr;
 
     Feintgine::IMainGame * m_game = nullptr;
+
+    std::unordered_map<std::string, std::string > m_savedStrValue;
+    std::unordered_map<std::string, double> m_savedNumberValue;
+    std::unordered_map<std::string, void*> m_savedPointerValue;
+
 };
