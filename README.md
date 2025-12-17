@@ -37,8 +37,8 @@
 - **Request keys(for register account)**
 - **Login/Register Account**
 - **Request data from server(such as currency,info)**
-- **Character shop**
-  ![Showcase](media/TB_progress.mp4)
+- **Client progress**
+  ![Showcase](media/TB_progress.gif)
 ---
 
 ## 🛠 Tech Stack & Tools
