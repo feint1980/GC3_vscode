@@ -52,9 +52,12 @@ MainInfo = {
     pw = ""
 }
 
-LobbyName = ""
-Target_Lobby_ID = ""
 
+LobbyScene_isReady = false
+
+---- Global variables section end ---- 
+
+---
 
 --- wrapper for Info Holder
 

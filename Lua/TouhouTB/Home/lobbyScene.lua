@@ -33,6 +33,14 @@ LobbyTitleLabel = nil
 ---@type Label
 LobbyIDLabel = nil
 
+
+---@type Label
+Lobby_ReadyLabel = nil
+
+---@type Label
+Lobby_ReadyButton = nil
+
+
 function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
 
 
@@ -55,8 +63,6 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     LobbyTitleLabel:setText(InfoHolder_getStrVal("LobbyName"))
     LobbyTitleLabel:setPosStr("50%", "15%")
     
-
-
     local id,pw,guid = cpp_lobby_getInfo(3)
 
     print("id " .. id)
@@ -69,4 +75,50 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     accountID:setPosStr("25%", "24%")
     accountID:setScale(.8)
 
+    local picture = Picture:new()
+    picture:init(Lobby_GUIScriptingPtr,"Assets/TB_GUI/faces/Reimu_face.png",0,0,100,100)
+    picture:setPosStr("20%","24%")
+    picture:setSize(75,75)
+
+
+    
+    Lobby_ReadyButton = Label:new()
+    Lobby_ReadyButton:init(Lobby_GUIScriptingPtr,"Ready",0,0)
+    Lobby_ReadyButton:setAlignment(TextAlginment.Center)
+    Lobby_ReadyButton:setPosStr("30%", "70%")
+    Lobby_ReadyButton:setScale(.8)
+    Lobby_ReadyButton:setHoverable(0,255,0,255,255,255,255,255)
+    Lobby_ReadyButton:setOnClickCallback(function()
+        print("toggle readiness")
+        LobbyScene_ToggleReady()
+        end)
+
+
+    Lobby_ReadyLabel = Label:new()
+    Lobby_ReadyLabel:init(Lobby_GUIScriptingPtr,"",0,0)
+    Lobby_ReadyLabel:setText("Not Ready")
+    Lobby_ReadyLabel:setPosStr("30%", "24%")
+    Lobby_ReadyLabel:setScale(.8)
+    Lobby_ReadyLabel:setColor(255,0,0,255)
+
+
 end
+
+function LobbyScene_ToggleReady()
+    LobbyScene_isReady = not LobbyScene_isReady
+
+    if LobbyScene_isReady == true then
+        Lobby_ReadyButton:setText("Not Ready")
+        -- Lobby_ReadyButton:setHoverable(255,0,0,255,255,255,255,255)
+        Lobby_ReadyLabel:setText("Ready")
+        Lobby_ReadyLabel:setColor(0,255,0,255)
+    else
+        Lobby_ReadyButton:setText("Ready")
+        -- Lobby_ReadyButton:setHoverable(0,255,0,255,255,255,255,255)
+        Lobby_ReadyLabel:setText("Not Ready")
+        Lobby_ReadyLabel:setColor(255,0,0,255)
+    end
+end
+
+
+require "lobby_Input_control"

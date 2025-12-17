@@ -123,7 +123,6 @@ function Label:getPos()
     return TGUI_Label_GetPos(self.ptr)
 end
 
-
 --- MARK: Wrapper
 --- function wrapper of cpp_Label_Create
 ---@Description create new tgui label object in cpp

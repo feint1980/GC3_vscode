@@ -38,7 +38,7 @@
 - **Login/Register Account**
 - **Request data from server(such as currency,info)**
 - **Character shop**
-  ![Showcase](media/TH_TB_SV_showcase.gif)
+  ![Showcase](media/TB_progress.mp4)
 ---
 
 ## 🛠 Tech Stack & Tools
