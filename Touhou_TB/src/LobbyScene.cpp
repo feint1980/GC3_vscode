@@ -239,7 +239,7 @@ void LobbyScene::initGUI()
     m_clientCharacterHandler = new ClientCharacterHandler();
     m_clientCharacterHandler->init(m_script);
 
-    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Home/lobbyScene.lua")))
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Lobby/lobbyScene.lua")))
     {
         std::cout << "Run loginScene script OK \n";
     }
