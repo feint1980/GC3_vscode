@@ -127,6 +127,14 @@ Lobby_HandleNetwork = {}
 
 require "lobby_client_network"
 
+function Lobby_RecieveData(host, ip, pID, RakNetPacket)
+
+    if Lobby_HandleNetwork[pID] ~= nil then
+        Lobby_HandleNetwork[pID](host,ip,pID,RakNetPacket)
+    else
+        print("(Lobby_RecieveData)no handler for packet " .. pID)
+    end
+end
 
 -- HandlePacketTask["home_main"] = function(host,packet,RakNetPacket)
 --     print("handle home packet task " .. packet.packetID)

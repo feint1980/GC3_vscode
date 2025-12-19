@@ -50,6 +50,17 @@ struct ResponseMSG
     ResponseMSG(RakNet::Packet *p, unsigned char packetIdentifier) : packet(p), packetIdentifier(packetIdentifier) {}
 };
 
+
+struct internalLuaHandler
+{
+    bool isDefault = false;
+    RakNet::MessageID messageIDType;
+    std::string functionName;
+    internalLuaHandler(RakNet::MessageID messageID, std::string functionName, bool isDefault = false) : messageIDType(messageID), functionName(functionName) { 
+        this->isDefault = isDefault;
+    }
+};
+
 class ClientScriptingManager
 {
 public:
@@ -165,6 +176,8 @@ public:
 
     std::unordered_map<std::string, Feintgine::F_Cryptor_sodium *> m_cryptors;
     
+    
+
 };
 
 #endif

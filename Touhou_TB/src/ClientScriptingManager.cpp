@@ -1056,6 +1056,7 @@ void ClientScriptingManager::handleReceive()
 void ClientScriptingManager::update(float deltaTime)
 {
 
+
     if(m_RakNetCoreInitialized)
     {
 
