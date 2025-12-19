@@ -306,3 +306,4 @@ void LobbyScene::initLoading()
 	m_text_load->setText("Loading ...");
 	m_tgui_load->add(m_text_load);
 }
+
