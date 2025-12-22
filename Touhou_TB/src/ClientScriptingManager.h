@@ -51,15 +51,15 @@ struct ResponseMSG
 };
 
 
-struct internalLuaHandler
-{
-    bool isDefault = false;
-    RakNet::MessageID messageIDType;
-    std::string functionName;
-    internalLuaHandler(RakNet::MessageID messageID, std::string functionName, bool isDefault = false) : messageIDType(messageID), functionName(functionName) { 
-        this->isDefault = isDefault;
-    }
-};
+// struct internalLuaHandler
+// {
+//     bool isDefault = false;
+//     RakNet::MessageID messageIDType;
+//     std::string functionName;
+//     internalLuaHandler(RakNet::MessageID messageID, std::string functionName, bool isDefault = false) : messageIDType(messageID), functionName(functionName) { 
+//         this->isDefault = isDefault;
+//     }
+// };
 
 class ClientScriptingManager
 {
@@ -76,7 +76,6 @@ public:
     uint32_t sendBattleWrapData(const std::string & data);
 
     uint32_t handleWrapData(RakNet::Packet *p);
-
 
     std::string getDecryptMessage(const std::string & data);
 
@@ -176,7 +175,9 @@ public:
 
     std::unordered_map<std::string, Feintgine::F_Cryptor_sodium *> m_cryptors;
     
-    
+
+    std::string m_luaCommonMessageHandlingFunctionName;
+    std::unordered_map<RakNet::MessageID, std::string> m_wrappedMessageHandlingFunctionNames;
 
 };
 
