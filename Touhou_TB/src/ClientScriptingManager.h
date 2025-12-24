@@ -61,6 +61,29 @@ struct ResponseMSG
 //     }
 // };
 
+constexpr float NET_BUDGET_RATIO = 0.1f; // 10% of frame time
+constexpr float NET_BUDGET = 0.1f; // 10% of frame time
+constexpr float MAX_NET_BUDGET  = 0.003f; // hard cap: 3ms
+
+struct wrappedPacket
+{
+
+    wrappedPacket(unsigned char packetIdentifier, RakNet::Packet *t_packet) 
+    {
+        RakNet::Packet* original = t_packet;
+        auto copy = new RakNet::Packet(*original); // shallow copy
+        copy->data = new unsigned char[original->length];
+        memcpy(copy->data, original->data, original->length);
+        copy->length = original->length;
+
+        packet = std::move(copy);
+
+    }
+    unsigned char packetIdentifier = 0;
+    RakNet::Packet *packet = nullptr;
+
+};
+
 class ClientScriptingManager
 {
 public:
@@ -129,6 +152,18 @@ public:
 
     void processInternalPacket(RakNet::Packet *p);
 
+    void setCommonHandlingLuaFunction(const std::string & functionName) { m_luaCommonMessageHandlingFunctionName = functionName; }
+
+    void setWrappedMessageHandlingLuaFunction(RakNet::MessageID messageID, const std::string & functionName) { m_wrappedMessageHandlingFunctionNames[messageID] = functionName; }
+
+    void handlePacketInLua(RakNet::Packet *p);
+
+    void handleWrappedPacketInLua(float deltaTime);
+
+    void handleDefaultPacketInLua();
+
+    void filterPacketForLua(RakNet::Packet *p);
+
     std::string getCurrentBattleServerGUID()const{ return m_currentBattleServerGUID; }
 
     RakNet::SystemAddress getServerIPAddr() { return m_serverIPAddr; }
@@ -159,6 +194,8 @@ public:
 
     Feintgine::F_Cryptor_sodium * m_battleServerCryptor;
 
+
+
     std::unordered_map<std::string, int> m_battleServerPingMap;
 
     std::unordered_map<std::string, RakNet::SystemAddress * > m_battleServerIPMap;
@@ -175,9 +212,13 @@ public:
 
     std::unordered_map<std::string, Feintgine::F_Cryptor_sodium *> m_cryptors;
     
+    std::queue <wrappedPacket> m_luaWrappedPacketQueue;
+    std::queue <RakNet::Packet *> m_luaDefaultPacketQueue;
 
     std::string m_luaCommonMessageHandlingFunctionName;
     std::unordered_map<RakNet::MessageID, std::string> m_wrappedMessageHandlingFunctionNames;
+
+    float m_wrapperElapseCounter = 0;
 
 };
 

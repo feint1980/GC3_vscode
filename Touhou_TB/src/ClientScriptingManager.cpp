@@ -871,6 +871,136 @@ void ClientScriptingManager::handleData()
     }
 }
 
+
+void ClientScriptingManager::filterPacketForLua(RakNet::Packet *p)
+{
+    unsigned char packetIdentifier = GetPacketIdentifier(p);
+    
+
+    if(m_wrappedMessageHandlingFunctionNames.find(packetIdentifier) != m_wrappedMessageHandlingFunctionNames.end())
+    {
+        m_luaWrappedPacketQueue.emplace(packetIdentifier, p);
+    }   
+    else
+    {
+        RakNet::Packet* original = p;
+        auto copy = new RakNet::Packet(*original); // shallow copy
+        copy->data = new unsigned char[original->length];
+        memcpy(copy->data, original->data, original->length);
+        copy->length = original->length;
+
+        m_luaDefaultPacketQueue.push(std::move(copy));
+    }
+}
+
+void ClientScriptingManager::handleWrappedPacketInLua(float deltaTime)
+{
+    if(m_luaWrappedPacketQueue.empty())
+    {
+        return;
+    }
+    if (m_wrapperElapseCounter < NET_BUDGET)
+    {
+        m_wrapperElapseCounter += deltaTime;
+    } 
+    else
+    {
+        wrappedPacket packet = m_luaWrappedPacketQueue.front();
+        RakNet::BitStream bsIn(packet.packet->data, packet.packet->length, false);
+        RakNet::MessageID msgId;
+        uint8_t channel, request;
+        bsIn.Read(msgId);
+        if(m_wrappedMessageHandlingFunctionNames.find(msgId) != m_wrappedMessageHandlingFunctionNames.end())
+        {
+            std::cout << "unexpected packet " << msgId << "\n";
+            return;
+        }
+        // the cryptor problem, you need to fix this Feint.
+
+    }
+    
+
+}
+
+void ClientScriptingManager::handlePacketInLua(RakNet::Packet *p)
+{
+    unsigned char packetIdentifier = GetPacketIdentifier(p);
+
+    if(m_wrappedMessageHandlingFunctionNames.find(packetIdentifier) != m_wrappedMessageHandlingFunctionNames.end())
+    {
+        std::string functionName = m_wrappedMessageHandlingFunctionNames[packetIdentifier];
+        lua_getglobal(m_script, functionName.c_str());
+        if(lua_isfunction(m_script, -1))
+        {
+            RakNet::BitStream bsIn(p->data, p->length, false);
+
+            RakNet::MessageID msgId;
+            uint8_t channel;
+            uint8_t request;
+
+            bsIn.Read(msgId);
+            bsIn.Read(channel);
+            bsIn.Read(request);
+
+            unsigned int remainingBytes = bsIn.GetNumberOfUnreadBits() / 8;
+            std::string encData;
+            encData.resize(remainingBytes);
+            bsIn.ReadAlignedBytes(reinterpret_cast<unsigned char*>(&encData[0]), remainingBytes);
+            std::string payLoad = getDecryptMessage(encData);
+
+            lua_pushlightuserdata(m_script, this);
+            lua_pushnumber(m_script, channel);
+            lua_pushnumber(m_script, request);
+            lua_pushstring(m_script, payLoad.c_str());
+            // lua_pushlightuserdata(m_script, &p->systemAddress);
+            lua_pushstring(m_script, p->guid.ToString());
+            // std::cout << "recieve guid check " << p->guid.ToString() << "\n";
+            const int argc = 5; // remember to modify this number when you change the number of arguments
+            const int returnCount = 1;
+            bool result = LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
+            if(!result)
+            {
+                std::cout << "lua call failed \n";
+            }
+        }
+    }
+    else
+    {
+        if(p != nullptr)
+        {   
+            lua_getglobal(m_script, "Client_ReceiveData");
+            if(lua_isfunction(m_script, -1))
+            {
+                bool selfPacket = false;
+                if(p->length < 30)
+                {
+                    selfPacket = true;
+                }
+                unsigned char identifier = GetPacketIdentifier(p);
+                // // std::cout << m_cryptor.decrypt(tMsg, iv) << "\n";
+                std::cout << "got packet !!!!!!! " << (int)identifier << "\n";
+                lua_pushlightuserdata(m_script, this);
+                if(!selfPacket)
+                {
+
+                    std::string tMsg = std::string(reinterpret_cast<const char*>(p->data), p->length);
+                    lua_pushstring(m_script,m_cryptor->decrypt(tMsg).c_str());
+                }
+                else
+                {
+                    lua_pushstring(m_script, std::string((const char *) p->data).c_str());
+                }
+                lua_pushlightuserdata(m_script, &p->systemAddress);
+                lua_pushnumber(m_script, identifier);
+                lua_pushlightuserdata(m_script, p);
+                const int argc = 5;
+                const int returnCount = 0;
+                return LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
+            }
+        }
+    }
+}
+
 void ClientScriptingManager::cleanUp()
 {
     // for(int i = 0 ; i < 8 ; i++)
