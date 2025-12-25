@@ -679,6 +679,9 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
 
     m_battleServerCryptor = new Feintgine::F_Cryptor_sodium();
     m_battleServerCryptor->init("XOPXOP336", m_client->GetMyGUID().ToString());
+
+    m_wrappedMessageHandlingFunctionCryptors[ID_TH_TB] = m_cryptor;
+    m_wrappedMessageHandlingFunctionCryptors[ID_TH_TB_BATTLE] = m_battleServerCryptor; 
 }
 
 ClientScriptingManager::ClientScriptingManager()
@@ -889,8 +892,57 @@ void ClientScriptingManager::filterPacketForLua(RakNet::Packet *p)
         memcpy(copy->data, original->data, original->length);
         copy->length = original->length;
 
-        m_luaDefaultPacketQueue.push(std::move(copy));
+        m_luaDefaultPacketQueue.emplace(std::move(copy));
     }
+}
+
+void ClientScriptingManager::handleDefaultPacketInLua(float deltaTime)
+{
+    if(m_luaDefaultPacketQueue.empty())
+    {
+        return;
+    }
+    if( m_defaultElapseCounter < NET_BUDGET)
+    {
+        m_defaultElapseCounter += deltaTime;
+    } 
+    else
+    {
+        auto packet = std::move(m_luaDefaultPacketQueue.front());
+
+        lua_getglobal(m_script, m_luaCommonMessageHandlingFunctionName.c_str());
+        if(lua_isfunction(m_script, -1))
+        {
+            unsigned char identifier = GetPacketIdentifier(packet.get());
+            bool selfPacket = false;
+            if(packet->length < 30)
+            {
+                selfPacket = true;
+            }
+            lua_pushlightuserdata(m_script, this);
+            if(!selfPacket)
+            {
+                std::string tMsg = std::string(reinterpret_cast<const char*>(packet->data), packet->length);
+                lua_pushstring(m_script,m_cryptor->decrypt(tMsg).c_str());
+            }
+            else
+            {
+                lua_pushstring(m_script, std::string((const char *) packet->data).c_str());
+            }
+            lua_pushlightuserdata(m_script, &packet->systemAddress);
+            lua_pushnumber(m_script,identifier);
+            lua_pushlightuserdata(m_script, packet.get());
+            const int argc = 5;
+            const int returnCount = 0;
+            LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
+
+        }
+        
+
+        m_luaDefaultPacketQueue.pop();
+        
+    }
+
 }
 
 void ClientScriptingManager::handleWrappedPacketInLua(float deltaTime)
@@ -905,8 +957,11 @@ void ClientScriptingManager::handleWrappedPacketInLua(float deltaTime)
     } 
     else
     {
-        wrappedPacket packet = m_luaWrappedPacketQueue.front();
+        wrappedPacket packet = std::move(m_luaWrappedPacketQueue.front());
+        m_luaWrappedPacketQueue.pop();
+
         RakNet::BitStream bsIn(packet.packet->data, packet.packet->length, false);
+
         RakNet::MessageID msgId;
         uint8_t channel, request;
         bsIn.Read(msgId);
@@ -915,6 +970,38 @@ void ClientScriptingManager::handleWrappedPacketInLua(float deltaTime)
             std::cout << "unexpected packet " << msgId << "\n";
             return;
         }
+        bsIn.Read(channel);
+        bsIn.Read(request);
+        unsigned int remainingBytes = bsIn.GetNumberOfUnreadBits() / 8;
+        std::string encData;
+        encData.resize(remainingBytes);
+        bsIn.ReadAlignedBytes(reinterpret_cast<unsigned char*>(&encData[0]), remainingBytes);
+
+        Feintgine::F_Cryptor_sodium * cryptor = m_wrappedMessageHandlingFunctionCryptors[msgId];
+
+        if(!cryptor)
+        {
+            std::cout << "no cryptor for packet ID " << msgId << "\n"; 
+        }
+        std::string payLoad = cryptor->decrypt(encData);
+
+        lua_getglobal(m_script, m_wrappedMessageHandlingFunctionNames[msgId].c_str());
+        if(lua_isfunction(m_script, -1))
+        {
+            lua_pushlightuserdata(m_script, this);
+            lua_pushnumber(m_script, channel);
+            lua_pushnumber(m_script, request);
+            lua_pushstring(m_script, payLoad.c_str());
+            // lua_pushlightuserdata(m_script, &p->systemAddress);
+            lua_pushstring(m_script, packet.packet->guid.ToString());
+            // std::cout << "recieve guid check " << p->guid.ToString() << "\n";
+            const int argc = 5; // remember to modify this number when you change the number of arguments
+            const int returnCount = 1;
+            int result = LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
+            
+        }
+
+        // m_wrappedMessageHandlingFunctionCryptors[ID_TH_TB] 
         // the cryptor problem, you need to fix this Feint.
 
     }
@@ -995,7 +1082,7 @@ void ClientScriptingManager::handlePacketInLua(RakNet::Packet *p)
                 lua_pushlightuserdata(m_script, p);
                 const int argc = 5;
                 const int returnCount = 0;
-                return LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
+                LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
             }
         }
     }

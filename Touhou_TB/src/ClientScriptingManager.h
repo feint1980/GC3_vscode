@@ -65,23 +65,33 @@ constexpr float NET_BUDGET_RATIO = 0.1f; // 10% of frame time
 constexpr float NET_BUDGET = 0.1f; // 10% of frame time
 constexpr float MAX_NET_BUDGET  = 0.003f; // hard cap: 3ms
 
+struct RakNetPacketDeleter
+{
+    void operator()(RakNet::Packet* p) const
+    {
+        if (!p) return;
+        delete[] p->data;
+        delete p;
+    }
+};
+
 struct wrappedPacket
 {
-
-    wrappedPacket(unsigned char packetIdentifier, RakNet::Packet *t_packet) 
-    {
-        RakNet::Packet* original = t_packet;
-        auto copy = new RakNet::Packet(*original); // shallow copy
-        copy->data = new unsigned char[original->length];
-        memcpy(copy->data, original->data, original->length);
-        copy->length = original->length;
-
-        packet = std::move(copy);
-
-    }
     unsigned char packetIdentifier = 0;
-    RakNet::Packet *packet = nullptr;
+    std::unique_ptr<RakNet::Packet, RakNetPacketDeleter> packet;
 
+    explicit  wrappedPacket(unsigned char id, RakNet::Packet* p)
+        : packetIdentifier(id)
+    {
+        RakNet::Packet* copy = new RakNet::Packet();
+        copy->length = p->length;
+        copy->data = new unsigned char[p->length];
+        memcpy(copy->data, p->data, p->length);
+        copy->systemAddress = p->systemAddress;
+        copy->guid = p->guid;
+
+        packet.reset(copy);
+    }
 };
 
 class ClientScriptingManager
@@ -160,7 +170,7 @@ public:
 
     void handleWrappedPacketInLua(float deltaTime);
 
-    void handleDefaultPacketInLua();
+    void handleDefaultPacketInLua(float deltaTime);
 
     void filterPacketForLua(RakNet::Packet *p);
 
@@ -194,8 +204,6 @@ public:
 
     Feintgine::F_Cryptor_sodium * m_battleServerCryptor;
 
-
-
     std::unordered_map<std::string, int> m_battleServerPingMap;
 
     std::unordered_map<std::string, RakNet::SystemAddress * > m_battleServerIPMap;
@@ -213,12 +221,16 @@ public:
     std::unordered_map<std::string, Feintgine::F_Cryptor_sodium *> m_cryptors;
     
     std::queue <wrappedPacket> m_luaWrappedPacketQueue;
-    std::queue <RakNet::Packet *> m_luaDefaultPacketQueue;
+    std::queue <std::unique_ptr<RakNet::Packet>> m_luaDefaultPacketQueue;
 
     std::string m_luaCommonMessageHandlingFunctionName;
     std::unordered_map<RakNet::MessageID, std::string> m_wrappedMessageHandlingFunctionNames;
 
+    std::unordered_map<RakNet::MessageID, Feintgine::F_Cryptor_sodium *> m_wrappedMessageHandlingFunctionCryptors;
+
+
     float m_wrapperElapseCounter = 0;
+    float m_defaultElapseCounter = 0;
 
 };
 
