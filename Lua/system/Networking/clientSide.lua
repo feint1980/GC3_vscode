@@ -79,6 +79,7 @@ end
 --- @param request number type of packet to wrap
 --- @param list table data to wrap
 function Client_SendWrapData(host,channel,request,list)
+    print("Client_SendWrapData called ")
     return cppSendWrapData(host,WrapRequest(channel,request,list))
 end
 

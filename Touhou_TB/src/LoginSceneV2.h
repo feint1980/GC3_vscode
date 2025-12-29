@@ -106,7 +106,7 @@ private:
 
     ClientScriptingManager * m_clientScriptingManager = nullptr;
 
-    LuaEventHandler m_luaEventHandler ;
+    // LuaEventHandler m_luaEventHandler ;
 
     TGUIScriptingManager * m_guiScriptingManager = nullptr;
 

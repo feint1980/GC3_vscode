@@ -139,7 +139,10 @@ void LobbyScene::onExit()
 
 void LobbyScene::update(float deltaTime)
 {
-
+    if(m_clientScriptingManager)
+    {
+        m_clientScriptingManager->updateV2(deltaTime);
+    }
 }
 
 void LobbyScene::draw()
@@ -263,6 +266,11 @@ void LobbyScene::initGUI()
             std::cout << "Login scene init script from C++ OK \n";
         }
     }
+
+
+    m_clientScriptingManager->setCommonHandlingLuaFunction("Client_ReceiveData");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"ClientHandlerWrapResponse");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"ClientHandlerBattleResponse");
 
 
 }

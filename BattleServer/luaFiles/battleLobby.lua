@@ -1,4 +1,4 @@
-
+--- Battle server, lobby section
 package.path = package.path .. ";../luaFiles/?.lua" 
 
 
@@ -24,9 +24,10 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
     print("lobby password " .. lobbyPassword)
     local lobbyID =  BM_CreateLobby(host,lobbyName,lobbyPassword)
 
-    BM_addToWhitelist(host,tTargetGUID)
+    BM_addToWhitelist(host,tTargetGUID) -- add the user to whitelist
 
-    BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName})
+    BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName}) -- Send to the client request the lobby 
+
 
 end
 

@@ -1,3 +1,6 @@
+--- Main server handle battle servers
+
+
 package.path = package.path .. ";../luaFiles/?.lua" .. ";../luaFiles/BattleServer/?.lua" 
 
 require "serverWrapper"
@@ -48,6 +51,7 @@ BattleServerHandling[BattleChanel.Lobby][LobbyResponse.Lobby_Create_Response] = 
         print("invalid user,  warning, craft packet found from ip " .. SV_GetIPString(ip))
         return
     end
+
 
     SendReliable(host,targetClient.IP, tTargetGUID,  PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobbyResponse, {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName})
 

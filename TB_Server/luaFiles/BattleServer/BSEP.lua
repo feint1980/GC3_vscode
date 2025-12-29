@@ -1,11 +1,13 @@
 BSEP =
 {
+    ---@type RakNet_SystemAddress
     IP = nil,
     GUID = "",
     name = "",
     port = 0,
-    cppObj = nil,
-    networkInstance = nil
+    ---@type pointer of ClientScriptingManager
+    networkInstance = nil 
+
 }
 
 function BSEP:new(o)

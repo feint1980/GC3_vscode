@@ -13,3 +13,7 @@ ExistingCharacters = {
 BSEP_List = {
     
 }
+
+Lobby_List = {
+    
+}

@@ -17,5 +17,6 @@ InternalPacketHandling[MainServerChanel.PaperWork][PaperWorkRequest.SelfRegister
     else
         print("rejected by server main")
     end
-    
+
 end
+

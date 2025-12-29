@@ -122,6 +122,8 @@ public:
 
     void update(float deltaTime);
 
+    void updateV2(float deltaTime);
+
     void updateScript(float delta);
 
     void handleData();
@@ -166,7 +168,7 @@ public:
 
     void setWrappedMessageHandlingLuaFunction(RakNet::MessageID messageID, const std::string & functionName) { m_wrappedMessageHandlingFunctionNames[messageID] = functionName; }
 
-    void handlePacketInLua(RakNet::Packet *p);
+    // void handlePacketInLua(RakNet::Packet *p);
 
     void handleWrappedPacketInLua(float deltaTime);
 

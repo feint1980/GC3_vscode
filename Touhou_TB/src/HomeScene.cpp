@@ -195,7 +195,8 @@ void HomeScene::update(float deltaTime)
     }
     if(m_clientScriptingManager)
     {
-        m_clientScriptingManager->update(deltaTime);
+        // m_clientScriptingManager->update(deltaTime);
+        m_clientScriptingManager->updateV2(deltaTime);
     }
     m_gif.update(deltaTime);
     m_luaTaskManager.update(deltaTime);
@@ -361,6 +362,11 @@ void HomeScene::initGUI()
     // InfoHolder::getInstance()->saveLuaState(m_script);
     InfoHolder::getInstance()->registerGUIScriptingManager(m_guiScriptingManager);
     InfoHolder::getInstance()->registerGame(m_game);
+
+    m_clientScriptingManager->setCommonHandlingLuaFunction("Client_ReceiveData");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"ClientHandlerWrapResponse");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"ClientHandlerBattleResponse");
+
 
 }
 

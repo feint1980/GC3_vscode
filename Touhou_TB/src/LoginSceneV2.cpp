@@ -69,6 +69,9 @@ LoginSceneV2::LoginSceneV2(Feintgine::Window * window)
     m_screenIndex = 0;
 
     initShader();
+
+
+
 }
 
 void LoginSceneV2::initShader()
@@ -160,10 +163,10 @@ void LoginSceneV2::update(float deltaTime)
     
     if(m_clientScriptingManager)
     {
-        m_clientScriptingManager->update(deltaTime);
-
+        // m_clientScriptingManager->update(deltaTime);
+        m_clientScriptingManager->updateV2(deltaTime);
     }
-    m_luaEventHandler.update(deltaTime);
+    // m_luaEventHandler.update(deltaTime);
 
 }
 
@@ -271,7 +274,7 @@ void LoginSceneV2::initGUI()
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
-    m_luaEventHandler.init(m_script);
+    // m_luaEventHandler.init(m_script);
     m_guiScriptingManager  = new TGUIScriptingManager();
     m_guiScriptingManager->init(m_window,m_script);
     
@@ -322,6 +325,12 @@ void LoginSceneV2::initGUI()
             std::cout << "Login scene init script from C++ OK \n";
         }
     }
+
+
+    m_clientScriptingManager->setCommonHandlingLuaFunction("Client_ReceiveData");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"ClientHandlerWrapResponse");
+    // m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"ClientHandlerBattleResponse");
+
 }
 
 void LoginSceneV2::drawGUI()
