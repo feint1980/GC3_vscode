@@ -16,7 +16,6 @@ public:
         return m_instance;
     }
 
-    
 
 
 private:

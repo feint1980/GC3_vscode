@@ -75,7 +75,6 @@ public:
     // void saveLuaState(lua_State * state) { m_saveLuaState = state; }
     // lua_State * getLuaState() { return m_saveLuaState; }
 
-    
 
     void registerGUIScriptingManager(TGUIScriptingManager * guiScriptingManager) {
         
