@@ -43,13 +43,14 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
     print("lobby response get !!!")
 
     -- print("data " .. data)
-    local tTargetGUID, targetID, serverGUID , lobbyID, lobbyName = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    local tTargetGUID, targetID, serverGUID , lobbyID, lobbyName , lobbyPassword = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
     print("tTargetGUID " .. tTargetGUID)
     print("targetID " .. targetID)
     print("serverGUID " .. serverGUID)
     print("lobbyID " .. lobbyID)
     print("lobbyName " .. lobbyName)
+    print("lobbyPassword " .. lobbyPassword)
 
     local targetBattleServer = Arena_Ping_List[serverGUID] 
     if targetBattleServer == nil then

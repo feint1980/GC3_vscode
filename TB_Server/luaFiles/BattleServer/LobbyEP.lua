@@ -1,4 +1,4 @@
-LobbyState = 
+LobbyEPState =
 {
     LOBBY_STATE_OPEN = 0,
     LOBBY_STATE_CLOSED = 1,
@@ -10,5 +10,20 @@ LobbyEP =
     id = "",
     name = "",
     password = "",
-    state = LobbyState.LOBBY_STATE_CLOSED
+    state = LobbyEPState.LOBBY_STATE_CLOSED
 }
+
+function LobbyEP:new (o)
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    return o
+end
+
+function LobbyEP:init(id, name, password)
+    print("Lua LobbyEP init")
+    self.id = id
+    self.name = name
+    self.password = password
+    self.state = LobbyEPState.LOBBY_STATE_OPEN
+end

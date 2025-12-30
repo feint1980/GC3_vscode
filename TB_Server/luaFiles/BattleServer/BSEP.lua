@@ -1,3 +1,5 @@
+require "LobbyEP"
+
 BSEP =
 {
     ---@type RakNet_SystemAddress
@@ -6,8 +8,8 @@ BSEP =
     name = "",
     port = 0,
     ---@type pointer of ClientScriptingManager
-    networkInstance = nil 
-
+    networkInstance = nil,
+    lobbyList = {}
 }
 
 function BSEP:new(o)
@@ -24,6 +26,7 @@ function BSEP:init(host,tIP, guid, name,port)
     self.port = port
     self:registerIP(host)
     self.networkInstance = host
+    self.lobbyList = {}
 end
 
 --- register IP
@@ -36,4 +39,11 @@ function BSEP:getIP()
     return self.IP
 end
 
+function BSEP:addLobby(lID, lName, lPassword)
+    self.lobbyList[lID] = LobbyEP:new()
+    self.lobbyList[lID]:init(lID, lName, lPassword)
+end
 
+function BSEP:removeLobby(lID)
+    self.lobbyList[lID] = nil
+end

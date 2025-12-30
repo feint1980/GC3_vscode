@@ -20,9 +20,9 @@ function CH_AddClientEP(tSystemAddress, guid, name)
 
     print(" add user " .. name .. "|" .. guid .. "|")
 
-    local newClient = ClientEP:new()
-    newClient:init(tSystemAddress, guid, name)
-    ClientEPList[guid] = newClient
+    ClientEPList[guid] = ClientEP:new()
+    ClientEPList[guid]:init(tSystemAddress, guid, name)
+    -- ClientEPList[guid] = newClient
     ClientEPList[guid].name = name
     ClientEPList[guid].IP = tSystemAddress
 

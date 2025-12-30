@@ -26,7 +26,7 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
 
     BM_addToWhitelist(host,tTargetGUID) -- add the user to whitelist
 
-    BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName}) -- Send to the client request the lobby 
+    BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName,lobbyPassword}) -- Send to the client request the lobby 
 
 
 end

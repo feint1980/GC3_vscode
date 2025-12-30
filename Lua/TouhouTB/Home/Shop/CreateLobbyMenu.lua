@@ -217,13 +217,11 @@ function CreateLobby_SendRequest()
         print(CL_SelectedServer.guid)
         print(tCombine)
 
-        print("before wrap")
+        -- print("before wrap")
 
         -- local tData = WrapRequest()
 
-
         SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobby_Create, {MainInfo.guid, MainInfo.id,CL_SelectedServer.guid, tCombine }, 5, 0.5,0.25)
-
 
         Prompt_UI_Table["CreateLobby_Status"]:showMsg("Requesting ...")
 

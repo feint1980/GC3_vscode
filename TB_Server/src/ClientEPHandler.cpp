@@ -3,6 +3,7 @@
 
 int lua_ClientEPHandler_AddClientEP(lua_State * L)
 {
+    std::cout << " cpp_ClientEPHandler_AddClientEP called \n";
     if(lua_gettop(L) != 4)
     {
         std::cout << "gettop failed (lua_ClientEPHandler_AddClientEP) \n";

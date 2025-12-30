@@ -30,21 +30,23 @@ BattleServerHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegister] = fu
     end
 end
 
-
 ---MARK: Lobbies
 BattleServerHandling[BattleChanel.Lobby][LobbyResponse.Lobby_Create_Response] = function(host, data,ip,guid)
 
     print("lobby create response detected")
     print("From server IP:" .. SV_GetIPString(ip))
     print("GUID:" .. guid)
-    -- print("Data:" .. data)
-    local tTargetGUID, targetID, serverGUID , lobbyID , lobbyName = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    print("Data:" .. data)
+    local tTargetGUID, targetID, serverGUID , lobbyID , lobbyName, lobbyPassword = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+
+    -- local lobbyName, lobbyPassword = string.match(combineData, "^{(.-)%$(.-)}$")
 
     print("tTargetGUID " .. tTargetGUID)
     print("targetID " .. targetID)
     print("serverGUID " .. serverGUID)
     print("lobbyID " .. lobbyID)
     print("lobbyName " .. lobbyName)
+    print("lobbyPassword " .. lobbyPassword)
 
     local targetClient = CH_FindClient(tTargetGUID)
     if targetClient == nil then
@@ -52,7 +54,10 @@ BattleServerHandling[BattleChanel.Lobby][LobbyResponse.Lobby_Create_Response] = 
         return
     end
 
+    print("pass request to " .. SV_GetIPString(targetClient.IP))
+    SendReliable(host,targetClient.IP, tTargetGUID,  PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobbyResponse,
+    {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName,lobbyPassword} )
 
-    SendReliable(host,targetClient.IP, tTargetGUID,  PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobbyResponse, {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName})
-
+    print("pass throught request done")
+    
 end

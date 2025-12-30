@@ -28,13 +28,11 @@
 #include "LuaManager.h"
 #include "ClientEPHandler.h"
 
-
 #include <iostream>
 #include <bcrypt.h>
 #include "CharacterDes.h"
 #include "SkillDesc.h"
 #include "CharacterManager.h"
-
 
 #include <thread>
 
