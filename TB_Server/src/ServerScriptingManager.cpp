@@ -1000,6 +1000,111 @@ int lua_removeCryptor(lua_State * L)
     }
 }
 
+
+int lua_addClientOnlineSession(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_addClientOnlineSession) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        
+        std::string guid = lua_tostring(L, 1);
+        std::string id = lua_tostring(L, 2);
+        RakNet::SystemAddress * ip = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 3));
+        bool result = ServerDataRegister::GetInstance()->addClientOnlineSession(guid, id, ip);
+        lua_pushboolean(L, result);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_removeClientOnlineSessionByGUID(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_removeClientOnlineSession) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::string guid = lua_tostring(L, 1);
+        bool result =  ServerDataRegister::GetInstance()->removeClientOnlineSessionByGUID(guid);
+        lua_pushboolean(L, result);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_removeClientOnlineSessionByID(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_removeClientOnlineSession) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::string id = lua_tostring(L, 1);
+        bool result = ServerDataRegister::GetInstance()->removeClientOnlineSessionByID(id);
+        lua_pushboolean(L, result);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_getClientOnlineSessionByGUID(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_getClientOnlineSessionByGUID) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::string guid = lua_tostring(L, 1);
+        if(!ServerDataRegister::GetInstance()->getClientOnlineSessionByGUID(guid))
+        {
+            std::cout << "online session for guid " << guid << " not found \n"; 
+        }
+        RakNet::SystemAddress * ip = &ServerDataRegister::GetInstance()->getClientOnlineSessionByGUID(guid)->address;
+
+        std::cout << "C++ side data check, ip is" << ip->ToString(false) << "\n";
+
+        lua_pushlightuserdata(L, ip);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_getClientOnlineSessionByID(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_getClientOnlineSessionByID) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::string id = lua_tostring(L, 1);
+        if(!ServerDataRegister::GetInstance()->getClientOnlineSessionByID(id))
+        {
+            std::cout << "online session for id " << id << " not found \n"; 
+        }
+        RakNet::SystemAddress * ip = &ServerDataRegister::GetInstance()->getClientOnlineSessionByID(id)->address;
+        lua_pushlightuserdata(L, ip);
+        return 1;
+    }
+}
+
+
 ServerScriptingManager::ServerScriptingManager()
 {
 
@@ -1590,7 +1695,13 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
     lua_register(m_script, "cpp_updateCharacter", lua_UpdateCharacter);
     lua_register(m_script, "cpp_updateSkill", lua_UpdateSkill);
 
-    
+    // client handler 
+    lua_register(m_script, "cpp_addClientOnlineSession", lua_addClientOnlineSession);
+    lua_register(m_script, "cpp_removeClientOnlineSessionByGUID", lua_removeClientOnlineSessionByGUID);
+    lua_register(m_script, "cpp_removeClientOnlineSessionByID", lua_removeClientOnlineSessionByID);
+    lua_register(m_script, "cpp_getClientOnlineSessionByGUID", lua_getClientOnlineSessionByGUID);
+    lua_register(m_script, "cpp_getClientOnlineSessionByID", lua_getClientOnlineSessionByID);
+
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/serverSideScript.lua")))
     {
         std::cout << "ServerScriptingManager Run script serverSideScript.lua OK \n";

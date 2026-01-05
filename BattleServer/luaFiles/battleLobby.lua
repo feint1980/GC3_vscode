@@ -28,6 +28,8 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
 
     BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName,lobbyPassword}) -- Send to the client request the lobby 
 
+    -- add lobby to list
+    
 
 end
 

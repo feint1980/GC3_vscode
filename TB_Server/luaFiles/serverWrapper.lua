@@ -419,3 +419,43 @@ end
 function SV_GetTargetPing(target)
     return cppGetTargetPing(T_Host,target)
 end
+
+---@Description: Wrapper of cpp_addClientOnlineSession | save the online session of client
+---@param guid string
+---@param id string (account id) 
+---@param ip pointer instance of systemAddress
+function SV_addClientOnlineSession_CPP(guid, id, ip)
+    return cpp_addClientOnlineSession(guid, id, ip)
+end
+
+
+---@Description: Wrapper of cpp_removeClientOnlineSession | remove the online session of client by guid
+---@param guid string
+---@return boolean
+function SV_removeClientOnlineSessionByGUID_CPP(guid)
+    return cpp_removeClientOnlineSessionByGUID(guid)
+end
+
+
+---@Description: Wrapper of cpp_removeClientOnlineSession | remove the online session of client by id
+---@param id pointer
+---@return boolean
+function SV_removeClientOnlineSessionByID_CPP(id)
+    return cpp_removeClientOnlineSessionByID(id)
+end
+
+---@Description: Wrapper of cpp_getClientOnlineSessionByGUID | get the online session of client by guid
+---@param guid string
+---@return pointer instance of RakNet::SystemAddress
+function SV_getClientIPByGUID_CPP(guid)
+    return cpp_getClientOnlineSessionByGUID(guid)
+end
+
+
+---@Description: Wrapper of cpp_getClientOnlineSessionByID | get the online session of client by id
+---@param id string
+---@return RakNet_SystemAddress
+function SV_getClientIPByID_CPP(id)
+    return cpp_getClientOnlineSessionByID(id)
+end
+

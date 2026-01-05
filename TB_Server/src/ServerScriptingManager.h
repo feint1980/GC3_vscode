@@ -34,6 +34,8 @@
 #include "SkillDesc.h"
 #include "CharacterManager.h"
 
+#include "ServerDataRegister.h"
+
 #include <thread>
 
 //#include "ServerMain.h"

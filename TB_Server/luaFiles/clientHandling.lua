@@ -25,6 +25,7 @@ function CH_AddClientEP(tSystemAddress, guid, name)
     -- ClientEPList[guid] = newClient
     ClientEPList[guid].name = name
     ClientEPList[guid].IP = tSystemAddress
+    SV_addClientOnlineSession_CPP(guid, name, tSystemAddress)
 
     -- ExistingCharacters[guid] = {} ---- Table of S_Characters
 

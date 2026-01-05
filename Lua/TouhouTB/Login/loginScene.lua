@@ -563,6 +563,7 @@ ClientMessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = fu
     if tStatus == "granted" then
         matchCount = matchCount + 1
     end
+    print("status " .. tStatus)
     if matchCount == 3 then
         cpp_switchScene(LoginHost,t_id,t_pw,tGUID,0) -- use tGUID (server guid for further verification)
     else

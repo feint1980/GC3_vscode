@@ -58,13 +58,14 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobby_Cre
     print("lobby name " .. lobbyName)
     print("lobby password " .. lobbyPassword)
 
-
     if BSEP_List[serverGUID] == nil then
         print("invalid server,  warning, craft packet found from ip " .. SV_GetIPString(ip))
         return
     end
 
-    SendReliable2BattleServer(host, BSEP_List[serverGUID].IP,  BSEP_List[serverGUID].GUID, BattleChanel.Lobby,LobbyResponse.Lobby_Create_Request,{tTargetGUID,targetID,serverGUID,
-    combineData})
+    SendReliable2BattleServer(host, BSEP_List[serverGUID].IP,  BSEP_List[serverGUID].GUID, BattleChanel.Lobby,LobbyResponse.Lobby_Create_Request,{tTargetGUID,targetID,serverGUID, combineData})
+
+
+    -- SendReliable2BattleServer(host, BSEP_List[serverGUID].IP,  BSEP_List[serverGUID].GUID, BattleChanel.Lobby,LobbyResponse.Lobby_Create_Request,{tTargetGUID,targetID,serverGUID,combineData})
 
 end

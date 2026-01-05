@@ -148,7 +148,7 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
             if v.name == t_id then
                 loginResult = "Account already logged in !"
                 print("Account already logged in !")
-                return
+                break
             end
         end
     else
@@ -157,7 +157,9 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Alogin] = function
 
     print("loging from " .. SV_GetIPString(ip) .. " with ping " .. SV_GetTargetPing(ip))
 
+    print("login result " .. loginResult)
     SendReliable(host,ip,guid,PacketChannel.AccountChannel,AccountResponse.Alogin,{ t_id,loginResult,t_pw, guid})
+
     if loginResult == "granted" then
         CH_AddClientEP(ip, guid, t_id)
     end

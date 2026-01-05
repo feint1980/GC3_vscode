@@ -48,14 +48,14 @@ BattleServerHandling[BattleChanel.Lobby][LobbyResponse.Lobby_Create_Response] = 
     print("lobbyName " .. lobbyName)
     print("lobbyPassword " .. lobbyPassword)
 
-    local targetClient = CH_FindClient(tTargetGUID)
+    local targetClient = SV_getClientIPByGUID_CPP(tTargetGUID)
     if targetClient == nil then
         print("invalid user,  warning, craft packet found from ip " .. SV_GetIPString(ip))
         return
     end
 
-    print("pass request to " .. SV_GetIPString(targetClient.IP))
-    SendReliable(host,targetClient.IP, tTargetGUID,  PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobbyResponse,
+    print("pass request to " .. SV_GetIPString(targetClient))
+    SendReliable(host,targetClient, tTargetGUID,  PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobbyResponse,
     {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName,lobbyPassword} )
 
     print("pass throught request done")
