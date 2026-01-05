@@ -16,8 +16,6 @@ public:
         return m_instance;
     }
 
-
-
 private:
     static ServerDataRegister* m_instance;
 };
