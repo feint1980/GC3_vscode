@@ -9,6 +9,7 @@ LobbyEP =
 {
     id = "",
     name = "",
+    host = "",
     password = "",
     state = LobbyEPState.LOBBY_STATE_CLOSED
 }
@@ -20,7 +21,7 @@ function LobbyEP:new (o)
     return o
 end
 
-function LobbyEP:init(id, name, password)
+function LobbyEP:init(id, name, password, host)
     print("Lua LobbyEP init")
     self.id = id
     self.name = name

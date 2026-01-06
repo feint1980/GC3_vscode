@@ -19,7 +19,6 @@ ClientBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Join_Respon
         -- _G.LobbyState = 0
         -- msg = "Joined lobby " .. lobbyID
         -- Prompt_UI_Table["CreateLobby_Noti"]:showMsg(msg)
-
         cpp_changeScene(SceneIndex.Lobby)
 
         -- todo : join lobby

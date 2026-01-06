@@ -18,19 +18,14 @@ MainInfo = {
     guid = ""
 }
 
+
 BattleLobbyState = {
-    OPEN = 0, 
+    OPEN = 0,
     CLOSED = 1,
     INGAME = 2,
     EXPIRED = 3
 }
 
-BattleLobby = {
-    id = "",
-    player1 = "",
-    player2 = "",
-    Battle_LobbyState =  BattleLobbyState.CLOSED
-}
 
 BattleLobby_List = {}
 

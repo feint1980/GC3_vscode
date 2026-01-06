@@ -36,6 +36,26 @@
 #include <set>
 #include "LobbiesManager.h"
 
+struct ClientOnlineSession 
+{
+    std::string guid ;
+    std::string name ;
+    RakNet::SystemAddress address;
+
+    ClientOnlineSession() 
+    {
+        guid = "";
+        name = "";
+        address = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
+    }
+
+    ClientOnlineSession(const std::string & t_guid, const std::string & t_name, RakNet::SystemAddress * t_address) {
+        guid = t_guid;
+        name = t_name;
+        address = *t_address;
+    }
+};
+
 class BattleMain
 {
 public:

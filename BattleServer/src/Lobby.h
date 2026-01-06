@@ -88,6 +88,7 @@ public:
     LobbyState getState() const { return m_state; }
 
     bool addPlayer(RakNet::SystemAddress address);
+    
 private:
 
     uint64_t m_id = 0;
