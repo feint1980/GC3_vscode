@@ -24,8 +24,13 @@ function BattleClientEP:init(id, guid, ip)
     self.guid = guid
     self.ip = ip
     --- register ip in C++ here 
+    BM_addClientOnlineSession(guid, id,ip)
     self.readyState = false
     self.selected_formation_index = -1
+end
+
+function BattleClientEP:getIP()
+    return BM_getClientOnlineSessionByGUID(self.guid)
 end
 
 function BattleClientEP:setReady(value)

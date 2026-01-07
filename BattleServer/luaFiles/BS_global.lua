@@ -28,4 +28,4 @@ BattleLobbyState = {
 
 
 BattleLobby_List = {}
-
+BattleClientEP_List = {}

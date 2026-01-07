@@ -143,16 +143,20 @@ int lua_addToWhitelist(lua_State *L)
     }
     else
     {
-        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
-        std::string guid = lua_tostring(L, 2);
-        host->addAcceptedClientGUID(guid);
+        // BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        std::string guid = lua_tostring(L, 1);
+        std::string id = lua_tostring(L, 2);
+        // RakNet::SystemAddress * address = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 3));
+        bool result = BattleDataRegister::getInstance()->registerWhiteListClient(guid, id);
+        lua_pushboolean(L, result);
+        return 1;
     }
     return 0;
 }
 
 int lua_removeFromWhitelist(lua_State *L)
 {
-    if(lua_gettop(L) != 2)
+    if(lua_gettop(L) != 1)
     {
         std::cout << "gettop failed (lua_removeFromWhitelist) \n";
         std::cout << lua_gettop(L) << "\n";
@@ -160,9 +164,50 @@ int lua_removeFromWhitelist(lua_State *L)
     }
     else
     {
-        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
-        std::string guid = lua_tostring(L, 2);
-        host->removeAcceptedClientGUID(guid);
+
+        std::string guid = lua_tostring(L, 1);
+        bool result = BattleDataRegister::getInstance()->removeWhiteListClient(guid);
+        lua_pushboolean(L, result);
+        return 1;
+        // host->removeAcceptedClientGUID(guid);
+    }
+    return 0;
+}
+
+int lua_registerOnlineSession(lua_State *L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_registerOnlineSession) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::string guid = lua_tostring(L, 1);
+        std::string id = lua_tostring(L, 2);
+        RakNet::SystemAddress * address = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 3));
+        bool result = BattleDataRegister::getInstance()->addClientOnlineSession(guid, id, address);
+        lua_pushboolean(L, result);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_getOnlineSessionByGUID(lua_State *L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_getOnlineSessionByGUID) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::string guid = lua_tostring(L, 1);
+        RakNet::SystemAddress * address = &BattleDataRegister::getInstance()->getClientOnlineSessionByGUID(guid)->address;
+        lua_pushlightuserdata(L, address);
+        return 1;
     }
     return 0;
 }
@@ -359,10 +404,16 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     lua_register(m_script, "cpp_addToWhitelist", lua_addToWhitelist);
     lua_register(m_script, "cpp_removeFromWhitelist", lua_removeFromWhitelist);
     lua_register(m_script, "cpp_removeCryptor", lua_removeCryptor);
+    lua_register(m_script, "cpp_registerOnlineSession", lua_registerOnlineSession); 
+    lua_register(m_script, "cpp_getOnlineSessionByGUID", lua_getOnlineSessionByGUID);
 
     // Lobbies
     lua_register(m_script, "cpp_BM_CreateLobby", lua_BM_CreateLobby);
     lua_register(m_script, "cpp_BM_JoinLobby", lua_BM_JoinLobby);
+    
+
+    
+    // lua_register(m_script, "cpp_BM_LeaveLobby", lua_BM_LeaveLobby);
 
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/battleSideScript.lua")))
@@ -437,6 +488,8 @@ bool BattleMain::joinLobby(uint64_t id, const std::string & guid,const std::stri
     if(retVal)
     {
         std::cout << "client " << clientID << " joined lobby " << id << "\n";
+
+        retVal = true;
     }
     else
     {
@@ -616,7 +669,8 @@ void BattleMain::handleConnections(RakNet::Packet *p)
 
         std::string guid = p->guid.ToString();
 
-        if(m_acceptedClientGUID.find(guid) != m_acceptedClientGUID.end())
+        // if(m_acceptedClientGUID.find(guid) != m_acceptedClientGUID.end())
+        if(BattleDataRegister::getInstance()->getWhiteListClientAddressByGUID(guid) != "")
         {
             std::cout << "accepted client " << guid << "\n";
             addCryptor(p->guid.ToString());
@@ -626,7 +680,6 @@ void BattleMain::handleConnections(RakNet::Packet *p)
             std::cout << "unexpected client " << guid << "\n";
         }
 
-        
     }
 }
 

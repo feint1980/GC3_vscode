@@ -30,3 +30,20 @@ function BattleLobby:addPlayer(playerID, playerGUID, playerIP)
         print("lobby " .. self.id .. " is full")
     end
 end
+
+BattleLobby_List = {}
+
+function BattleLobby_ResetList()
+    BattleLobby_List = {}
+end
+
+
+-- function BattleLobby_AddLobby(id,name , hostID, hostGUID, hostIP)
+--     local lobby = BattleLobby:new()
+--     lobby:init(id,name)
+--     lobby:addPlayer(hostID, hostGUID, hostIP)
+--     table.insert(BattleLobby_List,lobby)
+-- end
+
+
+-- function BattleLobby_FinalizeLobbies

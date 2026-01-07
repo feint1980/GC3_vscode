@@ -35,26 +35,7 @@
 #include <thread>
 #include <set>
 #include "LobbiesManager.h"
-
-struct ClientOnlineSession 
-{
-    std::string guid ;
-    std::string name ;
-    RakNet::SystemAddress address;
-
-    ClientOnlineSession() 
-    {
-        guid = "";
-        name = "";
-        address = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
-    }
-
-    ClientOnlineSession(const std::string & t_guid, const std::string & t_name, RakNet::SystemAddress * t_address) {
-        guid = t_guid;
-        name = t_name;
-        address = *t_address;
-    }
-};
+#include "BattleDataRegister.h"
 
 class BattleMain
 {
@@ -103,7 +84,6 @@ public:
 
     void removeAcceptedClientGUID(const std::string & guid) { m_acceptedClientGUID.erase(guid); }
 
-
     uint64_t createLobby(const std::string & name, const std::string & password);
 
     bool joinLobby(uint64_t id, const std::string & guid , const std::string & clientID,  RakNet::SystemAddress * address);
@@ -135,6 +115,8 @@ private:
     LobbiesManager m_lobbiesManager;
 
     std::set<std::string> m_acceptedClientGUID;
+
+
 
 };
 

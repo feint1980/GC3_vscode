@@ -122,11 +122,19 @@ function BM_JoinLobby(host,clientGUID,clientID,lobbyID,ip)
     return cpp_BM_JoinLobby(host,clientGUID,clientID,lobbyID,ip)
 end
 
-function BM_addToWhitelist(host,guid)
-    return cpp_addToWhitelist(host,guid)
+
+function BM_addToWhitelist(guid,id)
+    return cpp_addToWhitelist(guid,id)
 end
 
-function BM_removeFromWhitelist(host,guid)
-    return cpp_removeFromWhitelist(host,guid)
+function BM_removeFromWhitelist(guid)
+    return cpp_removeFromWhitelist(guid)
 end
 
+function BM_addClientOnlineSession(guid,id,ip)
+    return cpp_registerOnlineSession(guid,id,ip)
+end
+
+function BM_getClientOnlineSessionByGUID(guid)
+    return cpp_getOnlineSessionByGUID(guid)
+end
