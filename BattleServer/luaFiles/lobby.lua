@@ -31,6 +31,16 @@ function BattleLobby:addPlayer(playerID, playerGUID, playerIP)
     end
 end
 
+function BattleLobby:removePlayer(playerGUID)
+    for i = 1, #self.battleClientEP_List do
+        if self.battleClientEP_List[i].GUID == playerGUID then
+            print("player " .. playerGUID .. " removed from lobby " .. self.id .. "(" .. self.name .. ")")
+            table.remove(self.battleClientEP_List, i)
+            break
+        end
+    end
+end
+
 BattleLobby_List = {}
 
 function BattleLobby_ResetList()

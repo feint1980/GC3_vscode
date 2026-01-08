@@ -42,7 +42,15 @@ CommonPacketHandling[ID_CONNECTION_LOST] = function(host,packet)
         print("lost connection to " .. tGUID)
         BM_removeCryptor(host,tGUID)
         if BattleClientEP_List[tGUID] ~= nil then
-            print("remove the client from list lobby ")
+            print("remove the client " .. tGUID .. " from list ")
+            print("check for lobby ID " .. BattleClientEP_List[tGUID].lobbyID)
+            if BattleClientEP_List[tGUID].lobbyID ~= "" then
+                local tLobbyID = BattleClientEP_List[tGUID].lobbyID
+                if BattleLobby_List[tLobbyID] ~= nil then
+                    BattleLobby_List[tLobbyID]:removePlayer(tGUID)
+                end
+            end
+            BattleClientEP_List[tGUID] = nil
         end
     end
 

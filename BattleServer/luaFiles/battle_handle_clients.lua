@@ -10,6 +10,7 @@ BattleClientEP =
     ip = nil,
     readyState = false,
     selected_formation_index = -1,
+    lobbyID = "",
 }
 
 function BattleClientEP:new(o)
@@ -35,5 +36,9 @@ end
 
 function BattleClientEP:setReady(value)
     self.readyState = value
+end
+
+function BattleClientEP:joinLobby(lobbyID)
+    self.lobbyID = lobbyID
 end
 
