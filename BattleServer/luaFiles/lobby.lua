@@ -32,12 +32,20 @@ function BattleLobby:addPlayer(playerID, playerGUID, playerIP)
 end
 
 function BattleLobby:removePlayer(playerGUID)
+    -- print("removing player " .. playerGUID .. " from lobby " .. self.id .. "(" .. self.name .. ")")
     for i = 1, #self.battleClientEP_List do
-        if self.battleClientEP_List[i].GUID == playerGUID then
+        -- print("comparing " .. self.battleClientEP_List[i].guid .. " with " .. playerGUID)
+        if self.battleClientEP_List[i].guid == playerGUID then
             print("player " .. playerGUID .. " removed from lobby " .. self.id .. "(" .. self.name .. ")")
             table.remove(self.battleClientEP_List, i)
             break
         end
+    end
+
+    -- self check 
+    if #self.battleClientEP_List == 0 then
+        print("lobby " .. self.id .. " is empty")
+        self.lobbyState = BattleLobbyState.EXPIRED
     end
 end
 

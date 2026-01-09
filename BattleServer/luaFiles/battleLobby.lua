@@ -59,7 +59,7 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
 
     if  BattleClientEP_List[clientGUID] ~= nil then
         if joinResult == true then
-            BattleLobby_List[lobbyID]:addPlayer(clientID, clientGUID, BattleClientEP_List[clientID]:getIP())
+            BattleLobby_List[lobbyID]:addPlayer(clientID, clientGUID, BattleClientEP_List[clientGUID]:getIP())
             BattleClientEP_List[clientGUID]:joinLobby(lobbyID)
         end
     end
