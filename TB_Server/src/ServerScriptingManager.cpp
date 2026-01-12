@@ -1424,7 +1424,7 @@ uint32_t ServerScriptingManager::handleBattleServerPacket(RakNet::Packet *p)
 
     std::string payLoad = getDecryptMessage(encData, p->guid.ToString());
 
-    std::cout << "payload " << payLoad << "\n";
+    // std::cout << "payload " << payLoad << "\n";
     // printf("SERVER recv bytes=%u\n", p->length);
     // for (unsigned int i = 0; i < std::min<unsigned int>(64, (unsigned int)p->length); ++i) printf("%02X ", (unsigned char)p->data[i]);
     // printf("\n");

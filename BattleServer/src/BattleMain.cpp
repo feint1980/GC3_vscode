@@ -284,6 +284,43 @@ int lua_BM_JoinLobby(lua_State *L)
     return 0;
 }
 
+int lua_BM_GetMainServerIP(lua_State *L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_BM_GetMainServerIP) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        
+        RakNet::SystemAddress *address = host->getMainServerIP();
+        lua_pushlightuserdata(L, address);
+        return 1;
+    }
+    return 0;
+}
+
+int lua_BM_GetMainServerGUID(lua_State *L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_BM_GetMainServerGUID) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        std::string guid = host->getMainServerGUID();
+        lua_pushstring(L, guid.c_str());
+        return 1;
+    }
+    return 0;
+}
+
 int lua_handleIncomingConnection(lua_State *L)
 {
     if(lua_gettop(L) != 2)
@@ -410,8 +447,10 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     // Lobbies
     lua_register(m_script, "cpp_BM_CreateLobby", lua_BM_CreateLobby);
     lua_register(m_script, "cpp_BM_JoinLobby", lua_BM_JoinLobby);
-    
 
+    // Main server
+    lua_register(m_script, "cpp_BM_GetMainServerIP", lua_BM_GetMainServerIP);
+    lua_register(m_script, "cpp_BM_GetMainServerGUID", lua_BM_GetMainServerGUID);
     
     // lua_register(m_script, "cpp_BM_LeaveLobby", lua_BM_LeaveLobby);
 
@@ -663,6 +702,17 @@ void BattleMain::handleConnections(RakNet::Packet *p)
 
         // sending register data
         sendWrapData(p->systemAddress, p->guid.ToString(),sendMessage);
+        // m_serverIP = new p->systemAddress.ToString(true);
+        if(!m_mainServerIP_ptr)
+        {
+            m_mainServerIP_ptr = new RakNet::SystemAddress(p->systemAddress);
+        }
+        else
+        {
+            delete m_mainServerIP_ptr;
+            m_mainServerIP_ptr = new RakNet::SystemAddress(p->systemAddress);
+        }
+        m_mainServerGUID = p->guid.ToString();
     }
     else
     {

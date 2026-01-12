@@ -79,6 +79,7 @@ BattleChanel = {
 PaperWorkRequest = {
     SelfRegister = 1,
     SelfRegisterAccepted = 2,
+    LobbiesListUpdate = 3
 }
 
 LobbyResponse = {

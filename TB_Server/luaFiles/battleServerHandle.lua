@@ -61,3 +61,8 @@ BattleServerHandling[BattleChanel.Lobby][LobbyResponse.Lobby_Create_Response] = 
     print("pass throught request done")
     
 end
+
+BattleServerHandling[BattleChanel.Lobby][PaperWorkRequest.LobbiesListUpdate] = function(host, data,ip,guid)
+    print("lobby list update detected")
+
+end

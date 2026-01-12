@@ -52,6 +52,8 @@ CommonPacketHandling[ID_CONNECTION_LOST] = function(host,packet)
             end
             BattleClientEP_List[tGUID] = nil
         end
+        BattleLobby_UpdateLobbiesStatus() --- update status
+        BattleLobby_Notify_LobbiesStates(host)
     end
 
 end

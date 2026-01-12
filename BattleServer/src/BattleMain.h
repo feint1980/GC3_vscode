@@ -88,6 +88,10 @@ public:
 
     bool joinLobby(uint64_t id, const std::string & guid , const std::string & clientID,  RakNet::SystemAddress * address);
 
+    RakNet::SystemAddress * getMainServerIP() { return m_mainServerIP_ptr; }
+
+    std::string getMainServerGUID() { return m_mainServerGUID; }
+
 private:
 
     RakNet::RakPeerInterface * m_server = nullptr;
@@ -98,6 +102,9 @@ private:
     std::string m_password;
     std::string m_mainServerPassword;
     std::string m_mainServerIP;
+    std::string m_mainServerGUID = "";
+    RakNet::SystemAddress * m_mainServerIP_ptr = nullptr;
+
     int m_port = 0;
     int m_connectionSize = 0;
 
@@ -115,7 +122,6 @@ private:
     LobbiesManager m_lobbiesManager;
 
     std::set<std::string> m_acceptedClientGUID;
-
 
 
 };

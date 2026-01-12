@@ -1,3 +1,5 @@
+package.path = package.path .. ";../../Lua/include/?.lua"
+local json = require ("dkjson")
 BattlePacketType = {
 
     ID_TH_TB = 135, -- info from client to main server
@@ -15,7 +17,7 @@ MainServerChanel = {
 PaperWorkRequest = {
     SelfRegister = 1,
     SelfRegisterAccepted = 2,
-    Lobbies_Change = 3
+    LobbiesListUpdate = 3
 }
 
 ClientChannel = {
@@ -122,11 +124,15 @@ function BM_JoinLobby(host,clientGUID,clientID,lobbyID,ip)
     return cpp_BM_JoinLobby(host,clientGUID,clientID,lobbyID,ip)
 end
 
-
+---@Description: wrapper of cpp_addToWhitelist
+---@param guid string
+---@param id string
 function BM_addToWhitelist(guid,id)
     return cpp_addToWhitelist(guid,id)
 end
 
+---@Description: wrapper of cpp_removeFromWhitelist
+---@param guid string
 function BM_removeFromWhitelist(guid)
     return cpp_removeFromWhitelist(guid)
 end
@@ -137,4 +143,33 @@ end
 
 function BM_getClientOnlineSessionByGUID(guid)
     return cpp_getOnlineSessionByGUID(guid)
+end
+
+---@ Description: encode table to json
+---@param t table table to encode
+---@param isIndent boolean indent or not
+function JSON_Encode(t,isIndent)
+    isIndent = isIndent or false
+    return json.encode(t, { indent = isIndent })
+end
+
+---@Description: decode json to table
+---@param data string 
+---@return table decoded Lua table
+---@return number position in the string after parsing finished
+---@return number error if decode failed (nil if OK)
+function JSON_Decode(data)
+    
+    local tbl, pos, err = json.decode(data)
+    return tbl, pos, err
+end
+
+
+function BM_getMainServerIP(host)
+    return cpp_BM_GetMainServerIP(host)
+end
+
+
+function BM_getMainServerGUID(host)
+    return cpp_BM_GetMainServerGUID(host)
 end

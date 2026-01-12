@@ -3,7 +3,7 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "battleWrapper"
 require "BS_global"
 
-BattleClientEP = 
+BattleClientEP =
 {
     id = "",
     guid = "",
@@ -41,4 +41,3 @@ end
 function BattleClientEP:joinLobby(lobbyID)
     self.lobbyID = lobbyID
 end
-

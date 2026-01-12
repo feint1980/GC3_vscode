@@ -47,6 +47,8 @@ function BattleLobby:removePlayer(playerGUID)
         print("lobby " .. self.id .. " is empty")
         self.lobbyState = BattleLobbyState.EXPIRED
     end
+    -- BattleLobby_UpdateLobbiesStatus()
+
 end
 
 BattleLobby_List = {}
@@ -56,12 +58,19 @@ function BattleLobby_ResetList()
 end
 
 
--- function BattleLobby_AddLobby(id,name , hostID, hostGUID, hostIP)
---     local lobby = BattleLobby:new()
---     lobby:init(id,name)
---     lobby:addPlayer(hostID, hostGUID, hostIP)
---     table.insert(BattleLobby_List,lobby)
--- end
+function BattleLobby_UpdateLobbiesStatus()
+    for k,v in pairs(BattleLobby_List) do
+        if v.lobbyState == BattleLobbyState.EXPIRED then
+            print("removing expired lobby " .. v.id)
+            BattleLobby_List[k] = nil
+        end
+    end
+end
 
+---@Description send update of lobbies to main server
+---@host pointer instance of ServerScriptingManager
+function BattleLobby_Notify_LobbiesStates(host)
+    BM_sendWrapData(host,BM_getMainServerIP(host),BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, PaperWorkRequest.LobbiesListUpdate , {JSON_Encode(BattleLobby_List)})
+end
 
 -- function BattleLobby_FinalizeLobbies
