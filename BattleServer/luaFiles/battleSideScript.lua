@@ -83,7 +83,7 @@ end
 -- InternalPacketHandling[MainServerChanel.PaperWork] = {}
 
 require "battlePaperWork"
-require "battleLobby"
+require "BS_lobbiesHandler"
 function BattleMain_HandleInternal(host, channel, request,data,ip, guid)
 
     print("BattleMain_HandleInternal called")
@@ -117,8 +117,6 @@ function Battlemain_GetInfo()
 end
 
 --- MARK:Client handle
-require "battle_handle_clients"
-require "lobby"
+require "BS_handle_clients"
+require "BS_lobby"
 
-
--- function 

@@ -69,6 +69,52 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
 
 end
 
+ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyListResponse] = function(host,data, guid)
+
+    print("response from " .. guid .. " for lobby list")
+    local tData = string.match(data, "^|([^|]+)|$")
+    -- print("tData " .. tData)
+
+    local serverList, pos, err = JSON_Decode(tData)
+    if err then
+        print("Ke3 F3i117 exception (PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyListResponse)  JSON decode error:", err)
+    end
+    if serverList == nil then
+        print("Ke3 F3i117 exception (PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyListResponse)")
+        return
+    end
+
+    TM_addTask(function()
+        print("update the lobbies ")
+        for k,v in pairs(serverList) do
+            if Arena_Ping_List[k] == nil then
+                print("mismatch battle server ID found" .. k)
+            else
+                print("found lobby list for battle server " .. k)
+                Arena_Ping_List[k].lobbyList = {}
+                for n,m in pairs(serverList[k].lobbyList) do
+                    print("data check " .. n)
+                    serverList[k].lobbyList[n] = {}
+                    serverList[k].lobbyList[n].id = m.id
+                    serverList[k].lobbyList[n].name = m.name
+                    serverList[k].lobbyList[n].password = m.password
+                    serverList[k].lobbyList[n].lobbyState = m.lobbyState
+                    serverList[k].lobbyList[n].battleClientEP_List = {}
+                    for i = 1, #m.battleClientEP_List do
+                        print("player #" .. i)
+                        serverList[k].lobbyList[n].battleClientEP_List[i] = {}
+                        serverList[k].lobbyList[n].battleClientEP_List[i].id = m.battleClientEP_List[i].id
+                        serverList[k].lobbyList[n].battleClientEP_List[i].guid = m.battleClientEP_List[i].guid
+                    end
+                end
+            end
+        end
+        Arena_UpdateLobbies(serverList) -- update afterward
+    end
+    ,
+    50)
+end
+
 ---Arena_CreateLobby_Request 
 
 ---- MARK:Home Common
@@ -131,6 +177,7 @@ HomeMain_HandleTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,pack
     cppSelecBattleServer(host,"")
     
 end
+
 
 --- MARK:Battle Server 
 

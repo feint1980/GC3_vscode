@@ -65,4 +65,49 @@ end
 BattleServerHandling[BattleChanel.Lobby][PaperWorkRequest.LobbiesListUpdate] = function(host, data,ip,guid)
     print("lobby list update detected")
 
+    -- print("Data : " .. data)
+
+    local tData = string.match(data, "^|([^|]+)|$")
+    local lobbyList, pos, err = JSON_Decode(tData)
+    if err then
+        print("Ke3 F3i117 exception (PacketChannel.LobbyChannel][PaperWorkRequest.LobbiesListUpdate)  JSON decode error:", err)
+    end
+    if lobbyList == nil then
+        print("Ke3 F3i117 exception (PacketChannel.LobbyChannel][PaperWorkRequest.LobbiesListUpdate)")
+        return
+    end
+
+    if err then 
+        print("[PacketChannel.LobbyChannel][PaperWorkRequest.LobbiesListUpdate] error", err)
+        return
+    end
+
+    print("list of lobbies ")
+    if BSEP_List[guid] == nil then
+        print("warning, unregistered battle server " .. guid .. " trying to send lobbies list")
+        return
+    end
+    -- reset lobbies list
+    BSEP_List[guid].lobbyList = {}
+    for k,v in pairs(lobbyList) do
+        print("lobby # " .. k )
+        BSEP_List[guid].lobbyList[k] = {}
+        print("id " .. lobbyList[k].id)
+        BSEP_List[guid].lobbyList[k].id = lobbyList[k].id
+        print("name " .. lobbyList[k].name)
+        BSEP_List[guid].lobbyList[k].name = lobbyList[k].name
+        print("password " .. lobbyList[k].password)
+        BSEP_List[guid].lobbyList[k].password = lobbyList[k].password
+        print("state " .. lobbyList[k].lobbyState)
+        BSEP_List[guid].lobbyList[k].lobbyState = lobbyList[k].lobbyState
+        BSEP_List[guid].lobbyList[k].battleClientEP_List = {}
+        for n,m in pairs(lobbyList[k].battleClientEP_List) do
+            BSEP_List[guid].lobbyList[k].battleClientEP_List[n] = {}
+            print("player " .. n)
+            print("player id " .. lobbyList[k].battleClientEP_List[n].id)
+            BSEP_List[guid].lobbyList[k].battleClientEP_List[n].id = lobbyList[k].battleClientEP_List[n].id
+            print("player guid " .. lobbyList[k].battleClientEP_List[n].guid)
+            BSEP_List[guid].lobbyList[k].battleClientEP_List[n].guid = lobbyList[k].battleClientEP_List[n].guid
+        end
+    end
 end

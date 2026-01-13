@@ -14,6 +14,7 @@ ArenaServer = {
     port = 0,
     ping = 0,
     IP = nil,
+    lobbyList = {},
 }
 
 function ArenaServer:new(o)
@@ -30,6 +31,7 @@ function ArenaServer:init(tClientHost,tGuid, tName, tPort, tPing, tIP)
     self.port = tPort
     self.ping = tPing
     self.IP = tIP
+    
 end
 
 function ArenaServer:setPing(ping)

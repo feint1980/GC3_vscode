@@ -4,7 +4,7 @@ package.path = package.path .. ";../luaFiles/?.lua"
 
 require "battleWrapper"
 require "BS_global"
-require "battle_handle_clients"
+require "BS_handle_clients"
 --- MARK:Main server
 
 InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Request] = function(host, channel, request,data,ip, guid)
@@ -25,12 +25,12 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
     local lobbyID =  BM_CreateLobby(host,lobbyName,lobbyPassword)
 
     BattleLobby_List[lobbyID] = BattleLobby:new()
-    BattleLobby_List[lobbyID]:init(lobbyID,lobbyName)
+    BattleLobby_List[lobbyID]:init(lobbyID,lobbyName,lobbyPassword)
 
     BM_addToWhitelist(tTargetGUID,targetID) -- add the user to whitelist
 
     BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName,lobbyPassword}) -- Send to the client request the lobby 
-
+    BattleLobby_Notify_LobbiesStates(host)
     -- add lobby to list
 end
 
@@ -50,7 +50,6 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
 
     local joinResult =  BM_JoinLobby(host,clientGUID,clientID,lobbyID,ip)
 
-
     if BattleClientEP_List[clientGUID] == nil then 
         print("fresh player, adding to list")
         BattleClientEP_List[clientGUID] = BattleClientEP:new()
@@ -66,9 +65,11 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
 
     BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_TB_BATTLE, ClientChannel.Lobby, CLobbyResponse.Lobby_Join_Response , {clientGUID,clientID,lobbyID , tostring(joinResult) , "Unable to join lobby"})
 
-    for k,v in pairs(BattleLobby_List) do
-        print("lobbyID " .. k)
-        print("lobbyName " .. v.name)
-    end
+    -- for k,v in pairs(BattleLobby_List) do
+    --     print("lobbyID " .. k)
+    --     print("lobbyName " .. v.name)
+    -- end
+
+    BattleLobby_Notify_LobbiesStates(host)
 
 end

@@ -298,8 +298,8 @@ require "accountHandle"
 require "skillHandle"
 require "characterHandle"
 require "formationHandle"
-require "battleServerHandle"
-require "arena_handle"
+require "SV_battleServerHandle"
+require "SV_arena_handle"
 
 print("server side script ended ...")
 

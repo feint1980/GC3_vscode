@@ -133,9 +133,42 @@ function Arena_UpdateServerPing(serverGUID, ping)
     BattleServerListView:addItem({serverName,ping})
 
     CreateLobby_AddServerToList(serverGUID, serverName, ping)
+
+    -- Arena_UpdateLobbies()
 end
 
 
 function Arena_ServerList_DoubleClick()
 
 end
+
+
+---@param serverList table
+function Arena_UpdateLobbies(serverList)
+    RoomListView:clearItems()
+    for k ,v in pairs(serverList) do
+        if Arena_Ping_List[k] == nil then
+            print("mismatch battle server ID found" .. k)
+            break
+        end
+        print ("Arena_UpdateLobbies " .. k)
+        for n,m in pairs(v.lobbyList) do
+            local hasPassword = "x"
+            if m.password ~= "" then
+                hasPassword = "v"
+            end
+            RoomListView:addItem({m.name, m.battleClientEP_List[1].id, hasPassword,Arena_Ping_List[k].ping})
+        end
+        -- RoomListView:addItem({arenaList[k].name,arenaList[k].name,arenaList[k].name,arenaList[k].name})
+        -- for n,m in pairs(Arena_Ping_List[k].lobbyList) do
+            
+        --     print("found lobby list for battle server " .. k .. "|" .. n)
+        --     -- local hasPassword = "x"
+        --     -- if m.password == "" then
+        --     --     hasPassword = "v"
+        --     -- end
+        --     -- RoomListView:addItem({m.name,m.battleClientEP_List[1].id,hasPassword,v.ping})
+        -- end
+    end
+
+end 

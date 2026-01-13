@@ -1,8 +1,9 @@
-require "battle_handle_clients"
+require "BS_handle_clients"
 
 BattleLobby = {
     id = "",
     name  = "",
+    password = "",
     battleClientEP_List = {},
     lobbyState =  BattleLobbyState.CLOSED
 }
@@ -14,9 +15,10 @@ function BattleLobby:new(o)
     return o
 end
 
-function BattleLobby:init(id,name)
-    self.id = id
-    self.name = name
+function BattleLobby:init(t_id,t_name,t_password)
+    self.id = t_id
+    self.name = t_name
+    self.password = t_password
     self.Battle_LobbyState = BattleLobbyState.OPEN
 end
 
@@ -24,10 +26,17 @@ function BattleLobby:addPlayer(playerID, playerGUID, playerIP)
     local clientEP = BattleClientEP:new()
     clientEP:init(playerID, playerGUID, playerIP)
     if #self.battleClientEP_List < 2 then 
+        print(" BattleLobby:addPlayer")
         print("player " .. playerID .. "(" .. playerGUID ..  ") added to lobby " .. self.id)
+
         table.insert(self.battleClientEP_List, clientEP)
     else
         print("lobby " .. self.id .. " is full")
+    end
+
+    print("list of players")
+    for i = 1, #self.battleClientEP_List do
+        print(self.battleClientEP_List[i].id .. "(" .. self.battleClientEP_List[i].guid .. ")")
     end
 end
 
@@ -41,7 +50,7 @@ function BattleLobby:removePlayer(playerGUID)
             break
         end
     end
-
+    
     -- self check 
     if #self.battleClientEP_List == 0 then
         print("lobby " .. self.id .. " is empty")
@@ -70,7 +79,36 @@ end
 ---@Description send update of lobbies to main server
 ---@host pointer instance of ServerScriptingManager
 function BattleLobby_Notify_LobbiesStates(host)
-    BM_sendWrapData(host,BM_getMainServerIP(host),BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, PaperWorkRequest.LobbiesListUpdate , {JSON_Encode(BattleLobby_List)})
+
+    local lobbyList = {}
+    
+    for k,v in pairs(BattleLobby_List) do
+        print("replicated table check ")
+        lobbyList[k] = {}
+        lobbyList[k].id = v.id
+        lobbyList[k].name = v.name
+        lobbyList[k].password = v.password
+        lobbyList[k].lobbyState = v.lobbyState
+        lobbyList[k].battleClientEP_List = {}
+        
+
+        -- print("k " .. k)
+        print("id" .. v.id)
+        print("name" .. v.name)
+        print("password" .. v.password)
+        print("lobbyState" .. v.lobbyState)
+        print(#v.battleClientEP_List .. " players")
+        for i = 1, #v.battleClientEP_List do
+            print(v.battleClientEP_List[i].id .. "(" .. v.battleClientEP_List[i].guid .. ")")
+            lobbyList[k].battleClientEP_List[i] = {}
+            lobbyList[k].battleClientEP_List[i].id = v.battleClientEP_List[i].id
+            lobbyList[k].battleClientEP_List[i].guid = v.battleClientEP_List[i].guid
+        end
+    end
+
+    print("json check " .. JSON_Encode(lobbyList))
+
+    BM_sendWrapData(host,BM_getMainServerIP(host),BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, PaperWorkRequest.LobbiesListUpdate , {JSON_Encode(lobbyList)})
 end
 
 -- function BattleLobby_FinalizeLobbies

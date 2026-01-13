@@ -20,8 +20,8 @@ MainInfo = {
 
 
 BattleLobbyState = {
-    OPEN = 0,
-    CLOSED = 1,
+    CLOSED = 0,
+    OPEN = 1,
     INGAME = 2,
     EXPIRED = 3
 }

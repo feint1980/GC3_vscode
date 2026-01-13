@@ -39,11 +39,11 @@ function BSEP:getIP()
     return self.IP
 end
 
-function BSEP:addLobby(lID, lName, lPassword)
-    self.lobbyList[lID] = LobbyEP:new()
-    self.lobbyList[lID]:init(lID, lName, lPassword)
-end
+-- function BSEP:addLobby(lID, lName, lPassword)
+--     self.lobbyList[lID] = LobbyEP:new()
+--     self.lobbyList[lID]:init(lID, lName, lPassword)
+-- end
 
-function BSEP:removeLobby(lID)
-    self.lobbyList[lID] = nil
-end
+-- function BSEP:removeLobby(lID)
+--     self.lobbyList[lID] = nil
+-- end
