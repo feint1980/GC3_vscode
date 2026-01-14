@@ -43,12 +43,14 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
     print("lobby response get !!!")
 
     -- print("data " .. data)
-    local tTargetGUID, targetID, serverGUID , lobbyID, lobbyName , lobbyPassword = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
-
+    local tTargetGUID, targetID, serverGUID , lobbyID, combineData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
     print("tTargetGUID " .. tTargetGUID)
     print("targetID " .. targetID)
     print("serverGUID " .. serverGUID)
     print("lobbyID " .. lobbyID)
+
+    local lobbyName, lobbyPassword = string.match(combineData, "^{(.-)%$(.-)}$")
+
     print("lobbyName " .. lobbyName)
     print("lobbyPassword " .. lobbyPassword)
 

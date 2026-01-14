@@ -9,7 +9,9 @@ BattleLobby = {
 }
 
 function BattleLobby:new(o)
-    o = o or {}
+    o = o or {
+        battleClientEP_List = {}
+    }
     setmetatable(o, self)
     self.__index = self
     return o
@@ -90,14 +92,14 @@ function BattleLobby_Notify_LobbiesStates(host)
         lobbyList[k].password = v.password
         lobbyList[k].lobbyState = v.lobbyState
         lobbyList[k].battleClientEP_List = {}
+        setmetatable(lobbyList[k].battleClientEP_List, {__mode = "kv"})
         
-
         -- print("k " .. k)
         print("id" .. v.id)
         print("name" .. v.name)
         print("password" .. v.password)
         print("lobbyState" .. v.lobbyState)
-        print(#v.battleClientEP_List .. " players")
+        print(#BattleLobby_List[k].battleClientEP_List .. " players")
         for i = 1, #v.battleClientEP_List do
             print(v.battleClientEP_List[i].id .. "(" .. v.battleClientEP_List[i].guid .. ")")
             lobbyList[k].battleClientEP_List[i] = {}
@@ -106,7 +108,7 @@ function BattleLobby_Notify_LobbiesStates(host)
         end
     end
 
-    print("json check " .. JSON_Encode(lobbyList))
+    print("json check " .. JSON_Encode(lobbyList,true))
 
     BM_sendWrapData(host,BM_getMainServerIP(host),BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, PaperWorkRequest.LobbiesListUpdate , {JSON_Encode(lobbyList)})
 end

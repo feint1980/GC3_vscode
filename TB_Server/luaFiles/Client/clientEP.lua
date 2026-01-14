@@ -33,5 +33,8 @@ function ClientEP:init(tIP, guid, name)
 
 end
 
+function ClientEP:getIP() 
+    return SV_getClientIPByGUID_CPP(self.GUID)
+end
 
 

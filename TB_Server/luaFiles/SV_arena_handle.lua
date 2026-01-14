@@ -35,6 +35,14 @@ end
 
 MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyList] = function(host, data,ip,guid)
 
+    -- SendReliable(host,ip,guid,PacketChannel.ArenaChannel,ArenaResponse.Arena_RequestLobbyListResponse,{tData})
+    -- SendReliable(host,ip,guid,PacketChannel.ArenaChannel,ArenaResponse.Arena_RequestLobbyList,{tData})
+    SV_SendLobbyListToClientEP(host,ip,guid)
+end
+
+
+function  SV_SendLobbyListToClientEP(host,ip,guid)
+
     print("request from " .. guid .. " for lobby list")
     local serverList = {}
     for k,v in pairs(BSEP_List) do
@@ -65,8 +73,6 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyList
     local tData = JSON_Encode(serverList,false)
     print("json check " .. tData)
     SendReliable(host,ip,guid,PacketChannel.ArenaChannel,ArenaResponse.Arena_RequestLobbyListResponse,{tData})
-    -- SendReliable(host,ip,guid,PacketChannel.ArenaChannel,ArenaResponse.Arena_RequestLobbyList,{tData})
-
 end
 
 MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobby_Create] = function(host, data,ip,guid)

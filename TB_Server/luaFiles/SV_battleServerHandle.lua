@@ -37,7 +37,10 @@ BattleServerHandling[BattleChanel.Lobby][LobbyResponse.Lobby_Create_Response] = 
     print("From server IP:" .. SV_GetIPString(ip))
     print("GUID:" .. guid)
     print("Data:" .. data)
-    local tTargetGUID, targetID, serverGUID , lobbyID , lobbyName, lobbyPassword = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    local tTargetGUID, targetID, serverGUID , lobbyID ,combineData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$") 
+    
+    local lobbyName, lobbyPassword = string.match(combineData, "^{(.-)%$(.-)}$")
+    --  = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
     -- local lobbyName, lobbyPassword = string.match(combineData, "^{(.-)%$(.-)}$")
 
@@ -56,7 +59,7 @@ BattleServerHandling[BattleChanel.Lobby][LobbyResponse.Lobby_Create_Response] = 
 
     print("pass request to " .. SV_GetIPString(targetClient))
     SendReliable(host,targetClient, tTargetGUID,  PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobbyResponse,
-    {tTargetGUID,targetID,serverGUID,lobbyID,lobbyName,lobbyPassword} )
+    {tTargetGUID,targetID,serverGUID,lobbyID,combineData} )
 
     print("pass throught request done")
     
@@ -110,4 +113,10 @@ BattleServerHandling[BattleChanel.Lobby][PaperWorkRequest.LobbiesListUpdate] = f
             BSEP_List[guid].lobbyList[k].battleClientEP_List[n].guid = lobbyList[k].battleClientEP_List[n].guid
         end
     end
+
+    for k,v in pairs(ClientEPList) do
+        print("broadcast to " .. v.name .. "(" .. k .. ")")
+        SV_SendLobbyListToClientEP(host, v:getIP(), k)
+    end
+
 end

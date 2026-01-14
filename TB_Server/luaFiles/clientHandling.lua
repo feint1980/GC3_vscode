@@ -115,6 +115,7 @@ function CH_check_userValid(msgGUID , selfGUID ,userID,ip)
     return true
 end
 
+
 ---@Description check if the data is extracted OK
 ---@param data table of data extracted
 ---@param channel number channel

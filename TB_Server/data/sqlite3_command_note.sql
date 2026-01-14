@@ -5,7 +5,7 @@ CREATE TABLE register_key_table(
     key_str_val CHAR(12) NOT NULL,
     key_ready INTEGER CHECK (key_ready IN (0,1)) NOT NULL
 );
-INSERT INTO register_key_table VALUES(1,'F98ER24S8UR3',1);
+INSERT INTO register_key_table VALUES(1,'F98ER24S8UR3',0);
 INSERT INTO register_key_table VALUES(2,'ZPZXH0DA1YOJ',0);
 INSERT INTO register_key_table VALUES(3,'E8760XLSLS7E',0);
 INSERT INTO register_key_table VALUES(4,'9TH4LPCV7UVH',1);
@@ -22,6 +22,7 @@ CREATE TABLE account_table (
 INSERT INTO account_table VALUES('feint','b81e79006c48754188243d6130e5c46787e2096c0e97941bcce56490902e024a',2);
 INSERT INTO account_table VALUES('belai101','cd0a600aa3f0478684667f1687e7cbfd816d93f385b4400a3ed532501a725456',0);
 INSERT INTO account_table VALUES('huyen12','52bff3fcc133e3398ca69e56c66ab986df03a6ac4678fba916cfa17bc0b2633d',0);
+INSERT INTO account_table VALUES('huyen13','52bff3fcc133e3398ca69e56c66ab986df03a6ac4678fba916cfa17bc0b2633d',0);
 CREATE TABLE account_stats_table (
     account_id VARCHAR(64) NOT NULL,
     mon DOUBLE DEFAULT 0,
@@ -35,6 +36,7 @@ INSERT INTO account_stats_table VALUES('huyen12',172.0,35.0,4);
 INSERT INTO account_stats_table VALUES('feint',500.0,250.0,4);
 INSERT INTO account_stats_table VALUES('belai101',100.0,150.0,4);
 INSERT INTO account_stats_table VALUES('huyen12',172.0,-10.0,4);
+INSERT INTO account_stats_table VALUES('huyen13',100.0,150.0,0);
 CREATE TABLE character_base_table (
     character_id VARCHAR(128) PRIMARY KEY, 
     character_name VARCHAR(128) NOT NULL,
@@ -84,9 +86,14 @@ CREATE TABLE formation_info_table(
         ON DELETE CASCADE,
     CONSTRAINT uq_formation_character UNIQUE (account_id, formation_index,slot_index)
 );
-
-INSERT INTO formation_info_table VALUES('huyen12',2,'S_Meiling',2,2,3);
-INSERT INTO formation_info_table VALUES('huyen12',3,'S_Meiling',1,2,2);
+INSERT INTO formation_info_table VALUES('huyen12',2,'S_Reimu',1,2,1);
+INSERT INTO formation_info_table VALUES('huyen12',2,'S_Patchouli',2,2,2);
+INSERT INTO formation_info_table VALUES('huyen12',2,'S_Meiling',3,2,3);
+INSERT INTO formation_info_table VALUES('huyen12',2,'S_Yukari',4,3,3);
+INSERT INTO formation_info_table VALUES('huyen12',3,'S_Meiling',1,1,2);
+INSERT INTO formation_info_table VALUES('huyen12',3,'S_Patchouli',2,2,1);
+INSERT INTO formation_info_table VALUES('huyen12',3,'S_Reimu',3,2,2);
+INSERT INTO formation_info_table VALUES('huyen12',3,'S_Yukari',4,3,2);
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('register_key_table',9);
 INSERT INTO sqlite_sequence VALUES('player_character_table',4);

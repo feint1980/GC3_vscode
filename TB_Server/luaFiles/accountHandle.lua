@@ -206,7 +206,7 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = funct
                 SVI_DoQuerySTMT(host,updateKeyQuery,{t_key})
                 SendReliable(host,ip, guid,PacketChannel.AccountChannel,AccountResponse.Aregister,{ "Register successfully !" })
                 -- add starter mon and souls to new account
-                local insertCurrency =  "INSERT INTO account_stats_table (account_id, mon, souls) VALUES (?, 100, 15);"
+                local insertCurrency =  "INSERT INTO account_stats_table (account_id, mon, souls) VALUES (?, 100, 150);"
                 SVI_DoQuerySTMT(host,insertCurrency,{t_id})
             else
                 SV_SendMsg(host,ip,CombinePackage("REGISTER_RES_NEG",{ "Register Key already used !"}))

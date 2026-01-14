@@ -72,11 +72,10 @@ function InitArenaMenu(host)
     end)
 
     RoomListView = ListView:new()
-    RoomListView:init(host,50,50,500,400,{"Room","Opponent", "PW", "Ping"},{100,200,100,100},ArenaPanel.ptr)
+    RoomListView:init(host,50,50,500,400,{"Room","Opponent", "PW", "Status", "Ping"},{100,200,100,150,100},ArenaPanel.ptr)
     RoomListView:setPosStr("0%","5%")
     RoomListView:setSizeStr("40%","45%")
-    RoomListView:setColumnSizeRatios({0.37,0.37,0.13,0.13})
-
+    RoomListView:setColumnSizeRatios({0.3,0.27,0.12,0.19 ,0.12})
 
     --- Create Room Button
     local createRoomLabel = Label:new()
@@ -87,6 +86,17 @@ function InitArenaMenu(host)
     createRoomLabel:setHoverable(0,255,0,255,255,255,255,255)
     createRoomLabel:setOnClickCallback(function()
         MenuPanels["CreateLobby"](host)
+    end)
+
+    local refreshLabel = Label:new()
+    refreshLabel:init(host,"Refresh",ArenaPanel.width/2,0,ArenaPanel.ptr)
+    refreshLabel:setScale(0.9)
+    refreshLabel:setAlignment(TextAlginment.Center)
+    refreshLabel:setPosStr("15%","50%")
+    refreshLabel:setHoverable(0,255,0,255,255,255,255,255)
+    refreshLabel:setOnClickCallback(function()
+        print("refresh")
+        Arena_RequestLobbyList()
     end)
 
     -- local rComboBox = ComboBox:new()
