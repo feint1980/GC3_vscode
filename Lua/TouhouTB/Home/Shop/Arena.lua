@@ -72,10 +72,12 @@ function InitArenaMenu(host)
     end)
 
     RoomListView = ListView:new()
-    RoomListView:init(host,50,50,500,400,{"Room","Opponent", "PW", "Status", "Ping"},{100,200,100,150,100},ArenaPanel.ptr)
+    RoomListView:init(host,50,50,600,400,{"ID", "Room","Opponent","PW", "Status", "Ping"},{100,100,200,100,150,100},ArenaPanel.ptr)
     RoomListView:setPosStr("0%","5%")
-    RoomListView:setSizeStr("40%","45%")
-    RoomListView:setColumnSizeRatios({0.3,0.27,0.12,0.19 ,0.12})
+    RoomListView:setSizeStr("60%","45%")
+    RoomListView:setColumnSizeRatios({0.23,0.2,0.22,0.08,0.19 ,0.08})
+
+  
 
     --- Create Room Button
     local createRoomLabel = Label:new()
@@ -106,6 +108,12 @@ function InitArenaMenu(host)
     -- rComboBox:setSizeStr("30%","5%")
     ArenaPanel:setVisible(false)
 
+    RoomListView:setDoubleClickCallBack(
+    function()
+        Arena_JoinLobby()
+    end
+
+    )
     MenuMainPanels["Arena"] = ArenaPanel
 end
 
@@ -119,6 +127,10 @@ function Arena_RequestBattleServerList()
     print("Arena_RequestBattleServerList called")
     SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_Request_GetServerList, {MainInfo.guid, "request"}, 5, 0.5,0.25)
     print("Arena_RequestBattleServerList sent ")
+end
+
+function Arena_JoinLobby()
+    print("Join Lobby called")
 end
 
 function Arena_RequestLobbyList()
@@ -167,7 +179,16 @@ function Arena_UpdateLobbies(serverList)
             if m.password ~= "" then
                 hasPassword = "v"
             end
-            RoomListView:addItem({m.name, m.battleClientEP_List[1].id, hasPassword,Arena_Ping_List[k].ping})
+            local state = "TK2"
+            if m.lobbyState == 0 then
+                state= "Waiting"
+            elseif m.lobbyState == 2 then
+                state = "In Game"
+            end
+            if #m.battleClientEP_List > 0 then 
+                RoomListView:addItem({m.id,m.name, m.battleClientEP_List[1].id, 
+                hasPassword, state ,Arena_Ping_List[k].ping})
+            end
         end
         -- RoomListView:addItem({arenaList[k].name,arenaList[k].name,arenaList[k].name,arenaList[k].name})
         -- for n,m in pairs(Arena_Ping_List[k].lobbyList) do
@@ -181,4 +202,5 @@ function Arena_UpdateLobbies(serverList)
         -- end
     end
 
-end 
+end
+

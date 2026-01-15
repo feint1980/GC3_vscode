@@ -2231,18 +2231,21 @@ int lua_ListView_SetDoubleClickCallBack(lua_State * L)
     }
     else
     {
+
         tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
-            if(!lua_isfunction(L, 2))
+        if(!lua_isfunction(L, 2))
         {
             std::cout << "param 2 is not a function \n";
             return -1;
         }
         lua_pushvalue(L, 2);
         int ref = luaL_ref(L, LUA_REGISTRYINDEX);
+        std::cout << "register doubleclick for listview \n";
         // panel->get()->
         std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
         listView->get()->onDoubleClick.disconnectAll();
         listView->get()->onDoubleClick(callback);
+
         return 0;
     }
 
@@ -2283,7 +2286,6 @@ int lua_ComboBox_Create(lua_State * L)
             *comboBox = host->createComboBox(x,y,width,height,nullptr);
         }
     
-
         lua_pushlightuserdata(L, comboBox);
         
         return 1;
@@ -2834,6 +2836,7 @@ tgui::ListView::Ptr TGUIScriptingManager::createListView(float x, float y, float
     tgui::ListView::Ptr listView = tgui::ListView::create();
     listView->setPosition(x, y);
     listView->setSize(width, height);
+    // listView->getItemCell()
     for(int i = 0; i < collumName.size(); i++)
     {
         listView->addColumn(collumName[i],collumSizes[i],tgui::ListView::ColumnAlignment::Center);
@@ -3279,6 +3282,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_ListView_AddItem", lua_ListView_AddItem);
     lua_register(m_script, "cpp_ListView_GetSelectedItemValue", lua_ListView_GetSelectedItemValue);
     lua_register(m_script, "cpp_ListView_SetDoubleClickCallBack", lua_ListView_SetDoubleClickCallBack);
+
 
     // TGUI ComboBox
     lua_register(m_script, "cpp_ComboBox_Create", lua_ComboBox_Create);
