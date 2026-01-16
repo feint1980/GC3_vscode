@@ -23,6 +23,11 @@ BattleServerListView = nil
 ---@type ListView
 RoomListView = nil
 
+
+Arena_selected_serverGUID = ""
+Arena_selected_lobbyID = ""
+Arena_joinLobbyPW = ""
+
 function InitArenaMenu(host)
     InitCreateLobbyMenu(host)
     if ArenaPanel == nil then
@@ -72,12 +77,10 @@ function InitArenaMenu(host)
     end)
 
     RoomListView = ListView:new()
-    RoomListView:init(host,50,50,600,400,{"ID", "Room","Opponent","PW", "Status", "Ping"},{100,100,200,100,150,100},ArenaPanel.ptr)
+    RoomListView:init(host,50,50,600,400,{"Room","Opponent","PW", "Status", "Ping"},{100,200,100,150,100},ArenaPanel.ptr)
     RoomListView:setPosStr("0%","5%")
-    RoomListView:setSizeStr("60%","45%")
-    RoomListView:setColumnSizeRatios({0.23,0.2,0.22,0.08,0.19 ,0.08})
-
-  
+    RoomListView:setSizeStr("50%","45%")
+    RoomListView:setColumnSizeRatios({0.26,0.26,0.12,0.2 ,0.16})
 
     --- Create Room Button
     local createRoomLabel = Label:new()
@@ -110,10 +113,42 @@ function InitArenaMenu(host)
 
     RoomListView:setDoubleClickCallBack(
     function()
-        Arena_JoinLobby()
+        print("press RoomListView:setDoubleClickCallBack")
+        Arena_JoinLobby_Click()
     end
-
     )
+
+    Prompt_UI_Table["Arena_Join_no_pw"] = Prompt:new()
+    Prompt_UI_Table["Arena_Join_no_pw"]:init(host,"Join this lobby ?",false)
+    Prompt_UI_Table["Arena_Join_no_pw"]:addButton("Join", function()
+        Arena_JoinLobby(false)
+        Prompt_UI_Table["Arena_Join_no_pw"]:show(false)
+    end
+    )
+    Prompt_UI_Table["Arena_Join_no_pw"]:addButton("Back", function()
+        print("back")
+        Prompt_UI_Table["Arena_Join_no_pw"]:show(false)
+    end
+    )
+
+
+    Prompt_UI_Table["Arena_Join_with_pw"] = Prompt:new()
+    Prompt_UI_Table["Arena_Join_with_pw"]:init(host,"Join this lobby ?",false)
+    Prompt_UI_Table["Arena_Join_with_pw"]:addButton("Join", function()
+        Arena_JoinLobby(true)
+        Prompt_UI_Table["Arena_Join_with_pw"]:show(false)
+    end
+    )
+    Prompt_UI_Table["Arena_Join_with_pw"]:addButton("Back", function()
+        print("back")
+        Prompt_UI_Table["Arena_Join_with_pw"]:show(false)
+    end
+    )
+    Prompt_UI_Table["Arena_Join_with_pw"]:addInputBox("Password",100,100,300,40)
+
+    Prompt_UI_Table["Arena_Noti"] = Prompt:new()
+    Prompt_UI_Table["Arena_Noti"]:init(host,"Join this lobby ?",true)
+
     MenuMainPanels["Arena"] = ArenaPanel
 end
 
@@ -129,8 +164,54 @@ function Arena_RequestBattleServerList()
     print("Arena_RequestBattleServerList sent ")
 end
 
-function Arena_JoinLobby()
+function Arena_JoinLobby_Click()
+
     print("Join Lobby called")
+    local index = RoomListView:getSelectedItemIndex()
+    if index == -1 then
+        print("no room selected")
+        return
+    end
+    print("index is " .. index)
+
+    local tData = RoomListView:getItemDataStr(index)
+    -- split between the character "serverGUID_lobbyID"
+    local serverGUID, lobbyID = string.match(tData, "^([^_]+)_([^_]+)$")
+    print("serverGUID is " .. serverGUID)
+    print("lobbyID is " .. lobbyID)
+
+    print("Check Arena Ping List data")
+    for k,v in pairs(Arena_Ping_List) do
+        print("key is " .. k)
+        print(v.name)
+        print(v.guid)
+        print(v.port)
+        print("room list ")
+        for n,m in pairs(v.lobbyList) do
+            print(m.name)
+        end
+    end
+
+    if Arena_Ping_List[serverGUID] == nil then
+        Prompt_UI_Table["Arena_Noti"]:setMsg("Server not found")
+        return
+    end
+
+    Arena_selected_serverGUID = serverGUID
+    Arena_selected_lobbyID = lobbyID
+    if Arena_Ping_List[serverGUID].lobbyList[lobbyID] == nil then
+        Prompt_UI_Table["Arena_Noti"]:setMsg("Lobby not found")
+        return
+    end
+
+    if Arena_Ping_List[serverGUID].lobbyList[lobbyID].password ~= "" then
+        Prompt_UI_Table["Arena_Join_with_pw"]:show(true)
+        return
+    else
+        Prompt_UI_Table["Arena_Join_no_pw"]:show(true)
+        return
+    end
+
 end
 
 function Arena_RequestLobbyList()
@@ -160,10 +241,20 @@ function Arena_UpdateServerPing(serverGUID, ping)
 end
 
 
-function Arena_ServerList_DoubleClick()
-
+function Arena_JoinLobby(hasPassword)
+    local tPassword = ""
+    if hasPassword == true then
+        tPassword = Prompt_UI_Table["Arena_Join_with_pw"]:getInputBoxText()
+    end
+    Arena_Send_Join_Lobby_Request(Arena_selected_serverGUID, Arena_selected_lobbyID, tPassword)
 end
 
+function Arena_Send_Join_Lobby_Request(serverGUID, lobbyID,password)
+
+    local comineData = "{" .. lobbyID .. "$" .. password .. "}"
+    SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestJoinLobby_WithBSGUID_LobbyID, {serverGUID, MainInfo.guid, MainInfo.id, comineData}, 5, 0.5,0.25)
+
+end
 
 ---@param serverList table
 function Arena_UpdateLobbies(serverList)
@@ -186,8 +277,8 @@ function Arena_UpdateLobbies(serverList)
                 state = "In Game"
             end
             if #m.battleClientEP_List > 0 then 
-                RoomListView:addItem({m.id,m.name, m.battleClientEP_List[1].id, 
-                hasPassword, state ,Arena_Ping_List[k].ping})
+                RoomListView:addItemWithDataStr({m.name, m.battleClientEP_List[1].id, 
+                hasPassword, state ,Arena_Ping_List[k].ping}, k .. "_" .. m.id)
             end
         end
         -- RoomListView:addItem({arenaList[k].name,arenaList[k].name,arenaList[k].name,arenaList[k].name})

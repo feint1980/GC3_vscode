@@ -82,6 +82,24 @@ function ListView:addItem(item)
     TGUI_ListView_AddItem(self.ptr,item)
 end
 
+---@Description add item to list
+---@
+function ListView:addItemWithDataStr(item,data)
+    TGUI_ListView_AddItemWithStrData(self.ptr,item,data)
+end
+
+---@Description get item data as string
+---@param index number collum Index
+function ListView:getItemDataStr(index)
+    return TGUI_ListView_GetItemDataAsStr(self.ptr,index)
+end
+
+---@Description get selected item index
+---@return number
+function ListView:getSelectedItemIndex()
+    return TGUI_ListView_GetSelectedItemIndex(self.ptr)
+end
+
 ---- MARK: Wrapper
 --- function wrapper of cpp_ListView_Create
 ---@Description create new tgui ListView object in cpp
@@ -167,9 +185,24 @@ end
 
 ---@Description wrapper of cpp_ListView_AddItem
 ---@param listView pointer instance of TGUI ListView
----@param item pointer instance of TGUI ListItem
+---@param item pointer table of string
 function TGUI_ListView_AddItem(listView,item)
     cpp_ListView_AddItem(listView,item)
+end
+
+---@Description wrapper of cpp_ListView_AddItemWithStrData
+---@param listView pointer instance of TGUI ListView
+---@param item pointer table of string
+---@param data pointer string (data stored)
+function TGUI_ListView_AddItemWithStrData(listView,item,data )
+    cpp_ListView_AddItemWithStrData(listView,item,data)
+end
+
+---@Description wrapper of cpp_ListView_GetItemDataAsStr
+---@param listView pointer instance of TGUI ListView
+---@param index number
+function TGUI_ListView_GetItemDataAsStr(listView,index)
+    return cpp_ListView_GetItemDataAsStr(listView,index)
 end
 
 ---@Description wrapper of cpp_ListView_SetDoubleClickCallBack
@@ -178,7 +211,16 @@ function TGUI_ListView_SetDoubleClickCallBack(listView,callback)
 end 
 
 ---@Description wrapper of cpp_ListView_GetSelectedItemValue
+---@param listView pointer instance of TGUI ListView
+---@param collumnIndex number
 function TGUI_ListView_GetSelectedItemValue(listView,collumnIndex)
     local tCollumnIndex = collumnIndex or 0
     return cpp_ListView_GetSelectedItemValue(listView,tCollumnIndex)
+end
+
+
+---@Description wrapper of cpp_ListView_GetSelectedItemIndex
+---@param listView pointer instance of TGUI ListView
+function TGUI_ListView_GetSelectedItemIndex(listView)
+    return cpp_ListView_GetSelectedItemIndex(listView)
 end

@@ -267,11 +267,9 @@ void LobbyScene::initGUI()
         }
     }
 
-
     m_clientScriptingManager->setCommonHandlingLuaFunction("Client_ReceiveData");
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"ClientHandlerWrapResponse");
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"ClientHandlerBattleResponse");
-
 
 }
 

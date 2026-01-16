@@ -4,6 +4,8 @@ require "serverWrapper"
 require "SV_global"
 require "BSEP"
 
+
+---Client -> Main Server 
 MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_GetServerList] = function(host, data,ip,guid)
 
     print("request from " .. guid .. " for arena server list")
@@ -33,15 +35,15 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_GetServe
 
 end
 
+
+--- Client -> Main Server
 MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyList] = function(host, data,ip,guid)
 
-    -- SendReliable(host,ip,guid,PacketChannel.ArenaChannel,ArenaResponse.Arena_RequestLobbyListResponse,{tData})
-    -- SendReliable(host,ip,guid,PacketChannel.ArenaChannel,ArenaResponse.Arena_RequestLobbyList,{tData})
     SV_SendLobbyListToClientEP(host,ip,guid)
 end
 
-
-function  SV_SendLobbyListToClientEP(host,ip,guid)
+--- Main Server --(Broadcast)--> Client(s)
+function SV_SendLobbyListToClientEP(host,ip,guid)
 
     print("request from " .. guid .. " for lobby list")
     local serverList = {}
@@ -100,7 +102,21 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobby_Cre
 
     SendReliable2BattleServer(host, BSEP_List[serverGUID].IP,  BSEP_List[serverGUID].GUID, BattleChanel.Lobby,LobbyResponse.Lobby_Create_Request,{tTargetGUID,targetID,serverGUID, combineData})
 
+end
 
-    -- SendReliable2BattleServer(host, BSEP_List[serverGUID].IP,  BSEP_List[serverGUID].GUID, BattleChanel.Lobby,LobbyResponse.Lobby_Create_Request,{tTargetGUID,targetID,serverGUID,combineData})
 
+MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoinLobby_WithBSGUID_LobbyID] = function(host, data,ip,guid)
+
+    print("request from " .. guid .. " for lobby join")
+
+    local serverGUID ,tTargetGUID, targetID ,combineData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+
+    local lobbyID, lobbyPassword = string.match(combineData, "^{(.-)%$(.-)}$")
+
+    print("serverGUID " .. serverGUID)
+    print("lobbyID " .. lobbyID)
+    print("lobbyPassword " .. lobbyPassword)
+    print("tTargetGUID " .. tTargetGUID)
+    print("targetID " .. targetID)
+    
 end

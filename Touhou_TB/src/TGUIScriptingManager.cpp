@@ -2176,6 +2176,7 @@ int lua_ListView_AddItem(lua_State * L)
         tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
         std::vector<tgui::String> itemValues;
         
+        
         if(!lua_istable(L,2))
         {
             std::cout << "gettop failed (lua_ListView_AddItem), expected table " << lua_gettop(L) << "\n";
@@ -2215,7 +2216,7 @@ int lua_ListView_GetSelectedItemValue(lua_State * L)
         int index = listView->get()->getSelectedItemIndex();
         std::string data =  listView->get()->getItemCell(index, collumIndex).toStdString();
         // listView->get()->getItemCell()
-        std::cout << "index: " << index << " | " << data << "\n";
+        // std::cout << "index: " << index << " | " << data << "\n";
         lua_pushstring(L,data.c_str());
         return 1;
     }
@@ -2251,6 +2252,85 @@ int lua_ListView_SetDoubleClickCallBack(lua_State * L)
 
     return 0;
 }
+
+int lua_ListView_AddItemWithStrData(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_ListView_AddItemWithStrData) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        std::vector<tgui::String> itemValues;
+        
+        
+        if(!lua_istable(L,2))
+        {
+            std::cout << "gettop failed (lua_ListView_AddItem), expected table " << lua_gettop(L) << "\n";
+            return -1;
+        }
+        else
+        {
+            lua_pushnil(L);
+            while(lua_next(L,2) != 0)
+            {
+                if(lua_isstring(L,-1))
+                {
+                    itemValues.push_back(lua_tostring(L,-1));
+                }
+                lua_pop(L,1);
+            }
+        }
+        std::string storedData = lua_tostring(L, 3);
+
+        listView->get()->addItem(itemValues);
+        listView->get()->setItemData(listView->get()->getItemCount()-1, storedData);
+        
+    }
+    return 0;
+}
+
+int lua_ListView_GetItemDataAsStr(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_ListView_GetSelectedItemValue) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        int index = lua_tonumber(L, 2);
+        std::string data = listView->get()->getItemData<std::string>(index);
+        // std::string data =  listView->get()->getItemData((std::size_t) index)
+        // listView->get()->getItemCell()
+        // std::cout << "index: " << index << " | " << data << "\n";
+        lua_pushstring(L,data.c_str());
+        return 1;
+    }
+    return 0;
+}
+
+int lua_ListView_GetSelectedItemIndex(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_ListView_GetSelectedItemIndex) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::ListView::Ptr * listView = static_cast<tgui::ListView::Ptr*>(lua_touserdata(L, 1));
+        int index = listView->get()->getSelectedItemIndex();
+        lua_pushnumber(L,index);
+        return 1;
+    }
+    return 0;
+}
+
+
 // MARK: ComboBox
 
 int lua_ComboBox_Create(lua_State * L)
@@ -3282,6 +3362,9 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_ListView_AddItem", lua_ListView_AddItem);
     lua_register(m_script, "cpp_ListView_GetSelectedItemValue", lua_ListView_GetSelectedItemValue);
     lua_register(m_script, "cpp_ListView_SetDoubleClickCallBack", lua_ListView_SetDoubleClickCallBack);
+    lua_register(m_script, "cpp_ListView_AddItemWithStrData", lua_ListView_AddItemWithStrData);
+    lua_register(m_script, "cpp_ListView_GetItemDataAsStr", lua_ListView_GetItemDataAsStr);
+    lua_register(m_script, "cpp_ListView_GetSelectedItemIndex", lua_ListView_GetSelectedItemIndex);
 
 
     // TGUI ComboBox
@@ -3295,6 +3378,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_ComboBox_GetSelectedItemIndex", lua_ComboBox_GetSelectedItemIndex);
     lua_register(m_script, "cpp_ComboBox_GetSelectedItem", lua_ComboBox_GetSelectedItem);
     lua_register(m_script, "cpp_ComboBox_RegisterOnSelectionChanged", lua_ComboBox_RegisterOnSelectionChanged);
+
 
     // lua_register(m_script, "cpp_ComboBox_SetItems", lua_ComboBox_SetItems);
     // lua_register(m_script, "cpp_ComboBox_SetSelectedIndex", lua_ComboBox_SetSelectedIndex);

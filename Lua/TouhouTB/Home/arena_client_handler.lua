@@ -108,6 +108,7 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
                         serverList[k].lobbyList[n].battleClientEP_List[i].id = m.battleClientEP_List[i].id
                         serverList[k].lobbyList[n].battleClientEP_List[i].guid = m.battleClientEP_List[i].guid
                     end
+                    Arena_Ping_List[k].lobbyList[n] = serverList[k].lobbyList[n]
                 end
             end
         end

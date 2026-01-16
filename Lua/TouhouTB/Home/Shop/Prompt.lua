@@ -61,7 +61,6 @@ function Prompt:init(GUI_host, msg ,isStandard )
 
     -- print("is standard " .. tostring(isStandard) .. " " .. msg)
     if isStandard == true then
-
         self:addButton("OK",function()
             self.mainPanel:hideWithEffect(PanelShowType.Fade,250)
         end)

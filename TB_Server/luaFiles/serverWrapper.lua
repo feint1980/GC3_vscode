@@ -64,7 +64,8 @@ ArenaResponse = {
     Arena_RequestLobbyList = 2,
     Arena_RequestLobbyResponse = 3,
     Arena_RequestLobby_Create = 4,
-    Arena_RequestLobbyListResponse = 5
+    Arena_RequestLobbyListResponse = 5,
+    Arena_RequestJoinLobby_WithBSGUID_LobbyID = 6,
 }
 
 
