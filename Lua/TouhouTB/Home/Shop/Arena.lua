@@ -133,7 +133,7 @@ function InitArenaMenu(host)
 
 
     Prompt_UI_Table["Arena_Join_with_pw"] = Prompt:new()
-    Prompt_UI_Table["Arena_Join_with_pw"]:init(host,"Join this lobby ?",false)
+    Prompt_UI_Table["Arena_Join_with_pw"]:init(host,"This Lobby requires password",false)
     Prompt_UI_Table["Arena_Join_with_pw"]:addButton("Join", function()
         Arena_JoinLobby(true)
         Prompt_UI_Table["Arena_Join_with_pw"]:show(false)
@@ -147,7 +147,11 @@ function InitArenaMenu(host)
     Prompt_UI_Table["Arena_Join_with_pw"]:addInputBox("Password",100,100,300,40)
 
     Prompt_UI_Table["Arena_Noti"] = Prompt:new()
-    Prompt_UI_Table["Arena_Noti"]:init(host,"Join this lobby ?",true)
+    Prompt_UI_Table["Arena_Noti"]:init(host,"Arena_Noti",true)
+
+
+    Prompt_UI_Table["Arena_Status"] = Prompt:new()
+    Prompt_UI_Table["Arena_Status"]:init(host,"Arena_Status",true)
 
     MenuMainPanels["Arena"] = ArenaPanel
 end
@@ -237,15 +241,17 @@ function Arena_UpdateServerPing(serverGUID, ping)
 
     CreateLobby_AddServerToList(serverGUID, serverName, ping)
 
-    -- Arena_UpdateLobbies()
 end
-
 
 function Arena_JoinLobby(hasPassword)
     local tPassword = ""
     if hasPassword == true then
-        tPassword = Prompt_UI_Table["Arena_Join_with_pw"]:getInputBoxText()
+        tPassword = Prompt_UI_Table["Arena_Join_with_pw"]:getInputBox("Password"):getText()
     end
+    print("join server with data" )
+    print("server GUID " .. Arena_selected_serverGUID)
+    print("lobby ID " .. Arena_selected_lobbyID)
+    print("password " .. tPassword)
     Arena_Send_Join_Lobby_Request(Arena_selected_serverGUID, Arena_selected_lobbyID, tPassword)
 end
 

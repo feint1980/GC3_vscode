@@ -85,6 +85,7 @@ ArenaResponse = {
     Arena_RequestLobby_Create = 4,
     Arena_RequestLobbyListResponse = 5,
     Arena_RequestJoinLobby_WithBSGUID_LobbyID = 6,
+    Arena_RequestJoinLobby_WithBSGUID_LobbyID_Response = 7,
 
     -- Arena_Connect_ConnectToServer = 2,
 }

@@ -22,6 +22,38 @@ int lua_BM_GetInfo(lua_State *L)
 }
 
 
+int lua_BM_ConnectToMainServer(lua_State *L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_BM_ConnectToMainServer) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        host->connectToMainServer();
+    }
+    return 0;
+}
+
+int lua_BM_HandleDisconnectFromMainServer(lua_State *L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_BM_HandleDisconnectFromMainServer) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        BattleMain * host = static_cast<BattleMain*>(lua_touserdata(L, 1));
+        host->disconnectedFromServerSignalGet();
+    }
+    return 0;
+}
+
 int lua_BM_SendWrapData(lua_State *L)
 {
     if(lua_gettop(L) != 4)
@@ -147,26 +179,44 @@ int lua_addToWhitelist(lua_State *L)
         std::string guid = lua_tostring(L, 1);
         std::string id = lua_tostring(L, 2);
         // RakNet::SystemAddress * address = static_cast<RakNet::SystemAddress*>(lua_touserdata(L, 3));
-        bool result = BattleDataRegister::getInstance()->registerWhiteListClient(guid, id);
+        bool result = BattleDataRegister::getInstance()->registerWhiteListClient_ByGUID(guid, id);
         lua_pushboolean(L, result);
         return 1;
     }
     return 0;
 }
 
-int lua_removeFromWhitelist(lua_State *L)
+int lua_removeFromWhitelist_ByGUID(lua_State *L)
 {
     if(lua_gettop(L) != 1)
     {
-        std::cout << "gettop failed (lua_removeFromWhitelist) \n";
+        std::cout << "gettop failed (lua_removeFromWhitelist_ByGUID) \n";
         std::cout << lua_gettop(L) << "\n";
         return -1;
     }
     else
     {
-
         std::string guid = lua_tostring(L, 1);
-        bool result = BattleDataRegister::getInstance()->removeWhiteListClient(guid);
+        bool result = BattleDataRegister::getInstance()->removeWhiteListClientID_ByGUID(guid);
+        lua_pushboolean(L, result);
+        return 1;
+        // host->removeAcceptedClientGUID(guid);
+    }
+    return 0;
+}
+
+int lua_removeFromWhitelist_ByID(lua_State *L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_removeFromWhitelist_ByID) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::string id = lua_tostring(L, 1);
+        bool result = BattleDataRegister::getInstance()->removeWhiteListClientID_ByID(id);
         lua_pushboolean(L, result);
         return 1;
         // host->removeAcceptedClientGUID(guid);
@@ -421,7 +471,10 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     luaL_openlibs(m_script);
 
     // communication 
+    lua_register(m_script, "cpp_BM_ConnectToMainServer", lua_BM_ConnectToMainServer);
     lua_register(m_script, "cpp_BM_SendWrapData", lua_BM_SendWrapData);
+    lua_register(m_script, "cpp_BM_HandleDisconnectFromMainServer", lua_BM_HandleDisconnectFromMainServer);
+    
 
     // retrieve info
     lua_register(m_script, "cpp_BM_GetInfo" , lua_BM_GetInfo);
@@ -439,7 +492,8 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
 
     // Client interactions
     lua_register(m_script, "cpp_addToWhitelist", lua_addToWhitelist);
-    lua_register(m_script, "cpp_removeFromWhitelist", lua_removeFromWhitelist);
+    lua_register(m_script, "cpp_removeFromWhitelist_ByGUID", lua_removeFromWhitelist_ByGUID);
+    lua_register(m_script, "cpp_removeFromWhitelist_ByID", lua_removeFromWhitelist_ByID);
     lua_register(m_script, "cpp_removeCryptor", lua_removeCryptor);
     lua_register(m_script, "cpp_registerOnlineSession", lua_registerOnlineSession); 
     lua_register(m_script, "cpp_getOnlineSessionByGUID", lua_getOnlineSessionByGUID);
@@ -475,8 +529,28 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     std::cout << "battle server init with port " << m_server->GetMyBoundAddress().GetPort()   << "/" << m_port << "\n";
 
     std::cout << "|===============================================|\n";
-    std::cout << "| Attemp to connect to main server ...          |\n";
+    connectToMainServer();
+    m_lobbiesManager.init(50);
 
+    m_serverOn = true;
+}   
+
+void BattleMain::disconnectedFromServerSignalGet()
+{
+    m_isConnectedToMainServer = false;
+    m_mainServerIP_ptr = nullptr;
+    // while(!m_serverOn)
+    // {
+    //     // connectToMainServer();
+    //     update(1.0f);
+    //     // RakSleep(1000);
+
+    // }
+}
+
+void BattleMain::connectToMainServer()
+{
+    std::cout << "| Attemp to connect to main server ...          |\n";
 
     RakNet::ConnectionAttemptResult car = m_server->Connect(m_mainServerIP.c_str(), 1123, m_mainServerPassword.c_str(), m_mainServerPassword.size());
 
@@ -484,35 +558,42 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
 
     RakAssert(car == RakNet::CONNECTION_ATTEMPT_STARTED);
 
-    m_serverOn = true;
-
-    m_lobbiesManager.init(50);
-}   
+}
 
 void BattleMain::run()
 {
-    uint64_t prevTicks = getTicks();
     while(m_serverOn)
     {
-        uint64_t newTicks = getTicks();
-        uint64_t frameTime = newTicks - prevTicks;
-        prevTicks = newTicks;
-
-        float totalDeltaTime =  frameTime / (1000.0f  / 60.0f);
-
-        while (totalDeltaTime > 0.0f)
+        if(!m_isConnectedToMainServer)
         {
-            float deltaTime = 0; //totalDeltaTime > 0.1f ? 0.1f : totalDeltaTime; // rewrite this in the more readable way 
-            if (totalDeltaTime > 0.1f)
+            // connectToMainServer();
+            update(1.0f);
+            // RakSleep(1000);
+
+        }
+        else//(m_isConnectedToMainServer)
+        {
+            uint64_t prevTicks = getTicks();
+            uint64_t newTicks = getTicks();
+            uint64_t frameTime = newTicks - prevTicks;
+            prevTicks = newTicks;
+
+            float totalDeltaTime =  frameTime / (1000.0f  / 60.0f);
+
+            while (totalDeltaTime > 0.0f)
             {
-                deltaTime = 0.1f;
+                float deltaTime = 0; //totalDeltaTime > 0.1f ? 0.1f : totalDeltaTime; // rewrite this in the more readable way 
+                if (totalDeltaTime > 0.1f)
+                {
+                    deltaTime = 0.1f;
+                }
+                else
+                {
+                    deltaTime = totalDeltaTime;
+                }
+                update(deltaTime);
+                totalDeltaTime -= deltaTime;
             }
-            else
-            {
-                deltaTime = totalDeltaTime;
-            }
-            update(deltaTime);
-            totalDeltaTime -= deltaTime;
         }
     }
 }
@@ -642,6 +723,7 @@ void BattleMain::handleCommonPacketQueue()
 
 void BattleMain::listen()
 {
+
     RakNet::Packet *p = nullptr;
     p = m_server->Receive();
     if(p)
@@ -713,6 +795,8 @@ void BattleMain::handleConnections(RakNet::Packet *p)
             m_mainServerIP_ptr = new RakNet::SystemAddress(p->systemAddress);
         }
         m_mainServerGUID = p->guid.ToString();
+
+        m_isConnectedToMainServer = true;
     }
     else
     {
@@ -720,7 +804,7 @@ void BattleMain::handleConnections(RakNet::Packet *p)
         std::string guid = p->guid.ToString();
 
         // if(m_acceptedClientGUID.find(guid) != m_acceptedClientGUID.end())
-        if(BattleDataRegister::getInstance()->getWhiteListClientAddressByGUID(guid) != "")
+        if(BattleDataRegister::getInstance()->getWhiteListClientIDByGUID(guid) != "")
         {
             std::cout << "accepted client " << guid << "\n";
             addCryptor(p->guid.ToString());

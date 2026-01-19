@@ -62,6 +62,10 @@ public:
 
     void handleInternalPacketQueue();
 
+    void disconnectedFromServerSignalGet();
+
+    void connectToMainServer();
+
     uint32_t handleInternalPacket(RakNet::Packet *p);
 
     uint32_t sendWrapData(const RakNet::SystemAddress & target,const std::string & guid, const std::string & data);
@@ -98,6 +102,8 @@ private:
     RakNet::SocketDescriptor m_socketDescriptor;
     RakNet::RakNetStatistics * m_statistics = nullptr;
 
+
+
     lua_State * m_script = nullptr;
     std::string m_password;
     std::string m_mainServerPassword;
@@ -109,6 +115,7 @@ private:
     int m_connectionSize = 0;
 
     bool m_serverOn = false;
+    bool m_isConnectedToMainServer = false;
     std::queue<RakNet::Packet*> m_commonPacketQueue;
 
     std::queue<RakNet::Packet*> m_internalPacketQueue;

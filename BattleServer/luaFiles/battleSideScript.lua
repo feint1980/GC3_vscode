@@ -5,6 +5,8 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "battleWrapper"
 require "BS_global"
 
+BS_IsConnectedToMainServer = false
+
 BS_Host = nil
 function BattleSide_Init(host)
     print("BattleSide_Init lua init")
@@ -25,25 +27,43 @@ end
 
 CommonPacketHandling[ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet)
     BM_handleIncomingConnection(host,packet)
+    local tPort = BS_Packet_getPort(packet)
+    if tPort == 1123 then
+        BS_IsConnectedToMainServer = true
+    end
 end
 
 CommonPacketHandling[ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)
     print("failed to connect to main server")
+    BM_connectToMainServer(host)
 end
 
 CommonPacketHandling[ID_CONNECTION_LOST] = function(host,packet)
 
+    local tGUID = BS_Packet_getGUID(packet)
     local tPort = BS_Packet_getPort(packet)
     if tPort == 1123 then
-        print("disconnected from main server") 
+        if BS_IsConnectedToMainServer == true then
+            print("disconnected from main server")
+            BS_IsConnectedToMainServer = false
+            BM_handleDisconnectFromMainServer(host)
+            BM_connectToMainServer(host)
+            return
+        else
+            BM_connectToMainServer(host)
+            return
+        end
+        -- os.execute("sleep 1")
         -- TODO consider make a reconnect attempts
     else
-        local tGUID = BS_Packet_getGUID(packet)
+        
         print("lost connection to " .. tGUID)
+        BM_removeFromWhitelist_ByGUID(tGUID)
         BM_removeCryptor(host,tGUID)
         if BattleClientEP_List[tGUID] ~= nil then
             print("remove the client " .. tGUID .. " from list ")
             print("check for lobby ID " .. BattleClientEP_List[tGUID].lobbyID)
+
             if BattleClientEP_List[tGUID].lobbyID ~= "" then
                 local tLobbyID = BattleClientEP_List[tGUID].lobbyID
                 if BattleLobby_List[tLobbyID] ~= nil then

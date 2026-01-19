@@ -118,5 +118,43 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoinLobby
     print("lobbyPassword " .. lobbyPassword)
     print("tTargetGUID " .. tTargetGUID)
     print("targetID " .. targetID)
-    
+
+    if CH_check_userValid(guid, tTargetGUID,targetID,ip) == false then
+        print("invalid user,  warning, craft packet found from ip " .. SV_GetIPString(ip))
+        return
+    end
+
+    if BSEP_List[serverGUID] == nil then
+        print("invalid server,  warning, craft packet found from ip " .. SV_GetIPString(ip))
+        return
+    end
+    if BSEP_List[serverGUID].lobbyList[lobbyID] == nil then
+        print("invalid lobby,  warning, craft packet found from ip " .. SV_GetIPString(ip))
+        return
+    end
+
+    local joinResult = 0 -- not valid
+
+    if lobbyPassword == BSEP_List[serverGUID].lobbyList[lobbyID].password then
+        joinResult = 1 -- valid
+        
+    else 
+        joinResult = 2 -- wrong password
+    end
+
+    -- decision for guid or tTargetGUID:
+    -->    guid -> 100% reply, even it was from crafted packet
+    -->    tTargetGUID -> if the crafted message, it not able to decrypt 
+    SendReliable(host,ip, tTargetGUID,PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestJoinLobby_WithBSGUID_LobbyID_Response,{serverGUID,lobbyID,joinResult})
+
+    -- Arena_RequestJoinLobby_WithBSGUID_LobbyID_Response
+
+    -- if joinResult == 1 then
+
+    -- end
+
+
+
+
+
 end

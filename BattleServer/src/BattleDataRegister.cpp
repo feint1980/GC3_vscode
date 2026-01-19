@@ -3,24 +3,29 @@
 BattleDataRegister* BattleDataRegister::m_instance = 0;
 
 
-bool BattleDataRegister::registerWhiteListClient(const std::string & guid, const std::string & id)
+bool BattleDataRegister::registerWhiteListClient_ByGUID(const std::string & guid, const std::string & id)
 {
-    if (m_whiteListClientAddressTable.find(guid) != m_whiteListClientAddressTable.end())
+    if (m_whiteListClient_GUID_2_ID.find(guid) != m_whiteListClient_GUID_2_ID.end())
     {
 
         std::cout << "guid " << guid << " already exist \n";
         return false;
     }
 
-    m_whiteListClientAddressTable[guid] = id;
+    m_whiteListClient_GUID_2_ID[guid] = id;
+    m_whiteListClient_ID_2_GUID[id] = guid; // reverse mapping
     return true;
 }
 
-bool BattleDataRegister::removeWhiteListClient(const std::string & guid)
+bool BattleDataRegister::removeWhiteListClientID_ByGUID(const std::string & guid)
 {
-    if (m_whiteListClientAddressTable.find(guid) != m_whiteListClientAddressTable.end())
+    if (m_whiteListClient_GUID_2_ID.find(guid) != m_whiteListClient_GUID_2_ID.end())
     {
-        m_whiteListClientAddressTable.erase(guid);
+        
+        std::string id = m_whiteListClient_GUID_2_ID[guid];
+        m_whiteListClient_ID_2_GUID.erase(id); // reverse mapping 
+        m_whiteListClient_GUID_2_ID.erase(guid);
+
         return true;
     }
     else
@@ -28,6 +33,24 @@ bool BattleDataRegister::removeWhiteListClient(const std::string & guid)
         std::cout << "[C++][BattleDataRegister] no client with guid " << guid << "\n";
         return false;
     }
+}
+
+bool BattleDataRegister::removeWhiteListClientID_ByID(const std::string & id)
+{
+
+    if (m_whiteListClient_ID_2_GUID.find(id) != m_whiteListClient_ID_2_GUID.end())
+    {
+        std::string guid = m_whiteListClient_ID_2_GUID[id];
+        m_whiteListClient_GUID_2_ID.erase(guid); // reverse mapping
+        m_whiteListClient_ID_2_GUID.erase(id); 
+        return true;
+    }
+    else
+    {
+        std::cout << "[C++][BattleDataRegister] no client with id " << id << "\n";
+        return false;
+    }
+
 }
 
 bool BattleDataRegister::addClientOnlineSession(const std::string & guid, const  std::string & id, RakNet::SystemAddress * address)
@@ -49,7 +72,7 @@ bool BattleDataRegister::addClientOnlineSession(const std::string & guid, const 
 
         m_onlineSessionsIDTable.erase(id);
         // remove from white list ( old client )
-        removeWhiteListClient(m_onlineSessionsIDTable[id].guid);
+        removeWhiteListClientID_ByGUID(m_onlineSessionsIDTable[id].guid);
     }
     m_onlineSessionsGUIDTable[guid] = ClientOnlineSession(guid, id, address);
     m_onlineSessionsIDTable[id] = ClientOnlineSession(guid, id, address);

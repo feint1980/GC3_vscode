@@ -131,11 +131,13 @@ function BM_addToWhitelist(guid,id)
     return cpp_addToWhitelist(guid,id)
 end
 
----@Description: wrapper of cpp_removeFromWhitelist
+---@Description: wrapper of cpp_removeFromWhitelist_ByGUID
 ---@param guid string
-function BM_removeFromWhitelist(guid)
-    return cpp_removeFromWhitelist(guid)
+function BM_removeFromWhitelist_ByGUID(guid)
+    print("remove white list for " .. guid)
+    return cpp_removeFromWhitelist_ByGUID(guid)
 end
+
 
 function BM_addClientOnlineSession(guid,id,ip)
     return cpp_registerOnlineSession(guid,id,ip)
@@ -172,4 +174,12 @@ end
 
 function BM_getMainServerGUID(host)
     return cpp_BM_GetMainServerGUID(host)
+end
+
+function BM_connectToMainServer(host)
+    cpp_BM_ConnectToMainServer(host)
+end
+
+function BM_handleDisconnectFromMainServer(host)
+    cpp_BM_HandleDisconnectFromMainServer(host)
 end

@@ -61,9 +61,12 @@ public:
     
     }
 
-    bool registerWhiteListClient(const std::string & guid, const std::string & id);
+    bool registerWhiteListClient_ByGUID(const std::string & guid, const std::string & id);
 
-    bool removeWhiteListClient(const std::string & guid);
+    bool removeWhiteListClientID_ByGUID(const std::string & guid);
+
+    bool removeWhiteListClientID_ByID(const std::string & id);
+
 
     bool addClientOnlineSession(const std::string & guid, const  std::string & id, RakNet::SystemAddress * address);
 
@@ -71,14 +74,16 @@ public:
 
     ClientOnlineSession * getClientOnlineSessionByID(const std::string & id);
 
-    std::string getWhiteListClientAddressByGUID(const std::string & guid)
+    std::string getWhiteListClientIDByGUID(const std::string & guid)
     {
-        if (m_whiteListClientAddressTable.find(guid) != m_whiteListClientAddressTable.end())
+        if (m_whiteListClient_GUID_2_ID.find(guid) != m_whiteListClient_GUID_2_ID.end())
         {
-            return m_whiteListClientAddressTable[guid];
+            return m_whiteListClient_GUID_2_ID[guid];
         }
         return "";
     }
+
+
 
 private:
     static BattleDataRegister* m_instance;
@@ -86,7 +91,9 @@ private:
     std::unordered_map<std::string , ClientOnlineSession> m_onlineSessionsGUIDTable;
     std::unordered_map<std::string , ClientOnlineSession> m_onlineSessionsIDTable;
 
-    std::unordered_map<std::string , std::string> m_whiteListClientAddressTable;
+    std::unordered_map<std::string , std::string> m_whiteListClient_GUID_2_ID;
+    std::unordered_map<std::string , std::string> m_whiteListClient_ID_2_GUID;
+    
 
 };
 
