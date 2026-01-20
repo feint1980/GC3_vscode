@@ -564,15 +564,15 @@ void BattleMain::run()
 {
     while(m_serverOn)
     {
-        if(!m_isConnectedToMainServer)
-        {
-            // connectToMainServer();
-            update(1.0f);
-            // RakSleep(1000);
+        // if(!m_isConnectedToMainServer)
+        // {
+        //     // connectToMainServer();
+        //     update(1.0f);
+        //     // RakSleep(1000);
 
-        }
-        else//(m_isConnectedToMainServer)
-        {
+        // }
+        // else//(m_isConnectedToMainServer)
+        // {
             uint64_t prevTicks = getTicks();
             uint64_t newTicks = getTicks();
             uint64_t frameTime = newTicks - prevTicks;
@@ -595,7 +595,7 @@ void BattleMain::run()
                 totalDeltaTime -= deltaTime;
             }
         }
-    }
+    // }
 }
 
 bool BattleMain::joinLobby(uint64_t id, const std::string & guid,const std::string & clientID, RakNet::SystemAddress * address)

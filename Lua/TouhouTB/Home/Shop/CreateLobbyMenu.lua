@@ -1,5 +1,3 @@
-
-
 package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;'
 
 require "TGUI_Label"
@@ -14,7 +12,6 @@ require "TGUI_ComboBox"
 require "homeGlobal"
 require "Prompt"
 -- require "TaskManager"
-
 
 MenuPanels = _G.MenuPanels
 
@@ -46,7 +43,6 @@ LobbyServer = {
 
 ---@type LobbyServer
 CL_SelectedServer = nil
-
 
 function LobbyServer:new(o)
     o = o or {}
@@ -124,7 +120,6 @@ function InitCreateLobbyMenu(host)
     tCreateLobbyButton:setPosStr("50%","80%")
     tCreateLobbyButton:setHoverable(0,255,0,255,255,255,255,255)
     tCreateLobbyButton:setOnClickCallback(function()
-        -- `print("create lobby called")
         CreateLobby_SendRequest()
     end)
 
@@ -197,8 +192,6 @@ function CreateLobby_SendRequest()
             return
         print("selected server " .. CL_SelectedServer.guid .. " ping " .. CL_SelectedServer.ping)
         end
-        -- Prompt_UI_Table["CreateLobby_Noti"]:setMsg("No server selected !")
-        -- Prompt_UI_Table["CreateLobby_Noti"]:show(true)
     end
 
 
@@ -207,8 +200,6 @@ function CreateLobby_SendRequest()
             Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Lobby name not set !")
             return 
         end
-        -- Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Selected server " .. CL_SelectedServer.name .. " (" .. CL_SelectedServer.guid .. ")")
-        -- Prompt_UI_Table["CreateLobby_Noti"]:show(true)
 
         local tCombine = "{" .. LobbyNameInput:getText() .. "$" .. LobbyPWInput:getText() .. "}"
 
@@ -217,10 +208,6 @@ function CreateLobby_SendRequest()
         print(MainInfo.id)
         print(CL_SelectedServer.guid)
         print(tCombine)
-
-        -- print("before wrap")
-
-        -- local tData = WrapRequest()
 
         SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestLobby_Create, {MainInfo.guid, MainInfo.id,CL_SelectedServer.guid, tCombine }, 5, 0.5,0.25)
 
@@ -232,10 +219,10 @@ function CreateLobby_SendRequest()
             if LobbyState == 1 then
                 Prompt_UI_Table["CreateLobby_Status"]:show(false)
                 Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Request timeout !")
+                LobbyState = 0
             end
         end,
         500
         )
-
 end
 

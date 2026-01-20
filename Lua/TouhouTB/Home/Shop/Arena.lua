@@ -23,6 +23,7 @@ BattleServerListView = nil
 ---@type ListView
 RoomListView = nil
 
+Join_State = 0
 
 Arena_selected_serverGUID = ""
 Arena_selected_lobbyID = ""
@@ -118,6 +119,11 @@ function InitArenaMenu(host)
     end
     )
 
+    Prompt_UI_Table["Arena_Status"] = Prompt:new()
+    Prompt_UI_Table["Arena_Status"]:init(host,"Arena_Status",false)
+
+    MenuMainPanels["Arena"] = ArenaPanel
+
     Prompt_UI_Table["Arena_Join_no_pw"] = Prompt:new()
     Prompt_UI_Table["Arena_Join_no_pw"]:init(host,"Join this lobby ?",false)
     Prompt_UI_Table["Arena_Join_no_pw"]:addButton("Join", function()
@@ -149,11 +155,6 @@ function InitArenaMenu(host)
     Prompt_UI_Table["Arena_Noti"] = Prompt:new()
     Prompt_UI_Table["Arena_Noti"]:init(host,"Arena_Noti",true)
 
-
-    Prompt_UI_Table["Arena_Status"] = Prompt:new()
-    Prompt_UI_Table["Arena_Status"]:init(host,"Arena_Status",true)
-
-    MenuMainPanels["Arena"] = ArenaPanel
 end
 
 MenuPanels["Arena"] = function(host)
@@ -233,9 +234,7 @@ function Arena_UpdateServerPing(serverGUID, ping)
     if Arena_Ping_List[serverGUID] == nil then
         return
     end
-    
     local serverName = Arena_Ping_List[serverGUID].name
-
     Arena_Ping_List[serverGUID].ping = ping
     BattleServerListView:addItem({serverName,ping})
 
@@ -253,6 +252,19 @@ function Arena_JoinLobby(hasPassword)
     print("lobby ID " .. Arena_selected_lobbyID)
     print("password " .. tPassword)
     Arena_Send_Join_Lobby_Request(Arena_selected_serverGUID, Arena_selected_lobbyID, tPassword)
+
+    Prompt_UI_Table["Arena_Status"]:showMsg("Joining Lobby ...")
+    Join_State = 1
+    TM_addTask(
+function()
+            if Join_State == 1 then
+                Prompt_UI_Table["Arena_Status"]:show(false)
+                Prompt_UI_Table["Arena_Noti"]:showMsg("Join timeout !")
+                Join_State = 0
+            end
+        end,
+        500
+    )
 end
 
 function Arena_Send_Join_Lobby_Request(serverGUID, lobbyID,password)

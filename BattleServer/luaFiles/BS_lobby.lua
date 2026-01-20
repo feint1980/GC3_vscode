@@ -108,9 +108,10 @@ function BattleLobby_Notify_LobbiesStates(host)
         end
     end
 
-    print("json check " .. JSON_Encode(lobbyList,true))
+    local tData = JSON_Encode(lobbyList)
+    -- print("json check " .. JSON_Encode(lobbyList,true))
 
-    BM_sendWrapData(host,BM_getMainServerIP(host),BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, PaperWorkRequest.LobbiesListUpdate , {JSON_Encode(lobbyList)})
+    BM_sendWrapData(host,BM_getMainServerIP(host),BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, PaperWorkRequest.LobbiesListUpdate , {tData})
 end
 
--- function BattleLobby_FinalizeLobbies
+-- 

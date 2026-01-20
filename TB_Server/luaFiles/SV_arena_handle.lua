@@ -73,7 +73,7 @@ function SV_SendLobbyListToClientEP(host,ip,guid)
     end
 
     local tData = JSON_Encode(serverList,false)
-    print("json check " .. tData)
+    -- print("json check " .. tData)
     SendReliable(host,ip,guid,PacketChannel.ArenaChannel,ArenaResponse.Arena_RequestLobbyListResponse,{tData})
 end
 
@@ -137,24 +137,18 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoinLobby
 
     if lobbyPassword == BSEP_List[serverGUID].lobbyList[lobbyID].password then
         joinResult = 1 -- valid
-        
-    else 
+    else
         joinResult = 2 -- wrong password
     end
 
     -- decision for guid or tTargetGUID:
     -->    guid -> 100% reply, even it was from crafted packet
     -->    tTargetGUID -> if the crafted message, it not able to decrypt 
-    SendReliable(host,ip, tTargetGUID,PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestJoinLobby_WithBSGUID_LobbyID_Response,{serverGUID,lobbyID,joinResult})
+    SendReliable(host,ip, tTargetGUID,PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestJoinLobby_WithBSGUID_LobbyID_Response,{serverGUID,lobbyID, tostring(joinResult)})
+
+    SendReliable2BattleServer(host, BSEP_List[serverGUID].IP,  BSEP_List[serverGUID].GUID, BattleChanel.Lobby,LobbyResponse.Lobby_Join_Request_WL,{tTargetGUID,targetID})
 
     -- Arena_RequestJoinLobby_WithBSGUID_LobbyID_Response
-
     -- if joinResult == 1 then
-
     -- end
-
-
-
-
-
 end

@@ -87,7 +87,8 @@ PaperWorkRequest = {
 
 LobbyResponse = {
     Lobby_Create_Request = 1,
-    Lobby_Create_Response = 2
+    Lobby_Create_Response = 2,
+    Lobby_Join_Request_WL = 3, --- add whitelist
 }
 
 

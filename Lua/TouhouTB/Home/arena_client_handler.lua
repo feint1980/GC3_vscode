@@ -178,8 +178,30 @@ HomeMain_HandleTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,pack
 
     print("ID_DISCONNECTION_NOTIFICATION from " .. tGuid)
     cppSelecBattleServer(host,"")
-    
+
 end
+
+ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoinLobby_WithBSGUID_LobbyID_Response] = function(host,data, guid)
+
+    local serverGUID, lobbyID, joinResult = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+    print("serverGUID " .. serverGUID)
+    print("lobbyID " .. lobbyID)
+    print("joinResult " .. joinResult)
+    local tResult = tonumber(joinResult)
+    
+    if tResult == 1 then
+        print("joining lobby " .. lobbyID .. " succeed")
+    elseif tResult == 2 then
+        Prompt_UI_Table["Arena_Status"]:show(false)
+        Prompt_UI_Table["Arena_Noti"]:showMsg("Invalid password !")
+        Join_State = 0
+    else
+        Prompt_UI_Table["Arena_Status"]:show(false)
+        Prompt_UI_Table["Arena_Noti"]:showMsg("Invalid join !")
+        Join_State = 0
+    end
+end
+
 
 
 --- MARK:Battle Server 

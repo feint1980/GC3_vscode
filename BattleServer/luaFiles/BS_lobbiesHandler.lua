@@ -35,6 +35,17 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
     -- add lobby to list
 end
 
+InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Join_Request_WL] = function(host, channel, request,data,ip, guid)
+    print("Add client to whitelist")
+
+    local tTargetGUID, targetID = string.match(data, "^|([^|]+)|([^|]+)|$")
+
+    BM_removeFromWhitelist_ByID(targetID)
+    -- BM_removeFromWhitelist_ByGUID(tTargetGUID)
+
+    BM_addToWhitelist(tTargetGUID,targetID)
+end
+
 --- MARK:Client 
 
 ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = function(host, channel, request,data,ip, guid)
