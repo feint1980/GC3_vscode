@@ -104,7 +104,6 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobby_Cre
 
 end
 
-
 MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoinLobby_WithBSGUID_LobbyID] = function(host, data,ip,guid)
 
     print("request from " .. guid .. " for lobby join")

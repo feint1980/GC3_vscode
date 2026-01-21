@@ -23,31 +23,32 @@ int lua_lobby_getInfo(lua_State * L)
     return 0;
 }
 
-// int lua_changeScene(lua_State * L)
-// {
-//     if(lua_gettop(L) != 1)
-//     {
-//         std::cout << "gettop failed (lua_changeScene) " << lua_gettop(L) << "\n";
-//         return -1;
-//     }
-//     else
-//     {
-//         int index = lua_tonumber(L, 1);
-//         Feintgine::IMainGame * game =  InfoHolder::getInstance()->getGame();
+int lua_lobby_changeScene(lua_State * L)
+{
+    std::cout << "lua_lobby_changeScene called \n";
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_changeScene) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        int index = lua_tonumber(L, 1);
+        Feintgine::IMainGame * game =  InfoHolder::getInstance()->getGame();
 
-//         if(game)
-//         {
-//             std::cout << "(lua_changeScene) change scene to " << index << "\n";
-//             game->setSceneByIndex(index);
-//         }
-//         else
-//         {
-//             std::cout << "IMainGame unregistered \n";
-//         }
+        if(game)
+        {
+            std::cout << "(lua_changeScene) change scene to " << index << "\n";
+            game->setSceneByIndex(index);
+        }
+        else
+        {
+            std::cout << "IMainGame unregistered \n";
+        }
 
-//     }
-//     return 0;
-// }
+    }
+    return 0;
+}
 
 
 LobbyScene::LobbyScene()
@@ -143,6 +144,7 @@ void LobbyScene::update(float deltaTime)
     {
         m_clientScriptingManager->updateV2(deltaTime);
     }
+    m_luaTaskManager.update(deltaTime);
 }
 
 void LobbyScene::draw()
@@ -220,6 +222,8 @@ void LobbyScene::handleInput(Feintgine::InputManager & inputManager)
 
 void LobbyScene::initGUI()
 {
+
+    InfoHolder::getInstance()->registerGame(m_game);
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
@@ -248,7 +252,7 @@ void LobbyScene::initGUI()
     }
 
     lua_register(m_script, "cpp_lobby_getInfo", lua_lobby_getInfo);
-    // lua_register(m_script, "cpp_changeScene", lua_changeScene);
+    lua_register(m_script, "cpp_lobby_changeScene", lua_lobby_changeScene);
     lua_getglobal(m_script, "LobbySceneInit");
     if(lua_isfunction(m_script, -1))
     {
@@ -263,13 +267,13 @@ void LobbyScene::initGUI()
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
-            std::cout << "Login scene init script from C++ OK \n";
+            std::cout << "Lobby scene init script from C++ OK \n";
         }
     }
 
-    m_clientScriptingManager->setCommonHandlingLuaFunction("Client_ReceiveData");
-    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"ClientHandlerWrapResponse");
-    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"ClientHandlerBattleResponse");
+    m_clientScriptingManager->setCommonHandlingLuaFunction("Lobby_RecieveData");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"LobbyHandlerWrapResponse");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"LobbyHandlerBattleResponse");
 
 }
 

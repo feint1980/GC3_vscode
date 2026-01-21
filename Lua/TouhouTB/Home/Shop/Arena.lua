@@ -65,7 +65,6 @@ function InitArenaMenu(host)
         Arena_RequestBattleServerList()
     end)
 
-
     BattleServerListView:setDoubleClickCallBack( function ()
         local target = BattleServerListView:getSelectItemValue(0)
         print("target is " .. target)

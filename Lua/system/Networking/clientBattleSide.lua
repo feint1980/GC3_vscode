@@ -1,4 +1,8 @@
 
+require "clientWrapper"
+
+
+--- It should be here ( handle from home scene )
 ClientBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Join_Response] = function(host,data,guid)
     
     print("join response detected")

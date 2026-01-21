@@ -37,7 +37,8 @@ LobbyResponse = {
 
 CLobbyResponse = {
     Lobby_Join_Request = 1,
-    Lobby_Join_Response = 2
+    Lobby_Join_Response = 2,
+    Lobby_SyncStatus = 3,
 }
 
 ---@description handle incoming connection
@@ -170,7 +171,6 @@ function JSON_Decode(data)
     local tbl, pos, err = json.decode(data)
     return tbl, pos, err
 end
-
 
 function BM_getMainServerIP(host)
     return cpp_BM_GetMainServerIP(host)

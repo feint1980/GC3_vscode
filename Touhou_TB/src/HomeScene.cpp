@@ -355,7 +355,7 @@ void HomeScene::initGUI()
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
-            std::cout << "Login scene init script from C++ OK \n";
+            std::cout << "Home scene init script from C++ OK \n";
         }
     }
 

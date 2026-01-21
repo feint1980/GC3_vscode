@@ -9,6 +9,9 @@ require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
 require "homeGlobal"
 
+MenuPanels = _G.MenuPanels
+
+
 ---@class Prompt
 ---@field mainPanel Panel
 ---@field promptLabel RTLabel

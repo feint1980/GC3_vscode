@@ -52,8 +52,6 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
 
     print("join lobby detected from " .. guid)
 
-    -- print("data " .. data)
-
     local clientGUID, clientID, lobbyID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
 
     print("clientGUID " .. clientGUID)
@@ -84,4 +82,8 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
 
     BattleLobby_Notify_LobbiesStates(host)
 
+end
+
+ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_SyncStatus] = function(host, channel, request,data,ip, guid)
+    print("sync status detected from " .. guid)
 end

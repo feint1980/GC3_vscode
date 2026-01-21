@@ -1,0 +1,41 @@
+package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;'
+require "clientWrapper"
+require "clientGlobal"
+
+Lobby_HandleNetwork = {}
+
+LobbyMessageHandling = {}
+
+for k,v in pairs(PacketChannel) do
+    -- print(k,v)
+    LobbyMessageHandling[v] = {}
+end
+
+function LobbyHandlerWrapResponse(host,chanel,request, data,guid)
+    print("LobbyHandlerWrapResponse called" )
+
+    if LobbyMessageHandling[chanel][request] ~= nil then
+        LobbyMessageHandling[chanel][request](host,data,guid)
+    end
+end
+
+LobbyBattleHandling = {}
+
+for k,v in pairs(BattlePacketChannel) do
+
+    print("init function for channel (BattlePacketChannel) " .. v)
+    LobbyBattleHandling[v] = {}
+end
+
+function LobbyHandlerBattleResponse(host,chanel,request, data,guid)
+    print("LobbyBattleHandling called" .. chanel .. " " .. request)
+    if  LobbyBattleHandling[chanel] == nil then
+        print("channel not found " .. chanel)
+        return
+    end
+    if LobbyBattleHandling[chanel][request] ~= nil then
+        LobbyBattleHandling[chanel][request](host,data,guid)
+    end
+end
+
+require "lobby_client_network"

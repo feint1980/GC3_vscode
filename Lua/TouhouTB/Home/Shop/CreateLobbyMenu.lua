@@ -131,7 +131,6 @@ function InitCreateLobbyMenu(host)
     Prompt_UI_Table["CreateLobby_Status"] = Prompt:new()
     Prompt_UI_Table["CreateLobby_Status"]:init(host,"Status",true)
 
-
     CreateLobbyPanel:setVisible(false)
 
 end
@@ -143,7 +142,6 @@ end
 function CreateLobby_ClearServerList()
     LobbyServerComboBox:clearItems()
 end
-
 
 function CreateLobby_AddServerToList(serverGUID, serverName, ping)
 
@@ -157,8 +155,6 @@ function CreateLobby_AddServerToList(serverGUID, serverName, ping)
 
     LobbyServerComboBox:addItem(serverValue)
 end
-
-
 
 function CreateLobby_SetCurrentSelectedServer(serverValue)
     CL_SelectedServer = nil -- reset
@@ -194,11 +190,9 @@ function CreateLobby_SendRequest()
         end
     end
 
-
         if LobbyNameInput:getText() == "" then
-
             Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Lobby name not set !")
-            return 
+            return
         end
 
         local tCombine = "{" .. LobbyNameInput:getText() .. "$" .. LobbyPWInput:getText() .. "}"

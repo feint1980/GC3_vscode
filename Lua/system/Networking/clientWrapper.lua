@@ -100,6 +100,7 @@ BattlePacketChannel = {
 CLobbyResponse = {
     Lobby_Join_Request = 1,
     Lobby_Join_Response = 2,
+    Lobby_SyncStatus = 3,
 }
 
 BattleInfoResponse = {
@@ -107,33 +108,32 @@ BattleInfoResponse = {
     BattleInfo_AddCryptor_Response = 2,
 }
 
-
 --- MARK: Functions
-
 --- MARK:Main server
 
 ClientMessageHandling = {
 
 }
 
-for k,v in pairs(PacketChannel) do
-    -- print(k,v)
-    ClientMessageHandling[v] = {}
-end
-
-
----- MARK:Battle server
 
 ClientBattleHandling = {
 
 }
 
+
+for k,v in pairs(PacketChannel) do
+    -- print(k,v)
+    ClientMessageHandling[v] = {}
+end
+
 for k,v in pairs(BattlePacketChannel) do
+
+    print("init function for channel (BattlePacketChannel) " .. v)
     ClientBattleHandling[v] = {}
 end
 
 
-
+---- MARK:Battle server
 
 ---@Description combines packet
 ---@param type string type of packet to wrap
@@ -156,7 +156,6 @@ end
 ---@param list table data to wrap
 ---@return string
 function WrapRequest(channel, request, list)
-
 
     local returnValue = ""
     returnValue = string.char(channel) .. string.char(request) .. "|"

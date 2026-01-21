@@ -5,12 +5,15 @@ require "TGUI_Panel"
 require "TGUI_RTLabel" 
 require "TGUI_Editbox"
 require "TGUI_Picture"
+
 require "clientSide"
 require "clientWrapper"
 require "clientGlobal"
+require "lobby_global"
+require "Prompt"
+
 
 LobbySceneHost = nil
-
 
 ---@type pointer TGUIScriptingPtr
 Lobby_GUIScriptingPtr = nil
@@ -42,7 +45,6 @@ Lobby_ReadyButton = nil
 
 
 function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
-
 
     print("LobbySceneInit called")
     LobbySceneHost = host
@@ -80,8 +82,6 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     picture:setPosStr("20%","24%")
     picture:setSize(75,75)
 
-
-    
     Lobby_ReadyButton = Label:new()
     Lobby_ReadyButton:init(Lobby_GUIScriptingPtr,"Ready",0,0)
     Lobby_ReadyButton:setAlignment(TextAlginment.Center)
@@ -93,7 +93,6 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
         LobbyScene_ToggleReady()
         end)
 
-
     Lobby_ReadyLabel = Label:new()
     Lobby_ReadyLabel:init(Lobby_GUIScriptingPtr,"",0,0)
     Lobby_ReadyLabel:setText("Not Ready")
@@ -101,6 +100,26 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     Lobby_ReadyLabel:setScale(.8)
     Lobby_ReadyLabel:setColor(255,0,0,255)
 
+    Prompt_UI_Table["Back_to_Home_Noti"] = Prompt:new()
+    Prompt_UI_Table["Back_to_Home_Noti"]:init(Lobby_GUIScriptingPtr,"Notification",false)
+
+    Prompt_UI_Table["Back_to_Home_Noti"]:addButton("OK", function()
+        -- print("daaataaaa")
+        cpp_lobby_changeScene(SceneIndex.Home)
+    end
+    )
+
+
+    print("Init end ")
+    TM_addTask(function()
+        print("TM called")
+        Client_Lobby_SendSyncRequest() 
+    end
+    ,10
+    )
+
+    print("Task set ")
+    -- TM_addTask
 
 end
 
@@ -120,21 +139,34 @@ function LobbyScene_ToggleReady()
     end
 end
 
-
 require "lobby_Input_control"
 
-Lobby_HandleNetwork = {}
 
-require "lobby_client_network"
 
-function Lobby_RecieveData(host, ip, pID, RakNetPacket)
+function Lobby_RecieveData(host,msg, ip, pID, RakNetPacket)
 
-    if Lobby_HandleNetwork[pID] ~= nil then
-        Lobby_HandleNetwork[pID](host,ip,pID,RakNetPacket)
-    else
-        print("(Lobby_RecieveData)no handler for packet " .. pID)
+    local tPacket = Client_Packet:new()
+    tPacket.data = msg
+    tPacket.ipAddr = ip
+    tPacket.packetID = pID
+    Lobby_HandlePacket(host,tPacket,RakNetPacket)
+    -- if Lobby_HandleNetwork[pID] ~= nil then
+    --     Lobby_HandleNetwork[pID](host,ip,pID,RakNetPacket)
+    -- else
+    --     print("(Lobby_RecieveData)no handler for packet " .. pID)
+    -- end
+end 
+
+function Lobby_HandlePacket(host, packet, RakNetPacket)
+    for k,v in pairs(Lobby_HandleNetwork) do
+        -- print(k)
+        if Lobby_HandleNetwork[k] ~= nil then
+            Lobby_HandleNetwork[k](host,packet,RakNetPacket)
+        end
     end
 end
+
+
 
 -- HandlePacketTask["home_main"] = function(host,packet,RakNetPacket)
 --     print("handle home packet task " .. packet.packetID)

@@ -10,6 +10,7 @@ require "homeGlobal"
 
 
 --- Get battle server list
+--- Get Battle Server List from main server
 ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_GetServerList] = function(host,data, guid)
 
     print("server list get !!!")
@@ -24,7 +25,7 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
         return
     end
 
-    Arena_ResetList()
+    Arena_ResetList() --- Clear list
     for k,v in pairs(serverList) do
         print("server ID " .. k)
         print("server name " .. v.name)
@@ -39,6 +40,7 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
 
 end
 
+--- Get the response from main server about the create lobby status
 ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyResponse] = function(host,data, guid)
     print("lobby response get !!!")
 
@@ -67,6 +69,7 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
 
     print(targetBattleServer.IP .. "|" .. targetBattleServer.port)
     Target_Lobby_ID = lobbyID
+    --- Connect to battle server ( if passed, it will auto join to the lobby)
     ClientConnect2SV(host,targetBattleServer.IP,targetBattleServer.port)
 
 end
@@ -152,8 +155,6 @@ HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,pac
             print("got lobby " .. Target_Lobby_ID)
             -- local tIP = cppGetCurrentBattleServerIP(host)
 
-            -- MainInfo.id
-
             -- print("my id " .. MainInfo.id)
             print("current server guid " .. currentServerGUID)
 
@@ -191,6 +192,19 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoi
     
     if tResult == 1 then
         print("joining lobby " .. lobbyID .. " succeed")
+        local targetBattleServer = Arena_Ping_List[serverGUID] 
+        if targetBattleServer == nil then
+            print("Ke3 F3i117 exception (PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyResponse) invalid server GUID")
+            return
+        end
+
+        InfoHolder_setStrVal("Target_Lobby_ID", lobbyID)
+
+        print(targetBattleServer.IP .. "|" .. targetBattleServer.port)
+        Target_Lobby_ID = lobbyID
+        --- Connect to battle server ( if passed, it will auto join to the lobby)
+        ClientConnect2SV(host,targetBattleServer.IP,targetBattleServer.port)
+
     elseif tResult == 2 then
         Prompt_UI_Table["Arena_Status"]:show(false)
         Prompt_UI_Table["Arena_Noti"]:showMsg("Invalid password !")
