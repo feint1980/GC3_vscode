@@ -947,7 +947,7 @@ uint32_t BattleMain::handleInternalPacket(RakNet::Packet *p)
     else if (msgId == ID_TH_TB_BATTLE)
     {
         // std::cout << "battle packet\n";
-        std::cout << "attemp to decrypt data from " << p->guid.ToString() << "\n";
+        // std::cout << "attemp to decrypt data from " << p->guid.ToString() << "\n";
         if(m_cryptors.find(p->guid.ToString()) == m_cryptors.end())
         {
             std::cout << "no cryptor for " << p->guid.ToString() << "\n";

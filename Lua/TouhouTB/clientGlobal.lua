@@ -56,6 +56,9 @@ MainInfo = {
 
 LobbyScene_isReady = false
 
+Target_Lobby_ID = ""
+Target_BattleServer_GUID = ""
+
 ---- Global variables section end ---- 
 
 ---

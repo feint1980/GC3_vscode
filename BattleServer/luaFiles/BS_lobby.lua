@@ -57,6 +57,9 @@ function BattleLobby:removePlayer(playerGUID)
     if #self.battleClientEP_List == 0 then
         print("lobby " .. self.id .. " is empty")
         self.lobbyState = BattleLobbyState.EXPIRED
+    elseif #self.battleClientEP_List == 2 then
+        print("lobby " .. self.id .. " is full")
+        self.lobbyState = BattleLobbyState.FULL
     end
     -- BattleLobby_UpdateLobbiesStatus()
 

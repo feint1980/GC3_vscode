@@ -113,5 +113,4 @@ void InfoHolder::initLuaInterface(lua_State * script)
     lua_register(m_script, "cpp_infoHolder_setUserLightData", lua_infoHolder_setUserLightData);
     lua_register(m_script, "cpp_infoHolder_getUserLightData", lua_infoHolder_getUserLightData);
 
-    
 }

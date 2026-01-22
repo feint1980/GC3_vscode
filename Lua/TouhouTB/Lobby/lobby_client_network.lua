@@ -24,10 +24,21 @@ end
 --- Send Sync request
 function Client_Lobby_SendSyncRequest()
 
-
-    cppSelecBattleServer(host,tGuid)
     print("Client_Lobby_SendSyncRequest")
+    
+    local tGUID = InfoHolder_getStrVal("MainInfo.guid")
+    local tID = InfoHolder_getStrVal("MainInfo.id")
+    local targetLobbyID = InfoHolder_getStrVal("Target_Lobby_ID")
     -- Send Sync Request
-    SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_SyncStatus, {MainInfo.guid, MainInfo.id ,Target_Lobby_ID },5,0.1,0.15)
+    SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_SyncStatus, {tGUID, tID ,targetLobbyID },5,0.1,0.15)
+end
 
+LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_SyncStatusResponse] = function(host,data,guid)
+    print("Lobby_SyncStatusResponse called " .. guid)
+
+    local tGUID, id, tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+
+    print("tGUID " .. tGUID)
+    print("id " .. id)
+    print("tData " .. tData)
 end

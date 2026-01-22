@@ -32,7 +32,7 @@ LobbyNameInput = nil
 ---@type EditBox
 LobbyPWInput = nil
 
-LobbyState = 0
+Create_Lobby_State = 0
 
 LobbyServer = {
     name = "",
@@ -207,13 +207,13 @@ function CreateLobby_SendRequest()
 
         Prompt_UI_Table["CreateLobby_Status"]:showMsg("Requesting ...")
 
-        LobbyState = 1
+        Create_Lobby_State = 1
         TM_addTask(
         function()
-            if LobbyState == 1 then
+            if Create_Lobby_State == 1 then
                 Prompt_UI_Table["CreateLobby_Status"]:show(false)
                 Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Request timeout !")
-                LobbyState = 0
+                Create_Lobby_State = 0
             end
         end,
         500

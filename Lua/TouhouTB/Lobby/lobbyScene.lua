@@ -109,7 +109,10 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     end
     )
 
+    local tBattleServerGUID = InfoHolder_getStrVal("Target_BattleServer_GUID")
 
+    cppSelecBattleServer(ClientScriptingPtr,tBattleServerGUID)
+    
     print("Init end ")
     TM_addTask(function()
         print("TM called")

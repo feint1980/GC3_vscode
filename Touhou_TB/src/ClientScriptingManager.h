@@ -182,6 +182,10 @@ public:
 
     RakNet::SystemAddress * getCurrentBattleServerIP() { return m_currentBattleServerIP; }
 
+    void setBattleServerIPMap(std::unordered_map<std::string, RakNet::SystemAddress * > map) { m_battleServerIPMap = std::move(map); }
+
+    std::unordered_map<std::string, RakNet::SystemAddress * > getBattleServerIPMap() { return m_battleServerIPMap; }
+
     private:
     RakNet::RakPeerInterface * m_client = nullptr;
 

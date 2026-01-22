@@ -653,6 +653,9 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     lua_register(m_script, "cpp_addCryptor" , lua_addCryptor);
     lua_register(m_script, "cpp_removeCryptor" , lua_removeCryptor);
 
+    // lua register data
+    // lua_register(m_script, "cpp_save" , lua_addCryptor);
+
     // lua_register(m_script, "cpp_client_Packet_getPort" , lua_client_Packet_getPort);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/system/Networking/clientSide.lua")))
@@ -726,6 +729,9 @@ void ClientScriptingManager::removeCryptor(const std::string & guid)
 
 void ClientScriptingManager::selectBattleServer(const std::string & guid)
 {
+
+    std::cout << "[C++] selectBattleServer " << guid << "\n";
+
     m_currentBattleServerGUID = guid;
     m_currentBattleServerIP = m_battleServerIPMap[guid]; // this is intended, if guid not found, m_currentBattleServerIP will be nullptr 
     addCryptor(guid); // add cryptor for battle server

@@ -6,6 +6,8 @@ Lobby_HandleNetwork = {}
 
 LobbyMessageHandling = {}
 
+LobbyBattleHandling = {}
+
 for k,v in pairs(PacketChannel) do
     -- print(k,v)
     LobbyMessageHandling[v] = {}
@@ -19,7 +21,6 @@ function LobbyHandlerWrapResponse(host,chanel,request, data,guid)
     end
 end
 
-LobbyBattleHandling = {}
 
 for k,v in pairs(BattlePacketChannel) do
 

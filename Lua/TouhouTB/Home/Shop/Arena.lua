@@ -29,6 +29,15 @@ Arena_selected_serverGUID = ""
 Arena_selected_lobbyID = ""
 Arena_joinLobbyPW = ""
 
+
+BattleLobbyState = {
+    CLOSED = 0,
+    OPEN = 1,
+    INGAME = 2,
+    EXPIRED = 3,
+    FULL = 4,
+}
+
 function InitArenaMenu(host)
     InitCreateLobbyMenu(host)
     if ArenaPanel == nil then

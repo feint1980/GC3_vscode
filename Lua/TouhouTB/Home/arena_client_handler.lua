@@ -1,10 +1,7 @@
 package.path = package.path .. ';../../Lua/TouhouTB/skills/?.lua;'
 
 require "clientGlobal"
-require"clientGlobal"
 require "homeGlobal"
-
-
 
 ---MARK: Main server
 
@@ -65,10 +62,14 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
     -- LobbyName = lobbyName
 
     InfoHolder_setStrVal("LobbyName", lobbyName)
-    InfoHolder_setStrVal("Target_Lobby_ID", lobbyID)
+    -- InfoHolder_setStrVal("Target_Lobby_ID", lobbyID)
 
     print(targetBattleServer.IP .. "|" .. targetBattleServer.port)
     Target_Lobby_ID = lobbyID
+    Target_BattleServer_GUID = serverGUID
+    InfoHolder_setStrVal("Target_Lobby_ID", lobbyID)
+    InfoHolder_setStrVal("Target_BattleServer_GUID", serverGUID)
+
     --- Connect to battle server ( if passed, it will auto join to the lobby)
     ClientConnect2SV(host,targetBattleServer.IP,targetBattleServer.port)
 
@@ -151,14 +152,19 @@ HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,pac
         print("IP " .. tIP)
         currentServerGUID = cppGetCurrentBattleServerGUID(host)
 
-        if Target_Lobby_ID ~= "" then
+        local targetLobbyID = InfoHolder_getStrVal("Target_Lobby_ID")
+        if targetLobbyID ~= "" then
             print("got lobby " .. Target_Lobby_ID)
             -- local tIP = cppGetCurrentBattleServerIP(host)
 
             -- print("my id " .. MainInfo.id)
             print("current server guid " .. currentServerGUID)
 
-            SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Join_Request, {MainInfo.guid, MainInfo.id ,Target_Lobby_ID },5,0.1,0.15)
+
+            local tGUID = InfoHolder_getStrVal("MainInfo.guid")
+            local tID = InfoHolder_getStrVal("MainInfo.id")
+
+            SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Join_Request, {tGUID, tID ,targetLobbyID },5,0.1,0.15)
 
             -- SendReliable2BattleServer(host, tIP, currentServerGUID,   )
             -- send request to join lobby to server
@@ -214,6 +220,8 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoi
         Prompt_UI_Table["Arena_Noti"]:showMsg("Invalid join !")
         Join_State = 0
     end
+
+    InfoHolder_setStrVal("Target_BattleServer_GUID", serverGUID)
 end
 
 

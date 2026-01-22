@@ -125,6 +125,10 @@ public:
 
     void initLuaInterface(lua_State * script);
 
+    void registerBattleServerIPMap(std::unordered_map<std::string, RakNet::SystemAddress * > map) { m_savedBattleServerIPMap = std::move(map); }
+
+    std::unordered_map<std::string, RakNet::SystemAddress * > getBattleServerIPMap() { return m_savedBattleServerIPMap; }
+
 private:
 
     static InfoHolder* m_inforHolder ;
@@ -137,11 +141,11 @@ private:
 
     // ClientScriptingManager * m_clientScriptingManager = nullptr;
 
-
-
     RakNet::RakPeerInterface * m_client = nullptr;
 
     std::map<std::string,Feintgine::F_Cryptor *> m_cryptorMap;
+
+    std::unordered_map<std::string, RakNet::SystemAddress * > m_savedBattleServerIPMap;
 
     lua_State * m_script = nullptr;
 

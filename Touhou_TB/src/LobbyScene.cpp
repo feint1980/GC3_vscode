@@ -243,6 +243,9 @@ void LobbyScene::initGUI()
     m_client = InfoHolder::getInstance()->getClient();
     m_clientScriptingManager->init("127.0.0.1", port,m_client, m_script);
     m_clientScriptingManager->setIPAddress(InfoHolder::getInstance()->getServerIP());
+
+    m_clientScriptingManager->setBattleServerIPMap(InfoHolder::getInstance()->getBattleServerIPMap());  // recieve the battle server ip map from the storage
+
     m_clientCharacterHandler = new ClientCharacterHandler();
     m_clientCharacterHandler->init(m_script);
 
@@ -250,6 +253,7 @@ void LobbyScene::initGUI()
     {
         std::cout << "Run loginScene script OK \n";
     }
+    InfoHolder::getInstance()->initLuaInterface(m_script);
 
     lua_register(m_script, "cpp_lobby_getInfo", lua_lobby_getInfo);
     lua_register(m_script, "cpp_lobby_changeScene", lua_lobby_changeScene);

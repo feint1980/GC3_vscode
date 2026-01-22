@@ -39,6 +39,7 @@ CLobbyResponse = {
     Lobby_Join_Request = 1,
     Lobby_Join_Response = 2,
     Lobby_SyncStatus = 3,
+    Lobby_SyncStatusResponse = 4,
 }
 
 ---@description handle incoming connection

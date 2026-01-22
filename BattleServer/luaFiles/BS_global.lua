@@ -23,7 +23,8 @@ BattleLobbyState = {
     CLOSED = 0,
     OPEN = 1,
     INGAME = 2,
-    EXPIRED = 3
+    EXPIRED = 3,
+    FULL = 4,
 }
 
 

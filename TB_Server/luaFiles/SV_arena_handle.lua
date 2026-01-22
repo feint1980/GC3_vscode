@@ -39,6 +39,7 @@ end
 --- Client -> Main Server
 MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyList] = function(host, data,ip,guid)
 
+    --- Broadcast lobbies list to all clients 
     SV_SendLobbyListToClientEP(host,ip,guid)
 end
 
@@ -68,6 +69,8 @@ function SV_SendLobbyListToClientEP(host,ip,guid)
                 serverList[k].lobbyList[n].battleClientEP_List[i] = {}
                 serverList[k].lobbyList[n].battleClientEP_List[i].id = m.battleClientEP_List[i].id
                 serverList[k].lobbyList[n].battleClientEP_List[i].guid = m.battleClientEP_List[i].guid
+                print("\tguid " .. serverList[k].lobbyList[n].battleClientEP_List[i].guid)
+                print("\tid " .. serverList[k].lobbyList[n].battleClientEP_List[i].id)
             end
         end
     end

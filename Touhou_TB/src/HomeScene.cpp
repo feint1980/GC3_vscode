@@ -183,6 +183,9 @@ int HomeScene::getPreviousScreenIndex() const
 
 void HomeScene::onExit()
 {
+    // Transfer data to other game
+    InfoHolder::getInstance()->registerBattleServerIPMap(m_clientScriptingManager->getBattleServerIPMap()); // save the battle server IP maps
+
     // unload screen (unused)
 }
 
