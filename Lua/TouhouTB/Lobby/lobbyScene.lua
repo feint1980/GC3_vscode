@@ -34,15 +34,30 @@ Lobby_SkillHandlerPtr = nil
 LobbyTitleLabel = nil
 
 ---@type Label
+LobbyAccountID = nil
+
+---@type Label
 LobbyIDLabel = nil
 
+---@type Picture
+Lobby_Picture = nil
 
 ---@type Label
 Lobby_ReadyLabel = nil
 
 ---@type Label
-Lobby_ReadyButton = nil
+LobbyOpponentID = nil
 
+---@type Picture
+Lobby_OpponentPicture = nil
+
+---@type Label
+Lobby_OpponentReadyLabel = nil
+
+
+
+---@type Label
+Lobby_ReadyButton = nil
 
 function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
 
@@ -71,16 +86,27 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     print("pw " .. pw)
     print("guid " .. guid)
 
-    local accountID = Label:new()
-    accountID:init(Lobby_GUIScriptingPtr,"",0,0)
-    accountID:setText(id)
-    accountID:setPosStr("25%", "24%")
-    accountID:setScale(.8)
+    LobbyAccountID = Label:new()
+    LobbyAccountID:init(Lobby_GUIScriptingPtr,"",0,0)
+    LobbyAccountID:setText(id)
+    LobbyAccountID:setPosStr("25%", "24%")
+    LobbyAccountID:setScale(.8)
 
-    local picture = Picture:new()
-    picture:init(Lobby_GUIScriptingPtr,"Assets/TB_GUI/faces/Reimu_face.png",0,0,100,100)
-    picture:setPosStr("20%","24%")
-    picture:setSize(75,75)
+    LobbyOpponentID = Label:new()
+    LobbyOpponentID:init(Lobby_GUIScriptingPtr,"",0,0)
+    LobbyOpponentID:setText("")
+    LobbyOpponentID:setPosStr("75%", "24%")
+    LobbyOpponentID:setScale(.8)
+
+    Lobby_Picture = Picture:new()
+    Lobby_Picture:init(Lobby_GUIScriptingPtr,"Assets/TB_GUI/faces/Reimu_face.png",0,0,100,100)
+    Lobby_Picture:setPosStr("20%","24%")
+    Lobby_Picture:setSize(75,75)
+
+    Lobby_OpponentPicture = Picture:new()
+    Lobby_OpponentPicture:init(Lobby_GUIScriptingPtr,"Assets/TB_GUI/faces/missing.png",0,0,100,100)
+    Lobby_OpponentPicture:setPosStr("70%","24%")
+    Lobby_OpponentPicture:setSize(75,75)
 
     Lobby_ReadyButton = Label:new()
     Lobby_ReadyButton:init(Lobby_GUIScriptingPtr,"Ready",0,0)
@@ -99,6 +125,15 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     Lobby_ReadyLabel:setPosStr("30%", "24%")
     Lobby_ReadyLabel:setScale(.8)
     Lobby_ReadyLabel:setColor(255,0,0,255)
+
+
+    Lobby_OpponentReadyLabel = Label:new()
+    Lobby_OpponentReadyLabel:init(Lobby_GUIScriptingPtr,"",0,0)
+    Lobby_OpponentReadyLabel:setText("Not Ready")
+    Lobby_OpponentReadyLabel:setPosStr("30%", "24%")
+    Lobby_OpponentReadyLabel:setScale(.8)
+    Lobby_OpponentReadyLabel:setColor(255,0,0,255)
+    
 
     Prompt_UI_Table["Back_to_Home_Noti"] = Prompt:new()
     Prompt_UI_Table["Back_to_Home_Noti"]:init(Lobby_GUIScriptingPtr,"Notification",false)
@@ -139,6 +174,52 @@ function LobbyScene_ToggleReady()
         -- Lobby_ReadyButton:setHoverable(0,255,0,255,255,255,255,255)
         Lobby_ReadyLabel:setText("Not Ready")
         Lobby_ReadyLabel:setColor(255,0,0,255)
+    end
+end
+
+function LobbyScene_ChangeHandleSync(clientList)
+
+    local idLabelX = 25
+    local idLabelY = 24
+
+    local picX = 20
+    local picY = 24
+
+    local readyButtonX = 30
+    local readyButtonY = 70
+
+    local readyLabelX = 30
+    local readyLabelY = 24
+
+    local myGUID = InfoHolder_getStrVal("MainInfo.guid")
+    
+    local myInfo = {}
+
+    for k,v in pairs(clientList) do
+        print("k " .. k)
+        if k == myGUID then
+            myInfo = v
+            clientList[k] = nil
+        end
+    end
+
+    if(myInfo == nil) then
+        print("myInfo not found")
+        return
+    end
+
+    local myIndex = tonumber(myInfo.index)
+    LobbyAccountID:setPosStr(  tostring(idLabelX * tonumber(myIndex)) .. "%", "24%")
+    Lobby_Picture:setPosStr(tostring(picX * tonumber(myIndex)) .. "%","24%")
+    Lobby_ReadyButton:setPosStr(tostring(readyButtonX * tonumber(myIndex)) .. "%", "70%")
+    Lobby_ReadyLabel:setPosStr(tostring(readyLabelX * tonumber(myIndex)) .. "%", "24%")
+
+    for k,v in pairs(clientList) do ---- remaining client
+        local index = tonumber(v.index)
+        LobbyOpponentID:setText(v.id)
+        LobbyOpponentID:setPosStr(  tostring(idLabelX * index) .. "%", "24%")
+        Lobby_OpponentPicture:setPosStr(tostring(picX * index) .. "%","24%")
+        Lobby_OpponentReadyLabel:setPosStr(tostring(readyLabelX * index) .. "%", "24%")
     end
 end
 

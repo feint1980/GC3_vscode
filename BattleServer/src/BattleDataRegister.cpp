@@ -14,6 +14,7 @@ bool BattleDataRegister::registerWhiteListClient_ByGUID(const std::string & guid
 
     m_whiteListClient_GUID_2_ID[guid] = id;
     m_whiteListClient_ID_2_GUID[id] = guid; // reverse mapping
+    std::cout << "added guid " << guid << " with id " << id << "\n";
     return true;
 }
 

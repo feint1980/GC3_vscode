@@ -41,4 +41,33 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_SyncStatusRe
     print("tGUID " .. tGUID)
     print("id " .. id)
     print("tData " .. tData)
+
+    local clientList, pos, err = JSON_Decode(tData)
+    if clientList == nil then
+        print("Ke3 F3i117 exception (PacketChannel.Lobby][LobbyResponse.Lobby_SyncStatusResponse) JSON decode error:", err)
+        return
+    end
+    for k,v in pairs(clientList) do
+        print("k " .. k)
+        -- print("guid " .. v.guid)
+    end
+
+    local myGUID = InfoHolder_getStrVal("MainInfo.guid")
+    local myID = InfoHolder_getStrVal("MainInfo.id")
+
+    print("comparing ..." )
+    print(myGUID .. "/" .. tGUID)
+    print(myID .. "/" .. id)
+
+    if clientList[myGUID] == nil then
+        print("client in response not found")
+        return
+    end
+
+    local index = clientList[myGUID].index
+    print("index " .. index)
+
+    LobbyScene_ChangeHandleSync(clientList)
+
 end
+

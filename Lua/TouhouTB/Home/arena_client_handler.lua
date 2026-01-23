@@ -163,6 +163,7 @@ HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,pac
 
             local tGUID = InfoHolder_getStrVal("MainInfo.guid")
             local tID = InfoHolder_getStrVal("MainInfo.id")
+            
 
             SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Join_Request, {tGUID, tID ,targetLobbyID },5,0.1,0.15)
 
@@ -190,10 +191,11 @@ end
 
 ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoinLobby_WithBSGUID_LobbyID_Response] = function(host,data, guid)
 
-    local serverGUID, lobbyID, joinResult = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+    local serverGUID, lobbyID, lobbyName, joinResult = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
     print("serverGUID " .. serverGUID)
     print("lobbyID " .. lobbyID)
     print("joinResult " .. joinResult)
+
     local tResult = tonumber(joinResult)
     
     if tResult == 1 then
@@ -205,6 +207,7 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoi
         end
 
         InfoHolder_setStrVal("Target_Lobby_ID", lobbyID)
+        InfoHolder_setStrVal("LobbyName", lobbyName)
 
         print(targetBattleServer.IP .. "|" .. targetBattleServer.port)
         Target_Lobby_ID = lobbyID

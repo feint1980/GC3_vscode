@@ -146,7 +146,7 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoinLobby
     -- decision for guid or tTargetGUID:
     -->    guid -> 100% reply, even it was from crafted packet
     -->    tTargetGUID -> if the crafted message, it not able to decrypt 
-    SendReliable(host,ip, tTargetGUID,PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestJoinLobby_WithBSGUID_LobbyID_Response,{serverGUID,lobbyID, tostring(joinResult)})
+    SendReliable(host,ip, tTargetGUID,PacketChannel.ArenaChannel, ArenaResponse.Arena_RequestJoinLobby_WithBSGUID_LobbyID_Response,{serverGUID,lobbyID,BSEP_List[serverGUID].lobbyList[lobbyID].name , tostring(joinResult)})
 
     SendReliable2BattleServer(host, BSEP_List[serverGUID].IP,  BSEP_List[serverGUID].GUID, BattleChanel.Lobby,LobbyResponse.Lobby_Join_Request_WL,{tTargetGUID,targetID})
 
