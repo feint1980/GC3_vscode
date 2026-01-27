@@ -126,14 +126,12 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     Lobby_ReadyLabel:setScale(.8)
     Lobby_ReadyLabel:setColor(255,0,0,255)
 
-
     Lobby_OpponentReadyLabel = Label:new()
     Lobby_OpponentReadyLabel:init(Lobby_GUIScriptingPtr,"",0,0)
     Lobby_OpponentReadyLabel:setText("Not Ready")
     Lobby_OpponentReadyLabel:setPosStr("30%", "24%")
     Lobby_OpponentReadyLabel:setScale(.8)
     Lobby_OpponentReadyLabel:setColor(255,0,0,255)
-    
 
     Prompt_UI_Table["Back_to_Home_Noti"] = Prompt:new()
     Prompt_UI_Table["Back_to_Home_Noti"]:init(Lobby_GUIScriptingPtr,"Notification",false)
@@ -191,15 +189,20 @@ function LobbyScene_ChangeHandleSync(clientList)
     local readyLabelX = 30
     local readyLabelY = 24
 
+    local additionalPos = 50
+
     local myGUID = InfoHolder_getStrVal("MainInfo.guid")
     
     local myInfo = {}
 
-    for k,v in pairs(clientList) do
+    local tClientList = Table_DeepCopy(clientList)
+
+    for k,v in pairs(tClientList) do
         print("k " .. k)
         if k == myGUID then
             myInfo = v
-            clientList[k] = nil
+            -- table.remove(tClientList,k)
+            tClientList[myGUID] = nil
         end
     end
 
@@ -208,18 +211,35 @@ function LobbyScene_ChangeHandleSync(clientList)
         return
     end
 
-    local myIndex = tonumber(myInfo.index)
-    LobbyAccountID:setPosStr(  tostring(idLabelX * tonumber(myIndex)) .. "%", "24%")
-    Lobby_Picture:setPosStr(tostring(picX * tonumber(myIndex)) .. "%","24%")
-    Lobby_ReadyButton:setPosStr(tostring(readyButtonX * tonumber(myIndex)) .. "%", "70%")
-    Lobby_ReadyLabel:setPosStr(tostring(readyLabelX * tonumber(myIndex)) .. "%", "24%")
+    
 
-    for k,v in pairs(clientList) do ---- remaining client
+    local myIndex = tonumber(myInfo.index) -1
+
+    LobbyAccountID:setPosStr(  tostring(idLabelX + (myIndex * additionalPos)) .. "%", "24%")
+    Lobby_Picture:setPosStr(tostring(picX + (myIndex * additionalPos)) .. "%","24%")
+    Lobby_ReadyButton:setPosStr(tostring(readyButtonX + (myIndex * additionalPos)) .. "%", "70%")
+    Lobby_ReadyLabel:setPosStr(tostring(readyLabelX + (myIndex * additionalPos)) .. "%", "24%")
+
+    ---- calculated based on myIndex
+    if next(tClientList) == nil then
+        print("tClientList is empty")
+
+        Lobby_OpponentPicture:setTexture("Assets/TB_GUI/faces/missing.png")
+        Lobby_OpponentReadyLabel:setText("")
+        LobbyOpponentID:setText("")
+        return
+    end
+
+    print("table still has data " )
+
+    for k,v in pairs(tClientList) do ---- remaining client
+        print("remaing client check " .. k )
         local index = tonumber(v.index)
         LobbyOpponentID:setText(v.id)
-        LobbyOpponentID:setPosStr(  tostring(idLabelX * index) .. "%", "24%")
-        Lobby_OpponentPicture:setPosStr(tostring(picX * index) .. "%","24%")
-        Lobby_OpponentReadyLabel:setPosStr(tostring(readyLabelX * index) .. "%", "24%")
+        LobbyOpponentID:setPosStr(  tostring(idLabelX + (index - 1) * additionalPos) .. "%", "24%")
+        Lobby_OpponentPicture:setPosStr(tostring(picX + (index - 1) * additionalPos) .. "%","24%")
+        Lobby_OpponentReadyLabel:setPosStr(tostring(readyLabelX + (index - 1) * additionalPos) .. "%", "24%")
+        Lobby_OpponentPicture:setTexture("Assets/TB_GUI/faces/Reimu_face.png")
     end
 end
 

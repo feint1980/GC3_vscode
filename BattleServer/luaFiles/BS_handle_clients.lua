@@ -8,6 +8,7 @@ BattleClientEP =
     id = "",
     guid = "",
     ip = nil,
+    index = 1,
     readyState = false,
     selected_formation_index = -1,
     lobbyID = "",
@@ -20,10 +21,11 @@ function BattleClientEP:new(o)
     return o
 end
 
-function BattleClientEP:init(id, guid, ip)
+function BattleClientEP:init(id, guid, ip,tIndex)
     self.id = id
     self.guid = guid
     self.ip = ip
+    self.index = tIndex
     --- register ip in C++ here 
     BM_addClientOnlineSession(guid, id,ip)
     self.readyState = false

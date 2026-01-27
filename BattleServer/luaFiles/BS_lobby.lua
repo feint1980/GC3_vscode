@@ -26,14 +26,27 @@ end
 
 function BattleLobby:addPlayer(playerID, playerGUID, playerIP)
     local clientEP = BattleClientEP:new()
-    clientEP:init(playerID, playerGUID, playerIP)
+    local indexSlot = #self.battleClientEP_List + 1
+    if #self.battleClientEP_List > 0 then
+        if self.battleClientEP_List[1] ~= nil then
+            if self.battleClientEP_List[1].index == 2 then
+                indexSlot = 1
+            else
+                indexSlot = 2
+            end
+        end
+    end
+    clientEP:init(playerID, playerGUID, playerIP, indexSlot)
     if #self.battleClientEP_List < 2 then 
         print(" BattleLobby:addPlayer")
         print("player " .. playerID .. "(" .. playerGUID ..  ") added to lobby " .. self.id)
 
         table.insert(self.battleClientEP_List, clientEP)
-    else
+    end
+
+    if #self.battleClientEP_List >= 2 then 
         print("lobby " .. self.id .. " is full")
+        self.lobbyState = BattleLobbyState.FULL
     end
 
     print("list of players")
@@ -63,6 +76,10 @@ function BattleLobby:removePlayer(playerGUID)
     end
     -- BattleLobby_UpdateLobbiesStatus()
 
+end
+
+function BattleLobby:getSize()
+    return #self.battleClientEP_List
 end
 
 BattleLobby_List = {}
@@ -116,5 +133,4 @@ function BattleLobby_Notify_LobbiesStates(host)
 
     BM_sendWrapData(host,BM_getMainServerIP(host),BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, PaperWorkRequest.LobbiesListUpdate , {tData})
 end
-
 -- 

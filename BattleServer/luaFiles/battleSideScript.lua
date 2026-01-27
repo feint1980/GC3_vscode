@@ -68,6 +68,7 @@ CommonPacketHandling[ID_CONNECTION_LOST] = function(host,packet)
                 local tLobbyID = BattleClientEP_List[tGUID].lobbyID
                 if BattleLobby_List[tLobbyID] ~= nil then
                     BattleLobby_List[tLobbyID]:removePlayer(tGUID)
+                    BS_Lobbies_Notify_ClientChanges(host,tLobbyID)
                 end
             end
             BattleClientEP_List[tGUID] = nil

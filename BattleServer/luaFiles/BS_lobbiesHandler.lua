@@ -84,6 +84,28 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
 
 end
 
+
+function BS_Lobbies_Notify_ClientChanges(host,lobbyID)
+
+
+    local playerList = {}
+    for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
+        print("client #" .. i)
+        print("\tclientID " .. BattleLobby_List[lobbyID].battleClientEP_List[i].id)
+        print("\tclientGUID " .. BattleLobby_List[lobbyID].battleClientEP_List[i].guid)
+        local clientData = {}
+        clientData.id = BattleLobby_List[lobbyID].battleClientEP_List[i].id
+        clientData.guid = BattleLobby_List[lobbyID].battleClientEP_List[i].guid
+        clientData.index = BattleLobby_List[lobbyID].battleClientEP_List[i].index
+        playerList[clientData.guid] = clientData
+        -- table.insert(lobbyList,clientData)
+    end
+
+    for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
+        BM_sendWrapData(host,BattleLobby_List[lobbyID].battleClientEP_List[i]:getIP(),BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattlePacketType.ID_TH_TB_BATTLE,ClientChannel.Lobby,CLobbyResponse.Lobby_SyncStatusResponse,{BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattleLobby_List[lobbyID].battleClientEP_List[i].id,JSON_Encode(playerList)})
+    end
+end
+
 ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_SyncStatus] = function(host, channel, request,data,ip, guid)
     -- print("sync status detected from " .. guid)
     
@@ -107,21 +129,23 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_SyncStatus] = fun
                 return
             end
 
-            local playerList = {}
-            for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
-                print("client #" .. i)
-                print("\tclientID " .. BattleLobby_List[lobbyID].battleClientEP_List[i].id)
-                print("\tclientGUID " .. BattleLobby_List[lobbyID].battleClientEP_List[i].guid)
-                local clientData = {}
-                clientData.id = BattleLobby_List[lobbyID].battleClientEP_List[i].id
-                clientData.guid = BattleLobby_List[lobbyID].battleClientEP_List[i].guid
-                clientData.index = i
-                playerList[clientData.guid] = clientData
-                -- table.insert(lobbyList,clientData)
-            end
-            for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
-                BM_sendWrapData(host,BattleLobby_List[lobbyID].battleClientEP_List[i]:getIP(),BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattlePacketType.ID_TH_TB_BATTLE,ClientChannel.Lobby,CLobbyResponse.Lobby_SyncStatusResponse,{BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattleLobby_List[lobbyID].battleClientEP_List[i].id,JSON_Encode(playerList)})
-            end
+            -- local playerList = {}
+            BS_Lobbies_Notify_ClientChanges(host,lobbyID)
+            -- for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
+            --     print("client #" .. i)
+            --     print("\tclientID " .. BattleLobby_List[lobbyID].battleClientEP_List[i].id)
+            --     print("\tclientGUID " .. BattleLobby_List[lobbyID].battleClientEP_List[i].guid)
+            --     local clientData = {}
+            --     clientData.id = BattleLobby_List[lobbyID].battleClientEP_List[i].id
+            --     clientData.guid = BattleLobby_List[lobbyID].battleClientEP_List[i].guid
+            --     clientData.index = i
+            --     playerList[clientData.guid] = clientData
+            --     -- table.insert(lobbyList,clientData)
+            -- end
+            -- for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
+            --     BS_Lobbies_Notify_ClientChanges(host,lobbyID,playerList)
+            --     -- BM_sendWrapData(host,BattleLobby_List[lobbyID].battleClientEP_List[i]:getIP(),BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattlePacketType.ID_TH_TB_BATTLE,ClientChannel.Lobby,CLobbyResponse.Lobby_SyncStatusResponse,{BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattleLobby_List[lobbyID].battleClientEP_List[i].id,JSON_Encode(playerList)})
+            -- end
         end
     else
         print("client not found")

@@ -218,6 +218,10 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoi
         Prompt_UI_Table["Arena_Status"]:show(false)
         Prompt_UI_Table["Arena_Noti"]:showMsg("Invalid password !")
         Join_State = 0
+    elseif tResult == 3 then
+        Prompt_UI_Table["Arena_Status"]:show(false)
+        Prompt_UI_Table["Arena_Noti"]:showMsg("Room is full !")
+        Join_State = 0
     else
         Prompt_UI_Table["Arena_Status"]:show(false)
         Prompt_UI_Table["Arena_Noti"]:showMsg("Invalid join !")

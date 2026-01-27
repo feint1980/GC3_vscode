@@ -301,6 +301,10 @@ function Arena_UpdateLobbies(serverList)
                 state= "Waiting"
             elseif m.lobbyState == 2 then
                 state = "In Game"
+            elseif m.lobbyState == 3 then
+                state = "Expired"
+            elseif m.lobbyState == 3 then
+                state = "Full"
             end
             if #m.battleClientEP_List > 0 then 
                 RoomListView:addItemWithDataStr({m.name, m.battleClientEP_List[1].id, 

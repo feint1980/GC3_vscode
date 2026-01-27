@@ -137,10 +137,16 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoinLobby
 
     local joinResult = 0 -- not valid
 
-    if lobbyPassword == BSEP_List[serverGUID].lobbyList[lobbyID].password then
-        joinResult = 1 -- valid
+    if BSEP_List[serverGUID].lobbyList[lobbyID].lobbyState == 4 then
+        joinResult = 3 -- full
     else
-        joinResult = 2 -- wrong password
+
+        if lobbyPassword == BSEP_List[serverGUID].lobbyList[lobbyID].password then
+            joinResult = 1 -- valid
+        else
+            joinResult = 2 -- wrong password
+        end
+
     end
 
     -- decision for guid or tTargetGUID:
