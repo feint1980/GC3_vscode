@@ -132,5 +132,8 @@ private:
 
     LuaTaskManager m_luaTaskManager ;
 
+
+    bool isInitialized = false;
+
 };
 

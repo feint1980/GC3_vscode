@@ -87,7 +87,6 @@ end
 
 function BS_Lobbies_Notify_ClientChanges(host,lobbyID)
 
-
     local playerList = {}
     for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
         print("client #" .. i)
@@ -97,6 +96,7 @@ function BS_Lobbies_Notify_ClientChanges(host,lobbyID)
         clientData.id = BattleLobby_List[lobbyID].battleClientEP_List[i].id
         clientData.guid = BattleLobby_List[lobbyID].battleClientEP_List[i].guid
         clientData.index = BattleLobby_List[lobbyID].battleClientEP_List[i].index
+        clientData.readyState = BattleLobby_List[lobbyID].battleClientEP_List[i].readyState
         playerList[clientData.guid] = clientData
         -- table.insert(lobbyList,clientData)
     end
@@ -108,25 +108,33 @@ end
 
 ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_SyncStatus] = function(host, channel, request,data,ip, guid)
     -- print("sync status detected from " .. guid)
-    
-    print("data " .. data)
 
-
-    local clientGUID, clientID, lobbyID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+    local clientGUID, clientID, lobbyID, readyState = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
     print("clientGUID " .. clientGUID)
     print("clientID " .. clientID)
     print("lobbyID " .. lobbyID)
-
+    print("readyState " .. readyState)
+    local tReadyState = false
+    if readyState == "true" then
+        tReadyState = true
+    end
+    -- toboolean
     if BattleClientEP_List[clientGUID] ~= nil then
         -- print("found")
         local tID = BattleClientEP_List[clientGUID].id
         print("check client ID " .. tID .. "/" .. clientID )
         if tID == clientID then
             print("matched !!!")
+            -- BattleClientEP_List[clientGUID].readyState = tReadyState
             if BattleLobby_List[lobbyID] == nil then
                 print("lobby not found")
                 return
+            end
+            for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
+                if BattleLobby_List[lobbyID].battleClientEP_List[i].guid == clientGUID then
+                    BattleLobby_List[lobbyID].battleClientEP_List[i].readyState = tReadyState
+                end
             end
 
             -- local playerList = {}

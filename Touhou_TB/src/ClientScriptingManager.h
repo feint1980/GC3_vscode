@@ -164,6 +164,8 @@ public:
 
     void processInternalPacket(RakNet::Packet *p);
 
+    void disconnectFromCurrentBattleServer();
+
     void setCommonHandlingLuaFunction(const std::string & functionName) { m_luaCommonMessageHandlingFunctionName = functionName; }
 
     void setWrappedMessageHandlingLuaFunction(RakNet::MessageID messageID, const std::string & functionName) { m_wrappedMessageHandlingFunctionNames[messageID] = functionName; }
@@ -233,7 +235,6 @@ public:
     std::unordered_map<RakNet::MessageID, std::string> m_wrappedMessageHandlingFunctionNames;
 
     std::unordered_map<RakNet::MessageID, Feintgine::F_Cryptor_sodium *> m_wrappedMessageHandlingFunctionCryptors;
-
 
     float m_wrapperElapseCounter = 0;
     float m_defaultElapseCounter = 0;

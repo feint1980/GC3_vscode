@@ -23,6 +23,11 @@ ClientBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Join_Respon
         -- _G.LobbyState = 0
         -- msg = "Joined lobby " .. lobbyID
         -- Prompt_UI_Table["CreateLobby_Noti"]:showMsg(msg)
+        Prompt_UI_Table["CreateLobby_Status"]:show(false)
+        
+            -- Prompt_UI_Table["CreateLobby_Noti"]:showMsg("Request timeout !")
+        Create_Lobby_State = 0
+        CreateLobbyPanel:setVisible(false)
         cpp_changeScene(SceneIndex.Lobby)
 
         -- todo : join lobby

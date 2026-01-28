@@ -50,6 +50,22 @@ int lua_lobby_changeScene(lua_State * L)
     return 0;
 }
 
+int lua_backToHomeMenu(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_backToMenu) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::cout << " back to main menu \n";
+        LobbyScene * host = (LobbyScene *)lua_touserdata(L, 1);
+        host->backToMainMenu();
+    }
+    return 0;
+}
+
 
 LobbyScene::LobbyScene()
 {
@@ -223,7 +239,7 @@ void LobbyScene::handleInput(Feintgine::InputManager & inputManager)
 void LobbyScene::initGUI()
 {
 
-    InfoHolder::getInstance()->registerGame(m_game);
+    
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
 
@@ -251,12 +267,13 @@ void LobbyScene::initGUI()
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Lobby/lobbyScene.lua")))
     {
-        std::cout << "Run loginScene script OK \n";
+        std::cout << "Run lobby scene script OK \n";
     }
-    InfoHolder::getInstance()->initLuaInterface(m_script);
+    // InfoHolder::getInstance()->initLuaInterface(m_script);
 
     lua_register(m_script, "cpp_lobby_getInfo", lua_lobby_getInfo);
     lua_register(m_script, "cpp_lobby_changeScene", lua_lobby_changeScene);
+    lua_register(m_script, "cpp_backToHomeMenu", lua_backToHomeMenu);
     lua_getglobal(m_script, "LobbySceneInit");
     if(lua_isfunction(m_script, -1))
     {
@@ -274,7 +291,7 @@ void LobbyScene::initGUI()
             std::cout << "Lobby scene init script from C++ OK \n";
         }
     }
-
+    InfoHolder::getInstance()->registerGame(m_game);
     m_clientScriptingManager->setCommonHandlingLuaFunction("Lobby_RecieveData");
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"LobbyHandlerWrapResponse");
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"LobbyHandlerBattleResponse");

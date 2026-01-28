@@ -213,6 +213,11 @@ function ClientConnect2SV(host,ip,port)
     return cpp_connect2SV(host,ip,port)
 end
 
+function ClientDisconnectFromCurrentBattleServer(host)
+    cpp_disconnectFromCurrentBS(host)
+end
+
+
 --- deep copy table
 function Table_DeepCopy(orig, copies)
     copies = copies or {} -- to handle cycles

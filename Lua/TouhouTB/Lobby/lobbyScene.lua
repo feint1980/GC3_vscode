@@ -30,31 +30,29 @@ Lobby_ControlHandlerPtr = nil
 --@type pointer SkillHandler
 Lobby_SkillHandlerPtr = nil
 
----@type Label
+---@type RTLabel
 LobbyTitleLabel = nil
 
----@type Label
+---@type RTLabel
 LobbyAccountID = nil
 
----@type Label
+---@type RTLabel
 LobbyIDLabel = nil
 
 ---@type Picture
 Lobby_Picture = nil
 
----@type Label
+---@type RTLabel
 Lobby_ReadyLabel = nil
 
----@type Label
+---@type RTLabel
 LobbyOpponentID = nil
 
 ---@type Picture
 Lobby_OpponentPicture = nil
 
----@type Label
+---@type RTLabel
 Lobby_OpponentReadyLabel = nil
-
-
 
 ---@type Label
 Lobby_ReadyButton = nil
@@ -86,17 +84,19 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     print("pw " .. pw)
     print("guid " .. guid)
 
-    LobbyAccountID = Label:new()
+    LobbyAccountID = RTLabel:new()
     LobbyAccountID:init(Lobby_GUIScriptingPtr,"",0,0)
     LobbyAccountID:setText(id)
+    -- LobbyAccountID:setColor(45,209,255,255)
     LobbyAccountID:setPosStr("25%", "24%")
     LobbyAccountID:setScale(.8)
 
-    LobbyOpponentID = Label:new()
+    LobbyOpponentID = RTLabel:new()
     LobbyOpponentID:init(Lobby_GUIScriptingPtr,"",0,0)
     LobbyOpponentID:setText("")
+    -- LobbyOpponentID:setColor(255,81,100,255)
     LobbyOpponentID:setPosStr("75%", "24%")
-    LobbyOpponentID:setScale(.8)
+    LobbyOpponentID:setScale(.9)
 
     Lobby_Picture = Picture:new()
     Lobby_Picture:init(Lobby_GUIScriptingPtr,"Assets/TB_GUI/faces/Reimu_face.png",0,0,100,100)
@@ -108,10 +108,11 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     Lobby_OpponentPicture:setPosStr("70%","24%")
     Lobby_OpponentPicture:setSize(75,75)
 
-    Lobby_ReadyButton = Label:new()
+    Lobby_ReadyButton = RTLabel:new()
     Lobby_ReadyButton:init(Lobby_GUIScriptingPtr,"Ready",0,0)
     Lobby_ReadyButton:setAlignment(TextAlginment.Center)
     Lobby_ReadyButton:setPosStr("30%", "70%")
+    Lobby_ReadyButton:setText("Ready")
     Lobby_ReadyButton:setScale(.8)
     Lobby_ReadyButton:setHoverable(0,255,0,255,255,255,255,255)
     Lobby_ReadyButton:setOnClickCallback(function()
@@ -119,17 +120,17 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
         LobbyScene_ToggleReady()
         end)
 
-    Lobby_ReadyLabel = Label:new()
+    Lobby_ReadyLabel = RTLabel:new()
     Lobby_ReadyLabel:init(Lobby_GUIScriptingPtr,"",0,0)
-    Lobby_ReadyLabel:setText("Not Ready")
-    Lobby_ReadyLabel:setPosStr("30%", "24%")
-    Lobby_ReadyLabel:setScale(.8)
-    Lobby_ReadyLabel:setColor(255,0,0,255)
+    Lobby_ReadyLabel:setText(Tag.iRed .. "<Not Ready>" .. Tag.iClose)
+    Lobby_ReadyLabel:setPosStr("33%", "22%")
+    Lobby_ReadyLabel:setScale(.75)
+    -- Lobby_ReadyLabel:setColor(255,0,0,255)
 
-    Lobby_OpponentReadyLabel = Label:new()
+    Lobby_OpponentReadyLabel = RTLabel:new()
     Lobby_OpponentReadyLabel:init(Lobby_GUIScriptingPtr,"",0,0)
-    Lobby_OpponentReadyLabel:setText("Not Ready")
-    Lobby_OpponentReadyLabel:setPosStr("30%", "24%")
+    -- Lobby_OpponentReadyLabel:setText(Tag.color_red "Not Ready" .. Tag.color_close)
+    Lobby_OpponentReadyLabel:setPosStr("33%", "22%")
     Lobby_OpponentReadyLabel:setScale(.8)
     Lobby_OpponentReadyLabel:setColor(255,0,0,255)
 
@@ -138,9 +139,45 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
 
     Prompt_UI_Table["Back_to_Home_Noti"]:addButton("OK", function()
         -- print("daaataaaa")
-        cpp_lobby_changeScene(SceneIndex.Home)
+        cpp_backToHomeMenu(host)
+        -- cpp_lobby_changeScene(SceneIndex.Home)
     end
     )
+
+
+    Prompt_UI_Table["Leave_Lobby_Noti"] = Prompt:new()
+    Prompt_UI_Table["Leave_Lobby_Noti"]:init(Lobby_GUIScriptingPtr,"Leave Lobby ?",false)
+    Prompt_UI_Table["Leave_Lobby_Noti"]:addButton("Leave", function()
+        -- cpp_lobby_leaveLobby()
+        -- Prompt_UI_Table["Leave_Lobby_Noti"]:show(false)
+        
+        ClientDisconnectFromCurrentBattleServer(ClientScriptingPtr)
+        Prompt_UI_Table["Leave_Lobby_Noti"]:show(false)
+        -- TM_addTask(function()
+            -- print("Leave lobby")
+            -- cpp_backToHomeMenu(host)
+            -- cpp_lobby_changeScene(SceneIndex.Home)
+        -- end,
+        -- 10)
+    end
+    )
+    Prompt_UI_Table["Leave_Lobby_Noti"]:addButton("Back", function()
+        print("back")
+        Prompt_UI_Table["Leave_Lobby_Noti"]:show(false)
+    end
+    )
+
+    local leaveLobby = Label:new()
+    leaveLobby:init(Lobby_GUIScriptingPtr,"Leave Lobby",0,0)
+    leaveLobby:setAlignment(TextAlginment.Left)
+    leaveLobby:setPosStr("10%","85%")
+    leaveLobby:setScale(1.1)
+    leaveLobby:setHoverable(255,0,0,255,255,255,255,255)
+    leaveLobby:setOnClickCallback(function()
+        Prompt_UI_Table["Leave_Lobby_Noti"]:show(true)
+        end
+    )
+
 
     local tBattleServerGUID = InfoHolder_getStrVal("Target_BattleServer_GUID")
 
@@ -149,10 +186,13 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     print("Init end ")
     TM_addTask(function()
         print("TM called")
-        Client_Lobby_SendSyncRequest() 
+        Client_Lobby_SendSyncRequest()
+        Lobby_UpdateInfo()
     end
     ,10
     )
+
+
 
     print("Task set ")
     -- TM_addTask
@@ -161,17 +201,42 @@ end
 
 function LobbyScene_ToggleReady()
     LobbyScene_isReady = not LobbyScene_isReady
+    ---@diagnostic disable-next-line: param-type-mismatch
+    InfoHolder_setNumberVal("LobbyScene_isReady", LobbyScene_isReady)
+    Client_Lobby_SendSyncRequest()
+    -- LobbyScene_ReadyStateUpdate()
+end
 
+function LobbyScene_LeaveLobby()
+    
+end
+
+function Lobby_UpdateInfo()
+
+
+    local id =InfoHolder_getStrVal("MainInfo.id")
+    local pw = InfoHolder_getStrVal("MainInfo.pw")
+    local guid = InfoHolder_getStrVal("MainInfo.guid")
+    
+    print("Lobby_UpdateInfo called " .. id .. " " .. pw .. " " .. guid)
+
+
+
+    SendRequest(PacketChannel.UserChannel, UserResponse.MainInfo, {id, pw, guid}, 5, 0.25)
+
+end
+
+function LobbyScene_ReadyStateUpdate()
     if LobbyScene_isReady == true then
         Lobby_ReadyButton:setText("Not Ready")
         -- Lobby_ReadyButton:setHoverable(255,0,0,255,255,255,255,255)
-        Lobby_ReadyLabel:setText("Ready")
-        Lobby_ReadyLabel:setColor(0,255,0,255)
+        Lobby_ReadyLabel:setText(Tag.iGreen .. "<Ready>" .. Tag.iClose)
+        -- Lobby_ReadyLabel:setColor(0,255,0,255)
     else
         Lobby_ReadyButton:setText("Ready")
         -- Lobby_ReadyButton:setHoverable(0,255,0,255,255,255,255,255)
-        Lobby_ReadyLabel:setText("Not Ready")
-        Lobby_ReadyLabel:setColor(255,0,0,255)
+        Lobby_ReadyLabel:setText(Tag.iRed .. "<Not Ready>" .. Tag.iClose)
+        -- Lobby_ReadyLabel:setColor(255,0,0,255)
     end
 end
 
@@ -186,8 +251,8 @@ function LobbyScene_ChangeHandleSync(clientList)
     local readyButtonX = 30
     local readyButtonY = 70
 
-    local readyLabelX = 30
-    local readyLabelY = 24
+    local readyLabelX = 33
+    local readyLabelY = 22
 
     local additionalPos = 50
 
@@ -210,8 +275,15 @@ function LobbyScene_ChangeHandleSync(clientList)
         print("myInfo not found")
         return
     end
+    -- print("myInfo.readyState :" .. myInfo.readyState)
+    LobbyScene_isReady = myInfo.readyState
+    -- if myInfo.readyState == "true" then -- man, better if we use number, this is 1 off, to learn lesson
+    --     LobbyScene_isReady = true
+    -- else
+    --     LobbyScene_isReady = false
+    -- end
 
-    
+    LobbyScene_ReadyStateUpdate()
 
     local myIndex = tonumber(myInfo.index) -1
 
@@ -240,6 +312,13 @@ function LobbyScene_ChangeHandleSync(clientList)
         Lobby_OpponentPicture:setPosStr(tostring(picX + (index - 1) * additionalPos) .. "%","24%")
         Lobby_OpponentReadyLabel:setPosStr(tostring(readyLabelX + (index - 1) * additionalPos) .. "%", "24%")
         Lobby_OpponentPicture:setTexture("Assets/TB_GUI/faces/Reimu_face.png")
+        if v.readyState == true then
+            Lobby_OpponentReadyLabel:setText(Tag.iGreen .. "<Ready>" .. Tag.iClose)
+            -- Lobby_OpponentReadyLabel:setColor(0,255,0,255)
+        else
+            Lobby_OpponentReadyLabel:setText(Tag.iRed .. "<Not Ready>" .. Tag.iClose)
+            -- Lobby_OpponentReadyLabel:setColor(255,0,0,255)
+        end
     end
 end
 

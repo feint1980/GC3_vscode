@@ -38,6 +38,47 @@ CommonPacketHandling[ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet)
     BM_connectToMainServer(host)
 end
 
+
+CommonPacketHandling[ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
+
+    local tGUID = BS_Packet_getGUID(packet)
+    local tPort = BS_Packet_getPort(packet)
+    if tPort == 1123 then
+        if BS_IsConnectedToMainServer == true then
+            print("disconnected from main server")
+            BS_IsConnectedToMainServer = false
+            BM_handleDisconnectFromMainServer(host)
+            BM_connectToMainServer(host)
+            return
+        else
+            BM_connectToMainServer(host)
+            return
+        end
+        -- os.execute("sleep 1")
+        -- TODO consider make a reconnect attempts
+    else
+        
+        print("disconnection from (leaving lobby) " .. tGUID)
+        BM_removeFromWhitelist_ByGUID(tGUID)
+        BM_removeCryptor(host,tGUID)
+        if BattleClientEP_List[tGUID] ~= nil then
+            print("remove the client " .. tGUID .. " from list ")
+            print("check for lobby ID " .. BattleClientEP_List[tGUID].lobbyID)
+            if BattleClientEP_List[tGUID].lobbyID ~= "" then
+                local tLobbyID = BattleClientEP_List[tGUID].lobbyID
+                if BattleLobby_List[tLobbyID] ~= nil then
+                    BattleLobby_List[tLobbyID]:removePlayer(tGUID)
+                    BS_Lobbies_Notify_ClientChanges(host,tLobbyID)
+                end
+            end
+            BattleClientEP_List[tGUID] = nil
+        end
+        BattleLobby_UpdateLobbiesStatus() --- update status
+        BattleLobby_Notify_LobbiesStates(host)
+    end
+
+end
+
 CommonPacketHandling[ID_CONNECTION_LOST] = function(host,packet)
 
     local tGUID = BS_Packet_getGUID(packet)
@@ -107,7 +148,7 @@ require "battlePaperWork"
 require "BS_lobbiesHandler"
 function BattleMain_HandleInternal(host, channel, request,data,ip, guid)
 
-    print("BattleMain_HandleInternal called")
+    -- print("BattleMain_HandleInternal called")
     if InternalPacketHandling[channel] == nil then
         print("channel not found " .. channel)
         return
@@ -121,7 +162,7 @@ end
 
 function BattleMain_HandleClient(host, channel, request,data,ip, guid)
 
-    print("BattleMain_HandleInternal called")
+    -- print("BattleMain_HandleInternal called")
     if ClientPacketHandling[channel] == nil then
         print("channel not found " .. channel)
         return

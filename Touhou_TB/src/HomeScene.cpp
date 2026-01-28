@@ -310,6 +310,8 @@ void HomeScene::drawGIFScene()
 
 void HomeScene::initGUI()
 {
+    if(!isInitialized)
+    {
 
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
@@ -328,22 +330,42 @@ void HomeScene::initGUI()
     InfoHolder::getInstance()->initLuaInterface(m_script);
 
     unsigned int port = 1123;
-
-    m_clientScriptingManager = new ClientScriptingManager();
+    
     m_client = InfoHolder::getInstance()->getClient();
-    m_clientScriptingManager->init("127.0.0.1", port,m_client, m_script);
+
+    if(!m_clientScriptingManager)
+    {
+        m_clientScriptingManager = new ClientScriptingManager();
+    
+        m_clientScriptingManager->init("127.0.0.1", port,m_client, m_script);
+    }
+    
     m_clientScriptingManager->setIPAddress(InfoHolder::getInstance()->getServerIP());
     m_clientCharacterHandler = new ClientCharacterHandler();
     m_clientCharacterHandler->init(m_script);
 
+    m_clientScriptingManager->setBattleServerIPMap(InfoHolder::getInstance()->getBattleServerIPMap()); 
+
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Home/homeScene.lua")))
     {
-        std::cout << "Run loginScene script OK \n";
+        std::cout << "Run home scene script OK \n";
     }
 
     lua_register(m_script, "cpp_getInfo", lua_getInfo);
     lua_register(m_script, "cpp_backToMenu", lua_backToMenu);
     lua_register(m_script, "cpp_changeScene", lua_changeScene);
+
+    // InfoHolder::getInstance()->saveLuaState(m_script);
+    InfoHolder::getInstance()->registerGUIScriptingManager(m_guiScriptingManager);
+    InfoHolder::getInstance()->registerGame(m_game);
+
+    m_clientScriptingManager->setCommonHandlingLuaFunction("Client_ReceiveData");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"ClientHandlerWrapResponse");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"ClientHandlerBattleResponse");
+
+    isInitialized = true;
+    }
+
     lua_getglobal(m_script, "HomeSceneInit");
     if(lua_isfunction(m_script, -1))
     {
@@ -361,15 +383,6 @@ void HomeScene::initGUI()
             std::cout << "Home scene init script from C++ OK \n";
         }
     }
-
-    // InfoHolder::getInstance()->saveLuaState(m_script);
-    InfoHolder::getInstance()->registerGUIScriptingManager(m_guiScriptingManager);
-    InfoHolder::getInstance()->registerGame(m_game);
-
-    m_clientScriptingManager->setCommonHandlingLuaFunction("Client_ReceiveData");
-    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"ClientHandlerWrapResponse");
-    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"ClientHandlerBattleResponse");
-
 }
 
 void HomeScene::drawGUI()

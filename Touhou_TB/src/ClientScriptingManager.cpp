@@ -162,7 +162,9 @@ int lua_SendWrapData(lua_State * L)
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string requestCmd = lua_tostring(L, 2);
 
+        std::cout << "cppSendWrapData called\n";
         uint32_t result = host->sendWrapData(requestCmd);
+        std::cout << "send result " << result << "\n";
         lua_pushnumber(L, result);
         return 1;
     }
@@ -222,6 +224,25 @@ int lua_connect2SV(lua_State * L)
     }
     return 0;
 }
+
+int lua_disconnectFromCurrentBS(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_disconnectFromCurrentBS) \n";
+        std::cout << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        host->disconnectFromCurrentBattleServer();
+        return 0;
+    }
+    return 0;
+
+}
+
 
 int lua_SelecBattleServer(lua_State * L)
 {
@@ -498,6 +519,8 @@ uint32_t ClientScriptingManager::sendData(const std::string & data, uint8_t encr
 
 uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
 {
+    std::cout << "sendWrapData called\n";
+    std::cout << "send to " << m_serverIPAddr.ToString(true) << "\n";
     if (data.size() < 2) // headers
     {
         std::cout << "sendWrapData failed (data size < 2)\n";
@@ -643,6 +666,7 @@ void ClientScriptingManager::init(const std::string & serverIP, unsigned int por
     lua_register(m_script, "cppGetCurrentBattleServerGUID", lua_GetCurrentBattleServerGUID);
     lua_register(m_script, "cppGetCurrentBattleServerIP", lua_GetCurrentBattleServerIP);
     lua_register(m_script, "cpp_connect2SV", lua_connect2SV);
+    lua_register(m_script, "cpp_disconnectFromCurrentBS", lua_disconnectFromCurrentBS);
 
     lua_register(m_script, "cpp_Packet_getIP" , lua_Packet_getAddress);
     lua_register(m_script, "cpp_Packet_getGUID" , lua_Packet_getGUID);
@@ -1344,7 +1368,19 @@ void ClientScriptingManager::connect2BattleServer(const std::string & ipAddr, un
     RakNet::ConnectionAttemptResult car = m_client->Connect(ipAddr.c_str(), port, pw.c_str(), pw.size());
 
     RakAssert(car == RakNet::CONNECTION_ATTEMPT_STARTED);
-    
+
+}
+
+void ClientScriptingManager::disconnectFromCurrentBattleServer()
+{
+    if(m_client)
+    {
+        if(m_currentBattleServerIP)
+        {
+            // m_client->CloseConnection()
+            m_client->CloseConnection(*m_currentBattleServerIP, true, 0);
+        }
+    }
 }
 
 void ClientScriptingManager::collectPong(RakNet::Packet *p)

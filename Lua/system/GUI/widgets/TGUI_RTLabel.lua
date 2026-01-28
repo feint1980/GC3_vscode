@@ -21,20 +21,17 @@ Tag.iOrange = Tag.italic_open .. Tag.color_orange
 Tag.iGreen = Tag.italic_open .. Tag.color_green
 Tag.iClose = Tag.color_close .. Tag.italic_close
 
-
 TextAlginment = {
     Left = 0,
     Center = 1,
     Right = 2
 }
 
-
 LabelColor ={}
 
 LabelColor.Red = 1
 LabelColor.Green = 2
 LabelColor.Blue = 3
-
 
 --- @class pointer
 

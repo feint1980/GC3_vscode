@@ -148,9 +148,6 @@ function GetTableSize(t)
     return count
 end
 
-
-
-
 -- ---@Description combines packet
 -- ---@param type string type of packet to wrap
 -- ---@param list table data to wrap
@@ -228,6 +225,7 @@ RequestQueueIndex = 0
 ---@param delayEach? number
 function SendRequest(channel, request, data, retries, delayFirst, delayEach)
 
+    print("SendRequest called")
     delayFirst = delayFirst or 0
     delayEach = delayEach or 0.25
     table.insert(RequestQueue, {
@@ -257,10 +255,10 @@ end
 
 function UpdateRequests(host)
     local now = os.clock()
-
+    
     for i = #RequestQueue, 1, -1 do
         local req = RequestQueue[i]
-
+        -- print("UpdateRequests called (got " .. #RequestQueue .. " requests)")
         if now >= req.nextSendTime then
             local success = 0
             if req.packetType == RequestPacketType.MainServer then

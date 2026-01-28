@@ -195,7 +195,6 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoi
     print("serverGUID " .. serverGUID)
     print("lobbyID " .. lobbyID)
     print("joinResult " .. joinResult)
-
     local tResult = tonumber(joinResult)
     
     if tResult == 1 then
@@ -208,7 +207,6 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoi
 
         InfoHolder_setStrVal("Target_Lobby_ID", lobbyID)
         InfoHolder_setStrVal("LobbyName", lobbyName)
-
         print(targetBattleServer.IP .. "|" .. targetBattleServer.port)
         Target_Lobby_ID = lobbyID
         --- Connect to battle server ( if passed, it will auto join to the lobby)

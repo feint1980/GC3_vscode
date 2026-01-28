@@ -45,6 +45,9 @@ Home_Noti_Msg = nil
 ---@type Label
 Home_Noti_Btn = nil
 
+---@type Picture
+Home_Picture = nil
+
 --- Main 
 ---@type Label
 Main_NameLabel = nil
@@ -72,9 +75,13 @@ Main_FormationButton = nil
 Main_ArenaButton = nil
 
 
+
+
 local h_id = ""
 local h_pw = ""
 local h_guid = ""
+
+IsInited = false
 
 
 function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
@@ -86,137 +93,159 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     Home_ControlHandlerPtr = ControlHandlerPtr
 
 
-    if HomeSceneHost ~= nil then
-        print("LoginHost is not nil")
-    end
-    if Home_GUIScriptingPtr ~= nil then
-        print("Home_GUIScriptingPtr is not nil")
-    end
-    if Home_ClientScriptingPtr ~= nil then
-        print("Home_ClientScriptingPtr is not nil")
-    end
+    if IsInited == false then
+        IsInited = true
+    
+    
+        if HomeSceneHost ~= nil then
+            print("LoginHost is not nil")
+        end
+        if Home_GUIScriptingPtr ~= nil then
+            print("Home_GUIScriptingPtr is not nil")
+        end
+        if Home_ClientScriptingPtr ~= nil then
+            print("Home_ClientScriptingPtr is not nil")
+        end
 
-    --- Notification section ----
-    Home_Noti_Panel = Panel:new()
-    Home_Noti_Panel:init(Home_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
-    Home_Noti_Panel:setAlignment(0.5,0.5)
-    Home_Noti_Panel:setSizeStr("30%", "25%")
-    Home_Noti_Panel:setPosStr("50%", "50%")
-    Home_Noti_Panel:setVisible(false)
-    Home_Noti_Msg = RTLabel:new()
-    Home_Noti_Msg:init(Home_GUIScriptingPtr,"",0,0,Home_Noti_Panel.ptr)
-    Home_Noti_Msg:setAlignment(TextAlginment.Center)
-    Home_Noti_Msg:setPosStr("50%","20%")
+        --- Notification section ----
+        if Home_Noti_Panel == nil then
+            Home_Noti_Panel = Panel:new()
+        end
+        Home_Noti_Panel:init(Home_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
+        Home_Noti_Panel:setAlignment(0.5,0.5)
+        Home_Noti_Panel:setSizeStr("30%", "25%")
+        Home_Noti_Panel:setPosStr("50%", "50%")
+        Home_Noti_Panel:setVisible(false)
+        Home_Noti_Msg = RTLabel:new()
+        Home_Noti_Msg:init(Home_GUIScriptingPtr,"",0,0,Home_Noti_Panel.ptr)
+        Home_Noti_Msg:setAlignment(TextAlginment.Center)
+        Home_Noti_Msg:setPosStr("50%","20%")
 
-    Home_Noti_Btn = Label:new()
-    Home_Noti_Btn:init(Home_GUIScriptingPtr,"OK",0,0,Home_Noti_Panel.ptr)
-    Home_Noti_Btn:setAlignment(TextAlginment.Center)
-    Home_Noti_Btn:setPosStr("50%","75%")
-    Home_Noti_Btn:setHoverable(0,255,0,255,255,255,255,255)
-    Home_Noti_Btn:setOnClickCallback(function() 
+        if Home_Noti_Btn == nil then
+            Home_Noti_Btn = Label:new()
+        end
+        Home_Noti_Btn:init(Home_GUIScriptingPtr,"OK",0,0,Home_Noti_Panel.ptr)
+        Home_Noti_Btn:setAlignment(TextAlginment.Center)
+        Home_Noti_Btn:setPosStr("50%","75%")
+        Home_Noti_Btn:setHoverable(0,255,0,255,255,255,255,255)
+        Home_Noti_Btn:setOnClickCallback(function() 
+            Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+            --cpp_backToMenu(HomeSceneHost)    
+        end)
+
         Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
-        --cpp_backToMenu(HomeSceneHost)    
-    end)
 
-    Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
+        ---- GUI section ----
+        if Main_NameLabel == nil then 
+            Main_NameLabel = Label:new()
+        end
+        Main_NameLabel:init(Home_GUIScriptingPtr,"",0,0)
 
-    ---- GUI section ----
-    Main_NameLabel = Label:new()
-    Main_NameLabel:init(Home_GUIScriptingPtr,"",0,0)
+        local id,pw, guid = Home_GetInfo(3)
+        
+        Main_NameLabel:setText(id)
+        Main_NameLabel:setPosStr("10%", "10%")
 
-    local id,pw, guid = Home_GetInfo(3)
-    
-    
+        if Home_Picture == nil then
+            Home_Picture = Picture:new()
+        end
+        Home_Picture:init(Home_GUIScriptingPtr,"Assets/TB_GUI/faces/Reimu_face.png",0,0,100,100)
+        Home_Picture:setPosStr("5%","5%")
+        Home_Picture:setSize(75,75)
 
-    Main_NameLabel:setText(id)
-    Main_NameLabel:setPosStr("10%", "10%")
+        Main_SoulsLabel = Label:new()
+        Main_SoulsLabel:init(Home_GUIScriptingPtr,"Souls:",0,0)
+        Main_SoulsLabel:setScale(0.9)
+        Main_SoulsLabel:setPosStr("70%","5%")
 
-    local picture = Picture:new()
-    picture:init(Home_GUIScriptingPtr,"Assets/TB_GUI/faces/Reimu_face.png",0,0,100,100)
-    picture:setPosStr("5%","5%")
-    picture:setSize(75,75)
+        Main_SoulsValLabel = RTLabel:new()
+        Main_SoulsValLabel:init(Home_GUIScriptingPtr,"?",0,0)
+        Main_SoulsValLabel:setPosStr("78%","4.5%")
+        Main_SoulsValLabel:setScale(0.9)
+        Main_SoulsValLabel:setAlignment(TextAlginment.Right)
 
-    Main_SoulsLabel = Label:new()
-    Main_SoulsLabel:init(Home_GUIScriptingPtr,"Souls:",0,0)
-    Main_SoulsLabel:setScale(0.9)
-    Main_SoulsLabel:setPosStr("70%","5%")
+        Main_MonLabel = Label:new()
+        Main_MonLabel:init(Home_GUIScriptingPtr,"Mon:",0,0)
+        Main_MonLabel:setPosStr("85%","5%")
 
-    Main_SoulsValLabel = RTLabel:new()
-    Main_SoulsValLabel:init(Home_GUIScriptingPtr,"?",0,0)
-    Main_SoulsValLabel:setPosStr("78%","4.5%")
-    Main_SoulsValLabel:setScale(0.9)
-    Main_SoulsValLabel:setAlignment(TextAlginment.Right)
+        Main_MonValLabel = Label:new()
+        Main_MonValLabel:init(Home_GUIScriptingPtr,"?",0,0)
+        Main_MonValLabel:setPosStr("93%","5%")
+        Main_MonValLabel:setAlignment(TextAlginment.Right)
 
-    Main_MonLabel = Label:new()
-    Main_MonLabel:init(Home_GUIScriptingPtr,"Mon:",0,0)
-    Main_MonLabel:setPosStr("85%","5%")
+        --- Shop Init
+        Main_ShopButton = Label:new()
+        Main_ShopButton:init(Home_GUIScriptingPtr,"Shop",0,0)
+        Main_ShopButton:setPosStr("10%","80`%")
+        Main_ShopButton:setAlignment(TextAlginment.Center)
+        Main_ShopButton:setHoverable(0,255,0,255,255,255,255,255)
+        InitShop(TGUIScriptingPtr)
 
-    Main_MonValLabel = Label:new()
-    Main_MonValLabel:init(Home_GUIScriptingPtr,"?",0,0)
-    Main_MonValLabel:setPosStr("93%","5%")
-    Main_MonValLabel:setAlignment(TextAlginment.Right)
+        Main_ShopButton:setOnClickCallback(function()
+            MenuPanels["Shop"](TGUIScriptingPtr)
+            end)
 
-    --- Shop Init
-    Main_ShopButton = Label:new()
-    Main_ShopButton:init(Home_GUIScriptingPtr,"Shop",0,0)
-    Main_ShopButton:setPosStr("10%","80`%")
-    Main_ShopButton:setAlignment(TextAlginment.Center)
-    Main_ShopButton:setHoverable(0,255,0,255,255,255,255,255)
-    InitShop(TGUIScriptingPtr)
+        --- Nexus Init
+        Main_NexusButton = Label:new()
+        Main_NexusButton:init(Home_GUIScriptingPtr,"Spirit Nexus",0,0)
+        Main_NexusButton:setPosStr("65%","15%")
+        Main_NexusButton:setAlignment(TextAlginment.Center)
+        Main_NexusButton:setHoverable(0,255,0,255,255,255,255,255)
 
-    Main_ShopButton:setOnClickCallback(function()
-        MenuPanels["Shop"](TGUIScriptingPtr)
-        end)
+        InitNexus(TGUIScriptingPtr)
+        Main_NexusButton:setOnClickCallback(function()
+            MenuPanels["Nexus"](TGUIScriptingPtr)
+            end)
 
-    --- Nexus Init
-    Main_NexusButton = Label:new()
-    Main_NexusButton:init(Home_GUIScriptingPtr,"Spirit Nexus",0,0)
-    Main_NexusButton:setPosStr("65%","15%")
-    Main_NexusButton:setAlignment(TextAlginment.Center)
-    Main_NexusButton:setHoverable(0,255,0,255,255,255,255,255)
+        --- Formation Init
+        Main_FormationButton = Label:new()
+        Main_FormationButton:init(Home_GUIScriptingPtr,"Formation",0,0)
+        Main_FormationButton:setPosStr("75%","15%")
+        Main_FormationButton:setAlignment(TextAlginment.Center)
+        Main_FormationButton:setHoverable(0,255,0,255,255,255,255,255)
+        InitFormationMenu(TGUIScriptingPtr)
+        Main_FormationButton:setOnClickCallback(function()
+            MenuPanels["Formation"](TGUIScriptingPtr)
+            end)
 
-    InitNexus(TGUIScriptingPtr)
-    Main_NexusButton:setOnClickCallback(function()
-        MenuPanels["Nexus"](TGUIScriptingPtr)
-        end)
+        --- Arena Init
+        InitArenaMenu(TGUIScriptingPtr)
 
-    --- Formation Init
-    Main_FormationButton = Label:new()
-    Main_FormationButton:init(Home_GUIScriptingPtr,"Formation",0,0)
-    Main_FormationButton:setPosStr("75%","15%")
-    Main_FormationButton:setAlignment(TextAlginment.Center)
-    Main_FormationButton:setHoverable(0,255,0,255,255,255,255,255)
-    InitFormationMenu(TGUIScriptingPtr)
-    Main_FormationButton:setOnClickCallback(function()
-        MenuPanels["Formation"](TGUIScriptingPtr)
-        end)
+        Main_ArenaButton = Label:new()
+        Main_ArenaButton:init(Home_GUIScriptingPtr,"Arena",0,0)
+        Main_ArenaButton:setPosStr("85%","80%")
+        Main_ArenaButton:setAlignment(TextAlginment.Center)
+        Main_ArenaButton:setHoverable(0,255,0,255,255,255,255,255)
 
-    --- Arena Init
-    InitArenaMenu(TGUIScriptingPtr)
+        Main_ArenaButton:setOnClickCallback(function()
+            MenuPanels["Arena"](TGUIScriptingPtr)
+            end)
+    end
 
-    Main_ArenaButton = Label:new()
-    Main_ArenaButton:init(Home_GUIScriptingPtr,"Arena",0,0)
-    Main_ArenaButton:setPosStr("85%","80%")
-    Main_ArenaButton:setAlignment(TextAlginment.Center)
-    Main_ArenaButton:setHoverable(0,255,0,255,255,255,255,255)
+    Home_SyncData(ClientScriptingPtr)
 
-    Main_ArenaButton:setOnClickCallback(function()
-        MenuPanels["Arena"](TGUIScriptingPtr)
-        end)
+end
 
-    Home_UpdateInfo()
-    Home_RequestSkillsStats()
-    Home_RequestOwnedCharacterList()
-    Home_RequestFormations()
-
+function Home_SyncData(clientScritping)
+    print("Home_SyncData")
+    TM_addTask(function()
+        Home_UpdateInfo()
+        Home_RequestSkillsStats()
+        Home_RequestOwnedCharacterList()
+        Home_RequestFormations()
+    end,
+    10)
 
     print("All done, ping is ")
-    local ping = ClientGetPing(ClientScriptingPtr)
+
+    local ping = ClientGetPing(clientScritping)
     print("ping is " .. ping)
 end
 
 function Home_UpdateInfo()
     local id,pw, guid = Home_GetInfo(3)
+    print("Home_UpdateInfo " .. id .. " " .. pw .. " " .. guid)
+
     SendRequest(PacketChannel.UserChannel, UserResponse.MainInfo, {id, pw, guid}, 5, 0.25)
     h_id = id
     h_pw = pw
@@ -360,12 +389,13 @@ end
 
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host,data, guid)
 
+    print("ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo]")
     local t_id, mon, souls, t_guid = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
     if t_id == nil or mon == nil or souls == nil or t_guid == nil then
         print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.MainInfo)")
         return
     end
-    -- print("check account " .. t_id .. " " .. mon .. " " .. souls .. " " .. t_guid)
+    print("check account " .. t_id .. " " .. mon .. " " .. souls .. " " .. t_guid)
     Main_MonValLabel:setText(mon)
     Main_SoulsValLabel:setText(Tag.color_TB_title .. souls .. " " .. Tag.icon_soul .. Tag.color_close)
 end

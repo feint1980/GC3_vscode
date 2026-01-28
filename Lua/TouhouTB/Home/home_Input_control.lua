@@ -53,6 +53,7 @@ Dispatch_Recievers["homeScene"] = function (controlHandlerHost,tguiHost,signal)
         if signal == Signal.escape then 
             _G.Formation_Edit_Instance:resetSelections()
             Formation_MainUpdate(tguiHost)
+            Home_UpdateInfo()
         end
     end
 end
