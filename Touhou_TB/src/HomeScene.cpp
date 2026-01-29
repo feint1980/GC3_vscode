@@ -186,6 +186,10 @@ void HomeScene::onExit()
     // Transfer data to other game
     InfoHolder::getInstance()->registerBattleServerIPMap(m_clientScriptingManager->getBattleServerIPMap()); // save the battle server IP maps
 
+    // InfoHolder::getInstance()->saveServerIP(m_clientScriptingManager->getServerIPAddr());
+
+    InfoHolder::getInstance()->registerClient(m_client);
+
     // unload screen (unused)
 }
 
@@ -248,7 +252,6 @@ void HomeScene::handleInput(Feintgine::InputManager & inputManager)
     {
         m_guiScriptingManager->handleInput(inputManager);
     }
-    
 
 }
 
@@ -339,12 +342,11 @@ void HomeScene::initGUI()
     
         m_clientScriptingManager->init("127.0.0.1", port,m_client, m_script);
     }
-    
     m_clientScriptingManager->setIPAddress(InfoHolder::getInstance()->getServerIP());
+    
+    
     m_clientCharacterHandler = new ClientCharacterHandler();
     m_clientCharacterHandler->init(m_script);
-
-    m_clientScriptingManager->setBattleServerIPMap(InfoHolder::getInstance()->getBattleServerIPMap()); 
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Home/homeScene.lua")))
     {
@@ -363,9 +365,6 @@ void HomeScene::initGUI()
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"ClientHandlerWrapResponse");
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"ClientHandlerBattleResponse");
 
-    isInitialized = true;
-    }
-
     lua_getglobal(m_script, "HomeSceneInit");
     if(lua_isfunction(m_script, -1))
     {
@@ -383,6 +382,32 @@ void HomeScene::initGUI()
             std::cout << "Home scene init script from C++ OK \n";
         }
     }
+
+    isInitialized = true;
+    }
+    else
+    {
+        std::cout << "reconnect attemp \n";
+        // m_clientScriptingManager->connect();
+        m_clientScriptingManager->setIPAddress(InfoHolder::getInstance()->getServerIP());
+
+        lua_getglobal(m_script, "Arena_Request_ArenaData");
+        if(lua_isfunction(m_script, -1))
+        {
+            const int argc = 0;
+            const int returnCount = 0;
+            if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+            {
+                std::cout << "Home scene init script from C++ OK \n";
+            }
+        }
+    }
+
+    
+    m_clientScriptingManager->setClientEndPoint(m_client);
+    
+    m_clientScriptingManager->setBattleServerIPMap(InfoHolder::getInstance()->getBattleServerIPMap()); 
+
 }
 
 void HomeScene::drawGUI()

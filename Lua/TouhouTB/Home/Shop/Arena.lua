@@ -167,6 +167,11 @@ end
 
 MenuPanels["Arena"] = function(host)
     ArenaPanel:showWithEffect(PanelShowType.Fade,250)
+    Arena_Request_ArenaData()
+end
+
+
+function Arena_Request_ArenaData()
     Arena_RequestBattleServerList()
     Arena_RequestLobbyList()
 end

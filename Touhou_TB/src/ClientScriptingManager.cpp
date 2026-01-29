@@ -519,8 +519,8 @@ uint32_t ClientScriptingManager::sendData(const std::string & data, uint8_t encr
 
 uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
 {
-    std::cout << "sendWrapData called\n";
-    std::cout << "send to " << m_serverIPAddr.ToString(true) << "\n";
+    // std::cout << "sendWrapData called\n";
+    // std::cout << "send to " << m_serverIPAddr.ToString(true) << "\n";
     if (data.size() < 2) // headers
     {
         std::cout << "sendWrapData failed (data size < 2)\n";
@@ -534,6 +534,9 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
     std::string payLoad(data.begin() + payLoadIndex, data.end());
     std::string tData = m_cryptor->encrypt(payLoad);
 
+    // std::cout << "payload :" << payLoad << "\n";
+    // std::cout << "encrypt :" << tData << "\n";
+
     RakNet::BitStream bsOut;
     bsOut.Write((RakNet::MessageID)ID_TH_TB);
     bsOut.Write(channel);
@@ -545,6 +548,8 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
     unsigned int bytes = bits / 8 + (bits % 8 ? 1 : 0);
     // std::cout << "sendWrapData C++ side called \n";
 
+    // std::cout << "pointer check " << m_client << "\n";
+
     // Safe send (BitStream handles memory ownership)
     return m_client->Send(
         &bsOut, 
@@ -554,6 +559,15 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
         m_serverIPAddr, 
         false
     );
+
+    // return m_client->Send(
+    //     &bsOut, 
+    //     HIGH_PRIORITY, 
+    //     RELIABLE_ORDERED, 
+    //     channel, 
+    //     RakNet::UNASSIGNED_SYSTEM_ADDRESS, 
+    //     true
+    // );
 }
 
 // Ah yes, some will say, "wHy dOn't yoU moDifY the sendWrapData WiTh first byte using input 1st byte ? "
@@ -611,6 +625,15 @@ uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
         false
     );
 
+    //     return m_client->Send(
+    //     &bsOut, 
+    //     HIGH_PRIORITY, 
+    //     RELIABLE_ORDERED, 
+    //     channel, 
+    //     RakNet::UNASSIGNED_SYSTEM_ADDRESS, 
+    //     true
+    // );
+
 }
 
 CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
@@ -621,6 +644,8 @@ CharacterStats ClientScriptingManager::parseFromStr(const std::string & str)
     
     return result;
 }
+
+
 
 void ClientScriptingManager::init(const std::string & serverIP, unsigned int port,  RakNet::RakPeerInterface * client, lua_State * script)
 {
@@ -1176,7 +1201,16 @@ void ClientScriptingManager::firstGateWay(RakNet::Packet *p)
         // printf("My external address is %s\n", m_client->GetExternalID(p->systemAddress).ToString(true));
         m_status = ClientStatus::Connected;
         m_serverIPAddr = p->systemAddress;
-        InfoHolder::getInstance()->saveServerIP(m_serverIPAddr);
+        if(m_serverIPAddr.GetPort() == 1123)
+        {
+            std::cout <<"main server detected \n"; 
+            InfoHolder::getInstance()->saveServerIP(m_serverIPAddr); // only save specific version as main server port
+        }
+        else
+        {
+            std::cout << "other server detected, not save \n";
+        }
+        
         std::cout << "server ip : " << m_serverIPAddr.ToString(true) << "\n";
 
         m_isConnected = true;
@@ -1231,7 +1265,7 @@ void ClientScriptingManager::updateV2(float deltaTime)
         handleWrappedPacketInLua(deltaTime);
         handleDefaultPacketInLua(deltaTime);
         updateScript(deltaTime);
-
+        // std::cout << "update \n";
     }
 }
 
@@ -1325,7 +1359,10 @@ void ClientScriptingManager::updateScript(float delta)
         lua_pushlightuserdata(m_script, this);
         const int argc = 1; // remember to modify this number when you change the number of arguments
         const int returnCount = 1;
-        LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0));
+        if(!LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+        {
+            std::cout << "failed to call UpdateRequests (Lua) (ClientScriptingManager) \n";
+        }
     }
     
 }
@@ -1379,6 +1416,7 @@ void ClientScriptingManager::disconnectFromCurrentBattleServer()
         {
             // m_client->CloseConnection()
             m_client->CloseConnection(*m_currentBattleServerIP, true, 0);
+            m_battleServerIPMap.erase(m_currentBattleServerGUID);
         }
     }
 }

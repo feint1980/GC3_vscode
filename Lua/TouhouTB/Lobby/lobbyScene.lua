@@ -139,11 +139,10 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
 
     Prompt_UI_Table["Back_to_Home_Noti"]:addButton("OK", function()
         -- print("daaataaaa")
-        cpp_backToHomeMenu(host)
-        -- cpp_lobby_changeScene(SceneIndex.Home)
+        -- cpp_backToHomeMenu(host)
+        cpp_lobby_changeScene(SceneIndex.Home)
     end
     )
-
 
     Prompt_UI_Table["Leave_Lobby_Noti"] = Prompt:new()
     Prompt_UI_Table["Leave_Lobby_Noti"]:init(Lobby_GUIScriptingPtr,"Leave Lobby ?",false)
@@ -153,12 +152,12 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
         
         ClientDisconnectFromCurrentBattleServer(ClientScriptingPtr)
         Prompt_UI_Table["Leave_Lobby_Noti"]:show(false)
-        -- TM_addTask(function()
-            -- print("Leave lobby")
+        TM_addTask(function()
+            print("Leave lobby")
             -- cpp_backToHomeMenu(host)
-            -- cpp_lobby_changeScene(SceneIndex.Home)
-        -- end,
-        -- 10)
+            cpp_lobby_changeScene(SceneIndex.Home)
+        end,
+        10)
     end
     )
     Prompt_UI_Table["Leave_Lobby_Noti"]:addButton("Back", function()

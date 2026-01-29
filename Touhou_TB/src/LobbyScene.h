@@ -86,6 +86,8 @@ public:
 
     void initLoading();
 
+    void backToHomeMenu();
+
 private:
 
     Feintgine::Window * m_window = nullptr;
@@ -130,5 +132,7 @@ private:
     ControlHandler * m_controlHandler = nullptr;
 
     LuaTaskManager m_luaTaskManager ;
+
+    bool isInitialized = false;
 
 };

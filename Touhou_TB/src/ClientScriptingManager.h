@@ -176,6 +176,8 @@ public:
 
     void handleDefaultPacketInLua(float deltaTime);
 
+    void setClientEndPoint(RakNet::RakPeerInterface * client) {m_client = client; }
+
     void filterPacketForLua(RakNet::Packet *p);
 
     std::string getCurrentBattleServerGUID()const{ return m_currentBattleServerGUID; }

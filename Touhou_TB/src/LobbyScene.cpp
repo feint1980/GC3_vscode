@@ -33,7 +33,12 @@ int lua_lobby_changeScene(lua_State * L)
     }
     else
     {
+        // LobbyScene * host = (LobbyScene *)lua_touserdata(L, 1);
+
         int index = lua_tonumber(L, 1);
+
+        // host->backToHomeMenu()
+        
         Feintgine::IMainGame * game =  InfoHolder::getInstance()->getGame();
 
         if(game)
@@ -88,7 +93,7 @@ LobbyScene::LobbyScene(Feintgine::Window * window)
 {
     m_alpha = 0.0f;
     m_window = window;
-    m_screenIndex = 3;
+    m_screenIndex = 2;
 
     std::cout << "Lobby Scene init \n";
     initShader();
@@ -151,7 +156,14 @@ void LobbyScene::onEntry()
 
 void LobbyScene::onExit()
 {
-    // 
+    InfoHolder::getInstance()->registerBattleServerIPMap(m_clientScriptingManager->getBattleServerIPMap()); // save the battle 
+
+    InfoHolder::getInstance()->registerClient(m_client);
+}
+
+void LobbyScene::backToHomeMenu()
+{
+    m_currentState = Feintgine::ScreenState::CHANGE_PREVIOUS;
 }
 
 void LobbyScene::update(float deltaTime)
@@ -239,6 +251,9 @@ void LobbyScene::handleInput(Feintgine::InputManager & inputManager)
 void LobbyScene::initGUI()
 {
 
+    if(!isInitialized)
+    {
+
     
     m_script = luaL_newstate();
     luaL_openlibs(m_script);
@@ -254,8 +269,11 @@ void LobbyScene::initGUI()
     InfoHolder::getInstance()->initLuaInterface(m_script);
 
     unsigned int port = 1123;
-
-    m_clientScriptingManager = new ClientScriptingManager();
+    if(!m_clientScriptingManager)
+    {
+        m_clientScriptingManager = new ClientScriptingManager();
+    }
+    
     m_client = InfoHolder::getInstance()->getClient();
     m_clientScriptingManager->init("127.0.0.1", port,m_client, m_script);
     m_clientScriptingManager->setIPAddress(InfoHolder::getInstance()->getServerIP());
@@ -296,6 +314,11 @@ void LobbyScene::initGUI()
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"LobbyHandlerWrapResponse");
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"LobbyHandlerBattleResponse");
 
+    InfoHolder::getInstance()->registerClient(m_client);
+
+    isInitialized = true;
+    }
+    
 }
 
 

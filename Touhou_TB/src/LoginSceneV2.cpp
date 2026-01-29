@@ -69,9 +69,6 @@ LoginSceneV2::LoginSceneV2(Feintgine::Window * window)
     m_screenIndex = 0;
 
     initShader();
-
-
-
 }
 
 void LoginSceneV2::initShader()
