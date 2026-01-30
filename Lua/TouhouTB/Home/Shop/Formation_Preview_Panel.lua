@@ -10,6 +10,7 @@ require "TGUI_ScrollablePanel"
 require "homeGlobal"
 require "Formation_CharInfo"
 require "Prompt"
+require "clientGlobal"
 
 ---@class FormationPreviewPanel
 FormationPreviewPanel ={
@@ -59,9 +60,19 @@ function FormationPreviewPanel:init(GUI_host,parentPanel, index)
 
     self.formationLabel = Label:new()
     self.formationLabel:init(GUI_host,"Create",0,0,self.mainPanel.ptr)
-    self.formationLabel:setPosStr("50%","45%")
+    self.formationLabel:setPosStr("50%","25%")
     self.formationLabel:setAlignment(TextAlginment.Center)
     self.formationLabel:setScale(1.)
+
+    for i = 1, 4 do 
+        print("init pic index " .. i)
+        self.characterPics[i] = Picture:new()
+        self.characterPics[i]:init(GUI_host,"Assets/TB_GUI/faces/missing.png",0,0,50,50,self.mainPanel.ptr)
+        local pos = ((i - 1) * 25) + 2.5
+        self.characterPics[i]:setPosStr( tostring(pos) .. "%","50%")
+
+        -- self.characterPics[i]:setAlignment(0.5,0.5)
+    end
 
 end
 
@@ -108,4 +119,22 @@ function FormationPreviewPanel:setInfo(t_formationCharacters)
         -- print("FormationPreviewPanel:setInfo t_formationCharacters is nil")
         return
     end
+    for k,v in pairs(self.formationCharacters) do
+        print("k " .. k )
+        print("row " .. v.row)
+        print("col " .. v.col)
+        print("index " .. v.tIndex)
+        if self.characterPics[v.tIndex] ~= nil then
+            self.characterPics[v.tIndex]:setPicturePath(Shop_CharacterTable[v.characterID].portraitPath)
+        
+        else 
+            print("self.characterPics[" .. v.tIndex .. "] is nil ")
+        end
+        print("characterID " .. v.characterID)
+    end
+
+    -- for i = 1 , #self.formationCharacters do
+    --     print("index " .. i .. self.formationCharacters[i].characterID)
+    -- end
+
 end

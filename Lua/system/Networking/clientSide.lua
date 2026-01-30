@@ -225,7 +225,7 @@ RequestQueueIndex = 0
 ---@param delayEach? number
 function SendRequest(channel, request, data, retries, delayFirst, delayEach)
 
-    print("SendRequest called")
+    -- print("SendRequest called")
     delayFirst = delayFirst or 0
     delayEach = delayEach or 0.25
     table.insert(RequestQueue, {

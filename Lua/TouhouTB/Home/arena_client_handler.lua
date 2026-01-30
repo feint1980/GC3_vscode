@@ -139,46 +139,54 @@ end
 HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet,RakNetPacket)
 
     local currentServerGUID = cppGetCurrentBattleServerGUID(host)
-
+    print("step 1")
+    print("current server guid " .. currentServerGUID)
+    local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
     if currentServerGUID == "" then 
+        print("step 2a")
         print("no current server selected(this is OK) ")
 
-        local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
         -- print("guid : " .. tGuid)
         cppSelecBattleServer(host,tGuid)
         print("accepted by battle server " .. tGuid)
-    
-        local tIP = Client_GetIP_FromPacket(RakNetPacket)
-        print("IP " .. tIP)
-        currentServerGUID = cppGetCurrentBattleServerGUID(host)
-
-        local targetLobbyID = InfoHolder_getStrVal("Target_Lobby_ID")
-        if targetLobbyID ~= "" then
-            print("got lobby " .. Target_Lobby_ID)
-            -- local tIP = cppGetCurrentBattleServerIP(host)
-
-            -- print("my id " .. MainInfo.id)
-            print("current server guid " .. currentServerGUID)
-
-
-            local tGUID = InfoHolder_getStrVal("MainInfo.guid")
-            local tID = InfoHolder_getStrVal("MainInfo.id")
-            
-
-            SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Join_Request, {tGUID, tID ,targetLobbyID },5,0.1,0.15)
-
-            -- SendReliable2BattleServer(host, tIP, currentServerGUID,   )
-            -- send request to join lobby to server
-        end
         -- end
     else
-        cppSelecBattleServer(host,tGuid) -- register to C++ side
-        print("battle server registered to C++ side")
-        if Target_Lobby_ID ~= "" then
-            print("got lobby " .. Target_Lobby_ID)
-        end
+        -- print("step 2b")
+        -- local tGUID = InfoHolder_getStrVal("MainInfo.guid")
+        -- local tID = InfoHolder_getStrVal("MainInfo.id")
+            
+        -- cppSelecBattleServer(host,tGuid) -- register to C++ side
+        -- print("accepted by battle server " .. tGuid)
+        -- print("battle server registered to C++ side")
+        -- local targetLobbyID = InfoHolder_getStrVal("Target_Lobby_ID")
+        -- if targetLobbyID ~= "" then
+        --     print("got lobby " .. targetLobbyID)
+        -- end
+        -- SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Join_Request, {tGUID, tID ,targetLobbyID },5,0.1,0.15)
     end
 
+    local tIP = Client_GetIP_FromPacket(RakNetPacket)
+    print("IP " .. tIP)
+    currentServerGUID = cppGetCurrentBattleServerGUID(host)
+
+    local targetLobbyID = InfoHolder_getStrVal("Target_Lobby_ID")
+    if targetLobbyID ~= "" then
+        print("got lobby " .. Target_Lobby_ID)
+        -- local tIP = cppGetCurrentBattleServerIP(host)
+
+        -- print("my id " .. MainInfo.id)
+        print("current server guid " .. currentServerGUID)
+
+
+        local tGUID = InfoHolder_getStrVal("MainInfo.guid")
+        local tID = InfoHolder_getStrVal("MainInfo.id")
+        
+
+        SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Join_Request, {tGUID, tID ,targetLobbyID },5,0.1,0.15)
+
+        -- SendReliable2BattleServer(host, tIP, currentServerGUID,   )
+        -- send request to join lobby to server
+    end
 end
 
 HomeMain_HandleTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet,RakNetPacket)
@@ -188,6 +196,11 @@ HomeMain_HandleTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,pack
     cppSelecBattleServer(host,"")
 
 end
+
+-- HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet,RakNetPacket)
+--     local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
+--     print("ID_CONNECTION_REQUEST_ACCEPTED from " .. tGuid)
+-- end
 
 ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoinLobby_WithBSGUID_LobbyID_Response] = function(host,data, guid)
 
@@ -212,19 +225,24 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoi
         --- Connect to battle server ( if passed, it will auto join to the lobby)
         ClientConnect2SV(host,targetBattleServer.IP,targetBattleServer.port)
 
+    Join_State = 0
+    Prompt_UI_Table["Arena_Status"]:show(false)
+
+
     elseif tResult == 2 then
-        Prompt_UI_Table["Arena_Status"]:show(false)
+        -- Prompt_UI_Table["Arena_Status"]:show(false)
         Prompt_UI_Table["Arena_Noti"]:showMsg("Invalid password !")
         Join_State = 0
     elseif tResult == 3 then
-        Prompt_UI_Table["Arena_Status"]:show(false)
+        -- Prompt_UI_Table["Arena_Status"]:show(false)
         Prompt_UI_Table["Arena_Noti"]:showMsg("Room is full !")
         Join_State = 0
     else
-        Prompt_UI_Table["Arena_Status"]:show(false)
+        -- Prompt_UI_Table["Arena_Status"]:show(false)
         Prompt_UI_Table["Arena_Noti"]:showMsg("Invalid join !")
-        Join_State = 0
+        -- Join_State = 0
     end
+        
 
     InfoHolder_setStrVal("Target_BattleServer_GUID", serverGUID)
 end

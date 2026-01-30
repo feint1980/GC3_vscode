@@ -265,6 +265,7 @@ end
 ---@param packet pointer instance of RakNetPacket
 ---@return string (GUID)
 function Client_GetGUID_FromPacket(packet)
+    print("Client_GetGUID_FromPacket called")
     return cpp_Packet_getGUID(packet)
 end
 

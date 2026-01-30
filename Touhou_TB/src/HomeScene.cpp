@@ -387,6 +387,7 @@ void HomeScene::initGUI()
     }
     else
     {
+        m_clientScriptingManager->setBattleServerIPMap(InfoHolder::getInstance()->getBattleServerIPMap());
         std::cout << "reconnect attemp \n";
         // m_clientScriptingManager->connect();
         m_clientScriptingManager->setIPAddress(InfoHolder::getInstance()->getServerIP());
@@ -403,7 +404,7 @@ void HomeScene::initGUI()
         }
     }
 
-    
+
     m_clientScriptingManager->setClientEndPoint(m_client);
     
     m_clientScriptingManager->setBattleServerIPMap(InfoHolder::getInstance()->getBattleServerIPMap()); 
@@ -416,7 +417,6 @@ void HomeScene::drawGUI()
     {
         m_guiScriptingManager->draw();
     }
-    
 }
 
 void HomeScene::drawLoading()

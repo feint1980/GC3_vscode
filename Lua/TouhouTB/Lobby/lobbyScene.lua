@@ -57,6 +57,8 @@ Lobby_OpponentReadyLabel = nil
 ---@type Label
 Lobby_ReadyButton = nil
 
+Lobby_Leave_Decision = false
+
 function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
 
     print("LobbySceneInit called")
@@ -141,6 +143,7 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
         -- print("daaataaaa")
         -- cpp_backToHomeMenu(host)
         cpp_lobby_changeScene(SceneIndex.Home)
+        Prompt_UI_Table["Back_to_Home_Noti"]:show(false)
     end
     )
 
@@ -149,13 +152,19 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     Prompt_UI_Table["Leave_Lobby_Noti"]:addButton("Leave", function()
         -- cpp_lobby_leaveLobby()
         -- Prompt_UI_Table["Leave_Lobby_Noti"]:show(false)
-        
+
+
+        -- Lobby_Leave_Decision =true
+        print("ClientDisconnectFromCurrentBattleServer !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         ClientDisconnectFromCurrentBattleServer(ClientScriptingPtr)
+
+        -- cppSelecBattleServer(ClientScriptingPtr,"")
         Prompt_UI_Table["Leave_Lobby_Noti"]:show(false)
         TM_addTask(function()
             print("Leave lobby")
             -- cpp_backToHomeMenu(host)
-            cpp_lobby_changeScene(SceneIndex.Home)
+            -- Lobby_Leave_Decision = false
+            -- cpp_lobby_changeScene(SceneIndex.Home)
         end,
         10)
     end
@@ -180,21 +189,24 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
 
     local tBattleServerGUID = InfoHolder_getStrVal("Target_BattleServer_GUID")
 
+    print("tBattleServerGUID " .. tBattleServerGUID)
+
     cppSelecBattleServer(ClientScriptingPtr,tBattleServerGUID)
     
     print("Init end ")
     TM_addTask(function()
         print("TM called")
-        Client_Lobby_SendSyncRequest()
+        -- Client_Lobby_SendSyncRequest()
         Lobby_UpdateInfo()
     end
     ,10
     )
 
-
-
     print("Task set ")
     -- TM_addTask
+end
+
+function Lobby_setup()
 
 end
 
@@ -212,14 +224,12 @@ end
 
 function Lobby_UpdateInfo()
 
-
+    Client_Lobby_SendSyncRequest()
     local id =InfoHolder_getStrVal("MainInfo.id")
     local pw = InfoHolder_getStrVal("MainInfo.pw")
     local guid = InfoHolder_getStrVal("MainInfo.guid")
     
     print("Lobby_UpdateInfo called " .. id .. " " .. pw .. " " .. guid)
-
-
 
     SendRequest(PacketChannel.UserChannel, UserResponse.MainInfo, {id, pw, guid}, 5, 0.25)
 

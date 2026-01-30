@@ -14,8 +14,9 @@ package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/s
 Lobby_HandleNetwork[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet,RakNetPacket)
 
     print("disconnected from server")
-
-    Prompt_UI_Table["Back_to_Home_Noti"]:showMsg("Disconnected from lobby !")
+    if Lobby_Leave_Decision == false then
+        Prompt_UI_Table["Back_to_Home_Noti"]:showMsg("Disconnected from lobby !")
+    end
     -- cpp_lobby_changeScene(SceneIndex.Home)
 
 end
@@ -37,11 +38,13 @@ end
 LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_SyncStatusResponse] = function(host,data,guid)
     print("Lobby_SyncStatusResponse called " .. guid)
 
-    local tGUID, id, tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+    local lobbyID, lobbyName, tGUID, id, tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
+    cppSelecBattleServer(host,guid)
+    print("lobbyID " .. lobbyID)
     print("tGUID " .. tGUID)
     print("id " .. id)
-    print("tData " .. tData)
+    -- print("tData " .. tData)
 
     local clientList, pos, err = JSON_Decode(tData)
     if clientList == nil then
@@ -55,7 +58,8 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_SyncStatusRe
 
     local myGUID = InfoHolder_getStrVal("MainInfo.guid")
     local myID = InfoHolder_getStrVal("MainInfo.id")
-
+    LobbyIDLabel:setText("ID : " .. lobbyID)
+    LobbyTitleLabel:setText(lobbyName)
     print("comparing ..." )
     print(myGUID .. "/" .. tGUID)
     print(myID .. "/" .. id)

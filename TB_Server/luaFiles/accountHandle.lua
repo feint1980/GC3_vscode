@@ -234,7 +234,7 @@ end
 ---@param guid string client guid
 MessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host ,data, ip, guid)
 
-    print("MessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host ,data, ip, guid)")
+    -- print("MessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host ,data, ip, guid)")
 
     print("request from " .. guid)
     local t_id, t_pw, t_guid = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")

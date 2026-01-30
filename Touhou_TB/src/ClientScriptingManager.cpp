@@ -162,9 +162,9 @@ int lua_SendWrapData(lua_State * L)
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string requestCmd = lua_tostring(L, 2);
 
-        std::cout << "cppSendWrapData called\n";
+        // std::cout << "cppSendWrapData called\n";
         uint32_t result = host->sendWrapData(requestCmd);
-        std::cout << "send result " << result << "\n";
+        // std::cout << "send result " << result << "\n";
         lua_pushnumber(L, result);
         return 1;
     }
@@ -254,9 +254,13 @@ int lua_SelecBattleServer(lua_State * L)
     }
     else
     {
+        std::cout << "lua_SelecBattleServer called \n";
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
+        std::cout << "lua_SelecBattleServer p2 \n";
         std::string guid = lua_tostring(L, 2);
+        std::cout << "lua_SelecBattleServer p3 \n";
         host->selectBattleServer(guid);
+        std::cout << "lua_SelecBattleServer p4 \n";
         return 0;
     }
     return 0;
@@ -272,10 +276,14 @@ int lua_GetCurrentBattleServerGUID(lua_State * L)
     }
     else
     {
+        std::cout << "lua_GetCurrentBattleServerGUID called \n";
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string guid = host->getCurrentBattleServerGUID();
         lua_pushstring(L, guid.c_str());
+
+        std::cout << "lua_GetCurrentBattleServerGUID result " << guid << "\n";
         return 1;
+
     }
     return 0;
 }
@@ -439,9 +447,11 @@ int lua_Packet_getGUID(lua_State * L)
     }
     else
     {
+        std::cout << "lua_Packet_getGUID called \n";
         RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
         std::string result = p->guid.ToString();
         lua_pushstring(L, result.c_str());
+        std::cout << "lua_Packet_getGUID result " << result << "\n";
         return 1;
     }
     return 0;
@@ -783,12 +793,13 @@ void ClientScriptingManager::selectBattleServer(const std::string & guid)
 
     m_currentBattleServerGUID = guid;
     m_currentBattleServerIP = m_battleServerIPMap[guid]; // this is intended, if guid not found, m_currentBattleServerIP will be nullptr 
-    addCryptor(guid); // add cryptor for battle server
+    
     if(m_currentBattleServerIP == nullptr)
     {
         std::cout << "Warning : no battle server for guid " << guid << " \n";
+        return;
     }
-    
+    addCryptor(guid); // add cryptor for battle server
 }
 
 uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
@@ -1415,8 +1426,15 @@ void ClientScriptingManager::disconnectFromCurrentBattleServer()
         if(m_currentBattleServerIP)
         {
             // m_client->CloseConnection()
+            std::cout << "disconnect from " << m_currentBattleServerGUID  << *m_currentBattleServerIP->ToString(true) << "\n" ;
             m_client->CloseConnection(*m_currentBattleServerIP, true, 0);
-            m_battleServerIPMap.erase(m_currentBattleServerGUID);
+            // m_battleServerIPMap.erase(m_currentBattleServerGUID);
+            // m_currentBattleServerIP = nullptr;
+            // m_currentBattleServerGUID = "";
+        }
+        else
+        {
+            std::cout << "no current battle server to disconnect \n";
         }
     }
 }

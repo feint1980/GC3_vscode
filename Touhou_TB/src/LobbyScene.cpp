@@ -158,7 +158,7 @@ void LobbyScene::onExit()
 {
     InfoHolder::getInstance()->registerBattleServerIPMap(m_clientScriptingManager->getBattleServerIPMap()); // save the battle 
 
-    InfoHolder::getInstance()->registerClient(m_client);
+    // InfoHolder::getInstance()->registerClient(m_client);
 }
 
 void LobbyScene::backToHomeMenu()
@@ -251,6 +251,7 @@ void LobbyScene::handleInput(Feintgine::InputManager & inputManager)
 void LobbyScene::initGUI()
 {
 
+std::cout << "init GUI (lobby) \n";
     if(!isInitialized)
     {
 
@@ -318,6 +319,20 @@ void LobbyScene::initGUI()
 
     isInitialized = true;
     }
+    else
+    {
+        lua_getglobal(m_script, "Lobby_UpdateInfo");
+        if(lua_isfunction(m_script, -1))
+        {
+            const int argc = 0;
+            const int returnCount = 0;
+            if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+            {
+                std::cout << "Lobby scene init script from C++ OK \n";
+            }
+        }
+    }
+    std::cout << "init GUI (lobby) end \n";
     
 }
 

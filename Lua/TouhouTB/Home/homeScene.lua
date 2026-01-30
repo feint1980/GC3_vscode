@@ -234,7 +234,7 @@ function Home_SyncData(clientScritping)
         Home_RequestOwnedCharacterList()
         Home_RequestFormations()
     end,
-    10)
+    25)
 
     print("All done, ping is ")
 
@@ -389,7 +389,7 @@ end
 
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host,data, guid)
 
-    print("ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo]")
+    -- print("ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo]")
     local t_id, mon, souls, t_guid = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
     if t_id == nil or mon == nil or souls == nil or t_guid == nil then
         print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.MainInfo)")
