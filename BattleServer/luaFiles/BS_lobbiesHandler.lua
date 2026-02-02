@@ -139,22 +139,20 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_SyncStatus] = fun
 
             -- local playerList = {}
             BS_Lobbies_Notify_ClientChanges(host,lobbyID)
-            -- for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
-            --     print("client #" .. i)
-            --     print("\tclientID " .. BattleLobby_List[lobbyID].battleClientEP_List[i].id)
-            --     print("\tclientGUID " .. BattleLobby_List[lobbyID].battleClientEP_List[i].guid)
-            --     local clientData = {}
-            --     clientData.id = BattleLobby_List[lobbyID].battleClientEP_List[i].id
-            --     clientData.guid = BattleLobby_List[lobbyID].battleClientEP_List[i].guid
-            --     clientData.index = i
-            --     playerList[clientData.guid] = clientData
-            --     -- table.insert(lobbyList,clientData)
-            -- end
-            -- for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
-            --     BS_Lobbies_Notify_ClientChanges(host,lobbyID,playerList)
-            --     -- BM_sendWrapData(host,BattleLobby_List[lobbyID].battleClientEP_List[i]:getIP(),BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattlePacketType.ID_TH_TB_BATTLE,ClientChannel.Lobby,CLobbyResponse.Lobby_SyncStatusResponse,{BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattleLobby_List[lobbyID].battleClientEP_List[i].id,JSON_Encode(playerList)})
-            -- end
+
         end
+
+        local readyCount = 0
+        for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
+            if BattleLobby_List[lobbyID].battleClientEP_List[i].readyState == true then
+                readyCount = readyCount + 1
+            end
+        end
+        if readyCount >= 2 then
+            print("Lobby " .. lobbyID .. " is ready")
+            print("Startinng the game ")
+        end
+
     else
         print("client not found")
     end

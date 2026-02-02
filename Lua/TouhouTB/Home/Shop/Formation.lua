@@ -109,7 +109,7 @@ function InitFormationMenu(host)
             -- Formation_preview_panel:setVisible(false)
         end
 
-            --- init Formation Preview
+        --- init Formation Preview
         for i = 1, 4 do
             if Formation_PreviewPanel[i] == nil then
                 Formation_PreviewPanel[i] = FormationPreviewPanel:new()

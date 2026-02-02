@@ -11,6 +11,7 @@ ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formatio
 
     if response == "close" then
         Prompt_UI_Table["New_Formation"]:show(false)
+        Home_RequestFormations()
     end
 end
 
@@ -54,10 +55,14 @@ ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formatio
         end
     end
 
+    print("formationInfo.formation iterating")
     for k,v in pairs(formationInfo.formation) do
-        Formation_Table[v.formationIndex] = Formation_Info:new()
+        -- local tFormationIndex = tonumber(v.formationIndex)
+        if Formation_Table[v.formationIndex] == nil then  
+            Formation_Table[v.formationIndex] = Formation_Info:new()
+        end
         local formationCharacterInfo = {}
-        for k2,v2 in pairs(v.subData) do
+        for k2,v2 in pairs(v.subData) do 
             formationCharacterInfo[v2.slotIndex] = Formation_CharacterInfo:new()
             formationCharacterInfo[v2.slotIndex]:init(k2, v2.slotIndex, v2.rowPos, v2.colPos)
         end
@@ -67,10 +72,17 @@ ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formatio
 
     for i = 1, 4 do
         local infoIndex = tostring( i+ (4 * (currentPage -1)))
+        -- local infoIndex = tostring( i)
         if Formation_Table[infoIndex] ~= nil then
-            Formation_PreviewPanel[i]:update(Formation_Table[infoIndex].accountID, Formation_Table[infoIndex].formationName)
-            -- if Formation_Table[infoIndex].charactersInfo ~= nil then
+            local tIndex = tonumber(infoIndex)
+
+            for k,v in pairs(Formation_Table[infoIndex].formationCharacters) do
+                print("characterID " .. v.characterID)
+            end
             Formation_PreviewPanel[i]:setInfo(Formation_Table[infoIndex].formationCharacters)
+
+            Formation_PreviewPanel[i]:update(Formation_Table[infoIndex].accountID, Formation_Table[infoIndex].formationName)
+
         else
             print("Formation_Table[" .. infoIndex .. "] is nil")
         end

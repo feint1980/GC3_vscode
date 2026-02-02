@@ -1,6 +1,5 @@
 package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;'
 
-
 -- Lobby_HandleNetwork[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet,RakNetPacket)
 
 --     local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
@@ -17,16 +16,14 @@ Lobby_HandleNetwork[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,pack
     if Lobby_Leave_Decision == false then
         Prompt_UI_Table["Back_to_Home_Noti"]:showMsg("Disconnected from lobby !")
     end
-    -- cpp_lobby_changeScene(SceneIndex.Home)
 
 end
-
 
 --- Send Sync request
 function Client_Lobby_SendSyncRequest()
 
     print("Client_Lobby_SendSyncRequest")
-    
+
     local tGUID = InfoHolder_getStrVal("MainInfo.guid")
     local tID = InfoHolder_getStrVal("MainInfo.id")
     local targetLobbyID = InfoHolder_getStrVal("Target_Lobby_ID")

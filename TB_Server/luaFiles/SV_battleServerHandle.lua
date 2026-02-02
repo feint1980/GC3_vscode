@@ -9,6 +9,7 @@ require "BSEP"
 
 
 --- MARK: PaperWork 
+
 BattleServerHandling[BattleChanel.PaperWork][PaperWorkRequest.SelfRegister] = function(host, data,ip,guid)
 
     print("self register detected")

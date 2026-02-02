@@ -62,7 +62,8 @@ function Formation_Info:init(formationID, formationName, formationIndex, formati
     self.formationID = formationID
     self.formationName = formationName
     self.formationIndex = formationIndex
-    self.formationCharacters = formationCharacters
+    self.formationCharacters = Table_DeepCopy(formationCharacters)
+    -- self.formationCharacters = formationCharacters
 
     -- print("Formation_Info:init ")
     -- for k,v in pairs(formationCharacters) do

@@ -3,6 +3,12 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "battleWrapper"
 require "BS_global"
 
+
+InternalPacketHandling[MainServerChanel.PaperWork][PaperWorkRequest.SelfRegisterAccepted] = function(host, channel, request,data,ip, guid)
+
+
+end
+
 InternalPacketHandling[MainServerChanel.PaperWork][PaperWorkRequest.SelfRegisterAccepted] = function(host, channel, request,data,ip, guid)
 
     local t_guid = string.match(data, "^|([^|]+)|$")

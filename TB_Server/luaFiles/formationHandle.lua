@@ -155,10 +155,14 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Remo
     .. Table.formation.name .. " = ? AND " 
     .. Table.formation.index .. " = ?;"
 
-    -- print("removeFormationQuery " .. removeFormationQuery)
-    -- print("bound table " .. t_id .. " " .. formationName .. " " .. formationIndex )
-
     SVI_DoQuerySTMT(host,removeFormationQuery,{t_id,formationName,formationIndex})
+
+    local removeFomrationInfoQuery = 
+    "DELETE FROM " .. Table.formation_info.tb_name .. 
+    " WHERE " .. Table.formation_info.account_id .. " = ? AND " 
+    .. Table.formation_info.formation_index  .. " = ?;"
+
+    SVI_DoQuerySTMT(host,removeFomrationInfoQuery,{t_id,formationIndex})
 
 end
 

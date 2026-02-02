@@ -17,7 +17,8 @@ MainServerChanel = {
 PaperWorkRequest = {
     SelfRegister = 1,
     SelfRegisterAccepted = 2,
-    LobbiesListUpdate = 3
+    LobbiesListUpdate = 3,
+    SelfRegisterAsk = 4,
 }
 
 ClientChannel = {

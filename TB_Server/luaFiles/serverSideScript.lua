@@ -5,7 +5,6 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "serverWrapper"
 require "SV_global"
 
-
 --- function SV_DoQuery, clear data before a query
 ---@Description: call a server to do a query
 ---@param host pointer instance of ServerScriptingManager
@@ -156,7 +155,6 @@ CommonHandle = {}
 
 MessageHandling = {}
 
-
 for k,v in pairs(PacketChannel) do
     local i = v
     MessageHandling[i] = {}
@@ -170,7 +168,6 @@ for k,v in pairs(BattleChanel) do
     local i = v
     BattleServerHandling[i] = {}
 end
-
 
 ---@Description combines packet
 ---@param type string type of packet to wrap
@@ -348,6 +345,7 @@ function Server_LoadData(host)
     --     end
     -- end
 end
+
 
 local function print_table(t)
     for k,v in pairs(t) do

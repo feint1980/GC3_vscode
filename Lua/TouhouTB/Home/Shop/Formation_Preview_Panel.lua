@@ -34,7 +34,9 @@ FormationPreviewPanel ={
 
 function FormationPreviewPanel:new(o)
     o = o or {}
+    o.characterPics = {}
     setmetatable(o, self)
+    setmetatable(o.characterPics, self)
     self.__index = self
     return o
 end
@@ -64,19 +66,33 @@ function FormationPreviewPanel:init(GUI_host,parentPanel, index)
     self.formationLabel:setAlignment(TextAlginment.Center)
     self.formationLabel:setScale(1.)
 
+    print("formation review " .. self.tIndex)
     for i = 1, 4 do 
         print("init pic index " .. i)
-        self.characterPics[i] = Picture:new()
-        self.characterPics[i]:init(GUI_host,"Assets/TB_GUI/faces/missing.png",0,0,50,50,self.mainPanel.ptr)
-        local pos = ((i - 1) * 25) + 2.5
-        self.characterPics[i]:setPosStr( tostring(pos) .. "%","50%")
+        -- local tPicture = Picture:new()
+        -- tPicture = Picture:new()
+        -- tPicture:init(GUI_host,"Assets/TB_GUI/faces/missing.png",0,0,50,50,self.mainPanel.ptr)
+        -- -- tPicture:setTexture("Assets/TB_GUI/faces/Reimu_face.png")
+        -- local pos = ((i - 1) * 25) + 2.5
+        -- tPicture:setPosStr( tostring(pos) .. "%","50%")
+        -- table.insert(self.characterPics,tPicture)
 
-        -- self.characterPics[i]:setAlignment(0.5,0.5)
+        local tIndex = tostring(i)
+
+        if self.characterPics[tIndex] == nil then 
+            self.characterPics[tIndex] = Picture:new()
+            self.characterPics[tIndex]:init(GUI_host,"Assets/TB_GUI/faces/missing.png",0,0,50,50,self.mainPanel.ptr)
+            -- tPicture:setTexture("Assets/TB_GUI/faces/Reimu_face.png")
+            local pos = ((i - 1) * 25) + 2.5
+            self.characterPics[tIndex]:setPosStr( tostring(pos) .. "%","50%")
+        end
+
     end
 
 end
 
 function FormationPreviewPanel:createNewFormation(GUI_host, characterIDTable)
+
 end
 
 function FormationPreviewPanel:update(accountID, formationName)
@@ -110,31 +126,17 @@ function FormationPreviewPanel:reset()
     self.formationName = ""
     self.formationLabel:setText("Create")
     self.isEmpty = true
+    for i = 1, 4 do
+        self.characterPics[tostring(i)]:setTexture("Assets/TB_GUI/faces/missing.png")
+    end
 end
 
 function FormationPreviewPanel:setInfo(t_formationCharacters)
-    self.formationCharacters = t_formationCharacters
 
-    if self.formationCharacters == nil then
-        -- print("FormationPreviewPanel:setInfo t_formationCharacters is nil")
-        return
-    end
+    self.formationCharacters = Table_DeepCopy(t_formationCharacters)
+
     for k,v in pairs(self.formationCharacters) do
-        print("k " .. k )
-        print("row " .. v.row)
-        print("col " .. v.col)
-        print("index " .. v.tIndex)
-        if self.characterPics[v.tIndex] ~= nil then
-            self.characterPics[v.tIndex]:setPicturePath(Shop_CharacterTable[v.characterID].portraitPath)
-        
-        else 
-            print("self.characterPics[" .. v.tIndex .. "] is nil ")
-        end
-        print("characterID " .. v.characterID)
+        self.characterPics[v.tIndex]:setTexture(Owned_CharacterTable[v.characterID].portraitPath)
     end
-
-    -- for i = 1 , #self.formationCharacters do
-    --     print("index " .. i .. self.formationCharacters[i].characterID)
-    -- end
 
 end

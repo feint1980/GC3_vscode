@@ -141,9 +141,6 @@ for k , v in pairs(ClientChannel) do
     ClientPacketHandling[v] = {}
 end
 
-
--- InternalPacketHandling[MainServerChanel.PaperWork] = {}
-
 require "battlePaperWork"
 require "BS_lobbiesHandler"
 function BattleMain_HandleInternal(host, channel, request,data,ip, guid)
