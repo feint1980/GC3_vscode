@@ -10,6 +10,8 @@ require "clientSide"
 require "clientWrapper"
 require "clientGlobal"
 require "lobby_global"
+
+require "lobbyFormationSelector"
 require "Prompt"
 
 
@@ -59,6 +61,8 @@ Lobby_ReadyButton = nil
 
 Lobby_Leave_Decision = false
 
+Formation_Selector = nil
+
 function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
 
     print("LobbySceneInit called")
@@ -79,7 +83,7 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     LobbyTitleLabel:init(Lobby_GUIScriptingPtr,"",0,0)
     LobbyTitleLabel:setText(InfoHolder_getStrVal("LobbyName"))
     LobbyTitleLabel:setPosStr("50%", "15%")
-    
+
     local id,pw,guid = cpp_lobby_getInfo(3)
 
     print("id " .. id)
@@ -106,14 +110,14 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     Lobby_Picture:setSize(75,75)
 
     Lobby_OpponentPicture = Picture:new()
-    Lobby_OpponentPicture:init(Lobby_GUIScriptingPtr,"Assets/TB_GUI/faces/missing.png",0,0,100,100)
+    Lobby_OpponentPicture:init(Lobby_GUIScriptingPtr,"Assets/TB_GUI/faces/nothing.png",0,0,100,100)
     Lobby_OpponentPicture:setPosStr("70%","24%")
     Lobby_OpponentPicture:setSize(75,75)
 
     Lobby_ReadyButton = RTLabel:new()
     Lobby_ReadyButton:init(Lobby_GUIScriptingPtr,"Ready",0,0)
     Lobby_ReadyButton:setAlignment(TextAlginment.Center)
-    Lobby_ReadyButton:setPosStr("30%", "70%")
+    Lobby_ReadyButton:setPosStr("25%", "70%")
     Lobby_ReadyButton:setText("Ready")
     Lobby_ReadyButton:setScale(.8)
     Lobby_ReadyButton:setHoverable(0,255,0,255,255,255,255,255)
@@ -186,18 +190,27 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
         end
     )
 
-
     local tBattleServerGUID = InfoHolder_getStrVal("Target_BattleServer_GUID")
+
+    if Formation_Selector == nil then
+        Formation_Selector = Lobby_Formation_Selector:new()
+    end
+
+    Formation_Selector:init(host,TGUIScriptingPtr,ClientScriptingPtr,nil,1)
+    -- Formation_Selector:setVisible(false)
 
     print("tBattleServerGUID " .. tBattleServerGUID)
 
     cppSelecBattleServer(ClientScriptingPtr,tBattleServerGUID)
-    
+
+
     print("Init end ")
     TM_addTask(function()
         print("TM called")
         -- Client_Lobby_SendSyncRequest()
+        -- Formation_Selector:setVisible(false)
         Lobby_UpdateInfo()
+        Client_Lobby_Request_Formations()
     end
     ,10
     )
@@ -218,20 +231,15 @@ function LobbyScene_ToggleReady()
     -- LobbyScene_ReadyStateUpdate()
 end
 
-function LobbyScene_LeaveLobby()
-    
-end
-
 function Lobby_UpdateInfo()
-
     Client_Lobby_SendSyncRequest()
-    local id =InfoHolder_getStrVal("MainInfo.id")
-    local pw = InfoHolder_getStrVal("MainInfo.pw")
-    local guid = InfoHolder_getStrVal("MainInfo.guid")
-    
-    print("Lobby_UpdateInfo called " .. id .. " " .. pw .. " " .. guid)
+    -- local id =InfoHolder_getStrVal("MainInfo.id")
+    -- local pw = InfoHolder_getStrVal("MainInfo.pw")
+    -- local guid = InfoHolder_getStrVal("MainInfo.guid")
 
-    SendRequest(PacketChannel.UserChannel, UserResponse.MainInfo, {id, pw, guid}, 5, 0.25)
+    -- print("Lobby_UpdateInfo called " .. id .. " " .. pw .. " " .. guid)
+
+    -- SendRequest(PacketChannel.UserChannel, UserResponse.MainInfo, {id, pw, guid}, 5, 0.25)
 
 end
 
@@ -257,7 +265,7 @@ function LobbyScene_ChangeHandleSync(clientList)
     local picX = 20
     local picY = 24
 
-    local readyButtonX = 30
+    local readyButtonX = 25
     local readyButtonY = 70
 
     local readyLabelX = 33
@@ -305,7 +313,7 @@ function LobbyScene_ChangeHandleSync(clientList)
     if next(tClientList) == nil then
         print("tClientList is empty")
 
-        Lobby_OpponentPicture:setTexture("Assets/TB_GUI/faces/missing.png")
+        Lobby_OpponentPicture:setTexture("Assets/TB_GUI/faces/nothing.png")
         Lobby_OpponentReadyLabel:setText("")
         LobbyOpponentID:setText("")
         return
@@ -329,10 +337,17 @@ function LobbyScene_ChangeHandleSync(clientList)
             -- Lobby_OpponentReadyLabel:setColor(255,0,0,255)
         end
     end
+    if Formation_Selector ~= nil then
+        Formation_Selector:setIndex(tonumber(myInfo.index))
+        -- Formation_Selector:setVisible(true)
+    else
+    
+
+    end
+    
 end
 
 require "lobby_Input_control"
-
 
 
 function Lobby_RecieveData(host,msg, ip, pID, RakNetPacket)

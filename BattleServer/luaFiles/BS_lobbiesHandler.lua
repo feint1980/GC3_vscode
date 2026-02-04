@@ -32,6 +32,7 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
 
     BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID,combineData}) -- Send to the client request the lobby 
     BattleLobby_Notify_LobbiesStates(host)
+    BS_Lobbies_Notify_ClientChanges(host,lobbyID)
     -- add lobby to list
 end
 
@@ -156,5 +157,15 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_SyncStatus] = fun
     else
         print("client not found")
     end
+
+end
+
+
+ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Request_Formations] = function(host, channel, request,data,ip, guid)
+
+    local tGUID, tID = string.match(data, "^|([^|]+)|([^|]+)|$")
+    print("request formations detected from " .. tGUID .. " " .. tID)
+
+    
 
 end

@@ -203,7 +203,7 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
         print("invalid user,  warning, craft packet found from ip " .. SV_GetIPString(ip))
         return
     else
-        print("id OK : " .. t_id .. "/" .. CH_FindClient(t_guid).name) 
+        -- print("id OK : " .. t_id .. "/" .. CH_FindClient(t_guid).name) 
     end
 
 

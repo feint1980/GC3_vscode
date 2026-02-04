@@ -98,5 +98,10 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Dat
 end
 
 
+ClientMessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_End] = function(host,data, guid)
+    print("update the owned character list !!!!!!!!!!!!!!!!!!!!!!!!")
+    NexusCharacterTab:updateCharacters()
+end
+
 
 

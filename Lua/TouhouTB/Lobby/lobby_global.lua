@@ -2,6 +2,10 @@ package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../
 require "clientWrapper"
 require "clientGlobal"
 
+
+LobbyMenuPanels = {}
+
+
 Lobby_HandleNetwork = {}
 
 LobbyMessageHandling = {}
@@ -40,3 +44,5 @@ function LobbyHandlerBattleResponse(host,chanel,request, data,guid)
 end
 
 require "lobby_client_network"
+
+

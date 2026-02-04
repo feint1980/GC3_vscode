@@ -34,6 +34,7 @@ LobbyResponse = {
     Lobby_Create_Request = 1,
     Lobby_Create_Response = 2,
     Lobby_Join_Request_WL = 3, --- add whitelist
+
 }
 
 CLobbyResponse = {
@@ -41,6 +42,8 @@ CLobbyResponse = {
     Lobby_Join_Response = 2,
     Lobby_SyncStatus = 3,
     Lobby_SyncStatusResponse = 4,
+    Lobby_Request_Formations = 5,
+    Lobby_Response_Formations = 6,
 }
 
 ---@description handle incoming connection

@@ -118,14 +118,14 @@ function TGUI_ListView_Create(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tColl
         print("(TGUI_ListView_Create)collum names and collum sizes must have same length")
         return nil
     end
-    print("TGUI_ListView_Create called")
-    print("table check")
-    for k,v in pairs(tCollumNames) do
-        print(k,v)
-    end
-    for k,v in pairs(tCollumsSizes) do
-        print(k,v)
-    end
+    -- print("TGUI_ListView_Create called")
+    -- print("table check")
+    -- for k,v in pairs(tCollumNames) do
+    --     print(k,v)
+    -- end
+    -- for k,v in pairs(tCollumsSizes) do
+    --     print(k,v)
+    -- end
     return cpp_ListView_Create(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tCollumsSizes,parent)
 end
 

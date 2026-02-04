@@ -32,6 +32,15 @@ function Client_Lobby_SendSyncRequest()
     SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_SyncStatus, {tGUID, tID ,targetLobbyID,readyState },5,0.1,0.15)
 end
 
+function Client_Lobby_Request_Formations()
+    local tGUID = InfoHolder_getStrVal("MainInfo.guid")
+    local tID = InfoHolder_getStrVal("MainInfo.id")
+
+    SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Request_Formations, {tGUID, tID },5,0.1,0.15)
+
+end
+
+
 LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_SyncStatusResponse] = function(host,data,guid)
     print("Lobby_SyncStatusResponse called " .. guid)
 
@@ -70,6 +79,10 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_SyncStatusRe
     print("index " .. index)
 
     LobbyScene_ChangeHandleSync(clientList)
+    if Formation_Selector ~= nil then
+        Formation_Selector:setIndex(tonumber(index))
+        Formation_Selector:setVisible(true)
+    end
 
 end
 

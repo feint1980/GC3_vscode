@@ -102,6 +102,8 @@ CLobbyResponse = {
     Lobby_Join_Response = 2,
     Lobby_SyncStatus = 3,
     Lobby_SyncStatusResponse = 4,
+    Lobby_Request_Formations = 5,
+    Lobby_Response_Formations = 6,
 }
 
 BattleInfoResponse = {

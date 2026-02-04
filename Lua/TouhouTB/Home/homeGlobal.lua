@@ -3,6 +3,8 @@ require "clientGlobal"
 
 --- Arena Server
 
+MenuPanels = {}
+
 Arena_Ping_List = {
 
 }

@@ -89,7 +89,7 @@ end
 ---@Description set the texture of the picture
 ---@param path string path
 function Picture:setTexture(path)
-    print("set texture " .. path)
+    -- print("set texture " .. path)
     TGUI_Picture_SetTexture(self.ptr, path)
     self.path = path
 end

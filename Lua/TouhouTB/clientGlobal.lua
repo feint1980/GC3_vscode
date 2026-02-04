@@ -7,8 +7,6 @@ SceneIndex = {
     Lobby = 3
 }
 
-MenuPanels = {}
-
 MenuMainPanels = {}
 
 ---@class S_Characters_Info

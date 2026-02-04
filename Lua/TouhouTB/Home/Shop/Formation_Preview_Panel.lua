@@ -81,7 +81,7 @@ function FormationPreviewPanel:init(GUI_host,parentPanel, index)
 
         if self.characterPics[tIndex] == nil then 
             self.characterPics[tIndex] = Picture:new()
-            self.characterPics[tIndex]:init(GUI_host,"Assets/TB_GUI/faces/missing.png",0,0,50,50,self.mainPanel.ptr)
+            self.characterPics[tIndex]:init(GUI_host,"Assets/TB_GUI/faces/nothing.png",0,0,50,50,self.mainPanel.ptr)
             -- tPicture:setTexture("Assets/TB_GUI/faces/Reimu_face.png")
             local pos = ((i - 1) * 25) + 2.5
             self.characterPics[tIndex]:setPosStr( tostring(pos) .. "%","50%")
@@ -127,7 +127,7 @@ function FormationPreviewPanel:reset()
     self.formationLabel:setText("Create")
     self.isEmpty = true
     for i = 1, 4 do
-        self.characterPics[tostring(i)]:setTexture("Assets/TB_GUI/faces/missing.png")
+        self.characterPics[tostring(i)]:setTexture("Assets/TB_GUI/faces/nothing.png")
     end
 end
 
