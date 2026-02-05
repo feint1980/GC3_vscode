@@ -4,7 +4,6 @@ package.path = package.path .. ";../../Lua/include/?.lua"
 
 local json = require ("dkjson")
 
-
 ------------------ Main info section
 
 -- Replicate enum from C++
@@ -76,7 +75,9 @@ BattleChanel = {
     PaperWork = 1,
     ClientRequest = 2,
     Combat = 3,
-    Lobby = 4
+    Lobby = 4,
+    ClientData = 5,
+
 }
 
 PaperWorkRequest = {
@@ -92,7 +93,10 @@ LobbyResponse = {
     Lobby_Join_Request_WL = 3, --- add whitelist
 }
 
-
+ClientDataResponse = {
+    ClientData_Request_Fomration = 1,
+    ClientData_Response_Fomration = 2,
+}
 --- Classes declare
 ---@class pointer
 

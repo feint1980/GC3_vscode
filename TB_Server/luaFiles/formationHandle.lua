@@ -53,7 +53,7 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
 
         SVI_DoQuerySTMT(host,formationDataQuery,{t_accountID,t_index})
         local FormationDataQueryResult = Table_DeepCopy(Query_val)
-  
+
         for j = 1, #FormationDataQueryResult, 4 do
             --1 (j) formation id
             --2 (j+1) character id

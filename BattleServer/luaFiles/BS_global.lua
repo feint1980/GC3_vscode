@@ -14,6 +14,8 @@ InternalPacketHandling = {}
 
 ClientPacketHandling = {}
 
+---@type table of BattleFormation
+ClientFormations = {}
 
 MainInfo = {
     guid = ""
@@ -31,3 +33,4 @@ BattleLobbyState = {
 
 BattleLobby_List = {}
 BattleClientEP_List = {}
+

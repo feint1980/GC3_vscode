@@ -5,6 +5,7 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "battleWrapper"
 require "BS_global"
 require "BS_handle_clients"
+require "BS_formation"
 --- MARK:Main server
 
 InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Request] = function(host, channel, request,data,ip, guid)
@@ -33,6 +34,7 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
     BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID,combineData}) -- Send to the client request the lobby 
     BattleLobby_Notify_LobbiesStates(host)
     BS_Lobbies_Notify_ClientChanges(host,lobbyID)
+    Request_Formation_From_MainServer(host, tTargetGUID, targetID)
     -- add lobby to list
 end
 
@@ -45,6 +47,8 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Join_Request_
     -- BM_removeFromWhitelist_ByGUID(tTargetGUID)
 
     BM_addToWhitelist(tTargetGUID,targetID)
+
+    
 end
 
 --- MARK:Client 
@@ -82,6 +86,8 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
     -- end
 
     BattleLobby_Notify_LobbiesStates(host)
+    Request_Formation_From_MainServer(host, clientGUID, clientID)
+
 
 end
 
@@ -166,6 +172,72 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Request_Formation
     local tGUID, tID = string.match(data, "^|([^|]+)|([^|]+)|$")
     print("request formations detected from " .. tGUID .. " " .. tID)
 
+end
+
+
+-- function Request
+
+
+--MARK: Client Data
+
+--- Send request for formations based on user GUID and ID
+function Request_Formation_From_MainServer(host, userGUID,userID)
+
+    BM_sendWrapData(host, BM_getMainServerIP(host), BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL,MainServerChanel.ClientData , ClientDataResponse.ClientData_Request_Fomration, {userGUID,userID})
     
+end
+
+
+InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_Fomration] = function(host, channel, request,data,ip, guid)
+
+    print(" response formations detected")
+    local tGUID, tID, tFormation = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+
+    print ("tGUID " .. tGUID)
+    print("tID " .. tID)
+    print("tFormation " .. tFormation)
+
+    local tFormationList, pos , err = JSON_Decode(tFormation)
+    if err then
+        print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_Fomration)  JSON decode error:", err)
+    end
+    if tFormationList == nil then
+        print("user " .. tGUID .. " id " .. tID .. " has no formations")
+        -- todo send the client a message that the user has no formations
+    end
+
+    -- ClientFormations[tGUID] = {}--- restart list
+    if ClientFormations[tGUID] ~= nil then
+        for k,v in pairs(ClientFormations[tGUID]) do
+            ClientFormations[tGUID][k] = nil
+        end
+    end
+    ClientFormations[tGUID] = {}
+
+    ---@diagnostic disable-next-line: param-type-mismatch
+    for k,v in pairs(tFormationList) do
+        ClientFormations[tGUID][k] = BattleFormation:new()  
+        ClientFormations[tGUID][k]:init(tonumber(k), v.name)
+        local count = #v.formationData
+        print("formation data ")
+        for i = 1, count do
+            print("data " .. i )
+            local tSlotIndex = v.formationData[i].slot_index
+            local tCharacterID = v.formationData[i].character_id
+            local tRowPos = v.formationData[i].row_pos
+            local tColPos = v.formationData[i].col_pos
+            print("slot_index " .. v.formationData[i].slot_index)
+            print("character_id " .. v.formationData[i].character_id)
+            print("col_pos" .. v.formationData[i].col_pos)
+            print("row_pos" .. v.formationData[i].row_pos)
+
+            local tCharacter = CharacterInFormation:new()
+            tCharacter:init(tCharacterID, tSlotIndex, tRowPos, tColPos)
+            ClientFormations[tGUID][k]:addCharacter(tCharacter)
+
+            -- ClientFormations[tGUID][k]:addCharacter(v.formationData[i].slot_index, v.formationData[i].character_id, v.formationData[i].row_pos, v.formationData[i].col_pos)
+        end
+        print("formation " .. k .. " has " .. #ClientFormations[tGUID][k].characters .. " characters")
+    end
 
 end

@@ -121,3 +121,68 @@ BattleServerHandling[BattleChanel.Lobby][PaperWorkRequest.LobbiesListUpdate] = f
     end
 
 end
+
+
+---MARK: Client Data 
+BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Request_Fomration] = function(host, data,ip,guid)
+
+    print("ClientDataResponse.ClientData_Request_Fomration request from " .. guid )
+
+    local targetGUID, targetID = string.match(data, "^|([^|]+)|([^|]+)|$")
+    
+    print ("targetGUID " .. targetGUID)
+    print ("targetID " .. targetID)
+
+    local targetClient = CH_FindClient(targetGUID)
+    if targetClient == nil then
+        print("invalid user,  warning, craft packet found from ip " .. SV_GetIPString(ip))
+        return
+    end
+
+    if targetClient.name ~= targetID then
+        print("mismatch client session (ClientDataResponse.ClientData_Request_Fomration)") 
+        return
+    end
+
+    local queriedFormations = {}
+
+    local getFormationQuery = "SELECT " .. Table.formation.index .. "," .. Table.formation.name .. " FROM " .. Table.formation.tb_name .. " WHERE " .. Table.formation.account_id .. " = ?;"
+
+    SVI_DoQuerySTMT(host,getFormationQuery,{targetID})
+
+    local formationQueryResult = Table_DeepCopy(Query_val)
+
+    for i=1,#formationQueryResult,2 do
+        print(" index " .. formationQueryResult[i])
+        local index = formationQueryResult[i]
+        print(" name " .. formationQueryResult[i+1])
+        local name = formationQueryResult[i+1]
+
+        queriedFormations[index] = {}
+        queriedFormations[index].name = name
+
+        local formationDataQuery = "SELECT " .. Table.formation_info.character_id .. "," .. Table.formation_info.slot_index .. "," .. Table.formation_info.row_pos .. "," .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.account_id .. " = ? AND " .. Table.formation_info.formation_index .. " = ?;"
+
+        SVI_DoQuerySTMT(host,formationDataQuery,{targetID,index})
+        local formationDataQueryResult = Table_DeepCopy(Query_val)
+
+        queriedFormations[index].formationData = {}
+        -- local formationInfoIndex = 1
+        for j=1,#formationDataQueryResult,4 do
+            local tFormationData = {}
+            tFormationData.character_id = formationDataQueryResult[j]
+            tFormationData.slot_index = formationDataQueryResult[j+1]
+            tFormationData.row_pos = formationDataQueryResult[j+2]
+            tFormationData.col_pos = formationDataQueryResult[j+3]
+            -- queriedFormations[index].formationData[ formationDataQueryResult[j+1]] = tFormationData
+
+            table.insert(queriedFormations[index].formationData,tFormationData)
+        end
+    end
+
+    local tData = JSON_Encode(queriedFormations,true)
+
+    SV_SendWrapMsg2BattleServer(host, ip,guid, BattleChanel.ClientData,ClientDataResponse.ClientData_Response_Fomration,{targetGUID, targetID, tData})
+
+
+end
