@@ -172,10 +172,40 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Request_Formation
     local tGUID, tID = string.match(data, "^|([^|]+)|([^|]+)|$")
     print("request formations detected from " .. tGUID .. " " .. tID)
 
+    if BattleClientEP_List[tGUID] == nil then 
+        print("client not registered yet")
+        return 
+    end
+    if BattleClientEP_List[tGUID].id == tID then 
+        print("client matched")
+        if ClientFormations[tGUID] == nil then
+            print("This client has no formations yet")
+            -- todo send the signal that show on client UI
+        end
+        print("data check")
+        for k,v in pairs(ClientFormations[tGUID]) do
+            print("k " .. k)
+            print("formation name " .. v.name)
+            print("index " .. v.index)
+            for i = 1, #v.characters do
+                print("character " .. i)
+                -- print("character id " .. v.characters[i].id)
+                -- print("character slot index " .. v.characters[i].slotIndex)
+                -- print("character row pos " .. v.characters[i].rowPos)
+                -- print("character col pos " .. v.characters[i].colPos)
+            end
+        end
+    end
+
+    local tData = JSON_Encode(ClientFormations[tGUID],true)
+
+    print("data check " .. tData)
+
+    BM_sendWrapData(host, ip, guid,BattlePacketType.ID_TH_TB_BATTLE, ClientChannel.Lobby, CLobbyResponse.Lobby_Response_Formations,{tGUID,tID,tData} )
 end
 
-
 -- function Request
+
 
 
 --MARK: Client Data
@@ -235,7 +265,6 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
             tCharacter:init(tCharacterID, tSlotIndex, tRowPos, tColPos)
             ClientFormations[tGUID][k]:addCharacter(tCharacter)
 
-            -- ClientFormations[tGUID][k]:addCharacter(v.formationData[i].slot_index, v.formationData[i].character_id, v.formationData[i].row_pos, v.formationData[i].col_pos)
         end
         print("formation " .. k .. " has " .. #ClientFormations[tGUID][k].characters .. " characters")
     end

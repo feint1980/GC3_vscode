@@ -86,3 +86,34 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_SyncStatusRe
 
 end
 
+LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_Formations] = function(host,data,guid)
+
+    print("Formation response")
+
+    local tGUID, tID, tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+
+    -- let just skip guid check 
+
+    local formations, pos, err = JSON_Decode(tData)
+    if formations == nil then
+        print("Ke3 F3i117 exception (PacketChannel.Lobby][LobbyResponse.Lobby_Response_Formations) JSON decode error:", err)
+        return
+    end
+
+    table.sort(formations)
+
+    --- Reset the formation UI
+    for k, v in pairs(formations) do 
+        print("k " .. k )
+        print("formation name " .. v.name)
+        print("index " .. v.index)
+        for i = 1, #v.characters do
+            print("character " .. i)
+            print("character id " .. v.characters[i].id)
+            print("character slot index " .. v.characters[i].slotIndex)
+            print("character row pos " .. v.characters[i].rowPos)
+            print("character col pos " .. v.characters[i].colPos)
+        end
+    end
+
+end
