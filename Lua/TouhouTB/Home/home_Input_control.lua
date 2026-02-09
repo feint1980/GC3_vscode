@@ -3,7 +3,7 @@ package.path = package.path .. ';../../Lua/system/Input/?.lua;'
 require "controlHandler"
 
 local function issueFocus(controlHost, tguiHost)
-    local label =  cpp_FocusStack_GetFocusLabel(tguiHost)
+    local label = cpp_FocusStack_GetFocusLabel(tguiHost)
     if label == nil then
         print("label is nil")
         return

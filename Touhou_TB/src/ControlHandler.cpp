@@ -109,6 +109,7 @@ void ControlHandler::sendEvent(const SDL_Event & evnt)
 
 ControlHandler::~ControlHandler()
 {
+    
 }
 
 void ControlHandler::init(lua_State * script,SDL_Window * window, TGUIScriptingManager * tgui)

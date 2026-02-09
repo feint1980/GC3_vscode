@@ -2,15 +2,22 @@ package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../
 require "clientWrapper"
 require "clientGlobal"
 
-
 LobbyMenuPanels = {}
-
 
 Lobby_HandleNetwork = {}
 
 LobbyMessageHandling = {}
 
 LobbyBattleHandling = {}
+
+
+Lobby_Formations_Info = {}
+Lobby_Formation_Display = {}
+Lobby_Fomration_CurrentPage = 1
+Lobby_Fomration_MaxPage = 1
+
+Lobby_Formation_FilterEdit = nil
+
 
 for k,v in pairs(PacketChannel) do
     -- print(k,v)

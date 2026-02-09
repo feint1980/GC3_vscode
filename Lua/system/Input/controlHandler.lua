@@ -87,6 +87,11 @@ end
 
 function ControlHandler_DispatchSignal(host,tguiHost,signal)
     -- print("Get signal " .. signal)
+    if tguiHost == nil then
+        print("ControlHandler_DispatchSignal tguiHost is nil")
+        return
+    end
+
     for k,v in pairs(Dispatch_Recievers) do
         if v ~= nil then
             v(host,tguiHost,signal)
@@ -228,7 +233,9 @@ function ControlHandler_AddFocusableWidget(host,widget,parent)
     -- end
 
     --- new implement 
+    -- print("ControlHandler_AddFocusableWidget called")
     cpp_FocusStack_AddFocusableLabel(host,widget,parent)
+    -- print("ControlHandler_AddFocusableWidget end")
 end
 
 function ControlHandler_RemoveFocusableWidget(widget,parent)

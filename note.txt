@@ -20,8 +20,6 @@
     
     
 % Touhou TB 
-    x server account handle login with encrypt/decrypt done, 
-    x fight basic SQL injection
-    x basica communicate done
-    
+    - only need to note what is current doing 
+    !    Formation in 
 

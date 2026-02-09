@@ -54,7 +54,7 @@ class FocusPanel
 
 
     std::set<tgui::Label::Ptr *> m_labelSet;
-    std::vector<tgui::Label::Ptr *> m_labels;
+    std::vector<tgui::Label::Ptr *> m_labels = std::vector<tgui::Label::Ptr *>();
     int m_currentLabelIndex = 0;
 
 };

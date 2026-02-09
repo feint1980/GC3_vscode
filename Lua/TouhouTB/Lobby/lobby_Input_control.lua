@@ -3,14 +3,13 @@ package.path = package.path .. ';../../Lua/system/Input/?.lua;'
 require "controlHandler"
 
 local function issueFocus(controlHost, tguiHost)
-    local label =  cpp_FocusStack_GetFocusLabel(tguiHost)
+    -- print("issueFocus called")
+    local label = cpp_FocusStack_GetFocusLabel(tguiHost)
     if label == nil then
         print("label is nil")
         return
     end
-    local txt = TGUI_Label_GetText(label)
-    -- print("txt: " .. txt)
-
+    -- print("label is not nil")
     local tX, tY = TGUI_Label_GetPos(label)
     ControlHandler_setCursorPos(controlHost,tX,tY)
 end

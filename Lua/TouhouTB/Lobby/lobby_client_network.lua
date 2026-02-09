@@ -100,10 +100,14 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_For
         return
     end
 
-    table.sort(formations)
+    -- re write formation 
+    Lobby_Formations_Info = {}
+    Lobby_Formations_Info = Table_DeepCopy(formations)
+
+    table.sort(Lobby_Formations_Info)
 
     --- Reset the formation UI
-    for k, v in pairs(formations) do 
+    for k, v in pairs(Lobby_Formations_Info) do 
         print("k " .. k )
         print("formation name " .. v.name)
         print("index " .. v.index)

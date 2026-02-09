@@ -2627,10 +2627,19 @@ int lua_FocusStack_GetFocusLabel(lua_State * L)
 
         // std::cout << "host is "
 
-        tgui::Label::Ptr * label = host->getCurrentFocusLabel();
-
-        lua_pushlightuserdata(L, label);
-        return 1;
+        if(host->getCurrentFocusLabel())
+        {
+            tgui::Label::Ptr * label = host->getCurrentFocusLabel();
+            lua_pushlightuserdata(L, label);
+            return 1;
+        }
+        else
+        {
+            std::cout << "lua_FocusStack_GetFocusLabel return null  \n";
+            // lua_pushlightuserdata(L,nullptr);
+            return 0;
+        }
+        
     }
     return 0;
 }
@@ -2647,7 +2656,6 @@ int lua_FocusStack_AddFocusableLabel(lua_State * L)
         TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
         tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 2));
         tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 3));
-
         if(!label)
         {
             return -1;
@@ -2656,6 +2664,8 @@ int lua_FocusStack_AddFocusableLabel(lua_State * L)
         {
             // std::cout << "baseless widget found \n";
             host->addBaselessLabel(label);
+            std::cout << "||||||| Paneless added ||||||| \n";
+            std::cout << label->get()->getText() << "\n";
             return 0;
         }
         else
@@ -2664,7 +2674,9 @@ int lua_FocusStack_AddFocusableLabel(lua_State * L)
             // std::cout << "paneled widget found \n";
             // std::cout << "panel " << panel << "\n";
             // host->addFocusPanel(panel);
+            std::cout << "||||||| Paneled added ||||||| \n";
             host->addFocusableLabel(label,panel);
+            std::cout << label->get()->getText() << "\n";
             return 0;
         }
 
@@ -2710,14 +2722,16 @@ tgui::Label::Ptr TGUIScriptingManager::createLabel(const std::string & text,floa
 void TGUIScriptingManager::changeFocusLabelIndex(int index)
 {
     // first set 
+    // std::cout << "first set \n";
     if(m_focusStack.size() > 0 )
     {
         m_focusState = FOCUS_STATE_PANEL;
     }
-    else
+    else 
     {
         m_focusState = FOCUS_STATE_BASE;
     }
+    // std::cout << "second set \n";
 
     if(m_previousFocusState != m_focusState)
     {
@@ -2733,12 +2747,25 @@ void TGUIScriptingManager::changeFocusLabelIndex(int index)
         return;
     }
     
+    // if( m_focusState == FOCUS_STATE_BASE)
+    // {
+    //     return ;
+    // }
+
+    // std::cout << "third set \n";
     if(m_focusStack.size() > 0 )
     {
-        m_focusStack[m_focusStack.size() - 1]->changeLabelIndex(index);
+        // std::cout << "third set a \n";
+        int tIndex = m_focusStack.size() - 1; 
+        if(m_focusStack[tIndex])
+        {
+            m_focusStack[tIndex]->changeLabelIndex(index);
+        } 
+        
     }
     else
     {
+        // std::cout << "third set b \n";
         m_baselessLabelIndex += index;
         m_baselessLabelIndex = m_baselessLabelIndex % m_baselessLabels.size();
     }
@@ -3170,9 +3197,11 @@ FocusPanel * TGUIScriptingManager::getFocusPanel(tgui::Panel::Ptr * panel)
 
 void TGUIScriptingManager::addFocusableLabel(tgui::Label::Ptr * label, tgui::Panel::Ptr * panel)
 {
+    // std::cout << "addFocusableLabel called \n ";
     FocusPanel * focusPanel = getFocusPanel(panel);
     if(focusPanel)
     {
+        std::cout << "added label " << label->get()->getText() << "\n";
         focusPanel->addLabel(label);
         // std::cout << "added Label successfully \n";
     }

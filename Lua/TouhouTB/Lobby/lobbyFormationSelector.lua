@@ -51,7 +51,7 @@ function Lobby_Formation_Selector:init(tLobbyHost, tLobbyGUIHost, tLobbyNetworkH
         self.mainPanel = Panel:new()
     end
     self.mainPanel:init(tLobbyGUIHost,0,0,0,0,parentPanel)
-    self.mainPanel:setSizeStr("33%","30%")
+    self.mainPanel:setSizeStr("33%","40%")
     self.mainPanel:setAlignment(0.5,0.5)
 
     self:setIndex(index)
@@ -82,13 +82,11 @@ end
 function Lobby_Formation_Selector:onIndexChangeUpdate()
     local xPos = 26
     local additionPos = 50 * (self.tIndex -1) 
-    
-    local yPos = 50
 
+    local yPos = 60
     if self.mainPanel ~= nil then
         self.mainPanel:setPosStr(tostring(xPos + additionPos) .. "%",tostring(yPos) .. "%")
     end
-
 end
 
 function Lobby_Formation_Selector:setVisible(value)

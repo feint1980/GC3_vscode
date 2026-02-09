@@ -11,8 +11,8 @@ require "TGUI_ScrollablePanel"
 
 Formation_Panel = {
 
-    mainPanel = nil, 
-    parentPanel = nil, 
+    mainPanel = nil,
+    parentPanel = nil,
 
     nameLabel = nil,
 

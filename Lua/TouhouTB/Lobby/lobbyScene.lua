@@ -114,10 +114,10 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     Lobby_OpponentPicture:setPosStr("70%","24%")
     Lobby_OpponentPicture:setSize(75,75)
 
-    Lobby_ReadyButton = RTLabel:new()
+    Lobby_ReadyButton = Label:new()
     Lobby_ReadyButton:init(Lobby_GUIScriptingPtr,"Ready",0,0)
     Lobby_ReadyButton:setAlignment(TextAlginment.Center)
-    Lobby_ReadyButton:setPosStr("25%", "70%")
+    Lobby_ReadyButton:setPosStr("25%", "85%")
     Lobby_ReadyButton:setText("Ready")
     Lobby_ReadyButton:setScale(.8)
     Lobby_ReadyButton:setHoverable(0,255,0,255,255,255,255,255)
@@ -154,10 +154,7 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     Prompt_UI_Table["Leave_Lobby_Noti"] = Prompt:new()
     Prompt_UI_Table["Leave_Lobby_Noti"]:init(Lobby_GUIScriptingPtr,"Leave Lobby ?",false)
     Prompt_UI_Table["Leave_Lobby_Noti"]:addButton("Leave", function()
-        -- cpp_lobby_leaveLobby()
-        -- Prompt_UI_Table["Leave_Lobby_Noti"]:show(false)
-
-
+        
         -- Lobby_Leave_Decision =true
         print("ClientDisconnectFromCurrentBattleServer !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         ClientDisconnectFromCurrentBattleServer(ClientScriptingPtr)
@@ -182,7 +179,7 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     local leaveLobby = Label:new()
     leaveLobby:init(Lobby_GUIScriptingPtr,"Leave Lobby",0,0)
     leaveLobby:setAlignment(TextAlginment.Left)
-    leaveLobby:setPosStr("10%","85%")
+    leaveLobby:setPosStr("10%","92%")
     leaveLobby:setScale(1.1)
     leaveLobby:setHoverable(255,0,0,255,255,255,255,255)
     leaveLobby:setOnClickCallback(function()
@@ -203,7 +200,6 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
 
     cppSelecBattleServer(ClientScriptingPtr,tBattleServerGUID)
 
-
     print("Init end ")
     TM_addTask(function()
         print("TM called")
@@ -215,6 +211,19 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     ,10
     )
 
+    if Lobby_Formation_FilterEdit == nil then
+        Lobby_Formation_FilterEdit = EditBox:new()
+        local filterLabel = Label:new()
+        filterLabel:init(Lobby_GUIScriptingPtr,"Filter",0,0)
+        filterLabel:setAlignment(TextAlginment.Left)
+        filterLabel:setPosStr("10%","33%")
+    end
+
+    Lobby_Formation_FilterEdit:init(Lobby_GUIScriptingPtr,1,1,1,1, nil)
+    Lobby_Formation_FilterEdit:setInputValidator("^[^$]*$")
+    Lobby_Formation_FilterEdit:setPosStr("17%","33%")
+    Lobby_Formation_FilterEdit:setSizeStr("24%","5%")
+    -- Lobby_Formation_FilterEdit:setText("test lobby")
     print("Task set ")
     -- TM_addTask
 end
@@ -306,7 +315,7 @@ function LobbyScene_ChangeHandleSync(clientList)
 
     LobbyAccountID:setPosStr(  tostring(idLabelX + (myIndex * additionalPos)) .. "%", "24%")
     Lobby_Picture:setPosStr(tostring(picX + (myIndex * additionalPos)) .. "%","24%")
-    Lobby_ReadyButton:setPosStr(tostring(readyButtonX + (myIndex * additionalPos)) .. "%", "70%")
+    Lobby_ReadyButton:setPosStr(tostring(readyButtonX + (myIndex * additionalPos)) .. "%", "85%")
     Lobby_ReadyLabel:setPosStr(tostring(readyLabelX + (myIndex * additionalPos)) .. "%", "24%")
 
     ---- calculated based on myIndex
@@ -347,9 +356,6 @@ function LobbyScene_ChangeHandleSync(clientList)
     
 end
 
-require "lobby_Input_control"
-
-
 function Lobby_RecieveData(host,msg, ip, pID, RakNetPacket)
 
     local tPacket = Client_Packet:new()
@@ -372,6 +378,10 @@ function Lobby_HandlePacket(host, packet, RakNetPacket)
         end
     end
 end
+
+
+
+require "lobby_Input_control"
 
 
 
