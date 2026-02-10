@@ -28,7 +28,13 @@ function ComboBox:init(host, x, y, width, height, parent)
     self.width = width
     self.height = height
     self.ptr = TGUI_ComboBox_Create(host, x, y, width, height, parent)
+
 end
+
+function ComboBox:remove()
+    cpp_tgui_remove_widget(self.host, self.ptr)
+end
+
 
 function ComboBox:setPos(x, y)
     TGUI_ComboBox_SetPos(self.ptr, x, y)

@@ -2532,6 +2532,23 @@ int lua_ComboBox_RegisterOnSelectionChanged(lua_State * L)
     return 0;
 }
 
+
+int lua_tgui_remove_widget(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_tgui_remove_widget) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
+        tgui::Widget::Ptr * widget = static_cast<tgui::Widget::Ptr*>(lua_touserdata(L, 2));
+        host->removeWidget(widget);
+    }
+    return 0;
+}
+
 // MARK:Focus Stack
 
 int lua_Add_DrawCall(lua_State * L)
@@ -2723,6 +2740,8 @@ void TGUIScriptingManager::changeFocusLabelIndex(int index)
 {
     // first set 
     // std::cout << "first set \n";
+    // m_focusState = FOCUS_STATE_BASE;
+    // std::cout << "focus stack " << m_focusStack.size() << "\n";
     if(m_focusStack.size() > 0 )
     {
         m_focusState = FOCUS_STATE_PANEL;
@@ -2732,7 +2751,6 @@ void TGUIScriptingManager::changeFocusLabelIndex(int index)
         m_focusState = FOCUS_STATE_BASE;
     }
     // std::cout << "second set \n";
-
     if(m_previousFocusState != m_focusState)
     {
         if(m_focusStack.size() > 0 )
@@ -3054,6 +3072,8 @@ void TGUIScriptingManager::bindCanvasDrawCall(const std::string & name, std::fun
 void TGUIScriptingManager::setNowFocusPanel(tgui::Panel::Ptr * panel)
 {
     // brute force all the way, there should only ~10 panels each scene, no need to be smart about that
+    // m_focusState = FOCUS_STATE_BASE;
+    
 
     if(m_savedFocusPanel.find(panel) != m_savedFocusPanel.end())
     {
@@ -3119,6 +3139,10 @@ void TGUIScriptingManager::removeFocusPanel(tgui::Panel::Ptr * panel)
             if(m_focusStack[i] == focusPanel)
             {
                 m_focusStack.erase(m_focusStack.begin() + i);
+                // if(m_focusStack.size() == 0)
+                // {
+                m_focusState = FOCUS_STATE_BASE; // force to this whenever remove panel called, auto correct in select function already there
+                // }
                 return;
             }
         }
@@ -3164,7 +3188,6 @@ tgui::Label::Ptr * TGUIScriptingManager::getCurrentFocusLabel()
 FocusPanel * TGUIScriptingManager::getFocusPanel(tgui::Panel::Ptr * panel)
 {
 
-
     // std::cout << "getFocusPanel called \n";
     // std::cout << "look for panel " << panel << "\n";
     // std::cout << "stack size " << m_focusStack.size() << "\n";
@@ -3193,6 +3216,15 @@ FocusPanel * TGUIScriptingManager::getFocusPanel(tgui::Panel::Ptr * panel)
     
     return m_focusStack.back();
 
+}
+
+void TGUIScriptingManager::removeWidget(tgui::Widget::Ptr * widget)
+{
+    if(m_tgui == nullptr || widget == nullptr)
+    {
+        return;
+    }
+    m_tgui->remove(*widget);
 }
 
 void TGUIScriptingManager::addFocusableLabel(tgui::Label::Ptr * label, tgui::Panel::Ptr * panel)
@@ -3395,7 +3427,6 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_ListView_GetItemDataAsStr", lua_ListView_GetItemDataAsStr);
     lua_register(m_script, "cpp_ListView_GetSelectedItemIndex", lua_ListView_GetSelectedItemIndex);
 
-
     // TGUI ComboBox
     lua_register(m_script, "cpp_ComboBox_Create", lua_ComboBox_Create);
     lua_register(m_script, "cpp_ComboBox_SetPos", lua_ComboBox_SetPos);
@@ -3407,6 +3438,9 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_ComboBox_GetSelectedItemIndex", lua_ComboBox_GetSelectedItemIndex);
     lua_register(m_script, "cpp_ComboBox_GetSelectedItem", lua_ComboBox_GetSelectedItem);
     lua_register(m_script, "cpp_ComboBox_RegisterOnSelectionChanged", lua_ComboBox_RegisterOnSelectionChanged);
+
+    // TGUI Remove 
+    lua_register(m_script, "cpp_tgui_remove_widget", lua_tgui_remove_widget);
 
 
     // lua_register(m_script, "cpp_ComboBox_SetItems", lua_ComboBox_SetItems);

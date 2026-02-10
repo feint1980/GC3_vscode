@@ -12,7 +12,8 @@ LobbyBattleHandling = {}
 
 
 Lobby_Formations_Info = {}
-Lobby_Formation_Display = {}
+Lobby_Formation_Show = {}
+
 Lobby_Fomration_CurrentPage = 1
 Lobby_Fomration_MaxPage = 1
 

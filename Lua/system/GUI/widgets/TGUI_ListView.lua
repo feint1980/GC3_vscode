@@ -37,6 +37,11 @@ function ListView:init(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tCollumsSize
     self.ptr = TGUI_ListView_Create(host,tPosX,tPosY,tWidth,tHeight,tCollumNames,tCollumsSizes,parent)
 end
 
+function ListView:remove()
+    cpp_tgui_remove_widget(self.host, self.ptr)
+end
+
+
 function ListView:setPos(x,y)
     TGUI_ListView_SetPos(self.ptr,x,y)
 end

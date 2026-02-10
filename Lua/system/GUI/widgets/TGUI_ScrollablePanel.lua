@@ -73,6 +73,11 @@ function ScrollablePanel:init(host, posX, posY,
     -- end
 end
 
+function ScrollablePanel:remove()
+    cpp_tgui_remove_widget(self.host, self.ptr)
+end
+
+
 ---@Description set the position of the Scrollablepanel
 ---@param posX number x position
 ---@param posY number y position

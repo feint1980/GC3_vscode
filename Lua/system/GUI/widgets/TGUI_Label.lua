@@ -52,6 +52,10 @@ function Label:init(host, text, posX, posY,parent)
 
 end
 
+function Label:remove()
+    cpp_tgui_remove_widget(self.host, self.ptr)
+end
+
 ---@Description set the position of the label
 ---@param posX number x position
 ---@param posY number y position

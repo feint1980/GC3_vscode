@@ -46,6 +46,11 @@ function EditBox:init(host,posX, posY, width, height, parent)
     self.height = height
 end
 
+function EditBox:remove()
+    cpp_tgui_remove_widget(self.host, self.ptr)
+end
+
+
 ---@Description set position of EditBox
 ---@param posX number x position
 ---@param posY number y position

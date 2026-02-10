@@ -14,8 +14,9 @@ require "lobby_global"
 require "lobbyFormationSelector"
 require "Prompt"
 
-
 LobbySceneHost = nil
+
+Old_Index = 0
 
 ---@type pointer TGUIScriptingPtr
 Lobby_GUIScriptingPtr = nil
@@ -72,6 +73,8 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     Lobby_ClientCharacterHandlerPtr = ClientCharacterHandlerPtr
     Lobby_SkillHandlerPtr = SkillHandlerPtr
     Lobby_ControlHandlerPtr = ControlHandlerPtr
+
+    Old_Index = 0
 
     LobbyIDLabel = Label:new()
     LobbyIDLabel:init(Lobby_GUIScriptingPtr,"",0,0)
@@ -217,6 +220,7 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
         filterLabel:init(Lobby_GUIScriptingPtr,"Filter",0,0)
         filterLabel:setAlignment(TextAlginment.Left)
         filterLabel:setPosStr("10%","33%")
+        -- filterLabel:setOn
     end
 
     Lobby_Formation_FilterEdit:init(Lobby_GUIScriptingPtr,1,1,1,1, nil)
@@ -379,16 +383,4 @@ function Lobby_HandlePacket(host, packet, RakNetPacket)
     end
 end
 
-
-
 require "lobby_Input_control"
-
-
-
--- HandlePacketTask["home_main"] = function(host,packet,RakNetPacket)
---     print("handle home packet task " .. packet.packetID)
---     if HomeMain_HandleTask[packet.packetID] ~= nil then
---         HomeMain_HandleTask[packet.packetID](host,packet,RakNetPacket)
---     end
--- end
-

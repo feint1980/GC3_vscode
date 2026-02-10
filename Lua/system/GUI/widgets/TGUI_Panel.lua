@@ -71,6 +71,10 @@ function Panel:init(host, posX, posY,
     self.parent = parent
 end
 
+function Panel:remove()
+    cpp_tgui_remove_widget(self.host, self.ptr)
+end
+
 ---@Description set the position of the panel
 ---@param posX number x position
 ---@param posY number y position
@@ -121,6 +125,14 @@ function Panel:showWithEffect(type,time)
     ControlHandler_reciever_push(self.host,self.ptr)
     -- print("the focus index now is " .. SignalReceivers.focusIndex)
 end
+
+function Panel:showWithEffect_NoFocus(type,time)
+    TGUI_Panel_ShowWithEffect(self.ptr, type,time)
+    self.visible = true
+    -- ControlHandler_reciever_push(self.host,self.ptr)
+    -- print("the focus index now is " .. SignalReceivers.focusIndex)
+end
+
 
 ---@Description set Alignment of Panel
 ---@param originX number

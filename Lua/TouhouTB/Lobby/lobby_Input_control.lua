@@ -3,13 +3,14 @@ package.path = package.path .. ';../../Lua/system/Input/?.lua;'
 require "controlHandler"
 
 local function issueFocus(controlHost, tguiHost)
-    -- print("issueFocus called")
     local label = cpp_FocusStack_GetFocusLabel(tguiHost)
     if label == nil then
         print("label is nil")
         return
     end
-    -- print("label is not nil")
+    local txt = TGUI_Label_GetText(label)
+    -- print("txt: " .. txt)
+
     local tX, tY = TGUI_Label_GetPos(label)
     ControlHandler_setCursorPos(controlHost,tX,tY)
 end
@@ -49,10 +50,10 @@ Dispatch_Recievers["lobbyScene"] = function (controlHandlerHost,tguiHost,signal)
         -- print("x " .. x .. " y " .. y)
         Controller_fireLeftClickEvent(controlHandlerHost,1,x,y)
     else 
-        if signal == Signal.escape then 
-            -- _G.Formation_Edit_Instance:resetSelections()
-            -- Formation_MainUpdate(tguiHost)
-        end
+        
+        -- if signal == Signal.escape then 
+        
+        -- end
     end
 end
 

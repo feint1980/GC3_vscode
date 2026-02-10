@@ -1,5 +1,6 @@
 package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;'
 
+
 -- Lobby_HandleNetwork[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet,RakNetPacket)
 
 --     local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
@@ -77,11 +78,15 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_SyncStatusRe
 
     local index = clientList[myGUID].index
     print("index " .. index)
-
+    
     LobbyScene_ChangeHandleSync(clientList)
-    if Formation_Selector ~= nil then
-        Formation_Selector:setIndex(tonumber(index))
-        Formation_Selector:setVisible(true)
+
+    if tonumber(index) ~= Old_Index then
+        Old_Index = tonumber(index)
+        if Formation_Selector ~= nil then
+            Formation_Selector:setIndex(tonumber(index))
+            Formation_Selector:setVisible(true)
+        end
     end
 
 end
@@ -101,6 +106,7 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_For
     end
 
     -- re write formation 
+    Lobby_Formations_Info = _G.Lobby_Formations_Info
     Lobby_Formations_Info = {}
     Lobby_Formations_Info = Table_DeepCopy(formations)
 
@@ -119,5 +125,14 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_For
             print("character col pos " .. v.characters[i].colPos)
         end
     end
+
+    Lobby_Formaton_UpdateUI(1)
+end
+
+function Lobby_Formaton_UpdateUI(pageIndex)
+
+    local keyword = Lobby_Formation_FilterEdit:getText()
+
+    Formation_Selector:updateUIList(keyword, pageIndex)
 
 end

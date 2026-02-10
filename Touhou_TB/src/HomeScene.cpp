@@ -358,7 +358,7 @@ void HomeScene::initGUI()
     lua_register(m_script, "cpp_changeScene", lua_changeScene);
 
     // InfoHolder::getInstance()->saveLuaState(m_script);
-    InfoHolder::getInstance()->registerGUIScriptingManager(m_guiScriptingManager);
+    // InfoHolder::getInstance()->registerGUIScriptingManager(m_guiScriptingManager);
     InfoHolder::getInstance()->registerGame(m_game);
 
     m_clientScriptingManager->setCommonHandlingLuaFunction("Client_ReceiveData");

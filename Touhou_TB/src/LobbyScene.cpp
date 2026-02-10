@@ -172,6 +172,10 @@ void LobbyScene::update(float deltaTime)
     {
         m_clientScriptingManager->updateV2(deltaTime);
     }
+    if(m_guiScriptingManager)
+    {
+        m_guiScriptingManager->update(deltaTime);
+    }
     m_luaTaskManager.update(deltaTime);
 }
 
@@ -250,7 +254,6 @@ void LobbyScene::handleInput(Feintgine::InputManager & inputManager)
 
 void LobbyScene::initGUI()
 {
-    std::cout << "init GUI (lobby) \n";
     if(!isInitialized)
     {
 
@@ -258,10 +261,10 @@ void LobbyScene::initGUI()
         luaL_openlibs(m_script);
 
         m_luaTaskManager.init("../../Lua/system/event/TaskManager.lua",m_script);
-        if(!m_guiScriptingManager)
-        {
-            m_guiScriptingManager = new TGUIScriptingManager();
-        }
+        // if(!m_guiScriptingManager)
+        // {
+        m_guiScriptingManager = new TGUIScriptingManager();
+        // }
         
         m_guiScriptingManager->init(m_window,m_script);
         m_skillHandler.init(m_script);
@@ -294,6 +297,12 @@ void LobbyScene::initGUI()
         lua_register(m_script, "cpp_lobby_getInfo", lua_lobby_getInfo);
         lua_register(m_script, "cpp_lobby_changeScene", lua_lobby_changeScene);
         lua_register(m_script, "cpp_backToHomeMenu", lua_backToHomeMenu);
+
+        m_clientScriptingManager->setCommonHandlingLuaFunction("Lobby_RecieveData");
+        m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"LobbyHandlerWrapResponse");
+        m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"LobbyHandlerBattleResponse");
+
+
         lua_getglobal(m_script, "LobbySceneInit");
         if(lua_isfunction(m_script, -1))
         {
@@ -311,12 +320,9 @@ void LobbyScene::initGUI()
                 std::cout << "Lobby scene init script from C++ OK \n";
             }
         }
-        InfoHolder::getInstance()->registerGame(m_game);
-        m_clientScriptingManager->setCommonHandlingLuaFunction("Lobby_RecieveData");
-        m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"LobbyHandlerWrapResponse");
-        m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"LobbyHandlerBattleResponse");
+        // InfoHolder::getInstance()->registerGame(m_game);
 
-        InfoHolder::getInstance()->registerClient(m_client);
+        // InfoHolder::getInstance()->registerClient(m_client);
 
         isInitialized = true;
         }

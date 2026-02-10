@@ -54,6 +54,11 @@ function Picture:init(host,path,posX,posY
     self.height = height
 end
 
+function Picture:remove()
+    cpp_tgui_remove_widget(self.host, self.ptr)
+end
+
+
 ---@Description set the position of the picture
 ---@param posX number x position
 ---@param posY number y position

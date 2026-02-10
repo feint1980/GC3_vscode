@@ -79,6 +79,10 @@ function RTLabel:init(host, text, posX, posY,parent)
     
 end
 
+function RTLabel:remove()
+    cpp_tgui_remove_widget(self.host, self.ptr)
+end
+
 
 ---@Description set the position of the rtlabel
 ---@param posX number x position

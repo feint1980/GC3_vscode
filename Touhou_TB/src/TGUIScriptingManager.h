@@ -118,6 +118,8 @@ public:
 
     void changeFocusLabelIndex(int index);
 
+    void removeWidget(tgui::Widget::Ptr * widget);
+
     FocusPanel * getFocusPanel(tgui::Panel::Ptr * panel);
 
     tgui::Label::Ptr * getCurrentFocusLabel();
