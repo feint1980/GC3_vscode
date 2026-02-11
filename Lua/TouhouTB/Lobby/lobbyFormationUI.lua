@@ -7,7 +7,9 @@ require "TGUI_Editbox"
 require "TGUI_Picture"
 require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
+require "clientGlobal"
 
+local GameStorage = require "clientDataStorage"
 
 Formation_Panel = {
     mainPanel = nil,
@@ -57,10 +59,39 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
         table.insert(self.pictures,tPicture)
     end
 
-    for i = 1, #Lobby_Formation_Show[formationID].characters do
-        local characterID = Lobby_Formation_Show[formationID].characters[i].id
-        self.pictures[i]:setTexture(Shop_CharacterTable[characterID].portraitPath)
+    print("total character size " .. #Lobby_Formations_Info[formationID].characters)
+
+    -- print("GameStorage check")
+
+    -- print("charactersTable " .. charactersTable)
+    Lobby_User_Owned_Characters = _G.Lobby_User_Owned_Characters
+
+    print("Lobby_User_Owned_Characters check ")
+    for k,v in pairs(Lobby_User_Owned_Characters) do
+        print("Lobby_User_Owned_Characters " .. k)
     end
+
+
+    for i = 1, #Lobby_Formations_Info[formationID].characters do
+        local characterID = Lobby_Formations_Info[formationID].characters[i].id
+        print("character ID " .. characterID)
+        -- print(charactersTable[characterID].portraitPath)
+        print("end")
+        if Lobby_User_Owned_Characters[characterID] ~= nil then
+            self.pictures[i]:setTexture(Lobby_User_Owned_Characters[characterID].portraitPath)
+        else
+            self.pictures[i]:setTexture("Assets/TB_GUI/faces/missing.png")
+        end
+    end
+
+    -- for k,v in pairs(GameStorage.clientSideLoadedInfo.Character_Data_Tables) do
+    --     print("GameStorage.clientSideLoadedInfo.Character_Data_Tables " .. k )
+    -- end
+    -- for i = 1, #Lobby_Formations_Info[formationID].characters do
+    --     local characterID = Lobby_Formations_Info[formationID].characters[i].id
+    --     print("character ID " .. characterID)
+
+    -- end
 
     -- for i = 1, #Lobby_Formation_Show[formationID].characters do
     --     local characterID = Lobby_Formation_Show[formationID].characters[i].id

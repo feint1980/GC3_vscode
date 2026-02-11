@@ -68,7 +68,7 @@ function FormationPreviewPanel:init(GUI_host,parentPanel, index)
 
     print("formation review " .. self.tIndex)
     for i = 1, 4 do 
-        print("init pic index " .. i)
+        -- print("init pic index " .. i)
         -- local tPicture = Picture:new()
         -- tPicture = Picture:new()
         -- tPicture:init(GUI_host,"Assets/TB_GUI/faces/missing.png",0,0,50,50,self.mainPanel.ptr)

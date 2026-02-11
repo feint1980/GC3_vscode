@@ -17,6 +17,8 @@ ClientPacketHandling = {}
 ---@type table of BattleFormation
 ClientFormations = {}
 
+ClientOwnedCharacters = {}
+
 MainInfo = {
     guid = ""
 }

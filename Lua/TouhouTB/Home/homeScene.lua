@@ -19,6 +19,7 @@ require "Patchouli"
 require "Yukari"
 require "Meiling"
 
+
 HomeSceneHost = nil
 -- HandlePacketTask = _G.HandlePacketTask
 
@@ -405,6 +406,7 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
     -- clear all metadata tables
     for k,v in pairs(S_Characters_Info) do
         S_Characters_Info[k] = nil
+        
     end
 end
 
@@ -431,12 +433,7 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
         S_Characters_Info[t_name].isOwned = false
     end
 
-    -- print("table check ")
-    -- if S_Characters_Info[t_name].isOwned then 
-    --     print(t_name .. " true")
-    -- else
-    --     print(t_name .. " false")
-    -- end
+
 
     local t_charStats =  Client_ParseCharacterFromJson(host, t_data)
     ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr, "Shop",t_name,t_charStats)
@@ -449,6 +446,7 @@ end
 
 ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_End] = function(host,data, guid)
 
+    local saveData = {}
     -- print("Character request result end")
     local t_countStr = string.sub(data, 2, string.len(data) - 1)
     local t_count = tonumber(t_countStr)
@@ -458,24 +456,28 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
             if k == "S_Reimu" then
                 print("found Reimu")
                 Shop_CharacterTable["S_Reimu"] = Reimu:new()
+                saveData[k] = Reimu:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr, "Shop",k)
                 Shop_CharacterTable["S_Reimu"]:initNonCB(Home_ClientCharacterHandlerPtr,"Shop","S_Reimu",t)
                 Shop_CharacterTable["S_Reimu"].isOwned =  v.isOwned
             elseif k == "S_Patchouli" then
                 print("found Patchouli")
                 Shop_CharacterTable["S_Patchouli"] = Patchouli:new()
+                saveData[k] = Patchouli:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr,"Shop",k)
                 Shop_CharacterTable["S_Patchouli"]:initNonCB(Home_ClientCharacterHandlerPtr,"Shop","S_Patchouli",t)
                 Shop_CharacterTable["S_Patchouli"].isOwned =  v.isOwned
             elseif k == "S_Yukari" then
                 print("found Yukari")
                 Shop_CharacterTable["S_Yukari"] = Yukari:new()
+                saveData[k] = Yukari:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr, "Shop",k)
                 Shop_CharacterTable["S_Yukari"]:initNonCB(Home_ClientCharacterHandlerPtr,"Shop","S_Yukari",t)
                 Shop_CharacterTable["S_Yukari"].isOwned =  v.isOwned
             elseif k == "S_Meiling" then
                 print("found Meiling")
                 Shop_CharacterTable["S_Meiling"] = Meiling:new()
+                saveData[k] = Meiling:new()
                 local t = ClientCharacterHandler_getCharacterData(Home_ClientCharacterHandlerPtr, "Shop",k)
                 Shop_CharacterTable["S_Meiling"]:initNonCB(Home_ClientCharacterHandlerPtr,"Shop","S_Meiling",t)
                 Shop_CharacterTable["S_Meiling"].isOwned =  v.isOwned
@@ -509,10 +511,16 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
             v.price,v.isOwned)
             count = count + 1
         end
+
+        -- print("saveData " .. saveData)
+
     else
         -- print("Character request result end failed")
         SendRequest(PacketChannel.ShopChannel,ShopResponse.ShopChracterInfo , {'get_character_shop_list'}, 5, 0.25)
     end
+
+    -- InfoHolder_setStrVal("Shop_CharacterTable", saveData)
+
 end
 
 require "home_Input_control"
@@ -521,7 +529,6 @@ require "skill_client_handler"
 require "character_client_handler"
 require "formation_client_handler"
 require "arena_client_handler"
-
 
 --- internal 
 -- require "clientInternalMsgHandler"

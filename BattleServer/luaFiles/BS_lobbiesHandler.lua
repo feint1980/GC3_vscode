@@ -35,6 +35,7 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
     BattleLobby_Notify_LobbiesStates(host)
     BS_Lobbies_Notify_ClientChanges(host,lobbyID)
     Request_Formation_From_MainServer(host, tTargetGUID, targetID)
+    Request_ClientOwnedCharacters_From_MainServer(host, tTargetGUID, targetID)
     -- add lobby to list
 end
 
@@ -87,7 +88,7 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
 
     BattleLobby_Notify_LobbiesStates(host)
     Request_Formation_From_MainServer(host, clientGUID, clientID)
-
+    Request_ClientOwnedCharacters_From_MainServer(host, clientGUID, clientID)
 
 end
 
@@ -184,11 +185,11 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Request_Formation
         end
         print("data check")
         for k,v in pairs(ClientFormations[tGUID]) do
-            print("k " .. k)
-            print("formation name " .. v.name)
-            print("index " .. v.index)
+            -- print("k " .. k)
+            -- print("formation name " .. v.name)
+            -- print("index " .. v.index)
             for i = 1, #v.characters do
-                print("character " .. i)
+                -- print("character " .. i)
                 -- print("character id " .. v.characters[i].id)
                 -- print("character slot index " .. v.characters[i].slotIndex)
                 -- print("character row pos " .. v.characters[i].rowPos)
@@ -197,11 +198,35 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Request_Formation
         end
     end
 
-    local tData = JSON_Encode(ClientFormations[tGUID],true)
+    local tData = JSON_Encode(ClientFormations[tGUID],false)
 
-    print("data check " .. tData)
+    -- print("data check " .. tData)
 
     BM_sendWrapData(host, ip, guid,BattlePacketType.ID_TH_TB_BATTLE, ClientChannel.Lobby, CLobbyResponse.Lobby_Response_Formations,{tGUID,tID,tData} )
+end
+
+
+ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Request_OwnedCharacters] = function(host, channel, request,data,ip, guid)
+
+    local tGUID, tID = string.match(data, "^|([^|]+)|([^|]+)|$")
+    print("request formations detected from " .. tGUID .. " " .. tID)
+    if BattleClientEP_List[tGUID] == nil then 
+        print("client not registered yet")
+        return 
+    end
+    if BattleClientEP_List[tGUID].id == tID then 
+        print("client matched")
+        if ClientOwnedCharacters[tGUID] == nil then
+            print("This client has no owned characters yet")
+            -- todo send the signal that show on client UI
+        end
+
+    end
+
+    local tData = JSON_Encode(ClientOwnedCharacters[tID],true)
+
+    print("tData check " .. tData)
+    BM_sendWrapData(host, ip, guid,BattlePacketType.ID_TH_TB_BATTLE, ClientChannel.Lobby, CLobbyResponse.Lobby_Response_OwnedCharacters,{tGUID,tID,tData} )
 end
 
 -- function Request
@@ -216,7 +241,6 @@ function Request_Formation_From_MainServer(host, userGUID,userID)
     BM_sendWrapData(host, BM_getMainServerIP(host), BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL,MainServerChanel.ClientData , ClientDataResponse.ClientData_Request_Fomration, {userGUID,userID})
     
 end
-
 
 InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_Fomration] = function(host, channel, request,data,ip, guid)
 
@@ -268,5 +292,54 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
         end
         print("formation " .. k .. " has " .. #ClientFormations[tGUID][k].characters .. " characters")
     end
+
+end
+
+
+
+function Request_ClientOwnedCharacters_From_MainServer(host, userGUID,userID)
+
+    BM_sendWrapData(host, BM_getMainServerIP(host), BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL,MainServerChanel.ClientData , ClientDataResponse.ClientData_Request_OwnedCharacters, {userGUID,userID})
+end
+
+InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters] = function(host, channel, request,data,ip, guid)
+
+    local tGUID, tID, tOwnedCharacters = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+
+    print ("tGUID " .. tGUID)
+    print("tID " .. tID)
+    print("tOwnedCharacters " .. tOwnedCharacters)
+    local tOwnedCharactersList, pos , err = JSON_Decode(tOwnedCharacters)
+    if err then
+        print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:", err)
+    end
+    if tOwnedCharactersList == nil then
+        print("user " .. tGUID .. " id " .. tID .. " has no owned characters")
+        -- todo send the client a message that the user has no owned characters
+        return
+    end
+
+    ClientOwnedCharacters[tID] = {}
+
+    for k,v in pairs(tOwnedCharactersList) do
+        print("k " .. k)
+        ClientOwnedCharacters[tID][k] = {}
+        ClientOwnedCharacters[tID][k].ID = v.ID
+        local stats, tPos, tErr = JSON_Decode(v.stats)
+        if stats == nil then
+            print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:", tErr)
+            return
+        end
+
+        for k2,v2 in pairs(stats) do
+            print("stat " .. k2 .. " value " .. v2)
+            ClientOwnedCharacters[tID][k][k2] = v2
+        end
+        --- overwrite level and xp | value from query higher priority
+        ClientOwnedCharacters[tID][k].level = v.level
+        ClientOwnedCharacters[tID][k].exp = v.exp
+        
+    end
+
 
 end

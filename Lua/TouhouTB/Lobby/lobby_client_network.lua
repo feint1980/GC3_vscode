@@ -38,7 +38,13 @@ function Client_Lobby_Request_Formations()
     local tID = InfoHolder_getStrVal("MainInfo.id")
 
     SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Request_Formations, {tGUID, tID },5,0.1,0.15)
+end
 
+function Client_Lobby_Request_OwnedCharacters()
+    local tGUID = InfoHolder_getStrVal("MainInfo.guid")
+    local tID = InfoHolder_getStrVal("MainInfo.id")
+
+    SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Request_OwnedCharacters, {tGUID, tID },5,0.1,0.15)
 end
 
 
@@ -134,5 +140,42 @@ function Lobby_Formaton_UpdateUI(pageIndex)
     local keyword = Lobby_Formation_FilterEdit:getText()
 
     Formation_Selector:updateUIList(keyword, pageIndex)
+
+end
+
+
+LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_OwnedCharacters] = function(host,data,guid)
+
+    print("Owned response")
+
+    local tGUID, tID, tData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+
+    -- let just skip guid check
+
+    print("data check " .. tData)
+    local ownedCharacters, pos, err = JSON_Decode(tData)
+    if ownedCharacters == nil then
+        print("Ke3 F3i117 exception (PacketChannel.Lobby][LobbyResponse.Lobby_Response_OwnedCharacters) JSON decode error:", err)
+        return
+    end
+
+    for k , v in pairs(ownedCharacters) do
+        print("k " .. k)
+        print("character id " .. v.ID)
+
+    end
+    
+    Lobby_User_Owned_Characters = {}
+    for k , v in pairs(ownedCharacters) do
+        Lobby_User_Owned_Characters[k] = v
+    end
+
+    -- --- Reset the character UI
+    -- for k, v in pairs(ownedCharacters) do 
+    --     print("k " .. k )
+    --     for k2 , v2 in pairs(v) do
+    --         print("stat " .. k2 .. " value " .. v2)
+    --     end
+    -- end
 
 end

@@ -32,8 +32,8 @@ void FocusPanel::addLabel(tgui::Label::Ptr * label)
             
             // label->get()
             m_labels.push_back(label);
-            std::cout << "pushed label " << label->get()->getText() << "\n";
-            std::cout << "size " << m_labels.size() << "\n";
+            // std::cout << "pushed label " << label->get()->getText() << "\n";
+            // std::cout << "size " << m_labels.size() << "\n";
         }
     }
 }

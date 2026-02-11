@@ -104,6 +104,8 @@ CLobbyResponse = {
     Lobby_SyncStatusResponse = 4,
     Lobby_Request_Formations = 5,
     Lobby_Response_Formations = 6,
+    Lobby_Request_OwnedCharacters = 7,
+    Lobby_Response_OwnedCharacters = 8
 }
 
 BattleInfoResponse = {
@@ -237,9 +239,6 @@ function Table_DeepCopy(orig, copies)
     return setmetatable(copy, getmetatable(orig))
 end
 
----@ Description: encode table to json
----@param t table table to encode
----@param isIndent boolean indent or not
 function JSON_Encode(t,isIndent)
     isIndent = isIndent or false
     return json.encode(t, { indent = isIndent })

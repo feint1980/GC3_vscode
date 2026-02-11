@@ -209,6 +209,17 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
         -- Client_Lobby_SendSyncRequest()
         -- Formation_Selector:setVisible(false)
         Lobby_UpdateInfo()
+        Client_Lobby_Request_OwnedCharacters()
+
+    end
+    ,5
+    )
+
+    TM_addTask(function()
+        print("TM called")
+        -- Client_Lobby_SendSyncRequest()
+        -- Formation_Selector:setVisible(false)
+
         Client_Lobby_Request_Formations()
     end
     ,10

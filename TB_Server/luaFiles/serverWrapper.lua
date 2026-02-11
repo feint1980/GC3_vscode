@@ -96,6 +96,8 @@ LobbyResponse = {
 ClientDataResponse = {
     ClientData_Request_Fomration = 1,
     ClientData_Response_Fomration = 2,
+    ClientData_Request_OwnedCharacters = 3,
+    ClientData_Response_OwnedCharacters = 4
 }
 --- Classes declare
 ---@class pointer

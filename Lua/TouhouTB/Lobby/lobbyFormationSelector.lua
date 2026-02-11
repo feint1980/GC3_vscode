@@ -10,6 +10,7 @@ require "TGUI_ScrollablePanel"
 require "lobby_global"
 require "Prompt"
 require "controlHandler"
+require "clientGlobal"
 require "lobbyFormationUI"
 require "math"
 
@@ -170,7 +171,6 @@ function Lobby_Formation_Selector:updateUIList(keyword, pageIndex)
     end
 
     for i = (self.tIndex * 4 - 3), (self.tIndex * 4) do
-        print("filter index" .. i)
         if filteredList[i] ~= nil then
             table.insert(resultList,filteredList[i])
             table.insert(resultIDList,filteredIDList[i])
@@ -178,8 +178,8 @@ function Lobby_Formation_Selector:updateUIList(keyword, pageIndex)
         end
     end
 
-    print("result list ")
-    print(#resultList)
+    -- print("result list ")
+    -- print(#resultList)
 
     for i = 1, #resultList do
         local formation = Formation_Panel:new()

@@ -14,6 +14,7 @@ LobbyBattleHandling = {}
 Lobby_Formations_Info = {}
 Lobby_Formation_Show = {}
 
+Lobby_User_Owned_Characters = {}
 Lobby_Fomration_CurrentPage = 1
 Lobby_Fomration_MaxPage = 1
 
