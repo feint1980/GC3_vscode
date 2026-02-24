@@ -619,6 +619,34 @@ int lua_EditBox_Create(lua_State * L)
     return -1;
 }
 
+int lua_EditBox_SetOnTextChangedCallback(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_EditBox_SetOnTextChangedCallback) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::EditBox::Ptr * editBox = static_cast<tgui::EditBox::Ptr*>(lua_touserdata(L, 1));
+    
+        if(!lua_isfunction(L, 2))
+        {
+            std::cout << "param 2 is not a function \n";
+            return -1;
+        }
+        lua_pushvalue(L, 2);
+        int ref = luaL_ref(L, LUA_REGISTRYINDEX);
+        std::function<void()> callback = [L,ref](){lua_rawgeti(L, LUA_REGISTRYINDEX, ref);lua_pcall(L, 0, 0, 0);};
+
+        editBox->get()->onTextChange.disconnectAll();
+        editBox->get()->onTextChange(callback);
+        return 0;
+    }
+    return -1;
+}
+
+
 // MARK: Label / RTLabel
 
 int lua_Label_SetText(lua_State * L)
@@ -1037,6 +1065,22 @@ int lua_Label_GetText(lua_State * L)
         lua_pushstring(L, text.c_str());
     }
     return 1;
+}
+
+int lua_Label_SetEnable(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Label_SetEnable) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Label::Ptr * label = static_cast<tgui::Label::Ptr*>(lua_touserdata(L, 1));
+        bool enable = lua_toboolean(L, 2);
+        label->get()->setEnabled(enable);
+    }
+    return 0;
 }
 
 
@@ -3354,6 +3398,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Label_SetScale", lua_Label_SetScale);
     lua_register(m_script, "cpp_Label_GetPos", lua_Label_GetPos);
     lua_register(m_script, "cpp_Label_GetText", lua_Label_GetText);
+    lua_register(m_script, "cpp_Label_SetEnable", lua_Label_SetEnable);
 
     
     // TGUI Rich Text Label section
@@ -3380,6 +3425,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_EditBox_SetText", lua_EditBox_SetText);
     lua_register(m_script, "cpp_EditBox_GetText", lua_EditBox_GetText);
     lua_register(m_script, "cpp_EditBox_SetInputValidator", lua_EditBox_SetInputValidator);
+    lua_register(m_script, "cpp_EditBox_SetOnTextChangedCallback", lua_EditBox_SetOnTextChangedCallback);
 
     // TGUI Panel section
     lua_register(m_script, "cpp_Panel_Create", lua_Panel_Create);

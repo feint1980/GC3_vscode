@@ -117,12 +117,13 @@ end
 ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_SyncStatus] = function(host, channel, request,data,ip, guid)
     -- print("sync status detected from " .. guid)
 
-    local clientGUID, clientID, lobbyID, readyState = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    local clientGUID, clientID, lobbyID, readyState,selectedFormation = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
     print("clientGUID " .. clientGUID)
     print("clientID " .. clientID)
     print("lobbyID " .. lobbyID)
     print("readyState " .. readyState)
+    print("selectedFormation " .. selectedFormation)
     local tReadyState = false
     if readyState == "true" then
         tReadyState = true
@@ -142,6 +143,9 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_SyncStatus] = fun
             for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
                 if BattleLobby_List[lobbyID].battleClientEP_List[i].guid == clientGUID then
                     BattleLobby_List[lobbyID].battleClientEP_List[i].readyState = tReadyState
+
+                    BattleLobby_List[lobbyID].battleClientEP_List[i]. selected_formation_index = selectedFormation
+
                 end
             end
 
@@ -159,6 +163,11 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_SyncStatus] = fun
         if readyCount >= 2 then
             print("Lobby " .. lobbyID .. " is ready")
             print("Startinng the game ")
+            for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
+                print("player " .. i .. " guid " .. BattleLobby_List[lobbyID].battleClientEP_List[i].guid .. " selected formation " .. BattleLobby_List[lobbyID].battleClientEP_List[i].selected_formation_index)
+                -- BM_sendWrapData()
+                BM_sendWrapData(host,BattleLobby_List[lobbyID].battleClientEP_List[i]:getIP(),BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattlePacketType.ID_TH_TB_BATTLE,ClientChannel.Lobby,CLobbyResponse.Lobby_Response_MatchStart,{lobbyID,BattleLobby_List[lobbyID].name,BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattleLobby_List[lobbyID].battleClientEP_List[i].id, "MatchStart"})
+            end
         end
 
     else

@@ -127,6 +127,15 @@ function Label:getPos()
     return TGUI_Label_GetPos(self.ptr)
 end
 
+function Label:setEnabled(enabled)
+    if enabled == false then 
+        self:setColor(125,125,125,255)
+    else
+        self:setColor(255,255,255,255)
+    end
+    TGUI_Label_SetEnabled(self.ptr, enabled)
+end
+
 --- MARK: Wrapper
 --- function wrapper of cpp_Label_Create
 ---@Description create new tgui label object in cpp
@@ -238,3 +247,6 @@ function TGUI_Label_GetText(label)
     return cpp_Label_GetText(label)
 end
 
+function TGUI_Label_SetEnabled(label, enabled)
+    cpp_Label_SetEnable(label, enabled)
+end

@@ -184,13 +184,12 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
 
     SV_SendWrapMsg2BattleServer(host, ip,guid, BattleChanel.ClientData,ClientDataResponse.ClientData_Response_Fomration,{targetGUID, targetID, tData})
 
-
 end
 
 
 BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Request_OwnedCharacters] = function(host, data,ip,guid)
 
-    print("ClientDataResponse.ClientData_Request_OwnedCharacters request from " .. guid )
+    -- print("ClientDataResponse.ClientData_Request_OwnedCharacters request from " .. guid )
 
     local targetGUID, targetID = string.match(data, "^|([^|]+)|([^|]+)|$")
     
@@ -218,27 +217,25 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
     local ownedResult = {}
     for i = 1, #ownedQueriedCharacterResult,4 do
         local characterData = {}
-        print("character_id " .. ownedQueriedCharacterResult[i])
+        -- print("character_id " .. ownedQueriedCharacterResult[i])
         local character_id = ownedQueriedCharacterResult[i]
         characterData.ID = character_id
-        print("level " .. ownedQueriedCharacterResult[i+1])
+        -- print("level " .. ownedQueriedCharacterResult[i+1])
         local level = ownedQueriedCharacterResult[i+1]
         characterData.level = level
-        print("exp " .. ownedQueriedCharacterResult[i+2])
+        -- print("exp " .. ownedQueriedCharacterResult[i+2])
         local exp = ownedQueriedCharacterResult[i+2]
         characterData.exp = exp
-        print("stats " .. ownedQueriedCharacterResult[i+3])
+        -- print("stats " .. ownedQueriedCharacterResult[i+3])
         local stats = ownedQueriedCharacterResult[i+3]
         characterData.stats = stats
         ownedResult[character_id] = characterData
     end
-
 
     local tData = JSON_Encode(ownedResult,true)
 
     -- print("data check " .. tData)
 
     SV_SendWrapMsg2BattleServer(host, ip,guid, BattleChanel.ClientData,ClientDataResponse.ClientData_Response_OwnedCharacters,{targetGUID, targetID, tData})
-
 
 end

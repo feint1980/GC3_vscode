@@ -72,6 +72,7 @@ function Panel:init(host, posX, posY,
 end
 
 function Panel:removeChild(child)
+    print("removeChild called ")
     TGUI_Panel_RemoveChild(self.ptr, child.ptr)
 end
 

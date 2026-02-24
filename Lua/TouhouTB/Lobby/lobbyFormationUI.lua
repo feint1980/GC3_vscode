@@ -16,7 +16,8 @@ Formation_Panel = {
     parentPanel = nil,
     nameLabel = nil,
     pictures = {},
-    isSelected = false
+    isSelected = false,
+    formationID = 0, ---- data from server
 }
 
 function Formation_Panel:new(o)
@@ -53,14 +54,17 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
     self.mainPanel:setOnClickCallback(function()
         Formation_Selector:deselectAllItem()
         self:toggleSelection()
+        LobbyScene_selectedFormation = _G.LobbyScene_selectedFormation
+        LobbyScene_selectedFormation = self.formationID
+        print("selected " .. LobbyScene_selectedFormation)
     end)
-    
+
     self.mainPanel:setOnRightClickCallback(function()
         -- Formation_Selector:deselectAllItem()
         self:setSelected(false)
     end)
 
-
+    self.formationID = formationID
 
     for i = 1, 4 do
         local tPicture = Picture:new()
@@ -84,6 +88,7 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
         print("Lobby_User_Owned_Characters " .. k)
     end
 
+
     for i = 1, #Lobby_Formations_Info[formationID].characters do
         local characterID = Lobby_Formations_Info[formationID].characters[i].id
         print("character ID " .. characterID)
@@ -95,6 +100,8 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
             self.pictures[i]:setTexture("Assets/TB_GUI/faces/missing.png")
         end
     end
+
+    print("Formation " .. self.formationID .. " initialized")
 
     -- for k,v in pairs(GameStorage.clientSideLoadedInfo.Character_Data_Tables) do
     --     print("GameStorage.clientSideLoadedInfo.Character_Data_Tables " .. k )
@@ -132,6 +139,7 @@ function Formation_Panel:updateSelectionStatus()
         self.mainPanel:setHoverable(0,255,0,255,125,125,125,125)
         self.mainPanel:setBorderColor(125,125,125,125)
     end
+    Formation_Selector:updateStatus()
 end
 
 function Formation_Panel:clear()

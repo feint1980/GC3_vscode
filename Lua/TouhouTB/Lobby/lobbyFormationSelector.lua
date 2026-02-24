@@ -34,7 +34,8 @@ Lobby_Formation_Selector = {
     mainPanel = nil,
     ---@type table
     formationList = {},
-    tIndex = 1
+    tIndex = 1,
+    realIndex = 1 --- Index data from server
 }
 
 function Lobby_Formation_Selector:new(o)
@@ -46,7 +47,7 @@ function Lobby_Formation_Selector:new(o)
     return o
 end
 
-function Lobby_Formation_Selector:init(tLobbyHost, tLobbyGUIHost, tLobbyNetworkHost,parentPanel, index, showOnInit)
+function Lobby_Formation_Selector:init(tLobbyHost, tLobbyGUIHost, tLobbyNetworkHost,parentPanel, index)
     self.lobbyHost = tLobbyHost
     self.lobbyGUIHost = tLobbyGUIHost
     self.lobbyNetworkHost = tLobbyNetworkHost
@@ -66,19 +67,11 @@ function Lobby_Formation_Selector:init(tLobbyHost, tLobbyGUIHost, tLobbyNetworkH
     self.mainPanel:hideWithEffect(PanelShowType.Fade,1)
     ControlHandler_reciever_remove(tLobbyGUIHost, self.parentPanel)
     ControlHandler_reciever_remove(tLobbyGUIHost, self.mainPanel.ptr)
-    -- self.mainPanel:setVisible(false)
 
-    -- if showOnInit == true then
-    --     self.mainPanel:showWithEffect(PanelShowType.Fade,1)
-    -- else 
-    --     self.mainPanel:hideWithEffect(PanelShowType.Fade,1)
-    -- end
-
-    -- self.mainPanel:hideWithEffect(PanelShowType.Fade,250)
 end
 
 function Lobby_Formation_Selector:setIndex(index)
-    if index < 1 then 
+    if index < 1 then
         index = 1
     end
     if index > 2 then
@@ -111,7 +104,8 @@ end
 
 function Lobby_Formation_Selector:resetList()
     for i = 1, #self.formationList do
-        self.formationList[i]:clear()
+        -- self.formationList[i]:clear()
+        self.mainPanel:removeChild(self.formationList[i].mainPanel)
     end
 end
 
@@ -125,10 +119,9 @@ end
 function Lobby_Formation_Selector:updateUIList(keyword, pageIndex)
 
     -- local currentFormation = pageIndex * 0
-    
+
     print("update with keyword " .. keyword)
     print("update with pageIndex " .. pageIndex)
-
 
     for k , v in pairs(Lobby_Formations_Info) do
         print("k " .. k )
@@ -180,7 +173,6 @@ function Lobby_Formation_Selector:updateUIList(keyword, pageIndex)
         self.tIndex = 1
     end
 
-
     -- table.sort(filteredList)
 
     for i = (self.tIndex * 4 - 3), (self.tIndex * 4) do
@@ -191,14 +183,14 @@ function Lobby_Formation_Selector:updateUIList(keyword, pageIndex)
         end
     end
 
-    TM_addTask( function ()
+    -- TM_addTask( function ()
     for i = 1, #resultList do
         local formation = Formation_Panel:new()
         formation:init(self.lobbyGUIHost, self.mainPanel.ptr, i,resultIDList[i])
         table.insert(self.formationList, formation)
     end
 
-    end,20)
+    -- end,20)
 
 end
 
@@ -206,4 +198,21 @@ function Lobby_Formation_Selector:deselectAllItem()
     for i = 1, #self.formationList do
         self.formationList[i]:setSelected(false)
     end
+end
+
+
+function Lobby_Formation_Selector:hasSelection()
+    for i = 1, #self.formationList do
+        if self.formationList[i].isSelected == true then
+            return true
+        end
+    end
+    return false
+end
+
+
+function Lobby_Formation_Selector:updateStatus()
+
+    Lobby_ReadyButton:setEnabled(self:hasSelection())
+
 end

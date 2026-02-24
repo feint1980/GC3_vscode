@@ -105,7 +105,8 @@ CLobbyResponse = {
     Lobby_Request_Formations = 5,
     Lobby_Response_Formations = 6,
     Lobby_Request_OwnedCharacters = 7,
-    Lobby_Response_OwnedCharacters = 8
+    Lobby_Response_OwnedCharacters = 8,
+    Lobby_Response_MatchStart = 9
 }
 
 BattleInfoResponse = {

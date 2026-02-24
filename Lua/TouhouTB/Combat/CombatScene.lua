@@ -1,0 +1,46 @@
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua' .. ';../../Lua/TouhouTB/characters/Meiling/?.lua;' .. ';../../Lua/TouhouTB/?.lua' 
+
+require "TGUI_Label"
+require "TGUI_Panel"
+require "TGUI_RTLabel" 
+require "TGUI_Editbox"
+require "TGUI_Picture"
+
+require "clientSide"
+require "clientWrapper"
+require "clientGlobal"
+require "lobby_global"
+
+require "lobbyFormationSelector"
+require "Prompt"
+
+CombatSceneHost = nil
+
+---@type pointer TGUIScriptingPtr
+Combat_GUIScriptingPtr = nil
+
+---@type pointer ClientScriptingPtr
+Combat_ClientScriptingPtr = nil
+
+---@type pointer ClientCharacterHandler
+Combat_ClientCharacterHandlerPtr = nil
+
+---@type pointer ControlHandlerPtr
+Combat_ControlHandlerPtr = nil
+
+--@type pointer SkillHandler
+Combat_SkillHandlerPtr = nil
+
+
+function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
+
+    print("CombatSceneInit called")
+    CombatSceneHost = host
+    Combat_GUIScriptingPtr = TGUIScriptingPtr
+    Combat_ClientScriptingPtr = ClientScriptingPtr
+    Combat_ClientCharacterHandlerPtr = ClientCharacterHandlerPtr
+    Combat_SkillHandlerPtr = SkillHandlerPtr
+    Combat_ControlHandlerPtr = ControlHandlerPtr
+
+
+end

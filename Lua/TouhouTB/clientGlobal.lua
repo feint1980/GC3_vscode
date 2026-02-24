@@ -53,6 +53,7 @@ MainInfo = {
 
 
 LobbyScene_isReady = false
+LobbyScene_selectedFormation = 0
 
 Target_Lobby_ID = ""
 Target_BattleServer_GUID = ""

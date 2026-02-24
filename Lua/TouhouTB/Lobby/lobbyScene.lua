@@ -62,8 +62,6 @@ Lobby_ReadyButton = nil
 
 Lobby_Leave_Decision = false
 
-
-
 function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
 
     print("LobbySceneInit called")
@@ -129,6 +127,8 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
         LobbyScene_ToggleReady()
         end)
 
+    Lobby_ReadyButton:setEnabled(false)
+    
     Lobby_ReadyLabel = RTLabel:new()
     Lobby_ReadyLabel:init(Lobby_GUIScriptingPtr,"",0,0)
     Lobby_ReadyLabel:setText(Tag.iRed .. "<Not Ready>" .. Tag.iClose)
@@ -161,6 +161,8 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
         -- Lobby_Leave_Decision =true
         print("ClientDisconnectFromCurrentBattleServer !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         Formation_Selector = _G.Formation_Selector
+
+        -- Formation_Selector:resetList()
         -- if Formation_Selector ~= nil then
         --     print("Formation_Selector clearList")  
         --     Formation_Selector:clearList()
@@ -208,7 +210,7 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
         print("TM called")
         -- Client_Lobby_SendSyncRequest()
         -- Formation_Selector:setVisible(false)
-        Lobby_UpdateInfo()
+        Lobby_UpdateInfo() 
         Client_Lobby_Request_OwnedCharacters()
 
     end
@@ -234,6 +236,18 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     Lobby_Formation_FilterEdit:setInputValidator("^[^$]*$")
     Lobby_Formation_FilterEdit:setPosStr("17%","33%")
     Lobby_Formation_FilterEdit:setSizeStr("24%","5%")
+
+    Lobby_Formation_FilterEdit:setOnTextChangedCallback(function()
+
+        print(Lobby_Formation_FilterEdit:getText())
+
+        Formation_Selector:updateUIList(Lobby_Formation_FilterEdit:getText(),1)
+        Formation_Selector:updateStatus()
+
+        LobbyScene_isReady = false
+        LobbyScene_ReadyStateUpdate()
+    end)
+
     -- Lobby_Formation_FilterEdit:setText("test lobby")
     print("Task set ")
     -- TM_addTask
@@ -372,10 +386,9 @@ function LobbyScene_ChangeHandleSync(clientList)
         Formation_Selector:setIndex(tonumber(myInfo.index))
         -- Formation_Selector:setVisible(true)
     else
-    
 
     end
-    
+
 end
 
 function Lobby_RecieveData(host,msg, ip, pID, RakNetPacket)
@@ -390,7 +403,7 @@ function Lobby_RecieveData(host,msg, ip, pID, RakNetPacket)
     -- else
     --     print("(Lobby_RecieveData)no handler for packet " .. pID)
     -- end
-end 
+end
 
 function Lobby_HandlePacket(host, packet, RakNetPacket)
     for k,v in pairs(Lobby_HandleNetwork) do

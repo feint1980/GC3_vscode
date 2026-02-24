@@ -107,6 +107,10 @@ function EditBox:setInputValidator(regexValidator)
     TGUI_EditBox_SetInputValidator(self.ptr, regexValidator)
 end
 
+function EditBox:setOnTextChangedCallback(callback)
+    TGUI_EditBox_SetOnTextChangedCallback(self.ptr, callback)
+end
+
 --- MARK: Wrapper
 
 ---wrapper of cpp_EditBox_Create
@@ -188,4 +192,8 @@ end
 
 function TGUI_EditBox_SetInputValidator(editBox, validator)
     cpp_EditBox_SetInputValidator(editBox, validator)
+end
+
+function TGUI_EditBox_SetOnTextChangedCallback(editBox, callback)
+    cpp_EditBox_SetOnTextChangedCallback(editBox, callback)
 end

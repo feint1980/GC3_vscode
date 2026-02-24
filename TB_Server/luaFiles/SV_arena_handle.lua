@@ -53,11 +53,11 @@ function SV_SendLobbyListToClientEP(host,ip,guid)
         serverList[k].name = v.name
         serverList[k].lobbyList = {}
         for n,m in pairs(v.lobbyList) do
-            print("data check " .. n)
-            print("id " .. m.id)
-            print("name " .. m.name)
-            print("password " .. m.password)
-            print("state " .. m.lobbyState)
+            -- print("data check " .. n)
+            -- print("id " .. m.id)
+            -- print("name " .. m.name)
+            -- print("password " .. m.password)
+            -- print("state " .. m.lobbyState)
             serverList[k].lobbyList[n] = {}
             serverList[k].lobbyList[n].id = m.id
             serverList[k].lobbyList[n].name = m.name
@@ -65,12 +65,12 @@ function SV_SendLobbyListToClientEP(host,ip,guid)
             serverList[k].lobbyList[n].lobbyState = m.lobbyState
             serverList[k].lobbyList[n].battleClientEP_List = {}
             for i = 1, #m.battleClientEP_List do
-                print("player #" .. i)
+                -- print("player #" .. i)
                 serverList[k].lobbyList[n].battleClientEP_List[i] = {}
                 serverList[k].lobbyList[n].battleClientEP_List[i].id = m.battleClientEP_List[i].id
                 serverList[k].lobbyList[n].battleClientEP_List[i].guid = m.battleClientEP_List[i].guid
-                print("\tguid " .. serverList[k].lobbyList[n].battleClientEP_List[i].guid)
-                print("\tid " .. serverList[k].lobbyList[n].battleClientEP_List[i].id)
+                -- print("\tguid " .. serverList[k].lobbyList[n].battleClientEP_List[i].guid)
+                -- print("\tid " .. serverList[k].lobbyList[n].battleClientEP_List[i].id)
             end
         end
     end

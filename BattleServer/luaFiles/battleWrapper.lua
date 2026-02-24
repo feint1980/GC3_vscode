@@ -42,7 +42,7 @@ ClientDataResponse = {
     ClientData_Request_Fomration = 1,
     ClientData_Response_Fomration = 2,
     ClientData_Request_OwnedCharacters = 3,
-    ClientData_Response_OwnedCharacters = 4
+    ClientData_Response_OwnedCharacters = 4,
 }
 
 CLobbyResponse = {
@@ -53,7 +53,8 @@ CLobbyResponse = {
     Lobby_Request_Formations = 5,
     Lobby_Response_Formations = 6,
     Lobby_Request_OwnedCharacters = 7,
-    Lobby_Response_OwnedCharacters = 8
+    Lobby_Response_OwnedCharacters = 8,
+    Lobby_Response_MatchStart = 9
 }
 
 ---@description handle incoming connection

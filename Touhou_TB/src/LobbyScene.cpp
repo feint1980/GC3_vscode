@@ -263,10 +263,10 @@ void LobbyScene::initGUI()
         luaL_openlibs(m_script);
 
         m_luaTaskManager.init("../../Lua/system/event/TaskManager.lua",m_script);
-        // if(!m_guiScriptingManager)
-        // {
-        m_guiScriptingManager = new TGUIScriptingManager();
-        // }
+        if(!m_guiScriptingManager)
+        {
+            m_guiScriptingManager = new TGUIScriptingManager();
+        }
         
         m_guiScriptingManager->init(m_window,m_script);
         m_skillHandler.init(m_script);
@@ -290,13 +290,12 @@ void LobbyScene::initGUI()
         m_clientCharacterHandler = new ClientCharacterHandler();
         m_clientCharacterHandler->init(m_script);
 
-       
         // InfoHolder::getInstance()->registerGame(m_game);
 
         // InfoHolder::getInstance()->registerClient(m_client);
 
         isInitialized = true;
-        }
+    }
     else
     {
         // lua_getglobal(m_script, "Lobby_UpdateInfo");
