@@ -35,10 +35,18 @@ function TaskManager_update(dt)
             table.remove(TM_Tasks, i)
         end
     end
-
 end
 
 function TaskManager_hasTasks()
 
     return #TM_Tasks > 0
 end
+
+TM_waitTasks = {}
+
+function TM_waitUntil(condition)
+    while not condition() do
+        coroutine.yield()
+    end
+end
+

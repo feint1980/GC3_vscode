@@ -18,6 +18,8 @@
 #include <map>
 #include <IMainGame.h>
 
+
+
 class InfoHolder
 {
 
@@ -156,5 +158,6 @@ private:
     std::unordered_map<std::string, std::string > m_savedStrValue;
     std::unordered_map<std::string, double> m_savedNumberValue;
     std::unordered_map<std::string, void*> m_savedPointerValue;
+
 
 };

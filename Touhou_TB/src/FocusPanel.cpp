@@ -59,8 +59,8 @@ void FocusPanel::removeLabel(tgui::Label::Ptr * label)
 
 tgui::Label::Ptr * FocusPanel::getFirstLabel()
 {
-    std::cout << "getFirstLabel called \n";
-    std::cout << "size is " << m_labels.size() << "\n";
+    // std::cout << "getFirstLabel called \n";
+    // std::cout << "size is " << m_labels.size() << "\n";
     if(m_labels.size() > 0)
     {
         // m_currentLabelIndex = 0;

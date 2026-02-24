@@ -30,6 +30,7 @@ Lobby_Formation_Selector = {
     lobbyNetworkHost = nil,
 
     parentPanel = nil,
+    ---@type Panel
     mainPanel = nil,
     ---@type table
     formationList = {},
@@ -114,6 +115,13 @@ function Lobby_Formation_Selector:resetList()
     end
 end
 
+function Lobby_Formation_Selector:clearList()
+    for i = 1, #self.formationList do
+        self.formationList[i]:clear()
+    end
+    self.formationList = {}
+end
+
 function Lobby_Formation_Selector:updateUIList(keyword, pageIndex)
 
     -- local currentFormation = pageIndex * 0
@@ -136,6 +144,8 @@ function Lobby_Formation_Selector:updateUIList(keyword, pageIndex)
 
     local filteredIDList = {}
 
+    table.sort(Lobby_Formations_Info)
+
     if keyword ~= "" then 
         for k,v in pairs(Lobby_Formations_Info) do
             if string.find(string.lower(v.name),string.lower(keyword)) ~= nil then
@@ -154,7 +164,7 @@ function Lobby_Formation_Selector:updateUIList(keyword, pageIndex)
 
     -- if (modPage * 4) > #filteredList  then
     modPage = math.max(1, math.ceil(#filteredList / 4))
-    
+
     self.tIndex = modPage
 
     print("filteredList")
@@ -170,6 +180,9 @@ function Lobby_Formation_Selector:updateUIList(keyword, pageIndex)
         self.tIndex = 1
     end
 
+
+    -- table.sort(filteredList)
+
     for i = (self.tIndex * 4 - 3), (self.tIndex * 4) do
         if filteredList[i] ~= nil then
             table.insert(resultList,filteredList[i])
@@ -178,13 +191,19 @@ function Lobby_Formation_Selector:updateUIList(keyword, pageIndex)
         end
     end
 
-    -- print("result list ")
-    -- print(#resultList)
-
+    TM_addTask( function ()
     for i = 1, #resultList do
         local formation = Formation_Panel:new()
         formation:init(self.lobbyGUIHost, self.mainPanel.ptr, i,resultIDList[i])
         table.insert(self.formationList, formation)
     end
 
+    end,20)
+
+end
+
+function Lobby_Formation_Selector:deselectAllItem()
+    for i = 1, #self.formationList do
+        self.formationList[i]:setSelected(false)
+    end
 end

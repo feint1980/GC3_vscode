@@ -71,6 +71,10 @@ function Panel:init(host, posX, posY,
     self.parent = parent
 end
 
+function Panel:removeChild(child)
+    TGUI_Panel_RemoveChild(self.ptr, child.ptr)
+end
+
 function Panel:remove()
     cpp_tgui_remove_widget(self.host, self.ptr)
 end
@@ -386,4 +390,8 @@ end
 --- @return 2  number x and y
 function TGUI_Panel_GetPos(panel)
     return cpp_Panel_GetPos(panel)
+end
+
+function TGUI_Panel_RemoveChild(panelPtr, childPtr)
+    cpp_Panel_RemoveChild(panelPtr, childPtr)
 end

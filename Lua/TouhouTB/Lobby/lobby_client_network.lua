@@ -170,12 +170,7 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_Own
         Lobby_User_Owned_Characters[k] = v
     end
 
-    -- --- Reset the character UI
-    -- for k, v in pairs(ownedCharacters) do 
-    --     print("k " .. k )
-    --     for k2 , v2 in pairs(v) do
-    --         print("stat " .. k2 .. " value " .. v2)
-    --     end
-    -- end
+    --- request formations after got all the data about owned characters
+    Client_Lobby_Request_Formations()
 
 end

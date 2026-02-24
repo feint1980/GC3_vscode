@@ -23,15 +23,13 @@ class PlayerPair {
     PlayerPair() { m_players[0] = m_players[1] = RakNet::UNASSIGNED_SYSTEM_ADDRESS; 
     m_host = nullptr; m_playerCount = 0; }
 
-    bool addPlayer(RakNet::SystemAddress address) {
+    bool addPlayer(const RakNet::SystemAddress & address) {
         if (m_playerCount < 2) 
         {
             m_players[m_playerCount] = address;
             m_playerCount++;
-
             return true;
         }
-
         return false;
     }
 

@@ -19,6 +19,8 @@
 #define FOCUS_STATE_PANEL 2
 
 
+static std::unordered_map<int, tgui::Widget::Ptr> s_widgetMap;
+
 struct TGUI_CanvasWrapper
 {
     TGUI_CanvasWrapper() {}
@@ -151,6 +153,9 @@ private:
     tgui::CanvasOpenGL3::Ptr  *m_currentCanvas = nullptr;
     int m_focusState = FOCUS_STATE_NONE;
     int m_previousFocusState = FOCUS_STATE_NONE;
+
+    
+
 
 };
 

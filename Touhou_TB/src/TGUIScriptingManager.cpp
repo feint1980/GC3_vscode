@@ -38,7 +38,8 @@ int lua_Panel_Create(lua_State * L)
     
             *panel = host->createPanel(pX, pY, width, height,nullptr);
         }
-        
+        // store the pointer maped to the userdata
+        s_widgetMap[(int)panel] = *panel;
         lua_pushlightuserdata(L, panel);
         return 1;
     }
@@ -415,6 +416,30 @@ int lua_Panel_GetPos(lua_State * L)
     return 2;
 }
 
+int lua_Panel_RemoveChild(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Panel_RemoveChild) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        tgui::Panel::Ptr * panel = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 1));
+        tgui::Panel::Ptr * child = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 2));
+        bool removeResult = false;
+        if(panel && child)
+        {
+            removeResult = panel->get()->remove(*child);
+        }
+        else
+        {
+            std::cout << "panel or child is null \n";
+        }
+        return 0;
+        
+    }
+}
 
 // MARK: EditBox
 
@@ -1070,6 +1095,7 @@ int lua_Label_Create(lua_State * L)
         float y = lua_tonumber(L, 4);
         tgui::Label::Ptr * label = new tgui::Label::Ptr();
         *label = host->createLabel(text,x,y);
+
         if(lua_gettop(L) == 5)
         {
             tgui::Panel::Ptr * parent = static_cast<tgui::Panel::Ptr*>(lua_touserdata(L, 5));
@@ -2542,8 +2568,11 @@ int lua_tgui_remove_widget(lua_State * L)
     }
     else
     {
+        
         TGUIScriptingManager * host = static_cast<TGUIScriptingManager*>(lua_touserdata(L, 1));
         tgui::Widget::Ptr * widget = static_cast<tgui::Widget::Ptr*>(lua_touserdata(L, 2));
+
+
         host->removeWidget(widget);
     }
     return 0;
@@ -2731,8 +2760,11 @@ TGUIScriptingManager::~TGUIScriptingManager()
 tgui::Label::Ptr TGUIScriptingManager::createLabel(const std::string & text,float x, float y)
 {
     tgui::Label::Ptr label = tgui::Label::create(text);
+    
     label->setPosition(x, y);
     label->setTextColor(tgui::Color::White);
+    
+    
     return label;
 }
 
@@ -3222,9 +3254,20 @@ void TGUIScriptingManager::removeWidget(tgui::Widget::Ptr * widget)
 {
     if(m_tgui == nullptr || widget == nullptr)
     {
+        std::cout << "tgui or widget is null \n";
         return;
     }
-    m_tgui->remove(*widget);
+    
+    if(m_tgui->remove(*widget))
+    {
+
+        std::cout << "removed widget " << widget << "(" << s_widgetMap[(int)widget].get() << ") |" << *widget <<  "|  \n";
+    }
+    else
+    {
+        std::cout << "unable to remove widget " << widget << "(" << s_widgetMap[(int)widget].get() << ") |" << *widget << "| <" << s_widgetMap[(int)widget] << ">   \n";
+    }
+    
 }
 
 void TGUIScriptingManager::addFocusableLabel(tgui::Label::Ptr * label, tgui::Panel::Ptr * panel)
@@ -3359,6 +3402,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     lua_register(m_script, "cpp_Panel_RemoveHoverOnCallback", lua_Panel_RemoveHoverOnCallback);
     lua_register(m_script, "cpp_Panel_RemoveHoverOffCallback", lua_Panel_RemoveHoverOffCallback);
     lua_register(m_script, "cpp_Panel_GetPos", lua_Panel_GetPos);
+    lua_register(m_script, "cpp_Panel_RemoveChild", lua_Panel_RemoveChild);
 
     // TGUI ScrollablePanel section
     lua_register(m_script, "cpp_ScrollablePanel_Create", lua_ScrollablePanel_Create);
@@ -3442,6 +3486,7 @@ void TGUIScriptingManager::init(Feintgine::Window * m_window, lua_State *script)
     // TGUI Remove 
     lua_register(m_script, "cpp_tgui_remove_widget", lua_tgui_remove_widget);
 
+   
 
     // lua_register(m_script, "cpp_ComboBox_SetItems", lua_ComboBox_SetItems);
     // lua_register(m_script, "cpp_ComboBox_SetSelectedIndex", lua_ComboBox_SetSelectedIndex);

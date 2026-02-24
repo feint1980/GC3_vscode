@@ -19,6 +19,8 @@ Lobby_Fomration_CurrentPage = 1
 Lobby_Fomration_MaxPage = 1
 
 Lobby_Formation_FilterEdit = nil
+Lobby_Formation_FilterEdit_Label = nil
+Formation_Selector = nil
 
 
 for k,v in pairs(PacketChannel) do

@@ -62,7 +62,7 @@ Lobby_ReadyButton = nil
 
 Lobby_Leave_Decision = false
 
-Formation_Selector = nil
+
 
 function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
 
@@ -160,17 +160,17 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
         
         -- Lobby_Leave_Decision =true
         print("ClientDisconnectFromCurrentBattleServer !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        Formation_Selector = _G.Formation_Selector
+        -- if Formation_Selector ~= nil then
+        --     print("Formation_Selector clearList")  
+        --     Formation_Selector:clearList()
+        -- else
+        --     print("Formation_Selector is nil")  
+        -- end
         ClientDisconnectFromCurrentBattleServer(ClientScriptingPtr)
 
         -- cppSelecBattleServer(ClientScriptingPtr,"")
         Prompt_UI_Table["Leave_Lobby_Noti"]:show(false)
-        TM_addTask(function()
-            print("Leave lobby")
-            -- cpp_backToHomeMenu(host)
-            -- Lobby_Leave_Decision = false
-            -- cpp_lobby_changeScene(SceneIndex.Home)
-        end,
-        10)
     end
     )
     Prompt_UI_Table["Leave_Lobby_Noti"]:addButton("Back", function()
@@ -215,24 +215,20 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     ,5
     )
 
-    TM_addTask(function()
-        print("TM called")
-        -- Client_Lobby_SendSyncRequest()
-        -- Formation_Selector:setVisible(false)
-
-        Client_Lobby_Request_Formations()
-    end
-    ,10
-    )
-
     if Lobby_Formation_FilterEdit == nil then
         Lobby_Formation_FilterEdit = EditBox:new()
-        local filterLabel = Label:new()
-        filterLabel:init(Lobby_GUIScriptingPtr,"Filter",0,0)
-        filterLabel:setAlignment(TextAlginment.Left)
-        filterLabel:setPosStr("10%","33%")
+
         -- filterLabel:setOn
     end
+
+    if Lobby_Formation_FilterEdit_Label == nil then 
+        Lobby_Formation_FilterEdit_Label = Label:new()
+
+    end
+
+    Lobby_Formation_FilterEdit_Label:init(Lobby_GUIScriptingPtr,"Filter",0,0)
+    Lobby_Formation_FilterEdit_Label:setAlignment(TextAlginment.Left)
+    Lobby_Formation_FilterEdit_Label:setPosStr("10%","33%")
 
     Lobby_Formation_FilterEdit:init(Lobby_GUIScriptingPtr,1,1,1,1, nil)
     Lobby_Formation_FilterEdit:setInputValidator("^[^$]*$")
@@ -281,6 +277,7 @@ function LobbyScene_ReadyStateUpdate()
     end
 end
 
+--- Update UI based on index (player left or right)
 function LobbyScene_ChangeHandleSync(clientList)
 
     local idLabelX = 25
@@ -297,8 +294,12 @@ function LobbyScene_ChangeHandleSync(clientList)
 
     local additionalPos = 50
 
+    local filterLabelX = 10
+    local filterX = 17
+    local filterY = 33
+
     local myGUID = InfoHolder_getStrVal("MainInfo.guid")
-    
+
     local myInfo = {}
 
     local tClientList = Table_DeepCopy(clientList)
@@ -332,6 +333,12 @@ function LobbyScene_ChangeHandleSync(clientList)
     Lobby_Picture:setPosStr(tostring(picX + (myIndex * additionalPos)) .. "%","24%")
     Lobby_ReadyButton:setPosStr(tostring(readyButtonX + (myIndex * additionalPos)) .. "%", "85%")
     Lobby_ReadyLabel:setPosStr(tostring(readyLabelX + (myIndex * additionalPos)) .. "%", "24%")
+
+    Lobby_Formation_FilterEdit_Label:setPosStr(tostring(filterLabelX + (myIndex * additionalPos)) .. "%", "33%")
+
+    Lobby_Formation_FilterEdit:setPosStr(tostring(filterX + (myIndex * additionalPos)) .. "%", "33%")
+    -- Lobby_Formation_FilterEdit:setSizeStr("24%","5%")
+
 
     ---- calculated based on myIndex
     if next(tClientList) == nil then

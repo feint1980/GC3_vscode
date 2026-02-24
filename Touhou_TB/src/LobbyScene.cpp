@@ -158,6 +158,8 @@ void LobbyScene::onExit()
 {
     InfoHolder::getInstance()->registerBattleServerIPMap(m_clientScriptingManager->getBattleServerIPMap()); // save the battle 
 
+    m_tgui->removeAllWidgets();
+
     // InfoHolder::getInstance()->registerClient(m_client);
 }
 
@@ -288,38 +290,7 @@ void LobbyScene::initGUI()
         m_clientCharacterHandler = new ClientCharacterHandler();
         m_clientCharacterHandler->init(m_script);
 
-        if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Lobby/lobbyScene.lua")))
-        {
-            std::cout << "Run lobby scene script OK \n";
-        }
-        // InfoHolder::getInstance()->initLuaInterface(m_script);
-
-        lua_register(m_script, "cpp_lobby_getInfo", lua_lobby_getInfo);
-        lua_register(m_script, "cpp_lobby_changeScene", lua_lobby_changeScene);
-        lua_register(m_script, "cpp_backToHomeMenu", lua_backToHomeMenu);
-
-        m_clientScriptingManager->setCommonHandlingLuaFunction("Lobby_RecieveData");
-        m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"LobbyHandlerWrapResponse");
-        m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"LobbyHandlerBattleResponse");
-
-
-        lua_getglobal(m_script, "LobbySceneInit");
-        if(lua_isfunction(m_script, -1))
-        {
-            lua_pushlightuserdata(m_script, this);
-            lua_pushlightuserdata(m_script, m_guiScriptingManager);
-            lua_pushlightuserdata(m_script, m_clientScriptingManager);
-            lua_pushlightuserdata(m_script, m_clientCharacterHandler);
-            lua_pushlightuserdata(m_script, &m_skillHandler);
-            lua_pushlightuserdata(m_script, m_controlHandler);
-            std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-            const int argc = 6;
-            const int returnCount = 0;
-            if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
-            {
-                std::cout << "Lobby scene init script from C++ OK \n";
-            }
-        }
+       
         // InfoHolder::getInstance()->registerGame(m_game);
 
         // InfoHolder::getInstance()->registerClient(m_client);
@@ -328,18 +299,51 @@ void LobbyScene::initGUI()
         }
     else
     {
-        lua_getglobal(m_script, "Lobby_UpdateInfo");
-        if(lua_isfunction(m_script, -1))
+        // lua_getglobal(m_script, "Lobby_UpdateInfo");
+        // if(lua_isfunction(m_script, -1))
+        // {
+        //     const int argc = 0;
+        //     const int returnCount = 0;
+        //     if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+        //     {
+        //         std::cout << "Lobby scene init script from C++ OK \n";
+        //     }
+        // }
+    }
+
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Lobby/lobbyScene.lua")))
+    {
+        std::cout << "Run lobby scene script OK \n";
+    }
+    // InfoHolder::getInstance()->initLuaInterface(m_script);
+
+    lua_register(m_script, "cpp_lobby_getInfo", lua_lobby_getInfo);
+    lua_register(m_script, "cpp_lobby_changeScene", lua_lobby_changeScene);
+    lua_register(m_script, "cpp_backToHomeMenu", lua_backToHomeMenu);
+
+    m_clientScriptingManager->setCommonHandlingLuaFunction("Lobby_RecieveData");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"LobbyHandlerWrapResponse");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"LobbyHandlerBattleResponse");
+
+    m_tgui = m_guiScriptingManager->getTGUI();
+    lua_getglobal(m_script, "LobbySceneInit");
+    if(lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this);
+        lua_pushlightuserdata(m_script, m_guiScriptingManager);
+        lua_pushlightuserdata(m_script, m_clientScriptingManager);
+        lua_pushlightuserdata(m_script, m_clientCharacterHandler);
+        lua_pushlightuserdata(m_script, &m_skillHandler);
+        lua_pushlightuserdata(m_script, m_controlHandler);
+        std::cout << "check ref : " << &m_guiScriptingManager << "\n";
+        const int argc = 6;
+        const int returnCount = 0;
+        if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
-            const int argc = 0;
-            const int returnCount = 0;
-            if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
-            {
-                std::cout << "Lobby scene init script from C++ OK \n";
-            }
+            std::cout << "Lobby scene init script from C++ OK \n";
         }
     }
-        std::cout << "init GUI (lobby) end \n";
+    std::cout << "init GUI (lobby) end \n";
     
 }
 

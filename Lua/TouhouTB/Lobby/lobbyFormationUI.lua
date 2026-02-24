@@ -15,7 +15,8 @@ Formation_Panel = {
     mainPanel = nil,
     parentPanel = nil,
     nameLabel = nil,
-    pictures = {}
+    pictures = {},
+    isSelected = false
 }
 
 function Formation_Panel:new(o)
@@ -29,9 +30,9 @@ end
 
 function Formation_Panel:init(host, parentPanel,index,formationID)
     print("Formation_Panel called " .. index)
-    -- if self.mainPanel == nil then
-    self.mainPanel = Panel:new()
-    -- end
+    if self.mainPanel == nil then
+        self.mainPanel = Panel:new()
+    end
 
     -- print("formation ID ")
     self.mainPanel:init(host,0,0,0,0,parentPanel)
@@ -47,6 +48,20 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
     self.nameLabel:setAlignment(TextAlginment.Center)
     self.nameLabel:setScale(.7)
 
+    self.mainPanel:setHoverable(0,255,0,255,125,125,125,255)
+
+    self.mainPanel:setOnClickCallback(function()
+        Formation_Selector:deselectAllItem()
+        self:toggleSelection()
+    end)
+    
+    self.mainPanel:setOnRightClickCallback(function()
+        -- Formation_Selector:deselectAllItem()
+        self:setSelected(false)
+    end)
+
+
+
     for i = 1, 4 do
         local tPicture = Picture:new()
         tPicture = Picture:new()
@@ -55,13 +70,11 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
         local pos = ((i - 1) * 25) + 2.5
         tPicture:setSize(65,65)
         -- tPicture:setSizeStr("23%","23%")
-        tPicture:setPosStr( tostring(pos) .. "%","50%")
+        tPicture:setPosStr( tostring(pos) .. "%","25%")
         table.insert(self.pictures,tPicture)
     end
 
     print("total character size " .. #Lobby_Formations_Info[formationID].characters)
-
-    -- print("GameStorage check")
 
     -- print("charactersTable " .. charactersTable)
     Lobby_User_Owned_Characters = _G.Lobby_User_Owned_Characters
@@ -70,7 +83,6 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
     for k,v in pairs(Lobby_User_Owned_Characters) do
         print("Lobby_User_Owned_Characters " .. k)
     end
-
 
     for i = 1, #Lobby_Formations_Info[formationID].characters do
         local characterID = Lobby_Formations_Info[formationID].characters[i].id
@@ -101,17 +113,40 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
 
 end
 
+
+function Formation_Panel:setSelected(selected)
+    self.isSelected = selected
+    self:updateSelectionStatus()
+end
+
+function Formation_Panel:toggleSelection()
+    self.isSelected = not self.isSelected
+    self:updateSelectionStatus()
+end
+
+function Formation_Panel:updateSelectionStatus()
+    if self.isSelected == true then
+        self.mainPanel:setHoverableStop()
+        self.mainPanel:setBorderColor(255,255,0,255)
+    else
+        self.mainPanel:setHoverable(0,255,0,255,125,125,125,125)
+        self.mainPanel:setBorderColor(125,125,125,125)
+    end
+end
+
 function Formation_Panel:clear()
 
-    for i = 1, #self.pictures do
-        self.pictures[i]:remove()
-    end
+    print("clear called")
+    self.mainPanel:remove()
+    -- for i = 1, #self.pictures do
+    --     self.pictures[i]:remove()
+    -- end
 
-    if self.nameLabel ~= nil then
-        self.nameLabel:remove()
-    end
-    if self.mainPanel ~= nil then
-        self.mainPanel:remove()
-    end
+    -- if self.nameLabel ~= nil then
+    --     self.nameLabel:remove()
+    -- end
+    -- if self.mainPanel ~= nil then
+    --     self.mainPanel:remove()
+    -- end
 
 end
