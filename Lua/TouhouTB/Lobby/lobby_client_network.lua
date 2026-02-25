@@ -1,6 +1,6 @@
 package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;'
 
-
+require "clientGlobal"
 -- Lobby_HandleNetwork[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet,RakNetPacket)
 
 --     local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
@@ -180,5 +180,40 @@ end
 LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_MatchStart] = function(host,data,guid)
 
     print(" Lobby_Response_MatchStart get ")
+    local lobbyID, lobbyName, tGUID, tID, tResult = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+
+    -- |
+    print("lobbyID " .. lobbyID)
+    print("lobbyName " .. lobbyName)
+    print("tGUID " .. tGUID)
+    print("tID " .. tID)
+    print("tResult " .. tResult)
+
+    if tResult == "MatchStart" then
+        Prompt_UI_Table["StartGame"]:show(true)
+        TM_addTask(function()
+            -- print("2")
+            Prompt_UI_Table["StartGame"]:setMsg("Game Start in " .. Tag.iGreen .. "2" .. Tag.iClose)
+        end
+        ,50
+        )
+        TM_addTask(function()
+            -- print("1")
+            Prompt_UI_Table["StartGame"]:setMsg("Game Start in " .. Tag.iGreen .. "1" .. Tag.iClose)
+        end
+        ,100
+        )
+        TM_addTask(function()
+            print("switch")
+            Prompt_UI_Table["StartGame"]:show(false)
+            cpp_lobby_changeScene(SceneIndex.Combat)
+        end
+        ,150
+        )
+    else
+        print("error")
+    end
+
+
 
 end

@@ -290,7 +290,7 @@ void LobbyScene::initGUI()
         m_clientCharacterHandler = new ClientCharacterHandler();
         m_clientCharacterHandler->init(m_script);
 
-        // InfoHolder::getInstance()->registerGame(m_game);
+        InfoHolder::getInstance()->registerGame(m_game);
 
         // InfoHolder::getInstance()->registerClient(m_client);
 

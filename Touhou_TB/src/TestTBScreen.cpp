@@ -16,7 +16,7 @@ TestTBScreen::TestTBScreen(Feintgine::Window * window)
 {
     m_alpha = 1.0;
     m_window = window;
-    m_screenIndex = 3;
+    m_screenIndex = 4;
 
     initShader();
 }

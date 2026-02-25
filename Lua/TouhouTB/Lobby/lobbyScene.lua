@@ -154,6 +154,17 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
     end
     )
 
+
+    Prompt_UI_Table["StartGame"] = Prompt:new()
+    Prompt_UI_Table["StartGame"]:init(Lobby_GUIScriptingPtr,"Game Start in " .. Tag.iGreen .. "3" .. Tag.iClose ,false)
+    Prompt_UI_Table["StartGame"]:addButton("Cancel", function()
+
+        LobbyScene_isReady = false
+        LobbyScene_ReadyStateUpdate()
+        Client_Lobby_SendSyncRequest()
+
+    end)
+
     Prompt_UI_Table["Leave_Lobby_Noti"] = Prompt:new()
     Prompt_UI_Table["Leave_Lobby_Noti"]:init(Lobby_GUIScriptingPtr,"Leave Lobby ?",false)
     Prompt_UI_Table["Leave_Lobby_Noti"]:addButton("Leave", function()
@@ -246,6 +257,7 @@ function LobbySceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacter
 
         LobbyScene_isReady = false
         LobbyScene_ReadyStateUpdate()
+        Client_Lobby_SendSyncRequest()
     end)
 
     -- Lobby_Formation_FilterEdit:setText("test lobby")
@@ -398,11 +410,7 @@ function Lobby_RecieveData(host,msg, ip, pID, RakNetPacket)
     tPacket.ipAddr = ip
     tPacket.packetID = pID
     Lobby_HandlePacket(host,tPacket,RakNetPacket)
-    -- if Lobby_HandleNetwork[pID] ~= nil then
-    --     Lobby_HandleNetwork[pID](host,ip,pID,RakNetPacket)
-    -- else
-    --     print("(Lobby_RecieveData)no handler for packet " .. pID)
-    -- end
+
 end
 
 function Lobby_HandlePacket(host, packet, RakNetPacket)
@@ -414,4 +422,7 @@ function Lobby_HandlePacket(host, packet, RakNetPacket)
     end
 end
 
+require "lobby_client_network"
+
 require "lobby_Input_control"
+

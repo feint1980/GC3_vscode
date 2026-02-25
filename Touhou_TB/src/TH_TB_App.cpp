@@ -24,7 +24,6 @@ void TH_TB_App::onInit()
     
 }
 
-
 void TH_TB_App::addScreen()
 {
 
@@ -49,7 +48,12 @@ void TH_TB_App::addScreen()
     m_lobby = std::make_unique<LobbyScene>(&m_window);
     m_screenList->addScreen(m_lobby.get());
 
+
+    m_combat = std::make_unique<CombatScene>(&m_window);
+    m_screenList->addScreen(m_combat.get());
+
     m_screenList->setScreen(m_loginV2->getScreenIndex());
+
 
 }
 

@@ -67,7 +67,11 @@ public:
 
     virtual void draw() override;
 
+    void drawGUI();
+
     virtual void checkInput() override;
+
+    void handleInput(Feintgine::InputManager & inputManager);
 
     void initGUI();
 

@@ -176,7 +176,6 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_SyncStatus] = fun
 
 end
 
-
 ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Request_Formations] = function(host, channel, request,data,ip, guid)
 
     local tGUID, tID = string.match(data, "^|([^|]+)|([^|]+)|$")
@@ -248,7 +247,7 @@ end
 function Request_Formation_From_MainServer(host, userGUID,userID)
 
     BM_sendWrapData(host, BM_getMainServerIP(host), BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL,MainServerChanel.ClientData , ClientDataResponse.ClientData_Request_Fomration, {userGUID,userID})
-    
+
 end
 
 InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_Fomration] = function(host, channel, request,data,ip, guid)

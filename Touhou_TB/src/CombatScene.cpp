@@ -15,7 +15,8 @@ CombatScene::CombatScene(Feintgine::Window * window)
 {
     m_alpha = 0.0f;
     m_window = window;
-
+    m_screenIndex = 3;
+    initShader();
 }
 
 
@@ -116,11 +117,15 @@ void CombatScene::initGUI()
 
         isInitialized = true;
     }
-    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../luaFiles/CombatScene.lua")))
+    if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Combat/CombatScene.lua")))
     {
         std::cout << "Run script CombatScene.lua OK \n";
     }
-    
+    m_clientScriptingManager->setCommonHandlingLuaFunction("Combat_RecieveData");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"CombatHandlerWrapResponse");
+    m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"CombatHandlerBattleResponse");
+
+    m_tgui = m_guiScriptingManager->getTGUI();
 
 }
 
@@ -134,17 +139,76 @@ void CombatScene::onExit()
 
 void CombatScene::update(float deltaTime)
 {
-
+    if(m_clientScriptingManager)
+    {
+        m_clientScriptingManager->updateV2(deltaTime);
+    }
+    if(m_guiScriptingManager)
+    {
+        m_guiScriptingManager->update(deltaTime);
+    }
+    m_luaTaskManager.update(deltaTime);
 }
 
 
 void CombatScene::draw()
 {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	
+	m_shader.use();
+
+	GLint textureUniform = m_shader.getUniformLocation("mySampler");
+	glUniform1i(textureUniform, 0);
+	glActiveTexture(GL_TEXTURE0);
+
+	GLint dayLightIndex = m_shader.getUniformLocation("dayLight");
+	glUniform3f(dayLightIndex, 1, 1, 1);
+
+	// Camera matrix
+	glm::mat4 projectionMatrix = m_camera.getCameraMatrix();
+	GLint pUniform = m_shader.getUniformLocation("P");
+	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
+
+	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
+    m_bg.draw(m_spriteBatch);
+	m_spriteBatch.end();
+	m_spriteBatch.renderBatch();
+	m_shader.unuse();
+	
+	drawGUI();
+	SDL_GL_SetSwapInterval(1);
 
 }
 
+void CombatScene::drawGUI()
+{
+    if(m_guiScriptingManager)
+    {
+        m_guiScriptingManager->draw();
+    }
+}
 
 void CombatScene::checkInput()
 {
+    SDL_Event evnt;
+    while (SDL_PollEvent(&evnt))
+    {
+        m_game->onSDLEvent(evnt);
+        if(m_guiScriptingManager)
+        {
+            m_guiScriptingManager->checkInput(evnt);
+        }
+        
+    }
+    handleInput(m_game->m_inputManager);
+}
+
+void CombatScene::handleInput(Feintgine::InputManager & inputManager)
+{
+    if (inputManager.isKeyPressed(SDL_QUIT))
+	{
+		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
+	}
 
 }

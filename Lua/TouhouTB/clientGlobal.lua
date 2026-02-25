@@ -4,7 +4,8 @@ SceneIndex = {
     Login = 0,
     Home = 1,
     Test = 2,
-    Lobby = 3
+    Lobby = 3,
+    Combat = 4
 }
 
 MenuMainPanels = {}

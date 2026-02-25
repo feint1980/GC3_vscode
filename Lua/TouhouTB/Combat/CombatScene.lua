@@ -1,4 +1,4 @@
-package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua' .. ';../../Lua/TouhouTB/characters/Meiling/?.lua;' .. ';../../Lua/TouhouTB/?.lua' 
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Combat/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua' .. ';../../Lua/TouhouTB/characters/Meiling/?.lua;' .. ';../../Lua/TouhouTB/?.lua'
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -9,7 +9,7 @@ require "TGUI_Picture"
 require "clientSide"
 require "clientWrapper"
 require "clientGlobal"
-require "lobby_global"
+require "combat_global"
 
 require "lobbyFormationSelector"
 require "Prompt"
@@ -42,5 +42,23 @@ function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacte
     Combat_SkillHandlerPtr = SkillHandlerPtr
     Combat_ControlHandlerPtr = ControlHandlerPtr
 
+end
 
+function Combat_RecieveData(host,msg, ip, pID, RakNetPacket)
+
+    local tPacket = Client_Packet:new()
+    tPacket.data = msg
+    tPacket.ipAddr = ip
+    tPacket.packetID = pID
+    Combat_HandlePacket(host,tPacket,RakNetPacket)
+
+end
+
+function Combat_HandlePacket(host, packet, RakNetPacket)
+    for k,v in pairs(Combat_HandleNetwork) do
+        -- print(k)
+        if Combat_HandleNetwork[k] ~= nil then
+            Combat_HandleNetwork[k](host,packet,RakNetPacket)
+        end
+    end
 end

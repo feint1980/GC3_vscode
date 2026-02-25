@@ -7,6 +7,7 @@
 #include "LoginSceneV2.h"
 #include "HomeScene.h"
 #include "LobbyScene.h"
+#include "CombatScene.h"
 class TH_TB_App : public Feintgine::IMainGame
 {
 public:
@@ -24,6 +25,7 @@ private:
     std::unique_ptr<LoginSceneV2> m_loginV2 = nullptr;
     std::unique_ptr<HomeScene> m_home = nullptr;
     std::unique_ptr<LobbyScene> m_lobby = nullptr;
+    std::unique_ptr<CombatScene> m_combat = nullptr;
 
 };
 

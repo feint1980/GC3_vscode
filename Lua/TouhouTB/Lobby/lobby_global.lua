@@ -53,6 +53,6 @@ function LobbyHandlerBattleResponse(host,chanel,request, data,guid)
     end
 end
 
-require "lobby_client_network"
+
 
 
