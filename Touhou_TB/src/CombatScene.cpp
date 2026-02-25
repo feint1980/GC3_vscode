@@ -55,12 +55,13 @@ void CombatScene::onEntry()
 {
     std::cout << "combat scene onEntry \n";
 
-    if(!loaded)
-    {
-        Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
-        loaded = true;
-    }
+    // if(!loaded)
+    // {
+    //     Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
+    //     loaded = true;
+    // }
 
+    loaded = true;
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	
     m_camera.setPosition(glm::vec2(0, 0));
@@ -153,6 +154,11 @@ void CombatScene::update(float deltaTime)
 
 void CombatScene::draw()
 {
+    if(!loaded)
+    {
+        return;
+    }
+    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	
