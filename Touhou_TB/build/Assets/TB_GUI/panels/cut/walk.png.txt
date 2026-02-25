@@ -1,0 +1,1 @@
+walk_01.png.png 6 4, walk_02.png.png 70 3, walk_03.png.png 134 3, walk_04.png.png 200 4, walk_05.png.png 264 5, walk_06.png.png 329 5.

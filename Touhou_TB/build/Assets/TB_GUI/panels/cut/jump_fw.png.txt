@@ -1,0 +1,1 @@
+jump_fw_01.png.png 2 4, jump_fw_02.png.png 68 13, jump_fw_03.png.png 144 22, jump_fw_04.png.png 214 23, jump_fw_05.png.png 283 14, jump_fw_06.png.png 357 0.

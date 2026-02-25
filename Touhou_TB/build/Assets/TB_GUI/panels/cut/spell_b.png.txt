@@ -1,0 +1,1 @@
+spell_b_01.png.png 6 6, spell_b_02.png.png 71 7, spell_b_03.png.png 136 5, spell_b_04.png.png 198 2, spell_b_05.png.png 262 4, spell_b_06.png.png 328 6, spell_b_07.png.png 403 8, spell_b_08.png.png 468 7, spell_b_09.png.png 529 11, spell_b_10.png.png 6 6, spell_b_11.png.png 71 7, spell_b_12.png.png 136 5, spell_b_13.png.png 198 2, spell_b_14.png.png 262 4.

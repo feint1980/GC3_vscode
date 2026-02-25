@@ -1,0 +1,1 @@
+attack_air_b_ranged_01.png.png 5 14, attack_air_b_ranged_02.png.png 64 14, attack_air_b_ranged_03.png.png 117 7, attack_air_b_ranged_04.png.png 215 8, attack_air_b_ranged_05.png.png 297 8, attack_air_b_ranged_06.png.png 379 12, attack_air_b_ranged_07.png.png 459 13, attack_air_b_ranged_08.png.png 537 15, attack_air_b_ranged_09.png.png 612 15.

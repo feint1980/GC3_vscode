@@ -1,0 +1,1 @@
+hit_low_01.png.png 4 3, hit_low_02.png.png 62 4, hit_low_03.png.png 127 2.

@@ -1,0 +1,1 @@
+recover_01.png.png 3 80, recover_02.png.png 103 60, recover_03.png.png 181 44, recover_04.png.png 247 15, recover_05.png.png 316 5, recover_06.png.png 378 6.

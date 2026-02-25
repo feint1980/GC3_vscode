@@ -1,0 +1,1 @@
+crouch_attack_b_01.png.png 4 4, crouch_attack_b_02.png.png 82 16, crouch_attack_b_03.png.png 153 14, crouch_attack_b_04.png.png 226 24, crouch_attack_b_05.png.png 303 24, crouch_attack_b_06.png.png 430 24, crouch_attack_b_07.png.png 551 23, crouch_attack_b_08.png.png 656 8, crouch_attack_b_09.png.png 734 3, crouch_attack_b_10.png.png 4 4.

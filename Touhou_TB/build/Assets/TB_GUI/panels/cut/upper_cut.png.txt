@@ -1,0 +1,1 @@
+upper_cut_01.png.png 3 6, upper_cut_02.png.png 70 9, upper_cut_03.png.png 132 20, upper_cut_04.png.png 196 21, upper_cut_05.png.png 261 22, upper_cut_06.png.png 326 17, upper_cut_07.png.png 394 6, upper_cut_08.png.png 475 6, upper_cut_09.png.png 557 6, upper_cut_10.png.png 3 6, upper_cut_11.png.png 70 9.

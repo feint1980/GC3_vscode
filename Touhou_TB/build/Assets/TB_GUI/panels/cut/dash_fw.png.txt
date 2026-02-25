@@ -1,0 +1,1 @@
+dash_fw_01.png.png 6 5, dash_fw_02.png.png 78 10, dash_fw_03.png.png 143 20, dash_fw_04.png.png 231 20.

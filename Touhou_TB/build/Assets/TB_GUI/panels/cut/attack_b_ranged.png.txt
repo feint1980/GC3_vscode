@@ -1,0 +1,1 @@
+attack_b_ranged_01.png.png 5 12, attack_b_ranged_02.png.png 64 12, attack_b_ranged_03.png.png 117 5, attack_b_ranged_04.png.png 207 6, attack_b_ranged_05.png.png 287 6, attack_b_ranged_06.png.png 362 10, attack_b_ranged_07.png.png 442 11, attack_b_ranged_08.png.png 513 13.

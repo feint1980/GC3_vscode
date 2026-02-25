@@ -1,0 +1,1 @@
+hit_spin_01.png.png 4 8, hit_spin_02.png.png 77 10, hit_spin_03.png.png 146 10, hit_spin_04.png.png 219 12, hit_spin_05.png.png 319 14, hit_spin_06.png.png 388 17, hit_spin_07.png.png 462 12.

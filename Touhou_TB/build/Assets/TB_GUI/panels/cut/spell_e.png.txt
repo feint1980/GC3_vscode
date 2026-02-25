@@ -1,0 +1,1 @@
+spell_e_01.png.png 5 24, spell_e_02.png.png 78 22, spell_e_03.png.png 184 18, spell_e_04.png.png 305 22, spell_e_05.png.png 445 22.

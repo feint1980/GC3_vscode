@@ -1,5 +1,5 @@
 print("Test run started")
-package.path = package.path .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua'
+package.path = package.path .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua' .. ';../../Lua/TouhouTB/characters/Meiling/?.lua;'
 
 -- gui include
 require "IconGui"
@@ -11,6 +11,7 @@ require "Reimu"
 require "Patchouli"
 require "Yukari"
 require "turnHandler"
+require "Meiling"
 
 local characters = {}
 local turns = {}
@@ -92,6 +93,11 @@ function init(host)
     p3a:init(host,T_slotHandler:getSlot(2,3,2),2)
     p3a:loadCommon(host)
     p3a:loadSkills(host)
+    
+    local p4a = Meiling:new()
+    p4a:init(host,T_slotHandler:getSlot(2,2,2),2)
+    p4a:loadCommon(host)
+    p4a:loadSkills(host)
 
     T_turnHandler:addCharacter(p1)
     T_turnHandler:addCharacter(p2)
@@ -99,6 +105,7 @@ function init(host)
 
     T_turnHandler:addCharacter(p2a)
     T_turnHandler:addCharacter(p3a)
+    T_turnHandler:addCharacter(p4a)
 
     T_guiIcons = IconGUI:new()
     T_guiIcons:init(host)

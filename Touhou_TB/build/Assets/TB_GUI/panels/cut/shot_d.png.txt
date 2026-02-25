@@ -1,0 +1,1 @@
+shot_d_01.png.png 4 8, shot_d_02.png.png 81 23, shot_d_03.png.png 174 22, shot_d_04.png.png 268 21, shot_d_05.png.png 364 9, shot_d_06.png.png 435 13.

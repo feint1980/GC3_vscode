@@ -1,0 +1,1 @@
+crouch_hit_01.png.png 3 9, crouch_hit_02.png.png 77 20, crouch_hit_03.png.png 165 19.

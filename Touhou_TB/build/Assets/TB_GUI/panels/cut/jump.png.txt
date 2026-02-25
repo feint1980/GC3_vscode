@@ -1,0 +1,1 @@
+jump_01.png.png 3 23, jump_02.png.png 69 29, jump_03.png.png 137 6, jump_04.png.png 195 9, jump_05.png.png 247 7, jump_06.png.png 309 6, jump_07.png.png 372 7, jump_08.png.png 436 12.

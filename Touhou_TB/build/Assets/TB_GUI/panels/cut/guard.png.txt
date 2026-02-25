@@ -1,0 +1,1 @@
+guard_01.png.png 4 6, guard_02.png.png 78 5.

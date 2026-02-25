@@ -1,0 +1,1 @@
+charge_01.png.png 3 6, charge_02.png.png 61 2, charge_03.png.png 126 2, charge_04.png.png 192 2, charge_05.png.png 256 2, charge_06.png.png 328 6.
