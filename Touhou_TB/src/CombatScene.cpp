@@ -55,13 +55,13 @@ void CombatScene::onEntry()
 {
     std::cout << "combat scene onEntry \n";
 
-    // if(!loaded)
-    // {
-    //     Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
-    //     loaded = true;
-    // }
+    if(!loaded)
+    {
+        Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
+        loaded = true;
+    }
 
-    loaded = true;
+    // loaded = true;
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	
     m_camera.setPosition(glm::vec2(0, 0));

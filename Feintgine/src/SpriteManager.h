@@ -81,6 +81,8 @@ namespace Feintgine {
 		std::vector<std::thread> m_threads;
 
 		std::vector<std::string> m_texturePaths;
+
+		std::set<std::string> m_loadedTexturePaths;
 	//	std::vector<bool> m_isLoaded;
 		
 	};

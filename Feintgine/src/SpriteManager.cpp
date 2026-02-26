@@ -249,6 +249,12 @@ namespace Feintgine {
 	int SpriteManager::loadFromDirectory(const char * name, int level)
 	{
 
+		if(m_loadedTexturePaths.find(name) != m_loadedTexturePaths.end())
+		{
+			std::cout << "already loaded " << name << "\n";
+			return 0;
+		}
+		m_loadedTexturePaths.emplace(name);
 		// m_FutureMap.reserve(MAX_PACKET_SIZE); old way
 		m_storedKey.reserve(MAX_PACKET_SIZE);
 		for(int i = 0 ; i < target_threads ; i++)

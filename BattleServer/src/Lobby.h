@@ -16,6 +16,8 @@
 #include <string>
 #include <iostream>
 
+#include "BattleInstance.h"
+
 class PlayerPair {
 
     public: 
