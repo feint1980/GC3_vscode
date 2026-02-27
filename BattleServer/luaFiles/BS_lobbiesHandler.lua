@@ -303,8 +303,6 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
 
 end
 
-
-
 function Request_ClientOwnedCharacters_From_MainServer(host, userGUID,userID)
 
     BM_sendWrapData(host, BM_getMainServerIP(host), BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL,MainServerChanel.ClientData , ClientDataResponse.ClientData_Request_OwnedCharacters, {userGUID,userID})

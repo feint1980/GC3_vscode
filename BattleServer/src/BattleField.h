@@ -1,10 +1,12 @@
 
-
+#ifndef BATTLEFIELD_H
+#define BATTLEFIELD_H
 
 class BattleField
 {
-public:
+    public:
     
 
-
 };
+
+#endif // BATTLEFIELD_H
