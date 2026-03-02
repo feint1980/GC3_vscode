@@ -211,7 +211,6 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_Mat
                 Prompt_UI_Table["StartGame"]:setMsg("Connecting ...")
                 -- send LobbyScene_selectedFormation as lock in
                 SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Response_MatchStart_Confirm, {tGUID, tID,lobbyID,LobbyScene_selectedFormation },5,0.1,0.15)
-
                 TM_addTask( function()
                     Prompt_UI_Table["StartGame"]:show(false)
                     cpp_lobby_changeScene(SceneIndex.Combat)

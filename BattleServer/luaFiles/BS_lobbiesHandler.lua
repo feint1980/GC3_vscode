@@ -263,9 +263,16 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Response_MatchSta
     print("tID " .. tID)
     print("lobbyID " .. lobbyID)
     print("selectedFormationIndex " .. selectedFormationIndex)
-    for k,v in pairs(BattleLobby_List[lobbyID].battleClientEP_List) do
-        print("k " .. k)
+    for k,v in pairs(BattleLobby_List[lobbyID].battleClientEP_Map) do
+        
     end
+
+    if BattleLobby_List[lobbyID].battleClientEP_Map[tID] ~= nil then 
+
+    else
+        print("client not found")
+    end
+
 
 end
 

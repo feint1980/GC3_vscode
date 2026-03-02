@@ -44,7 +44,7 @@ function BattleLobby:addPlayer(playerID, playerGUID, playerIP)
 
         table.insert(self.battleClientEP_List, clientEP)
     end
-
+    self.battleClientEP_Map[playerID] = clientEP
     if #self.battleClientEP_List >= 2 then 
         print("lobby " .. self.id .. " is full")
         self.lobbyState = BattleLobbyState.FULL
@@ -54,6 +54,8 @@ function BattleLobby:addPlayer(playerID, playerGUID, playerIP)
     for i = 1, #self.battleClientEP_List do
         print(self.battleClientEP_List[i].id .. "(" .. self.battleClientEP_List[i].guid .. ")")
     end
+    -- append to map list
+
 end
 
 function BattleLobby:removePlayer(playerGUID)
@@ -62,11 +64,12 @@ function BattleLobby:removePlayer(playerGUID)
         -- print("comparing " .. self.battleClientEP_List[i].guid .. " with " .. playerGUID)
         if self.battleClientEP_List[i].guid == playerGUID then
             print("player " .. playerGUID .. " removed from lobby " .. self.id .. "(" .. self.name .. ")")
+            self.battleClientEP_Map[self.battleClientEP_List[i].id] = nil
             table.remove(self.battleClientEP_List, i)
             break
         end
     end
-    
+
     -- self check 
     if #self.battleClientEP_List == 0 then
         print("lobby " .. self.id .. " is empty")
@@ -90,7 +93,6 @@ BattleLobby_List = {}
 function BattleLobby_ResetList()
     BattleLobby_List = {}
 end
-
 
 function BattleLobby_UpdateLobbiesStatus()
     for k,v in pairs(BattleLobby_List) do
