@@ -30,6 +30,7 @@ BattleLobbyState = {
     INGAME = 2,
     EXPIRED = 3,
     FULL = 4,
+    LOCK_IN = 5,
 }
 
 

@@ -81,7 +81,6 @@ function Lobby_Formation_Selector:setIndex(index)
     self:onIndexChangeUpdate()
 end
 
-
 function Lobby_Formation_Selector:onIndexChangeUpdate()
     local xPos = 26
     local additionPos = 50 * (self.tIndex -1)

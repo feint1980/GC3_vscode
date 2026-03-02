@@ -177,7 +177,8 @@ void CombatScene::draw()
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
 	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
-    m_bg.draw(m_spriteBatch);
+    // m_bg.draw(m_spriteBatch);
+    
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();

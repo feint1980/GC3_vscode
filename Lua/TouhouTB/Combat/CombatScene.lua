@@ -11,7 +11,7 @@ require "clientWrapper"
 require "clientGlobal"
 require "combat_global"
 
-require "lobbyFormationSelector"
+-- require "lobbyFormationSelector"
 require "Prompt"
 
 CombatSceneHost = nil

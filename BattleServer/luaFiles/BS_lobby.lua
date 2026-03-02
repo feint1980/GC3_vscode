@@ -5,6 +5,7 @@ BattleLobby = {
     name  = "",
     password = "",
     battleClientEP_List = {},
+    battleClientEP_Map = {},
     lobbyState =  BattleLobbyState.CLOSED
 }
 
@@ -21,7 +22,7 @@ function BattleLobby:init(t_id,t_name,t_password)
     self.id = t_id
     self.name = t_name
     self.password = t_password
-    self.Battle_LobbyState = BattleLobbyState.OPEN
+    self.lobbyState = BattleLobbyState.OPEN
 end
 
 function BattleLobby:addPlayer(playerID, playerGUID, playerIP)
@@ -75,7 +76,7 @@ function BattleLobby:removePlayer(playerGUID)
         self.lobbyState = BattleLobbyState.FULL
     elseif #self.battleClientEP_List == 1 then
         print("lobby " .. self.id .. " is waiting")
-        self.lobbyState = BattleLobbyState.WAITING
+        self.lobbyState = BattleLobbyState.OPEN
     end
 
 end

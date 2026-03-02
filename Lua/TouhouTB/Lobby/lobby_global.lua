@@ -22,6 +22,10 @@ Lobby_Formation_FilterEdit = nil
 Lobby_Formation_FilterEdit_Label = nil
 Formation_Selector = nil
 
+
+---- Lobby Lock in bool 
+Lobby_LockIn_State = false
+
 for k,v in pairs(PacketChannel) do
     -- print(k,v)
     LobbyMessageHandling[v] = {}

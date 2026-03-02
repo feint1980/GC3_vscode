@@ -54,7 +54,8 @@ CLobbyResponse = {
     Lobby_Response_Formations = 6,
     Lobby_Request_OwnedCharacters = 7,
     Lobby_Response_OwnedCharacters = 8,
-    Lobby_Response_MatchStart = 9
+    Lobby_Response_MatchStart = 9,
+    Lobby_Response_MatchStart_Confirm = 10,
 }
 
 ---@description handle incoming connection

@@ -155,19 +155,36 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_SyncStatus] = fun
         end
 
         local readyCount = 0
-        for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
-            if BattleLobby_List[lobbyID].battleClientEP_List[i].readyState == true then
-                readyCount = readyCount + 1
-            end
-        end
-        if readyCount >= 2 then
-            print("Lobby " .. lobbyID .. " is ready")
-            print("Startinng the game ")
+        if BattleLobby_List[lobbyID].lobbyState == BattleLobbyState.OPEN or BattleLobby_List[lobbyID].lobbyState == BattleLobbyState.FULL then 
             for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
-                print("player " .. i .. " guid " .. BattleLobby_List[lobbyID].battleClientEP_List[i].guid .. " selected formation " .. BattleLobby_List[lobbyID].battleClientEP_List[i].selected_formation_index)
-                -- BM_sendWrapData()
-                BM_sendWrapData(host,BattleLobby_List[lobbyID].battleClientEP_List[i]:getIP(),BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattlePacketType.ID_TH_TB_BATTLE,ClientChannel.Lobby,CLobbyResponse.Lobby_Response_MatchStart,{lobbyID,BattleLobby_List[lobbyID].name,BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattleLobby_List[lobbyID].battleClientEP_List[i].id, "MatchStart"})
+                if BattleLobby_List[lobbyID].battleClientEP_List[i].readyState == true then
+                    readyCount = readyCount + 1
+                end
             end
+            if readyCount >= 2 then
+                print("Lobby " .. lobbyID .. " is ready")
+                print("Startinng the game ")
+                for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
+                    print("player " .. i .. " guid " .. BattleLobby_List[lobbyID].battleClientEP_List[i].guid .. " selected formation " .. BattleLobby_List[lobbyID].battleClientEP_List[i].selected_formation_index)
+                    -- BM_sendWrapData()
+                    BM_sendWrapData(host,BattleLobby_List[lobbyID].battleClientEP_List[i]:getIP(),BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattlePacketType.ID_TH_TB_BATTLE,ClientChannel.Lobby,CLobbyResponse.Lobby_Response_MatchStart,{lobbyID,BattleLobby_List[lobbyID].name,BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattleLobby_List[lobbyID].battleClientEP_List[i].id, "MatchStart"})
+                end
+                BattleLobby_List[lobbyID].lobbyState = BattleLobbyState.LOCK_IN
+            end
+        elseif BattleLobby_List[lobbyID].lobbyState == BattleLobbyState.LOCK_IN then
+            if tReadyState == false then
+                print("Lobby " .. lobbyID .. " is not ready, canceling the match")
+
+                for i = 1, #BattleLobby_List[lobbyID].battleClientEP_List do
+                    print("player " .. i .. " guid " .. BattleLobby_List[lobbyID].battleClientEP_List[i].guid .. " selected formation " .. BattleLobby_List[lobbyID].battleClientEP_List[i].selected_formation_index)
+                    -- BM_sendWrapData()
+                    BM_sendWrapData(host,BattleLobby_List[lobbyID].battleClientEP_List[i]:getIP(),BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattlePacketType.ID_TH_TB_BATTLE,ClientChannel.Lobby,CLobbyResponse.Lobby_Response_MatchStart,{lobbyID,BattleLobby_List[lobbyID].name,BattleLobby_List[lobbyID].battleClientEP_List[i].guid,BattleLobby_List[lobbyID].battleClientEP_List[i].id, "MatchCancel"})
+                end
+                BattleLobby_List[lobbyID].lobbyState = BattleLobbyState.FULL
+            end
+        else
+
+            print("Problem caused in Lobby " .. lobbyID )
         end
 
     else
@@ -236,6 +253,22 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Request_OwnedChar
     print("tData check " .. tData)
     BM_sendWrapData(host, ip, guid,BattlePacketType.ID_TH_TB_BATTLE, ClientChannel.Lobby, CLobbyResponse.Lobby_Response_OwnedCharacters,{tGUID,tID,tData} )
 end
+
+
+ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Response_MatchStart_Confirm] = function(host, channel, request,data,ip, guid)
+    print("match start confirm detected from " .. guid)
+
+    local tGUID, tID, lobbyID, selectedFormationIndex = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
+    print("tGUID " .. tGUID)
+    print("tID " .. tID)
+    print("lobbyID " .. lobbyID)
+    print("selectedFormationIndex " .. selectedFormationIndex)
+    for k,v in pairs(BattleLobby_List[lobbyID].battleClientEP_List) do
+        print("k " .. k)
+    end
+
+end
+
 
 -- function Request
 
@@ -347,5 +380,5 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
         
     end
 
-
 end
+

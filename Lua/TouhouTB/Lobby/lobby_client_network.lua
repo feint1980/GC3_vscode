@@ -166,7 +166,7 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_Own
         print("character id " .. v.ID)
 
     end
-    
+
     Lobby_User_Owned_Characters = {}
     for k , v in pairs(ownedCharacters) do
         Lobby_User_Owned_Characters[k] = v
@@ -190,7 +190,8 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_Mat
     print("tResult " .. tResult)
 
     if tResult == "MatchStart" then
-        Prompt_UI_Table["StartGame"]:show(true)
+        Lobby_LockIn_State = true
+        Prompt_UI_Table["StartGame"]:showMsg("Game Start in " .. Tag.iGreen .. "3" .. Tag.iClose)
         TM_addTask(function()
             -- print("2")
             Prompt_UI_Table["StartGame"]:setMsg("Game Start in " .. Tag.iGreen .. "2" .. Tag.iClose)
@@ -204,16 +205,25 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_Mat
         ,100
         )
         TM_addTask(function()
-            print("switch")
-            Prompt_UI_Table["StartGame"]:show(false)
-            cpp_lobby_changeScene(SceneIndex.Combat)
+            if Lobby_LockIn_State == true then
+                print("switch")
+
+                Prompt_UI_Table["StartGame"]:setMsg("Connecting ...")
+                -- send LobbyScene_selectedFormation as lock in
+                SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Response_MatchStart_Confirm, {tGUID, tID,lobbyID,LobbyScene_selectedFormation },5,0.1,0.15)
+
+                TM_addTask( function()
+                    Prompt_UI_Table["StartGame"]:show(false)
+                    cpp_lobby_changeScene(SceneIndex.Combat)
+                end,30)
+            end
         end
         ,150
         )
-    else
+    elseif tResult == "MatchCancel" then
         print("error")
+        Lobby_LockIn_State = false
+        Prompt_UI_Table["StartGame"]:show(false)
     end
-
-
 
 end

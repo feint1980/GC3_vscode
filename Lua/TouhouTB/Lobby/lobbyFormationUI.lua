@@ -88,7 +88,6 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
         print("Lobby_User_Owned_Characters " .. k)
     end
 
-
     for i = 1, #Lobby_Formations_Info[formationID].characters do
         local characterID = Lobby_Formations_Info[formationID].characters[i].id
         print("character ID " .. characterID)
