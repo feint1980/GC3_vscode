@@ -33,7 +33,6 @@ BattleLobbyState = {
     LOCK_IN = 5,
 }
 
-
 BattleLobby_List = {}
 BattleClientEP_List = {}
 

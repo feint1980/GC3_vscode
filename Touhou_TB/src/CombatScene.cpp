@@ -68,7 +68,7 @@ void CombatScene::onEntry()
     m_camera.update();
     m_spriteBatch.init();
 
-    m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,100), glm::vec2(1280, 720),Feintgine::Color(255, 255, 255, 255));
+    m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/loading.png"),glm::vec2(0,0), glm::vec2(400, 100),Feintgine::Color(255, 255, 255, 255));
     std::cout << "after entry \n";
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     std::cout << "now init lua components\n";
@@ -177,7 +177,7 @@ void CombatScene::draw()
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
 	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
-    // m_bg.draw(m_spriteBatch);
+    m_bg.draw(m_spriteBatch);
     
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();

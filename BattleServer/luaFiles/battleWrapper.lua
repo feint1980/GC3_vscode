@@ -24,7 +24,8 @@ PaperWorkRequest = {
 
 ClientChannel = {
     InfoChannel = 1,
-    Lobby = 2
+    Lobby = 2,
+    Combat = 3
 }
 
 BattleInfoResponse = {
@@ -56,6 +57,10 @@ CLobbyResponse = {
     Lobby_Response_OwnedCharacters = 8,
     Lobby_Response_MatchStart = 9,
     Lobby_Response_MatchStart_Confirm = 10,
+}
+
+CCombatResponse = {
+    Combat_ReadyStatus = 1,
 }
 
 ---@description handle incoming connection

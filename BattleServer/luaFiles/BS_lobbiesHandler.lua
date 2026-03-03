@@ -204,12 +204,12 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Request_Formation
     end
     if BattleClientEP_List[tGUID].id == tID then 
         print("client matched")
-        if ClientFormations[tGUID] == nil then
+        if ClientFormations[tID] == nil then
             print("This client has no formations yet")
             -- todo send the signal that show on client UI
         end
         print("data check")
-        for k,v in pairs(ClientFormations[tGUID]) do
+        for k,v in pairs(ClientFormations[tID]) do
             -- print("k " .. k)
             -- print("formation name " .. v.name)
             -- print("index " .. v.index)
@@ -223,7 +223,7 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Request_Formation
         end
     end
 
-    local tData = JSON_Encode(ClientFormations[tGUID],false)
+    local tData = JSON_Encode(ClientFormations[tID],false)
 
     -- print("data check " .. tData)
 
@@ -248,9 +248,9 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Request_OwnedChar
 
     end
 
-    local tData = JSON_Encode(ClientOwnedCharacters[tID],true)
+    local tData = JSON_Encode(ClientOwnedCharacters[tID])
 
-    print("tData check " .. tData)
+    -- print("tData check " .. tData)
     BM_sendWrapData(host, ip, guid,BattlePacketType.ID_TH_TB_BATTLE, ClientChannel.Lobby, CLobbyResponse.Lobby_Response_OwnedCharacters,{tGUID,tID,tData} )
 end
 
@@ -263,16 +263,53 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Response_MatchSta
     print("tID " .. tID)
     print("lobbyID " .. lobbyID)
     print("selectedFormationIndex " .. selectedFormationIndex)
-    for k,v in pairs(BattleLobby_List[lobbyID].battleClientEP_Map) do
-        
+
+    print("data check start ===================")
+
+    ClientFormations = _G.ClientFormations
+
+
+    if ClientFormations[tID][selectedFormationIndex] == nil then
+        print("wrong Info (Lobby_Response_MatchStart_Confirm) ")
+        return
     end
 
-    if BattleLobby_List[lobbyID].battleClientEP_Map[tID] ~= nil then 
+    -- for k,v in pairs(ClientFormations[tID][selectedFormationIndex].characters) do
+    --     print("character " .. k)
+    --     print("character id " .. v.id)
+    --     print("character slot index " .. v.slotIndex)
+    --     print("character row pos " .. v.rowPos)
+    --     print("character col pos " .. v.colPos)
+    --     -- print("character name " .. v.stats.name)
+    --     -- for j, u in pairs(v.stats) do
+    --     --     print("stat " .. j .. " value " .. u)
+    --     -- end
+    -- end
 
-    else
-        print("client not found")
+    for i = 1, #ClientFormations[tID][selectedFormationIndex].characters do
+        local tCharacterID = ClientFormations[tID][selectedFormationIndex].characters[i].id
+        local tSlotIndex = ClientFormations[tID][selectedFormationIndex].characters[i].slotIndex
+        local tRowPos = ClientFormations[tID][selectedFormationIndex].characters[i].rowPos
+        local tColPos = ClientFormations[tID][selectedFormationIndex].characters[i].colPos
+        print("character id " .. tCharacterID)
+        print("character slot index " .. tSlotIndex)
+        print("character row pos " .. tRowPos)
+        print("character col pos " .. tColPos)
+
     end
+    
 
+    -- todo send the signal that show on client UI
+
+    -- for k,v in ClientFormations[tID] do
+    --     print("formation " .. k .. " has " .. #v.characters .. " characters")
+    -- end
+
+    print("data check end ===================")
+    print("locked formation index " .. selectedFormationIndex)
+    BattleLobby_List[lobbyID]:addFormation(tID,ClientFormations[tID][selectedFormationIndex])
+
+    print("Lobby " .. BattleLobby_List[lobbyID].name .. " has user " .. tID .. " locked formation " .. BattleLobby_List[lobbyID].formation_Map[tID].name)
 
 end
 
@@ -308,18 +345,18 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
         -- todo send the client a message that the user has no formations
     end
 
-    -- ClientFormations[tGUID] = {}--- restart list
-    if ClientFormations[tGUID] ~= nil then
-        for k,v in pairs(ClientFormations[tGUID]) do
-            ClientFormations[tGUID][k] = nil
+    -- ClientFormations[tID] = {}--- restart list
+    if ClientFormations[tID] ~= nil then
+        for k,v in pairs(ClientFormations[tID]) do
+            ClientFormations[tID][k] = nil
         end
     end
-    ClientFormations[tGUID] = {}
+    ClientFormations[tID] = {}
 
     ---@diagnostic disable-next-line: param-type-mismatch
     for k,v in pairs(tFormationList) do
-        ClientFormations[tGUID][k] = BattleFormation:new()  
-        ClientFormations[tGUID][k]:init(tonumber(k), v.name)
+        ClientFormations[tID][k] = BattleFormation:new()  
+        ClientFormations[tID][k]:init(tonumber(k), v.name)
         local count = #v.formationData
         print("formation data ")
         for i = 1, count do
@@ -334,11 +371,11 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
             print("row_pos" .. v.formationData[i].row_pos)
 
             local tCharacter = CharacterInFormation:new()
-            tCharacter:init(tCharacterID, tSlotIndex, tRowPos, tColPos)
-            ClientFormations[tGUID][k]:addCharacter(tCharacter)
+            tCharacter:init(tID,tCharacterID, tSlotIndex, tRowPos, tColPos)
+            ClientFormations[tID][k]:addCharacter(tCharacter)
 
         end
-        print("formation " .. k .. " has " .. #ClientFormations[tGUID][k].characters .. " characters")
+        print("formation " .. k .. " has " .. #ClientFormations[tID][k].characters .. " characters")
     end
 
 end
@@ -352,9 +389,9 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
 
     local tGUID, tID, tOwnedCharacters = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
 
-    print ("tGUID " .. tGUID)
-    print("tID " .. tID)
-    print("tOwnedCharacters " .. tOwnedCharacters)
+    -- print ("tGUID " .. tGUID)
+    -- print("tID " .. tID)
+    -- print("tOwnedCharacters " .. tOwnedCharacters)
     local tOwnedCharactersList, pos , err = JSON_Decode(tOwnedCharacters)
     if err then
         print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:", err)
@@ -378,7 +415,7 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
         end
 
         for k2,v2 in pairs(stats) do
-            print("stat " .. k2 .. " value " .. v2)
+            -- print("stat " .. k2 .. " value " .. v2)
             ClientOwnedCharacters[tID][k][k2] = v2
         end
         --- overwrite level and xp | value from query higher priority

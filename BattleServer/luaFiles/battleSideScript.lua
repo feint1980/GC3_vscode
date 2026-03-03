@@ -143,6 +143,8 @@ end
 
 require "battlePaperWork"
 require "BS_lobbiesHandler"
+require "BS_combatHandler"
+
 function BattleMain_HandleInternal(host, channel, request,data,ip, guid)
 
     -- print("BattleMain_HandleInternal called")

@@ -6,7 +6,8 @@ BattleLobby = {
     password = "",
     battleClientEP_List = {},
     battleClientEP_Map = {},
-    lobbyState =  BattleLobbyState.CLOSED
+    lobbyState =  BattleLobbyState.CLOSED,
+    formation_Map = {}
 }
 
 function BattleLobby:new(o)
@@ -82,6 +83,10 @@ function BattleLobby:removePlayer(playerGUID)
         self.lobbyState = BattleLobbyState.OPEN
     end
 
+end
+
+function BattleLobby:addFormation(playerID, formation)
+    self.formation_Map[playerID] = formation
 end
 
 function BattleLobby:getSize()

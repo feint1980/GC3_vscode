@@ -95,6 +95,7 @@ ArenaResponse = {
 BattlePacketChannel = {
     InfoChannel = 1,
     Lobby = 2,
+    Combat = 3
 }
 
 CLobbyResponse = {
@@ -115,6 +116,11 @@ BattleInfoResponse = {
     BattleInfo_AddCryptor_Request = 1,
     BattleInfo_AddCryptor_Response = 2,
 }
+
+CCombatResponse = {
+    Combat_ReadyStatus = 1,
+}
+
 
 --- MARK: Functions
 --- MARK:Main server

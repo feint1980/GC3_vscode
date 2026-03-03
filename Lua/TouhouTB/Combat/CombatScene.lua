@@ -42,6 +42,9 @@ function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacte
     Combat_SkillHandlerPtr = SkillHandlerPtr
     Combat_ControlHandlerPtr = ControlHandlerPtr
 
+
+    print("loading data ...")
+    SendBattleRequest(BattlePacketChannel.Combat,CCombatResponse.Combat_ReadyStatus, {"Ready"},5,0.1,0.15)
 end
 
 function Combat_RecieveData(host,msg, ip, pID, RakNetPacket)
@@ -51,7 +54,6 @@ function Combat_RecieveData(host,msg, ip, pID, RakNetPacket)
     tPacket.ipAddr = ip
     tPacket.packetID = pID
     Combat_HandlePacket(host,tPacket,RakNetPacket)
-
 end
 
 function Combat_HandlePacket(host, packet, RakNetPacket)
