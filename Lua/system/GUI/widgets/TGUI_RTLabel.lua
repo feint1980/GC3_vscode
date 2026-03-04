@@ -135,7 +135,7 @@ end
 ---@Description set the callback of the rtlabel on click
 ---@param func function
 function RTLabel:setOnClickCallback(func)
-    TGUI_Label_setOnClickCallBack(self.ptr, func)
+    TGUI_Label_setOnClickCallback(self.ptr, func)
 end
 
 function RTLabel:getSize()
@@ -241,7 +241,7 @@ end
 ---@Description set the on click callback of the rtlabel
 ---@param rtlabel pointer instance of RTLabel
 ---@param callback function
-function TGUI_RTLabel_setOnClickCallBack(rtlabel, callback)
+function TGUI_RTLabel_setOnClickCallback(rtlabel, callback)
     cpp_RTLabel_SetOnClickCallback(rtlabel, callback)
 end
 

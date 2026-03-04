@@ -1,0 +1,237 @@
+================================================================================
+  PROJECT DOCUMENTATION
+  2D Game Engine + Touhou Turn-Based Multiplayer Game
+  Author: Feint
+  Last Updated: 2026
+================================================================================
+
+--------------------------------------------------------------------------------
+  1. ENGINE OVERVIEW
+--------------------------------------------------------------------------------
+
+A custom 2D game engine written in C++ from scratch, built on top of SDL2 and
+OpenGL. The engine includes a full map editor, animated object editor, and a
+Lua scripting layer for rapid development without recompilation.
+
+  Core Tech Stack:
+  - Language      : C++
+  - Window/Input  : SDL2
+  - Rendering     : OpenGL
+  - UI (Game)     : TGUI (via Lua bindings)
+  - UI (Editor)   : CEGUI
+  - Scripting     : Lua (Raw C API)
+  - Networking    : RakNet
+  - Database      : SQLite
+
+  Rendering Layers:
+  - Custom user-defined layers supported
+  - GUI layer is always rendered on top (hardcoded)
+
+--------------------------------------------------------------------------------
+  2. LUA SCRIPTING SYSTEM
+--------------------------------------------------------------------------------
+
+The engine exposes a Lua scripting API using the raw Lua C API (no wrappers
+like Sol2 or LuaBridge). This gives full control over the Lua stack.
+
+  TGUI Lua Module:
+  A custom Lua module was written to expose TGUI widgets to Lua scripts.
+  Only the commonly needed widgets are exposed. More are added as needed
+  (YAGNI approach).
+
+  Exposed Widgets:
+  - Label           : Static text display
+  - RTLabel         : Rich text label with color/italic tags via Tag system
+  - Button          : Clickable button with callback
+  - Panel           : Container widget with show/hide effects and focus support
+  - ScrollablePanel : Scrollable container
+  - EditBox         : Text input field with validator and password mode
+  - Picture         : Image display widget
+  - Canvas          : OpenGL render target embedded in TGUI
+  - ListView        : Multi-column list with double-click callback and data storage
+  - ComboBox        : Dropdown selection widget
+  - TabContainer    : Tabbed panel container
+
+  Architecture Pattern:
+  Each widget follows a 3-layer pattern:
+    1. cpp_* functions  : Raw C++ to Lua bridge (registered via Lua C API)
+    2. TGUI_* functions : Lua-side wrapper functions (one per cpp_* call)
+    3. Class methods    : OOP interface for use in game scripts
+
+  Tag System (RTLabel):
+  Rich text tags are defined globally for consistent styling:
+    <color=#ff1200> ... </color>   : colored text
+    <i> ... </i>                   : italic text
+  Predefined tags include stat colors: VIT, STR, DEX, AGI, INT, WIS
+
+  Prompt System:
+  A reusable Prompt class built in Lua for popup dialogs:
+  - Supports custom messages, multiple buttons, and input boxes
+  - Buttons auto-arrange based on count
+  - Show/hide with fade animation effect
+
+--------------------------------------------------------------------------------
+  3. FOCUS / KEYBOARD NAVIGATION SYSTEM
+--------------------------------------------------------------------------------
+
+A custom keyboard/controller navigation system was built manually for TGUI
+since it does not provide this out of the box. Motivation was SteamDeck
+compatibility — players should be able to navigate all menus without a mouse.
+
+  FocusPanel Class (C++):
+  Manages a list of focusable Label widgets within a panel.
+
+  Key Features:
+  - addLabel / removeLabel  : Register/unregister focusable widgets
+  - getNextLabel            : Move focus forward (wraps around)
+  - getPreviousLabel        : Move focus backward (wraps around)
+  - changeLabelIndex        : Jump focus by offset
+  - resetLabelIndex         : Reset to first widget
+  - getType()               : Bitmask — 1 = has Panel, 2 = has Gui
+
+  Internal Data:
+  - std::vector for ordered navigation
+  - std::set for O(1) duplicate checking on add
+
+  Focus Stack (TGUIScriptingManager):
+  A vector acting as a priority list of active FocusPanels.
+  - NOT a true FILO stack
+  - When a panel gains focus, it moves to the front
+  - Other panels preserve their relative order
+  - m_savedFocusPanel maps Panel pointers to their FocusPanel objects
+
+  Lua Side:
+  - ControlHandler_AddFocusableWidget(host, widgetPtr, parentPtr)
+  - ControlHandler_reciever_push(host, panelPtr)
+  - ControlHandler_reciever_remove(host, panelPtr)
+
+--------------------------------------------------------------------------------
+  4. GAME PROJECT — TOUHOU TURN-BASED (MULTIPLAYER)
+--------------------------------------------------------------------------------
+
+A multiplayer turn-based RPG using Touhou Project characters.
+Inspired by Darkest Dungeon (party management) but with a 3x3 grid formation
+system instead of a linear 1x4.
+
+  Tech Stack (Game):
+  - Engine     : Custom (above)
+  - Networking : RakNet
+  - UI         : TGUI via Lua
+  - Scripting  : Lua
+  - Database   : SQLite3
+
+  --- BATTLE SYSTEM DESIGN ---
+
+  Formation:
+  - 3x3 grid per player (9 cells total)
+  - Max 4 characters placed per player
+  - Empty cells enable: Summon and Invisibility mechanics
+  - Cell position affects available skills
+
+  Attack Types:
+  - Melee  : Can only target the front-most enemy in a column
+  - Ranged : Can reach any row
+  - AOE    : Hits the target cell + adjacent cells
+
+  Turn Order:
+  Each round, effective speed is calculated per character:
+    effectiveSpeed = baseSpeed + agilityBonus + itemBuffs + diceRoll(1~6)
+  - Speed ties are resolved by reroll
+  - Turn queue is broadcast to both players for transparency
+
+  Match Length:
+  - Target: 7 to 15 rounds
+  - No turn limit
+  - Ends when one side is fully wiped or a player concedes
+
+  --- CHARACTERS & PASSIVES ---
+
+  Reimu Hakurei
+    Passive:Fate's Favor At the start of her turn, has a (15% + missing HP%) chance
+             to receive a random buff. Gets more dangerous as HP drops.
+
+  Patchouli Knowledge
+    Passive: Manashield — absorbs 80% of incoming damage, converting it
+             to mana loss instead of HP loss. Counter: mana drain.
+
+  Hong Meiling
+    Passive: "Liang Yi Zhuang" Stance System — unique stance mechanic that boosts physical
+             attack or defense based on selected stance. Stance switch
+             is a free action (does not cost her turn).
+
+  Yukari Yakumo
+    Passive: Fate Reflection — when targeted, has a 17% chance to
+             reflect the attack to a random cell on either field
+             (including her own side).
+
+  Remilia Scarlet
+    Passive: Fate Manipulation — on a failed dodge or missed attack,
+             gets a second roll at a reduced chance. Abuses the RNG
+             layers of the game more than any other character.
+
+  --- SERVER ARCHITECTURE ---
+
+  Main Server:
+  - Register feature : player who has the key provided by me will able to create an account
+    - key check <OK>
+    - ID check (length, already exist ID) <OK>
+    - key can be generated by Main Server Inquiry (will mention below)
+  - Authenticate and Login :
+    - Message Encryption/Decryption : when a connect signal from client first appear, it will send along a RakNetGUID (difference everytime a client instance run) then server will use that GUID to make a cryptor all the message that will be send or received will be use that cryptor, stored as unordered_map in server side. 
+    - Who are logged in: server stored logged in accounts, prevent another login instance. 
+  - Stores client data: unlocked characters, saved formations, currentcy
+    Unlocked characters: a character stats can be difference amongs others accounts (let say userA and userB both owned Reimu, but each Reimu are difference based on their build)
+    Currentcy: right now : Mon (use to buy item<not implement yet> ), Souls (Unlock character)
+    Formation data: which 4 characters occupy which cells in the 3x3
+
+  Main Server Inquiry:
+    - Is a special client instance that used to check main server status such as : how many user are logged in, and their ping
+    - Request key : server will insert a number of keys after this instance request and send the key info to this Inquiry
+
+  Battle Server:
+  - This was made to offload the logic that can be separated from main server
+  - This can be launch multiple instance, and can be on difference machines
+  - Lobby creation and management
+  - 2-player matchmaking
+  - Formation selection and ready system
+  - Disconnect handling (shows disconnect message to remaining player)
+
+  Battle Flow:
+  1. Both players ready with formation
+  2. Server locks lobby, creates Battle Session object
+  3. Server shares both formations with both clients
+  4. Round start: calculate turn order (speed + dice roll)
+  5. Action phase: active player sends action, server validates,
+     processes passives, broadcasts result
+  6. End check: wipe / concede → Battle End
+                queue empty   → new round
+                queue active  → next turn
+
+  Battle Session Object tracks:
+  - lobbyId, player1Id, player2Id
+  - p1Formation[4], p2Formation[4] (characterId, cellPosition, stats)
+  - currentRound, turnQueue, currentPhase
+
+  --- CURRENT STATUS ---
+
+  Done:
+  - Main server (auth, client data, formation storage)
+  - Battle server (lobby, matchmaking, ready system, disconnect handling)
+  - Client side (login, character unlock, formation editor, lobby browser)
+  - Offline prototype (grid movement, demo skill, turn system, stats)
+  - Agility-based turn order with dice roll variance
+  - Stats system
+
+  In Progress:
+  - Battle system (the main event — player vs player combat)
+
+--------------------------------------------------------------------------------
+  5. KNOWN CODE ISSUES (from review)
+--------------------------------------------------------------------------------
+
+  [FRAGILE] RTLabel reuses TGUI_Label_* wrappers for setPos and setAlignment.
+            Should have its own wrappers in case implementations diverge.
+
+================================================================================
+  END OF DOCUMENT
+================================================================================

@@ -74,8 +74,8 @@ function Button:setSizeStr(tWidthStr,tHeightStr)
     TGUI_Button_SetSizeStr(self.ptr,tWidthStr,tHeightStr)
 end
 
-function Button:setOnClickCallBack(tCallback)
-    TGUI_Button_setOnClickCallBack(self.ptr,tCallback)
+function Button:setOnClickCallback(tCallback)
+    TGUI_Button_setOnClickCallback(self.ptr,tCallback)
 end
 
 --- MARK: Wrapper
@@ -111,11 +111,11 @@ function TGUI_Button_SetSizeStr(ptr, widthStr, heightStr)
     cpp_Button_SetSizeStr(ptr, widthStr, heightStr)
 end
 
---- function wrapper of cpp_Button_setOnClickCallBack
+--- function wrapper of cpp_Button_setOnClickCallback
 --- param button pointer
 --- param callback function
-function TGUI_Button_setOnClickCallBack(ptr, callback)
-    cpp_Button_setOnClickCallBack(ptr, callback)
+function TGUI_Button_setOnClickCallback(ptr, callback)
+    cpp_Button_setOnClickCallback(ptr, callback)
 end
 
 

@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>東方 Project Tracker — Feint</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Sawarabi+Mincho&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:      #05050a;
+    --deep:     #0a0a12;
+    --panel:    #0e0e1a;
+    --border:   #ffffff0d;
+    --crimson:  #c0392b;
+    --scarlet:  #e74c3c;
+    --gold:     #d4a017;
+    --gold2:    #f0c040;
+    --jade:     #27ae60;
+    --jade2:    #2ecc71;
+    --ice:      #2980b9;
+    --ice2:     #3498db;
+    --violet:   #8e44ad;
+    --violet2:  #9b59b6;
+    --amber:    #e67e22;
+    --amber2:   #f39c12;
+    --text:     #e8e0d0;
+    --muted:    #7a7060;
+    --faint:    #2a2520;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--ink);
+    color: var(--text);
+    font-family: 'Sawarabi Mincho', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── Noise overlay ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+    opacity: 0.35;
+  }
+
+  /* ── Background kamon pattern ── */
+  body::after {
+    content: '';
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background-image: 
+      radial-gradient(ellipse 60% 40% at 15% 10%, #c0392b0a 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 85% 90%, #2980b90a 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 50% 50%, #d4a0170a 0%, transparent 80%);
+  }
+
+  .wrap {
+    position: relative; z-index: 1;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── Header ── */
+  .header {
+    text-align: center;
+    margin-bottom: 48px;
+    animation: fadeDown 0.8s ease both;
+  }
+
+  .header-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    opacity: 0.8;
+  }
+
+  .header h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(28px, 5vw, 46px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    line-height: 1.1;
+    background: linear-gradient(135deg, var(--gold2) 0%, var(--scarlet) 50%, var(--gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px #c0392b44);
+  }
+
+  .header-kanji {
+    font-size: clamp(36px, 6vw, 56px);
+    color: var(--crimson);
+    margin-right: 12px;
+    opacity: 0.85;
+  }
+
+  .header-sub {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 1px;
+  }
+
+  .header-divider {
+    margin: 20px auto;
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  /* ── Global stats bar ── */
+  .global-stats {
+    background: var(--panel);
+    border: 1px solid var(--gold);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+    position: relative;
+    overflow: hidden;
+    animation: fadeDown 0.9s 0.1s ease both;
+  }
+
+  .global-stats::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #d4a01706 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .global-stats-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .global-label {
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .global-count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--text);
+  }
+
+  .global-pct {
+    font-family: 'Cinzel', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--gold2);
+    line-height: 1;
+  }
+
+  .bar-track {
+    height: 6px;
+    background: var(--faint);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 0.6s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  .bar-fill-global {
+    background: linear-gradient(90deg, var(--crimson), var(--gold2), var(--scarlet));
+    box-shadow: 0 0 10px var(--crimson);
+  }
+
+  .save-status {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    margin-top: 6px;
+    min-height: 14px;
+  }
+
+  /* ── Section cards ── */
+  .section-card {
+    background: var(--panel);
+    border-radius: 4px;
+    margin-bottom: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: border-color 0.3s;
+    animation: fadeUp 0.5s ease both;
+    position: relative;
+  }
+
+  .section-card:hover {
+    border-color: var(--section-color, #ffffff22);
+  }
+
+  /* left accent stripe */
+  .section-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; bottom: 0;
+    width: 3px;
+    background: var(--section-color, #888);
+    box-shadow: 0 0 12px var(--section-color, #888);
+  }
+
+  .section-header {
+    padding: 16px 20px 14px 24px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .section-header:hover { background: #ffffff04; }
+
+  .section-chevron {
+    font-size: 10px;
+    color: var(--section-color, #888);
+    transition: transform 0.25s;
+    flex-shrink: 0;
+  }
+  .section-chevron.open { transform: rotate(90deg); }
+
+  .section-title-wrap { flex: 1; min-width: 0; }
+
+  .section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .section-title-input {
+    font-family: 'Cinzel', serif;
+    font-size: 14px;
+    font-weight: 700;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--section-color, #888);
+    color: var(--text);
+    outline: none;
+    width: 100%;
+    padding: 2px 0;
+  }
+
+  .section-meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  .section-pct {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--section-color, #888);
+    flex-shrink: 0;
+    min-width: 44px;
+    text-align: right;
+  }
+
+  .section-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+  }
+
+  .color-dot {
+    width: 16px; height: 16px;
+    border-radius: 50%;
+    background: var(--section-color, #888);
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    flex-shrink: 0;
+    box-shadow: 0 0 6px var(--section-color, #888);
+  }
+
+  .btn-icon {
+    background: none;
+    border: none;
+    color: #ffffff22;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px 4px;
+    border-radius: 3px;
+    transition: color 0.15s, background 0.15s;
+    line-height: 1;
+  }
+  .btn-icon:hover { color: var(--scarlet); background: #c0392b22; }
+
+  .section-progress-bar {
+    height: 3px;
+    background: var(--faint);
+    margin: 0 0 0 3px; /* align with left stripe */
+  }
+
+  .section-progress-fill {
+    height: 100%;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+    background: var(--section-color, #888);
+    box-shadow: 0 0 6px var(--section-color, #888);
+  }
+
+  /* ── Task list ── */
+  .task-list {
+    padding: 8px 20px 4px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .task-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 7px 0;
+    border-bottom: 1px solid #ffffff06;
+    transition: background 0.1s;
+  }
+  .task-row:last-child { border-bottom: none; }
+  .task-row:hover { background: #ffffff03; }
+  .task-row:hover .btn-del-task { opacity: 1; }
+
+  .task-check {
+    width: 18px; height: 18px;
+    border-radius: 3px;
+    border: 1.5px solid #ffffff22;
+    background: transparent;
+    border-color: var(--section-color, #888);
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-top: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    transition: all 0.2s;
+    color: var(--ink);
+  }
+
+  .task-check.done {
+    background: var(--section-color, #888);
+    border-color: var(--section-color, #888);
+    box-shadow: 0 0 8px var(--section-color, #88888866);
+    color: var(--ink);
+  }
+
+  .task-text {
+    flex: 1;
+    font-size: 13px;
+    line-height: 1.55;
+    color: #E81717;
+    cursor: text;
+    transition: color 0.2s;
+  }
+  .task-text.done {
+    /*text-decoration: line-through;*/
+    color: #3a3530;
+  }
+
+  .task-text-input {
+    flex: 1;
+    background: #ffffff08;
+    border: 1px solid #ffffff22;
+    border-radius: 3px;
+    padding: 3px 8px;
+    color: var(--text);
+    font-family: 'Sawarabi Mincho', serif;
+    font-size: 13px;
+    outline: none;
+  }
+
+  .btn-del-task {
+    background: none; border: none;
+    color: #ffffff22;
+    cursor: pointer; font-size: 16px; line-height: 1;
+    padding: 0 2px;
+    opacity: 0;
+    transition: opacity 0.15s, color 0.15s;
+    flex-shrink: 0;
+  }
+  .btn-del-task:hover { color: var(--scarlet); }
+
+  /* ── Add task row ── */
+  .add-task-row {
+    display: flex;
+    gap: 8px;
+    padding: 12px 20px 14px 24px;
+    border-top: 1px solid var(--border);
+  }
+
+  .add-task-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #ffffff11;
+    color: var(--text);
+    font-family: 'Sawarabi Mincho', serif;
+    font-size: 13px;
+    padding: 4px 0;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .add-task-input:focus { border-bottom-color: var(--section-color, #888); }
+  .add-task-input::placeholder { color: #3a3530; }
+
+  .btn-add-task {
+    background: none;
+    border: 1px solid var(--section-color, #888);
+    color: var(--section-color, #888);
+    border-radius: 3px;
+    padding: 4px 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .btn-add-task:hover {
+    background: var(--section-color, #888);
+    color: var(--ink);
+  }
+
+  /* ── Add section ── */
+  .add-section-card {
+    border: 1px dashed #ffffff15;
+    border-radius: 4px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transition: border-color 0.2s;
+    animation: fadeUp 0.5s 0.4s ease both;
+  }
+  .add-section-card:focus-within { border-color: var(--gold); }
+
+  .add-section-icon {
+    font-size: 18px;
+    color: var(--gold);
+    opacity: 0.5;
+  }
+
+  .add-section-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: var(--text);
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    outline: none;
+  }
+  .add-section-input::placeholder { color: #2a2520; font-family: 'Sawarabi Mincho', serif; }
+
+  .btn-add-section {
+    background: none;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    border-radius: 3px;
+    padding: 6px 18px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  .btn-add-section:hover { background: var(--gold); color: var(--ink); }
+
+  /* ── Animations ── */
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* hidden color input trick */
+  .color-input-overlay {
+    position: absolute;
+    width: 16px; height: 16px;
+    opacity: 0;
+    cursor: pointer;
+    top: 0; left: 0;
+  }
+
+  /* scrollbar */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--ink); }
+  ::-webkit-scrollbar-thumb { background: #2a2520; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-eyebrow">Project Tracker · 2026</div>
+    <h1><span class="header-kanji"></span>東方 GAME ENGINE</h1>
+    <div class="header-sub">2D Engine + Touhou Turn-Based Multiplayer · by Feint</div>
+    <div class="header-divider"></div>
+  </header>
+
+  <!-- Global stats -->
+  <div class="global-stats" id="globalStats">
+    <div class="global-stats-top">
+      <span class="global-label">Overall Progress</span>
+      <span class="global-pct" id="globalPct">0%</span>
+    </div>
+    <div style="display:flex; align-items:center; gap:12px; margin-bottom:6px;">
+      <div class="bar-track" style="flex:1">
+        <div class="bar-fill bar-fill-global" id="globalBar" style="width:0%"></div>
+      </div>
+      <span class="global-count" id="globalCount">0 / 0</span>
+    </div>
+    <div class="save-status" id="saveStatus"></div>
+  </div>
+
+  <!-- Sections container -->
+  <div id="sectionsContainer"></div>
+
+  <!-- Add section -->
+  <div class="add-section-card">
+    <span class="add-section-icon">⊕</span>
+    <input class="add-section-input" id="newSectionInput" placeholder="New section name…" />
+    <button class="btn-add-section" onclick="addSection()">Add Section</button>
+  </div>
+
+</div>
+
+<script>
+// ── Storage ──────────────────────────────────────────────────────────────────
+const STORAGE_KEY = 'touhou-tracker-v2';
+
+function load() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || null; }
+  catch { return null; }
+}
+
+let saveTimer = null;
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  document.getElementById('saveStatus').textContent = 'Saving…';
+  saveTimer = setTimeout(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ sections }));
+    const t = new Date().toLocaleTimeString();
+    document.getElementById('saveStatus').textContent = `Saved ${t}`;
+  }, 500);
+}
+
+// ── Initial data ─────────────────────────────────────────────────────────────
+const DEFAULT_SECTIONS = [
+  {
+    id: 's_engine', title: '⚙  Engine & Lua System', color: '#27ae60',
+    tasks: [
+      { id:'e1',  text:'SDL2 window + input integration',                        done:true  },
+      { id:'e2',  text:'OpenGL rendering pipeline',                              done:true  },
+      { id:'e3',  text:'Custom user-defined rendering layers',                   done:true  },
+      { id:'e4',  text:'GUI layer hardcoded on top',                             done:true  },
+      { id:'e5',  text:'Map editor',                                             done:true  },
+      { id:'e6',  text:'Animated object editor',                                 done:true  },
+      { id:'e7',  text:'Lua scripting layer (raw C API)',                        done:true  },
+      { id:'e8',  text:'TGUI Lua module — Label, Button, Panel',                 done:true  },
+      { id:'e9',  text:'TGUI Lua module — RTLabel + Tag system (color/italic)',  done:true  },
+      { id:'e10', text:'TGUI Lua module — EditBox, Picture, Canvas',             done:true  },
+      { id:'e11', text:'TGUI Lua module — ListView, ComboBox, TabContainer',     done:true  },
+      { id:'e12', text:'Prompt class (popup dialogs, fade animation)',           done:true  },
+      { id:'e13', text:'FocusPanel C++ class (keyboard/controller navigation)',  done:true  },
+      { id:'e14', text:'Focus stack in TGUIScriptingManager',                    done:true  },
+      { id:'e15', text:'SteamDeck full menu navigation (no mouse required)',     done:true  },
+      { id:'e16', text:'[FRAGILE] RTLabel: own wrappers for setPos/setAlignment',done:false },
+    ]
+  },
+  {
+    id: 's_server', title: '🖥  Server Architecture', color: '#2980b9',
+    tasks: [
+      { id:'s1',  text:'Main server — registration with invite key system',                   done:true  },
+      { id:'s2',  text:'Main server — key generation via Inquiry client',                     done:true  },
+      { id:'s3',  text:'Main server — login + GUID-based message encryption/decryption',      done:true  },
+      { id:'s4',  text:'Main server — prevent duplicate login sessions',                      done:true  },
+      { id:'s5',  text:'Main server — store unlocked characters + per-account stats',         done:true  },
+      { id:'s6',  text:'Main server — currency (Mon, Souls)',                                 done:true  },
+      { id:'s7',  text:'Main server — formation data persistence',                            done:true  },
+      { id:'s8',  text:'Main Server Inquiry client (status, ping, key request)',              done:true  },
+      { id:'s9',  text:'Battle server — lobby creation & management',                         done:true  },
+      { id:'s10', text:'Battle server — 2-player matchmaking',                                done:true  },
+      { id:'s11', text:'Battle server — formation ready system',                              done:true  },
+      { id:'s12', text:'Battle server — disconnect handling + notify remaining player',       done:true  },
+      { id:'s13', text:'Battle server — multi-instance / multi-machine support',              done:true  },
+      { id:'s14', text:'Battle server — Battle Session object (full state tracking)',         done:false },
+      { id:'s15', text:'Battle server — turn timer enforcement (30–60s, auto-skip)',          done:false },
+      { id:'s16', text:'Battle end → update Main Server (win/loss record, rewards)',          done:false },
+    ]
+  },
+  {
+    id: 's_battle', title: '⚔  Battle System', color: '#c0392b',
+    tasks: [
+      { id:'b1',  text:'Client — login UI',                                          done:true  },
+      { id:'b2',  text:'Client — character unlock screen',                           done:true  },
+      { id:'b3',  text:'Client — formation editor (3×3 grid)',                       done:true  },
+      { id:'b4',  text:'Client — lobby browser',                                     done:true  },
+      { id:'b5',  text:'Offline prototype — grid movement',                          done:true  },
+      { id:'b6',  text:'Offline prototype — demo skill',                             done:true  },
+      { id:'b7',  text:'Offline prototype — turn system',                            done:true  },
+      { id:'b8',  text:'Stats system',                                               done:true  },
+      { id:'b9',  text:'Agility-based turn order + dice roll (1–6) variance',        done:true  },
+      { id:'b10', text:'Speed tie reroll resolution',                                done:true  },
+      { id:'b11', text:'BATTLE_START — lock lobby, share formations with both clients', done:false },
+      { id:'b12', text:'ROUND_START — calculate effectiveSpeed, build & broadcast turnQueue', done:false },
+      { id:'b13', text:'ACTION_PHASE — YOUR_TURN + available actions per character', done:false },
+      { id:'b14', text:'Server validation — MOVE (empty cell check)',                done:false },
+      { id:'b15', text:'Server validation — ATTACK melee (front row blocking)',      done:false },
+      { id:'b16', text:'Server validation — ATTACK ranged (any row) / AOE (adjacent cells)', done:false },
+      { id:'b17', text:'Server validation — mana cost + cell position requirements', done:false },
+      { id:'b18', text:'INVALID_ACTION feedback to client',                          done:false },
+      { id:'b19', text:'AOE damage applied to adjacent cells',                       done:false },
+      { id:'b20', text:'CONCEDE action handling',                                    done:false },
+      { id:'b21', text:'END_CHECK — wipe / concede triggers BATTLE_END',            done:false },
+      { id:'b22', text:'Broadcast action result to both players',                    done:false },
+      { id:'b23', text:'BATTLE_END — winner/loser result + return to lobby browser', done:false },
+      { id:'b24', text:'Item shop (Mon currency)',                                   done:false },
+    ]
+  },
+  {
+    id: 's_chars', title: '🎴  Character Passives', color: '#8e44ad',
+    tasks: [
+      { id:'c1', text:'Reimu Hakurei — Fate\'s Favor: (15% + missingHP%) chance for random buff on turn start', done:false },
+      { id:'c2', text:'Patchouli Knowledge — Manashield: absorb 80% damage as mana loss', done:false },
+      { id:'c3', text:'Hong Meiling — Liang Yi Zhuang: stance toggle free action (ATK/DEF boost)', done:false },
+      { id:'c4', text:'Yukari Yakumo — Fate Reflection: 17% chance to reflect attack to random cell', done:false },
+      { id:'c5', text:'Remilia Scarlet — Fate Manipulation: second roll on failed dodge or miss', done:false },
+    ]
+  },
+  {
+    id: 's_issues', title: '🐛  Known Issues / Tech Debt', color: '#e67e22',
+    tasks: [
+      { id:'i1', text:'[FRAGILE] RTLabel reuses TGUI_Label_* wrappers for setPos/setAlignment — divergence risk', done:false },
+    ]
+  }
+];
+
+// ── State ────────────────────────────────────────────────────────────────────
+const saved = load();
+let sections = saved?.sections || JSON.parse(JSON.stringify(DEFAULT_SECTIONS));
+
+// ── Rendering ────────────────────────────────────────────────────────────────
+function uid() { return '_' + Math.random().toString(36).slice(2,10); }
+
+function calcPct(tasks) {
+  if (!tasks.length) return 0;
+  return Math.round(tasks.filter(t=>t.done).length / tasks.length * 100);
+}
+
+function updateGlobal() {
+  const all = sections.flatMap(s=>s.tasks);
+  const done = all.filter(t=>t.done).length;
+  const pct = all.length ? Math.round(done/all.length*100) : 0;
+  document.getElementById('globalPct').textContent = pct + '%';
+  document.getElementById('globalBar').style.width = pct + '%';
+  document.getElementById('globalCount').textContent = done + ' / ' + all.length;
+}
+
+function renderSection(sec, idx) {
+  const pct = calcPct(sec.tasks);
+  const doneCnt = sec.tasks.filter(t=>t.done).length;
+
+  const card = document.createElement('div');
+  card.className = 'section-card';
+  card.id = 'sec_' + sec.id;
+  card.style.setProperty('--section-color', sec.color);
+  card.style.animationDelay = (idx * 0.07) + 's';
+
+  card.innerHTML = `
+    <div class="section-header" onclick="toggleSection('${sec.id}')">
+      <span class="section-chevron open" id="chev_${sec.id}">▶</span>
+      <div class="section-title-wrap">
+        <div class="section-title" id="stitle_${sec.id}" ondblclick="editSectionTitle(event,'${sec.id}')">${escHtml(sec.title)}</div>
+        <div class="section-meta">${doneCnt} / ${sec.tasks.length} done</div>
+      </div>
+      <span class="section-pct">${pct}%</span>
+      <div class="section-actions" onclick="event.stopPropagation()">
+        <div style="position:relative;width:16px;height:16px;flex-shrink:0">
+          <div class="color-dot" style="background:${sec.color};box-shadow:0 0 6px ${sec.color}"></div>
+          <input type="color" class="color-input-overlay" value="${sec.color}" oninput="changeSectionColor('${sec.id}',this.value)">
+        </div>
+        <button class="btn-icon" title="Delete section" onclick="deleteSection('${sec.id}')">🗑</button>
+      </div>
+    </div>
+    <div class="section-progress-bar">
+      <div class="section-progress-fill" id="spbar_${sec.id}" style="width:${pct}%;background:${sec.color};box-shadow:0 0 6px ${sec.color}"></div>
+    </div>
+    <div class="task-list" id="tlist_${sec.id}">
+      ${sec.tasks.map(t => renderTaskHTML(t, sec.id, sec.color)).join('')}
+    </div>
+    <div class="add-task-row">
+      <input class="add-task-input" id="newtask_${sec.id}" placeholder="Add a task…"
+        style="--section-color:${sec.color}"
+        onkeydown="if(event.key==='Enter') addTask('${sec.id}')"
+      />
+      <button class="btn-add-task" style="--section-color:${sec.color};border-color:${sec.color};color:${sec.color}"
+        onclick="addTask('${sec.id}')">+ Add</button>
+    </div>
+  `;
+
+  return card;
+}
+
+function renderTaskHTML(task, secId, color) {
+  return `
+    <div class="task-row" id="task_${task.id}">
+      <button class="task-check ${task.done?'done':''}" id="check_${task.id}"
+        style="${task.done ? `background:${color};border-color:${color};box-shadow:0 0 8px ${color}88` : ''}"
+        onclick="toggleTask('${secId}','${task.id}')"
+        title="Toggle"
+      >${task.done?'✓':''}</button>
+      <span class="task-text ${task.done?'done':''}" id="ttext_${task.id}"
+        ondblclick="editTaskText(event,'${secId}','${task.id}')"
+        title="Double-click to edit"
+      >${escHtml(task.text)}</span>
+      <button class="btn-del-task" onclick="deleteTask('${secId}','${task.id}')" title="Delete">×</button>
+    </div>
+  `;
+}
+
+function escHtml(s) {
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderAll() {
+  const container = document.getElementById('sectionsContainer');
+  container.innerHTML = '';
+  sections.forEach((sec, idx) => container.appendChild(renderSection(sec, idx)));
+  updateGlobal();
+}
+
+// ── Interactions ──────────────────────────────────────────────────────────────
+function toggleSection(secId) {
+  const list = document.getElementById('tlist_' + secId);
+  const addRow = list.nextElementSibling;
+  const chev = document.getElementById('chev_' + secId);
+  const isOpen = chev.classList.contains('open');
+  if (isOpen) {
+    list.style.display = 'none';
+    addRow.style.display = 'none';
+    chev.classList.remove('open');
+  } else {
+    list.style.display = '';
+    addRow.style.display = '';
+    chev.classList.add('open');
+  }
+}
+
+function toggleTask(secId, taskId) {
+  const sec = sections.find(s=>s.id===secId);
+  const task = sec.tasks.find(t=>t.id===taskId);
+  task.done = !task.done;
+
+  const color = sec.color;
+  const btn = document.getElementById('check_' + taskId);
+  const txt = document.getElementById('ttext_' + taskId);
+
+  if (task.done) {
+    btn.classList.add('done');
+    btn.style.background = color;
+    btn.style.borderColor = color;
+    btn.style.boxShadow = `0 0 8px ${color}88`;
+    btn.textContent = '✓';
+    txt.classList.add('done');
+  } else {
+    btn.classList.remove('done');
+    btn.style.background = '';
+    btn.style.borderColor = '';
+    btn.style.boxShadow = '';
+    btn.textContent = '';
+    txt.classList.remove('done');
+  }
+
+  updateSectionProgress(sec);
+  updateGlobal();
+  scheduleSave();
+}
+
+function updateSectionProgress(sec) {
+  const pct = calcPct(sec.tasks);
+  const doneCnt = sec.tasks.filter(t=>t.done).length;
+  const bar = document.getElementById('spbar_' + sec.id);
+  if (bar) { bar.style.width = pct + '%'; }
+  const pctEl = document.querySelector(`#sec_${sec.id} .section-pct`);
+  if (pctEl) pctEl.textContent = pct + '%';
+  const meta = document.querySelector(`#sec_${sec.id} .section-meta`);
+  if (meta) meta.textContent = doneCnt + ' / ' + sec.tasks.length + ' done';
+}
+
+function deleteTask(secId, taskId) {
+  const sec = sections.find(s=>s.id===secId);
+  sec.tasks = sec.tasks.filter(t=>t.id!==taskId);
+  const el = document.getElementById('task_' + taskId);
+  if (el) el.remove();
+  updateSectionProgress(sec);
+  updateGlobal();
+  scheduleSave();
+}
+
+function editTaskText(e, secId, taskId) {
+  e.stopPropagation();
+  const sec = sections.find(s=>s.id===secId);
+  const task = sec.tasks.find(t=>t.id===taskId);
+  const span = document.getElementById('ttext_' + taskId);
+  const input = document.createElement('input');
+  input.className = 'task-text-input';
+  input.value = task.text;
+  span.replaceWith(input);
+  input.focus();
+  function finish() {
+    const val = input.value.trim();
+    if (val) task.text = val;
+    const newSpan = document.createElement('span');
+    newSpan.className = 'task-text' + (task.done?' done':'');
+    newSpan.id = 'ttext_' + taskId;
+    newSpan.title = 'Double-click to edit';
+    newSpan.textContent = task.text;
+    newSpan.ondblclick = (ev) => editTaskText(ev, secId, taskId);
+    input.replaceWith(newSpan);
+    scheduleSave();
+  }
+  input.onblur = finish;
+  input.onkeydown = e => { if(e.key==='Enter') finish(); if(e.key==='Escape'){input.value=task.text; finish();} };
+}
+
+function addTask(secId) {
+  const input = document.getElementById('newtask_' + secId);
+  const text = input.value.trim();
+  if (!text) return;
+  const sec = sections.find(s=>s.id===secId);
+  const task = { id: uid(), text, done: false };
+  sec.tasks.push(task);
+  input.value = '';
+
+  const list = document.getElementById('tlist_' + secId);
+  const div = document.createElement('div');
+  div.innerHTML = renderTaskHTML(task, secId, sec.color);
+  list.appendChild(div.firstElementChild);
+
+  updateSectionProgress(sec);
+  updateGlobal();
+  scheduleSave();
+}
+
+function deleteSection(secId) {
+  const sec = sections.find(s=>s.id===secId);
+  if (!confirm(`Delete section "${sec.title}"?`)) return;
+  sections = sections.filter(s=>s.id!==secId);
+  const el = document.getElementById('sec_' + secId);
+  if (el) el.remove();
+  updateGlobal();
+  scheduleSave();
+}
+
+function editSectionTitle(e, secId) {
+  e.stopPropagation();
+  const sec = sections.find(s=>s.id===secId);
+  const span = document.getElementById('stitle_' + secId);
+  const input = document.createElement('input');
+  input.className = 'section-title-input';
+  input.value = sec.title;
+  input.style.setProperty('--section-color', sec.color);
+  input.style.borderBottomColor = sec.color;
+  span.replaceWith(input);
+  input.focus();
+  function finish() {
+    const val = input.value.trim();
+    if (val) sec.title = val;
+    const newSpan = document.createElement('div');
+    newSpan.className = 'section-title';
+    newSpan.id = 'stitle_' + secId;
+    newSpan.title = 'Double-click to rename';
+    newSpan.textContent = sec.title;
+    newSpan.ondblclick = (ev) => editSectionTitle(ev, secId);
+    input.replaceWith(newSpan);
+    scheduleSave();
+  }
+  input.onblur = finish;
+  input.onkeydown = e => { if(e.key==='Enter') finish(); if(e.key==='Escape'){input.value=sec.title; finish();} };
+}
+
+function changeSectionColor(secId, color) {
+  const sec = sections.find(s=>s.id===secId);
+  sec.color = color;
+  const card = document.getElementById('sec_' + secId);
+  card.style.setProperty('--section-color', color);
+  const dot = card.querySelector('.color-dot');
+  dot.style.background = color;
+  dot.style.boxShadow = `0 0 6px ${color}`;
+  const bar = document.getElementById('spbar_' + secId);
+  if (bar) { bar.style.background = color; bar.style.boxShadow = `0 0 6px ${color}`; }
+  const pctEl = card.querySelector('.section-pct');
+  if (pctEl) pctEl.style.color = color;
+  const addBtn = card.querySelector('.btn-add-task');
+  if (addBtn) { addBtn.style.borderColor = color; addBtn.style.color = color; addBtn.style.setProperty('--section-color', color); }
+  const addInput = card.querySelector('.add-task-input');
+  if (addInput) addInput.style.setProperty('--section-color', color);
+  const titleInput = card.querySelector('.section-title-input');
+  if (titleInput) titleInput.style.borderBottomColor = color;
+  const chevron = document.getElementById('chev_' + secId);
+  if (chevron) chevron.style.color = color;
+  scheduleSave();
+}
+
+function addSection() {
+  const input = document.getElementById('newSectionInput');
+  const name = input.value.trim();
+  if (!name) return;
+  const colors = ['#27ae60','#2980b9','#c0392b','#8e44ad','#e67e22','#16a085','#d4a017'];
+  const color = colors[sections.length % colors.length];
+  const sec = { id: uid(), title: name, color, tasks: [] };
+  sections.push(sec);
+  input.value = '';
+
+  const container = document.getElementById('sectionsContainer');
+  container.appendChild(renderSection(sec, sections.length - 1));
+  updateGlobal();
+  scheduleSave();
+}
+
+document.getElementById('newSectionInput').addEventListener('keydown', e => {
+  if (e.key === 'Enter') addSection();
+});
+
+// ── Init ─────────────────────────────────────────────────────────────────────
+renderAll();
+</script>
+</body>
+</html>

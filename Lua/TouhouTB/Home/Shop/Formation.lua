@@ -306,7 +306,7 @@ function Formation_AddCharacterPanel(host, characterID)
     if  Formation_OwnedCharacterPannels[characterID] == nil then
         Formation_OwnedCharacterPannels[characterID]= OwnedCharacterPanel:new()
     end
-    print("Formation_OwnedCharacterPannels[characterID].init")
+    print("Formation_OwnedCharacterPannels[".. characterID .. "].init")
     Formation_OwnedCharacterPannels[characterID]:init(host,Formation_CharacterList,0,(listCount * panelHeight) + 5,pWidth,panelHeight ,characterID)
 
     Formation_OwnedCharacterPannels[characterID]:setHovereColor(0,255,0,255, 255,255,255,255)

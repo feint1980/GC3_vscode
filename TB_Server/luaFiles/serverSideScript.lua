@@ -271,7 +271,7 @@ end
 CommonHandle[PacketIdentifier.ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
     local guid = SV_GetPacketGUID(packet)
     SV_RemoveCryptor(host,guid)
-    if( guid == nil) then
+    if guid ~= nil then
         print("detect disconnect from " .. ClientEPList[guid].name .. " lost")
         ClientEPList[guid] = nil
         CH_List()

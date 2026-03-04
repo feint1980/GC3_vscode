@@ -107,7 +107,7 @@ end
 ---@Description set the callback of the label on click
 ---@param func function
 function Label:setOnClickCallback(func)
-    TGUI_Label_setOnClickCallBack(self.ptr, func)
+    TGUI_Label_setOnClickCallback(self.ptr, func)
 end
 
 ---@Description set the scale of the label
@@ -216,7 +216,7 @@ end
 ---@Description set the on click callback of the label
 ---@param label pointer instance of Label
 ---@param callback function
-function TGUI_Label_setOnClickCallBack(label, callback)
+function TGUI_Label_setOnClickCallback(label, callback)
     cpp_Label_SetOnClickCallback(label, callback)
 end
 

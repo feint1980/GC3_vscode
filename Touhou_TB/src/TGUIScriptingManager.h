@@ -19,7 +19,7 @@
 #define FOCUS_STATE_PANEL 2
 
 
-static std::unordered_map<int, tgui::Widget::Ptr> s_widgetMap;
+// static std::unordered_map<int, tgui::Widget::Ptr> s_widgetMap;
 
 struct TGUI_CanvasWrapper
 {

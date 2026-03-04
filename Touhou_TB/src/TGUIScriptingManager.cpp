@@ -39,7 +39,7 @@ int lua_Panel_Create(lua_State * L)
             *panel = host->createPanel(pX, pY, width, height,nullptr);
         }
         // store the pointer maped to the userdata
-        s_widgetMap[(int)panel] = *panel;
+        // s_widgetMap[(int)panel] = *panel;
         lua_pushlightuserdata(L, panel);
         return 1;
     }
@@ -3305,11 +3305,11 @@ void TGUIScriptingManager::removeWidget(tgui::Widget::Ptr * widget)
     if(m_tgui->remove(*widget))
     {
 
-        std::cout << "removed widget " << widget << "(" << s_widgetMap[(int)widget].get() << ") |" << *widget <<  "|  \n";
+        // std::cout << "removed widget " << widget << "(" << s_widgetMap[(int)widget].get() << ") |" << *widget <<  "|  \n";
     }
     else
     {
-        std::cout << "unable to remove widget " << widget << "(" << s_widgetMap[(int)widget].get() << ") |" << *widget << "| <" << s_widgetMap[(int)widget] << ">   \n";
+        // std::cout << "unable to remove widget " << widget << "(" << s_widgetMap[(int)widget].get() << ") |" << *widget << "| <" << s_widgetMap[(int)widget] << ">   \n";
     }
     
 }

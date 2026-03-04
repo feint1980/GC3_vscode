@@ -1,0 +1,132 @@
+Battle Server Flow
+--------------------------------------------------------------------------------
+
+
+
+┌──────────────────────────────────────────────────────────────┐
+│                        LOBBY (READY)                         │
+│  - Both players selected formation                           │
+│  - Both players clicked ready                                │
+│  - Server received both formations                           │
+│    { characterId, cellPosition, stats }                      │
+└──────────────────────────┬───────────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────────┐
+│                       BATTLE START                           │
+│  - Server locks lobby (no more changes)                      │
+│  - Server creates Battle Session object:                     │
+│    { lobbyId, p1Id, p2Id,                                    │
+│      p1Formation[4], p2Formation[4],                         │
+│      currentRound = 0, phase = ROLL_PHASE }                  │
+│  - Server sends to both clients:                             │
+│    "BATTLE_START" + opponent formation                       │
+│  - Both players see each other formation                     │
+└──────────────────────────┬───────────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────────┐
+│                      ROUND START                             │
+│  - Increment currentRound                                    │
+│  - For each ALIVE character (both sides):                    │
+│    effectiveSpeed = baseSpeed                                │
+│                   + agilityBonus                             │
+│                   + itemBuffs                                │
+│                   + diceRoll(1~6)                            │
+│  - Sort descending → build turnQueue[]                       │
+│  - Speed tie? → reroll between tied characters               │
+│  - Broadcast turnQueue to both players                       │
+│  - phase = ACTION_PHASE                                      │
+└──────────────────────────┬───────────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────────┐
+│                      ACTION PHASE                            │
+│                                                              │
+│  - Pop next character from turnQueue                         │
+│  - Announce to both players:                                 │
+│    "CHARACTER_TURN" { characterId, ownerId }                 │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │                   ACTIVE PLAYER                        │  │
+│  │  - Send: "YOUR_TURN" + available actions               │  │
+│  │  - Start turn timer (30~60 sec)                        │  │
+│  │  - Player can:                                         │  │
+│  │    [ MOVE ]   → target empty cell                      │  │
+│  │    [ ATTACK ] → target cell + skill id                 │  │
+│  │    [ STANCE ] → Meiling only, free action              │  │
+│  │    [ CONCEDE ]→ end the match                          │  │
+│  │  - Timer expired? → auto skip turn                     │  │
+│  └────────────────────────────────────────────────────────┘  │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │                 SERVER VALIDATION                      │  │
+│  │  - Is it actually their turn?                          │  │
+│  │  - MOVE: is target cell empty?                         │  │
+│  │  - ATTACK: is target cell valid?                       │  │
+│  │    → Melee: is target blocked by front row?            │  │
+│  │    → Ranged: can it reach rear?                        │  │
+│  │    → Skill: enough mana?                               │  │
+│  │    → Skill: is character in required cell?             │  │
+│  │  - Validation failed? → send "INVALID_ACTION" to P1    │  │
+│  └────────────────────────────────────────────────────────┘  │
+│                                                              │
+│  ┌────────────────────────────────────────────────────────┐  │
+│  │               SERVER PROCESS PASSIVES                  │  │
+│  │                                                        │  │
+│  │  ATTACK DECLARED →                                     │  │
+│  │  ├─ Yukari targeted?                                   │  │
+│  │  │   roll 1~100, <= 17?                                │  │
+│  │  │   → reflect to random cell (both fields)            │  │
+│  │  │   → original attack cancelled                       │  │
+│  │  │                                                     │  │
+│  │  ├─ Remilia failed dodge?                              │  │
+│  │  │   → reroll dodge with reduced chance                │  │
+│  │  │                                                     │  │
+│  │  ├─ Remilia attack missed?                             │  │
+│  │  │   → reroll attack with reduced chance               │  │
+│  │  │                                                     │  │
+│  │  ├─ Patchouli taking damage?                           │  │
+│  │  │   → absorb 80% dmg, convert to mana loss            │  │
+│  │  │                                                     │  │
+│  │  └─ AOE skill used?                                    │  │
+│  │      → apply damage to adjacent cells too              │  │
+│  │                                                        │  │
+│  │  TURN START →                                          │  │
+│  │  └─ Reimu's turn?                                      │  │
+│  │      roll 1~100, <= (15 + missingHP%)?                 │  │
+│  │      → apply random buff to Reimu                      │  │
+│  │                                                        │  │
+│  └────────────────────────────────────────────────────────┘  │
+│                                                              │
+│  - Broadcast action result to BOTH players                   │
+│  - Update Battle Session object                              │
+│                                                              │
+└──────────────────────────┬───────────────────────────────────┘
+                           │
+                           ▼
+┌──────────────────────────────────────────────────────────────┐
+│                       END CHECK                              │
+└──────┬───────────────────────────────────────────────────────┘
+       │
+       ├──► Player conceded? ──────────────────────────────────┐
+       │                                                       │
+       ├──► One side all characters dead? ────────────────────►│
+       │                                                       │
+       ├──► turnQueue not empty? ──────► Back to ACTION PHASE  │
+       │                                                       │
+       └──► turnQueue empty? ────────► Back to ROUND START     │
+                                                               │
+                                                               ▼
+┌──────────────────────────────────────────────────────────────┐
+│                       BATTLE END                             │
+│  - Determine winner / loser                                  │
+│  - Broadcast result to both players                          │
+│    "BATTLE_END" { winnerId, loserId, rounds played }         │
+│  - Update client data on Main Server:                        │
+│    → win/loss record                                         │
+│    → unlocks / rewards (if any)                              │
+│  - Close Battle Session object                               │
+│  - Return players to Lobby Browser                           │
+└──────────────────────────────────────────────────────────────┘
+
