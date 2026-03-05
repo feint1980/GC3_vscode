@@ -127,7 +127,23 @@ void CombatScene::initGUI()
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"CombatHandlerBattleResponse");
 
     m_tgui = m_guiScriptingManager->getTGUI();
-
+    lua_getglobal(m_script, "CombatSceneInit");
+    if(lua_isfunction(m_script, -1))
+    {
+        lua_pushlightuserdata(m_script, this);
+        lua_pushlightuserdata(m_script, m_guiScriptingManager);
+        lua_pushlightuserdata(m_script, m_clientScriptingManager);
+        lua_pushlightuserdata(m_script, m_clientCharacterHandler);
+        lua_pushlightuserdata(m_script, &m_skillHandler);
+        lua_pushlightuserdata(m_script, m_controlHandler);
+        std::cout << "check ref : " << &m_guiScriptingManager << "\n";
+        const int argc = 6;
+        const int returnCount = 0;
+        if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
+        {
+            std::cout << "Combat scene init script from C++ OK \n";
+        }
+    }
 }
 
 

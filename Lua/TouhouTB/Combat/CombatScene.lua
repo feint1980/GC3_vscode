@@ -43,8 +43,22 @@ function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacte
     Combat_ControlHandlerPtr = ControlHandlerPtr
 
 
+
+    -- SetBattleSer
     print("loading data ...")
-    SendBattleRequest(BattlePacketChannel.Combat,CCombatResponse.Combat_ReadyStatus, {"Ready"},5,0.1,0.15)
+    local battleServerGUID =  InfoHolder_getStrVal("BattleServerGUID")
+    print("battle server GUID " .. battleServerGUID)
+    -- get the battle server GUID to send 
+    cppSelecBattleServer(Combat_ClientScriptingPtr, battleServerGUID)
+
+
+    local tGUID = InfoHolder_getStrVal("MainInfo.guid")
+    local tID = InfoHolder_getStrVal("MainInfo.id")
+    local tLobbyID = InfoHolder_getStrVal("CurrentLobbyID")
+    local tPlayerIndex = InfoHolder_getNumberVal("Player_Index")
+
+    SendBattleRequest(BattlePacketChannel.Combat,CCombatResponse.Combat_ReadyStatus, {tGUID,tID,tLobbyID,tPlayerIndex,"Ready"},5,0.1,0.15)
+
 end
 
 function Combat_RecieveData(host,msg, ip, pID, RakNetPacket)

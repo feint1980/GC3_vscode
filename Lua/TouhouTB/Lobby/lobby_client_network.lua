@@ -86,7 +86,8 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_SyncStatusRe
 
     local index = clientList[myGUID].index
     print("index " .. index)
-    
+    InfoHolder_setStrVal("CurrentLobbyID", tostring(lobbyID))
+    InfoHolder_setNumberVal("Player_Index", index)
     LobbyScene_ChangeHandleSync(clientList)
 
     if tonumber(index) ~= Old_Index then
@@ -209,6 +210,7 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_Mat
                 print("switch")
 
                 Prompt_UI_Table["StartGame"]:setMsg("Connecting ...")
+                InfoHolder_setStrVal("BattleServerGUID", guid)
                 -- send LobbyScene_selectedFormation as lock in
                 SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Response_MatchStart_Confirm, {tGUID, tID,lobbyID,LobbyScene_selectedFormation },5,0.1,0.15)
                 TM_addTask( function()
