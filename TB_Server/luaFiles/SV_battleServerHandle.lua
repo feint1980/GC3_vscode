@@ -148,9 +148,7 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
 
     local getFormationQuery = "SELECT " .. Table.formation.index .. "," .. Table.formation.name .. " FROM " .. Table.formation.tb_name .. " WHERE " .. Table.formation.account_id .. " = ?;"
 
-    SVI_DoQuerySTMT(host,getFormationQuery,{targetID})
-
-    local formationQueryResult = Table_DeepCopy(Query_val)
+    local formationQueryResult = SVI_DoQuerySTMT(host,getFormationQuery,{targetID})
 
     for i=1,#formationQueryResult,2 do
         print(" index " .. formationQueryResult[i])
@@ -163,8 +161,7 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
 
         local formationDataQuery = "SELECT " .. Table.formation_info.character_id .. "," .. Table.formation_info.slot_index .. "," .. Table.formation_info.row_pos .. "," .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.account_id .. " = ? AND " .. Table.formation_info.formation_index .. " = ?;"
 
-        SVI_DoQuerySTMT(host,formationDataQuery,{targetID,index})
-        local formationDataQueryResult = Table_DeepCopy(Query_val)
+        local formationDataQueryResult = SVI_DoQuerySTMT(host,formationDataQuery,{targetID,index})
 
         queriedFormations[index].formationData = {}
         -- local formationInfoIndex = 1
@@ -210,9 +207,7 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
     local queriedFormations = {}
 
     local getOwnedCharacterQuery = "SELECT " .. Table.user_character.character_id .. "," .. Table.user_character.level .. "," .. Table.user_character.exp .. "," .. Table.user_character.stats .. " FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ?;"
-    SVI_DoQuerySTMT(host,getOwnedCharacterQuery,{targetID})
-
-    local ownedQueriedCharacterResult = Table_DeepCopy(Query_val)
+    local ownedQueriedCharacterResult = SVI_DoQuerySTMT(host,getOwnedCharacterQuery,{targetID})
 
     local ownedResult = {}
     for i = 1, #ownedQueriedCharacterResult,4 do

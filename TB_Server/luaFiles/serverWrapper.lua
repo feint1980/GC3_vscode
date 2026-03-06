@@ -242,9 +242,14 @@ end
 function SendReliable(host,ip, guid,channel,request,tList)
 
     local t_response = 0
-    t_response = SV_SendWrapMsg(host,ip, guid,channel,request,tList)
-    while t_response == 0 do
+    local attempts = 0
+    -- t_response = SV_SendWrapMsg(host,ip, guid,channel,request,tList)
+    while t_response == 0 and attempts < 5 do
         t_response = SV_SendWrapMsg(host,ip, guid,channel,request,tList)
+        attempts = attempts + 1
+    end
+    if t_response == 0 then
+        print("[Waring] SendReliable failed after 5 attemps channel " .. channel .. " request " .. request .. " guid " .. guid .. " ip " .. SV_GetIPString(ip))
     end
 end
 
@@ -258,9 +263,14 @@ end
 function SendReliable2BattleServer(host,ip, guid,channel,request,tList)
 
     local t_response = 0
-    t_response = SV_SendWrapMsg2BattleServer(host,ip, guid,channel,request,tList)
-    while t_response == 0 do
+    local attempts = 0
+    -- t_response = SV_SendWrapMsg2BattleServer(host,ip, guid,channel,request,tList)
+    while t_response == 0 and attempts < 5 do
         t_response = SV_SendWrapMsg(host,ip, guid,channel,request,tList)
+        attempts = attempts + 1
+    end
+    if t_response == 0 then
+        print("[Waring] SendReliable2BattleServer failed after 5 attemps channel " .. channel .. " request " .. request .. " guid " .. guid .. " ip " .. SV_GetIPString(ip))
     end
 end
 
@@ -471,3 +481,8 @@ function SV_getClientIPByID_CPP(id)
     return cpp_getClientOnlineSessionByID(id)
 end
 
+
+
+function LOG_INFO(msg)  print("[INFO] " .. msg) end
+function LOG_WARN(msg)  print("[WARN] " .. msg) end
+function LOG_COOKED(code, msg) print("[COOKED][" .. code .. "] " .. msg) end

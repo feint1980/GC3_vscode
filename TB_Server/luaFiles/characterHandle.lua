@@ -6,15 +6,14 @@ require "SV_global"
 local function checkIfUserOwnedCharacter(host, userID, chacaterID)
 
     local checkQuery = "SELECT 1 FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ? AND " .. Table.user_character.character_id .. " = ?;"
-    SVI_DoQuerySTMT(host,checkQuery,{userID,chacaterID})
-    if Query_val[1] ~= nil then
+    local result = SVI_DoQuerySTMT(host,checkQuery,{userID,chacaterID})
+    if result[1] ~= nil then
         return true
     else
         return false
     end
 
 end
-
 
 --- MARK: Shop Request
 ---@Description Handle register request
@@ -72,9 +71,9 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
     
     --- check if the buying character exist in db
     local checkChracterQuery = "SELECT " ..  Table.character_base.character_id .. " FROM " .. Table.character_base.tb_name .. " WHERE " .. Table.character_base.character_id .. " = ?;"
-    SVI_DoQuerySTMT(host,checkChracterQuery,{characterID})
+    local result = SVI_DoQuerySTMT(host,checkChracterQuery,{characterID})
 
-    if Query_val[1] == nil then
+    if result[1] == nil then
         print("character not found in db -- return")
         return
     else
@@ -106,8 +105,8 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
     local alreadyOwned = false
 
     local checkOwnedQuery = "SELECT 1 FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ? AND " .. Table.user_character.character_id .. " = ?;"
-    SVI_DoQuerySTMT(host,checkOwnedQuery,{t_id,characterID})
-    if Query_val[1] ~= nil then
+    local result = SVI_DoQuerySTMT(host,checkOwnedQuery,{t_id,characterID})
+    if result[1] ~= nil then
         alreadyOwned = true
     end
     print("Character owned status " .. tostring(alreadyOwned))
@@ -124,10 +123,9 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
     local currentOwnedSoul = 0
     
     local checkSoulQuery = "SELECT " .. Table.account_stats.soul .. " FROM " .. Table.account_stats.tb_name .. " WHERE " .. Table.account_stats.id .. " = ?;"
-    SVI_DoQuerySTMT(host,checkSoulQuery,{t_id})
-    currentOwnedSoul = Query_val[1]
+    result = SVI_DoQuerySTMT(host,checkSoulQuery,{t_id})
+    currentOwnedSoul = result[1]
     print("current owned souls " .. tostring(currentOwnedSoul))
-
 
     if tonumber(currentOwnedSoul) < souldCost then
         -- send noti back to client ( not enough soul)
@@ -147,8 +145,8 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
         local tStats = "T_F_OFF"
 
         local getStatsSQL = "SELECT " .. Table.character_base.stats .. " FROM " .. Table.character_base.tb_name .. " WHERE " .. Table.character_base.character_id .. " = ?;"
-        SVI_DoQuerySTMT(host,getStatsSQL,{characterID})
-        tStats = Query_val[1]
+        local tResult = SVI_DoQuerySTMT(host,getStatsSQL,{characterID})
+        tStats = tResult[1]
 
         print("stat : " .. tostring(tStats))
         local insertQuery = "INSERT INTO " .. Table.user_character.tb_name .. " (" .. Table.user_character.id .. ", " .. Table.user_character.character_id .. ", " .. Table.user_character.stats .. ") VALUES (?, ?, ?);"
@@ -166,7 +164,6 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
         return
     end
 end
-
 
 
 --- MARK: Owned Response
@@ -210,7 +207,7 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
     --- Get owned character list 
     local ownedCharacterQuery = "SELECT " .. Table.user_character.character_id .. "," .. Table.user_character.level .. "," .. Table.user_character.exp .. "," .. Table.user_character.stats ..   " FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ?;" 
 
-    SVI_DoQuerySTMT(host,ownedCharacterQuery,{t_id})
+    local result = SVI_DoQuerySTMT(host,ownedCharacterQuery,{t_id})
 
     -- print("owned character query result")
 
@@ -225,8 +222,8 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
     ExistingCharacters[t_guid] = {}
 
     local queryResultCount = 4
-    for i = 1, #Query_val, queryResultCount do
-        AddExistingCharacter(t_guid, Query_val[i], Query_val[i+1], Query_val[i+2], Query_val[i+3])
+    for i = 1, #result, queryResultCount do
+        AddExistingCharacter(t_guid, result[i], result[i+1], result[i+2], result[i+3])
     end
 
     SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.OwnedCharacter_Start,{t_guid,"request_ok"})
@@ -247,7 +244,6 @@ function AddExistingCharacter(guid, characterID, characterLevel, characterExp, c
         ExistingCharacters[guid][characterID] = S_Reimu:new()
     elseif characterID == "S_Meiling" then
         ExistingCharacters[guid][characterID] = S_Meiling:new()
-
     elseif characterID == "S_Patchouli" then
         ExistingCharacters[guid][characterID] = S_Patchouli:new()
     elseif characterID == "S_Yukari" then
@@ -261,4 +257,8 @@ function AddExistingCharacter(guid, characterID, characterLevel, characterExp, c
     else
         -- print("AddExistingCharacter not exist " .. characterID)
     end
+end
+
+function RemoveExistingCharacter(guid)
+    ExistingCharacters[guid] = nil
 end

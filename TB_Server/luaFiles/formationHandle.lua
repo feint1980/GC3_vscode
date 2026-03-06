@@ -29,9 +29,7 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
 
     queryResult.cap = cap
     local getFormationQuery = "SELECT " .. Table.formation.id .. "," .. Table.formation.account_id .. "," .. Table.formation.name .. "," .. Table.formation.index .. " FROM " .. Table.formation.tb_name .. " WHERE " .. Table.formation.account_id .. " = ?;"
-    SVI_DoQuerySTMT(host,getFormationQuery,{t_id})
-
-    local formationQueryResult = Table_DeepCopy(Query_val)
+    local formationQueryResult = SVI_DoQuerySTMT(host,getFormationQuery,{t_id})
 
     for i = 1, #formationQueryResult, 4 do
 
@@ -51,29 +49,29 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
 
         local formationDataQuery = "SELECT " .. Table.formation_info.character_id .. ", " .. Table.formation_info.slot_index .. ", " .. Table.formation_info.row_pos .. ", " .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.account_id .. " = ? AND " .. Table.formation_info.formation_index .. " = ?;"
 
-        SVI_DoQuerySTMT(host,formationDataQuery,{t_accountID,t_index})
-        local FormationDataQueryResult = Table_DeepCopy(Query_val)
+        local tFormationDataQueryResult = SVI_DoQuerySTMT(host,formationDataQuery,{t_accountID,t_index})
+        -- local FormationDataQueryResult = Table_DeepCopy(Query_val)
 
-        for j = 1, #FormationDataQueryResult, 4 do
+        for j = 1, #tFormationDataQueryResult, 4 do
             --1 (j) formation id
             --2 (j+1) character id
             --3 (j+2) slot index
             --4 (j+3) row pos
             --5 (j+4) col pos
-            if(SVI_checkData{FormationDataQueryResult[j],FormationDataQueryResult[j+1],FormationDataQueryResult[j+2],FormationDataQueryResult[j+3]} == false) then
+            if(SVI_checkData{tFormationDataQueryResult[j],tFormationDataQueryResult[j+1],tFormationDataQueryResult[j+2],tFormationDataQueryResult[j+3]} == false) then
                 print("data check failed")
                 return
             end
-            -- print("characterID " ..  FormationDataQueryResult[j])
-            -- print("slotIndex " ..  FormationDataQueryResult[j+1])
-            -- print("rowPos " ..  FormationDataQueryResult[j+2])
-            -- print("colPos " ..  FormationDataQueryResult[j+3])
+            -- print("characterID " ..  tFormationDataQueryResult[j])
+            -- print("slotIndex " ..  tFormationDataQueryResult[j+1])
+            -- print("rowPos " ..  tFormationDataQueryResult[j+2])
+            -- print("colPos " ..  tFormationDataQueryResult[j+3])
 
-            local key = FormationDataQueryResult[j]
+            local key = tFormationDataQueryResult[j]
             queryResult.formation[t_index].subData[key] = {}
-            queryResult.formation[t_index].subData[key].slotIndex =  FormationDataQueryResult[j + 1]
-            queryResult.formation[t_index].subData[key].rowPos =  FormationDataQueryResult[j+2]
-            queryResult.formation[t_index].subData[key].colPos =  FormationDataQueryResult[j+3]
+            queryResult.formation[t_index].subData[key].slotIndex =  tFormationDataQueryResult[j + 1]
+            queryResult.formation[t_index].subData[key].rowPos =  tFormationDataQueryResult[j+2]
+            queryResult.formation[t_index].subData[key].colPos =  tFormationDataQueryResult[j+3]
         end
     end
 
@@ -83,17 +81,15 @@ end
 function FormationQuery_CheckCount(host,userID)
 
     local queryCountCmd= "SELECT COUNT(" .. Table.formation.id .. ") FROM " .. Table.formation.tb_name .. " WHERE " .. Table.formation.account_id .. " = ?;"
-    SVI_DoQuerySTMT(host,queryCountCmd,{userID})
 
-    return Query_val[1]
+    return SVI_DoQuerySTMT(host,queryCountCmd,{userID})[1]
 end
 
 function FormationQuery_CheckCap(host,userID)
     local queryCountCmd= "SELECT " .. Table.account_stats.formmations .. " FROM " .. Table.account_stats.tb_name .. " WHERE " .. Table.account_stats.id .. " = ?;"
     -- print("queryCountCmd " .. queryCountCmd)
-    SVI_DoQuerySTMT(host,queryCountCmd,{userID})
 
-    return Query_val[1]
+    return SVI_DoQuerySTMT(host,queryCountCmd,{userID})[1]
 end
 
 MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Add] = function(host ,data, ip, guid)

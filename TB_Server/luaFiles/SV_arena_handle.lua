@@ -121,7 +121,7 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestJoinLobby
     print("tTargetGUID " .. tTargetGUID)
     print("targetID " .. targetID)
 
-    if CH_check_userValid(guid, tTargetGUID,targetID,ip) == false then
+    if CH_check_userValid( tTargetGUID,guid,targetID,ip) == false then
         print("invalid user,  warning, craft packet found from ip " .. SV_GetIPString(ip))
         return
     end

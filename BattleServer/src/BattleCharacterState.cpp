@@ -1,5 +1,6 @@
 
 #include "BattleCharacterState.h"
+#include "Json2Struct.h"
 
 BattleCharacterState::BattleCharacterState()
 {

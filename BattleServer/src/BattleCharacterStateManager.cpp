@@ -64,13 +64,13 @@ void BattleCharacterStateManager::addCharacter(const std::string & playerID, con
     // m_stateMaps[playerID][characterState] = characterState;
 }
 
-BattleCharacterState BattleCharacterStateManager::getCharacterState(const std::string & playerID, const std::string & characterID)
+BattleCharacterState & BattleCharacterStateManager::getCharacterState(const std::string & playerID, const std::string & characterID)
 {
     int index = m_stateMaps[playerID][characterID];
     return m_stateLists[playerID][index];
 }
 
-BattleCharacterState BattleCharacterStateManager::getCharacterState(const std::string & playerID,int index)
+BattleCharacterState & BattleCharacterStateManager::getCharacterState(const std::string & playerID,int index)
 {
     return m_stateLists[playerID][index];
 }

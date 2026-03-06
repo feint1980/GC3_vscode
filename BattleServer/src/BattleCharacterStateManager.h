@@ -18,9 +18,9 @@ public:
 
     void addCharacter(const std::string & playerID, const std::string & characterStat );
 
-    BattleCharacterState getCharacterState(const std::string & playerID, const std::string & characterID);
+    BattleCharacterState & getCharacterState(const std::string & playerID, const std::string & characterID);
 
-    BattleCharacterState getCharacterState(const std::string & playerID,int index);
+    BattleCharacterState & getCharacterState(const std::string & playerID,int index);
     
 
 private:

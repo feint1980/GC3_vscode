@@ -12,9 +12,12 @@ BattleLobby = {
 
 function BattleLobby:new(o)
     o = o or {
-        battleClientEP_List = {}
+        -- battleClientEP_List = {}
     }
     setmetatable(o, self)
+    o.battleClientEP_List = {}
+    o.battleClientEP_Map = {}
+    o.formation_Map = {}
     self.__index = self
     return o
 end
@@ -92,8 +95,6 @@ end
 function BattleLobby:getSize()
     return #self.battleClientEP_List
 end
-
-BattleLobby_List = {}
 
 function BattleLobby_ResetList()
     BattleLobby_List = {}

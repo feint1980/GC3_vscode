@@ -19,6 +19,6 @@ public:
 
     std::vector<std::unique_ptr<BattleClient>> m_clientsPtr; 
 
-    std::unordered_map<std::string, std::unique_ptr<BattleClient>> m_clientsMap;
+    std::unordered_map<std::string, BattleClient*> m_clientsMap;
 
 };

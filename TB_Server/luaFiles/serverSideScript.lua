@@ -28,6 +28,7 @@ function SVI_DoQuerySTMT(host, baseStmt, paramList )
     end
     SV_DoQuerySTMT(host,stmt)
     SV_SQLFinalizeStmt(stmt)
+    return Table_DeepCopy(Query_val) -- return a deep copy (snapshot)
 end
 
 Account_Table = {
@@ -260,6 +261,7 @@ CommonHandle[PacketIdentifier.ID_CONNECTION_LOST] = function(host,packet)
     end
     print("detect connection lost from " .. ClientEPList[guid].name .. " lost")
     ClientEPList[guid] = nil
+    RemoveExistingCharacter(guid)
     CH_List()
     
 end
@@ -271,9 +273,10 @@ end
 CommonHandle[PacketIdentifier.ID_DISCONNECTION_NOTIFICATION] = function(host,packet)
     local guid = SV_GetPacketGUID(packet)
     SV_RemoveCryptor(host,guid)
-    if guid ~= nil then
+    if guid ~= nil and ClientEPList[guid] ~= nil then
         print("detect disconnect from " .. ClientEPList[guid].name .. " lost")
         ClientEPList[guid] = nil
+        RemoveExistingCharacter(guid)
         CH_List()
     end
 end
@@ -312,40 +315,60 @@ local current_path = get_current_file_path()
 
 os.execute('dir /b/a-d  ..\\luaFiles\\Characters\\*.lua')
 
----@Description load character data based on lua file (internal)
-function Server_LoadCharacters(host)
-    -- print("loadCharacters() called")
-    for filename in io.popen('dir /b/a-d  ..\\luaFiles\\Characters\\*.lua'):lines() do  --Windows
-    -- for filename in io.popen('dir /b/a-d "'):lines() do  --Windows
-        filename = filename:match"^(.*)%.lua$"
-        if filename then
-            -- print("reloading files ... " .. filename)
-            dofile("../luaFiles/Characters/"..filename .. ".lua")
-            Character_Serialized_Table[filename] = SV_UpdateCharacter(host,Character_Table[filename])
 
-            Skill_Serialized_Table[filename] = {}
-            for skillFileName in io.popen('dir /b/a-d  ..\\luaFiles\\Skills\\'..filename..'\\*.lua'):lines()
-            do  --Windows 
-                skillFileName = skillFileName:match"^(.*)%.lua$"
-                if skillFileName then
-                    dofile("../luaFiles/Skills/"..filename..'/'..skillFileName .. ".lua")
-                    Skill_Serialized_Table[filename][skillFileName] = SV_UpdateSkill(host,Skill_Table[skillFileName],skillFileName)
-                end
-            end
+---@Description load character data based on lua file (internal)
+
+local function getOS()
+    local sep = package.config:sub(1,1)
+    if sep == "\\" then return "windows"
+    else return "linux"
+    end
+end
+
+local function listLuaFiles(path)
+    local files = {}
+    local cmd
+    if getOS() == "windows" then
+        cmd = 'dir /b/a-d "' .. path .. '\\*.lua"'
+    else
+        cmd = 'ls "' .. path .. '"/*.lua 2>/dev/null'
+    end
+    for filename in io.popen(cmd):lines() do
+        local name = filename:match("^(.*)%.lua$")
+        if name then
+            table.insert(files, name)
         end
     end
+    return files
+end
+function Server_LoadCharacters(host)
+    local charFiles = listLuaFiles("../luaFiles/Characters")
+    if #charFiles == 0 then
+        print("[WARNING] No character files found! Check path ../luaFiles/Characters")
+        return
+    end
+    print("Found " .. #charFiles .. " characters to load...")
+    for _, name in ipairs(charFiles) do
+        dofile("../luaFiles/Characters/" .. name .. ".lua")
+        Character_Serialized_Table[name] = SV_UpdateCharacter(host, Character_Table[name])
+        print("Loaded character: " .. name)
+
+        Skill_Serialized_Table[name] = {}
+        local skillFiles = listLuaFiles("../luaFiles/Skills/" .. name)
+        print("  Found " .. #skillFiles .. " skills for " .. name)
+        for _, skillName in ipairs(skillFiles) do
+            dofile("../luaFiles/Skills/" .. name .. "/" .. skillName .. ".lua")
+            Skill_Serialized_Table[name][skillName] = SV_UpdateSkill(host, Skill_Table[skillName], skillName)
+            print("  Loaded skill: " .. skillName)
+        end
+    end
+    print("Character loading complete!")
 end
 
 function Server_LoadData(host)
     Server_LoadCharacters(host)
 
-    -- for k,v in pairs(Skill_Serialized_Table) do
-    --     for k2,v2 in pairs(v) do
-    --         print(k .. " | " .. k2 .. " | " .. v2  )
-    --     end
-    -- end
 end
-
 
 local function print_table(t)
     for k,v in pairs(t) do

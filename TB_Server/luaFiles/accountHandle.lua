@@ -41,7 +41,7 @@ end
 function CheckAccountValid(host, id, pw)
     local count = CheckAccountCount(host, id, pw)
     if count > 1 then
-        print("WARNING unexpected result, If you see this message in production ? you are COOKED !!!")
+        LOG_COOKED("K22c","WARNING unexpected result, If you see this message in production ? you are COOKED !!!")
         return false
     elseif count == 0 then
         print("valid check failed")
@@ -181,13 +181,12 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = funct
 
     local checkAccountExistQuery = "SELECT COUNT(" .. Table.account.id .. ") FROM " .. Table.account.tb_name .. " WHERE " .. Table.account.id .. " = ?;"
 
-    SVI_DoQuerySTMT(host,checkAccountExistQuery,{t_id})
-    local result = Query_val[1]
+    local queryRet =  SVI_DoQuerySTMT(host,checkAccountExistQuery,{t_id})
+    local result = queryRet[1]
     local accountCount = tonumber(result)
     if accountCount == 0 then
         local checkKeyExistQuery = "SELECT COUNT(*) FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.val .. " = ?;"
-        SVI_DoQuerySTMT(host,checkKeyExistQuery,{t_key})
-        result = Query_val[1]
+        result =  SVI_DoQuerySTMT(host,checkKeyExistQuery,{t_key})[1]
         local keyCount = tonumber(result)
         if keyCount == 0 then
             -- key not exist
@@ -196,8 +195,7 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = funct
             -- key exist
             -- check if key is ready
             local checkKeyReadyQuery = "SELECT " .. Table.register_key.ready .. " FROM " .. Table.register_key.tb_name .. " WHERE " .. Table.register_key.val .. " = ?;"
-            SVI_DoQuerySTMT(host,checkKeyReadyQuery,{t_key})
-            local keyReadyValue = tonumber(Query_val[1])
+            local keyReadyValue = tonumber(  SVI_DoQuerySTMT(host,checkKeyReadyQuery,{t_key})[1])
             if keyReadyValue == 1 then
                 local insertAccountQuery = "INSERT INTO " .. Table.account.tb_name ..'('.. Table.account.id .. ', ' .. Table.account.pw  .. ") VALUES ( ?,?);"
                 local ePW = SV_getEncryptPW(host, t_pw)
@@ -220,7 +218,7 @@ MessageHandling[PacketChannel.AccountChannel][AccountResponse.Aregister] = funct
     else
         SendReliable(host,ip,guid,PacketChannel.AccountChannel,AccountResponse.Aregister,{"Oh no, we got a hecker !!!!"})
         print("accountCount is " .. accountCount)
-        print("If you see this warning in production, you are COOKED !")
+        LOG_COOKED("K231","Multiple query result of account count (SQL injection or something), If you see this warning in production, you are COOKED !")
     end
 end
 
@@ -234,8 +232,6 @@ end
 ---@param guid string client guid
 MessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host ,data, ip, guid)
 
-    -- print("MessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host ,data, ip, guid)")
-
     print("request from " .. guid)
     local t_id, t_pw, t_guid = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
 
@@ -248,10 +244,10 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(hos
     if CheckAccountValid(host, t_id, t_pw) then
         -- print("account check OK, getting data from DB")
         local getDataQuerry = "SELECT mon,souls from " .. Account_Stats_Table.tb_name .. " WHERE " .. Account_Stats_Table.id  .. " = ?;"
-        SVI_DoQuerySTMT(host,getDataQuerry,{t_id})
+        local result = SVI_DoQuerySTMT(host,getDataQuerry,{t_id})
 
-        local mon = Query_val[1]
-        local souls = Query_val[2]
+        local mon = result[1]
+        local souls = result[2]
 
         SendReliable(host,ip,guid,PacketChannel.UserChannel,UserResponse.MainInfo,{ t_id,mon,souls,t_guid})
     end

@@ -18,16 +18,19 @@ public:
 
     ~LobbiesManager() {
 
-        for (size_t i = 0; i < m_lobbies.size(); i++)
-        {
-            // delete m_lobbies[i];
-            m_lobbies.erase(m_lobbies.begin() + i);
-        }
+        // for (size_t i = 0; i < m_lobbies.size(); i++)
+        // {
+        //     // delete m_lobbies[i];
+        //     m_lobbies.erase(m_lobbies.begin() + i);
+        // }
         
-        for (auto it = m_lobbiesMap.begin(); it != m_lobbiesMap.end(); it++)
-        {
-            m_lobbiesMap.erase(it);
-        }
+        // for (auto it = m_lobbiesMap.begin(); it != m_lobbiesMap.end(); it++)
+        // {
+        //     m_lobbiesMap.erase(it);
+        // }
+
+        m_lobbies.clear();
+        m_lobbiesMap.clear();
 
     }
 
