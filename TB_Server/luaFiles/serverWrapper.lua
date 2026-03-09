@@ -266,7 +266,7 @@ function SendReliable2BattleServer(host,ip, guid,channel,request,tList)
     local attempts = 0
     -- t_response = SV_SendWrapMsg2BattleServer(host,ip, guid,channel,request,tList)
     while t_response == 0 and attempts < 5 do
-        t_response = SV_SendWrapMsg(host,ip, guid,channel,request,tList)
+        t_response = SV_SendWrapMsg2BattleServer(host,ip, guid,channel,request,tList)
         attempts = attempts + 1
     end
     if t_response == 0 then

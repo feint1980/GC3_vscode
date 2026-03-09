@@ -748,7 +748,7 @@ void BattleMain::listen()
 
             default :
             {
-                std::cout << "uncommon packet " << packetIdentifier << "\n";
+                std::cout << "uncommon packet " << (int)packetIdentifier << "\n";
             }
             break;
         }
