@@ -15,21 +15,25 @@
 
 #include <string>
 #include <iostream>
-
+#include "BattleClient.h"
 #include "BattleInstance.h"
 
 class PlayerPair {
 
     public: 
 
-    PlayerPair() { m_players[0] = m_players[1] = RakNet::UNASSIGNED_SYSTEM_ADDRESS; 
-    m_host = nullptr; m_playerCount = 0; }
+    PlayerPair() {
+    m_playerCount = 0; }
 
-    bool addPlayer(const RakNet::SystemAddress & address) {
+    bool addPlayer(const std::string& guid, const std::string& name,const RakNet::SystemAddress & address) {
         if (m_playerCount < 2) 
         {
-            m_players[m_playerCount] = address;
+            BattleClient client = BattleClient();
+            client.init(guid, name, address);
+            m_players[m_playerCount] = client;
+            m_playersMap[guid] = m_playerCount;
             m_playerCount++;
+
             return true;
         }
         return false;
@@ -37,33 +41,40 @@ class PlayerPair {
 
     bool isFull() { return m_playerCount == 2; }
 
-    bool removePlayer(RakNet::SystemAddress address) {
-        if (m_players[0] == address || m_players[1] == address) 
+    bool removePlayer(const std::string & guid) {
+        if(m_playersMap.find(guid) != m_playersMap.end())
         {
-            m_players[0] = m_players[1] = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
-            m_playerCount = 0;
+            int index = m_playersMap[guid];
+            m_players[index] = BattleClient();
+            m_playersMap.erase(guid);
+            m_playerCount--;
             return true;
         }
         return false;
     }
 
+
     int getPlayerCount() { return m_playerCount; }
 
     private:
 
-    RakNet::SystemAddress m_players[2];
+    BattleClient m_players[2];
 
-    RakNet::SystemAddress * m_host = nullptr;
+    std::unordered_map<std::string , int> m_playersMap;
 
     int m_playerCount = 0;
     
 };
+
+
 
 enum LobbyState {
     LOBBY_STATE_OPEN,
     LOBBY_STATE_CLOSED,
     LOBBY_STATE_IN_GAME,
     LOBBY_STATE_EXPIRING,
+    LOBBY_STATE_LOCK_IN,
+
 };
 
 class Lobby {
@@ -87,8 +98,10 @@ public:
 
     LobbyState getState() const { return m_state; }
 
-    bool addPlayer(RakNet::SystemAddress address);
+    bool addPlayer(const std::string& guid, const std::string& name,const RakNet::SystemAddress & address);
     
+    void setLobbyState(LobbyState state);
+
 private:
 
     uint64_t m_id = 0;
@@ -99,5 +112,6 @@ private:
 
     PlayerPair m_playerPair;
 
+    BattleInstance m_battleInstance;
 };
 

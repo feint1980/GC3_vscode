@@ -30,10 +30,11 @@ function CharacterInFormation:init(userID,tId, tSlotIndex, tRowPos, tColPos)
     print("CharacterInFormation stat about to init")
     if ClientOwnedCharacters[userID] == nil then
         print("ClientOwnedCharacters[" .. userID .. "] is nil")
-        
+        return
     else
         if ClientOwnedCharacters[userID][tId] == nil then
             print("ClientOwnedCharacters[" .. userID .. "][" .. tId .. "] is nil")
+            return
         else
             print("ClientOwnedCharacters[" .. userID .. "][" .. tId .. "] is valid")
             self.stats =  ClientOwnedCharacters[userID][tId]

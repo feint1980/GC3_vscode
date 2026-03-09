@@ -2,7 +2,7 @@
 #include "BattleClientManager.h"
 
 
-void BattleClientManager::addClient(const std::string& guid, const std::string& name,  RakNet::SystemAddress* address)
+void BattleClientManager::addClient(const std::string& guid, const std::string& name,  const RakNet::SystemAddress & address)
 {
     // std::unique_ptr<BattleClient> client = std::make_unique<BattleClient>();
     // client->init(guid, name, address);

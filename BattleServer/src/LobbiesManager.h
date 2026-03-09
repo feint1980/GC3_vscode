@@ -8,7 +8,7 @@
 #include <memory>
 #include <random>
 #include "ThreadPool.h"
-#include "BattleClient.h"
+
 
 
 class LobbiesManager

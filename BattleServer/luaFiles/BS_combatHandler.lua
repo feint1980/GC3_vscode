@@ -22,5 +22,5 @@ ClientPacketHandling[ClientChannel.Combat][CCombatResponse.Combat_ReadyStatus] =
     if BattleLobby_List[tLobbyID] ~= nil then
         print("Lobby check out")
     end
-    
+
 end

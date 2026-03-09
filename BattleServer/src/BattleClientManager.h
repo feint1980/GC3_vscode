@@ -12,7 +12,7 @@ public:
 
     void update(float deltaTime);
 
-    void addClient(const std::string& guid, const std::string& name,  RakNet::SystemAddress * address);
+    void addClient(const std::string& guid, const std::string& name,  const RakNet::SystemAddress & address);
 
 
     private:

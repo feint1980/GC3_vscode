@@ -27,7 +27,7 @@
     then Initialize BattleInstance with saved formation 
 */
 
-#include "BattleCharacterStateManager.h"
+#include "BattleCharacterManager.h"
 
 
 class BattleInstance
@@ -40,7 +40,10 @@ public:
 
 private:
 
-    BattleCharacterStateManager m_battleCharacterStateManager;
+    BattleCharacterManager m_battleCharacterManager;
 
+    // uint64_t m_lobbyID = 0;
+    std::string m_player1 = "";
+    std::string m_player2 = "";
 
 };

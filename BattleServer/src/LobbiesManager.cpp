@@ -54,7 +54,7 @@ void LobbiesManager::update(float deltaTime)
 bool LobbiesManager::joinLobby(uint64_t lobbyID, RakNet::SystemAddress * address, const std::string & accountID, const std::string & guid)
 {
 
-    std::unique_ptr<BattleClient> client;
+    
 
     // // client = m_clientsMap.find(accountID)->second.get(); 
     // if(m_clientsMap.find(accountID)->second.get() == nullptr)
