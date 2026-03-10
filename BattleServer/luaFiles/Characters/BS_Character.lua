@@ -55,6 +55,160 @@ function BS_Character:getPhysicDmg()
     local physicDmgScale = self.stats.physicDmgScale
 
     return physicDmg + (strength * physicDmgScale)
-    -- return self.stats
+
 end
 
+function BS_Character:getMagicDmg()
+    local intelligence = self.stats.intelligence
+    local magicDmg = self.stats.magicDmg
+    local magicDmgScale = self.stats.magicDmgScale
+
+    return magicDmg + (intelligence * magicDmgScale)
+
+end
+
+function BS_Character:getPhysicDef()
+    local strength = self.stats.strength
+    local physicDef = self.stats.physicDef
+    local physicDefScale = self.stats.physicDefScale
+
+    return physicDef + (strength * physicDefScale)
+end
+
+function BS_Character:getMagicDef()
+    local wisdom = self.stats.wisdom
+    local magicDef = self.stats.magicDef
+    local magicDefScale = self.stats.magicDefScale
+
+    return magicDef + (wisdom * magicDefScale)
+end
+
+function BS_Character:getMaxHP()
+    local hp = self.stats.hp
+    local vitality = self.stats.vitality
+    local hpScale = self.stats.hpScale
+
+    return hp + (vitality * hpScale)
+end
+
+function BS_Character:getMaxMana()
+    local mana = self.stats.mana
+    local wisdom = self.stats.wisdom
+    local manaScale = self.stats.manaScale
+end
+
+function BS_Character:getMaxSP()
+    return self.stats.spCap
+end
+
+function BS_Character:getAccuracy()
+    local dexterity = self.stats.dexterity
+    local accurate = self.stats.accurate
+    local accurateScale = self.stats.accurateScale
+
+    return accurate + (dexterity * accurateScale)
+end
+
+function BS_Character:getEvasion()
+    local agility = self.stats.agility
+    local evadeChance = self.stats.evadeChance
+    local evadeChanceScale = self.stats.evadeChanceScale
+
+end
+
+function BS_Character:getCritChance()
+    local dexterity = self.stats.dexterity
+    local critChance = self.stats.critChance
+    return critChance + (dexterity * 0.01)
+end
+
+function BS_Character:getSpeed(speedRoll)
+    local agility = self.stats.agility
+    return (agility + speedRoll) * 0.9
+end
+
+
+--[[
+stat ref 
+
+title  of Boundaries
+hp 
+magicDmg 
+wisdom 
+action 
+magicDef
+dexterity 
+strength 
+manaScale 
+physicDefScale
+intelligence 
+panelPath 
+critChance
+portraitPath 
+agility 
+side 
+physicDmgScale 
+hpScale 
+exp 
+vitality 
+accurateScale 
+level 
+ID 
+mana 
+evadeChance 
+lastName 
+xp 
+animationPath 
+evadeChanceScale 
+sp 
+magicDefScale 
+accurate 
+price 
+spCap 
+magicDmgScale 
+physicDmg 
+physicDef 
+deathDoorSurviveChance
+name 
+formation 2 has 4 characters
+
+]]--
+
+
+--[[ stat rule
+> Strength (STR)
+Primary Influence: Physical Damage | scale value is 3
+Other Effects: Increases the damage dealt by physical attacks, heavy weapons, or abilities that rely on raw power. Could also contribute to the character's ability to break through shields or armor.
+
+> Vitality (VIT)
+Primary Influence: Health & Physical Defense | scale value is 1 
+Other Effects: Determines max HP, physical defense, and resistance to status ailments related to physical endurance (such as bleeding, poison, or stun). It could also reduce incoming physical damage by a percentage.
+
+> Dexterity (DEX)
+Primary Influence: Accuracy & Critical Hit Chance (Physical) 
+Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes. Dexterity could also enhance skills or abilities that require precision, such as archery or certain melee attacks.
+
+> Agility (AGI)
+Primary Influence: Speed & Evasion
+Other Effects: Determines turn order (faster characters act first) and increases evasion against physical attacks. Higher agility could also reduce the chance of getting hit by slower enemies and allow characters to reposition more easily.
+
+> Intelligence (INT)
+Primary Influence: Magic Damage
+Other Effects: Increases the damage dealt by magical attacks and spells. It could also affect the potency of debuffs, the number of targets a spell can hit, or even mana regeneration rates.
+
+> Wisdom (WIS)
+Primary Influence: Magic Defense & Mana Pool
+Other Effects: Determines resistance to magical attacks and could increase max mana. Wisdom could also affect healing abilities, status effect resistance (such as confusion or charm), and reduce the cooldowns on certain spells or abilities.
+
+Derived Stats:
+> Hit Chance: Primarily influenced by Dexterity, could be affected by Agility for ranged or fast attacks.
+
+Evasion: Influenced by Agility, with a potential bonus from Wisdom (to dodge magical effects).
+
+Critical Hit Chance: Influenced by Dexterity (for physical attacks) and possibly Intelligence (for magical criticals).
+
+Physical Defense: Primarily governed by Vitality, with some influence from Strength for sturdier builds.
+
+Magic Defense: Primarily governed by Wisdom, with a potential small influence from Intelligence for spellcasters.
+
+Speed: Purely determined by Agility; affects turn order in combat.]]--
