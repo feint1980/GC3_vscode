@@ -7,7 +7,11 @@ BattleLobby = {
     battleClientEP_List = {},
     battleClientEP_Map = {},
     lobbyState =  BattleLobbyState.CLOSED,
-    formation_Map = {}
+    formation_Map = {},
+    playerIndexMap = {},
+    leftFormation = nil,
+    rightFormation = nil,
+    readyCount = 0
 }
 
 function BattleLobby:new(o)
@@ -18,6 +22,7 @@ function BattleLobby:new(o)
     o.battleClientEP_List = {}
     o.battleClientEP_Map = {}
     o.formation_Map = {}
+    o.playerIndexMap = {}
     self.__index = self
     return o
 end
@@ -95,6 +100,67 @@ end
 function BattleLobby:getSize()
     return #self.battleClientEP_List
 end
+
+function BattleLobby:AppendReady(playerID, index)
+    
+    if self.formation_Map[playerID] == nil then 
+        LOG_COOKED("K282","BattleLobby:AppendReady player " .. playerID .. " has no formation")
+        return
+    end
+    self.readyCount = self.readyCount + 1
+    self.playerIndexMap[playerID] = index
+
+    if self.playerIndexMap[playerID] == 1 then
+        self.leftFormation = self.formation_Map[playerID]
+    elseif self.playerIndexMap[playerID] == 2 then
+        self.rightFormation = self.formation_Map[playerID]
+    else 
+        LOG_COOKED("K283","BattleLobby:AppendReady player " .. playerID .. " has no index or wrong index " .. self.playerIndexMap[playerID])
+        return
+    end
+
+
+    if self.readyCount >= 2 then
+        print("ready player check")
+        if self.leftFormation == nil then
+            LOG_COOKED("K284","BattleLobby:AppendReady lobby " .. self.id .. " has no left formation")
+            return
+        end
+        if self.rightFormation == nil then
+            LOG_COOKED("K285","BattleLobby:AppendReady lobby " .. self.id .. " has no right formation")
+            return
+        end
+        self.lobbyState = BattleLobbyState.INGAME
+
+        print("precheck")
+
+        print (#self.formation_Map[playerID].characters)
+        print (#self.leftFormation.characters)
+
+        print("left formation check ")
+
+        for k,v in pairs(self.leftFormation.characters) do
+            print("left " .. k .. " " .. v.id)
+
+        end
+
+        for i = 1, #self.leftFormation.characters do
+            print(self.leftFormation.characters[i].id)
+            print(self.leftFormation.characters[i].stats.name)
+            print(self.leftFormation.characters[i]:getPhysicDmg())
+        end
+
+        -- for k,v in pairs(self.rightFormation.characters) do
+        --     print("right " .. v.id)
+        -- end
+
+        -- for i = 1, #self.leftFormation.characters do
+        --     print(self.leftFormation[tostring(i)].id)
+        -- end
+        -- for 
+    end
+end
+
 
 function BattleLobby_ResetList()
     BattleLobby_List = {}

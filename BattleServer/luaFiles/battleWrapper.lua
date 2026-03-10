@@ -210,3 +210,9 @@ end
 function BM_handleDisconnectFromMainServer(host)
     cpp_BM_HandleDisconnectFromMainServer(host)
 end
+
+
+
+function LOG_INFO(msg)  print("[INFO] " .. msg) end
+function LOG_WARN(msg)  print("[WARN] " .. msg) end
+function LOG_COOKED(code, msg) print("[COOKED][" .. code .. "] " .. msg) end

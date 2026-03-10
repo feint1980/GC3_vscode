@@ -57,7 +57,10 @@ function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacte
     local tLobbyID = InfoHolder_getStrVal("CurrentLobbyID")
     local tPlayerIndex = InfoHolder_getNumberVal("Player_Index")
 
-    SendBattleRequest(BattlePacketChannel.Combat,CCombatResponse.Combat_ReadyStatus, {tGUID,tID,tLobbyID,tPlayerIndex,"Ready"},5,0.1,0.15)
+    print("data check " .. tGUID .. " " .. tID .. " " .. tLobbyID .. " " .. tPlayerIndex)
+
+    SendBattleRequest(BattlePacketChannel.Combat,CCombatResponse.Combat_ReadyStatus, {tGUID,tID,tLobbyID,tPlayerIndex,"Ready"},5,
+    0.1,0.15)
 
 end
 

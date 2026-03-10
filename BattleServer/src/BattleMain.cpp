@@ -325,7 +325,10 @@ int lua_BM_JoinLobby(lua_State *L)
 
         uint64_t tLobbyID = std::stoull(lobbyID);
 
-        bool result = host->joinLobby(tLobbyID, guid, id, address);
+
+        RakNet::SystemAddress  tCopy = RakNet::SystemAddress(address->ToString());
+
+        bool result = host->joinLobby(tLobbyID, guid, id, tCopy);
 
         lua_pushboolean(L, result);
 
@@ -598,7 +601,7 @@ void BattleMain::run()
     // }
 }
 
-bool BattleMain::joinLobby(uint64_t id, const std::string & guid,const std::string & clientID, RakNet::SystemAddress * address)
+bool BattleMain::joinLobby(uint64_t id, const std::string & guid,const std::string & clientID,const RakNet::SystemAddress & address)
 {
 
     bool retVal = false;

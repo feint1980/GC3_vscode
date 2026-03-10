@@ -30,16 +30,18 @@ public :
 
     }
 
-    void init(const std::string& guid, const std::string& name, const RakNet::SystemAddress & address);
+    void init(const std::string& guid, const std::string& id, const RakNet::SystemAddress & address);
 
-    const std::string& getGuid() const { return m_guid; }
-    const std::string& getName() const { return m_name; }
+    const std::string& getGUID() const { return m_guid; }
+    const std::string& getID() const { return m_id; }
     RakNet::SystemAddress getAddress() const { return m_address; }
 
+    
+
 private: 
-    RakNet::SystemAddress m_address =RakNet::UNASSIGNED_SYSTEM_ADDRESS;
+    RakNet::SystemAddress m_address = RakNet::UNASSIGNED_SYSTEM_ADDRESS;
     std::string m_guid = "";
-    std::string m_name = "";
+    std::string m_id = "";
     uint64_t m_roomID = 0;
 
 };

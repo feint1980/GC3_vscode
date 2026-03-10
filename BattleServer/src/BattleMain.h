@@ -90,7 +90,7 @@ public:
 
     uint64_t createLobby(const std::string & name, const std::string & password);
 
-    bool joinLobby(uint64_t id, const std::string & guid , const std::string & clientID,  RakNet::SystemAddress * address);
+    bool joinLobby(uint64_t id, const std::string & guid , const std::string & clientID, const RakNet::SystemAddress & address);
 
     RakNet::SystemAddress * getMainServerIP() { return m_mainServerIP_ptr; }
 

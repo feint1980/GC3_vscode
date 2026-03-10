@@ -51,20 +51,22 @@ void LobbiesManager::update(float deltaTime)
 }
 
 
-bool LobbiesManager::joinLobby(uint64_t lobbyID, RakNet::SystemAddress * address, const std::string & accountID, const std::string & guid)
+bool LobbiesManager::joinLobby(uint64_t lobbyID, const RakNet::SystemAddress & address, const std::string & accountID, const std::string & guid)
 {
 
     
-
     // // client = m_clientsMap.find(accountID)->second.get(); 
-    // if(m_clientsMap.find(accountID)->second.get() == nullptr)
-    // {
-    //     client = std::make_unique<BattleClient>(); // if client already exists, create new client
-    // }
-    // else
-    // {
-    //     client.get()->init(guid, accountID, address); //
-    // }
+    if(m_clientsMap.find(accountID) == m_clientsMap.end())
+    {
+        std::unique_ptr<BattleClient> client = std::make_unique<BattleClient>(); //
+        client->init(guid, accountID, address); //
+        m_clientsMap[accountID] = std::move(client);
+    }
+    else
+    {
+        std::cout << "rewrite accountID " << accountID << " old GUID" <<   m_clientsMap[accountID].get()->getGUID()<<" with new GUID " << guid << "\n";
+        m_clientsMap[accountID].get()->init(guid, accountID, address);
+    }
 
     //m_clientsMap[accountID] = std::move(client);
 

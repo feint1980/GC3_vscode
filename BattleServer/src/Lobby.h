@@ -88,6 +88,8 @@ public:
         
     }
 
+    void destroyLobby();
+
     std::string getInfo() const;
 
     bool isRequiredPassword() const { return !m_password.empty(); }

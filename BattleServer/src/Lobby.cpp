@@ -23,6 +23,12 @@ std::string Lobby::getInfo() const
     return "lobby " + std::to_string(m_id) + " (" + m_name + ")";
 } 
 
+void Lobby::destroyLobby()
+{
+    m_state = LOBBY_STATE_CLOSED;
+
+}
+
 
 void Lobby::setLobbyState(LobbyState state)
 {

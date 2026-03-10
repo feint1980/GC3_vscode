@@ -1,11 +1,12 @@
 --- Battle server, lobby section
-package.path = package.path .. ";../luaFiles/?.lua" 
+package.path = package.path .. ";../luaFiles/?.lua" ..  ";../luaFiles/Characters/?.lua" 
 
 
 require "battleWrapper"
 require "BS_global"
 require "BS_handle_clients"
 require "BS_formation"
+require "BS_Character"
 --- MARK:Main server
 
 InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Request] = function(host, channel, request,data,ip, guid)
@@ -370,7 +371,7 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
             print("col_pos" .. v.formationData[i].col_pos)
             print("row_pos" .. v.formationData[i].row_pos)
 
-            local tCharacter = CharacterInFormation:new()
+            local tCharacter = BS_Character:new()
             tCharacter:init(tID,tCharacterID, tSlotIndex, tRowPos, tColPos)
             ClientFormations[tID][k]:addCharacter(tCharacter)
 

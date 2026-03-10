@@ -1,16 +1,16 @@
 
-#ifndef BATTLECHARACTERMANAGER_H
-#define BATTLECHARACTERMANAGER_H
+#ifndef BATTLEINSTANCECHARACTERMANAGER_H
+#define BATTLEINSTANCECHARACTERMANAGER_H
 
 #include "BattleCharacter.h"
 #include <unordered_map>
 #include <vector>
 
-class BattleCharacterManager
+class BattleInstanceCharacterManager
 {
 public:
-    BattleCharacterManager();
-    ~BattleCharacterManager();
+    BattleInstanceCharacterManager();
+    ~BattleInstanceCharacterManager();
 
     void init(const std::string & player1, const std::string & player2);
 
@@ -33,4 +33,4 @@ private:
 };
 
 
-#endif
+#endif //BATTLEINSTANCECHARACTERMANAGER_H

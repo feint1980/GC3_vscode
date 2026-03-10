@@ -58,7 +58,7 @@ public:
         m_lobbiesMap.erase(id);
     }
 
-    bool joinLobby(uint64_t lobbyID, RakNet::SystemAddress * address, const std::string &accountID , const std::string & guid);
+    bool joinLobby(uint64_t lobbyID, const RakNet::SystemAddress & address, const std::string &accountID , const std::string & guid);
 
     void init(int maxLobbies);
     
