@@ -169,8 +169,13 @@ end
 function S_Character:copyForJSON()
     local t = {}
     for k, v in pairs(self) do
+        local vType = type(v)
         if k ~= "dyobj" then
-            t[k] = v
+            if vType == "number" or vType == "string" or vType == "boolean" then
+                t[k] = v
+            -- elseif vType == "table" and k == "buffs" then
+            --     t[k] = deepCopy(v)  -- handle specific known tables
+            end
         end
     end
     return t

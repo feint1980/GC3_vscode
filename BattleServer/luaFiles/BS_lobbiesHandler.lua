@@ -386,14 +386,18 @@ function Request_ClientOwnedCharacters_From_MainServer(host, userGUID,userID)
     BM_sendWrapData(host, BM_getMainServerIP(host), BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL,MainServerChanel.ClientData , ClientDataResponse.ClientData_Request_OwnedCharacters, {userGUID,userID})
 end
 
+
 InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters] = function(host, channel, request,data,ip, guid)
 
     local tGUID, tID, tOwnedCharacters = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
 
     -- print ("tGUID " .. tGUID)
     -- print("tID " .. tID)
+    
     print("tOwnedCharacters " .. tOwnedCharacters)
-    local tOwnedCharactersList, pos , err = JSON_Decode(tOwnedCharacters)
+
+    
+    local tOwnedCharactersList, pos , err = JSON_Decode(tostring(tOwnedCharacters))
     if err then
         print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:", err)
     end

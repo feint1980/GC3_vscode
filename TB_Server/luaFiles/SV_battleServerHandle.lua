@@ -231,6 +231,8 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
     local ownedResult = {}
     for k,v in pairs(ExistingCharacters[targetID]) do
         local stats = v:copyForJSON()
+        setmetatable(stats, nil)
+        print("stats metatable: " .. tostring(getmetatable(stats)))
         local characterData = {}
         characterData.ID = v.ID
         characterData.level = v.level
@@ -255,10 +257,24 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
         -- ownedResult[v.ID] = characterData
     end
 
+    -- DebugTable(ownedResult)
+    
     local tData = JSON_Encode(ownedResult,true)
 
-    print("data check " .. tData)
+    -- print("data check " .. tData)
 
     SV_SendWrapMsg2BattleServer(host, ip,guid, BattleChanel.ClientData,ClientDataResponse.ClientData_Response_OwnedCharacters,{targetGUID, targetID, tData})
 
+end
+
+function DebugTable(t, indent)
+    indent = indent or ""
+    for k, v in pairs(t) do
+        if type(v) == "table" then
+            print(indent .. tostring(k) .. " = TABLE")
+            DebugTable(v, indent .. "  ")
+        else
+            print(indent .. tostring(k) .. " = " .. tostring(v))
+        end
+    end
 end

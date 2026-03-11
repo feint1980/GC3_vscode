@@ -260,11 +260,11 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
             local characterStat, pos, err = JSON_Decode(result2[1])
 
             if err then
-                print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:", err)
+                print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.OwnedCharacter_Request)  JSON decode error:", err)
             end
 
             if characterStat == nil then
-                print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error: characterStat is nil")
+                print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.OwnedCharacter_Request)  JSON decode error: characterStat is nil")
                 return
             end
 
