@@ -166,6 +166,16 @@ function S_Character:setLVL( level)
     CM_CharacterSetAttribute(self.dyobj, "level", self.level)
 end
 
+function S_Character:copyForJSON()
+    local t = {}
+    for k, v in pairs(self) do
+        if k ~= "dyobj" then
+            t[k] = v
+        end
+    end
+    return t
+end
+
 function S_Character:updateInformation(dyobj)
     self.dyobj = dyobj
     self.Strength = CM_CharacterGetAttribute(self.dyobj, "str")

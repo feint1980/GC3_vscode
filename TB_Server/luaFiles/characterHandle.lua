@@ -149,7 +149,7 @@ MessageHandling[PacketChannel.TransactionChannel][ShopResponse.ShopCharacter_Buy
         tStats = tResult[1]
 
         print("stat : " .. tostring(tStats))
-        local insertQuery = "INSERT INTO " .. Table.user_character.tb_name .. " (" .. Table.user_character.id .. ", " .. Table.user_character.character_id .. ", " .. Table.user_character.stats .. ") VALUES (?, ?, ?);"
+        local insertQuery = "INSERT INTO " .. Table.user_character.tb_name .. " (" .. Table.user_character.id .. ", " .. Table.user_character.character_id .. ") VALUES (?, ?);"
         SVI_DoQuerySTMT(host,insertQuery,{t_id,characterID, tStats})
         SV_SQLExec(host, "COMMIT;")
 
@@ -204,31 +204,124 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
     end
 
 
+    ExistingCharacters[t_id] = {}
+
     --- Get owned character list 
-    local ownedCharacterQuery = "SELECT " .. Table.user_character.character_id .. "," .. Table.user_character.level .. "," .. Table.user_character.exp .. "," .. Table.user_character.stats ..   " FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ?;" 
+    -- local ownedCharacterQuery = "SELECT " .. Table.user_character.character_id .. "," .. Table.user_character.level .. "," .. Table.user_character.exp .. "," .. Table.user_character.stats ..   " FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ?;" 
 
-    local result = SVI_DoQuerySTMT(host,ownedCharacterQuery,{t_id})
+    local ownedCharacterCountQuery = "SELECT COUNT(*) FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ?;"
 
-    -- print("owned character query result")
+    local ownedCharacterCount = SVI_DoQuerySTMT(host,ownedCharacterCountQuery,{t_id})
 
-    local queryResultCount = 4
-    -- for i = 1, #Query_val, queryResultCount do
-        -- print("owned character ID " .. Query_val[i] )
-        -- print("owned character level " .. Query_val[i+1])
-        -- print("owned character exp " .. Query_val[i+2])
-        -- print("owned character stats " .. Query_val[i+3])
-    -- end
 
-    ExistingCharacters[t_guid] = {}
+    local tOwnedCount = tonumber(ownedCharacterCount[1])
+    if tOwnedCount > 0 then
+        print("user has " .. tostring(ownedCharacterCount[1]) .. " owned character")
 
-    local queryResultCount = 4
-    for i = 1, #result, queryResultCount do
-        AddExistingCharacter(t_guid, result[i], result[i+1], result[i+2], result[i+3])
+        local ownedCharacterQuery = "SELECT " .. 
+        Table.user_character.character_id .. ", " ..
+        Table.user_character.level .. ", " ..
+        Table.user_character.exp .. ", " ..
+        Table.user_character.stat_points .. ", " ..
+        Table.user_character.str_pts .. ", " ..
+        Table.user_character.vit_pts .. ", " ..
+        Table.user_character.dex_pts .. ", " ..
+        Table.user_character.agi_pts .. ", " ..
+        Table.user_character.int_pts .. ", " ..
+        Table.user_character.wis_pts ..
+        " FROM " .. Table.user_character.tb_name .. 
+        " WHERE " .. Table.user_character.id .. " = ?;"
+
+        local resultCount = 10
+        print("owned character query " .. ownedCharacterQuery)
+
+        local result = SVI_DoQuerySTMT(host,ownedCharacterQuery,{t_id})
+
+        -- print("owned character query result")
+
+        -- local queryResultCount = 4
+        -- for i = 1, #Query_val, queryResultCount do
+            -- print("owned character ID " .. Query_val[i] )
+            -- print("owned character level " .. Query_val[i+1])
+            -- print("owned character exp " .. Query_val[i+2])
+            -- print("owned character stats " .. Query_val[i+3])
+        -- end
+
+        for i = 1, tOwnedCount do
+            local indexJump = resultCount * (i - 1)
+
+            local baseCharacterStatQuery = "SELECT " .. Table.character_base.stats .. " FROM " .. Table.character_base.tb_name .. " WHERE " .. Table.character_base.character_id .. " = ?;"
+            print(baseCharacterStatQuery)
+            print(result[1 + indexJump])
+            local result2 = SVI_DoQuerySTMT(host,baseCharacterStatQuery,{result[1 + indexJump]})
+
+            print("rrr " .. result2[1])
+
+            local characterStat, pos, err = JSON_Decode(result2[1])
+
+            if err then
+                print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:", err)
+            end
+
+            if characterStat == nil then
+                print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error: characterStat is nil")
+                return
+            end
+
+            -- for k,v in pairs(characterStat) do
+            --     print(k .. " : " .. v)
+            -- end
+            -- result map
+            -- character_id - 1
+            -- level - 2
+            -- exp - 3
+            -- stat_points - 4
+            -- str_pts - 5
+            -- vit_pts - 6
+            -- dex_pts - 7
+            -- agi_pts - 8
+            -- int_pts - 9
+            -- wis_pts - 10
+
+            -- rewrite level value
+            characterStat.level = tonumber(result[2 + indexJump])
+            -- rewrite xp value
+            characterStat.exp = tonumber(result[3 + indexJump])
+
+            local stat_points = tonumber(result[4 + indexJump])
+            local str_pts = tonumber(result[5 + indexJump])
+            local vit_pts = tonumber(result[6 + indexJump])
+            local dex_pts = tonumber(result[7 + indexJump])
+            local agi_pts = tonumber(result[8 + indexJump])
+            local int_pts = tonumber(result[9 + indexJump])
+            local wis_pts = tonumber(result[10 + indexJump])
+            -- should do a total stat_points check ( will do it )
+            -- or may be this was calculated in the SQLite schema
+            characterStat.strength = characterStat.strength + str_pts
+            characterStat.vitality = characterStat.vitality + vit_pts
+            characterStat.dexterity = characterStat.dexterity + dex_pts
+            characterStat.agility = characterStat.agility + agi_pts
+            characterStat.intelligence = characterStat.intelligence + int_pts
+            characterStat.wisdom = characterStat.wisdom + wis_pts
+
+
+            local encodedCharacterStat =  JSON_Encode(characterStat)
+
+            -- print("encodedCharacterStat " .. encodedCharacterStat)
+
+            AddExistingCharacter(t_id, result[1 + indexJump], result[2 + indexJump], result[3 + indexJump], encodedCharacterStat)
+        end
+
+    else
+        print("no owned character")
+        -- SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.OwnedCharacter_Start,{t_guid,"request_ok"})
+        -- return
     end
 
+    
     SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.OwnedCharacter_Start,{t_guid,"request_ok"})
 
-    for k,v in pairs(ExistingCharacters[t_guid]) do
+    for k,v in pairs(ExistingCharacters[t_id]) do
         SendReliable(host,ip,t_guid,PacketChannel.UserChannel,UserResponse.OwnedCharacter_Data,{t_guid,k,CM_GetCharacterStatsAsString(v.dyobj)})
 
     end
@@ -237,28 +330,28 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
 
 end
 
-function AddExistingCharacter(guid, characterID, characterLevel, characterExp, characterStats)
+function AddExistingCharacter(userID, characterID, characterLevel, characterExp, characterStats)
     -- print("called AddExistingCharacter " .. characterID .. " " .. guid)
 
     if characterID == "S_Reimu" then
-        ExistingCharacters[guid][characterID] = S_Reimu:new()
+        ExistingCharacters[userID][characterID] = S_Reimu:new()
     elseif characterID == "S_Meiling" then
-        ExistingCharacters[guid][characterID] = S_Meiling:new()
+        ExistingCharacters[userID][characterID] = S_Meiling:new()
     elseif characterID == "S_Patchouli" then
-        ExistingCharacters[guid][characterID] = S_Patchouli:new()
+        ExistingCharacters[userID][characterID] = S_Patchouli:new()
     elseif characterID == "S_Yukari" then
-        ExistingCharacters[guid][characterID] = S_Yukari:new()
+        ExistingCharacters[userID][characterID] = S_Yukari:new()
     end
-    if ExistingCharacters[guid][characterID] ~= nil then
+    if ExistingCharacters[userID][characterID] ~= nil then
         -- print("AddExistingCharacter exist")
-        ExistingCharacters[guid][characterID]:init(guid, characterID, characterStats)
-        ExistingCharacters[guid][characterID]:setXP(characterExp)
-        ExistingCharacters[guid][characterID]:setLVL(characterLevel)
+        ExistingCharacters[userID][characterID]:init(userID, characterID, characterStats)
+        ExistingCharacters[userID][characterID]:setXP(characterExp)
+        ExistingCharacters[userID][characterID]:setLVL(characterLevel)
     else
         -- print("AddExistingCharacter not exist " .. characterID)
     end
 end
 
-function RemoveExistingCharacter(guid)
-    ExistingCharacters[guid] = nil
+function RemoveExistingCharacter(userID)
+    ExistingCharacters[userID] = nil
 end

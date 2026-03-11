@@ -357,4 +357,5 @@ MenuPanels["Formation"] = function(host)
     FormationPanel:showWithEffect(PanelShowType.Fade,250)
     FomrationUpdatePreviews(host) 
     FormationUpdateCharacterList(host)
+    -- Home_RequestOwnedCharacterList()
 end

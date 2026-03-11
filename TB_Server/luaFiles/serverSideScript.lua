@@ -55,7 +55,13 @@ Account_Character_Table = {
     character_id = "character_id",
     level = "level",
     exp = "exp",
-    stats = "stats",
+    stat_points = "stat_points",
+    str_pts = "str_pts",
+    vit_pts = "vit_pts",
+    dex_pts = "dex_pts",
+    agi_pts = "agi_pts",
+    int_pts = "int_pts",
+    wis_pts = "wis_pts",
     fk_account = "fk_account",
     fk_character = "fk_character"
 }
@@ -261,7 +267,6 @@ CommonHandle[PacketIdentifier.ID_CONNECTION_LOST] = function(host,packet)
     end
     print("detect connection lost from " .. ClientEPList[guid].name .. " lost")
     ClientEPList[guid] = nil
-    RemoveExistingCharacter(guid)
     CH_List()
     
 end
@@ -275,8 +280,8 @@ CommonHandle[PacketIdentifier.ID_DISCONNECTION_NOTIFICATION] = function(host,pac
     SV_RemoveCryptor(host,guid)
     if guid ~= nil and ClientEPList[guid] ~= nil then
         print("detect disconnect from " .. ClientEPList[guid].name .. " lost")
+        RemoveExistingCharacter(ClientEPList[guid].name)
         ClientEPList[guid] = nil
-        RemoveExistingCharacter(guid)
         CH_List()
     end
 end

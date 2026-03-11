@@ -189,7 +189,7 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
     -- print("ClientDataResponse.ClientData_Request_OwnedCharacters request from " .. guid )
 
     local targetGUID, targetID = string.match(data, "^|([^|]+)|([^|]+)|$")
-    
+
     print ("targetGUID " .. targetGUID)
     print ("targetID " .. targetID)
 
@@ -206,30 +206,58 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
 
     local queriedFormations = {}
 
-    local getOwnedCharacterQuery = "SELECT " .. Table.user_character.character_id .. "," .. Table.user_character.level .. "," .. Table.user_character.exp .. "," .. Table.user_character.stats .. " FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ?;"
-    local ownedQueriedCharacterResult = SVI_DoQuerySTMT(host,getOwnedCharacterQuery,{targetID})
+    -- local getOwnedCharacterQuery = "SELECT " .. Table.user_character.character_id .. "," .. Table.user_character.level .. "," .. Table.user_character.exp .. "," .. Table.user_character.stats .. " FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ?;"
+    -- local ownedQueriedCharacterResult = SVI_DoQuerySTMT(host,getOwnedCharacterQuery,{targetID})
 
+    -- local ownedResult = {}
+    -- for i = 1, #ownedQueriedCharacterResult,4 do
+    --     local characterData = {}
+    --     -- print("character_id " .. ownedQueriedCharacterResult[i])
+    --     local character_id = ownedQueriedCharacterResult[i]
+    --     characterData.ID = character_id
+    --     -- print("level " .. ownedQueriedCharacterResult[i+1])
+    --     local level = ownedQueriedCharacterResult[i+1]
+    --     characterData.level = level
+    --     -- print("exp " .. ownedQueriedCharacterResult[i+2])
+    --     local exp = ownedQueriedCharacterResult[i+2]
+    --     characterData.exp = exp
+    --     -- print("stats " .. ownedQueriedCharacterResult[i+3])
+    --     local stats = ownedQueriedCharacterResult[i+3]
+    --     characterData.stats = stats
+    --     ownedResult[character_id] = characterData
+    -- end
+
+    print ("OWN RESULT CHECK ===============================")
     local ownedResult = {}
-    for i = 1, #ownedQueriedCharacterResult,4 do
+    for k,v in pairs(ExistingCharacters[targetID]) do
+        local stats = v:copyForJSON()
         local characterData = {}
-        -- print("character_id " .. ownedQueriedCharacterResult[i])
-        local character_id = ownedQueriedCharacterResult[i]
-        characterData.ID = character_id
-        -- print("level " .. ownedQueriedCharacterResult[i+1])
-        local level = ownedQueriedCharacterResult[i+1]
-        characterData.level = level
-        -- print("exp " .. ownedQueriedCharacterResult[i+2])
-        local exp = ownedQueriedCharacterResult[i+2]
-        characterData.exp = exp
-        -- print("stats " .. ownedQueriedCharacterResult[i+3])
-        local stats = ownedQueriedCharacterResult[i+3]
+        characterData.ID = v.ID
+        characterData.level = v.level
+        characterData.exp = v.xp
         characterData.stats = stats
-        ownedResult[character_id] = characterData
+        ownedResult[characterData.ID] = characterData
+        -- local characterData = {} 
+        -- characterData.ID =  ExistingCharacters[targetID][k].ID
+        -- characterData.level =  ExistingCharacters[targetID][k].level
+        -- characterData.xp =  ExistingCharacters[targetID][k].xp
+        -- ownedResult[k] = JSON_Encode(v)
+        -- for f,t in pairs(ownedResult[k]) do
+        --     print(f .. "||||||||" .. t)
+        -- end
+        
+        -- ownedResult[v.ID] = {}
+        -- local characterData = {}
+        -- characterData.stats  = v
+        -- -- characterData.ID = v.ID
+        -- -- characterData.level = v.level
+        -- -- characterData.exp = v.exp
+        -- ownedResult[v.ID] = characterData
     end
 
     local tData = JSON_Encode(ownedResult,true)
 
-    -- print("data check " .. tData)
+    print("data check " .. tData)
 
     SV_SendWrapMsg2BattleServer(host, ip,guid, BattleChanel.ClientData,ClientDataResponse.ClientData_Response_OwnedCharacters,{targetGUID, targetID, tData})
 

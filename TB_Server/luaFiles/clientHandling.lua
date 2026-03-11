@@ -27,8 +27,6 @@ function CH_AddClientEP(tSystemAddress, guid, name)
     ClientEPList[guid].IP = tSystemAddress
     SV_addClientOnlineSession_CPP(guid, name, tSystemAddress)
 
-    -- ExistingCharacters[guid] = {} ---- Table of S_Characters
-
     -- ClientEPList[guid] = ClientEP:new(tSystemAddress, guid, name)
     -- print("total user now ")
     CH_List()

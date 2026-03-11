@@ -392,7 +392,7 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
 
     -- print ("tGUID " .. tGUID)
     -- print("tID " .. tID)
-    -- print("tOwnedCharacters " .. tOwnedCharacters)
+    print("tOwnedCharacters " .. tOwnedCharacters)
     local tOwnedCharactersList, pos , err = JSON_Decode(tOwnedCharacters)
     if err then
         print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:", err)

@@ -3,7 +3,6 @@ package.path = package.path .. ";../../luaFiles/?.lua"
 require "battleWrapper"
 require "BS_global"
 
-
 BS_Character = {
     userID = "",
     id = "",
@@ -14,7 +13,8 @@ BS_Character = {
     cHp = 0,    -- current hp
     cMana = 0,  -- current mana
     cSp = 0,    -- current sp
-    cAction = 0 -- current action
+    cAction = 0,-- current action
+    cDeathdoorSurvival = 0,
 }
 
 function BS_Character:new(o)
@@ -42,11 +42,29 @@ function BS_Character:init(userID,tId, tSlotIndex, tRowPos, tColPos)
         else
             print("ClientOwnedCharacters[" .. userID .. "][" .. tId .. "] is valid")
             self.stats =  ClientOwnedCharacters[userID][tId]
-            for k,v in pairs(self.stats) do
-                print("stat " .. k .. " value " .. v)
-            end
+            -- for k,v in pairs(self.stats) do
+            --     print("stat " .. k .. " value " .. v)
+            -- end
         end
     end
+
+    print("stat check")
+    print("|" .. self.stats.name .. "|")
+    print("Physical dmg " .. self:getPhysicDmg())
+    print("Magic dmg " .. self:getMagicDmg())
+    print("Physical def " .. self:getPhysicDef())
+    print("Magic def " .. self:getMagicDef())
+    print("Max hp " .. self:getMaxHP())
+    print("Max mana " .. self:getMaxMana())
+    print("Max sp " .. self:getMaxSP())
+    -- print("Max action " .. self:getMaxAction())
+    print("Physical Accuracy " .. self:getPhysicalAccuracy())
+    print("Magical Accuracy " .. self:getMagicalAccuracy())
+    print("Evasion " .. self:getEvasion())
+    print("Crit chance " .. self:getCritChance())
+    print("Speed " .. self:getSpeed(0))
+    print("Death survival " .. self:getDeathDoorSurvival())
+
 end
 
 function BS_Character:getPhysicDmg()
@@ -95,25 +113,37 @@ function BS_Character:getMaxMana()
     local mana = self.stats.mana
     local wisdom = self.stats.wisdom
     local manaScale = self.stats.manaScale
+
+    return mana + (wisdom * manaScale)
 end
 
 function BS_Character:getMaxSP()
     return self.stats.spCap
 end
 
-function BS_Character:getAccuracy()
+function BS_Character:getPhysicalAccuracy()
     local dexterity = self.stats.dexterity
+    local agility = self.stats.agility
     local accurate = self.stats.accurate
     local accurateScale = self.stats.accurateScale
-
-    return accurate + (dexterity * accurateScale)
+    return accurate + (((dexterity + agility) * 0.5) * accurateScale)
 end
+
+function BS_Character:getMagicalAccuracy()
+    local intelligence = self.stats.intelligence
+    local wisdom = self.stats.wisdom
+    local accurate = self.stats.accurate
+    local accurateScale = self.stats.accurateScale
+    return accurate + (((intelligence + wisdom) *0.5) * accurateScale)
+end
+
 
 function BS_Character:getEvasion()
     local agility = self.stats.agility
     local evadeChance = self.stats.evadeChance
     local evadeChanceScale = self.stats.evadeChanceScale
 
+    return evadeChance + (agility * evadeChanceScale)
 end
 
 function BS_Character:getCritChance()
@@ -125,6 +155,12 @@ end
 function BS_Character:getSpeed(speedRoll)
     local agility = self.stats.agility
     return (agility + speedRoll) * 0.9
+end
+
+function BS_Character:getDeathDoorSurvival()
+    local deathDoorSurviveChance = self.stats.deathDoorSurviveChance
+    local vitality = self.stats.vitality
+    return deathDoorSurviveChance + (vitality * 0.01)
 end
 
 

@@ -50,22 +50,13 @@ INSERT INTO character_base_table VALUES('S_Yukari','Yakumo Yukari',replace('{\n 
 INSERT INTO character_base_table VALUES('S_Patchouli','Patchouli Knowledge',replace('{\n    "ID": "S_Patchouli",\n    "accurate": 0.800000011920929,\n    "accurateScale": 0.03099999949336052,\n    "action": 0.0,\n    "agility": 6.0,\n    "animationPath": "./Assets/F_AObjects/patchouli_tb.xml",\n    "critChance": 0.02500000037252903,\n    "deathDoorSurviveChance": 0.25,\n    "dexterity": 6.0,\n    "evadeChance": 0.14000000059604645,\n    "evadeChanceScale": 0.02500000037252903,\n    "hp": 30.0,\n    "hpScale": 6.0,\n    "intelligence": 20.0,\n    "lastName": "Knowledge",\n    "level": 1,\n    "magicDef": 7.699999809265137,\n    "magicDefScale": 0.800000011920929,\n    "magicDmg": 17.0,\n    "magicDmgScale": 1.7000000476837158,\n    "mana": 250.0,\n    "manaScale": 12.0,\n    "name": "Patchouli",\n    "panelPath": "./Assets/TB_GUI/panels/patchouli_panel.png",\n    "physicDef": 3.0,\n    "physicDefScale": 0.20000000298023224,\n    "physicDmg": 4.0,\n    "physicDmgScale": 0.5,\n    "portraitPath": "./Assets/TB_GUI/faces/Patchouli_face.png",\n    "price": 40,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 3.0,\n    "title": "Unmoving Library",\n    "vitality": 4.0,\n    "wisdom": 19.0,\n    "xp": 0\n}','\n',char(10)));
 INSERT INTO character_base_table VALUES('S_Meiling','Meiling Hong',replace('{\n    "ID": "S_Meiling",\n    "accurate": 0.8100000023841858,\n    "accurateScale": 0.03200000151991844,\n    "action": 0.0,\n    "agility": 9.0,\n    "animationPath": "./Assets/F_AObjects/meiling_tb.xml",\n    "critChance": 0.02199999988079071,\n    "deathDoorSurviveChance": 0.30000001192092896,\n    "dexterity": 11.0,\n    "evadeChance": 0.12999999523162842,\n    "evadeChanceScale": 0.028999999165534973,\n    "hp": 140.0,\n    "hpScale": 11.0,\n    "intelligence": 4.0,\n    "lastName": "Hong",\n    "level": 1,\n    "magicDef": 3.299999952316284,\n    "magicDefScale": 0.699999988079071,\n    "magicDmg": 8.0,\n    "magicDmgScale": 0.800000011920929,\n    "mana": 70.0,\n    "manaScale": 6.0,\n    "name": "Meiling",\n    "panelPath": "./Assets/TB_GUI/panels/meiling_panel.png",\n    "physicDef": 8.5,\n    "physicDefScale": 1.2000000476837158,\n    "physicDmg": 12.0,\n    "physicDmgScale": 1.7000000476837158,\n    "portraitPath": "./Assets/TB_GUI/faces/Meiling_face.png",\n    "price": 35,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 12.0,\n    "title": "Gatekeeper of Scarlet Devil Mansion",\n    "vitality": 14.0,\n    "wisdom": 5.0,\n    "xp": 0\n}','\n',char(10)));
 CREATE TABLE player_character_table (
-    player_character_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    account_id          VARCHAR(64) NOT NULL,
-    character_id        VARCHAR(128) NOT NULL,
-    level               INTEGER DEFAULT 1,
-    exp                 INTEGER DEFAULT 0,
-    stat_points         INTEGER DEFAULT 0,
-    str_pts             INTEGER DEFAULT 0,
-    vit_pts             INTEGER DEFAULT 0,
-    dex_pts             INTEGER DEFAULT 0,
-    agi_pts             INTEGER DEFAULT 0,
-    int_pts             INTEGER DEFAULT 0,
-    wis_pts             INTEGER DEFAULT 0,
-    CONSTRAINT chk_stat_budget CHECK (
-        str_pts + vit_pts + dex_pts + agi_pts + int_pts + wis_pts <= stat_points
-    ),
-    CONSTRAINT fk_account   FOREIGN KEY (account_id)   REFERENCES account_table(account_id)      ON DELETE CASCADE,
+    player_character_id INTEGER PRIMARY KEY AUTOINCREMENT, 
+    account_id VARCHAR(64) NOT NULL, 
+    character_id VARCHAR(128) NOT NULL, 
+    level INTEGER DEFAULT 1,
+    exp INTEGER DEFAULT 0,
+    stats TEXT NOT NULL, -- JSON storing all stats dynamically
+    CONSTRAINT fk_account FOREIGN KEY (account_id) REFERENCES account_table(account_id) ON DELETE CASCADE,
     CONSTRAINT fk_character FOREIGN KEY (character_id) REFERENCES character_base_table(character_id) ON DELETE CASCADE
 );
 
