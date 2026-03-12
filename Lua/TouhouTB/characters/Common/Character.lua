@@ -46,12 +46,12 @@ Magic Defense: Primarily governed by Wisdom, with a potential small influence fr
 Speed: Purely determined by Agility; affects turn order in combat.]]--
 
 ---@class (exact) Character
----@field Strength number
----@field Vitality number
----@field Dexterity number
----@field Agility number
----@field Intelligence number
----@field Wisdom number
+---@field strength number
+---@field vitality number
+---@field dexterity number
+---@field agility number
+---@field intelligence number
+---@field wisdom number
 ---@field Evasion number
 ---@field PhysicalDefense number
 ---@field MagicDefense number
@@ -99,22 +99,22 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field isOwned boolean
 Character = {
     ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Physical displace chance/resistant  
-    Strength = 8,
+    strength = 8,
 
     ---@type number Vitality(VIT) Primary Influence: Health (HP), Status resistance, Last stance resistance, Physic def, Crit resistance 
-    Vitality = 8,
+    vitality = 8,
 
     ---@type number Dexterity(DEX) Primary Influence: Accuracy (Physic) & Critical Hit Chance (Physical) Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes.
-    Dexterity = 8,
+    dexterity = 8,
 
     ---@type number Agility(AGI) Primary Influence: Speed & Evasion |Other Effects: Determines turn order (faster characters act first) and increases evasion against physical attacks. Higher agility could also reduce the chance of getting hit by slower enemies and allow characters to reposition more easily.
-    Agility = 8,
+    agility = 8,
 
     ---@type number Intelligence (INT) Primary Influence: Magic Damage scale value by 3|Other Effects: Increases the damage dealt by magical attacks and spells. It could also affect the potency of debuffs, the number of targets a spell can hit, or even mana regeneration rates.
-    Intelligence = 8,
+    intelligence = 8,
 
     ---@type number Wisdom (WIS) Primary Influence: Magic Defense & Mana Pool|Other Effects: Determines resistance to magical attacks and could increase max mana. Wisdom could also affect healing abilities, status effect resistance (such as confusion or charm), and reduce the cooldowns on certain spells or abilities.
-    Wisdom = 8,
+    wisdom = 8,
 
     ---@type pointer instance of F_Lua_BaseEntity
     dyobj = nil,
@@ -184,12 +184,12 @@ end
 function Character:setDesc(desc)
     Character_SetDesc(self.dyobj, desc)
 
-    self.Strength = Character_GetAttribute(self.dyobj, "str")
-    self.Vitality = Character_GetAttribute(self.dyobj, "vit") 
-    self.Dexterity = Character_GetAttribute(self.dyobj, "dex")
-    self.Agility = Character_GetAttribute(self.dyobj, "agi")
-    self.Intelligence = Character_GetAttribute(self.dyobj, "int")
-    self.Wisdom = Character_GetAttribute(self.dyobj, "wis")
+    self.strength = Character_GetAttribute(self.dyobj, "str")
+    self.vitality = Character_GetAttribute(self.dyobj, "vit") 
+    self.dexterity = Character_GetAttribute(self.dyobj, "dex")
+    self.agility = Character_GetAttribute(self.dyobj, "agi")
+    self.intelligence = Character_GetAttribute(self.dyobj, "int")
+    self.wisdom = Character_GetAttribute(self.dyobj, "wis")
     self.animationPath = Character_GetAttributeStr(self.dyobj, "animationPath")
     self.portraitPath = Character_GetAttributeStr(self.dyobj, "portraitPath")
     self.panelPath = Character_GetAttributeStr(self.dyobj, "panelPath")

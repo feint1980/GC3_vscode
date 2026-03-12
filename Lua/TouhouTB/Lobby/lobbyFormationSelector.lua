@@ -185,10 +185,14 @@ function Lobby_Formation_Selector:updateUIList(keyword, pageIndex)
     -- TM_addTask( function ()
     for i = 1, #resultList do
         local formation = Formation_Panel:new()
+        print("init formation " .. i)
         formation:init(self.lobbyGUIHost, self.mainPanel.ptr, i,resultIDList[i])
         table.insert(self.formationList, formation)
     end
 
+
+    -- print("==================================================")
+    -- print("Update UI done ")
     -- end,20)
 
 end

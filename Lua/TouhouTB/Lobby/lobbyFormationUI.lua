@@ -45,7 +45,7 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
         self.nameLabel = Label:new()
     end
     self.nameLabel:init(host,Lobby_Formations_Info[formationID].name,0,0,self.mainPanel.ptr)
-    self.nameLabel:setPosStr("50%","5%")
+    self.nameLabel:setPosStr("50%","4%")
     self.nameLabel:setAlignment(TextAlginment.Center)
     self.nameLabel:setScale(.7)
 
@@ -86,13 +86,15 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
     print("Lobby_User_Owned_Characters check ")
     for k,v in pairs(Lobby_User_Owned_Characters) do
         print("Lobby_User_Owned_Characters " .. k)
+        -- print(v.portraitPath)
     end
 
+    print( #Lobby_Formations_Info[formationID].characters)
     for i = 1, #Lobby_Formations_Info[formationID].characters do
         local characterID = Lobby_Formations_Info[formationID].characters[i].id
-        print("character ID " .. characterID)
+        -- print("character ID " .. characterID)
         -- print(charactersTable[characterID].portraitPath)
-        print("end")
+        -- print("end")
         if Lobby_User_Owned_Characters[characterID] ~= nil then
             self.pictures[i]:setTexture(Lobby_User_Owned_Characters[characterID].portraitPath)
         else
@@ -100,22 +102,7 @@ function Formation_Panel:init(host, parentPanel,index,formationID)
         end
     end
 
-    print("Formation " .. self.formationID .. " initialized")
-
-    -- for k,v in pairs(GameStorage.clientSideLoadedInfo.Character_Data_Tables) do
-    --     print("GameStorage.clientSideLoadedInfo.Character_Data_Tables " .. k )
-    -- end
-    -- for i = 1, #Lobby_Formations_Info[formationID].characters do
-    --     local characterID = Lobby_Formations_Info[formationID].characters[i].id
-    --     print("character ID " .. characterID)
-
-    -- end
-
-    -- for i = 1, #Lobby_Formation_Show[formationID].characters do
-    --     local characterID = Lobby_Formation_Show[formationID].characters[i].id
-    --     self.pictures[i]:setTexture(Shop_CharacterTable[characterID].portraitPath)
-    -- end
-    -- self.nameLabel:setText(Lobby_Formation_Show[formationID].name)
+    -- print("Formation " .. self.formationID .. " initialized")
 
 end
 

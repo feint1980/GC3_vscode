@@ -227,17 +227,17 @@ int lua_UpdateCharacter(lua_State *L)
             // std::cout << "got table, here we go \n";
             CharacterStats stats;
             // Strength 1
-            assignValue(L,2,"Strength", stats.strength); 
+            assignValue(L,2,"strength", stats.strength); 
             // Vitality 2
-            assignValue(L,2,"Vitality", stats.vitality);
+            assignValue(L,2,"vitality", stats.vitality);
             // Dexterity 3
-            assignValue(L,2,"Dexterity", stats.dexterity);
+            assignValue(L,2,"dexterity", stats.dexterity);
             // Agility 4
-            assignValue(L,2,"Agility", stats.agility);
+            assignValue(L,2,"agility", stats.agility);
             // Intelligence 5
-            assignValue(L,2,"Intelligence", stats.intelligence);
+            assignValue(L,2,"intelligence", stats.intelligence);
             // Wisdom 6
-            assignValue(L,2,"Wisdom", stats.wisdom);
+            assignValue(L,2,"wisdom", stats.wisdom);
             // animationPath 7
             assignValue(L,2,"animationPath", stats.animationPath);
             // portraitPath 8

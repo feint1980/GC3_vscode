@@ -23,7 +23,7 @@ end
 function BattleFormation:init(tIndex, tName)
     self.index = tIndex
     self.name = tName
-    print("BattleFormation called with value " .. tIndex .. " " .. tName)
+    -- print("BattleFormation called with value " .. tIndex .. " " .. tName)
 end
 
 function BattleFormation:addCharacter(tCharacter)

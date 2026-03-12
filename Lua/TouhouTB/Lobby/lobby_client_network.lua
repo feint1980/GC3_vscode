@@ -122,18 +122,18 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_For
     table.sort(Lobby_Formations_Info)
 
     --- Reset the formation UI
-    for k, v in pairs(Lobby_Formations_Info) do 
-        print("k " .. k )
-        print("formation name " .. v.name)
-        print("index " .. v.index)
-        for i = 1, #v.characters do
-            print("character " .. i)
-            print("character id " .. v.characters[i].id)
-            print("character slot index " .. v.characters[i].slotIndex)
-            print("character row pos " .. v.characters[i].rowPos)
-            print("character col pos " .. v.characters[i].colPos)
-        end
-    end
+    -- for k, v in pairs(Lobby_Formations_Info) do 
+    --     print("k " .. k )
+    --     print("formation name " .. v.name)
+    --     print("index " .. v.index)
+    --     for i = 1, #v.characters do
+    --         print("character " .. i)
+    --         print("character id " .. v.characters[i].id)
+    --         print("character slot index " .. v.characters[i].slotIndex)
+    --         print("character row pos " .. v.characters[i].rowPos)
+    --         print("character col pos " .. v.characters[i].colPos)
+    --     end
+    -- end
 
     Lobby_Formaton_UpdateUI(1)
 end
@@ -155,7 +155,7 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_Own
 
     -- let just skip guid check
 
-    print("data check " .. tData)
+    -- print("data check " .. tData)
     local ownedCharacters, pos, err = JSON_Decode(tData)
     if ownedCharacters == nil then
         print("Ke3 F3i117 exception (PacketChannel.Lobby][LobbyResponse.Lobby_Response_OwnedCharacters) JSON decode error:", err)

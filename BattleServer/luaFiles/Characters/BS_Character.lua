@@ -14,7 +14,7 @@ BS_Character = {
     cMana = 0,  -- current mana
     cSp = 0,    -- current sp
     cAction = 0,-- current action
-    cDeathdoorSurvival = 0,
+    cDeathdoorSurvivalRate = 1.0,
 }
 
 function BS_Character:new(o)
@@ -86,11 +86,11 @@ function BS_Character:getMagicDmg()
 end
 
 function BS_Character:getPhysicDef()
-    local strength = self.stats.strength
+    local vitality = self.stats.vitality
     local physicDef = self.stats.physicDef
     local physicDefScale = self.stats.physicDefScale
 
-    return physicDef + (strength * physicDefScale)
+    return physicDef + (vitality * physicDefScale)
 end
 
 function BS_Character:getMagicDef()
@@ -149,7 +149,7 @@ end
 function BS_Character:getCritChance()
     local dexterity = self.stats.dexterity
     local critChance = self.stats.critChance
-    return critChance + (dexterity * 0.01)
+    return critChance + (dexterity * 0.005)
 end
 
 function BS_Character:getSpeed(speedRoll)
@@ -160,7 +160,7 @@ end
 function BS_Character:getDeathDoorSurvival()
     local deathDoorSurviveChance = self.stats.deathDoorSurviveChance
     local vitality = self.stats.vitality
-    return deathDoorSurviveChance + (vitality * 0.01)
+    return (deathDoorSurviveChance + (vitality * 0.025)) * self.cDeathdoorSurvivalRate
 end
 
 

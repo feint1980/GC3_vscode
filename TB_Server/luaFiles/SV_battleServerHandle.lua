@@ -206,62 +206,25 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
 
     local queriedFormations = {}
 
-    -- local getOwnedCharacterQuery = "SELECT " .. Table.user_character.character_id .. "," .. Table.user_character.level .. "," .. Table.user_character.exp .. "," .. Table.user_character.stats .. " FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ?;"
-    -- local ownedQueriedCharacterResult = SVI_DoQuerySTMT(host,getOwnedCharacterQuery,{targetID})
-
-    -- local ownedResult = {}
-    -- for i = 1, #ownedQueriedCharacterResult,4 do
-    --     local characterData = {}
-    --     -- print("character_id " .. ownedQueriedCharacterResult[i])
-    --     local character_id = ownedQueriedCharacterResult[i]
-    --     characterData.ID = character_id
-    --     -- print("level " .. ownedQueriedCharacterResult[i+1])
-    --     local level = ownedQueriedCharacterResult[i+1]
-    --     characterData.level = level
-    --     -- print("exp " .. ownedQueriedCharacterResult[i+2])
-    --     local exp = ownedQueriedCharacterResult[i+2]
-    --     characterData.exp = exp
-    --     -- print("stats " .. ownedQueriedCharacterResult[i+3])
-    --     local stats = ownedQueriedCharacterResult[i+3]
-    --     characterData.stats = stats
-    --     ownedResult[character_id] = characterData
-    -- end
-
-    print ("OWN RESULT CHECK ===============================")
+    -- print ("OWN RESULT CHECK ===============================")
     local ownedResult = {}
     for k,v in pairs(ExistingCharacters[targetID]) do
         local stats = v:copyForJSON()
-        setmetatable(stats, nil)
-        print("stats metatable: " .. tostring(getmetatable(stats)))
+        -- setmetatable(stats, nil)
+        -- print("stats metatable: " .. tostring(getmetatable(stats)))
         local characterData = {}
         characterData.ID = v.ID
         characterData.level = v.level
         characterData.exp = v.xp
         characterData.stats = stats
         ownedResult[characterData.ID] = characterData
-        -- local characterData = {} 
-        -- characterData.ID =  ExistingCharacters[targetID][k].ID
-        -- characterData.level =  ExistingCharacters[targetID][k].level
-        -- characterData.xp =  ExistingCharacters[targetID][k].xp
-        -- ownedResult[k] = JSON_Encode(v)
-        -- for f,t in pairs(ownedResult[k]) do
-        --     print(f .. "||||||||" .. t)
-        -- end
-        
-        -- ownedResult[v.ID] = {}
-        -- local characterData = {}
-        -- characterData.stats  = v
-        -- -- characterData.ID = v.ID
-        -- -- characterData.level = v.level
-        -- -- characterData.exp = v.exp
-        -- ownedResult[v.ID] = characterData
+
     end
 
     -- DebugTable(ownedResult)
     
-    local tData = JSON_Encode(ownedResult,true)
+    local tData = JSON_Encode(ownedResult)
 
-    -- print("data check " .. tData)
 
     SV_SendWrapMsg2BattleServer(host, ip,guid, BattleChanel.ClientData,ClientDataResponse.ClientData_Response_OwnedCharacters,{targetGUID, targetID, tData})
 

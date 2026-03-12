@@ -101,7 +101,42 @@ function BattleLobby:getSize()
     return #self.battleClientEP_List
 end
 
-function BattleLobby:AppendReady(playerID, index)
+function MergeTable(t1, t2)
+    if t1 == nil then return t2 end
+    if t2 == nil then return t1 end
+    
+    local result = {}
+    for k, v in pairs(t1) do result[k] = v end
+    for k, v in pairs(t2) do result[k] = v end
+    return result
+end
+
+function BattleLobby:broradCastToClient(host,channel,request, data, attachVerifiable)
+    attachVerifiable = attachVerifiable or false
+
+    local verifiableData = {}
+    if attachVerifiable then
+        verifiableData = self:getVerifiableData(1)
+        data = MergeTable(data, verifiableData)
+    end
+
+    for i = 1, #BattleLobby_List[self.id].battleClientEP_List do
+        BM_sendWrapData(host,BattleLobby_List[self.id].battleClientEP_List[i]:getIP(),BattleLobby_List[self.id].battleClientEP_List[i].guid,BattlePacketType.ID_TH_TB_BATTLE,channel,request,data)
+    end
+
+end
+
+function BattleLobby:getVerifiableData(index)
+    local data = {}
+    if BattleLobby_List[self.id].battleClientEP_List[index] ~= nil then
+        data = {BattleLobby_List[self.id].battleClientEP_List[index].guid,
+    BattleLobby_List[self.id].battleClientEP_List[index].id}
+    end
+    return data
+end
+
+
+function BattleLobby:AppendReady(host,playerID, index)
     
     if self.formation_Map[playerID] == nil then 
         LOG_COOKED("K282","BattleLobby:AppendReady player " .. playerID .. " has no formation")
@@ -118,7 +153,6 @@ function BattleLobby:AppendReady(playerID, index)
         LOG_COOKED("K283","BattleLobby:AppendReady player " .. playerID .. " has no index or wrong index " .. self.playerIndexMap[playerID])
         return
     end
-
 
     if self.readyCount >= 2 then
         print("ready player check")
@@ -144,20 +178,14 @@ function BattleLobby:AppendReady(playerID, index)
 
         end
 
-        for i = 1, #self.leftFormation.characters do
-            print(self.leftFormation.characters[i].id)
-            print(self.leftFormation.characters[i].stats.name)
-            print(self.leftFormation.characters[i]:getPhysicDmg())
-        end
-
-        -- for k,v in pairs(self.rightFormation.characters) do
-        --     print("right " .. v.id)
-        -- end
+        self:broradCastToClient(host,ClientChannel.Combat,CCombatResponse.Combat_Match_Start,{"Match Start"},true )
 
         -- for i = 1, #self.leftFormation.characters do
-        --     print(self.leftFormation[tostring(i)].id)
+        --     print(self.leftFormation.characters[i].id)
+        --     print(self.leftFormation.characters[i].stats.name)
+        --     print(self.leftFormation.characters[i]:getPhysicDmg())
         -- end
-        -- for 
+        
     end
 end
 

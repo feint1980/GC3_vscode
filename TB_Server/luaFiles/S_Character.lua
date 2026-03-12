@@ -4,14 +4,26 @@ require "SV_global"
 require "characterManager"
 
 
+-- standard stats : 50 
+-- standard dmg : 21
+-- standard dmgScale : 2.8
+-- standard def : 25
+-- standard defScale : 1.4
+-- standard hp/mana : 290
+-- hp/mana scale : 18
+-- accurate chance/scale 0.8 / 0.031
+-- evade chance/scale 0.2 / 0.025
+-- deathDoorSurviveChance : depend
+-- crit chance : 0.15 calculated by : 0.15 + (dex * 0.1)
+
 ---@class S_Character
 S_Character =  {
-    Strength = 10,
-    Vitality = 10,
-    Dexterity = 10,
-    Agility = 10,
-    Intelligence = 10,
-    Wisdom = 10,
+    strength = 10,
+    vitality = 8,
+    dexterity = 8,
+    agility = 8,
+    intelligence = 8,
+    wisdom = 8,
     animationPath = "No",
     portraitPath  = "No",
     panelPath = "No",
@@ -20,13 +32,13 @@ S_Character =  {
     mana = 100,
     sp = 0,
     spCap = 100,
-    physicDmg = 10,
-    physicDef = 10,
+    physicDmg = 11,
+    physicDef = 15,
     magicDmg = 10,
     magicDef = 10,
     accurate = 0.5,
     evadeChance = 0.25,
-    critChance = 0.125,
+    critChance = 0.15,
     hpScale = 9,
     manaScale = 7,
     physicDmgScale = 1,
@@ -82,43 +94,43 @@ end
 ---@Description set character strength (in C++ as well)
 ---@param str number
 function S_Character:setStrength(str)
-    self.Strength = str
-    CM_CharacterSetAttribute(self.dyobj, "str", self.Strength)
+    self.strength = str
+    CM_CharacterSetAttribute(self.dyobj, "str", self.strength)
 end
 
 ---@Description set character vitality (in C++ as well)
 ---@param vit number
 function S_Character:setVitality(vit)
-    self.Vitality = vit
-    CM_CharacterSetAttribute(self.dyobj, "vit", self.Vitality)
+    self.vitality = vit
+    CM_CharacterSetAttribute(self.dyobj, "vit", self.vitality)
 end
 
 ---@Description set character dexterity (in C++ as well)
 ---@param dex number
-function S_Character:setDexterity(dex)
-    self.Dexterity = dex
-    CM_CharacterSetAttribute(self.dyobj, "dex", self.Dexterity)
+function S_Character:detDexterity(dex)
+    self.dexterity = dex
+    CM_CharacterSetAttribute(self.dyobj, "dex", self.dexterity)
 end
 
 ---@Description set character agility (in C++ as well)
 ---@param agi number
-function S_Character:setAgility(agi)
-    self.Agility = agi
-    CM_CharacterSetAttribute(self.dyobj, "agi", self.Agility)
+function S_Character:aetAgility(agi)
+    self.agility = agi
+    CM_CharacterSetAttribute(self.dyobj, "agi", self.agility)
 end
 
 ---@Description set character intelligence (in C++ as well)
 ---@param int number
-function S_Character:setIntelligence(int)
-    self.Intelligence = int
-    CM_CharacterSetAttribute(self.dyobj, "int", self.Intelligence)
+function S_Character:ietIntelligence(int)
+    self.intelligence = int
+    CM_CharacterSetAttribute(self.dyobj, "int", self.intelligence)
 end
 
 ---@Description set character wisdom (in C++ as well)
 ---@param wis number 
-function S_Character:setWisdom(wis)
-    self.Wisdom = wis
-    CM_CharacterSetAttribute(self.dyobj, "wis", self.Wisdom)
+function S_Character:wetWisdom(wis)
+    self.wisdom = wis
+    CM_CharacterSetAttribute(self.dyobj, "wis", self.wisdom)
 end
 
 ---@Description set character action (in C++ as well)
@@ -183,12 +195,12 @@ end
 
 function S_Character:updateInformation(dyobj)
     self.dyobj = dyobj
-    self.Strength = CM_CharacterGetAttribute(self.dyobj, "str")
-    self.Vitality = CM_CharacterGetAttribute(self.dyobj, "vit") 
-    self.Dexterity = CM_CharacterGetAttribute(self.dyobj, "dex")
-    self.Agility = CM_CharacterGetAttribute(self.dyobj, "agi")
-    self.Intelligence = CM_CharacterGetAttribute(self.dyobj, "int")
-    self.Wisdom = CM_CharacterGetAttribute(self.dyobj, "wis")
+    self.strength = CM_CharacterGetAttribute(self.dyobj, "str")
+    self.vitality = CM_CharacterGetAttribute(self.dyobj, "vit") 
+    self.dexterity = CM_CharacterGetAttribute(self.dyobj, "dex")
+    self.agility = CM_CharacterGetAttribute(self.dyobj, "agi")
+    self.intelligence = CM_CharacterGetAttribute(self.dyobj, "int")
+    self.wisdom = CM_CharacterGetAttribute(self.dyobj, "wis")
     self.animationPath = CM_CharacterGetAttributeStr(self.dyobj, "animationPath")
     self.portraitPath = CM_CharacterGetAttributeStr(self.dyobj, "portraitPath")
     self.panelPath = CM_CharacterGetAttributeStr(self.dyobj, "panelPath")

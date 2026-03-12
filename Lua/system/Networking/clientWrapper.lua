@@ -119,6 +119,7 @@ BattleInfoResponse = {
 
 CCombatResponse = {
     Combat_ReadyStatus = 1,
+    Combat_Match_Start = 2,
 }
 
 

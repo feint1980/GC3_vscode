@@ -367,7 +367,7 @@ function Server_LoadCharacters(host)
             print("  Loaded skill: " .. skillName)
         end
     end
-    print("Character loading complete!")
+
 end
 
 function Server_LoadData(host)

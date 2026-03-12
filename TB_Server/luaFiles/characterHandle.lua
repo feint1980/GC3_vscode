@@ -207,7 +207,6 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
     ExistingCharacters[t_id] = {}
 
     --- Get owned character list 
-    -- local ownedCharacterQuery = "SELECT " .. Table.user_character.character_id .. "," .. Table.user_character.level .. "," .. Table.user_character.exp .. "," .. Table.user_character.stats ..   " FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ?;" 
 
     local ownedCharacterCountQuery = "SELECT COUNT(*) FROM " .. Table.user_character.tb_name .. " WHERE " .. Table.user_character.id .. " = ?;"
 
@@ -233,29 +232,21 @@ MessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_Request] 
         " WHERE " .. Table.user_character.id .. " = ?;"
 
         local resultCount = 10
-        print("owned character query " .. ownedCharacterQuery)
+        -- print("owned character query " .. ownedCharacterQuery)
 
         local result = SVI_DoQuerySTMT(host,ownedCharacterQuery,{t_id})
 
         -- print("owned character query result")
 
-        -- local queryResultCount = 4
-        -- for i = 1, #Query_val, queryResultCount do
-            -- print("owned character ID " .. Query_val[i] )
-            -- print("owned character level " .. Query_val[i+1])
-            -- print("owned character exp " .. Query_val[i+2])
-            -- print("owned character stats " .. Query_val[i+3])
-        -- end
-
         for i = 1, tOwnedCount do
             local indexJump = resultCount * (i - 1)
 
             local baseCharacterStatQuery = "SELECT " .. Table.character_base.stats .. " FROM " .. Table.character_base.tb_name .. " WHERE " .. Table.character_base.character_id .. " = ?;"
-            print(baseCharacterStatQuery)
-            print(result[1 + indexJump])
+            -- print(baseCharacterStatQuery)
+            -- print(result[1 + indexJump])
             local result2 = SVI_DoQuerySTMT(host,baseCharacterStatQuery,{result[1 + indexJump]})
 
-            print("rrr " .. result2[1])
+            -- print("rrr " .. result2[1])
 
             local characterStat, pos, err = JSON_Decode(result2[1])
 

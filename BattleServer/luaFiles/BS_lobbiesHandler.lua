@@ -318,8 +318,8 @@ end
 -- function Request
 
 
-
 --MARK: Client Data
+-- This is to main server
 
 --- Send request for formations based on user GUID and ID
 function Request_Formation_From_MainServer(host, userGUID,userID)
@@ -330,12 +330,12 @@ end
 
 InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_Fomration] = function(host, channel, request,data,ip, guid)
 
-    print(" response formations detected")
+    -- print(" response formations detected")
     local tGUID, tID, tFormation = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
 
-    print ("tGUID " .. tGUID)
-    print("tID " .. tID)
-    print("tFormation " .. tFormation)
+    -- print ("tGUID " .. tGUID)
+    -- print("tID " .. tID)
+    -- print("tFormation " .. tFormation)
 
     local tFormationList, pos , err = JSON_Decode(tFormation)
     if err then
@@ -359,17 +359,17 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
         ClientFormations[tID][k] = BattleFormation:new()  
         ClientFormations[tID][k]:init(tonumber(k), v.name)
         local count = #v.formationData
-        print("formation data ")
+        -- print("formation data ")
         for i = 1, count do
-            print("data " .. i )
+            -- print("data " .. i )
             local tSlotIndex = v.formationData[i].slot_index
             local tCharacterID = v.formationData[i].character_id
             local tRowPos = v.formationData[i].row_pos
             local tColPos = v.formationData[i].col_pos
-            print("slot_index " .. v.formationData[i].slot_index)
-            print("character_id " .. v.formationData[i].character_id)
-            print("col_pos" .. v.formationData[i].col_pos)
-            print("row_pos" .. v.formationData[i].row_pos)
+            -- print("slot_index " .. v.formationData[i].slot_index)
+            -- print("character_id " .. v.formationData[i].character_id)
+            -- print("col_pos " .. v.formationData[i].col_pos)
+            -- print("row_pos " .. v.formationData[i].row_pos)
 
             local tCharacter = BS_Character:new()
             tCharacter:init(tID,tCharacterID, tSlotIndex, tRowPos, tColPos)
@@ -393,11 +393,10 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
 
     -- print ("tGUID " .. tGUID)
     -- print("tID " .. tID)
-    
-    print("tOwnedCharacters " .. tOwnedCharacters)
+    -- print(type(tOwnedCharacters))
+    -- print("tOwnedCharacters |" .. tOwnedCharacters .. "|")
 
-    
-    local tOwnedCharactersList, pos , err = JSON_Decode(tostring(tOwnedCharacters))
+    local tOwnedCharactersList, pos , err = JSON_Decode(tOwnedCharacters)
     if err then
         print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:", err)
     end
@@ -407,20 +406,36 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
         return
     end
 
+
+    -- for k,v in pairs(tOwnedCharactersList) do
+    --     print("character " .. k)
+    --     print("character id " .. v.ID)
+    --     for t,u in pairs(v.stats) do
+    --         print("stat " .. t .. " value " .. u)
+    --     end
+
+    --     -- print("character name " .. v.stats.name)
+    --     -- for j, u in pairs(v.stats) do
+    --     --     print("stat " .. j .. " value " .. u)
+    --     -- end
+    -- end
+
+
     ClientOwnedCharacters[tID] = {}
 
     for k,v in pairs(tOwnedCharactersList) do
-        print("k " .. k)
+        -- print("k " .. k)
         ClientOwnedCharacters[tID][k] = {}
         ClientOwnedCharacters[tID][k].ID = v.ID
-        local stats, tPos, tErr = JSON_Decode(v.stats)
+        local stats = v.stats
         if stats == nil then
-            print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:", tErr)
+            print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:")
             return
         end
 
+        -- print("k2,v2 patch ===================================")
         for k2,v2 in pairs(stats) do
-            -- print("stat " .. k2 .. " value " .. v2)
+            -- print(k2 .. " " .. v2)
             ClientOwnedCharacters[tID][k][k2] = v2
         end
         --- overwrite level and xp | value from query higher priority

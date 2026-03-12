@@ -3,16 +3,27 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "SV_global"
 require "S_Character"
 
-
+-- standard stats : 50 
+-- standard dmg : 21
+-- standard dmgScale : 2.8
+-- standard def : 25
+-- standard defScale : 1.4
+-- standard hp/mana : 290
+-- hp/mana scale : 18
+-- accurate chance/scale 0.8 / 0.031
+-- evade chance/scale 0.2 / 0.025
+-- crit chance : 0.15 calculated by : 0.15 + (dex * 0.1)
+-- deathDoorSurviveChance : depend
+-- I must say that Yukari passive is somewhat unpredictable, keep the standard stat 50
 S_Yukari = S_Character:new(
 
 {
-    Strength = 6,
-    Vitality = 10,
-    Dexterity = 7,
-    Agility = 5,
-    Intelligence = 13,
-    Wisdom = 15,
+    strength = 6, --6 
+    vitality = 9, -- 15 
+    dexterity = 5, -- 20
+    agility = 5, -- 25
+    intelligence = 11, -- 38
+    wisdom = 14, -- 50 
     animationPath = "./Assets/F_AObjects/yukari_tb.xml",
     portraitPath  = "./Assets/TB_GUI/faces/Yukari_face.png",
     panelPath = "./Assets/TB_GUI/panels/yukari_panel.png",
@@ -22,18 +33,18 @@ S_Yukari = S_Character:new(
     sp = 0,
     spCap = 100,
     physicDmg = 7,
-    physicDef = 14,
+    physicDef = 11,
     magicDmg = 14,
-    magicDef = 7.8,
-    accurate = 0.85,
-    evadeChance = 0.13,
-    critChance = 0.025,
-    hpScale = 7,
+    magicDef = 12,
+    accurate = 0.8,
+    evadeChance = 0.2,
+    critChance = 0.15,
+    hpScale = 8,
     manaScale = 10,
-    physicDmgScale = 1.5,
-    magicDmgScale = 2.4,
+    physicDmgScale = 1.1,
+    magicDmgScale = 1.7,
     physicDefScale = 0.6,
-    magicDefScale = 0.75,
+    magicDefScale = 0.8,
     accurateScale = 0.031,
     evadeChanceScale = 0.025,
     deathDoorSurviveChance = 0.26,

@@ -28,7 +28,11 @@ ClientPacketHandling[ClientChannel.Combat][CCombatResponse.Combat_ReadyStatus] =
 
     if BattleLobby_List[tLobbyID] ~= nil then
         print("Lobby check out")
-        BattleLobby_List[tLobbyID]:AppendReady(tID,tonumber(tPlayerIndex))
+        BattleLobby_List[tLobbyID]:AppendReady(host,tID,tonumber(tPlayerIndex))
     end
 
+end
+
+ClientPacketHandling[ClientChannel.Combat][CCombatResponse.Combat_Match_Start] = function(host, channel, request,data,ip, guid)
+    print("Combat_Match_Start detected from " .. guid)
 end
