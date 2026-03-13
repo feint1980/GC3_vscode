@@ -21,6 +21,11 @@ function CombatHandlerWrapResponse(host,chanel,request, data,guid)
     end
 end
 
+for k,v in pairs(BattlePacketChannel) do
+    -- print(k,v)
+    CombatBattleHandling[v] = {}
+end
+
 function CombatHandlerBattleResponse(host,chanel,request, data,guid)
     print("CombatBattleHandling called" .. chanel .. " " .. request)
     if  CombatBattleHandling[chanel] == nil then
@@ -31,3 +36,5 @@ function CombatHandlerBattleResponse(host,chanel,request, data,guid)
         CombatBattleHandling[chanel][request](host,data,guid)
     end
 end
+
+require "combat_network"

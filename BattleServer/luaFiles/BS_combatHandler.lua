@@ -33,6 +33,3 @@ ClientPacketHandling[ClientChannel.Combat][CCombatResponse.Combat_ReadyStatus] =
 
 end
 
-ClientPacketHandling[ClientChannel.Combat][CCombatResponse.Combat_Match_Start] = function(host, channel, request,data,ip, guid)
-    print("Combat_Match_Start detected from " .. guid)
-end

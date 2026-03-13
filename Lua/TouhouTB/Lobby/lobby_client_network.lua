@@ -162,11 +162,10 @@ LobbyBattleHandling[BattlePacketChannel.Lobby][CLobbyResponse.Lobby_Response_Own
         return
     end
 
-    for k , v in pairs(ownedCharacters) do
-        print("k " .. k)
-        print("character id " .. v.ID)
-
-    end
+    -- for k , v in pairs(ownedCharacters) do
+        -- print("k " .. k)
+        -- print("character id " .. v.ID)
+    -- end
 
     Lobby_User_Owned_Characters = {}
     for k , v in pairs(ownedCharacters) do

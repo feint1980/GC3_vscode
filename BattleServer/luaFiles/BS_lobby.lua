@@ -168,25 +168,14 @@ function BattleLobby:AppendReady(host,playerID, index)
 
         print("precheck")
 
-        print (#self.formation_Map[playerID].characters)
-        print (#self.leftFormation.characters)
-
-        print("left formation check ")
-
-        for k,v in pairs(self.leftFormation.characters) do
-            print("left " .. k .. " " .. v.id)
-
-        end
-
         self:broradCastToClient(host,ClientChannel.Combat,CCombatResponse.Combat_Match_Start,{"Match Start"},true )
 
-        -- for i = 1, #self.leftFormation.characters do
-        --     print(self.leftFormation.characters[i].id)
-        --     print(self.leftFormation.characters[i].stats.name)
-        --     print(self.leftFormation.characters[i]:getPhysicDmg())
-        -- end
-        
     end
+end
+
+function BattleLobby:getFieldJSON()
+    local data = {}
+
 end
 
 

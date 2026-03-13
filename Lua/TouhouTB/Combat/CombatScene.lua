@@ -9,7 +9,7 @@ require "TGUI_Picture"
 require "clientSide"
 require "clientWrapper"
 require "clientGlobal"
-require "combat_global"
+
 
 -- require "lobbyFormationSelector"
 require "Prompt"
@@ -64,6 +64,9 @@ function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacte
 
 end
 
+require "combat_global"
+-- require "combat_network"
+
 function Combat_RecieveData(host,msg, ip, pID, RakNetPacket)
 
     local tPacket = Client_Packet:new()
@@ -81,3 +84,4 @@ function Combat_HandlePacket(host, packet, RakNetPacket)
         end
     end
 end
+
