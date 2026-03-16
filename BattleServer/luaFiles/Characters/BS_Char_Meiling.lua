@@ -75,3 +75,8 @@ function BS_Char_Meiling:onTurnStart(battleState)
         self:applyStance(STANCE_ATTACK, battleState)
     end
 end
+
+function BS_Char_Meiling:getMaxHP()
+
+    return 5000
+end

@@ -1,3 +1,4 @@
+package.path = package.path .. ";../../luaFiles/Characters/?.lua"
 require "BS_BattleEvent"
 require "BS_Char_Reimu"
 require "BS_Char_Yukari"
@@ -144,9 +145,31 @@ function BattleSession:buildFormation(playerID, rawFormation)
     print(#rawFormation.characters)
     for i = 1, #rawFormation.characters do
         print(rawFormation.characters[i].id)
-        for k,v in pairs(rawFormation.characters[i].stats) do
-            print(k .. " " .. v)
+        -- for k,v in pairs(rawFormation.characters[i].stats) do
+            -- print(k .. " " .. v)
+        -- end
+        local charID = rawFormation.characters[i].stats.ID
+        print("charID " .. charID)
+        
+
+
+        local tChar = nil
+        if charID == "S_Reimu" then
+            tChar = BS_Char_Reimu:new(rawFormation.characters[i])
+        elseif charID == "S_Yukari" then
+            tChar = BS_Char_Yukari:new(rawFormation.characters[i])
+        elseif charID == "S_Patchouli" then
+            tChar = BS_Char_Patchouli:new(rawFormation.characters[i])
+        elseif charID == "S_Meiling" then
+            tChar = BS_Char_Meiling:new(rawFormation.characters[i])
         end
+        -- local char = tChar
+        if tChar ~= nil then
+            print(tChar:getMaxHP())
+        else
+            print("tChar is nil")
+        end
+        
     end
     -- for k,v in pairs(rawFormation) do
         -- print(k .. " " .. v)

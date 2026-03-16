@@ -35,8 +35,10 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
     BM_sendWrapData(host, ip, guid, BattlePacketType.ID_TH_INTERNAL, MainServerChanel.Lobby, LobbyResponse.Lobby_Create_Response , {tTargetGUID,targetID,serverGUID,lobbyID,combineData}) -- Send to the client request the lobby 
     BattleLobby_Notify_LobbiesStates(host)
     BS_Lobbies_Notify_ClientChanges(host,lobbyID)
-    Request_Formation_From_MainServer(host, tTargetGUID, targetID)
+
     Request_ClientOwnedCharacters_From_MainServer(host, lobbyID,tTargetGUID, targetID)
+
+    -- Request_Formation_From_MainServer(host, tTargetGUID, targetID)
     -- add lobby to list
 end
 
@@ -88,8 +90,10 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
     -- end
 
     BattleLobby_Notify_LobbiesStates(host)
-    Request_Formation_From_MainServer(host, clientGUID, clientID)
+
     Request_ClientOwnedCharacters_From_MainServer(host, lobbyID,clientGUID, clientID)
+
+    -- Request_Formation_From_MainServer(host, clientGUID, clientID)
 
 end
 
@@ -452,6 +456,8 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
         LOG_COOKED("K287","BattleLobbiesHandler:Request_ClientOwnedCharacters_From_MainServer player " .. tID .. " does not exist in lobby " .. lobbyID)
     end
     
+    --- request the formation from main server only when owned character get
+    Request_Formation_From_MainServer(host, tGUID, tID)
     -- BattleLobby_List[lobbyID]:updateFormation(tID)
 end
 
