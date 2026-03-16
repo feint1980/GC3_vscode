@@ -27,7 +27,7 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
     local lobbyID =  BM_CreateLobby(host,lobbyName,lobbyPassword)
 
     BattleLobby_List[lobbyID] = BattleLobby:new()
-    BattleLobby_List[lobbyID]:init(lobbyID,lobbyName,lobbyPassword)
+    BattleLobby_List[lobbyID]:init(host,lobbyID,lobbyName,lobbyPassword)
 
     -- BM_removeFromWhitelist_ByGUID(tTargetGUID) --- 
     BM_addToWhitelist(tTargetGUID,targetID) -- add the user to whitelist
@@ -36,7 +36,7 @@ InternalPacketHandling[MainServerChanel.Lobby][LobbyResponse.Lobby_Create_Reques
     BattleLobby_Notify_LobbiesStates(host)
     BS_Lobbies_Notify_ClientChanges(host,lobbyID)
     Request_Formation_From_MainServer(host, tTargetGUID, targetID)
-    Request_ClientOwnedCharacters_From_MainServer(host, tTargetGUID, targetID)
+    Request_ClientOwnedCharacters_From_MainServer(host, lobbyID,tTargetGUID, targetID)
     -- add lobby to list
 end
 
@@ -89,7 +89,7 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Join_Request] = f
 
     BattleLobby_Notify_LobbiesStates(host)
     Request_Formation_From_MainServer(host, clientGUID, clientID)
-    Request_ClientOwnedCharacters_From_MainServer(host, clientGUID, clientID)
+    Request_ClientOwnedCharacters_From_MainServer(host, lobbyID,clientGUID, clientID)
 
 end
 
@@ -324,11 +324,11 @@ end
 --- Send request for formations based on user GUID and ID
 function Request_Formation_From_MainServer(host, userGUID,userID)
 
-    BM_sendWrapData(host, BM_getMainServerIP(host), BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL,MainServerChanel.ClientData , ClientDataResponse.ClientData_Request_Fomration, {userGUID,userID})
+    BM_sendWrapData(host, BM_getMainServerIP(host), BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL,MainServerChanel.ClientData , ClientDataResponse.ClientData_Request_Formation, {userGUID,userID})
 
 end
 
-InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_Fomration] = function(host, channel, request,data,ip, guid)
+InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_Formation] = function(host, channel, request,data,ip, guid)
 
     -- print(" response formations detected")
     local tGUID, tID, tFormation = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
@@ -339,7 +339,7 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
 
     local tFormationList, pos , err = JSON_Decode(tFormation)
     if err then
-        print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_Fomration)  JSON decode error:", err)
+        print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_Formation)  JSON decode error:", err)
     end
     if tFormationList == nil then
         print("user " .. tGUID .. " id " .. tID .. " has no formations")
@@ -376,20 +376,20 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
             ClientFormations[tID][k]:addCharacter(tCharacter)
 
         end
-        print("formation " .. k .. " has " .. #ClientFormations[tID][k].characters .. " characters")
+        -- print("formation " .. k .. " has " .. #ClientFormations[tID][k].characters .. " characters")
     end
 
 end
 
-function Request_ClientOwnedCharacters_From_MainServer(host, userGUID,userID)
+function Request_ClientOwnedCharacters_From_MainServer(host, lobbyID,  userGUID,userID)
 
-    BM_sendWrapData(host, BM_getMainServerIP(host), BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL,MainServerChanel.ClientData , ClientDataResponse.ClientData_Request_OwnedCharacters, {userGUID,userID})
+    BM_sendWrapData(host, BM_getMainServerIP(host), BM_getMainServerGUID(host), BattlePacketType.ID_TH_INTERNAL,MainServerChanel.ClientData , ClientDataResponse.ClientData_Request_OwnedCharacters, {lobbyID,userGUID,userID})
 end
 
 
 InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters] = function(host, channel, request,data,ip, guid)
 
-    local tGUID, tID, tOwnedCharacters = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
+    local  lobbyID, tGUID, tID, tOwnedCharacters = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
     -- print ("tGUID " .. tGUID)
     -- print("tID " .. tID)
@@ -441,8 +441,17 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
         --- overwrite level and xp | value from query higher priority
         ClientOwnedCharacters[tID][k].level = v.level
         ClientOwnedCharacters[tID][k].exp = v.exp
-        
     end
 
+    -- Update stat for lobbies
+    if BattleLobby_List[lobbyID] == nil then
+        LOG_COOKED("K286","BattleLobbiesHandler:Request_ClientOwnedCharacters_From_MainServer lobby " .. lobbyID .. " does not exist")
+        return
+    end
+    if BattleLobby_List[lobbyID].formation_Map[tID] == nil then 
+        LOG_COOKED("K287","BattleLobbiesHandler:Request_ClientOwnedCharacters_From_MainServer player " .. tID .. " does not exist in lobby " .. lobbyID)
+    end
+    
+    -- BattleLobby_List[lobbyID]:updateFormation(tID)
 end
 

@@ -153,12 +153,12 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Remo
 
     SVI_DoQuerySTMT(host,removeFormationQuery,{t_id,formationName,formationIndex})
 
-    local removeFomrationInfoQuery = 
+    local removeFormationInfoQuery = 
     "DELETE FROM " .. Table.formation_info.tb_name .. 
     " WHERE " .. Table.formation_info.account_id .. " = ? AND " 
     .. Table.formation_info.formation_index  .. " = ?;"
 
-    SVI_DoQuerySTMT(host,removeFomrationInfoQuery,{t_id,formationIndex})
+    SVI_DoQuerySTMT(host,removeFormationInfoQuery,{t_id,formationIndex})
 
 end
 

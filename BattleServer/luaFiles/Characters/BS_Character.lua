@@ -6,18 +6,18 @@ require "BS_StatScale"
 
 --[[
 ================================================================================
-  BS_Character.lua
-  Base battle character class
+BS_Character.lua
+Base battle character class
 
-  All event hooks are defined here as empty base functions.
-  Child classes (BS_Char_Reimu, BS_Char_Meiling, etc.) override only
-  the hooks relevant to their passive.
+All event hooks are defined here as empty base functions.
+Child classes (BS_Char_Reimu, BS_Char_Meiling, etc.) override only
+the hooks relevant to their passive.
 
-  Inheritance pattern:
+Inheritance pattern:
     BS_Char_Reimu = BS_Character:new()
     function BS_Char_Reimu:onTurnStart(battleState) ... end
 
-  Event hook summary:
+Event hook summary:
     onRoundStart(battleState)
     onTurnStart(battleState)
     onTurnEnd(battleState)
@@ -35,11 +35,11 @@ BS_Character = {
     rowPos                  = 0,
     colPos                  = 0,
     stats                   = nil,
-    cHp                     = 0,
-    cMana                   = 0,
-    cSp                     = 0,
-    cAction                 = 0,
-    cDeathdoorSurvivalRate  = 1.0,
+    cHp                     = 0,    -- current HP
+    cMana                   = 0,    -- current Mana
+    cSp                     = 0,    -- current SP
+    cAction                 = 0,    -- current AP
+    cDeathdoorSurvivalRate  = 1.0,  -- 1.0 * deathDoorSurviveChance
     buffs                   = {},
     currentStance           = nil,
 }
@@ -65,6 +65,8 @@ function BS_Character:init(userID, tId, tSlotIndex, tRowPos, tColPos)
 
     print("BS_Character init: " .. userID .. " | " .. tId)
 
+    ClientOwnedCharacters = _G.ClientOwnedCharacters    
+
     if ClientOwnedCharacters[userID] == nil then
         print("ERROR: ClientOwnedCharacters[" .. userID .. "] is nil")
         return
@@ -74,6 +76,7 @@ function BS_Character:init(userID, tId, tSlotIndex, tRowPos, tColPos)
         return
     end
 
+    print("stat init success")
     self.stats   = ClientOwnedCharacters[userID][tId]
     self.cHp     = self:getMaxHP()
     self.cMana   = self:getMaxMana()
@@ -81,6 +84,26 @@ function BS_Character:init(userID, tId, tSlotIndex, tRowPos, tColPos)
     self.cAction = self:getMaxAP()
 
     self:printStats()
+end
+
+function BS_Character:initStat()
+
+    if ClientOwnedCharacters[self.userID] == nil then
+        print("ERROR: ClientOwnedCharacters[" .. self.userID .. "] is nil")
+        return
+    end
+    if ClientOwnedCharacters[self.userID][self.tId] == nil then
+        print("ERROR: ClientOwnedCharacters[" .. self.userID .. "][" .. self.tId .. "] is nil")
+        return
+    end
+
+    print("stat init success")
+    self.stats   = ClientOwnedCharacters[self.userID][self.tId]
+    self.cHp     = self:getMaxHP()
+    self.cMana   = self:getMaxMana()
+    self.cSp     = 0
+    self.cAction = self:getMaxAP()
+
 end
 
 function BS_Character:printStats()
@@ -99,6 +122,7 @@ function BS_Character:printStats()
     print("Speed         " .. self:getSpeed(0))
     print("Death door    " .. self:getDeathDoorSurvival())
     print("AP/turn       " .. self:getMaxAP())
+    print("Position : " .. self.colPos .. " " .. self.rowPos)
 end
 
 --------------------------------------------------------------------------------
@@ -174,14 +198,14 @@ function BS_Character:getDeathDoorSurvival()
 end
 
 --------------------------------------------------------------------------------
---  ECONOMY
+--  RESOURCE POINTS
 --------------------------------------------------------------------------------
 
 function BS_Character:getMaxMana()
     return self.stats.mana
         + (self.stats.wisdom       * StatScale.wis_mana)
         + (self.stats.intelligence * StatScale.int_mana)
-        + self:getBuffBonus("mana")
+        + self:getBuffBonus("maxMana")
 end
 
 function BS_Character:getMaxSP()

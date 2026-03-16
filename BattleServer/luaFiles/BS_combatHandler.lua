@@ -28,7 +28,7 @@ ClientPacketHandling[ClientChannel.Combat][CCombatResponse.Combat_ReadyStatus] =
 
     if BattleLobby_List[tLobbyID] ~= nil then
         print("Lobby check out")
-        BattleLobby_List[tLobbyID]:AppendReady(host,tID,tonumber(tPlayerIndex))
+        BattleLobby_List[tLobbyID]:AppendReady(tID,tonumber(tPlayerIndex))
     end
 
 end

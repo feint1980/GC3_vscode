@@ -10,7 +10,6 @@ require "BS_Character"
   Override: onTargeted
   When targeted by a NON-AOE attack, 17% chance to reflect the attack
   to a random alive character on the OPPONENT's field.
-  17% is an intentional fandom reference (Yukari = Border of 17).
 ================================================================================
 ]]--
 

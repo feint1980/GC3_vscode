@@ -3,6 +3,14 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "battleWrapper"
 require "BS_global"
 
+---@class BattleClientEP
+---@field id string
+---@field guid string
+---@field ip? pointer instance of RakNet::SystemAddress
+---@field index number
+---@field readyState boolean
+---@field selected_formation_index number
+---@field lobbyID string
 BattleClientEP =
 {
     id = "",

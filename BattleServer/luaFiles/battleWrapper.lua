@@ -40,8 +40,8 @@ LobbyResponse = {
 }
 
 ClientDataResponse = {
-    ClientData_Request_Fomration = 1,
-    ClientData_Response_Fomration = 2,
+    ClientData_Request_Formation = 1,
+    ClientData_Response_Formation = 2,
     ClientData_Request_OwnedCharacters = 3,
     ClientData_Response_OwnedCharacters = 4,
 }
@@ -216,4 +216,4 @@ end
 
 function LOG_INFO(msg)  print("[INFO] " .. msg) end
 function LOG_WARN(msg)  print("[WARN] " .. msg) end
-function LOG_COOKED(code, msg) print("[COOKED][" .. code .. "] " .. msg) end
+function LOG_COOKED(code, msg) print("!!!!!!![COOKED][" .. code .. "] " .. msg) end

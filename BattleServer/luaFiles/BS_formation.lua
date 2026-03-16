@@ -3,7 +3,10 @@ package.path = package.path .. ";../luaFiles/?.lua"
 require "battleWrapper"
 require "BS_global"
 
-
+---@class BattleFormation
+---@field index number
+---@field name string
+---@field characters table of BS_Character
 BattleFormation = {
     index = 0,
     name = "",
@@ -27,5 +30,7 @@ function BattleFormation:init(tIndex, tName)
 end
 
 function BattleFormation:addCharacter(tCharacter)
+    print("adding character to formation " .. self.name .. " (" .. self.index .. ")")
     table.insert(self.characters, tCharacter)
+    print("added, size now is " .. #self.characters)
 end

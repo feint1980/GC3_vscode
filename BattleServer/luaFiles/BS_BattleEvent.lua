@@ -7,16 +7,16 @@ require "BS_Character"
 
 --[[
 ================================================================================
-  BS_BattleEvent.lua
-  Core turn-based event pipeline
+BS_BattleEvent.lua
+Core turn-based event pipeline
 
-  battleState is always a BattleSession instance.
-  All broadcasts go through battleState:broadcast() and battleState:sendToPlayer()
-  which use the real RakNet BM_sendWrapData under the hood.
+battleState is always a BattleSession instance.
+All broadcasts go through battleState:broadcast() and battleState:sendToPlayer()
+which use the real RakNet BM_sendWrapData under the hood.
 
-  Flow:
-    onRoundStart → onTurnStart → resolveAttack → applyDmg → onTurnEnd
-                                                           → onRoundEnd / onBattleEnd
+Flow:
+onRoundStart → onTurnStart → resolveAttack → applyDmg → onTurnEnd
+                                                        → onRoundEnd / onBattleEnd
 ================================================================================
 ]]--
 

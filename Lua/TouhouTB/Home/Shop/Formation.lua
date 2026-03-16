@@ -270,7 +270,7 @@ function Formation_Request_InfoUpdate(name,data,size)
 end
 
 
-function FomrationUpdatePreviews(host)
+function FormationUpdatePreviews(host)
     
 end
 
@@ -355,7 +355,7 @@ end
 MenuPanels["Formation"] = function(host)
     -- NexusCharacterTab:updateCharacters()
     FormationPanel:showWithEffect(PanelShowType.Fade,250)
-    FomrationUpdatePreviews(host) 
+    FormationUpdatePreviews(host) 
     FormationUpdateCharacterList(host)
     -- Home_RequestOwnedCharacterList()
 end

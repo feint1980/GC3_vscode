@@ -23,7 +23,6 @@ MainInfo = {
     guid = ""
 }
 
-
 BattleLobbyState = {
     CLOSED = 0,
     OPEN = 1,

@@ -124,9 +124,9 @@ end
 
 
 ---MARK: Client Data 
-BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Request_Fomration] = function(host, data,ip,guid)
+BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Request_Formation] = function(host, data,ip,guid)
 
-    print("ClientDataResponse.ClientData_Request_Fomration request from " .. guid )
+    print("ClientDataResponse.ClientData_Request_Formation request from " .. guid )
 
     local targetGUID, targetID = string.match(data, "^|([^|]+)|([^|]+)|$")
     
@@ -140,7 +140,7 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
     end
 
     if targetClient.name ~= targetID then
-        print("mismatch client session (ClientDataResponse.ClientData_Request_Fomration)") 
+        print("mismatch client session (ClientDataResponse.ClientData_Request_Formation)") 
         return
     end
 
@@ -179,7 +179,7 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
 
     local tData = JSON_Encode(queriedFormations,true)
 
-    SV_SendWrapMsg2BattleServer(host, ip,guid, BattleChanel.ClientData,ClientDataResponse.ClientData_Response_Fomration,{targetGUID, targetID, tData})
+    SV_SendWrapMsg2BattleServer(host, ip,guid, BattleChanel.ClientData,ClientDataResponse.ClientData_Response_Formation,{targetGUID, targetID, tData})
 
 end
 
@@ -188,8 +188,9 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
 
     -- print("ClientDataResponse.ClientData_Request_OwnedCharacters request from " .. guid )
 
-    local targetGUID, targetID = string.match(data, "^|([^|]+)|([^|]+)|$")
+    local lobbyID,targetGUID, targetID = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$")
 
+    print ("lobbyID " .. lobbyID)
     print ("targetGUID " .. targetGUID)
     print ("targetID " .. targetID)
 
@@ -226,7 +227,7 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
     local tData = JSON_Encode(ownedResult)
 
 
-    SV_SendWrapMsg2BattleServer(host, ip,guid, BattleChanel.ClientData,ClientDataResponse.ClientData_Response_OwnedCharacters,{targetGUID, targetID, tData})
+    SV_SendWrapMsg2BattleServer(host, ip,guid, BattleChanel.ClientData,ClientDataResponse.ClientData_Response_OwnedCharacters,{lobbyID,targetGUID, targetID, tData})
 
 end
 

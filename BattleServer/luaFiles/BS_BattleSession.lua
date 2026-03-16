@@ -26,14 +26,38 @@ require "BS_Char_Remilia"
 
 -- maps character_id string → child class
 -- add new characters here as they are implemented
-local CHARACTER_CLASS_MAP = {
-    reimu     = BS_Char_Reimu,
-    yukari    = BS_Char_Yukari,
-    patchouli = BS_Char_Patchouli,
-    meiling   = BS_Char_Meiling,
-    remilia   = BS_Char_Remilia,
+
+
+BattlePhase = {
+    READY        = 0,
+    ROUND_START  = 1,
+    ACTION_PHASE = 2,
+    ROUND_END    = 3,
+    BATTLE_END   = 4
 }
 
+
+local CHARACTER_CLASS_MAP = {
+    S_Reimu     = BS_Char_Reimu,
+    S_Yukari    = BS_Char_Yukari,
+    S_Patchouli = BS_Char_Patchouli,
+    S_Meiling   = BS_Char_Meiling,
+    --    = BS_Char_Remilia,
+}
+
+---@class BattleSession
+---@field lobbyId string
+---@field host? pointer of ServerScriptingManager
+---@field p1Id string
+---@field p2Id string
+---@field p1EP? BattleClientEP
+---@field p2EP? BattleClientEP
+---@field p1Formation table
+---@field p2Formation table
+---@field currentRound number
+---@field turnQueue table
+---@field currentChar? BS_Char_*
+---@field phase number
 BattleSession = {
     lobbyId      = "",
     host         = nil,     -- ServerScriptingManager pointer
@@ -46,7 +70,7 @@ BattleSession = {
     currentRound = 0,
     turnQueue    = {},
     currentChar  = nil,     -- BS_Char_* currently acting
-    phase        = nil,     -- BattlePhase enum (defined in BS_global)
+    phase        = -1,     -- BattlePhase enum (defined in BS_global)
 }
 
 --------------------------------------------------------------------------------
@@ -63,7 +87,7 @@ function BattleSession:new(o)
     return o
 end
 
----@param host userdata       ServerScriptingManager pointer
+---@param host pointer of ServerScriptingManager
 ---@param lobbyId string
 ---@param p1EP BattleClientEP
 ---@param p2EP BattleClientEP
@@ -113,24 +137,39 @@ end
 function BattleSession:buildFormation(playerID, rawFormation)
     local formation = {}
 
-    for _, entry in ipairs(rawFormation) do
-        local charId  = entry.characterId
-        local class   = CHARACTER_CLASS_MAP[charId] or BS_Character
-        local char    = class:new()
-
-        -- cellPosition is a flat index 1~9 on the 3x3 grid
-        -- row = ceil(pos/3), col = ((pos-1) % 3) + 1
-        local cellPos = entry.cellPosition
-        local row     = math.ceil(cellPos / 3)
-        local col     = ((cellPos - 1) % 3) + 1
-
-        char:init(playerID, charId, entry.slotIndex or #formation + 1, row, col)
-
-        table.insert(formation, char)
-
-        print(string.format("[BattleSession] built %s for %s at cell %d (row%d col%d)",
-            charId, playerID, cellPos, row, col))
+    print("buildFormation called")
+    print("raw formation check ")
+    print(rawFormation.name)
+    print(rawFormation.index)
+    print(#rawFormation.characters)
+    for i = 1, #rawFormation.characters do
+        print(rawFormation.characters[i].id)
+        for k,v in pairs(rawFormation.characters[i].stats) do
+            print(k .. " " .. v)
+        end
     end
+    -- for k,v in pairs(rawFormation) do
+        -- print(k .. " " .. v)
+        -- print("v.characters size " .. #rawFormation[k].characters)
+        -- for _, entry in ipairs(v.characters) do
+        --     local charId  = entry.characterId
+        --     print("entry.characterId " .. charId)
+        --     local class   = CHARACTER_CLASS_MAP[charId] or BS_Character
+        --     local char    = class:new()
+        --     -- cellPosition is a flat index 1~9 on the 3x3 grid
+        --     -- row = ceil(pos/3), col = ((pos-1) % 3) + 1
+        --     local cellPos = entry.cellPosition
+        --     local row     = math.ceil(cellPos / 3)
+        --     local col     = ((cellPos - 1) % 3) + 1
+
+        --     char:init(playerID, charId, entry.slotIndex or #formation + 1, row, col)
+
+        --     table.insert(formation, char)
+
+        --     print(string.format("[BattleSession] built %s for %s at cell %d (row%d col%d)",
+        --         charId, playerID, cellPos, row, col))
+        -- end
+    -- end
 
     return formation
 end

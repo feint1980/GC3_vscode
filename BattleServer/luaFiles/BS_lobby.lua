@@ -1,5 +1,20 @@
 require "BS_handle_clients"
+require "BS_BattleSession"
 
+---@class BattleLobby
+---@field id string
+---@field name string
+---@field password string
+---@field battleClientEP_List table of BattleClientEP (vector)
+---@field battleClientEP_Map table of BattleClientEP (map)
+---@field lobbyState number (BattleLobbyState)
+---@field formation_Map table of Formation (map)
+---@field playerIndexMap table of number (map)
+---@field leftFormation? BattleFormation
+---@field rightFormation? BattleFormation
+---@field readyCount number
+---@field networkHost? pointer of BattleMain(C++)
+---@field battleSession? BattleSession
 BattleLobby = {
     id = "",
     name  = "",
@@ -11,7 +26,9 @@ BattleLobby = {
     playerIndexMap = {},
     leftFormation = nil,
     rightFormation = nil,
-    readyCount = 0
+    readyCount = 0,
+    networkHost = nil,
+    battleSession = nil
 }
 
 function BattleLobby:new(o)
@@ -27,11 +44,12 @@ function BattleLobby:new(o)
     return o
 end
 
-function BattleLobby:init(t_id,t_name,t_password)
+function BattleLobby:init( networkHost,t_id,t_name,t_password)
     self.id = t_id
     self.name = t_name
     self.password = t_password
     self.lobbyState = BattleLobbyState.OPEN
+    self.networkHost = networkHost
 end
 
 function BattleLobby:addPlayer(playerID, playerGUID, playerIP)
@@ -111,7 +129,7 @@ function MergeTable(t1, t2)
     return result
 end
 
-function BattleLobby:broradCastToClient(host,channel,request, data, attachVerifiable)
+function BattleLobby:broadCastToClient(channel,request, data, attachVerifiable)
     attachVerifiable = attachVerifiable or false
 
     local verifiableData = {}
@@ -121,7 +139,7 @@ function BattleLobby:broradCastToClient(host,channel,request, data, attachVerifi
     end
 
     for i = 1, #BattleLobby_List[self.id].battleClientEP_List do
-        BM_sendWrapData(host,BattleLobby_List[self.id].battleClientEP_List[i]:getIP(),BattleLobby_List[self.id].battleClientEP_List[i].guid,BattlePacketType.ID_TH_TB_BATTLE,channel,request,data)
+        BM_sendWrapData(self.networkHost,BattleLobby_List[self.id].battleClientEP_List[i]:getIP(),BattleLobby_List[self.id].battleClientEP_List[i].guid,BattlePacketType.ID_TH_TB_BATTLE,channel,request,data)
     end
 
 end
@@ -136,7 +154,20 @@ function BattleLobby:getVerifiableData(index)
 end
 
 
-function BattleLobby:AppendReady(host,playerID, index)
+function BattleLobby:updateFormation(playerID)
+    print("formation " .. self.formation_Map[playerID].id .. " updating")
+    self.formation_Map[playerID]:initStat()
+    print("formation " .. self.formation_Map[playerID].id .. " updated")
+    print("data check")
+    for k,v in pairs(self.formation_Map[playerID]) do
+        print("k " .. k)
+    end
+
+
+    
+end
+
+function BattleLobby:AppendReady(playerID, index)
     
     if self.formation_Map[playerID] == nil then 
         LOG_COOKED("K282","BattleLobby:AppendReady player " .. playerID .. " has no formation")
@@ -168,7 +199,13 @@ function BattleLobby:AppendReady(host,playerID, index)
 
         print("precheck")
 
-        self:broradCastToClient(host,ClientChannel.Combat,CCombatResponse.Combat_Match_Start,{"Match Start"},true )
+
+        if self.battleSession == nil then
+            self.battleSession = BattleSession:new()
+        end
+        self.battleSession:init(self.networkHost, self.id,self.battleClientEP_List[1], self.battleClientEP_List[2], self.leftFormation, self.rightFormation)
+
+        -- self:broadCastToClient(ClientChannel.Combat,CCombatResponse.Combat_Match_Start,{"Match Start"},true )
 
     end
 end

@@ -29,10 +29,10 @@ function Client_Lobby_SendSyncRequest()
     local tID = InfoHolder_getStrVal("MainInfo.id")
     local targetLobbyID = InfoHolder_getStrVal("Target_Lobby_ID")
     local readyState = tostring(LobbyScene_isReady)
-    local selectedFomration = tostring(LobbyScene_selectedFormation)
+    local selectedFormation = tostring(LobbyScene_selectedFormation)
 
     -- Send Sync Request
-    SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_SyncStatus, {tGUID, tID ,targetLobbyID,readyState,selectedFomration },5,0.1,0.15)
+    SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_SyncStatus, {tGUID, tID ,targetLobbyID,readyState,selectedFormation },5,0.1,0.15)
 end
 
 function Client_Lobby_Request_Formations()
