@@ -16,7 +16,7 @@ CombatScene::CombatScene(Feintgine::Window * window)
     m_alpha = 0.0f;
     m_window = window;
     m_screenIndex = 3;
-    initShader();
+    // initShader();
 }
 
 
@@ -146,13 +146,10 @@ void CombatScene::initGUI()
     }
 }
 
-
 void CombatScene::onExit()
 {
     // on exit
 }
-
-
 
 void CombatScene::update(float deltaTime)
 {

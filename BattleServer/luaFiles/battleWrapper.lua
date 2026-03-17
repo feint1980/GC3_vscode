@@ -62,6 +62,7 @@ CLobbyResponse = {
 CCombatResponse = {
     Combat_ReadyStatus = 1,
     Combat_Match_Start = 2,
+    Combat_Round_Start =3,
 }
 
 ---@description handle incoming connection

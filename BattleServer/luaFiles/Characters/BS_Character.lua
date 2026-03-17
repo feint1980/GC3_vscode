@@ -42,6 +42,7 @@ BS_Character = {
     cDeathdoorSurvivalRate  = 1.0,  -- 1.0 * deathDoorSurviveChance
     buffs                   = {},
     currentStance           = nil,
+    isAlive                 = true,
 }
 
 --------------------------------------------------------------------------------
@@ -54,6 +55,13 @@ function BS_Character:new(o)
     setmetatable(o, self)
     self.__index = self
     return o
+end
+
+---@return number col (x)
+---@return number row (y)
+function BS_Character:getPos()
+
+    return self.colPos ,  self.rowPos
 end
 
 function BS_Character:init(userID, tId, tSlotIndex, tRowPos, tColPos)
@@ -201,6 +209,38 @@ end
 --  RESOURCE POINTS
 --------------------------------------------------------------------------------
 
+
+function BS_Character:getStrength()
+    return self.stats.strength
+    + self:getBuffBonus("strength")
+end
+
+function BS_Character:getVitality()
+    return self.stats.vitality
+    + self:getBuffBonus("vitality")
+end
+
+function BS_Character:getDexterity()
+    return self.stats.dexterity
+    + self:getBuffBonus("dexterity")
+end
+
+function BS_Character:getAgility()
+    return self.stats.agility
+    + self:getBuffBonus("agility")
+end
+
+function BS_Character:getIntelligence()
+    return self.stats.intelligence
+    + self:getBuffBonus("intelligence")
+end
+
+function BS_Character:getWisdom()
+    return self.stats.wisdom
+    + self:getBuffBonus("wisdom")
+end
+
+
 function BS_Character:getMaxMana()
     return self.stats.mana
         + (self.stats.wisdom       * StatScale.wis_mana)
@@ -223,6 +263,53 @@ end
 function BS_Character:getSpeed(speedRoll)
     return (self.stats.agility + (speedRoll or 0)) * StatScale.agi_speed
 end
+
+--------------------------------------------------------------------------------
+--  current stats
+--------------------------------------------------------------------------------
+
+function BS_Character:getCurrentHP()
+
+    if self.cHp <= 0 then
+        return 0
+    end
+    if self.cHp > self:getMaxHP() then
+        self.cHp = self:getMaxHP()
+    end
+
+    return self.cHp
+end
+
+function BS_Character:getCurrentMana()
+
+    if self.cMana <= 0 then
+        return 0
+    end
+    if self.cMana > self:getMaxMana() then
+        self.cMana = self:getMaxMana()
+    end
+
+    return self.cMana
+end
+
+function BS_Character:getCurrentSP()
+
+    if self.cSp <= 0 then
+        return 0
+    end
+    if self.cSp > self:getMaxSP() then
+        self.cSp = self:getMaxSP()
+    end
+
+    return self.cSp
+end
+
+function BS_Character:getCurrentAP()
+    return self.cAction
+end
+
+
+
 
 --------------------------------------------------------------------------------
 --  AP MANAGEMENT
@@ -336,7 +423,11 @@ end
 
 --- Called at the start of each round before turn queue is built
 ---@param battleState table
-function BS_Character:onRoundStart(battleState) end
+function BS_Character:onRoundStart(battleState)
+    
+    print(self.id .. " onRoundStart (BS_Character)")
+
+end
 
 --- Called at the start of this character's turn
 --- gainAP and tickBuffs are called by BS_BattleEvent BEFORE this hook
@@ -381,3 +472,5 @@ end
 ---@param dmgInfo table
 ---@param battleState table
 function BS_Character:onApplyDmg(dmgInfo, battleState) end
+
+---- 

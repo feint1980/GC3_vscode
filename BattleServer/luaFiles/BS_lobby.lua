@@ -155,13 +155,13 @@ end
 
 
 function BattleLobby:updateFormation(playerID)
-    print("formation " .. self.formation_Map[playerID].id .. " updating")
-    self.formation_Map[playerID]:initStat()
-    print("formation " .. self.formation_Map[playerID].id .. " updated")
-    print("data check")
-    for k,v in pairs(self.formation_Map[playerID]) do
-        print("k " .. k)
-    end
+    -- print("formation " .. self.formation_Map[playerID].id .. " updating")
+    -- self.formation_Map[playerID]:initStat()
+    -- print("formation " .. self.formation_Map[playerID].id .. " updated")
+    -- print("data check")
+    -- for k,v in pairs(self.formation_Map[playerID]) do
+        -- print("k " .. k)
+    -- end
 
 
     
@@ -205,6 +205,9 @@ function BattleLobby:AppendReady(playerID, index)
         end
         self.battleSession:init(self.networkHost, self.id,self.battleClientEP_List[1], self.battleClientEP_List[2], self.leftFormation, self.rightFormation)
 
+
+        -- self.battleSession:start()
+        -- self.battleSession:broadcast(ClientChannel.Combat,CCombatResponse.Combat_Match_Start, {"Match Start", self.battleSession:get})
         -- self:broadCastToClient(ClientChannel.Combat,CCombatResponse.Combat_Match_Start,{"Match Start"},true )
 
     end

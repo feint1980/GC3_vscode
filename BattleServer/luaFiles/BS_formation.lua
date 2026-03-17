@@ -34,3 +34,4 @@ function BattleFormation:addCharacter(tCharacter)
     table.insert(self.characters, tCharacter)
     print("added, size now is " .. #self.characters)
 end
+

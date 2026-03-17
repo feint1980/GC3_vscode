@@ -14,10 +14,13 @@ require "BS_Character"
 ================================================================================
 ]]--
 
-BS_Char_Patchouli = BS_Character:new()
+-- BS_Char_Patchouli = BS_Character:new()
+BS_Char_Patchouli = setmetatable({}, {__index = BS_Character})
+BS_Char_Patchouli.__index = BS_Char_Patchouli
 
 local ABSORB_RATE = 0.80
 
+---@diagnostic disable-next-line: duplicate-set-field
 function BS_Char_Patchouli:onApplyDmg(dmgInfo, battleState)
     if self.cMana <= 0 then
         print("[Patchouli:Manashield] depleted — taking full damage")

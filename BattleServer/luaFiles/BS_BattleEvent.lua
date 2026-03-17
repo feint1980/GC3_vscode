@@ -64,6 +64,7 @@ function BS_BattleEvent.onRoundStart(battleState)
         char.lastSpeedRoll = roll       -- cached for recalcTurnQueue mid-round
         table.insert(entries, {
             character      = char,
+            print("character " .. char.stats.name .. " rolled " .. roll),
             effectiveSpeed = char:getSpeed(roll),
         })
     end
@@ -103,15 +104,28 @@ function BS_BattleEvent.onRoundStart(battleState)
         })
     end
 
-    battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Round_Start, {
-        round     = battleState.currentRound,
-        turnQueue = queueInfo,
-    })
+
+    local count = 1
+    -- for _, char in ipairs(queueInfo) do
+    --     print(char.id .. " " .. count)
+    --     count = count + 1
+    -- end
+    for k,v in pairs(queueInfo) do
+        print(k .. " " .. v.characterId)
+        count = count + 1
+    end
+
+    -- battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Round_Start, {
+    --     round     = battleState.currentRound,
+    --     turnQueue = queueInfo,
+    -- })
 
     -- pop and start first turn
-    local firstChar = table.remove(battleState.turnQueue, 1)
-    battleState.currentChar = firstChar
-    BS_BattleEvent.onTurnStart(firstChar, battleState)
+    -- local firstChar = table.remove(battleState.turnQueue, 1)
+    -- battleState.currentChar = firstChar
+    -- BS_BattleEvent.onTurnStart(firstChar, battleState)
+
+
 end
 
 --------------------------------------------------------------------------------

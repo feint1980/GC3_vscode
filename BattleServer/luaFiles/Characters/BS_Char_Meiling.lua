@@ -17,7 +17,9 @@ require "BS_Character"
 ================================================================================
 ]]--
 
-BS_Char_Meiling = BS_Character:new()
+-- BS_Char_Meiling = BS_Character:new()
+BS_Char_Meiling = setmetatable({}, {__index = BS_Character})
+BS_Char_Meiling.__index = BS_Char_Meiling
 
 local STANCE_ATTACK  = "attack"
 local STANCE_DEFENSE = "defense"
@@ -69,6 +71,7 @@ function BS_Char_Meiling:switchStance(battleState)
     self:applyStance(newStance, battleState)
 end
 
+---@diagnostic disable-next-line: duplicate-set-field
 function BS_Char_Meiling:onTurnStart(battleState)
     -- initialize stance on first turn
     if self.currentStance == nil then
@@ -76,7 +79,8 @@ function BS_Char_Meiling:onTurnStart(battleState)
     end
 end
 
-function BS_Char_Meiling:getMaxHP()
+-- ---@diagnostic disable-next-line: duplicate-set-field
+-- function BS_Char_Meiling:getMaxHP()
 
-    return 5000
-end
+--     return 5000
+-- end

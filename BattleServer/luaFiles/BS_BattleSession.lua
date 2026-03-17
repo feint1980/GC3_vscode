@@ -109,6 +109,11 @@ function BattleSession:init(host, lobbyId, p1EP, p2EP, leftFormation, rightForma
     -- build BS_Char_* instances from raw formation data
     self.p1Formation = self:buildFormation(self.p1Id, leftFormation)
     self.p2Formation = self:buildFormation(self.p2Id, rightFormation)
+
+    -- local tData = JSON_Encode (self:serializeFormation(self.p1Formation),true)
+    -- print(tData)
+
+    self:start()
 end
 
 --- Called after init — sends BATTLE_START to both clients then kicks off round 1
@@ -116,11 +121,11 @@ function BattleSession:start()
     self.phase = BattlePhase.ROUND_START
 
     -- share both formations with both players
-    self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Match_Start, {
-        p1Id         = self.p1Id,
-        p2Id         = self.p2Id,
-        p1Formation  = self:serializeFormation(self.p1Formation),
-        p2Formation  = self:serializeFormation(self.p2Formation),
+    self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Match_Start, { self.lobbyId,
+        self.p1Id,
+        self.p2Id,
+        self:getFormationJSON(self.p1Formation),
+        self:getFormationJSON(self.p2Formation),
     })
 
     print("[BattleSession] battle started — beginning round 1")
@@ -142,6 +147,8 @@ function BattleSession:buildFormation(playerID, rawFormation)
     print("raw formation check ")
     print(rawFormation.name)
     print(rawFormation.index)
+    formation.name = rawFormation.name
+    formation.owner = playerID
     print(#rawFormation.characters)
     for i = 1, #rawFormation.characters do
         print(rawFormation.characters[i].id)
@@ -150,49 +157,19 @@ function BattleSession:buildFormation(playerID, rawFormation)
         -- end
         local charID = rawFormation.characters[i].stats.ID
         print("charID " .. charID)
-        
 
+        local class = CHARACTER_CLASS_MAP[charID] or BS_Character
+        local tChar = class:new(rawFormation.characters[i])
 
-        local tChar = nil
-        if charID == "S_Reimu" then
-            tChar = BS_Char_Reimu:new(rawFormation.characters[i])
-        elseif charID == "S_Yukari" then
-            tChar = BS_Char_Yukari:new(rawFormation.characters[i])
-        elseif charID == "S_Patchouli" then
-            tChar = BS_Char_Patchouli:new(rawFormation.characters[i])
-        elseif charID == "S_Meiling" then
-            tChar = BS_Char_Meiling:new(rawFormation.characters[i])
-        end
         -- local char = tChar
         if tChar ~= nil then
-            print(tChar:getMaxHP())
+
+            -- print(tChar:getMaxHP())
+            table.insert(formation, tChar)
         else
             print("tChar is nil")
         end
-        
     end
-    -- for k,v in pairs(rawFormation) do
-        -- print(k .. " " .. v)
-        -- print("v.characters size " .. #rawFormation[k].characters)
-        -- for _, entry in ipairs(v.characters) do
-        --     local charId  = entry.characterId
-        --     print("entry.characterId " .. charId)
-        --     local class   = CHARACTER_CLASS_MAP[charId] or BS_Character
-        --     local char    = class:new()
-        --     -- cellPosition is a flat index 1~9 on the 3x3 grid
-        --     -- row = ceil(pos/3), col = ((pos-1) % 3) + 1
-        --     local cellPos = entry.cellPosition
-        --     local row     = math.ceil(cellPos / 3)
-        --     local col     = ((cellPos - 1) % 3) + 1
-
-        --     char:init(playerID, charId, entry.slotIndex or #formation + 1, row, col)
-
-        --     table.insert(formation, char)
-
-        --     print(string.format("[BattleSession] built %s for %s at cell %d (row%d col%d)",
-        --         charId, playerID, cellPos, row, col))
-        -- end
-    -- end
 
     return formation
 end
@@ -204,16 +181,42 @@ function BattleSession:serializeFormation(formation)
     local data = {}
     for _, char in ipairs(formation) do
         table.insert(data, {
-            characterId  = char.id,
             ownerId      = char.userID,
+            characterId  = char.id,
             rowPos       = char.rowPos,
             colPos       = char.colPos,
+            strength     = char:getStrength(),
+            vitality     = char:getVitality(),
+            dexterity    = char:getDexterity(),
+            agility      = char:getAgility(),
+            intelligence = char:getIntelligence(),
+            wisdom = char:getWisdom(),
+            physicDmg    = char:getPhysicDmg(),
+            magicDmg     = char:getMagicDmg(),
+            physicDef    = char:getPhysicDef(),
+            magicDef     = char:getMagicDef(),
+            physicalAccuracy = char:getPhysicalAccuracy(),
+            magicalAccuracy  = char:getMagicalAccuracy(),
+            evasion      = char:getEvasion(),
+            critChance   = char:getCritChance(),
+            speed        = char:getSpeed(0),
+            deathDoorSurvival = char:getDeathDoorSurvival(),
             maxHp        = char:getMaxHP(),
             maxMana      = char:getMaxMana(),
             maxAP        = char:getMaxAP(),
+            maxSP        = char:getMaxSP(),
+            currentHP    = char:getCurrentHP(),
+            currentMana  = char:getCurrentMana(),
+            currentAP    = char:getCurrentAP(),
+            currentSP    = char:getCurrentSP(),
         })
     end
     return data
+end
+
+function BattleSession:getFormationJSON(formation,indent)
+    indent = indent or false
+    return JSON_Encode (self:serializeFormation(formation),indent)
 end
 
 --------------------------------------------------------------------------------
@@ -225,13 +228,14 @@ end
 ---@param request number   CCombatResponse enum
 ---@param data table
 function BattleSession:broadcast(channel, request, data)
+
     BM_sendWrapData(self.host,
         self.p1EP:getIP(), self.p1EP.guid,
-        BattlePacketType.ID_TH_TB_BATTLE, channel, request, data)
+        BattlePacketType.ID_TH_TB_BATTLE, channel, request, MergeTable({self.p1EP.guid, self.p1EP.id}, data))
 
     BM_sendWrapData(self.host,
         self.p2EP:getIP(), self.p2EP.guid,
-        BattlePacketType.ID_TH_TB_BATTLE, channel, request, data)
+        BattlePacketType.ID_TH_TB_BATTLE, channel, request, MergeTable({self.p2EP.guid, self.p2EP.id}, data))
 end
 
 --- Send to one specific player only

@@ -13,7 +13,9 @@ require "BS_Character"
 ================================================================================
 ]]--
 
-BS_Char_Yukari = BS_Character:new()
+-- BS_Char_Yukari = BS_Character:new()
+BS_Char_Yukari = setmetatable({}, {__index = BS_Character})
+BS_Char_Yukari.__index = BS_Char_Yukari
 
 local REFLECT_CHANCE = 0.17
 

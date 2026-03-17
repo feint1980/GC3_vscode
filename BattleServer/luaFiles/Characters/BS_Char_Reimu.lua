@@ -13,7 +13,9 @@ require "BS_Character"
 ================================================================================
 ]]--
 
-BS_Char_Reimu = BS_Character:new()
+-- BS_Char_Reimu = BS_Character:new()
+BS_Char_Reimu = setmetatable({}, {__index = BS_Character})
+BS_Char_Reimu.__index = BS_Char_Reimu
 
 local PASSIVE_BASE_CHANCE = 0.15
 
@@ -26,6 +28,7 @@ local BUFF_POOL = {
     { id = "reimu_fate_ap",        stat = "ap",        value = 0.3,  duration = 1, source = "passive" },
 }
 
+---@diagnostic disable-next-line: duplicate-set-field
 function BS_Char_Reimu:onTurnStart(battleState)
     local maxHp      = self:getMaxHP()
     local missingPct = math.max(0, maxHp - self.cHp) / maxHp
