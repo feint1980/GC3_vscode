@@ -1,6 +1,7 @@
 
-#include "CombatCharacter.h"
 #include "CSlot.h"
+#include "CombatCharacter.h"
+
 
 CombatCharacter::CombatCharacter()
 {
@@ -14,7 +15,7 @@ CombatCharacter::~CombatCharacter()
 }
 
 
-void CombatCharacter::init(CSlot * slot, const std::string & animationPath,const std::string & portraitPath, const glm::vec2 & scale, int side)
+void CombatCharacter::init(CSlot * slot, const std::string & animationPath,const std::string & portraitPath, const glm::vec2 & scale , int side)
 {
     m_currentSlot = slot; 
     if(!m_currentSlot)

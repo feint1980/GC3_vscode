@@ -41,6 +41,24 @@ enum SlotPos
 #define FIELD_SIDE_LEFT 1
 #define FIELD_SIDE_RIGHT 2
 
+#include <unordered_map>
+#include <tuple>
+
+struct TupleHash {
+    template <typename... T>
+    size_t operator()(const std::tuple<T...>& t) const {
+        size_t seed = 0;
+        std::apply([&seed](const auto&... args) {
+            ((seed ^= std::hash<std::decay_t<decltype(args)>>{}(args)
+                      + 0x9e3779b9 + (seed << 6) + (seed >> 2)), ...);
+        }, t);
+        return seed;
+    }
+};
+
+
+
+
 class CombatField
 {
 public:
@@ -70,12 +88,16 @@ private:
 
     std::vector<CSlot> m_slots;
 
-    std::unordered_map<glm::ivec3, int> m_slotIndexMap;
+    // std::unordered_map<glm::ivec3, int> m_slotIndexMap;
+
+
+    std::unordered_map<std::tuple<int, int, int>, int, TupleHash> m_slotIndexMap;
+    // std::unordered_map<glm::ivec3 , int> m_slotIndexMap;
 
     std::unordered_map<int, glm::ivec3> m_enumToIndecies; 
 
 
-    // std::vector<CombatCharacter> m_characters;
+    std::vector<CombatCharacter> m_characters;
 
     EmptyObject m_bg;
 

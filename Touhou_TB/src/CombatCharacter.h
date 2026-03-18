@@ -11,7 +11,7 @@ public:
     CombatCharacter();
     ~CombatCharacter();
 
-    void init(CSlot * slot, const std::string & animationPath,const std::string & portraitPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f), int side = 1); 
+    void init(CSlot * slot, const std::string & animationPath,const std::string & portraitPath, const glm::vec2 & scale , int side); 
     
     void draw(Feintgine::SpriteBatch & spriteBatch);
 
