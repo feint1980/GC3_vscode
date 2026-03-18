@@ -125,7 +125,7 @@ void CombatField::draw(Feintgine::SpriteBatch & spriteBatch)
     {
         m_slots[i].draw(spriteBatch);
     }
-    for (auto i = 0 ; i < m_characters.size(); i++)
+    for (int i = 0 ; i < m_characters.size(); i++)
     {
         m_characters[i].draw(spriteBatch);
     }
@@ -134,14 +134,15 @@ void CombatField::draw(Feintgine::SpriteBatch & spriteBatch)
 
 void CombatField::update(float deltaTime)
 {
-    for (auto i = 0 ; i < m_characters.size(); i++)
-    {
-        m_characters[i].update(deltaTime);
-    }
+    // for (auto i = 0 ; i < m_characters.size(); i++)
+    // {
+    //     m_characters[i].update(deltaTime);
+    // }
 }
 
 void CombatField::addCharacter(int collumn, int row, int side, const std::string & animationPath, const std::string & portraitPath, const glm::vec2 & scale)
 {
+    std::cout << "CombatField::addCharacter called \n"; 
     CombatCharacter character;
     character.init(getSlot(collumn, row, side), animationPath, portraitPath, scale, side);
     m_characters.push_back(character);

@@ -37,16 +37,14 @@ CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_Match_St
     -- print("p2FormationInfo " .. p2FormationInfo)
 
     for k,v in pairs(p1FormationInfo) do
-        for k2,v2 in pairs(p1FormationInfo[k]) do
-            CombatField_instance:addCharacter(p1FormationInfo[k].colPos, 
+        CombatField_instance:addCharacter(p1FormationInfo[k].colPos, 
         p1FormationInfo[k].rowPos, 1, AnimationPathMap[p1FormationInfo[k].characterId],"" )
-        end
+
     end
     for k ,v in pairs(p2FormationInfo) do
-        for k2,v2 in pairs(p2FormationInfo[k]) do
-            CombatField_instance:addCharacter(p2FormationInfo[k].colPos, 
+        CombatField_instance:addCharacter(p2FormationInfo[k].colPos, 
         p2FormationInfo[k].rowPos, 2, AnimationPathMap[p2FormationInfo[k].characterId],"" )
-        end
+
     end
 
 

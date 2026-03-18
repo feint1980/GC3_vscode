@@ -42,8 +42,8 @@ void CombatCharacter::init(CSlot * slot, const std::string & animationPath,const
 
 void CombatCharacter::draw(Feintgine::SpriteBatch & spriteBatch)
 {
-    m_animation.setPos(m_pos + glm::vec2(0.0f, m_yOffset));
-    m_animation.draw(spriteBatch);
+    // m_animation.setPos(m_pos + glm::vec2(0.0f, m_yOffset));
+    // m_animation.draw(spriteBatch);
 }
 
 void CombatCharacter::update(float deltaTime)
