@@ -1,6 +1,15 @@
 package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;'
 
 
+AnimationPathMap = {
+
+    ["S_Reimu"] = "./Assets/F_AObjects/reimu_tb.xml",
+    ["S_Meiling"] = "./Assets/F_AObjects/meiling_tb.xml",
+    ["S_Yukari"] = "./Assets/F_AObjects/yukari_tb.xml",
+    ["S_Patchouli"] = "./Assets/F_AObjects/patchouli_tb.xml",
+
+}
+
 CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_Match_Start] = function(host,data,guid)
 
     print("Combat_Match_Start detected from " .. guid)
@@ -14,5 +23,37 @@ CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_Match_St
     print("p2Id " .. p2Id)
     print("p1Formation " .. p1Formation)
     print("p2Formation " .. p2Formation)
+
+    local p1FormationInfo, pos, err = JSON_Decode(p1Formation)
+    if err then
+        print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_Match_Start]  JSON decode error:", err)
+    end
+    local p2FormationInfo, pos, err = JSON_Decode(p2Formation)
+    if err then
+        print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_Match_Start]  JSON decode error:", err)
+    end
+
+    -- print("p1FormationInfo " .. p1FormationInfo.stats)
+    -- print("p2FormationInfo " .. p2FormationInfo)
+
+    for k,v in pairs(p1FormationInfo) do
+        for k2,v2 in pairs(p1FormationInfo[k]) do
+            CombatField_instance:addCharacter(p1FormationInfo[k].colPos, 
+        p1FormationInfo[k].rowPos, 1, AnimationPathMap[p1FormationInfo[k].characterId],"" )
+        end
+    end
+    for k ,v in pairs(p2FormationInfo) do
+        for k2,v2 in pairs(p2FormationInfo[k]) do
+            CombatField_instance:addCharacter(p2FormationInfo[k].colPos, 
+        p2FormationInfo[k].rowPos, 2, AnimationPathMap[p2FormationInfo[k].characterId],"" )
+        end
+    end
+
+
+
+    -- CombatField_instance:addCharacter
+
+
+    CombatScene_SetSceneReady()
 
 end

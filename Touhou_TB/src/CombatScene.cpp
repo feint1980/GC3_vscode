@@ -1,5 +1,24 @@
 #include "CombatScene.h"
 
+int lua_combat_sceneReady(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_combat_sceneReady) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        CombatScene * host = (CombatScene *)lua_touserdata(L, 1);
+        bool val = lua_toboolean(L, 2);
+        host->setSceneReady(val);
+    }
+    return 0;
+}
+
+//
+
+
 CombatScene::CombatScene()
 {
 
@@ -16,7 +35,7 @@ CombatScene::CombatScene(Feintgine::Window * window)
     m_alpha = 0.0f;
     m_window = window;
     m_screenIndex = 3;
-    // initShader();
+    initShader();
 }
 
 
@@ -73,7 +92,8 @@ void CombatScene::onEntry()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     std::cout << "now init lua components\n";
     initGUI();
-    glViewport(0, 0, 1366, 768);
+    // glViewport(0, 0, 1366, 768);
+    glViewport(0, 0, m_window->getScreenWidth(), m_window->getScreenHeight());
 
 }
 
@@ -96,6 +116,13 @@ void CombatScene::initGUI()
         m_controlHandler->init(m_script,m_window->getWindow(),m_guiScriptingManager);
 
         InfoHolder::getInstance()->initLuaInterface(m_script);
+
+        if(!m_combatField)
+        {
+            m_combatField = new CombatField();
+        }
+
+        m_combatField->init("../../Lua/TouhouTB/Combat/combatField.lua",m_script);
 
         unsigned int port = 1123;
         if(!m_clientScriptingManager)
@@ -122,6 +149,13 @@ void CombatScene::initGUI()
     {
         std::cout << "Run script CombatScene.lua OK \n";
     }
+    // 
+
+    lua_register(m_script, "cpp_combat_sceneReady", lua_combat_sceneReady);
+
+
+
+    // declare network function here
     m_clientScriptingManager->setCommonHandlingLuaFunction("Combat_RecieveData");
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"CombatHandlerWrapResponse");
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"CombatHandlerBattleResponse");
@@ -136,8 +170,10 @@ void CombatScene::initGUI()
         lua_pushlightuserdata(m_script, m_clientCharacterHandler);
         lua_pushlightuserdata(m_script, &m_skillHandler);
         lua_pushlightuserdata(m_script, m_controlHandler);
+        lua_pushlightuserdata(m_script, m_combatField);
+        
         std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-        const int argc = 6;
+        const int argc = 7;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
@@ -149,6 +185,11 @@ void CombatScene::initGUI()
 void CombatScene::onExit()
 {
     // on exit
+}
+
+void CombatScene::setSceneReady(bool value)
+{
+    m_isSceneReady = value;
 }
 
 void CombatScene::update(float deltaTime)
@@ -190,7 +231,14 @@ void CombatScene::draw()
 	glUniformMatrix4fv(pUniform, 1, GL_FALSE, &projectionMatrix[0][0]);
 
 	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
-    m_bg.draw(m_spriteBatch);
+    if(!m_isSceneReady)
+    {
+        m_bg.draw(m_spriteBatch);
+    }
+    else
+    {
+        m_combatField->draw(m_spriteBatch);
+    }
     
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();

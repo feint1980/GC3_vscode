@@ -119,7 +119,7 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
         Arena_UpdateLobbies(serverList) -- update afterward
     end
     ,
-    50)
+    10)
 end
 
 ---Arena_CreateLobby_Request 

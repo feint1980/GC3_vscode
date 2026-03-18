@@ -452,9 +452,9 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
         LOG_COOKED("K286","BattleLobbiesHandler:Request_ClientOwnedCharacters_From_MainServer lobby " .. lobbyID .. " does not exist")
         return
     end
-    if BattleLobby_List[lobbyID].formation_Map[tID] == nil then 
-        LOG_COOKED("K287","BattleLobbiesHandler:Request_ClientOwnedCharacters_From_MainServer player " .. tID .. " does not exist in lobby " .. lobbyID)
-    end
+    -- if BattleLobby_List[lobbyID].formation_Map[tID] == nil then 
+    --     LOG_COOKED("K287","BattleLobbiesHandler:Request_ClientOwnedCharacters_From_MainServer player " .. tID .. " does not exist in lobby " .. lobbyID)
+    -- end
     
     --- request the formation from main server only when owned character get
     Request_Formation_From_MainServer(host, tGUID, tID)

@@ -13,6 +13,7 @@ require "clientGlobal"
 
 -- require "lobbyFormationSelector"
 require "Prompt"
+-- require "combatField"
 
 CombatSceneHost = nil
 
@@ -28,11 +29,13 @@ Combat_ClientCharacterHandlerPtr = nil
 ---@type pointer ControlHandlerPtr
 Combat_ControlHandlerPtr = nil
 
---@type pointer SkillHandler
+---@type pointer SkillHandler
 Combat_SkillHandlerPtr = nil
 
+---@type pointer CombatField instance
+CombatField_instance = nil
 
-function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
+function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr, CombatFieldPtr)
 
     print("CombatSceneInit called")
     CombatSceneHost = host
@@ -41,8 +44,8 @@ function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacte
     Combat_ClientCharacterHandlerPtr = ClientCharacterHandlerPtr
     Combat_SkillHandlerPtr = SkillHandlerPtr
     Combat_ControlHandlerPtr = ControlHandlerPtr
-
-
+    CombatField_instance = CombatField:new()
+    CombatField_instance:init(CombatFieldPtr,3,3)
 
     -- SetBattleSer
     print("loading data ...")
@@ -50,7 +53,6 @@ function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacte
     print("battle server GUID " .. battleServerGUID)
     -- get the battle server GUID to send 
     cppSelecBattleServer(Combat_ClientScriptingPtr, battleServerGUID)
-
 
     local tGUID = InfoHolder_getStrVal("MainInfo.guid")
     local tID = InfoHolder_getStrVal("MainInfo.id")
@@ -85,3 +87,7 @@ function Combat_HandlePacket(host, packet, RakNetPacket)
     end
 end
 
+function CombatScene_SetSceneReady()
+    print("CombatScene_SetSceneReady called")
+    cpp_combat_sceneReady(CombatSceneHost,true)
+end

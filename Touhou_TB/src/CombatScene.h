@@ -42,6 +42,9 @@
 #include "ControlHandler.h"
 #include <LuaTaskManager.h>
 
+
+#include "CombatField.h"
+
 class CombatScene : public Feintgine::IGameScreen 
 {
 
@@ -76,6 +79,8 @@ public:
     void initGUI();
 
     void initShader();
+
+    void setSceneReady(bool value);
 
     private:
 
@@ -124,5 +129,8 @@ public:
 
     bool isInitialized = false;
 
+    CombatField * m_combatField = nullptr;
+
+    bool m_isSceneReady = false;
 
 };

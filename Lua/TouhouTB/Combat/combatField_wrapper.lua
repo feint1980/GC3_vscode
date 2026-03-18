@@ -1,0 +1,13 @@
+
+---@Description wrapper of cpp_CombatFiled_AddSlot
+---@param host pointer instace CombatField
+---@param col number
+---@param row number
+---@param side number
+function CF_AddSlot(host,col,row,side)
+    cpp_CombatFiled_AddSlot(host,col,row,side)
+end
+
+function CF_AddCharacter(host, col, row, side, animationPath, portraitPath)
+    cpp_CombatFiled_AddCharacter(host, col, row, side, animationPath, portraitPath)
+end

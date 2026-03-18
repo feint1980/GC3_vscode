@@ -11,6 +11,36 @@
 
 #include "LuaManager.h"
 
+#include "CSlot.h"
+#include "CombatCharacter.h"
+
+enum SlotPos
+{
+    // Left
+    LeftRearTop,
+    LeftCenterTop,
+    LeftFrontTop,
+    LeftRearMid,
+    LeftCenterMid,
+    LeftFrontMid,
+    LeftRearBot,
+    LeftCenterBot,
+    LeftFrontBot,
+    // Right
+    RightRearTop,
+    RightCenterTop,
+    RightFrontTop,
+    RightRearMid,
+    RightCenterMid,
+    RightFrontMid,
+    RightRearBot,
+    RightCenterBot,
+    RightFrontBot
+};
+
+#define FIELD_SIDE_LEFT 1
+#define FIELD_SIDE_RIGHT 2
+
 class CombatField
 {
 public:
@@ -19,13 +49,35 @@ public:
 
     void init(const std::string & scriptPath, lua_State * script);
 
+    void initSlots(int collumns, int rows);
+
     void draw(Feintgine::SpriteBatch & spriteBatch);
 
     void update(float deltaTime);
 
+    void addSlot(int collumn, int row, int side);
+
+    CSlot * getSlot(int collumn, int row, int side);
+
+    CSlot * getSlot(SlotPos pos);
+
+    void addCharacter(int collumn, int row, int side, const std::string & animationPath, const std::string & portraitPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
+
+
 private:
 
     lua_State * m_script = nullptr;
+
+    std::vector<CSlot> m_slots;
+
+    std::unordered_map<glm::ivec3, int> m_slotIndexMap;
+
+    std::unordered_map<int, glm::ivec3> m_enumToIndecies; 
+
+
+    // std::vector<CombatCharacter> m_characters;
+
+    EmptyObject m_bg;
 
 };
 

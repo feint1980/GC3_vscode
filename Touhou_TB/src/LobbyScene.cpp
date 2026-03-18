@@ -150,7 +150,8 @@ void LobbyScene::onEntry()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     std::cout << "now init lua components\n";
     initGUI();
-    glViewport(0, 0, 1366, 768);
+    // glViewport(0, 0, 1366, 768);
+    glViewport(0, 0, m_window->getScreenWidth(), m_window->getScreenHeight());
 
 }
 

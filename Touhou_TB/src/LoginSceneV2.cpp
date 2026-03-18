@@ -111,6 +111,7 @@ void LoginSceneV2::onEntry()
     else{
         std::cout << "no SDL_HasScreenKeyboardSupport ##################\n";
     }
+    glViewport(0, 0, m_window->getScreenWidth(), m_window->getScreenHeight());
 }
 
 void LoginSceneV2::build()
