@@ -32,8 +32,8 @@ BS_Character = {
     userID                  = "",
     id                      = "",
     slotIndex               = 0,
-    rowPos                  = 0,
-    colPos                  = 0,
+    colPos                  = 0, -- X
+    rowPos                  = 0, -- Y
     stats                   = nil,
     cHp                     = 0,    -- current HP
     cMana                   = 0,    -- current Mana
@@ -64,13 +64,13 @@ function BS_Character:getPos()
     return self.colPos ,  self.rowPos
 end
 
-function BS_Character:init(userID, tId, tSlotIndex, tRowPos, tColPos)
+function BS_Character:init(userID, tId, tSlotIndex, tColPos, tRowPos)
     self.userID    = userID
     self.id        = tId
     self.slotIndex = tSlotIndex
-    self.rowPos    = tRowPos
     self.colPos    = tColPos
-
+    self.rowPos    = tRowPos
+    
     print("BS_Character init: " .. userID .. " | " .. tId)
 
     ClientOwnedCharacters = _G.ClientOwnedCharacters    

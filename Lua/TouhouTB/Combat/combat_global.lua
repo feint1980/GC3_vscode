@@ -8,6 +8,8 @@ CombatMessageHandling = {}
 
 CombatBattleHandling = {}
 
+
+
 for k,v in pairs(PacketChannel) do
     -- print(k,v)
     CombatMessageHandling[v] = {}

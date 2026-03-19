@@ -47,7 +47,7 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
 
         queryResult.formation[t_index].subData = {}
 
-        local formationDataQuery = "SELECT " .. Table.formation_info.character_id .. ", " .. Table.formation_info.slot_index .. ", " .. Table.formation_info.row_pos .. ", " .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.account_id .. " = ? AND " .. Table.formation_info.formation_index .. " = ?;"
+        local formationDataQuery = "SELECT " .. Table.formation_info.character_id .. ", " .. Table.formation_info.slot_index .. ", " .. Table.formation_info.col_pos .. ", " .. Table.formation_info.row_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.account_id .. " = ? AND " .. Table.formation_info.formation_index .. " = ?;"
 
         local tFormationDataQueryResult = SVI_DoQuerySTMT(host,formationDataQuery,{t_accountID,t_index})
         -- local FormationDataQueryResult = Table_DeepCopy(Query_val)
@@ -56,8 +56,8 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
             --1 (j) formation id
             --2 (j+1) character id
             --3 (j+2) slot index
-            --4 (j+3) row pos
-            --5 (j+4) col pos
+            --4 (j+3) col pos
+            --5 (j+4) row pos
             if(SVI_checkData{tFormationDataQueryResult[j],tFormationDataQueryResult[j+1],tFormationDataQueryResult[j+2],tFormationDataQueryResult[j+3]} == false) then
                 print("data check failed")
                 return
@@ -70,8 +70,8 @@ MessageHandling[PacketChannel.FormationChannel][ FormationResponse.Formation_Req
             local key = tFormationDataQueryResult[j]
             queryResult.formation[t_index].subData[key] = {}
             queryResult.formation[t_index].subData[key].slotIndex =  tFormationDataQueryResult[j + 1]
-            queryResult.formation[t_index].subData[key].rowPos =  tFormationDataQueryResult[j+2]
-            queryResult.formation[t_index].subData[key].colPos =  tFormationDataQueryResult[j+3]
+            queryResult.formation[t_index].subData[key].colPos =  tFormationDataQueryResult[j+2]
+            queryResult.formation[t_index].subData[key].rowPos =  tFormationDataQueryResult[j+3]
         end
     end
 
@@ -206,12 +206,12 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info
 
     local result = {}
 
-    for name, index, row, col in infoData:gmatch("([^@]+)@(%d+)@(%d+)@(%d+)@") do
+    for name, index, col, row in infoData:gmatch("([^@]+)@(%d+)@(%d+)@(%d+)@") do
         table.insert(result, {
             name = name,
             index = tonumber(index),
-            row = tonumber(row),
-            col = tonumber(col)
+            col = tonumber(col),
+            row = tonumber(row)
         })
     end
 
@@ -228,7 +228,7 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info
     SVI_DoQuerySTMT(host, "DELETE FROM formation_info_table WHERE account_id = ? AND formation_index = ? AND slot_index >= ?;",{t_id,formationIndex,infoSize })
 
     local upsertFormationSQL  =
-    "INSERT INTO formation_info_table (account_id,formation_index, character_id, slot_index, row_pos, col_pos) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(account_id, formation_index, slot_index) DO UPDATE SET character_id = excluded.character_id, row_pos = excluded.row_pos, col_pos = excluded.col_pos;"
+    "INSERT INTO formation_info_table (account_id,formation_index, character_id, slot_index, col_pos, row_pos) VALUES (?, ?, ?, ?, ?, ?) ON CONFLICT(account_id, formation_index, slot_index) DO UPDATE SET character_id = excluded.character_id,  col_pos = excluded.col_pos,row_pos = excluded.row_pos;"
 
     -- print("before insert ...")
     -- Insert or update each slot
@@ -238,8 +238,8 @@ MessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Info
             formationIndex,
             entry.name,  -- character_id
             entry.index, -- slot_index
-            entry.row,   -- row_pos
-            entry.col-- col_pos
+            entry.col,-- col_pos
+            entry.row   -- row_pos
         })
         -- print("insert account_id " .. t_id)
         -- print("insert formation_index " .. formationIndex )

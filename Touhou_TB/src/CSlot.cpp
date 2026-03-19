@@ -10,9 +10,9 @@ CSlot::~CSlot()
 
 }
 
-CSlot::CSlot(const std::string & texturePath, int row, int colum, int side)
+CSlot::CSlot(const std::string & texturePath, int colum, int row, int side)
 {
-    init(texturePath, row, colum, side);
+    init(texturePath, colum, row, side);
 }
 
 
@@ -26,9 +26,9 @@ void CSlot::update(float deltaTime)
 
 }
 
-void CSlot::init(const std::string & texturePath, int row, int colum, int side)
+void CSlot::init(const std::string & texturePath, int colum, int row, int side)
 {
-    m_index = glm::ivec2(row, colum);
+    m_index = glm::ivec2( colum,row);
     m_side = side;
 
     float xFactor = 150;
@@ -41,7 +41,14 @@ void CSlot::init(const std::string & texturePath, int row, int colum, int side)
     m_actualPos = glm::vec2(m_index.x * xFactor, m_index.y * yFactor);
     m_actualPos.y += 100; // up
 
+
+
+
     m_circle.init(Feintgine::ResourceManager::getTexture(texturePath), 
-    m_actualPos, glm::vec2(120, 40), Feintgine::Color(255, 255, 0, 255));
+    m_actualPos, glm::vec2(120, 40), Feintgine::Color((colum -1 ) * (255/2), (row -1 ) * (255/2), 0, 255));
+
+
+    // std::cout << "Slot : " << colum << " | " << row <<  "\n";
+    // std::cout << "Pos  :" << m_actualPos.x << " | " << m_actualPos.y << "\n";
 }
 

@@ -123,11 +123,13 @@ end
 CommonPacketHandling[ID_UNCONNECTED_PING] = function(host,packet)
     print("ID_UNCONNECTED_PING get")
     cpp_sendBackPong(host,packet)
+    BattleLobby_Notify_LobbiesStates(host)
 end
 
 CommonPacketHandling[ID_NEW_INCOMING_CONNECTION] = function(host,packet)
     print("ID_NEW_INCOMING_CONNECTION get")
     BM_handleIncomingConnection(host,packet)
+    BattleLobby_Notify_LobbiesStates(host)
 end
 
 

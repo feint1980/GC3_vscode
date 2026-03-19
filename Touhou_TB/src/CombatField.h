@@ -13,7 +13,7 @@
 
 #include "CSlot.h"
 #include "CombatCharacter.h"
-
+#include "InfoHolder.h"
 enum SlotPos
 {
     // Left
@@ -57,8 +57,6 @@ struct TupleHash {
 };
 
 
-
-
 class CombatField
 {
 public:
@@ -79,7 +77,7 @@ public:
 
     CSlot * getSlot(SlotPos pos);
 
-    void addCharacter(int collumn, int row, int side, const std::string & animationPath, const std::string & portraitPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
+    void addCharacter(int collumn, int row, int side, const std::string & characterID, const std::string & portraitPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
 
 
 private:
@@ -90,14 +88,14 @@ private:
 
     // std::unordered_map<glm::ivec3, int> m_slotIndexMap;
 
-
     std::unordered_map<std::tuple<int, int, int>, int, TupleHash> m_slotIndexMap;
     // std::unordered_map<glm::ivec3 , int> m_slotIndexMap;
 
     std::unordered_map<int, glm::ivec3> m_enumToIndecies; 
 
 
-    std::vector<CombatCharacter> m_characters;
+    std::vector<CombatCharacter *> m_characters;
+
 
     EmptyObject m_bg;
 

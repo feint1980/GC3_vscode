@@ -35,6 +35,19 @@ public:
 			return m_inforHolder;
     }
 
+    InfoHolder() 
+    { 
+        m_characterAnimationPath["S_Reimu"] = "./Assets/F_AObjects/reimu_tb.xml";
+        m_characterAnimationPath["S_Meiling"] = "./Assets/F_AObjects/meiling_tb.xml";
+        m_characterAnimationPath["S_Yukari"] = "./Assets/F_AObjects/yukari_tb.xml";
+        m_characterAnimationPath["S_Patchouli"] = "./Assets/F_AObjects/patchouli_tb.xml";
+
+    }
+    ~InfoHolder()
+    {
+
+    }
+
     void registerClient(RakNet::RakPeerInterface * client)
     {
     
@@ -59,6 +72,11 @@ public:
         data.push_back(m_guid);
     }
 
+    std::string getCharacterAnimationPath(const std::string & id)
+    {
+
+        return m_characterAnimationPath[id];
+    }
     RakNet::RakPeerInterface * getClient() { 
         
         // std::cout << "get client " << m_client << "\n";
@@ -158,6 +176,8 @@ private:
     std::unordered_map<std::string, std::string > m_savedStrValue;
     std::unordered_map<std::string, double> m_savedNumberValue;
     std::unordered_map<std::string, void*> m_savedPointerValue;
+
+    std::unordered_map<std::string, std::string > m_characterAnimationPath;
 
 
 };

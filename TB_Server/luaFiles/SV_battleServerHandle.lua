@@ -159,7 +159,7 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
         queriedFormations[index] = {}
         queriedFormations[index].name = name
 
-        local formationDataQuery = "SELECT " .. Table.formation_info.character_id .. "," .. Table.formation_info.slot_index .. "," .. Table.formation_info.row_pos .. "," .. Table.formation_info.col_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.account_id .. " = ? AND " .. Table.formation_info.formation_index .. " = ?;"
+        local formationDataQuery = "SELECT " .. Table.formation_info.character_id .. "," .. Table.formation_info.slot_index .. "," .. Table.formation_info.col_pos .. "," .. Table.formation_info.row_pos .. " FROM " .. Table.formation_info.tb_name .. " WHERE " .. Table.formation_info.account_id .. " = ? AND " .. Table.formation_info.formation_index .. " = ?;"
 
         local formationDataQueryResult = SVI_DoQuerySTMT(host,formationDataQuery,{targetID,index})
 
@@ -169,8 +169,8 @@ BattleServerHandling[BattleChanel.ClientData][ClientDataResponse.ClientData_Requ
             local tFormationData = {}
             tFormationData.character_id = formationDataQueryResult[j]
             tFormationData.slot_index = formationDataQueryResult[j+1]
-            tFormationData.row_pos = formationDataQueryResult[j+2]
-            tFormationData.col_pos = formationDataQueryResult[j+3]
+            tFormationData.col_pos = formationDataQueryResult[j+2]
+            tFormationData.row_pos = formationDataQueryResult[j+3]
             -- queriedFormations[index].formationData[ formationDataQueryResult[j+1]] = tFormationData
 
             table.insert(queriedFormations[index].formationData,tFormationData)

@@ -59,6 +59,9 @@ LobbyScene_selectedFormation = 0
 Target_Lobby_ID = ""
 Target_BattleServer_GUID = ""
 
+---@type pointer CombatField instance
+CombatField_instance = nil
+
 ---- Global variables section end ---- 
 
 ---

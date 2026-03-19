@@ -203,6 +203,10 @@ void CombatScene::update(float deltaTime)
         m_guiScriptingManager->update(deltaTime);
     }
     m_luaTaskManager.update(deltaTime);
+    if(m_combatField)
+    {
+        m_combatField->update(deltaTime);
+    }
 }
 
 

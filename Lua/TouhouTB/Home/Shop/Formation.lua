@@ -331,7 +331,7 @@ function Formation_SelectCharacter(characterID)
     if Formation_Edit_Instance:hasSelected() then
         local selected = Formation_Edit_Instance:getSelected()
         if selected ~= nil then
-            _G.Formation_Edit_Instance:updateList(characterID,selected.row,selected.col)
+            _G.Formation_Edit_Instance:updateList(characterID,selected.col,selected.row)
             -- selected:setCharacterID(characterID)
         end
     end

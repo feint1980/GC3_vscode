@@ -60,12 +60,12 @@ function Formation_Edit:init(host,parentPanel)
         self.formationSlot[i] = {}
         for j = 1, 3 do
             self.formationSlot[i][j] = Formation_Slot:new()
-            self.formationSlot[i][j]:init(host,self.mainPanel.ptr,sizeX / 3 * (j - 1) + (picSize *0.9), -- x pos
-            ((picSize * (i - 1)) + 10) + picSize * 0.5 , -- y pos
+            self.formationSlot[i][j]:init(host,self.mainPanel.ptr,sizeX / 3 * (3 - i) + (picSize *0.9), -- x pos
+            ((picSize * (j - 1)) + 10) + picSize * 0.5 , -- y pos
             picSize, -- width
             picSize, -- height
             "./Assets/TB_GUI/slide/plus.png", -- picture path
-            i,j)
+            i,j) 
             
         end
     end
@@ -150,8 +150,8 @@ function Formation_Edit:getSelected()
     return nil
 end
 
-function Formation_Edit:updateList(characterID, row,col)
-    print("updateList called " .. row .. " " .. col .. " value " .. characterID)
+function Formation_Edit:updateList(characterID, col,row)
+    print("updateList called " .. col .. " " .. row .. " value " .. characterID)
     --- reposition
     for i = 1, 3 do
         for j = 1, 3 do
@@ -171,7 +171,7 @@ function Formation_Edit:updateList(characterID, row,col)
     --     Prompt_UI_Table["Formation_Noti"]:show(true)
     --     return
     -- end
-    self.formationSlot[row][col]:setCharacterID(characterID)
+    self.formationSlot[col][row]:setCharacterID(characterID)
 end
 
 function Formation_Edit:loadFormation(formationCharacters)
@@ -187,7 +187,7 @@ function Formation_Edit:loadFormation(formationCharacters)
     self.formationCharacters = {}
 
     for k,v in pairs(formationCharacters) do
-        self.formationSlot[tonumber(v.row)][tonumber(v.col)]:setCharacterID(v.characterID)
+        self.formationSlot[tonumber(v.col)][tonumber(v.row)]:setCharacterID(v.characterID)
     end
     -- print("loaded ")
 end

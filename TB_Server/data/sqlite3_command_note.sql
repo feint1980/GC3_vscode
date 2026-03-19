@@ -33,22 +33,22 @@ CREATE TABLE account_stats_table (
 );
 INSERT INTO account_stats_table VALUES('feint',500.0,250.0,4);
 INSERT INTO account_stats_table VALUES('belai101',100.0,150.0,4);
-INSERT INTO account_stats_table VALUES('huyen12',172.0,160.0,4);
+INSERT INTO account_stats_table VALUES('huyen12',172.0,0.0,4);
 INSERT INTO account_stats_table VALUES('feint',500.0,250.0,4);
 INSERT INTO account_stats_table VALUES('belai101',100.0,150.0,4);
-INSERT INTO account_stats_table VALUES('huyen12',172.0,160.0,4);
-INSERT INTO account_stats_table VALUES('huyen13',100.0,160.0,0);
+INSERT INTO account_stats_table VALUES('huyen12',172.0,0.0,4);
+INSERT INTO account_stats_table VALUES('huyen13',100.0,0.0,0);
 INSERT INTO account_stats_table VALUES('belai102',100.0,150.0,0);
 CREATE TABLE character_base_table (
     character_id VARCHAR(128) PRIMARY KEY, 
     character_name VARCHAR(128) NOT NULL,
     stats TEXT
 );
-INSERT INTO character_base_table VALUES('S_Reimu','Hakurei Reimu',replace('{\n    "ID": "S_Reimu",\n    "accurate": 0.8500000238418579,\n    "accurateScale": 0.03099999949336052,\n    "action": 0.0,\n    "agility": 10.0,\n    "animationPath": "./Assets/F_AObjects/reimu_tb.xml",\n    "critChance": 0.02500000037252903,\n    "deathDoorSurviveChance": 0.2800000011920929,\n    "dexterity": 11.0,\n    "evadeChance": 0.18000000715255737,\n    "evadeChanceScale": 0.023000000044703484,\n    "hp": 80.0,\n    "hpScale": 8.0,\n    "intelligence": 8.0,\n    "lastName": "Hakurei",\n    "level": 1,\n    "magicDef": 6.800000190734863,\n    "magicDefScale": 0.44999998807907104,\n    "magicDmg": 12.0,\n    "magicDmgScale": 1.2000000476837158,\n    "mana": 120.0,\n    "manaScale": 9.0,\n    "name": "Reimu",\n    "panelPath": "./Assets/TB_GUI/panels/reimu_panel.png",\n    "physicDef": 6.0,\n    "physicDefScale": 0.5,\n    "physicDmg": 14.0,\n    "physicDmgScale": 1.5,\n    "portraitPath": "./Assets/TB_GUI/faces/Reimu_face.png",\n    "price": 40,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 7.0,\n    "title": "Hakurei Miko",\n    "vitality": 6.0,\n    "wisdom": 8.0,\n    "xp": 0\n}','\n',char(10)));
+INSERT INTO character_base_table VALUES('S_Reimu','Hakurei Reimu',replace('{\n    "ID": "S_Reimu",\n    "accurate": 0.800000011920929,\n    "accurateScale": 0.03099999949336052,\n    "action": 0.0,\n    "agility": 10.0,\n    "animationPath": "./Assets/F_AObjects/reimu_tb.xml",\n    "critChance": 0.15000000596046448,\n    "deathDoorSurviveChance": 0.2800000011920929,\n    "dexterity": 11.0,\n    "evadeChance": 0.20000000298023224,\n    "evadeChanceScale": 0.02500000037252903,\n    "hp": 140.0,\n    "hpScale": 9.0,\n    "intelligence": 8.0,\n    "lastName": "Hakurei",\n    "level": 1,\n    "magicDef": 11.0,\n    "magicDefScale": 0.6000000238418579,\n    "magicDmg": 10.0,\n    "magicDmgScale": 1.2999999523162842,\n    "mana": 150.0,\n    "manaScale": 9.0,\n    "name": "Reimu",\n    "panelPath": "./Assets/TB_GUI/panels/reimu_panel.png",\n    "physicDef": 14.0,\n    "physicDefScale": 0.800000011920929,\n    "physicDmg": 11.0,\n    "physicDmgScale": 1.5,\n    "portraitPath": "./Assets/TB_GUI/faces/Reimu_face.png",\n    "price": 40,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 7.0,\n    "title": "Hakurei Miko",\n    "vitality": 6.0,\n    "wisdom": 8.0,\n    "xp": 0\n}','\n',char(10)));
 INSERT INTO character_base_table VALUES('S_Marisa','Kirisame Marisa','');
-INSERT INTO character_base_table VALUES('S_Yukari','Yakumo Yukari',replace('{\n    "ID": "S_Yukari",\n    "accurate": 0.8500000238418579,\n    "accurateScale": 0.03099999949336052,\n    "action": 0.0,\n    "agility": 5.0,\n    "animationPath": "./Assets/F_AObjects/yukari_tb.xml",\n    "critChance": 0.02500000037252903,\n    "deathDoorSurviveChance": 0.25999999046325684,\n    "dexterity": 7.0,\n    "evadeChance": 0.12999999523162842,\n    "evadeChanceScale": 0.02500000037252903,\n    "hp": 140.0,\n    "hpScale": 7.0,\n    "intelligence": 13.0,\n    "lastName": "Yakumo",\n    "level": 1,\n    "magicDef": 7.800000190734863,\n    "magicDefScale": 0.75,\n    "magicDmg": 14.0,\n    "magicDmgScale": 2.4000000953674316,\n    "mana": 150.0,\n    "manaScale": 10.0,\n    "name": "Yukari",\n    "panelPath": "./Assets/TB_GUI/panels/yukari_panel.png",\n    "physicDef": 14.0,\n    "physicDefScale": 0.6000000238418579,\n    "physicDmg": 7.0,\n    "physicDmgScale": 1.5,\n    "portraitPath": "./Assets/TB_GUI/faces/Yukari_face.png",\n    "price": 45,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 6.0,\n    "title": "Youkai of Boundaries",\n    "vitality": 10.0,\n    "wisdom": 15.0,\n    "xp": 0\n}','\n',char(10)));
-INSERT INTO character_base_table VALUES('S_Patchouli','Patchouli Knowledge',replace('{\n    "ID": "S_Patchouli",\n    "accurate": 0.800000011920929,\n    "accurateScale": 0.03099999949336052,\n    "action": 0.0,\n    "agility": 6.0,\n    "animationPath": "./Assets/F_AObjects/patchouli_tb.xml",\n    "critChance": 0.02500000037252903,\n    "deathDoorSurviveChance": 0.25,\n    "dexterity": 6.0,\n    "evadeChance": 0.14000000059604645,\n    "evadeChanceScale": 0.02500000037252903,\n    "hp": 30.0,\n    "hpScale": 6.0,\n    "intelligence": 20.0,\n    "lastName": "Knowledge",\n    "level": 1,\n    "magicDef": 7.699999809265137,\n    "magicDefScale": 0.800000011920929,\n    "magicDmg": 17.0,\n    "magicDmgScale": 1.7000000476837158,\n    "mana": 250.0,\n    "manaScale": 12.0,\n    "name": "Patchouli",\n    "panelPath": "./Assets/TB_GUI/panels/patchouli_panel.png",\n    "physicDef": 3.0,\n    "physicDefScale": 0.20000000298023224,\n    "physicDmg": 4.0,\n    "physicDmgScale": 0.5,\n    "portraitPath": "./Assets/TB_GUI/faces/Patchouli_face.png",\n    "price": 40,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 3.0,\n    "title": "Unmoving Library",\n    "vitality": 4.0,\n    "wisdom": 19.0,\n    "xp": 0\n}','\n',char(10)));
-INSERT INTO character_base_table VALUES('S_Meiling','Meiling Hong',replace('{\n    "ID": "S_Meiling",\n    "accurate": 0.8100000023841858,\n    "accurateScale": 0.03200000151991844,\n    "action": 0.0,\n    "agility": 9.0,\n    "animationPath": "./Assets/F_AObjects/meiling_tb.xml",\n    "critChance": 0.02199999988079071,\n    "deathDoorSurviveChance": 0.30000001192092896,\n    "dexterity": 11.0,\n    "evadeChance": 0.12999999523162842,\n    "evadeChanceScale": 0.028999999165534973,\n    "hp": 140.0,\n    "hpScale": 11.0,\n    "intelligence": 4.0,\n    "lastName": "Hong",\n    "level": 1,\n    "magicDef": 3.299999952316284,\n    "magicDefScale": 0.699999988079071,\n    "magicDmg": 8.0,\n    "magicDmgScale": 0.800000011920929,\n    "mana": 70.0,\n    "manaScale": 6.0,\n    "name": "Meiling",\n    "panelPath": "./Assets/TB_GUI/panels/meiling_panel.png",\n    "physicDef": 8.5,\n    "physicDefScale": 1.2000000476837158,\n    "physicDmg": 12.0,\n    "physicDmgScale": 1.7000000476837158,\n    "portraitPath": "./Assets/TB_GUI/faces/Meiling_face.png",\n    "price": 35,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 12.0,\n    "title": "Gatekeeper of Scarlet Devil Mansion",\n    "vitality": 14.0,\n    "wisdom": 5.0,\n    "xp": 0\n}','\n',char(10)));
+INSERT INTO character_base_table VALUES('S_Yukari','Yakumo Yukari',replace('{\n    "ID": "S_Yukari",\n    "accurate": 0.800000011920929,\n    "accurateScale": 0.03099999949336052,\n    "action": 0.0,\n    "agility": 5.0,\n    "animationPath": "./Assets/F_AObjects/yukari_tb.xml",\n    "critChance": 0.15000000596046448,\n    "deathDoorSurviveChance": 0.25999999046325684,\n    "dexterity": 5.0,\n    "evadeChance": 0.20000000298023224,\n    "evadeChanceScale": 0.02500000037252903,\n    "hp": 140.0,\n    "hpScale": 8.0,\n    "intelligence": 11.0,\n    "lastName": "Yakumo",\n    "level": 1,\n    "magicDef": 12.0,\n    "magicDefScale": 0.800000011920929,\n    "magicDmg": 14.0,\n    "magicDmgScale": 1.7000000476837158,\n    "mana": 150.0,\n    "manaScale": 10.0,\n    "name": "Yukari",\n    "panelPath": "./Assets/TB_GUI/panels/yukari_panel.png",\n    "physicDef": 11.0,\n    "physicDefScale": 0.6000000238418579,\n    "physicDmg": 7.0,\n    "physicDmgScale": 1.100000023841858,\n    "portraitPath": "./Assets/TB_GUI/faces/Yukari_face.png",\n    "price": 45,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 6.0,\n    "title": "Youkai of Boundaries",\n    "vitality": 9.0,\n    "wisdom": 14.0,\n    "xp": 0\n}','\n',char(10)));
+INSERT INTO character_base_table VALUES('S_Patchouli','Patchouli Knowledge',replace('{\n    "ID": "S_Patchouli",\n    "accurate": 0.800000011920929,\n    "accurateScale": 0.03099999949336052,\n    "action": 0.0,\n    "agility": 4.0,\n    "animationPath": "./Assets/F_AObjects/patchouli_tb.xml",\n    "critChance": 0.15000000596046448,\n    "deathDoorSurviveChance": 0.25,\n    "dexterity": 5.0,\n    "evadeChance": 0.20000000298023224,\n    "evadeChanceScale": 0.02500000037252903,\n    "hp": 40.0,\n    "hpScale": 6.0,\n    "intelligence": 19.0,\n    "lastName": "Knowledge",\n    "level": 1,\n    "magicDef": 12.0,\n    "magicDefScale": 0.8999999761581421,\n    "magicDmg": 17.0,\n    "magicDmgScale": 2.0999999046325684,\n    "mana": 250.0,\n    "manaScale": 12.0,\n    "name": "Patchouli",\n    "panelPath": "./Assets/TB_GUI/panels/patchouli_panel.png",\n    "physicDef": 3.0,\n    "physicDefScale": 0.5,\n    "physicDmg": 4.0,\n    "physicDmgScale": 0.699999988079071,\n    "portraitPath": "./Assets/TB_GUI/faces/Patchouli_face.png",\n    "price": 40,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 3.0,\n    "title": "Unmoving Library",\n    "vitality": 4.0,\n    "wisdom": 15.0,\n    "xp": 0\n}','\n',char(10)));
+INSERT INTO character_base_table VALUES('S_Meiling','Meiling Hong',replace('{\n    "ID": "S_Meiling",\n    "accurate": 0.800000011920929,\n    "accurateScale": 0.03099999949336052,\n    "action": 0.0,\n    "agility": 10.0,\n    "animationPath": "./Assets/F_AObjects/meiling_tb.xml",\n    "critChance": 0.15000000596046448,\n    "deathDoorSurviveChance": 0.30000001192092896,\n    "dexterity": 12.0,\n    "evadeChance": 0.20000000298023224,\n    "evadeChanceScale": 0.02500000037252903,\n    "hp": 200.0,\n    "hpScale": 11.0,\n    "intelligence": 3.0,\n    "lastName": "Hong",\n    "level": 1,\n    "magicDef": 9.0,\n    "magicDefScale": 0.5,\n    "magicDmg": 7.0,\n    "magicDmgScale": 1.0,\n    "mana": 90.0,\n    "manaScale": 7.0,\n    "name": "Meiling",\n    "panelPath": "./Assets/TB_GUI/panels/meiling_panel.png",\n    "physicDef": 16.0,\n    "physicDefScale": 0.8999999761581421,\n    "physicDmg": 14.0,\n    "physicDmgScale": 1.7999999523162842,\n    "portraitPath": "./Assets/TB_GUI/faces/Meiling_face.png",\n    "price": 35,\n    "side": 1,\n    "sp": 0.0,\n    "spCap": 100.0,\n    "strength": 12.0,\n    "title": "Gatekeeper of Scarlet Devil Mansion",\n    "vitality": 14.0,\n    "wisdom": 3.0,\n    "xp": 0\n}','\n',char(10)));
 CREATE TABLE player_character_table (
     player_character_id INTEGER PRIMARY KEY AUTOINCREMENT,
     account_id          VARCHAR(64) NOT NULL,
@@ -68,7 +68,14 @@ CREATE TABLE player_character_table (
     CONSTRAINT fk_account   FOREIGN KEY (account_id)   REFERENCES account_table(account_id)      ON DELETE CASCADE,
     CONSTRAINT fk_character FOREIGN KEY (character_id) REFERENCES character_base_table(character_id) ON DELETE CASCADE
 );
-
+INSERT INTO player_character_table VALUES(9,'huyen12','S_Meiling',1,0,0,0,0,0,0,0,0);
+INSERT INTO player_character_table VALUES(10,'huyen12','S_Patchouli',1,0,0,0,0,0,0,0,0);
+INSERT INTO player_character_table VALUES(11,'huyen12','S_Reimu',1,0,0,0,0,0,0,0,0);
+INSERT INTO player_character_table VALUES(12,'huyen12','S_Yukari',1,0,0,0,0,0,0,0,0);
+INSERT INTO player_character_table VALUES(13,'huyen13','S_Meiling',1,0,0,0,0,0,0,0,0);
+INSERT INTO player_character_table VALUES(14,'huyen13','S_Reimu',1,0,0,0,0,0,0,0,0);
+INSERT INTO player_character_table VALUES(15,'huyen13','S_Patchouli',1,0,0,0,0,0,0,0,0);
+INSERT INTO player_character_table VALUES(16,'huyen13','S_Yukari',1,0,0,0,0,0,0,0,0);
 CREATE TABLE formation_table (
     formation_id INTEGER PRIMARY KEY AUTOINCREMENT,
     account_id VARCHAR(64) NOT NULL,
@@ -79,14 +86,15 @@ CREATE TABLE formation_table (
         REFERENCES account_table(account_id)
         ON DELETE CASCADE
 );
-
+INSERT INTO formation_table VALUES(18,'huyen12','aweq',2);
+INSERT INTO formation_table VALUES(19,'huyen13','test',2);
 CREATE TABLE formation_info_table(
     account_id VARCHAR(64) NOT NULL,
     formation_index INTEGER NOT NULL,
     character_id VARCHAR(128) NOT NULL,
     slot_index TINYINT NOT NULL,
-    row_pos TINYINT NOT NULL,
     col_pos TINYINT NOT NULL,
+    row_pos TINYINT NOT NULL,
     CONSTRAINT fk_formation FOREIGN KEY (account_id, formation_index)
         REFERENCES formation_table(account_id, formation_index)
         ON DELETE CASCADE,
@@ -95,9 +103,16 @@ CREATE TABLE formation_info_table(
         ON DELETE CASCADE,
     CONSTRAINT uq_formation_character UNIQUE (account_id, formation_index,slot_index)
 );
-
+INSERT INTO formation_info_table VALUES('huyen13',2,'S_Yukari',1,1,2);
+INSERT INTO formation_info_table VALUES('huyen13',2,'S_Patchouli',2,2,1);
+INSERT INTO formation_info_table VALUES('huyen13',2,'S_Reimu',3,2,2);
+INSERT INTO formation_info_table VALUES('huyen12',2,'S_Reimu',1,1,1);
+INSERT INTO formation_info_table VALUES('huyen12',2,'S_Patchouli',2,2,1);
+INSERT INTO formation_info_table VALUES('huyen12',2,'S_Meiling',3,2,3);
+INSERT INTO formation_info_table VALUES('huyen12',2,'S_Yukari',4,3,1);
+INSERT INTO formation_info_table VALUES('huyen13',2,'S_Meiling',4,2,3);
 DELETE FROM sqlite_sequence;
 INSERT INTO sqlite_sequence VALUES('register_key_table',9);
-INSERT INTO sqlite_sequence VALUES('player_character_table',8);
-INSERT INTO sqlite_sequence VALUES('formation_table',17);
+INSERT INTO sqlite_sequence VALUES('player_character_table',16);
+INSERT INTO sqlite_sequence VALUES('formation_table',19);
 COMMIT;

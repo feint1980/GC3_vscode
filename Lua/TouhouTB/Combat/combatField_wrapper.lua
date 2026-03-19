@@ -5,6 +5,7 @@
 ---@param row number
 ---@param side number
 function CF_AddSlot(host,col,row,side)
+    -- print("CF_AddSlot : col = " .. col .. ", row = " .. row .. ", side = " .. side)
     cpp_CombatFiled_AddSlot(host,col,row,side)
 end
 

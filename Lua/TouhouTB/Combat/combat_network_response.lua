@@ -1,14 +1,15 @@
 package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;'
 
+require "clientGlobal"
 
-AnimationPathMap = {
+-- AnimationPathMap = {
 
-    ["S_Reimu"] = "./Assets/F_AObjects/reimu_tb.xml",
-    ["S_Meiling"] = "./Assets/F_AObjects/meiling_tb.xml",
-    ["S_Yukari"] = "./Assets/F_AObjects/yukari_tb.xml",
-    ["S_Patchouli"] = "./Assets/F_AObjects/patchouli_tb.xml",
+--     ["S_Reimu"] = "./Assets/F_AObjects/reimu_tb.xml",
+--     ["S_Meiling"] = "./Assets/F_AObjects/meiling_tb.xml",
+--     ["S_Yukari"] = "./Assets/F_AObjects/yukari_tb.xml",
+--     ["S_Patchouli"] = "./Assets/F_AObjects/patchouli_tb.xml",
 
-}
+-- }
 
 CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_Match_Start] = function(host,data,guid)
 
@@ -21,8 +22,8 @@ CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_Match_St
     print("lobbyID " .. lobbyID)
     print("p1Id " .. p1Id)
     print("p2Id " .. p2Id)
-    print("p1Formation " .. p1Formation)
-    print("p2Formation " .. p2Formation)
+    -- print("p1Formation " .. p1Formation)
+    -- print("p2Formation " .. p2Formation)
 
     local p1FormationInfo, pos, err = JSON_Decode(p1Formation)
     if err then
@@ -38,16 +39,13 @@ CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_Match_St
 
     for k,v in pairs(p1FormationInfo) do
         CombatField_instance:addCharacter(p1FormationInfo[k].colPos, 
-        p1FormationInfo[k].rowPos, 1, AnimationPathMap[p1FormationInfo[k].characterId],"" )
+        p1FormationInfo[k].rowPos, 1, p1FormationInfo[k].characterId,"" )
 
     end
     for k ,v in pairs(p2FormationInfo) do
         CombatField_instance:addCharacter(p2FormationInfo[k].colPos, 
-        p2FormationInfo[k].rowPos, 2, AnimationPathMap[p2FormationInfo[k].characterId],"" )
-
+        p2FormationInfo[k].rowPos, 2, p2FormationInfo[k].characterId,"" )
     end
-
-
 
     -- CombatField_instance:addCharacter
 

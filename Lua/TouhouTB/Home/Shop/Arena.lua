@@ -174,7 +174,7 @@ end
 
 function Arena_Request_ArenaData()
     Arena_RequestBattleServerList()
-    Arena_RequestLobbyList()
+    -- Arena_RequestLobbyList()
 end
 
 function Arena_RequestBattleServerList()

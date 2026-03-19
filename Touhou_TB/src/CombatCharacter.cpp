@@ -3,6 +3,7 @@
 #include "CombatCharacter.h"
 
 
+
 CombatCharacter::CombatCharacter()
 {
 
@@ -29,21 +30,24 @@ void CombatCharacter::init(CSlot * slot, const std::string & animationPath,const
     m_scale = scale;
 
     m_animation.init(animationPath, m_scale);
+    m_animation.playAnimation("idle");
     m_animation.setPos(m_pos);
     m_animation.setScale(m_scale);
     if(m_side == 2)
     {
         m_animation.setInvertAnimation();
     }
-    m_animation.playAnimation("idle");
+
     m_yOffset = m_animation.getDim().y * 0.5f;
 
+    // std::cout << "chracter init with texture " << animationPath << "\n";
+    // std::cout << "curPos" << m_pos.x << " " << m_pos.y << "\n";
 }
 
 void CombatCharacter::draw(Feintgine::SpriteBatch & spriteBatch)
 {
-    // m_animation.setPos(m_pos + glm::vec2(0.0f, m_yOffset));
-    // m_animation.draw(spriteBatch);
+    m_animation.setPos((m_pos + glm::vec2(0.0f, m_yOffset)));
+    m_animation.draw(spriteBatch);
 }
 
 void CombatCharacter::update(float deltaTime)

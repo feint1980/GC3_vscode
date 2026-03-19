@@ -294,8 +294,9 @@ ClientPacketHandling[ClientChannel.Lobby][CLobbyResponse.Lobby_Response_MatchSta
     for i = 1, #ClientFormations[tID][selectedFormationIndex].characters do
         local tCharacterID = ClientFormations[tID][selectedFormationIndex].characters[i].id
         local tSlotIndex = ClientFormations[tID][selectedFormationIndex].characters[i].slotIndex
-        local tRowPos = ClientFormations[tID][selectedFormationIndex].characters[i].rowPos
         local tColPos = ClientFormations[tID][selectedFormationIndex].characters[i].colPos
+        local tRowPos = ClientFormations[tID][selectedFormationIndex].characters[i].rowPos
+        
         print("character id " .. tCharacterID)
         print("character slot index " .. tSlotIndex)
         print("character row pos " .. tRowPos)
@@ -368,15 +369,16 @@ InternalPacketHandling[MainServerChanel.ClientData][ClientDataResponse.ClientDat
             -- print("data " .. i )
             local tSlotIndex = v.formationData[i].slot_index
             local tCharacterID = v.formationData[i].character_id
-            local tRowPos = v.formationData[i].row_pos
             local tColPos = v.formationData[i].col_pos
+            local tRowPos = v.formationData[i].row_pos
+            
             -- print("slot_index " .. v.formationData[i].slot_index)
             -- print("character_id " .. v.formationData[i].character_id)
             -- print("col_pos " .. v.formationData[i].col_pos)
             -- print("row_pos " .. v.formationData[i].row_pos)
 
             local tCharacter = BS_Character:new()
-            tCharacter:init(tID,tCharacterID, tSlotIndex, tRowPos, tColPos)
+            tCharacter:init(tID,tCharacterID, tSlotIndex, tColPos, tRowPos)
             ClientFormations[tID][k]:addCharacter(tCharacter)
 
         end

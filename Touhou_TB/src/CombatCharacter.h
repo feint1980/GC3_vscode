@@ -1,6 +1,7 @@
 #ifndef COMBATCHARACTER_H
 #define COMBATCHARACTER_H
 
+
 #include <F_AnimatedObject.h>
 class Cslot;
 
@@ -27,10 +28,11 @@ private:
     glm::vec2 m_scale;
     float m_yOffset = 0.0f;
 
-    Feintgine::F_AnimatedObject m_animation;
-    EmptyObject * m_portrait = nullptr;
+    std::string m_characterID;
 
-    
+    Feintgine::F_AnimatedObject m_animation;
+    // EmptyObject * m_portrait = nullptr;
+
 };
 
 

@@ -34,7 +34,7 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
         Arena_Ping_List[k]:init(host,k,v.name,v.port,0,v.IP)
 
     end
-
+    Arena_RequestLobbyList()
 end
 
 --- Get the response from main server about the create lobby status

@@ -25,8 +25,9 @@ Formation_Slot = {
     assignedCharacterID = "x",
     picturePath = "",
     defaultPath = "./Assets/TB_GUI/slide/plus.png",
-    row = 0,
-    col = 0
+    col = 0,
+    row = 0
+
 }
 
 function Formation_Slot:new(o)
@@ -44,10 +45,10 @@ end
 ---@param width number
 ---@param height number
 ---@param picturePath string path to the image file
----@param r number row
 ---@param c number collum
+---@param r number row
 function Formation_Slot:init(host, parentPanel, posX,
-    posY, width, height,picturePath,r,c)
+    posY, width, height,picturePath,c,r)
 
     self.parentPanel = parentPanel
     self.mainPanel = Panel:new()
@@ -62,8 +63,8 @@ function Formation_Slot:init(host, parentPanel, posX,
 
     self.mainPanel:setHoverable(0,255,0,255,125,125,125,125)
 
-    self.row = r
     self.col = c
+    self.row = r
 
     self.mainPanel:setOnClickCallback(function()
 

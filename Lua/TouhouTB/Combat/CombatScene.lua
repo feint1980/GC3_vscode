@@ -32,8 +32,7 @@ Combat_ControlHandlerPtr = nil
 ---@type pointer SkillHandler
 Combat_SkillHandlerPtr = nil
 
----@type pointer CombatField instance
-CombatField_instance = nil
+
 
 function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr, CombatFieldPtr)
 

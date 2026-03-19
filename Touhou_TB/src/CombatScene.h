@@ -121,7 +121,7 @@ public:
 
     // LuaEventHandler m_luaEventHandler;
 
-    Feintgine::F_AnimatedObject m_gif;
+    // Feintgine::F_AnimatedObject m_gif;
 
     ControlHandler * m_controlHandler = nullptr;
 
