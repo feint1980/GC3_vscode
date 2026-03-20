@@ -124,8 +124,12 @@ function MergeTable(t1, t2)
     if t2 == nil then return t1 end
     
     local result = {}
-    for k, v in pairs(t1) do result[k] = v end
-    for k, v in pairs(t2) do result[k] = v end
+    for _, v in ipairs(t1) do
+        table.insert(result, v)
+    end
+    for _, v in ipairs(t2) do
+        table.insert(result, v)
+    end
     return result
 end
 
@@ -205,10 +209,6 @@ function BattleLobby:AppendReady(playerID, index)
         end
         self.battleSession:init(self.networkHost, self.id,self.battleClientEP_List[1], self.battleClientEP_List[2], self.leftFormation, self.rightFormation)
 
-
-        -- self.battleSession:start()
-        -- self.battleSession:broadcast(ClientChannel.Combat,CCombatResponse.Combat_Match_Start, {"Match Start", self.battleSession:get})
-        -- self:broadCastToClient(ClientChannel.Combat,CCombatResponse.Combat_Match_Start,{"Match Start"},true )
 
     end
 end

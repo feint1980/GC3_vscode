@@ -121,7 +121,7 @@ function BattleSession:start()
     self.phase = BattlePhase.ROUND_START
 
     -- share both formations with both players
-    self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Match_Start, { self.lobbyId,
+    self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_IngameData, CombatIngameData.Sync , { self.lobbyId,
         self.p1Id,
         self.p2Id,
         self:getFormationJSON(self.p1Formation),
@@ -227,15 +227,25 @@ end
 ---@param channel number   ClientChannel enum
 ---@param request number   CCombatResponse enum
 ---@param data table
-function BattleSession:broadcast(channel, request, data)
+function BattleSession:broadcast(channel, request,type, data)
+
+    local p1Data = {self.p1EP.guid, self.p1EP.id , type, JSON_Encode(data)}
+    local p2Data = {self.p2EP.guid, self.p2EP.id , type, JSON_Encode(data)}
+
+    -- local test = {self.p1EP.guid, self.p1EP.id}
+
+    print("p1Data check")
+    for k,v in pairs(p1Data) do
+        print(k .. " " ..  v)
+    end
 
     BM_sendWrapData(self.host,
         self.p1EP:getIP(), self.p1EP.guid,
-        BattlePacketType.ID_TH_TB_BATTLE, channel, request, MergeTable({self.p1EP.guid, self.p1EP.id}, data))
+        BattlePacketType.ID_TH_TB_BATTLE, channel, request, p1Data)
 
     BM_sendWrapData(self.host,
         self.p2EP:getIP(), self.p2EP.guid,
-        BattlePacketType.ID_TH_TB_BATTLE, channel, request, MergeTable({self.p2EP.guid, self.p2EP.id}, data))
+        BattlePacketType.ID_TH_TB_BATTLE, channel, request, p2Data)
 end
 
 --- Send to one specific player only
@@ -288,9 +298,9 @@ function BattleSession:recalcTurnQueue()
 
     print("[BattleSession] turn queue recalculated")
 
-    self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_TurnQueue_Update, {
-        turnQueue = queueInfo,
-    })
+    -- self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_TurnQueue_Update, {
+    --     turnQueue = queueInfo,
+    -- })
 end
 
 --------------------------------------------------------------------------------
@@ -396,11 +406,11 @@ function BattleSession:handleMove(actionData)
     print(string.format("[BattleSession:handleMove] %s moved to cell %d (row%d col%d)",
         actor.stats.name, targetCell, newRow, newCol))
 
-    self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Move_Result, {
-        characterId = actor.id,
-        ownerId     = actor.userID,
-        targetCell  = targetCell,
-    })
+    -- self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Move_Result, {
+    --     characterId = actor.id,
+    --     ownerId     = actor.userID,
+    --     targetCell  = targetCell,
+    -- })
 
     self:advanceTurn()
 end
@@ -456,14 +466,14 @@ function BattleSession:handleAttack(actionData)
 
     -- broadcast result
     if dmgInfo ~= nil then
-        self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Attack_Result, {
-            attackerId  = actor.id,
-            defenderId  = dmgInfo.defender.id,
-            finalDmg    = dmgInfo.finalDmg,
-            isCrit      = dmgInfo.isCrit,
-            absorbed    = dmgInfo.absorbed,
-            defenderHp  = dmgInfo.defender.cHp,
-        })
+        -- self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Attack_Result, {
+        --     attackerId  = actor.id,
+        --     defenderId  = dmgInfo.defender.id,
+        --     finalDmg    = dmgInfo.finalDmg,
+        --     isCrit      = dmgInfo.isCrit,
+        --     absorbed    = dmgInfo.absorbed,
+        --     defenderHp  = dmgInfo.defender.cHp,
+        -- })
     end
 
     self:advanceTurn()
@@ -516,9 +526,9 @@ function BattleSession:onPlayerDisconnect(playerID)
     print("[BattleSession] player disconnected: " .. playerID)
     local winnerId = (playerID == self.p1Id) and self.p2Id or self.p1Id
 
-    self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Opponent_Disconnect, {
-        disconnectedId = playerID,
-    })
+    -- self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Opponent_Disconnect, {
+    --     disconnectedId = playerID,
+    -- })
 
     BS_BattleEvent.onBattleEnd(self, winnerId)
 end

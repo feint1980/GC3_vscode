@@ -9,6 +9,14 @@ function CF_AddSlot(host,col,row,side)
     cpp_CombatFiled_AddSlot(host,col,row,side)
 end
 
+function CF_GetSlot(host, col, row, side)
+    return cpp_CombatFiled_GetSlot(host, col, row, side)
+end
+
 function CF_AddCharacter(host, col, row, side, animationPath, portraitPath)
-    cpp_CombatFiled_AddCharacter(host, col, row, side, animationPath, portraitPath)
+    return cpp_CombatFiled_AddCharacter(host, col, row, side, animationPath, portraitPath)
+end
+
+function CF_GetCharacter(host, characterID, side)
+    return cpp_CombatFiled_GetCharacter(host, characterID, side)
 end

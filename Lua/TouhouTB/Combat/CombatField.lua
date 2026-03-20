@@ -19,12 +19,28 @@ function CombatField:init(tHost,col,row)
     for s = 1, 2 do
         for i = 1, col do
             for j = 1, row do
-                CF_AddSlot(self.host, i,j,s)
+                self:addSlot( i,j,s)
             end
         end
     end
 end
 
+
+---@Description Add a slot to the combat field
+---@param col number
+---@param row number
+---@param side number
+function CombatField:addSlot(col,row,side)
+    CF_AddSlot(self.host, col, row, side)
+end
+
+---@Description Get a slot from the combat field
+---@param col number
+---@param row number
+---@param side number
+function CombatField:getSlot(col,row,side)
+    return CF_GetSlot(self.host, col, row, side)
+end
 
 ---@Description Add a character to the combat field
 ---@param col number
@@ -36,5 +52,10 @@ function CombatField:addCharacter(col,row,side,animationPath,portraitPath)
     CF_AddCharacter(self.host, col, row, side, animationPath, portraitPath)
 end
 
--- function 
+---@Description Get a character from the combat field
+---@param characterID number
+---@param side number
+function CombatField:getCharacter(characterID,side)
+    return CF_GetCharacter(self.host, characterID, side)
+end
 

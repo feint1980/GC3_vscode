@@ -44,13 +44,14 @@ enum SlotPos
 #include <unordered_map>
 #include <tuple>
 
+// combine hash map, yeah bro, IDK it either.
 struct TupleHash {
     template <typename... T>
     size_t operator()(const std::tuple<T...>& t) const {
         size_t seed = 0;
         std::apply([&seed](const auto&... args) {
             ((seed ^= std::hash<std::decay_t<decltype(args)>>{}(args)
-                      + 0x9e3779b9 + (seed << 6) + (seed >> 2)), ...);
+                    + 0x9e3779b9 + (seed << 6) + (seed >> 2)), ...);
         }, t);
         return seed;
     }
@@ -77,8 +78,9 @@ public:
 
     CSlot * getSlot(SlotPos pos);
 
-    void addCharacter(int collumn, int row, int side, const std::string & characterID, const std::string & portraitPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
+    CombatCharacter * addCharacter(int collumn, int row, int side, const std::string & characterID, const std::string & portraitPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
 
+    CombatCharacter * getCharacter(const std::string & characterID, int side);
 
 private:
 
@@ -94,8 +96,9 @@ private:
     std::unordered_map<int, glm::ivec3> m_enumToIndecies; 
 
 
-    std::vector<CombatCharacter *> m_characters;
+    std::vector<std::shared_ptr<CombatCharacter>> m_characters; // iterate 
 
+    std::unordered_map<std::string, std::shared_ptr<CombatCharacter>> m_charactersMap; // lookup
 
     EmptyObject m_bg;
 
