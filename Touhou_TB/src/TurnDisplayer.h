@@ -4,6 +4,8 @@
 
 #include "CharacterIcon.h"
 
+
+
 class TurnDisplayer
 {
 public:
@@ -12,13 +14,17 @@ public:
 
     void init();
 
-    // void add
+    void addPortrait(const std::string & characterID);
+    
 
 private:
     
     std::vector< std::shared_ptr<CharacterIcon>> m_characters;
     std::unordered_map<std::string, std::shared_ptr<CharacterIcon>> m_charactersMap;
+    glm::vec2 m_pos;
+    glm::vec2 m_defaultDimentions;
 
+    std::unordered_map<std::string, std::string> m_portraitMap;
 };
 
 

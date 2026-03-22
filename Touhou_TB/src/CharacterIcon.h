@@ -3,7 +3,7 @@
 #define CHARACTER_ICON_H
 
 #include "EmptyObject.h"
-
+#include <ResourceManager.h>
 class CharacterIcon
 {
 public:
@@ -14,6 +14,10 @@ public:
 
     void draw(Feintgine::SpriteBatch & spriteBatch);
 
+    void setPos(const glm::vec2 & pos)
+    {
+        m_portrait.setPos(pos);
+    }
 
 private:
     EmptyObject m_portrait ;
