@@ -55,6 +55,12 @@ public:
     
     void setFloatValue(const std::string & key, float value);
 
+    std::string getStringValue(const std::string & key);
+
+    float getFloatValue(const std::string & key);
+
+    void listStats();
+
 private:
 
     CSlot * m_currentSlot = nullptr;

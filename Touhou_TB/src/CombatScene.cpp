@@ -124,6 +124,12 @@ void CombatScene::initGUI()
 
         m_combatField->init("../../Lua/TouhouTB/Combat/combatField.lua",m_script);
 
+        if(!m_turnDisplayer)
+        {
+            m_turnDisplayer = new TurnDisplayer();
+        }
+        m_turnDisplayer->init("../../Lua/TouhouTB/Combat/combat_turndisplayer.lua",m_script);
+
         unsigned int port = 1123;
         if(!m_clientScriptingManager)
         {
@@ -153,8 +159,6 @@ void CombatScene::initGUI()
 
     lua_register(m_script, "cpp_combat_sceneReady", lua_combat_sceneReady);
 
-
-
     // declare network function here
     m_clientScriptingManager->setCommonHandlingLuaFunction("Combat_RecieveData");
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"CombatHandlerWrapResponse");
@@ -171,9 +175,10 @@ void CombatScene::initGUI()
         lua_pushlightuserdata(m_script, &m_skillHandler);
         lua_pushlightuserdata(m_script, m_controlHandler);
         lua_pushlightuserdata(m_script, m_combatField);
+        lua_pushlightuserdata(m_script, m_turnDisplayer);
         
         std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-        const int argc = 7;
+        const int argc = 8;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
@@ -241,7 +246,15 @@ void CombatScene::draw()
     }
     else
     {
-        m_combatField->draw(m_spriteBatch);
+        if(m_combatField)
+        {
+            m_combatField->draw(m_spriteBatch);
+        }
+        
+        if(m_turnDisplayer)
+        {
+            m_turnDisplayer->draw(m_spriteBatch);
+        }
     }
     
 	m_spriteBatch.end();

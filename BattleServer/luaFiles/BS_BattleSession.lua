@@ -107,8 +107,8 @@ function BattleSession:init(host, lobbyId, p1EP, p2EP, leftFormation, rightForma
         .. " p1:" .. self.p1Id .. " p2:" .. self.p2Id)
 
     -- build BS_Char_* instances from raw formation data
-    self.p1Formation = self:buildFormation(self.p1Id, leftFormation)
-    self.p2Formation = self:buildFormation(self.p2Id, rightFormation)
+    self.p1Formation = self:buildFormation(self.p1Id, leftFormation,1)
+    self.p2Formation = self:buildFormation(self.p2Id, rightFormation,2)
 
     -- local tData = JSON_Encode (self:serializeFormation(self.p1Formation),true)
     -- print(tData)
@@ -139,8 +139,9 @@ end
 --- Instantiates BS_Char_* objects from raw formation data sent by client
 ---@param playerID string
 ---@param rawFormation table  { { characterId, cellPosition, stats }, ... }
+---@param side number (1 is left formation, 2 is right formation)
 ---@return table  list of BS_Char_* instances
-function BattleSession:buildFormation(playerID, rawFormation)
+function BattleSession:buildFormation(playerID, rawFormation, side)
     local formation = {}
 
     print("buildFormation called")
@@ -163,7 +164,7 @@ function BattleSession:buildFormation(playerID, rawFormation)
 
         -- local char = tChar
         if tChar ~= nil then
-
+            tChar.side = side
             -- print(tChar:getMaxHP())
             table.insert(formation, tChar)
         else

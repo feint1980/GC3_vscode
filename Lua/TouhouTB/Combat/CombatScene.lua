@@ -33,8 +33,7 @@ Combat_ControlHandlerPtr = nil
 Combat_SkillHandlerPtr = nil
 
 
-
-function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr, CombatFieldPtr)
+function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr, CombatFieldPtr, TurnDisplayerPtr)
 
     print("CombatSceneInit called")
     CombatSceneHost = host
@@ -43,8 +42,12 @@ function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacte
     Combat_ClientCharacterHandlerPtr = ClientCharacterHandlerPtr
     Combat_SkillHandlerPtr = SkillHandlerPtr
     Combat_ControlHandlerPtr = ControlHandlerPtr
+    
     CombatField_instance = CombatField:new()
     CombatField_instance:init(CombatFieldPtr,3,3)
+
+    TurnDisplayer_instance = CombatTurnDisplayer:new()
+    TurnDisplayer_instance:init(TurnDisplayerPtr)
 
     -- SetBattleSer
     print("loading data ...")

@@ -59,15 +59,28 @@ function BS_BattleEvent.onRoundStart(battleState)
 
     -- build speed entries, cache the dice roll on each character
     local entries = {}
+
     for _, char in ipairs(getAllAlive(battleState)) do
-        local roll = math.random(1, 6)
+        -- local roll = math.random(1, 6)
         char.lastSpeedRoll = roll       -- cached for recalcTurnQueue mid-round
         table.insert(entries, {
             character      = char,
-            print("character " .. char.stats.name .. " rolled " .. roll),
-            effectiveSpeed = char:getSpeed(roll),
+            -- print("character " .. char.stats.name .. " rolled " .. roll),
+            effectiveSpeed = char:getSpeed(0),
         })
     end
+
+
+    -- random roll
+    -- for _, char in ipairs(getAllAlive(battleState)) do
+    --     local roll = math.random(1, 6)
+    --     char.lastSpeedRoll = roll       -- cached for recalcTurnQueue mid-round
+    --     table.insert(entries, {
+    --         character      = char,
+    --         print("character " .. char.stats.name .. " rolled " .. roll),
+    --         effectiveSpeed = char:getSpeed(roll),
+    --     })
+    -- end
 
     -- sort descending
     table.sort(entries, function(a, b)
@@ -101,19 +114,20 @@ function BS_BattleEvent.onRoundStart(battleState)
             order       = idx,
             characterId = entry.character.id,
             ownerId     = entry.character.userID,
+            side = entry.character.side
         })
     end
 
 
     local count = 1
-    -- for _, char in ipairs(queueInfo) do
-    --     print(char.id .. " " .. count)
-    --     count = count + 1
-    -- end
     for k,v in pairs(queueInfo) do
         print(k .. " " .. v.characterId)
         count = count + 1
     end
+
+    battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_TurnOrder,
+    CombatTurnOrder.Sync, queueInfo)
+
 
     -- battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Round_Start, {
     --     round     = battleState.currentRound,

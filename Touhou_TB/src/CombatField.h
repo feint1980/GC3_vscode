@@ -82,6 +82,7 @@ public:
 
     CombatCharacter * getCharacter(const std::string & characterID, int side);
 
+
 private:
 
     lua_State * m_script = nullptr;

@@ -62,14 +62,22 @@ CLobbyResponse = {
 CCombatResponse = {
     Combat_ReadyStatus = 1,
     Combat_IngameData = 2,
-    Combat_Round_Start =3,
+    Combat_TurnOrder =3,
 }
 
 CombatIngameData = 
 {
     Sync = 1, 
     MatchStart = 2, 
-    
+
+}
+
+CombatTurnOrder = 
+{
+    Sync = 1,
+    RollResult = 2,
+    SpeedAffect = 3,
+    UpdateOrder = 4
 }
 
 ---@description handle incoming connection

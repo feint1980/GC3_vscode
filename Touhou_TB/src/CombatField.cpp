@@ -1,6 +1,6 @@
 #include "CombatField.h"
 
-int lua_CombatFiled_AddSlot(lua_State * L)
+int lua_CombatField_AddSlot(lua_State * L)
 {
     if(lua_gettop(L) != 4)
     {
@@ -16,7 +16,7 @@ int lua_CombatFiled_AddSlot(lua_State * L)
     return 0;
 }
 
-int lua_CombatFiled_AddCharacter(lua_State * L)
+int lua_CombatField_AddCharacter(lua_State * L)
 {
     if(lua_gettop(L) != 6)
     {
@@ -65,12 +65,100 @@ int lua_CombatField_GetCharacter(lua_State * L)
     }
     {
         CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
-        
+        std::string characterID = lua_tostring(L, 2);
+        int side = lua_tonumber(L, 3);
+        CombatCharacter * character = host->getCharacter(characterID, side);
+        lua_pushlightuserdata(L, character);
 
         return 1;
     }
     return 0;
+}
 
+int lua_CombatField_SetCharacterStatFloat(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_CombatField_SetCharacterStatFloat) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatCharacter * character = static_cast<CombatCharacter*>(lua_touserdata(L, 1));
+        std::string statName = lua_tostring(L, 2);
+        float value = lua_tonumber(L, 3);
+        character->setFloatValue(statName, value);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_CombatField_SetCharacterStatStr(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_CombatField_SetCharacterStatStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatCharacter * character = static_cast<CombatCharacter*>(lua_touserdata(L, 1));
+        std::string statName = lua_tostring(L, 2);
+        std::string value = lua_tostring(L, 3);
+        character->setStringValue(statName, value);
+        return 0;
+    }
+    return 0;
+}
+
+
+int lua_CombatField_ListCharacterStats(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_CombatField_ListCharacterStats) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatCharacter * character = static_cast<CombatCharacter*>(lua_touserdata(L, 1));
+        character->listStats();
+        return 0;
+    }
+    return 0;
+}
+
+int lua_CombatField_GetCharacterStatFloat(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CombatField_GetCharacterStatFloat) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatCharacter * character = static_cast<CombatCharacter*>(lua_touserdata(L, 1));
+        std::string statName = lua_tostring(L, 2);
+        float value = character->getFloatValue(statName);
+        lua_pushnumber(L, value);
+
+        return 1;
+    }
+    return 0;
+}
+
+int lua_CombatField_GetCharacterStatStr(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CombatField_GetCharacterStatStr) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatCharacter * character = static_cast<CombatCharacter*>(lua_touserdata(L, 1));
+        std::string statName = lua_tostring(L, 2);
+        std::string value = character->getStringValue(statName);
+        lua_pushstring(L, value.c_str());
+
+        return 1;
+    }
+    return 0;
 }
 
 CombatField::CombatField()
@@ -98,11 +186,22 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
         return;
     }
 
-    lua_register(m_script, "cpp_CombatFiled_AddSlot", lua_CombatFiled_AddSlot);
+    lua_register(m_script, "cpp_CombatField_AddSlot", lua_CombatField_AddSlot);
     lua_register(m_script, "cpp_CombatField_GetSlot", lua_CombatField_GetSlot);
-    lua_register(m_script, "cpp_CombatFiled_AddCharacter", lua_CombatFiled_AddCharacter);
+    lua_register(m_script, "cpp_CombatField_AddCharacter", lua_CombatField_AddCharacter);
     lua_register(m_script, "cpp_CombatField_GetCharacter", lua_CombatField_GetCharacter);
+    
+    // Characters stats
+    lua_register(m_script, "cpp_CombatField_SetCharacterStatFloat" , lua_CombatField_SetCharacterStatFloat);
+    lua_register(m_script, "cpp_CombatField_SetCharacterStatStr", lua_CombatField_SetCharacterStatStr);
+    lua_register(m_script, "cpp_CombatField_ListCharacterStats", lua_CombatField_ListCharacterStats);
 
+    lua_register(m_script, "cpp_CombatField_GetCharacterStatFloat", lua_CombatField_GetCharacterStatFloat);
+
+    lua_register(m_script, "cpp_CombatField_GetCharacterStatStr" , lua_CombatField_GetCharacterStatStr);
+    
+
+    // lua_register
 
     m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,100), glm::vec2(1280, 720),Feintgine::Color(255, 255, 255, 255));
 
@@ -215,6 +314,8 @@ CombatCharacter * CombatField::getCharacter(const std::string & characterID, int
     std::string key = characterID + "_" + std::to_string(side);
     if(m_charactersMap.find(key) != m_charactersMap.end())
     {
+        std::cout << "return the character key " << key << "\n";
+        std::cout << "value " << m_charactersMap[key].get() << "\n";
         return m_charactersMap[key].get();
     }
     std::cout << "(CombatField::getCharacter) character not found " << key << "\n";

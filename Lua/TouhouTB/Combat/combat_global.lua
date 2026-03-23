@@ -8,6 +8,9 @@ CombatMessageHandling = {}
 
 CombatBattleHandling = {}
 
+CombatHandling_Fn = {}
+
+TurnOrderHandling_Fn = {}
 
 
 for k,v in pairs(PacketChannel) do

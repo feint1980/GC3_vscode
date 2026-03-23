@@ -1288,8 +1288,8 @@ void F_Player::drawLight(Feintgine::LightBatch &lightBatch)
 void F_Player::drawHitbox(Feintgine::DebugRender & debugRenderer)
 {
 	debugRenderer.drawCircle(m_pos, Feintgine::Color(255,0,0,255), m_dim.x * 0.5f);
- 	m_leftAccessory.drawDebug(debugRenderer);
- 	m_rightAccessory.drawDebug(debugRenderer);
+	m_leftAccessory.drawDebug(debugRenderer);
+m_rightAccessory.drawDebug(debugRenderer);
 	m_rod.drawDebug(debugRenderer);
 }
 

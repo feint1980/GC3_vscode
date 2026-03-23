@@ -42,8 +42,9 @@
 #include "ControlHandler.h"
 #include <LuaTaskManager.h>
 
-
+// Combat components
 #include "CombatField.h"
+#include "TurnDisplayer.h"
 
 class CombatScene : public Feintgine::IGameScreen 
 {
@@ -130,6 +131,8 @@ public:
     bool isInitialized = false;
 
     CombatField * m_combatField = nullptr;
+
+    TurnDisplayer * m_turnDisplayer = nullptr;
 
     bool m_isSceneReady = false;
 

@@ -62,6 +62,9 @@ Target_BattleServer_GUID = ""
 ---@type pointer CombatField instance
 CombatField_instance = nil
 
+---@type pointer TurnDisplayer instance
+TurnDisplayer_instance = nil
+
 ---- Global variables section end ---- 
 
 ---
