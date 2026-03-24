@@ -18,15 +18,21 @@ function CombatTurnDisplayer:init(host)
     self.host = host
 end
 
-function CombatTurnDisplayer:addPortrait(characterID,side)
-    CTD_AddPortrait(self.host, characterID,side)
+function CombatTurnDisplayer:addIcon(characterID,side,order)
+    CTD_AddIcon(self.host, characterID,side,order)
 end
 
+function CombatTurnDisplayer:updateOrder()
+    CTD_UpdateOrder(self.host)
+end
 
+function CombatTurnDisplayer:getCharacterIcon(characterID,side)
+    return CTD_GetCharacterIcon(self.host,characterID,side)
+end
 
-
-
-
+function CombatTurnDisplayer:setUpdateRoll(value)
+    CTD_SetUpdateRoll(self.host,value)
+end
 
 
 

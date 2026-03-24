@@ -130,6 +130,12 @@ function BattleSession:start()
 
     print("[BattleSession] battle started — beginning round 1")
     BS_BattleEvent.onRoundStart(self)
+
+    TM_addTask(function()
+        BS_BattleEvent.onTurnStartSpeedRoll(self)
+    end,50)
+
+
 end
 
 --------------------------------------------------------------------------------

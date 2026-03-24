@@ -409,6 +409,8 @@ uint64_t getTicks() {
 
 void BattleMain::init(const std::string & password,const std::string & mainServerPassword, int port, unsigned int serverSize, const std::string & mainServerIP)
 {
+
+    
     std::cout << "|===============================================|\n";
     std::cout << "|            Init Server                        |\n";
     std::cout << "|           Using Port : " << port << "     |\n";
@@ -424,6 +426,8 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     m_server->SetTimeoutTime(5000, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
     m_server->SetMaximumIncomingConnections(m_connectionSize);
     
+
+
 
     std::string pongData = "NO_WAY_BRO";
 
@@ -472,6 +476,9 @@ void BattleMain::init(const std::string & password,const std::string & mainServe
     m_script = luaL_newstate();
 
     luaL_openlibs(m_script);
+
+    // Init Lua task manager
+    m_luaTaskManager.init("../../Lua/system/event/TaskManager.lua",m_script);
 
     // communication 
     lua_register(m_script, "cpp_BM_ConnectToMainServer", lua_BM_ConnectToMainServer);
@@ -670,6 +677,7 @@ void BattleMain::update(float deltaTime)
     handleInternalPacketQueue();
 
     m_lobbiesManager.update(deltaTime);
+    m_luaTaskManager.update(deltaTime);
 }
 
 void BattleMain::addCryptor(const std::string & guid)

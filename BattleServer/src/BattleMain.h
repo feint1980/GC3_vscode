@@ -37,6 +37,8 @@
 #include "LobbiesManager.h"
 #include "BattleDataRegister.h"
 
+#include <LuaTaskManager.h>
+
 class BattleMain
 {
 public:
@@ -130,7 +132,7 @@ private:
 
     std::set<std::string> m_acceptedClientGUID;
 
-
+    LuaTaskManager m_luaTaskManager;
 };
 
 #endif

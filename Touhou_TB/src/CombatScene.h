@@ -41,10 +41,12 @@
 #include "../../PacketDescription/SkillHandler.h"
 #include "ControlHandler.h"
 #include <LuaTaskManager.h>
+#include <TextRenderer.h>
 
 // Combat components
 #include "CombatField.h"
 #include "TurnDisplayer.h"
+
 
 class CombatScene : public Feintgine::IGameScreen 
 {
@@ -70,6 +72,8 @@ public:
     virtual void update(float deltaTime) override;
 
     virtual void draw() override;
+
+    void drawText();
 
     void drawGUI();
 
@@ -135,5 +139,7 @@ public:
     TurnDisplayer * m_turnDisplayer = nullptr;
 
     bool m_isSceneReady = false;
+
+    TextRenderer m_textRenderer;
 
 };

@@ -3,6 +3,7 @@
 
 
 #include <F_AnimatedObject.h>
+#include <TextRenderer.h>
 class Cslot;
 
 
@@ -48,6 +49,8 @@ public:
     void init(CSlot * slot, const std::string & animationPath,const std::string & portraitPath, const glm::vec2 & scale , int side); 
     
     void draw(Feintgine::SpriteBatch & spriteBatch);
+    
+    void drawText(TextRenderer * textRenderer);
 
     void update(float deltaTime);
 

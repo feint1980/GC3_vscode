@@ -55,6 +55,11 @@ void CombatCharacter::update(float deltaTime)
     m_animation.update(deltaTime);
 }
 
+void CombatCharacter::drawText(TextRenderer * textRenderer)
+{
+    
+}
+
 void CombatCharacter::setStringValue(const std::string & key, const std::string & value)
 {
     if(key == "userID" || key == "ownerID" || key == "usrID" || key == "ownerId")

@@ -1,11 +1,11 @@
 
 #include "TurnDisplayer.h"
 
-int lua_TurnDisplayer_AddPortrait(lua_State * L)
+int lua_TurnDisplayer_AddIcon(lua_State * L)
 {
-    if(lua_gettop(L) != 3)
+    if(lua_gettop(L) != 4)
     {
-        std::cout << "lua_TurnDisplayer_AddPortrait Error\n";
+        std::cout << "lua_TurnDisplayer_AddIcon Error\n";
         return -1;
     }
     else
@@ -13,11 +13,133 @@ int lua_TurnDisplayer_AddPortrait(lua_State * L)
         TurnDisplayer * turnDisplayer = static_cast<TurnDisplayer*>(lua_touserdata(L, 1));
         std::string characterID = lua_tostring(L, 2);
         int side = lua_tonumber(L, 3);
-        turnDisplayer->addPortrait(characterID, side);
+        int order = lua_tonumber(L, 4);
+        turnDisplayer->addIcon(characterID, side, order);
         return 0;
     }
     return 0;
 
+}
+
+int lua_TurnDisplayer_UpdateOrder(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "lua_TurnDisplayer_UpdateOrder Error\n";
+        return -1;
+    }
+    else
+    {
+        TurnDisplayer * turnDisplayer = static_cast<TurnDisplayer*>(lua_touserdata(L, 1));
+        turnDisplayer->sortTurnOrder();
+        return 0;
+    }
+    return 0;
+}
+
+int lua_TurnDisplayer_GetCharacterIcon(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "lua_TurnDisplayer_GetCharacterIcon Error\n";
+        return -1;
+    }
+    else
+    {
+        TurnDisplayer * turnDisplayer = static_cast<TurnDisplayer*>(lua_touserdata(L, 1));
+        std::string characterID = lua_tostring(L, 2);
+        int side = lua_tonumber(L, 3);
+        CharacterIcon * icon = turnDisplayer->getCharacterIcon(characterID, side);
+        lua_pushlightuserdata(L, icon);
+
+        return 1;
+    }
+    return 0;
+}
+
+int lua_TurnDisplayer_SetCharacterIconOrder(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "lua_TurnDisplayer_SetCharacterIconOrder Error\n";
+        return -1;
+    }
+    else
+    {
+        CharacterIcon * characterIcon = static_cast<CharacterIcon*>(lua_touserdata(L, 1));
+        int order = lua_tonumber(L, 2);
+        characterIcon->setOrder(order);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_TurnDisplayer_SetCharacterIconRoll(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "lua_TurnDisplayer_SetCharacterIconRoll Error\n";
+        return -1;
+    }
+    else
+    {
+        CharacterIcon * characterIcon = static_cast<CharacterIcon*>(lua_touserdata(L, 1));
+        int roll = lua_tonumber(L, 2);
+        characterIcon->setSpeedRoll(roll);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_TurnDisplayer_SetCharacterIconSpeed(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "lua_TurnDisplayer_SetCharacterIconSpeed Error\n";
+        return -1;
+    }
+    else
+    {
+        CharacterIcon * characterIcon = static_cast<CharacterIcon*>(lua_touserdata(L, 1));
+        int speed = lua_tonumber(L, 2);
+        characterIcon->setSpeed(speed);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_TurnDisplayer_SetCharacterIconDisplaySpeed(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "lua_TurnDisplayer_SetCharacterIconDisplaySpeed Error\n";
+        return -1;
+    }
+    else
+    {
+        CharacterIcon * characterIcon = static_cast<CharacterIcon*>(lua_touserdata(L, 1));
+        int speed = lua_tonumber(L, 2);
+        characterIcon->setDisplaySpeed(speed);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_TurnDisplayer_SetUpdateRoll(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "lua_TurnDisplayer_SetUpdateRoll Error\n";
+        return -1;
+    }
+    else
+    {
+        TurnDisplayer * turnDisplayer = static_cast<TurnDisplayer*>(lua_touserdata(L, 1));
+        bool value = lua_toboolean(L, 2);
+        turnDisplayer->setRollUpdate(value);
+        return 0;
+    }
+    return 0;
 }
 
 TurnDisplayer::TurnDisplayer()
@@ -33,6 +155,7 @@ TurnDisplayer::~TurnDisplayer()
 void TurnDisplayer::init(const std::string & scriptPath,lua_State * script)
 {
 
+    // m_pos.y = 300.0f;
     m_script = script;
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, scriptPath.c_str())))
     {
@@ -44,9 +167,24 @@ void TurnDisplayer::init(const std::string & scriptPath,lua_State * script)
         return;
     }
 
-    lua_register(m_script, "cpp_TurnDisplayer_AddPortrait", lua_TurnDisplayer_AddPortrait);
+    lua_register(m_script, "cpp_TurnDisplayer_AddIcon", lua_TurnDisplayer_AddIcon);
 
-    m_pos = glm::vec2(0.0f, 0.0f);
+    lua_register(m_script, "cpp_TurnDisplayer_UpdateOrder", lua_TurnDisplayer_UpdateOrder);
+
+    lua_register(m_script, "cpp_TurnDisplayer_GetCharacterIcon", lua_TurnDisplayer_GetCharacterIcon);
+
+    lua_register(m_script, "cpp_TurnDisplayer_SetCharacterIconOrder", lua_TurnDisplayer_SetCharacterIconOrder);
+
+    lua_register(m_script, "cpp_TurnDisplayer_SetCharacterIconRoll", lua_TurnDisplayer_SetCharacterIconRoll);
+
+    lua_register(m_script, "cpp_TurnDisplayer_SetCharacterIconSpeed", lua_TurnDisplayer_SetCharacterIconSpeed);
+
+    lua_register(m_script, "cpp_TurnDisplayer_SetCharacterIconDisplaySpeed", lua_TurnDisplayer_SetCharacterIconDisplaySpeed);
+
+    lua_register(m_script, "cpp_TurnDisplayer_SetUpdateRoll", lua_TurnDisplayer_SetUpdateRoll);
+
+
+    m_pos = glm::vec2(0.0f, 400.0f);
     m_defaultDimentions = glm::vec2(TURN_DISPLAYER_ICON_SIZE, TURN_DISPLAYER_ICON_SIZE);
     m_portraitMap["S_Reimu"] = "./Assets/TB_GUI/faces/Reimu_face.png";
     m_portraitMap["S_Meiling"] = "./Assets/TB_GUI/faces/Meiling_face.png";
@@ -58,27 +196,106 @@ void TurnDisplayer::init(const std::string & scriptPath,lua_State * script)
 
 void TurnDisplayer::sortTurnOrder()
 {
-    float spacing = TURN_DISPLAYER_ICON_SIZE * 1.05f;
+    float spacing = TURN_DISPLAYER_ICON_SIZE * 1.1f;
     int totalDisplayer = m_characters.size();
+    float width = spacing * totalDisplayer;
+    float leftPos = m_pos.x - width / 2.0f;
+    float centerLeftPos = leftPos + spacing / 2.0f;
+
+
+    std::vector<CharacterIcon *> sortedCharacters = getSortedCharacters();
+
+    for (int i = 0; i < sortedCharacters.size(); i++)
+    {
+        sortedCharacters[i]->setTargetPos(glm::vec2(centerLeftPos, m_pos.y));
+        centerLeftPos += spacing;
+    }
 
 }
 
-void TurnDisplayer::addPortrait(const std::string & characterID, int side)
+std::vector<CharacterIcon *> TurnDisplayer::getSortedCharacters()
+{
+    std::vector<CharacterIcon *> bCharacters;
+    
+    std::vector<CharacterIcon *> rCharacters;
+    for (int i = 0; i < m_characters.size(); i++)
+    {
+        bCharacters.push_back(m_characters[i].get());
+    }
+
+    // sort by order
+    int min = 15;
+    int index = -1;
+    while(bCharacters.size() > 0)
+    {
+        for(int i = 0; i < bCharacters.size(); i++)
+        {
+            if(bCharacters[i]->getOrder() < min)
+            {
+                min = bCharacters[i]->getOrder();
+                index = i;
+            }
+        }
+
+        rCharacters.push_back(bCharacters[index]);
+        bCharacters.erase(bCharacters.begin() + index);
+        min = 15;
+        index = -1;
+    }
+
+    std::cout << "sort done \n";
+    return rCharacters;
+}
+
+void TurnDisplayer::update(float deltaTime)
+{
+    
+    if(m_isUpdateRoll)
+    {
+        updateRoll(deltaTime);
+    }
+    for (std::size_t i = 0; i < m_characters.size(); i++)
+    {
+        m_characters[i]->update(deltaTime);
+    }
+}
+
+void TurnDisplayer::updateRoll(float deltaTime)
+{   
+
+    for(std::size_t i = 0; i < m_characters.size(); i++)
+    {
+        if(m_characters[i]->getUpdateRollState() == 3)
+        {
+            m_characters[i]->setUpdateRollState(0);
+            m_readyCount++;
+            std::cout << "ready increase \n";
+        }
+    }
+    m_isUpdateRoll = false;
+    sortTurnOrder();
+}
+
+void TurnDisplayer::addIcon(const std::string & characterID, int side, int order)
 {
 
     std::string key = characterID + "_" + std::to_string(side);
-
+    std::shared_ptr<CharacterIcon> icon ;//= std::make_shared<CharacterIcon>();
     if(m_portraitMap.find(key) != m_portraitMap.end())
     {
         std::cout << "key  " << key << " already added\n";
-        return;
+        icon = m_charactersMap[key];
+    }
+    else
+    {
+        icon = std::make_shared<CharacterIcon>();
     }
 
-    std::shared_ptr<CharacterIcon> icon = std::make_shared<CharacterIcon>();
-    icon->init(m_portraitMap[characterID], side, m_defaultDimentions);
+    
+    icon->init(m_portraitMap[characterID], side, order, m_defaultDimentions);
     m_characters.push_back(icon);
-
-    m_portraitMap[key] = m_portraitMap[characterID];
+    
+    m_charactersMap[key] = icon; 
 
 }
 
@@ -94,12 +311,22 @@ CharacterIcon * TurnDisplayer::getCharacterIcon(const std::string & characterID,
     return nullptr;
 }
 
-
-
 void TurnDisplayer::draw(Feintgine::SpriteBatch & spriteBatch)
 {
-    for (int i = 0; i < m_characters.size(); i++)
+    for (std::size_t i = 0; i < m_characters.size(); i++)
     {
         m_characters[i]->draw(spriteBatch);
+    }
+}
+
+void TurnDisplayer::drawText(TextRenderer * textRenderer)
+{
+    if(!textRenderer)
+    {
+        return;
+    }
+    for(std::size_t i = 0; i < m_characters.size(); i++)
+    {
+        m_characters[i]->drawText(textRenderer);
     }
 }

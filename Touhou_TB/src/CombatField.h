@@ -14,6 +14,10 @@
 #include "CSlot.h"
 #include "CombatCharacter.h"
 #include "InfoHolder.h"
+
+#include <TextRenderer.h>
+
+
 enum SlotPos
 {
     // Left
@@ -74,6 +78,8 @@ public:
 
     void addSlot(int collumn, int row, int side);
 
+    void drawText(TextRenderer * textRenderer);
+
     CSlot * getSlot(int collumn, int row, int side);
 
     CSlot * getSlot(SlotPos pos);
@@ -95,7 +101,6 @@ private:
     // std::unordered_map<glm::ivec3 , int> m_slotIndexMap;
 
     std::unordered_map<int, glm::ivec3> m_enumToIndecies; 
-
 
     std::vector<std::shared_ptr<CombatCharacter>> m_characters; // iterate 
 

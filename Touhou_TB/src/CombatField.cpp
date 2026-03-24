@@ -326,3 +326,15 @@ void CombatField::initSlots(int collumns, int rows)
 {
     // decide to do it in lua
 }
+
+void CombatField::drawText(TextRenderer * textRenderer)
+{
+    if(!textRenderer)
+    {
+        return;
+    }
+    for (int i = 0; i < m_characters.size(); i++)
+    {
+        m_characters[i]->drawText(textRenderer);
+    }
+}

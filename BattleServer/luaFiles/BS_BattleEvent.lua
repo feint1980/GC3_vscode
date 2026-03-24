@@ -26,6 +26,8 @@ BS_BattleEvent = {}
 --  HELPERS
 --------------------------------------------------------------------------------
 
+math.randomseed(os.time())
+
 local function isFormationWiped(formation)
     for _, char in ipairs(formation) do
         if char.cHp > 0 then return false end
@@ -114,7 +116,8 @@ function BS_BattleEvent.onRoundStart(battleState)
             order       = idx,
             characterId = entry.character.id,
             ownerId     = entry.character.userID,
-            side = entry.character.side
+            side = entry.character.side,
+            speed = entry.effectiveSpeed
         })
     end
 
@@ -128,17 +131,78 @@ function BS_BattleEvent.onRoundStart(battleState)
     battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_TurnOrder,
     CombatTurnOrder.Sync, queueInfo)
 
+end
 
-    -- battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Round_Start, {
-    --     round     = battleState.currentRound,
-    --     turnQueue = queueInfo,
-    -- })
 
-    -- pop and start first turn
-    -- local firstChar = table.remove(battleState.turnQueue, 1)
-    -- battleState.currentChar = firstChar
-    -- BS_BattleEvent.onTurnStart(firstChar, battleState)
+function BS_BattleEvent.onTurnStartSpeedRoll(battleState)
+    print("[onRoundStart] Round " .. battleState.currentRound)
 
+    -- fire onRoundStart hook on all alive characters
+    for _, char in ipairs(getAllAlive(battleState)) do
+        char:onRoundStart(battleState)
+    end
+
+    -- build speed entries, cache the dice roll on each character
+    local entries = {}
+
+    for _, char in ipairs(getAllAlive(battleState)) do
+        local roll = math.random(1, 6)
+        char.lastSpeedRoll = roll       -- cached for recalcTurnQueue mid-round
+        print("character " .. char.stats.name .. " rolled " .. roll)
+        table.insert(entries, {
+            character      = char,
+            effectiveSpeed = char:getSpeed(roll),
+            rollResult = roll,
+        })
+    end
+    -- sort descending
+    table.sort(entries, function(a, b)
+        return a.effectiveSpeed > b.effectiveSpeed
+    end)
+
+    -- resolve ties by reroll
+    local i = 1
+    while i <= #entries do
+        local j = i + 1
+        while j <= #entries
+            and entries[j].effectiveSpeed == entries[i].effectiveSpeed do
+            j = j + 1
+        end
+        if j - i > 1 then
+            local group = {}
+            for k = i, j - 1 do table.insert(group, entries[k]) end
+            for k = 1, #group do group[k].tieBreak = math.random(100) end
+            table.sort(group, function(a, b) return a.tieBreak > b.tieBreak end)
+            for k = 1, #group do entries[i + k - 1] = group[k] end
+        end
+        i = j
+    end
+
+    -- build turn queue
+    battleState.turnQueue = {}
+    local queueInfo = {}
+
+    for idx, entry in ipairs(entries) do
+        table.insert(battleState.turnQueue, entry.character)
+        table.insert(queueInfo, {
+            order       = idx,
+            characterId = entry.character.id,
+            ownerId     = entry.character.userID,
+            side = entry.character.side,
+            rollResult = entry.rollResult,
+            speed = entry.effectiveSpeed
+        })
+    end
+
+
+    local count = 1
+    for k,v in pairs(queueInfo) do
+        print(k .. " " .. v.characterId)
+        count = count + 1
+    end
+
+    battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_TurnOrder,
+    CombatTurnOrder.RollResult, queueInfo)
 
 end
 

@@ -23,6 +23,4 @@ void main()
 
     color = vec4(mix_color, alpha * textColor.a);
    
-  
-
 } 

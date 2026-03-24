@@ -80,6 +80,9 @@ void CombatScene::onEntry()
         loaded = true;
     }
 
+    // init text renderer
+    m_textRenderer.init(24,128, "font/ARIALUNI.ttf");
+
     // loaded = true;
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	
@@ -212,6 +215,11 @@ void CombatScene::update(float deltaTime)
     {
         m_combatField->update(deltaTime);
     }
+    if(m_turnDisplayer)
+    {
+        m_turnDisplayer->update(deltaTime);
+    }
+
 }
 
 
@@ -263,6 +271,37 @@ void CombatScene::draw()
 	
 	drawGUI();
 	SDL_GL_SetSwapInterval(1);
+
+    drawText();
+}
+
+void CombatScene::drawText()
+{
+    // m_textRenderer.renderText(m_camera, 
+	// 		L"FPS :" + 
+	// 		feint_common::Instance()->convertStringtoWstring(feint_common::
+	// 			Instance()->convertPreciousFloatToString(m_game->getFps())),
+	// 		glm::vec2(720, -415), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
+
+    m_textRenderer.begin();
+
+    m_textRenderer.renderTextBatched( 
+			L"FPS :" + 
+			feint_common::Instance()->convertStringtoWstring(feint_common::
+				Instance()->convertPreciousFloatToString(m_game->getFps())),
+			glm::vec2(720, -415), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
+
+
+    if(m_combatField)
+    {
+        m_combatField->drawText(&m_textRenderer);
+    }
+    if(m_turnDisplayer)
+    {
+        m_turnDisplayer->drawText(&m_textRenderer);
+    }
+    m_textRenderer.end(m_camera);
+
 
 }
 
