@@ -19,11 +19,11 @@ void CharacterIcon::init(const std::string & texturePath,int side , int order, c
     m_dim = dim;
     if(m_side == 1)
     {
-        m_border.init(Feintgine::ResourceManager::getTexture("./Assets/TB_GUI/faces/face_border.png"), m_pos,dim * 1.09f,red);
+        m_border.init(Feintgine::ResourceManager::getTexture("./Assets/TB_GUI/faces/face_border.png"), m_pos,dim * 1.07f,red);
     }
     else if (m_side == 2)
     {
-        m_border.init(Feintgine::ResourceManager::getTexture("./Assets/TB_GUI/faces/face_border.png"), m_pos,dim * 1.09f,blue);
+        m_border.init(Feintgine::ResourceManager::getTexture("./Assets/TB_GUI/faces/face_border.png"), m_pos,dim * 1.07f,blue);
     }
     m_portrait.setDepth(2);
     m_portrait.setDepth(3);
@@ -38,20 +38,22 @@ void CharacterIcon::draw(Feintgine::SpriteBatch & spriteBatch)
 
 void CharacterIcon::drawText(TextRenderer * textRenderer)
 {
-    std::wstring text = std::to_wstring(m_displaySpeed);
+    // std::wstring text = std::to_wstring(m_displaySpeed);
+    std::wostringstream wss;
+    wss << std::fixed << std::setprecision(2) << m_displaySpeed;
+    std::wstring text = wss.str();
     m_displaySpeedPos = m_pos;
     m_displaySpeedPos.y -= (m_dim.y * 0.4f);
     textRenderer->renderTextBatched(text, m_displaySpeedPos, Feintgine::Color(255, 255, 255, 255), 1.0f, ALIGN_FT_CENTER);   
     if(m_isUpdateRoll != 0)
     {
-
-        text = std::to_wstring(m_speedRoll); 
+        wss = std::wostringstream();
+        wss << std::fixed << std::setprecision(2) << m_speedRoll;
+        text = wss.str();
+        // text = std::to_wstring(m_speedRoll); 
         textRenderer->renderTextBatched(text, m_rollTextPos, Feintgine::Color(0, 255, 0, 255), 1.0f, ALIGN_FT_CENTER);
     } 
-    else
-    {
-        std::cout << "shold have stopped \n";
-    }
+
 }
 
 void CharacterIcon::update(float deltaTime)
@@ -121,7 +123,7 @@ void CharacterIcon::updateRoll(float deltaTime)
                 {
                     m_rollTextPos = m_displaySpeedPos;
                     m_isUpdateRoll +=1;
-                    m_displaySpeed = m_speed + m_speedRoll;
+                    m_displaySpeed = m_speed;// + m_speedRoll;
                     
                 }
             }    

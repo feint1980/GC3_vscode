@@ -28,7 +28,21 @@ public:
 
     void sortTurnOrder();
 
-    void setRollUpdate(bool value) { m_isUpdateRoll = value; }
+    void setRollUpdate(bool value) {
+
+        std::cout << "C++ setRollUpdate called \n"; 
+        m_isUpdateRoll = value;
+    
+        // ensure roll character always empty
+
+        m_rollChracters.clear();
+        
+        for(int i = 0 ; i < m_characters.size(); i++)
+        {
+            m_rollChracters.push_back(m_characters[i].get());
+        }
+        std::cout << "C++ setRollUpdate end \n"; 
+    }
 
     std::vector<CharacterIcon *> getSortedCharacters();
 
@@ -38,6 +52,7 @@ private:
     lua_State * m_script = nullptr;
 
     std::vector< std::shared_ptr<CharacterIcon>> m_characters;
+    std::vector<CharacterIcon *> m_rollChracters;
     // std::vector< std::shared_ptr<CharacterIcon>> m_displayCharacters;
     std::unordered_map<std::string, std::shared_ptr<CharacterIcon>> m_charactersMap;
     glm::vec2 m_pos;

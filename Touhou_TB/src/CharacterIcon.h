@@ -25,7 +25,7 @@ public:
 
     void update(float deltaTime);
 
-    void setSpeed(int speed) { m_speed = speed; }
+    void setSpeed(float speed) { m_speed = speed; }
     void setSpeedRoll(int speed) 
     {
         m_speedRoll = speed;
@@ -35,10 +35,10 @@ public:
         m_rollTextPosOffset.y -= (m_dim.y * .65f);
 
     }
-    int getSpeed() { return m_speed; }
+    float getSpeed() { return m_speed; }
     int getSpeedRoll() { return m_speedRoll; }
 
-    void setDisplaySpeed(int speed) { m_displaySpeed = speed; }
+    void setDisplaySpeed(float speed) { m_displaySpeed = speed; }
 
     void removeRoll() { m_speedRoll = 0; }
 
@@ -65,8 +65,8 @@ private:
     EmptyObject m_portrait;
     EmptyObject m_border;
     int m_side = 0;
-    int m_speed = 0;
-    int m_displaySpeed = 0;
+    float m_speed = 0;
+    float m_displaySpeed = 0;
     int m_speedRoll = 0;
     bool m_isInit = false;
 

@@ -101,7 +101,7 @@ int lua_TurnDisplayer_SetCharacterIconSpeed(lua_State * L)
     else
     {
         CharacterIcon * characterIcon = static_cast<CharacterIcon*>(lua_touserdata(L, 1));
-        int speed = lua_tonumber(L, 2);
+        float speed = lua_tonumber(L, 2);
         characterIcon->setSpeed(speed);
         return 0;
     }
@@ -118,7 +118,7 @@ int lua_TurnDisplayer_SetCharacterIconDisplaySpeed(lua_State * L)
     else
     {
         CharacterIcon * characterIcon = static_cast<CharacterIcon*>(lua_touserdata(L, 1));
-        int speed = lua_tonumber(L, 2);
+        float speed = lua_tonumber(L, 2);
         characterIcon->setDisplaySpeed(speed);
         return 0;
     }
@@ -263,17 +263,21 @@ void TurnDisplayer::update(float deltaTime)
 void TurnDisplayer::updateRoll(float deltaTime)
 {   
 
-    for(std::size_t i = 0; i < m_characters.size(); i++)
+    for(std::size_t i = 0; i < m_rollChracters.size(); i++)
     {
-        if(m_characters[i]->getUpdateRollState() == 3)
+        if(m_rollChracters[i]->getUpdateRollState() == 3)
         {
-            m_characters[i]->setUpdateRollState(0);
-            m_readyCount++;
-            std::cout << "ready increase \n";
+            m_rollChracters[i]->setUpdateRollState(0);
+            m_rollChracters.erase(m_rollChracters.begin() + i);
+            // std::cout << "ready increase \n";
         }
     }
-    m_isUpdateRoll = false;
-    sortTurnOrder();
+    if(m_rollChracters.size() == 0)
+    {
+
+        m_isUpdateRoll = false;
+        sortTurnOrder();
+    }
 }
 
 void TurnDisplayer::addIcon(const std::string & characterID, int side, int order)
