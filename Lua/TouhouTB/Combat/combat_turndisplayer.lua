@@ -30,8 +30,8 @@ function CombatTurnDisplayer:getCharacterIcon(characterID,side)
     return CTD_GetCharacterIcon(self.host,characterID,side)
 end
 
-function CombatTurnDisplayer:setUpdateRoll(value)
-    CTD_SetUpdateRoll(self.host,value)
+function CombatTurnDisplayer:setUpdateSpeedChange(value)
+    CTD_SetUpdateSpeedChange(self.host,value)
 end
 
 

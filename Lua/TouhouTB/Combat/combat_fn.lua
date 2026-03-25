@@ -2,7 +2,6 @@ package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../
 
 require "clientGlobal"
 
-
 CombatHandling_Fn[CombatIngameData.Sync] = function(data)
 
     local tData , pos, err = JSON_Decode(data)
@@ -12,21 +11,11 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
 
     print("Combat Sync get ")
 
-    -- for k,v in pairs(tData) do
-    --     print("k " .. k)
-    -- end
-
     local lobbyID = tData[1]
     local p1Id = tData[2]
     local p2Id = tData[3]
     local p1Formation = tData[4]
     local p2Formation = tData[5]
-
-    print("lobbyID " .. lobbyID)
-    print("p1Id " .. p1Id)
-    print("p2Id " .. p2Id)
-    -- print("p1Formation " .. p1Formation)
-    -- print("p2Formation " .. p2Formation)
 
     local p1FormationInfo, pos, err = JSON_Decode(p1Formation)
     if err then
@@ -37,13 +26,9 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
         print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_IngameData]  JSON decode error:", err)
     end
 
-    -- print("p1FormationInfo " .. p1FormationInfo.stats)
-    -- print("p2FormationInfo " .. p2FormationInfo)
-
     for k,v in pairs(p1FormationInfo) do
         CombatField_instance:addCharacter(p1FormationInfo[k].colPos, 
         p1FormationInfo[k].rowPos, 1, p1FormationInfo[k].characterId,"" )
-
     end
     for k ,v in pairs(p2FormationInfo) do
         CombatField_instance:addCharacter(p2FormationInfo[k].colPos, 
@@ -65,9 +50,7 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
                     CF_SetCharacterStatString(tCharacter, k2, v[k2])
                 end
             end
-            -- print("K2 " .. k2 .. ":" .. v[k2] .. " type " .. type(v[k2]))
         end
-        -- CF_ListCharacterStats(tCharacter)
     end
 
     print("p2 check")
@@ -85,14 +68,36 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
                     CF_SetCharacterStatString(tCharacter, k2, v[k2])
                 end
             end
-            -- print("K2 " .. k2 .. ":" .. v[k2] .. " type " .. type(v[k2]))
         end
-        -- CF_ListCharacterStats(tCharacter)
+    end
+    CombatScene_SetSceneReady()
+end
+
+CombatHandling_Fn[CombatIngameData.OnCharacterTurnStart] = function(data)
+    print("Combat OnCharacterTurnStart detected " .. data)
+
+
+    local tCharacter, pos, err = JSON_Decode(data)
+    if err then
+        print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_IngameData]  JSON decode error:", err)
     end
 
-    -- CombatField_instance:addCharacter
+    -- local tCharacter = CombatField_instance:getCharacter(tCharacter.characterId,tCharacter.side)
+    if tCharacter == nil then
+        return
+    end
+    local characterID = tCharacter.characterId
+    local side = tCharacter.characterSide
+    local cAction = tCharacter.currentAp
+    local cHp = tCharacter.currentHp
+    local cMana = tCharacter.currentMana
 
 
-    CombatScene_SetSceneReady()
+    print("character " .. characterID .. " turn start")
+    print("side " .. side)
+    print("cAction " .. cAction)
+    print("cHp " .. cHp)
+    print("cMana " .. cMana)
+
 
 end

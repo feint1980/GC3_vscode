@@ -45,13 +45,22 @@ void CharacterIcon::drawText(TextRenderer * textRenderer)
     m_displaySpeedPos = m_pos;
     m_displaySpeedPos.y -= (m_dim.y * 0.4f);
     textRenderer->renderTextBatched(text, m_displaySpeedPos, Feintgine::Color(255, 255, 255, 255), 1.0f, ALIGN_FT_CENTER);   
-    if(m_isUpdateRoll != 0)
+    if(m_isUpdateSpeedChange != 0)
     {
         wss = std::wostringstream();
-        wss << std::fixed << std::setprecision(2) << m_speedRoll;
+        wss << std::fixed << std::setprecision(2) << m_speedChange;
         text = wss.str();
-        // text = std::to_wstring(m_speedRoll); 
-        textRenderer->renderTextBatched(text, m_rollTextPos, Feintgine::Color(0, 255, 0, 255), 1.0f, ALIGN_FT_CENTER);
+        std::wstring sign = L"";
+        Feintgine::Color color = Feintgine::Color(255,0, 0, 255);
+        if(m_speedChange >= 0)
+        {
+            sign = L"+";
+            color = Feintgine::Color(0, 255, 0, 255);
+        }
+        text = sign + text;
+
+        // text = std::to_wstring(m_speedChange); 
+        textRenderer->renderTextBatched(text, m_speedChangeTextPos, color, 1.0f, ALIGN_FT_CENTER);
     } 
 
 }
@@ -59,7 +68,7 @@ void CharacterIcon::drawText(TextRenderer * textRenderer)
 void CharacterIcon::update(float deltaTime)
 {
     updateMovement(deltaTime);    
-    updateRoll(deltaTime);
+    updateSpeedChange(deltaTime);
 }
 
 
@@ -86,44 +95,44 @@ void CharacterIcon::updateMovement(float deltaTime)
     }
 
 }
-void CharacterIcon::updateRoll(float deltaTime)
+void CharacterIcon::updateSpeedChange(float deltaTime)
 {
-    if(m_isUpdateRoll != 0)
+    if(m_isUpdateSpeedChange != 0)
     {
-        if(m_isUpdateRoll == 1)
+        if(m_isUpdateSpeedChange == 1)
         {
-            float distance = glm::distance( m_rollTextPosOffset, m_rollTextPos);
+            float distance = glm::distance( m_speedChangeTextPosOffset, m_speedChangeTextPos);
             if (distance >  0.5f)
             {
                 float step = 15.0f * deltaTime;
                 // clamp step to never exceed remaining distance
-                m_rollTextPos += glm::normalize(m_rollTextPosOffset - m_rollTextPos) * std::min(step, distance);
+                m_speedChangeTextPos += glm::normalize(m_speedChangeTextPosOffset - m_speedChangeTextPos) * std::min(step, distance);
                 
             }
             else
             {
-                m_rollTextPos = m_rollTextPosOffset;
-                m_isUpdateRoll +=1;
+                m_speedChangeTextPos = m_speedChangeTextPosOffset;
+                m_isUpdateSpeedChange +=1;
             }
         }
-        else if(m_isUpdateRoll == 2)
+        else if(m_isUpdateSpeedChange == 2)
         {
             m_counter += deltaTime;
             if(m_counter > 50.0f)
             {
-                float distance = glm::distance( m_rollTextPos, m_displaySpeedPos );
+                float distance = glm::distance( m_speedChangeTextPos, m_displaySpeedPos );
                 if (distance >  0.5f)
                 {
                     float step = 15.0f * deltaTime;
                     // clamp step to never exceed remaining distance
-                    m_rollTextPos += glm::normalize(m_displaySpeedPos - m_rollTextPos) * std::min(step, distance);
+                    m_speedChangeTextPos += glm::normalize(m_displaySpeedPos - m_speedChangeTextPos) * std::min(step, distance);
                     
                 }
                 else
                 {
-                    m_rollTextPos = m_displaySpeedPos;
-                    m_isUpdateRoll +=1;
-                    m_displaySpeed = m_speed;// + m_speedRoll;
+                    m_speedChangeTextPos = m_displaySpeedPos;
+                    m_isUpdateSpeedChange +=1;
+                    m_displaySpeed = m_speed;// + m_speedChange;
                     
                 }
             }    

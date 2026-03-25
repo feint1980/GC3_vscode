@@ -74,9 +74,19 @@ end
 ---@diagnostic disable-next-line: duplicate-set-field
 function BS_Char_Meiling:onTurnStart(battleState)
     -- initialize stance on first turn
-    if self.currentStance == nil then
-        self:applyStance(STANCE_ATTACK, battleState)
-    end
+    -- if self.currentStance == nil then
+    --     self:applyStance(STANCE_ATTACK, battleState)
+    -- end
+
+    battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_IngameData,CombatIngameData.OnCharacterTurnStart,
+    {
+        characterId = self.id,
+        characterSide = self.side,
+        currentAp   = self.cAction,
+        currentHp   = self.cHp,
+        currentMana = self.cMana
+    }
+    )
 end
 
 -- ---@diagnostic disable-next-line: duplicate-set-field

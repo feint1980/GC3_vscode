@@ -63,26 +63,11 @@ function BS_BattleEvent.onRoundStart(battleState)
     local entries = {}
 
     for _, char in ipairs(getAllAlive(battleState)) do
-        -- local roll = math.random(1, 6)
-        char.lastSpeedRoll = roll       -- cached for recalcTurnQueue mid-round
         table.insert(entries, {
             character      = char,
-            -- print("character " .. char.stats.name .. " rolled " .. roll),
             effectiveSpeed = char:getSpeed(0),
         })
     end
-
-
-    -- random roll
-    -- for _, char in ipairs(getAllAlive(battleState)) do
-    --     local roll = math.random(1, 6)
-    --     char.lastSpeedRoll = roll       -- cached for recalcTurnQueue mid-round
-    --     table.insert(entries, {
-    --         character      = char,
-    --         print("character " .. char.stats.name .. " rolled " .. roll),
-    --         effectiveSpeed = char:getSpeed(roll),
-    --     })
-    -- end
 
     -- sort descending
     table.sort(entries, function(a, b)
@@ -131,6 +116,12 @@ function BS_BattleEvent.onRoundStart(battleState)
     battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_TurnOrder,
     CombatTurnOrder.Sync, queueInfo)
 
+
+    -- wait for 50 ticks, then goes to roll speed stat
+    TM_addTask(function()
+        BS_BattleEvent.onTurnStartSpeedRoll(battleState)
+    end,50)
+
 end
 
 
@@ -146,7 +137,7 @@ function BS_BattleEvent.onTurnStartSpeedRoll(battleState)
     local entries = {}
 
     for _, char in ipairs(getAllAlive(battleState)) do
-        local roll = math.random(1, 6)
+        local roll = math.random(-2, 2)
         char.lastSpeedRoll = roll       -- cached for recalcTurnQueue mid-round
         print("character " .. char.stats.name .. " rolled " .. roll)
         table.insert(entries, {
@@ -204,6 +195,11 @@ function BS_BattleEvent.onTurnStartSpeedRoll(battleState)
     battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_TurnOrder,
     CombatTurnOrder.RollResult, queueInfo)
 
+    -- pop and start first turn
+    local firstChar = table.remove(battleState.turnQueue, 1)
+    battleState.currentChar = firstChar
+    BS_BattleEvent.onTurnStart(firstChar, battleState)
+
 end
 
 --------------------------------------------------------------------------------
@@ -211,26 +207,31 @@ end
 --------------------------------------------------------------------------------
 
 function BS_BattleEvent.onTurnStart(character, battleState)
-    print("[onTurnStart] " .. character.stats.name)
+    print("[onTurnStart] " .. character.stats.name .. " side " .. character.side)
+
 
     character:gainAP()
     character:tickBuffs()
     character:onTurnStart(battleState)  -- passive hook (Reimu, Meiling)
 
-    -- notify the active player it's their turn
-    battleState:sendToPlayer(character.userID,
-        ClientChannel.Combat, CCombatResponse.Combat_Your_Turn, {
-            characterId = character.id,
-            currentAP   = character.cAction,
-            currentHp   = character.cHp,
-            currentMana = character.cMana,
-        })
+    -- -- notify the active player it's their turn
 
-    -- notify both players whose turn it is
-    battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Turn_Announce, {
-        characterId = character.id,
-        ownerId     = character.userID,
-    })
+    -- battleState:broadcast
+
+
+    -- battleState:sendToPlayer(character.userID,
+    --     ClientChannel.Combat, CCombatResponse.Combat_IngameData, {
+    --         characterId = character.id,
+    --         currentAP   = character.cAction,
+    --         currentHp   = character.cHp,
+    --         currentMana = character.cMana,
+    --     })
+
+    -- -- notify both players whose turn it is
+    -- battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_Turn_Announce, {
+    --     characterId = character.id,
+    --     ownerId     = character.userID,
+    -- })
 end
 
 --------------------------------------------------------------------------------

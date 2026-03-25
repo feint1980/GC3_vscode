@@ -127,7 +127,7 @@ CombatIngameData =
 {
     Sync = 1, 
     MatchStart = 2, 
-    
+    OnCharacterTurnStart = 3,   
 }
 
 CombatTurnOrder = 

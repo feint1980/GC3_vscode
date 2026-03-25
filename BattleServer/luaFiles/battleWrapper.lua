@@ -68,7 +68,8 @@ CCombatResponse = {
 CombatIngameData = 
 {
     Sync = 1, 
-    MatchStart = 2, 
+    MatchStart = 2,
+    OnCharacterTurnStart =3,
 
 }
 

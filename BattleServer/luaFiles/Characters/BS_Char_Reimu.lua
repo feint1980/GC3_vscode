@@ -45,15 +45,26 @@ function BS_Char_Reimu:onTurnStart(battleState)
         print(string.format("[Reimu:Fate's Favor] triggered → %s +%.2f for %d turns",
             buff.stat, buff.value, buff.duration))
 
-        battleState.broadcast("BUFF_GAINED", {
-            characterId = self.id,
-            ownerId     = self.userID,
-            buffId      = buff.id,
-            stat        = buff.stat,
-            value       = buff.value,
-            duration    = buff.duration,
-        })
+        -- battleState.broadcast("BUFF_GAINED", {
+        --     characterId = self.id,
+        --     ownerId     = self.userID,
+        --     buffId      = buff.id,
+        --     stat        = buff.stat,
+        --     value       = buff.value,
+        --     duration    = buff.duration,
+        -- })
     else
         print("[Reimu:Fate's Favor] did not trigger")
     end
+
+    battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_IngameData,CombatIngameData.OnCharacterTurnStart,
+    {
+        characterId = self.id,
+        characterSide = self.side,
+        currentAP   = self.cAction,
+        currentHp   = self.cHp,
+        currentMana = self.cMana
+    }
+    )
+
 end

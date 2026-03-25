@@ -17,8 +17,8 @@ function CTD_SetCharacterOrder(character,order)
     cpp_TurnDisplayer_SetCharacterIconOrder(character,order)
 end
 
-function CTD_SetCharacterRoll(character,rollResult)
-    cpp_TurnDisplayer_SetCharacterIconRoll(character,rollResult)
+function CTD_SetCharacterSpeedChange(character,changeValue)
+    cpp_TurnDisplayer_SetCharacterIconSpeedChange(character,changeValue)
 end
 
 function CTD_SetCharacterSpeed(character,speed)
@@ -29,7 +29,7 @@ function CTD_SetCharacterDisplaySpeed(character,speed)
     cpp_TurnDisplayer_SetCharacterIconDisplaySpeed(character,speed)
 end
 
-function CTD_SetUpdateRoll(host, value)
-    cpp_TurnDisplayer_SetUpdateRoll(host,value)
+function CTD_SetUpdateSpeedChange(host, value)
+    cpp_TurnDisplayer_SetUpdateSpeedChange(host,value)
 end
 

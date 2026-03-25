@@ -26,21 +26,21 @@ public:
     void update(float deltaTime);
 
     void setSpeed(float speed) { m_speed = speed; }
-    void setSpeedRoll(int speed) 
+    void setSpeedChange(int changeValue) 
     {
-        m_speedRoll = speed;
-        m_rollTextPos = m_pos;
-        m_isUpdateRoll = 1;    
-        m_rollTextPosOffset = m_pos;
-        m_rollTextPosOffset.y -= (m_dim.y * .65f);
+        m_speedChange = changeValue;
+        m_speedChangeTextPos = m_pos;
+        m_isUpdateSpeedChange = 1;    
+        m_speedChangeTextPosOffset = m_pos;
+        m_speedChangeTextPosOffset.y -= (m_dim.y * .65f);
 
     }
     float getSpeed() { return m_speed; }
-    int getSpeedRoll() { return m_speedRoll; }
+    int getSpeedChange() { return m_speedChange; }
 
     void setDisplaySpeed(float speed) { m_displaySpeed = speed; }
 
-    void removeRoll() { m_speedRoll = 0; }
+    void removeSpeedChange() { m_speedChange = 0; }
 
     void setTargetPos(const glm::vec2 & pos) 
     { 
@@ -52,27 +52,27 @@ public:
     int getOrder() { return m_order; }
 
 
-    int getUpdateRollState() { return m_isUpdateRoll; }
-    void setUpdateRollState(int state) { m_isUpdateRoll = state; 
+    int getUpdateSpeedChangeState() { return m_isUpdateSpeedChange; }
+    void setUpdateSpeedChangeState(int state) { m_isUpdateSpeedChange = state; 
     m_counter = 0; }
 
     // void setUpdat
 private:
 
     void updateMovement(float deltaTime);
-    void updateRoll(float deltaTime);
+    void updateSpeedChange(float deltaTime);
 
     EmptyObject m_portrait;
     EmptyObject m_border;
     int m_side = 0;
     float m_speed = 0;
     float m_displaySpeed = 0;
-    int m_speedRoll = 0;
+    int m_speedChange = 0;
     bool m_isInit = false;
 
     int m_order = 0;
     bool m_isUpdateMovement = false;
-    int m_isUpdateRoll = 0;
+    int m_isUpdateSpeedChange = 0;
 
     float m_counter = 0;
 
@@ -80,8 +80,8 @@ private:
     glm::vec2 m_dim = glm::vec2(0, 0);
     glm::vec2 m_targetPos = glm::vec2(0, 0);
     glm::vec2 m_displaySpeedPos = glm::vec2(0, 0);
-    glm::vec2 m_rollTextPos = glm::vec2(0, 0);
-    glm::vec2 m_rollTextPosOffset = glm::vec2(0, 0);
+    glm::vec2 m_speedChangeTextPos = glm::vec2(0, 0);
+    glm::vec2 m_speedChangeTextPosOffset = glm::vec2(0, 0);
 };
 
 

@@ -67,14 +67,14 @@ TurnOrderHandling_Fn[CombatTurnOrder.RollResult] = function(data)
         local tCharacter = TurnDisplayer_instance:getCharacterIcon(v.characterId,v.side)
         if tCharacter ~= nil then
             CTD_SetCharacterOrder(tCharacter,v.order)
-            CTD_SetCharacterRoll(tCharacter,v.rollResult)
+            CTD_SetCharacterSpeedChange(tCharacter,v.rollResult)
             CTD_SetCharacterSpeed(tCharacter,v.speed)
         end
     end
 
 
     TM_addTask(function()
-        TurnDisplayer_instance:setUpdateRoll(true)
+        TurnDisplayer_instance:setUpdateSpeedChange(true)
     end
     ,50
     )

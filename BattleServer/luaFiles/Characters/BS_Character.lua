@@ -43,6 +43,7 @@ BS_Character = {
     buffs                   = {},
     currentStance           = nil,
     isAlive                 = true,
+    side                    = 0,
 }
 
 --------------------------------------------------------------------------------
@@ -92,6 +93,10 @@ function BS_Character:init(userID, tId, tSlotIndex, tColPos, tRowPos)
     self.cAction = self:getMaxAP()
 
     self:printStats()
+end
+
+function BS_Character:setSide(side)
+    self.side = side
 end
 
 function BS_Character:initStat()
@@ -261,7 +266,7 @@ function BS_Character:getMaxAP()
 end
 
 function BS_Character:getSpeed(speedRoll)
-    return (self.stats.agility + (speedRoll or 0)) * StatScale.agi_speed
+    return (self.stats.agility  * StatScale.agi_speed ) + (speedRoll or 0)
 end
 
 --------------------------------------------------------------------------------
@@ -432,7 +437,19 @@ end
 --- Called at the start of this character's turn
 --- gainAP and tickBuffs are called by BS_BattleEvent BEFORE this hook
 ---@param battleState table
-function BS_Character:onTurnStart(battleState) end
+function BS_Character:onTurnStart(battleState)
+
+    battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_IngameData,CombatIngameData.OnCharacterTurnStart,
+    {
+        characterId = self.id,
+        characterSide = self.side,
+        currentAp   = self.cAction,
+        currentHp   = self.cHp,
+        currentMana = self.cMana
+    }
+    )
+
+end
 
 --- Called at the end of this character's turn
 ---@param battleState table

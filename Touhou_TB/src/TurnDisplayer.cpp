@@ -74,18 +74,18 @@ int lua_TurnDisplayer_SetCharacterIconOrder(lua_State * L)
     return 0;
 }
 
-int lua_TurnDisplayer_SetCharacterIconRoll(lua_State * L)
+int lua_TurnDisplayer_SetCharacterIconSpeedChange(lua_State * L)
 {
     if(lua_gettop(L) != 2)
     {
-        std::cout << "lua_TurnDisplayer_SetCharacterIconRoll Error\n";
+        std::cout << "lua_TurnDisplayer_SetCharacterIconSpeedChange Error\n";
         return -1;
     }
     else
     {
         CharacterIcon * characterIcon = static_cast<CharacterIcon*>(lua_touserdata(L, 1));
-        int roll = lua_tonumber(L, 2);
-        characterIcon->setSpeedRoll(roll);
+        int changeValue = lua_tonumber(L, 2);
+        characterIcon->setSpeedChange(changeValue);
         return 0;
     }
     return 0;
@@ -125,11 +125,11 @@ int lua_TurnDisplayer_SetCharacterIconDisplaySpeed(lua_State * L)
     return 0;
 }
 
-int lua_TurnDisplayer_SetUpdateRoll(lua_State * L)
+int lua_TurnDisplayer_SetUpdateSpeed(lua_State * L)
 {
     if(lua_gettop(L) != 2)
     {
-        std::cout << "lua_TurnDisplayer_SetUpdateRoll Error\n";
+        std::cout << "lua_TurnDisplayer_SetUpdateSpeed Error\n";
         return -1;
     }
     else
@@ -175,13 +175,13 @@ void TurnDisplayer::init(const std::string & scriptPath,lua_State * script)
 
     lua_register(m_script, "cpp_TurnDisplayer_SetCharacterIconOrder", lua_TurnDisplayer_SetCharacterIconOrder);
 
-    lua_register(m_script, "cpp_TurnDisplayer_SetCharacterIconRoll", lua_TurnDisplayer_SetCharacterIconRoll);
+    lua_register(m_script, "cpp_TurnDisplayer_SetCharacterIconSpeedChange", lua_TurnDisplayer_SetCharacterIconSpeedChange);
 
     lua_register(m_script, "cpp_TurnDisplayer_SetCharacterIconSpeed", lua_TurnDisplayer_SetCharacterIconSpeed);
 
     lua_register(m_script, "cpp_TurnDisplayer_SetCharacterIconDisplaySpeed", lua_TurnDisplayer_SetCharacterIconDisplaySpeed);
 
-    lua_register(m_script, "cpp_TurnDisplayer_SetUpdateRoll", lua_TurnDisplayer_SetUpdateRoll);
+    lua_register(m_script, "cpp_TurnDisplayer_SetUpdateSpeedChange", lua_TurnDisplayer_SetUpdateSpeed);
 
 
     m_pos = glm::vec2(0.0f, 400.0f);
@@ -265,9 +265,9 @@ void TurnDisplayer::updateRoll(float deltaTime)
 
     for(std::size_t i = 0; i < m_rollChracters.size(); i++)
     {
-        if(m_rollChracters[i]->getUpdateRollState() == 3)
+        if(m_rollChracters[i]->getUpdateSpeedChangeState() == 3)
         {
-            m_rollChracters[i]->setUpdateRollState(0);
+            m_rollChracters[i]->setUpdateSpeedChangeState(0);
             m_rollChracters.erase(m_rollChracters.begin() + i);
             // std::cout << "ready increase \n";
         }

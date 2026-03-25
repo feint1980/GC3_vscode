@@ -120,7 +120,8 @@ end
 function BattleSession:start()
     self.phase = BattlePhase.ROUND_START
 
-    -- share both formations with both players
+    -- share both formations with both players 
+    -- Sync the battle field 
     self:broadcast(ClientChannel.Combat, CCombatResponse.Combat_IngameData, CombatIngameData.Sync , { self.lobbyId,
         self.p1Id,
         self.p2Id,
@@ -129,11 +130,12 @@ function BattleSession:start()
     })
 
     print("[BattleSession] battle started — beginning round 1")
+    
     BS_BattleEvent.onRoundStart(self)
 
-    TM_addTask(function()
-        BS_BattleEvent.onTurnStartSpeedRoll(self)
-    end,50)
+    -- TM_addTask(function()
+    --     BS_BattleEvent.onTurnStartSpeedRoll(self)
+    -- end,50)
 
 
 end
@@ -170,7 +172,8 @@ function BattleSession:buildFormation(playerID, rawFormation, side)
 
         -- local char = tChar
         if tChar ~= nil then
-            tChar.side = side
+            -- tChar.side = side
+            tChar:setSide(side)
             -- print(tChar:getMaxHP())
             table.insert(formation, tChar)
         else
