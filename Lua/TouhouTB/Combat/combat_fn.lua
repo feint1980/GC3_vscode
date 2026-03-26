@@ -99,5 +99,6 @@ CombatHandling_Fn[CombatIngameData.OnCharacterTurnStart] = function(data)
     print("cHp " .. cHp)
     print("cMana " .. cMana)
 
-
+    TurnDisplayer_instance:setSelected(characterID,side)
+    
 end

@@ -34,5 +34,9 @@ function CombatTurnDisplayer:setUpdateSpeedChange(value)
     CTD_SetUpdateSpeedChange(self.host,value)
 end
 
+function CombatTurnDisplayer:setSelected(character,side)
+    print("CombatTurnDisplayer:setSelected " .. character .. " " .. side)
+    CTD_SetSelected(self.host,character,side)
+end
 
 

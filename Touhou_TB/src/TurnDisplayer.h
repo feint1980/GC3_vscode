@@ -28,9 +28,11 @@ public:
 
     void sortTurnOrder();
 
+    void setSelection(const std::string & characterID, int side);
+
     void setRollUpdate(bool value) {
 
-        std::cout << "C++ setRollUpdate called \n"; 
+        // std::cout << "C++ setRollUpdate called \n"; 
         m_isUpdateRoll = value;
     
         // ensure roll character always empty
@@ -41,7 +43,7 @@ public:
         {
             m_rollChracters.push_back(m_characters[i].get());
         }
-        std::cout << "C++ setRollUpdate end \n"; 
+        // std::cout << "C++ setRollUpdate end \n"; 
     }
 
     std::vector<CharacterIcon *> getSortedCharacters();
@@ -49,6 +51,7 @@ public:
 private:
     
     void updateRoll(float deltaTime);
+    void updateSelector(float deltaTime);
     lua_State * m_script = nullptr;
 
     std::vector< std::shared_ptr<CharacterIcon>> m_characters;
@@ -61,9 +64,16 @@ private:
 
     bool m_isUpdateRoll = false;
 
+    bool m_isUpdateSelector = false;
     std::unordered_map<std::string, std::string> m_portraitMap;
 
     int m_readyCount = 0;
+
+
+
+    EmptyObject m_selector;
+    glm::vec2 m_selectorPos;
+    glm::vec2 m_selectorTargetPos;
 };
 
 

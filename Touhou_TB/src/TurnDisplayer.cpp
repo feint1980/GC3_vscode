@@ -142,6 +142,24 @@ int lua_TurnDisplayer_SetUpdateSpeed(lua_State * L)
     return 0;
 }
 
+int lua_TurnDisplayer_SetSelection(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "lua_TurnDisplayer_SetSelection Error\n";
+        return -1;
+    }
+    else
+    {
+        TurnDisplayer * turnDisplayer = static_cast<TurnDisplayer*>(lua_touserdata(L, 1));
+        std::string characterID = lua_tostring(L, 2);
+        int side = lua_tonumber(L, 3);
+        turnDisplayer->setSelection(characterID, side);
+        return 0;
+    }
+    return 0;
+}
+
 TurnDisplayer::TurnDisplayer()
 {
 
@@ -183,6 +201,8 @@ void TurnDisplayer::init(const std::string & scriptPath,lua_State * script)
 
     lua_register(m_script, "cpp_TurnDisplayer_SetUpdateSpeedChange", lua_TurnDisplayer_SetUpdateSpeed);
 
+    lua_register(m_script, "cpp_TurnDisplayer_SetSelection", lua_TurnDisplayer_SetSelection);
+
 
     m_pos = glm::vec2(0.0f, 400.0f);
     m_defaultDimentions = glm::vec2(TURN_DISPLAYER_ICON_SIZE, TURN_DISPLAYER_ICON_SIZE);
@@ -191,6 +211,7 @@ void TurnDisplayer::init(const std::string & scriptPath,lua_State * script)
     m_portraitMap["S_Yukari"] = "./Assets/TB_GUI/faces/Yukari_face.png";
     m_portraitMap["S_Patchouli"] = "./Assets/TB_GUI/faces/Patchouli_face.png";
 
+    m_selector.init(Feintgine::ResourceManager::getTexture("./Assets/TB_GUI/faces/face_border.png"), m_pos,glm::vec2(TURN_DISPLAYER_ICON_SIZE) * 1.12f, Feintgine::Color(0,255,0, 255));
 }
 
 
@@ -254,6 +275,14 @@ void TurnDisplayer::update(float deltaTime)
     {
         updateRoll(deltaTime);
     }
+    else
+    {
+        if(m_isUpdateSelector)
+        {
+            updateSelector(deltaTime);
+        }    
+    }
+    
     for (std::size_t i = 0; i < m_characters.size(); i++)
     {
         m_characters[i]->update(deltaTime);
@@ -278,6 +307,40 @@ void TurnDisplayer::updateRoll(float deltaTime)
         m_isUpdateRoll = false;
         sortTurnOrder();
     }
+}
+
+void TurnDisplayer::setSelection(const std::string & characterID, int side)
+{
+    std::cout << "TurnDisplayer::setSelection " << characterID << " " << side << "\n";
+    CharacterIcon * selected =  getCharacterIcon(characterID, side);
+    if(selected != nullptr)
+    {
+        m_selectorTargetPos = selected->getPos();
+        m_isUpdateSelector = true;
+    }
+    else
+    {
+        std::cout << "TurnDisplayer::setSelection character not found \n";
+    }
+}
+
+void TurnDisplayer::updateSelector(float deltaTime)
+{
+    
+    float distance = glm::distance( m_selectorTargetPos, m_selectorPos);
+    
+    if (distance >  0.5f)
+    {
+        float step = 15.0f * deltaTime;
+        m_selectorPos += glm::normalize(m_selectorTargetPos - m_selectorPos) * std::min(step, distance);
+    
+    }
+    else
+    {
+        m_selectorPos = m_selectorTargetPos;
+        m_isUpdateSelector = false;
+    }
+    m_selector.setPos(m_selectorPos);
 }
 
 void TurnDisplayer::addIcon(const std::string & characterID, int side, int order)
@@ -321,6 +384,9 @@ void TurnDisplayer::draw(Feintgine::SpriteBatch & spriteBatch)
     {
         m_characters[i]->draw(spriteBatch);
     }
+
+
+    m_selector.draw(spriteBatch);
 }
 
 void TurnDisplayer::drawText(TextRenderer * textRenderer)

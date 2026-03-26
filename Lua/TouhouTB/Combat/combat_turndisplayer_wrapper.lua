@@ -33,3 +33,7 @@ function CTD_SetUpdateSpeedChange(host, value)
     cpp_TurnDisplayer_SetUpdateSpeedChange(host,value)
 end
 
+function CTD_SetSelected(host, characterID , side)
+    cpp_TurnDisplayer_SetSelection(host,characterID,side)
+end
+

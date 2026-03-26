@@ -61,7 +61,7 @@ function BS_Char_Reimu:onTurnStart(battleState)
     {
         characterId = self.id,
         characterSide = self.side,
-        currentAP   = self.cAction,
+        currentAp   = self.cAction,
         currentHp   = self.cHp,
         currentMana = self.cMana
     }

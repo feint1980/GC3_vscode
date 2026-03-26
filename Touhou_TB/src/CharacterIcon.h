@@ -51,6 +51,7 @@ public:
     void setOrder(int order) { m_order = order; }
     int getOrder() { return m_order; }
 
+    glm::vec2 getPos() { return m_pos; }
 
     int getUpdateSpeedChangeState() { return m_isUpdateSpeedChange; }
     void setUpdateSpeedChangeState(int state) { m_isUpdateSpeedChange = state; 
