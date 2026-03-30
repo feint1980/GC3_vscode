@@ -225,7 +225,74 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
 
     Home_SyncData(ClientScriptingPtr)
 
+
+    print("test pipeline section ")
+
+    -- test Lua event pipeline
+    local ttData = { "feint " , "kakaka"}
+
+    EventPipeline.emit("TEST_ALL_TYPES", { name = "mews" })
+
+    print("test pipeline section end ")
+
 end
+
+EventPipeline.setTimerFn(function(sec, cb)
+    TM_addTask(cb, sec)
+end)
+
+
+EventPipeline.on("TEST_ALL_TYPES", {
+
+    -- instant: runs and continues immediately
+    {
+        type = "instant",
+        fn   = function(data)
+            print("[instant] hello " .. data.name)
+        end,
+    },
+
+    -- async: done() called synchronously at the end of fn
+    -- wait() sees isDone=true and skips the yield — behaves like instant
+    {
+        type = "async",
+        fn   = function(data, done)
+            print("[async-sync] processing " .. data.name)
+            done()  -- called before wait() — skips yield
+        end,
+    },
+
+    -- async: done() called later, from inside a simulated callback
+    -- wait() yields here, TM_addTask resumes it after 0.5s
+    {
+        type = "async",
+        fn   = function(data, done)
+            print("[async-deferred] starting anim for " .. data.name)
+            TM_addTask(function()
+                print("[async-deferred] anim finished")
+                done()  -- called after wait() has already yielded
+            end, 0.5)
+        end
+    },
+
+    -- timed: runs fn, then auto-advances after duration seconds
+    {
+        type     = "timed",
+        duration = 0.1,
+        fn       = function(data)
+            print("[timed] showing banner for 1 second")
+        end,
+    },
+
+    -- final step — proves all previous steps finished in order
+    {
+        type = "instant",
+        fn   = function(data)
+            print("[instant] all steps done for " .. data.name)
+        end,
+    },
+})
+
 
 function Home_SyncData(clientScritping)
     print("Home_SyncData")
@@ -520,6 +587,7 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
     end
 
     -- InfoHolder_setStrVal("Shop_CharacterTable", saveData)
+
 
 end
 

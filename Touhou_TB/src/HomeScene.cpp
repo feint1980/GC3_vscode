@@ -207,6 +207,7 @@ void HomeScene::update(float deltaTime)
     }
     m_gif.update(deltaTime);
     m_luaTaskManager.update(deltaTime);
+    m_luaEventPipeline.update(deltaTime);
     // m_luaEventHandler.update(deltaTime);
     
 }
@@ -321,6 +322,9 @@ void HomeScene::initGUI()
 
     // m_luaEventHandler.init(m_script);
     m_luaTaskManager.init("../../Lua/system/event/TaskManager.lua",m_script);
+
+    m_luaEventPipeline.init("../../Lua/system/event/EventPipeline.lua",m_script);
+
     m_guiScriptingManager = new TGUIScriptingManager();
 
     m_guiScriptingManager->addDrawCall("drawGIFScene", std::bind(&HomeScene::drawGIFScene, this));

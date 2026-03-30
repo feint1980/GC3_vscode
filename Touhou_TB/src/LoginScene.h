@@ -37,6 +37,7 @@
 
 #include "ClientScriptingManager.h"
 
+
 class LoginScene : public Feintgine::IGameScreen
 {
 public:
