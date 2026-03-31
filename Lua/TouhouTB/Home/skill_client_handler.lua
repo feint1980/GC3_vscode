@@ -12,7 +12,7 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.SkillInfo_Start] =
         print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.SkillInfo_Start)")
         return
     end
-
+    EP_SendSignal("SkillInfo")
     -- print("recieve data " .. tData .. " from " .. t_guid)
     for k,v in pairs(Skill_Serialized_Table) do
         Skill_Serialized_Table[k] = nil
@@ -53,6 +53,8 @@ end
 
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.SkillInfo_End] = function(host,data, guid)
     local tData = string.sub(data,2,string.len(data) - 1)
+
+     -- mark next request
     -- if tData == "ev" then 
         -- print("skill transfer ended, total skill:" .. tostring(t_skill_count))
         -- print("check data")

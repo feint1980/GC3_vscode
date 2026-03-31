@@ -67,4 +67,5 @@ end
 
 MenuPanels["Shop"] = function (host)
     ShopPanel:showWithEffect(PanelShowType.Fade,250)
+    EP_SendSignal("locked_in")
 end

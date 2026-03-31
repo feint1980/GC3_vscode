@@ -18,7 +18,7 @@ TM_Tasks = {
 }
 
 function TM_addTask(callback, time)
-    -- print("TM_addTask called")
+    -- print("TM_addTask called timed " .. time)
     table.insert(TM_Tasks, DelayTask:new(time, callback))
     -- table.insert(TM_Tasks, {time = time, callback = callback})
 end

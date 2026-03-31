@@ -14,6 +14,9 @@ require "Formation"
 require "homeGlobal"
 require "Arena"
 
+require "homeScene_sequence"
+require "EventPipeline"
+
 require "Reimu"
 require "Patchouli"
 require "Yukari"
@@ -76,8 +79,6 @@ Main_FormationButton = nil
 Main_ArenaButton = nil
 
 
-
-
 local h_id = ""
 local h_pw = ""
 local h_guid = ""
@@ -96,8 +97,7 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
 
     if IsInited == false then
         IsInited = true
-    
-    
+        
         if HomeSceneHost ~= nil then
             print("LoginHost is not nil")
         end
@@ -225,74 +225,22 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
 
     Home_SyncData(ClientScriptingPtr)
 
-
     print("test pipeline section ")
 
     -- test Lua event pipeline
-    local ttData = { "feint " , "kakaka"}
 
-    EventPipeline.emit("TEST_ALL_TYPES", { name = "mews" })
+    Prompt_UI_Table["Home_Status"] = Prompt:new()
+    Prompt_UI_Table["Home_Status"]:init(TGUIScriptingPtr,"Home_Status",false)
+
+    Prompt_UI_Table["Home_Status"]:showMsg("Syncing data ...")
+
+    -- EventPipeline.emit("HOMESCENE_SYNCDATA", {clientScritping = ClientScriptingPtr})
+
+    
 
     print("test pipeline section end ")
 
 end
-
-EventPipeline.setTimerFn(function(sec, cb)
-    TM_addTask(cb, sec)
-end)
-
-
-EventPipeline.on("TEST_ALL_TYPES", {
-
-    -- instant: runs and continues immediately
-    {
-        type = "instant",
-        fn   = function(data)
-            print("[instant] hello " .. data.name)
-        end,
-    },
-
-    -- async: done() called synchronously at the end of fn
-    -- wait() sees isDone=true and skips the yield — behaves like instant
-    {
-        type = "async",
-        fn   = function(data, done)
-            print("[async-sync] processing " .. data.name)
-            done()  -- called before wait() — skips yield
-        end,
-    },
-
-    -- async: done() called later, from inside a simulated callback
-    -- wait() yields here, TM_addTask resumes it after 0.5s
-    {
-        type = "async",
-        fn   = function(data, done)
-            print("[async-deferred] starting anim for " .. data.name)
-            TM_addTask(function()
-                print("[async-deferred] anim finished")
-                done()  -- called after wait() has already yielded
-            end, 0.5)
-        end
-    },
-
-    -- timed: runs fn, then auto-advances after duration seconds
-    {
-        type     = "timed",
-        duration = 0.1,
-        fn       = function(data)
-            print("[timed] showing banner for 1 second")
-        end,
-    },
-
-    -- final step — proves all previous steps finished in order
-    {
-        type = "instant",
-        fn   = function(data)
-            print("[instant] all steps done for " .. data.name)
-        end,
-    },
-})
-
 
 function Home_SyncData(clientScritping)
     print("Home_SyncData")
@@ -309,6 +257,8 @@ function Home_SyncData(clientScritping)
     local ping = ClientGetPing(clientScritping)
     print("ping is " .. ping)
 end
+
+
 
 function Home_UpdateInfo()
     local id,pw, guid = Home_GetInfo(3)
@@ -430,23 +380,6 @@ Network_CommonTask[PacketID.ID_CONNECTION_LOST] = function(host,packet,RakNetPac
     Client_Connected = false
 end
 
--- Network_CommonTask[PacketID.ID_UNCONNECTED_PONG] = function(host,packet,RakNetPacket)
---     print("ID_UNCONNECTED_PONG get")
---     -- local tData = SV_GetPacketData(host,RakNetPacket)
---     -- print("tData " .. tData)
---     cppCollectPong(host,RakNetPacket)
--- end
-
-
--- Network_CommonTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,packet,RakNetPacket)
-
---     print("accepted by battle server ")
---     local tGuid = Client_GetGUID_FromPacket(RakNetPacket)
---     print("guid : " .. tGuid)
---     local tIP = Client_GetIP_FromPacket(RakNetPacket)
---     print("IP " .. tIP)
--- end
-
 
 function Home_showNotification(msg,btnText)
     Home_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
@@ -463,9 +396,27 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = functi
         print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.MainInfo)")
         return
     end
+
+
+    
     print("check account " .. t_id .. " " .. mon .. " " .. souls .. " " .. t_guid)
+
+    local tID =  InfoHolder_getStrVal("MainInfo.id")
+    
+    local tGUID =   InfoHolder_getStrVal("MainInfo.guid")
+
+    if t_id ~= tID or t_guid ~= tGUID then
+        print("Ke3 F3i117 exception (PacketChannel.UserChannel][UserResponse.MainInfo)")
+        Prompt_UI_Table["Home_Status"]:showMsg("Sync data error, please login again !!!")
+        return
+    end
+    EP_SendSignal("MainInfo")
     Main_MonValLabel:setText(mon)
     Main_SoulsValLabel:setText(Tag.color_TB_title .. souls .. " " .. Tag.icon_soul .. Tag.color_close)
+
+    Prompt_UI_Table["Home_Status"]:show(false)
+    
+   
 end
 
 ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Begin] = function(host,data, guid)
@@ -499,8 +450,6 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
     else
         S_Characters_Info[t_name].isOwned = false
     end
-
-
 
     local t_charStats =  Client_ParseCharacterFromJson(host, t_data)
     ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr, "Shop",t_name,t_charStats)

@@ -39,7 +39,7 @@ ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formatio
     if nCap == nil then
         return
     end
-
+    EP_SendSignal("FormationInfo")
     Formation_PageCap = nCap / 4
     -- Formation_Page = tonumbercap
     -- -- reset info table
@@ -87,6 +87,8 @@ ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formatio
             print("Formation_Table[" .. infoIndex .. "] is nil")
         end
     end
+
+ 
 end
 
 ClientMessageHandling[PacketChannel.FormationChannel][FormationResponse.Formation_Data] = function(host,data, guid)

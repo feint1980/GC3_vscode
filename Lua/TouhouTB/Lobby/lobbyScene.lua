@@ -285,8 +285,6 @@ function Lobby_UpdateInfo()
 
     -- print("Lobby_UpdateInfo called " .. id .. " " .. pw .. " " .. guid)
 
-    -- SendRequest(PacketChannel.UserChannel, UserResponse.MainInfo, {id, pw, guid}, 5, 0.25)
-
 end
 
 function LobbyScene_ReadyStateUpdate()

@@ -15,6 +15,29 @@
 -- =============================================================================
 
 
+-- ─── Signal table ──────────────────────────────────────────
+-- ─────────────────────────────────────────────────────────── 
+package.path = package.path .. ';../../Lua/system/event/?.lua;'
+require "TaskManager"
+
+EP_Signals = {}
+
+function EP_SendSignal(key)
+    print("Sending signal " .. key)
+    if EP_Signals[key] then
+        print("Signal " .. key .. " is valid")
+        EP_Signals[key]()   -- call the stored done()
+        EP_Signals[key] = nil
+    end
+end
+
+function EP_ListSignals()
+    print("listing signal ...")
+    for k, v in pairs(EP_Signals) do
+        print(k .. " is " .. v)
+    end
+end
+
 -- ─── Internal state ───────────────────────────────────────────────────────────
 
 local EP_queue   = {}     -- { co, waiting, id }
@@ -99,16 +122,25 @@ local function EP_push(fn, id)
                 if entry.waiting then
                     -- coroutine is already yielded — resume it next frame
                     entry.waiting = false
-                    TM_addTask(function()
-                        if coroutine.status(entry.co) == "suspended" then
-                            local ok, err = coroutine.resume(entry.co)
-                            if not ok then
-                                print("[EventPipeline] Error after done(): " .. tostring(err))
-                                table.remove(EP_queue, 1)
-                            end
+                    -- TM_addTask(function()
+                    --     if coroutine.status(entry.co) == "suspended" then
+                    --         local ok, err = coroutine.resume(entry.co)
+                    --         if not ok then
+                    --             print("[EventPipeline] Error after done(): " .. tostring(err))
+                    --             table.remove(EP_queue, 1)
+                    --         end
+                    --     end
+                    --     EP_tick()
+                    -- end, 0)
+                    
+                    if coroutine.status(entry.co) == "suspended" then
+                        local ok, err = coroutine.resume(entry.co)
+                        if not ok then
+                            print("[EventPipeline] Error after done(): " .. tostring(err))
+                            table.remove(EP_queue, 1)
                         end
-                        EP_tick()
-                    end, 0)
+                    end
+                    EP_tick()
                 end
                 -- if not waiting yet: wait() will see isDone and skip yield
             end,
@@ -146,6 +178,11 @@ EventPipeline = {}
 function EventPipeline.setTimerFn(fn)
     EP_timerFn = fn
 end
+
+
+EventPipeline.setTimerFn(function(sec, cb)
+    TM_addTask(cb, sec)
+end)
 
 -- -----------------------------------------------------------------------------
 --  EventPipeline.on(eventName, steps)
@@ -225,6 +262,7 @@ function EventPipeline.emit(eventName, data)
                 EP_timerFn(duration or 0, function()
                     handle:done()
                 end)
+
                 handle:wait()
 
             else
@@ -266,6 +304,7 @@ function EventPipeline_hasTasks()
 end
 
 function EventPipeline_update(dt)
+    -- EP_tick()
     -- no-op: pipeline is callback-driven, not frame-polled.
     -- reserved for a future "poll" step type.
 end

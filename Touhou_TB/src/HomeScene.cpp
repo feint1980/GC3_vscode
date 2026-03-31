@@ -323,7 +323,7 @@ void HomeScene::initGUI()
     // m_luaEventHandler.init(m_script);
     m_luaTaskManager.init("../../Lua/system/event/TaskManager.lua",m_script);
 
-    m_luaEventPipeline.init("../../Lua/system/event/EventPipeline.lua",m_script);
+    m_luaEventPipeline.init("../../Lua/system/event/EventPipeline.lua",m_script); // must init event pipeline after task manager (use on top of task manager )
 
     m_guiScriptingManager = new TGUIScriptingManager();
 

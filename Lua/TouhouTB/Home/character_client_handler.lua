@@ -99,8 +99,11 @@ end
 
 
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.OwnedCharacter_End] = function(host,data, guid)
+    EP_SendSignal("CharacterInfo")
     print("update the owned character list !!!!!!!!!!!!!!!!!!!!!!!!")
     NexusCharacterTab:updateCharacters()
+    
+
 end
 
 

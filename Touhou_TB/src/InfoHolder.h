@@ -17,7 +17,7 @@
 #include "TGUIScriptingManager.h"
 #include <map>
 #include <IMainGame.h>
-
+#include <LuaEventPipeline.h>
 
 
 class InfoHolder
@@ -149,6 +149,10 @@ public:
 
     std::unordered_map<std::string, RakNet::SystemAddress * > getBattleServerIPMap() { return m_savedBattleServerIPMap; }
 
+    void registerLuaEventPipeline(LuaEventPipeline * luaEventPipeline) { m_luaEventPipeline = luaEventPipeline; }
+
+    LuaEventPipeline * getLuaEventPipeline() { return m_luaEventPipeline; }
+
 private:
 
     static InfoHolder* m_inforHolder ;
@@ -180,4 +184,5 @@ private:
     std::unordered_map<std::string, std::string > m_characterAnimationPath;
 
 
+    LuaEventPipeline * m_luaEventPipeline = nullptr;
 };

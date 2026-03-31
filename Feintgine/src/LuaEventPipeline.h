@@ -23,6 +23,8 @@ public:
     // Skips the Lua call entirely when no tasks are queued (zero idle overhead).
     void update(float deltaTime);
 
+    void sendSignal(const std::string& signalName);
+
 private:
     lua_State* m_script = nullptr;
 };
