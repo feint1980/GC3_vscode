@@ -25,6 +25,8 @@ public:
 
     void sendSignal(const std::string& signalName);
 
+    void sendPollSignal(const std::string& signalName,bool value);
+
 private:
     lua_State* m_script = nullptr;
 };

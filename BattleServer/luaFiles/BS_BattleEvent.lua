@@ -185,10 +185,17 @@ function BS_BattleEvent.onTurnStartSpeedRoll(battleState)
         })
     end
 
-
+    print("queueInfo -----------------")
     local count = 1
     for k,v in pairs(queueInfo) do
-        print(k .. " " .. v.characterId)
+        print(k .. " " .. v.characterId .. " side " .. v.side .. " roll " .. v.rollResult .. " total speed " .. v.speed)
+        count = count + 1
+    end
+
+    count = 1
+    print("battleState.turnQueue -----------------")
+    for k,v in pairs(battleState.turnQueue) do
+        print(k .. " " .. v.stats.name)
         count = count + 1
     end
 

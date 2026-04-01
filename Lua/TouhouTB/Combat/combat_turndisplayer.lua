@@ -1,6 +1,9 @@
+package.path = package.path .. ';../../Lua/system/event/?.lua;'
+
+require "TaskManager"
+require "EventPipeline"
 
 require "combat_turndisplayer_wrapper"
-
 
 ---@class CombatTurnDisplayer
 CombatTurnDisplayer = {
@@ -39,4 +42,37 @@ function CombatTurnDisplayer:setSelected(character,side)
     CTD_SetSelected(self.host,character,side)
 end
 
+------ Event pipeline
 
+EventPipeline.on("TURNDISPLAYER_SpeedChange", {
+    {
+        type = "instant",
+        fn   = function(data)
+            print("testttt TURNDISPLAYER_SpeedChange called ")
+        end,
+    }
+}
+)
+
+
+EventPipeline.on("TURNDISPLAYER_SetSelection", {
+    {
+        type = "instant",
+        fn   = function(data)
+            print("testttt TURNDISPLAYER_SetSelection called ")
+        end,
+    },
+    {
+        type = "poll",
+        condition = function()
+            return EP_PollSignals["TurnDisplayerIsBusy"] == true
+            end,
+        fn        = function(data)
+            print("[poll] RollUpdate done")
+            
+            TurnDisplayer_instance:setSelected(data.characterID,data.side)
+            EP_ClearPollSignal("TurnDisplayerIsBusy")
+
+        end,
+    }
+})

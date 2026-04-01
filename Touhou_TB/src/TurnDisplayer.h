@@ -5,6 +5,7 @@
 #include "CharacterIcon.h"
 #include "LuaManager.h"
 #include <TextRenderer.h>
+#include "InfoHolder.h"
 
 #define TURN_DISPLAYER_ICON_SIZE 100.0f
 
@@ -34,7 +35,7 @@ public:
 
         // std::cout << "C++ setRollUpdate called \n"; 
         m_isUpdateRoll = value;
-    
+        
         // ensure roll character always empty
 
         m_rollChracters.clear();
@@ -47,6 +48,8 @@ public:
     }
 
     std::vector<CharacterIcon *> getSortedCharacters();
+
+    bool isDisplayBusy();
 
 private:
     
@@ -68,8 +71,6 @@ private:
     std::unordered_map<std::string, std::string> m_portraitMap;
 
     int m_readyCount = 0;
-
-
 
     EmptyObject m_selector;
     glm::vec2 m_selectorPos;

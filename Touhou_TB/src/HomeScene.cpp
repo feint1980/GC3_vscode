@@ -325,6 +325,8 @@ void HomeScene::initGUI()
 
     m_luaEventPipeline.init("../../Lua/system/event/EventPipeline.lua",m_script); // must init event pipeline after task manager (use on top of task manager )
 
+    InfoHolder::getInstance()->registerLuaEventPipeline(&m_luaEventPipeline);
+
     m_guiScriptingManager = new TGUIScriptingManager();
 
     m_guiScriptingManager->addDrawCall("drawGIFScene", std::bind(&HomeScene::drawGIFScene, this));

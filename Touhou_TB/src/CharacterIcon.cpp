@@ -88,6 +88,7 @@ void CharacterIcon::updateMovement(float deltaTime)
         {
             m_pos = m_targetPos;
             m_isUpdateMovement = false;
+            m_state &= ~ICON_POS_CHANGE;
             // std::cout << "update done \n";
         }
         m_portrait.setPos(m_pos);
@@ -133,6 +134,7 @@ void CharacterIcon::updateSpeedChange(float deltaTime)
                     m_speedChangeTextPos = m_displaySpeedPos;
                     m_isUpdateSpeedChange +=1;
                     m_displaySpeed = m_speed;// + m_speedChange;
+                    m_state &= ~ICON_SPEED_CHANGE;
                     
                 }
             }    

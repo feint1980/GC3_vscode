@@ -5,7 +5,6 @@ require "clientGlobal"
 TurnOrderHandling_Fn[CombatTurnOrder.Sync] = function(data)
 
     print("Turn order sync ")
-    
     print("data " .. data)
 
     local orderList, pos ,err = JSON_Decode(data)
@@ -72,12 +71,10 @@ TurnOrderHandling_Fn[CombatTurnOrder.RollResult] = function(data)
         end
     end
 
-
     TM_addTask(function()
         TurnDisplayer_instance:setUpdateSpeedChange(true)
     end
     ,50
     )
-
 
 end

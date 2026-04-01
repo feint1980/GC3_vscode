@@ -74,3 +74,16 @@ void LuaEventPipeline::update(float deltaTime)
         lua_call(m_script, 1, 0);
     }
 }
+
+void LuaEventPipeline::sendPollSignal(const std::string& signalName,bool value)
+{
+    if(!m_script)
+    {
+        return;
+    }
+
+    lua_getglobal(m_script, "EP_SetPollSignal");
+    lua_pushstring(m_script, signalName.c_str());
+    lua_pushboolean(m_script, value);
+    lua_call(m_script, 2, 0);
+}

@@ -108,6 +108,8 @@ void CombatScene::initGUI()
         m_script = luaL_newstate();
         luaL_openlibs(m_script);
         m_luaTaskManager.init("../../Lua/system/event/TaskManager.lua",m_script);
+        m_luaEventPipeline.init("../../Lua/system/event/EventPipeline.lua",m_script); // must init event pipeline after task manager (use on top of task manager )
+        InfoHolder::getInstance()->registerLuaEventPipeline(&m_luaEventPipeline);
 
         if(!m_guiScriptingManager)
         {
@@ -211,6 +213,7 @@ void CombatScene::update(float deltaTime)
         m_guiScriptingManager->update(deltaTime);
     }
     m_luaTaskManager.update(deltaTime);
+    m_luaEventPipeline.update(deltaTime);
     if(m_combatField)
     {
         m_combatField->update(deltaTime);

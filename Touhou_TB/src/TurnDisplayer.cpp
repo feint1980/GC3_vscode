@@ -211,9 +211,8 @@ void TurnDisplayer::init(const std::string & scriptPath,lua_State * script)
     m_portraitMap["S_Yukari"] = "./Assets/TB_GUI/faces/Yukari_face.png";
     m_portraitMap["S_Patchouli"] = "./Assets/TB_GUI/faces/Patchouli_face.png";
 
-    m_selector.init(Feintgine::ResourceManager::getTexture("./Assets/TB_GUI/faces/face_border.png"), m_pos,glm::vec2(TURN_DISPLAYER_ICON_SIZE) * 1.12f, Feintgine::Color(0,255,0, 255));
+    m_selector.init(Feintgine::ResourceManager::getTexture("./Assets/TB_GUI/faces/face_border.png"), m_pos,glm::vec2(TURN_DISPLAYER_ICON_SIZE) * 1.075f, Feintgine::Color(0,255,0, 255));
 }
-
 
 void TurnDisplayer::sortTurnOrder()
 {
@@ -232,41 +231,57 @@ void TurnDisplayer::sortTurnOrder()
         centerLeftPos += spacing;
     }
 
-}
-
-std::vector<CharacterIcon *> TurnDisplayer::getSortedCharacters()
-{
-    std::vector<CharacterIcon *> bCharacters;
     
-    std::vector<CharacterIcon *> rCharacters;
-    for (int i = 0; i < m_characters.size(); i++)
-    {
-        bCharacters.push_back(m_characters[i].get());
-    }
-
-    // sort by order
-    int min = 15;
-    int index = -1;
-    while(bCharacters.size() > 0)
-    {
-        for(int i = 0; i < bCharacters.size(); i++)
-        {
-            if(bCharacters[i]->getOrder() < min)
-            {
-                min = bCharacters[i]->getOrder();
-                index = i;
-            }
-        }
-
-        rCharacters.push_back(bCharacters[index]);
-        bCharacters.erase(bCharacters.begin() + index);
-        min = 15;
-        index = -1;
-    }
-
-    std::cout << "sort done \n";
-    return rCharacters;
 }
+
+std::vector<CharacterIcon*> TurnDisplayer::getSortedCharacters()
+{
+    std::vector<CharacterIcon*> result;
+    result.reserve(m_characters.size());
+
+    for (auto& c : m_characters)
+        result.push_back(c.get());
+
+    std::sort(result.begin(), result.end(), [](CharacterIcon* a, CharacterIcon* b) {
+        return a->getSpeed() > b->getSpeed();  // ascending: lowest order first
+    });
+
+    return result;
+}
+
+// std::vector<CharacterIcon *> TurnDisplayer::getSortedCharacters()
+// {
+//     std::vector<CharacterIcon *> bCharacters;
+    
+//     std::vector<CharacterIcon *> rCharacters;
+//     for (int i = 0; i < m_characters.size(); i++)
+//     {
+//         bCharacters.push_back(m_characters[i].get());
+//     }
+
+//     // sort by order
+//     int min = 15;
+//     int index = -1;
+//     while(bCharacters.size() > 0)
+//     {
+//         for(int i = 0; i < bCharacters.size(); i++)
+//         {
+//             if(bCharacters[i]->getOrder() < min)
+//             {
+//                 min = bCharacters[i]->getOrder();
+//                 index = i;
+//             }
+//         }
+
+//         rCharacters.push_back(bCharacters[index]);
+//         bCharacters.erase(bCharacters.begin() + index);
+//         min = 15;
+//         index = -1;
+//     }
+
+//     std::cout << "sort done \n";
+//     return rCharacters;
+// }
 
 void TurnDisplayer::update(float deltaTime)
 {
@@ -287,6 +302,29 @@ void TurnDisplayer::update(float deltaTime)
     {
         m_characters[i]->update(deltaTime);
     }
+    m_selectorPos.y = m_pos.y;
+    
+    if(isDisplayBusy())
+    {
+        InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsBusy", true);
+    }
+    else
+    {
+        InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsBusy", false);
+    }
+}
+
+bool TurnDisplayer::isDisplayBusy()
+{
+    for (std::size_t i = 0; i < m_characters.size(); i++)
+    {
+        if(m_characters[i]->getState()) // not 0
+        {
+            return true;
+        }
+    }
+    return false;
+
 }
 
 void TurnDisplayer::updateRoll(float deltaTime)
@@ -305,6 +343,7 @@ void TurnDisplayer::updateRoll(float deltaTime)
     {
 
         m_isUpdateRoll = false;
+
         sortTurnOrder();
     }
 }
@@ -316,6 +355,7 @@ void TurnDisplayer::setSelection(const std::string & characterID, int side)
     if(selected != nullptr)
     {
         m_selectorTargetPos = selected->getPos();
+        std::cout << "target is " << m_selectorTargetPos.x << " " << m_selectorTargetPos.y << "\n"; 
         m_isUpdateSelector = true;
     }
     else

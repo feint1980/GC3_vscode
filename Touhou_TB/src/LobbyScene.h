@@ -41,7 +41,8 @@
 #include "../../PacketDescription/SkillHandler.h"
 #include "ControlHandler.h"
 #include <LuaTaskManager.h>
-
+#include <LuaEventPipeline.h>
+// #include <LuaEventPipeline.h>
 
 
 class LobbyScene : public Feintgine::IGameScreen
@@ -132,6 +133,7 @@ private:
     ControlHandler * m_controlHandler = nullptr;
 
     LuaTaskManager m_luaTaskManager ;
+    LuaEventPipeline m_luaEventPipeline;
 
     bool isInitialized = false;
 

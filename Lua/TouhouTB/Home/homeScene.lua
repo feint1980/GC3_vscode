@@ -94,7 +94,6 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     Home_SkillHandlerPtr = SkillHandlerPtr
     Home_ControlHandlerPtr = ControlHandlerPtr
 
-
     if IsInited == false then
         IsInited = true
         
@@ -233,14 +232,14 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     Prompt_UI_Table["Home_Status"]:init(TGUIScriptingPtr,"Home_Status",false)
 
     Prompt_UI_Table["Home_Status"]:showMsg("Syncing data ...")
-
     -- EventPipeline.emit("HOMESCENE_SYNCDATA", {clientScritping = ClientScriptingPtr})
 
-    
-
+    -- EP_PollSignals["MainInfo"] = false
+    -- EventPipeline.emit("TEST")
     print("test pipeline section end ")
 
 end
+
 
 function Home_SyncData(clientScritping)
     print("Home_SyncData")
@@ -257,9 +256,6 @@ function Home_SyncData(clientScritping)
     local ping = ClientGetPing(clientScritping)
     print("ping is " .. ping)
 end
-
-
-
 function Home_UpdateInfo()
     local id,pw, guid = Home_GetInfo(3)
     print("Home_UpdateInfo " .. id .. " " .. pw .. " " .. guid)
@@ -293,21 +289,6 @@ end
 
 HomeMain_HandleTask = {}
 
----@Description get the code of other special ID
----@param packet Client_Packet
----@return number 
-function HomeMain_GetOtherID(packet)
-    local msg = packet.data
-    -- print("msg is :" .. msg)
-    for k,v in pairs(Home_OrderList) do
-        if string.match(msg,v.firstStr) then
-            if string.match(msg,v.secondStr) then
-                return k
-            end
-        end
-    end
-    return Packet_OtherID.ID_INVALID
-end
 
 ---@Description loop for Client script
 ---@param host pointer instance of ClientScriptingManager
@@ -317,6 +298,7 @@ HandlePacketTask["home_main"] = function(host,packet,RakNetPacket)
     if HomeMain_HandleTask[packet.packetID] ~= nil then
         HomeMain_HandleTask[packet.packetID](host,packet,RakNetPacket)
     end
+
 end
 
 ---function wrapper of cpp_getInfo
@@ -348,6 +330,7 @@ HandlePacketTask["common"] = function(host,packet,RakNetPacket)
     end
 end
 
+---- Handle [ID_CONNECTION_ATTEMPT_FAILED]
 Network_CommonTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet,RakNetPacket)
     print("ID_CONNECTION_ATTEMPT_FAILED")
     -- Client_Connected = false
@@ -359,6 +342,7 @@ Network_CommonTask[PacketID.ID_CONNECTION_ATTEMPT_FAILED] = function(host,packet
 
 end
 
+---- Handle [ID_DISCONNECTION_NOTIFICATION]
 Network_CommonTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packet,RakNetPacket)
     Home_Noti_Btn:setOnClickCallback(function()
         Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
@@ -369,6 +353,7 @@ Network_CommonTask[PacketID.ID_DISCONNECTION_NOTIFICATION] = function(host,packe
     -- Client_Connected = false
 end
 
+---- Handle [ID_CONNECTION_LOST]
 Network_CommonTask[PacketID.ID_CONNECTION_LOST] = function(host,packet,RakNetPacket)
     Home_Noti_Btn:setOnClickCallback(function()
         Home_Noti_Panel:hideWithEffect(PanelShowType.Fade,250)
@@ -381,6 +366,9 @@ Network_CommonTask[PacketID.ID_CONNECTION_LOST] = function(host,packet,RakNetPac
 end
 
 
+---@Description show notification panel
+---@param msg string message
+---@param btnText string
 function Home_showNotification(msg,btnText)
     Home_Noti_Panel:showWithEffect(PanelShowType.Fade,250)
     Home_Noti_Msg:setText(msg)
@@ -388,6 +376,7 @@ function Home_showNotification(msg,btnText)
     Home_Noti_Panel.visible = true
 end
 
+--- Handle [PacketChannel.UserChannel][UserResponse.MainInfo] Main Info
 ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = function(host,data, guid)
 
     -- print("ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo]")
@@ -397,8 +386,6 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = functi
         return
     end
 
-
-    
     print("check account " .. t_id .. " " .. mon .. " " .. souls .. " " .. t_guid)
 
     local tID =  InfoHolder_getStrVal("MainInfo.id")
@@ -410,15 +397,16 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = functi
         Prompt_UI_Table["Home_Status"]:showMsg("Sync data error, please login again !!!")
         return
     end
-    EP_SendSignal("MainInfo")
+    
     Main_MonValLabel:setText(mon)
     Main_SoulsValLabel:setText(Tag.color_TB_title .. souls .. " " .. Tag.icon_soul .. Tag.color_close)
 
     Prompt_UI_Table["Home_Status"]:show(false)
     
-   
 end
 
+
+--- Handle [PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Begin]
 ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Begin] = function(host,data, guid)
     -- print("Character request result begin")
     -- clear all metadata tables
@@ -428,6 +416,7 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
     end
 end
 
+--- Handle [PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Data]
 ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_Data] = function(host,data, guid)
 
     local t_name, t_data, isOwned = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|$") 
@@ -455,11 +444,8 @@ ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_
     ClientCharacterHandler_fillData(Home_ClientCharacterHandlerPtr, "Shop",t_name,t_charStats)
 end
 
-local function sortTableByName(a,b)
-    print("comparing " .. a.ID .. " and " .. b.ID)
-    return a.ID < b.ID
-end
 
+--- Handle [PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_End]
 ClientMessageHandling[PacketChannel.ShopChannel][ShopResponse.ShopCharacterInfo_End] = function(host,data, guid)
 
     local saveData = {}

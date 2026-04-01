@@ -180,6 +180,7 @@ void LobbyScene::update(float deltaTime)
         m_guiScriptingManager->update(deltaTime);
     }
     m_luaTaskManager.update(deltaTime);
+    m_luaEventPipeline.update(deltaTime);
 }
 
 void LobbyScene::draw()
@@ -264,6 +265,9 @@ void LobbyScene::initGUI()
         luaL_openlibs(m_script);
 
         m_luaTaskManager.init("../../Lua/system/event/TaskManager.lua",m_script);
+        m_luaEventPipeline.init("../../Lua/system/event/EventPipeline.lua",m_script); // must init event pipeline after task manager (use on top of task manager )
+        InfoHolder::getInstance()->registerLuaEventPipeline(&m_luaEventPipeline);
+
         if(!m_guiScriptingManager)
         {
             m_guiScriptingManager = new TGUIScriptingManager();

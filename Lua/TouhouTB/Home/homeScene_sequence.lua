@@ -72,5 +72,23 @@ EventPipeline.on("HOMESCENE_SYNCDATA", {
             local ping = ClientGetPing(data.clientScritping)
             print("ping is " .. ping)
         end,
+    },0
+})
+
+EventPipeline.on("TEST", {
+    { type = "instant", fn = function(data) 
+        print("[poll] waiting for PlayerReady...") 
+        EP_PollSignals["MainInfo"] = false
+    end },
+    {
+        type      = "poll",
+        condition = function()
+            return EP_PollSignals["MainInfo"] == true
+            end,
+        fn        = function(data)
+            print("[poll] MainInfo received, continuing")
+            EP_ClearPollSignal("MainInfo")
+        end,
     },
+    { type = "instant", fn = function(data) print("[poll] next step after poll") end },
 })

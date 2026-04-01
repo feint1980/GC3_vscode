@@ -133,8 +133,6 @@ private:
     LuaTaskManager m_luaTaskManager ;
 
     LuaEventPipeline m_luaEventPipeline;
-
-
     bool isInitialized = false;
 
 };

@@ -92,13 +92,12 @@ CombatHandling_Fn[CombatIngameData.OnCharacterTurnStart] = function(data)
     local cHp = tCharacter.currentHp
     local cMana = tCharacter.currentMana
 
-
     print("character " .. characterID .. " turn start")
     print("side " .. side)
     print("cAction " .. cAction)
     print("cHp " .. cHp)
     print("cMana " .. cMana)
-
-    TurnDisplayer_instance:setSelected(characterID,side)
     
+    EventPipeline.emit("TURNDISPLAYER_SetSelection" , {characterID = characterID, side = side})
+
 end
