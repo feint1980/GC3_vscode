@@ -92,7 +92,7 @@ function InitCreateLobbyMenu(host)
     LobbyPWInput:setInputValidator("^[^$]*$")
     LobbyPWInput:setPosStr("20%","20%")
     LobbyPWInput:setSizeStr("30%","8%")
-    LobbyPWInput:setText("123456")
+    -- LobbyPWInput:setText("123456") No longer need pw
 
     local tServerListLabel = Label:new()
     tServerListLabel:init(host,"Server List",CreateLobbyPanel.width/2,0,CreateLobbyPanel.ptr)

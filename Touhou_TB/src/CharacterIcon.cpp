@@ -89,6 +89,10 @@ void CharacterIcon::updateMovement(float deltaTime)
             m_pos = m_targetPos;
             m_isUpdateMovement = false;
             m_state &= ~ICON_POS_CHANGE;
+
+            
+            // std::cout << "order " << m_order << " pos " << m_pos.x << " " << m_pos.y << " speed " << m_speed << "\n";
+            // InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsReady", true);
             // std::cout << "update done \n";
         }
         m_portrait.setPos(m_pos);
@@ -134,7 +138,8 @@ void CharacterIcon::updateSpeedChange(float deltaTime)
                     m_speedChangeTextPos = m_displaySpeedPos;
                     m_isUpdateSpeedChange +=1;
                     m_displaySpeed = m_speed;// + m_speedChange;
-                    m_state &= ~ICON_SPEED_CHANGE;
+                    // m_state &= ~ICON_SPEED_CHANGE;
+
                     
                 }
             }    

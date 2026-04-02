@@ -5,7 +5,7 @@
 #include "EmptyObject.h"
 #include <ResourceManager.h>
 #include <TextRenderer.h>
-
+#include "InfoHolder.h"
 
 #define ICON_POS_CHANGE 1
 #define ICON_SPEED_CHANGE 2
@@ -53,6 +53,7 @@ public:
         m_targetPos = pos; 
         m_isUpdateMovement = true;
         m_state |= ICON_POS_CHANGE;
+        InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsReady", false);
     }
 
     void setOrder(int order) { m_order = order; }
@@ -61,8 +62,18 @@ public:
     glm::vec2 getPos() { return m_portrait.getPos(); }
 
     int getUpdateSpeedChangeState() { return m_isUpdateSpeedChange; }
-    void setUpdateSpeedChangeState(int state) { m_isUpdateSpeedChange = state; 
-    m_counter = 0; }
+    void setUpdateSpeedChangeState(int state) {
+        
+        m_isUpdateSpeedChange = state;
+        
+        m_counter = 0; 
+        if(state == 0)
+        {
+            m_state &= ~ICON_SPEED_CHANGE;
+            // InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsReady", true);
+        } 
+
+    }
 
     int getState() { return m_state; }
     void setState(int state) { m_state = state; }

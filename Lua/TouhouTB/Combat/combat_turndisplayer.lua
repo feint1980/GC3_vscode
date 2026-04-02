@@ -65,13 +65,17 @@ EventPipeline.on("TURNDISPLAYER_SetSelection", {
     {
         type = "poll",
         condition = function()
-            return EP_PollSignals["TurnDisplayerIsBusy"] == true
+            return EP_PollSignals["TurnDisplayerIsReady"] == true
             end,
         fn        = function(data)
             print("[poll] RollUpdate done")
+
+            EP_ClearPollSignal("TurnDisplayerIsReady")
+            TM_addTask(function()
+                TurnDisplayer_instance:setSelected(data.characterID,data.side)
+            end
+            ,30)
             
-            TurnDisplayer_instance:setSelected(data.characterID,data.side)
-            EP_ClearPollSignal("TurnDisplayerIsBusy")
 
         end,
     }

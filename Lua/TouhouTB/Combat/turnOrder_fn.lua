@@ -71,10 +71,31 @@ TurnOrderHandling_Fn[CombatTurnOrder.RollResult] = function(data)
         end
     end
 
+    EP_SetPollSignal("TurnDisplayerIsReady", false)
+
     TM_addTask(function()
         TurnDisplayer_instance:setUpdateSpeedChange(true)
     end
     ,50
     )
+
+end
+
+
+TurnOrderHandling_Fn[CombatTurnOrder.PlayerCharacterTurn] = function(data)
+
+    print("CombatTurnOrder.PlayerCharacterTurn get")
+
+    local tData, pos ,err = JSON_Decode(data)
+    if err then
+        print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_TurnOrder]  JSON decode error:", err)
+    end
+    if tData == nil then
+        print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_TurnOrder)")
+        return
+    end
+
+    print("player " .. tData.playerId .. " on the side " .. tData.characterSide .. " controlling " .. tData.characterId .. " turn ")
+
 
 end

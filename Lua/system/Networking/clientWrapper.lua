@@ -135,7 +135,8 @@ CombatTurnOrder =
     Sync = 1,
     RollResult = 2,
     SpeedAffect = 3,
-    UpdateOrder = 4
+    UpdateOrder = 4,
+    PlayerCharacterTurn = 5,
 }
 
 

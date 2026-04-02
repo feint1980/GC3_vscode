@@ -72,6 +72,8 @@ BattleSession = {
     turnQueue    = {},
     currentChar  = nil,     -- BS_Char_* currently acting
     phase        = -1,     -- BattlePhase enum (defined in BS_global)
+    playerSideMap = {},
+    playerIDMap = {},
 }
 
 --------------------------------------------------------------------------------
@@ -102,6 +104,12 @@ function BattleSession:init(host, lobbyId, p1EP, p2EP, leftFormation, rightForma
     self.p1Id    = p1EP.id
     self.p2Id    = p2EP.id
     self.phase   = BattlePhase.READY
+
+    self.playerSideMap[self.p1Id] = 1
+    self.playerSideMap[self.p2Id] = 2
+
+    self.playerIDMap[1] = self.p1Id
+    self.playerIDMap[2] = self.p2Id
 
     print("[BattleSession] init | lobby:" .. lobbyId
         .. " p1:" .. self.p1Id .. " p2:" .. self.p2Id)
@@ -174,6 +182,7 @@ function BattleSession:buildFormation(playerID, rawFormation, side)
         if tChar ~= nil then
             -- tChar.side = side
             tChar:setSide(side)
+            -- tChar:setOwner(playerID)
             -- print(tChar:getMaxHP())
             table.insert(formation, tChar)
         else
@@ -244,10 +253,10 @@ function BattleSession:broadcast(channel, request,type, data)
 
     -- local test = {self.p1EP.guid, self.p1EP.id}
 
-    print("p1Data check")
-    for k,v in pairs(p1Data) do
-        print(k .. " " ..  v)
-    end
+    -- print("p1Data check")
+    -- for k,v in pairs(p1Data) do
+    --     print(k .. " " ..  v)
+    -- end
 
     BM_sendWrapData(self.host,
         self.p1EP:getIP(), self.p1EP.guid,

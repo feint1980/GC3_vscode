@@ -64,8 +64,9 @@ private:
     glm::vec2 m_pos;
     glm::vec2 m_defaultDimentions;
 
-
     bool m_isUpdateRoll = false;
+
+    bool m_isBusy = false;
 
     bool m_isUpdateSelector = false;
     std::unordered_map<std::string, std::string> m_portraitMap;

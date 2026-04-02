@@ -44,6 +44,7 @@ BS_Character = {
     currentStance           = nil,
     isAlive                 = true,
     side                    = 0,
+
 }
 
 --------------------------------------------------------------------------------
@@ -97,6 +98,10 @@ end
 
 function BS_Character:setSide(side)
     self.side = side
+end
+
+function BS_Character:setOwner(ownerID)
+    self.userID = ownerID
 end
 
 function BS_Character:initStat()
@@ -440,13 +445,13 @@ end
 function BS_Character:onTurnStart(battleState)
 
     battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_IngameData,CombatIngameData.OnCharacterTurnStart,
-    {
-        characterId = self.id,
-        characterSide = self.side,
-        currentAp   = self.cAction,
-        currentHp   = self.cHp,
-        currentMana = self.cMana
-    }
+        {
+            characterId = self.id,
+            characterSide = self.side,
+            currentAp   = self.cAction,
+            currentHp   = self.cHp,
+            currentMana = self.cMana
+        }
     )
 
 end

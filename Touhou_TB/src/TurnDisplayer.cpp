@@ -222,6 +222,8 @@ void TurnDisplayer::sortTurnOrder()
     float leftPos = m_pos.x - width / 2.0f;
     float centerLeftPos = leftPos + spacing / 2.0f;
 
+    m_isBusy = true;
+    InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsReady", false);
 
     std::vector<CharacterIcon *> sortedCharacters = getSortedCharacters();
 
@@ -230,7 +232,7 @@ void TurnDisplayer::sortTurnOrder()
         sortedCharacters[i]->setTargetPos(glm::vec2(centerLeftPos, m_pos.y));
         centerLeftPos += spacing;
     }
-
+    
     
 }
 
@@ -285,7 +287,15 @@ std::vector<CharacterIcon*> TurnDisplayer::getSortedCharacters()
 
 void TurnDisplayer::update(float deltaTime)
 {
-    
+    if(m_isBusy)
+    {
+        if(!isDisplayBusy())
+        {
+            m_isBusy = false;
+            InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsReady", true);
+        }
+    }
+
     if(m_isUpdateRoll)
     {
         updateRoll(deltaTime);
@@ -304,22 +314,23 @@ void TurnDisplayer::update(float deltaTime)
     }
     m_selectorPos.y = m_pos.y;
     
-    if(isDisplayBusy())
-    {
-        InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsBusy", true);
-    }
-    else
-    {
-        InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsBusy", false);
-    }
+    // if(isDisplayReady())
+    // {
+    //     InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsReady", true);
+    // }
+    // else
+    // {
+    //     InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsReady", false);
+    // }
 }
 
 bool TurnDisplayer::isDisplayBusy()
 {
     for (std::size_t i = 0; i < m_characters.size(); i++)
     {
-        if(m_characters[i]->getState()) // not 0
+        if(m_characters[i]->getState() != 0) // not 0
         {
+            // std::cout << "found state " << m_characters[i]->getState() << "\n";
             return true;
         }
     }
@@ -350,6 +361,9 @@ void TurnDisplayer::updateRoll(float deltaTime)
 
 void TurnDisplayer::setSelection(const std::string & characterID, int side)
 {
+
+    std::cout << "setSelection data check \n";
+
     std::cout << "TurnDisplayer::setSelection " << characterID << " " << side << "\n";
     CharacterIcon * selected =  getCharacterIcon(characterID, side);
     if(selected != nullptr)
@@ -371,7 +385,7 @@ void TurnDisplayer::updateSelector(float deltaTime)
     
     if (distance >  0.5f)
     {
-        float step = 15.0f * deltaTime;
+        float step = 35.0f * deltaTime;
         m_selectorPos += glm::normalize(m_selectorTargetPos - m_selectorPos) * std::min(step, distance);
     
     }
@@ -409,7 +423,17 @@ void TurnDisplayer::addIcon(const std::string & characterID, int side, int order
 CharacterIcon * TurnDisplayer::getCharacterIcon(const std::string & characterID, int side)
 {
 
+    // for(auto & c : m_charactersMap)
+    // {
+    //     std::cout << "name " << c.first << "===========\n";
+    //     std::cout << "order " << c.second->getOrder() << " | speed | " << c.second->getSpeed() << " pos " << c.second->getPos().x << " " << c.second->getPos().y << "\n"; 
+    // }
+
+
     std::string key = characterID + "_" + std::to_string(side);
+
+    std::cout << "key search is " << key << "\n";
+
     if(m_charactersMap.find(key) != m_charactersMap.end())
     {
         return m_charactersMap[key].get();

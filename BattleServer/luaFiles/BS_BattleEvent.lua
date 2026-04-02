@@ -216,15 +216,23 @@ end
 function BS_BattleEvent.onTurnStart(character, battleState)
     print("[onTurnStart] " .. character.stats.name .. " side " .. character.side)
 
-
     character:gainAP()
     character:tickBuffs()
     character:onTurnStart(battleState)  -- passive hook (Reimu, Meiling)
 
+    print("[onTurnStart] broadcast check " .. character.id .. " owner " .. character.userID .. " side " .. character.side)
+
+    battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_TurnOrder,CombatTurnOrder.PlayerCharacterTurn,
+        {
+            characterId = character.id,
+            characterSide = character.side,
+            playerId = character.userID
+        }
+    )
+
     -- -- notify the active player it's their turn
 
     -- battleState:broadcast
-
 
     -- battleState:sendToPlayer(character.userID,
     --     ClientChannel.Combat, CCombatResponse.Combat_IngameData, {
