@@ -16,7 +16,7 @@
 #include "InfoHolder.h"
 
 #include <TextRenderer.h>
-
+#include "Banner.h"
 
 enum SlotPos
 {
@@ -88,6 +88,7 @@ public:
 
     CombatCharacter * getCharacter(const std::string & characterID, int side);
 
+    Banner  * getBanner() { return m_banner; }
 
 private:
 
@@ -107,6 +108,8 @@ private:
     std::unordered_map<std::string, std::shared_ptr<CombatCharacter>> m_charactersMap; // lookup
 
     EmptyObject m_bg;
+
+    Banner  * m_banner = nullptr;
 
 };
 

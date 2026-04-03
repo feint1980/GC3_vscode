@@ -98,4 +98,6 @@ TurnOrderHandling_Fn[CombatTurnOrder.PlayerCharacterTurn] = function(data)
     print("player " .. tData.playerId .. " on the side " .. tData.characterSide .. " controlling " .. tData.characterId .. " turn ")
 
 
+    --- handle turn here 
+
 end

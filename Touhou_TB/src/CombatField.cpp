@@ -161,10 +161,71 @@ int lua_CombatField_GetCharacterStatStr(lua_State * L)
     return 0;
 }
 
+int lua_getBannerInstance(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_getBannerInstance) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+        lua_pushlightuserdata(L, host->getBanner());
+        return 1;
+    }
+    return 0;
+}
+
+int lua_Banner_SetMsg(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Banner_SetMsg) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        Banner * banner = static_cast<Banner*>(lua_touserdata(L, 1));
+        std::string msg = lua_tostring(L, 2);
+        banner->setMessage(msg);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_Banner_ShowMsg(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Banner_ShowMsg) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        Banner * banner = static_cast<Banner*>(lua_touserdata(L, 1));
+        std::string msg = lua_tostring(L, 2);
+        banner->showMessage(msg);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_Banner_SetVisible(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_Banner_SetVisible) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        Banner * banner = static_cast<Banner*>(lua_touserdata(L, 1));
+        bool visible = lua_toboolean(L, 2);
+        banner->setVisible(visible);
+        return 0;
+    }
+    return 0;
+}
+
 CombatField::CombatField()
 {
-
-
     // m_slotIndexMap = std::unordered_map<glm::ivec3, int>();
 }
 
@@ -186,6 +247,12 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
         return;
     }
 
+    if(!m_banner)
+    {
+        m_banner = new Banner();
+    }
+    m_banner->init("./Assets/Textures/border.png");
+    // m_banner->showMessage("test");
     lua_register(m_script, "cpp_CombatField_AddSlot", lua_CombatField_AddSlot);
     lua_register(m_script, "cpp_CombatField_GetSlot", lua_CombatField_GetSlot);
     lua_register(m_script, "cpp_CombatField_AddCharacter", lua_CombatField_AddCharacter);
@@ -199,7 +266,11 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     lua_register(m_script, "cpp_CombatField_GetCharacterStatFloat", lua_CombatField_GetCharacterStatFloat);
 
     lua_register(m_script, "cpp_CombatField_GetCharacterStatStr" , lua_CombatField_GetCharacterStatStr);
-    
+
+    lua_register(m_script, "cpp_getBannerInstance", lua_getBannerInstance);
+    lua_register(m_script, "cpp_Banner_SetMsg" , lua_Banner_SetMsg);
+    lua_register(m_script, "cpp_Banner_ShowMsg" , lua_Banner_ShowMsg);
+    lua_register(m_script, "cpp_Banner_SetVisible", lua_Banner_SetVisible);
 
     // lua_register
 
@@ -268,6 +339,10 @@ void CombatField::draw(Feintgine::SpriteBatch & spriteBatch)
     {
         m_characters[i]->draw(spriteBatch);
     }
+    if(m_banner)
+    {
+        m_banner->draw(spriteBatch);
+    }
 
 }
 
@@ -278,6 +353,10 @@ void CombatField::update(float deltaTime)
     {
         m_characters[i]->update(deltaTime);
     }
+    // if(m_banner)
+    // {
+    //     m_banner->update(deltaTime);
+    // }
 }
 
 CombatCharacter * CombatField::addCharacter(int collumn, int row, int side, const std::string & characterID, const std::string & portraitPath, const glm::vec2 & scale)
@@ -336,5 +415,9 @@ void CombatField::drawText(TextRenderer * textRenderer)
     for (int i = 0; i < m_characters.size(); i++)
     {
         m_characters[i]->drawText(textRenderer);
+    }
+    if(m_banner)
+    {
+        m_banner->drawText(textRenderer);
     }
 }
