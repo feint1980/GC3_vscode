@@ -100,8 +100,14 @@ mingw32-make.exe -j 4
 
 ```
 ## Accounts(for test):
+>account #1
 >id:huyen12
 >pw:12345678
+
+>account #2
+>id:huyen13
+>pw:12345678
+
 for register keys:
 -32X6K7VHLVZW
 -ELOGAKEOEEOJ
@@ -129,32 +135,28 @@ For the Editor and Game that you want to see but don't have time to build :
 - [x] Retrieve owned characters on login
 - [x] Team loadout screen 
 - [x] Equip/load team before match
+- [x] Create Battle Servers
+- [x] Error messages for failed server responses
+- [x] Handle the Main Server with Battle Servers
+- [x] Server battle room/session manager
 🟨 IN PROGRESS 	🚧 
-- [ ] Create Battle Servers 🚧🚧🚧🚧
-- [ ] Handle the Main Server with Battle Servers
-- [ ] Battle prototype (2-character dummy test) 🚧	🚧
-- [ ] Manual test harness for skills and effects 	🚧
-
+- [x] Battle prototype (2-character dummy test) 🚧🚧🚧🚧🚧
+- [x] Turn bar system and turn queue logic 🚧🚧🚧🚧
+- [x] Skill use / targeting / resolution system 🚧
+- [x] Hit/miss, crit, dodge, and damage formulas 🚧🚧
+- [x] Server-side validation of all combat logic 🚧🚧🚧
 🟥 TO DO
-
 - [ ] Battle matchmaking or challenge system
-- [ ] Server battle room/session manager
-- [ ] Turn bar system and turn queue logic
-- [ ] Skill use / targeting / resolution system
 - [ ] Buffs/Debuffs & status effect system
-- [ ] Hit/miss, crit, dodge, and damage formulas
 - [ ] Character death, win/loss condition logic
 - [ ] Reward distribution post-match
-- [ ] Server-side validation of all combat logic
-- [ ] Match replay or battle log system (optional)
+- [ ] Match replay or battle log system
 - [ ] Handle disconnects / timeouts / AFK
 - [ ] Leveling system for characters
 - [ ] Save/load character XP & level
-- [ ] Equip system (optional MVP)
-- [ ] Daily reward or login streak logic (optional)
-- [ ] Gacha or random draw system (optional)
-- [ ] Error messages for failed server responses
-- [ ] Lobby or matchmaking layer
+- [ ] Equip system
+- [ ] Daily reward or login streak logic
+- [ ] Gacha or random draw system (IDK bro, may be)
 - [ ] Room teardown after battle ends
 - [ ] Simple server monitoring / auto-restart script
 - [ ] Server-side turn timer
