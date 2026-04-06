@@ -208,6 +208,7 @@ void HomeScene::update(float deltaTime)
     m_gif.update(deltaTime);
     m_luaTaskManager.update(deltaTime);
     m_luaEventPipeline.update(deltaTime);
+    m_luaPollEvent.update(deltaTime);
     // m_luaEventHandler.update(deltaTime);
     
 }
@@ -324,6 +325,8 @@ void HomeScene::initGUI()
     m_luaTaskManager.init("../../Lua/system/event/TaskManager.lua",m_script);
 
     m_luaEventPipeline.init("../../Lua/system/event/EventPipeline.lua",m_script); // must init event pipeline after task manager (use on top of task manager )
+
+    m_luaPollEvent.init("../../Lua/system/event/PollEvent.lua",m_script);
 
     InfoHolder::getInstance()->registerLuaEventPipeline(&m_luaEventPipeline);
 

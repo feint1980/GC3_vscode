@@ -100,7 +100,13 @@ function InitArenaMenu(host)
     createRoomLabel:setPosStr("5%","50%")
     createRoomLabel:setHoverable(0,255,0,255,255,255,255,255)
     createRoomLabel:setOnClickCallback(function()
-        MenuPanels["CreateLobby"](host)
+
+        Prompt_UI_Table["CreateLobby_Status"]:showMsg("Getting Battle Servers")
+        Poll_AddTask("CreateLobby_Request", function()
+            MenuPanels["CreateLobby"](host)
+            Prompt_UI_Table["CreateLobby_Status"]:show(false)
+        end)
+
     end)
 
     local refreshLabel = Label:new()
@@ -167,8 +173,13 @@ function InitArenaMenu(host)
 end
 
 MenuPanels["Arena"] = function(host)
-    ArenaPanel:showWithEffect(PanelShowType.Fade,250)
-    Arena_Request_ArenaData()
+    -- Prompt_UI_Table["CreateLobby_Status"]:showMsg("Getting Battle Servers")
+
+    -- Poll_AddTask("CreateLobby_Request", function()
+        ArenaPanel:showWithEffect(PanelShowType.Fade,250)
+        Arena_Request_ArenaData()
+    -- end)
+
 end
 
 
@@ -181,6 +192,9 @@ function Arena_RequestBattleServerList()
     print("Arena_RequestBattleServerList called")
     SendRequest(PacketChannel.ArenaChannel, ArenaResponse.Arena_Request_GetServerList, {MainInfo.guid, "request"}, 5, 0.5,0.25)
     print("Arena_RequestBattleServerList sent ")
+    -- EP_PollSignals["BSList_Ready"] = false 
+    Poll_SetSignal("CreateLobby_Request",false)
+
 end
 
 function Arena_JoinLobby_Click()

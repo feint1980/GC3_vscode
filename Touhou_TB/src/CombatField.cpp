@@ -252,7 +252,7 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
         m_banner = new Banner();
     }
     m_banner->init("./Assets/Textures/border.png");
-    // m_banner->showMessage("test");
+    m_banner->showMessage("test");
     lua_register(m_script, "cpp_CombatField_AddSlot", lua_CombatField_AddSlot);
     lua_register(m_script, "cpp_CombatField_GetSlot", lua_CombatField_GetSlot);
     lua_register(m_script, "cpp_CombatField_AddCharacter", lua_CombatField_AddCharacter);
@@ -353,10 +353,10 @@ void CombatField::update(float deltaTime)
     {
         m_characters[i]->update(deltaTime);
     }
-    // if(m_banner)
-    // {
-    //     m_banner->update(deltaTime);
-    // }
+    if(m_banner)
+    {
+        m_banner->update(deltaTime);
+    }
 }
 
 CombatCharacter * CombatField::addCharacter(int collumn, int row, int side, const std::string & characterID, const std::string & portraitPath, const glm::vec2 & scale)

@@ -1253,9 +1253,9 @@ unsigned int ServerScriptingManager::handleCommon(RakNet::Packet *p)
     return 666;
 }
 
-void ServerScriptingManager::addWrapDataPacket(RakNet::Packet *p)
+void ServerScriptingManager::addWrapDataPacket(RakNet::Packet *original)
 {
-    RakNet::Packet* original = p;
+    // RakNet::Packet* original = p;
     auto copy = new RakNet::Packet(*original); // shallow copy
     copy->data = new unsigned char[original->length];
     memcpy(copy->data, original->data, original->length);
@@ -1264,9 +1264,9 @@ void ServerScriptingManager::addWrapDataPacket(RakNet::Packet *p)
     m_wrapDataQueue.push( std::move(copy));
 }
 
-void ServerScriptingManager::addBattleServerPacket(RakNet::Packet *p)
+void ServerScriptingManager::addBattleServerPacket(RakNet::Packet *original)
 {
-    RakNet::Packet* original = p;
+    // RakNet::Packet* original = p;
     auto copy = new RakNet::Packet(*original); // shallow copy
     copy->data = new unsigned char[original->length];
     memcpy(copy->data, original->data, original->length);

@@ -13,6 +13,9 @@ require "homeGlobal"
 require "Prompt"
 -- require "TaskManager"
 
+require "EventPipeline"
+require "PollEvent"
+
 MenuPanels = _G.MenuPanels
 
 ---@type Panel
@@ -120,7 +123,13 @@ function InitCreateLobbyMenu(host)
     tCreateLobbyButton:setPosStr("50%","80%")
     tCreateLobbyButton:setHoverable(0,255,0,255,255,255,255,255)
     tCreateLobbyButton:setOnClickCallback(function()
+
+
+        -- Prompt_UI_Table["CreateLobby_Status"]:showMsg("Getting Battle Servers")
+
+        -- Poll_AddTask("CreateLobby_Request", function()
         CreateLobby_SendRequest()
+        -- end)
     end)
 
     print("current seelection is " .. LobbyServerComboBox:getSelectedItemIndex())
@@ -166,9 +175,13 @@ function CreateLobby_SetCurrentSelectedServer(serverValue)
     end
 end
 
+
 function CreateLobby_SendRequest()
+    print("EventPipeline.emit CreateLobby_Request")
+    -- EventPipeline.emit("CreateLobby_Request")
+
     if CL_SelectedServer == nil and LobbyServerComboBox:getSelectedItemIndex() == -1 then
-        -- no selection was made, get the lowest ping server
+            -- no selection was made, get the lowest ping server
         print("no server selected, getting lowest ping server")
         for key, value in pairs(CreateLobbyServerList) do
             if CL_SelectedServer == nil then
@@ -208,6 +221,9 @@ function CreateLobby_SendRequest()
         Prompt_UI_Table["CreateLobby_Status"]:showMsg("Requesting ...")
 
         Create_Lobby_State = 1
+
+        -- EP_ClearPollSignal("BSList_Ready")
+
         TM_addTask(
         function()
             if Create_Lobby_State == 1 then
@@ -218,5 +234,7 @@ function CreateLobby_SendRequest()
         end,
         500
         )
+        
+    print("EventPipeline.emit CreateLobby_Request end")
 end
 

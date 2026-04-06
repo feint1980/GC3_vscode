@@ -108,9 +108,9 @@ public:
 
     uint32_t handleBattleServerPacket(RakNet::Packet *p);
 
-    void addWrapDataPacket(RakNet::Packet *p);
+    void addWrapDataPacket(RakNet::Packet *original);
 
-    void addBattleServerPacket(RakNet::Packet *p);
+    void addBattleServerPacket(RakNet::Packet *original);
 
     void handleWrapDataQueue(float deltaTime);
 

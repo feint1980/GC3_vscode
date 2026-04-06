@@ -15,14 +15,9 @@ int lua_SendData(lua_State *L)
     {
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
         std::string requestCmd = lua_tostring(L, 2);
-
-
         host->sendData(requestCmd);
-
-
         return 1;
     }
-
 
     return 0;
 }
@@ -56,7 +51,6 @@ void ClientScriptingManager::init(RakNet::RakPeerInterface * client)
     luaL_openlibs(m_script);
 
     // register lua functions
-    
     lua_register(m_script, "cppSendData", lua_SendData);
     //lua_register(m_script, "cppHandleCmd", lua_HandlingCmd);
 

@@ -6,7 +6,7 @@
 #include "EmptyObject.h"
 #include <ResourceManager.h>
 
-#define DEFAULT_TIME 5.0
+#define DEFAULT_TIME 5
 
 class Banner
 {
@@ -37,6 +37,7 @@ public:
         m_mesage = mesage;
         m_visible = true;
         m_cTickCount = 0.0f;
+        m_isFadeIn = true;
     }
 
     void setMessage(const std::wstring & mesage) 

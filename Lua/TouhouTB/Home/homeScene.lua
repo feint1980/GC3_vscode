@@ -16,6 +16,8 @@ require "Arena"
 
 require "homeScene_sequence"
 require "EventPipeline"
+require "PollEvent"
+
 
 require "Reimu"
 require "Patchouli"
@@ -238,6 +240,11 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     -- EventPipeline.emit("TEST")
     print("test pipeline section end ")
 
+    -- Poll_AddTask("HomeSync", function()
+    --     print("HomeSync function called by trigger HomeSync")
+    -- end
+    -- )
+
 end
 
 
@@ -402,7 +409,9 @@ ClientMessageHandling[PacketChannel.UserChannel][UserResponse.MainInfo] = functi
     Main_SoulsValLabel:setText(Tag.color_TB_title .. souls .. " " .. Tag.icon_soul .. Tag.color_close)
 
     Prompt_UI_Table["Home_Status"]:show(false)
-    
+
+    -- Poll_SetSignal("HomeSync")
+
 end
 
 

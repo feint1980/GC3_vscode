@@ -60,7 +60,7 @@ public:
 
     void handleCommonPacket(RakNet::Packet *p);
 
-    void addInternalPacket(RakNet::Packet *p);
+    void addInternalPacket(RakNet::Packet *original);
 
     void handleInternalPacketQueue();
 

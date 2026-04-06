@@ -75,8 +75,6 @@ EventPipeline.on("TURNDISPLAYER_SetSelection", {
                 TurnDisplayer_instance:setSelected(data.characterID,data.side)
             end
             ,30)
-            
-
         end,
     }
 })

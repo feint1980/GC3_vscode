@@ -3,6 +3,8 @@ package.path = package.path .. ';../../Lua/TouhouTB/skills/?.lua;'
 require "clientGlobal"
 require "homeGlobal"
 
+require "EventPipeline"
+require "PollEvent"
 ---MARK: Main server
 
 
@@ -35,6 +37,9 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
 
     end
     Arena_RequestLobbyList()
+    print("CreateLobby_Request suppose to switch on")
+
+    -- Poll_SetSignal("CreateLobby_Request")
 end
 
 --- Get the response from main server about the create lobby status
@@ -73,6 +78,7 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
     --- Connect to battle server ( if passed, it will auto join to the lobby)
     ClientConnect2SV(host,targetBattleServer.IP,targetBattleServer.port)
 
+    
 end
 
 ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyListResponse] = function(host,data, guid)

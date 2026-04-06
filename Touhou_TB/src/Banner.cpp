@@ -34,7 +34,7 @@ void Banner::drawText(TextRenderer * textRenderer)
     // textRenderer->renderTextBatched()
     if(m_visible)
     {
-        textRenderer->renderTextBatched(L"Testtttt", m_bg.getPos(), Feintgine::Color(255, 255, 255, 255), 1.0f, ALIGN_FT_CENTER);
+        textRenderer->renderTextBatched(L"Testtttt", m_bg.getPos(), Feintgine::Color(255, 255, 255, 255), m_scale, ALIGN_FT_CENTER);
     }
 
 }
@@ -44,25 +44,27 @@ void Banner::update(float deltaTime)
 
     if(m_visible)
     {
+        std::cout << m_cTickCount << "\n";
         // m_color.a = (255 * m_cTickCount);
-        if(m_isFadeIn)
+        if(!m_isFadeIn)
         {
-            m_cTickCount += deltaTime;
-            if(m_cTickCount > DEFAULT_TIME * 1000.0f)
+            m_cTickCount += deltaTime * 0.05;
+            if(m_cTickCount > DEFAULT_TIME )
             {
                 // m_visible = false;
-                m_isFadeIn = false;
+                m_isFadeIn = true;
                 // m_cTickCount = 0.0f;
                 m_cTickCount = 1.0f;
             }
         }
         else
         {
-            m_cTickCount -= deltaTime;
+            m_cTickCount -= deltaTime ;
             if(m_cTickCount < 0.0f)
             {
+                m_isFadeIn = false;
                 m_visible = false;
-                m_isFadeIn = true;
+                
             }
         }
     }

@@ -886,9 +886,9 @@ uint32_t BattleMain::sendWrapData( const RakNet::SystemAddress & target,const st
 
 }
 
-void BattleMain::addInternalPacket(RakNet::Packet *p)
+void BattleMain::addInternalPacket(RakNet::Packet *original)
 {
-    RakNet::Packet* original = p;
+    // RakNet::Packet* original = p;
     auto copy = new RakNet::Packet(*original); // shallow copy
     copy->data = new unsigned char[original->length];
     memcpy(copy->data, original->data, original->length);

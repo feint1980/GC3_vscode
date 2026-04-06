@@ -42,6 +42,8 @@
 #include "ControlHandler.h"
 #include <LuaTaskManager.h>
 #include <LuaEventPipeline.h>
+#include <LuaPollEvent.h>
+
 
 class HomeScene : public Feintgine::IGameScreen
 {
@@ -133,6 +135,9 @@ private:
     LuaTaskManager m_luaTaskManager ;
 
     LuaEventPipeline m_luaEventPipeline;
+
+    LuaPollEvent m_luaPollEvent;
+
     bool isInitialized = false;
 
 };
