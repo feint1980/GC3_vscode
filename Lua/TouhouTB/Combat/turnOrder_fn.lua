@@ -7,6 +7,9 @@ TurnOrderHandling_Fn[CombatTurnOrder.Sync] = function(data)
     print("Turn order sync ")
     print("data " .. data)
 
+    TM_addTask(function()
+        CombatField_instance:showBannerMsg("Roll phase")
+        end,50)
     local orderList, pos ,err = JSON_Decode(data)
     if err then
         print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_TurnOrder]  JSON decode error:", err)

@@ -8,7 +8,7 @@ EventPipeline.on("COMBAT_ON_MATCH_START",
             print("Combat OnMatchStart detected ##############################################")
             TM_addTask(function()
                 CombatField_instance:showBannerMsg("Match Start")
-            end,30)
+            end,50)
         end
     },
 })
