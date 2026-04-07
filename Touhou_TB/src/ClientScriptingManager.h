@@ -156,6 +156,8 @@ public:
 
     void addCryptor(const std::string & guid);
 
+    void addBattleCryptor(const std::string & guid);
+
     void removeCryptor(const std::string & guid);
 
     void selectBattleServer(const std::string & guid);
@@ -186,9 +188,9 @@ public:
 
     RakNet::SystemAddress * getCurrentBattleServerIP() { return m_currentBattleServerIP; }
 
-    void setBattleServerIPMap(std::unordered_map<std::string, RakNet::SystemAddress * > map) { m_battleServerIPMap = std::move(map); }
+    void setBattleServerIPMap(std::unordered_map<std::string, RakNet::SystemAddress > map) { m_battleServerIPMap = map; }
 
-    std::unordered_map<std::string, RakNet::SystemAddress * > getBattleServerIPMap() { return m_battleServerIPMap; }
+    std::unordered_map<std::string, RakNet::SystemAddress > getBattleServerIPMap() { return m_battleServerIPMap; }
 
     private:
     RakNet::RakPeerInterface * m_client = nullptr;
@@ -216,7 +218,7 @@ public:
 
     std::unordered_map<std::string, int> m_battleServerPingMap;
 
-    std::unordered_map<std::string, RakNet::SystemAddress * > m_battleServerIPMap;
+    std::unordered_map<std::string, RakNet::SystemAddress> m_battleServerIPMap;
 
     RakNet::SystemAddress * m_currentBattleServerIP = nullptr;
 

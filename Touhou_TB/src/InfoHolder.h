@@ -18,6 +18,7 @@
 #include <map>
 #include <IMainGame.h>
 #include <LuaEventPipeline.h>
+#include <LuaPollEvent.h>
 
 
 class InfoHolder
@@ -145,13 +146,17 @@ public:
 
     void initLuaInterface(lua_State * script);
 
-    void registerBattleServerIPMap(std::unordered_map<std::string, RakNet::SystemAddress * > map) { m_savedBattleServerIPMap = std::move(map); }
+    void registerBattleServerIPMap(std::unordered_map<std::string, RakNet::SystemAddress > map) { m_savedBattleServerIPMap = map; }
 
-    std::unordered_map<std::string, RakNet::SystemAddress * > getBattleServerIPMap() { return m_savedBattleServerIPMap; }
+    std::unordered_map<std::string, RakNet::SystemAddress > getBattleServerIPMap() { return m_savedBattleServerIPMap; }
 
     void registerLuaEventPipeline(LuaEventPipeline * luaEventPipeline) { m_luaEventPipeline = luaEventPipeline; }
 
     LuaEventPipeline * getLuaEventPipeline() { return m_luaEventPipeline; }
+
+    void registerLuaPollEvent(LuaPollEvent * luaPollEvent) { m_luaPollEvent = luaPollEvent; }
+
+    LuaPollEvent * getLuaPollEvent() { return m_luaPollEvent; }
 
 private:
 
@@ -169,7 +174,7 @@ private:
 
     std::map<std::string,Feintgine::F_Cryptor *> m_cryptorMap;
 
-    std::unordered_map<std::string, RakNet::SystemAddress * > m_savedBattleServerIPMap;
+    std::unordered_map<std::string, RakNet::SystemAddress > m_savedBattleServerIPMap;
 
     lua_State * m_script = nullptr;
 
@@ -185,4 +190,7 @@ private:
 
 
     LuaEventPipeline * m_luaEventPipeline = nullptr;
+    
+    LuaPollEvent * m_luaPollEvent = nullptr;
+
 };

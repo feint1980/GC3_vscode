@@ -252,7 +252,7 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
         m_banner = new Banner();
     }
     m_banner->init("./Assets/Textures/border.png");
-    m_banner->showMessage("test");
+    // m_banner->showMessage("test");
     lua_register(m_script, "cpp_CombatField_AddSlot", lua_CombatField_AddSlot);
     lua_register(m_script, "cpp_CombatField_GetSlot", lua_CombatField_GetSlot);
     lua_register(m_script, "cpp_CombatField_AddCharacter", lua_CombatField_AddCharacter);

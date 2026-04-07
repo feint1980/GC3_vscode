@@ -6,7 +6,7 @@
 #include "EmptyObject.h"
 #include <ResourceManager.h>
 
-#define DEFAULT_TIME 5
+#define DEFAULT_TIME 10
 
 class Banner
 {
@@ -27,17 +27,20 @@ public:
 
     void setMessage(const std::string & mesage) 
     { 
+
         m_mesage = mesage; 
+        m_wMessage = feint_common::Instance()->convertStringtoWstring(mesage);
     }
     void showMessage(const std::string & mesage) 
     {   if(!m_visible)
         {
-            m_scale = 1.1;
+            m_scale = 1.35f;
         } 
         m_mesage = mesage;
         m_visible = true;
         m_cTickCount = 0.0f;
-        m_isFadeIn = true;
+        m_isFadeIn = false;
+        m_wMessage = feint_common::Instance()->convertStringtoWstring(mesage);
     }
 
     void setMessage(const std::wstring & mesage) 
@@ -46,9 +49,14 @@ public:
     }
     void showMessage(const std::wstring & mesage) 
     {    
+        if(!m_visible)
+        {
+            m_scale = 1.35f;
+        } 
         m_wMessage = mesage;
         m_visible = true;
         m_cTickCount = 0.0f;
+        m_isFadeIn = false;
     }
 
     private:

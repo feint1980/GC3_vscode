@@ -223,8 +223,10 @@ void TurnDisplayer::sortTurnOrder()
     float centerLeftPos = leftPos + spacing / 2.0f;
 
     m_isBusy = true;
-    InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsReady", false);
+    InfoHolder::getInstance()->getLuaPollEvent()->sendPollSignal("TurnDisplayReady", false);
 
+    InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsReady", false);
+    
     std::vector<CharacterIcon *> sortedCharacters = getSortedCharacters();
 
     for (int i = 0; i < sortedCharacters.size(); i++)
@@ -232,8 +234,6 @@ void TurnDisplayer::sortTurnOrder()
         sortedCharacters[i]->setTargetPos(glm::vec2(centerLeftPos, m_pos.y));
         centerLeftPos += spacing;
     }
-    
-    
 }
 
 std::vector<CharacterIcon*> TurnDisplayer::getSortedCharacters()
@@ -245,7 +245,7 @@ std::vector<CharacterIcon*> TurnDisplayer::getSortedCharacters()
         result.push_back(c.get());
 
     std::sort(result.begin(), result.end(), [](CharacterIcon* a, CharacterIcon* b) {
-        return a->getSpeed() > b->getSpeed();  // ascending: lowest order first
+        return a->getOrder() < b->getOrder();  // ascending: lowest order first
     });
 
     return result;
@@ -292,7 +292,9 @@ void TurnDisplayer::update(float deltaTime)
         if(!isDisplayBusy())
         {
             m_isBusy = false;
+            InfoHolder::getInstance()->getLuaPollEvent()->sendPollSignal("TurnDisplayReady", true);
             InfoHolder::getInstance()->getLuaEventPipeline()->sendPollSignal("TurnDisplayerIsReady", true);
+            
         }
     }
 

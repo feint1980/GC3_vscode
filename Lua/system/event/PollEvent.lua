@@ -32,7 +32,7 @@ PollTasks = {}
 
 -- Set a signal to true (triggers any task waiting on it next update)
 function Poll_SetSignal(signalName,value)
-    local tValue = value or true 
+    local tValue = value or true
     PollSignals[signalName] = tValue
 end
 

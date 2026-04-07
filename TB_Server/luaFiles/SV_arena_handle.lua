@@ -80,6 +80,19 @@ function SV_SendLobbyListToClientEP(host,ip,guid)
     SendReliable(host,ip,guid,PacketChannel.ArenaChannel,ArenaResponse.Arena_RequestLobbyListResponse,{tData})
 end
 
+
+--[[    Flow of Create a Lobby 
+    Client -----------| Request to Create Lobby    |------------> Main Server
+    Main Server  -----| Validate the packet        | -----------> Battle Server
+    Battle Server ----| Response the create status | -----------> Main Server
+    Main Server  -----| Forward the create status  | -----------> Client
+    <               Status check                  >          
+    Client  ----------|connect to the battle server|------------> Battle Server
+        
+
+]]
+
+
 MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobby_Create] = function(host, data,ip,guid)
 
     print("request from " .. guid .. " for lobby create")

@@ -71,7 +71,7 @@ function InitArenaMenu(host)
     refreshLabel:setPosStr("80%","37%")
     refreshLabel:setHoverable(0,255,0,255,255,255,255,255)
     refreshLabel:setOnClickCallback(function()
-        print("refresh")
+        -- print("refresh")
         Arena_RequestBattleServerList()
     end)
 
@@ -194,7 +194,7 @@ function Arena_RequestBattleServerList()
     print("Arena_RequestBattleServerList sent ")
     -- EP_PollSignals["BSList_Ready"] = false 
     Poll_SetSignal("CreateLobby_Request",false)
-
+    -- Arena_RequestLobbyList()
 end
 
 function Arena_JoinLobby_Click()
@@ -310,7 +310,7 @@ function Arena_UpdateLobbies(serverList)
             print("mismatch battle server ID found" .. k)
             break
         end
-        print ("Arena_UpdateLobbies " .. k)
+        -- print ("Arena_UpdateLobbies " .. k)
         for n,m in pairs(v.lobbyList) do
             local hasPassword = "x"
             if m.password ~= "" then

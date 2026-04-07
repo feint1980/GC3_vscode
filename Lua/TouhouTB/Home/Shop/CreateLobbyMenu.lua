@@ -234,7 +234,5 @@ function CreateLobby_SendRequest()
         end,
         500
         )
-        
-    print("EventPipeline.emit CreateLobby_Request end")
 end
 

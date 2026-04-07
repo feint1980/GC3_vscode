@@ -32,9 +32,10 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_Request_Ge
         print("server port " .. v.port)
         print("server ping " .. v.ping)
         ClientPingToServer(host, v.IP, v.port)
-        Arena_Ping_List[k] = ArenaServer:new()
-        Arena_Ping_List[k]:init(host,k,v.name,v.port,0,v.IP)
-
+        if Arena_Ping_List[k] == nil then 
+            Arena_Ping_List[k] = ArenaServer:new()
+            Arena_Ping_List[k]:init(host,k,v.name,v.port,0,v.IP)
+        end
     end
     Arena_RequestLobbyList()
     print("CreateLobby_Request suppose to switch on")
@@ -75,10 +76,12 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
     InfoHolder_setStrVal("Target_Lobby_ID", lobbyID)
     InfoHolder_setStrVal("Target_BattleServer_GUID", serverGUID)
 
+
+    print("Create Lobby Response, room " .. lobbyID .. " created")
     --- Connect to battle server ( if passed, it will auto join to the lobby)
     ClientConnect2SV(host,targetBattleServer.IP,targetBattleServer.port)
+    print("attemp to connect to " .. targetBattleServer.IP .. "|" .. targetBattleServer.port)
 
-    
 end
 
 ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobbyListResponse] = function(host,data, guid)
@@ -97,15 +100,15 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
     end
 
     TM_addTask(function()
-        print("update the lobbies ")
+        -- print("update the lobbies ")
         for k,v in pairs(serverList) do
             if Arena_Ping_List[k] == nil then
                 print("mismatch battle server ID found" .. k)
             else
-                print("found lobby list for battle server " .. k)
+                -- print("found lobby list for battle server " .. k)
                 Arena_Ping_List[k].lobbyList = {}
                 for n,m in pairs(serverList[k].lobbyList) do
-                    print("data check " .. n)
+                    -- print("data check " .. n)
                     serverList[k].lobbyList[n] = {}
                     serverList[k].lobbyList[n].id = m.id
                     serverList[k].lobbyList[n].name = m.name
@@ -113,7 +116,7 @@ ClientMessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLob
                     serverList[k].lobbyList[n].lobbyState = m.lobbyState
                     serverList[k].lobbyList[n].battleClientEP_List = {}
                     for i = 1, #m.battleClientEP_List do
-                        print("player #" .. i)
+                        -- print("player #" .. i)
                         serverList[k].lobbyList[n].battleClientEP_List[i] = {}
                         serverList[k].lobbyList[n].battleClientEP_List[i].id = m.battleClientEP_List[i].id
                         serverList[k].lobbyList[n].battleClientEP_List[i].guid = m.battleClientEP_List[i].guid
@@ -156,7 +159,7 @@ HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,pac
         cppSelecBattleServer(host,tGuid)
         print("accepted by battle server " .. tGuid)
         -- end
-    else
+    -- else
         -- print("step 2b")
         -- local tGUID = InfoHolder_getStrVal("MainInfo.guid")
         -- local tID = InfoHolder_getStrVal("MainInfo.id")
@@ -173,6 +176,7 @@ HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,pac
 
     local tIP = Client_GetIP_FromPacket(RakNetPacket)
     print("IP " .. tIP)
+
     currentServerGUID = cppGetCurrentBattleServerGUID(host)
 
     local targetLobbyID = InfoHolder_getStrVal("Target_Lobby_ID")
@@ -187,9 +191,11 @@ HomeMain_HandleTask[PacketID.ID_CONNECTION_REQUEST_ACCEPTED] = function(host,pac
         local tGUID = InfoHolder_getStrVal("MainInfo.guid")
         local tID = InfoHolder_getStrVal("MainInfo.id")
         
+        print("send data check " .. tGUID .. " " .. tID .. " " .. targetLobbyID)
 
         SendBattleRequest(BattlePacketChannel.Lobby,CLobbyResponse.Lobby_Join_Request, {tGUID, tID ,targetLobbyID },5,0.1,0.15)
 
+        print("CLobbyResponse.Lobby_Join_Request sent")
         -- SendReliable2BattleServer(host, tIP, currentServerGUID,   )
         -- send request to join lobby to server
     end

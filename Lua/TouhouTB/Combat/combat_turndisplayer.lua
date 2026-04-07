@@ -70,11 +70,12 @@ EventPipeline.on("TURNDISPLAYER_SetSelection", {
         fn        = function(data)
             print("[poll] RollUpdate done")
 
-            EP_ClearPollSignal("TurnDisplayerIsReady")
+            
             TM_addTask(function()
                 TurnDisplayer_instance:setSelected(data.characterID,data.side)
             end
             ,30)
+            EP_ClearPollSignal("TurnDisplayerIsReady")
         end,
     }
 })

@@ -73,7 +73,7 @@ function BS_Character:init(userID, tId, tSlotIndex, tColPos, tRowPos)
     self.colPos    = tColPos
     self.rowPos    = tRowPos
     
-    print("BS_Character init: " .. userID .. " | " .. tId)
+    -- print("BS_Character init: " .. userID .. " | " .. tId)
 
     ClientOwnedCharacters = _G.ClientOwnedCharacters    
 
@@ -86,14 +86,14 @@ function BS_Character:init(userID, tId, tSlotIndex, tColPos, tRowPos)
         return
     end
 
-    print("stat init success")
+    -- print("stat init success")
     self.stats   = ClientOwnedCharacters[userID][tId]
     self.cHp     = self:getMaxHP()
     self.cMana   = self:getMaxMana()
     self.cSp     = 0
     self.cAction = self:getMaxAP()
 
-    self:printStats()
+    -- self:printStats()
 end
 
 function BS_Character:setSide(side)

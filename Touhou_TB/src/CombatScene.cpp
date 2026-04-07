@@ -16,6 +16,23 @@ int lua_combat_sceneReady(lua_State * L)
     return 0;
 }
 
+int lua_combat_setPollSignal(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_combat_setPollSignal) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        CombatScene * host = (CombatScene *)lua_touserdata(L, 1);
+        std::string signalName = lua_tostring(L, 2);
+        bool val = lua_toboolean(L, 3);
+        host->sendPollSignal(signalName, val);
+    }
+    return 0;
+}
+
 //
 
 
@@ -109,7 +126,12 @@ void CombatScene::initGUI()
         luaL_openlibs(m_script);
         m_luaTaskManager.init("../../Lua/system/event/TaskManager.lua",m_script);
         m_luaEventPipeline.init("../../Lua/system/event/EventPipeline.lua",m_script); // must init event pipeline after task manager (use on top of task manager )
+        m_luaPollEvent.init("../../Lua/system/event/PollEvent.lua",m_script);
+
+    
         InfoHolder::getInstance()->registerLuaEventPipeline(&m_luaEventPipeline);
+
+        InfoHolder::getInstance()->registerLuaPollEvent(&m_luaPollEvent);
 
         if(!m_guiScriptingManager)
         {
@@ -163,6 +185,8 @@ void CombatScene::initGUI()
     // 
 
     lua_register(m_script, "cpp_combat_sceneReady", lua_combat_sceneReady);
+    lua_register(m_script, "cpp_combat_setPollSignal", lua_combat_setPollSignal);
+
 
     // declare network function here
     m_clientScriptingManager->setCommonHandlingLuaFunction("Combat_RecieveData");
@@ -214,6 +238,7 @@ void CombatScene::update(float deltaTime)
     }
     m_luaTaskManager.update(deltaTime);
     m_luaEventPipeline.update(deltaTime);
+    m_luaPollEvent.update(deltaTime);
     if(m_combatField)
     {
         m_combatField->update(deltaTime);
@@ -338,4 +363,9 @@ void CombatScene::handleInput(Feintgine::InputManager & inputManager)
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
 	}
 
+}
+
+void CombatScene::sendPollSignal(const std::string& signalName,bool value)
+{
+    m_luaPollEvent.sendPollSignal(signalName,value);
 }

@@ -1,6 +1,8 @@
 package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;'
 
 require "clientGlobal"
+require "combat_stage_sequence"
+
 
 CombatHandling_Fn[CombatIngameData.Sync] = function(data)
 
@@ -71,6 +73,7 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
         end
     end
     CombatScene_SetSceneReady()
+    EventPipeline.emit("COMBAT_ON_MATCH_START")
 end
 
 CombatHandling_Fn[CombatIngameData.OnCharacterTurnStart] = function(data)

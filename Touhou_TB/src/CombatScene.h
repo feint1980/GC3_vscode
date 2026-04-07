@@ -42,11 +42,13 @@
 #include "ControlHandler.h"
 #include <LuaTaskManager.h>
 #include <LuaEventPipeline.h>
+#include <LuaPollEvent.h>
 #include <TextRenderer.h>
 
 // Combat components
 #include "CombatField.h"
 #include "TurnDisplayer.h"
+
 
 
 class CombatScene : public Feintgine::IGameScreen 
@@ -87,6 +89,8 @@ public:
     void initShader();
 
     void setSceneReady(bool value);
+
+    void sendPollSignal(const std::string& signalName,bool value);
 
     private:
 
@@ -133,6 +137,7 @@ public:
 
     LuaTaskManager m_luaTaskManager ;
     LuaEventPipeline m_luaEventPipeline;
+    LuaPollEvent m_luaPollEvent;
 
 
     bool isInitialized = false;

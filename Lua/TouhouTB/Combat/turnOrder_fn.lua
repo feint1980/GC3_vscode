@@ -97,7 +97,14 @@ TurnOrderHandling_Fn[CombatTurnOrder.PlayerCharacterTurn] = function(data)
 
     print("player " .. tData.playerId .. " on the side " .. tData.characterSide .. " controlling " .. tData.characterId .. " turn ")
 
+    -- EventPipeline.emit("COMBAT_ON_PLAYER_TURN", {data = tData})
+    Poll_AddTask("TurnDisplayReady", function()
+            TM_addTask(function()
 
+                CombatField_instance:showBannerMsg("Player " .. tData.playerId .. "'s turn")
+            end,30)
+        end)
     --- handle turn here 
+    
 
 end

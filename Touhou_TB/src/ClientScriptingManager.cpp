@@ -254,13 +254,13 @@ int lua_SelecBattleServer(lua_State * L)
     }
     else
     {
-        std::cout << "lua_SelecBattleServer called \n";
+        // std::cout << "lua_SelecBattleServer called \n";
         ClientScriptingManager * host =   static_cast<ClientScriptingManager*>(lua_touserdata(L, 1));
-        std::cout << "lua_SelecBattleServer p2 \n";
+        // std::cout << "lua_SelecBattleServer p2 \n";
         std::string guid = lua_tostring(L, 2);
-        std::cout << "lua_SelecBattleServer p3 \n";
+        // std::cout << "lua_SelecBattleServer p3 \n";
         host->selectBattleServer(guid);
-        std::cout << "lua_SelecBattleServer p4 \n";
+        // std::cout << "lua_SelecBattleServer p4 \n";
         return 0;
     }
     return 0;
@@ -447,11 +447,11 @@ int lua_Packet_getGUID(lua_State * L)
     }
     else
     {
-        std::cout << "lua_Packet_getGUID called \n";
+        // std::cout << "lua_Packet_getGUID called \n";
         RakNet::Packet * p = static_cast<RakNet::Packet*>(lua_touserdata(L, 1));
         std::string result = p->guid.ToString();
         lua_pushstring(L, result.c_str());
-        std::cout << "lua_Packet_getGUID result " << result << "\n";
+        // std::cout << "lua_Packet_getGUID result " << result << "\n";
         return 1;
     }
     return 0;
@@ -595,6 +595,7 @@ uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
         std::cout << "sendBattleWrapData failed (no current battle server)\n";
         return 0;
     }
+    std::cout << "sendBattleWrapData called \n";
     // if(!m_cryptors[m_currentBattleServerGUID])
     // {
     
@@ -624,6 +625,8 @@ uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
     unsigned int bytes = bits / 8 + (bits % 8 ? 1 : 0);
 
     // std::cout << "attempting to send " << payLoad.c_str() << "\n";
+
+    std::cout << " server check " << *m_currentBattleServerIP->ToString(true) << "\n";
 
     // Safe send (BitStream handles memory ownership)
     return m_client->Send(
@@ -773,6 +776,22 @@ void ClientScriptingManager::addCryptor(const std::string & guid)
     std::cout << "add or reassign cryptor for guid " << guid << "\n";
 }
 
+void ClientScriptingManager::addBattleCryptor(const std::string & guid)
+{
+    if(m_cryptors.find(guid) != m_cryptors.end())
+    {
+        std::cout << "cryptor for guid " << guid << " already exist \n";
+        return;
+    }
+    Feintgine::F_Cryptor_sodium * cryptor = new Feintgine::F_Cryptor_sodium();
+    cryptor->init("XOPXOP336", guid);
+    
+    m_cryptors[guid] = cryptor;
+
+    std::cout << "add or reassign cryptor for guid " << guid << "\n";
+}
+
+
 void ClientScriptingManager::removeCryptor(const std::string & guid)
 {
     if(m_cryptors.find(guid) != m_cryptors.end())
@@ -791,16 +810,27 @@ void ClientScriptingManager::selectBattleServer(const std::string & guid)
 
     std::cout << "[C++] selectBattleServer " << guid << "\n";
 
+
+    std::cout << "map check \n";
+    
+    for(auto it = m_battleServerIPMap.begin(); it != m_battleServerIPMap.end(); it++)
+    {
+        std::cout << it->first << " : " << it->second.ToString(true) << "\n";
+    }
+    std::cout << "map check end \n";
+
     m_currentBattleServerGUID = guid;
-    m_currentBattleServerIP = m_battleServerIPMap[guid]; // this is intended, if guid not found, m_currentBattleServerIP will be nullptr 
+    m_currentBattleServerIP = &m_battleServerIPMap[guid]; // this is intended, if guid not found, m_currentBattleServerIP will be nullptr 
     
     if(m_currentBattleServerIP == nullptr)
     {
         std::cout << "Warning : no battle server for guid " << guid << " \n";
         return;
     }
-    addCryptor(guid); // add cryptor for battle server
+    // addBattleCryptor(guid); // add cryptor for battle server
 }
+
+
 
 uint32_t ClientScriptingManager::handleWrapData(RakNet::Packet *p)
 {
@@ -1219,6 +1249,16 @@ void ClientScriptingManager::firstGateWay(RakNet::Packet *p)
         }
         else
         {
+            selectBattleServer(p->guid.ToString());
+            // m_currentBattleServerGUID = p->guid.ToString();
+            // // m_currentBattleServerIP = &p->systemAddress;
+            // m_currentBattleServerIP = m_battleServerIPMap[m_currentBattleServerGUID];
+            // if(m_cryptors.find(m_currentBattleServerGUID) == m_cryptors.end())
+            // {
+            //     Feintgine::F_Cryptor_sodium * cryptor = new Feintgine::F_Cryptor_sodium();
+            //     cryptor->init("XOPXOP336", m_currentBattleServerGUID);
+            //     m_cryptors[m_currentBattleServerGUID] = cryptor;
+            // }
             std::cout << "other server detected, not save \n";
         }
         
@@ -1396,7 +1436,7 @@ void ClientScriptingManager::connect2BattleServer(const std::string & guid)
         return;
     }
 
-    RakNet::SystemAddress addr =  *m_battleServerIPMap[guid];
+    RakNet::SystemAddress addr =  m_battleServerIPMap[guid];
     std::string target = addr.ToString();
     int port = addr.GetPort();
     std::string pw = "FFX2";
@@ -1494,12 +1534,12 @@ void ClientScriptingManager::collectPong(RakNet::Packet *p)
         // {
         if(m_battleServerIPMap.find(p->guid.ToString()) == m_battleServerIPMap.end())
         {
-            m_battleServerIPMap[p->guid.ToString()] = new RakNet::SystemAddress(p->systemAddress);
+            m_battleServerIPMap[p->guid.ToString()] = RakNet::SystemAddress(p->systemAddress);
             
         }
         else
         {
-            m_battleServerIPMap[p->guid.ToString()] = &p->systemAddress;
+            m_battleServerIPMap[p->guid.ToString()] = p->systemAddress;
         }
             
         // }

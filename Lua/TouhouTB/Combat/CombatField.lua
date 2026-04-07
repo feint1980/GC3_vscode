@@ -3,8 +3,8 @@ package.path = package.path .. ';../../Lua/TouhouTB/Combat/?.lua;'
 require "combatField_wrapper"
 
 CombatField = {
-    host = nil
-
+    host = nil,
+    banner = nil,
 }
 
 function CombatField:new(o)
@@ -23,6 +23,7 @@ function CombatField:init(tHost,col,row)
             end
         end
     end
+    self.banner = cpp_getBannerInstance(self.host)
 end
 
 
@@ -57,5 +58,18 @@ end
 ---@param side number
 function CombatField:getCharacter(characterID,side)
     return CF_GetCharacter(self.host, characterID, side)
+end
+
+function CombatField:showBannerMsg(msg)
+    print("CombatField:showBannerMsg called")
+    cpp_Banner_SetMsg(self.banner, msg)
+end
+
+function CombatField:setBannerVisible(value)
+    cpp_Banner_SetVisible(self.banner, value)
+end
+
+function CombatField:setBannerMsg(msg)
+    cpp_Banner_SetMsg(self.banner, msg)
 end
 
