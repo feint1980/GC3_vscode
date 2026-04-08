@@ -23,8 +23,11 @@ public:
 	glm::vec2 getDimentions() const { return m_dims; }
 	void setAngle(float angle);
 
+	void setDim(const glm::vec2 & dims) { m_dims = dims; }
+
 	void setAlpha(GLubyte alpha);
 
+	void setColor(const Feintgine::Color & color) { m_color = color; }
 	void setDepth(float target);
 
 	GLubyte getAlpha() const { return m_color.a; }
@@ -51,7 +54,7 @@ protected:
 	bool fayde ;
 	float m_depth = 0.0f;
 //	bool m_faydeMode = false;
-	
+
 };
 
 #endif

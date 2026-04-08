@@ -3,7 +3,8 @@
 #define BANNER_H
 
 #include <TextRenderer.h>
-#include "EmptyObject.h"
+// #include "TB_EmptyObject.h"
+#include "TB_EmptyObject.h"
 #include <ResourceManager.h>
 
 #define DEFAULT_TIME 10
@@ -32,10 +33,11 @@ public:
         m_wMessage = feint_common::Instance()->convertStringtoWstring(mesage);
     }
     void showMessage(const std::string & mesage) 
-    {   if(!m_visible)
-        {
-            m_scale = 1.35f;
-        } 
+    {   
+        // if(!m_visible)
+        // {
+        m_scale = 3.4f;
+        // } 
         m_mesage = mesage;
         m_visible = true;
         m_cTickCount = 0.0f;
@@ -49,10 +51,10 @@ public:
     }
     void showMessage(const std::wstring & mesage) 
     {    
-        if(!m_visible)
-        {
-            m_scale = 1.35f;
-        } 
+        // if(!m_visible)
+        // {
+        m_scale = 3.4f;
+        // } 
         m_wMessage = mesage;
         m_visible = true;
         m_cTickCount = 0.0f;
@@ -66,7 +68,7 @@ public:
 
     glm::vec2 m_bgPos;
 
-    EmptyObject m_bg;
+    TB_EmptyObject m_bg;
 
     float m_textScale = 1.0f;
     float m_scale = 1.0;

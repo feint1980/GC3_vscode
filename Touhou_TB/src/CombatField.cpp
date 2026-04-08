@@ -274,7 +274,7 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
 
     // lua_register
 
-    m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,100), glm::vec2(1280, 720),Feintgine::Color(255, 255, 255, 255));
+    m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,170), glm::vec2(1280, 720) * 1.1f,Feintgine::Color(255, 255, 255, 255));
 
     m_enumToIndecies.reserve(25);
     // init map | collumn, row, side (1 = left, 2 = right)
