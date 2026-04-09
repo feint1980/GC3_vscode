@@ -18,7 +18,7 @@ public:
 
     TB_EmptyObject  m_backgroundDock;
 
-    bool m_isLeft;
+    bool m_isLeft = false;
 
 
 };

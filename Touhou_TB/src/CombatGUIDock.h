@@ -3,6 +3,8 @@
 #define COMBAT_GUIDOCK_H
 
 #include "CombatGUIPanel.h"
+#include <ResourceManager.h>
+#include "LuaManager.h"
 
 class CombatGUIDock
 {
@@ -15,8 +17,10 @@ public:
     void draw(Feintgine::SpriteBatch & spriteBatch);
 
     void update(float deltaTime);
-
+    
 private:
+
+    lua_State * m_script = nullptr;
 
     TB_EmptyObject  m_backgroundDock;  
     CombatGUIPanel  m_leftPanel;

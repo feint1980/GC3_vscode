@@ -18,6 +18,8 @@
 #include <TextRenderer.h>
 #include "Banner.h"
 
+#include "CombatGUIDock.h"
+
 enum SlotPos
 {
     // Left
@@ -109,7 +111,9 @@ private:
 
     EmptyObject m_bg;
 
-    Banner  * m_banner = nullptr;
+    Banner * m_banner = nullptr;
+
+    CombatGUIDock * m_guidock = nullptr;
 
 };
 

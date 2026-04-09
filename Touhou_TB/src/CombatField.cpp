@@ -224,6 +224,21 @@ int lua_Banner_SetVisible(lua_State * L)
     return 0;
 }
 
+int lua_getDockInstance(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_getDockInstance) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+        // lua_pushlightuserdata(L, host->getDock());
+        return 1;
+    }
+    return 0;
+}
+
 CombatField::CombatField()
 {
     // m_slotIndexMap = std::unordered_map<glm::ivec3, int>();
@@ -252,6 +267,12 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
         m_banner = new Banner();
     }
     m_banner->init("./Assets/Textures/border.png");
+    if(!m_guidock)
+    {
+        m_guidock = new CombatGUIDock();
+    }
+    m_guidock->init();
+
     // m_banner->showMessage("test");
     lua_register(m_script, "cpp_CombatField_AddSlot", lua_CombatField_AddSlot);
     lua_register(m_script, "cpp_CombatField_GetSlot", lua_CombatField_GetSlot);
@@ -267,12 +288,18 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
 
     lua_register(m_script, "cpp_CombatField_GetCharacterStatStr" , lua_CombatField_GetCharacterStatStr);
 
+
+    // Banner 
     lua_register(m_script, "cpp_getBannerInstance", lua_getBannerInstance);
     lua_register(m_script, "cpp_Banner_SetMsg" , lua_Banner_SetMsg);
     lua_register(m_script, "cpp_Banner_ShowMsg" , lua_Banner_ShowMsg);
     lua_register(m_script, "cpp_Banner_SetVisible", lua_Banner_SetVisible);
 
-    // lua_register
+    // GUI Dock
+
+    lua_register(m_script, "cpp_getDockInstance", lua_getDockInstance);
+
+
 
     m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,170), glm::vec2(1280, 720) * 1.1f,Feintgine::Color(255, 255, 255, 255));
 
@@ -342,6 +369,10 @@ void CombatField::draw(Feintgine::SpriteBatch & spriteBatch)
     if(m_banner)
     {
         m_banner->draw(spriteBatch);
+    }
+    if(m_guidock)
+    {
+        m_guidock->draw(spriteBatch);
     }
 
 }

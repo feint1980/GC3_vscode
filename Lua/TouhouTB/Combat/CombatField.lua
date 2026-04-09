@@ -24,6 +24,7 @@ function CombatField:init(tHost,col,row)
         end
     end
     self.banner = cpp_getBannerInstance(self.host)
+    
 end
 
 

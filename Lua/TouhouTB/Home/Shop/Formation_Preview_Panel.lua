@@ -66,7 +66,7 @@ function FormationPreviewPanel:init(GUI_host,parentPanel, index)
     self.formationLabel:setAlignment(TextAlginment.Center)
     self.formationLabel:setScale(1.)
 
-    print("formation review " .. self.tIndex)
+    -- print("formation review " .. self.tIndex)
     for i = 1, 4 do 
         -- print("init pic index " .. i)
         -- local tPicture = Picture:new()
