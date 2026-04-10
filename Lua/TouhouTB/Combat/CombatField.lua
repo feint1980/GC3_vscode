@@ -5,6 +5,7 @@ require "combatField_wrapper"
 CombatField = {
     host = nil,
     banner = nil,
+    dock = nil,
 }
 
 function CombatField:new(o)
@@ -24,7 +25,7 @@ function CombatField:init(tHost,col,row)
         end
     end
     self.banner = cpp_getBannerInstance(self.host)
-    
+    self.dock = cpp_getDockInstance(self.host)
 end
 
 
@@ -73,4 +74,5 @@ end
 function CombatField:setBannerMsg(msg)
     cpp_Banner_SetMsg(self.banner, msg)
 end
+
 

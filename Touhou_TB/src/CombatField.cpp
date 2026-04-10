@@ -299,8 +299,6 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
 
     lua_register(m_script, "cpp_getDockInstance", lua_getDockInstance);
 
-
-
     m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,170), glm::vec2(1280, 720) * 1.1f,Feintgine::Color(255, 255, 255, 255));
 
     m_enumToIndecies.reserve(25);

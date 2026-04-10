@@ -3,7 +3,7 @@
 #define COMBAT_DUIPANEL_H
 
 #include "TB_EmptyObject.h"
-
+#include <ResourceManager.h>
 class CombatGUIPanel 
 {
 public:
@@ -20,6 +20,7 @@ public:
 
     bool m_isLeft = false;
 
+    glm::vec2 m_pos = glm::vec2(0,0);
 
 };
 
