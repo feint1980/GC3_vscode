@@ -20,6 +20,8 @@ public:
 
     void drawText(TextRenderer * textRenderer);
 
+    void setCurrentCharacter(const std::string & characterID);
+
     CombatGUIPanel *getPanel(bool isLeft);
 
     // void setAvatar
