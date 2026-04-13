@@ -139,12 +139,14 @@ For the Editor and Game that you want to see but don't have time to build :
 - [x] Error messages for failed server responses
 - [x] Handle the Main Server with Battle Servers
 - [x] Server battle room/session manager
+
 🟨 IN PROGRESS 	🚧 
 - [x] Battle prototype (2-character dummy test) 🚧🚧🚧🚧🚧
 - [x] Turn bar system and turn queue logic 🚧🚧🚧🚧
 - [x] Skill use / targeting / resolution system 🚧
 - [x] Hit/miss, crit, dodge, and damage formulas 🚧🚧
 - [x] Server-side validation of all combat logic 🚧🚧🚧
+
 🟥 TO DO
 - [ ] Battle matchmaking or challenge system
 - [ ] Buffs/Debuffs & status effect system
