@@ -14,6 +14,7 @@ public:
     void draw(Feintgine::SpriteBatch & spriteBatch);
     void update(float deltaTime);
     
+
     private:
 
     TB_EmptyObject  m_backgroundDock;

@@ -3,7 +3,7 @@
 
 CombatGUIDock::CombatGUIDock()
 {
-
+    m_currentCharacterName = "No Selection";
 
 }
 
@@ -14,7 +14,7 @@ CombatGUIDock::~CombatGUIDock()
 
 void CombatGUIDock::init()
 {
-    m_backgroundDock.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/frame.png"),glm::vec2(0,0), glm::vec2(1600, 250),Feintgine::Color(255, 255, 255, 255));
+    m_backgroundDock.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/frame.png"),glm::vec2(0,-350), glm::vec2(1600, 250),Feintgine::Color(255, 255, 255, 255));
 
 }
 
@@ -23,12 +23,27 @@ void CombatGUIDock::draw(Feintgine::SpriteBatch & spriteBatch)
     m_backgroundDock.draw(spriteBatch);
     m_leftPanel.draw(spriteBatch);
     m_rightPanel.draw(spriteBatch);
+
 }
 
 void CombatGUIDock::update(float deltaTime)
 {
     m_leftPanel.update(deltaTime);
     m_rightPanel.update(deltaTime);
+    
+}
+
+void CombatGUIDock::drawText(TextRenderer * textRenderer)
+{
+    textRenderer->renderTextBatched(m_currentCharacterName, glm::vec2(-650, -350), Feintgine::Color(255, 255, 255, 255), 0.7f, ALIGN_FT_LEFT);
+    // textRenderer->renderTextBatched(m_currentCharacterName, glm::vec2(650, -350), Feintgine::Color(255, 255, 255, 255), 0.7f, ALIGN_FT_RIGHT);
+
+
+}
+
+void CombatGUIDock::setCurrentCharacter(const std::string & characterID)
+{
+    
 }
 
 CombatGUIPanel * CombatGUIDock::getPanel(bool isLeft)

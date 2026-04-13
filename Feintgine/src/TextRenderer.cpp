@@ -364,6 +364,43 @@ void TextRenderer::begin()
 }
 
 void TextRenderer::renderTextBatched(
+        const std::string&     text,
+        const glm::vec2&        pos,
+        const Feintgine::Color& color,
+        float                   scale,
+        unsigned char           justification)
+{
+    // std::cout << "[TextRenderer] renderTextBatched() text length: " << text.size() << "\n";
+    if (text.empty()) return;
+
+    // Find an existing segment for this color, or create one
+    BatchSegment* target = nullptr;
+    for (auto& seg : m_batchSegments)
+    {
+        if (seg.color.r == color.r &&
+            seg.color.g == color.g &&
+            seg.color.b == color.b &&
+            seg.color.a == color.a)
+        {
+            target = &seg;
+            break;
+        }
+    }
+    if (!target)
+    {
+        m_batchSegments.push_back({ color, {} });
+        target = &m_batchSegments.back();
+    }
+
+    target->verts.reserve(target->verts.size() + text.size() * 6 * 4);
+
+    std::wstring wtext;
+    wtext.assign(text.begin(), text.end());
+
+    buildVertices(wtext, pos, scale, justification, target->verts, true);
+}
+
+void TextRenderer::renderTextBatched(
     const std::wstring&     text,
     const glm::vec2&        pos,
     const Feintgine::Color& color,

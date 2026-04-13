@@ -288,7 +288,6 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
 
     lua_register(m_script, "cpp_CombatField_GetCharacterStatStr" , lua_CombatField_GetCharacterStatStr);
 
-
     // Banner 
     lua_register(m_script, "cpp_getBannerInstance", lua_getBannerInstance);
     lua_register(m_script, "cpp_Banner_SetMsg" , lua_Banner_SetMsg);
@@ -448,5 +447,9 @@ void CombatField::drawText(TextRenderer * textRenderer)
     if(m_banner)
     {
         m_banner->drawText(textRenderer);
+    }
+    if(m_guidock)
+    {
+        m_guidock->drawText(textRenderer);
     }
 }

@@ -20,7 +20,13 @@ void CombatGUIPanel::draw(Feintgine::SpriteBatch & spriteBatch)
 void CombatGUIPanel::init(bool isLeft)
 {
     m_isLeft = isLeft;
-    m_backgroundDock.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/frame.png"),glm::vec2(0,0), glm::vec2(1600, 250),Feintgine::Color(255, 255, 255, 255));
+
+    float mX = 800;
+    float invert = 1.0f;
+    if (m_isLeft) invert = -1.0f;
+    m_pos = glm::vec2(mX * invert, 0);
+
+    m_backgroundDock.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/frame.png"),m_pos, glm::vec2(250, 550),Feintgine::Color(255, 255, 255, 255));
 
 }
 

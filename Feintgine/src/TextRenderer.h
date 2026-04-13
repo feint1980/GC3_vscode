@@ -89,6 +89,16 @@ public:
         float                   scale,
         unsigned char           justification);
 
+    // std::string version
+    void renderTextBatched(
+        const std::string&     text,
+        const glm::vec2&        pos,
+        const Feintgine::Color& color,
+        float                   scale,
+        unsigned char           justification);
+
+
+
     // color applies to the entire batch — call begin()/end() per color group if needed
     void end(const Feintgine::Camera2D& camera);
 
