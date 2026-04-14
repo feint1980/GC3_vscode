@@ -48,7 +48,7 @@
 // Combat components
 #include "CombatField.h"
 #include "TurnDisplayer.h"
-
+#include "FieldInfo.h"
 
 
 class CombatScene : public Feintgine::IGameScreen 
@@ -143,8 +143,9 @@ public:
     bool isInitialized = false;
 
     CombatField * m_combatField = nullptr;
-
     TurnDisplayer * m_turnDisplayer = nullptr;
+
+    FieldInfo * m_fieldInfo = nullptr;
 
     bool m_isSceneReady = false;
 
