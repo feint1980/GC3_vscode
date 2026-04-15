@@ -157,7 +157,13 @@ void CombatScene::initGUI()
         }
         m_turnDisplayer->init("../../Lua/TouhouTB/Combat/combat_turndisplayer.lua",m_script);
 
-        
+        if(!m_fieldInfo)
+        {
+            m_fieldInfo = new FieldInfo();
+        }
+
+        m_fieldInfo->init("../../Lua/TouhouTB/Combat/fieldInfo.lua",m_script);
+
 
         unsigned int port = 1123;
         if(!m_clientScriptingManager)
