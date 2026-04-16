@@ -332,9 +332,9 @@ namespace Feintgine
 
 	private:
 
-		std::string m_filePath;
-		std::string m_name;
-		glm::vec2 m_pos;
+		std::string m_filePath = "";
+		std::string m_name = "";
+		glm::vec2 m_pos = glm::vec2(0);
 		glm::vec2 m_scale = glm::vec2(1);
 
 		//bool m_isInverted = false;

@@ -64,7 +64,7 @@ namespace Feintgine {
 		//std::weak_ptr <f_anim> m_currentSprite;
 		//std::shared_ptr<f_anim> m_currentSpriteGuard;
 		f_anim * m_currentSprite = nullptr;
-		std::string m_animName;
+		std::string m_animName = "";
 		int loopIndex = 0;
 
 		bool m_loopSet = false;
