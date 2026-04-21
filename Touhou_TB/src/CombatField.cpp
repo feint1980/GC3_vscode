@@ -1,5 +1,67 @@
 #include "CombatField.h"
 
+static void to_json(json& j, const dCharacterStats& stats)
+{
+    j = json{
+        // string values2
+        {"ownerID", stats.ownerID}, // 1 use to check if all stats are set
+        {"characterID", stats.characterID}, // 2
+
+        {"strength", stats.strength}, // 3
+        {"vitality", stats.vitality}, // 4
+        {"dexterity", stats.dexterity}, // 5 
+        {"agility", stats.agility}, // 6
+        {"intelligence", stats.intelligence}, // 7
+        {"wisdom", stats.wisdom}, // 8
+        {"physicDmg",stats.physicDmg}, // 9 
+        {"magicDmg",stats.magicDmg}, // 10
+        {"physicDef",stats.physicDef}, // 11
+        {"magicDef",stats.magicDef}, // 12
+        {"physicalAccuracy",stats.physicalAccuracy}, // 13
+        {"magicalAccuracy",stats.magicalAccuracy}, // 14
+        {"evasion",stats.evasion}, // 15
+        {"critChance",stats.critChance}, // 16
+        {"speed",stats.speed}, // 17
+        {"maxHP",stats.maxHP}, // 18
+        {"maxMana",stats.maxMana}, // 19
+        {"maxAP",stats.maxAP}, // 20
+        {"maxSP",stats.maxSP}, // 21
+        {"currentHP",stats.currentHP}, // 22
+        {"currentMana",stats.currentMana}, // 23
+        {"currentAP",stats.currentAP}, // 24
+        {"currentSP",stats.currentSP}, // 25
+    };
+}
+
+static void from_json(const json& j, dCharacterStats& stats)
+{
+    j.at("ownerID").get_to(stats.ownerID); // 1 
+    j.at("characterID").get_to(stats.characterID); // 2
+    j.at("strength").get_to(stats.strength); // 3
+    j.at("vitality").get_to(stats.vitality); // 4
+    j.at("dexterity").get_to(stats.dexterity); // 5
+    j.at("agility").get_to(stats.agility); // 6
+    j.at("intelligence").get_to(stats.intelligence); // 7
+    j.at("wisdom").get_to(stats.wisdom); // 8
+    j.at("physicDmg").get_to(stats.physicDmg); // 9
+    j.at("magicDmg").get_to(stats.magicDmg); // 10
+    j.at("physicDef").get_to(stats.physicDef); // 11
+    j.at("magicDef").get_to(stats.magicDef); // 12
+    j.at("physicalAccuracy").get_to(stats.physicalAccuracy); // 13
+    j.at("magicalAccuracy").get_to(stats.magicalAccuracy); // 14
+    j.at("evasion").get_to(stats.evasion); // 15
+    j.at("critChance").get_to(stats.critChance); // 16
+    j.at("speed").get_to(stats.speed); // 17
+    j.at("maxHP").get_to(stats.maxHP); // 18
+    j.at("maxMana").get_to(stats.maxMana); // 19
+    j.at("maxAP").get_to(stats.maxAP); // 20
+    j.at("maxSP").get_to(stats.maxSP); // 21
+    j.at("currentHP").get_to(stats.currentHP); // 22
+    j.at("currentMana").get_to(stats.currentMana); // 23
+    j.at("currentAP").get_to(stats.currentAP); // 24
+    j.at("currentSP").get_to(stats.currentSP); // 25
+}
+
 int lua_CombatField_AddSlot(lua_State * L)
 {
     if(lua_gettop(L) != 4)
@@ -414,6 +476,24 @@ CombatCharacter * CombatField::addCharacter(int collumn, int row, int side, cons
     m_charactersMap[key] = character; 
 
     return character.get();
+}
+
+dCharacterStats * CombatField::addCharacterStats(const std::string & characterID, int side,const std::string & statsStr)
+{
+    std::string key = characterID + "_" + std::to_string(side);
+
+    if(m_characterStatsMap.find(key) != m_characterStatsMap.end())
+    {
+
+
+
+        return m_characterStatsMap[key].get();
+    }
+    auto characterStats = std::make_shared<dCharacterStats>();
+    characterStats->init(statsStr);
+    m_characterStatsMap[key] = characterStats;
+    return characterStats.get();
+
 }
 
 CombatCharacter * CombatField::getCharacter(const std::string & characterID, int side)

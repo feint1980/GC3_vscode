@@ -54,7 +54,6 @@ EventPipeline.on("TURNDISPLAYER_SpeedChange", {
 }
 )
 
-
 EventPipeline.on("TURNDISPLAYER_SetSelection", {
     {
         type = "instant",
@@ -70,7 +69,6 @@ EventPipeline.on("TURNDISPLAYER_SetSelection", {
         fn        = function(data)
             print("[poll] RollUpdate done")
 
-            
             TM_addTask(function()
                 TurnDisplayer_instance:setSelected(data.characterID,data.side)
             end

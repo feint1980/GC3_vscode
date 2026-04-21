@@ -45,7 +45,8 @@ static void to_json(json& j, const CharacterStats& c)
 }
 
 // Convert JSON to struct
-static void from_json(const json& j, CharacterStats& c) {
+static void from_json(const json& j, CharacterStats& c) 
+{
     j.at("strength").get_to(c.strength); // 1
     j.at("vitality").get_to(c.vitality); // 2
     j.at("dexterity").get_to(c.dexterity); // 3
@@ -88,7 +89,7 @@ static void from_json(const json& j, CharacterStats& c) {
 
 CharacterDesc::CharacterDesc()
 {
-
+    
 }
 
 CharacterDesc::~CharacterDesc()

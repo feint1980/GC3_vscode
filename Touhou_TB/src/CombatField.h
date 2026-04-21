@@ -20,6 +20,11 @@
 
 #include "CombatGUIDock.h"
 
+#include <algorithm>
+#include <nlohmann/json.hpp>
+
+using json = nlohmann::json;
+
 enum SlotPos
 {
     // Left
@@ -88,6 +93,8 @@ public:
 
     CombatCharacter * addCharacter(int collumn, int row, int side, const std::string & characterID, const std::string & portraitPath, const glm::vec2 & scale = glm::vec2(1.0f, 1.0f));
 
+    dCharacterStats * addCharacterStats(const std::string & characterID, int side, const std::string & statsStr);
+
     CombatCharacter * getCharacter(const std::string & characterID, int side);
 
     Banner  * getBanner() { return m_banner; }
@@ -108,6 +115,8 @@ private:
     std::vector<std::shared_ptr<CombatCharacter>> m_characters; // iterate 
 
     std::unordered_map<std::string, std::shared_ptr<CombatCharacter>> m_charactersMap; // lookup
+
+    std::unordered_map<std::string, std::shared_ptr<dCharacterStats>> m_characterStatsMap;
 
     EmptyObject m_bg;
 

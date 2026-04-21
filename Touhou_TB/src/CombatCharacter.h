@@ -64,6 +64,8 @@ public:
 
     void listStats();
 
+    void setStats( const dCharacterStats & stats) { m_stats = stats; }
+
 private:
 
     CSlot * m_currentSlot = nullptr;

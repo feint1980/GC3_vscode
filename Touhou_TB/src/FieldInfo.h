@@ -17,6 +17,7 @@ public:
 
     std::string getPortraitPath(const std::string & characterName);
 
+
     private:
 
     std::unordered_map<std::string, std::string> m_portraitMap;

@@ -38,7 +38,6 @@ void CombatGUIDock::drawText(TextRenderer * textRenderer)
     textRenderer->renderTextBatched(m_currentCharacterName, glm::vec2(-650, -350), Feintgine::Color(255, 255, 255, 255), 0.7f, ALIGN_FT_LEFT);
     // textRenderer->renderTextBatched(m_currentCharacterName, glm::vec2(650, -350), Feintgine::Color(255, 255, 255, 255), 0.7f, ALIGN_FT_RIGHT);
 
-
 }
 
 void CombatGUIDock::setCurrentCharacter(const std::string & characterID)
