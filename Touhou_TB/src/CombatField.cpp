@@ -62,6 +62,24 @@ static void from_json(const json& j, dCharacterStats& stats)
     j.at("currentSP").get_to(stats.currentSP); // 25
 }
 
+int lua_ParseCharacterStatsFromString(lua_State * L) // dCharacterStats
+{
+    dCharacterStats *result = nullptr;
+    try
+    {
+        std::string str = lua_tostring(L, 1);
+        json j = json::parse(str);
+        result = new dCharacterStats(j.get<dCharacterStats>());
+        lua_pushlightuserdata(L, result);
+        return 1;
+    }
+    catch (const std::exception &e)
+    {
+        delete result;
+        return luaL_error(L, "parse error: %s", e.what());
+    }
+}
+
 int lua_CombatField_AddSlot(lua_State * L)
 {
     if(lua_gettop(L) != 4)
@@ -482,17 +500,14 @@ dCharacterStats * CombatField::addCharacterStats(const std::string & characterID
 {
     std::string key = characterID + "_" + std::to_string(side);
 
-    if(m_characterStatsMap.find(key) != m_characterStatsMap.end())
-    {
-
-
-
-        return m_characterStatsMap[key].get();
-    }
-    auto characterStats = std::make_shared<dCharacterStats>();
-    characterStats->init(statsStr);
-    m_characterStatsMap[key] = characterStats;
-    return characterStats.get();
+    // if(m_characterStatsMap.find(key) != m_characterStatsMap.end())
+    // {
+    //     return m_characterStatsMap[key].get();
+    // }
+    // auto characterStats = std::make_shared<dCharacterStats>();
+    // characterStats = 
+    // m_characterStatsMap[key] = characterStats;
+    // return characterStats.get();
 
 }
 

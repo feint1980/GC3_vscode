@@ -13,11 +13,12 @@ namespace Feintgine
             return;
         }
 
+        // crypto_kx_client_session_keys(m_key, nullptr, nullptr);
+
         std::string combined = password + ":" + phrase;
         crypto_generichash(m_key, sizeof(m_key),
                         reinterpret_cast<const unsigned char*>(combined.data()),
                         combined.size(), nullptr, 0);
-
     }
 
 

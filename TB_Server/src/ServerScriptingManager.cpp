@@ -1618,6 +1618,9 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
     shared_luaState = m_script;
 
+    // cryptor 
+    // crypto_kx_keypair(m_server_pk, m_server_sk);
+
     m_cryptors.reserve(3000);
 
     // std::cout << "pwCryptor init \n";
@@ -1677,7 +1680,17 @@ void ServerScriptingManager::init(RakNet::RakPeerInterface * server,DataBaseHand
 
 void ServerScriptingManager::addCryptor(const std::string & guid)
 {
+
+    if(m_cryptors.find(guid) != m_cryptors.end())
+    {
+        std::cout << "cryptor for guid " << guid << " already exist \n";
+        return;
+    }
     Feintgine::F_Cryptor_sodium * cryptor = new Feintgine::F_Cryptor_sodium();
+
+    // unsigned char server_rx[crypto_kx_SESSIONKEYBYTES];
+    // unsigned char server_tx[crypto_kx_SESSIONKEYBYTES];
+
     cryptor->init("BNML is real", guid);
     m_cryptors[guid] = cryptor;
 

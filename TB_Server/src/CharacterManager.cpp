@@ -43,22 +43,20 @@ int lua_CM_CreateCharacter(lua_State * L)
 /// Parse Character Stat from String
 int lua_ParseCharacterFromString(lua_State * L)
 {
-    if(lua_gettop(L) != 1)
+    CharacterStats *result = nullptr;
+    try
     {
-        std::cout << "gettop failed (lua_ParseCharacterFromString) \n";
-        std::cout << lua_gettop(L) << "\n";
-        return -1;
-    }
-    else
-    {
-        CharacterStats *result = new CharacterStats();
         std::string str = lua_tostring(L, 1);
         json j = json::parse(str);
-        *result = j.get<CharacterStats>();
+        result = new CharacterStats(j.get<CharacterStats>());
         lua_pushlightuserdata(L, result);
         return 1;
     }
-    return 0;
+    catch (const std::exception &e)
+    {
+        delete result;
+        return luaL_error(L, "parse error: %s", e.what());
+    }
 }
 
 int lua_CM_GetCharacter(lua_State * L)

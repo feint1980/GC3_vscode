@@ -179,6 +179,9 @@ private:
 
     // Feintgine::F_Cryptor_sodium m_cryptorSodium;
 
+    // unsigned char m_server_pk[crypto_kx_PUBLICKEYBYTES];
+    // unsigned char m_server_sk[crypto_kx_SECRETKEYBYTES];
+
   //  std::thread m_handleCommonThread;
 
 };
