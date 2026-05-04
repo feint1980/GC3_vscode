@@ -65,7 +65,6 @@ TurnOrderHandling_Fn[CombatTurnOrder.RollResult] = function(data)
         print("side " .. v.side)
         print("roll result " .. v.rollResult)
         print("speed " .. v.speed)
-        
         local tCharacter = TurnDisplayer_instance:getCharacterIcon(v.characterId,v.side)
         if tCharacter ~= nil then
             CTD_SetCharacterOrder(tCharacter,v.order)

@@ -1,5 +1,6 @@
 #include "CombatField.h"
 
+
 static void to_json(json& j, const dCharacterStats& stats)
 {
     j = json{
@@ -30,6 +31,9 @@ static void to_json(json& j, const dCharacterStats& stats)
         {"currentMana",stats.currentMana}, // 23
         {"currentAP",stats.currentAP}, // 24
         {"currentSP",stats.currentSP}, // 25
+
+        {"colPos",stats.colPos}, // 26
+        {"rowPos",stats.rowPos}, // 27
     };
 }
 
@@ -60,9 +64,12 @@ static void from_json(const json& j, dCharacterStats& stats)
     j.at("currentMana").get_to(stats.currentMana); // 23
     j.at("currentAP").get_to(stats.currentAP); // 24
     j.at("currentSP").get_to(stats.currentSP); // 25
-}
 
-int lua_ParseCharacterStatsFromString(lua_State * L) // dCharacterStats
+    j.at("colPos").get_to(stats.colPos); // 26
+    j.at("rowPos").get_to(stats.rowPos); // 27
+
+}
+int lua_ParseCharacterStatsFromJson(lua_State * L) // dCharacterStats
 {
     dCharacterStats *result = nullptr;
     try
@@ -79,6 +86,13 @@ int lua_ParseCharacterStatsFromString(lua_State * L) // dCharacterStats
         return luaL_error(L, "parse error: %s", e.what());
     }
 }
+
+
+// static dCharacterStats CombatField_getCharacterStatsFromJson(const std::string & str)
+// {
+//     json j = json::parse(str);
+//     return j.get<dCharacterStats>(); // dCharacterStats
+// }
 
 int lua_CombatField_AddSlot(lua_State * L)
 {
@@ -304,6 +318,44 @@ int lua_Banner_SetVisible(lua_State * L)
     return 0;
 }
 
+int lua_getFieldInfoInstance(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_getFieldInfoInstance) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+        lua_pushlightuserdata(L, host->getFieldInfo());
+        return 1;
+    }
+}
+
+int lua_FieldInfo_SetCharacter(lua_State * L)
+{
+    if(lua_gettop(L) != 4)
+    {
+        std::cout << "gettop failed (lua_FieldInfo_SetCharacter) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField * fieldInfo = static_cast<CombatField*>(lua_touserdata(L, 1));
+        std::string characterID = lua_tostring(L, 2);
+        int side = lua_tonumber(L, 3);
+        std::string statStr = lua_tostring(L, 4);
+        
+        json j = json::parse(statStr);
+        dCharacterStats characterStats = j.get<dCharacterStats>();
+        
+        fieldInfo->setFieldInfoCharacter(characterID, side, characterStats);
+        
+        return 0;
+    }
+    return 0;
+}
+
+
 int lua_getDockInstance(lua_State * L)
 {
     if(lua_gettop(L) != 1)
@@ -318,6 +370,9 @@ int lua_getDockInstance(lua_State * L)
     }
     return 0;
 }
+
+
+
 
 CombatField::CombatField()
 {
@@ -378,6 +433,14 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
 
     lua_register(m_script, "cpp_getDockInstance", lua_getDockInstance);
 
+    // general
+    lua_register(m_script,"cpp_CFParseCharacterFromJson", lua_ParseCharacterStatsFromJson);
+
+    // Field Info
+    lua_register(m_script, "cpp_getFieldInfoInstance", lua_getFieldInfoInstance);
+
+    lua_register(m_script, "cpp_FieldInfo_SetCharacter", lua_FieldInfo_SetCharacter);
+
     m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,170), glm::vec2(1280, 720) * 1.1f,Feintgine::Color(255, 255, 255, 255));
 
     m_enumToIndecies.reserve(25);
@@ -401,6 +464,9 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     m_enumToIndecies[RightFrontBot] = glm::ivec3(2,0,2);
     m_enumToIndecies[RightCenterBot] = glm::ivec3(2,1,2);
     m_enumToIndecies[RightRearBot] = glm::ivec3(2,2,2);
+
+    m_fieldInfo.init("../../Lua/TouhouTB/Combat/fieldInfo.lua",m_script);
+
 
 }
 
@@ -547,4 +613,5 @@ void CombatField::drawText(TextRenderer * textRenderer)
     {
         m_guidock->drawText(textRenderer);
     }
+    
 }

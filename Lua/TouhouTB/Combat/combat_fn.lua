@@ -31,10 +31,16 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
     for k,v in pairs(p1FormationInfo) do
         CombatField_instance:addCharacter(p1FormationInfo[k].colPos, 
         p1FormationInfo[k].rowPos, 1, p1FormationInfo[k].characterId,"" )
+
+        -- local jsonData = JSON_Encode(v)
+        -- CombatField_instance:FieldInfo_SetCharacter(p1FormationInfo[k].characterId,1,jsonData)
     end
     for k ,v in pairs(p2FormationInfo) do
         CombatField_instance:addCharacter(p2FormationInfo[k].colPos, 
         p2FormationInfo[k].rowPos, 2, p2FormationInfo[k].characterId,"" )
+        
+        -- local jsonData = JSON_Encode(v)
+        -- CombatField_instance:FieldInfo_SetCharacter(p2FormationInfo[k].characterId,2,jsonData)
     end
 
     for k,v in pairs(p1FormationInfo) do
@@ -43,7 +49,6 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
         if tCharacter ~= nil then 
             print("character " .. p1FormationInfo[k].characterId .. " valid" )
         end
-        
         for k2,v2 in pairs(v) do
             if k2 ~= "colPos" and k2 ~= "rowPos" then
                 if type(v[k2]) == "number" then
@@ -78,7 +83,6 @@ end
 
 CombatHandling_Fn[CombatIngameData.OnCharacterTurnStart] = function(data)
     print("Combat OnCharacterTurnStart detected " .. data)
-
 
     local tCharacter, pos, err = JSON_Decode(data)
     if err then

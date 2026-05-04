@@ -24,6 +24,7 @@ static void from_json(const json& j, SkillStats& s)
     j.at("skillType").get_to(s.skillType);
 }
 
+
 SkillDesc::SkillDesc()
 {
 

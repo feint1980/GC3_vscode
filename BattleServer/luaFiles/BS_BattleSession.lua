@@ -200,8 +200,8 @@ function BattleSession:serializeFormation(formation)
     local data = {}
     for _, char in ipairs(formation) do
         table.insert(data, {
-            ownerId      = char.userID,
-            characterId  = char.id,
+            ownerID      = char.userID,
+            characterID  = char.id,
             rowPos       = char.rowPos,
             colPos       = char.colPos,
             strength     = char:getStrength(),
@@ -220,7 +220,7 @@ function BattleSession:serializeFormation(formation)
             critChance   = char:getCritChance(),
             speed        = char:getSpeed(0),
             deathDoorSurvival = char:getDeathDoorSurvival(),
-            maxHp        = char:getMaxHP(),
+            maxHP        = char:getMaxHP(),
             maxMana      = char:getMaxMana(),
             maxAP        = char:getMaxAP(),
             maxSP        = char:getMaxSP(),

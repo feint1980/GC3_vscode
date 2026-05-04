@@ -2,8 +2,6 @@
 #include "CSlot.h"
 #include "CombatCharacter.h"
 
-
-
 CombatCharacter::CombatCharacter()
 {
 
@@ -14,7 +12,6 @@ CombatCharacter::~CombatCharacter()
 {
 
 }
-
 
 void CombatCharacter::init(CSlot * slot, const std::string & animationPath,const std::string & portraitPath, const glm::vec2 & scale , int side)
 {
@@ -204,6 +201,18 @@ void CombatCharacter::setFloatValue(const std::string & key, float value)
     if(key == "currentSP" || key == "cSP")
     {
         m_stats.currentSP = value;
+        return;
+    }
+    if(key == "colPos" || key == "cPos")
+    {
+        m_stats.colPos = value;
+        m_colPos = value;
+        return;
+    }
+    if(key == "rowPos" || key == "rPos")
+    {
+        m_stats.rowPos = value;
+        m_rowPos = value;
         return;
     }
 

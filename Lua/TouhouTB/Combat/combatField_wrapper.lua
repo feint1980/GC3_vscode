@@ -87,3 +87,22 @@ end
 function CF_Banner_SetVisible(banner, value)
     cpp_Banner_SetVisible(banner, value)
 end
+
+
+-- General
+function CF_Character_ParseFromString(str)
+    return cpp_CFParseCharacterFromJson(str)
+end
+
+
+-- Field Info
+
+function CF_GetFieldInfo(host)
+    return cpp_getFieldInfoInstance(host)
+end
+
+function CF_FieldInfo_SetCharacter(host,characterID, side, statVal)
+
+    print("CF_FieldInfo_SetCharacter called characterID = " .. characterID .. ", side = " .. side .. ", statVal = " .. statVal)
+    cpp_FieldInfo_SetCharacter(host,characterID, side, statVal)
+end

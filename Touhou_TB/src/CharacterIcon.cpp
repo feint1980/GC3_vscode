@@ -54,7 +54,7 @@ void CharacterIcon::drawText(TextRenderer * textRenderer)
         Feintgine::Color color = Feintgine::Color(255,0, 0, 255);
         if(m_speedChange >= 0)
         {
-            sign = L"+";
+            sign = L"+ ";
             color = Feintgine::Color(0, 255, 0, 255);
         }
         text = sign + text;

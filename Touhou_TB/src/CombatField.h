@@ -23,6 +23,7 @@
 #include <algorithm>
 #include <nlohmann/json.hpp>
 
+#include "FieldInfo.h"
 using json = nlohmann::json;
 
 enum SlotPos
@@ -99,6 +100,10 @@ public:
 
     Banner  * getBanner() { return m_banner; }
 
+    FieldInfo * getFieldInfo() { return &m_fieldInfo; }
+
+    void setFieldInfoCharacter(const std::string & characterID, int side, const dCharacterStats & charStat) { m_fieldInfo.addCharacter(characterID, side, charStat); }
+
 private:
 
     lua_State * m_script = nullptr;
@@ -124,6 +129,7 @@ private:
 
     CombatGUIDock * m_guidock = nullptr;
 
+    FieldInfo m_fieldInfo;
 };
 
 

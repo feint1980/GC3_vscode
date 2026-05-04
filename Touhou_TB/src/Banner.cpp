@@ -19,7 +19,7 @@ void Banner::init(const std::string & backgroundPath)
     m_color = Feintgine::Color(255, 255, 255, 255);
     m_bg.init(Feintgine::ResourceManager::getTexture(backgroundPath), glm::vec2(0, 230), glm::vec2(720, 240) * 0.75f, m_color);
     m_visible = true;
-}   
+}  
 
 void Banner::draw(Feintgine::SpriteBatch & spriteBatch)
 {
@@ -36,9 +36,7 @@ void Banner::drawText(TextRenderer * textRenderer)
     {
         std::wstring ta = feint_common::Instance()->convertStringtoWstring(m_mesage);
         textRenderer->renderTextBatched(ta, m_bg.getPos(), m_color, m_scale, ALIGN_FT_CENTER);
-
     }
-
 }
 
 void Banner::update(float deltaTime)

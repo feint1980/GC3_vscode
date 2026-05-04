@@ -4,7 +4,7 @@
 
 #include <F_AnimatedObject.h>
 #include <TextRenderer.h>
-class Cslot;
+class CSlot;
 
 
 struct dCharacterStats
@@ -37,9 +37,11 @@ struct dCharacterStats
     float currentAP = 0.0f;
     float currentSP = 0.0f;
 
+    int colPos = 0;
+    int rowPos = 0;
+
 };
 
-// #include "../PacketDescription/CharacterDes.h"
 class CombatCharacter
 {
 public:
@@ -72,14 +74,14 @@ private:
 
     int m_side = 1;
 
-    glm::vec2 m_pos;
-    glm::vec2 m_scale;
+    glm::vec2 m_pos = glm::vec2(0);
+    glm::vec2 m_scale = glm::vec2(0);
     float m_yOffset = 0.0f;
 
     int m_colPos = 0;
     int m_rowPos = 0;
 
-    std::string m_characterID;
+    std::string m_characterID = "";
 
     Feintgine::F_AnimatedObject m_animation;
     dCharacterStats m_stats;
