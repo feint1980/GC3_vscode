@@ -24,11 +24,12 @@ end
 ---@param col number
 ---@param row number
 ---@param side number
----@param animationPath string
+---@param characterID string
 ---@param portraitPath string
 ---@return pointer instance of CombatCharacter
-function CF_AddCharacter(host, col, row, side, animationPath, portraitPath)
-    return cpp_CombatField_AddCharacter(host, col, row, side, animationPath, portraitPath)
+function CF_AddCharacter(host, col, row, side, characterID, portraitPath)
+    print("CF_AddCharacter")
+    return cpp_CombatField_AddCharacter(host, col, row, side, characterID, portraitPath)
 end
 
 ---@Description wrapper of cpp_CombatField_GetCharacter

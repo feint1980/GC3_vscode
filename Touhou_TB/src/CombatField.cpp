@@ -118,14 +118,37 @@ int lua_CombatField_AddCharacter(lua_State * L)
         return -1;
     }
 
+
+    std::cout << "cpp_CombatField_AddCharacter called \n";
     CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+    std::cout << "param 1 check \n";
     int collumn = lua_tonumber(L, 2); // x
+    std::cout << "param 2 check \n";
     int row = lua_tonumber(L, 3); // y
+    std::cout << "param 3 check \n";
     int side = lua_tonumber(L, 4);
+    std::cout << "param 4 check \n";
     std::string characterID = lua_tostring(L, 5);
+    std::cout << "param 5 check \n";
     std::string portraitPath = lua_tostring(L, 6);
+    std::cout << "param 6 check \n";
+
+    std::cout << "host check \n";
+    if(!host)
+    {
+        std::cout << "host is null \n";
+        return 0;
+    }
     CombatCharacter * character = host->addCharacter(collumn, row, side, characterID, portraitPath);
 
+    std::cout << "character check \n";
+    if(!character)
+    {
+        std::cout << "character is null \n";
+        return 0;
+    }
+
+    std::cout << "push character \n";
     lua_pushlightuserdata(L, character);
 
     return 1;
@@ -438,7 +461,6 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
 
     // Field Info
     lua_register(m_script, "cpp_getFieldInfoInstance", lua_getFieldInfoInstance);
-
     lua_register(m_script, "cpp_FieldInfo_SetCharacter", lua_FieldInfo_SetCharacter);
 
     m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,170), glm::vec2(1280, 720) * 1.1f,Feintgine::Color(255, 255, 255, 255));
@@ -535,9 +557,12 @@ void CombatField::update(float deltaTime)
 
 CombatCharacter * CombatField::addCharacter(int collumn, int row, int side, const std::string & characterID, const std::string & portraitPath, const glm::vec2 & scale)
 {
+    std::cout << "CombatField::addCharacter called \n";
     std::string key = characterID + "_" + std::to_string(side);
 
     CSlot* slot = getSlot(collumn, row, side);
+
+
     if(!slot)
     {
         std::cout << "invalid slot " << collumn << " " << row << " " << side << "\n";
@@ -546,6 +571,7 @@ CombatCharacter * CombatField::addCharacter(int collumn, int row, int side, cons
     if(m_charactersMap.find(key) != m_charactersMap.end())
     {
         m_charactersMap[key]->init(slot, InfoHolder::getInstance()->getCharacterAnimationPath(characterID), portraitPath, scale, side);
+        std::cout << "key hit " << key << "\n";
         return m_charactersMap[key].get();
     }
 
@@ -558,6 +584,7 @@ CombatCharacter * CombatField::addCharacter(int collumn, int row, int side, cons
     // Add to both containers
     m_characters.push_back(character);       // shared_ptr copies fine
     m_charactersMap[key] = character; 
+    std::cout << "add new \n";
 
     return character.get();
 }

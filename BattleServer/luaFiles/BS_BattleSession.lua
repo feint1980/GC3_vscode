@@ -8,20 +8,20 @@ require "BS_Char_Remilia"
 
 --[[
 ================================================================================
-  BS_BattleSession.lua
-  Battle Session — lives on BattleLobby as self.session
-  Created inside BattleLobby:AppendReady when both players are ready
+    BS_BattleSession.lua
+    Battle Session — lives on BattleLobby as self.session
+    Created inside BattleLobby:AppendReady when both players are ready
 
-  Owns:
-    - both player endpoints (for broadcast)
-    - both formations (BS_Char_* instances)
-    - round / turn state
-    - the broadcast method (replaces the stub in BS_BattleEvent)
+    Owns:
+        - both player endpoints (for broadcast)
+        - both formations (BS_Char_* instances)
+        - round / turn state
+        - the broadcast method (replaces the stub in BS_BattleEvent)
 
-  Usage in BattleLobby:AppendReady:
-    self.session = BattleSession:new()
-    self.session:init(host, lobbyId, p1EP, p2EP, leftFormation, rightFormation)
-    self.session:start()
+    Usage in BattleLobby:AppendReady:
+        self.session = BattleSession:new()
+        self.session:init(host, lobbyId, p1EP, p2EP, leftFormation, rightFormation)
+        self.session:start()
 ================================================================================
 ]]--
 

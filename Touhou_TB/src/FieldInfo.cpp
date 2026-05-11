@@ -32,7 +32,6 @@ void FieldInfo::init(const std::string & scriptPath, lua_State * script)
     m_portraitMap["S_Yukari"] = "./Assets/TB_GUI/faces/Yukari_face.png";
     m_portraitMap["S_Patchouli"] = "./Assets/TB_GUI/faces/Patchouli_face.png";
 
-
     std::cout << "Field Info init OK |||||||||||||||||||| \n";
 
 }
@@ -61,7 +60,6 @@ void FieldInfo::addCharacter(const std::string & ID, int side, const dCharacterS
 
 dCharacterStats FieldInfo::getCharacterStats(const std::string & ID, int side)
 {
-
     std::string key = ID + "_" + std::to_string(side);
     dCharacterStats retVal;
     retVal.characterID = "Invalid \n";
@@ -71,5 +69,4 @@ dCharacterStats FieldInfo::getCharacterStats(const std::string & ID, int side)
     }
     return retVal;
 }
-
 

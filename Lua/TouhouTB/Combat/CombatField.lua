@@ -49,10 +49,11 @@ end
 ---@param col number
 ---@param row number
 ---@param side number
----@param animationPath string
+---@param characterID string
 ---@param portraitPath string
-function CombatField:addCharacter(col,row,side,animationPath,portraitPath)
-    CF_AddCharacter(self.host, col, row, side, animationPath, portraitPath)
+function CombatField:addCharacter(col,row,side,characterID,portraitPath)
+    print("CombatField:addCharacter called ")
+    CF_AddCharacter(self.host, col, row, side, characterID, portraitPath)
 end
 
 ---@Description Get a character from the combat field

@@ -30,24 +30,24 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
 
     for k,v in pairs(p1FormationInfo) do
         CombatField_instance:addCharacter(p1FormationInfo[k].colPos, 
-        p1FormationInfo[k].rowPos, 1, p1FormationInfo[k].characterId,"" )
+        p1FormationInfo[k].rowPos, 1, p1FormationInfo[k].characterID,"" )
 
         -- local jsonData = JSON_Encode(v)
-        -- CombatField_instance:FieldInfo_SetCharacter(p1FormationInfo[k].characterId,1,jsonData)
+        -- CombatField_instance:FieldInfo_SetCharacter(p1FormationInfo[k].characterID,1,jsonData)
     end
     for k ,v in pairs(p2FormationInfo) do
         CombatField_instance:addCharacter(p2FormationInfo[k].colPos, 
-        p2FormationInfo[k].rowPos, 2, p2FormationInfo[k].characterId,"" )
+        p2FormationInfo[k].rowPos, 2, p2FormationInfo[k].characterID,"" )
         
         -- local jsonData = JSON_Encode(v)
-        -- CombatField_instance:FieldInfo_SetCharacter(p2FormationInfo[k].characterId,2,jsonData)
+        -- CombatField_instance:FieldInfo_SetCharacter(p2FormationInfo[k].characterID,2,jsonData)
     end
 
     for k,v in pairs(p1FormationInfo) do
-        local tCharacter = CombatField_instance:getCharacter(p1FormationInfo[k].characterId,1)
-        print(p1FormationInfo[k].characterId)
+        local tCharacter = CombatField_instance:getCharacter(p1FormationInfo[k].characterID,1)
+        print(p1FormationInfo[k].characterID)
         if tCharacter ~= nil then 
-            print("character " .. p1FormationInfo[k].characterId .. " valid" )
+            print("character " .. p1FormationInfo[k].characterID .. " valid" )
         end
         for k2,v2 in pairs(v) do
             if k2 ~= "colPos" and k2 ~= "rowPos" then
@@ -62,10 +62,10 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
 
     print("p2 check")
     for k,v in pairs(p2FormationInfo) do
-        print(p2FormationInfo[k].characterId)
-        local tCharacter = CombatField_instance:getCharacter(p2FormationInfo[k].characterId,2)
+        print(p2FormationInfo[k].characterID)
+        local tCharacter = CombatField_instance:getCharacter(p2FormationInfo[k].characterID,2)
         if tCharacter ~= nil then 
-            print("character " .. p2FormationInfo[k].characterId .. " valid" )
+            print("character " .. p2FormationInfo[k].characterID .. " valid" )
         end
         for k2,v2 in pairs(v) do
             if k2 ~= "colPos" and k2 ~= "rowPos" then
@@ -89,11 +89,11 @@ CombatHandling_Fn[CombatIngameData.OnCharacterTurnStart] = function(data)
         print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_IngameData]  JSON decode error:", err)
     end
 
-    -- local tCharacter = CombatField_instance:getCharacter(tCharacter.characterId,tCharacter.side)
+    -- local tCharacter = CombatField_instance:getCharacter(tCharacter.characterID,tCharacter.side)
     if tCharacter == nil then
         return
     end
-    local characterID = tCharacter.characterId
+    local characterID = tCharacter.characterID
     local side = tCharacter.characterSide
     local cAction = tCharacter.currentAp
     local cHp = tCharacter.currentHp
