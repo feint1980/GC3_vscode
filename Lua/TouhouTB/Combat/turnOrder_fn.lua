@@ -107,6 +107,6 @@ TurnOrderHandling_Fn[CombatTurnOrder.PlayerCharacterTurn] = function(data)
             end,30)
         end)
     --- handle turn here 
-    
+    -- Handle if it was the player turn. 
 
 end
