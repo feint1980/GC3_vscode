@@ -80,7 +80,7 @@ function BS_Char_Meiling:onTurnStart(battleState)
 
     battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_IngameData,CombatIngameData.OnCharacterTurnStart,
     {
-        characterId = self.id,
+        characterID = self.id,
         characterSide = self.side,
         currentAp   = self.cAction,
         currentHp   = self.cHp,

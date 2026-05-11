@@ -23,17 +23,18 @@ static void to_json(json& j, const dCharacterStats& stats)
         {"evasion",stats.evasion}, // 15
         {"critChance",stats.critChance}, // 16
         {"speed",stats.speed}, // 17
-        {"maxHP",stats.maxHP}, // 18
-        {"maxMana",stats.maxMana}, // 19
-        {"maxAP",stats.maxAP}, // 20
-        {"maxSP",stats.maxSP}, // 21
-        {"currentHP",stats.currentHP}, // 22
-        {"currentMana",stats.currentMana}, // 23
-        {"currentAP",stats.currentAP}, // 24
-        {"currentSP",stats.currentSP}, // 25
+        {"deathDoorSurvival",stats.deathDoorSurvival}, // 18
+        {"maxHP",stats.maxHP}, // 19
+        {"maxMana",stats.maxMana}, // 20
+        {"maxAP",stats.maxAP}, // 21
+        {"maxSP",stats.maxSP}, // 22
+        {"currentHP",stats.currentHP}, // 23
+        {"currentMana",stats.currentMana}, // 24
+        {"currentAP",stats.currentAP}, // 25
+        {"currentSP",stats.currentSP}, // 26
 
-        {"colPos",stats.colPos}, // 26
-        {"rowPos",stats.rowPos}, // 27
+        {"colPos",stats.colPos}, // 27
+        {"rowPos",stats.rowPos}, // 28
     };
 }
 
@@ -56,17 +57,18 @@ static void from_json(const json& j, dCharacterStats& stats)
     j.at("evasion").get_to(stats.evasion); // 15
     j.at("critChance").get_to(stats.critChance); // 16
     j.at("speed").get_to(stats.speed); // 17
-    j.at("maxHP").get_to(stats.maxHP); // 18
-    j.at("maxMana").get_to(stats.maxMana); // 19
-    j.at("maxAP").get_to(stats.maxAP); // 20
-    j.at("maxSP").get_to(stats.maxSP); // 21
-    j.at("currentHP").get_to(stats.currentHP); // 22
-    j.at("currentMana").get_to(stats.currentMana); // 23
-    j.at("currentAP").get_to(stats.currentAP); // 24
-    j.at("currentSP").get_to(stats.currentSP); // 25
+    j.at("deathDoorSurvival").get_to(stats.deathDoorSurvival); // 18
+    j.at("maxHP").get_to(stats.maxHP); // 19
+    j.at("maxMana").get_to(stats.maxMana); // 20
+    j.at("maxAP").get_to(stats.maxAP); // 21
+    j.at("maxSP").get_to(stats.maxSP); // 22
+    j.at("currentHP").get_to(stats.currentHP); // 23
+    j.at("currentMana").get_to(stats.currentMana); // 24
+    j.at("currentAP").get_to(stats.currentAP); // 25
+    j.at("currentSP").get_to(stats.currentSP); // 26
 
-    j.at("colPos").get_to(stats.colPos); // 26
-    j.at("rowPos").get_to(stats.rowPos); // 27
+    j.at("colPos").get_to(stats.colPos); // 27
+    j.at("rowPos").get_to(stats.rowPos); // 28
 
 }
 int lua_ParseCharacterStatsFromJson(lua_State * L) // dCharacterStats

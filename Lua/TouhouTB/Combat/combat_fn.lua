@@ -32,15 +32,21 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
         CombatField_instance:addCharacter(p1FormationInfo[k].colPos, 
         p1FormationInfo[k].rowPos, 1, p1FormationInfo[k].characterID,"" )
 
-        -- local jsonData = JSON_Encode(v)
-        -- CombatField_instance:FieldInfo_SetCharacter(p1FormationInfo[k].characterID,1,jsonData)
+        -- convert to number ( if not c++ parse will error)
+        v.colPos = tonumber(v.colPos)
+        v.rowPos = tonumber(v.rowPos)
+        local jsonData = JSON_Encode(v)
+        CombatField_instance:FieldInfo_SetCharacter(p1FormationInfo[k].characterID,1,jsonData)
     end
     for k ,v in pairs(p2FormationInfo) do
         CombatField_instance:addCharacter(p2FormationInfo[k].colPos, 
         p2FormationInfo[k].rowPos, 2, p2FormationInfo[k].characterID,"" )
         
-        -- local jsonData = JSON_Encode(v)
-        -- CombatField_instance:FieldInfo_SetCharacter(p2FormationInfo[k].characterID,2,jsonData)
+        -- convert to number ( if not c++ parse will error)
+        v.colPos = tonumber(v.colPos)
+        v.rowPos = tonumber(v.rowPos)
+        local jsonData = JSON_Encode(v)
+        CombatField_instance:FieldInfo_SetCharacter(p2FormationInfo[k].characterID,2,jsonData)
     end
 
     for k,v in pairs(p1FormationInfo) do
