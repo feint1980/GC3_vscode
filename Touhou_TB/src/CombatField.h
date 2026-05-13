@@ -104,6 +104,10 @@ public:
 
     void setFieldInfoCharacter(const std::string & characterID, int side, const dCharacterStats & charStat) { m_fieldInfo.addCharacter(characterID, side, charStat); }
 
+    void listFieldInfoCharacters() { 
+        m_fieldInfo.listAllInfo();
+    }
+
 private:
 
     lua_State * m_script = nullptr;

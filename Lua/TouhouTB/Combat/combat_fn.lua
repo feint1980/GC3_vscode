@@ -85,6 +85,9 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
     end
     CombatScene_SetSceneReady()
     EventPipeline.emit("COMBAT_ON_MATCH_START")
+
+    CombatField_instance:FieldInfo_ListAll()
+
 end
 
 CombatHandling_Fn[CombatIngameData.OnCharacterTurnStart] = function(data)

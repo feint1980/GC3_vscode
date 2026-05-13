@@ -28,7 +28,7 @@ end
 ---@param portraitPath string
 ---@return pointer instance of CombatCharacter
 function CF_AddCharacter(host, col, row, side, characterID, portraitPath)
-    print("CF_AddCharacter")
+    -- print("CF_AddCharacter")
     return cpp_CombatField_AddCharacter(host, col, row, side, characterID, portraitPath)
 end
 
@@ -101,9 +101,12 @@ end
 function CF_GetFieldInfo(host)
     return cpp_getFieldInfoInstance(host)
 end
-
 function CF_FieldInfo_SetCharacter(host,characterID, side, statVal)
 
-    print("CF_FieldInfo_SetCharacter called characterID = " .. characterID .. ", side = " .. side .. ", statVal = " .. statVal)
+    -- print("CF_FieldInfo_SetCharacter called characterID = " .. characterID .. ", side = " .. side .. ", statVal = " .. statVal)
     cpp_FieldInfo_SetCharacter(host,characterID, side, statVal)
+end
+
+function CF_FieldInfo_ListAll(host)
+    cpp_FieldInfo_ListAllCharacters(host)
 end

@@ -45,9 +45,9 @@ end
 
 TurnOrderHandling_Fn[CombatTurnOrder.RollResult] = function(data)
 
-    print("Roll Result ")
+    -- print("Roll Result ")
     
-    print("data " .. data)
+    -- print("data " .. data)
 
     local orderList, pos ,err = JSON_Decode(data)
     if err then
@@ -59,12 +59,12 @@ TurnOrderHandling_Fn[CombatTurnOrder.RollResult] = function(data)
     end
 
     for k,v in pairs(orderList) do
-        print("k " .. k)
-        print("character ID " .. v.characterId)
-        print("order " .. v.order)
-        print("side " .. v.side)
-        print("roll result " .. v.rollResult)
-        print("speed " .. v.speed)
+        -- print("k " .. k)
+        -- print("character ID " .. v.characterId)
+        -- print("order " .. v.order)
+        -- print("side " .. v.side)
+        -- print("roll result " .. v.rollResult)
+        -- print("speed " .. v.speed)
         local tCharacter = TurnDisplayer_instance:getCharacterIcon(v.characterId,v.side)
         if tCharacter ~= nil then
             CTD_SetCharacterOrder(tCharacter,v.order)
@@ -107,6 +107,18 @@ TurnOrderHandling_Fn[CombatTurnOrder.PlayerCharacterTurn] = function(data)
             end,30)
         end)
     --- handle turn here 
+
     -- Handle if it was the player turn. 
+    local selfID = InfoHolder_getStrVal("MainInfo.id")
+    print("selfID " .. selfID)
+
+    print("compare result")
+    print(selfID .. "/" .. tData.playerId)
+    if selfID == tData.playerId then
+        print("it is the player turn")
+    else
+        print("it is the opponent turn")
+    end
+
 
 end

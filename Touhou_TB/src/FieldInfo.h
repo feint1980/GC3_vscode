@@ -23,6 +23,8 @@ public:
 
     dCharacterStats getCharacterStats(const std::string & ID, int side);
 
+    void listAllInfo();
+
     private:
 
     std::unordered_map<std::string, std::string> m_portraitMap;

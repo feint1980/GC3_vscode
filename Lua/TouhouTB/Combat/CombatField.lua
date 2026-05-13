@@ -52,7 +52,7 @@ end
 ---@param characterID string
 ---@param portraitPath string
 function CombatField:addCharacter(col,row,side,characterID,portraitPath)
-    print("CombatField:addCharacter called ")
+    -- print("CombatField:addCharacter called ")
     CF_AddCharacter(self.host, col, row, side, characterID, portraitPath)
 end
 
@@ -64,7 +64,7 @@ function CombatField:getCharacter(characterID,side)
 end
 
 function CombatField:showBannerMsg(msg)
-    print("CombatField:showBannerMsg called")
+    -- print("CombatField:showBannerMsg called")
     cpp_Banner_SetMsg(self.banner, msg)
 end
 
@@ -78,4 +78,8 @@ end
 
 function CombatField:FieldInfo_SetCharacter(characterID, side, characterStats)
     CF_FieldInfo_SetCharacter(self.host, characterID, side, characterStats)
+end
+
+function CombatField:FieldInfo_ListAll()
+    CF_FieldInfo_ListAll(self.host)
 end

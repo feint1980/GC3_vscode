@@ -121,21 +121,21 @@ int lua_CombatField_AddCharacter(lua_State * L)
     }
 
 
-    std::cout << "cpp_CombatField_AddCharacter called \n";
+    // std::cout << "cpp_CombatField_AddCharacter called \n";
     CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
-    std::cout << "param 1 check \n";
+    //std::cout << "param 1 check \n";
     int collumn = lua_tonumber(L, 2); // x
-    std::cout << "param 2 check \n";
+    //std::cout << "param 2 check \n";
     int row = lua_tonumber(L, 3); // y
-    std::cout << "param 3 check \n";
+    //std::cout << "param 3 check \n";
     int side = lua_tonumber(L, 4);
-    std::cout << "param 4 check \n";
+    //std::cout << "param 4 check \n";
     std::string characterID = lua_tostring(L, 5);
-    std::cout << "param 5 check \n";
+    //std::cout << "param 5 check \n";
     std::string portraitPath = lua_tostring(L, 6);
-    std::cout << "param 6 check \n";
+    //std::cout << "param 6 check \n";
 
-    std::cout << "host check \n";
+    // std::cout << "host check \n";
     if(!host)
     {
         std::cout << "host is null \n";
@@ -143,14 +143,14 @@ int lua_CombatField_AddCharacter(lua_State * L)
     }
     CombatCharacter * character = host->addCharacter(collumn, row, side, characterID, portraitPath);
 
-    std::cout << "character check \n";
+    // std::cout << "character check \n";
     if(!character)
     {
         std::cout << "character is null \n";
         return 0;
     }
 
-    std::cout << "push character \n";
+    // std::cout << "push character \n";
     lua_pushlightuserdata(L, character);
 
     return 1;
@@ -380,6 +380,21 @@ int lua_FieldInfo_SetCharacter(lua_State * L)
     return 0;
 }
 
+int lua_FieldInfo_ListAllCharacters(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_FieldInfo_ListAllCharacters) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField * fieldInfo = static_cast<CombatField*>(lua_touserdata(L, 1));
+        fieldInfo->listFieldInfoCharacters();
+        return 1;
+    }
+    return 0;
+}
+
 
 int lua_getDockInstance(lua_State * L)
 {
@@ -464,6 +479,9 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     // Field Info
     lua_register(m_script, "cpp_getFieldInfoInstance", lua_getFieldInfoInstance);
     lua_register(m_script, "cpp_FieldInfo_SetCharacter", lua_FieldInfo_SetCharacter);
+    lua_register(m_script, "cpp_FieldInfo_ListAllCharacters", lua_FieldInfo_ListAllCharacters);
+
+
 
     m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,170), glm::vec2(1280, 720) * 1.1f,Feintgine::Color(255, 255, 255, 255));
 
@@ -586,7 +604,7 @@ CombatCharacter * CombatField::addCharacter(int collumn, int row, int side, cons
     // Add to both containers
     m_characters.push_back(character);       // shared_ptr copies fine
     m_charactersMap[key] = character; 
-    std::cout << "add new \n";
+    // std::cout << "add new \n";
 
     return character.get();
 }
@@ -611,8 +629,8 @@ CombatCharacter * CombatField::getCharacter(const std::string & characterID, int
     std::string key = characterID + "_" + std::to_string(side);
     if(m_charactersMap.find(key) != m_charactersMap.end())
     {
-        std::cout << "return the character key " << key << "\n";
-        std::cout << "value " << m_charactersMap[key].get() << "\n";
+        // std::cout << "return the character key " << key << "\n";
+        // std::cout << "value " << m_charactersMap[key].get() << "\n";
         return m_charactersMap[key].get();
     }
     std::cout << "(CombatField::getCharacter) character not found " << key << "\n";

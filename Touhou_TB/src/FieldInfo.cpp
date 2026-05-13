@@ -70,3 +70,43 @@ dCharacterStats FieldInfo::getCharacterStats(const std::string & ID, int side)
     return retVal;
 }
 
+void FieldInfo::listAllInfo()
+{
+    std::cout << "List all info \n";
+    // iterate the map
+    for (auto it = m_statMap.begin(); it != m_statMap.end(); it++) 
+    {
+        std::cout << "|====================" << it->first << "====================|\n";
+        std::cout << "| Owner: " << it->second.ownerID << "\n";
+        std::cout << "| Character ID: " << it->second.characterID << "\n";
+        std::cout << "|-------Stats-------|\n";
+        std::cout << "| STR : " << it->second.strength << "\n";
+        std::cout << "| VIT : " << it->second.vitality << "\n";
+        std::cout << "| DEX : " << it->second.dexterity << "\n";
+        std::cout << "| AGI : " << it->second.agility << "\n";
+        std::cout << "| INT : " << it->second.intelligence << "\n";
+        std::cout << "| WIS : " << it->second.wisdom << "\n";
+        std::cout << "| PHY DMG : " << it->second.physicDmg << "\n";
+        std::cout << "| MAG DMG : " << it->second.magicDmg << "\n";
+        std::cout << "| PHY DEF : " << it->second.physicDef << "\n";
+        std::cout << "| MAG DEF : " << it->second.magicDef << "\n";
+        std::cout << "| PHY ACC : " << it->second.physicalAccuracy << "\n";
+        std::cout << "| MAG ACC : " << it->second.magicalAccuracy << "\n";
+        std::cout << "| EVA : " << it->second.evasion << "\n";
+        std::cout << "| CRIT : " << it->second.critChance << "\n";
+        std::cout << "| SPD : " << it->second.speed << "\n";
+        std::cout << "| DD SURVIVAL  : " << it->second.deathDoorSurvival << "\n";
+        std::cout << "| MAX HP       : " << it->second.maxHP << "\n";
+        std::cout << "| CURRENT HP   : " << it->second.currentHP << "\n";
+        std::cout << "| MAX MANA     : " << it->second.maxMana << "\n";
+        std::cout << "| CURRENT MANA : " << it->second.currentMana << "\n";
+        std::cout << "| MAX AP       : " << it->second.maxAP << "\n";
+        std::cout << "| CURRENT AP   : " << it->second.currentAP << "\n";
+        std::cout << "| MAX SP       : " << it->second.maxSP << "\n";
+        std::cout << "| CURRENT SP   : " << it->second.currentSP << "\n";
+        std::cout << "|---------------------------------------|\n";
+        std::cout << "| POS : " << it->second.rowPos << "|| " << it->second.colPos << "|\n";
+        std::cout << "|=======================================|\n";
+
+    }
+}
