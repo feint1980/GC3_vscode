@@ -68,6 +68,11 @@ public:
 
     void setStats( const dCharacterStats & stats) { m_stats = stats; }
 
+    dCharacterStats getStats() { return m_stats; }
+
+    int getSide() { return m_side; }
+
+    std::string getMapKey() { return m_characterID + "_" + std::to_string(m_side); }
 private:
 
     CSlot * m_currentSlot = nullptr;

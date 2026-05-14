@@ -60,7 +60,9 @@ function Formation_Edit:init(host,parentPanel)
         self.formationSlot[i] = {}
         for j = 1, 3 do
             self.formationSlot[i][j] = Formation_Slot:new()
-            self.formationSlot[i][j]:init(host,self.mainPanel.ptr,sizeX / 3 * (3 - i) + (picSize *0.9), -- x pos
+            -- old formation : (sizeX / 3 * (3 - i) + (picSize *0.9) 
+            -- new formation : sizeX - (sizeX / 3 * (3 - i) + (picSize *0.9))
+            self.formationSlot[i][j]:init(host,self.mainPanel.ptr,(sizeX / 3 * (3 - i) + (picSize *0.9)), -- x pos
             ((picSize * (j - 1)) + 10) + picSize * 0.5 , -- y pos
             picSize, -- width
             picSize, -- height

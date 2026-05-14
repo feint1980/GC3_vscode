@@ -98,15 +98,12 @@ end
 
 -- Field Info
 
-function CF_GetFieldInfo(host)
-    return cpp_getFieldInfoInstance(host)
-end
-function CF_FieldInfo_SetCharacter(host,characterID, side, statVal)
+function CF_SetCharacterStats(host,characterID, side, statVal)
 
-    -- print("CF_FieldInfo_SetCharacter called characterID = " .. characterID .. ", side = " .. side .. ", statVal = " .. statVal)
-    cpp_FieldInfo_SetCharacter(host,characterID, side, statVal)
+    -- print("CF_SetCharacterStats called characterID = " .. characterID .. ", side = " .. side .. ", statVal = " .. statVal)
+    cpp_CombatField_SetCharacterStats(host,characterID, side, statVal)
 end
 
 function CF_FieldInfo_ListAll(host)
-    cpp_FieldInfo_ListAllCharacters(host)
+    cpp_ListAllCharacters(host)
 end

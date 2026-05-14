@@ -1,0 +1,12 @@
+Formation concept. 
+
+Context : 
+		> Combat Fields
+		> Formation
+		> Cell/Slot
+
+
+
+
+
+

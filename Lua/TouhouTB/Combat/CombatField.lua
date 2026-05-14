@@ -76,8 +76,8 @@ function CombatField:setBannerMsg(msg)
     cpp_Banner_SetMsg(self.banner, msg)
 end
 
-function CombatField:FieldInfo_SetCharacter(characterID, side, characterStats)
-    CF_FieldInfo_SetCharacter(self.host, characterID, side, characterStats)
+function CombatField:SetCharacterStats(characterID, side, characterStats)
+    CF_SetCharacterStats(self.host, characterID, side, characterStats)
 end
 
 function CombatField:FieldInfo_ListAll()

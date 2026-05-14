@@ -100,13 +100,11 @@ public:
 
     Banner  * getBanner() { return m_banner; }
 
-    FieldInfo * getFieldInfo() { return &m_fieldInfo; }
+    // FieldInfo * getFieldInfo() { return &m_fieldInfo; }
 
-    void setFieldInfoCharacter(const std::string & characterID, int side, const dCharacterStats & charStat) { m_fieldInfo.addCharacter(characterID, side, charStat); }
+    void setFieldInfoCharacter(const std::string & characterID, int side, const dCharacterStats & charStat); //{ m_fieldInfo.addCharacter(characterID, side, charStat); }
 
-    void listFieldInfoCharacters() { 
-        m_fieldInfo.listAllInfo();
-    }
+    void listFieldInfoCharacters();
 
 private:
 
@@ -125,7 +123,9 @@ private:
 
     std::unordered_map<std::string, std::shared_ptr<CombatCharacter>> m_charactersMap; // lookup
 
-    std::unordered_map<std::string, std::shared_ptr<dCharacterStats>> m_characterStatsMap;
+    std::unordered_map<std::string, std::string> m_portraitMap;
+
+    // std::unordered_map<std::string, std::shared_ptr<dCharacterStats>> m_characterStatsMap;
 
     EmptyObject m_bg;
 
@@ -133,7 +133,11 @@ private:
 
     CombatGUIDock * m_guidock = nullptr;
 
-    FieldInfo m_fieldInfo;
+    //std::unordered_map<std::string, std::string> m_portraitMap;
+
+   // FieldInfo m_fieldInfo; // may flag as unused 
+
+
 };
 
 

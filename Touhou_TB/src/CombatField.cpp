@@ -343,25 +343,25 @@ int lua_Banner_SetVisible(lua_State * L)
     return 0;
 }
 
-int lua_getFieldInfoInstance(lua_State * L)
-{
-    if(lua_gettop(L) != 1)
-    {
-        std::cout << "gettop failed (lua_getFieldInfoInstance) " << lua_gettop(L) << "\n";
-        return -1;
-    }
-    {
-        CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
-        lua_pushlightuserdata(L, host->getFieldInfo());
-        return 1;
-    }
-}
+// int lua_getFieldInfoInstance(lua_State * L)
+// {
+//     if(lua_gettop(L) != 1)
+//     {
+//         std::cout << "gettop failed (lua_getFieldInfoInstance) " << lua_gettop(L) << "\n";
+//         return -1;
+//     }
+//     {
+//         CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+//         lua_pushlightuserdata(L, host->getFieldInfo());
+//         return 1;
+//     }
+// }
 
-int lua_FieldInfo_SetCharacter(lua_State * L)
+int lua_CombatField_SetCharacterStats(lua_State * L)
 {
     if(lua_gettop(L) != 4)
     {
-        std::cout << "gettop failed (lua_FieldInfo_SetCharacter) " << lua_gettop(L) << "\n";
+        std::cout << "gettop failed (lua_CombatField_SetCharacterStats) " << lua_gettop(L) << "\n";
         return -1;
     }
     {
@@ -380,11 +380,11 @@ int lua_FieldInfo_SetCharacter(lua_State * L)
     return 0;
 }
 
-int lua_FieldInfo_ListAllCharacters(lua_State * L)
+int lua_ListAllCharacters(lua_State * L)
 {
     if(lua_gettop(L) != 1)
     {
-        std::cout << "gettop failed (lua_FieldInfo_ListAllCharacters) " << lua_gettop(L) << "\n";
+        std::cout << "gettop failed (lua_ListAllCharacters) " << lua_gettop(L) << "\n";
         return -1;
     }
     {
@@ -424,6 +424,61 @@ CombatField::~CombatField()
 
 }
 
+
+void CombatField::setFieldInfoCharacter(const std::string & characterID, int side, const dCharacterStats & charStat)
+{
+    std::string key = characterID + "_" + std::to_string(side);
+    m_charactersMap[key]->setStats(charStat);
+}
+
+void CombatField::listFieldInfoCharacters()
+{
+    std::cout << "List all info \n";
+    // iterate the map
+    for (int i = 0; i < m_characters.size(); i++)
+    {
+        // dCharacterStats stats = it->second->getStats();
+
+        dCharacterStats stats = m_characters[i]->getStats();
+
+        std::string tID = m_characters[i]->getMapKey();
+
+        std::cout << "|====================" << tID << "====================|\n";
+        std::cout << "| Owner: " << stats.ownerID << "\n";
+        std::cout << "| Character ID: " << stats.characterID << "\n";
+        std::cout << "| Side: " << m_characters[i]->getSide() << "\n";
+        std::cout << "|-------Stats-------|\n";
+        std::cout << "| STR : " << stats.strength << "\n";
+        std::cout << "| VIT : " << stats.vitality << "\n";
+        std::cout << "| DEX : " << stats.dexterity << "\n";
+        std::cout << "| AGI : " << stats.agility << "\n";
+        std::cout << "| INT : " << stats.intelligence << "\n";
+        std::cout << "| WIS : " << stats.wisdom << "\n";
+        std::cout << "| PHY DMG : " << stats.physicDmg << "\n";
+        std::cout << "| MAG DMG : " << stats.magicDmg << "\n";
+        std::cout << "| PHY DEF : " << stats.physicDef << "\n";
+        std::cout << "| MAG DEF : " << stats.magicDef << "\n";
+        std::cout << "| PHY ACC : " << stats.physicalAccuracy << "\n";
+        std::cout << "| MAG ACC : " << stats.magicalAccuracy << "\n";
+        std::cout << "| EVA : " << stats.evasion << "\n";
+        std::cout << "| CRIT : " << stats.critChance << "\n";
+        std::cout << "| SPD : " << stats.speed << "\n";
+        std::cout << "| DD SURVIVAL  : " << stats.deathDoorSurvival << "\n";
+        std::cout << "| MAX HP       : " << stats.maxHP << "\n";
+        std::cout << "| CURRENT HP   : " << stats.currentHP << "\n";
+        std::cout << "| MAX MANA     : " << stats.maxMana << "\n";
+        std::cout << "| CURRENT MANA : " << stats.currentMana << "\n";
+        std::cout << "| MAX AP       : " << stats.maxAP << "\n";
+        std::cout << "| CURRENT AP   : " << stats.currentAP << "\n";
+        std::cout << "| MAX SP       : " << stats.maxSP << "\n";
+        std::cout << "| CURRENT SP   : " << stats.currentSP << "\n";
+        std::cout << "|---------------------------------------|\n";
+        std::cout << "| POS : " << stats.colPos << "|| " << stats.rowPos << "|\n";
+        std::cout << "|=======================================|\n";
+
+    }
+}
+
 void CombatField::init(const std::string & scriptPath, lua_State * script)
 {
     m_script = script;
@@ -455,12 +510,17 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     lua_register(m_script, "cpp_CombatField_GetCharacter", lua_CombatField_GetCharacter);
     
     // Characters stats
+    // set
     lua_register(m_script, "cpp_CombatField_SetCharacterStatFloat" , lua_CombatField_SetCharacterStatFloat);
     lua_register(m_script, "cpp_CombatField_SetCharacterStatStr", lua_CombatField_SetCharacterStatStr);
+
+    lua_register(m_script, "cpp_CombatField_SetCharacterStats", lua_CombatField_SetCharacterStats);
+
+    // List
     lua_register(m_script, "cpp_CombatField_ListCharacterStats", lua_CombatField_ListCharacterStats);
 
+    // get
     lua_register(m_script, "cpp_CombatField_GetCharacterStatFloat", lua_CombatField_GetCharacterStatFloat);
-
     lua_register(m_script, "cpp_CombatField_GetCharacterStatStr" , lua_CombatField_GetCharacterStatStr);
 
     // Banner 
@@ -477,11 +537,8 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     lua_register(m_script,"cpp_CFParseCharacterFromJson", lua_ParseCharacterStatsFromJson);
 
     // Field Info
-    lua_register(m_script, "cpp_getFieldInfoInstance", lua_getFieldInfoInstance);
-    lua_register(m_script, "cpp_FieldInfo_SetCharacter", lua_FieldInfo_SetCharacter);
-    lua_register(m_script, "cpp_FieldInfo_ListAllCharacters", lua_FieldInfo_ListAllCharacters);
-
-
+    
+    lua_register(m_script, "cpp_ListAllCharacters", lua_ListAllCharacters);
 
     m_bg.init(Feintgine::ResourceManager::getTexture("./Assets/Textures/Palace_of_the_Earth_Spirits.png"),glm::vec2(0,170), glm::vec2(1280, 720) * 1.1f,Feintgine::Color(255, 255, 255, 255));
 
@@ -507,8 +564,13 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     m_enumToIndecies[RightCenterBot] = glm::ivec3(2,1,2);
     m_enumToIndecies[RightRearBot] = glm::ivec3(2,2,2);
 
-    m_fieldInfo.init("../../Lua/TouhouTB/Combat/fieldInfo.lua",m_script);
+    // Maps 
+    m_portraitMap["S_Reimu"] = "./Assets/TB_GUI/faces/Reimu_face.png";
+    m_portraitMap["S_Meiling"] = "./Assets/TB_GUI/faces/Meiling_face.png";
+    m_portraitMap["S_Yukari"] = "./Assets/TB_GUI/faces/Yukari_face.png";
+    m_portraitMap["S_Patchouli"] = "./Assets/TB_GUI/faces/Patchouli_face.png";
 
+    // m_fieldInfo.init("../../Lua/TouhouTB/Combat/fieldInfo.lua",m_script);
 
 }
 
@@ -607,21 +669,6 @@ CombatCharacter * CombatField::addCharacter(int collumn, int row, int side, cons
     // std::cout << "add new \n";
 
     return character.get();
-}
-
-dCharacterStats * CombatField::addCharacterStats(const std::string & characterID, int side,const std::string & statsStr)
-{
-    std::string key = characterID + "_" + std::to_string(side);
-
-    // if(m_characterStatsMap.find(key) != m_characterStatsMap.end())
-    // {
-    //     return m_characterStatsMap[key].get();
-    // }
-    // auto characterStats = std::make_shared<dCharacterStats>();
-    // characterStats = 
-    // m_characterStatsMap[key] = characterStats;
-    // return characterStats.get();
-
 }
 
 CombatCharacter * CombatField::getCharacter(const std::string & characterID, int side)
