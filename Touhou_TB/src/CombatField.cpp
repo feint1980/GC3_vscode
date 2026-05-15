@@ -497,11 +497,12 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
         m_banner = new Banner();
     }
     m_banner->init("./Assets/Textures/border.png");
-    if(!m_guidock)
-    {
-        m_guidock = new CombatGUIDock();
-    }
-    m_guidock->init();
+    // if(!m_guidock)
+    // {
+        
+    // }
+    m_guidock = CombatGUIDock();
+    m_guidock.init();
 
     // m_banner->showMessage("test");
     lua_register(m_script, "cpp_CombatField_AddSlot", lua_CombatField_AddSlot);
@@ -617,10 +618,10 @@ void CombatField::draw(Feintgine::SpriteBatch & spriteBatch)
     {
         m_banner->draw(spriteBatch);
     }
-    if(m_guidock)
-    {
-        m_guidock->draw(spriteBatch);
-    }
+    // if(m_guidock)
+    // {
+    m_guidock.draw(spriteBatch);
+    // }
 
 }
 
@@ -703,9 +704,9 @@ void CombatField::drawText(TextRenderer * textRenderer)
     {
         m_banner->drawText(textRenderer);
     }
-    if(m_guidock)
-    {
-        m_guidock->drawText(textRenderer);
-    }
+    // if(m_guidock)
+    // {
+    m_guidock.drawText(textRenderer);
+    // }
     
 }

@@ -131,7 +131,7 @@ private:
 
     Banner * m_banner = nullptr;
 
-    CombatGUIDock * m_guidock = nullptr;
+    CombatGUIDock m_guidock; 
 
     //std::unordered_map<std::string, std::string> m_portraitMap;
 
