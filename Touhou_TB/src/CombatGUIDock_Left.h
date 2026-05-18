@@ -12,6 +12,9 @@ public:
     ~CombatGUIDock_Left();
 
     void init(const std::string & filePath);
+    void draw(Feintgine::SpriteBatch & spriteBatch);
+    void update(float deltaTime);
+
 
 private:
 
