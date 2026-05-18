@@ -2,7 +2,7 @@
 Combat_dock_left = {
 
     host = nil,
-
+    character_avatar = nil,
 }
 
 
