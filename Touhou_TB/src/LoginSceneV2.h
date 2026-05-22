@@ -44,6 +44,8 @@
 #include "ControlHandler.h"
 
 #include "LuaEventHandler.h"
+#include <F_FrameObject.h>
+
 class LoginSceneV2 : public Feintgine::IGameScreen
 {
 public:
@@ -112,6 +114,8 @@ private:
 
     ControlHandler * m_controlHandler = nullptr;
 
+
+    Feintgine::F_FrameObject m_frameObject;
     //LuaEventHandler m_luaEventHandler;
 
 };

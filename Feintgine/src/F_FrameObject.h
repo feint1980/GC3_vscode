@@ -8,33 +8,44 @@
 
 namespace Feintgine
 {
-    class F_FrameObject 
+    class F_FrameObject
     {
         /* Slot layout:
-        TL(0)----Top(1)----TR(2)
-        |                     |
-        L(3)    Center(4)    R(5)
-        |                     |
-        BL(6)----Bot(7)----BR(8)
+        [TL]--[BH_TL]--[EMB_T]--[BH_TR]--[TR]
+          |                                  |
+        [BV_TL]                          [BV_TR]
+        [EMB_L]                          [EMB_R]
+        [BV_BL]                          [BV_BR]
+          |                                  |
+        [BL]--[BH_BL]--[EMB_B]--[BH_BR]--[BR]
         */
         enum PartSlot
         {
-            TL = 0, Top = 1, TR = 2,
-            L  = 3, Center = 4, R = 5,
-            BL = 6, Bot = 7, BR = 8,
+            TL = 0, TR = 1, BL = 2, BR = 3,
+            BH_TL = 4, BH_TR = 5, BH_BL = 6, BH_BR = 7,
+            BV_TL = 8, BV_BL = 9, BV_TR = 10, BV_BR = 11,
+            EMB_T = 12, EMB_B = 13, EMB_L = 14, EMB_R = 15,
             COUNT
+        };
+
+        static constexpr const char* SPRITE_NAMES[COUNT] = {
+            "TL.png",           "TR.png",           "BL.png",           "BR.png",
+            "border_hor.png",   "border_hor.png",   "border_hor.png",   "border_hor.png",
+            "border_ver.png",   "border_ver.png",   "border_ver.png",   "border_ver.png",
+            "Emblem_top.png",   "Emblem_bot.png",   "Emblem_left.png",  "Emblem_right.png"
         };
 
         struct F_FramePart
         {
-            F_Sprite  m_sprite;
-            PartSlot  slot;
+            F_Sprite sprite;
+            PartSlot slot;
         };
 
-        static constexpr const char* SUFFIXES[COUNT] = {
-            "_tl", "_top", "_tr",
-            "_left", "_center", "_right",
-            "_bl", "_bottom", "_br"
+        struct CachedQuad
+        {
+            glm::vec4 destRect;
+            glm::vec4 uv;
+            GLuint    textureId;
         };
 
     public:
@@ -42,13 +53,13 @@ namespace Feintgine
         ~F_FrameObject() = default;
 
         void init(const std::string& packetname,
-                    const glm::vec2&   pos,
-                    const glm::vec2&   size,
-                    float              depth = 0.5f,
-                    const Color&       color = Color(255, 255, 255, 255));
+                  const glm::vec2&   pos,
+                  const glm::vec2&   size,
+                  float              depth = 0.5f,
+                  const Color&       color = Color(255, 255, 255, 255));
 
-        void setPos  (const glm::vec2& pos)  { m_pos   = pos;  m_dirty = true; }
-        void setSize (const glm::vec2& size) { m_size  = size; m_dirty = true; }
+        void setPos  (const glm::vec2& pos)  { m_pos   = pos;   m_dirty = true; }
+        void setSize (const glm::vec2& size) { m_size  = size;  m_dirty = true; }
         void setDepth(float depth)           { m_depth = depth; }
         void setColor(const Color& color)    { m_color = color; }
 
@@ -57,13 +68,14 @@ namespace Feintgine
         float     getDepth() const { return m_depth; }
         Color     getColor() const { return m_color; }
 
-        void draw(SpriteBatch& spriteBatch);  // non-const: may recalculate
+        void draw(SpriteBatch& spriteBatch);
 
     private:
         void recalculate();
+        void pushQuad(int slot, float x, float y, float w, float h);
 
-        F_FramePart m_parts[COUNT];
-        glm::vec4   m_destRects[COUNT];   // cached, only rebuilt when dirty
+        F_FramePart             m_parts[COUNT];
+        std::vector<CachedQuad> m_cachedQuads;
 
         glm::vec2 m_pos   = { 0, 0 };
         glm::vec2 m_size  = { 0, 0 };

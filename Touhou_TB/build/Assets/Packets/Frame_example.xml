@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:05c9bbb2752fb07706eb8fb4bf7b18b8:84027ba85c137836df2da2888eb7bd98:c4ad0c00fae5ead190a8f5df3c90f481$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="Frame_example.png" width="1644" height="264">
+    <sprite n="BL.png" x="0" y="0" w="263" h="263"/>
+    <sprite n="border_hor.png" x="263" y="0" w="50" h="31"/>
+    <sprite n="border_ver.png" x="313" y="0" w="31" h="50"/>
+    <sprite n="BR.png" x="344" y="0" w="263" h="263"/>
+    <sprite n="Emblem_bot.png" x="607" y="0" w="176" h="78"/>
+    <sprite n="Emblem_left.png" x="783" y="0" w="78" h="176"/>
+    <sprite n="Emblem_right.png" x="861" y="0" w="78" h="176"/>
+    <sprite n="Emblem_top.png" x="939" y="0" w="176" h="78"/>
+    <sprite n="TL.png" x="1115" y="0" w="263" h="263"/>
+    <sprite n="TR.png" x="1378" y="0" w="263" h="263"/>
+</TextureAtlas>

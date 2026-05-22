@@ -85,7 +85,7 @@ void LoginSceneV2::onEntry()
 {
     
     std::cout << "login scene onEntry \n";
-	// Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
+	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
 	
 
@@ -112,6 +112,8 @@ void LoginSceneV2::onEntry()
         std::cout << "no SDL_HasScreenKeyboardSupport ##################\n";
     }
     glViewport(0, 0, m_window->getScreenWidth(), m_window->getScreenHeight());
+
+    m_frameObject.init("Frame_example", glm::vec2(0,0), glm::vec2(1000, 700));
 }
 
 void LoginSceneV2::build()
@@ -256,6 +258,7 @@ void LoginSceneV2::draw()
 
     //m_bg.draw(m_spriteBatch);
 
+    m_frameObject.draw(m_spriteBatch);
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
