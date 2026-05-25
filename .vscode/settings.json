@@ -1,0 +1,273 @@
+{
+  "files.associations": {
+    "iostream": "cpp",
+    "array": "cpp",
+    "atomic": "cpp",
+    "bit": "cpp",
+    "*.tcc": "cpp",
+    "cctype": "cpp",
+    "chrono": "cpp",
+    "clocale": "cpp",
+    "cmath": "cpp",
+    "codecvt": "cpp",
+    "compare": "cpp",
+    "concepts": "cpp",
+    "cstdarg": "cpp",
+    "cstddef": "cpp",
+    "cstdint": "cpp",
+    "cstdio": "cpp",
+    "cstdlib": "cpp",
+    "cstring": "cpp",
+    "ctime": "cpp",
+    "cwchar": "cpp",
+    "cwctype": "cpp",
+    "deque": "cpp",
+    "map": "cpp",
+    "string": "cpp",
+    "unordered_map": "cpp",
+    "vector": "cpp",
+    "exception": "cpp",
+    "algorithm": "cpp",
+    "functional": "cpp",
+    "iterator": "cpp",
+    "memory": "cpp",
+    "memory_resource": "cpp",
+    "numeric": "cpp",
+    "random": "cpp",
+    "ratio": "cpp",
+    "string_view": "cpp",
+    "system_error": "cpp",
+    "tuple": "cpp",
+    "type_traits": "cpp",
+    "utility": "cpp",
+    "fstream": "cpp",
+    "initializer_list": "cpp",
+    "iomanip": "cpp",
+    "iosfwd": "cpp",
+    "istream": "cpp",
+    "limits": "cpp",
+    "new": "cpp",
+    "numbers": "cpp",
+    "ostream": "cpp",
+    "semaphore": "cpp",
+    "sstream": "cpp",
+    "stdexcept": "cpp",
+    "stop_token": "cpp",
+    "streambuf": "cpp",
+    "thread": "cpp",
+    "cinttypes": "cpp",
+    "typeinfo": "cpp",
+    "any": "cpp",
+    "bitset": "cpp",
+    "charconv": "cpp",
+    "condition_variable": "cpp",
+    "forward_list": "cpp",
+    "list": "cpp",
+    "set": "cpp",
+    "unordered_set": "cpp",
+    "optional": "cpp",
+    "regex": "cpp",
+    "future": "cpp",
+    "mutex": "cpp",
+    "span": "cpp",
+    "typeindex": "cpp",
+    "variant": "cpp",
+    "csignal": "cpp",
+    "entropy.h": "c",
+    "buffer": "cpp",
+    "executor": "cpp",
+    "internet": "cpp",
+    "io_context": "cpp",
+    "netfwd": "cpp",
+    "socket": "cpp",
+    "timer": "cpp",
+    "ranges": "cpp",
+    "valarray": "cpp",
+    "barrier": "cpp",
+    "cfenv": "cpp",
+    "complex": "cpp",
+    "coroutine": "cpp",
+    "csetjmp": "cpp",
+    "cuchar": "cpp",
+    "expected": "cpp",
+    "source_location": "cpp",
+    "latch": "cpp",
+    "scoped_allocator": "cpp",
+    "shared_mutex": "cpp",
+    "spanstream": "cpp",
+    "stacktrace": "cpp",
+    "syncstream": "cpp"
+  },
+  "workbench.colorCustomizations": {
+    "editor.background": "#181818db",
+    "C_Cpp.enhancedColorization": "Enabled"
+  },
+  "editor.wordWrap": "on",
+  "editor.semanticTokenColorCustomizations": {
+    "rules": {
+      "type:cpp": {
+        "foreground": "#2bdfd6"
+      },
+      "variable:cpp": {
+        "foreground": "#99D7F8"
+      },
+      "property:cpp": {
+        "foreground": "#99D7F8"
+      },
+      "namespace:cpp": {
+        "foreground": "#2bdfd6",
+        "fontStyle": "italic bold underline"
+      }
+    }
+  },
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "source.note comment",
+        "settings": {
+          "foreground": "#88846f"
+        }
+      },
+      {
+        "scope": "source.note string",
+        "settings": {
+          "foreground": "#66D9EF"
+        }
+      },
+      {
+        "scope": "source.note entity.name.function",
+        "settings": {
+          "foreground": "#A6E22E"
+        }
+      },
+      {
+        "scope": "source.note variable.parameter",
+        "settings": {
+          "foreground": "#FD971F",
+          "fontStyle": ""
+        }
+      },
+      {
+        "scope": "source.note support.function",
+        "settings": {
+          "foreground": "#E6DB74"
+        }
+      },
+      {
+        "scope": "source.note support.constant",
+        "settings": {
+          "foreground": "#E6DB74"
+        }
+      },
+      {
+        "scope": "source.note keyword",
+        "settings": {
+          "foreground": "#F92672"
+        }
+      },
+      {
+        "scope": "source.note invalid",
+        "settings": {
+          "foreground": "#F92672",
+          "fontStyle": "bold underline"
+        }
+      }
+    ]
+  },
+  "C_Cpp_Runner.cCompilerPath": "gcc",
+  "C_Cpp_Runner.cppCompilerPath": "g++",
+  "C_Cpp_Runner.debuggerPath": "gdb",
+  "C_Cpp_Runner.cStandard": "",
+  "C_Cpp_Runner.cppStandard": "",
+  "C_Cpp_Runner.msvcBatchPath": "",
+  "C_Cpp_Runner.useMsvc": false,
+  "C_Cpp_Runner.warnings": [
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wshadow",
+    "-Wformat=2",
+    "-Wcast-align",
+    "-Wconversion",
+    "-Wsign-conversion",
+    "-Wnull-dereference"
+  ],
+  "C_Cpp_Runner.msvcWarnings": [
+    "/W4",
+    "/permissive-",
+    "/w14242",
+    "/w14287",
+    "/w14296",
+    "/w14311",
+    "/w14826",
+    "/w44062",
+    "/w44242",
+    "/w14905",
+    "/w14906",
+    "/w14263",
+    "/w44265",
+    "/w14928"
+  ],
+  "C_Cpp_Runner.enableWarnings": true,
+  "C_Cpp_Runner.warningsAsError": false,
+  "C_Cpp_Runner.compilerArgs": [],
+  "C_Cpp_Runner.linkerArgs": [],
+  "C_Cpp_Runner.includePaths": [],
+  "C_Cpp_Runner.includeSearch": [
+    "*",
+    "**/*"
+  ],
+  "C_Cpp_Runner.excludeSearch": [
+    "**/build",
+    "**/build/**",
+    "**/.*",
+    "**/.*/**",
+    "**/.vscode",
+    "**/.vscode/**"
+  ],
+  "C_Cpp_Runner.useAddressSanitizer": false,
+  "C_Cpp_Runner.useUndefinedSanitizer": false,
+  "C_Cpp_Runner.useLeakSanitizer": false,
+  "C_Cpp_Runner.showCompilationTime": false,
+  "C_Cpp_Runner.useLinkTimeOptimization": false,
+  "C_Cpp_Runner.msvcSecureNoWarnings": false,
+  "cmake.sourceDirectory": "D:/VS_Code_prj/GC3_vscode/Editor",
+  "make-to-cpp-props.configurations": [
+    {
+      "name": "default",
+      "cStandard": "c11",
+      "cppStandard": "c++11",
+      "includePath": [],
+      "defines": []
+    }
+  ],
+  "Lua.diagnostics.disable": [
+    "undefined-field"
+  ],
+
+  "todo-tree.general.tags": [
+    "F_CHECKLIST",
+    "F_README",
+    "F_TODO",
+    "F_WARNING"
+  ],
+  "todo-tree.tree.autoRefresh": true,
+  "todo-tree.tree.labelFormat": "${tag} ${after}",
+  "todo-tree.highlights.customHighlight": {
+    "F_TODO": {
+      "icon": "square",
+      "type": "line",
+      "background": "#303030",
+      "foreground": "#ff3e3e",
+      "gutterIcon": true
+    },
+    "F_README":{
+      "foreground": "#f5df71",
+      "background": "#181818",
+      "iconColour": "#7bff82",
+      "icon": "eye"
+    },
+
+  },
+  "todo-tree.highlights.useColourScheme": true
+}

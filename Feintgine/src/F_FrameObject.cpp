@@ -8,10 +8,10 @@ namespace Feintgine
 constexpr const char* F_FrameObject::SPRITE_NAMES[COUNT];
 
 void F_FrameObject::init(const std::string& packetname,
-                         const glm::vec2&   pos,
-                         const glm::vec2&   size,
-                         float              depth,
-                         const Color&       color)
+                        const glm::vec2&   pos,
+                        const glm::vec2&   size,
+                        float              depth,
+                        const Color&       color)
 {
     m_pos   = pos;
     m_size  = size;
@@ -66,7 +66,7 @@ void F_FrameObject::recalculate()
     float scale  = std::min(scaleX, scaleY);  // uniform to avoid distortion
 
     // --- Scaled fixed dims ---
-    float cw    = cornerDim.x * scale;
+    float cw    = cornerDim.x * scale; 
     float ch    = cornerDim.y * scale;
     float embTw = embT_dim.x  * scale;
     float embTh = embT_dim.y  * scale;

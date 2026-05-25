@@ -18,8 +18,53 @@
 
 % GC3 list 
     
-    
-% Touhou TB 
-    - only need to note what is current doing 
-    !    Formation in 
 
+# Turnbased project
+
+
+% Shared in all 3 projects
+    x Send/ Receive functionality
+    x Encrypt/ Decrypt functionality
+    x Lua binding
+
+# The Main Server, Backend 
+% TB_Server
+    # Client handle 
+    x Login Authentication 
+    x Register Function 
+    x Unlock Characters 
+    x Formation Creation
+    x Formation Edit
+    x Currency transaction
+    x User's data retrieval on login
+
+    # Battle Server handler
+    x Let battle Servers connected to, retain info and forward to clients 
+    x Authenticate and forward request from main server to battle server, vice and versa
+
+% Battle Server
+    x Room Creation
+    x Room basic interaction (Join, Ready, Leave)
+    - Combat logic between 2 players
+
+% Touhou TB 
+    x Login Scene Interaction ( Login Failed, No Connection)
+    x Register Interaction (Register Failed, Key check)
+    x Main Scene Interactions 
+        x > Character infos (name, owned currency)
+        x > Shop Menu Interactable (Unlock, Browse Characters)
+        - > Owned Item/Character Menu
+            x Characters 
+            - Items
+        x > Formation Menu 
+            x Interactions Create/Delete/Edit
+        x > Lobby Menu 
+            x Create Lobby (with or without password)
+            x Join Lobby 
+    x Lobby scene 
+        x Select which formation to lock in
+        x Ready/Unready interaction
+
+    x Combat Scene 
+        x Turn displayer
+        x Round Start Logic 
