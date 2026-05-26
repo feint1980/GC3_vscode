@@ -113,7 +113,8 @@ void LoginSceneV2::onEntry()
     }
     glViewport(0, 0, m_window->getScreenWidth(), m_window->getScreenHeight());
 
-    m_frameObject.init("Frame_example", glm::vec2(0,0), glm::vec2(1000, 700));
+    m_frameObject.init("Basic_border", glm::vec2(0,-10), glm::vec2(500, 250));
+    m_frameObject.setScale(0.5f);
 }
 
 void LoginSceneV2::build()
@@ -233,9 +234,15 @@ void LoginSceneV2::sendSignalToLua(int signal)
 
 void LoginSceneV2::draw()
 {
+
+
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 	
+    glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
 	m_shader.use();
 
 	// GLint alphaLocation = m_shader.getUniformLocation("time");

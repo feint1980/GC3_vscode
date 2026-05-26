@@ -10,29 +10,35 @@ namespace Feintgine
 {
     class F_FrameObject
     {
-        /* Slot layout:
-        [TL]--[BH_TL]--[EMB_T]--[BH_TR]--[TR]
-          |                                  |
-        [BV_TL]                          [BV_TR]
-        [EMB_L]                          [EMB_R]
-        [BV_BL]                          [BV_BR]
-          |                                  |
-        [BL]--[BH_BL]--[EMB_B]--[BH_BR]--[BR]
+        /*  Slot layout:
+            [TL(0)]--[Border_T(1)]--[TR(2)]
+              |                        |
+            [Border_L(3)]        [Border_R(4)]
+              |                        |
+            [BL(5)]--[Border_B(6)]--[BR(7)]
         */
         enum PartSlot
         {
-            TL = 0, TR = 1, BL = 2, BR = 3,
-            BH_TL = 4, BH_TR = 5, BH_BL = 6, BH_BR = 7,
-            BV_TL = 8, BV_BL = 9, BV_TR = 10, BV_BR = 11,
-            EMB_T = 12, EMB_B = 13, EMB_L = 14, EMB_R = 15,
+            TL       = 0,
+            Border_T = 1,
+            TR       = 2,
+            Border_L = 3,
+            Border_R = 4,
+            BL       = 5,
+            Border_B = 6,
+            BR       = 7,
             COUNT
         };
 
         static constexpr const char* SPRITE_NAMES[COUNT] = {
-            "TL.png",           "TR.png",           "BL.png",           "BR.png",
-            "border_hor.png",   "border_hor.png",   "border_hor.png",   "border_hor.png",
-            "border_ver.png",   "border_ver.png",   "border_ver.png",   "border_ver.png",
-            "Emblem_top.png",   "Emblem_bot.png",   "Emblem_left.png",  "Emblem_right.png"
+            "TL.png",
+            "Border_T.png",
+            "TR.png",
+            "Border_L.png",
+            "Border_R.png",
+            "BL.png",
+            "Border_B.png",
+            "BR.png"
         };
 
         struct F_FramePart
@@ -46,6 +52,7 @@ namespace Feintgine
             glm::vec4 destRect;
             glm::vec4 uv;
             GLuint    textureId;
+            float     depth;
         };
 
     public:
@@ -56,8 +63,10 @@ namespace Feintgine
                   const glm::vec2&   pos,
                   const glm::vec2&   size,
                   float              depth = 0.5f,
-                  const Color&       color = Color(255, 255, 255, 255));
+                  const Color&       color = Color(255, 255, 255, 255),
+                  float              scale = 1.0f);
 
+        void setScale(float scale)           { m_borderScale = scale; }
         void setPos  (const glm::vec2& pos)  { m_pos   = pos;   m_dirty = true; }
         void setSize (const glm::vec2& size) { m_size  = size;  m_dirty = true; }
         void setDepth(float depth)           { m_depth = depth; }
@@ -72,7 +81,7 @@ namespace Feintgine
 
     private:
         void recalculate();
-        void pushQuad(int slot, float x, float y, float w, float h);
+        void pushQuad(int slot, float x, float y, float w, float h,float depth);
 
         F_FramePart             m_parts[COUNT];
         std::vector<CachedQuad> m_cachedQuads;
@@ -82,6 +91,7 @@ namespace Feintgine
         float     m_depth = 0.5f;
         Color     m_color = Color(255, 255, 255, 255);
         bool      m_dirty = true;
+        float m_borderScale = 1.0f;
     };
 }
 
