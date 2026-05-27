@@ -12,11 +12,25 @@ namespace Feintgine
     {
         /*  Slot layout:
             [TL(0)]--[Border_T(1)]--[TR(2)]
-              |                        |
-            [Border_L(3)]        [Border_R(4)]
-              |                        |
+            |                        |
+        [Border_L(3)]           [Border_R(4)]
+            |                        |
             [BL(5)]--[Border_B(6)]--[BR(7)]
         */
+        enum CornerMask {
+            CORNER_TL = 1,
+            CORNER_TR = 2,
+            CORNER_BR = 4,
+            CORNER_BL = 8
+            };
+
+        enum LineMask {
+            LINE_TOP   = 1,
+            LINE_BOT   = 2,
+            LINE_LEFT  = 4,
+            LINE_RIGHT = 8
+        };
+
         enum PartSlot
         {
             TL       = 0,
@@ -60,11 +74,11 @@ namespace Feintgine
         ~F_FrameObject() = default;
 
         void init(const std::string& packetname,
-                  const glm::vec2&   pos,
-                  const glm::vec2&   size,
-                  float              depth = 0.5f,
-                  const Color&       color = Color(255, 255, 255, 255),
-                  float              scale = 1.0f);
+                    const glm::vec2&   pos,
+                    const glm::vec2&   size,
+                    float              depth = 0.5f,
+                    const Color&       color = Color(255, 255, 255, 255),
+                    float              scale = 1.0f);
 
         void setScale(float scale)           { m_borderScale = scale; }
         void setPos  (const glm::vec2& pos)  { m_pos   = pos;   m_dirty = true; }
@@ -78,7 +92,24 @@ namespace Feintgine
         Color     getColor() const { return m_color; }
 
         void draw(SpriteBatch& spriteBatch);
+        float getBorderScale() const { return m_borderScale; }
 
+        float getScale() const
+        {
+            glm::vec2 cd = m_parts[TL].sprite.getDim();
+            float sx = (m_size.x < cd.x * 2.0f) ? (m_size.x / (cd.x * 2.0f)) : 1.0f;
+            float sy = (m_size.y < cd.y * 2.0f) ? (m_size.y / (cd.y * 2.0f)) : 1.0f;
+            return std::min(sx, sy) * m_borderScale;
+        }
+        void setHideCornerMask(int mask) { m_hideCornerMask = mask; m_dirty = true; }
+        void setHideLineMask  (int mask) { m_hideLineMask   = mask; m_dirty = true; }
+
+        void setOverlap      (float v) { m_overlap = v;           m_dirty = true; }
+        void setBorderThickness(float v) { m_borderThickness = v; m_dirty = true; }
+        glm::vec2 getFrameOrigin()    const { return { m_pos.x - m_size.x * 0.5f, m_pos.y - m_size.y * 0.5f }; }
+        float     getScaledCornerW()  const { return m_parts[TL].sprite.getDim().x * getScale(); }
+        float     getScaledCornerH()  const { return m_parts[TL].sprite.getDim().y * getScale(); }
+        
     private:
         void recalculate();
         void pushQuad(int slot, float x, float y, float w, float h,float depth);
@@ -92,6 +123,11 @@ namespace Feintgine
         Color     m_color = Color(255, 255, 255, 255);
         bool      m_dirty = true;
         float m_borderScale = 1.0f;
+        float m_overlap          = 6.0f;
+        float m_borderThickness  = 8.0f;  // tune this to match the line in your sprite
+        int m_hideCornerMask = 0;
+        int m_hideLineMask   = 0;
+
     };
 }
 

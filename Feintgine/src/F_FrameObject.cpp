@@ -53,16 +53,11 @@ void F_FrameObject::recalculate()
 {
     m_cachedQuads.clear();
 
-    glm::vec2 cornerDim = m_parts[TL].sprite.getDim();
+    glm::vec2 cornerDim = m_parts[TL].sprite.getDim();  // 72x72
 
     float scaleX = (m_size.x < cornerDim.x * 2.0f) ? (m_size.x / (cornerDim.x * 2.0f)) : 1.0f;
     float scaleY = (m_size.y < cornerDim.y * 2.0f) ? (m_size.y / (cornerDim.y * 2.0f)) : 1.0f;
-    float scale  = std::min(scaleX, scaleY);
-
-
-
-    scale = m_borderScale;
-    // scale = 1.1f;
+    float scale  = std::min(scaleX, scaleY) * m_borderScale;
 
     float cw = cornerDim.x * scale;
     float ch = cornerDim.y * scale;
@@ -70,7 +65,6 @@ void F_FrameObject::recalculate()
     float midW = m_size.x - cw * 2.0f;
     float midH = m_size.y - ch * 2.0f;
 
-    // m_pos is CENTER of the frame, convert to bottom-left first
     float originX = m_pos.x - m_size.x * 0.5f;
     float originY = m_pos.y - m_size.y * 0.5f;
 
@@ -82,21 +76,32 @@ void F_FrameObject::recalculate()
     float row1 = originY + ch;
     float row2 = originY + m_size.y - ch;
 
-    float overlap = 6.0f * scale;  // tweak this value to taste
+    float overlap = cw * 0.3f;  // overlap as fraction of corner size, stays proportional
 
-    // Corners
-    pushQuad(TL, col0, row2, cw,  ch,70.0f);
-    pushQuad(TR, col2, row2, cw,  ch,70.0f);
-    pushQuad(BL, col0, row0, cw,  ch,70.0f);
-    pushQuad(BR, col2, row0, cw,  ch,70.0f);
+    // Corners — always on top
+                                        // pushQuad(TL, col0, row2, cw, ch, 70.0f);
+                                        // pushQuad(TR, col2, row2, cw, ch, 70.0f);
+                                        // pushQuad(BL, col0, row0, cw, ch, 70.0f);
+                                        // pushQuad(BR, col2, row0, cw, ch, 70.0f);
+    if (!(m_hideCornerMask & CORNER_TL)) pushQuad(TL, col0, row2, cw, ch, 70.0f);
+    if (!(m_hideCornerMask & CORNER_TR)) pushQuad(TR, col2, row2, cw, ch, 70.0f);
+    if (!(m_hideCornerMask & CORNER_BL)) pushQuad(BL, col0, row0, cw, ch, 70.0f);
+    if (!(m_hideCornerMask & CORNER_BR)) pushQuad(BR, col2, row0, cw, ch, 70.0f);
 
-    // Horizontal borders
-    pushQuad(Border_T, col1 - overlap , row2, midW + overlap * 2.0f, ch,50.0f);
-    pushQuad(Border_B, col1 - overlap , row0, midW + overlap * 2.0f, ch,50.0f);
+    // Horizontal borders — same height as corner, overlaps into corner area
+    // pushQuad(Border_T, col1 - overlap, row2, midW + overlap * 2.0f, ch, 50.0f);
+    // pushQuad(Border_B, col1 - overlap, row0, midW + overlap * 2.0f, ch, 50.0f);
 
-    // Vertical borders
-    pushQuad(Border_L, col0, row1 - overlap, cw, midH + overlap * 2.0f  ,50.0f);
-    pushQuad(Border_R, col2, row1 - overlap, cw, midH + overlap * 2.0f ,50.0f);
+    if (!(m_hideLineMask & LINE_TOP)) pushQuad(Border_T, col1 - overlap, row2, midW + overlap * 2.0f, ch, 50.0f);
+    if (!(m_hideLineMask & LINE_BOT)) pushQuad(Border_B, col1 - overlap, row0, midW + overlap * 2.0f, ch, 50.0f);
+
+    // Vertical borders — same width as corner, overlaps into corner area
+    // pushQuad(Border_L, col0, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
+    // pushQuad(Border_R, col2, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
+
+     // Vertical borders — skip if hidden
+    if (!(m_hideLineMask & LINE_LEFT))  pushQuad(Border_L, col0, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
+    if (!(m_hideLineMask & LINE_RIGHT)) pushQuad(Border_R, col2, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
 
     m_dirty = false;
 }
