@@ -1,0 +1,1 @@
+corner_d_01.png.png 16 17, corner_d_02.png.png 142 17, corner_d_03.png.png 269 17, corner_d_04.png.png 16 142, corner_d_05.png.png 142 142, corner_d_06.png.png 269 142, corner_d_07.png.png 142 268, corner_d_08.png.png 269 268.
