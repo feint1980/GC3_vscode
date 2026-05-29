@@ -113,9 +113,17 @@ void LoginSceneV2::onEntry()
     glViewport(0, 0, m_window->getScreenWidth(), m_window->getScreenHeight());
 
 
-    m_framePanel.init("Basic_border", glm::vec2(0,-10), glm::vec2(500, 250));
+    m_framePanel.init("Basic_border", glm::vec2(0,-10), glm::vec2(750, 400));
     m_framePanel.setScale(0.25f);
-    // m_frameObject.init("Basic_border", glm::vec2(0,-10), glm::vec2(500, 250));
+    m_framePanel.addCornerEmblem("emblem_pack.xml/corner_b_05.png", 3,3, glm::vec2(19,-19),0.5f);
+
+    m_framePanel.addCornerEmblem("emblem_pack.xml/corner_a_07_2.png", 12,12, glm::vec2(19,-19),0.5f,10);
+
+    m_framePanel.addLineEmblem("emblem_pack.xml/corner_c_22.png", 15,0, glm::vec2(0,0),1.0f);
+
+    // m_framePanel.hideBorderCorner(1);
+
+    // m_frameObject.init("Basic_border", glm::vec2(0,-10), glm::vec2(500, 200));
     // m_frameObject.setScale(0.25f);
     // m_framePanel.init("Basic_border",)
 

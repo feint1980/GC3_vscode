@@ -15,12 +15,14 @@ void F_FramePanel::init(const std::string& packetname,
 }
 
 void F_FramePanel::addCornerEmblem(const std::string& spriteName,
-                                    int                placeMask,
-                                    int                hideMask,
-                                    float              depth)
+                    int                placeMask,
+                    int                hideMask,
+                    const glm::vec2    &offset,
+                    float              scale,
+                    float              depth )
 {
     F_FrameEmblem emb;
-    emb.init(spriteName, EMBLEM_CORNER, placeMask, hideMask, 0.0f, depth);
+    emb.init(spriteName, EMBLEM_CORNER, placeMask, hideMask, offset, scale,depth);
     m_emblems.push_back(emb);
     rebuildHideMasks();
 }
@@ -28,11 +30,12 @@ void F_FramePanel::addCornerEmblem(const std::string& spriteName,
 void F_FramePanel::addLineEmblem(const std::string& spriteName,
                                 int                placeMask,
                                 int                hideMask,
-                                float              offset,
+                                const glm::vec2    &offset,
+                                float              scale,
                                 float              depth)
 {
     F_FrameEmblem emb;
-    emb.init(spriteName, EMBLEM_LINE, placeMask, hideMask, offset, depth);
+    emb.init(spriteName, EMBLEM_LINE, placeMask, hideMask, offset,scale, depth);
     m_emblems.push_back(emb);
     rebuildHideMasks();
 }

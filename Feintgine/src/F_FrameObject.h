@@ -110,6 +110,8 @@ namespace Feintgine
         float     getScaledCornerW()  const { return m_parts[TL].sprite.getDim().x * getScale(); }
         float     getScaledCornerH()  const { return m_parts[TL].sprite.getDim().y * getScale(); }
         
+        glm::vec2 getFrameSize()      const { return m_size; }
+
     private:
         void recalculate();
         void pushQuad(int slot, float x, float y, float w, float h,float depth);

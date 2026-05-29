@@ -20,15 +20,24 @@ namespace Feintgine
                     const Color&       color = Color(255, 255, 255, 255),
                     float              scale = 1.0f);
 
+        // void addCornerEmblem(const std::string& spriteName,
+        //                         int                placeMask,
+        //                         int                hideMask  = 0,
+        //                         float              depth     = 60.0f);
+
         void addCornerEmblem(const std::string& spriteName,
-                                int                placeMask,
-                                int                hideMask  = 0,
-                                float              depth     = 60.0f);
+                    int                placeMask,
+                    int                hideMask  = 0,
+                    const glm::vec2    &offset    = glm::vec2(0),
+                    float              scale     = 1.0f,
+                    float              depth     = 60.0f);
+
 
         void addLineEmblem  (const std::string& spriteName,
                                 int                placeMask,
                                 int                hideMask  = 0,
-                                float              offset    = 0.0f,
+                                const glm::vec2    &offset    = glm::vec2(0.0f),
+                                float              scale     = 1.0f,
                                 float              depth     = 60.0f);
 
         void setPos  (const glm::vec2& pos);
@@ -46,6 +55,15 @@ namespace Feintgine
         glm::vec2 getSize() const { return m_frame.getSize(); }
 
         void draw(SpriteBatch& spriteBatch);
+
+        void hideBorderCorner(int mask) { 
+            m_frame.setHideCornerMask(mask);
+            // rebuildHideMasks();
+        }
+        void hideBorderLine(int mask) {
+            m_frame.setHideLineMask(mask);
+            // rebuildHideMasks();
+        }
 
     private:
         void rebuildHideMasks();

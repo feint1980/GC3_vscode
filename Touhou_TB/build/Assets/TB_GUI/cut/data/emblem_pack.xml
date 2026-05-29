@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:c6d76e3e5102136e749f5ca8620abc27:e8d60bdf2bf4d063dc0033af1f8e9f79:df4bc6cf90502a13b0aab7ea93562cae$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="emblem_pack.png" width="511" height="1108">
+    <sprite n="corner_a_01.png" x="227" y="990" w="117" h="117"/>
+    <sprite n="corner_a_03.png" x="324" y="881" w="108" h="109"/>
+    <sprite n="corner_a_04.png" x="344" y="990" w="117" h="118"/>
+    <sprite n="corner_a_05.png" x="0" y="990" w="111" h="112"/>
+    <sprite n="corner_a_06.png" x="111" y="990" w="116" h="116"/>
+    <sprite n="corner_a_07.png" x="0" y="881" w="106" h="107"/>
+    <sprite n="corner_a_07_2.png" x="106" y="881" w="106" h="107"/>
+    <sprite n="corner_a_08.png" x="204" y="0" w="47" h="47"/>
+    <sprite n="corner_a_09.png" x="196" y="380" w="97" h="97"/>
+    <sprite n="corner_a_10.png" x="406" y="776" w="105" h="105"/>
+    <sprite n="corner_a_11.png" x="199" y="673" w="102" h="99"/>
+    <sprite n="corner_a_12.png" x="212" y="881" w="112" h="104"/>
+    <sprite n="corner_a_13.png" x="99" y="477" w="100" h="96"/>
+    <sprite n="corner_a_14.png" x="362" y="284" w="96" h="96"/>
+    <sprite n="corner_b_01.png" x="199" y="477" w="98" h="98"/>
+    <sprite n="corner_b_02.png" x="297" y="477" w="98" h="98"/>
+    <sprite n="corner_b_03.png" x="0" y="380" w="98" h="95"/>
+    <sprite n="corner_b_04.png" x="293" y="380" w="98" h="97"/>
+    <sprite n="corner_b_05.png" x="301" y="673" w="98" h="103"/>
+    <sprite n="corner_b_06.png" x="399" y="673" w="102" h="99"/>
+    <sprite n="corner_b_07.png" x="395" y="477" w="99" h="97"/>
+    <sprite n="corner_b_08.png" x="251" y="0" w="43" h="59"/>
+    <sprite n="corner_b_09.png" x="106" y="0" w="49" h="44"/>
+    <sprite n="corner_b_10.png" x="339" y="59" w="58" h="58"/>
+    <sprite n="corner_b_11.png" x="200" y="776" w="103" h="100"/>
+    <sprite n="corner_b_12.png" x="0" y="575" w="98" h="98"/>
+    <sprite n="corner_b_13.png" x="337" y="0" w="54" h="54"/>
+    <sprite n="corner_b_14.png" x="36" y="0" w="35" h="36"/>
+    <sprite n="corner_b_14b.png" x="54" y="59" w="75" h="34"/>
+    <sprite n="corner_b_15.png" x="391" y="0" w="54" h="54"/>
+    <sprite n="corner_b_16.png" x="97" y="673" w="102" h="98"/>
+    <sprite n="corner_b_17.png" x="0" y="194" w="104" h="72"/>
+    <sprite n="corner_b_18.png" x="231" y="117" w="77" h="77"/>
+    <sprite n="corner_b_19.png" x="79" y="117" w="76" h="76"/>
+    <sprite n="corner_b_20.png" x="129" y="59" w="68" h="41"/>
+    <sprite n="corner_c_01.png" x="98" y="575" w="98" h="98"/>
+    <sprite n="corner_c_02.png" x="196" y="575" w="98" h="98"/>
+    <sprite n="corner_c_03.png" x="98" y="380" w="98" h="95"/>
+    <sprite n="corner_c_04.png" x="391" y="380" w="98" h="97"/>
+    <sprite n="corner_c_05.png" x="0" y="776" w="98" h="103"/>
+    <sprite n="corner_c_06.png" x="98" y="776" w="102" h="99"/>
+    <sprite n="corner_c_07.png" x="294" y="575" w="99" h="97"/>
+    <sprite n="corner_c_08.png" x="294" y="0" w="43" h="59"/>
+    <sprite n="corner_c_09.png" x="155" y="0" w="49" h="44"/>
+    <sprite n="corner_c_10.png" x="397" y="59" w="58" h="58"/>
+    <sprite n="corner_c_11.png" x="303" y="776" w="103" h="100"/>
+    <sprite n="corner_c_12.png" x="393" y="575" w="98" h="98"/>
+    <sprite n="corner_c_13.png" x="445" y="0" w="54" h="54"/>
+    <sprite n="corner_c_14.png" x="71" y="0" w="35" h="36"/>
+    <sprite n="corner_c_15.png" x="0" y="59" w="54" h="54"/>
+    <sprite n="corner_c_16.png" x="0" y="0" w="18" h="17"/>
+    <sprite n="corner_c_18.png" x="0" y="477" w="99" h="96"/>
+    <sprite n="corner_c_19.png" x="0" y="117" w="79" h="50"/>
+    <sprite n="corner_c_20.png" x="308" y="117" w="77" h="77"/>
+    <sprite n="corner_c_21.png" x="155" y="117" w="76" h="76"/>
+    <sprite n="corner_c_22.png" x="18" y="0" w="18" h="19"/>
+    <sprite n="corner_c_23.png" x="197" y="59" w="68" h="41"/>
+    <sprite n="corner_c_24.png" x="385" y="117" w="105" h="70"/>
+    <sprite n="corner_c_25.png" x="265" y="59" w="74" h="36"/>
+    <sprite n="corner_d_01.png" x="104" y="194" w="90" h="90"/>
+    <sprite n="corner_d_02.png" x="374" y="194" w="91" h="90"/>
+    <sprite n="corner_d_03.png" x="194" y="194" w="90" h="90"/>
+    <sprite n="corner_d_04.png" x="0" y="284" w="90" h="91"/>
+    <sprite n="corner_d_05.png" x="271" y="284" w="91" h="91"/>
+    <sprite n="corner_d_06.png" x="90" y="284" w="90" h="91"/>
+    <sprite n="corner_d_07.png" x="180" y="284" w="91" h="90"/>
+    <sprite n="corner_d_08.png" x="284" y="194" w="90" h="90"/>
+    <sprite n="corner_d_09.png" x="0" y="673" w="97" h="99"/>
+</TextureAtlas>

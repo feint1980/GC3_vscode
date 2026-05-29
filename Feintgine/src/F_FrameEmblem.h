@@ -46,12 +46,13 @@ namespace Feintgine
         F_FrameEmblem() = default;
 
         // For corner emblem
-        void init(const std::string& spriteName,
-                  EmblemType         type,
-                  int                placeMask,
-                  int                hideMask,
-                  float              offset = 0.0f,
-                  float              depth  = 60.0f);
+        void F_FrameEmblem::init(const std::string& spriteName,
+                          EmblemType         type,
+                          int                placeMask,
+                          int                hideMask,
+                          const glm::vec2    &offset, // vec2 now, not float
+                          float              scale,
+                          float              depth);
 
         int  getHideCornerMask() const { return m_type == EMBLEM_CORNER ? m_hideMask : 0; }
         int  getHideLineMask()   const { return m_type == EMBLEM_LINE   ? m_hideMask : 0; }
@@ -70,9 +71,10 @@ namespace Feintgine
         EmblemType m_type      = EMBLEM_CORNER;
         int        m_placeMask = 0;
         int        m_hideMask  = 0;
-        float      m_offset    = 0.0f;
+        glm::vec2  m_offset    = glm::vec2(0.0f);
         float      m_depth     = 60.0f;
         bool       m_dirty     = true;
+        float m_emblemScale = 1.0f;
 
         std::vector<CachedQuad> m_cachedQuads;
 
