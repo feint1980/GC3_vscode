@@ -1,8 +1,6 @@
 package.path = package.path .. ';../../Lua/system/Input/?.lua;'
 
-
 require "controlHandler"
-
 
 ---@class PanelShowType
 PanelShowType = {

@@ -91,7 +91,6 @@ end
 -- moveset_normal_1 end
 
 -- move set : spell 1
-
 -- handle fire rate of the souls
 function souls_fire(host, dynob)
 
