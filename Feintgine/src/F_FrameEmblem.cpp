@@ -42,60 +42,56 @@ void F_FrameEmblem::recalculate(const glm::vec2& frameOrigin,
     glm::vec2 spDim = m_sprite.getDim();
     float drawW = spDim.x * m_emblemScale;
     float drawH = spDim.y * m_emblemScale;
-    float hw = drawW * 0.5f;
-    float hh = drawH * 0.5f;
+    float hw    = drawW * 0.5f;
+    float hh    = drawH * 0.5f;
 
-    // frame edges in world space
-    float left   = frameOrigin.x;
-    float right  = frameOrigin.x + frameSize.x - cornerW;
-    float bottom = frameOrigin.y;
-    float top    = frameOrigin.y + frameSize.y - cornerH;
+    // Pure frame geometry — all positions are CENTER points of their slot
+    float midX   = frameOrigin.x + frameSize.x * 0.5f;
+    float midY   = frameOrigin.y + frameSize.y * 0.5f;
+    float topY   = frameOrigin.y + frameSize.y - cornerH * 0.5f;
+    float botY   = frameOrigin.y + cornerH * 0.5f;
+    float leftX  = frameOrigin.x + cornerW * 0.5f;
+    float rightX = frameOrigin.x + frameSize.x - cornerW * 0.5f;
 
-    // edge centers
-    float midX = frameOrigin.x + frameSize.x * 0.5f + hw;
-    float midY = frameOrigin.y + frameSize.y * 0.5f + hh;
-    float topY   = frameOrigin.y + frameSize.y - cornerH - hh;
-    float botY   = frameOrigin.y + hh;
-    float leftX  = frameOrigin.x + hw;
-    float rightX = frameOrigin.x + frameSize.x - cornerW - hw;
+    // Corner slot centers
+    float left   = frameOrigin.x + cornerW * 0.5f;
+    float right  = frameOrigin.x + frameSize.x - cornerW * 0.5f;
+    float bottom = frameOrigin.y + cornerH * 0.5f;
+    float top    = frameOrigin.y + frameSize.y - cornerH * 0.5f;
 
     if (m_type == EMBLEM_CORNER)
     {
-        // Rotation per corner: TL=0, TR=90, BR=180, BL=270
-        struct CornerInfo { int mask; float x; float y; float angle;  glm::vec2 offsetMul; };
+        struct CornerInfo { int mask; float x; float y; float angle; glm::vec2 offsetMul; };
         CornerInfo corners[4] = {
-            { CORNER_TL, left,  top,    0.0f ,{1,1}  },
-            { CORNER_TR, right, top,    -90.0f , {-1,1}  },
-            { CORNER_BR, right, bottom, -180.0f , {-1,-1} },
-            { CORNER_BL, left,  bottom, -270.0f , {1,-1} }
+            { CORNER_TL, left,  top,    0.0f,    {  1,  1 } },
+            { CORNER_TR, right, top,   -90.0f,   { -1,  1 } },
+            { CORNER_BR, right, bottom,-180.0f,  { -1, -1 } },
+            { CORNER_BL, left,  bottom,-270.0f,  {  1, -1 } }
         };
 
         for (auto& c : corners)
         {
             if (!(m_placeMask & c.mask)) continue;
-            // center-align emblem on corner slot
-            float x = c.x + cornerW * 0.5f - hw + m_offset.x * c.offsetMul.x;
-            float y = c.y + cornerH * 0.5f - hh + m_offset.y * c.offsetMul.y;
+            // position is already center of slot, just apply offset then convert to bottom-left for SpriteBatch
+            float x = c.x + m_offset.x * c.offsetMul.x - hw;
+            float y = c.y + m_offset.y * c.offsetMul.y - hh;
             pushQuad(x, y, drawW, drawH, c.angle);
         }
     }
     else // EMBLEM_LINE
     {
-        // offset shifts along the edge from center
-        // TOP/BOT: offset moves on X axis
-        // LEFT/RIGHT: offset moves on Y axis
-
-        struct LineInfo { int mask; float x; float y; float angle;;};
+        struct LineInfo { int mask; float x; float y; float angle; };
         LineInfo lines[4] = {
-            { LINE_TOP,   midX + m_offset.x,   topY + m_offset.y, 0.0f   },
-            { LINE_BOT,   midX + m_offset.x,   botY - m_offset.y, 180.0f },
-            { LINE_LEFT,  leftX  - m_offset.y, midY + m_offset.x, 270.0f },
-            { LINE_RIGHT, rightX + m_offset.y, midY + m_offset.x, 90.0f  }
+            { LINE_TOP,   midX  + m_offset.x, topY   + m_offset.y,  0.0f   },
+            { LINE_BOT,   midX  + m_offset.x, botY   - m_offset.y,  180.0f },
+            { LINE_LEFT,  leftX - m_offset.y, midY   + m_offset.x,  90.0f },
+            { LINE_RIGHT, rightX + m_offset.y, midY  + m_offset.x,  270.0f  }
         };
 
         for (auto& l : lines)
         {
             if (!(m_placeMask & l.mask)) continue;
+            // convert center to bottom-left for SpriteBatch
             float x = l.x - hw;
             float y = l.y - hh;
             pushQuad(x, y, drawW, drawH, l.angle);

@@ -119,7 +119,7 @@ void LoginSceneV2::onEntry()
 
     m_framePanel.addCornerEmblem("emblem_pack.xml/corner_a_07_2.png", 12,12, glm::vec2(19,-19),0.5f,10);
 
-    m_framePanel.addLineEmblem("emblem_pack.xml/corner_c_22.png", 15,0, glm::vec2(0,0),1.0f);
+    m_framePanel.addLineEmblem("emblem_pack.xml/corner_c_25.png", 15,0, glm::vec2(0,10),0.5f);
 
     // m_framePanel.hideBorderCorner(1);
 
