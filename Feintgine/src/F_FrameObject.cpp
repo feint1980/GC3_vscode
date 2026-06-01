@@ -45,7 +45,8 @@ void F_FrameObject::pushQuad(int slot, float x, float y, float w, float h,float 
         { x, y, w, h },
         spr.getUV(),
         spr.getTexture().id,
-        depth
+        depth,
+
     });
 }
 
@@ -112,7 +113,7 @@ void F_FrameObject::draw(SpriteBatch& spriteBatch)
 
     for (auto& q : m_cachedQuads)
     {
-        spriteBatch.draw(q.destRect, q.uv, q.textureId, q.depth, m_color);
+        spriteBatch.draw(q.destRect, q.uv, q.textureId, q.depth, m_color,m_angle/57.2957795f);
     }
 }
 

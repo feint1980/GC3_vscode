@@ -65,6 +65,8 @@ namespace Feintgine
             // rebuildHideMasks();
         }
 
+        void setAngle(float angle);
+        float getAngle() const { return m_angle; }
     private:
         void rebuildHideMasks();
         void markAllEmblemsDirty();
@@ -72,6 +74,7 @@ namespace Feintgine
         F_FrameObject              m_frame;
         std::vector<F_FrameEmblem> m_emblems;
         float                      m_scale;
+        float                      m_angle;
     };
 }
 

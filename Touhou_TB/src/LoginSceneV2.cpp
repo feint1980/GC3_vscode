@@ -115,11 +115,23 @@ void LoginSceneV2::onEntry()
 
     m_framePanel.init("Basic_border", glm::vec2(0,-10), glm::vec2(750, 400));
     m_framePanel.setScale(0.25f);
+    
     m_framePanel.addCornerEmblem("emblem_pack.xml/corner_b_05.png", 3,3, glm::vec2(19,-19),0.5f);
 
     m_framePanel.addCornerEmblem("emblem_pack.xml/corner_a_07_2.png", 12,12, glm::vec2(19,-19),0.5f,10);
 
     m_framePanel.addLineEmblem("emblem_pack.xml/corner_c_25.png", 15,0, glm::vec2(0,10),0.5f);
+
+
+    m_compositeObject.init(glm::vec2(-300,0), glm::vec2(150,150));
+    // m_compositeObject.addObject("emblem_pack.xml/corner_c_25.png",glm::vec2(0, 250), glm::vec2(2.0f), Feintgine::Color(255, 255, 255, 255),0.0f, 0.0f);
+
+
+    m_compositeObject.addAnimatedObject("./Assets/F_AObjects/meiling_tb.xml", "idle",glm::vec2(0, 0), glm::vec2(1.0f), Feintgine::Color(255, 255, 255, 255),0.0f, 0.0f);
+
+    m_compositeObject.addPanel("Basic_border",0.5f);
+    m_compositeObject.addPanelCornerEmblem("emblem_pack.xml/corner_b_05.png", 3,0, glm::vec2(19,-19),0.5f);
+
 
     // m_framePanel.hideBorderCorner(1);
 
@@ -179,6 +191,7 @@ void LoginSceneV2::update(float deltaTime)
         // m_clientScriptingManager->update(deltaTime);
         m_clientScriptingManager->updateV2(deltaTime);
     }
+    m_compositeObject.update(deltaTime);
     // m_luaEventHandler.update(deltaTime);
 
 }
@@ -277,6 +290,7 @@ void LoginSceneV2::draw()
 
     // m_frameObject.draw(m_spriteBatch);
     m_framePanel.draw(m_spriteBatch);
+    m_compositeObject.draw(m_spriteBatch);
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();

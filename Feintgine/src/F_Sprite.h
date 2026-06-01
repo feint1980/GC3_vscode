@@ -85,7 +85,7 @@ namespace Feintgine {
 	private:
 
 		//Feintgine::GLTexture m_texture;
-		Feintgine::GLTexture m_texture;
+		Feintgine::GLTexture m_texture ;
 
 		bool m_isInverted = false;
 

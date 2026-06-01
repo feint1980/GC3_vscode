@@ -11,6 +11,8 @@
 #include "LuaManager.h"
 #include "F_Sprite.h"
 
+#include "F_CompositeObject.h"
+
 namespace Feintgine
 {
     class F_LuaRenderContext
@@ -28,7 +30,7 @@ namespace Feintgine
     private:
         lua_State * m_script = nullptr;
         std::vector<EmptyObject> m_emptyObjects;
-        std::vector<F_Sprite> m_spriteObjects;2
+        std::vector<F_Sprite> m_spriteObjects;
     };
 
 }

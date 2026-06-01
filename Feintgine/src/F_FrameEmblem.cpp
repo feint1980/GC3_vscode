@@ -63,10 +63,10 @@ void F_FrameEmblem::recalculate(const glm::vec2& frameOrigin,
     {
         struct CornerInfo { int mask; float x; float y; float angle; glm::vec2 offsetMul; };
         CornerInfo corners[4] = {
-            { CORNER_TL, left,  top,    0.0f,    {  1,  1 } },
-            { CORNER_TR, right, top,   -90.0f,   { -1,  1 } },
-            { CORNER_BR, right, bottom,-180.0f,  { -1, -1 } },
-            { CORNER_BL, left,  bottom,-270.0f,  {  1, -1 } }
+            { CORNER_TL, left,  top,   m_angle +  0.0f,    {  1,  1 } },
+            { CORNER_TR, right, top,   m_angle -90.0f,   { -1,  1 } },
+            { CORNER_BR, right, bottom,m_angle -180.0f,  { -1, -1 } },
+            { CORNER_BL, left,  bottom,m_angle -270.0f,  {  1, -1 } }
         };
 
         for (auto& c : corners)
@@ -82,10 +82,10 @@ void F_FrameEmblem::recalculate(const glm::vec2& frameOrigin,
     {
         struct LineInfo { int mask; float x; float y; float angle; };
         LineInfo lines[4] = {
-            { LINE_TOP,   midX  + m_offset.x, topY   + m_offset.y,  0.0f   },
-            { LINE_BOT,   midX  + m_offset.x, botY   - m_offset.y,  180.0f },
-            { LINE_LEFT,  leftX - m_offset.y, midY   + m_offset.x,  90.0f },
-            { LINE_RIGHT, rightX + m_offset.y, midY  + m_offset.x,  270.0f  }
+            { LINE_TOP,   midX  + m_offset.x, topY   + m_offset.y, m_angle +  0.0f   },
+            { LINE_BOT,   midX  + m_offset.x, botY   - m_offset.y, m_angle + 180.0f },
+            { LINE_LEFT,  leftX - m_offset.y, midY   + m_offset.x, m_angle + 90.0f },
+            { LINE_RIGHT, rightX + m_offset.y, midY  + m_offset.x, m_angle + 270.0f  }
         };
 
         for (auto& l : lines)

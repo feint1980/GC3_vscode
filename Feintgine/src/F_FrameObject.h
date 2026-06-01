@@ -67,6 +67,7 @@ namespace Feintgine
             glm::vec4 uv;
             GLuint    textureId;
             float     depth;
+            float     angle;
         };
 
     public:
@@ -112,10 +113,13 @@ namespace Feintgine
         
         glm::vec2 getFrameSize()      const { return m_size; }
 
+        void setAngle(float angle) { m_angle = angle; }
+
     private:
         void recalculate();
         void pushQuad(int slot, float x, float y, float w, float h,float depth);
 
+        // float getCalculatedAngle(PartSlot slot);
         F_FramePart             m_parts[COUNT];
         std::vector<CachedQuad> m_cachedQuads;
 
@@ -129,6 +133,7 @@ namespace Feintgine
         float m_borderThickness  = 8.0f;  // tune this to match the line in your sprite
         int m_hideCornerMask = 0;
         int m_hideLineMask   = 0;
+        float m_angle = 0.0f;
 
     };
 }

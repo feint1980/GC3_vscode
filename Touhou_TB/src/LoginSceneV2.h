@@ -43,10 +43,11 @@
 
 #include "ControlHandler.h"
 
+
 #include "LuaEventHandler.h"
 #include <F_FrameObject.h>
 #include <F_FramePanel.h>
-
+#include <F_CompositeObject.h>
 
 class LoginSceneV2 : public Feintgine::IGameScreen
 {
@@ -119,6 +120,7 @@ private:
 
     Feintgine::F_FrameObject m_frameObject;
     Feintgine::F_FramePanel m_framePanel;
+    Feintgine::F_CompositeObject m_compositeObject;
 
     //LuaEventHandler m_luaEventHandler;
 

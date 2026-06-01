@@ -66,6 +66,8 @@ namespace Feintgine
 
         void draw(SpriteBatch& batch) const;
 
+        void setAngle(float angle) { m_angle = angle; }
+
     private:
         F_Sprite  m_sprite;
         EmblemType m_type      = EMBLEM_CORNER;
@@ -74,6 +76,7 @@ namespace Feintgine
         glm::vec2  m_offset    = glm::vec2(0.0f);
         float      m_depth     = 60.0f;
         bool       m_dirty     = true;
+        float      m_angle     = 0.0f;
         float m_emblemScale = 1.0f;
 
         std::vector<CachedQuad> m_cachedQuads;

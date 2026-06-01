@@ -90,4 +90,14 @@ void F_FramePanel::draw(SpriteBatch& spriteBatch)
     }
 }
 
+void F_FramePanel::setAngle(float angle)
+{
+    m_angle = angle;
+    m_frame.setAngle(angle);
+    for (auto& e : m_emblems)
+    {
+        e.setAngle(angle);
+    }
+}
+
 } // namespace Feintgine
