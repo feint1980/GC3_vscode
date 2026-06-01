@@ -127,10 +127,10 @@ void LoginSceneV2::onEntry()
     // m_compositeObject.addObject("emblem_pack.xml/corner_c_25.png",glm::vec2(0, 250), glm::vec2(2.0f), Feintgine::Color(255, 255, 255, 255),0.0f, 0.0f);
 
 
-    m_compositeObject.addAnimatedObject("./Assets/F_AObjects/meiling_tb.xml", "idle",glm::vec2(0, 0), glm::vec2(1.0f), Feintgine::Color(255, 255, 255, 255),0.0f, 0.0f);
+    m_compositeObject.addAnimatedObject("./Assets/F_AObjects/patchouli_tb.xml", "idle",glm::vec2(0, 0), glm::vec2(1.0f), Feintgine::Color(255, 255, 255, 255),0.0f, 0.0f);
 
     m_compositeObject.addPanel("Basic_border",0.5f);
-    m_compositeObject.addPanelCornerEmblem("emblem_pack.xml/corner_b_05.png", 3,0, glm::vec2(19,-19),0.5f);
+    m_compositeObject.addPanelCornerEmblem("emblem_pack.xml/corner_b_07.png", 3,0, glm::vec2(19,-19),0.5f);
 
 
     // m_framePanel.hideBorderCorner(1);
