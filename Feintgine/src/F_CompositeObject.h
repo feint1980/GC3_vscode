@@ -28,7 +28,7 @@ class F_CompositeObject
 struct tAObject
 {
     // std::unique_ptr<F_AnimatedObject> animatedObject= std::make_unique<F_AnimatedObject>(); //F_AnimatedObject animatedObject;
-    F_AnimatedObject * animatedObject = nullptr;
+    F_AnimatedObject animatedObject;// = nullptr; // need to be a pointer for some reason
     glm::vec2 posOffset;
     glm::vec2 scale; // compare to F_Composite object
     Feintgine::Color color;
@@ -54,7 +54,7 @@ public:
 
     void init(const glm::vec2 & pos, const glm::vec2 & dim, float angle = 0, float depth = 5.0f);
 
-    void addObject( const std::string & spriteNameWithPacket, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth);
+    void addObject( const std::string & spriteNameWithPacket, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color = Feintgine::Color(255,255,255,255), float angle = 0, float depth = 5.0f);
     // void init()
 
     void addAnimatedObject(const std::string & animFile, const std::string & defaultAnim, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth);

@@ -106,7 +106,7 @@ void F_FrameEmblem::draw(SpriteBatch& batch) const
     for (auto& q : m_cachedQuads)
     {
         
-        batch.draw(q.destRect, q.uv, q.textureId, q.depth, { 255,255,255,255 }, q.angle /57.2957795f);
+        batch.draw(q.destRect, q.uv, q.textureId, q.depth, m_color, q.angle /57.2957795f);
     }
 }
 

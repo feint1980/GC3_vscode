@@ -43,7 +43,15 @@ namespace Feintgine
         void setPos  (const glm::vec2& pos);
         void setSize (const glm::vec2& size);
         void setDepth(float depth)          { m_frame.setDepth(depth); }
-        void setColor(const Color& color)   { m_frame.setColor(color); }
+        void setColor(const Color& color)   { 
+            
+            m_frame.setColor(color);
+            // m_frame.setColor(color); 
+            // for (auto& emblem : m_emblems) {
+            //     emblem.setColor(color);
+            // }
+        
+        }
         void setScale(float scale)          
         { 
             m_scale = scale;
@@ -64,6 +72,7 @@ namespace Feintgine
             m_frame.setHideLineMask(mask);
             // rebuildHideMasks();
         }
+
 
         void setAngle(float angle);
         float getAngle() const { return m_angle; }

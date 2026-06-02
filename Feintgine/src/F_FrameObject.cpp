@@ -8,11 +8,11 @@ namespace Feintgine
 constexpr const char* F_FrameObject::SPRITE_NAMES[COUNT];
 
 void F_FrameObject::init(const std::string& packetname,
-                         const glm::vec2&   pos,
-                         const glm::vec2&   size,
-                         float              depth,
-                         const Color&       color,
-                         float              borderScale)
+                        const glm::vec2&   pos,
+                        const glm::vec2&   size,
+                        float              depth,
+                        const Color&       color,
+                        float              borderScale)
 {
     m_pos   = pos;
     m_size  = size;
@@ -28,6 +28,7 @@ void F_FrameObject::init(const std::string& packetname,
         m_parts[i].sprite = sm->getSprite(packetname + "/" + SPRITE_NAMES[i]);
         m_parts[i].slot   = (PartSlot)i;
     }
+    m_cachedQuads.reserve(COUNT);
 }
 
 void F_FrameObject::pushQuad(int slot, float x, float y, float w, float h,float depth)
@@ -109,12 +110,25 @@ void F_FrameObject::recalculate()
 
 void F_FrameObject::draw(SpriteBatch& spriteBatch)
 {
-    if (m_dirty) recalculate();
+    if (m_dirty)
+    {
+        recalculate();
+    } 
 
     for (auto& q : m_cachedQuads)
     {
         spriteBatch.draw(q.destRect, q.uv, q.textureId, q.depth, m_color,m_angle/57.2957795f);
     }
+}
+
+void F_FrameObject::setColor(const Color& color) 
+{
+    
+    std::cout <<"data eeewss \n";
+    m_dirty = true;
+    // m_color = Color(255, 255, 255, 255);
+    // m_color = color;
+    // m_dirty = true;
 }
 
 } // namespace Feintgine

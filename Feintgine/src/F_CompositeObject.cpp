@@ -40,15 +40,15 @@ void F_CompositeObject::addObject( const std::string & spriteNameWithPacket, con
 void F_CompositeObject::addAnimatedObject(const std::string & animFile,const std::string & defaultAnim, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth)
 {
     tAObject tAnimatedObject;
-    tAnimatedObject.animatedObject = new F_AnimatedObject();
+    // tAnimatedObject.animatedObject = new F_AnimatedObject();
     // tAnimatedObject.animatedObject = std::make_unique<F_AnimatedObject>();
-    tAnimatedObject.animatedObject->init(animFile);
+    tAnimatedObject.animatedObject.init(animFile);
     tAnimatedObject.posOffset = posOffset;
     tAnimatedObject.scale = scale;
     tAnimatedObject.color = color;
     tAnimatedObject.angle = angle;
     tAnimatedObject.depth = depth;
-    tAnimatedObject.animatedObject->playAnimation(defaultAnim);
+    tAnimatedObject.animatedObject.playAnimation(defaultAnim);
     m_animatedObjectList.push_back(tAnimatedObject);
     flagUpdate();
 }
@@ -76,12 +76,12 @@ void F_CompositeObject::draw(Feintgine::SpriteBatch & spriteBatch)
     {
         for (auto i = 0; i < m_animatedObjectList.size(); i++)
         {
-            m_animatedObjectList[i].animatedObject->setPos(m_pos + m_animatedObjectList[i].posOffset);
-            m_animatedObjectList[i].animatedObject->setScale(m_animatedObjectList[i].scale);
-            m_animatedObjectList[i].animatedObject->setColor(m_animatedObjectList[i].color);
-            m_animatedObjectList[i].animatedObject->setAngle(m_animatedObjectList[i].angle); // consider convert to degree
-            m_animatedObjectList[i].animatedObject->setDepth(m_animatedObjectList[i].depth);
-            m_animatedObjectList[i].animatedObject->draw(spriteBatch);
+            m_animatedObjectList[i].animatedObject.setPos(m_pos + m_animatedObjectList[i].posOffset);
+            m_animatedObjectList[i].animatedObject.setScale(m_animatedObjectList[i].scale);
+            m_animatedObjectList[i].animatedObject.setColor(m_animatedObjectList[i].color);
+            m_animatedObjectList[i].animatedObject.setAngle(m_animatedObjectList[i].angle); // consider convert to degree
+            m_animatedObjectList[i].animatedObject.setDepth(m_animatedObjectList[i].depth);
+            m_animatedObjectList[i].animatedObject.draw(spriteBatch);
         }
     }
     if(m_type & ObjectTypes::TF_FramePanel)
@@ -97,7 +97,7 @@ void F_CompositeObject::update(float deltaTime)
     {
         for (auto i = 0; i < m_animatedObjectList.size(); i++)
         {
-            m_animatedObjectList[i].animatedObject->update(deltaTime);
+            m_animatedObjectList[i].animatedObject.update(deltaTime);
         }
     }
 }

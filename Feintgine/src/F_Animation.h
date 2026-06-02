@@ -13,7 +13,6 @@ namespace Feintgine {
 		~F_Animation();
 		void create(const std::string & animationName);
 
-
 		void addAnim(const f_anim & tsprite, bool isLoop);
 
 		void updateAnim(float deltaTime);
@@ -37,8 +36,12 @@ namespace Feintgine {
 		std::vector<f_anim> getAnims() { return m_anims; }
 		std::string getAnimName() const { return m_animName; }
 
-		f_anim * getCurrentAnim() const {
-			return m_currentSprite;
+		f_anim* getCurrentAnim() const {
+			if (m_curIndex >= 0 && m_curIndex < (int)m_anims.size())
+			{
+				return &m_anims[m_curIndex];
+			}
+			return nullptr;
 		}
 
 		void setCurrentAnimTime(float value);
@@ -61,22 +64,16 @@ namespace Feintgine {
 
 		std::vector<f_anim> m_anims;
 
-		//std::weak_ptr <f_anim> m_currentSprite;
-		//std::shared_ptr<f_anim> m_currentSpriteGuard;
-		f_anim * m_currentSprite = nullptr;
 		std::string m_animName = "";
+
 		int loopIndex = 0;
-
 		bool m_loopSet = false;
-
 		int m_curIndex = 0;
 		float m_animTime = 0.0f;
 		float m_animSpeed = 1.0f;
 
 		int m_time = -1;
-
 		int m_loop = 0;
-
 		bool m_playing = false;
 	};
 

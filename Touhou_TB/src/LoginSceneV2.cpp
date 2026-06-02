@@ -132,7 +132,8 @@ void LoginSceneV2::onEntry()
     m_compositeObject.addPanel("Basic_border",0.5f);
     m_compositeObject.addPanelCornerEmblem("emblem_pack.xml/corner_b_07.png", 3,0, glm::vec2(19,-19),0.5f);
 
-
+    // m_compositeObject.getFramePanel()->setColor(Feintgine::Color(255, 255, 255, 255));
+    m_compositeObject.getFramePanel()->setColor(Feintgine::Color(255, 255, 255, 255));
     // m_framePanel.hideBorderCorner(1);
 
     // m_frameObject.init("Basic_border", glm::vec2(0,-10), glm::vec2(500, 200));

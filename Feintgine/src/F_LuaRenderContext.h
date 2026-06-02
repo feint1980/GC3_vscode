@@ -21,16 +21,22 @@ namespace Feintgine
         F_LuaRenderContext();
         ~F_LuaRenderContext();
 
-        void init(lua_State * script);
+        /*
+        Reason why maxCompositeObjects need to be specificly has to state the number, is a reminder that, if you exceed the number, the pointer that return to Lua will be invalid 
+        */
+        void init(lua_State * script, int maxCompositeObjects);
         
         void update(float delta);
         
         void draw(Feintgine::SpriteBatch & spriteBatch);
 
+        F_CompositeObject * addObjectComposite(const glm::vec2 & pos, const glm::vec2 & dim, float angle, float depth);
+
+        
     private:
         lua_State * m_script = nullptr;
-        std::vector<EmptyObject> m_emptyObjects;
-        std::vector<F_Sprite> m_spriteObjects;
+        std::vector<F_CompositeObject> m_compositeObjects;
+
     };
 
 }

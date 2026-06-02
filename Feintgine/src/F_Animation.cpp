@@ -8,11 +8,6 @@ namespace Feintgine
 	F_Animation::F_Animation()
 	{
 		m_curIndex = 0;
-		//m_currentSprite = new f_anim();//m_anims[0];
-		//m_currentSpriteGuard = std::shared_ptr<f_anim>(m_currentSprite);
-		//m_currentSpriteGuard = m_currentSprite;
-		//m_currentSprite = nullptr;
-
 	}
 
 	void F_Animation::setInverseAnimation()
@@ -30,20 +25,6 @@ namespace Feintgine
 		m_animTime = 0;
 		m_loopSet = false;
 		m_animName = "";
-		//m_currentSprite = nullptr;
-		//std::cout << "the last control was " << m_currentSprite << "\n";
-		
-// 		for (int i = 0; i < m_anims.size(); i++)
-// 		{
-// 			m_anims.erase(m_anims.begin() + i);
-// 		}
-// 		m_anims.clear();
-		
-		//delete
-// 		if (m_currentSprite)
-// 		{
-// 			delete m_currentSprite;
-// 		}
 		
 	}
 
@@ -54,13 +35,11 @@ namespace Feintgine
 		{
 			if (isLoop)
 			{
-
 				m_loop = m_anims.size() - 1;
 				m_loopSet = true;
 			}
 		}
 	}
-
 
 	void F_Animation::setAnimationSpeed(float speed)
 	{
@@ -69,81 +48,39 @@ namespace Feintgine
 
 	void F_Animation::updateAnim(float deltaTime)
 	{
-		if (m_anims.size() > 1)
-		{	
-			//std::cout << "data " << m_animName << " " << m_anims.size() << "\n";
+			
+		if (m_anims.size() <= 1 || !m_playing)
+		{
+			return;
+		} 
+		if (m_curIndex < 0 || m_curIndex >= (int)m_anims.size())
+		{
+			return;
+		} 
+
+		if (deltaTime > 0.95f && deltaTime < 1.0f)
+		{
+			deltaTime = 1.0f;
 			/*I don't know why, I don't want to know why, I wonder how I got here is the first place. This will
 			cause problem that animation on 60hz monitor will be slower than 144hz monitor unless I do this horrible thing */
-			if (deltaTime > 0.95f)
+		}  
+		m_animTime += m_animSpeed * deltaTime;
+		if (m_animTime >= m_anims[m_curIndex].time)
+		{
+			m_animTime = 0.0f;
+			m_curIndex++;
+			if (m_curIndex >= (int)m_anims.size())
 			{
-				deltaTime = 1.0f;
-			}
-			// End of work around 
-			if (m_currentSprite)
-			{
+				m_curIndex = m_loop;
 				if (m_time > 0)
 				{
-					if (m_playing)
-					{
-
-						m_animTime += (m_animSpeed * deltaTime);
-						//std::cout << m_animTime << "\n";
-						if (m_animTime >= m_currentSprite->time)
-						{
-							m_curIndex++;
-							m_animTime = 0.0f;
-							if (m_curIndex >= m_anims.size())
-							{
-								m_curIndex = m_loop;
-								m_time--;
-								if (m_time == 0)
-								{
-									m_playing = false;
-								}
-							}
-
-						}
-						if (m_curIndex >= 0 && m_curIndex <= m_anims.size())
-						{
-							m_currentSprite = &m_anims[m_curIndex];
-						}
-					}
-					else if (m_time == 0)
+					m_time--;
+					if (m_time == 0)
 					{
 						m_playing = false;
 					}
 				}
-				else if (m_time < 0)
-				{
-					if (m_playing)
-					{
-						if (m_currentSprite)
-						{
-							m_animTime += (m_animSpeed  * deltaTime);
-							//std::cout << m_animTime << "\n";
-							if (m_animTime >= m_currentSprite->time)
-							{
-								m_animTime = 0.0f;
-								m_curIndex++;
-								if (m_curIndex >= m_anims.size())
-								{
-									m_curIndex = m_loop;
-								}
-							}
-							if (m_curIndex >= 0 && m_curIndex <= m_anims.size())
-							{
-								m_currentSprite = &m_anims[m_curIndex];
-							}
-							else
-							{
-								m_currentSprite = nullptr;
-							}
-						}
-					}
-
-				}
 			}
-
 		}
 	}
 
@@ -162,6 +99,14 @@ namespace Feintgine
 	void F_Animation::removeAnimAt(int index)
 	{
 		m_anims.erase(m_anims.begin() + index);
+		if(m_curIndex == index)
+		{
+			m_curIndex--;
+		}
+		if (m_curIndex < 0)
+		{
+			m_curIndex = 0;
+		}
 		if (index == m_loop)
 		{
 			m_loop = 0;
@@ -170,30 +115,30 @@ namespace Feintgine
 
 	void F_Animation::playAnimation(int time, int index)
 	{
-		m_time = time;
-		m_playing = true;
-		//resetAnim();
-		m_curIndex = index;
-		if (m_curIndex < 0)
+		
+		if (index < 0)
 		{
 			return;
 		}
+		m_curIndex = index;
+		m_time = time;
+		m_playing = true;
+		
 		if (m_anims.size() > 0)
 		{
-			m_curIndex = 0;
-			
-			m_currentSprite = &m_anims[m_curIndex];
-			//currentSpriteGuard = std::make_shared<f_anim>(*m_currentSprite);
-		}
-		else
-		{
-			m_currentSprite = nullptr;
+			m_curIndex = 0;			
 		}
 	}
 
 	void F_Animation::setAnimation()
 	{
-		m_currentSprite = &m_anims[m_curIndex];
+		if(m_anims.size() > 0 && m_curIndex >= 0 && m_curIndex <= m_anims.size())
+		{
+			if (m_curIndex < 0 || m_curIndex >= (int)m_anims.size())
+			{
+				m_curIndex = 0;
+			}
+		}
 	}
 
 	void F_Animation::stop()
@@ -203,9 +148,9 @@ namespace Feintgine
 
 	void F_Animation::setCurrentAnimTime(float value)
 	{
-		if (m_currentSprite)
+		if (m_curIndex >= 0 && m_curIndex < (int)m_anims.size())
 		{
-			m_currentSprite->time = value;
+			m_anims[m_curIndex].time = value;
 		}
 	}
 
@@ -216,10 +161,9 @@ namespace Feintgine
 
 	void F_Animation::setAnimIndex(int index)
 	{
-		if (index >= 0 && index <= m_anims.size())
+		if (index >= 0 && index < (int)m_anims.size())
 		{
 			m_curIndex = index;
-			m_currentSprite = &m_anims[m_curIndex];
 		}
 	}
 

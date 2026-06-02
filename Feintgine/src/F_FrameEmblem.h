@@ -67,6 +67,7 @@ namespace Feintgine
         void draw(SpriteBatch& batch) const;
 
         void setAngle(float angle) { m_angle = angle; }
+        void setColor(const Color& color) { m_color = color; }
 
     private:
         F_Sprite  m_sprite;
@@ -78,6 +79,8 @@ namespace Feintgine
         bool       m_dirty     = true;
         float      m_angle     = 0.0f;
         float m_emblemScale = 1.0f;
+        Color m_color = Color(255, 255, 255, 255);
+
 
         std::vector<CachedQuad> m_cachedQuads;
 

@@ -1,3 +1,3 @@
 CMakeFiles/FeintEditor.dir/src/ScreenBuilder.cpp.obj: \
- E:\template\GC_port\Editor\src\ScreenBuilder.cpp \
- E:\template\GC_port\Editor\src\ScreenBuilder.h
+ D:\VS_Code_prj\GC3_vscode\Editor\src\ScreenBuilder.cpp \
+ D:\VS_Code_prj\GC3_vscode\Editor\src\ScreenBuilder.h

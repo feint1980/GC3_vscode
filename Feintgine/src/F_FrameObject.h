@@ -85,8 +85,7 @@ namespace Feintgine
         void setPos  (const glm::vec2& pos)  { m_pos   = pos;   m_dirty = true; }
         void setSize (const glm::vec2& size) { m_size  = size;  m_dirty = true; }
         void setDepth(float depth)           { m_depth = depth; }
-        void setColor(const Color& color)    { m_color = color; }
-
+        void setColor(const Color& color) ;
         glm::vec2 getPos()   const { return m_pos;   }
         glm::vec2 getSize()  const { return m_size;  }
         float     getDepth() const { return m_depth; }

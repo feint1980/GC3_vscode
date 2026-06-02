@@ -1,18 +1,11 @@
 #include "F_AnimatedObject.h"
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <iostream>
 //#include <>
 namespace Feintgine
 {
 
-
-
 	F_AnimatedObject::F_AnimatedObject()
 	{
 		m_animations.clear();
-		//std::cout << "called \n";
 		m_currentAnimation = nullptr;
 	}
 
@@ -25,25 +18,12 @@ namespace Feintgine
 
 	void F_AnimatedObject::init(const std::string & filePath,const glm::vec2 & scaleFactor,bool loadOnce )
 	{
-		//std::cout << "init animate object " << filePath << " \n";
 		m_filePath = filePath;
 		m_animations.clear();
 		m_currentAnimation = nullptr;
 		m_scale = scaleFactor;
 		xml_document<> doc;
 
-// 		std::ifstream file(m_filePath.c_str());
-// 		if (!file)
-// 		{
-// 			std::cout << "nothing found \n";
-// 			return;
-// 		}
-		
-// 		std::vector<char> buffer(std::istreambuf_iterator<char>(filePath),
-// 			std::istreambuf_iterator<char>());
-		//std::ifstream file(filePath.c_str());
-		//std::vector<char> buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
-		//buffer.push_back('\0');
 		std::vector<char> buffer;
 		if(loadOnce)
 		{
@@ -54,13 +34,10 @@ namespace Feintgine
 			std::ifstream file(m_filePath.c_str());
 			buffer = std::vector<char>((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
 			file.close();
-			//buffer.push_back('\0');
 		}
 
-		//std::vector<char> buffer = ResourceManager::getPreloadedFile(m_filePath.c_str());  //((std::istreambuf_iterator<char>(filePath)), std::istreambuf_iterator<char>());
 		buffer.push_back('\0');
 
-		//ResourceManager::getPreloadedFile(m_filePath.c_str());
 		doc.parse<0>(&buffer[0]);
 
 		xml_node<> * F_AObj_node = nullptr;
@@ -116,26 +93,21 @@ namespace Feintgine
 					t_animation.addAnim(anim,isLoop);
 					//std::cout << t_animation.getAnimName() << "\n";
 				}
-			//m_testAnims.push_back(t_animation);
-			//std::cout << "loading " << t_animation.getAnimName() << "\n";
 			m_animations.insert(std::pair<std::string, F_Animation>(t_animation.getAnimName(), t_animation));
-//  			{
-//  				//std::cout << "added animation " << t_animation.getAnimName() << " successfully \n";
-//  			}
-//  			else
-//  			{
-//  				//std::cout << "failed to add animation " << t_animation.getAnimName() << " \n";
-//  			}
+
 		}
 		m_isInited = true;
 
 		if(m_animations.size() > 0)
 		{
+			
 			std::string animName = m_animations.begin()->first;
 			playAnimation(animName);
+
+			// m_currentAnimation = &m_animations.begin()->second;
 		}
 		//std::cout << "loaded " << m_name << "with " << m_testAnims.size() << " anims \n";
-		m_currentAnimation = &m_animations.begin()->second;
+		
 
 	}
 
@@ -155,6 +127,12 @@ namespace Feintgine
 		F_AObj_node->append_attribute(doc.allocate_attribute("name", name.c_str()));
 		xml_node<> * animations_node = doc.allocate_node(node_element,"animations");
 		F_AObj_node->append_node(animations_node);
+
+		auto poolStr = [&](const std::string& s) -> const char* 
+		{
+			stringPool.push_back(s);
+			return stringPool.back().c_str();
+		};
 
 		
 		for (auto it = m_animations.begin(); it != m_animations.end(); it++)
@@ -184,10 +162,8 @@ namespace Feintgine
 				
 				memcpy(buffer, nameValue.c_str(), size + 1);
 				xml_node<> * anim_node = doc.allocate_node(node_element,"anim");
-				//std::string trimedPacket = feint_common::Instance()->getFileNameFromPath(it->second.getAnims()[i].sprite.getPacketName());
 				
-				
-				anim_node->append_attribute(doc.allocate_attribute("name", buffer));
+				anim_node->append_attribute(doc.allocate_attribute("name",poolStr(nameValue)));
 				
 				timeValue = feint_common::Instance()->convertPreciousFloatToString(it->second.getAnims()[i].time);
 				const std::string::size_type size2 = timeValue.size();
@@ -195,13 +171,11 @@ namespace Feintgine
 				
 				memcpy(buffer2, timeValue.c_str(), size2 + 1);
 				
+				anim_node->append_attribute(doc.allocate_attribute("time",
+					poolStr(timeValue)));
 
- 				anim_node->append_attribute(doc.allocate_attribute("time",
-					buffer2));
-
-
-				 oXValue = feint_common::Instance()->convertPreciousFloatToString(it->second.getAnims()[i].offset.x);
-				 oYValue = feint_common::Instance()->convertPreciousFloatToString(it->second.getAnims()[i].offset.y);
+				oXValue = feint_common::Instance()->convertPreciousFloatToString(it->second.getAnims()[i].offset.x);
+				oYValue = feint_common::Instance()->convertPreciousFloatToString(it->second.getAnims()[i].offset.y);
 				//oXValue = std::to_string(it->second.getAnims()[i].offset.x);
 				//oYValue = std::to_string(it->second.getAnims()[i].offset.y);
 
@@ -211,15 +185,16 @@ namespace Feintgine
 				memcpy(buffer3, oXValue.c_str(), size3 + 1);
 				
 				anim_node->append_attribute(doc.allocate_attribute("offset_x",
-					buffer3));
+					poolStr(oXValue)));
+
 				
 				const std::string::size_type size4 = oYValue.size();
 				char *buffer4 = new char[size4 + 1];   //we need extra char for NUL
 
 				memcpy(buffer4, oYValue.c_str(), size4 + 1);
-
+				
 				anim_node->append_attribute(doc.allocate_attribute("offset_y",
-					buffer4));
+					poolStr(oYValue)));
 				
 				if (i == it->second.getLoopAnim())
 				{
@@ -232,8 +207,7 @@ namespace Feintgine
 						"1"));
 				}
 
-
- 				anims_node->append_node(anim_node);
+				anims_node->append_node(anim_node);
 			}
 			
 			animations_node->append_node(animation_node);
@@ -281,7 +255,6 @@ namespace Feintgine
 		if (m_currentAnimation)
 		{
 			m_currentAnimation->stop();
-		//	m_currentAnimation->resetAnim();
 		}
 		
 		auto it = m_animations.find(name);
@@ -291,23 +264,10 @@ namespace Feintgine
 			if (m_currentAnimation)
 			{
 				m_currentAnimation->playAnimation(time);
-				m_currentAnimationGuard = std::make_shared<F_Animation>(*m_currentAnimation);
+				// m_currentAnimationGuard = std::make_shared<F_Animation>(*m_currentAnimation);
 			}
-			//else
-			//{
-			//	m_currentAnimation->stop();
-				//m_currentAnimation->resetAnim();
-				//std::cout << "not play \n";
-			//}
+			
 		}
-	//	else
-	//	{
-			//m_currentAnimation->stop();
-			//m_currentAnimation->resetAnim();
-			//std::cout << "animation " << name << " not found !\n";
-	//	}
-
-	
 	}
 
 	void F_AnimatedObject::setAnimation(const std::string & name)
@@ -427,98 +387,8 @@ namespace Feintgine
 	{
 		for(auto it = m_animations.begin(); it != m_animations.end(); it++)
 		{
-			//it->second.set
 			it->second.setInverseAnimation();
 		}
 	}
 
-	// 	void f_animation::updateAnim(float deltaTime)
-// 	{
-// 
-// 		
-// 		if (m_anims.size() > 1)
-// 		{
-// 			//std::cout << "data " << m_animName << " " << m_anims.size() << "\n";
-// 			/*I don't know why, I don't want to know why, I wonder how I got here is the first place, but it will
-// 			cause problem that animation on 60hz monitor will be slower than 144hz monitor unless I do this horrible thing */
-// 			if (deltaTime > 0.95f)
-// 			{
-// 				deltaTime = 1.0f;
-// 			}
-// 			// End of work around 
-// 			if (m_currentSprite)
-// 			{
-// 				if (m_currentSprite->sprite.getTexture().id > 0)
-// 				{
-// 
-// 
-// 					if (m_time > 0)
-// 					{
-// 						if (m_playing)
-// 						{
-// 
-// 							m_animTime += (m_animSpeed * deltaTime);
-// 							//std::cout << m_animTime << "\n";
-// 							if (m_animTime >= m_currentSprite->time)
-// 							{
-// 								m_curIndex++;
-// 								m_animTime = 0.0f;
-// 								if (m_curIndex >= m_anims.size())
-// 								{
-// 									m_curIndex = m_loop;
-// 									m_time--;
-// 									if (m_time == 0)
-// 									{
-// 										m_playing = false;
-// 									}
-// 								}
-// 
-// 							}
-// 							if (m_curIndex >= 0)
-// 							{
-// 
-// 								if (m_curIndex <= m_anims.size())
-// 								{
-// 									m_currentSprite = &m_anims[m_curIndex];
-// 								}
-// 
-// 							}
-// 
-// 						}
-// 
-// 					}
-// 					else if (m_time < 0)
-// 					{
-// 						if (m_playing)
-// 						{
-// 							if (m_currentSprite)
-// 							{
-// 								m_animTime += (m_animSpeed  * deltaTime);
-// 								//std::cout << m_animTime << "\n";
-// 								if (m_animTime >= m_currentSprite->time)
-// 								{
-// 									m_animTime = 0.0f;
-// 									m_curIndex++;
-// 									if (m_curIndex >= m_anims.size())
-// 									{
-// 										m_curIndex = m_loop;
-// 									}
-// 
-// 								}
-// 								if (m_curIndex <= m_anims.size())
-// 								{
-// 									m_currentSprite = &m_anims[m_curIndex];
-// 								}
-// 							}
-// 						}
-// 
-// 						//davai
-// 					}
-// 				}
-// 			}
-// 		}
-// 		
-// 
-// 		//davai2
-// 	}
 }
