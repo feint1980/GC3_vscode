@@ -22,15 +22,15 @@ namespace Feintgine{
 		Color(glm::vec4 t_color) : r(t_color.x ), g(t_color.y), b(t_color.z ), a(t_color.w )
 		{}
 		// copy contructor
-		Color(const Color & t_color) : r(t_color.r), g(t_color.g), b(t_color.b), a(t_color.a) { }
+		// Color(const Color & t_color) : r(t_color.r), g(t_color.g), b(t_color.b), a(t_color.a) { }
 		// assign operator
-		Color & operator=(const Color & t_color) {
-			r = t_color.r;
-			g = t_color.g;
-			b = t_color.b;
-			a = t_color.a;
-			return *this;
-		}
+		// Color & operator=(const Color & t_color) {
+		// 	r = t_color.r;
+		// 	g = t_color.g;
+		// 	b = t_color.b;
+		// 	a = t_color.a;
+		// 	return *this;
+		// }
 		
 
 		Color(float R, float G, float B, float A) :

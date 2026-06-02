@@ -42,13 +42,15 @@ void F_FrameObject::pushQuad(int slot, float x, float y, float w, float h,float 
 
     F_Sprite& spr = m_parts[slot].sprite;
     // SpriteBatch expects bottom-left, pass as-is
-    m_cachedQuads.push_back({
-        { x, y, w, h },
-        spr.getUV(),
-        spr.getTexture().id,
-        depth,
-
-    });
+    
+    CachedQuad q;
+    q.destRect = glm::vec4( x, y, w, h );
+    q.uv = spr.getUV();
+    q.textureId = spr.getTexture().id;
+    q.depth = m_depth +  (depth * 0.01f);
+    
+    
+    m_cachedQuads.push_back(q);
 }
 
 void F_FrameObject::recalculate()
@@ -115,20 +117,27 @@ void F_FrameObject::draw(SpriteBatch& spriteBatch)
         recalculate();
     } 
 
-    for (auto& q : m_cachedQuads)
+
+    for(int i = 0 ; i < m_cachedQuads.size(); i++)
     {
-        spriteBatch.draw(q.destRect, q.uv, q.textureId, q.depth, m_color,m_angle/57.2957795f);
+        spriteBatch.draw(m_cachedQuads[i].destRect, m_cachedQuads[i].uv, m_cachedQuads[i].textureId, m_cachedQuads[i].depth, m_color, m_angle/57.2957795f);
     }
+
+    // for (auto& q : m_cachedQuads)
+    // {
+        // spriteBatch.draw(q.destRect, q.uv, q.textureId, q.depth, Color(255, 255, 255, 255),m_angle/57.2957795f);
+    // }
 }
 
-void F_FrameObject::setColor(const Color& color) 
+void F_FrameObject::setColor( const Feintgine::Color& color) 
 {
     
-    std::cout <<"data eeewss \n";
-    m_dirty = true;
-    // m_color = Color(255, 255, 255, 255);
-    // m_color = color;
-    // m_dirty = true;
+    // std::cout << "sizeof Color: " << sizeof(Feintgine::Color) << "\n";
+    // std::cout << "sizeof m_color: " << sizeof(m_color) << "\n";
+    m_color = color;
+    // memcpy(&m_color, &color, sizeof(Feintgine::Color));
+   // m_dirty = true;
+    // m_color = Feintgine::Color(255, 255, 255, 255); // remove this will work, what ?  
 }
 
 } // namespace Feintgine

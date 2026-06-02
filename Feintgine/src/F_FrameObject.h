@@ -67,7 +67,7 @@ namespace Feintgine
             glm::vec4 uv;
             GLuint    textureId;
             float     depth;
-            float     angle;
+            // float     angle;
         };
 
     public:
@@ -85,11 +85,11 @@ namespace Feintgine
         void setPos  (const glm::vec2& pos)  { m_pos   = pos;   m_dirty = true; }
         void setSize (const glm::vec2& size) { m_size  = size;  m_dirty = true; }
         void setDepth(float depth)           { m_depth = depth; }
-        void setColor(const Color& color) ;
+        void setColor( const Feintgine::Color& color) ;
         glm::vec2 getPos()   const { return m_pos;   }
         glm::vec2 getSize()  const { return m_size;  }
         float     getDepth() const { return m_depth; }
-        Color     getColor() const { return m_color; }
+        Feintgine::Color     getColor() const { return m_color; }
 
         void draw(SpriteBatch& spriteBatch);
         float getBorderScale() const { return m_borderScale; }
@@ -117,22 +117,26 @@ namespace Feintgine
     private:
         void recalculate();
         void pushQuad(int slot, float x, float y, float w, float h,float depth);
-
         // float getCalculatedAngle(PartSlot slot);
         F_FramePart             m_parts[COUNT];
         std::vector<CachedQuad> m_cachedQuads;
 
-        glm::vec2 m_pos   = { 0, 0 };
-        glm::vec2 m_size  = { 0, 0 };
+        glm::vec2 m_pos   = glm::vec2(0, 0 );
+        glm::vec2 m_size  = glm::vec2(0, 0 );
         float     m_depth = 0.5f;
-        Color     m_color = Color(255, 255, 255, 255);
-        bool      m_dirty = true;
+    
         float m_borderScale = 1.0f;
         float m_overlap          = 6.0f;
         float m_borderThickness  = 8.0f;  // tune this to match the line in your sprite
         int m_hideCornerMask = 0;
         int m_hideLineMask   = 0;
+        Feintgine::Color     m_color = Feintgine::Color(255, 255, 255, 255); //works
+        float padding = 0.0f; // put after Color, great example for padding
         float m_angle = 0.0f;
+        
+        
+        bool      m_dirty = true;
+
 
     };
 }
