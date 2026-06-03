@@ -46,10 +46,11 @@ namespace Feintgine
         void setColor(const Color& color)   { 
             
             m_frame.setColor(color);
-            // m_frame.setColor(color); 
-            // for (auto& emblem : m_emblems) {
-            //     emblem.setColor(color);
-            // }
+            
+            for (auto& emblem : m_emblems) 
+            {
+                emblem.setColor(color);
+            }
         
         }
         void setScale(float scale)          

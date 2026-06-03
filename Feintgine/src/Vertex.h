@@ -17,7 +17,7 @@ namespace Feintgine{
 		float y;
 	};
 
-	struct Color {
+	alignas(16) struct Color {
 		Color() : r(0), g(0), b(0), a(0) { }
 		Color(glm::vec4 t_color) : r(t_color.x ), g(t_color.y), b(t_color.z ), a(t_color.w )
 		{}

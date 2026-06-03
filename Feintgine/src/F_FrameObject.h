@@ -130,8 +130,8 @@ namespace Feintgine
         float m_borderThickness  = 8.0f;  // tune this to match the line in your sprite
         int m_hideCornerMask = 0;
         int m_hideLineMask   = 0;
-        Feintgine::Color     m_color = Feintgine::Color(255, 255, 255, 255); //works
-        float padding = 0.0f; // put after Color, great example for padding
+        alignas(16) Feintgine::Color     m_color = Feintgine::Color(255, 255, 255, 255); //works
+        // float padding = 0.0f; // put after Color, great example for padding, context If padding is not here, m_angle will be changed when m_color it set/assign
         float m_angle = 0.0f;
         
         

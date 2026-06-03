@@ -79,7 +79,7 @@ void F_CompositeObject::draw(Feintgine::SpriteBatch & spriteBatch)
             m_animatedObjectList[i].animatedObject.setPos(m_pos + m_animatedObjectList[i].posOffset);
             m_animatedObjectList[i].animatedObject.setScale(m_animatedObjectList[i].scale);
             m_animatedObjectList[i].animatedObject.setColor(m_animatedObjectList[i].color);
-            m_animatedObjectList[i].animatedObject.setAngle(m_animatedObjectList[i].angle); // consider convert to degree
+            m_animatedObjectList[i].animatedObject.setAngle(m_angle); // consider convert to degree
             m_animatedObjectList[i].animatedObject.setDepth(m_animatedObjectList[i].depth);
             m_animatedObjectList[i].animatedObject.draw(spriteBatch);
         }
@@ -128,6 +128,7 @@ void F_CompositeObject::addPanel(const std::string & borderPacket, float borderS
 {
     m_framePanel.init(borderPacket, m_pos, m_dim,m_depth + 1.0f);
     m_framePanel.setScale(borderScale);
+    // m_framePanel.
     // flagUpdate();
     m_type |= ObjectTypes::TF_FramePanel;
 }

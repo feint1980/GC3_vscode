@@ -85,7 +85,7 @@ public:
 
     void initGUI();
 
-    void drawGameplay();
+    // void drawGameplay();
 
     void initShader();
 
