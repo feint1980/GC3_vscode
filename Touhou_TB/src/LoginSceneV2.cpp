@@ -122,7 +122,7 @@ void LoginSceneV2::onEntry()
 
     m_framePanel.addLineEmblem("emblem_pack.xml/corner_c_25.png", 15,0, glm::vec2(0,10),0.5f);
 
-    m_compositeObject.init(glm::vec2(-300,0), glm::vec2(150,150), 45.0f);
+    m_compositeObject.init(glm::vec2(-300,0), glm::vec2(150,150), 0.0f);
     // m_compositeObject.addObject("emblem_pack.xml/corner_c_25.png",glm::vec2(0, 250), glm::vec2(2.0f), Feintgine::Color(255, 255, 255, 255),0.0f, 0.0f);
 
 

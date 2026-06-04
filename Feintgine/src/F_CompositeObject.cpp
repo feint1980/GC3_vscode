@@ -67,7 +67,7 @@ void F_CompositeObject::draw(Feintgine::SpriteBatch & spriteBatch)
             desRect.z = m_objectList[i].scale.x * m_objectList[i].sprite.getDim().x;
             desRect.w = m_objectList[i].scale.y * m_objectList[i].sprite.getDim().y;
 
-            spriteBatch.draw(desRect, m_objectList[i].sprite.getUV(), m_objectList[i].sprite.getTexture().id, m_depth +  (m_objectList[i].depth * 0.1), m_objectList[i].color, ((m_angle) + m_objectList[i].angle) / 57.2957795f);
+            spriteBatch.draw(desRect, m_objectList[i].sprite.getUV(), m_objectList[i].sprite.getTexture().id, m_depth +  (m_objectList[i].depth * 0.1), m_objectList[i].color, ((m_angle / 57.2957795f) + m_objectList[i].angle) );
             // spriteBatch.draw();
             // m_objectList[i].sprite.draw(spriteBatch, m_pos + m_objectList[i].posOffset, m_objectList[i].scale, m_objectList[i].color, m_objectList[i].angle, m_objectList[i].depth);
         }
@@ -79,7 +79,7 @@ void F_CompositeObject::draw(Feintgine::SpriteBatch & spriteBatch)
             m_animatedObjectList[i].animatedObject.setPos(m_pos + m_animatedObjectList[i].posOffset);
             m_animatedObjectList[i].animatedObject.setScale(m_animatedObjectList[i].scale);
             m_animatedObjectList[i].animatedObject.setColor(m_animatedObjectList[i].color);
-            m_animatedObjectList[i].animatedObject.setAngle(m_angle); // consider convert to degree
+            m_animatedObjectList[i].animatedObject.setAngle((m_angle + m_animatedObjectList[i].angle) / 57.2957795f); // consider convert to degree
             m_animatedObjectList[i].animatedObject.setDepth(m_animatedObjectList[i].depth);
             m_animatedObjectList[i].animatedObject.draw(spriteBatch);
         }
