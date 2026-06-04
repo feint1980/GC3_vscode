@@ -46,13 +46,13 @@ namespace Feintgine
         F_FrameEmblem() = default;
 
         // For corner emblem
-        void F_FrameEmblem::init(const std::string& spriteName,
-                          EmblemType         type,
-                          int                placeMask,
-                          int                hideMask,
-                          const glm::vec2    &offset, // vec2 now, not float
-                          float              scale,
-                          float              depth);
+        void init(const std::string& spriteName,
+                        EmblemType         type,
+                        int                placeMask,
+                        int                hideMask,
+                        const glm::vec2    &offset, // vec2 now, not float
+                        float              scale,
+                        float              depth);
 
         int  getHideCornerMask() const { return m_type == EMBLEM_CORNER ? m_hideMask : 0; }
         int  getHideLineMask()   const { return m_type == EMBLEM_LINE   ? m_hideMask : 0; }
@@ -60,13 +60,17 @@ namespace Feintgine
         void markDirty()               { m_dirty = true; }
 
         void recalculate(const glm::vec2& frameOrigin,
-                         const glm::vec2& frameSize,
-                         float            cornerW,
-                         float            cornerH);
+                        const glm::vec2& frameSize,
+                        float            cornerW,
+                        float            cornerH);
 
         void draw(SpriteBatch& batch) const;
 
-        void setAngle(float angle) { m_angle = angle; }
+        void setAngle(float angle) { 
+            
+            m_angle = angle;
+            m_dirty = true;
+        }
         void setColor(const Color& color) { m_color = color; }
 
     private:
@@ -81,10 +85,18 @@ namespace Feintgine
         float m_emblemScale = 1.0f;
         Color m_color = Color(255, 255, 255, 255);
 
-
         std::vector<CachedQuad> m_cachedQuads;
+        glm::vec2  m_pivot = glm::vec2(0.0f); // frame center, updated each recalculate()
 
         void pushQuad(float x, float y, float w, float h, float angle);
+
+        static glm::vec2 rotateAround(const glm::vec2& point, const glm::vec2& pivot, float angleRad)
+        {
+            float c = std::cos(angleRad);
+            float s = std::sin(angleRad);
+            glm::vec2 d = point - pivot;
+            return pivot + glm::vec2(d.x * c - d.y * s, d.x * s + d.y * c);
+        }
     };
 }
 

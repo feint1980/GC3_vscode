@@ -31,25 +31,21 @@ void F_FrameObject::init(const std::string& packetname,
     m_cachedQuads.reserve(COUNT);
 }
 
-void F_FrameObject::pushQuad(int slot, float x, float y, float w, float h,float depth)
+void F_FrameObject::pushQuad(int slot, float x, float y, float w, float h, float depth)
 {
-    // F_Sprite& spr = m_parts[slot].sprite;
-    // m_cachedQuads.push_back({
-    //     { x + w * 0.5f, y + h * 0.5f, w, h },
-    //     spr.getUV(),
-    //     spr.getTexture().id
-    // });
-
     F_Sprite& spr = m_parts[slot].sprite;
-    // SpriteBatch expects bottom-left, pass as-is
-    
+
+    // Rotate the quad's center around the frame pivot (m_pos)
+    glm::vec2 center(x + w * 0.5f, y + h * 0.5f);
+    if (m_angle != 0.0f)
+        center = rotateAround(center, m_pos, m_angle / 57.2957795f);
+
     CachedQuad q;
-    q.destRect = glm::vec4( x, y, w, h );
-    q.uv = spr.getUV();
+    q.destRect  = glm::vec4(center.x - w * 0.5f, center.y - h * 0.5f, w, h);
+    q.uv        = spr.getUV();
     q.textureId = spr.getTexture().id;
-    q.depth = m_depth +  (depth * 0.01f);
-    
-    
+    q.depth     = m_depth + (depth * 0.01f);
+
     m_cachedQuads.push_back(q);
 }
 
@@ -82,28 +78,17 @@ void F_FrameObject::recalculate()
 
     float overlap = cw * 0.3f;  // overlap as fraction of corner size, stays proportional
 
-    // Corners — always on top
-                                        // pushQuad(TL, col0, row2, cw, ch, 70.0f);
-                                        // pushQuad(TR, col2, row2, cw, ch, 70.0f);
-                                        // pushQuad(BL, col0, row0, cw, ch, 70.0f);
-                                        // pushQuad(BR, col2, row0, cw, ch, 70.0f);
+    // Corners
     if (!(m_hideCornerMask & CORNER_TL)) pushQuad(TL, col0, row2, cw, ch, 70.0f);
     if (!(m_hideCornerMask & CORNER_TR)) pushQuad(TR, col2, row2, cw, ch, 70.0f);
     if (!(m_hideCornerMask & CORNER_BL)) pushQuad(BL, col0, row0, cw, ch, 70.0f);
     if (!(m_hideCornerMask & CORNER_BR)) pushQuad(BR, col2, row0, cw, ch, 70.0f);
 
-    // Horizontal borders — same height as corner, overlaps into corner area
-    // pushQuad(Border_T, col1 - overlap, row2, midW + overlap * 2.0f, ch, 50.0f);
-    // pushQuad(Border_B, col1 - overlap, row0, midW + overlap * 2.0f, ch, 50.0f);
-
+    // Horizontal borders
     if (!(m_hideLineMask & LINE_TOP)) pushQuad(Border_T, col1 - overlap, row2, midW + overlap * 2.0f, ch, 50.0f);
     if (!(m_hideLineMask & LINE_BOT)) pushQuad(Border_B, col1 - overlap, row0, midW + overlap * 2.0f, ch, 50.0f);
 
-    // Vertical borders — same width as corner, overlaps into corner area
-    // pushQuad(Border_L, col0, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
-    // pushQuad(Border_R, col2, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
-
-     // Vertical borders — skip if hidden
+    // Vertical borders
     if (!(m_hideLineMask & LINE_LEFT))  pushQuad(Border_L, col0, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
     if (!(m_hideLineMask & LINE_RIGHT)) pushQuad(Border_R, col2, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
 
@@ -117,27 +102,15 @@ void F_FrameObject::draw(SpriteBatch& spriteBatch)
         recalculate();
     } 
 
-
-    for(int i = 0 ; i < m_cachedQuads.size(); i++)
+    for (int i = 0; i < (int)m_cachedQuads.size(); i++)
     {
-        spriteBatch.draw(m_cachedQuads[i].destRect, m_cachedQuads[i].uv, m_cachedQuads[i].textureId, m_cachedQuads[i].depth, m_color, m_angle/57.2957795f);
+        spriteBatch.draw(m_cachedQuads[i].destRect, m_cachedQuads[i].uv, m_cachedQuads[i].textureId, m_cachedQuads[i].depth, m_color, m_angle / 57.2957795f);
     }
-
-    // for (auto& q : m_cachedQuads)
-    // {
-        // spriteBatch.draw(q.destRect, q.uv, q.textureId, q.depth, Color(255, 255, 255, 255),m_angle/57.2957795f);
-    // }
 }
 
-void F_FrameObject::setColor( const Feintgine::Color& color) 
+void F_FrameObject::setColor(const Feintgine::Color& color)
 {
-    
-    // std::cout << "sizeof Color: " << sizeof(Feintgine::Color) << "\n";
-    // std::cout << "sizeof m_color: " << sizeof(m_color) << "\n";
     m_color = color;
-    // memcpy(&m_color, &color, sizeof(Feintgine::Color));
-   // m_dirty = true;
-    // m_color = Feintgine::Color(255, 255, 255, 255); // remove this will work, what ?  
 }
 
 } // namespace Feintgine

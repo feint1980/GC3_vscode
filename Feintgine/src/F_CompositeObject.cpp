@@ -128,6 +128,7 @@ void F_CompositeObject::addPanel(const std::string & borderPacket, float borderS
 {
     m_framePanel.init(borderPacket, m_pos, m_dim,m_depth + 1.0f);
     m_framePanel.setScale(borderScale);
+    m_framePanel.setAngle(m_angle);
     // m_framePanel.
     // flagUpdate();
     m_type |= ObjectTypes::TF_FramePanel;
@@ -136,11 +137,13 @@ void F_CompositeObject::addPanel(const std::string & borderPacket, float borderS
 void F_CompositeObject::addPanelCornerEmblem(const std::string & emblemSprite, int placeMask, int hideMask, const glm::vec2 & offset, float scale)
 {
     m_framePanel.addCornerEmblem(emblemSprite, placeMask, hideMask, offset, scale, m_depth + 1.2f);
+    m_framePanel.setAngle(m_angle);
 }
 
 void F_CompositeObject::addPanelLineEmblem(const std::string & emblemSprite, int placeMask, int hideMask, const glm::vec2 & offset, float scale)
 {
     m_framePanel.addLineEmblem(emblemSprite, placeMask, hideMask, offset, scale, m_depth + 1.5f);
+    m_framePanel.setAngle(m_angle);
 }
 
 }

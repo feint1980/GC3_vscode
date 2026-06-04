@@ -67,11 +67,11 @@ namespace Feintgine
 
         void hideBorderCorner(int mask) { 
             m_frame.setHideCornerMask(mask);
-            // rebuildHideMasks();
+            rebuildHideMasks();
         }
         void hideBorderLine(int mask) {
             m_frame.setHideLineMask(mask);
-            // rebuildHideMasks();
+            rebuildHideMasks();
         }
 
 
@@ -83,8 +83,8 @@ namespace Feintgine
 
         F_FrameObject              m_frame;
         std::vector<F_FrameEmblem> m_emblems;
-        float                      m_scale;
-        float                      m_angle;
+        float                      m_scale = 1.0f;
+        float                      m_angle = 0.0f;
     };
 }
 

@@ -112,12 +112,20 @@ namespace Feintgine
         
         glm::vec2 getFrameSize()      const { return m_size; }
 
-        void setAngle(float angle) { m_angle = angle; }
+        void setAngle(float angle) { m_angle = angle; m_dirty = true; }
 
     private:
         void recalculate();
-        void pushQuad(int slot, float x, float y, float w, float h,float depth);
-        // float getCalculatedAngle(PartSlot slot);
+        void pushQuad(int slot, float x, float y, float w, float h, float depth);
+
+        // Rotate point around pivot by angle (radians)
+        static glm::vec2 rotateAround(const glm::vec2& point, const glm::vec2& pivot, float angleRad)
+        {
+            float c = std::cos(angleRad);
+            float s = std::sin(angleRad);
+            glm::vec2 d = point - pivot;
+            return pivot + glm::vec2(d.x * c - d.y * s, d.x * s + d.y * c);
+        }
         F_FramePart             m_parts[COUNT];
         std::vector<CachedQuad> m_cachedQuads;
 

@@ -25,7 +25,7 @@ namespace Feintgine{
 		Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const Color& color, float angle); // why UVmod use glm::vec4 ? because there already a function exist using glm::vec2
 		
 		Glyph(vector2f *quads);
-		Glyph(const glm::vec4& destRect, const glm::vec4& uvRect,  float depth, const Color& color, float angle,float spec, float lightPoint);
+		// Glyph(const glm::vec4& destRect, const glm::vec4& uvRect,  float depth, const Color& color, float angle,float spec, float lightPoint);
 		Glyph::Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const Color& color, float angle, const glm::vec2 & angleOption);
 
 		Glyph(const glm::vec2 & targetPos, const glm::vec2 & dim, const glm::vec4& uvRect, GLuint Texture, float Depth, const Color& color, float angle);

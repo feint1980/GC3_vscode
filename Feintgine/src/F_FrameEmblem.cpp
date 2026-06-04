@@ -23,8 +23,13 @@ void F_FrameEmblem::init(const std::string& spriteName,
 
 void F_FrameEmblem::pushQuad(float x, float y, float w, float h, float angle)
 {
+    // x,y is bottom-left — convert to center, rotate around frame pivot, convert back
+    glm::vec2 center(x + w * 0.5f, y + h * 0.5f);
+    if (m_angle != 0.0f)
+        center = rotateAround(center, m_pivot, glm::radians(m_angle));
+
     m_cachedQuads.push_back({
-        { x, y, w, h },
+        { center.x - w * 0.5f, center.y - h * 0.5f, w, h },
         m_sprite.getUV(),
         m_sprite.getTexture().id,
         m_depth,
@@ -39,6 +44,9 @@ void F_FrameEmblem::recalculate(const glm::vec2& frameOrigin,
 {
     m_cachedQuads.clear();
 
+    // Store frame center as pivot for positional rotation
+    m_pivot = frameOrigin + frameSize * 0.5f;
+
     glm::vec2 spDim = m_sprite.getDim();
     float drawW = spDim.x * m_emblemScale;
     float drawH = spDim.y * m_emblemScale;
@@ -48,10 +56,6 @@ void F_FrameEmblem::recalculate(const glm::vec2& frameOrigin,
     // Pure frame geometry — all positions are CENTER points of their slot
     float midX   = frameOrigin.x + frameSize.x * 0.5f;
     float midY   = frameOrigin.y + frameSize.y * 0.5f;
-    float topY   = frameOrigin.y + frameSize.y - cornerH * 0.5f;
-    float botY   = frameOrigin.y + cornerH * 0.5f;
-    float leftX  = frameOrigin.x + cornerW * 0.5f;
-    float rightX = frameOrigin.x + frameSize.x - cornerW * 0.5f;
 
     // Corner slot centers
     float left   = frameOrigin.x + cornerW * 0.5f;
@@ -82,10 +86,10 @@ void F_FrameEmblem::recalculate(const glm::vec2& frameOrigin,
     {
         struct LineInfo { int mask; float x; float y; float angle; };
         LineInfo lines[4] = {
-            { LINE_TOP,   midX  + m_offset.x, topY   + m_offset.y, m_angle +  0.0f   },
-            { LINE_BOT,   midX  + m_offset.x, botY   - m_offset.y, m_angle + 180.0f },
-            { LINE_LEFT,  leftX - m_offset.y, midY   + m_offset.x, m_angle + 90.0f },
-            { LINE_RIGHT, rightX + m_offset.y, midY  + m_offset.x, m_angle + 270.0f  }
+            { LINE_TOP,   midX  + m_offset.x, top   + m_offset.y, m_angle +  0.0f   },
+            { LINE_BOT,   midX  + m_offset.x, bottom   - m_offset.y, m_angle + 180.0f },
+            { LINE_LEFT,  left - m_offset.y, midY   + m_offset.x, m_angle + 90.0f }, 
+            { LINE_RIGHT, right + m_offset.y, midY  + m_offset.x, m_angle + 270.0f  }
         };
 
         for (auto& l : lines)
@@ -106,7 +110,7 @@ void F_FrameEmblem::draw(SpriteBatch& batch) const
     for (auto& q : m_cachedQuads)
     {
         
-        batch.draw(q.destRect, q.uv, q.textureId, q.depth, m_color, q.angle /57.2957795f);
+        batch.draw(q.destRect, q.uv, q.textureId, q.depth, m_color, glm::radians(q.angle));
     }
 }
 
