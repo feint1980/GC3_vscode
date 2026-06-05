@@ -13,7 +13,7 @@ namespace Feintgine
 class F_CompositeObject
 {
 
-    struct tObject
+struct tObject
 {
     
     F_Sprite sprite;
@@ -54,10 +54,10 @@ public:
 
     void init(const glm::vec2 & pos, const glm::vec2 & dim, float angle = 0, float depth = 5.0f);
 
-    void addObject( const std::string & spriteNameWithPacket, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color = Feintgine::Color(255,255,255,255), float angle = 0, float depth = 5.0f);
+    tObject * addObject( const std::string & spriteNameWithPacket, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color = Feintgine::Color(255,255,255,255), float angle = 0, float depth = 5.0f);
     // void init()
 
-    void addAnimatedObject(const std::string & animFile, const std::string & defaultAnim, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth);
+    tAObject * addAnimatedObject(const std::string & animFile, const std::string & defaultAnim, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth);
 
     void draw(Feintgine::SpriteBatch & spriteBatch);
 
@@ -87,10 +87,12 @@ public:
 
 protected:
 
-    Uint32 m_type;
+    Uint32 m_type = TNoObject;
 
-    glm::vec2 m_pos;
-    glm::vec2 m_dim;
+    Uint8 m_maxObject = 10;
+
+    glm::vec2 m_pos = glm::vec2(0.0f);
+    glm::vec2 m_dim = glm::vec2(0.0f);
     
     float m_angle = 0.0;
     float m_depth = 5.0;

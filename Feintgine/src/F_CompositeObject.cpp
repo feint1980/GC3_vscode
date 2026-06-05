@@ -28,20 +28,15 @@ void F_CompositeObject::init(const glm::vec2 & pos, const glm::vec2 & dim, float
     m_depth = depth;
 }
 
-void F_CompositeObject::addObject( const std::string & spriteNameWithPacket, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth)
+F_CompositeObject::tObject * F_CompositeObject::addObject( const std::string & spriteNameWithPacket, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth)
 {
-
-    std::cout << "DEBUG #### " << spriteNameWithPacket << "\n";
-    
     m_objectList.push_back({Feintgine::SpriteManager::Instance()->getSprite(spriteNameWithPacket), posOffset, scale, color, angle, depth});
     flagUpdate();
 }
 
-void F_CompositeObject::addAnimatedObject(const std::string & animFile,const std::string & defaultAnim, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth)
+F_CompositeObject::tAObject * F_CompositeObject::addAnimatedObject(const std::string & animFile,const std::string & defaultAnim, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth)
 {
     tAObject tAnimatedObject;
-    // tAnimatedObject.animatedObject = new F_AnimatedObject();
-    // tAnimatedObject.animatedObject = std::make_unique<F_AnimatedObject>();
     tAnimatedObject.animatedObject.init(animFile);
     tAnimatedObject.posOffset = posOffset;
     tAnimatedObject.scale = scale;

@@ -106,7 +106,4 @@ void F_LuaRenderContext::draw(Feintgine::SpriteBatch & spriteBatch)
 }
 
 
-
-
-
 }
