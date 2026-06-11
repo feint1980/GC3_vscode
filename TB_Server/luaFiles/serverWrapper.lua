@@ -433,7 +433,7 @@ end
 ---@return number position in the string after parsing finished
 ---@return number error if decode failed (nil if OK)
 function JSON_Decode(data)
-    
+
     local tbl, pos, err = json.decode(data,1,nil)
     return tbl, pos, err
 end

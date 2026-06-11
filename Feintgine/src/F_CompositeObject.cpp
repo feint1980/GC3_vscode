@@ -13,6 +13,8 @@ F_CompositeObject::F_CompositeObject()
     m_angle = 0.0f;
     m_type = 0;
     m_depth = 5.0f;
+    m_objectList.reserve(m_maxObject);
+    m_animatedObjectList.reserve(m_maxObject);
 }
 
 F_CompositeObject::~F_CompositeObject()
@@ -28,14 +30,28 @@ void F_CompositeObject::init(const glm::vec2 & pos, const glm::vec2 & dim, float
     m_depth = depth;
 }
 
-F_CompositeObject::tObject * F_CompositeObject::addObject( const std::string & spriteNameWithPacket, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth)
+tObject * F_CompositeObject::addObject( const std::string & spriteNameWithPacket, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth)
 {
+
+    if(m_objectList.size() >= m_maxObject)
+    {
+        std::cout << "F_CompositeObject Warning, Reach Maximum Objects, We will stop adding instead of extend the cap and cause weird behavior, if you see this, adjust the maximum capacity \n";
+        return nullptr;
+    } 
     m_objectList.push_back({Feintgine::SpriteManager::Instance()->getSprite(spriteNameWithPacket), posOffset, scale, color, angle, depth});
     flagUpdate();
+    return &m_objectList.back();
 }
 
-F_CompositeObject::tAObject * F_CompositeObject::addAnimatedObject(const std::string & animFile,const std::string & defaultAnim, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth)
+tAObject * F_CompositeObject::addAnimatedObject(const std::string & animFile,const std::string & defaultAnim, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth)
 {
+
+    if(m_animatedObjectList.size() >= m_maxObject)
+    {
+        std::cout << "F_CompositeObject Warning, Reach Maximum Objects, We will stop adding instead of extend the cap and cause weird behavior, if you see this, adjust the maximum capacity \n";
+        return nullptr;
+    }
+
     tAObject tAnimatedObject;
     tAnimatedObject.animatedObject.init(animFile);
     tAnimatedObject.posOffset = posOffset;
@@ -46,6 +62,7 @@ F_CompositeObject::tAObject * F_CompositeObject::addAnimatedObject(const std::st
     tAnimatedObject.animatedObject.playAnimation(defaultAnim);
     m_animatedObjectList.push_back(tAnimatedObject);
     flagUpdate();
+    return &m_animatedObjectList.back();
 }
 
 

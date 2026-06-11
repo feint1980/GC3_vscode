@@ -25,6 +25,33 @@ int lua_CreateCompositeObject(lua_State * L)
     return 0;
 }
 
+int lua_CompositeObject_addAnimatedObject(lua_State * L)
+{
+    if(lua_gettop(L) != 13)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_addAnimatedObject) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        std::string filePath = lua_tostring(L, 2);
+        std::string startAnim = lua_tostring(L, 3);
+        glm::vec2 pos = glm::vec2(lua_tonumber(L, 4), lua_tonumber(L, 5));
+        glm::vec2 scale = glm::vec2(lua_tonumber(L, 6), lua_tonumber(L, 7));
+        int colorR = lua_tonumber(L, 8);
+        int colorG = lua_tonumber(L, 9);
+        int colorB = lua_tonumber(L, 10);
+        int colorA = lua_tonumber(L, 11);
+        float angle = lua_tonumber(L, 12);
+        float depth = lua_tonumber(L, 13);
+        tAObject * aObj = obj->addAnimatedObject(filePath, startAnim, pos, scale, Feintgine::Color(colorR, colorG, colorB, colorA), angle, depth);
+
+        lua_pushlightuserdata(L, aObj);
+        return 1;
+    }
+    return 0;
+}
+
 int lua_CompositeObject_addSprite(lua_State * L)
 {
     if(lua_gettop(L) != 6)
@@ -37,8 +64,17 @@ int lua_CompositeObject_addSprite(lua_State * L)
         std::string spriteName = lua_tostring(L, 2);
         glm::vec2 pos = glm::vec2(lua_tonumber(L, 3), lua_tonumber(L, 4));
         glm::vec2 dim = glm::vec2(lua_tonumber(L, 5), lua_tonumber(L, 6));
-        obj->addObject(spriteName, pos, dim);
-        return 0;
+        int colorR = lua_tonumber(L, 7);
+        int colorG = lua_tonumber(L, 8);
+        int colorB = lua_tonumber(L, 9);
+        int colorA = lua_tonumber(L, 10);
+        float angle = lua_tonumber(L, 11);
+        float depth = lua_tonumber(L, 12);
+        Feintgine::Color color(colorR, colorG, colorB, colorA);
+        tObject * t_obj =  obj->addObject(spriteName, pos, dim,color, angle, depth);
+        
+        lua_pushlightuserdata(L, t_obj);
+        return 1;
     }
     return 0;
 }
@@ -67,8 +103,14 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
         std::cout << "F_LuaRenderContext run script renderContext OK \n";
     }
     // dofile here 
+
+    // LRC (Lua Render Context)
     lua_register(m_script, "cpp_LRC_CreateCompositeObject", lua_CreateCompositeObject);
+
+
+    // Composite Object
     lua_register(m_script, "cpp_CompositeObject_addSprite", lua_CompositeObject_addSprite);
+    lua_register(m_script, "cpp_CompositeObject_addAnimatedObject", lua_CompositeObject_addAnimatedObject);
 
 }
 
@@ -96,7 +138,6 @@ F_CompositeObject * F_LuaRenderContext::addObjectComposite(const glm::vec2 & pos
     
 }
 
-
 void F_LuaRenderContext::draw(Feintgine::SpriteBatch & spriteBatch)
 {
     for(int i = 0; i < m_compositeObjects.size(); i++)
@@ -105,5 +146,4 @@ void F_LuaRenderContext::draw(Feintgine::SpriteBatch & spriteBatch)
     }
 }
 
-
-}
+} 

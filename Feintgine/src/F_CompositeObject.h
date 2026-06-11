@@ -10,12 +10,8 @@
 namespace Feintgine
 {
 
-class F_CompositeObject
-{
-
 struct tObject
 {
-    
     F_Sprite sprite;
     glm::vec2 posOffset;
     glm::vec2 scale; // compare to F_Composite object
@@ -27,7 +23,6 @@ struct tObject
 
 struct tAObject
 {
-    // std::unique_ptr<F_AnimatedObject> animatedObject= std::make_unique<F_AnimatedObject>(); //F_AnimatedObject animatedObject;
     F_AnimatedObject animatedObject;// = nullptr; // need to be a pointer for some reason
     glm::vec2 posOffset;
     glm::vec2 scale; // compare to F_Composite object
@@ -35,6 +30,10 @@ struct tAObject
     float angle;
     float depth;
 };
+
+
+class F_CompositeObject
+{
 
 
 enum ObjectTypes

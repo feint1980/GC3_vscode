@@ -32,7 +32,6 @@ namespace Feintgine
 
         F_CompositeObject * addObjectComposite(const glm::vec2 & pos, const glm::vec2 & dim, float angle, float depth);
 
-        
     private:
         lua_State * m_script = nullptr;
         std::vector<F_CompositeObject> m_compositeObjects;
