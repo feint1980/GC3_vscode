@@ -30,6 +30,8 @@ namespace Feintgine
         
         void draw(Feintgine::SpriteBatch & spriteBatch);
 
+        void removeCompositeObject(F_CompositeObject * compositeObject);
+
         F_CompositeObject * addObjectComposite(const glm::vec2 & pos, const glm::vec2 & dim, float angle, float depth);
 
     private:

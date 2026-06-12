@@ -1,5 +1,5 @@
 
-package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Login/?.lua;' .. ';../../Lua/system/event/?.lua;' 
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Login/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/system/renderer/?.lua;'
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -8,6 +8,7 @@ require "TGUI_Editbox"
 require "clientSide"
 require "loginStripOrder"
 require "clientWrapper"
+require "renderContext"
 
 
 ---@class TGUIScriptingPtr
@@ -32,6 +33,9 @@ Login_ClientScriptingPtr = nil
 
 ---@type pointer Control_HandlerPtr
 Login_ControlHandlerPtr = nil
+
+---@type pointer Lua_Context_Renderer
+Login_RendererContext = nil
 
 --- Main Menu
 ---@type Label
@@ -114,11 +118,12 @@ function Login_CombinePackage(type,list)
     return returnValue
 end
 
-function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerPtr)
+function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerPtr, RendererContextPtr)
     LoginHost = host
     Login_GUIScriptingPtr = TGUIScriptingPtr
     Login_ClientScriptingPtr = ClientScriptingPtr
     Login_ControlHandlerPtr = ControlHandlerPtr
+    Login_RendererContext = RendererContextPtr
     if LoginHost ~= nil then
         print("LoginHost is not nil")
     end
@@ -378,6 +383,13 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
 
     ControlHandler_receiver_switchFocus(tosPanel.ptr)
 
+
+    local obj = LRC_CreateCompositeObject(Login_RendererContext, 300, 0, 150, 150, 0, 5)
+
+    CompositeObject_addAnimatedObject(obj, "./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0,
+    1, 1, 255, 255, 255, 255, 0, 0)
+
+    CompositeObject_addPanel(obj, "Basic_border", 0.25)
     ---- TOS section end
     ---
     --- loop 

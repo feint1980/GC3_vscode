@@ -15,13 +15,50 @@ function LRC_CreateCompositeObject(host, posX, posY, dimX, dimY, angle, depth)
 end
 
 
+function LRC_RemoveCompositeObject(host, compositeObject)
+    cpp_LRC_RemoveCompositeObject(host, compositeObject)
+end
+
 --- Composite Object
 
-function CompositeObject_addSprite(compositeObject,spriteName, posX, posY, dimX, dimY, colorR,color)
-
-
-
+---@Description: Adds a sprite to the composite object
+---@param compositeObject pointer instance of F_CompositeObject
+---@param spriteName string name of the sprite
+---@param posX number x position
+---@param posY number y position
+---@param dimX number width
+---@param dimY number height
+---@param colorR number red
+---@param colorG number green
+---@param colorB number blue
+---@param colorA number alpha
+---@param angle number angle
+---@param depth number depth
+---@
+function CompositeObject_addSprite(compositeObject,spriteName, posX, posY, dimX, dimY, colorR,colorG,colorB,colorA , angle, depth)
+    return cpp_CompositeObject_addSprite(compositeObject,spriteName, posX, posY, dimX, dimY, colorR,colorG,colorB,colorA , angle, depth)
 end
 
 
+---@Description: Adds an animated object to the composite object
+---@param compositeObject pointer instance of F_CompositeObject
+---@param filePath string path to the animation file
+---@param startAnim string name of the animation to start
+---@param posX number x position
+---@param posY number y position
+---@param scaleX number width
+---@param scaleY number height
+---@param colorR number red
+---@param colorG number green
+---@param colorB number blue
+---@param colorA number alpha
+---@param angle number angle
+---@param depth number depth
+---@return pointer instance of created tAObject
+function CompositeObject_addAnimatedObject(compositeObject,filePath, startAnim, posX, posY, scaleX, scaleY, colorR,colorG,colorB,colorA , angle, depth)
+    return cpp_CompositeObject_addAnimatedObject(compositeObject,filePath, startAnim, posX, posY, scaleX, scaleY, colorR,colorG,colorB,colorA , angle, depth)
+end
 
+function CompositeObject_addPanel(compositeObject, panelName, scale)
+    cpp_CompositeObject_addPanel(compositeObject, panelName, scale)
+end

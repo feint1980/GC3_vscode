@@ -192,6 +192,7 @@ void LoginSceneV2::update(float deltaTime)
         m_clientScriptingManager->updateV2(deltaTime);
     }
     m_compositeObject.update(deltaTime);
+    m_luaRenderContext.update(deltaTime);
     // m_luaEventHandler.update(deltaTime);
 
 }
@@ -291,6 +292,8 @@ void LoginSceneV2::draw()
     // m_frameObject.draw(m_spriteBatch);
     m_framePanel.draw(m_spriteBatch);
     m_compositeObject.draw(m_spriteBatch);
+    m_luaRenderContext.draw(m_spriteBatch);
+
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
@@ -324,16 +327,11 @@ void LoginSceneV2::initGUI()
     m_client->Startup(8, &socketDescriptor, 1);
     m_client->SetOccasionalPing(true);
     m_client->SetTimeoutTime(2500, RakNet::UNASSIGNED_SYSTEM_ADDRESS);
-    // m_clientScriptingManager->init("192.168.0.27", port, m_client, m_script);
     m_clientScriptingManager->init("127.0.0.1", port, m_client, m_script);
 
-    // m_clientScriptingManager.init("127.0.0.1", 1123,m_script);
+    m_luaRenderContext.init(m_script,150);
 
     InfoHolder::getInstance()->registerClient(m_client);
-
-    // inverse case
-    //m_script = m_guiScriptingManager.getLuaScript();
-    //luaL_openlibs(m_script);
 
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Login/loginScene.lua")))
     {
@@ -349,15 +347,15 @@ void LoginSceneV2::initGUI()
         lua_pushlightuserdata(m_script, m_guiScriptingManager);
         lua_pushlightuserdata(m_script, m_clientScriptingManager);
         lua_pushlightuserdata(m_script, m_controlHandler);
+        lua_pushlightuserdata(m_script, &m_luaRenderContext);
         // std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-        const int argc = 4;
+        const int argc = 5; 
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
             std::cout << "Login scene init script from C++ OK \n";
         }
     }
-
 
     m_clientScriptingManager->setCommonHandlingLuaFunction("Client_ReceiveData");
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"ClientHandlerWrapResponse");

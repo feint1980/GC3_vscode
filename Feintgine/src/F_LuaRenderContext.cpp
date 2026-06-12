@@ -25,6 +25,38 @@ int lua_CreateCompositeObject(lua_State * L)
     return 0;
 }
 
+int lua_RemoveCompositeObject(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_RemoveCompositeObject) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_LuaRenderContext * lrc = static_cast<F_LuaRenderContext*>(lua_touserdata(L, 1));
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 2));
+        lrc->removeCompositeObject(obj);
+    }
+    return 0;
+}
+
+int lua_CompositeObject_addPanel(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_addPanel) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        std::string borderName = lua_tostring(L, 2);
+        float scale = lua_tonumber(L, 3);
+        obj->addPanel(borderName, scale);
+        return 0;
+    }
+    return 0;
+}
+
 int lua_CompositeObject_addAnimatedObject(lua_State * L)
 {
     if(lua_gettop(L) != 13)
@@ -54,7 +86,7 @@ int lua_CompositeObject_addAnimatedObject(lua_State * L)
 
 int lua_CompositeObject_addSprite(lua_State * L)
 {
-    if(lua_gettop(L) != 6)
+    if(lua_gettop(L) != 12)
     {
         std::cout << "gettop failed (lua_CompositeObject_addSprite) " << lua_gettop(L) << "\n";
         return -1;
@@ -89,6 +121,18 @@ F_LuaRenderContext::~F_LuaRenderContext()
     
 }
 
+void F_LuaRenderContext::removeCompositeObject(F_CompositeObject * compositeObject)
+{
+    for(size_t i = 0; i < m_compositeObjects.size(); i++)
+    {
+        if(compositeObject == &m_compositeObjects[i] )
+        {
+            m_compositeObjects.erase(m_compositeObjects.begin() + i);
+            return;
+        }
+    }
+}
+
 void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
 {
     m_script = script;
@@ -106,11 +150,13 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
 
     // LRC (Lua Render Context)
     lua_register(m_script, "cpp_LRC_CreateCompositeObject", lua_CreateCompositeObject);
-
+    lua_register(m_script, "cpp_LRC_RemoveCompositeObject", lua_RemoveCompositeObject);
 
     // Composite Object
     lua_register(m_script, "cpp_CompositeObject_addSprite", lua_CompositeObject_addSprite);
     lua_register(m_script, "cpp_CompositeObject_addAnimatedObject", lua_CompositeObject_addAnimatedObject);
+    lua_register(m_script, "cpp_CompositeObject_addPanel", lua_CompositeObject_addPanel);
+
 
 }
 
