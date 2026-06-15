@@ -384,12 +384,11 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     ControlHandler_receiver_switchFocus(tosPanel.ptr)
 
 
-    local obj = LRC_CreateCompositeObject(Login_RendererContext, 300, 0, 150, 150, 0, 5)
+    -- local obj = LRC_CreateCompositeObject(Login_RendererContext, 300, 0, 150, 150, 0, 5)
 
-    CompositeObject_addAnimatedObject(obj, "./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0,
-    1, 1, 255, 255, 255, 255, 0, 0)
+    -- CompositeObject_addAnimatedObject(obj, "./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0,1, 1, 255, 255, 255, 255, 0, 0)
 
-    CompositeObject_addPanel(obj, "Basic_border", 0.25)
+    -- CompositeObject_addPanel(obj, "Basic_border", 0.25)
     ---- TOS section end
     ---
     --- loop 
