@@ -62,3 +62,7 @@ end
 function CompositeObject_addPanel(compositeObject, panelName, scale)
     cpp_CompositeObject_addPanel(compositeObject, panelName, scale)
 end
+
+function CompositeObject_AddEmblem(compositeObject, type, emblemName, placeFlag, hideFlag, offsetX, offsetY, scale)
+    cpp_CompositeObject_AddEmblem(compositeObject, type, emblemName, placeFlag, hideFlag, offsetX, offsetY, scale)
+end

@@ -13,6 +13,8 @@
 
 #include "F_CompositeObject.h"
 
+#define EMBLEM_LINE 0
+#define EMBLEM_CORNER 1
 namespace Feintgine
 {
     class F_LuaRenderContext

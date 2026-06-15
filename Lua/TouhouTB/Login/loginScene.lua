@@ -1,5 +1,5 @@
 
-package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Login/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/system/renderer/?.lua;'
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Login/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/system/renderer/?.lua;' .. ';../../Lua/system/objects/?.lua;'
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -9,6 +9,7 @@ require "clientSide"
 require "loginStripOrder"
 require "clientWrapper"
 require "renderContext"
+require "compositeObject"
 
 
 ---@class TGUIScriptingPtr
@@ -351,7 +352,6 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
 
     Login_RegisterPanel:hideWithEffect(PanelShowType.Fade,250)
 
-
     ---- TOS section -----
     local tosPanel = Panel:new()
     tosPanel:init(Login_GUIScriptingPtr,TGUI_ScreenWidth/2 - 225,TGUI_ScreenHeight/2 -150,450, 300)
@@ -384,11 +384,23 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     ControlHandler_receiver_switchFocus(tosPanel.ptr)
 
 
-    -- local obj = LRC_CreateCompositeObject(Login_RendererContext, 300, 0, 150, 150, 0, 5)
+    local obj = LRC_CreateCompositeObject(Login_RendererContext, 300, 0, 150, 150, 0, 5)
 
-    -- CompositeObject_addAnimatedObject(obj, "./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0,1, 1, 255, 255, 255, 255, 0, 0)
+    CompositeObject_addAnimatedObject(obj, "./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0,1, 1, 255, 255, 255, 255, 0, 0)
 
-    -- CompositeObject_addPanel(obj, "Basic_border", 0.25)
+    CompositeObject_addPanel(obj, "Basic_border", 0.25)
+
+    local tA = L_compositeObject:new()
+    tA:init(Login_RendererContext, -200, 0, 150, 150, 0, 5)
+    tA:addAnimatedObject("./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0, 1, 1, 255, 255, 255, 255, 0, 0)
+
+    tA:addPanel("Basic_border", 0.25)
+    tA:AddEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0, 
+        10, 0.5)
+    
+    tA:AddEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,0, 8, 
+        -10, 0.25)
+    
     ---- TOS section end
     ---
     --- loop 

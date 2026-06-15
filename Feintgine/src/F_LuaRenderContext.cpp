@@ -111,6 +111,47 @@ int lua_CompositeObject_addSprite(lua_State * L)
     return 0;
 }
 
+int lua_CompositeObject_AddEmblem(lua_State * L)
+{
+    if(lua_gettop(L) != 8)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_AddEmblem) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        int type = lua_tonumber(L, 2);
+        std::string emblemName = lua_tostring(L, 3);
+        int placeFlag = lua_tonumber(L, 4);
+        int hideFlag = lua_tonumber(L, 5);
+        float offsetX = lua_tonumber(L, 6);
+        float offsetY = lua_tonumber(L, 7);
+        float scale = lua_tonumber(L, 8);
+        // float depth = lua_tonumber(L, 9);
+        switch(type)
+        {
+            case EMBLEM_LINE:
+            {
+                obj->addPanelLineEmblem(emblemName, placeFlag, hideFlag, glm::vec2(offsetX, offsetY), scale);
+                break;
+            }
+            case EMBLEM_CORNER:
+            {
+                obj->addPanelCornerEmblem(emblemName, placeFlag, hideFlag, glm::vec2(offsetX, offsetY), scale);
+                break;
+            }
+            default:
+            {
+                std::cout << "Unknown emblem type " << type << "\n";
+                break;
+            }
+        }
+
+        return 0;
+    }
+    return 0;
+}
+
 F_LuaRenderContext::F_LuaRenderContext()
 {
 
@@ -156,6 +197,7 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
     lua_register(m_script, "cpp_CompositeObject_addSprite", lua_CompositeObject_addSprite);
     lua_register(m_script, "cpp_CompositeObject_addAnimatedObject", lua_CompositeObject_addAnimatedObject);
     lua_register(m_script, "cpp_CompositeObject_addPanel", lua_CompositeObject_addPanel);
+    lua_register(m_script, "cpp_CompositeObject_AddEmblem", lua_CompositeObject_AddEmblem);
 
 
 }
