@@ -385,7 +385,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
 
 
     local loginDecorateFrame = L_compositeObject:new()
-    loginDecorateFrame:init(Login_RendererContext, 0, 0, 750, 400, 0, 5)
+    loginDecorateFrame:init(Login_RendererContext, 0, -10, 500, 270, 0, 5)
 
     loginDecorateFrame:addPanel("Simple_border", 0.25)
 
@@ -395,7 +395,9 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     loginDecorateFrame:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,15, 20,
         -20, 0.5)
 
-    loginDecorateFrame:addLine(0, 50, 100, 5)
+    loginDecorateFrame:addLine(0, 20, 150, 5)
+    loginDecorateFrame:addLine(0, -30, 175, 5)
+    loginDecorateFrame:addLine(0, -80, 85, 5)
     -- loginDecorateFrame:setAngle(45.0)
 
     -- local tA = L_compositeObject:new()
