@@ -384,27 +384,35 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     ControlHandler_receiver_switchFocus(tosPanel.ptr)
 
 
-    local obj = LRC_CreateCompositeObject(Login_RendererContext, 300, 0, 150, 150, 0, 5)
+    local loginDecorateFrame = L_compositeObject:new()
+    loginDecorateFrame:init(Login_RendererContext, 0, 0, 750, 400, 0, 5)
 
-    CompositeObject_addAnimatedObject(obj, "./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0,1, 1, 255, 255, 255, 255, 0, 0)
+    loginDecorateFrame:addPanel("Simple_border", 0.25)
 
-    CompositeObject_addPanel(obj, "Basic_border", 0.25)
-
-    local tA = L_compositeObject:new()
-    tA:init(Login_RendererContext, -200, 0, 150, 150, 0, 5)
-    tA:addAnimatedObject("./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0, 1, 1, 255, 255, 255, 255, 0, 0)
-
-    tA:addPanel("Basic_border", 0.25)
-    tA:AddEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0, 
+    loginDecorateFrame:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0,
         10, 0.5)
+
+    loginDecorateFrame:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,15, 20,
+        -20, 0.5)
+
+    loginDecorateFrame:addLine(0, 50, 100, 5)
+    -- loginDecorateFrame:setAngle(45.0)
+
+    -- local tA = L_compositeObject:new()
+    -- tA:init(Login_RendererContext, -200, 0, 150, 150, 0, 5)
+    -- tA:addAnimatedObject("./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0, 1, 1, 255, 255, 255, 255, 0, 0)
+
+    -- tA:addPanel("Basic_border", 0.25)
+    -- tA:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0, 
+    --     10, 0.5)
     
-    tA:AddEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,0, 8, 
-        -10, 0.25)
-    
+    -- tA:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,0, 8, 
+    --     -10, 0.25)
+
+    -- tA:setAngle(45.0)
+
     ---- TOS section end
-    ---
-    --- loop 
-    -- FunctionList["loop_check"]()
+
 end
 
 ---@Description show Notification box

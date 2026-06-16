@@ -152,6 +152,40 @@ int lua_CompositeObject_AddEmblem(lua_State * L)
     return 0;
 }
 
+int lua_CompositeObject_setAngle(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_setAngle) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        float angle = lua_tonumber(L, 2);
+        obj->setAngle(angle);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_CompositeObject_addLine(lua_State * L)
+{
+    if(lua_gettop(L) != 5)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_addLine) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        glm::vec2 offset = glm::vec2(lua_tonumber(L, 2), lua_tonumber(L, 3));
+        float width = lua_tonumber(L, 4);
+        float depth = lua_tonumber(L, 5);
+        obj->addLine(offset, width, depth);
+        return 0;
+    }
+    return 0;
+}
+
 F_LuaRenderContext::F_LuaRenderContext()
 {
 
@@ -197,7 +231,9 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
     lua_register(m_script, "cpp_CompositeObject_addSprite", lua_CompositeObject_addSprite);
     lua_register(m_script, "cpp_CompositeObject_addAnimatedObject", lua_CompositeObject_addAnimatedObject);
     lua_register(m_script, "cpp_CompositeObject_addPanel", lua_CompositeObject_addPanel);
-    lua_register(m_script, "cpp_CompositeObject_AddEmblem", lua_CompositeObject_AddEmblem);
+    lua_register(m_script, "cpp_CompositeObject_addEmblem", lua_CompositeObject_AddEmblem);
+    lua_register(m_script, "cpp_CompositeObject_setAngle", lua_CompositeObject_setAngle);
+    lua_register(m_script, "cpp_CompositeObject_addLine", lua_CompositeObject_addLine);
 
 
 }

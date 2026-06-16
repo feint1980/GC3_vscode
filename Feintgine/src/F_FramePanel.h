@@ -74,9 +74,11 @@ namespace Feintgine
             rebuildHideMasks();
         }
 
-
         void setAngle(float angle);
         float getAngle() const { return m_angle; }
+
+        void addLine(const glm::vec2& offset, float width, float depth);
+
     private:
         void rebuildHideMasks();
         void markAllEmblemsDirty();
@@ -85,6 +87,7 @@ namespace Feintgine
         std::vector<F_FrameEmblem> m_emblems;
         float                      m_scale = 1.0f;
         float                      m_angle = 0.0f;
+
     };
 }
 

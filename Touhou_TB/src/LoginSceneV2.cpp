@@ -110,18 +110,15 @@ void LoginSceneV2::onEntry()
         std::cout << "no SDL_HasScreenKeyboardSupport ##################\n";
     }
     glViewport(0, 0, m_window->getScreenWidth(), m_window->getScreenHeight());
+    
+    // m_framePanel.init("Simple_border", glm::vec2(0,-10), glm::vec2(750, 400));
+    // m_framePanel.setScale(0.25f);
+    
+    // m_framePanel.addCornerEmblem("emblem_pack.xml/corner_b_05.png", 3,3, glm::vec2(19,-19),0.5f);
 
-    
-    
-    
-    m_framePanel.init("Basic_border", glm::vec2(0,-10), glm::vec2(750, 400));
-    m_framePanel.setScale(0.25f);
-    
-    m_framePanel.addCornerEmblem("emblem_pack.xml/corner_b_05.png", 3,3, glm::vec2(19,-19),0.5f);
+    // m_framePanel.addCornerEmblem("emblem_pack.xml/corner_a_07_2.png", 12,12, glm::vec2(19,-19),0.5f,10);
 
-    m_framePanel.addCornerEmblem("emblem_pack.xml/corner_a_07_2.png", 12,12, glm::vec2(19,-19),0.5f,10);
-
-    m_framePanel.addLineEmblem("emblem_pack.xml/corner_c_25.png", 15,0, glm::vec2(0,10),0.5f);
+    // m_framePanel.addLineEmblem("emblem_pack.xml/corner_c_25.png", 15,0, glm::vec2(0,10),0.5f);
 
     // example to create Frame and CompositeObject 12992
     // m_compositeObject.init(glm::vec2(-300,0), glm::vec2(150,150), 0.0f);

@@ -127,9 +127,23 @@ end
 ---@param offsetX number x offset
 ---@param offsetY number y offset
 ---@param scale number scale
-function L_compositeObject:AddEmblem(type, emblemName, placeFlag, hideFlag, offsetX, offsetY, scale)
+function L_compositeObject:addEmblem(type, emblemName, placeFlag, hideFlag, offsetX, offsetY, scale)
     if self.ptr == nil then
         return nil
     end
-    return CompositeObject_AddEmblem(self.ptr, type, emblemName, placeFlag, hideFlag, offsetX, offsetY, scale)
+    return CompositeObject_addEmblem(self.ptr, type, emblemName, placeFlag, hideFlag, offsetX, offsetY, scale)
+end
+
+function L_compositeObject:setAngle(angle)
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_setAngle(self.ptr, angle)
+end
+
+function L_compositeObject:addLine(offsetX, offsetY, width, depth)
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_addLine(self.ptr, offsetX, offsetY, width, depth)
 end

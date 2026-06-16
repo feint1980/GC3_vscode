@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker https://www.codeandweb.com/texturepacker -->
+<!-- $TexturePacker:SmartUpdate:8e11f04c89b8c512a21d499c66ac497b:f225700e931b7ef47195d9b164a6c69d:3b39b23a7a6564c7eb1d96afebb72762$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="Simple_border.png" width="228" height="228">
+    <sprite n="BL.png" x="1" y="1" w="72" h="72"/>
+    <sprite n="Border_B.png" x="78" y="1" w="72" h="72"/>
+    <sprite n="Border_L.png" x="155" y="1" w="72" h="72"/>
+    <sprite n="Border_R.png" x="1" y="78" w="72" h="72"/>
+    <sprite n="Border_T.png" x="78" y="78" w="72" h="72"/>
+    <sprite n="BR.png" x="155" y="78" w="72" h="72"/>
+    <sprite n="TL.png" x="1" y="155" w="72" h="72"/>
+    <sprite n="TR.png" x="78" y="155" w="72" h="72"/>
+</TextureAtlas>

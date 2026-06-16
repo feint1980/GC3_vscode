@@ -158,4 +158,10 @@ void F_CompositeObject::addPanelLineEmblem(const std::string & emblemSprite, int
     m_framePanel.setAngle(m_angle);
 }
 
+void F_CompositeObject::addFrameLine(glm::vec2 offset, float width, float depth)
+{
+    m_framePanel.addLine(offset, width, depth);
+    m_framePanel.setAngle(m_angle);
+}
+
 }

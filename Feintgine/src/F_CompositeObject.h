@@ -82,7 +82,19 @@ public:
 
     void addPanelLineEmblem(const std::string & emblemSprite, int placeMask, int hideMask, const glm::vec2 & offset, float scale);
 
+    void addFrameLine(glm::vec2 offset, float width, float depth);
+
+
     F_FramePanel * getFramePanel() { return &m_framePanel; }
+
+    void setAngle(float angle) 
+    { 
+        m_angle = angle;
+        m_framePanel.setAngle(angle); 
+    }
+
+    void addLine(const glm::vec2 & offset, float width, float depth) { m_framePanel.addLine(offset, width, depth); }
+
 
 protected:
 

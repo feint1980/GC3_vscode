@@ -52,7 +52,7 @@ void F_FrameObject::pushQuad(int slot, float x, float y, float w, float h, float
 void F_FrameObject::recalculate()
 {
     m_cachedQuads.clear();
-
+    m_lines.clear();
     glm::vec2 cornerDim = m_parts[TL].sprite.getDim();  // 72x72
 
     float scaleX = (m_size.x < cornerDim.x * 2.0f) ? (m_size.x / (cornerDim.x * 2.0f)) : 1.0f;
@@ -92,6 +92,11 @@ void F_FrameObject::recalculate()
     if (!(m_hideLineMask & LINE_LEFT))  pushQuad(Border_L, col0, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
     if (!(m_hideLineMask & LINE_RIGHT)) pushQuad(Border_R, col2, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
 
+    for (const FrameLine& line : m_lineDefs)
+    {
+        pushLineQuad(line.offset, line.width, line.depth);
+    }
+
     m_dirty = false;
 }
 
@@ -106,11 +111,44 @@ void F_FrameObject::draw(SpriteBatch& spriteBatch)
     {
         spriteBatch.draw(m_cachedQuads[i].destRect, m_cachedQuads[i].uv, m_cachedQuads[i].textureId, m_cachedQuads[i].depth, m_color, m_angle / 57.2957795f);
     }
+
+    for (int i = 0; i < (int)m_lines.size(); i++)
+    {
+        spriteBatch.draw(m_lines[i].destRect, m_lines[i].uv, m_lines[i].textureId, m_lines[i].depth, m_color, m_angle / 57.2957795f);
+    }
 }
 
 void F_FrameObject::setColor(const Feintgine::Color& color)
 {
     m_color = color;
 }
+
+void F_FrameObject::addLine(const glm::vec2& offset, float width, float depth)
+{
+    m_lineDefs.push_back({ offset, width, depth });
+    m_dirty = true;
+}
+void F_FrameObject::pushLineQuad(const glm::vec2& offset, float width, float depth)
+{
+    F_Sprite& spr = m_parts[Border_T].sprite;   // reuse top border (loop texture)
+
+    float h = spr.getDim().y * getScale();      // thickness comes from sprite height, scaled like the frame
+
+    // offset is relative to frame center (m_pos), pre-rotation
+    glm::vec2 center = m_pos + offset;
+    if (m_angle != 0.0f)
+    {
+        center = rotateAround(center, m_pos, m_angle / 57.2957795f);
+    }
+        
+    CachedQuad q;
+    q.destRect  = glm::vec4(center.x - width * 0.5f, center.y - h * 0.5f, width, h);
+    q.uv        = spr.getUV();
+    q.textureId = spr.getTexture().id;
+    q.depth     = m_depth + (depth * 0.01f);
+
+    m_lines.push_back(q);
+}
+
 
 } // namespace Feintgine

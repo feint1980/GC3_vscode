@@ -91,6 +91,8 @@ namespace Feintgine
         float     getDepth() const { return m_depth; }
         Feintgine::Color     getColor() const { return m_color; }
 
+        // void addLine
+
         void draw(SpriteBatch& spriteBatch);
         float getBorderScale() const { return m_borderScale; }
 
@@ -114,10 +116,13 @@ namespace Feintgine
 
         void setAngle(float angle) { m_angle = angle; m_dirty = true; }
 
+        void addLine(const glm::vec2& offset, float width, float depth = 50.0f);
+        void clearLines() { m_lineDefs.clear(); m_dirty = true; }
+
     private:
         void recalculate();
         void pushQuad(int slot, float x, float y, float w, float h, float depth);
-
+        void pushLineQuad(const glm::vec2& offset, float width, float depth);
         // Rotate point around pivot by angle (radians)
         static glm::vec2 rotateAround(const glm::vec2& point, const glm::vec2& pivot, float angleRad)
         {
@@ -127,7 +132,10 @@ namespace Feintgine
             return pivot + glm::vec2(d.x * c - d.y * s, d.x * s + d.y * c);
         }
         F_FramePart             m_parts[COUNT];
+
         std::vector<CachedQuad> m_cachedQuads;
+
+        // std::vector<CachedQuad> m_lines;
 
         glm::vec2 m_pos   = glm::vec2(0, 0 );
         glm::vec2 m_size  = glm::vec2(0, 0 );
@@ -145,6 +153,15 @@ namespace Feintgine
         
         bool      m_dirty = true;
 
+        struct FrameLine
+        {
+            glm::vec2 offset;   // offset from m_pos (frame center), pre-rotation
+            float     width;
+            float     depth;
+        };
+
+        std::vector<FrameLine>  m_lineDefs;   
+        std::vector<CachedQuad> m_lines;      // cached render data for the lines
 
     };
 }

@@ -100,4 +100,10 @@ void F_FramePanel::setAngle(float angle)
     }
 }
 
+void F_FramePanel::addLine(const glm::vec2& offset, float width, float depth)
+{
+    m_frame.addLine(offset, width, depth);
+    markAllEmblemsDirty();
+}
+
 } // namespace Feintgine
