@@ -74,3 +74,7 @@ end
 function CompositeObject_addLine(compositeObject, offsetX, offsetY, width, depth)
     cpp_CompositeObject_addLine(compositeObject, offsetX, offsetY, width, depth)
 end
+
+function CompositeObject_addText(compositeObject, text, posX, posY, aligment, scale, colorR,colorG,colorB,colorA , angle )
+    return cpp_CompositeObject_addText(compositeObject, text, posX, posY, aligment, scale, colorR,colorG,colorB,colorA , angle )
+end

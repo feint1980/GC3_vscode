@@ -10,11 +10,49 @@ F_CompositeObject::F_CompositeObject()
 {
     m_objectList = std::vector<tObject>();
     m_animatedObjectList = std::vector<tAObject>();
+    m_textObjectList = std::vector<tTextObject>();
     m_angle = 0.0f;
     m_type = 0;
     m_depth = 5.0f;
+    m_maxObject = 10;
     m_objectList.reserve(m_maxObject);
     m_animatedObjectList.reserve(m_maxObject);
+    m_textObjectList.reserve(m_maxObject);
+}
+// F_CompositeObject::F_CompositeObject(F_CompositeObject && other) noexcept
+// : m_type(other.m_type)
+//     , m_maxObject(other.m_maxObject)
+//     , m_pos(other.m_pos)
+//     , m_dim(other.m_dim)
+//     , m_angle(other.m_angle)
+//     , m_depth(other.m_depth)
+//     , m_objectList(std::move(other.m_objectList))
+//     , m_animatedObjectList(std::move(other.m_animatedObjectList))
+//     , m_textObjectList(std::move(other.m_textObjectList))
+//     , m_framePanel(std::move(other.m_framePanel))
+// {
+//     other.m_type = TNoObject;
+// }
+
+F_CompositeObject::F_CompositeObject(const F_CompositeObject& other)
+: m_type(other.m_type)
+    , m_maxObject(other.m_maxObject)
+    , m_pos(other.m_pos)
+    , m_dim(other.m_dim)
+    , m_angle(other.m_angle)
+    , m_depth(other.m_depth)
+    , m_objectList(std::move(other.m_objectList))
+    , m_animatedObjectList(std::move(other.m_animatedObjectList))
+    , m_textObjectList(std::move(other.m_textObjectList))
+    , m_framePanel(std::move(other.m_framePanel))
+{
+    m_objectList.reserve(m_maxObject);
+    m_animatedObjectList.reserve(m_maxObject);
+    m_textObjectList.reserve(m_maxObject);
+    // std::cout << "F_CompositeObject copy\n";
+    // std::cout << "object cap " << m_objectList.capacity() << "\n";
+    // std::cout << "animated object cap " << m_animatedObjectList.capacity() << "\n";
+    // std::cout << "text object cap " << m_textObjectList.capacity() << "\n";
 }
 
 F_CompositeObject::~F_CompositeObject()
@@ -28,12 +66,20 @@ void F_CompositeObject::init(const glm::vec2 & pos, const glm::vec2 & dim, float
     m_dim = dim;
     m_angle = angle;
     m_depth = depth;
+    m_objectList.reserve(m_maxObject);
+    m_animatedObjectList.reserve(m_maxObject);
+    m_textObjectList.reserve(m_maxObject);
+    // std::cout << "F_CompositeObject init\n";
+    // std::cout << "object cap " << m_objectList.capacity() << "\n";
+    // std::cout << "animated object cap " << m_animatedObjectList.capacity() << "\n";
+    // std::cout << "text object cap " << m_textObjectList.capacity() << "\n";
+
 }
 
 tObject * F_CompositeObject::addObject( const std::string & spriteNameWithPacket, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth)
 {
 
-    if(m_objectList.size() >= m_maxObject)
+    if(m_objectList.size() >= m_objectList.capacity())
     {
         std::cout << "F_CompositeObject Warning, Reach Maximum Objects, We will stop adding instead of extend the cap and cause weird behavior, if you see this, adjust the maximum capacity \n";
         return nullptr;
@@ -46,7 +92,7 @@ tObject * F_CompositeObject::addObject( const std::string & spriteNameWithPacket
 tAObject * F_CompositeObject::addAnimatedObject(const std::string & animFile,const std::string & defaultAnim, const glm::vec2 & posOffset, const glm::vec2 & scale, const Feintgine::Color & color, float angle, float depth)
 {
 
-    if(m_animatedObjectList.size() >= m_maxObject)
+    if(m_animatedObjectList.size() >= m_animatedObjectList.capacity())
     {
         std::cout << "F_CompositeObject Warning, Reach Maximum Objects, We will stop adding instead of extend the cap and cause weird behavior, if you see this, adjust the maximum capacity \n";
         return nullptr;
@@ -162,6 +208,42 @@ void F_CompositeObject::addFrameLine(glm::vec2 offset, float width, float depth)
 {
     m_framePanel.addLine(offset, width, depth);
     m_framePanel.setAngle(m_angle);
+}
+
+void F_CompositeObject::drawText(TextRenderer & textRenderer)
+{
+    for(size_t i = 0 ; i < m_textObjectList.size(); i++)
+    {
+        // std::wcout << L"rendered " << m_textObjectList[i].text << L"\n";
+        textRenderer.renderTextBatched(m_textObjectList[i].text, m_pos + m_textObjectList[i].posOffset, m_textObjectList[i].color, m_textObjectList[i].scale, m_textObjectList[i].justification,m_angle + m_textObjectList[i].angle);
+    }
+}
+
+tTextObject * F_CompositeObject::addText(const std::wstring & text, const glm::vec2 & posOffset, const Feintgine::Color & color, float scale, unsigned char justification, float angle)
+{
+    if(m_textObjectList.size() >= m_textObjectList.capacity())
+    {
+        std::cout << "F_CompositeObject Warning, Reach Maximum Text Objects (wstring version), We will stop adding instead of extend the cap and cause weird behavior, if you see this, adjust the maximum capacity \n";
+
+        std::cout << "size " << m_textObjectList.size() << " capacity " << m_textObjectList.capacity() << "\n";
+        return nullptr;
+    }
+    m_textObjectList.push_back({posOffset, text, color, scale, justification, angle});
+    flagUpdate();
+    return &m_textObjectList.back();
+}
+
+tTextObject * F_CompositeObject::addText(const std::string & text, const glm::vec2 & posOffset, const Feintgine::Color & color, float scale, unsigned char justification, float angle)
+{
+    if(m_textObjectList.size() >= m_textObjectList.capacity())
+    {
+        std::cout << "F_CompositeObject Warning, Reach Maximum Text Objects(string version), We will stop adding instead of extend the cap and cause weird behavior, if you see this, adjust the maximum capacity \n";
+        std::cout << "size " << m_textObjectList.size() << " capacity " << m_textObjectList.capacity() << "\n";
+        return nullptr;
+    }
+    m_textObjectList.push_back({posOffset, feint_common::Instance()->convertStringtoWstring( text), color, scale, justification, angle});
+    flagUpdate();
+    return &m_textObjectList.back();
 }
 
 }

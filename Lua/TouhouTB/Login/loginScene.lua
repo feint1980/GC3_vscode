@@ -398,7 +398,10 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     loginDecorateFrame:addLine(0, 20, 150, 5)
     loginDecorateFrame:addLine(0, -30, 175, 5)
     loginDecorateFrame:addLine(0, -80, 85, 5)
-    -- loginDecorateFrame:setAngle(45.0)
+
+    -- print("Blind 東 Eye team 風谷早苗こんに")
+    loginDecorateFrame:addText("東方黄昏結界", 610,-400, 3,1.0, 255,255,255,255,0)
+    loginDecorateFrame:addLine(610, -420, 165, 5)
 
     -- local tA = L_compositeObject:new()
     -- tA:init(Login_RendererContext, -200, 0, 150, 150, 0, 5)
@@ -413,6 +416,7 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
 
     -- tA:setAngle(45.0)
 
+    -- tA:addText("ekwes", 0,10, 1,0.5, 255,255,255,255,0)
     ---- TOS section end
 
 end

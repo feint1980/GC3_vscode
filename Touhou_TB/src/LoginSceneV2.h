@@ -47,6 +47,7 @@
 #include "LuaEventHandler.h"
 #include <F_FrameObject.h>
 #include <F_FramePanel.h>
+#include <TextRenderer.h>
 
 // #include <F_CompositeObject.h>
 #include <F_LuaRenderContext.h>
@@ -124,6 +125,8 @@ private:
     Feintgine::F_FramePanel m_framePanel;
     Feintgine::F_CompositeObject m_compositeObject;
     Feintgine::F_LuaRenderContext m_luaRenderContext;
+
+    TextRenderer m_textRenderer;
 
     //LuaEventHandler m_luaEventHandler;
 

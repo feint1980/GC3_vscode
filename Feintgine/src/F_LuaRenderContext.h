@@ -10,8 +10,9 @@
 #include "F_FramePanel.h"
 #include "LuaManager.h"
 #include "F_Sprite.h"
-
+#include "TextRenderer.h"
 #include "F_CompositeObject.h"
+
 
 #define EMBLEM_LINE 0
 #define EMBLEM_CORNER 1
@@ -28,9 +29,13 @@ namespace Feintgine
         */
         void init(lua_State * script, int maxCompositeObjects);
         
+        void initTextRenderer(int fontSize, int charCount, const std::string& fontFilePath); 
+
         void update(float delta);
         
         void draw(Feintgine::SpriteBatch & spriteBatch);
+
+        void drawText(const Feintgine::Camera2D & camera);
 
         void removeCompositeObject(F_CompositeObject * compositeObject);
 
@@ -39,7 +44,7 @@ namespace Feintgine
     private:
         lua_State * m_script = nullptr;
         std::vector<F_CompositeObject> m_compositeObjects;
-
+        TextRenderer m_textRenderer;
     };
 
 }

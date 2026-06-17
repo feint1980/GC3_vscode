@@ -84,6 +84,7 @@ void LoginSceneV2::initShader()
 void LoginSceneV2::onEntry()
 {
     
+    SetConsoleOutputCP(CP_UTF8);
     std::cout << "login scene onEntry \n";
 	Feintgine::SpriteManager::Instance()->loadFromDirectory("Assets/", 0);
     m_camera.init(m_window->getScreenWidth(), m_window->getScreenHeight() , 7);
@@ -299,6 +300,8 @@ void LoginSceneV2::draw()
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
 	
+    m_luaRenderContext.drawText(m_camera);
+
 	drawGUI();
 	SDL_GL_SetSwapInterval(1);	
 }
@@ -362,7 +365,11 @@ void LoginSceneV2::initGUI()
     m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB,"ClientHandlerWrapResponse");
     // m_clientScriptingManager->setWrappedMessageHandlingLuaFunction(ID_TH_TB_BATTLE,"ClientHandlerBattleResponse");
 
+    m_luaRenderContext.initTextRenderer(24,40000, "font/ARIALUNI.ttf");
+    
+
 }
+
 
 void LoginSceneV2::drawGUI()
 {

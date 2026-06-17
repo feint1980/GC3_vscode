@@ -587,7 +587,9 @@ void EditorScreen::draw()
 
 		glViewport(0, 0, m_window->getScreenWidth(), m_window->getScreenHeight());
 		
-		m_textRenderer.renderText(m_fullCam, 
+		m_textRenderer.begin();
+
+		m_textRenderer.renderTextBatched( 
 			L"FPS :" + 
 			feint_common::Instance()->convertStringtoWstring(feint_common::
 				Instance()->convertPreciousFloatToString(m_game->getFps())),
@@ -598,12 +600,14 @@ void EditorScreen::draw()
 		
 		std::wstring l_x = feint_common::Instance()->convertStringtoWstring(feint_common::Instance()->convertPreciousFloatToString(curPos.x));
 		std::wstring l_y = feint_common::Instance()->convertStringtoWstring(feint_common::Instance()->convertPreciousFloatToString(curPos.y));
-		m_textRenderer.renderText(m_fullCam, 
+		m_textRenderer.renderTextBatched( 
 			L"X :" + l_x,
 			glm::vec2(-50, -430), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
-		m_textRenderer.renderText(m_fullCam, 
+		m_textRenderer.renderTextBatched( 
 			L"Y :" + l_y,
 			glm::vec2(100, -430), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
+
+		m_textRenderer.end(m_fullCam);
 
 		m_gui.draw();
 	}

@@ -28,6 +28,7 @@ const unsigned char ALIGN_FT_CENTER = 3;
 static constexpr int TEXT_ATLAS_W = 1024;
 static constexpr int TEXT_ATLAS_H = 1024;
 
+
 struct Character {
     // Legacy: per-glyph texture (used by renderText)
     GLuint     TextureID = 0;
@@ -41,13 +42,19 @@ struct Character {
     glm::vec2  uvMax { 0.f, 0.f };
 };
 
+struct UnicodeRange { unsigned long first; unsigned long last; }; 
+
 class TextRenderer {
 
 public:
     TextRenderer();
     ~TextRenderer();
 
-    void  init(int fontSize, int charCount, const std::string& fontFilePath);
+    void  init(int fontSize, const std::vector<UnicodeRange>& ranges, const std::string& fontFilePath);
+
+
+    void  init(int fontSize, int charCount, const std::string& fontFilePath); // legacy function 
+
     void  initShader();
 
     float getTotalScale() const { return totalScale; }
@@ -62,7 +69,8 @@ public:
         const glm::vec2&           pos,
         const Feintgine::Color&    color,
         float                      scale,
-        unsigned char              justification);
+        unsigned char              justification,
+        float                      angleDegrees = 0.f);
 
     void renderBorderText(
         const Feintgine::Camera2D& camera,
@@ -70,7 +78,8 @@ public:
         const glm::vec2&           pos,
         const Feintgine::Color&    color,
         float                      scale,
-        unsigned char              justification);
+        unsigned char              justification,
+        float                      angleDegrees = 0.f);
 
     // ----------------------------------------------------------------
     // Batched path — accumulate with renderTextBatched(), flush with end()
@@ -87,7 +96,8 @@ public:
         const glm::vec2&        pos,
         const Feintgine::Color& color,
         float                   scale,
-        unsigned char           justification);
+        unsigned char           justification,
+        float                   angleDegrees = 0.f);
 
     // std::string version
     void renderTextBatched(
@@ -95,9 +105,14 @@ public:
         const glm::vec2&        pos,
         const Feintgine::Color& color,
         float                   scale,
-        unsigned char           justification);
+        unsigned char           justification,
+        float                   angleDegrees = 0.f);
 
 
+    std::vector<UnicodeRange> defaultVietnameseRanges();
+    std::vector<UnicodeRange> defaultRussianRanges();
+    std::vector<UnicodeRange> defaultJapaneseKanaRanges();
+    std::vector<UnicodeRange> rangesFromText(const std::string& utf8Text);
 
     // color applies to the entire batch — call begin()/end() per color group if needed
     void end(const Feintgine::Camera2D& camera);
@@ -110,7 +125,8 @@ private:
                float               scale,
                unsigned char       justification,
                std::vector<GLfloat>& out_verts,
-               bool                useAtlasUV);
+               bool                useAtlasUV,
+               float               angleDegrees = 0.f);
 
     float  calcTextWidth(const std::wstring& text, float scale) const;
     float  calcMinHeight(const std::wstring& text, float scale) const;

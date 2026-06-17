@@ -123,12 +123,15 @@ void F_SpellcardBase::setTextPos(const glm::vec2 & pos)
 
 void F_SpellcardBase::drawText(const Feintgine::Camera2D & camera, TextRenderer & renderer)
 {
-	renderer.renderText(camera,(m_signName),
+	renderer.begin();
+	renderer.renderTextBatched((m_signName),
 		m_pos + textOffset,
 		m_color, 1.0f, ALIGN_FT_RIGHT);
-	renderer.renderText(camera, (m_spellName),
+	renderer.renderTextBatched((m_spellName),
 		m_pos + textOffset2,
 		Feintgine::Color(255,0,0,255), 1.0f, ALIGN_FT_RIGHT);
+
+	renderer.end(camera);
 }
 
 std::wstring F_SpellcardBase::colorCode(int id)

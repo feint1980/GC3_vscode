@@ -186,6 +186,36 @@ int lua_CompositeObject_addLine(lua_State * L)
     return 0;
 }
 
+int lua_CompositeObject_addText(lua_State * L)
+{
+    if(lua_gettop(L) != 11)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_addText) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        const char* ttS = lua_tostring(L, 2);
+        std::wstring text = feint_common::Instance()->convertStringtoWstring(ttS);
+
+        glm::vec2 offset = glm::vec2(lua_tonumber(L, 3), lua_tonumber(L, 4));
+        int alignment = lua_tonumber(L, 5);
+        float scale = lua_tonumber(L, 6);
+        float r = lua_tonumber(L, 7);
+        float g = lua_tonumber(L, 8);
+        float b = lua_tonumber(L, 9);
+        float a = lua_tonumber(L, 10);
+        Feintgine::Color color(r, g, b, a);
+        float angle = lua_tonumber(L, 11);
+        std::wcout << L"print " << ttS << L"\n";
+        // std::cout << "C++ address " << obj << "\n";
+        tTextObject * t_obj = obj->addText(ttS, offset,  color,scale, alignment, angle);
+        lua_pushlightuserdata(L, t_obj);
+        return 1;
+    }
+    return 0;
+}
+
 F_LuaRenderContext::F_LuaRenderContext()
 {
 
@@ -234,8 +264,18 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
     lua_register(m_script, "cpp_CompositeObject_addEmblem", lua_CompositeObject_AddEmblem);
     lua_register(m_script, "cpp_CompositeObject_setAngle", lua_CompositeObject_setAngle);
     lua_register(m_script, "cpp_CompositeObject_addLine", lua_CompositeObject_addLine);
+    lua_register(m_script, "cpp_CompositeObject_addText", lua_CompositeObject_addText);
 
 
+}
+void F_LuaRenderContext::initTextRenderer(int fontSize, int charCount, const std::string& fontFilePath)
+{
+
+
+    // m_textRenderer.init(fontSize, charCount, fontFilePath);
+
+    std::string allGameText = "az黄昏結界方彼岸渡東風谷早苗こんや" /* every line of dialogue + UI text concatenated */;
+    m_textRenderer.init(fontSize, m_textRenderer.rangesFromText(allGameText), fontFilePath);
 }
 
 void F_LuaRenderContext::update(float delta)
@@ -268,6 +308,18 @@ void F_LuaRenderContext::draw(Feintgine::SpriteBatch & spriteBatch)
     {
         m_compositeObjects[i].draw(spriteBatch);
     }
+}
+
+void F_LuaRenderContext::drawText(const Feintgine::Camera2D & camera)
+{
+    m_textRenderer.begin();
+
+    for(size_t i = 0; i < m_compositeObjects.size(); i++)
+    {
+        m_compositeObjects[i].drawText(m_textRenderer);
+    }
+
+    m_textRenderer.end(camera);
 }
 
 } 
