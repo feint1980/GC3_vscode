@@ -3,7 +3,7 @@
 
 CombatGUIDock::CombatGUIDock()
 {
-    m_currentCharacterName = "No Selection";
+    m_currentCharacterName = "";
 
 }
 

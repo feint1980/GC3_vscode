@@ -43,7 +43,7 @@
 #include <LuaTaskManager.h>
 #include <LuaEventPipeline.h>
 #include <LuaPollEvent.h>
-
+#include <F_LuaRenderContext.h>
 
 class HomeScene : public Feintgine::IGameScreen
 {
@@ -139,6 +139,8 @@ private:
     LuaPollEvent m_luaPollEvent;
 
     bool isInitialized = false;
+
+    Feintgine::F_LuaRenderContext m_luaRenderContext;
 
 };
 

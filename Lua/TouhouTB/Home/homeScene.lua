@@ -1,4 +1,4 @@
-package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Home/Shop/?.lua;' .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua' .. ';../../Lua/TouhouTB/characters/Meiling/?.lua;' .. ';../../Lua/TouhouTB/?.lua' 
+package.path = package.path .. ';../../Lua/system/GUI/?/?.lua;' .. ';../../Lua/system/GUI/widgets/?.lua;' .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/Home/?.lua;' .. ';../../Lua/system/event/?.lua;' .. ';../../Lua/TouhouTB/Home/Shop/?.lua;' .. ';../../Lua/TouhouTB/characters/?.lua;' .. ';../../Lua/?.lua;' .. './TouhouTB/characters/Common/?.lua;' .. './TouhouTB/characters/Patchy/?.lua;' .. ';../../Lua/TouhouTB/characters/Patchy/?.lua;' .. ';./TouhouTB/characters/Reimu/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Reimu/?.lua;' .. ';./TouhouTB/characters/Yukari/slots/?.lua;' .. ';../../Lua/TouhouTB/characters/Yukari/?.lua;' .. ';../../Lua/TouhouTB/?.lua' .. ';../../Lua/TouhouTB/characters/Meiling/?.lua;' .. ';../../Lua/TouhouTB/?.lua' .. ';../../Lua/system/objects/?.lua;'
 
 require "TGUI_Label"
 require "TGUI_Panel"
@@ -13,6 +13,8 @@ require "Nexus"
 require "Formation"
 require "homeGlobal"
 require "Arena"
+
+require "compositeObject"
 
 require "homeScene_sequence"
 require "EventPipeline"
@@ -54,6 +56,9 @@ Home_Noti_Btn = nil
 ---@type Picture
 Home_Picture = nil
 
+---@type pointer Lua_Context_Renderer
+Home_RendererContext = nil
+
 --- Main 
 ---@type Label
 Main_NameLabel = nil
@@ -88,14 +93,14 @@ local h_guid = ""
 IsInited = false
 
 
-function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr)
+function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr,RendererContextPtr)
     HomeSceneHost = host
     Home_GUIScriptingPtr = TGUIScriptingPtr
     Home_ClientScriptingPtr = ClientScriptingPtr
     Home_ClientCharacterHandlerPtr = ClientCharacterHandlerPtr
     Home_SkillHandlerPtr = SkillHandlerPtr
     Home_ControlHandlerPtr = ControlHandlerPtr
-
+    Home_RendererContext = RendererContextPtr 
     if IsInited == false then
         IsInited = true
         
@@ -227,6 +232,23 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     Home_SyncData(ClientScriptingPtr)
 
     print("test pipeline section ")
+
+
+    local tA = L_compositeObject:new()
+    tA:init(Home_RendererContext, 0, 0, 250, 250, 0, 5)
+    tA:addAnimatedObject("./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0, 1, 1, 255, 255, 255, 255, 0, 0)
+
+    tA:addPanel("Basic_border", 0.25)
+    tA:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0, 
+        10, 0.5)
+    
+    tA:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,0, 8, 
+        -10, 0.25)
+
+    -- tA:setAngle(45.0)
+
+    tA:addText("ekwes", 0,10, 1,0.5, 255,255,255,255,0)
+    
 
     -- test Lua event pipeline
 

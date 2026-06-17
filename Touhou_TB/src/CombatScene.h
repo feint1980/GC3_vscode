@@ -44,6 +44,7 @@
 #include <LuaEventPipeline.h>
 #include <LuaPollEvent.h>
 #include <TextRenderer.h>
+#include <F_LuaRenderContext.h>
 
 // Combat components
 #include "CombatField.h"
@@ -150,5 +151,7 @@ public:
     bool m_isSceneReady = false;
 
     TextRenderer m_textRenderer;
+
+    Feintgine::F_LuaRenderContext m_luaRenderContext;
 
 };

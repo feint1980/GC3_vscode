@@ -184,6 +184,8 @@ void CombatScene::initGUI()
         
         m_clientCharacterHandler->init(m_script);
 
+        m_luaRenderContext.init(m_script,150);
+
         isInitialized = true;
     }
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Combat/CombatScene.lua")))
@@ -213,15 +215,18 @@ void CombatScene::initGUI()
         lua_pushlightuserdata(m_script, m_controlHandler);
         lua_pushlightuserdata(m_script, m_combatField);
         lua_pushlightuserdata(m_script, m_turnDisplayer);
+        lua_pushlightuserdata(m_script, &m_luaRenderContext);
         
         std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-        const int argc = 8;
+        const int argc = 9;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
             std::cout << "Combat scene init script from C++ OK \n";
         }
     }
+
+    m_luaRenderContext.initTextRenderer(24,100, "font/ARIALUNI.ttf");
 }
 
 void CombatScene::onExit()
@@ -247,6 +252,9 @@ void CombatScene::update(float deltaTime)
     m_luaTaskManager.update(deltaTime);
     m_luaEventPipeline.update(deltaTime);
     m_luaPollEvent.update(deltaTime);
+
+    m_luaRenderContext.update(deltaTime);
+
     if(m_combatField)
     {
         m_combatField->update(deltaTime);
@@ -301,10 +309,13 @@ void CombatScene::draw()
         }
     }
     
+    m_luaRenderContext.draw(m_spriteBatch);
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
 	
+    m_luaRenderContext.drawText(m_camera);
+
 	drawGUI();
 	SDL_GL_SetSwapInterval(1);
 

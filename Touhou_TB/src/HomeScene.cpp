@@ -133,6 +133,7 @@ void HomeScene::onEntry()
 
     m_gif.init("./Assets/F_AObjects/komachi_chill.xml");
     m_gif.playAnimation("play");
+    
    // m_gif.setScale(glm::vec2(1.7f));
 
 }
@@ -205,6 +206,7 @@ void HomeScene::update(float deltaTime)
         //m_clientScriptingManager->update(deltaTime);
         m_clientScriptingManager->updateV2(deltaTime);
     }
+    m_luaRenderContext.update(deltaTime);
     m_gif.update(deltaTime);
     m_luaTaskManager.update(deltaTime);
     m_luaEventPipeline.update(deltaTime);
@@ -261,6 +263,7 @@ void HomeScene::draw()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glViewport(0, 0, m_window->getScreenWidth(), m_window->getScreenHeight());
 	
 	m_shader.use();
 
@@ -278,10 +281,13 @@ void HomeScene::draw()
 
 	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
     //m_bg.draw(m_spriteBatch);
+    m_luaRenderContext.draw(m_spriteBatch);
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
 	
+    m_luaRenderContext.drawText(m_camera);
+
 	drawGUI();
 	SDL_GL_SetSwapInterval(1);	
 }
@@ -357,6 +363,9 @@ void HomeScene::initGUI()
     m_clientCharacterHandler = new ClientCharacterHandler();
     m_clientCharacterHandler->init(m_script);
 
+    m_luaRenderContext.init(m_script,150);
+
+
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Home/homeScene.lua")))
     {
         std::cout << "Run home scene script OK \n";
@@ -383,8 +392,9 @@ void HomeScene::initGUI()
         lua_pushlightuserdata(m_script, m_clientCharacterHandler);
         lua_pushlightuserdata(m_script, &m_skillHandler);
         lua_pushlightuserdata(m_script, m_controlHandler);
+        lua_pushlightuserdata(m_script, &m_luaRenderContext);
         std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-        const int argc = 6;
+        const int argc = 7;
         const int returnCount = 0;
         if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, argc, returnCount, 0)))
         {
@@ -417,6 +427,8 @@ void HomeScene::initGUI()
     m_clientScriptingManager->setClientEndPoint(m_client);
     
     m_clientScriptingManager->setBattleServerIPMap(InfoHolder::getInstance()->getBattleServerIPMap()); 
+
+    m_luaRenderContext.initTextRenderer(24,100, "font/ARIALUNI.ttf");
 
 }
 
