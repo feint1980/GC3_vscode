@@ -33,6 +33,24 @@ int lua_combat_setPollSignal(lua_State * L)
     return 0;
 }
 
+
+int lua_combat_getSceneResolution(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_combat_getSceneResolution) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        CombatScene * host = (CombatScene *)lua_touserdata(L, 1);
+        glm::vec2 res = host->getSceneResolution();
+        lua_pushnumber(L, res.x);
+        lua_pushnumber(L, res.y);
+        return 2;
+    }
+    return 0;
+}
 //
 
 
@@ -184,7 +202,7 @@ void CombatScene::initGUI()
         
         m_clientCharacterHandler->init(m_script);
 
-        m_luaRenderContext.init(m_script,150);
+        m_luaRenderContext.init(m_script,250);
 
         isInitialized = true;
     }
@@ -196,6 +214,8 @@ void CombatScene::initGUI()
 
     lua_register(m_script, "cpp_combat_sceneReady", lua_combat_sceneReady);
     lua_register(m_script, "cpp_combat_setPollSignal", lua_combat_setPollSignal);
+    lua_register(m_script, "cpp_combat_getSceneResolution", lua_combat_getSceneResolution);
+    
 
 
     // declare network function here

@@ -93,6 +93,8 @@ public:
 
     void sendPollSignal(const std::string& signalName,bool value);
 
+    glm::vec2 getSceneResolution() const { return glm::vec2(m_window->getScreenWidth(), m_window->getScreenHeight()); }
+
     private:
 
     Feintgine::Window * m_window = nullptr;
