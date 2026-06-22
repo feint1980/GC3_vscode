@@ -39,7 +39,7 @@ void CSlot::init(const std::string & texturePath, int colum, int row, int side)
     }
     
     m_actualPos = glm::vec2(m_index.x * xFactor, m_index.y * yFactor);
-    m_actualPos.y += 100; // up
+    m_actualPos.y += 250; // up + 150 | 250 , may be lower to 200 
 
     m_circle.init(Feintgine::ResourceManager::getTexture(texturePath), 
     m_actualPos, glm::vec2(120, 40), Feintgine::Color((colum -1 ) * (255/2), (row -1 ) * (255/2), 125, 255));

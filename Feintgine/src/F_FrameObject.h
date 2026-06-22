@@ -41,6 +41,7 @@ namespace Feintgine
             BL       = 5,
             Border_B = 6,
             BR       = 7,
+            BG       = 8,
             COUNT
         };
 
@@ -52,7 +53,8 @@ namespace Feintgine
             "Border_R.png",
             "BL.png",
             "Border_B.png",
-            "BR.png"
+            "BR.png",
+            "BG.png"
         };
 
         struct F_FramePart
@@ -80,6 +82,23 @@ namespace Feintgine
                     float              depth = 0.5f,
                     const Color&       color = Color(255, 255, 255, 255),
                     float              scale = 1.0f);
+
+        void showBG(bool value)
+        {
+            m_hasBG = value;
+            m_dirty = true;
+        }
+        void setBGColor(const Feintgine::Color& color) {
+            m_bgColor = color; 
+            m_dirty = true;
+
+        }
+        void setBGScale(float scale) 
+        { 
+            std::cout << "setBGScale: " << scale << "\n";
+            m_bgScale = scale;
+            m_dirty = true; 
+        }
 
         void setScale(float scale)           { m_borderScale = scale; }
         void setPos  (const glm::vec2& pos)  { m_pos   = pos;   m_dirty = true; }
@@ -147,12 +166,11 @@ namespace Feintgine
         int m_hideCornerMask = 0;
         int m_hideLineMask   = 0;
         alignas(16) Feintgine::Color     m_color = Feintgine::Color(255, 255, 255, 255); //works
+        alignas(16) Feintgine::Color     m_bgColor = Feintgine::Color(255, 255, 255, 255); //works
         // float padding = 0.0f; // put after Color, great example for padding, context If padding is not here, m_angle will be changed when m_color it set/assign
-        float m_angle = 0.0f;
+       
         
         
-        bool      m_dirty = true;
-
         struct FrameLine
         {
             glm::vec2 offset;   // offset from m_pos (frame center), pre-rotation
@@ -160,9 +178,20 @@ namespace Feintgine
             float     depth;
         };
 
+        bool      m_dirty = true;
+        bool m_hasBG = false;
+        bool m_bgInited = false;
+        bool m_hasBGQuad = false;
+        
+        float m_bgScale = 1.0f;
+        float m_angle = 0.0f;
+
         std::vector<FrameLine>  m_lineDefs;   
         std::vector<CachedQuad> m_lines;      // cached render data for the lines
 
+        CachedQuad m_bgQuad = {};
+        
+        
     };
 }
 

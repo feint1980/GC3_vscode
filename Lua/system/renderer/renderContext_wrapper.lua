@@ -78,3 +78,15 @@ end
 function CompositeObject_addText(compositeObject, text, posX, posY, aligment, scale, colorR,colorG,colorB,colorA , angle )
     return cpp_CompositeObject_addText(compositeObject, text, posX, posY, aligment, scale, colorR,colorG,colorB,colorA , angle )
 end
+
+function CompositeObject_showPanelBG(compositeObject, value)
+    cpp_CompositeObject_showPanelBG(compositeObject, value)
+end
+
+function CompositeObject_setPanelBGColor(compositeObject, colorR,colorG,colorB,colorA )
+    cpp_CompositeObject_setPanelBGColor(compositeObject, colorR,colorG,colorB,colorA )
+end
+
+function CompositeObject_setPanelBGScale(compositeObject, scale)
+    cpp_CompositeObject_setPanelBGScale(compositeObject, scale)
+end

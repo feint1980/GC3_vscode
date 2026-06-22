@@ -18,9 +18,12 @@ void F_FrameObject::init(const std::string& packetname,
     m_size  = size;
     m_depth = depth;
     m_color = color;
+    m_hasBG = false;
     m_dirty = true;
+    m_bgScale = 1.0f;
 
     m_borderScale = borderScale;
+    m_bgColor = Feintgine::Color(46, 46, 46, 100);
 
     SpriteManager* sm = SpriteManager::Instance();
     for (int i = 0; i < COUNT; i++)
@@ -76,7 +79,7 @@ void F_FrameObject::recalculate()
     float row1 = originY + ch;
     float row2 = originY + m_size.y - ch;
 
-    float overlap = cw * 0.3f;  // overlap as fraction of corner size, stays proportional
+    float overlap = cw * 0.1f;  // overlap as fraction of corner size, stays proportional
 
     // Corners
     if (!(m_hideCornerMask & CORNER_TL)) pushQuad(TL, col0, row2, cw, ch, 70.0f);
@@ -91,6 +94,38 @@ void F_FrameObject::recalculate()
     // Vertical borders
     if (!(m_hideLineMask & LINE_LEFT))  pushQuad(Border_L, col0, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
     if (!(m_hideLineMask & LINE_RIGHT)) pushQuad(Border_R, col2, row1 - overlap, cw, midH + overlap * 2.0f, 50.0f);
+
+    // if (m_hasBG)
+    // pushQuad(BG, originX, originY, m_size.x , m_size.y, 10.0f);
+
+    if (m_hasBG)
+    {
+        F_Sprite& spr = m_parts[BG].sprite;
+        // float bgW = midW * m_bgScale;
+        // float bgH = midH * m_bgScale;
+        float bgW = m_size.x * m_bgScale;
+        float bgH = m_size.y * m_bgScale;
+        // glm::vec2 center(col1 + bgW * 0.5f, row1 + bgH * 0.5f);
+        glm::vec2 center(m_pos.x, m_pos.y);
+        // glm::vec2 center(m_pos.x, m_pos.y);
+        if (m_angle != 0.0f)
+        {
+            center = rotateAround(center, m_pos, m_angle / 57.2957795f);
+        }
+        
+        // m_bgQuad.destRect  = glm::vec4(center.x - bgW * 0.5f, center.y - bgH * 0.5f, bgW, bgH);
+        // m_bgQuad.destRect = glm::vec4((m_pos.x - m_size.x * 0.5f) * m_bgScale, (m_pos.y - m_size.y * 0.5f) * m_bgScale, m_size.x * m_bgScale, m_size.y * m_bgScale);
+        m_bgQuad.destRect = glm::vec4(
+            m_pos.x - bgW * 0.5f,
+            m_pos.y - bgH * 0.5f,
+            bgW,
+            bgH
+        );
+        m_bgQuad.uv        = spr.getUV();
+        m_bgQuad.textureId = spr.getTexture().id;
+        m_bgQuad.depth     = m_depth + (10.0f * 0.01f);
+        m_hasBGQuad        = true;
+    }
 
     for (const FrameLine& line : m_lineDefs)
     {
@@ -111,6 +146,9 @@ void F_FrameObject::draw(SpriteBatch& spriteBatch)
     {
         spriteBatch.draw(m_cachedQuads[i].destRect, m_cachedQuads[i].uv, m_cachedQuads[i].textureId, m_cachedQuads[i].depth, m_color, m_angle / 57.2957795f);
     }
+
+    if (m_hasBGQuad)
+    spriteBatch.draw(m_bgQuad.destRect, m_bgQuad.uv, m_bgQuad.textureId, m_bgQuad.depth, m_bgColor, m_angle / 57.2957795f);
 
     for (int i = 0; i < (int)m_lines.size(); i++)
     {

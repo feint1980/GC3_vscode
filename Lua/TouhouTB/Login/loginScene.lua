@@ -403,6 +403,9 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
     loginDecorateFrame:addText("東方黄昏結界", 610,-400, 3,1.0, 255,255,255,255,0)
     loginDecorateFrame:addLine(610, -420, 165, 5)
 
+    loginDecorateFrame:showPanelBG(true)
+    loginDecorateFrame:setPanelBGColor(46,46,46,255)
+    loginDecorateFrame:setPanelBGScale(1.0)
     -- local tA = L_compositeObject:new()
     -- tA:init(Login_RendererContext, -200, 0, 150, 150, 0, 5)
     -- tA:addAnimatedObject("./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0, 1, 1, 255, 255, 255, 255, 0, 0)

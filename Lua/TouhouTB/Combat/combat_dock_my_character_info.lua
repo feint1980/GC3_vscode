@@ -35,10 +35,13 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
 
     self.mainDock:init(self.renderContextHost, -posX , -posY,width ,height, 0,5)
     self.mainDock:addPanel("Basic_border",0.5)
-    self.mainDock:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0, 10,0.5)
-    self.mainDock:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,0, 8, 
-    -10, 0.25)
+    self.mainDock:addEmblem(0,"emblem_pack.xml/corner_c_24.png", 1,0, 0, 25,0.5)
+    self.mainDock:addEmblem(1,"emblem_pack.xml/corner_b_01.png", 3,0, 8,
+    -15, 0.75)
 
+    self.mainDock:showPanelBG(true)
+    self.mainDock:setPanelBGColor(8,10,15,255)
+    self.mainDock:setPanelBGScale(0.95)
 
 
 end

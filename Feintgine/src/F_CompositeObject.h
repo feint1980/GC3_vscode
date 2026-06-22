@@ -118,13 +118,40 @@ public:
     void flagUpdate();    
 
     void addPanel(const std::string & borderPacket, float borderScale);
-    
+
+    void showPanelBG(bool show) 
+    { 
+        if(!(m_type & ObjectTypes::TF_FramePanel)) // no frame panel
+        {
+            std::cout << "No frame panel created (showPanelBG) !!!!!\n";
+            return ;
+        }
+        m_framePanel.showPanelBG(show); 
+    }
+    void setPanelBGColor(const Feintgine::Color & color) 
+    { 
+        if(!(m_type & ObjectTypes::TF_FramePanel)) // no frame panel
+        {
+            std::cout << "No frame panel created (setPanelBGColor) !!!!!\n";
+            return ;
+        }
+        m_framePanel.setPanelBGColor(color); 
+    }
+    void setPanelScale(float scale) 
+    { 
+        if(!(m_type & ObjectTypes::TF_FramePanel)) // no frame panel
+        {
+            std::cout << "No frame panel created (setPanelScale) !!!!!\n";
+            return ;
+        }
+        m_framePanel.setPanelBGScale(scale); 
+    }
+
     void addPanelCornerEmblem(const std::string & emblemSprite, int placeMask, int hideMask, const glm::vec2 & offset, float scale);
 
     void addPanelLineEmblem(const std::string & emblemSprite, int placeMask, int hideMask, const glm::vec2 & offset, float scale);
 
-    void addFrameLine(glm::vec2 offset, float width, float depth);
-
+    void addFrameLine(const glm::vec2 & offset, float width, float depth);
 
     F_FramePanel * getFramePanel() { return &m_framePanel; }
 

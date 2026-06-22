@@ -59,6 +59,14 @@ namespace Feintgine
             m_frame.setScale(m_scale);
         }
         
+        void showPanelBG(bool show) { 
+                
+            m_frame.showBG(show);
+        
+        }
+        void setPanelBGColor(const Color& color) { m_frame.setBGColor(color); }
+        void setPanelBGScale(float scale) { m_frame.setBGScale(scale); }
+
 
         glm::vec2 getPos()  const { return m_frame.getPos();  }
         glm::vec2 getSize() const { return m_frame.getSize(); }

@@ -171,3 +171,33 @@ function L_compositeObject:addText(text, posX, posY, aligment, scale, colorR
     return CompositeObject_addText(self.ptr, text, posX, posY, aligment, scale, 
     colorR,colorG,colorB,colorA , angle )
 end
+
+---@Description show panel background
+---@param value boolean 
+function L_compositeObject:showPanelBG(value)
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_showPanelBG(self.ptr, value)
+end
+
+---@Description set panel background color
+---@param colorR number red
+---@param colorG number green
+---@param colorB number blue
+---@param colorA number alpha
+function L_compositeObject:setPanelBGColor(colorR,colorG,colorB,colorA )
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_setPanelBGColor(self.ptr, colorR,colorG,colorB,colorA )
+end
+
+---@Description set panel background scale
+---@param scale number
+function L_compositeObject:setPanelBGScale(scale)
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_setPanelBGScale(self.ptr, scale)
+end
