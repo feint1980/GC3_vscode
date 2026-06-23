@@ -20,8 +20,14 @@ struct tObject
     Feintgine::Color color;
     float angle;
     float depth;
-    
+
+    void setSprite(const std::string & spriteName ) 
+    { 
+        this->sprite = Feintgine::SpriteManager::Instance()->getSprite(spriteName); 
+    }
+
 };
+
 
 struct tAObject
 {
@@ -31,6 +37,11 @@ struct tAObject
     Feintgine::Color color;
     float angle;
     float depth;
+
+    void setAnimatedObject(const std::string & animFile, const std::string & defaultAnim) { 
+        animatedObject.init(animFile); 
+        animatedObject.playAnimation(defaultAnim);
+    }
 };
 
 struct tTextObject
@@ -42,11 +53,11 @@ struct tTextObject
     unsigned char justification = ALIGN_FT_LEFT;
     float angle = 0.0f;
 
-    // void changeText(const std::wstring & newText) { text = newText; }
-    // void changeText(const std::string & newText)
-    // {
-    //     text = feint_common::Instance()->convertStringtoWstring(newText);
-    // }
+    void changeText(const std::wstring & newText) { text = newText; }
+    void changeText(const std::string & newText)
+    {
+        text = feint_common::Instance()->convertStringtoWstring(newText);
+    }
 };
 
 
@@ -183,6 +194,10 @@ protected:
     std::vector<tObject> m_objectList;
     std::vector<tAObject> m_animatedObjectList;
     std::vector<tTextObject> m_textObjectList;
+
+    std::unordered_map<tObject *, size_t> m_objectIndexMap;
+    std::unordered_map<tAObject *, size_t> m_animatedObjectIndexMap;
+    std::unordered_map<tTextObject *, size_t> m_textObjectIndexMap;
 
 
     F_FramePanel m_framePanel;

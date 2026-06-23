@@ -86,6 +86,9 @@ tObject * F_CompositeObject::addObject( const std::string & spriteNameWithPacket
     } 
     m_objectList.push_back({Feintgine::SpriteManager::Instance()->getSprite(spriteNameWithPacket), posOffset, scale, color, angle, depth});
     flagUpdate();
+
+    m_objectIndexMap[&m_objectList.back()] = m_objectList.size() - 1;
+
     return &m_objectList.back();
 }
 
@@ -108,6 +111,9 @@ tAObject * F_CompositeObject::addAnimatedObject(const std::string & animFile,con
     tAnimatedObject.animatedObject.playAnimation(defaultAnim);
     m_animatedObjectList.push_back(tAnimatedObject);
     flagUpdate();
+
+    m_animatedObjectIndexMap[&m_animatedObjectList.back()] = m_animatedObjectList.size() - 1;
+
     return &m_animatedObjectList.back();
 }
 
@@ -230,6 +236,9 @@ tTextObject * F_CompositeObject::addText(const std::wstring & text, const glm::v
     }
     m_textObjectList.push_back({posOffset, text, color, scale, justification, angle});
     flagUpdate();
+
+    m_textObjectIndexMap[&m_textObjectList.back()] = m_textObjectList.size() - 1;
+
     return &m_textObjectList.back();
 }
 
@@ -243,6 +252,8 @@ tTextObject * F_CompositeObject::addText(const std::string & text, const glm::ve
     }
     m_textObjectList.push_back({posOffset, feint_common::Instance()->convertStringtoWstring( text), color, scale, justification, angle});
     flagUpdate();
+    m_textObjectIndexMap[&m_textObjectList.back()] = m_textObjectList.size() - 1;
+
     return &m_textObjectList.back();
 }
 

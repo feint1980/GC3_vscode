@@ -145,7 +145,7 @@ function L_compositeObject:addLine(offsetX, offsetY, width, depth)
     if self.ptr == nil then
         return
     end
-  
+
     CompositeObject_addLine(self.ptr, offsetX, offsetY, width, depth)
 end
 
