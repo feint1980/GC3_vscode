@@ -14,13 +14,15 @@ Combat_dock_my_character_info = {
     mWidth = 0,
     mHeight = 0,
 
+    lineDock = nil,
+
     -- avatar
     currentCharacterAvatar = nil,
 
     -- texts
     characterNameText = nil,
     characterLevelText = nil,
-    
+
 }
 
 function Combat_dock_my_character_info:new()
@@ -50,25 +52,29 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
     self.mainDock:addEmblem(1,"emblem_pack.xml/corner_b_01.png", 3,0, 8,
     -15, 0.75)
 
+    self.lineDock = L_compositeObject:new()
+    
+    self.lineDock:init(self.renderContextHost,
+    -posX , -posY,width ,height, 0,12)
+    self.lineDock:addPanel("Basic_border",0.25)
+    
     self.mainDock:showPanelBG(true)
     self.mainDock:setPanelBGColor(8,10,15,255)
     self.mainDock:setPanelBGScale(0.95)
 
     local avatarWidth = 140 -- square 
-    local textLineWidth = 205
+    local textLineWidth = 190
 
     local diff = (width - avatarWidth ) - (width * 0.5)
     local linePosX = (width * 0.5) + (diff * 0.5) - (textLineWidth * 0.5)
 
-
-
-
     -- decorative lines
     
-    self.mainDock:addLine(linePosX , 120 , textLineWidth, 66)
+    self.lineDock:addLine(linePosX - 25 , 120 , textLineWidth, 66)
+    
+    self.lineDock:addLine(linePosX - 125 , 20 , 300, 66)
 
     --- 
-
 
     --- internal update
     self.posX = posX
