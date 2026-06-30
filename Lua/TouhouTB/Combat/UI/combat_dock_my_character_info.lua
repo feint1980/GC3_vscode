@@ -53,11 +53,11 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
     -15, 0.75)
 
     self.lineDock = L_compositeObject:new()
-    
+
     self.lineDock:init(self.renderContextHost,
     -posX , -posY,width ,height, 0,12)
     self.lineDock:addPanel("Basic_border",0.25)
-    
+
     self.mainDock:showPanelBG(true)
     self.mainDock:setPanelBGColor(8,10,15,255)
     self.mainDock:setPanelBGScale(0.95)
@@ -69,12 +69,22 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
     local linePosX = (width * 0.5) + (diff * 0.5) - (textLineWidth * 0.5)
 
     -- decorative lines
-    
+
     self.lineDock:addLine(linePosX - 25 , 120 , textLineWidth, 66)
-    
+
     self.lineDock:addLine(linePosX - 125 , 20 , 300, 66)
 
-    --- 
+    -- separator under the name/level block
+    self.lineDock:addLine(linePosX - 25 , 95 , textLineWidth, 50)
+
+    -- separator under HP row
+    self.lineDock:addLine(linePosX - 25 , 70 , textLineWidth, 40)
+
+    -- separator under MP row
+    self.lineDock:addLine(linePosX - 25 , 50 , textLineWidth, 40)
+
+    -- short accent line near avatar bottom
+    self.lineDock:addLine(linePosX - 125 , -10 , 120, 30)
 
     --- internal update
     self.posX = posX

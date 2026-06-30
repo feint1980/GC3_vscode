@@ -2,16 +2,18 @@
 package.path = package.path ..';../../Lua/TouhouTB/Combat/?.lua' .. ';../../Lua/system/objects/?.lua;'
 
 require "combat_dock_my_character_info"
-
+require "combat_dock_middle_panel"
 
 ---@class (exact) Combat_dock 
 ---@field renderContexthost? pointer instance of RenderContext
 ---@field characterDock? pointer instance of combat_dock_my_character_info
+---@field middleDock? pointer instance of combat_dock_
 ---@field windowWidth number
 ---@field windowHeight number
 Combat_dock = {
     renderContexthost = nil,
     characterDock = nil,
+    middleDock = nil,
     windowWidth = 0,
     windowHeight = 0
 }
@@ -32,5 +34,7 @@ function Combat_dock:init(renderHost,tWindowWidth, tWindowHeight)
     self.characterDock = Combat_dock_my_character_info:new()
     self.characterDock:init(renderHost,tWindowWidth, tWindowHeight)
 
-    
+    self.middleDock = Combat_dock_middle_panel:new()
+    self.middleDock:init(renderHost,tWindowWidth, tWindowHeight)
+
 end
