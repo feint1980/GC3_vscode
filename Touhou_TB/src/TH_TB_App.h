@@ -8,6 +8,7 @@
 #include "HomeScene.h"
 #include "LobbyScene.h"
 #include "CombatScene.h"
+#include "ReviewScene.h"
 class TH_TB_App : public Feintgine::IMainGame
 {
 public:
@@ -26,6 +27,7 @@ private:
     std::unique_ptr<HomeScene> m_home = nullptr;
     std::unique_ptr<LobbyScene> m_lobby = nullptr;
     std::unique_ptr<CombatScene> m_combat = nullptr;
+    std::unique_ptr<ReviewScene> m_review = nullptr;
 
 };
 

@@ -192,14 +192,13 @@ void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
 
     if(inputManager.isKeyPressed(SDLK_F10))
     {
-        //SDL_StartTextInput();
+        m_game->setSceneByIndex(5); // switch to review scene
     }
 
     if (inputManager.isKeyPressed(SDLK_ESCAPE))
     {
 
     }
-
 
     if(m_controlHandler)
     {

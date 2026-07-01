@@ -33,7 +33,7 @@ function Combat_dock:init(renderHost,tWindowWidth, tWindowHeight)
     print("window reso is " .. self.windowWidth .. " " .. self.windowHeight)
     self.characterDock = Combat_dock_my_character_info:new()
     self.characterDock:init(renderHost,tWindowWidth, tWindowHeight)
-
+    print("tsew")
     self.middleDock = Combat_dock_middle_panel:new()
     self.middleDock:init(renderHost,tWindowWidth, tWindowHeight)
 

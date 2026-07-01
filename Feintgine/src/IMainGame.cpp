@@ -246,6 +246,8 @@ namespace Feintgine
 	void IMainGame::setSceneByIndex(int index)
 	{
 		std::cout << "setSceneByIndex " << index << "\n";
+		// Note : the index should be the index in the vector, not actual index you put in the 
+		// scene index, if you was correct sometimes, you was lucky 
 		m_currentScreen->onExit();
 		m_screenList->setScreen(index);
 		m_currentScreen = m_screenList->getCurrentGameScreen();

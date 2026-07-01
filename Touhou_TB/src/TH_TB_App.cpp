@@ -50,6 +50,9 @@ void TH_TB_App::addScreen()
     m_combat = std::make_unique<CombatScene>(&m_window);
     m_screenList->addScreen(m_combat.get());
 
+    m_review = std::make_unique<ReviewScene>(&m_window);
+    m_screenList->addScreen(m_review.get());
+
     m_screenList->setScreen(m_loginV2->getScreenIndex());
 
 

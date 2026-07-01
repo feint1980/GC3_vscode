@@ -38,6 +38,7 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
     self.windowWidth = tWindowWidth
     self.windowHeight = tWindowHeight
 
+    print("init called")
     -- reso should be 1600 900 (16:9)
 
     self.mainDock = L_compositeObject:new()
@@ -97,4 +98,5 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
     self.currentCharacterAvatar:init(renderHost, (-self.posX) - (width * 0.5) + avatarWidth * 0.5  , (-self.posY) + (height * 0.5) - avatarWidth * 0.5, avatarWidth, avatarWidth)
 
 
+    print("init end ")
 end
