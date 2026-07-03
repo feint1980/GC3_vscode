@@ -35,7 +35,7 @@ Combat_RenderContext = nil
 ---@type Combat_dock 
 Combat_Dock = nil
 
-function ReviewSceneInit(host,TGUIScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr, CombatFieldPtr, TurnDisplayerPtr, RenderContextPtr)
+function ReviewSceneInit(host,TGUIScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr, CombatFieldPtr, RenderContextPtr)
 
     print("ReviewSceneInit called")
     CombatSceneHost = host

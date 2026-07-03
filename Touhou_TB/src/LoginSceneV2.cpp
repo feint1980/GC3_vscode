@@ -190,7 +190,7 @@ void LoginSceneV2::handleInput(Feintgine::InputManager & inputManager)
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
 	}
 
-    if(inputManager.isKeyPressed(SDLK_F10))
+    if(inputManager.isKeyPressed(SDLK_F11) || inputManager.isKeyPressed(SDLK_F10))
     {
         m_game->setSceneByIndex(5); // switch to review scene
     }

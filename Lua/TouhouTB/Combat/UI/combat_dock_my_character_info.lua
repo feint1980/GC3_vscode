@@ -47,6 +47,8 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
     local posX = self.windowWidth * 0.5 - width * 0.5
     local posY = self.windowHeight * 0.5 - height * 0.5
 
+    print("main dock new OK")
+
     self.mainDock:init(self.renderContextHost, -posX , -posY,width ,height, 0,5)
     self.mainDock:addPanel("Basic_border",0.5)
     self.mainDock:addEmblem(0,"emblem_pack.xml/corner_c_24.png", 1,0, 0, 25,0.5)
@@ -93,6 +95,11 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
     self.mWidth = width
     self.mHeight = height
 
+    print("init line dock OK")
+
+
+
+    
     -- character avatar
     self.currentCharacterAvatar = Dock_character_avatar:new()
     self.currentCharacterAvatar:init(renderHost, (-self.posX) - (width * 0.5) + avatarWidth * 0.5  , (-self.posY) + (height * 0.5) - avatarWidth * 0.5, avatarWidth, avatarWidth)
