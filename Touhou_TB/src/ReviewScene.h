@@ -157,5 +157,4 @@ public:
     TextRenderer m_textRenderer;
 
     Feintgine::F_LuaRenderContext m_luaRenderContext;
-
 };

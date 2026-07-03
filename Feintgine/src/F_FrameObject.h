@@ -95,7 +95,7 @@ namespace Feintgine
         }
         void setBGScale(float scale) 
         { 
-            std::cout << "setBGScale: " << scale << "\n";
+            // std::cout << "setBGScale: " << scale << "\n";
             m_bgScale = scale;
             m_dirty = true; 
         }

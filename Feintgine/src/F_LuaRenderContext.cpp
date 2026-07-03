@@ -327,9 +327,10 @@ void F_LuaRenderContext::initTextRenderer(int fontSize, int charCount, const std
 
 
     // m_textRenderer.init(fontSize, charCount, fontFilePath);
-
+    SetConsoleOutputCP(CP_UTF8);
     std::string allGameText = "az黄昏結界方彼岸渡東風谷早苗こんや" /* every line of dialogue + UI text concatenated */;
     m_textRenderer.init(fontSize, m_textRenderer.rangesFromText(allGameText), fontFilePath);
+    std::cout << "fontSize " << fontSize << "message string " << allGameText << " fontFilePath " << fontFilePath << "\n";
 }
 
 void F_LuaRenderContext::update(float delta)

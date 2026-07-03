@@ -124,9 +124,10 @@ private:
     Feintgine::F_FrameObject m_frameObject;
     Feintgine::F_FramePanel m_framePanel;
     Feintgine::F_CompositeObject m_compositeObject;
-    Feintgine::F_LuaRenderContext m_luaRenderContext;
+    
 
     TextRenderer m_textRenderer;
+    Feintgine::F_LuaRenderContext m_luaRenderContext;
 
     //LuaEventHandler m_luaEventHandler;
 

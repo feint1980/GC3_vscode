@@ -132,7 +132,7 @@ void ReviewScene::initGUI()
         m_clientCharacterHandler->init(m_script);
 
         m_luaRenderContext.init(m_script,250);
-
+        m_luaRenderContext.initTextRenderer(24,100, "font/ARIALUNI.ttf");
         isInitialized = true;
     }
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, "../../Lua/TouhouTB/Review/reviewScene.lua")))
@@ -147,24 +147,31 @@ void ReviewScene::initGUI()
     if(lua_isfunction(m_script, -1))
     {
         // const int argc = 8;
-        passUserData(this); 
-        passUserData(m_guiScriptingManager);
-        passUserData(m_clientCharacterHandler);
-        passUserData(&m_skillHandler);
-        passUserData(m_controlHandler);
-        passUserData(m_combatField);
-        passUserData(&m_luaRenderContext);
+        // passUserData(this); 
+        // passUserData(m_guiScriptingManager);
+        // passUserData(m_clientCharacterHandler);
+        // passUserData(&m_skillHandler);
+        // passUserData(m_controlHandler);
+        // passUserData(m_combatField);
+        // passUserData(&m_luaRenderContext);
         
-        std::cout << "check ref : " << &m_guiScriptingManager << "\n";
-        
+        lua_pushlightuserdata(m_script, this);
+        lua_pushlightuserdata(m_script, m_guiScriptingManager);
+        lua_pushlightuserdata(m_script, m_clientCharacterHandler);
+        lua_pushlightuserdata(m_script, &m_skillHandler);
+        lua_pushlightuserdata(m_script, m_controlHandler);
+        lua_pushlightuserdata(m_script, m_combatField);
+        lua_pushlightuserdata(m_script, &m_luaRenderContext);
+
+        const int arc = 7;
         const int returnCount = 0;
-        if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, m_argCount, returnCount, 0)))
+        if(LuaManager::Instance()->checkLua(m_script, lua_pcall(m_script, arc, returnCount, 0)))
         {
             std::cout << "Combat scene init script from C++ OK \n";
         }
     }
 
-    m_luaRenderContext.initTextRenderer(24,100, "font/ARIALUNI.ttf");
+    
 }
 
 void ReviewScene::onExit()
@@ -229,10 +236,10 @@ void ReviewScene::draw()
 
 	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
     
-    if(m_combatField)
-    {
-        m_combatField->draw(m_spriteBatch);
-    }
+    // if(m_combatField)
+    // {
+    //     m_combatField->draw(m_spriteBatch);
+    // }
     
     m_luaRenderContext.draw(m_spriteBatch);
 	m_spriteBatch.end();

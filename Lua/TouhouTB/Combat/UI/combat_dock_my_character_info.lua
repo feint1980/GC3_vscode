@@ -47,8 +47,6 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
     local posX = self.windowWidth * 0.5 - width * 0.5
     local posY = self.windowHeight * 0.5 - height * 0.5
 
-    print("main dock new OK")
-
     self.mainDock:init(self.renderContextHost, -posX , -posY,width ,height, 0,5)
     self.mainDock:addPanel("Basic_border",0.5)
     self.mainDock:addEmblem(0,"emblem_pack.xml/corner_c_24.png", 1,0, 0, 25,0.5)
@@ -66,28 +64,33 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
     self.mainDock:setPanelBGScale(0.95)
 
     local avatarWidth = 140 -- square 
-    local textLineWidth = 190
+    local textLineWidth = 185
 
     local diff = (width - avatarWidth ) - (width * 0.5)
     local linePosX = (width * 0.5) + (diff * 0.5) - (textLineWidth * 0.5)
 
     -- decorative lines
 
-    self.lineDock:addLine(linePosX - 25 , 120 , textLineWidth, 66)
+    self.lineDock:addLine(linePosX - 35 , 120 , textLineWidth, 66)
 
     self.lineDock:addLine(linePosX - 125 , 20 , 300, 66)
 
     -- separator under the name/level block
-    self.lineDock:addLine(linePosX - 25 , 95 , textLineWidth, 50)
+    self.lineDock:addLine(linePosX - 35 , 95 , textLineWidth, 50)
 
     -- separator under HP row
-    self.lineDock:addLine(linePosX - 25 , 70 , textLineWidth, 40)
+    self.lineDock:addLine(linePosX - 35 , 70 , textLineWidth, 40)
 
     -- separator under MP row
-    self.lineDock:addLine(linePosX - 25 , 50 , textLineWidth, 40)
+    self.lineDock:addLine(linePosX - 35 , 50 , textLineWidth, 40)
 
     -- short accent line near avatar bottom
     self.lineDock:addLine(linePosX - 125 , -10 , 120, 30)
+
+    -- dummy text
+    -- character text
+    self.mainDock:addText("1a",linePosX -35, 100,3,1.0, 255,255,
+    255,255,0 )
 
     --- internal update
     self.posX = posX
@@ -98,11 +101,10 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
     print("init line dock OK")
 
 
-
-    
+    local align = 10
     -- character avatar
     self.currentCharacterAvatar = Dock_character_avatar:new()
-    self.currentCharacterAvatar:init(renderHost, (-self.posX) - (width * 0.5) + avatarWidth * 0.5  , (-self.posY) + (height * 0.5) - avatarWidth * 0.5, avatarWidth, avatarWidth)
+    self.currentCharacterAvatar:init(renderHost, ((-self.posX) - (width * 0.5) + avatarWidth * 0.5) + align , ((-self.posY) + (height * 0.5) - avatarWidth * 0.5) - align, avatarWidth, avatarWidth)
 
 
     print("init end ")

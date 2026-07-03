@@ -14,46 +14,56 @@ require "Prompt"
 
 require "combat_dock"
 
-CombatSceneHost = nil
+ReviewSceneHost = nil
 
 ---@type pointer TGUIScriptingPtr
-Combat_GUIScriptingPtr = nil
+Review_GUIScriptingPtr = nil
 
 
 ---@type pointer ClientCharacterHandler
-Combat_ClientCharacterHandlerPtr = nil
+Review_ClientCharacterHandlerPtr = nil
 
 ---@type pointer ControlHandlerPtr
-Combat_ControlHandlerPtr = nil
+Review_ControlHandlerPtr = nil
 
 ---@type pointer SkillHandler
-Combat_SkillHandlerPtr = nil
+Review_SkillHandlerPtr = nil
 
 --@type pointer CombatField
-Combat_RenderContext = nil
+Review_RenderContext = nil
 
 ---@type Combat_dock 
-Combat_Dock = nil
+Review_Dock = nil
 
 function ReviewSceneInit(host,TGUIScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr, CombatFieldPtr, RenderContextPtr)
 
     print("ReviewSceneInit called")
-    CombatSceneHost = host
-    Combat_GUIScriptingPtr = TGUIScriptingPtr
+    ReviewSceneHost = host
+    Review_GUIScriptingPtr = TGUIScriptingPtr
 
-    Combat_ClientCharacterHandlerPtr = ClientCharacterHandlerPtr
-    Combat_SkillHandlerPtr = SkillHandlerPtr
-    Combat_ControlHandlerPtr = ControlHandlerPtr
-    Combat_RenderContext = RenderContextPtr
+    Review_ClientCharacterHandlerPtr = ClientCharacterHandlerPtr
+    Review_SkillHandlerPtr = SkillHandlerPtr
+    Review_ControlHandlerPtr = ControlHandlerPtr
+    Review_RenderContext = RenderContextPtr
 
-    CombatField_instance = CombatField:new()
-    CombatField_instance:init(CombatFieldPtr,3,3)
+    -- CombatField_instance = CombatField:new()
+    -- CombatField_instance:init(CombatFieldPtr,3,3)
 
-    Combat_Dock = Combat_dock:new()
+    Review_Dock = Combat_dock:new()
     local resoX, resoY = 1600, 900 --cpp_combat_getSceneResolution(host)
-    Combat_Dock:init(Combat_RenderContext, resoX, resoY)
+    Review_Dock:init(Review_RenderContext, resoX, resoY)
 
     -- SetBattleSer
+
+    local loginDecorateFrame = L_compositeObject:new()
+    loginDecorateFrame:init(Review_RenderContext, 0, -10, 500, 270, 0, 5)
+
+    loginDecorateFrame:addPanel("Simple_border", 0.25)
+
+    loginDecorateFrame:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0,
+        10, 0.5)
+    loginDecorateFrame:addText("東方黄昏結界", 610,-400, 3,1.0, 255,255,255,255,0)
+    loginDecorateFrame:addLine(610, -420, 165, 5)
 
     -- get the battle server GUID to send 
 
