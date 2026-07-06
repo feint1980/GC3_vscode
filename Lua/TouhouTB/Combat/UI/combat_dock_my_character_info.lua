@@ -89,7 +89,7 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
 
     -- dummy text
     -- character text
-    self.mainDock:addText("1a",linePosX -35, 100,3,1.0, 255,255,
+    self.mainDock:addText("Hakurei Reimu",linePosX -35, 130,3,.8, 255,255,
     255,255,0 )
 
     --- internal update
@@ -100,12 +100,10 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
 
     print("init line dock OK")
 
-
     local align = 10
     -- character avatar
     self.currentCharacterAvatar = Dock_character_avatar:new()
     self.currentCharacterAvatar:init(renderHost, ((-self.posX) - (width * 0.5) + avatarWidth * 0.5) + align , ((-self.posY) + (height * 0.5) - avatarWidth * 0.5) - align, avatarWidth, avatarWidth)
-
 
     print("init end ")
 end

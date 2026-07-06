@@ -55,15 +55,15 @@ function ReviewSceneInit(host,TGUIScriptingPtr,ClientCharacterHandlerPtr, SkillH
 
     -- SetBattleSer
 
-    local loginDecorateFrame = L_compositeObject:new()
-    loginDecorateFrame:init(Review_RenderContext, 0, -10, 500, 270, 0, 5)
+    -- local loginDecorateFrame = L_compositeObject:new()
+    -- loginDecorateFrame:init(Review_RenderContext, 0, -10, 500, 270, 0, 5)
 
-    loginDecorateFrame:addPanel("Simple_border", 0.25)
+    -- loginDecorateFrame:addPanel("Simple_border", 0.25)
 
-    loginDecorateFrame:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0,
-        10, 0.5)
-    loginDecorateFrame:addText("東方黄昏結界", 610,-400, 3,1.0, 255,255,255,255,0)
-    loginDecorateFrame:addLine(610, -420, 165, 5)
+    -- loginDecorateFrame:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0,
+    --     10, 0.5)
+    -- loginDecorateFrame:addText("東方黄昏結界", 610,-400, 3,1.0, 255,255,255,255,0)
+    -- loginDecorateFrame:addLine(610, -420, 165, 5)
 
     -- get the battle server GUID to send 
 

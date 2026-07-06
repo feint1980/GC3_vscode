@@ -327,11 +327,34 @@ void F_LuaRenderContext::initTextRenderer(int fontSize, int charCount, const std
 
 
     // m_textRenderer.init(fontSize, charCount, fontFilePath);
-    SetConsoleOutputCP(CP_UTF8);
-    std::string allGameText = "az黄昏結界方彼岸渡東風谷早苗こんや" /* every line of dialogue + UI text concatenated */;
-    m_textRenderer.init(fontSize, m_textRenderer.rangesFromText(allGameText), fontFilePath);
-    std::cout << "fontSize " << fontSize << "message string " << allGameText << " fontFilePath " << fontFilePath << "\n";
+    std::vector<UnicodeRange> ranges = {
+        { 0x0020, 0x007E } // space .. ~
+    };
+
+    // Corpus-scanned CJK/extended text (dialogue, character names, etc.)
+    std::string allGameText = "黄昏結界方彼岸渡東風谷早苗こんやaz09!)%\\/" /* concatenate all non-ASCII UI/dialogue text here */;
+    auto cjkRanges = m_textRenderer.rangesFromText(allGameText);
+    ranges.insert(ranges.end(), cjkRanges.begin(), cjkRanges.end());
+
+    m_textRenderer.init(fontSize, ranges, fontFilePath);
+    std::cout << "fontSize " << fontSize << " fontFilePath " << fontFilePath << "\n";
 }
+
+void F_LuaRenderContext::initTextRendererByRange(int fontSize, const std::string & letters , const std::string& fontFilePath)
+{
+    std::vector<UnicodeRange> ranges = {
+        { 0x0020, 0x007E } // space .. ~
+    };
+
+    // Corpus-scanned CJK/extended text (dialogue, character names, etc.)
+    std::string allGameText = letters;
+    auto cjkRanges = m_textRenderer.rangesFromText(allGameText);
+    ranges.insert(ranges.end(), cjkRanges.begin(), cjkRanges.end());
+
+    m_textRenderer.init(fontSize, ranges, fontFilePath);
+    std::cout << "fontSize " << fontSize << " fontFilePath " << fontFilePath << "\n";
+}
+
 
 void F_LuaRenderContext::update(float delta)
 {

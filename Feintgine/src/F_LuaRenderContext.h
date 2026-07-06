@@ -31,6 +31,8 @@ namespace Feintgine
         
         void initTextRenderer(int fontSize, int charCount, const std::string& fontFilePath); 
 
+        void initTextRendererByRange(int fontSize, const std::string & letters , const std::string& fontFilePath);
+
         void update(float delta);
         
         void draw(Feintgine::SpriteBatch & spriteBatch);

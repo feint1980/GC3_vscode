@@ -29,8 +29,8 @@ Combat_dock_middle_panel = {
     buttons = {},
 
     -- layout constants
-    buttonWidth = 90,
-    buttonHeight = 90,
+    buttonWidth = 120,
+    buttonHeight = 120,
     buttonGap = 10,
 }
 
@@ -51,18 +51,23 @@ function Combat_dock_middle_panel:init(renderHost, tWindowWidth, tWindowHeight)
     -- anchor the whole button grid to the bottom-center of the screen,
     -- leaving room on the left for the character info dock and on the
     -- right for the skill detail panel
-    local groupY = -(self.windowHeight * 0.5 - 60)  -- distance up from bottom edge, in our -pos coordinate space
+    local groupY = -(self.windowHeight * 0.5 )  + (self.buttonHeight * 0.5) -- distance up from bottom edge, in our -pos coordinate space
+    
 
     --======================================================
     -- group headers
     --======================================================
-    local basicSkillsX = -(self.windowWidth * 0.5) + 430
-    local itemsX       = -(self.windowWidth * 0.5) + 700
-    local generalX     = -(self.windowWidth * 0.5) + 900
+    -- local basicSkillsX = -(self.windowWidth * 0.5) + 150 + 430
+    -- local itemsX       = -(self.windowWidth * 0.5) + 700
+    -- local generalX     = -(self.windowWidth * 0.5) + 900
 
-    self.basicSkillsHeader = self:createHeader("Basic Skills", basicSkillsX, groupY - 30)
-    self.itemsHeader       = self:createHeader("Items (2/2)",  itemsX,       groupY - 30)
-    self.generalHeader     = self:createHeader("General",      generalX,     groupY - 30)
+    local basicSkillsX = -(self.windowWidth * 0.5) + 360 + self.buttonWidth * 0.5 
+    local itemsX       = -(self.windowWidth * 0.5) + 360 + (self.buttonWidth * 3.5 ) + 10
+    local generalX     = -(self.windowWidth * 0.5) + 360 + (self.buttonWidth * 5.0) + 10
+
+    self.basicSkillsHeader = self:createHeader("Basic Skills", basicSkillsX, groupY - 15)
+    self.itemsHeader       = self:createHeader("Items (2/2)",  itemsX,       groupY - 15)
+    self.generalHeader     = self:createHeader("General",      generalX,     groupY - 15)
 
     --======================================================
     -- Basic Skills row: slots 1,2,3,4
@@ -70,16 +75,21 @@ function Combat_dock_middle_panel:init(renderHost, tWindowWidth, tWindowHeight)
     local bw = self.buttonWidth
     local gap = self.buttonGap
 
-    self:addButton("1", basicSkillsX,                     groupY, "Yin-Yang Shot", "MP 20")
-    self:addButton("2", basicSkillsX + (bw + gap),         groupY, "Spirit Barrage", "Free")
-    self:addButton("3", basicSkillsX + (bw + gap) * 2,     groupY, "Ofuda Throw",    "MP 15")
-    self:addButton("4", basicSkillsX + (bw + gap) * 3,     groupY, "Focused Mind",   "SP 30")
+    self:addButton("1", basicSkillsX,                     groupY + self.buttonHeight + self.buttonGap , "Yin-Yang Shot", "MP 20")
+    self:addButton("2", basicSkillsX + (bw + gap),         groupY + self.buttonHeight + self.buttonGap, "Spirit Barrage", "Free")
+    self:addButton("3", basicSkillsX + (bw + gap) * 2,     groupY + self.buttonHeight + self.buttonGap, "Ofuda Throw",    "MP 15")
+    self:addButton("4", basicSkillsX + (bw + gap) * 3,     groupY + self.buttonHeight + self.buttonGap, "Focused Mind",   "SP 30")
+
+    self:addButton("5", basicSkillsX,                     groupY , "Kick Back", "MP 20")
+    self:addButton("6", basicSkillsX + (bw + gap),         groupY, "Brace", "Free")
+    self:addButton("7", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "MP 15")
+    self:addButton("8", basicSkillsX + (bw + gap) * 3,     groupY, "Focused Mind(2)",   "SP 30")
 
     --======================================================
     -- Items row: Q, W
     --======================================================
-    self:addButton("Q", itemsX,               groupY, "Hakurei Charm", "x1")
-    self:addButton("W", itemsX + (bw + gap),   groupY, "Heal Potion",   "x1")
+    self:addButton("Q", itemsX + (bw + gap) * 4,               groupY, "Hakurei Charm", "x1")
+    self:addButton("W", itemsX + (bw + gap) * 5,   groupY, "Heal Potion",   "x1")
 
     --======================================================
     -- General row: E, R
@@ -121,7 +131,7 @@ function Combat_dock_middle_panel:addButton(key, posX, posY, name, info)
     -- name, center of the button (small, may wrap visually depending on your text renderer)
     btn:addText(name,
         0, 4,
-        3, 0.28,
+        3, 0.78,
         230, 230, 230, 255,
         0)
 
@@ -129,7 +139,7 @@ function Combat_dock_middle_panel:addButton(key, posX, posY, name, info)
     if info ~= "" then
         btn:addText(info,
             0, (self.buttonHeight * 0.5) - 14,
-            3, 0.25,
+            3, 0.75,
             170, 200, 255, 255,
             0)
     end
