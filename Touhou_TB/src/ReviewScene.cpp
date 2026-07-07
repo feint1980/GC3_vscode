@@ -259,11 +259,11 @@ void ReviewScene::drawText()
 
     m_textRenderer.begin();
 
-    m_textRenderer.renderTextBatched( 
-			L"FPS :" + 
-			feint_common::Instance()->convertStringtoWstring(feint_common::
-				Instance()->convertPreciousFloatToString(m_game->getFps())),
-			glm::vec2(720, -415), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
+    // m_textRenderer.renderTextBatched( 
+	// 		L"FPS :" + 
+	// 		feint_common::Instance()->convertStringtoWstring(feint_common::
+	// 			Instance()->convertPreciousFloatToString(m_game->getFps())),
+	// 		glm::vec2(720, -415), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
 
     if(m_combatField)
     {

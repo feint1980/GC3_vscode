@@ -62,12 +62,13 @@ function Combat_dock_middle_panel:init(renderHost, tWindowWidth, tWindowHeight)
     -- local generalX     = -(self.windowWidth * 0.5) + 900
 
     local basicSkillsX = -(self.windowWidth * 0.5) + 360 + self.buttonWidth * 0.5 
-    local itemsX       = -(self.windowWidth * 0.5) + 360 + (self.buttonWidth * 3.5 ) + 10
+    local itemsX       = -(self.windowWidth * 0.5) + 360 + (self.buttonWidth * 5 )  + 10
     local generalX     = -(self.windowWidth * 0.5) + 360 + (self.buttonWidth * 5.0) + 10
 
-    self.basicSkillsHeader = self:createHeader("Basic Skills", basicSkillsX, groupY - 15)
-    self.itemsHeader       = self:createHeader("Items (2/2)",  itemsX,       groupY - 15)
-    self.generalHeader     = self:createHeader("General",      generalX,     groupY - 15)
+    self.basicSkillsHeader = self:createHeader("Basic Skills", basicSkillsX + self.buttonWidth * 2, groupY + 230)
+    self.itemsHeader       = self:createHeader("Items",  itemsX + self.buttonWidth * 0.5,       groupY + 240)
+    self.generalHeader     = self:createHeader("Generals",  
+    itemsX + self.buttonWidth * 0.5,     groupY + 230 - self.buttonHeight - 40)
 
     --======================================================
     -- Basic Skills row: slots 1,2,3,4
@@ -75,35 +76,36 @@ function Combat_dock_middle_panel:init(renderHost, tWindowWidth, tWindowHeight)
     local bw = self.buttonWidth
     local gap = self.buttonGap
 
-    self:addButton("1", basicSkillsX,                     groupY + self.buttonHeight + self.buttonGap , "Yin-Yang Shot", "MP 20")
-    self:addButton("2", basicSkillsX + (bw + gap),         groupY + self.buttonHeight + self.buttonGap, "Spirit Barrage", "Free")
-    self:addButton("3", basicSkillsX + (bw + gap) * 2,     groupY + self.buttonHeight + self.buttonGap, "Ofuda Throw",    "MP 15")
-    self:addButton("4", basicSkillsX + (bw + gap) * 3,     groupY + self.buttonHeight + self.buttonGap, "Focused Mind",   "SP 30")
+    self:addButton("Q", basicSkillsX,                     groupY + self.buttonHeight + self.buttonGap , "Yin-Yang Shot", "MP 20")
+    self:addButton("W", basicSkillsX + (bw + gap),         groupY + self.buttonHeight + self.buttonGap, "Spirit Barrage", "Free")
+    self:addButton("E", basicSkillsX + (bw + gap) * 2,     groupY + self.buttonHeight + self.buttonGap, "Ofuda Throw",    "MP 15")
+    self:addButton("R", basicSkillsX + (bw + gap) * 3,     groupY + self.buttonHeight + self.buttonGap, "Focused Mind",   "SP 30")
 
-    self:addButton("5", basicSkillsX,                     groupY , "Kick Back", "MP 20")
-    self:addButton("6", basicSkillsX + (bw + gap),         groupY, "Brace", "Free")
-    self:addButton("7", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "MP 15")
-    self:addButton("8", basicSkillsX + (bw + gap) * 3,     groupY, "Focused Mind(2)",   "SP 30")
-
-    --======================================================
-    -- Items row: Q, W
-    --======================================================
-    self:addButton("Q", itemsX + (bw + gap) * 4,               groupY, "Hakurei Charm", "x1")
-    self:addButton("W", itemsX + (bw + gap) * 5,   groupY, "Heal Potion",   "x1")
+    self:addButton("A", basicSkillsX,                     groupY , "Kick Back", "MP 20")
+    self:addButton("S", basicSkillsX + (bw + gap),         groupY, "Brace", "Free")
+    self:addButton("D", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "MP 15")
+    self:addButton("F", basicSkillsX + (bw + gap) * 3,     groupY, "Meditatien",   "Free")
 
     --======================================================
-    -- General row: E, R
+    -- Items row: 1,2
     --======================================================
-    self:addButton("E", generalX,             groupY, "Move",     "")
-    self:addButton("R", generalX + (bw + gap), groupY, "End Turn", "")
+    self:addButton("1", itemsX ,               groupY + self.buttonHeight + self.buttonGap + 20, "Hakurei Charm", "x1")
+    self:addButton("2", itemsX + (bw + gap),   groupY + self.buttonHeight + self.buttonGap + 20, "Heal Potion",   "x1")
+
+    --======================================================
+    -- General row: M, Space
+    --======================================================
+    self:addButton("M", itemsX,             groupY - 5 , "Move",     "")
+    self:addButton("Space", itemsX + (bw + gap), groupY - 5, "End Turn", "")
 end
 
 ---@Description internal: create a header text object (not part of a button)
 function Combat_dock_middle_panel:createHeader(label, posX, posY)
     local headerDock = L_compositeObject:new()
     -- zero-size composite purely to host a text object at this position
-    headerDock:init(self.renderContextHost, posX, posY, 0, 0, 0, 4)
-    headerDock:addText(label, 0, 0, 3, 0.4, 220, 200, 160, 255, 0) -- center aligned, gold-ish
+    headerDock:init(self.renderContextHost, posX, posY, 0,
+    0, 0, 4)
+    headerDock:addText(label, 0, 0, 3, .95, 220, 200, 160, 255, 0) -- center aligned, gold-ish
     return headerDock
 end
 
@@ -123,23 +125,23 @@ function Combat_dock_middle_panel:addButton(key, posX, posY, name, info)
 
     -- key label, top-left corner of the button
     btn:addText(key,
-        -(self.buttonWidth * 0.5) + 10, -(self.buttonHeight * 0.5) + 14,
-        1, 0.3,
+        -(self.buttonWidth * 0.5) + 10, (self.buttonHeight * 0.5) - 14,
+        1, 0.8,
         255, 255, 255, 255,
         0)
 
     -- name, center of the button (small, may wrap visually depending on your text renderer)
     btn:addText(name,
         0, 4,
-        3, 0.78,
+        3, 0.55,
         230, 230, 230, 255,
         0)
 
     -- info line, bottom of the button
     if info ~= "" then
         btn:addText(info,
-            0, (self.buttonHeight * 0.5) - 14,
-            3, 0.75,
+            0, -(self.buttonHeight * 0.5) + 14,
+            3, 0.6,
             170, 200, 255, 255,
             0)
     end
