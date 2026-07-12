@@ -4,15 +4,6 @@ require "compositeObject"
 
 --[[
     Combat_dock_middle_panel
-    Bottom button grid: "Basic Skills" / "Items" / "General" groups,
-    each containing a row of key-bound action buttons (1,2,3,4 / Q,W / E,R)
-    matching the layout in ref_2.png.
-
-    Each button is its own L_compositeObject with:
-      - a small bordered panel
-      - a key label (top-left, e.g. "1", "Q", "E")
-      - a name text (center, e.g. "Yin-Yang Shot")
-      - an info text (bottom, e.g. "MP 20" / "Front 1")
 ]]
 
 Combat_dock_middle_panel = {
@@ -37,6 +28,7 @@ Combat_dock_middle_panel = {
 function Combat_dock_middle_panel:new()
     local o = {}
     setmetatable(o, self)
+    -- setmetatable(o.buttons, self.buttons)
     self.__index = self
     o.buttons = {}
     return o
@@ -62,19 +54,20 @@ function Combat_dock_middle_panel:init(renderHost, tWindowWidth, tWindowHeight)
     -- local generalX     = -(self.windowWidth * 0.5) + 900
 
     local basicSkillsX = -(self.windowWidth * 0.5) + 360 + self.buttonWidth * 0.5 
-    local itemsX       = -(self.windowWidth * 0.5) + 360 + (self.buttonWidth * 5 )  + 10
-    local generalX     = -(self.windowWidth * 0.5) + 360 + (self.buttonWidth * 5.0) + 10
+    local itemsX       = -(self.windowWidth * 0.5) + 320 + (self.buttonWidth * 5 )  + (self.buttonGap * 2)
+    local generalX     = itemsX 
+    + (self.buttonWidth + self.buttonGap * 2)
 
-    self.basicSkillsHeader = self:createHeader("Basic Skills", basicSkillsX + self.buttonWidth * 2, groupY + 230)
-    self.itemsHeader       = self:createHeader("Items",  itemsX + self.buttonWidth * 0.5,       groupY + 240)
+    self.basicSkillsHeader = self:createHeader("Basic Skills", basicSkillsX + self.buttonWidth * 2, groupY + 210)
+    self.itemsHeader       = self:createHeader("Items",  itemsX ,       groupY + 220)
     self.generalHeader     = self:createHeader("Generals",  
-    itemsX + self.buttonWidth * 0.5,     groupY + 230 - self.buttonHeight - 40)
+    generalX,    groupY + 220)
 
     --======================================================
     -- Basic Skills row: slots 1,2,3,4
     --======================================================
     local bw = self.buttonWidth
-    local gap = self.buttonGap
+    local gap = self.buttonGap * 0.5
 
     self:addButton("Q", basicSkillsX,                     groupY + self.buttonHeight + self.buttonGap , "Yin-Yang Shot", "MP 20")
     self:addButton("W", basicSkillsX + (bw + gap),         groupY + self.buttonHeight + self.buttonGap, "Spirit Barrage", "Free")
@@ -89,14 +82,14 @@ function Combat_dock_middle_panel:init(renderHost, tWindowWidth, tWindowHeight)
     --======================================================
     -- Items row: 1,2
     --======================================================
-    self:addButton("1", itemsX ,               groupY + self.buttonHeight + self.buttonGap + 20, "Hakurei Charm", "x1")
-    self:addButton("2", itemsX + (bw + gap),   groupY + self.buttonHeight + self.buttonGap + 20, "Heal Potion",   "x1")
+    self:addButton("1", itemsX ,               groupY + self.buttonHeight + self.buttonGap , "Hakurei Charm", "x1")
+    self:addButton("2", itemsX,   groupY  , "Heal Potion",   "x1")
 
     --======================================================
     -- General row: M, Space
     --======================================================
-    self:addButton("M", itemsX,             groupY - 5 , "Move",     "")
-    self:addButton("Space", itemsX + (bw + gap), groupY - 5, "End Turn", "")
+    self:addButton("M", generalX,             groupY + self.buttonHeight + self.buttonGap , "Move",     "AP 0.5")
+    self:addButton("Space", generalX, groupY , "End Turn", "")
 end
 
 ---@Description internal: create a header text object (not part of a button)

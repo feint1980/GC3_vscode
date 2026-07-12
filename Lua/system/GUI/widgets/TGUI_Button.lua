@@ -8,25 +8,25 @@
 ---@field width number width
 ---@field height number height
 ---@field parent pointer instance of parent, default nil (main)
-Button = {
-    ---@type pointer
-    host = nil,
-    ---@type pointer
-    ptr = nil,
-    text ="",
-    posX = 0,
-    posY = 0,
-    width = 0,
-    height = 0,
-    ---@type pointer?
-    parent = nil
-}
+Button = {}
+Button.__index = Button
 
 ---@Description create new instance of Button
 ---@return Button
-function Button:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function Button:new()
+    local o = setmetatable({}, self)
+    ---@type pointer
+    o.host = nil
+    ---@type pointer
+    o.ptr = nil
+    o.text =""
+    o.posX = 0
+    o.posY = 0
+    o.width = 0
+    o.height = 0
+    ---@type pointer?
+    o.parent = nil
+
     self.__index = self
     return o
 end

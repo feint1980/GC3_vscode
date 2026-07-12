@@ -15,31 +15,25 @@ require "BS_BattleSession"
 ---@field readyCount number
 ---@field networkHost? pointer of BattleMain(C++)
 ---@field battleSession? BattleSession
-BattleLobby = {
-    id = "",
-    name  = "",
-    password = "",
-    battleClientEP_List = {},
-    battleClientEP_Map = {},
-    lobbyState =  BattleLobbyState.CLOSED,
-    formation_Map = {},
-    playerIndexMap = {},
-    leftFormation = nil,
-    rightFormation = nil,
-    readyCount = 0,
-    networkHost = nil,
-    battleSession = nil
-}
+BattleLobby = {}
+BattleLobby.__index = BattleLobby
 
-function BattleLobby:new(o)
-    o = o or {
-        -- battleClientEP_List = {}
-    }
-    setmetatable(o, self)
+function BattleLobby:new()
+    local o = setmetatable({}, self)
+    o.id = ""
+    o.name  = ""
+    o.password = ""
     o.battleClientEP_List = {}
     o.battleClientEP_Map = {}
+    o.lobbyState =  BattleLobbyState.CLOSED
     o.formation_Map = {}
     o.playerIndexMap = {}
+    o.leftFormation = nil
+    o.rightFormation = nil
+    o.readyCount = 0
+    o.networkHost = nil
+    o.battleSession = nil
+
     self.__index = self
     return o
 end

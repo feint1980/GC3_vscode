@@ -11,20 +11,18 @@ require "BS_global"
 ---@field readyState boolean
 ---@field selected_formation_index number
 ---@field lobbyID string
-BattleClientEP =
-{
-    id = "",
-    guid = "",
-    ip = nil,
-    index = 1,
-    readyState = false,
-    selected_formation_index = -1,
-    lobbyID = "",
-}
+BattleClientEP = {}
+BattleClientEP.__index = BattleClientEP
 
-function BattleClientEP:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function BattleClientEP:new()
+    local o = setmetatable({}, self)
+    o.id = ""
+    o.guid = ""
+    o.ip = nil
+    o.index = 1
+    o.readyState = false
+    o.selected_formation_index = -1
+    o.lobbyID = ""
     self.__index = self
     return o
 end

@@ -37,6 +37,7 @@ Formation_Edit = {
 function Formation_Edit:new(o)
     o = o or {}
     setmetatable(o, self)
+    -- setmetatable(o.formationSlot, self)
     self.__index = self
     return o
 end

@@ -8,25 +8,23 @@
 ---@field height number height
 ---@field parent? pointer instance of parent, default nil (main)
 
-Canvas = {
-    ---@type pointer
-    host = nil,
-    ---@type pointer
-    ptr = nil,
-    posX = 0,
-    posY = 0,
-    width = 0,
-    height = 0,
-    ---@type pointer
-    parent = nil
-    ---@type pointer
-}
+Canvas = {}
+Canvas.__index = Canvas
 
 ---@Description create new instance of Canvas
 ---@return Canvas
-function Canvas:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function Canvas:new()
+    local o = setmetatable({}, self)
+    ---@type pointer
+    o.host = nil
+    ---@type pointer
+    o.ptr = nil
+    o.posX = 0
+    o.posY = 0
+    o.width = 0
+    o.height = 0
+    ---@type pointer
+    o.parent = nil
     self.__index = self
     return o
 end

@@ -28,33 +28,30 @@ Event hook summary:
 ================================================================================
 ]]--
 
-BS_Character = {
-    userID                  = "",
-    id                      = "",
-    slotIndex               = 0,
-    colPos                  = 0, -- X
-    rowPos                  = 0, -- Y
-    stats                   = nil,
-    cHp                     = 0,    -- current HP
-    cMana                   = 0,    -- current Mana
-    cSp                     = 0,    -- current SP
-    cAction                 = 0,    -- current AP
-    cDeathdoorSurvivalRate  = 1.0,  -- 1.0 * deathDoorSurviveChance
-    buffs                   = {},
-    currentStance           = nil,
-    isAlive                 = true,
-    side                    = 0,
-
-}
-
+BS_Character = {}
+BS_Character.__index = BS_Character
 --------------------------------------------------------------------------------
 --  LIFECYCLE
 --------------------------------------------------------------------------------
 
-function BS_Character:new(o)
-    o = o or {}
-    o.buffs = {}
-    setmetatable(o, self)
+function BS_Character:new()
+    local o = setmetatable({}, self) 
+    o.userID                  = ""
+    o.id                      = ""
+    o.slotIndex               = 0
+    o.colPos                  = 0 -- X
+    o.rowPos                  = 0 -- Y
+    o.stats                   = nil
+    o.cHp                     = 0    -- current HP
+    o.cMana                   = 0    -- current Mana
+    o.cSp                     = 0    -- current SP
+    o.cAction                 = 0    -- current AP
+    o.cDeathdoorSurvivalRate  = 1.0  -- 1.0 * deathDoorSurviveChance
+    o.buffs                   = {}
+    o.currentStance           = nil
+    o.isAlive                 = true
+    o.side                    = 0
+
     self.__index = self
     return o
 end

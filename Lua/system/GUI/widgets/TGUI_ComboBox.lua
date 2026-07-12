@@ -1,21 +1,28 @@
 
 ---@class ComboBox
-ComboBox = {
-    ---@type pointer
-    host = nil,
-    ---@type pointer
-    ptr = nil,
-    posX = 0,
-    posY = 0,
-    width = 0,
-    height = 0,
-    ---@type pointer?
-    parent = nil
-}
+---@field host pointer
+---@field ptr pointer
+---@field posX number
+---@field posY number
+---@field width number
+---@field height number
+ComboBox = {}
+ComboBox.__index = ComboBox
 
-function ComboBox:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function ComboBox:new()
+
+    local o = setmetatable({}, self)
+    ---@type pointer
+    o.host = nil
+    ---@type pointer
+    o.ptr = nil
+    o.posX = 0
+    o.posY = 0
+    o.width = 0
+    o.height = 0
+    ---@type pointer?
+    o.parent = nil
+
     self.__index = self
     return o
 end

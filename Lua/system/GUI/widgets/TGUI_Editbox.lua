@@ -6,24 +6,25 @@
 --- @field width number width
 --- @field height number height
 --- @field parent? pointer instance of parent, default nil (main)
-EditBox = {
-    ---@type pointer
-    host = nil,
-    ---@type pointer
-    ptr = nil,
-    posX = 0,
-    posY = 0,
-    width = 0,
-    height = 0,
-    ---@type pointer
-    parent = nil
-}
+EditBox = {}
+EditBox.__index = EditBox
 
 ---@Description create new instance of EditBox
 ---@return EditBox
-function EditBox:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function EditBox:new()
+
+    local o = setmetatable({}, self)
+    ---@type pointer
+    o.host = nil
+    ---@type pointer
+    o.ptr = nil
+    o.posX = 0
+    o.posY = 0
+    o.width = 0
+    o.height = 0
+    ---@type pointer
+    o.parent = nil
+
     self.__index = self
     return o
 end

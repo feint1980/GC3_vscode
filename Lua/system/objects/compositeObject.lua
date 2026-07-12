@@ -160,7 +160,7 @@ end
 ---@param colorB number blue
 ---@param colorA number alpha
 ---@param angle number angle
----@return pointer instance of created tText
+---@return pointer? instance of created tText
 function L_compositeObject:addText(text, posX, posY, aligment, scale, colorR
 ,colorG,colorB,colorA , angle )
     if self.ptr == nil then
@@ -168,8 +168,9 @@ function L_compositeObject:addText(text, posX, posY, aligment, scale, colorR
     end
     -- print("Lua object")
     -- print(self.ptr)
-    return CompositeObject_addText(self.ptr, text, posX, posY, aligment, scale, 
+    return CompositeObject_addText(self.ptr, text, posX, posY, aligment, scale,
     colorR,colorG,colorB,colorA , angle )
+    
 end
 
 ---@Description show panel background

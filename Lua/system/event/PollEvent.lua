@@ -6,17 +6,16 @@
 
 PollTaskCount = 0
 
-PollTask = {
-    name   = "",
-    signal = false,
-    func   = nil,
-    args   = {}
-}
+PollTask = {}
+PollTask.__index = PollTask
 
-function PollTask:new(o)
-    o = o or {}
-    o.args = o.args or {}
-    setmetatable(o, self)
+function PollTask:new()
+    local o  = setmetatable({}, self)
+    o.name   = ""
+    o.signal = false
+    o.func   = nil
+    o.args   = {}
+
     self.__index = self
     return o
 end
@@ -26,7 +25,6 @@ PollSignals = {}
 
 -- task table: signalName → PollTask
 PollTasks = {}
-
 
 -- ─── Signal API ───────────────────────────────────────────────────────────────
 

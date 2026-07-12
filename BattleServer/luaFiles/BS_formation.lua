@@ -7,18 +7,14 @@ require "BS_global"
 ---@field index number
 ---@field name string
 ---@field characters table of BS_Character
-BattleFormation = {
-    index = 0,
-    name = "",
-    ---@type table of BS_Character
-    characters = {}
-}
+BattleFormation = {}
+BattleFormation.__index = BattleFormation
 
-function BattleFormation:new(o)
-    o = o or {}
+function BattleFormation:new()
+    local o = setmetatable({}, self)
+    o.index = 0
+    o.name = ""
     o.characters = {}
-    setmetatable(o, self)
-    setmetatable(o.characters, self.characters)
     self.__index = self
     return o
 end

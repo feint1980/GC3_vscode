@@ -17,23 +17,21 @@ MenuPanels = _G.MenuPanels
 ---@field promptLabel RTLabel
 ---@field btnTable table of RTLabel
 ---@field inputBoxes table of EditBox
-Prompt = {
+Prompt = {}
+Prompt.__index = Prompt
+
+
+function Prompt:new()
+    local o = setmetatable({}, self)
     ---@type Panel
-    mainPanel = nil,
+    o.mainPanel = nil
     ---@type RTLabel
-    promptLabel = nil,
-
+    o.promptLabel = nil
     ---@type table of  EditBox 
-    inputBoxes = {},
-
+    o.inputBoxes = {}
     ---@type table of RTLabel
-    btnTable = {},
-    guiHost = nil,
-}
-
-function Prompt:new(o)
-    o = o or {}
-    setmetatable(o, self)
+    o.btnTable = {}
+    o.guiHost = nil
     self.__index = self
     return o
 end

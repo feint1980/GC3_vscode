@@ -36,7 +36,7 @@ function FormationPreviewPanel:new(o)
     o = o or {}
     o.characterPics = {}
     setmetatable(o, self)
-    setmetatable(o.characterPics, self)
+    -- setmetatable(o.characterPics, self)
     self.__index = self
     return o
 end

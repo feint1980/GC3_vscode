@@ -13,23 +13,22 @@ LabelColor.Blue = 3
 ---@field posX number x position
 ---@field posY number y position
 ---@field parent pointer instance of parent, default nil (main)
-Label = {
-    ---@type pointer
-    host = nil,
-    ---@type pointer
-    ptr = nil,
-    text ="",
-    posX = 0,
-    posY = 0,
-    ---@type pointer?
-    parent = nil
-}
+Label = {}
 
 ---@Description create new instance of Label
 ---@return Label
-function Label:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function Label:new()
+    local o = setmetatable({}, self)
+    ---@type pointer
+    o.host = nil
+    ---@type pointer
+    o.ptr = nil
+    o.text =""
+    o.posX = 0
+    o.posY = 0
+    ---@type pointer?
+    o.parent = nil
+    
     self.__index = self
     return o
 end

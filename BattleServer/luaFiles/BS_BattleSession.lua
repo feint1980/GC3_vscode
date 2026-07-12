@@ -57,35 +57,34 @@ local CHARACTER_CLASS_MAP = {
 ---@field p2Formation table
 ---@field currentRound number
 ---@field turnQueue table
+---@field playerSideMap table
+---@field playerIDMap table
 ---@field currentChar? BS_Char_*
 ---@field phase number
-BattleSession = {
-    lobbyId      = "",
-    host         = nil,     -- ServerScriptingManager pointer
-    p1Id         = "",      -- playerID string
-    p2Id         = "",      -- playerID string
-    p1EP         = nil,     -- BattleClientEP
-    p2EP         = nil,     -- BattleClientEP
-    p1Formation  = {},      -- list of BS_Char_* instances
-    p2Formation  = {},      -- list of BS_Char_* instances
-    currentRound = 0,
-    turnQueue    = {},
-    currentChar  = nil,     -- BS_Char_* currently acting
-    phase        = -1,     -- BattlePhase enum (defined in BS_global)
-    playerSideMap = {},
-    playerIDMap = {},
-}
-
+BattleSession = {}
+BattleLobby.__index = BattleLobby
 --------------------------------------------------------------------------------
 --  LIFECYCLE
 --------------------------------------------------------------------------------
 
-function BattleSession:new(o)
-    o = o or {}
-    o.p1Formation = {}
-    o.p2Formation = {}
-    o.turnQueue   = {}
-    setmetatable(o, self)
+function BattleSession:new()
+    local o = setmetatable({}, self)
+    o.lobbyId      = ""
+    o.host         = nil     -- ServerScriptingManager pointer
+    o.p1Id         = ""      -- playerID string
+    o.p2Id         = ""      -- playerID string
+    o.p1EP         = nil     -- BattleClientEP
+    o.p2EP         = nil     -- BattleClientEP
+    o.currentChar  = nil     -- BS_Char_* currently acting
+    o.phase        = -1     -- BattlePhase enum (defined in BS_global)
+    o.currentRound = 0
+    o.p1Formation  = {}      -- list of BS_Char_* instances
+    o.p2Formation  = {}      -- list of BS_Char_* instances
+    o.turnQueue    = {}
+    o.playerSideMap = {}
+    o.playerIDMap = {}
+
+    -- setmetatable(o, self)
     self.__index = self
     return o
 end

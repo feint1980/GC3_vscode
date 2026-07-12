@@ -36,6 +36,8 @@ CharacterShop = {
 function CharacterShop:new(o)
     o = o or {}
     setmetatable(o, self)
+    -- setmetatable(o.characterPanels, {})
+    -- setmetatable(o.t_characters, {})
     self.__index = self
     return o
 end
