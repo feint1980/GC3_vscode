@@ -1,1 +1,0 @@
-emote_b_01.png.png 5 3, emote_b_02.png.png 81 3, emote_b_03.png.png 154 3.

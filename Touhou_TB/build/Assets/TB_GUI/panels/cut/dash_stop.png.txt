@@ -1,1 +1,0 @@
-dash_stop_01.png.png 1 3, dash_stop_02.png.png 69 8.

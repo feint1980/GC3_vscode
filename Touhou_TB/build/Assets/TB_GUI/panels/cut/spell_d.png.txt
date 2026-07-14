@@ -1,1 +1,0 @@
-spell_d_01.png.png 6 13, spell_d_02.png.png 87 22, spell_d_03.png.png 192 25, spell_d_04.png.png 299 25.

@@ -10,28 +10,28 @@
 --- @field width number width
 --- @field height number height
 --- @field parent pointer instance of parent, default nil (main)
-Picture = {
-    ---@type pointer
-    host = nil,
-    ---@type pointer
-    ptr = nil,
-    path = "",
-    posX = 0,
-    posY = 0,
-    width = 0,
-    height = 0,
-    ---@type pointer
-    parent = nil
-}
+Picture = {}
+Picture.__index = Picture
 
 ---@Description created a new picture
 ---@return Picture
-function Picture:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function Picture:new()
+    local o = setmetatable({}, self)
+    ---@type pointer
+    o.host = nil
+    ---@type pointer
+    o.ptr = nil
+    o.path = ""
+    o.posX = 0
+    o.posY = 0
+    o.width = 0
+    o.height = 0
+    ---@type pointer
+    o.parent = nil
     self.__index = self
     return o
 end
+
 ---@Description init the picture
 ---@param host pointer instance of TGUIScriptingManager
 ---@param path string path to image

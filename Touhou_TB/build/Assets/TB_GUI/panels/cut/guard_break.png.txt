@@ -1,1 +1,0 @@
-guard_break_01.png.png 3 11, guard_break_02.png.png 73 4, guard_break_03.png.png 168 2, guard_break_04.png.png 264 11.

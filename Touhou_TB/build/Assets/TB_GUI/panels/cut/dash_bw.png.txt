@@ -1,1 +1,0 @@
-dash_bw_01.png.png 6 6, dash_bw_02.png.png 84 1, dash_bw_03.png.png 152 1, dash_bw_04.png.png 220 1, dash_bw_05.png.png 278 4, dash_bw_06.png.png 344 10, dash_bw_07.png.png 422 20.

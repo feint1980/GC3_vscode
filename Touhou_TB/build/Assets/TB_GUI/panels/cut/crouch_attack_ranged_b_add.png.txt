@@ -1,1 +1,0 @@
-crouch_attack_ranged_b_add_01.png.png 7 2, crouch_attack_ranged_b_add_02.png.png 111 3.

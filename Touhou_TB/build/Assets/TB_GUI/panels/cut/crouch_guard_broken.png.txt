@@ -1,1 +1,0 @@
-crouch_guard_broken_01.png.png 2 5, crouch_guard_broken_02.png.png 84 5.

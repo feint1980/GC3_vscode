@@ -25,26 +25,28 @@ PanelShowType = {
 --- @field height number height
 --- @field parent pointer instance of parent, default nil (main)
 --- @field visible boolean default true
-Panel = {
-    ---@type pointer
-    host = nil,
-    ---@type pointer
-    ptr = nil,
-    posX = 0,
-    posY = 0,
-    width = 0,
-    height = 0,
-    ---@type pointer
-    parent = nil,
-    ---@type boolean
-    visible = true
-}
+Panel = {}
+Panel.__index = Panel
 
 ---@Description create new instance of Panel
 ---@return Panel
-function Panel:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function Panel:new()
+
+    local o = setmetatable({}, self)
+
+    ---@type pointer
+    o.host = nil
+    ---@type pointer
+    o.ptr = nil
+    o.posX = 0
+    o.posY = 0
+    o.width = 0
+    o.height = 0
+    ---@type pointer
+    o.parent = nil
+    ---@type boolean
+    o.visible = true
+
     self.__index = self
     return o
 end

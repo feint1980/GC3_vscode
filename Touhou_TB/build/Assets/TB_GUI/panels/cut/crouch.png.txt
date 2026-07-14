@@ -1,1 +1,0 @@
-crouch_01.png.png 0 8, crouch_02.png.png 66 14, crouch_03.png.png 144 24, crouch_04.png.png 225 24.

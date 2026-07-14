@@ -1,1 +1,0 @@
-spin_01.png.png 2 23, spin_02.png.png 66 24, spin_03.png.png 131 25, spin_04.png.png 198 20, spin_05.png.png 265 14, spin_06.png.png 328 6, spin_07.png.png 401 6, spin_08.png.png 474 6, spin_09.png.png 548 6.

@@ -6,27 +6,27 @@
 ---@field posY number y position
 ---@field width number width
 ---@field height number height
----@filed collumNames table of collum names
+---@field collumNames table of collum names
 ---@field parent pointer instance of parent, default nil (main)
-ListView = {
-    ---@type pointer
-    host = nil,
-    ---@type pointer
-    ptr = nil,
-    posX = 0,
-    posY = 0,
-    width = 0,
-    height = 0,
-    collumNames = {},
-    ---@type pointer
-    parent = nil
-}
+ListView = {}
+ListView.__index= ListView
 
 ---@Description create new instance of Label
 ---@return ListView
-function ListView:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function ListView:new()
+    local o = setmetatable({}, self)
+    ---@type pointer
+    o.host = nil
+    ---@type pointer
+    o.ptr = nil
+    o.posX = 0
+    o.posY = 0
+    o.width = 0
+    o.height = 0
+    o.collumNames = {}
+    ---@type pointer
+    o.parent = nil
+
     self.__index = self
     return o
 end

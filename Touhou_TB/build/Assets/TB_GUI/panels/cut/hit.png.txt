@@ -1,1 +1,0 @@
-hit_01.png.png 6 11, hit_02.png.png 68 13, hit_03.png.png 147 13.

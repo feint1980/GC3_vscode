@@ -1,1 +1,0 @@
-attack_b_01.png.png 4 3, attack_b_02.png.png 63 3, attack_b_03.png.png 119 6, attack_b_04.png.png 224 7, attack_b_05.png.png 316 9, attack_b_06.png.png 408 7, attack_b_07.png.png 493 7.

@@ -1,1 +1,0 @@
-spellcard_01.png.png 3 14, spellcard_02.png.png 60 15, spellcard_03.png.png 115 8, spellcard_04.png.png 176 5, spellcard_05.png.png 274 6, spellcard_06.png.png 371 6, spellcard_07.png.png 469 7, spellcard_08.png.png 552 8.

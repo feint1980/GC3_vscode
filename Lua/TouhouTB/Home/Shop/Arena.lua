@@ -14,6 +14,7 @@ require "CreateLobbyMenu"
 
 MenuPanels = _G.MenuPanels
 
+
 ArenaPanel = nil
 
 

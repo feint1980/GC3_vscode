@@ -1,1 +1,0 @@
-fw_punch_01.png.png 4 6, fw_punch_02.png.png 69 3, fw_punch_03.png.png 131 11, fw_punch_04.png.png 204 23, fw_punch_05.png.png 284 22, fw_punch_06.png.png 350 22, fw_punch_07.png.png 419 14, fw_punch_08.png.png 503 11, fw_punch_09.png.png 601 12, fw_punch_10.png.png 4 6, fw_punch_11.png.png 69 3, fw_punch_12.png.png 131 11.

@@ -1,1 +1,0 @@
-fw_kick_01.png.png 1 30, fw_kick_02.png.png 66 26, fw_kick_03.png.png 139 17, fw_kick_04.png.png 212 15, fw_kick_05.png.png 280 14, fw_kick_06.png.png 346 14, fw_kick_07.png.png 407 12, fw_kick_08.png.png 480 12, fw_kick_09.png.png 585 7, fw_kick_10.png.png 1 30.

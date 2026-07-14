@@ -1,1 +1,0 @@
-attack_a_fw_01.png.png 2 16, attack_a_fw_02.png.png 58 8, attack_a_fw_03.png.png 115 6, attack_a_fw_04.png.png 172 15, attack_a_fw_05.png.png 254 30, attack_a_fw_06.png.png 351 29, attack_a_fw_07.png.png 449 29, attack_a_fw_08.png.png 548 24, attack_a_fw_09.png.png 2 16.

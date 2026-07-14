@@ -1,1 +1,0 @@
-fall_hit_01.png.png 3 43, fall_hit_02.png.png 94 34, fall_hit_03.png.png 181 30, fall_hit_04.png.png 275 40, fall_hit_05.png.png 378 42, fall_hit_06.png.png 485 66, fall_hit_07.png.png 610 81.

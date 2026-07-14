@@ -1,1 +1,0 @@
-attack_air_c_01.png.png 5 4, attack_air_c_02.png.png 70 4, attack_air_c_03.png.png 121 5, attack_air_c_04.png.png 177 6, attack_air_c_05.png.png 234 5, attack_air_c_06.png.png 299 9, attack_air_c_07.png.png 388 9, attack_air_c_08.png.png 478 9, attack_air_c_09.png.png 567 8.

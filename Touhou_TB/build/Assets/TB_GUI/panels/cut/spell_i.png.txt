@@ -1,1 +1,0 @@
-spell_i_01.png.png 5 5, spell_i_02.png.png 116 5, spell_i_03.png.png 225 10, spell_i_04.png.png 322 8.

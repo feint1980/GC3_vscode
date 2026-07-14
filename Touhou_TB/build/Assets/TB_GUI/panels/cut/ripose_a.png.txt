@@ -1,1 +1,0 @@
-ripose_a_01.png.png 1 10, ripose_a_02.png.png 66 19, ripose_a_03.png.png 136 31, ripose_a_04.png.png 200 40, ripose_a_05.png.png 264 41, ripose_a_06.png.png 330 2, ripose_a_07.png.png 395 3, ripose_a_08.png.png 459 13, ripose_a_09.png.png 524 10.

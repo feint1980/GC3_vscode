@@ -1,0 +1,19 @@
+% Basic combat between 2 clients
+
+
+? Stacks | work are breakdown into small tasks, and we work on stacks
+
+- Client side
+    - Client stats (GUI)
+        - Docks
+            - Left dock
+                - GUI progress 
+                    - Main Frame -> done
+            - Middle dock
+                - GUI progress
+            - Right dock
+                - GUI progress
+
+                
+
+            

@@ -1,1 +1,0 @@
-stand_up_01.png.png 6 15, stand_up_02.png.png 82 5.
