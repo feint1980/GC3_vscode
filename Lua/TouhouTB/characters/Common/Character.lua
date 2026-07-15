@@ -97,84 +97,85 @@ Speed: Purely determined by Agility; affects turn order in combat.]]--
 ---@field currentSlot pointer slot object
 ---@field speedRoll number
 ---@field isOwned boolean
-Character = {
-    ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Physical displace chance/resistant  
-    strength = 8,
-
-    ---@type number Vitality(VIT) Primary Influence: Health (HP), Status resistance, Last stance resistance, Physic def, Crit resistance 
-    vitality = 8,
-
-    ---@type number Dexterity(DEX) Primary Influence: Accuracy (Physic) & Critical Hit Chance (Physical) Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes.
-    dexterity = 8,
-
-    ---@type number Agility(AGI) Primary Influence: Speed & Evasion |Other Effects: Determines turn order (faster characters act first) and increases evasion against physical attacks. Higher agility could also reduce the chance of getting hit by slower enemies and allow characters to reposition more easily.
-    agility = 8,
-
-    ---@type number Intelligence (INT) Primary Influence: Magic Damage scale value by 3|Other Effects: Increases the damage dealt by magical attacks and spells. It could also affect the potency of debuffs, the number of targets a spell can hit, or even mana regeneration rates.
-    intelligence = 8,
-
-    ---@type number Wisdom (WIS) Primary Influence: Magic Defense & Mana Pool|Other Effects: Determines resistance to magical attacks and could increase max mana. Wisdom could also affect healing abilities, status effect resistance (such as confusion or charm), and reduce the cooldowns on certain spells or abilities.
-    wisdom = 8,
-
-    ---@type pointer instance of F_Lua_BaseEntity
-    dyobj = nil,
-    ---@type string The path to the animation file
-    animationPath = "./Assets/F_AObjects/patchouli_tb.xml",
-    ---@type string The path to the portrait file
-    portraitPath  = "./Assets/TB_GUI/faces/missing.png",
-    ---@type string The path to the panel file
-    panelPath = "./Assets/TB_GUI/panels/missing.png",
-    action = 0,
-    hp = 100,
-    mana = 100,
-    sp = 0,
-    spCap = 100,
-    physicDmg = 10,
-    physicDef = 10,
-    magicDmg = 10,
-    magicDef = 10,
-    accurate = 0.5,
-    evadeChance = 0.1,
-    critChance = 0.125,
-    hpScale = 8,
-    manaScale = 7,
-    physicDmgScale = 2,
-    magicDmgScale = 3,
-    physicDefScale = 1,
-    magicDefScale = 1,
-    accurateScale = 0.3,
-    evadeChanceScale = 0.2,
-    deathDoorSurviveChance = 0.25,
-    name = "Nameless",
-    lastName = "None",
-    title = "None",
-    ---@type number The side of the character |1 = left, 2 = right|
-    side = 1,
-    level = 1,
-    xp = 0,
-    price = 25,
-    ID = "NONE",
-    ---@type table The list of common actions
-    common_actions = {},
-    ---@type table The list of items
-    items = {},
-    ---@type table The list of skills
-    skills = {},
-    ---@type table
-    statuses = {},
-    ---@type pointer? instance of Slot 
-    currentSlot = nil,
-
-    speedRoll = 0,
-    isOwned = false
-}
+Character = {}
+Character.__index = Character
 
 ---@Description create a new instance of Character
----@param o? table
 ---@return Character
-function Character:new(o)
-    o = o or {}
+function Character:new()
+    -- o = o or {}
+    local o = setmetatable({}, self)
     setmetatable(o, self)
+    ---@type number Strength(STR) Primary Influence: Physic dmg (scale : 2) | Physical displace chance/resistant  
+    o.strength = 8
+
+    ---@type number Vitality(VIT) Primary Influence: Health (HP), Status resistance, Last stance resistance, Physic def, Crit resistance 
+    o.vitality = 8
+
+    ---@type number Dexterity(DEX) Primary Influence: Accuracy (Physic) & Critical Hit Chance (Physical) Other Effects: Increases hit chance with physical attacks, and could also raise the chance for critical strikes.
+    o.dexterity = 8
+
+    ---@type number Agility(AGI) Primary Influence: Speed & Evasion |Other Effects: Determines turn order (faster characters act first) and increases evasion against physical attacks. Higher agility could also reduce the chance of getting hit by slower enemies and allow characters to reposition more easily.
+    o.agility = 8
+
+    ---@type number Intelligence (INT) Primary Influence: Magic Damage scale value by 3|Other Effects: Increases the damage dealt by magical attacks and spells. It could also affect the potency of debuffs, the number of targets a spell can hit, or even mana regeneration rates.
+    o.intelligence = 8
+
+    ---@type number Wisdom (WIS) Primary Influence: Magic Defense & Mana Pool|Other Effects: Determines resistance to magical attacks and could increase max mana. Wisdom could also affect healing abilities, status effect resistance (such as confusion or charm), and reduce the cooldowns on certain spells or abilities.
+    o.wisdom = 8
+
+    ---@type pointer instance of F_Lua_BaseEntity
+    o.dyobj = nil
+    ---@type string The path to the animation file
+    o.animationPath = "./Assets/F_AObjects/patchouli_tb.xml"
+    ---@type string The path to the portrait file
+    o.portraitPath  = "./Assets/TB_GUI/faces/missing.png"
+    ---@type string The path to the panel file
+    o.panelPath = "./Assets/TB_GUI/panels/missing.png"
+    o.action = 0
+    o.hp = 100
+    o.mana = 100
+    o.sp = 0
+    o.spCap = 100
+    o.physicDmg = 10
+    o.physicDef = 10
+    o.magicDmg = 10
+    o.magicDef = 10
+    o.accurate = 0.5
+    o.evadeChance = 0.1
+    o.critChance = 0.125
+    o.hpScale = 8
+    o.manaScale = 7
+    o.physicDmgScale = 2
+    o.magicDmgScale = 3
+    o.physicDefScale = 1
+    o.magicDefScale = 1
+    o.accurateScale = 0.3
+    o.evadeChanceScale = 0.2
+    o.deathDoorSurviveChance = 0.25
+    o.name = "Nameless"
+    o.lastName = "None"
+    o.title = "None"
+    ---@type number The side of the character |1 = left, 2 = right 
+    o.side = 1
+    o.level = 1
+    o.xp = 0
+    o.price = 25
+    o.ID = "NONE"
+    ---@type table The list of common actions
+    o.common_actions = {}
+    ---@type table The list of items
+    o.items = {}
+    ---@type table The list of skills
+    o.skills = {}
+    ---@type table
+    o.statuses = {}
+    ---@type pointer? instance of Slot 
+    o.currentSlot = nil
+
+    o.speedRoll = 0
+    o.isOwned = false
+
     self.__index = self
     return o
 end

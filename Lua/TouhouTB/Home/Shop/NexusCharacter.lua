@@ -16,22 +16,22 @@ require "OwnedCharacterPanel"
 ---@field ownedCharacterPanels table
 ---@field t_characters table
 ---@field itemCount number
-CharacterNexus = {
-    ---@type Panel 
-    parentPanel = nil,
-    ---@type Panel
-    mainPanel = nil,
-    ---@type table of OwnedCharacterPanel
-    ownedCharacterPanels = {},
-    t_characters = {},
-    itemCount = 0
-}
+CharacterNexus = {}
+CharacterNexus.__index = CharacterNexus
 
-function CharacterNexus:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function CharacterNexus:new()
+
+    local o = setmetatable({}, self)
+    ---@type Panel 
+    o.parentPanel = nil
+    ---@type Panel
+    o.mainPanel = nil
+    ---@type table of OwnedCharacterPanel
+    o.ownedCharacterPanels = {}
+    o.t_characters = {}
+    o.itemCount = 0
+
     self.__index = self
-    setmetatable(self.ownedCharacterPanels, self.ownedCharacterPanels)
     return o
 end
 

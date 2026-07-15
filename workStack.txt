@@ -11,6 +11,10 @@
                     - Main Frame -> done
             - Middle dock
                 - GUI progress
+                    x Basic skill icons 
+                    x Item icon 
+                    x general icon
+                    - border for all of them 
             - Right dock
                 - GUI progress
 

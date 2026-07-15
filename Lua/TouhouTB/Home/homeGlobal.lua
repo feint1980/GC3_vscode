@@ -9,19 +9,20 @@ Arena_Ping_List = {
 
 }
 
-ArenaServer = {
-    clientHost = nil,
-    guid = "",
-    name = "",
-    port = 0,
-    ping = 0,
-    IP = nil,
-    lobbyList = {},
-}
+ArenaServer = {}
+ArenaServer.__index = ArenaServer
 
-function ArenaServer:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function ArenaServer:new()
+
+    local o = setmetatable({}, self)
+    o.clientHost = nil
+    o.guid = ""
+    o.name = ""
+    o.port = 0
+    o.ping = 0
+    o.IP = nil
+    o.lobbyList = {}
+
     self.__index = self
     return o
 end

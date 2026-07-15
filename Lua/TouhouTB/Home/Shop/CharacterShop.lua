@@ -17,27 +17,25 @@ require "CharacterDetailPanel"
 ---@field characterDetailPanel CharacterDetailPanel
 ---@field characterPanels table 
 ---@field t_characters table
-CharacterShop = {
-    ---@type pointer
-    mainPanel = nil,
-    ---@type ScrollablePanel
-    charactersPanel = nil,
-    ---@type CharacterDetailPanel
-    characterDetailPanel = nil,
-    ---@type table of CharacterPanel
-    characterPanels = {},
-
-    ---@type table
-    t_characters = {}
-}
-
+CharacterShop = {}
+CharacterShop.__index = CharacterShop
 ---@Description create new instance of CharacterShop
 ---@return CharacterShop
-function CharacterShop:new(o)
-    o = o or {}
-    setmetatable(o, self)
-    -- setmetatable(o.characterPanels, {})
-    -- setmetatable(o.t_characters, {})
+function CharacterShop:new()
+    local o = setmetatable({}, self)
+
+    ---@type pointer
+    o.mainPanel = nil
+    ---@type ScrollablePanel
+    o.charactersPanel = nil
+    ---@type CharacterDetailPanel
+    o.characterDetailPanel = nil
+    ---@type table of CharacterPanel
+    o.characterPanels = {}
+
+    ---@type table
+    o.t_characters = {}
+
     self.__index = self
     return o
 end

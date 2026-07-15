@@ -554,8 +554,8 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
     bsOut.WriteAlignedBytes(reinterpret_cast<const unsigned char*>(tData.data()), tData.size());
 
     // m_client->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, channel, m_serverIPAddr, false);
-    unsigned int bits = bsOut.GetNumberOfBitsUsed();
-    unsigned int bytes = bits / 8 + (bits % 8 ? 1 : 0);
+    // unsigned int bits = bsOut.GetNumberOfBitsUsed();
+    // unsigned int bytes = bits / 8 + (bits % 8 ? 1 : 0);
     // std::cout << "sendWrapData C++ side called \n";
 
     // std::cout << "pointer check " << m_client << "\n";
@@ -581,7 +581,7 @@ uint32_t ClientScriptingManager::sendWrapData(const std::string &data)
 }
 
 // Ah yes, some will say, "wHy dOn't yoU moDifY the sendWrapData WiTh first byte using input 1st byte ? "
-// -> so many function was called and use this, many features has used and tested OK, I dont want to refactor, I can see why but as lazy as I am (or not, if you are John Carmack himself, you tell me that)
+// -> so many function was called and use this, many features has used and tested OK, I dont want to refactor, I can see why but as lazy as I am so ... no I don't think I will
 uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
 {
     if (data.size() < 2) // headers
@@ -621,8 +621,8 @@ uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
     bsOut.WriteAlignedBytes(reinterpret_cast<const unsigned char*>(tData.data()), tData.size());
 
     // m_client->Send(&bsOut, HIGH_PRIORITY, RELIABLE_ORDERED, channel, m_serverIPAddr, false);
-    unsigned int bits = bsOut.GetNumberOfBitsUsed();
-    unsigned int bytes = bits / 8 + (bits % 8 ? 1 : 0);
+    // unsigned int bits = bsOut.GetNumberOfBitsUsed();
+    // unsigned int bytes = bits / 8 + (bits % 8 ? 1 : 0);
 
     // std::cout << "attempting to send " << payLoad.c_str() << "\n";
 

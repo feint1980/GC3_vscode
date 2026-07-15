@@ -9,26 +9,24 @@ require "TGUI_TabContainer"
 require "TGUI_ScrollablePanel"
 require "homeGlobal"
 
-OwnedCharacterPanel = {
+OwnedCharacterPanel = {}
+
+function OwnedCharacterPanel:new()
+    local o = setmetatable({}, self)
     ---@type ScrollablePanel
-    parent = nil,
+    o.parent = nil
     ---@type Panel
-    mainPanel = nil,
+    o.mainPanel = nil
     ---@type Picture
-    picture = nil,
+    o.picture = nil
     ---@type RTLabel
-    displayNameLabel = nil,
+    o.displayNameLabel = nil
     ---@type RTLabel 
-    lvlLabel = nil,
+    o.lvlLabel = nil
     ---@type RTLabel
-    expLabel = nil,
+    o.expLabel = nil
+    o.characterID = nil
 
-    characterID = nil
-}
-
-function OwnedCharacterPanel:new(o)
-    o = o or {}
-    setmetatable(o, self)
     self.__index = self
     return o
 end

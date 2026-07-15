@@ -13,30 +13,36 @@ require "Prompt"
 require "clientGlobal"
 
 ---@class FormationPreviewPanel
-FormationPreviewPanel ={
-    guiHost = nil,
-    mainPanel = nil,
+---@field guiHost pointer instance of GUI
+---@field mainPanel pointer instance of Panel
+---@field characterPics table of Picture
+---@field formationLabel Label
+---@field formationName string
+---@field formationCharacters table of Formation_CharInfo
+---@field tIndex number
+---@field isEmpty boolean
+---@field onclickCallBack function
+FormationPreviewPanel ={}
+
+
+function FormationPreviewPanel:new()
+    local o = setmetatable({}, self)
+    o.guiHost = nil
+    o.mainPanel = nil
     ---@type table of Picture
-    characterPics = {},
+    o.characterPics = {}
     ---@type Label
-    formationLabel = nil,
-    formationName = "",
+    o.formationLabel = nil
+    o.formationName = ""
 
     ---@type table of Formation_CharInfo
-    formationCharacters = {},
+    o.formationCharacters = {}
 
-    tIndex = 0,
+    o.tIndex = 0
     -----@type Label
-    -- createFormationBtn = nil,
-    isEmpty = true,
-    onclickCallBack = nil
-}
+    o.isEmpty = true
+    o.onclickCallBack = nil
 
-function FormationPreviewPanel:new(o)
-    o = o or {}
-    o.characterPics = {}
-    setmetatable(o, self)
-    -- setmetatable(o.characterPics, self)
     self.__index = self
     return o
 end

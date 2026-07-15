@@ -186,26 +186,27 @@ function ClientHandlerBattleResponse(host,chanel,request, data,guid)
     end
 end
 
-
-RequestPacket = {
-    host = nil,
-    channel = 255,
-    request = 255,
-    data = {},
-    retries = 5,
-    sendTime = 0,
-    delay = 0.25,
-    packetType = 0,
-}
-
 RequestPacketType = {
     MainServer = 1,
     BattleServer = 2
 }
 
-function RequestPacket:new(o)
-    o = o or {}
-    setmetatable(o, self)
+
+RequestPacket = {}
+RequestPacket.__index = RequestPacket
+
+function RequestPacket:new()
+
+    local o = setmetatable({}, self)
+    o.host = nil
+    o.channel = 255
+    o.request = 255
+    o.data = {}
+    o.retries = 5
+    o.sendTime = 0
+    o.delay = 0.25
+    o.packetType = 0
+    
     self.__index = self
     return o
 end

@@ -2,15 +2,16 @@ package.path = package.path .. ';../../Lua/TouhouTB/Combat/?.lua;'
 
 require "combatField_wrapper"
 
-CombatField = {
-    host = nil,
-    banner = nil,
-    dock = nil,
-}
+CombatField = {}
+CombatField.__index = CombatField
 
-function CombatField:new(o)
-    o = o or {}
-    setmetatable(o, self)
+
+function CombatField:new()
+    local o = setmetatable({}, self)
+    o.host = nil
+    o.banner = nil
+    o.dock = nil
+
     self.__index = self
     return o
 end

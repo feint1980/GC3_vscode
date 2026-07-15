@@ -6,13 +6,13 @@ require "EventPipeline"
 require "combat_turndisplayer_wrapper"
 
 ---@class CombatTurnDisplayer
-CombatTurnDisplayer = {
-    host = nil
-}
+CombatTurnDisplayer = {}
+CombatTurnDisplayer.__index = CombatTurnDisplayer
 
-function CombatTurnDisplayer:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function CombatTurnDisplayer:new()
+    local o = setmetatable({}, self)
+    o.host = nil
+
     self.__index = self
     return o
 end

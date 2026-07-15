@@ -42,21 +42,20 @@ LabelColor.Blue = 3
 --- @field posX number x position
 --- @field posY number y position
 --- @field parent? pointer instance parent, default nil (main)
-RTLabel = {
-    host = nil,
-    ptr = nil,
-    text ="",
-    posX = 0,
-    posY = 0,
-    parent = nil
-
-}
+RTLabel = {}
+RTLabel.__index = RTLabel
 
 ---@Description create new instance of RTLabel
 ---@return RTLabel
-function RTLabel:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function RTLabel:new()
+
+    local o = setmetatable({}, self)
+    o.host = nil
+    o.ptr = nil
+    o.text =""
+    o.posX = 0
+    o.posY = 0
+    o.parent = nil
     self.__index = self
     return o
 end

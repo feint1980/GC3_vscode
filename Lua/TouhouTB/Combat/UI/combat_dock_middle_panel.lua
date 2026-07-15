@@ -77,7 +77,7 @@ function Combat_dock_middle_panel:init(renderHost, tWindowWidth, tWindowHeight)
     self:addButton("A", basicSkillsX,                     groupY , "Kick Back", "MP 20")
     self:addButton("S", basicSkillsX + (bw + gap),         groupY, "Brace", "Free")
     self:addButton("D", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "MP 15")
-    self:addButton("F", basicSkillsX + (bw + gap) * 3,     groupY, "Meditatien",   "Free")
+    self:addButton("F", basicSkillsX + (bw + gap) * 3,     groupY, "Meditation",   "")
 
     --======================================================
     -- Items row: 1,2

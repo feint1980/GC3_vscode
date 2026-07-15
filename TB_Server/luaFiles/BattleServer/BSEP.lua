@@ -1,20 +1,20 @@
 require "LobbyEP"
 
-BSEP =
-{
-    ---@type RakNet_SystemAddress
-    IP = nil,
-    GUID = "",
-    name = "",
-    port = 0,
-    ---@type pointer of ClientScriptingManager
-    networkInstance = nil,
-    lobbyList = {}
-}
+BSEP ={}
+BSEP.__index = BSEP
 
-function BSEP:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function BSEP:new()
+    local o =  setmetatable({}, self)
+
+    ---@type RakNet_SystemAddress
+    o.IP = nil
+    o.GUID = ""
+    o.name = ""
+    o.port = 0
+    ---@type pointer of ClientScriptingManager
+    o.networkInstance = nil
+    o.lobbyList = {}
+
     self.__index = self
     return o
 end

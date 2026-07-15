@@ -17,28 +17,28 @@ require "TGUI_Button"
 ---@field buyButton Button
 ---@field parent pointer instance of ScrollablePanel
 ---@field detailPanel ScrollablePanel
-CharacterPanel = {
-    ---@type Panel
-    panel = nil,
-    ---@type Picture
-    picture = nil,
-    ---@type Label
-    displayNameLabel = nil,
-    ---@type RTLabel
-    priceLabel = nil,
-    ---@type Button
-    buyButton = nil,
-    ---@type pointer instance of ScrollablePanel
-    parent = nil,
-    ---@type ScrollablePanel
-    detailPanel = nil
-}
+CharacterPanel = {}
+CharacterPanel.__index = CharacterPanel
 
 ---@Description create new instance of CharacterPanel
 ---@return CharacterPanel
-function CharacterPanel:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function CharacterPanel:new()
+    local o = setmetatable({}, self)
+    ---@type Panel
+    o.panel = nil
+    ---@type Picture
+    o.picture = nil
+    ---@type Label
+    o.displayNameLabel = nil
+    ---@type RTLabel
+    o.priceLabel = nil
+    ---@type Button
+    o.buyButton = nil
+    ---@type pointer instance of ScrollablePanel
+    o.parent = nil
+    ---@type ScrollablePanel
+    o.detailPanel = nil
+
     self.__index = self
     return o
 end

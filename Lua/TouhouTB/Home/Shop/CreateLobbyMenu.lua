@@ -37,19 +37,18 @@ LobbyPWInput = nil
 
 Create_Lobby_State = 0
 
-LobbyServer = {
-    name = "",
-    ping = 0,
-    value = "",
-    guid = "",
-}
-
+LobbyServer = {}
+LobbyServer.__index = LobbyServer
 ---@type LobbyServer
 CL_SelectedServer = nil
 
-function LobbyServer:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function LobbyServer:new()
+    local o = setmetatable({}, self)
+    o.name = ""
+    o.ping = 0
+    o.value = ""
+    o.guid = ""
+    
     self.__index = self
     return o
 end
