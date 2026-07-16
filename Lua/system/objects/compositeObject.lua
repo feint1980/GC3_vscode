@@ -10,27 +10,33 @@ package.path = package.path .. ';../../Lua/system/renderer/?.lua;'
 ---@field height number height
 ---@field depth number depth
 ---@field angle number angle
-L_compositeObject = {
-
-    host = nil,
-    ptr = nil,
-    posX = 0,
-    posY = 0,
-    width = 0,
-    height = 0,
-    depth = 0,
-    angle = 0,
-
-}
+L_compositeObject = {}
+L_compositeObject.__index = L_compositeObject
 
 ---@Description create new instance of L_compositeObject
 ---@return L_compositeObject
-function L_compositeObject:new (o)
-    o = o or {}
-    setmetatable(o, self)
+function L_compositeObject:new()
+
+    local o = setmetatable({}, self)
+
+    o.host = nil
+    o.ptr = nil
+    o.posX = 0
+    o.posY = 0
+    o.width = 0
+    o.height = 0
+    o.depth = 0
+    o.angle = 0
+
     self.__index = self
     return o
 end
+
+
+function L_compositeObject:addChild(child)
+
+end
+
 
 ---@Description Init L_compositeObject
 ---@param F_LuaRendererContext_ptr pointer instance of F_LuaRendererContext
@@ -202,3 +208,4 @@ function L_compositeObject:setPanelBGScale(scale)
     end
     CompositeObject_setPanelBGScale(self.ptr, scale)
 end
+

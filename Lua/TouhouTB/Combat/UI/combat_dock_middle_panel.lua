@@ -4,47 +4,57 @@ require "compositeObject"
 
 --[[
     Combat_dock_middle_panel
+    
 ]]
 
-Combat_dock_middle_panel = {
-    renderContextHost = nil,
-    windowWidth = 0,
-    windowHeight = 0,
-
-    -- group header texts
-    basicSkillsHeader = nil,
-    itemsHeader = nil,
-    generalHeader = nil,
-
-    -- button registries, keyed by slot name e.g. "1", "Q", "E"
-    buttons = {},
-
-    -- layout constants
-    buttonWidth = 120,
-    buttonHeight = 120,
-    buttonGap = 10,
-}
+Combat_dock_middle_panel = {}
+Combat_dock_middle_panel.__index = Combat_dock_middle_panel
 
 function Combat_dock_middle_panel:new()
-    local o = {}
-    setmetatable(o, self)
+
+    local o = setmetatable({}, self)
+
+    o.renderContextHost = nil
+    o.windowWidth = 0
+    o.windowHeight = 0
+    o.posX = 0
+    o.posY = 0
+
+    o.mainPanel = nil
+
+    -- group header texts
+    o.basicSkillsHeader = nil
+    o.itemsHeader = nil
+    o.generalHeader = nil
+
+    -- button registries, keyed by slot name e.g. "1", "Q", "E"
+    o.buttons = {}
+
+    -- layout constants
+    o.buttonWidth = 120
+    o.buttonHeight = 120
+    o.buttonGap = 10
+
     -- setmetatable(o.buttons, self.buttons)
     self.__index = self
     o.buttons = {}
     return o
 end
 
-function Combat_dock_middle_panel:init(renderHost, tWindowWidth, tWindowHeight)
+function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWindowHeight)
+
     self.renderContextHost = renderHost
     self.windowWidth = tWindowWidth
     self.windowHeight = tWindowHeight
+    self.posX = tPosX
+    self.posY = tPosY
+
     self.buttons = {}
 
     -- anchor the whole button grid to the bottom-center of the screen,
     -- leaving room on the left for the character info dock and on the
     -- right for the skill detail panel
     local groupY = -(self.windowHeight * 0.5 )  + (self.buttonHeight * 0.5) -- distance up from bottom edge, in our -pos coordinate space
-    
 
     --======================================================
     -- group headers
@@ -53,15 +63,28 @@ function Combat_dock_middle_panel:init(renderHost, tWindowWidth, tWindowHeight)
     -- local itemsX       = -(self.windowWidth * 0.5) + 700
     -- local generalX     = -(self.windowWidth * 0.5) + 900
 
-    local basicSkillsX = -(self.windowWidth * 0.5) + 360 + self.buttonWidth * 0.5 
+    local basicSkillsX = -(self.windowWidth * 0.5) + 360 + self.buttonWidth * 0.5
     local itemsX       = -(self.windowWidth * 0.5) + 320 + (self.buttonWidth * 5 )  + (self.buttonGap * 2)
-    local generalX     = itemsX 
+    local generalX     = itemsX
     + (self.buttonWidth + self.buttonGap * 2)
 
     self.basicSkillsHeader = self:createHeader("Basic Skills", basicSkillsX + self.buttonWidth * 2, groupY + 210)
     self.itemsHeader       = self:createHeader("Items",  itemsX ,       groupY + 220)
     self.generalHeader     = self:createHeader("Generals",  
     generalX,    groupY + 220)
+
+    self.mainPanel = L_compositeObject:new()
+    self.mainPanel:init(self.renderContextHost,
+    self.posX, self.posY, self.windowWidth,
+    self.windowHeight,0,5)
+
+    self.mainPanel:addPanel("Simple_border", 0.25)
+
+    self.mainPanel:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0,
+        10, 0.5)
+
+    self.mainPanel:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,15, 20,
+        -20, 0.5)
 
     --======================================================
     -- Basic Skills row: slots 1,2,3,4
@@ -78,6 +101,7 @@ function Combat_dock_middle_panel:init(renderHost, tWindowWidth, tWindowHeight)
     self:addButton("S", basicSkillsX + (bw + gap),         groupY, "Brace", "Free")
     self:addButton("D", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "MP 15")
     self:addButton("F", basicSkillsX + (bw + gap) * 3,     groupY, "Meditation",   "")
+
 
     --======================================================
     -- Items row: 1,2

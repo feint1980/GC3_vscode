@@ -607,10 +607,9 @@ uint32_t ClientScriptingManager::sendBattleWrapData(const std::string & data)
     int payLoadIndex = 2;
 
     // m_currentBattleServerIP->
-// std::string tGUID = m_currentBattleServerIP->to
+    // std::string tGUID = m_currentBattleServerIP->to
 
     std::string payLoad(data.begin() + payLoadIndex, data.end());
-
 
     std::string tData = m_battleServerCryptor->encrypt(payLoad);
 
