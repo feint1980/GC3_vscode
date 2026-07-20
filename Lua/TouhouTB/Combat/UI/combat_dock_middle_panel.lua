@@ -9,7 +9,6 @@ require "compositeObject"
 
 Combat_dock_middle_panel = {}
 Combat_dock_middle_panel.__index = Combat_dock_middle_panel
-
 function Combat_dock_middle_panel:new()
 
     local o = setmetatable({}, self)
@@ -68,23 +67,25 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     local generalX     = itemsX
     + (self.buttonWidth + self.buttonGap * 2)
 
-    self.basicSkillsHeader = self:createHeader("Basic Skills", basicSkillsX + self.buttonWidth * 2, groupY + 210)
-    self.itemsHeader       = self:createHeader("Items",  itemsX ,       groupY + 220)
+    self.basicSkillsHeader = self:createHeader("Basic Skills", basicSkillsX + self.buttonWidth * 2, groupY + 195)
+    self.itemsHeader       = self:createHeader("Items",  itemsX ,       groupY + 205)
     self.generalHeader     = self:createHeader("Generals",  
-    generalX,    groupY + 220)
+    generalX,    groupY + 205)
+
+    local middleWidth = ( 6 * (self.buttonWidth + self.buttonGap ) ) + 30
 
     self.mainPanel = L_compositeObject:new()
     self.mainPanel:init(self.renderContextHost,
-    self.posX, self.posY, self.windowWidth,
-    self.windowHeight,0,5)
+    (self.posX - self.windowWidth * 0.5 ) - 50, self.posY - (self.buttonHeight) + 5, middleWidth,
+    self.windowHeight * 0.45,0,5)
 
     self.mainPanel:addPanel("Simple_border", 0.25)
 
     self.mainPanel:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0,
-        10, 0.5)
+        10, 0.45)
 
     self.mainPanel:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,15, 20,
-        -20, 0.5)
+        -20, 0.45)
 
     --======================================================
     -- Basic Skills row: slots 1,2,3,4
@@ -101,7 +102,6 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     self:addButton("S", basicSkillsX + (bw + gap),         groupY, "Brace", "Free")
     self:addButton("D", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "MP 15")
     self:addButton("F", basicSkillsX + (bw + gap) * 3,     groupY, "Meditation",   "")
-
 
     --======================================================
     -- Items row: 1,2
@@ -122,7 +122,7 @@ function Combat_dock_middle_panel:createHeader(label, posX, posY)
     -- zero-size composite purely to host a text object at this position
     headerDock:init(self.renderContextHost, posX, posY, 0,
     0, 0, 4)
-    headerDock:addText(label, 0, 0, 3, .95, 220, 200, 160, 255, 0) -- center aligned, gold-ish
+    headerDock:addText(label, 0, 0, 3, .75, 220, 200, 160, 255, 0) -- center aligned, gold-ish
     return headerDock
 end
 
