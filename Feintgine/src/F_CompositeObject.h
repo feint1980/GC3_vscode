@@ -178,12 +178,17 @@ public:
 
     tTextObject * addText(const std::string & text, const glm::vec2 & posOffset, const Feintgine::Color & color, float scale, unsigned char justification, float angle);
 
+    bool isVisible() const { return m_isVisible; }
+
+    void setVisible(bool visible) { m_isVisible = visible; }
 
 protected:
 
     Uint32 m_type = TNoObject;
 
     Uint8 m_maxObject = 10;
+
+    bool m_isVisible = true;
 
     glm::vec2 m_pos = glm::vec2(0.0f);
     glm::vec2 m_dim = glm::vec2(0.0f);
@@ -199,8 +204,9 @@ protected:
     std::unordered_map<tAObject *, size_t> m_animatedObjectIndexMap;
     std::unordered_map<tTextObject *, size_t> m_textObjectIndexMap;
 
-
     F_FramePanel m_framePanel;
+
+
 
 };
 }

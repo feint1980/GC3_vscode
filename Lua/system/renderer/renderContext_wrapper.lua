@@ -94,3 +94,7 @@ end
 function CompositeObject_setPanelBGScale(compositeObject, scale)
     cpp_CompositeObject_setPanelBGScale(compositeObject, scale)
 end
+
+function CompositeObject_setVisible(compositeObject, value)
+    cpp_CompositeObject_setVisible(compositeObject, value)
+end

@@ -120,6 +120,10 @@ tAObject * F_CompositeObject::addAnimatedObject(const std::string & animFile,con
 
 void F_CompositeObject::draw(Feintgine::SpriteBatch & spriteBatch)
 {
+    if (!m_isVisible)
+    {
+        return;
+    }
     if(m_type & ObjectTypes::TF_Sprite)
     {
         for (auto i = 0; i < m_objectList.size(); i++)
@@ -218,6 +222,10 @@ void F_CompositeObject::addFrameLine(const glm::vec2 & offset, float width, floa
 
 void F_CompositeObject::drawText(TextRenderer & textRenderer)
 {
+    if(!m_isVisible)
+    {
+        return;
+    }
     for(size_t i = 0 ; i < m_textObjectList.size(); i++)
     {
         // std::wcout << L"rendered " << m_textObjectList[i].text << L"\n";

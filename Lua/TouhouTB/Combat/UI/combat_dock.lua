@@ -42,8 +42,9 @@ function Combat_dock:init(renderHost,tWindowWidth, tWindowHeight)
 
     -- right dock 
     self.rightDock = Combat_dock_right_panel:new()
-    local rightDockWidth = 400
-    local rightDockHeight = 500
-    self.rightDock:init(renderHost, tWindowWidth - rightDockWidth, tWindowHeight - rightDockHeight,  rightDockWidth, rightDockHeight)
+    local rightDockWidth = 450
+    local rightDockHeight = 420
+    self.rightDock:init(renderHost, 565, -240,  rightDockWidth, rightDockHeight, tWindowWidth, tWindowHeight)
 
+    
 end

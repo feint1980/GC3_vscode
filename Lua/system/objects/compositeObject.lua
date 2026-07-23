@@ -209,3 +209,9 @@ function L_compositeObject:setPanelBGScale(scale)
     CompositeObject_setPanelBGScale(self.ptr, scale)
 end
 
+function L_compositeObject:setVisible(value)
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_setVisible(self.ptr, value)
+end

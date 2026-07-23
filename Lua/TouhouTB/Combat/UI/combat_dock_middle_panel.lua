@@ -30,6 +30,7 @@ function Combat_dock_middle_panel:new()
     o.buttons = {}
 
     -- layout constants
+    
     o.buttonWidth = 120
     o.buttonHeight = 120
     o.buttonGap = 10
@@ -53,7 +54,7 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     -- anchor the whole button grid to the bottom-center of the screen,
     -- leaving room on the left for the character info dock and on the
     -- right for the skill detail panel
-    local groupY = -(self.windowHeight * 0.5 )  + (self.buttonHeight * 0.5) -- distance up from bottom edge, in our -pos coordinate space
+    local groupY = -(self.windowHeight * 0.5 )  + (self.buttonHeight * 0.5) + 5 -- distance up from bottom edge, in our -pos coordinate space
 
     --======================================================
     -- group headers
@@ -62,6 +63,7 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     -- local itemsX       = -(self.windowWidth * 0.5) + 700
     -- local generalX     = -(self.windowWidth * 0.5) + 900
 
+    -- old 360, 320, 
     local basicSkillsX = -(self.windowWidth * 0.5) + 360 + self.buttonWidth * 0.5
     local itemsX       = -(self.windowWidth * 0.5) + 320 + (self.buttonWidth * 5 )  + (self.buttonGap * 2)
     local generalX     = itemsX
@@ -72,20 +74,22 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     self.generalHeader     = self:createHeader("Generals",  
     generalX,    groupY + 205)
 
-    local middleWidth = ( 6 * (self.buttonWidth + self.buttonGap ) ) + 30
+    local panelWidth = ( 6 * (self.buttonWidth + self.buttonGap ) ) + 10
 
     self.mainPanel = L_compositeObject:new()
     self.mainPanel:init(self.renderContextHost,
-    (self.posX - self.windowWidth * 0.5 ) - 50, self.posY - (self.buttonHeight) + 5, middleWidth,
-    self.windowHeight * 0.45,0,5)
+    (self.posX - self.windowWidth * 0.5 ) - 50, self.posY - (self.buttonHeight) + 70, panelWidth,
+    self.windowHeight * 0.34,0,5)
 
     self.mainPanel:addPanel("Simple_border", 0.25)
 
-    self.mainPanel:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0,
-        10, 0.45)
+    self.mainPanel:addEmblem(0,"emblem_pack.xml/corner_b_14b.png", 1,0, 0,
+        4, 0.85)
 
-    self.mainPanel:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,15, 20,
-        -20, 0.45)
+    self.mainPanel:addEmblem(1,"emblem_pack.xml/corner_a_05.png", 3,3, 18,
+        -18, 0.45)
+
+    self.mainPanel:showPanelBG(true)
 
     --======================================================
     -- Basic Skills row: slots 1,2,3,4
@@ -114,6 +118,7 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     --======================================================
     self:addButton("M", generalX,             groupY + self.buttonHeight + self.buttonGap , "Move",     "AP 0.5")
     self:addButton("Space", generalX, groupY , "End Turn", "")
+
 end
 
 ---@Description internal: create a header text object (not part of a button)
@@ -164,6 +169,7 @@ function Combat_dock_middle_panel:addButton(key, posX, posY, name, info)
     end
 
     self.buttons[key] = btn
+
 end
 
 ---@Description update a button's displayed name/info at runtime (e.g. skill swapped, item count changed)

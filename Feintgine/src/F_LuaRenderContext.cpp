@@ -267,6 +267,22 @@ int lua_CompositeObject_setPanelBGScale(lua_State * L)
     return 0;
 }
 
+int lua_CompositeObject_setVisible(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_setVisible) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        bool visible = lua_toboolean(L, 2);
+        obj->setVisible(visible);
+        return 0;
+    }
+    return 0;
+}
+
 F_LuaRenderContext::F_LuaRenderContext()
 {
 
@@ -320,6 +336,8 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
     lua_register(m_script, "cpp_CompositeObject_showPanelBG", lua_CompositeObject_showPanelBG);
     lua_register(m_script, "cpp_CompositeObject_setPanelBGColor", lua_CompositeObject_setPanelBGColor);
     lua_register(m_script, "cpp_CompositeObject_setPanelBGScale", lua_CompositeObject_setPanelBGScale);
+
+    lua_register(m_script, "cpp_CompositeObject_setVisible", lua_CompositeObject_setVisible);
 
 }
 void F_LuaRenderContext::initTextRenderer(int fontSize, int charCount, const std::string& fontFilePath)
