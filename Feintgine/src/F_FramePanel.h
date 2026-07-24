@@ -87,6 +87,8 @@ namespace Feintgine
 
         void addLine(const glm::vec2& offset, float width, float depth);
 
+        bool isMouseInPanel(const glm::vec2& mousePos);
+
     private:
         void rebuildHideMasks();
         void markAllEmblemsDirty();
