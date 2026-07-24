@@ -188,5 +188,13 @@ void F_FrameObject::pushLineQuad(const glm::vec2& offset, float width, float dep
     m_lines.push_back(q);
 }
 
-
+bool F_FrameObject::isMouseInside(const glm::vec2& mousePos) 
+{
+    if(m_pos.x - m_size.x * 0.5f < mousePos.x && mousePos.x < m_pos.x + m_size.x * 0.5f &&
+       m_pos.y - m_size.y * 0.5f < mousePos.y && mousePos.y < m_pos.y + m_size.y * 0.5f)
+    {
+        return true;
+    }
+    return false;
+}
 } // namespace Feintgine

@@ -175,8 +175,8 @@ function L_compositeObject:addText(text, posX, posY, aligment, scale, colorR
     -- print("Lua object")
     -- print(self.ptr)
     return CompositeObject_addText(self.ptr, text, posX, posY, aligment, scale,
-    colorR,colorG,colorB,colorA , angle )
-    
+    colorR,colorG,colorB,colorA , angle)
+
 end
 
 ---@Description show panel background

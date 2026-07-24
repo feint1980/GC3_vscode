@@ -59,8 +59,6 @@ function Combat_dock_right_panel:init(renderHost,tPosX, tPosY, panelWidth, panel
     self.sides["skill_des"]:addLine(0,  100, self.width * 0.5, 40)
     self.sides["skill_des"]:setVisible(false)
 
-
-
     self.sides["item_des"] = L_compositeObject:new()
     self.sides["item_des"]:init(self.renderContextHost, self.posX, self.posY,
         self.width * 0.99, self.height * 0.99 , 0, 10)

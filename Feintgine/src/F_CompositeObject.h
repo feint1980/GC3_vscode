@@ -9,6 +9,10 @@
 
 #include "feint_common.h"
 
+
+#define UPDATE_SIGNAL_MOUSE_HOVER 1
+// #define UPDATE_SIGNAL_  
+
 namespace Feintgine
 {
 
@@ -114,6 +118,10 @@ public:
 
     void update(float deltaTime);
 
+    // void inputUpdate(,const glm::vec2 & mousePos);
+
+    void updateInput(const glm::vec2 & mousePos);
+
     void setPos(const glm::vec2 & pos) 
     {
         m_pos = pos; 
@@ -182,6 +190,11 @@ public:
 
     void setVisible(bool visible) { m_isVisible = visible; }
 
+    bool isHovered() const { return m_isHovered; }
+
+    void listenToSignals(const glm::vec2 & mousePos, int signalKey);
+
+    void registerSignalUpdate(int type) { m_signalUpdateFlag |= type; }
 protected:
 
     Uint32 m_type = TNoObject;
@@ -189,6 +202,10 @@ protected:
     Uint8 m_maxObject = 10;
 
     bool m_isVisible = true;
+
+    bool m_isHovered = false;
+
+    int m_signalUpdateFlag = 0;
 
     glm::vec2 m_pos = glm::vec2(0.0f);
     glm::vec2 m_dim = glm::vec2(0.0f);
@@ -205,7 +222,6 @@ protected:
     std::unordered_map<tTextObject *, size_t> m_textObjectIndexMap;
 
     F_FramePanel m_framePanel;
-
 
 
 };

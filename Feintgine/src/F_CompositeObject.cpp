@@ -265,4 +265,26 @@ tTextObject * F_CompositeObject::addText(const std::string & text, const glm::ve
     return &m_textObjectList.back();
 }
 
+void F_CompositeObject::updateInput(const glm::vec2 & mousePos)
+{
+    if(!m_isVisible)
+    {
+        m_isHovered = false;
+        return;
+    }
+    m_isHovered = m_framePanel.isHovered(mousePos);
+}
+
+void listenToSignals(const glm::vec2 & mousePos, int signalKey)
+{
+    if(m_signalUpdateFlag == 0)
+    {
+        return; // fast return, they said it optimized or something
+    }
+    if(m_signalUpdateFlag & UPDATE_SIGNAL_MOUSE_HOVER)
+    {
+        updateInput(mousePos);
+    }
+}
+
 }

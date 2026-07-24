@@ -138,6 +138,8 @@ namespace Feintgine
         void addLine(const glm::vec2& offset, float width, float depth = 50.0f);
         void clearLines() { m_lineDefs.clear(); m_dirty = true; }
 
+        bool isMouseInside(const glm::vec2& mousePos) const;
+
     private:
         void recalculate();
         void pushQuad(int slot, float x, float y, float w, float h, float depth);

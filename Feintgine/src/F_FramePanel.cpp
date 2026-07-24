@@ -106,4 +106,9 @@ void F_FramePanel::addLine(const glm::vec2& offset, float width, float depth)
     markAllEmblemsDirty();
 }
 
+bool F_FramePanel::isMouseInPanel(const glm::vec2& mousePos)
+{
+    return m_frame.isMouseInside(mousePos);
+}
+
 } // namespace Feintgine
