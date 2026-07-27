@@ -215,3 +215,21 @@ function L_compositeObject:setVisible(value)
     end
     CompositeObject_setVisible(self.ptr, value)
 end
+
+function L_compositeObject:setRegisterFlag(value)
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_registerSignalUpdate(self.ptr, value)
+end
+
+function L_compositeObject:isHovered() -- this is where I regcognize that I am stupid
+    if self.ptr == nil then
+        return false
+    end
+    return CompositeObject_isHovered(self.ptr)
+end
+
+
+
+

@@ -4,8 +4,6 @@
 #include <iostream>
 namespace Feintgine {
 
-
-
 	Glyph::Glyph(const glm::vec4& destRect, const glm::vec4& uvRect, GLuint Texture, float Depth, const Color& color) :
 		texture(Texture),
 		depth(Depth) {

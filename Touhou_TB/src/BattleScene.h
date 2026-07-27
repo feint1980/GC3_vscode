@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ResourceManager.h>
+#include <Camera2D.h>
 #include "F_Lua_BaseEntity.h"
 #include "Slot.h"
 #include "F_Lua_EntityManipulator.h"

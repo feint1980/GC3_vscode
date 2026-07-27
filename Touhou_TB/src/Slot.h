@@ -1,8 +1,9 @@
 
 #pragma once
+
 #include <ResourceManager.h>
 #include "EmptyObject.h"
-
+#include <Camera2D.h>
 
 class Slot 
 {

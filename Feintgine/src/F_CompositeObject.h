@@ -9,6 +9,7 @@
 
 #include "feint_common.h"
 
+#include <functional>
 
 #define UPDATE_SIGNAL_MOUSE_HOVER 1
 // #define UPDATE_SIGNAL_  
@@ -86,10 +87,47 @@ public:
 
     // move constructor 
     F_CompositeObject(const F_CompositeObject&other);
-    F_CompositeObject& operator=(const F_CompositeObject&)
+    F_CompositeObject& operator=(const F_CompositeObject& other)
     {
+        if (this == &other)
+            return *this;
+
+        m_type = other.m_type;
+        m_maxObject = other.m_maxObject;
+        m_isVisible = other.m_isVisible;
+        m_isHovered = other.m_isHovered;
+        m_signalUpdateFlag = other.m_signalUpdateFlag;
+        m_pos = other.m_pos;
+        m_dim = other.m_dim;
+        m_angle = other.m_angle;
+        m_depth = other.m_depth;
+
+        m_objectList = other.m_objectList;
+        m_animatedObjectList = other.m_animatedObjectList;
+        m_textObjectList = other.m_textObjectList;
+        m_objectList.reserve(m_maxObject);
+        m_animatedObjectList.reserve(m_maxObject);
+        m_textObjectList.reserve(m_maxObject);
+
+        // These key on pointers into OUR OWN vector elements, never `other`'s.
+        // Copying them verbatim would leave stale pointers into other's storage,
+        // so rebuild them fresh from our own just-copied lists.
+        m_objectIndexMap.clear();
+        for (size_t i = 0; i < m_objectList.size(); ++i)
+            m_objectIndexMap[&m_objectList[i]] = i;
+
+        m_animatedObjectIndexMap.clear();
+        for (size_t i = 0; i < m_animatedObjectList.size(); ++i)
+            m_animatedObjectIndexMap[&m_animatedObjectList[i]] = i;
+
+        m_textObjectIndexMap.clear();
+        for (size_t i = 0; i < m_textObjectList.size(); ++i)
+            m_textObjectIndexMap[&m_textObjectList[i]] = i;
+
+        m_framePanel = other.m_framePanel;
+
         return *this;
-    }  
+    }
     // F_CompositeObject(F_CompositeObject && other) noexcept
     // {
     //     m_type = other.m_type;
@@ -192,7 +230,7 @@ public:
 
     bool isHovered() const { return m_isHovered; }
 
-    void listenToSignals(const glm::vec2 & mousePos, int signalKey);
+    void listenToSignals(const glm::vec2 & mousePos);
 
     void registerSignalUpdate(int type) { m_signalUpdateFlag |= type; }
 protected:
@@ -220,6 +258,9 @@ protected:
     std::unordered_map<tObject *, size_t> m_objectIndexMap;
     std::unordered_map<tAObject *, size_t> m_animatedObjectIndexMap;
     std::unordered_map<tTextObject *, size_t> m_textObjectIndexMap;
+
+    std::map<std::string, std::function<void>> m_callbackMaps;
+
 
     F_FramePanel m_framePanel;
 

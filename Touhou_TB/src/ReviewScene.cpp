@@ -241,7 +241,7 @@ void ReviewScene::draw()
     //     m_combatField->draw(m_spriteBatch);
     // }
     
-    m_luaRenderContext.draw(m_spriteBatch);
+    m_luaRenderContext.draw(m_spriteBatch, &m_camera);
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();

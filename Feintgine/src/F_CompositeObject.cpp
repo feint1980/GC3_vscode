@@ -275,7 +275,7 @@ void F_CompositeObject::updateInput(const glm::vec2 & mousePos)
     m_isHovered = m_framePanel.isHovered(mousePos);
 }
 
-void listenToSignals(const glm::vec2 & mousePos, int signalKey)
+void F_CompositeObject::listenToSignals(const glm::vec2 & mousePos)
 {
     if(m_signalUpdateFlag == 0)
     {

@@ -1,7 +1,7 @@
 #pragma once
 #include "SpriteBatch.h"
-#include "GLSLProgram.h"
-#include "Camera2D.h"
+// #include "GLSLProgram.h"
+// #include "Camera2D.h"
 #include "GLTexture.h"
 #include "DebugRender.h"
 #include "LightBatch.h"

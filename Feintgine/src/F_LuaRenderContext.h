@@ -1,15 +1,14 @@
 #ifndef _F_LUARENDERCONTEXT_H
 #define _F_LUARENDERCONTEXT_H
 
-#include "GLSLProgram.h"
+// #include "GLSLProgram.h"
 #include "SpriteBatch.h"
 
-
 // for now this will be used to draw F_FramePanel and along of Lua objects
-#include "EmptyObject.h"
-#include "F_FramePanel.h"
+// #include "EmptyObject.h"
+// #include "F_FramePanel.h"
 #include "LuaManager.h"
-#include "F_Sprite.h"
+// #include "F_Sprite.h"
 #include "TextRenderer.h"
 #include "F_CompositeObject.h"
 
@@ -18,6 +17,7 @@
 #define EMBLEM_CORNER 1
 namespace Feintgine
 {
+    
     class F_LuaRenderContext
     {
     public:
@@ -35,7 +35,9 @@ namespace Feintgine
 
         void update(float delta);
         
-        void draw(Feintgine::SpriteBatch & spriteBatch);
+        void updateSignals(Feintgine::InputManager & inputManager);
+
+        void draw(Feintgine::SpriteBatch & spriteBatch,Feintgine::Camera2D * camera);
 
         void drawText(const Feintgine::Camera2D & camera);
 
@@ -47,6 +49,8 @@ namespace Feintgine
         lua_State * m_script = nullptr;
         std::vector<F_CompositeObject> m_compositeObjects;
         TextRenderer m_textRenderer;
+        Feintgine::Camera2D * m_tCam = nullptr; 
+
     };
 
 }

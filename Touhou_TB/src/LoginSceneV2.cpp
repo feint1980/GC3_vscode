@@ -266,7 +266,7 @@ void LoginSceneV2::draw()
     // m_frameObject.draw(m_spriteBatch);
     m_framePanel.draw(m_spriteBatch);
     m_compositeObject.draw(m_spriteBatch);
-    m_luaRenderContext.draw(m_spriteBatch);
+    m_luaRenderContext.draw(m_spriteBatch, &m_camera);
 
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();

@@ -144,6 +144,7 @@ public:
 
 
     bool isInitialized = false;
+    
 
     CombatField * m_combatField = nullptr;
     TurnDisplayer * m_turnDisplayer = nullptr;

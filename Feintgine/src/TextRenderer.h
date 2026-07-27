@@ -10,12 +10,12 @@
 #include "Vertex.h"
 #include <map>
 #include <vector>
-#include <iostream>
+// #include <iostream>
 #include "GLSLProgram.h"
 #include "Camera2D.h"
 #include <cstring>
-#include <memory>
-#include "feint_common.h"
+// #include <memory>
+// #include "feint_common.h"
 #include FT_FREETYPE_H
 
 #pragma execution_character_set("utf-8")

@@ -1,12 +1,14 @@
 #include "F_LuaRenderContext.h"
-
-
+#include <string>
 
 
 namespace Feintgine
 {
+
+
 int lua_CreateCompositeObject(lua_State * L)
 {
+    
     if(lua_gettop(L) != 7)
     {
         std::cout << "gettop failed (lua_CreateCompositeObject) " << lua_gettop(L) << "\n";
@@ -22,7 +24,10 @@ int lua_CreateCompositeObject(lua_State * L)
         lua_pushlightuserdata(L, obj);
         return 1;
     }
+    
+
     return 0;
+    
 }
 
 int lua_RemoveCompositeObject(lua_State * L)
@@ -283,6 +288,39 @@ int lua_CompositeObject_setVisible(lua_State * L)
     return 0;
 }
 
+int lua_CompositeObject_registerSignalUpdate(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_registerSignalUpdate) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        int flagValue = lua_toboolean(L, 2);
+        obj->registerSignalUpdate(flagValue);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_CompositeObject_isHovered(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_isHovered) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        bool hovered = obj->isHovered();
+        lua_pushboolean(L, hovered);
+        return 1;
+    }
+    return 0;
+    
+}
+
 F_LuaRenderContext::F_LuaRenderContext()
 {
 
@@ -338,6 +376,9 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
     lua_register(m_script, "cpp_CompositeObject_setPanelBGScale", lua_CompositeObject_setPanelBGScale);
 
     lua_register(m_script, "cpp_CompositeObject_setVisible", lua_CompositeObject_setVisible);
+    lua_register(m_script, "cpp_CompositeObject_registerSignalUpdate", lua_CompositeObject_registerSignalUpdate);
+    lua_register(m_script, "cpp_CompositeObject_isHovered", lua_CompositeObject_isHovered);
+
 
 }
 void F_LuaRenderContext::initTextRenderer(int fontSize, int charCount, const std::string& fontFilePath)
@@ -371,6 +412,7 @@ void F_LuaRenderContext::initTextRendererByRange(int fontSize, const std::string
 
     m_textRenderer.init(fontSize, ranges, fontFilePath);
     std::cout << "fontSize " << fontSize << " fontFilePath " << fontFilePath << "\n";
+    
 }
 
 
@@ -380,6 +422,7 @@ void F_LuaRenderContext::update(float delta)
     {
         m_compositeObjects[i].update(delta);
     }
+    
 }
 
 F_CompositeObject * F_LuaRenderContext::addObjectComposite(const glm::vec2 & pos, const glm::vec2 & dim, float angle, float depth)
@@ -398,8 +441,10 @@ F_CompositeObject * F_LuaRenderContext::addObjectComposite(const glm::vec2 & pos
     
 }
 
-void F_LuaRenderContext::draw(Feintgine::SpriteBatch & spriteBatch)
+void F_LuaRenderContext::draw(Feintgine::SpriteBatch & spriteBatch,Feintgine::Camera2D * camera)
 {
+    m_tCam = camera;
+    
     for(int i = 0; i < m_compositeObjects.size(); i++)
     {
         m_compositeObjects[i].draw(spriteBatch);
@@ -418,4 +463,21 @@ void F_LuaRenderContext::drawText(const Feintgine::Camera2D & camera)
     m_textRenderer.end(camera);
 }
 
-} 
+void F_LuaRenderContext::updateSignals(Feintgine::InputManager & inputManager)
+{   
+    // asd
+    if(!m_tCam)
+    {
+        return;
+    }
+
+    glm::vec2 mousePos = m_tCam->convertScreenToWorld(inputManager.getMouseCoords());
+    for(int i = 0; i < m_compositeObjects.size(); i++)
+    {
+        m_compositeObjects[i].listenToSignals(mousePos);
+    }
+    
+}
+
+
+}

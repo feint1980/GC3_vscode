@@ -329,7 +329,7 @@ void CombatScene::draw()
         }
     }
     
-    m_luaRenderContext.draw(m_spriteBatch);
+    m_luaRenderContext.draw(m_spriteBatch, &m_camera);
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();
@@ -401,7 +401,7 @@ void CombatScene::handleInput(Feintgine::InputManager & inputManager)
 	{
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
 	}
-
+    
 }
 
 void CombatScene::sendPollSignal(const std::string& signalName,bool value)

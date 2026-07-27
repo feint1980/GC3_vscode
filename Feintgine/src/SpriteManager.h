@@ -6,7 +6,7 @@
 #include <dirent.h>
 #include <thread>
 #include <vector>
-#include <async++.h>
+// #include <async++.h>
 #include <unordered_map> // replace map with hash table to test if it's faster
 #include <atomic>
 #include <mutex>
@@ -72,7 +72,7 @@ namespace Feintgine {
 		std::atomic_int m_storedPacketCount = std::atomic_int(0);
 
 
-		std::vector<async::task<void>> m_tasks;
+		// std::vector<async::task<void>> m_tasks;
 
 		int max_threads = std::thread::hardware_concurrency() ;
 		int half_threads = 0;

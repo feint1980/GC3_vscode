@@ -281,7 +281,7 @@ void HomeScene::draw()
 
 	m_spriteBatch.begin(Feintgine::GlyphSortType::FRONT_TO_BACK);
     //m_bg.draw(m_spriteBatch);
-    m_luaRenderContext.draw(m_spriteBatch);
+    m_luaRenderContext.draw(m_spriteBatch, &m_camera);
 	m_spriteBatch.end();
 	m_spriteBatch.renderBatch();
 	m_shader.unuse();

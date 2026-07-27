@@ -5,6 +5,7 @@
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <iostream>
+
 #include <SDL2/SDL.h> 
 #include "InputManager.h"
 #include "feint_common.h"

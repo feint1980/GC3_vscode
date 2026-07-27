@@ -5,7 +5,7 @@
 #include <F_AnimatedObject.h>
 #include <LuaManager.h>
 #include <F_oEvent.h>
-
+#include <Camera2D.h>
 #include "Slot.h"
 #include "../PacketDescription/CharacterDes.h"
 

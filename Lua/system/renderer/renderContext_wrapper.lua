@@ -98,3 +98,11 @@ end
 function CompositeObject_setVisible(compositeObject, value)
     cpp_CompositeObject_setVisible(compositeObject, value)
 end
+
+function CompositeObject_registerSignalUpdate(compositeObject, signalValue)
+    cpp_CompositeObject_registerSignalUpdate(compositeObject, signalValue)
+end
+
+function CompositeObject_isHovered(compositeObject)    
+    return cpp_CompositeObject_isHovered(compositeObject)
+end
