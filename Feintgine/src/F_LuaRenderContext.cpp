@@ -304,6 +304,31 @@ int lua_CompositeObject_registerSignalUpdate(lua_State * L)
     return 0;
 }
 
+int lua_CompositeObject_registerCallback(lua_State * L)
+{
+    // args: (compositeObject, eventName, function)
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_registerCallback) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        if(!obj)
+        {
+            std::cout << "lua_CompositeObject_registerCallback: null/stale composite object pointer, ignoring\n";
+            return 0;
+        }
+
+        std::string eventName = lua_tostring(L, 2);
+
+        lua_pushvalue(L, 3);              // duplicate the function, since registerCallback
+        obj->registerCallback(L, eventName); // consumes (pops) the top of the stack
+        return 0;
+    }
+    return 0;
+}
+
 int lua_CompositeObject_isHovered(lua_State * L)
 {
     if(lua_gettop(L) != 1)
@@ -378,6 +403,7 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
     lua_register(m_script, "cpp_CompositeObject_setVisible", lua_CompositeObject_setVisible);
     lua_register(m_script, "cpp_CompositeObject_registerSignalUpdate", lua_CompositeObject_registerSignalUpdate);
     lua_register(m_script, "cpp_CompositeObject_isHovered", lua_CompositeObject_isHovered);
+    lua_register(m_script, "cpp_CompositeObject_registerCallback", lua_CompositeObject_registerCallback);
 
 
 }

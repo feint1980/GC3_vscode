@@ -20,4 +20,13 @@
 
                 
 
-            
+% List of files need to fix
+x F_CompositeObject.h
+x F_CompositeObject.cpp
+- F_LuaRenderContext.cpp
+- F_LuaRenderContext.h
+
+- compositeObject.lua
+- renderContext_wrapper.lua
+
+

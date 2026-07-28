@@ -10,6 +10,10 @@
 #include "feint_common.h"
 
 #include <functional>
+#include <unordered_map>
+#include <string>
+
+struct lua_State; // forward declare - avoids pulling lua.hpp into every header that includes this one
 
 #define UPDATE_SIGNAL_MOUSE_HOVER 1
 // #define UPDATE_SIGNAL_  
@@ -87,10 +91,26 @@ public:
 
     // move constructor 
     F_CompositeObject(const F_CompositeObject&other);
+
+    // NOTE: this used to be a no-op (`{ return *this; }`), which silently broke
+    // vector::erase()-driven removal: erase() shifts trailing elements down via
+    // assignment, and a no-op assignment meant erased objects never actually got
+    // their data replaced. This is now a real member-wise copy.
+    //
+    // Known remaining caveat: m_callbackRefs/m_luaState below are copied by value
+    // (shallow copy of the map, no luaL_ref duplication logic). If this object is
+    // ever assigned as part of an erase()-shift *after* Lua callbacks have been
+    // registered on it, the registry ref ownership semantics get muddy (same class
+    // of issue as the raw-pointer-into-vector problem discussed for
+    // F_LuaRenderContext::removeCompositeObject). Fine for now since nothing calls
+    // registerCallback before an object settles into its final vector slot, but
+    // flagging it here so it isn't forgotten if that assumption changes.
     F_CompositeObject& operator=(const F_CompositeObject& other)
     {
         if (this == &other)
+        {
             return *this;
+        }
 
         m_type = other.m_type;
         m_maxObject = other.m_maxObject;
@@ -109,22 +129,30 @@ public:
         m_animatedObjectList.reserve(m_maxObject);
         m_textObjectList.reserve(m_maxObject);
 
-        // These key on pointers into OUR OWN vector elements, never `other`'s.
-        // Copying them verbatim would leave stale pointers into other's storage,
-        // so rebuild them fresh from our own just-copied lists.
+        // These map keys are pointers into OUR OWN vectors - never copy other's
+        // map verbatim, always rebuild against our own just-copied storage.
         m_objectIndexMap.clear();
         for (size_t i = 0; i < m_objectList.size(); ++i)
+        {
             m_objectIndexMap[&m_objectList[i]] = i;
+        }
 
         m_animatedObjectIndexMap.clear();
         for (size_t i = 0; i < m_animatedObjectList.size(); ++i)
+        {
             m_animatedObjectIndexMap[&m_animatedObjectList[i]] = i;
+        }
 
         m_textObjectIndexMap.clear();
         for (size_t i = 0; i < m_textObjectList.size(); ++i)
+        {
             m_textObjectIndexMap[&m_textObjectList[i]] = i;
+        }
 
         m_framePanel = other.m_framePanel;
+
+        m_luaState = other.m_luaState;
+        m_callbackRefs = other.m_callbackRefs;
 
         return *this;
     }
@@ -233,6 +261,18 @@ public:
     void listenToSignals(const glm::vec2 & mousePos);
 
     void registerSignalUpdate(int type) { m_signalUpdateFlag |= type; }
+
+    // Registers a Lua function (must be on top of the Lua stack when this is
+    // called - it will be popped) under eventName, e.g. "onHoverEnter",
+    // "onHoverExit", "onClick". Re-registering the same eventName overwrites
+    // the previous callback (and releases its registry ref).
+    void registerCallback(lua_State * L, const std::string & eventName);
+
+    // Calls the Lua function registered under eventName, if any. Safe no-op
+    // if nothing is registered or no callback has ever been set up for this
+    // object (m_luaState == nullptr).
+    void fireCallback(const std::string & eventName);
+
 protected:
 
     Uint32 m_type = TNoObject;
@@ -259,11 +299,21 @@ protected:
     std::unordered_map<tAObject *, size_t> m_animatedObjectIndexMap;
     std::unordered_map<tTextObject *, size_t> m_textObjectIndexMap;
 
-    std::map<std::string, std::function<void>> m_callbackMaps;
-
-
     F_FramePanel m_framePanel;
 
+    // Lua callback storage. Keyed by event name ("onHoverEnter", "onClick", etc)
+    // -> LUA_REGISTRYINDEX ref. m_luaState is cached so fireCallback() doesn't
+    // need it passed in every time.
+    //
+    // TODO(leak, intentional for now): refs are never released via luaL_unref,
+    // even on object destruction/removal. See the note above on operator=/erase()
+    // - proper cleanup wants to happen exactly once, at the point a slot is
+    // deliberately recycled, which isn't well-defined yet given F_LuaRenderContext
+    // still removes objects via vector::erase(). Revisit together with that fix.
+    // Until then this is a small bounded leak (a handful of registry refs per
+    // removed composite object), not a correctness bug.
+    lua_State * m_luaState = nullptr;
+    std::unordered_map<std::string, int> m_callbackRefs;
 
 };
 }

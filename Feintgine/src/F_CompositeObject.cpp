@@ -1,6 +1,7 @@
 
 
 #include "F_CompositeObject.h"
+#include "LuaManager.h"
 
 namespace Feintgine
 {
@@ -273,6 +274,58 @@ void F_CompositeObject::updateInput(const glm::vec2 & mousePos)
         return;
     }
     m_isHovered = m_framePanel.isHovered(mousePos);
+
+    bool wasHovered = m_isHovered;
+    if(m_isHovered && !wasHovered)
+    {
+        fireCallback("onHoverEnter");
+    }
+    else if(!m_isHovered && wasHovered)
+    {
+        fireCallback("onHoverExit");
+    }
+}
+
+void F_CompositeObject::registerCallback(lua_State * L, const std::string & eventName)
+{
+    auto it = m_callbackRefs.find(eventName);
+    if(it != m_callbackRefs.end())
+    {
+        luaL_unref(L, LUA_REGISTRYINDEX, it->second); // replacing an existing callback, release its old ref
+    }
+
+    if(!lua_isfunction(L, -1))
+    {
+        std::cout << "F_CompositeObject::registerCallback('" << eventName << "') - top of Lua stack is not a function, ignoring\n";
+        lua_pop(L, 1);
+        return;
+    }
+
+    int ref = luaL_ref(L, LUA_REGISTRYINDEX); // pops the function off the stack
+    m_callbackRefs[eventName] = ref;
+    m_luaState = L;
+}
+
+void F_CompositeObject::fireCallback(const std::string & eventName)
+{
+    if(!m_luaState)
+    {
+        return;
+    }
+
+    auto it = m_callbackRefs.find(eventName);
+    if(it == m_callbackRefs.end())
+    {
+        return;
+    }
+
+    lua_rawgeti(m_luaState, LUA_REGISTRYINDEX, it->second);
+    if(lua_pcall(m_luaState, 0, 0, 0) != 0)
+    {
+        std::cout << "F_CompositeObject::fireCallback('" << eventName << "') error: "
+                << lua_tostring(m_luaState, -1) << "\n";
+        lua_pop(m_luaState, 1);
+    }
 }
 
 void F_CompositeObject::listenToSignals(const glm::vec2 & mousePos)
