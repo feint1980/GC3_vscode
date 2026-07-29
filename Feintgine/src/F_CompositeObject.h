@@ -222,6 +222,11 @@ public:
         }
         m_framePanel.setPanelBGColor(color); 
     }
+    void setFrameColor(const Feintgine::Color & color)
+    {
+        m_framePanel.setColor(color);
+    }
+
     void setPanelScale(float scale) 
     { 
         if(!(m_type & ObjectTypes::TF_FramePanel)) // no frame panel
@@ -282,6 +287,7 @@ protected:
     bool m_isVisible = true;
 
     bool m_isHovered = false;
+    bool wasHovered = false;
 
     int m_signalUpdateFlag = 0;
 

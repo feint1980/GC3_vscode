@@ -346,6 +346,41 @@ int lua_CompositeObject_isHovered(lua_State * L)
     
 }
 
+int lua_CompositeObject_fireCallback(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_fireCallback) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        std::string eventName = lua_tostring(L, 2);
+        obj->fireCallback(eventName);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_CompositeObject_setFrameColor(lua_State * L)
+{
+    if(lua_gettop(L) != 5)
+    {
+        std::cout << "gettop failed (lua_CompositeObject_setFrameColor) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        F_CompositeObject * obj = static_cast<F_CompositeObject*>(lua_touserdata(L, 1));
+        float r = lua_tonumber(L, 2);
+        float g = lua_tonumber(L, 3);
+        float b = lua_tonumber(L, 4);
+        float a = lua_tonumber(L, 5);
+        obj->setFrameColor(Feintgine::Color(r, g, b,a));
+        return 0;
+    }
+    return 0;
+}
+
 F_LuaRenderContext::F_LuaRenderContext()
 {
 
@@ -404,7 +439,8 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
     lua_register(m_script, "cpp_CompositeObject_registerSignalUpdate", lua_CompositeObject_registerSignalUpdate);
     lua_register(m_script, "cpp_CompositeObject_isHovered", lua_CompositeObject_isHovered);
     lua_register(m_script, "cpp_CompositeObject_registerCallback", lua_CompositeObject_registerCallback);
-
+    lua_register(m_script, "cpp_CompositeObject_fireCallback", lua_CompositeObject_fireCallback);
+    lua_register(m_script, "cpp_CompositeObject_setFrameColor", lua_CompositeObject_setFrameColor);
 
 }
 void F_LuaRenderContext::initTextRenderer(int fontSize, int charCount, const std::string& fontFilePath)
@@ -440,7 +476,6 @@ void F_LuaRenderContext::initTextRendererByRange(int fontSize, const std::string
     std::cout << "fontSize " << fontSize << " fontFilePath " << fontFilePath << "\n";
     
 }
-
 
 void F_LuaRenderContext::update(float delta)
 {
@@ -494,10 +529,14 @@ void F_LuaRenderContext::updateSignals(Feintgine::InputManager & inputManager)
     // asd
     if(!m_tCam)
     {
+        std::cout << "no cam registered \n";
         return;
     }
 
+    
     glm::vec2 mousePos = m_tCam->convertScreenToWorld(inputManager.getMouseCoords());
+    bool isMousePressd = inputManager.isKeyPressed(SDL_BUTTON_LEFT)
+    // std::cout << "mousePos " << mousePos.x << " " << mousePos.y << "\n";
     for(int i = 0; i < m_compositeObjects.size(); i++)
     {
         m_compositeObjects[i].listenToSignals(mousePos);

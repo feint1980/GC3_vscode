@@ -168,6 +168,17 @@ function Combat_dock_middle_panel:addButton(key, posX, posY, name, info)
             0)
     end
 
+    btn:setRegisterFlag(1)
+    btn:registerCallback("onHoverEnter", function()
+        -- print("hover enter " .. name)
+        btn:setFrameColor(100, 255,100, 255)
+    end)
+
+    btn:registerCallback("onHoverLeave", function()
+        -- print("hover leave " .. name)
+        btn:setFrameColor(255, 255, 255, 255)
+    end)
+
     self.buttons[key] = btn
 
 end

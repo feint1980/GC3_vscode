@@ -230,6 +230,29 @@ function L_compositeObject:isHovered() -- this is where I regcognize that I am s
     return CompositeObject_isHovered(self.ptr)
 end
 
+function L_compositeObject:fireCallback(name)
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_fireCallback(self.ptr, name)
+end
 
 
+---[ List of alread existed template functions
+--- onHoverEnter ---> mouse enter
+--- onHoverLeave ---> mouse leave
+---]
 
+function L_compositeObject:registerCallback(name, callback)
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_registerCallback(self.ptr, name, callback)
+end
+
+function L_compositeObject:setFrameColor(colorR,colorG,colorB,colorA )
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_setFrameColor(self.ptr, colorR,colorG,colorB,colorA )
+end

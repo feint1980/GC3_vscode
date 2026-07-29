@@ -190,11 +190,27 @@ void F_FrameObject::pushLineQuad(const glm::vec2& offset, float width, float dep
 
 bool F_FrameObject::isMouseInside(const glm::vec2& mousePos) const
 {
-    if(m_pos.x - m_size.x * 0.5f < mousePos.x && mousePos.x < m_pos.x + m_size.x * 0.5f &&
-       m_pos.y - m_size.y * 0.5f < mousePos.y && mousePos.y < m_pos.y + m_size.y * 0.5f)
-    {
-        return true;
-    }
-    return false;
+    // if(m_pos.x - m_size.x * 0.5f < mousePos.x && mousePos.x < m_pos.x + m_size.x * 0.5f &&
+    //    m_pos.y - m_size.y * 0.5f < mousePos.y && mousePos.y < m_pos.y + m_size.y * 0.5f)
+    // {
+    //     return true;
+    // }
+    // return false;
+
+    glm::vec2 local = mousePos - m_pos;
+    // std::cout << "=======================================\n";
+    // std::cout << "mouse " << mousePos.x << " " << mousePos.y << "\n";
+    // std::cout << "pos " << m_pos.x << " " << m_pos.y << "\n";
+    // std::cout << "size " << m_size.x << " " << m_size.y << "\n";
+    // std::cout << "=======================================\n";
+    
+    // std::cout << "local " << local.x << " " << local.y << "\n";
+
+    float rad = -m_angle; // rotate the point by -angle instead of rotating the box
+    glm::vec2 rotated(
+        local.x * cos(rad) - local.y * sin(rad),
+        local.x * sin(rad) + local.y * cos(rad)
+    );
+    return std::abs(rotated.x) < m_size.x * 0.5f && std::abs(rotated.y) < m_size.y * 0.5f;
 }
 } // namespace Feintgine

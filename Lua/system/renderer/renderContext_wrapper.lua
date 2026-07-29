@@ -106,3 +106,15 @@ end
 function CompositeObject_isHovered(compositeObject)    
     return cpp_CompositeObject_isHovered(compositeObject)
 end
+
+function CompositeObject_registerCallback(compositeObject, callbackName, callbackFun)
+    cpp_CompositeObject_registerCallback(compositeObject, callbackName, callbackFun)
+end
+
+function CompositeObject_fireCallback(compositeObject, callbackName)
+    cpp_CompositeObject_fireCallback(compositeObject, callbackName)
+end
+
+function CompositeObject_setFrameColor(compositeObject, colorR,colorG,colorB,colorA )
+    cpp_CompositeObject_setFrameColor(compositeObject, colorR,colorG,colorB,colorA )
+end

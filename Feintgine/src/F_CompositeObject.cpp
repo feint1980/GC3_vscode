@@ -275,15 +275,21 @@ void F_CompositeObject::updateInput(const glm::vec2 & mousePos)
     }
     m_isHovered = m_framePanel.isHovered(mousePos);
 
-    bool wasHovered = m_isHovered;
+    // std::cout << "***************************************\n";
+    // std::cout << "m_isHovered " << m_isHovered << "\n";
+    // std::cout << "***************************************\n";
+
     if(m_isHovered && !wasHovered)
     {
+        // std::cout << " fireCallback(onHoverEnter)";
         fireCallback("onHoverEnter");
     }
     else if(!m_isHovered && wasHovered)
     {
-        fireCallback("onHoverExit");
+        // std::cout << " fireCallback(onHoverLeave)";
+        fireCallback("onHoverLeave");
     }
+    wasHovered = m_isHovered;
 }
 
 void F_CompositeObject::registerCallback(lua_State * L, const std::string & eventName)
@@ -336,6 +342,7 @@ void F_CompositeObject::listenToSignals(const glm::vec2 & mousePos)
     }
     if(m_signalUpdateFlag & UPDATE_SIGNAL_MOUSE_HOVER)
     {
+        // std::cout << "UPDATE_SIGNAL_MOUSE_HOVER\n";
         updateInput(mousePos);
     }
 }

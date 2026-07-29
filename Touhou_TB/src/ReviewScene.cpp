@@ -299,10 +299,13 @@ void ReviewScene::checkInput()
 
 void ReviewScene::handleInput(Feintgine::InputManager & inputManager)
 {
+    // std::cout << "handle input called \n";
     if (inputManager.isKeyPressed(SDL_QUIT))
 	{
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
 	}
+
+    m_luaRenderContext.updateSignals(inputManager);
 
 }
 
