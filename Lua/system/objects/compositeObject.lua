@@ -157,8 +157,8 @@ end
 
 ---@Description add text
 ---@param text string text
----@param posX number x position
----@param posY number y position
+---@param offsetPosX number x offsetPosition
+---@param offsetPosY number y offsetPosition
 ---@param aligment number aligment 1 - left | 2 - right | 3 - center
 ---@param scale number scale
 ---@param colorR number red
@@ -167,14 +167,14 @@ end
 ---@param colorA number alpha
 ---@param angle number angle
 ---@return pointer? instance of created tText
-function L_compositeObject:addText(text, posX, posY, aligment, scale, colorR
+function L_compositeObject:addText(text, offsetPosX, offsetPosY, aligment, scale, colorR
 ,colorG,colorB,colorA , angle )
     if self.ptr == nil then
         return nil
     end
     -- print("Lua object")
     -- print(self.ptr)
-    return CompositeObject_addText(self.ptr, text, posX, posY, aligment, scale,
+    return CompositeObject_addText(self.ptr, text, offsetPosX, offsetPosY, aligment, scale,
     colorR,colorG,colorB,colorA , angle)
 
 end

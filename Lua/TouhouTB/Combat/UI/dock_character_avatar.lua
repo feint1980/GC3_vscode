@@ -38,7 +38,7 @@ function Dock_character_avatar:init(tRenderContextHost, tPosX, tPosY, tWidth, tH
 
     self.avatarObject = self.ptr:addSprite("avatars.xml/Reimu.png", 0,0, .39, .39 ,255,255,255,255,0,6)
 
-    self.ptr:addText("1a",0, -100,3,1.0, 255,255, 255,255,0 )
+    self.ptr:addText("test text",100, -100,3,1.0, 255,255, 255,255,0 )
 
 end
 

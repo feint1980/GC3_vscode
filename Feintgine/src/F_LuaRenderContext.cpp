@@ -535,7 +535,7 @@ void F_LuaRenderContext::updateSignals(Feintgine::InputManager & inputManager)
 
     
     glm::vec2 mousePos = m_tCam->convertScreenToWorld(inputManager.getMouseCoords());
-    bool isMousePressd = inputManager.isKeyPressed(SDL_BUTTON_LEFT)
+    // bool isMousePressd = inputManager.isKeyPressed(SDL_BUTTON_LEFT)
     // std::cout << "mousePos " << mousePos.x << " " << mousePos.y << "\n";
     for(int i = 0; i < m_compositeObjects.size(); i++)
     {
