@@ -179,6 +179,12 @@ function Combat_dock_middle_panel:addButton(key, posX, posY, name, info)
         btn:setFrameColor(255, 255, 255, 255)
     end)
 
+    btn:registerCallback("onClick", function()
+        print("clicked " .. name)
+        -- btn:setFrameColor(255, 255, 255, 255)
+    end)
+
+
     self.buttons[key] = btn
 
 end
@@ -195,5 +201,34 @@ function Combat_dock_middle_panel:updateButton(key, name, info)
     -- If that's not how your binding works, this needs to go through whatever
     -- setter you actually expose (e.g. cpp_TextObject_setText).
 end
+
+---@Description 
+function Combat_dock_middle_panel:getHoveredButton()
+    for key, btn in pairs(self.buttons) do
+        if btn:isHovered() then
+            return btn
+        end
+    end
+    return nil
+end
+
+
+function Combat_dock_middle_panel:handleInput(key)
+    if (key & Signal.mouseLeft) ~= 0 then
+        if( key & Signal.isAlted) ~= 0 then
+            print("alt + left click")
+        elseif (key & Signal.isShifted) ~= 0 then
+            print("shift + left click")
+        elseif (key & Signal.isCntrled) ~= 0 then
+            print("ctrl + left click")
+        else
+            print("just left click")
+            if(self:getHoveredButton() ~= nil) then
+                self:getHoveredButton():fireCallback("onClick")
+            end
+        end
+    end
+end
+
 
 return Combat_dock_middle_panel

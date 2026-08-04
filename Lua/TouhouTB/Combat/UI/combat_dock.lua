@@ -5,6 +5,8 @@ require "combat_dock_my_character_info"
 require "combat_dock_middle_panel"
 require "combat_dock_right_panel"
 
+
+Combat_Dock_Middle_Instance = nil
 ---@class (exact) Combat_dock 
 ---@field renderContexthost? pointer instance of RenderContext
 ---@field characterDock? pointer instance of combat_dock_my_character_info
@@ -40,11 +42,12 @@ function Combat_dock:init(renderHost,tWindowWidth, tWindowHeight)
     self.middleDock = Combat_dock_middle_panel:new()
     self.middleDock:init(renderHost,tWindowWidth * 0.5, 0 - (tWindowHeight * 0.5) + 200,  tWindowWidth, tWindowHeight)
 
+    Combat_Dock_Middle_Instance = self.middleDock
     -- right dock 
     self.rightDock = Combat_dock_right_panel:new()
     local rightDockWidth = 450
     local rightDockHeight = 420
     self.rightDock:init(renderHost, 565, -240,  rightDockWidth, rightDockHeight, tWindowWidth, tWindowHeight)
 
-    
+
 end

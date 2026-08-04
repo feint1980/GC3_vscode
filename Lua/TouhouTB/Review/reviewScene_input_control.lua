@@ -27,17 +27,6 @@ end
 Dispatch_Recievers = {} -- reset the recievers only 1 scene active
 
 -- Signals Map : 
--- 1 = left
--- 2 = right
--- 4 = up
--- 8 = down
--- 16 = enter
--- 32 = escape
--- 64 = mouse left click
--- 128 = mouse right click
--- 256 = alt key
--- 512 = ctrl key
--- 1024 = shift key
 
 
 
@@ -82,6 +71,7 @@ Dispatch_Recievers["reviewScene"] = function (controlHandlerHost,tguiHost,signal
         end
 
     end
+    Combat_Dock_Middle_Instance:handleInput(signal)
 
 end
 
