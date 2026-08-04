@@ -148,42 +148,129 @@ void ControlHandler::update(float deltaTime)
 
 void ControlHandler::handleInput(Feintgine::InputManager & inputManager)
 {
-    unsigned int signal = 0;
+    uint64_t signal = 0;
     if(inputManager.isKeyPressed(SDLK_LEFT) ) //|| inputManager.isKeyPressed(SDLK_a)
     {
-        signal |= 1;
+        signal |= ControlSignalBit::SIG_LEFT; // 0x01 // make it a bit shift
+        
     }
 
     if(inputManager.isKeyPressed(SDLK_RIGHT) ) // || inputManager.isKeyPressed(SDLK_d)
     {
-        signal |= 2;
+        signal |= ControlSignalBit::SIG_RIGHT; // 0x02
     }
 
     if(inputManager.isKeyPressed(SDLK_UP) ) //|| inputManager.isKeyPressed(SDLK_w)
     {
-        signal |= 4;
+        signal |= ControlSignalBit::SIG_UP;
     }
 
     if(inputManager.isKeyPressed(SDLK_DOWN) ) //|| inputManager.isKeyPressed(SDLK_s)
     {
-        signal |= 8;
+        signal |= ControlSignalBit::SIG_DOWN;
     }
 
     if(inputManager.isKeyPressed(SDLK_RETURN))
     {
-        signal |= 16;
+        signal |= ControlSignalBit::SIG_RETURN;
     }
 
     if(inputManager.isKeyPressed(SDLK_ESCAPE))
     {
-        signal |= 32;
+        signal |= ControlSignalBit::SIG_ESCAPE;
     }
     
     if(inputManager.isKeyPressed(SDL_BUTTON_LEFT))
     {
-        signal |= 64;
+        signal |= ControlSignalBit::SIG_MOUSE_L;
     }
-    
+    if(inputManager.isKeyPressed(SDL_BUTTON_RIGHT))
+    {
+        signal |= ControlSignalBit::SIG_MOUSE_R;
+    }
+    if(inputManager.isKeyDown(SDLK_LALT) || inputManager.isKeyDown(SDLK_RALT))
+    {
+        signal |= ControlSignalBit::SIG_ALT;
+    }
+    if(inputManager.isKeyDown(SDLK_LCTRL) || inputManager.isKeyDown(SDLK_RCTRL))
+    {
+        signal |= ControlSignalBit::SIG_CTRL;
+    }
+    if(inputManager.isKeyDown(SDLK_LSHIFT) || inputManager.isKeyDown(SDLK_RSHIFT))
+    {
+        signal |= SIG_SHIFT;
+    }
+    // keyboard shortkey
+    if(inputManager.isKeyPressed(SDLK_q))
+    {
+        signal |= ControlSignalBit::SIG_Q;
+    }
+    if(inputManager.isKeyPressed(SDLK_w))
+    {
+        signal |= ControlSignalBit::SIG_W;
+    }
+    if(inputManager.isKeyPressed(SDLK_e))
+    {
+        signal |= ControlSignalBit::SIG_E;
+    }
+    if(inputManager.isKeyPressed(SDLK_r))
+    {
+        signal |= ControlSignalBit::SIG_R;
+    }
+    if(inputManager.isKeyPressed(SDLK_a))
+    {
+        signal |= ControlSignalBit::SIG_A;
+    }
+    if(inputManager.isKeyPressed(SDLK_s))
+    {
+        signal |= ControlSignalBit::SIG_S;
+    }
+    if(inputManager.isKeyPressed(SDLK_d))
+    {
+        signal |= ControlSignalBit::SIG_D;
+    }
+    if(inputManager.isKeyPressed(SDLK_f))
+    {
+        signal |= ControlSignalBit::SIG_F;
+    }
+    if(inputManager.isKeyPressed(SDLK_z))
+    {
+        signal |= ControlSignalBit::SIG_Z;
+    }
+    if(inputManager.isKeyPressed(SDLK_x))
+    {
+        signal |= ControlSignalBit::SIG_X;
+    }
+    if(inputManager.isKeyPressed(SDLK_c))
+    {
+        signal |= ControlSignalBit::SIG_C;
+    }
+    if(inputManager.isKeyPressed(SDLK_v))
+    {
+        signal |= ControlSignalBit::SIG_V;
+    }
+    if(inputManager.isKeyPressed(SDLK_b))
+    {
+        signal |= ControlSignalBit::SIG_B;
+    }
+    // numbers 
+    if(inputManager.isKeyPressed(SDLK_1))
+    {
+        signal |= ControlSignalBit::SIG_1;
+    }
+    if(inputManager.isKeyPressed(SDLK_2))
+    {
+        signal |= ControlSignalBit::SIG_2;
+    }
+    if(inputManager.isKeyPressed(SDLK_3))
+    {
+        signal |= ControlSignalBit::SIG_3;
+    }
+    if(inputManager.isKeyPressed(SDLK_4))
+    {
+        signal |= ControlSignalBit::SIG_4;
+    }
+
     if(signal > 0 )
     {
         lua_getglobal(m_script, "ControlHandler_DispatchSignal");
@@ -191,7 +278,7 @@ void ControlHandler::handleInput(Feintgine::InputManager & inputManager)
 		{
             lua_pushlightuserdata(m_script, this);
             lua_pushlightuserdata(m_script, m_tgui);
-			lua_pushnumber(m_script, signal);
+			lua_pushinteger(m_script, signal); // correct for uint64_t
 
             const int argc = 3;
             const int returnCount = 0;

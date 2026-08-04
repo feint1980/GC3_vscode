@@ -2,9 +2,6 @@ package.path = package.path .. ';../../Lua/system/Input/?.lua;'
 
 require "controlHandler"
 
-Login_Focus_Panel = {
-
-}
 
 local function issueFocus(controlHost, tguiHost)
     local label =  cpp_FocusStack_GetFocusLabel(tguiHost)

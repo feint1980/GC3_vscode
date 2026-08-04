@@ -1,14 +1,35 @@
 Input_host = nil
 
 Signal = {
-    left = 1,
-    right = 2,
-    up = 4,
-    down = 8,
-    enter = 16,
-    escape = 32,
-    mouseLeft = 64,
-}
+    left       = 1 << 0,
+    right      = 1 << 1,
+    up         = 1 << 2,
+    down       = 1 << 3,
+    enter      = 1 << 4,
+    escape     = 1 << 5,
+    mouseLeft  = 1 << 6,
+    mouseRight = 1 << 7,
+    isAlted    = 1 << 8,
+    isCntrled  = 1 << 9,
+    isShifted  = 1 << 10,
+    key_q      = 1 << 11,
+    key_w      = 1 << 12,
+    key_e      = 1 << 13,
+    key_r      = 1 << 14,
+    key_a      = 1 << 15,
+    key_s      = 1 << 16,
+    key_d      = 1 << 17,
+    key_f      = 1 << 18,
+    key_z      = 1 << 19,
+    key_x      = 1 << 20,
+    key_c      = 1 << 21,
+    key_v      = 1 << 22,
+    key_b      = 1 << 23,
+    key_1      = 1 << 24,
+    key_2      = 1 << 25,
+    key_3      = 1 << 26,
+    key_4      = 1 << 27,
+} -- 28 signals, bits 0-27
 
 ---@type table of Panel
 SignalReceivers = {

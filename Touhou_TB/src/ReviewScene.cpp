@@ -300,6 +300,11 @@ void ReviewScene::checkInput()
 void ReviewScene::handleInput(Feintgine::InputManager & inputManager)
 {
     // std::cout << "handle input called \n";
+
+    if(m_controlHandler)
+    {
+        m_controlHandler->handleInput(inputManager);
+    }
     if (inputManager.isKeyPressed(SDL_QUIT))
 	{
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
