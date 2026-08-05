@@ -78,7 +78,7 @@ function CompositeObject_addLine(compositeObject, offsetX, offsetY, width, depth
     cpp_CompositeObject_addLine(compositeObject, offsetX, offsetY, width, depth)
 end
 
-
+---@return pointer instance of created compositeText
 function CompositeObject_addText(compositeObject, text, posX, posY, aligment, scale, colorR,colorG,colorB,colorA , angle )
     return cpp_CompositeObject_addText(compositeObject, text, posX, posY, aligment, scale, colorR,colorG,colorB,colorA , angle )
 end
@@ -117,4 +117,49 @@ end
 
 function CompositeObject_setFrameColor(compositeObject, colorR,colorG,colorB,colorA )
     cpp_CompositeObject_setFrameColor(compositeObject, colorR,colorG,colorB,colorA )
+end
+
+
+--- Composite text section
+
+function CompositeObjectText_setText(compositeText, text)
+    cpp_CompositeObjectText_setText(compositeText, text)
+end
+
+function CompositeObjectText_setTextColor(compositeText, colorR,colorG,colorB,colorA )
+    cpp_CompositeObjectText_setTextColor(compositeText, colorR,colorG,colorB,colorA )
+end
+
+function CompositeObjectText_setScale(compositeText, scale)
+    cpp_CompositeObjectText_setScale(compositeText, scale)
+end
+
+function CompositeObjectText_setAligment(compositeText, aligment)
+    cpp_CompositeObjectText_setAligment(compositeText, aligment)
+end
+
+function CompositeObjectText_setPositionOffset(compositeText, posX, posY)
+    cpp_CompositeObjectText_setPositionOffset(compositeText, posX, posY)
+end
+
+
+function CompositeObjectText_setTextAllOpt(compositeText, opts)
+    opts = opts or {}
+
+    if opts.text      ~= nil then
+        CompositeObjectText_setText(compositeText, opts.text)
+    end
+    if opts.posX      ~= nil or opts.posY ~= nil then
+        CompositeObjectText_setPositionOffset(compositeText, opts.posX or 0, opts.posY or 0)
+    end
+    if opts.alignment ~= nil then
+        CompositeObjectText_setAligment(compositeText, opts.alignment)
+    end
+    if opts.scale     ~= nil then 
+        CompositeObjectText_setScale(compositeText, opts.scale)
+    end
+    if opts.colorR    ~= nil or opts.colorG ~= nil or opts.colorB ~= nil or opts.colorA ~= nil then
+        CompositeObjectText_setTextColor(compositeText,
+            opts.colorR or 1, opts.colorG or 1, opts.colorB or 1, opts.colorA or 1)
+    end
 end

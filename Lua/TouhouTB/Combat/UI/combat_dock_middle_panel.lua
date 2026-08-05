@@ -1,7 +1,7 @@
 package.path = package.path .. ';../../Lua/system/objects/?.lua;' .. ';../../Lua/TouhouTB/Combat/UI/?.lua;'
 
 require "compositeObject"
-
+require "dock_button"
 --[[
     Combat_dock_middle_panel
     
@@ -137,50 +137,54 @@ end
 ---@param posY number y position
 ---@param name string skill/item/action name
 ---@param info string small info line (cost, count, etc.) -- can be ""
-function Combat_dock_middle_panel:addButton(key, posX, posY, name, info)
-    local btn = L_compositeObject:new()
-    btn:init(self.renderContextHost, posX, posY, self.buttonWidth, self.buttonHeight, 0, 4)
-    btn:addPanel("Basic_border", 0.3)
-    btn:showPanelBG(true)
-    btn:setPanelBGColor(20, 20, 25, 220)
-    btn:setPanelBGScale(0.95)
+function Combat_dock_middle_panel:addButton(key, posX, posY, name, info , description)
+    -- local btn = L_compositeObject:new()
+
+    local btn = Dock_button:new()
+
+    btn:init(self.renderContextHost, key, name, posX, posY, self.buttonWidth,
+    self.buttonHeight, description, info)
+    -- btn:addPanel("Basic_border", 0.3)
+    -- btn:showPanelBG(true)
+    -- btn:setPanelBGColor(20, 20, 25, 220)
+    -- btn:setPanelBGScale(0.95)
 
     -- key label, top-left corner of the button
-    btn:addText(key,
-        -(self.buttonWidth * 0.5) + 10, (self.buttonHeight * 0.5) - 14,
-        1, 0.8,
-        255, 255, 255, 255,
-        0)
+    -- btn:addText(key,
+    --     -(self.buttonWidth * 0.5) + 10, (self.buttonHeight * 0.5) - 14,
+    --     1, 0.8,
+    --     255, 255, 255, 255,
+    --     0)
 
-    -- name, center of the button (small, may wrap visually depending on your text renderer)
-    btn:addText(name,
-        0, 4,
-        3, 0.55,
-        230, 230, 230, 255,
-        0)
+    -- -- name, center of the button (small, may wrap visually depending on your text renderer)
+    -- btn:addText(name,
+    --     0, 4,
+    --     3, 0.55,
+    --     230, 230, 230, 255,
+    --     0)
 
-    -- info line, bottom of the button
-    if info ~= "" then
-        btn:addText(info,
-            0, -(self.buttonHeight * 0.5) + 14,
-            3, 0.6,
-            170, 200, 255, 255,
-            0)
-    end
+    -- -- info line, bottom of the button
+    -- if info ~= "" then
+    --     btn:addText(info,
+    --         0, -(self.buttonHeight * 0.5) + 14,
+    --         3, 0.6,
+    --         170, 200, 255, 255,
+    --         0)
+    -- end
 
-    btn:setRegisterFlag(1)
+    btn:getPanel():setRegisterFlag(1)
     btn:registerCallback("onHoverEnter", function()
         -- print("hover enter " .. name)
-        btn:setFrameColor(100, 255,100, 255)
+        btn:getPanel():setFrameColor(100, 255,100, 255)
     end)
 
     btn:registerCallback("onHoverLeave", function()
         -- print("hover leave " .. name)
-        btn:setFrameColor(255, 255, 255, 255)
+        btn:getPanel():setFrameColor(255, 255, 255, 255)
     end)
 
     btn:registerCallback("onClick", function()
-        print("clicked " .. name)
+        print("clicked " .. btn.name)
         -- btn:setFrameColor(255, 255, 255, 255)
     end)
 
@@ -205,8 +209,8 @@ end
 ---@Description 
 function Combat_dock_middle_panel:getHoveredButton()
     for key, btn in pairs(self.buttons) do
-        if btn:isHovered() then
-            return btn
+        if btn:getPanel():isHovered() then
+            return btn:getPanel()
         end
     end
     return nil

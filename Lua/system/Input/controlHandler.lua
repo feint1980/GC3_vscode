@@ -235,7 +235,7 @@ end
 
 function ControlHandler_AddFocusableWidget(host,widget,parent)
     -- print("ControlHandler_AddFocusableWidget called")
-    
+
     -- if parent == nil then
     --     print("parentless detected")
     --     table.insert(Parentless_Widgets,widget)

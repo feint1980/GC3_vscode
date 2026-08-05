@@ -381,6 +381,91 @@ int lua_CompositeObject_setFrameColor(lua_State * L)
     return 0;
 }
 
+int lua_CompositeObjectText_setText(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CompositeObjectText_setText) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        tTextObject * obj = static_cast<tTextObject*>(lua_touserdata(L, 1));
+        std::string text = lua_tostring(L, 2);
+        obj->setText(text);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_CompositeObjectText_setColor(lua_State * L)
+{
+    if(lua_gettop(L) != 5)
+    {
+        std::cout << "gettop failed (lua_CompositeObjectText_setColor) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        tTextObject * obj = static_cast<tTextObject*>(lua_touserdata(L, 1));
+        float r = lua_tonumber(L, 2);
+        float g = lua_tonumber(L, 3);
+        float b = lua_tonumber(L, 4);
+        float a = lua_tonumber(L, 5);
+        obj->setColor(Feintgine::Color(r, g, b,a));
+        return 0;
+    }
+    return 0;
+}
+
+int lua_CompositeObjectText_setScale(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CompositeObjectText_setScale) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        tTextObject * obj = static_cast<tTextObject*>(lua_touserdata(L, 1));
+        float scale = lua_tonumber(L, 2);
+        obj->setScale(scale);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_CompositeObjectText_setAlignment(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CompositeObjectText_setAlignment) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        tTextObject * obj = static_cast<tTextObject*>(lua_touserdata(L, 1));
+        int alignment = lua_tointeger(L, 2);
+        obj->setAlignment(alignment);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_CompositeObjectText_setOffsetPos(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_CompositeObjectText_setOffsetPos) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        tTextObject * obj = static_cast<tTextObject*>(lua_touserdata(L, 1));
+        float x = lua_tonumber(L, 2);
+        float y = lua_tonumber(L, 3);
+        obj->setOffset(glm::vec2(x, y));
+        return 0;
+    }
+    return 0;
+}
+
+
 F_LuaRenderContext::F_LuaRenderContext()
 {
 
@@ -441,6 +526,14 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
     lua_register(m_script, "cpp_CompositeObject_registerCallback", lua_CompositeObject_registerCallback);
     lua_register(m_script, "cpp_CompositeObject_fireCallback", lua_CompositeObject_fireCallback);
     lua_register(m_script, "cpp_CompositeObject_setFrameColor", lua_CompositeObject_setFrameColor);
+
+    // composite text section
+    lua_register(m_script, "cpp_CompositeObjectText_setText", lua_CompositeObjectText_setText);
+    lua_register(m_script, "cpp_CompositeObjectText_setColor", lua_CompositeObjectText_setColor);
+    lua_register(m_script, "cpp_CompositeObjectText_setScale", lua_CompositeObjectText_setScale);
+    lua_register(m_script, "cpp_CompositeObjectText_setAlignment", lua_CompositeObjectText_setAlignment); 
+    lua_register(m_script, "cpp_CompositeObjectText_setOffsetPos", lua_CompositeObjectText_setOffsetPos);
+    
 
 }
 void F_LuaRenderContext::initTextRenderer(int fontSize, int charCount, const std::string& fontFilePath)

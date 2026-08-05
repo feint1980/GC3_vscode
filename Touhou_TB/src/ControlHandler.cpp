@@ -143,7 +143,7 @@ void ControlHandler::init(lua_State * script,SDL_Window * window, TGUIScriptingM
 
 void ControlHandler::update(float deltaTime)
 {
-
+    
 }
 
 void ControlHandler::handleInput(Feintgine::InputManager & inputManager)

@@ -62,11 +62,16 @@ struct tTextObject
     unsigned char justification = ALIGN_FT_LEFT;
     float angle = 0.0f;
 
-    void changeText(const std::wstring & newText) { text = newText; }
-    void changeText(const std::string & newText)
+    void setText(const std::wstring & newText) { text = newText; }
+    void setText(const std::string & newText)
     {
         text = feint_common::Instance()->convertStringtoWstring(newText);
     }
+
+    void setColor(const Feintgine::Color & newColor) { color = newColor; }
+    void setScale(float newScale) { scale = newScale; }
+    void setOffset(const glm::vec2 & newOffset) { posOffset = newOffset; }
+    void setAlignment(unsigned char newAlignment) { justification = newAlignment; }
 };
 
 

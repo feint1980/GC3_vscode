@@ -18,7 +18,6 @@ function Combat_dock_right_panel:new()
     o.height = 0
 
     o.mainPanel = nil
-
     o.sides = {}
 
     return o
@@ -48,7 +47,6 @@ function Combat_dock_right_panel:init(renderHost,tPosX, tPosY, panelWidth, panel
     self.mainPanel:addEmblem(1,"emblem_pack.xml/corner_b_06.png", 12,12, 33,
         -32, 0.75)
 
-
     self.sides["skill_des"] = L_compositeObject:new()
     self.sides["skill_des"]:init(self.renderContextHost, self.posX, self.posY,
         self.width * 0.99, self.height * 0.99 , 0, 10)
@@ -59,6 +57,8 @@ function Combat_dock_right_panel:init(renderHost,tPosX, tPosY, panelWidth, panel
     self.sides["skill_des"]:addLine(0,  100, self.width * 0.5, 40)
     self.sides["skill_des"]:setVisible(false)
 
+
+    
     self.sides["item_des"] = L_compositeObject:new()
     self.sides["item_des"]:init(self.renderContextHost, self.posX, self.posY,
         self.width * 0.99, self.height * 0.99 , 0, 10)
@@ -69,8 +69,12 @@ function Combat_dock_right_panel:init(renderHost,tPosX, tPosY, panelWidth, panel
     self.sides["item_des"]:addLine(0,  150, self.width * 0.5, 40)
     -- self.sides["item_des"]:setVisible(false)
 
-
 end
 
+-- function Combat_dock_right_panel:updateInfo(side,  )
+
+-- end
 
 
+
+return Combat_dock_right_panel
