@@ -1,5 +1,6 @@
 #include "TextRenderer.h"
 #include <cmath>
+#include <algorithm>
 
 namespace {
     // Rotates `point` around `pivot` by `angleRad` radians (CCW, standard math convention).
@@ -11,6 +12,88 @@ namespace {
         float c = cosf(angleRad);
         glm::vec2 p = point - pivot;
         return glm::vec2(p.x * c - p.y * s, p.x * s + p.y * c) + pivot;
+    }
+
+    // ---- inline color markup helpers (used by parseColorToken) ----
+
+    Feintgine::Color makeColor(float r, float g, float b, float a)
+    {
+        // Built the long way rather than aggregate-init `{r,g,b,a}` since we
+        // don't control Feintgine::Color's exact member layout/constructors
+        // from this file — this only assumes default-constructible + public
+        // r/g/b/a floats, which the rest of TextRenderer.cpp already relies on.
+        Feintgine::Color c;
+        c.r = r; c.g = g; c.b = b; c.a = a;
+        return c;
+    }
+
+    // Built-in name -> color shortcuts for <white>...</white> style tags.
+    // Values are 0..1 floats to match how Feintgine::Color is fed straight
+    // into glUniform4f elsewhere in this file (see end()/renderText()).
+    const std::map<std::wstring, Feintgine::Color>& colorPalette()
+    {
+        static const std::map<std::wstring, Feintgine::Color> palette = {
+            { L"white",   makeColor(1.f,   1.f,   1.f,   1.f) },
+            { L"black",   makeColor(0.f,   0.f,   0.f,   1.f) },
+            { L"red",     makeColor(1.f,   0.f,   0.f,   1.f) },
+            { L"green",   makeColor(0.f,   1.f,   0.f,   1.f) },
+            { L"blue",    makeColor(0.f,   0.4f,  1.f,   1.f) },
+            { L"yellow",  makeColor(1.f,   1.f,   0.f,   1.f) },
+            { L"cyan",    makeColor(0.f,   1.f,   1.f,   1.f) },
+            { L"magenta", makeColor(1.f,   0.f,   1.f,   1.f) },
+            { L"orange",  makeColor(1.f,   0.55f, 0.f,   1.f) },
+            { L"purple",  makeColor(0.6f,  0.2f,  0.8f,  1.f) },
+            { L"pink",    makeColor(1.f,   0.45f, 0.7f,  1.f) },
+            { L"gray",    makeColor(0.5f,  0.5f,  0.5f,  1.f) },
+            { L"grey",    makeColor(0.5f,  0.5f,  0.5f,  1.f) },
+        };
+        return palette;
+    }
+
+    std::wstring trimWS(const std::wstring& s)
+    {
+        size_t b = s.find_first_not_of(L" \t");
+        if (b == std::wstring::npos) return L"";
+        size_t e = s.find_last_not_of(L" \t");
+        return s.substr(b, e - b + 1);
+    }
+
+    std::wstring toLowerAscii(std::wstring s)
+    {
+        for (wchar_t& c : s)
+            if (c >= L'A' && c <= L'Z') c = c - L'A' + L'a';
+        return s;
+    }
+
+    // Parses "#RRGGBB" or "#RRGGBBAA" (leading '#' required). Returns false
+    // on any malformed input (wrong length, non-hex digit, missing '#').
+    bool parseHexColor(const std::wstring& s, Feintgine::Color& out)
+    {
+        if ((s.size() != 7 && s.size() != 9) || s[0] != L'#') return false;
+
+        auto hexVal = [](wchar_t c) -> int {
+            if (c >= L'0' && c <= L'9') return c - L'0';
+            if (c >= L'a' && c <= L'f') return 10 + (c - L'a');
+            if (c >= L'A' && c <= L'F') return 10 + (c - L'A');
+            return -1;
+        };
+
+        int digits[8];
+        int n = static_cast<int>(s.size()) - 1; // 6 or 8
+        for (int i = 0; i < n; ++i)
+        {
+            int v = hexVal(s[i + 1]);
+            if (v < 0) return false;
+            digits[i] = v;
+        }
+
+        int r = (digits[0] << 4) | digits[1];
+        int g = (digits[2] << 4) | digits[3];
+        int b = (digits[4] << 4) | digits[5];
+        int a = (n == 8) ? ((digits[6] << 4) | digits[7]) : 255;
+
+        out = makeColor(r / 255.f, g / 255.f, b / 255.f, a / 255.f);
+        return true;
     }
 }
 
@@ -142,6 +225,12 @@ void TextRenderer::init(int fontSize, const std::vector<UnicodeRange>& ranges, c
     }
 
     FT_Set_Pixel_Sizes(ftFace, 0, fontSize);
+
+    // FT_Size_Metrics::height is FreeType's recommended baseline-to-baseline
+    // distance for this face at this pixel size, in 26.6 fixed point.
+    m_lineHeight = static_cast<float>(ftFace->size->metrics.height >> 6);
+    m_ascender   = static_cast<float>(ftFace->size->metrics.ascender  >> 6);
+    m_descender  = static_cast<float>(ftFace->size->metrics.descender >> 6);
 
     FT_Stroker stroker;
     FT_Stroker_New(ft, &stroker);
@@ -305,6 +394,12 @@ void TextRenderer::init(int fontSize, int charCount, const std::string& fontFile
     }
 
     FT_Set_Pixel_Sizes(ftFace, 0, fontSize);
+
+    // FT_Size_Metrics::height is FreeType's recommended baseline-to-baseline
+    // distance for this face at this pixel size, in 26.6 fixed point.
+    m_lineHeight = static_cast<float>(ftFace->size->metrics.height >> 6);
+    m_ascender   = static_cast<float>(ftFace->size->metrics.ascender  >> 6);
+    m_descender  = static_cast<float>(ftFace->size->metrics.descender >> 6);
 
     // Stroker for 2px outline
     FT_Stroker stroker;
@@ -502,60 +597,97 @@ void TextRenderer::buildVertices(
     bool                  useAtlasUV,
     float                 angleDegrees)
 {
-    float totalW   = calcTextWidth(text, scale);
-    float minH     = calcMinHeight(text, scale);
-
-    float startX = pos.x;
-    if      (justification == ALIGN_FT_CENTER) startX = pos.x - totalW / 2.f;
-    else if (justification == ALIGN_FT_RIGHT)  startX = pos.x - totalW;
-
-    float curX = startX;
     totalScale = 0.f;
-
     float angleRad = glm::radians(angleDegrees);
 
-    for (wchar_t wc : text)
+    // Split on '\n' into independent lines. Each line gets its own width for
+    // justification (so centered/right-aligned multi-line text lines up per-row,
+    // not against the longest line), then lines stack downward from `pos`.
+    std::vector<std::wstring> lines;
+    size_t lineStart = 0;
+    for (size_t i = 0; i <= text.size(); ++i)
     {
-        auto it = Characters.find(wc);
-        if (it == Characters.end()) continue;
-        const Character& ch = it->second;
-
-        GLfloat xpos = curX + ch.Bearing.x * scale;
-        GLfloat ypos = (pos.y - (minH / 2.f)) - (ch.Size.y - ch.Bearing.y) * scale;
-        GLfloat w    = ch.Size.x * scale;
-        GLfloat h    = ch.Size.y * scale;
-
-        float u0, v0, u1, v1;
-        if (useAtlasUV)
+        if (i == text.size() || text[i] == L'\n')
         {
-            u0 = ch.uvMin.x; v0 = ch.uvMin.y;
-            u1 = ch.uvMax.x; v1 = ch.uvMax.y;
+            lines.push_back(text.substr(lineStart, i - lineStart));
+            lineStart = i + 1;
         }
-        else
+    }
+
+    // Unscaled line height comes from FreeType face metrics captured in init().
+    // Fall back to an approximation if it's somehow still 0 (e.g. no glyphs loaded).
+    float rawLineHeight = (m_lineHeight > 0.f) ? m_lineHeight : calcMinHeight(text, scale) / std::max(scale, 0.0001f) * 1.3f;
+    float lineAdvance   = rawLineHeight * scale;
+
+    for (size_t li = 0; li < lines.size(); ++li)
+    {
+        const std::wstring& line = lines[li];
+
+        float lineW = calcTextWidth(line, scale);
+        // Stable vertical anchor from font metrics (NOT calcMinHeight on this
+        // line's specific glyphs) so pos.y doesn't shift depending on which
+        // characters happen to be in the string. Falls back to the old
+        // content-dependent calcMinHeight() only if metrics weren't captured.
+        float minH  = (m_ascender != 0.f || m_descender != 0.f)
+                          ? (m_ascender - m_descender) * scale
+                          : calcMinHeight(line, scale);
+
+        float startX = pos.x;
+        if      (justification == ALIGN_FT_CENTER) startX = pos.x - lineW / 2.f;
+        else if (justification == ALIGN_FT_RIGHT)  startX = pos.x - lineW;
+
+        float curX = startX;
+        float curY = pos.y - li * lineAdvance; // pos.y anchors the first line; +Y is up in this engine, so later lines step DOWN the screen by subtracting
+
+        // totalScale reports the widest line, since that's the actual visual
+        // width of the block callers care about (e.g. sizing a background panel
+        // around the text). Summing every line's width here would inflate this
+        // with each extra line and silently break anything downstream that reads
+        // getTotalScale() for layout.
+        totalScale = std::max(totalScale, lineW);
+
+        for (wchar_t wc : line)
         {
-            u0 = 0.f; v0 = 0.f;
-            u1 = 1.f; v1 = 1.f;
+            auto it = Characters.find(wc);
+            if (it == Characters.end()) continue;
+            const Character& ch = it->second;
+
+            GLfloat xpos = curX + ch.Bearing.x * scale;
+            GLfloat ypos = (curY - (minH / 2.f)) - (ch.Size.y - ch.Bearing.y) * scale;
+            GLfloat w    = ch.Size.x * scale;
+            GLfloat h    = ch.Size.y * scale;
+
+            float u0, v0, u1, v1;
+            if (useAtlasUV)
+            {
+                u0 = ch.uvMin.x; v0 = ch.uvMin.y;
+                u1 = ch.uvMax.x; v1 = ch.uvMax.y;
+            }
+            else
+            {
+                u0 = 0.f; v0 = 0.f;
+                u1 = 1.f; v1 = 1.f;
+            }
+
+            // Rotate every corner of this glyph's quad around the ORIGINAL `pos`
+            // (not curY) so the whole multi-line block rotates together as one
+            // rigid body, same as the single-line behavior before this change.
+            glm::vec2 p0 = rotateAroundPivot({ xpos,     ypos + h }, pos, angleRad);
+            glm::vec2 p1 = rotateAroundPivot({ xpos,     ypos     }, pos, angleRad);
+            glm::vec2 p2 = rotateAroundPivot({ xpos + w, ypos     }, pos, angleRad);
+            glm::vec2 p3 = rotateAroundPivot({ xpos + w, ypos + h }, pos, angleRad);
+
+            verts.insert(verts.end(), {
+                p0.x, p0.y, u0, v0,
+                p1.x, p1.y, u0, v1,
+                p2.x, p2.y, u1, v1,
+                p0.x, p0.y, u0, v0,
+                p2.x, p2.y, u1, v1,
+                p3.x, p3.y, u1, v0,
+            });
+
+            curX += (ch.Advance >> 6) * scale;
         }
-
-        // Rotate every corner of this glyph's quad around `pos` (the anchor the
-        // caller passed in). Because rotation is rigid, the whole string rotates
-        // together as one block — glyphs keep their relative spacing/baseline.
-        glm::vec2 p0 = rotateAroundPivot({ xpos,     ypos + h }, pos, angleRad);
-        glm::vec2 p1 = rotateAroundPivot({ xpos,     ypos     }, pos, angleRad);
-        glm::vec2 p2 = rotateAroundPivot({ xpos + w, ypos     }, pos, angleRad);
-        glm::vec2 p3 = rotateAroundPivot({ xpos + w, ypos + h }, pos, angleRad);
-
-        verts.insert(verts.end(), {
-            p0.x, p0.y, u0, v0,
-            p1.x, p1.y, u0, v1,
-            p2.x, p2.y, u1, v1,
-            p0.x, p0.y, u0, v0,
-            p2.x, p2.y, u1, v1,
-            p3.x, p3.y, u1, v0,
-        });
-
-        curX       += (ch.Advance >> 6) * scale;
-        totalScale += (ch.Advance >> 6) * scale;
     }
 }
 
@@ -584,51 +716,83 @@ void TextRenderer::renderText(
     glUniformMatrix4fv(m_shader.getUniformLocation("projection"),
                        1, GL_FALSE, &cam[0][0]);
 
-    float totalW = calcTextWidth(text, scale);
-    float minH   = calcMinHeight(text, scale);
-
-    float startX = pos.x;
-    if      (justification == ALIGN_FT_CENTER) startX = pos.x - totalW / 2.f;
-    else if (justification == ALIGN_FT_RIGHT)  startX = pos.x - totalW;
-
-    float curX = startX;
     totalScale = 0.f;
-
     float angleRad = glm::radians(angleDegrees);
 
-    for (wchar_t wc : text)
+    // Split on '\n' — same approach as buildVertices() (see that function for
+    // the reasoning on per-line width/justification and pivot handling).
+    std::vector<std::wstring> lines;
+    size_t lineStart = 0;
+    for (size_t i = 0; i <= text.size(); ++i)
     {
-        auto it = Characters.find(wc);
-        if (it == Characters.end()) continue;
-        const Character& ch = it->second;
+        if (i == text.size() || text[i] == L'\n')
+        {
+            lines.push_back(text.substr(lineStart, i - lineStart));
+            lineStart = i + 1;
+        }
+    }
 
-        GLfloat xpos = curX + ch.Bearing.x * scale;
-        GLfloat ypos = (pos.y - (minH / 2.f)) - (ch.Size.y - ch.Bearing.y) * scale;
-        GLfloat w    = ch.Size.x * scale;
-        GLfloat h    = ch.Size.y * scale;
+    float rawLineHeight = (m_lineHeight > 0.f) ? m_lineHeight : calcMinHeight(text, scale) / std::max(scale, 0.0001f) * 1.3f;
+    float lineAdvance   = rawLineHeight * scale;
 
-        glm::vec2 p0 = rotateAroundPivot({ xpos,     ypos + h }, pos, angleRad);
-        glm::vec2 p1 = rotateAroundPivot({ xpos,     ypos     }, pos, angleRad);
-        glm::vec2 p2 = rotateAroundPivot({ xpos + w, ypos     }, pos, angleRad);
-        glm::vec2 p3 = rotateAroundPivot({ xpos + w, ypos + h }, pos, angleRad);
+    for (size_t li = 0; li < lines.size(); ++li)
+    {
+        const std::wstring& line = lines[li];
 
-        GLfloat vertices[6][4] = {
-            { p0.x, p0.y, 0.f, 0.f },
-            { p1.x, p1.y, 0.f, 1.f },
-            { p2.x, p2.y, 1.f, 1.f },
-            { p0.x, p0.y, 0.f, 0.f },
-            { p2.x, p2.y, 1.f, 1.f },
-            { p3.x, p3.y, 1.f, 0.f },
-        };
+        float lineW = calcTextWidth(line, scale);
+        // Stable vertical anchor from font metrics (NOT calcMinHeight on this
+        // line's specific glyphs) so pos.y doesn't shift depending on which
+        // characters happen to be in the string. Falls back to the old
+        // content-dependent calcMinHeight() only if metrics weren't captured.
+        float minH  = (m_ascender != 0.f || m_descender != 0.f)
+                          ? (m_ascender - m_descender) * scale
+                          : calcMinHeight(line, scale);
 
-        glBindTexture(GL_TEXTURE_2D, ch.TextureID);
-        glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
-        glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
-        glBindBuffer(GL_ARRAY_BUFFER, 0);
-        glDrawArrays(GL_TRIANGLES, 0, 6);
+        float startX = pos.x;
+        if      (justification == ALIGN_FT_CENTER) startX = pos.x - lineW / 2.f;
+        else if (justification == ALIGN_FT_RIGHT)  startX = pos.x - lineW;
 
-        curX       += (ch.Advance >> 6) * scale;
-        totalScale += (ch.Advance >> 6) * scale;
+        float curX = startX;
+        float curY = pos.y - li * lineAdvance; // +Y is up in this engine — subtract to step down the screen
+
+        // See buildVertices() — totalScale is the widest line's width, not a
+        // sum across all lines, so it stays meaningful as a "block width" for
+        // any layout code reading getTotalScale() after this call.
+        totalScale = std::max(totalScale, lineW);
+
+        for (wchar_t wc : line)
+        {
+            auto it = Characters.find(wc);
+            if (it == Characters.end()) continue;
+            const Character& ch = it->second;
+
+            GLfloat xpos = curX + ch.Bearing.x * scale;
+            GLfloat ypos = (curY - (minH / 2.f)) - (ch.Size.y - ch.Bearing.y) * scale;
+            GLfloat w    = ch.Size.x * scale;
+            GLfloat h    = ch.Size.y * scale;
+
+            glm::vec2 p0 = rotateAroundPivot({ xpos,     ypos + h }, pos, angleRad);
+            glm::vec2 p1 = rotateAroundPivot({ xpos,     ypos     }, pos, angleRad);
+            glm::vec2 p2 = rotateAroundPivot({ xpos + w, ypos     }, pos, angleRad);
+            glm::vec2 p3 = rotateAroundPivot({ xpos + w, ypos + h }, pos, angleRad);
+
+            GLfloat vertices[6][4] = {
+                { p0.x, p0.y, 0.f, 0.f },
+                { p1.x, p1.y, 0.f, 1.f },
+                { p2.x, p2.y, 1.f, 1.f },
+                { p0.x, p0.y, 0.f, 0.f },
+                { p2.x, p2.y, 1.f, 1.f },
+                { p3.x, p3.y, 1.f, 0.f },
+            };
+
+            glBindTexture(GL_TEXTURE_2D, ch.TextureID);
+            glBindBuffer(GL_ARRAY_BUFFER, m_VBO);
+            glBufferSubData(GL_ARRAY_BUFFER, 0, sizeof(vertices), vertices);
+            glBindBuffer(GL_ARRAY_BUFFER, 0);
+            glDrawArrays(GL_TRIANGLES, 0, 6);
+
+            curX += (ch.Advance >> 6) * scale;
+        }
     }
 
     glBindVertexArray(0);
@@ -733,6 +897,244 @@ void TextRenderer::renderTextBatched(
 
     target->verts.reserve(target->verts.size() + text.size() * 6 * 4);
     buildVertices(text, pos, scale, justification, target->verts, true, angleDegrees);
+}
+
+bool TextRenderer::parseColorToken(const std::wstring& tagBody, Feintgine::Color& outColor) const
+{
+    std::wstring token = trimWS(tagBody);
+
+    // Accept both "color=VALUE" and a bare "VALUE" (VALUE = palette name or #hex).
+    size_t eq = token.find(L'=');
+    std::wstring value = (eq != std::wstring::npos) ? trimWS(token.substr(eq + 1)) : token;
+
+    if (!value.empty() && value[0] == L'#')
+        return parseHexColor(value, outColor);
+
+    const auto& palette = colorPalette();
+    auto it = palette.find(toLowerAscii(value));
+    if (it != palette.end())
+    {
+        outColor = it->second;
+        return true;
+    }
+    return false;
+}
+
+std::vector<std::vector<TextRenderer::ColorRun>> TextRenderer::parseColorMarkup(
+    const std::wstring&     text,
+    const Feintgine::Color& baseColor) const
+{
+    std::vector<std::vector<ColorRun>> lines;
+    std::vector<ColorRun>              curLine;
+    std::wstring                       curRunText;
+    std::vector<Feintgine::Color>      colorStack{ baseColor };
+
+    auto flushRun = [&]()
+    {
+        if (!curRunText.empty())
+        {
+            curLine.push_back({ curRunText, colorStack.back() });
+            curRunText.clear();
+        }
+    };
+
+    size_t i = 0;
+    const size_t n = text.size();
+    while (i < n)
+    {
+        wchar_t c = text[i];
+
+        if (c == L'\n')
+        {
+            flushRun();
+            lines.push_back(curLine);
+            curLine.clear();
+            ++i;
+            continue;
+        }
+
+        if (c == L'<')
+        {
+            size_t close = text.find(L'>', i + 1);
+            if (close == std::wstring::npos)
+            {
+                // No closing '>' anywhere ahead — can't be a tag, keep literal.
+                curRunText += c;
+                ++i;
+                continue;
+            }
+
+            std::wstring tagBody  = text.substr(i + 1, close - i - 1);
+            bool         isClosing = !tagBody.empty() && tagBody[0] == L'/';
+
+            if (isClosing)
+            {
+                flushRun();
+                if (colorStack.size() > 1) colorStack.pop_back(); // never pop the base color
+                i = close + 1;
+                continue;
+            }
+
+            Feintgine::Color tagColor;
+            if (parseColorToken(tagBody, tagColor))
+            {
+                flushRun();
+                colorStack.push_back(tagColor);
+                i = close + 1;
+                continue;
+            }
+
+            // Unrecognized tag — leave the whole "<...>" as literal text so
+            // things like a stray "<3" or unrelated markup don't just vanish.
+            curRunText += text.substr(i, close - i + 1);
+            i = close + 1;
+            continue;
+        }
+
+        curRunText += c;
+        ++i;
+    }
+
+    flushRun();
+    lines.push_back(curLine); // trailing line, matches buildVertices()'s own '\n'-splitting behavior
+
+    return lines;
+}
+
+TextRenderer::BatchSegment& TextRenderer::getOrCreateSegment(const Feintgine::Color& color)
+{
+    for (auto& seg : m_batchSegments)
+    {
+        if (seg.color.r == color.r && seg.color.g == color.g &&
+            seg.color.b == color.b && seg.color.a == color.a)
+        {
+            return seg;
+        }
+    }
+    m_batchSegments.push_back({ color, {} });
+    return m_batchSegments.back();
+}
+
+void TextRenderer::buildVerticesMultiColor(
+    const std::vector<std::vector<ColorRun>>& lines,
+    const glm::vec2&                          pos,
+    float                                      scale,
+    unsigned char                              justification,
+    float                                      angleDegrees)
+{
+    float angleRad = glm::radians(angleDegrees);
+
+    // Fallback line-height source if m_lineHeight metrics weren't captured —
+    // see buildVertices() for the same pattern. Tags are already stripped out
+    // of every run's text at this point, so just flatten everything.
+    std::wstring flatForFallback;
+    for (const auto& line : lines)
+        for (const auto& run : line)
+            flatForFallback += run.text;
+
+    float rawLineHeight = (m_lineHeight > 0.f)
+                              ? m_lineHeight
+                              : calcMinHeight(flatForFallback, scale) / std::max(scale, 0.0001f) * 1.3f;
+    float lineAdvance = rawLineHeight * scale;
+
+    totalScale = 0.f;
+
+    for (size_t li = 0; li < lines.size(); ++li)
+    {
+        const auto& runs = lines[li];
+
+        // Width/height computed across the WHOLE line (all runs combined) so
+        // justification and vertical centering match single-color behavior —
+        // a color change mid-line must not affect where the line starts.
+        float        lineW = 0.f;
+        std::wstring lineFlat;
+        for (const auto& run : runs)
+        {
+            lineW    += calcTextWidth(run.text, scale);
+            lineFlat += run.text;
+        }
+        totalScale = std::max(totalScale, lineW);
+
+        float minH = (m_ascender != 0.f || m_descender != 0.f)
+                        ? (m_ascender - m_descender) * scale
+                        : calcMinHeight(lineFlat, scale);
+
+        float startX = pos.x;
+        if      (justification == ALIGN_FT_CENTER) startX = pos.x - lineW / 2.f;
+        else if (justification == ALIGN_FT_RIGHT)  startX = pos.x - lineW;
+
+        float curX = startX;
+        float curY = pos.y - li * lineAdvance; // +Y is up in this engine
+
+        for (const auto& run : runs)
+        {
+            BatchSegment& seg = getOrCreateSegment(run.color);
+            seg.verts.reserve(seg.verts.size() + run.text.size() * 6 * 4);
+
+            for (wchar_t wc : run.text)
+            {
+                auto it = Characters.find(wc);
+                if (it == Characters.end()) continue;
+                const Character& ch = it->second;
+
+                GLfloat xpos = curX + ch.Bearing.x * scale;
+                GLfloat ypos = (curY - (minH / 2.f)) - (ch.Size.y - ch.Bearing.y) * scale;
+                GLfloat w    = ch.Size.x * scale;
+                GLfloat h    = ch.Size.y * scale;
+
+                float u0 = ch.uvMin.x, v0 = ch.uvMin.y;
+                float u1 = ch.uvMax.x, v1 = ch.uvMax.y;
+
+                // Rotate around the ORIGINAL pos, same as buildVertices(), so a
+                // rotated multi-line, multi-color block still rotates as one
+                // rigid body.
+                glm::vec2 p0 = rotateAroundPivot({ xpos,     ypos + h }, pos, angleRad);
+                glm::vec2 p1 = rotateAroundPivot({ xpos,     ypos     }, pos, angleRad);
+                glm::vec2 p2 = rotateAroundPivot({ xpos + w, ypos     }, pos, angleRad);
+                glm::vec2 p3 = rotateAroundPivot({ xpos + w, ypos + h }, pos, angleRad);
+
+                seg.verts.insert(seg.verts.end(), {
+                    p0.x, p0.y, u0, v0,
+                    p1.x, p1.y, u0, v1,
+                    p2.x, p2.y, u1, v1,
+                    p0.x, p0.y, u0, v0,
+                    p2.x, p2.y, u1, v1,
+                    p3.x, p3.y, u1, v0,
+                });
+
+                curX += (ch.Advance >> 6) * scale;
+            }
+        }
+    }
+}
+
+void TextRenderer::renderTextBatchedColored(
+    const std::wstring&     text,
+    const glm::vec2&        pos,
+    const Feintgine::Color& color,
+    float                   scale,
+    unsigned char           justification,
+    float                   angleDegrees)
+{
+    if (text.empty()) return;
+
+    auto lines = parseColorMarkup(text, color);
+    buildVerticesMultiColor(lines, pos, scale, justification, angleDegrees);
+}
+
+void TextRenderer::renderTextBatchedColored(
+    const std::string&      text,
+    const glm::vec2&        pos,
+    const Feintgine::Color& color,
+    float                   scale,
+    unsigned char           justification,
+    float                   angleDegrees)
+{
+    if (text.empty()) return;
+
+    std::wstring wtext = utf8ToWString(text);
+    auto         lines = parseColorMarkup(wtext, color);
+    buildVerticesMultiColor(lines, pos, scale, justification, angleDegrees);
 }
 
 void TextRenderer::end(const Feintgine::Camera2D& camera)

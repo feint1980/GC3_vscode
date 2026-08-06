@@ -1,7 +1,9 @@
 package.path = package.path .. ';../../Lua/system/objects/?.lua;' .. ';../../Lua/TouhouTB/Combat/UI/?.lua;'
 
 require "compositeObject"
+require "dock_global"
 
+---@class Dock_description_panel
 Dock_description_panel = {}
 Dock_description_panel.__index = Dock_description_panel
 
@@ -15,6 +17,15 @@ function Dock_description_panel:new()
     return o
 end
 
+
+---@Description create new instance of Dock_description_panel
+---@param renderContextHost pointer instance of F_LuaRenderContext
+---@param posX number x position
+---@param posY number y position
+---@param width number width
+---@param height number height
+---@param angle number angle
+---@param depth number depth
 function Dock_description_panel:init(renderContextHost, posX, posY, width, height, angle, depth)
     self.panel = L_compositeObject:new()
     self.panel:init(renderContextHost, posX, posY, width, height, angle, depth)
@@ -25,12 +36,14 @@ function Dock_description_panel:init(renderContextHost, posX, posY, width, heigh
 
 end
 
+---@Description get panel
+---@return L_compositeObject
 function Dock_description_panel:getPanel()
     return self.panel
 end
 
 function Dock_description_panel:addTextInstance(name, value, offsetPosX, offsetPosY, alignment, scale, colorR, colorG, colorB, colorA)
-    local textObj = self.panel:addText(value, offsetPosX, offsetPosY, 3,
+    local textObj = self.panel:addText(value, offsetPosX, offsetPosY, alignment,
     0.85, 255, 255, 255, 255, 0)
     self.textObjs[name] = textObj
 
@@ -42,9 +55,11 @@ end
 
 function Dock_description_panel:setText(textInstanceName, value)
     if self.textObjs[textInstanceName] == nil then
+        print("Dock_description_panel: no text instance registered for name " .. textInstanceName)
         return
     end
 
+    -- print("setting text named " .. textInstanceName .. " to " .. value)
     CompositeObjectText_setText(self.textObjs[textInstanceName], value)
 end
 

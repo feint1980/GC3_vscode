@@ -4,10 +4,14 @@ package.path = package.path ..';../../Lua/TouhouTB/Combat/?.lua' .. ';../../Lua/
 require "combat_dock_my_character_info"
 require "combat_dock_middle_panel"
 require "combat_dock_right_panel"
+require "dock_description_panel"
 
+-- Combat_Dock_Middle_Instance = nil
+-- ---@type Dock_description_panel
+-- Combat_Dock_Right_Instance = nil
 
-Combat_Dock_Middle_Instance = nil
-Combat_Dock_Right_Instance = nil
+require "dock_global"
+
 ---@class (exact) Combat_dock 
 ---@field renderContexthost? pointer instance of RenderContext
 ---@field characterDock? pointer instance of combat_dock_my_character_info

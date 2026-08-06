@@ -2,11 +2,12 @@ package.path = package.path .. ';../../Lua/system/objects/?.lua;' .. ';../../Lua
 
 require "compositeObject"
 require "dock_button"
+require "dock_global"
 --[[
     Combat_dock_middle_panel
     
 ]]
-
+---@class Combat_dock_middle_panel
 Combat_dock_middle_panel = {}
 Combat_dock_middle_panel.__index = Combat_dock_middle_panel
 function Combat_dock_middle_panel:new()
@@ -97,27 +98,29 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     local bw = self.buttonWidth
     local gap = self.buttonGap * 0.5
 
-    self:addButton("Q", basicSkillsX,                     groupY + self.buttonHeight + self.buttonGap , "Yin-Yang Shot", "MP 20")
-    self:addButton("W", basicSkillsX + (bw + gap),         groupY + self.buttonHeight + self.buttonGap, "Spirit Barrage", "Free")
-    self:addButton("E", basicSkillsX + (bw + gap) * 2,     groupY + self.buttonHeight + self.buttonGap, "Ofuda Throw",    "MP 15")
-    self:addButton("R", basicSkillsX + (bw + gap) * 3,     groupY + self.buttonHeight + self.buttonGap, "Focused Mind",   "SP 30")
+    self:addButton("Q", basicSkillsX,                     groupY + self.buttonHeight + self.buttonGap , "Yin-Yang Shot", "MP: 20", "Ying Yang is a thing, davai test\n text bro, LAsweww")
+    self:addButton("W", basicSkillsX + (bw + gap),         groupY + self.buttonHeight + self.buttonGap, "Spirit Barrage", " ", "spirit_barrage")
+    self:addButton("E", basicSkillsX + (bw + gap) * 2,     groupY + self.buttonHeight + self.buttonGap, "Ofuda Throw",    "MP 15", "ofuda_throw")
+    self:addButton("R", basicSkillsX + (bw + gap) * 3,     groupY + self.buttonHeight + self.buttonGap, "Focused Mind",   "SP 30", "focused_mind")
 
-    self:addButton("A", basicSkillsX,                     groupY , "Kick Back", "MP 20")
-    self:addButton("S", basicSkillsX + (bw + gap),         groupY, "Brace", "Free")
-    self:addButton("D", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "MP 15")
-    self:addButton("F", basicSkillsX + (bw + gap) * 3,     groupY, "Meditation",   "")
+    self:addButton("A", basicSkillsX,                     groupY , "Kick Back", "MP 20", "kick_back")
+    self:addButton("S", basicSkillsX + (bw + gap),         groupY, "Brace", "Free", "brace")
+    self:addButton("D", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "MP 15", "hakurei_bless")
+    self:addButton("F", basicSkillsX + (bw + gap) * 3,     groupY, "Meditation",   " ", "meditation")
 
     --======================================================
     -- Items row: 1,2
     --======================================================
-    self:addButton("1", itemsX ,               groupY + self.buttonHeight + self.buttonGap , "Hakurei Charm", "x1")
-    self:addButton("2", itemsX,   groupY  , "Heal Potion",   "x1")
+    self:addButton("1", itemsX ,               groupY + self.buttonHeight + self.buttonGap , "Hakurei Charm", "x1", "hakurei_charm")
+    self:addButton("2", itemsX,   groupY  , "Heal Potion",   "x1", "heal_potion")
 
     --======================================================
     -- General row: M, Space
     --======================================================
-    self:addButton("M", generalX,             groupY + self.buttonHeight + self.buttonGap , "Move",     "AP 0.5")
-    self:addButton("Space", generalX, groupY , "End Turn", "")
+    self:addButton("M", generalX,             groupY + self.buttonHeight + self.buttonGap , "Move",     "AP 0.5", "move")
+    self:addButton("Space", generalX, groupY , "End Turn", "", "end_turn")
+
+    -- self.buttons["W"]:setVisible(false)
 
 end
 
@@ -176,6 +179,10 @@ function Combat_dock_middle_panel:addButton(key, posX, posY, name, info , descri
     btn:registerCallback("onHoverEnter", function()
         -- print("hover enter " .. name)
         btn:getPanel():setFrameColor(100, 255,100, 255)
+        Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_name",btn.name)
+        Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_description",btn.description)
+        Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_cost", btn.cost)
+
     end)
 
     btn:registerCallback("onHoverLeave", function()
@@ -187,7 +194,6 @@ function Combat_dock_middle_panel:addButton(key, posX, posY, name, info , descri
         print("clicked " .. btn.name)
         -- btn:setFrameColor(255, 255, 255, 255)
     end)
-
 
     self.buttons[key] = btn
 

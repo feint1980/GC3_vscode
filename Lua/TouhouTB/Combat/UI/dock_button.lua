@@ -10,6 +10,8 @@ function Dock_button:new()
     o.description = "Button Description"
     o.cost = "Cost (MP,AP,etc)" -- there are rules for this
     o.key = "Unassigned key"
+    o.clickable = true
+    -- o.
     ---@type L_compositeObject
     o.panel = nil -- compositeObject
 
@@ -35,7 +37,7 @@ function Dock_button:init(renderContextHost,key, name,posX, posY, width, height,
     self.panel:addText(key,
         -(width * 0.5) + 10, (height * 0.5) - 14,
         1, 0.8,
-        255, 255, 255, 255,
+        210, 210, 150, 255,
         0)
 
     -- name, center of the button (small, may wrap visually depending on your text renderer)
@@ -73,10 +75,17 @@ function Dock_button:getPanel()
     return self.panel
 end
 
+function Dock_button:setVisible(visible)
+    self.panel:setVisible(visible)
+end
+
 function Dock_button:registerCallback(event, callback)
     self.panel:registerCallback(event, callback)
 end
 
+function Dock_button:getValue(name)
+    return self[name]
+end
 
 
 return Dock_button
