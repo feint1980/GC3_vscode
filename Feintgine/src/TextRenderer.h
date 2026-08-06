@@ -251,4 +251,15 @@ private:
     float m_descender = 0.f;
 };
 
+
+/*
+    Example :
+    textRenderer.begin();
+textRenderer.renderTextBatchedColored(
+    "<white>Here</white> <blue>is some text</blue>",
+    pos, defaultColor, scale, ALIGN_FT_LEFT);
+textRenderer.end(camera);
+
+*/
+
 #endif
