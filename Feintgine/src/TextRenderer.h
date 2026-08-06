@@ -20,6 +20,8 @@
 
 #pragma execution_character_set("utf-8")
 
+    
+
 const unsigned char ALIGN_FT_LEFT   = 1;
 const unsigned char ALIGN_FT_RIGHT  = 2;
 const unsigned char ALIGN_FT_CENTER = 3;
@@ -27,6 +29,8 @@ const unsigned char ALIGN_FT_CENTER = 3;
 // Atlas dimensions — increase if you load more than ~300 glyphs
 static constexpr int TEXT_ATLAS_W = 1024;
 static constexpr int TEXT_ATLAS_H = 1024;
+
+
 
 
 struct Character {
@@ -45,6 +49,11 @@ struct Character {
 struct UnicodeRange { unsigned long first; unsigned long last; }; 
 
 class TextRenderer {
+
+struct BatchSegment {
+        Feintgine::Color     color;
+        std::vector<GLfloat> verts;
+};
 
 public:
     TextRenderer();
@@ -224,10 +233,7 @@ private:
     GLuint m_atlasTexture = 0;
 
     // Batch accumulation — one segment per unique color
-    struct BatchSegment {
-        Feintgine::Color     color;
-        std::vector<GLfloat> verts;
-    };
+
     std::vector<BatchSegment> m_batchSegments;
 
     // Unused legacy fields kept to avoid breaking anything that references them
@@ -251,15 +257,15 @@ private:
     float m_descender = 0.f;
 };
 
+#endif
 
+
+// Example 
 /*
-    Example :
     textRenderer.begin();
-textRenderer.renderTextBatchedColored(
+    textRenderer.renderTextBatchedColored(
     "<white>Here</white> <blue>is some text</blue>",
     pos, defaultColor, scale, ALIGN_FT_LEFT);
-textRenderer.end(camera);
+    textRenderer.end(camera);
 
 */
-
-#endif

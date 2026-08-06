@@ -230,7 +230,9 @@ void F_CompositeObject::drawText(TextRenderer & textRenderer)
     for(size_t i = 0 ; i < m_textObjectList.size(); i++)
     {
         // std::wcout << L"rendered " << m_textObjectList[i].text << L"\n";
-        textRenderer.renderTextBatched(m_textObjectList[i].text, m_pos + m_textObjectList[i].posOffset, m_textObjectList[i].color, m_textObjectList[i].scale, m_textObjectList[i].justification,m_angle + m_textObjectList[i].angle);
+        // textRenderer.renderTextBatched(m_textObjectList[i].text, m_pos + m_textObjectList[i].posOffset, m_textObjectList[i].color, m_textObjectList[i].scale, m_textObjectList[i].justification,m_angle + m_textObjectList[i].angle);
+
+        textRenderer.renderTextBatchedColored(m_textObjectList[i].text, m_pos + m_textObjectList[i].posOffset, m_textObjectList[i].color, m_textObjectList[i].scale, m_textObjectList[i].justification,m_angle + m_textObjectList[i].angle);
     }
 }
 

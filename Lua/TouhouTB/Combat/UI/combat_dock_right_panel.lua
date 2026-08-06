@@ -56,14 +56,14 @@ function Combat_dock_right_panel:init(renderHost,tPosX, tPosY, panelWidth, panel
     self.sides["skill_des"]:getPanel():showPanelBG(true)
     self.sides["skill_des"]:getPanel():addEmblem(1,"emblem_pack.xml/corner_b_05.png", 15,15, 0,
         10, 0.0)
-    self.sides["skill_des"]:getPanel():addLine(0,  140, self.width * 0.5, 40)
+    self.sides["skill_des"]:getPanel():addLine(0,  120, self.width * 0.5, 40)
     -- self.sides["skill_des"]:getPanel():setVisible(false)
 
     self.sides["skill_des"]:addTextInstance("skill_name", "Skill's name", 0, 150 , 3, 0.75, 255,255,255,255)
 
     self.sides["skill_des"]:addTextInstance("skill_description", "Skill's description", -200, 90 , 1, 0.55, 255,255,255,255)
 
-    self.sides["skill_des"]:addTextInstance("skill_cost", "Skill's cost", 200, -170 , 2, 0.65, 255,255,255,255)
+    self.sides["skill_des"]:addTextInstance("skill_cost", "Skill's cost", 190, -170 , 2, 0.65, 255,255,255,255)
 
     ------ Item description
 

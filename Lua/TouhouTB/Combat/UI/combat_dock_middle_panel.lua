@@ -98,14 +98,14 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     local bw = self.buttonWidth
     local gap = self.buttonGap * 0.5
 
-    self:addButton("Q", basicSkillsX,                     groupY + self.buttonHeight + self.buttonGap , "Yin-Yang Shot", "MP: 20", "Ying Yang is a thing, davai test\n text bro, LAsweww")
+    self:addButton("Q", basicSkillsX,                     groupY + self.buttonHeight + self.buttonGap , "Yin-Yang Shot", "<color=#38B6FF>20</color>", "Ying Yang is a thing, davai test\n <color=#38B6FF>text</color> bro, LAsweww")
     self:addButton("W", basicSkillsX + (bw + gap),         groupY + self.buttonHeight + self.buttonGap, "Spirit Barrage", " ", "spirit_barrage")
-    self:addButton("E", basicSkillsX + (bw + gap) * 2,     groupY + self.buttonHeight + self.buttonGap, "Ofuda Throw",    "MP 15", "ofuda_throw")
+    self:addButton("E", basicSkillsX + (bw + gap) * 2,     groupY + self.buttonHeight + self.buttonGap, "Ofuda Throw",    "<color=#38B6FF>15</color>", "ofuda_throw")
     self:addButton("R", basicSkillsX + (bw + gap) * 3,     groupY + self.buttonHeight + self.buttonGap, "Focused Mind",   "SP 30", "focused_mind")
 
-    self:addButton("A", basicSkillsX,                     groupY , "Kick Back", "MP 20", "kick_back")
+    self:addButton("A", basicSkillsX,                     groupY , "Kick Back", "<color=#38B6FF>20</color>", "kick_back")
     self:addButton("S", basicSkillsX + (bw + gap),         groupY, "Brace", "Free", "brace")
-    self:addButton("D", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "MP 15", "hakurei_bless")
+    self:addButton("D", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "<color=#38B6FF>15</color>", "hakurei_bless")
     self:addButton("F", basicSkillsX + (bw + gap) * 3,     groupY, "Meditation",   " ", "meditation")
 
     --======================================================

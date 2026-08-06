@@ -617,6 +617,8 @@ void F_LuaRenderContext::drawText(const Feintgine::Camera2D & camera)
     m_textRenderer.end(camera);
 }
 
+
+
 void F_LuaRenderContext::updateSignals(Feintgine::InputManager & inputManager)
 {   
     // asd
