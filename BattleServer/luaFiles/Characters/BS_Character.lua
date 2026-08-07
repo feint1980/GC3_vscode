@@ -431,7 +431,7 @@ end
 --- Called at the start of each round before turn queue is built
 ---@param battleState table
 function BS_Character:onRoundStart(battleState)
-    
+
     print(self.id .. " onRoundStart (BS_Character)")
 
 end

@@ -10,6 +10,9 @@ function Dock_button:new()
     o.description = "Button Description"
     o.cost = "Cost (MP,AP,etc)" -- there are rules for this
     o.key = "Unassigned key"
+    o.keyInstance = nil  --- tTextObject 
+    o.nameInstance = nil
+    o.costInstance = nil
     o.clickable = true
     -- o.
     ---@type L_compositeObject
@@ -34,40 +37,44 @@ function Dock_button:init(renderContextHost,key, name,posX, posY, width, height,
     self.panel:setPanelBGScale(0.95)
 
     -- key label, top-left corner of the button
-    self.panel:addText(key,
+    self.keyInstance = self.panel:addText(key,
         -(width * 0.5) + 10, (height * 0.5) - 14,
         1, 0.8,
         210, 210, 150, 255,
         0)
 
     -- name, center of the button (small, may wrap visually depending on your text renderer)
-    self.panel:addText(name,
+    self.nameInstance =  self.panel:addText(name,
         0, 4,
         3, 0.55,
         230, 230, 230, 255,
         0)
 
     -- info line, bottom of the button
-    if self.cost ~= "" then
-        self.panel:addText(self.cost,
+    -- if self.cost ~= "" then
+    self.costInstance = self.panel:addText(self.cost,
             0, -(height * 0.5) + 14,
             3, 0.6,
             170, 200, 255, 255,
             0)
+    -- end
+
+end
+
+function Dock_button:updateButtonInfo(name, description, cost , clickable)
+    if clickable == false then
+        CompositeObjectText_setText(self.keyInstance, " ")
+    else
+        CompositeObjectText_setText(self.keyInstance, self.key)
     end
 
-    -- self.panel:setRegisterFlag(1)
-    -- self.panel:registerCallback("onHoverEnter", function()
-    --     self.panel:setFrameColor(100, 255, 100, 255)/
-    -- end)
+    self.name = name
+    CompositeObjectText_setText(self.nameInstance, self.name)
 
-    -- self.panel:registerCallback("onHoverExit", function()
-    --     self.panel:setFrameColor(255, 255, 255, 255)
-    -- end)
 
-    -- self.panel:registerCallback("onClick", function()
-    --     print("button " .. self.name .. " clicked")
-    -- end)
+    self.description = description
+    self.cost = cost
+    CompositeObjectText_setText(self.costInstance, self.cost)
 
 end
 

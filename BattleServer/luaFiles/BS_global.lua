@@ -35,3 +35,6 @@ BattleLobbyState = {
 BattleLobby_List = {}
 BattleClientEP_List = {}
 
+
+--- Skills section 
+Skills_Table = {} -- format Skills_Table[CharacterID][SkillID] 

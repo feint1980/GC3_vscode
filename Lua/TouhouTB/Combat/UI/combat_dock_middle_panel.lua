@@ -27,18 +27,16 @@ function Combat_dock_middle_panel:new()
     o.itemsHeader = nil
     o.generalHeader = nil
 
-    -- button registries, keyed by slot name e.g. "1", "Q", "E"
-    o.buttons = {}
-
     -- layout constants
-    
     o.buttonWidth = 120
     o.buttonHeight = 120
     o.buttonGap = 10
+    -- button registries , keyed group and slot name e.g. "1", "Q", "E"
+    o.buttons = {}
 
     -- setmetatable(o.buttons, self.buttons)
     self.__index = self
-    o.buttons = {}
+
     return o
 end
 
@@ -98,29 +96,29 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     local bw = self.buttonWidth
     local gap = self.buttonGap * 0.5
 
-    self:addButton("Q", basicSkillsX,                     groupY + self.buttonHeight + self.buttonGap , "Yin-Yang Shot", "<color=#38B6FF>20</color>", "Ying Yang is a thing, davai test\n <color=#38B6FF>text</color> bro, LAsweww")
-    self:addButton("W", basicSkillsX + (bw + gap),         groupY + self.buttonHeight + self.buttonGap, "Spirit Barrage", " ", "spirit_barrage")
-    self:addButton("E", basicSkillsX + (bw + gap) * 2,     groupY + self.buttonHeight + self.buttonGap, "Ofuda Throw",    "<color=#38B6FF>15</color>", "ofuda_throw")
-    self:addButton("R", basicSkillsX + (bw + gap) * 3,     groupY + self.buttonHeight + self.buttonGap, "Focused Mind",   "SP 30", "focused_mind")
+    self:addButton("skill","Q", basicSkillsX,                     groupY + self.buttonHeight + self.buttonGap , "Yin-Yang Shot", "<color=#38B6FF>20</color>", "Ying Yang is a thing, davai test\n <color=#38B6FF>text</color> bro, LAsweww")
+    self:addButton("skill","W", basicSkillsX + (bw + gap),         groupY + self.buttonHeight + self.buttonGap, "Spirit Barrage", " ", "spirit_barrage")
+    self:addButton("skill","E", basicSkillsX + (bw + gap) * 2,     groupY + self.buttonHeight + self.buttonGap, "Ofuda Throw",    "<color=#38B6FF>15</color>", "ofuda_throw")
+    self:addButton("skill","R", basicSkillsX + (bw + gap) * 3,     groupY + self.buttonHeight + self.buttonGap, "Focused Mind",   "SP 30", "focused_mind")
 
-    self:addButton("A", basicSkillsX,                     groupY , "Kick Back", "<color=#38B6FF>20</color>", "kick_back")
-    self:addButton("S", basicSkillsX + (bw + gap),         groupY, "Brace", "Free", "brace")
-    self:addButton("D", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "<color=#38B6FF>15</color>", "hakurei_bless")
-    self:addButton("F", basicSkillsX + (bw + gap) * 3,     groupY, "Meditation",   " ", "meditation")
+    self:addButton("skill","A", basicSkillsX,                     groupY , "Kick Back", "<color=#38B6FF>20</color>", "kick_back")
+    self:addButton("skill","S", basicSkillsX + (bw + gap),         groupY, "Brace", "Free", "brace")
+    self:addButton("skill","D", basicSkillsX + (bw + gap) * 2,     groupY, "Hakurei Bless",    "<color=#38B6FF>15</color>", "hakurei_bless")
+    self:addButton("skill","F", basicSkillsX + (bw + gap) * 3,     groupY, "Meditation",   " ", "meditation")
 
     --======================================================
     -- Items row: 1,2
     --======================================================
-    self:addButton("1", itemsX ,               groupY + self.buttonHeight + self.buttonGap , "Hakurei Charm", "x1", "hakurei_charm")
-    self:addButton("2", itemsX,   groupY  , "Heal Potion",   "x1", "heal_potion")
+    self:addButton("item","1", itemsX ,               groupY + self.buttonHeight + self.buttonGap , "Hakurei Charm", "x1", "hakurei_charm")
+    self:addButton("item","2", itemsX,   groupY  , "Heal Potion",   "x1", "heal_potion")
 
     --======================================================
     -- General row: M, Space
     --======================================================
-    self:addButton("M", generalX,             groupY + self.buttonHeight + self.buttonGap , "Move",     "AP 0.5", "move")
-    self:addButton("Space", generalX, groupY , "End Turn", "", "end_turn")
+    self:addButton("general","M", generalX,             groupY + self.buttonHeight + self.buttonGap , "Move",     "AP 0.5", "move")
+    self:addButton("general","Space", generalX, groupY , "End Turn", "", "end_turn")
 
-    -- self.buttons["W"]:setVisible(false)
+    -- self:hideAllButtons()
 
 end
 
@@ -140,8 +138,12 @@ end
 ---@param posY number y position
 ---@param name string skill/item/action name
 ---@param info string small info line (cost, count, etc.) -- can be ""
-function Combat_dock_middle_panel:addButton(key, posX, posY, name, info , description)
+function Combat_dock_middle_panel:addButton(group,key, posX, posY, name, info , description)
     -- local btn = L_compositeObject:new()
+
+    if self.buttons[group] == nil then
+        self.buttons[group] = {}
+    end
 
     local btn = Dock_button:new()
 
@@ -179,6 +181,7 @@ function Combat_dock_middle_panel:addButton(key, posX, posY, name, info , descri
     btn:registerCallback("onHoverEnter", function()
         -- print("hover enter " .. name)
         btn:getPanel():setFrameColor(100, 255,100, 255)
+
         Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_name",btn.name)
         Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_description",btn.description)
         Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_cost", btn.cost)
@@ -195,21 +198,28 @@ function Combat_dock_middle_panel:addButton(key, posX, posY, name, info , descri
         -- btn:setFrameColor(255, 255, 255, 255)
     end)
 
-    self.buttons[key] = btn
+    self.buttons[group][key] = btn
 
 end
 
 ---@Description update a button's displayed name/info at runtime (e.g. skill swapped, item count changed)
-function Combat_dock_middle_panel:updateButton(key, name, info)
-    local btn = self.buttons[key]
+function Combat_dock_middle_panel:updateButton(group,key, name, description, cost, clickable)
+    local btn = self.buttons[group][key]
     if btn == nil then
         print("Combat_dock_middle_panel: no button registered for key " .. tostring(key))
         return
     end
+    btn:updateButtonInfo(name, description, cost, clickable)
     -- NOTE: this assumes addText returns a pointer whose .text field
     -- is writable from Lua (same assumption used in combat_dock_my_character_info.lua).
     -- If that's not how your binding works, this needs to go through whatever
     -- setter you actually expose (e.g. cpp_TextObject_setText).
+end
+
+function Combat_dock_middle_panel:hideAllButtons()
+    for key, btn in pairs(self.buttons) do
+        btn:setVisible(false)
+    end
 end
 
 ---@Description 
@@ -221,7 +231,6 @@ function Combat_dock_middle_panel:getHoveredButton()
     end
     return nil
 end
-
 
 function Combat_dock_middle_panel:handleInput(key)
     if (key & Signal.mouseLeft) ~= 0 then
