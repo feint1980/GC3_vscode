@@ -20,6 +20,13 @@ function PollTask:new()
     return o
 end
 
+function PollTask:copy(o)
+    o = o or {}
+    setmetatable(o, self)
+    self.__index = self
+    return o
+end
+
 -- signal table: signalName → bool
 PollSignals = {}
 
@@ -57,7 +64,7 @@ function Poll_AddTask(signalName, func, args)
     if not PollTasks[signalName] then
         PollTaskCount = PollTaskCount + 1
     end
-    PollTasks[signalName] = PollTask:new({
+    PollTasks[signalName] = PollTask:copy({
         name   = signalName,
         func   = func,
         args   = args or {}

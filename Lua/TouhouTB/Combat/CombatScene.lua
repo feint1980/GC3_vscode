@@ -39,7 +39,7 @@ Combat_SkillHandlerPtr = nil
 Combat_RenderContext = nil
 
 ---@type Combat_dock 
-Combat_Dock = nil
+CB_Combat_Dock = nil
 
 function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterHandlerPtr, SkillHandlerPtr, ControlHandlerPtr, CombatFieldPtr, TurnDisplayerPtr, RenderContextPtr)
 
@@ -58,9 +58,9 @@ function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacte
     TurnDisplayer_instance = CombatTurnDisplayer:new()
     TurnDisplayer_instance:init(TurnDisplayerPtr)
 
-    Combat_Dock = Combat_dock:new()
+    CB_Combat_Dock = Combat_dock:new()
     local resoX, resoY = cpp_combat_getSceneResolution(host)
-    Combat_Dock:init(Combat_RenderContext, resoX, resoY)
+    CB_Combat_Dock:init(Combat_RenderContext, resoX, resoY)
 
     -- SetBattleSer
     print("loading data ...")
@@ -79,20 +79,7 @@ function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacte
     SendBattleRequest(BattlePacketChannel.Combat,CCombatResponse.Combat_ReadyStatus, {tGUID,tID,tLobbyID,tPlayerIndex,"Ready"},5,
     0.1,0.15)
 
-    -- local tA = L_compositeObject:new()
-    -- tA:init(Combat_RenderContext, 0, 0, 250, 250, 0, 5)
-    -- tA:addAnimatedObject("./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0, 1, 1, 255, 255, 255, 255, 0, 0)
-
-    -- tA:addPanel("Basic_border", 0.25)
-    -- tA:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0, 
-    --     10, 0.5)
     
-    -- tA:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,0, 8, 
-    --     -10, 0.25)
-
-    -- -- tA:setAngle(45.0)
-
-    -- tA:addText("ekwes", 0,10, 1,0.5, 255,255,255,255,0)
 
 end
 

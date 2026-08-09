@@ -224,11 +224,19 @@ end
 
 ---@Description 
 function Combat_dock_middle_panel:getHoveredButton()
-    for key, btn in pairs(self.buttons) do
-        if btn:getPanel():isHovered() then
-            return btn:getPanel()
+
+    for group in pairs(self.buttons) do
+        for key, btn in pairs(self.buttons[group]) do
+            if btn:getPanel():isHovered() then
+                return btn:getPanel()
+            end
         end
     end
+    -- for key, btn in pairs(self.buttons) do
+    --     if btn:getPanel():isHovered() then
+    --         return btn:getPanel()
+    --     end
+    -- end
     return nil
 end
 

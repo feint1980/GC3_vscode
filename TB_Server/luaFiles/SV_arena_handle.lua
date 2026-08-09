@@ -99,6 +99,9 @@ MessageHandling[PacketChannel.ArenaChannel][ArenaResponse.Arena_RequestLobby_Cre
 
     local tTargetGUID, targetID, serverGUID , combineData = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
 
+    print("total data " .. data )
+    print("extract value " .. tTargetGUID .. " " .. targetID .. " " .. serverGUID .. " " .. combineData)
+
     if CH_FindClient(tTargetGUID) == nil then
         print("invalid user,  warning, craft packet found from ip " .. SV_GetIPString(ip))
         return

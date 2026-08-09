@@ -1,6 +1,7 @@
-package.path = package.path .. ";../../luaFiles/Characters/?.lua"
+package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Characters/?.lua"
+
 require "BS_BattleEvent"
-require "BS_Char_Reimu"
+require "Characters.BS_Char_Reimu"
 require "BS_Char_Yukari"
 require "BS_Char_Patchouli"
 require "BS_Char_Meiling"
@@ -62,7 +63,7 @@ local CHARACTER_CLASS_MAP = {
 ---@field currentChar? BS_Char_*
 ---@field phase number
 BattleSession = {}
-BattleLobby.__index = BattleLobby
+BattleSession.__index = BattleSession
 --------------------------------------------------------------------------------
 --  LIFECYCLE
 --------------------------------------------------------------------------------
@@ -175,7 +176,10 @@ function BattleSession:buildFormation(playerID, rawFormation, side)
         print("charID " .. charID)
 
         local class = CHARACTER_CLASS_MAP[charID] or BS_Character
-        local tChar = class:new(rawFormation.characters[i])
+        local tChar = class:copy(rawFormation.characters[i])
+        -- local tChar = class:new()
+        -- tChar:init(playerID, charID, rawFormation.characters[i].stats)
+        
 
         -- local char = tChar
         if tChar ~= nil then

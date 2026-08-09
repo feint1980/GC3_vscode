@@ -1,8 +1,8 @@
-package.path = package.path .. ";../../luaFiles/?.lua"
+package.path = package.path .. ";../../luaFiles/?.lua" .. ";../../luaFiles/Characters/?.lua" .. ";./Characters/?.lua"
 
 require "battleWrapper"
 require "BS_global"
-require "BS_StatScale"
+require "Characters.BS_StatScale"
 require "BS_Character"
 
 --[[
@@ -198,13 +198,19 @@ function BS_BattleEvent.onTurnStartSpeedRoll(battleState)
         print(k .. " " .. v.stats.name)
         count = count + 1
     end
-
+    print("battleState.turnQueue end --------------")
     battleState:broadcast(ClientChannel.Combat, CCombatResponse.Combat_TurnOrder,
     CombatTurnOrder.RollResult, queueInfo)
 
     -- pop and start first turn
     local firstChar = table.remove(battleState.turnQueue, 1)
+    if firstChar == nil then
+        print("[onTurnStartSpeedRoll] ERROR: turnQueue empty, p1Formation="
+            .. #battleState.p1Formation .. " p2Formation=" .. #battleState.p2Formation)
+        return
+    end
     battleState.currentChar = firstChar
+
     BS_BattleEvent.onTurnStart(firstChar, battleState)
 
 end

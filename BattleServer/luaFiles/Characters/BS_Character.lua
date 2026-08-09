@@ -1,8 +1,8 @@
-package.path = package.path .. ";../../luaFiles/?.lua" 
+package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Characters/?.lua"
 
 require "battleWrapper"
 require "BS_global"
-require "BS_StatScale"
+require "Characters.BS_StatScale"
 
 --[[
 ================================================================================
@@ -41,13 +41,14 @@ function BS_Character:new()
     o.slotIndex               = 0
     o.colPos                  = 0 -- X
     o.rowPos                  = 0 -- Y
-    o.stats                   = nil
+    o.stats                   = {}
     o.cHp                     = 0    -- current HP
     o.cMana                   = 0    -- current Mana
     o.cSp                     = 0    -- current SP
     o.cAction                 = 0    -- current AP
     o.cDeathdoorSurvivalRate  = 1.0  -- 1.0 * deathDoorSurviveChance
     o.buffs                   = {}
+    o.buffs = setmetatable({}, {__mode = "v"})
     o.currentStance           = nil
     o.isAlive                 = true
     o.side                    = 0
@@ -56,6 +57,16 @@ function BS_Character:new()
     return o
 end
 
+function BS_Character:copy(o)
+    o = o or {}
+    -- setmetatable(o, self)
+    for k,v in pairs(o)
+    do
+        self[k] = v
+    end
+    self.__index = self
+
+end
 ---@return number col (x)
 ---@return number row (y)
 function BS_Character:getPos()
@@ -69,7 +80,7 @@ function BS_Character:init(userID, tId, tSlotIndex, tColPos, tRowPos)
     self.slotIndex = tSlotIndex
     self.colPos    = tColPos
     self.rowPos    = tRowPos
-    
+
     -- print("BS_Character init: " .. userID .. " | " .. tId)
 
     ClientOwnedCharacters = _G.ClientOwnedCharacters    
@@ -84,7 +95,19 @@ function BS_Character:init(userID, tId, tSlotIndex, tColPos, tRowPos)
     end
 
     -- print("stat init success")
+    print("stat check for " .. userID .. " | " .. tId)
     self.stats   = ClientOwnedCharacters[userID][tId]
+    if self.stats == nil then
+        print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:")
+        return
+    end
+    print("stat is OK " )
+
+    -- self.stats = ClientOwnedCharacters[userID][tId]
+    print("---- stats dump ----")
+    for k, v in pairs(self.stats) do
+        print(k, v)
+    end
     self.cHp     = self:getMaxHP()
     self.cMana   = self:getMaxMana()
     self.cSp     = 0
@@ -114,6 +137,10 @@ function BS_Character:initStat()
 
     print("stat init success")
     self.stats   = ClientOwnedCharacters[self.userID][self.tId]
+    if self.stats == nil then
+        print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:")
+        return
+    end
     self.cHp     = self:getMaxHP()
     self.cMana   = self:getMaxMana()
     self.cSp     = 0
@@ -218,18 +245,16 @@ end
 
 
 function BS_Character:getStrength()
-    return self.stats.strength
+    return tonumber(self.stats.strength)
     + self:getBuffBonus("strength")
 end
 
 function BS_Character:getVitality()
-    return self.stats.vitality
-    + self:getBuffBonus("vitality")
+    return self.stats.vitality + self:getBuffBonus("vitality")
 end
 
 function BS_Character:getDexterity()
-    return self.stats.dexterity
-    + self:getBuffBonus("dexterity")
+    return self.stats.dexterity + self:getBuffBonus("dexterity")
 end
 
 function BS_Character:getAgility()
@@ -381,13 +406,19 @@ end
 --------------------------------------------------------------------------------
 
 function BS_Character:getBuffBonus(stat)
-    local total = 0
-    for _, buff in ipairs(self.buffs) do
-        if buff.stat == stat then
-            total = total + buff.value
-        end
-    end
-    return total
+    return 0
+
+    -- if self.buffs[stat] == nil then
+    --     print("no buff named " .. stat)
+    --     return 0
+    -- end
+    -- local total = 0
+    -- for _, buff in ipairs(self.buffs) do
+    --     if buff.stat == stat then
+    --         total = total + buff.value
+    --     end
+    -- end
+    -- return total
 end
 
 function BS_Character:addBuff(buff)

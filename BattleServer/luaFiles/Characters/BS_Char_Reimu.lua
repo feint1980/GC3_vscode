@@ -1,4 +1,7 @@
-package.path = package.path .. ";../../luaFiles/?.lua"
+package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Characters/?.lua"
+
+
+-- print("package path " .. package.path)
 
 require "BS_Character"
 

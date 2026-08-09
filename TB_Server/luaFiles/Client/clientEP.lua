@@ -5,17 +5,21 @@
 ---@field cppObj? pointer instance of ClientEP in C++
 ClientEP = 
 {
-    IP = nil,
-    GUID = "",
-    name = "",
-    cppObj = nil,
+    -- IP = nil,
+    -- GUID = "",
+    -- name = "",
+    -- cppObj = nil,
 }
 
 --- Constructor
 --- @return ClientEP
-function ClientEP:new(o)
-    o = o or {}
-    setmetatable(o, self)
+function ClientEP:new()
+    local o = setmetatable({}, self)
+    o.IP = nil
+    o.GUID = ""
+    o.name = ""
+    o.cppObj = nil
+    
     self.__index = self
     return o
 end

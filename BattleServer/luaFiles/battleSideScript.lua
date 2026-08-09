@@ -4,6 +4,7 @@ package.path = package.path .. ";../luaFiles/?.lua"
 
 require "battleWrapper"
 require "BS_global"
+require "BS_lobby"
 
 BS_IsConnectedToMainServer = false
 

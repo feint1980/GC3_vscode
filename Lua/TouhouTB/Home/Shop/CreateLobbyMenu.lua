@@ -25,9 +25,7 @@ CreateLobbyPanel = nil
 LobbyServerComboBox = nil
 
 
-CreateLobbyServerList = {
-
-}
+CreateLobbyServerList = {}
 
 ---@type EditBox
 LobbyNameInput = nil
@@ -48,7 +46,13 @@ function LobbyServer:new()
     o.ping = 0
     o.value = ""
     o.guid = ""
-    
+    self.__index = self
+    return o
+end
+
+function LobbyServer:copy(o)
+    o = o or {}
+    setmetatable(o, self)
     self.__index = self
     return o
 end
@@ -155,7 +159,7 @@ function CreateLobby_AddServerToList(serverGUID, serverName, ping)
 
     local serverValue =  serverName .. "  (" .. ping .. "ms)"
     if CreateLobbyServerList[serverGUID] == nil then
-        CreateLobbyServerList[serverGUID] = LobbyServer:new({name = serverName, ping = ping, value = serverValue, guid = serverGUID})
+        CreateLobbyServerList[serverGUID] = LobbyServer:copy({name = serverName, ping = ping, value = serverValue, guid = serverGUID})
     else
         CreateLobbyServerList[serverGUID].name = serverName
         CreateLobbyServerList[serverGUID].ping = ping
@@ -181,7 +185,7 @@ function CreateLobby_SendRequest()
 
     if CL_SelectedServer == nil and LobbyServerComboBox:getSelectedItemIndex() == -1 then
             -- no selection was made, get the lowest ping server
-        print("no server selected, getting lowest ping server")
+        print("no server selected, getting the lowest ping server")
         for key, value in pairs(CreateLobbyServerList) do
             if CL_SelectedServer == nil then
                 CL_SelectedServer = value
@@ -198,8 +202,9 @@ function CreateLobby_SendRequest()
             Prompt_UI_Table["CreateLobby_Noti"]:setMsg("No server avaiable !")
             Prompt_UI_Table["CreateLobby_Noti"]:show(true)
             return
-        print("selected server " .. CL_SelectedServer.guid .. " ping " .. CL_SelectedServer.ping)
+
         end
+        print("selected server " .. CL_SelectedServer.guid .. " ping " .. CL_SelectedServer.ping)
     end
 
         if LobbyNameInput:getText() == "" then

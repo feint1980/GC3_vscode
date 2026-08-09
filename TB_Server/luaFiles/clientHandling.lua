@@ -35,7 +35,7 @@ end
 function CH_FindClient(guid)
     if ClientEPList[guid] ~= nil then
         return ClientEPList[guid]
-    else 
+    else
         print("client " .. guid .. " not found")
         return nil
     end
