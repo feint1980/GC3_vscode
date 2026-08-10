@@ -28,6 +28,7 @@ Event hook summary:
 ================================================================================
 ]]--
 
+---@class BS_Character
 BS_Character = {}
 BS_Character.__index = BS_Character
 --------------------------------------------------------------------------------
@@ -42,6 +43,7 @@ function BS_Character:new()
     o.colPos                  = 0 -- X
     o.rowPos                  = 0 -- Y
     o.stats                   = {}
+
     o.cHp                     = 0    -- current HP
     o.cMana                   = 0    -- current Mana
     o.cSp                     = 0    -- current SP
@@ -49,6 +51,10 @@ function BS_Character:new()
     o.cDeathdoorSurvivalRate  = 1.0  -- 1.0 * deathDoorSurviveChance
     o.buffs                   = {}
     o.buffs = setmetatable({}, {__mode = "v"})
+
+    o.skills                  = {}
+    o.skills = setmetatable({}, {__mode = "v"})
+
     o.currentStance           = nil
     o.isAlive                 = true
     o.side                    = 0
@@ -57,21 +63,31 @@ function BS_Character:new()
     return o
 end
 
-function BS_Character:copy(o)
-    o = o or {}
-    -- setmetatable(o, self)
-    for k,v in pairs(o)
-    do
-        self[k] = v
-    end
-    self.__index = self
 
-end
 ---@return number col (x)
 ---@return number row (y)
 function BS_Character:getPos()
 
     return self.colPos ,  self.rowPos
+end
+
+function BS_Character:clone()
+    local o = setmetatable({}, getmetatable(self))
+
+    for k, v in pairs(self) do
+        if type(v) == "table" then
+            local t = {}
+            for k2, v2 in pairs(v) do t[k2] = v2 end
+            o[k] = t
+        else
+            o[k] = v
+        end
+    end
+
+    -- buffs should start clean on a copy, not inherit the source's active buffs
+    o.buffs = setmetatable({}, {__mode = "v"})
+
+    return o
 end
 
 function BS_Character:init(userID, tId, tSlotIndex, tColPos, tRowPos)
@@ -115,6 +131,11 @@ function BS_Character:init(userID, tId, tSlotIndex, tColPos, tRowPos)
 
     -- self:printStats()
 end
+
+function BS_Character:loadSkills()
+    self.skills = {}
+end
+
 
 function BS_Character:setSide(side)
     self.side = side

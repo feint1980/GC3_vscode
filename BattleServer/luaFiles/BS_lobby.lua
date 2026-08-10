@@ -178,7 +178,7 @@ function BattleLobby:AppendReady(playerID, index)
         self.leftFormation = self.formation_Map[playerID]
     elseif self.playerIndexMap[playerID] == 2 then
         self.rightFormation = self.formation_Map[playerID]
-    else 
+    else
         LOG_COOKED("K283","BattleLobby:AppendReady player " .. playerID .. " has no index or wrong index " .. self.playerIndexMap[playerID])
         return
     end
@@ -196,7 +196,6 @@ function BattleLobby:AppendReady(playerID, index)
         self.lobbyState = BattleLobbyState.INGAME
 
         print("precheck")
-
 
         if self.battleSession == nil then
             self.battleSession = BattleSession:new()

@@ -1,5 +1,23 @@
 package.path = package.path .. ';../../Lua/system/renderer/?.lua;'
 
+TextColor = {}
+TextColor.color_red = "<color=#ff1200>"
+TextColor.color_orange = "<color=#FF5D00>"
+TextColor.color_green = "<color=#00ff1d>"
+TextColor.color_blue = "<color=#2B83FF>"
+TextColor.color_close = "</color>"
+
+TextColor.color_TB_VIT = "<color=#FF0800>"
+TextColor.color_TB_STR = "<color=#FB8C00>"
+TextColor.color_TB_DEX = "<color=#50FF0A>"
+TextColor.color_TB_AGI = "<color=#00FFED>"
+TextColor.color_TB_INT = "<color=#FF00DC>"
+TextColor.color_TB_WIS = "<color=#0094FF>"
+TextColor.color_TB_title = "<color=#ADB5FF>"
+
+TextColor.color_TB_PHYSIC_DMG = "color=FF352B>"
+TextColor.color_TB_MAGIC_DMG = "color=9666FF>"
+
 
 ---@class (exact) L_compositeObject
 ---@field host pointer? instance of F_LuaRenderContext

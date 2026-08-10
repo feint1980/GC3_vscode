@@ -1,7 +1,7 @@
 package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Characters/?.lua"
 
 require "BS_BattleEvent"
-require "Characters.BS_Char_Reimu"
+require "BS_Char_Reimu"
 require "BS_Char_Yukari"
 require "BS_Char_Patchouli"
 require "BS_Char_Meiling"
@@ -76,6 +76,7 @@ function BattleSession:new()
     o.p2Id         = ""      -- playerID string
     o.p1EP         = nil     -- BattleClientEP
     o.p2EP         = nil     -- BattleClientEP
+    ---@type BS_Character
     o.currentChar  = nil     -- BS_Char_* currently acting
     o.phase        = -1     -- BattlePhase enum (defined in BS_global)
     o.currentRound = 0
@@ -138,13 +139,12 @@ function BattleSession:start()
     })
 
     print("[BattleSession] battle started — beginning round 1")
-    
+
     BS_BattleEvent.onRoundStart(self)
 
     -- TM_addTask(function()
     --     BS_BattleEvent.onTurnStartSpeedRoll(self)
     -- end,50)
-
 
 end
 
@@ -176,10 +176,16 @@ function BattleSession:buildFormation(playerID, rawFormation, side)
         print("charID " .. charID)
 
         local class = CHARACTER_CLASS_MAP[charID] or BS_Character
-        local tChar = class:copy(rawFormation.characters[i])
+        local tChar = class:new()
+
+        tChar:init(playerID, charID, rawFormation.characters[i].slotIndex, rawFormation.characters[i].colPos,
+            rawFormation.characters[i].rowPos)
+        tChar.stats = rawFormation.characters[i].stats
+        -- tChar = rawFormation.characters[i]:clone()
+
+        tChar:loadSkills()
         -- local tChar = class:new()
         -- tChar:init(playerID, charID, rawFormation.characters[i].stats)
-        
 
         -- local char = tChar
         if tChar ~= nil then
@@ -331,13 +337,13 @@ end
 --------------------------------------------------------------------------------
 
 --[[
-  actionData structure (sent by client):
-  {
-      type        = "ATTACK" | "MOVE" | "STANCE" | "CONCEDE",
-      actorId     = string,     -- characterId of acting character
-      targetCell  = number,     -- 1~9 grid cell (ATTACK / MOVE)
-      skillId     = string,     -- skill used (ATTACK)
-  }
+    actionData structure (sent by client):
+    {
+        type        = "ATTACK" | "MOVE" | "STANCE" | "CONCEDE",
+        actorId     = string,     -- characterId of acting character
+        targetCell  = number,     -- 1~9 grid cell (ATTACK / MOVE)
+        skillId     = string,     -- skill used (ATTACK)
+    }
 ]]--
 
 ---@param playerID string   who sent this action
@@ -443,6 +449,7 @@ end
 
 ---@param actionData table { actorId, targetCell, skillId }
 function BattleSession:handleAttack(actionData)
+    ---@type BS_Character
     local actor      = self.currentChar
     local targetCell = actionData.targetCell
 

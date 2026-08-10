@@ -1,9 +1,10 @@
-package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Characters/?.lua"
+package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Characters/?.lua" ..  ";../luaFiles/Skills/BS_Reimu/?.lua"
 
 
 -- print("package path " .. package.path)
 
 require "BS_Character"
+require "BS_Skill_HakureiKick"
 
 --[[
 ================================================================================
@@ -69,5 +70,17 @@ function BS_Char_Reimu:onTurnStart(battleState)
         currentMana = self.cMana
     }
     )
+
+end
+
+function BS_Char_Reimu:loadSkills()
+
+    print("BS_Char_Reimu loadSkills called |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
+    self.skills["Q"] = BS_Skill_HakureiKick:create(self)
+
+    print(self.skills["Q"].name)
+    print(self.skills["Q"].description)
+
+    
 
 end

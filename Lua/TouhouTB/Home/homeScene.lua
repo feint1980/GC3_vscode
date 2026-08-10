@@ -234,23 +234,16 @@ function HomeSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacterH
     print("test pipeline section ")
 
 
-    local tA = L_compositeObject:new()
-    tA:init(Home_RendererContext, 0, 0, 250, 250, 0, 5)
-    tA:addAnimatedObject("./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0, 1, 1, 255, 255, 255, 255, 0, 0)
+    -- local tA = L_compositeObject:new()
+    -- tA:init(Home_RendererContext, 0, 0, 250, 250, 0, 5)
+    -- tA:addAnimatedObject("./Assets/F_AObjects/meiling_tb.xml", "idle", 0, 0, 1, 1, 255, 255, 255, 255, 0, 0)
+    -- tA:addPanel("Basic_border", 0.25)
+    -- tA:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0, 
+    --     10, 0.5)
+    -- tA:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,0, 8, 
+    --     -10, 0.25)
+    -- tA:addText("ekwes", 0,10, 1,0.5, 255,255,255,255,0)
 
-    tA:addPanel("Basic_border", 0.25)
-    tA:addEmblem(0,"emblem_pack.xml/corner_c_25.png", 15,0, 0, 
-        10, 0.5)
-    
-    tA:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,0, 8, 
-        -10, 0.25)
-
-    -- tA:setAngle(45.0)
-
-    tA:addText("ekwes", 0,10, 1,0.5, 255,255,255,255,0)
-    
-
-    -- test Lua event pipeline
 
     Prompt_UI_Table["Home_Status"] = Prompt:new()
     Prompt_UI_Table["Home_Status"]:init(TGUIScriptingPtr,"Home_Status",false)
