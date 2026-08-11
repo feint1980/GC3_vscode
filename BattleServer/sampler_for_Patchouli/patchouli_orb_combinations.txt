@@ -1,0 +1,95 @@
+PATCHOULI ORB COMBINATIONS
+5 orb slots, elements: Metal, Wood, Earth, Water, Fire
+
+Rule recap:
+  Metal kills Wood, Wood kills Earth, Earth kills Water, Water kills Fire, Fire kills Metal.
+  Placing the VICTIM while its killer is stacked >=2 trims the killer to 1 (rescue).
+  Placing the KILLER, reaching >=2, while its victim exists wipes all copies of the victim (attack).
+  As a result, only certain 5-orb combinations are stable/reachable.
+
+Total valid combinations: 56 (out of 126 unrestricted)
+
+=== 5-of-a-kind (5 combos) ===
+Metal x5 | Silver Meridian |
+Summon a javelin that goes throughts the rows, dealling dmg 100%/50%/25% to all the character that stand in the way 
+
+
+Wood x5 | Verdant Prison | 
+Summons bramble that root enemy on contact ( last 1 turn ) on opponent field (including the free and occupied cells)
+
+
+Earth x5 | Gaia's Bulwark | 
+Can either target opponent or your feild, summon a stonewall that immoble on all the free cells, each wall has high HP 
+
+Water x5 | Tidal Reckoning | 
+Cast forward or backward → determines push vs. pull
+All characters hit by the wave get displaced ±1 cell in that direction
+Everyone displaced also gets inflicted with Fall Down status
+
+
+Fire x5 | Royal Flare | 
+Deal massive damage to everything in the field except Patchouli 
+
+
+=== 4 + 1 (15 combos) ===
+Metal x4 + Earth x1
+Metal x4 + Water x1
+Metal x4 + Fire x1
+Metal x1 + Wood x4
+Metal x1 + Earth x4
+Metal x1 + Water x4
+Wood x4 + Water x1
+Wood x4 + Fire x1
+Wood x1 + Earth x4
+Wood x1 + Water x4
+Wood x1 + Fire x4
+Earth x4 + Fire x1
+Earth x1 + Water x4
+Earth x1 + Fire x4
+Water x1 + Fire x4
+
+=== 3 + 2 (10 combos) ===
+Metal x3 + Earth x2
+Metal x3 + Water x2
+Metal x2 + Earth x3
+Metal x2 + Water x3
+Wood x3 + Water x2
+Wood x3 + Fire x2
+Wood x2 + Water x3
+Wood x2 + Fire x3
+Earth x3 + Fire x2
+Earth x2 + Fire x3
+
+=== 3 + 1 + 1 (15 combos) ===
+Metal x3 + Earth x1 + Water x1
+Metal x3 + Earth x1 + Fire x1
+Metal x3 + Water x1 + Fire x1
+Metal x1 + Wood x3 + Water x1
+Metal x1 + Wood x3 + Fire x1
+Metal x1 + Wood x1 + Earth x3
+Metal x1 + Wood x1 + Water x3
+Metal x1 + Earth x3 + Fire x1
+Metal x1 + Earth x1 + Water x3
+Wood x3 + Water x1 + Fire x1
+Wood x1 + Earth x3 + Fire x1
+Wood x1 + Earth x1 + Water x3
+Wood x1 + Earth x1 + Fire x3
+Wood x1 + Water x1 + Fire x3
+Earth x1 + Water x1 + Fire x3
+
+=== 2 + 2 + 1 (5 combos) ===
+Metal x2 + Earth x2 + Fire x1
+Metal x2 + Earth x1 + Water x2
+Metal x1 + Wood x2 + Water x2
+Wood x2 + Water x1 + Fire x2
+Wood x1 + Earth x2 + Fire x2
+
+=== 2 + 1 + 1 + 1 (5 combos) ===
+Metal x2 + Earth x1 + Water x1 + Fire x1
+Metal x1 + Wood x2 + Water x1 + Fire x1
+Metal x1 + Wood x1 + Earth x2 + Fire x1
+Metal x1 + Wood x1 + Earth x1 + Water x2
+Wood x1 + Earth x1 + Water x1 + Fire x2
+
+=== All balanced, 1+1+1+1+1 (1 combo) ===
+Metal x1 + Wood x1 + Earth x1 + Water x1 + Fire x1

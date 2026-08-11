@@ -102,5 +102,9 @@ function BS_Skill:new(o)
 end
 
 
+function BS_Skill:create(Character)
+    -- base
+end
+
 return BS_Skill
 

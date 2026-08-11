@@ -5,6 +5,7 @@ package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Characte
 
 require "BS_Character"
 require "BS_Skill_HakureiKick"
+require "BS_Skill_FateFavor"
 
 --[[
 ================================================================================
@@ -75,12 +76,14 @@ end
 
 function BS_Char_Reimu:loadSkills()
 
-    print("BS_Char_Reimu loadSkills called |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||")
+    print("BS_Char_Reimu loadSkills called |||||||||||||||||||||||||||||||||||||||||||")
     self.skills["Q"] = BS_Skill_HakureiKick:create(self)
 
     print(self.skills["Q"].name)
     print(self.skills["Q"].description)
 
-    
+    self.skills["F"] = BS_Skill_FateFavor:create(self)
+    print(self.skills["F"].name)
+    print(self.skills["F"].description)
 
 end

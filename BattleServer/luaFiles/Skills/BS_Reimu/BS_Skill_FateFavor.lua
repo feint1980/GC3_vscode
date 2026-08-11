@@ -1,7 +1,7 @@
-BS_Fate_Favor = {}
-BS_Fate_Favor.__index = BS_Fate_Favor
+BS_Skill_FateFavor = {}
+BS_Skill_FateFavor.__index = BS_Skill_FateFavor
 
-function BS_Fate_Favor:create(character)
+function BS_Skill_FateFavor:create(character)
     local o = BS_Skill.new(self)
 
     o.id = "SKILL_FATE_FAVOR"
