@@ -352,11 +352,11 @@ void CombatScene::drawText()
 
     m_textRenderer.begin();
 
-    m_textRenderer.renderTextBatched( 
-			L"FPS :" + 
-			feint_common::Instance()->convertStringtoWstring(feint_common::
-				Instance()->convertPreciousFloatToString(m_game->getFps())),
-			glm::vec2(720, -415), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
+    // m_textRenderer.renderTextBatched( 
+	// 		L"FPS :" + 
+	// 		feint_common::Instance()->convertStringtoWstring(feint_common::
+	// 			Instance()->convertPreciousFloatToString(m_game->getFps())),
+	// 		glm::vec2(720, -415), Feintgine::Color(255, 255, 255, 255), 1, ALIGN_FT_CENTER);
 
 
     if(m_combatField)
@@ -397,11 +397,17 @@ void CombatScene::checkInput()
 
 void CombatScene::handleInput(Feintgine::InputManager & inputManager)
 {
+    if(m_controlHandler)
+    {
+        m_controlHandler->handleInput(inputManager);
+    }
+
     if (inputManager.isKeyPressed(SDL_QUIT))
 	{
 		m_currentState = Feintgine::ScreenState::EXIT_APPLICATION;
 	}
     
+    m_luaRenderContext.updateSignals(inputManager);
 }
 
 void CombatScene::sendPollSignal(const std::string& signalName,bool value)

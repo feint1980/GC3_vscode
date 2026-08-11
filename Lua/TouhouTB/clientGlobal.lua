@@ -51,6 +51,8 @@ MainInfo = {
     pw = ""
 }
 
+Character_Skill_Info = {}
+
 
 
 LobbyScene_isReady = false

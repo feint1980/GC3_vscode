@@ -217,8 +217,13 @@ function Combat_dock_middle_panel:updateButton(group,key, name, description, cos
 end
 
 function Combat_dock_middle_panel:hideAllButtons()
-    for key, btn in pairs(self.buttons) do
-        btn:setVisible(false)
+
+    for group in pairs(self.buttons) do
+        for key, btn in pairs(self.buttons[group]) do
+            btn:setVisible(false)
+        end
+    -- for key, btn in pairs(self.buttons) do
+        -- btn:setVisible(false)
     end
 end
 
@@ -256,6 +261,12 @@ function Combat_dock_middle_panel:handleInput(key)
         end
     end
 end
+
+function Combat_dock_middle_panel:setCurrentCharacter(character)
+    self:hideAllButtons()
+    print("set character " .. character.name)
+end
+
 
 
 return Combat_dock_middle_panel

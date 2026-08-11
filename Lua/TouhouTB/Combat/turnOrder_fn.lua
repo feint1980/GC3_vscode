@@ -1,6 +1,8 @@
-package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;'
+package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;' .. ';../../Lua/TouhouTB/Combat/UI/?.lua;'
 
 require "clientGlobal"
+require "dock_global"
+
 
 TurnOrderHandling_Fn[CombatTurnOrder.Sync] = function(data)
 
@@ -116,6 +118,7 @@ TurnOrderHandling_Fn[CombatTurnOrder.PlayerCharacterTurn] = function(data)
     print(selfID .. "/" .. tData.playerId)
     if selfID == tData.playerId then
         print("it is the player turn")
+        Combat_Dock_Middle_Instance:setCurrentCharacter(tData)
     else
         print("it is the opponent turn")
     end

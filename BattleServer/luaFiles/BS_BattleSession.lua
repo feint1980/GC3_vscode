@@ -138,6 +138,8 @@ function BattleSession:start()
         self:getFormationJSON(self.p2Formation),
     })
 
+    
+
     print("[BattleSession] battle started — beginning round 1")
 
     BS_BattleEvent.onRoundStart(self)

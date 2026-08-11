@@ -79,8 +79,6 @@ function CombatSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ClientCharacte
     SendBattleRequest(BattlePacketChannel.Combat,CCombatResponse.Combat_ReadyStatus, {tGUID,tID,tLobbyID,tPlayerIndex,"Ready"},5,
     0.1,0.15)
 
-    
-
 end
 
 require "combat_global"
@@ -108,3 +106,6 @@ function CombatScene_SetSceneReady()
     print("CombatScene_SetSceneReady called")
     cpp_combat_sceneReady(CombatSceneHost,true)
 end
+
+---- Input control 
+require "CombatScene_input_control"

@@ -46,7 +46,7 @@ function ReviewSceneInit(host,TGUIScriptingPtr,ClientCharacterHandlerPtr, SkillH
     Review_ControlHandlerPtr = ControlHandlerPtr
     Review_RenderContext = RenderContextPtr
 
-    
+
     -- CombatField_instance = CombatField:new()
     -- CombatField_instance:init(CombatFieldPtr,3,3)
 

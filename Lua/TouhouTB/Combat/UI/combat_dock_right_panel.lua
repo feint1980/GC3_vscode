@@ -63,7 +63,7 @@ function Combat_dock_right_panel:init(renderHost,tPosX, tPosY, panelWidth, panel
 
     self.sides["skill_des"]:addTextInstance("skill_description", "Skill's description", -200, 90 , 1, 0.55, 255,255,255,255)
 
-    self.sides["skill_des"]:addTextInstance("skill_cost", "Skill's cost", 190, -170 , 2, 0.65, 255,255,255,255)
+    self.sides["skill_des"]:addTextInstance("skill_cost", "Skill's cost", 180, -150 , 2, 0.65, 255,255,255,255)
 
     ------ Item description
 
@@ -101,6 +101,8 @@ function Combat_dock_right_panel:getSide(sideName)
     -- print("returned side " .. sideName) 
     return self.sides[sideName]
 end
+
+
 
 
 return Combat_dock_right_panel
