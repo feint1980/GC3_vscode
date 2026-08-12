@@ -52,7 +52,6 @@ void FieldInfo::addCharacter(const std::string & ID, int side, const dCharacterS
 {
     std::string key = ID + "_" + std::to_string(side);
 
-
     m_statMap[key] = charStat;
     std::cout << "add or rewrite character " << key << "\n";
 

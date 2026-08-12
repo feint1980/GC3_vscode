@@ -113,7 +113,7 @@ CombatHandling_Fn[CombatIngameData.OnCharacterTurnStart] = function(data)
     print("cAction " .. cAction)
     print("cHp " .. cHp)
     print("cMana " .. cMana)
-    
+
     EventPipeline.emit("TURNDISPLAYER_SetSelection" , {characterID = characterID, side = side})
 
 end

@@ -1,6 +1,9 @@
-package.path = package.path .. ";../../luaFiles/?.lua"
+package.path = package.path .. ";../../luaFiles/?.lua" ..  ";../luaFiles/Skills/BS_Patchouli/?.lua"
 
 require "BS_Character"
+
+require "BS_Skill_Quintessence"
+require "BS_Skill_ManaShield"
 
 --[[
 ================================================================================
@@ -56,4 +59,18 @@ function BS_Char_Patchouli:onApplyDmg(dmgInfo, battleState)
         absorbed    = dmgInfo.absorbed,
         manaLeft    = self.cMana,
     })
+end
+
+function BS_Char_Patchouli:loadSkills()
+    print("BS_Char_Patchouli loadSkills called |||||||||||||||||||||||||||||||||||||||||||")
+
+    self.skills["R"] = BS_Skill_Quintessence:create(self)
+    print(self.skills["R"].name)
+    print(self.skills["R"].description)
+
+    self.skills["F"] = BS_Skill_ManaShield:create(self)
+    print(self.skills["F"].name)
+    print(self.skills["F"].description)
+
+
 end

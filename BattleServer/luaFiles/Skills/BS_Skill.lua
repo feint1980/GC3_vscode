@@ -1,3 +1,6 @@
+package.path = package.path .. ';../../Lua/system/objects/?.lua;'
+
+require "compositeObject"
 
 BS_SkillCost = {}
 BS_SkillCost.__index = BS_SkillCost

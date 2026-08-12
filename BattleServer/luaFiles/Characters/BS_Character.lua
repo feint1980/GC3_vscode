@@ -442,6 +442,10 @@ function BS_Character:getBuffBonus(stat)
     -- return total
 end
 
+function BS_Character:getSkills()
+    return self.skills
+end
+
 function BS_Character:addBuff(buff)
     for _, existing in ipairs(self.buffs) do
         if existing.id == buff.id then return end

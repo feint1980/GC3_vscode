@@ -1,6 +1,11 @@
-package.path = package.path .. ";../../luaFiles/?.lua"
+package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Skills/BS_Meiling/?.lua"
 
 require "BS_Character"
+require "BS_Skill_MeilingStances"
+require "BS_Skill_LiangYiZhuang"
+require "BS_Skill_PuBu"
+require "BS_Skill_DuLiBu"
+
 
 --[[
 ================================================================================
@@ -87,6 +92,30 @@ function BS_Char_Meiling:onTurnStart(battleState)
         currentMana = self.cMana
     }
     )
+end
+
+
+function BS_Char_Meiling:loadSkills()
+
+    print("BS_Char_Meiling loadSkills called |||||||||||||||||||||||||||||||||||||||||||")
+    self.skills["F"] = BS_Skill_MeilingStances:create(self)
+    self.skills["A"] = BS_Skill_LiangYiZhuang:create(self)
+    self.skills["S"] = BS_Skill_Pubu:create(self)
+    self.skills["D"] = BS_Skill_DuLiBu:create(self)
+
+    print(self.skills["F"].name)
+    print(self.skills["F"].description)
+
+    print(self.skills["A"].name)
+    print(self.skills["A"].description)
+
+    print(self.skills["S"].name)
+    print(self.skills["S"].description)
+
+    print(self.skills["D"].name)
+    print(self.skills["D"].description)
+
+
 end
 
 -- ---@diagnostic disable-next-line: duplicate-set-field

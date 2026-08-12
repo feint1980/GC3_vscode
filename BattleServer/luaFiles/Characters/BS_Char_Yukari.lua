@@ -1,6 +1,8 @@
-package.path = package.path .. ";../../luaFiles/?.lua"
+package.path = package.path .. ";../../luaFiles/?.lua" ..  ";../luaFiles/Skills/BS_Yukari/?.lua"
 
 require "BS_Character"
+require "BS_Skill_RedirectiveParadox"
+
 
 --[[
 ================================================================================
@@ -52,4 +54,16 @@ function BS_Char_Yukari:onTargeted(attackInfo, battleState)
     })
 
     return redirectTarget
+end
+
+function BS_Char_Yukari:loadSkills()
+
+    print("BS_Char_Yukari loadSkills called |||||||||||||||||||||||||||||||||||||||||||")
+
+
+    self.skills["F"] = BS_Skill_RedirectiveParadox:create(self)
+    print(self.skills["F"].name)
+    print(self.skills["F"].description)
+
+
 end

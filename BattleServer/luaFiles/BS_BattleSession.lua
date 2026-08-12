@@ -138,7 +138,7 @@ function BattleSession:start()
         self:getFormationJSON(self.p2Formation),
     })
 
-    
+    --- Sync Battle Skills
 
     print("[BattleSession] battle started — beginning round 1")
 
@@ -239,6 +239,7 @@ function BattleSession:serializeFormation(formation)
             currentMana  = char:getCurrentMana(),
             currentAP    = char:getCurrentAP(),
             currentSP    = char:getCurrentSP(),
+            skills       = char:getSkills(),
         })
     end
     return data
