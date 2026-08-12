@@ -7,6 +7,8 @@ require "combat_stage_sequence"
 CombatHandling_Fn[CombatIngameData.Sync] = function(data)
 
     local tData , pos, err = JSON_Decode(data)
+
+    print("[CombatIngameData.Sync] data dump" .. data )
     if err then
         print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_IngameData]  JSON decode error:", err)
     end
@@ -41,7 +43,7 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
     for k ,v in pairs(p2FormationInfo) do
         CombatField_instance:addCharacter(p2FormationInfo[k].colPos, 
         p2FormationInfo[k].rowPos, 2, p2FormationInfo[k].characterID,"" )
-        
+
         -- convert to number ( if not c++ parse will error)
         v.colPos = tonumber(v.colPos)
         v.rowPos = tonumber(v.rowPos)

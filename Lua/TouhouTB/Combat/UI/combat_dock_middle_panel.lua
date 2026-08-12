@@ -264,9 +264,8 @@ end
 
 function Combat_dock_middle_panel:setCurrentCharacter(character)
     self:hideAllButtons()
-    print("set character " .. character.name)
+    -- print("set character " .. character.name)
 end
-
 
 
 return Combat_dock_middle_panel
