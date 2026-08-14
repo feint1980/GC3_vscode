@@ -1,7 +1,9 @@
 package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;'
 
-require "clientGlobal"
+-- require "clientGlobal"
+require "combat_global"
 require "combat_stage_sequence"
+
 
 
 CombatHandling_Fn[CombatIngameData.Sync] = function(data)
@@ -20,6 +22,14 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
     local p2Id = tData[3]
     local p1Formation = tData[4]
     local p2Formation = tData[5]
+
+    --  Reset Combat_Combat_Formations
+    for k in pairs (Combat_Formations) do
+        Combat_Formations[k] = nil
+    end
+
+    Combat_Formations[p1Id] = p1Formation
+    Combat_Formations[p2Id] = p2Formation
 
     local p1FormationInfo, pos, err = JSON_Decode(p1Formation)
     if err then
@@ -90,6 +100,11 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
 
     CombatField_instance:FieldInfo_ListAll()
 
+
+    print("Dump Combat_Formations data")
+    for k,v in pairs(Combat_Formations) do
+        print(k .. ">" .. tostring(v))
+    end
 end
 
 CombatHandling_Fn[CombatIngameData.OnCharacterTurnStart] = function(data)

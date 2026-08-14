@@ -1,6 +1,10 @@
 package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;'
-require "clientWrapper"
 require "clientGlobal"
+require "clientWrapper"
+
+
+
+Combat_Formations = {} -- Contain the Lua data from server
 
 Combat_HandleNetwork = {}
 

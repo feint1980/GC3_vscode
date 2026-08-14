@@ -134,3 +134,5 @@ end
 function InfoHolder_getPointerVal(key)
     return cpp_infoHolder_setUserLightData(key)
 end
+
+

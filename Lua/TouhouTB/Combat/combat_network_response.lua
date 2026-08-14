@@ -1,6 +1,6 @@
 package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;'
 
-require "clientGlobal"
+-- require "clientGlobal"
 
 require "combat_fn"
 require "turnOrder_fn"
@@ -13,7 +13,6 @@ CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_IngameDa
 
     -- local guid,id,type,lobbyID, p1Id, p2Id, p1Formation, p2Formation = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
     local guid,id,type,data = string.match(data, "^|([^|]+)|([^|]+)|([^|]+)|([^|]+)|$")
-
 
     print("guid " .. guid)
     print("id " .. id)
