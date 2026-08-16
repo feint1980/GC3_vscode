@@ -1,7 +1,7 @@
 package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;'
 
 -- require "clientGlobal"
-require "combat_global"
+-- require "combat_global"
 require "combat_stage_sequence"
 
 

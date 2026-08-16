@@ -1,9 +1,11 @@
 package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;'
 
--- require "clientGlobal"
+require "clientGlobal"
 
 require "combat_fn"
 require "turnOrder_fn"
+
+
 
 CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_IngameData] = function(host,data,guid)
 
