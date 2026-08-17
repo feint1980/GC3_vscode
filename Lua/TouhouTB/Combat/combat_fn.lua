@@ -23,13 +23,7 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
     local p1Formation = tData[4]
     local p2Formation = tData[5]
 
-    --  Reset Combat_Combat_Formations
-    for k in pairs (Combat_Formations) do
-        Combat_Formations[k] = nil
-    end
 
-    Combat_Formations[p1Id] = p1Formation
-    Combat_Formations[p2Id] = p2Formation
 
     local p1FormationInfo, pos, err = JSON_Decode(p1Formation)
     if err then
@@ -40,6 +34,15 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
         print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_IngameData]  JSON decode error:", err)
     end
 
+
+    --  Reset Combat_Combat_Formations
+    for k in pairs (Combat_Formations) do
+        Combat_Formations[k] = nil
+    end
+
+    Combat_Formations[p1Id] = p1FormationInfo
+    Combat_Formations[p2Id] = p2FormationInfo
+
     for k,v in pairs(p1FormationInfo) do
         CombatField_instance:addCharacter(p1FormationInfo[k].colPos, 
         p1FormationInfo[k].rowPos, 1, p1FormationInfo[k].characterID,"" )
@@ -47,7 +50,7 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
         -- convert to number ( if not c++ parse will error)
         v.colPos = tonumber(v.colPos)
         v.rowPos = tonumber(v.rowPos)
-        local jsonData = JSON_Encode(v)
+        local jsonData = JSON_Encode(v.stats)
         CombatField_instance:SetCharacterStats(p1FormationInfo[k].characterID,1,jsonData)
     end
     for k ,v in pairs(p2FormationInfo) do
@@ -57,7 +60,7 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
         -- convert to number ( if not c++ parse will error)
         v.colPos = tonumber(v.colPos)
         v.rowPos = tonumber(v.rowPos)
-        local jsonData = JSON_Encode(v)
+        local jsonData = JSON_Encode(v.stats)
         CombatField_instance:SetCharacterStats(p2FormationInfo[k].characterID,2,jsonData)
     end
 

@@ -215,6 +215,8 @@ function BattleSession:serializeFormation(formation)
             characterID  = char.id,
             rowPos       = char.rowPos,
             colPos       = char.colPos,
+            stats = {
+
             strength     = char:getStrength(),
             vitality     = char:getVitality(),
             dexterity    = char:getDexterity(),
@@ -238,7 +240,8 @@ function BattleSession:serializeFormation(formation)
             currentHP    = char:getCurrentHP(),
             currentMana  = char:getCurrentMana(),
             currentAP    = char:getCurrentAP(),
-            currentSP    = char:getCurrentSP(),
+            currentSP    = char:getCurrentSP()
+            },
             skills       = char:getSkills(),
         })
     end
