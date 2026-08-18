@@ -33,7 +33,7 @@ function BS_Skill_HakureiKick:create(character)
 
     o.isPassive = false
 
-    o.description = "A swift kick infused with faint spirit energy.\nDisplace target, deal " .. TextColor.color_TB_PHYSIC_DMG .. tostring(o.dmg.dmgValue) .. TextColor.color_close .. " damage and apply a " .. TextColor.color_TB_DEX .. "weak push 1" .. TextColor.color_close .. " cell., Reimu move forward 1 cell"
+    o.description = "A swift kick infused with faint spirit energy.\nDisplace target, deal " .. TextColor.color_red .. tostring(o.dmg.dmgValue) .. TextColor.color_close .. " damage and \n apply a " .. TextColor.color_TB_DEX .. "weak push 1" .. TextColor.color_close .. " cell,\nReimu moves forward 1 cell"
 
     o.costText =TextColor.color_orange .. "AP: " ..  tostring(o.cost.apCost) .. TextColor.color_close .. TextColor.color_TB_WIS .. "Mana: "  .. tostring(o.cost.manaCost) .. TextColor.color_close
 

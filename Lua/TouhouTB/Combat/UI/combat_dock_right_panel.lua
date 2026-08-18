@@ -61,7 +61,8 @@ function Combat_dock_right_panel:init(renderHost,tPosX, tPosY, panelWidth, panel
 
     self.sides["skill_des"]:addTextInstance("skill_name", "Skill's name", 0, 150 , 3, 0.75, 255,255,255,255)
 
-    self.sides["skill_des"]:addTextInstance("skill_description", "Skill's description", -200, 90 , 1, 0.55, 255,255,255,255)
+    self.sides["skill_des"]:addTextInstance("skill_description", "Skill's description", -200, 90 , 1,
+    0.46, 255,255,255,255)
 
     self.sides["skill_des"]:addTextInstance("skill_cost", "Skill's cost", 180, -150 , 2, 0.65, 255,255,255,255)
 

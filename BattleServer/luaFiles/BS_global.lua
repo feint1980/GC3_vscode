@@ -57,5 +57,5 @@ TextColor.color_TB_INT = "<color=#FF00DC>"
 TextColor.color_TB_WIS = "<color=#0094FF>"
 TextColor.color_TB_title = "<color=#ADB5FF>"
 
-TextColor.color_TB_PHYSIC_DMG = "color=FF352B>"
-TextColor.color_TB_MAGIC_DMG = "color=9666FF>"
+TextColor.color_TB_PHYSIC_DMG = "<color=#FF352B>"
+TextColor.color_TB_MAGIC_DMG = "<color=#9666FF>"

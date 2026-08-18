@@ -149,33 +149,6 @@ function Combat_dock_middle_panel:addButton(group,key, posX, posY, name, info , 
 
     btn:init(self.renderContextHost, key, name, posX, posY, self.buttonWidth,
     self.buttonHeight, description, info)
-    -- btn:addPanel("Basic_border", 0.3)
-    -- btn:showPanelBG(true)
-    -- btn:setPanelBGColor(20, 20, 25, 220)
-    -- btn:setPanelBGScale(0.95)
-
-    -- key label, top-left corner of the button
-    -- btn:addText(key,
-    --     -(self.buttonWidth * 0.5) + 10, (self.buttonHeight * 0.5) - 14,
-    --     1, 0.8,
-    --     255, 255, 255, 255,
-    --     0)
-
-    -- -- name, center of the button (small, may wrap visually depending on your text renderer)
-    -- btn:addText(name,
-    --     0, 4,
-    --     3, 0.55,
-    --     230, 230, 230, 255,
-    --     0)
-
-    -- -- info line, bottom of the button
-    -- if info ~= "" then
-    --     btn:addText(info,
-    --         0, -(self.buttonHeight * 0.5) + 14,
-    --         3, 0.6,
-    --         170, 200, 255, 255,
-    --         0)
-    -- end
 
     btn:getPanel():setRegisterFlag(1)
     btn:registerCallback("onHoverEnter", function()
@@ -210,6 +183,7 @@ function Combat_dock_middle_panel:updateButton(group,key, name, description, cos
         return
     end
     btn:updateButtonInfo(name, description, cost, clickable)
+    btn:setVisible(true)
     -- NOTE: this assumes addText returns a pointer whose .text field
     -- is writable from Lua (same assumption used in combat_dock_my_character_info.lua).
     -- If that's not how your binding works, this needs to go through whatever
@@ -266,14 +240,15 @@ function Combat_dock_middle_panel:setCurrentCharacter(character)
     -- print("set character " .. character.stats.name)
     print("Combat_dock_middle_panel:setCurrentCharacter")
     print("dump here ")
+    
+    self:hideAllButtons()
+    
     for k, v in pairs(character) do 
-        for k2, v2 in pairs(v.skills) do
-            
+        for k2 ,v2 in pairs(character.skills) do
+            -- self.buttons[k2]:update
+            self:updateButton("skill", k2, v2.name,v2.description, v2.costText, (not v2.isPassive))
         end
     end
-
-    self:hideAllButtons()
-
 
 
 end
