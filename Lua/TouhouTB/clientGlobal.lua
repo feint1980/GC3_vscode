@@ -136,3 +136,4 @@ function InfoHolder_getPointerVal(key)
 end
 
 
+Combat_Formations = {} -- Contain the Lua data from server

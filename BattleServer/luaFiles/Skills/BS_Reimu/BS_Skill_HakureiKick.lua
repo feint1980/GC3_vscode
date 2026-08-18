@@ -12,7 +12,7 @@ BS_Skill_HakureiKick.__index = BS_Skill_HakureiKick
 ---@---@return BS_Skill_HakureiKick
 function BS_Skill_HakureiKick:create(character)
 
-    local o = BS_Skill.new(self)
+    local o = BS_Skill:new()
 
     o.dmg = BS_DMG:new({
         dmgValue = character:getPhysicDmg() * 0.5 + (character:getAgility() + character:getDexterity() * 0.75),
@@ -37,7 +37,7 @@ function BS_Skill_HakureiKick:create(character)
 
     o.costText =TextColor.color_orange .. "AP: " ..  tostring(o.cost.apCost) .. TextColor.color_close .. TextColor.color_TB_WIS .. "Mana: "  .. tostring(o.cost.manaCost) .. TextColor.color_close
 
-    o.availablePosition =  BS_Required_Position.MIDDLE
+    o.requiredPosition =  BS_Required_Position.MIDDLE
 
     o.targetPosition    = BS_Target_Position:new(BS_Required_Position.FRONT | BS_Required_Position.MIDDLE, true)
 

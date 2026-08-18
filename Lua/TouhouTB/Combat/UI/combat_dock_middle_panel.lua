@@ -263,8 +263,19 @@ function Combat_dock_middle_panel:handleInput(key)
 end
 
 function Combat_dock_middle_panel:setCurrentCharacter(character)
+    -- print("set character " .. character.stats.name)
+    print("Combat_dock_middle_panel:setCurrentCharacter")
+    print("dump here ")
+    for k, v in pairs(character) do 
+        for k2, v2 in pairs(v.skills) do
+            
+        end
+    end
+
     self:hideAllButtons()
-    -- print("set character " .. character.name)
+
+
+
 end
 
 

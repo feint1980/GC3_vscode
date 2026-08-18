@@ -210,12 +210,12 @@ end
 function BattleSession:serializeFormation(formation)
     local data = {}
     for _, char in ipairs(formation) do
-        table.insert(data, {
+        data[char.id] =
+        {
+
+            stats = { -- Map check : CombatCharacter::dCharacterStats 
             ownerID      = char.userID,
             characterID  = char.id,
-            rowPos       = char.rowPos,
-            colPos       = char.colPos,
-            stats = {
 
             strength     = char:getStrength(),
             vitality     = char:getVitality(),
@@ -240,10 +240,13 @@ function BattleSession:serializeFormation(formation)
             currentHP    = char:getCurrentHP(),
             currentMana  = char:getCurrentMana(),
             currentAP    = char:getCurrentAP(),
-            currentSP    = char:getCurrentSP()
+            currentSP    = char:getCurrentSP(),
+
+            rowPos       = char.rowPos,
+            colPos       = char.colPos,
             },
             skills       = char:getSkills(),
-        })
+        }
     end
     return data
 end

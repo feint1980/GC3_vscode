@@ -118,7 +118,7 @@ TurnOrderHandling_Fn[CombatTurnOrder.PlayerCharacterTurn] = function(data)
     print(selfID .. "/" .. tData.playerId)
     if selfID == tData.playerId then
         print("it is the player turn")
-        Combat_Dock_Middle_Instance:setCurrentCharacter(tData)
+        Combat_Dock_Middle_Instance:setCurrentCharacter(Combat_Formations[selfID][tData.characterId])
     else
         print("it is the opponent turn")
     end

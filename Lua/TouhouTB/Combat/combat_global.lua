@@ -4,7 +4,7 @@ require "clientWrapper"
 
 
 
-Combat_Formations = {} -- Contain the Lua data from server
+
 
 Combat_HandleNetwork = {}
 

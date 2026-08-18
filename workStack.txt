@@ -14,19 +14,20 @@
                     x Basic skill icons 
                     x Item icon 
                     x general icon
-                    - border for all of them 
+                    x border for all of them 
             - Right dock
                 - GUI progress
-
+                    x Description box
                 
 
-% List of files need to fix
-x F_CompositeObject.h
-x F_CompositeObject.cpp
-- F_LuaRenderContext.cpp
-- F_LuaRenderContext.h
 
-- compositeObject.lua
-- renderContext_wrapper.lua
+- Battle Server side 
+    - update data from server side 
+        - Character
+            - split other to stats and skills
+
+
+% List of files need to fix
+
 
 

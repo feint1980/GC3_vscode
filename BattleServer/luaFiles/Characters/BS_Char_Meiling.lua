@@ -98,6 +98,8 @@ end
 function BS_Char_Meiling:loadSkills()
 
     print("BS_Char_Meiling loadSkills called |||||||||||||||||||||||||||||||||||||||||||")
+    self.skills = {}
+
     self.skills["F"] = BS_Skill_MeilingStances:create(self)
     self.skills["A"] = BS_Skill_LiangYiZhuang:create(self)
     self.skills["S"] = BS_Skill_Pubu:create(self)

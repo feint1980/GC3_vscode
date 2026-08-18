@@ -1,6 +1,8 @@
 package.path = package.path .. ';../../Lua/system/Input/?.lua;'
 
 require "controlHandler"
+require "dock_global"
+
 
 local function issueFocus(controlHost, tguiHost)
     local label =  cpp_FocusStack_GetFocusLabel(tguiHost)

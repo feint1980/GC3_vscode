@@ -213,6 +213,8 @@ int lua_CombatField_SetCharacterStatFloat(lua_State * L)
 
 int lua_CombatField_SetCharacterStatStr(lua_State * L)
 {
+
+    std::cout << "lua_CombatField_SetCharacterStatStr called \n";
     if(lua_gettop(L) != 3)
     {
         std::cout << "gettop failed (lua_CombatField_SetCharacterStatStr) " << lua_gettop(L) << "\n";
