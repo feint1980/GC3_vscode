@@ -72,6 +72,8 @@ public:
 
     int getSide() { return m_side; }
 
+    void playAnimation(const std::string & animationName, int time = -1);
+
     std::string getMapKey() { return m_characterID + "_" + std::to_string(m_side); }
 private:
 

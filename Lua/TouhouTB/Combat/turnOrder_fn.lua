@@ -36,11 +36,12 @@ TurnOrderHandling_Fn[CombatTurnOrder.Sync] = function(data)
         end
         -- for k2,v2 in pairs(v) do
         --     print("     k2 " .. k2 .. " v2 " .. v2)
-            
+
         -- end
     end
 
     TurnDisplayer_instance:updateOrder()
+    Combat_Dock_Middle_Instance:hideAllButtons()
 
 end
 

@@ -3,9 +3,6 @@ require "clientGlobal"
 require "clientWrapper"
 
 
-
-
-
 Combat_HandleNetwork = {}
 
 CombatMessageHandling = {}

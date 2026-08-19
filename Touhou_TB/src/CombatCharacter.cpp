@@ -220,6 +220,12 @@ void CombatCharacter::setFloatValue(const std::string & key, float value)
     
 }
 
+void CombatCharacter::playAnimation(const std::string & animationName, int time = -1)
+{
+    m_animation.playAnimation(animationName, time);
+}
+
+
 std::string CombatCharacter::getStringValue(const std::string & key)
 {
     if(key == "characterID" || key == "charID" || key == "cID" || key == "characterId")

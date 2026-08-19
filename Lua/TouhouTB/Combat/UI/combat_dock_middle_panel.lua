@@ -238,7 +238,6 @@ end
 
 function Combat_dock_middle_panel:setCurrentCharacter(character)
     -- print("set character " .. character.stats.name)
-    print("Combat_dock_middle_panel:setCurrentCharacter")
     print("dump here ")
     
     self:hideAllButtons()

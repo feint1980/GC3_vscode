@@ -84,3 +84,7 @@ end
 function CombatField:FieldInfo_ListAll()
     CF_FieldInfo_ListAll(self.host)
 end
+
+function CombatField:selectCharacter(characterID,side)
+    
+end
