@@ -1,6 +1,7 @@
 
 #include "CSlot.h"
 #include "CombatCharacter.h"
+#include <algorithm>
 
 CombatCharacter::CombatCharacter()
 {
@@ -50,6 +51,47 @@ void CombatCharacter::draw(Feintgine::SpriteBatch & spriteBatch)
 void CombatCharacter::update(float deltaTime)
 {
     m_animation.update(deltaTime);
+
+    if (m_isMoving)
+    {
+        m_moveElapsed += deltaTime;
+        float t = (m_moveDuration > 0.0f) ? std::min(m_moveElapsed / m_moveDuration, 1.0f) : 1.0f;
+        m_pos = m_moveStartPos + (m_moveTargetPos - m_moveStartPos) * t;
+
+        if (t >= 1.0f)
+        {
+            m_pos = m_moveTargetPos;
+            m_isMoving = false;
+            m_currentSlot = m_targetSlot;
+            m_moveJustCompleted = true; // flag only - updateEvents() fires it into Lua
+        }
+    }
+
+    if (m_waitingAnimDone)
+    {
+        bool playingNow = m_animation.isPlaying();
+        if (m_wasAnimPlayingLastFrame && !playingNow)
+        {
+            m_waitingAnimDone = false;
+            m_animJustCompleted = true; // flag only - updateEvents() fires it into Lua
+        }
+        m_wasAnimPlayingLastFrame = playingNow;
+    }
+}
+
+void CombatCharacter::updateEvents(lua_State * L)
+{
+    if (m_moveJustCompleted)
+    {
+        m_moveJustCompleted = false;
+        fireLuaEvent(L, "moveComplete");
+    }
+
+    if (m_animJustCompleted)
+    {
+        m_animJustCompleted = false;
+        fireLuaEvent(L, "animComplete");
+    }
 }
 
 void CombatCharacter::drawText(TextRenderer * textRenderer)
@@ -220,11 +262,6 @@ void CombatCharacter::setFloatValue(const std::string & key, float value)
     
 }
 
-void CombatCharacter::playAnimation(const std::string & animationName, int time = -1)
-{
-    m_animation.playAnimation(animationName, time);
-}
-
 
 std::string CombatCharacter::getStringValue(const std::string & key)
 {
@@ -377,4 +414,71 @@ void CombatCharacter::listStats()
     std::cout << "maxSP " << m_stats.maxSP << "\n";
     std::cout << "currentSP " << m_stats.currentSP << "\n";
 
+}
+
+void CombatCharacter::playAnimation(const std::string & animationName, bool loop)
+{
+    if (loop)
+    {
+        m_animation.playAnimation(animationName, -1);
+        m_waitingAnimDone = false;
+    }
+    else
+    {
+        m_animation.playAnimation(animationName, 1); // play through once then stop
+        m_waitingAnimDone = true;
+        m_wasAnimPlayingLastFrame = true;
+    }
+}
+
+void CombatCharacter::moveToCell(CSlot * targetSlot, float duration)
+{
+    if (!targetSlot)
+    {
+        std::cout << "moveToCell: targetSlot is null\n";
+        return;
+    }
+
+    m_targetSlot = targetSlot;
+    m_moveStartPos = m_pos;
+    m_moveTargetPos = targetSlot->getPos();
+    m_moveDuration = duration;
+    m_moveElapsed = 0.0f;
+    m_isMoving = true;
+}
+
+void CombatCharacter::fireLuaEvent(lua_State * L, const std::string & eventName)
+{
+    if (!L)
+    {
+        std::cout << "fireLuaEvent: lua_State is null, cannot fire " << eventName << "\n";
+        return;
+    }
+
+    lua_getglobal(L, "CC_Event");
+    if (lua_isnil(L, -1))
+    {
+        std::cout << "fireLuaEvent: CC_Event global not found\n";
+        lua_pop(L, 1);
+        return;
+    }
+
+    lua_getfield(L, -1, "fire");
+    if (lua_isnil(L, -1))
+    {
+        std::cout << "fireLuaEvent: CC_Event.fire not found\n";
+        lua_pop(L, 2);
+        return;
+    }
+
+    lua_remove(L, -2); // pop CC_Event table, leave fire function on top
+
+    std::string fullKey = getMapKey() + "_" + eventName;
+    lua_pushstring(L, fullKey.c_str());
+
+    if (lua_pcall(L, 1, 0, 0) != 0)
+    {
+        std::cout << "fireLuaEvent error: " << lua_tostring(L, -1) << "\n";
+        lua_pop(L, 1);
+    }
 }

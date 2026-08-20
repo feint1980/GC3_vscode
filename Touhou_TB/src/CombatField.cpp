@@ -413,7 +413,23 @@ int lua_getDockInstance(lua_State * L)
     return 0;
 }
 
-
+int lua_CombatCharacter_MoveToCell(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_CombatCharacter_MoveToCell) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+        int x = lua_tonumber(L, 2);
+        int y = lua_tonumber(L, 3);
+        
+        // character->moveToCell(x, y);
+        return 0;
+    }
+    return 0;
+}
 
 
 CombatField::CombatField()
@@ -518,6 +534,9 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     lua_register(m_script, "cpp_CombatField_SetCharacterStatStr", lua_CombatField_SetCharacterStatStr);
 
     lua_register(m_script, "cpp_CombatField_SetCharacterStats", lua_CombatField_SetCharacterStats);
+
+    // character 
+    lua_register(m_script, "cpp_CombatCharacter_MoveToCell", lua_CombatCharacter_MoveToCell);
 
     // List
     lua_register(m_script, "cpp_CombatField_ListCharacterStats", lua_CombatField_ListCharacterStats);
@@ -630,13 +649,27 @@ void CombatField::draw(Feintgine::SpriteBatch & spriteBatch)
 void CombatField::update(float deltaTime)
 {
     // std::cout << "character size " << m_characters.size() << "\n";
-    for (int i = 0 ; i < m_characters.size(); i++)
+    for (auto & character : m_characters)
     {
-        m_characters[i]->update(deltaTime);
+        if (character)
+        {
+            character->update(deltaTime);
+        }
     }
     if(m_banner)
     {
         m_banner->update(deltaTime);
+    }
+}
+
+void CombatField::updateEvents()
+{
+    for (auto & character : m_characters)
+    {
+        if (character)
+        {
+            character->updateEvents(m_script);
+        }
     }
 }
 
@@ -714,4 +747,35 @@ void CombatField::drawText(TextRenderer * textRenderer)
     m_guidock.drawText(textRenderer);
     // }
     
+}
+
+void CombatField::characterMoveToCell(const std::string & characterID, int side, int col, int row, float duration)
+{
+    CombatCharacter * character = getCharacter(characterID, side);
+    if (!character)
+    {
+        std::cout << "characterMoveToCell: character not found " << characterID << "\n";
+        return;
+    }
+
+    CSlot * targetSlot = getSlot(col, row, side);
+    if (!targetSlot)
+    {
+        std::cout << "characterMoveToCell: slot not found " << col << "," << row << "\n";
+        return;
+    }
+
+    character->moveToCell(targetSlot, duration);
+}
+
+void CombatField::characterPlayAnimation(const std::string & characterID, int side, const std::string & animName, bool loop)
+{
+    CombatCharacter * character = getCharacter(characterID, side);
+    if (!character)
+    {
+        std::cout << "characterPlayAnimation: character not found " << characterID << "\n";
+        return;
+    }
+
+    character->playAnimation(animName, loop);
 }

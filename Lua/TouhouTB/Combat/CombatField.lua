@@ -1,5 +1,6 @@
 package.path = package.path .. ';../../Lua/TouhouTB/Combat/?.lua;' 
 
+require "combatCharacter"
 require "combatField_wrapper"
 
 CombatField = {}
@@ -53,19 +54,22 @@ end
 ---@param characterID string
 ---@param portraitPath string
 function CombatField:addCharacter(col,row,side,characterID,portraitPath)
-    -- print("CombatField:addCharacter called ")
-    CF_AddCharacter(self.host, col, row, side, characterID, portraitPath)
+    local charPtr = CF_AddCharacter(self.host, col, row, side, characterID, portraitPath)
+    return CombatCharacter:new(charPtr, characterID, side, self.host)
 end
 
 ---@Description Get a character from the combat field
 ---@param characterID number
 ---@param side number
 function CombatField:getCharacter(characterID,side)
-    return CF_GetCharacter(self.host, characterID, side)
+    local charPtr = CF_GetCharacter(self.host, characterID, side)
+    if not charPtr then
+        return nil
+    end
+    return CombatCharacter:new(charPtr, characterID, side, self.host)
 end
 
 function CombatField:showBannerMsg(msg)
-    -- print("CombatField:showBannerMsg called")
     cpp_Banner_SetMsg(self.banner, msg)
 end
 
@@ -87,4 +91,77 @@ end
 
 function CombatField:selectCharacter(characterID,side)
     
+end
+
+
+-- =========================================================
+-- Action presentation: step sequences
+-- =========================================================
+
+---@Description Run a single presentation step. Fire-and-forget steps (move/anim)
+---start immediately and return; wait steps block the coroutine until the
+---matching CC_Event fires.
+---@param step table { type = "move"|"anim"|"waitMove"|"waitAnim", characterID, side, ... }
+function CombatField:runStep(step)
+    local character = self:getCharacter(step.characterID, step.side)
+    if not character then
+        print("CombatField:runStep - character not found: " .. tostring(step.characterID))
+        return
+    end
+
+    if step.type == "move" then
+        character:moveToCell(step.col, step.row, step.duration)
+
+    elseif step.type == "anim" then
+        character:playAnimation(step.animName, step.loop)
+
+    elseif step.type == "waitMove" then
+        character:waitMoveComplete()
+
+    elseif step.type == "waitAnim" then
+        character:waitAnimComplete()
+
+    else
+        print("CombatField:runStep - unknown step type: " .. tostring(step.type))
+    end
+end
+
+---@Description Run an ordered sequence of steps as one coroutine.
+---Steps with no wait between them effectively run concurrently
+---(e.g. "move" then "anim" back to back both start the same tick).
+---@param steps table array of step tables, executed in order
+---@param onComplete function|nil called with no args once every step is done
+function CombatField:playSequence(steps, onComplete)
+    coroutine.wrap(function()
+        for _, step in ipairs(steps) do
+            self:runStep(step)
+        end
+        if onComplete then
+            onComplete()
+        end
+    end)()
+end
+
+---@Description Example / test call: move a character to a cell with full animation sequencing.
+---@param characterID string
+---@param side number
+---@param col number
+---@param row number
+---@param duration number seconds
+function CombatField:testMoveSequence(characterID, side, col, row, duration)
+
+    local steps = {
+        { type = "move", characterID = characterID, side = side, col = col, row = row, duration = duration },
+        { type = "anim", characterID = characterID, side = side, animName = "move", loop = false },
+        { type = "waitMove", characterID = characterID, side = side },
+
+        { type = "anim", characterID = characterID, side = side, animName = "stopAnimation", loop = false },
+        { type = "waitAnim", characterID = characterID, side = side },
+
+        { type = "anim", characterID = characterID, side = side, animName = "idle", loop = true },
+    }
+
+    self:playSequence(steps, function()
+        print("testMoveSequence: " .. characterID .. " finished moving to (" .. col .. "," .. row .. ")")
+    end)
 end

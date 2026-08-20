@@ -284,6 +284,15 @@ void CombatScene::update(float deltaTime)
         m_turnDisplayer->update(deltaTime);
     }
 
+    updateEvents();
+}
+
+void CombatScene::updateEvents()
+{
+    if(m_combatField)
+    {
+        m_combatField->updateEvents();
+    }
 }
 
 

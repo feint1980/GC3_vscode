@@ -75,6 +75,8 @@ public:
 
     virtual void update(float deltaTime) override;
 
+    void updateEvents();
+
     virtual void draw() override;
 
     void drawText();

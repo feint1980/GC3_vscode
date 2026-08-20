@@ -107,3 +107,11 @@ end
 function CF_FieldInfo_ListAll(host)
     cpp_ListAllCharacters(host)
 end
+
+function CF_CharacterMoveToCell(host, characterID, side, col, row, duration)
+    cpp_CombatField_CharacterMoveToCell(host, characterID, side, col, row, duration)
+end
+
+function CF_CharacterPlayAnimation(host, characterID, side, animName, loop)
+    cpp_CombatField_CharacterPlayAnimation(host, characterID, side, animName, loop)
+end

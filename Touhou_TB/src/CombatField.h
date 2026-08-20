@@ -84,6 +84,8 @@ public:
 
     void update(float deltaTime);
 
+    void updateEvents();
+
     void addSlot(int collumn, int row, int side);
 
     void drawText(TextRenderer * textRenderer);
@@ -105,6 +107,10 @@ public:
     void setFieldInfoCharacter(const std::string & characterID, int side, const dCharacterStats & charStat); //{ m_fieldInfo.addCharacter(characterID, side, charStat); }
 
     void listFieldInfoCharacters();
+
+    void characterMoveToCell(const std::string & characterID, int side, int col, int row, float duration);
+
+    void characterPlayAnimation(const std::string & characterID, int side, const std::string & animName, bool loop);
 
 private:
 

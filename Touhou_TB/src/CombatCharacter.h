@@ -4,6 +4,9 @@
 
 #include <F_AnimatedObject.h>
 #include <TextRenderer.h>
+extern "C" {
+    #include <lua.h>
+}
 class CSlot;
 
 
@@ -54,7 +57,13 @@ public:
     
     void drawText(TextRenderer * textRenderer);
 
+    // Pure simulation only: ticks movement lerp + animation frames,
+    // sets completion flags. Never touches Lua.
     void update(float deltaTime);
+
+    // Checks completion flags set by update() and fires the matching
+    // Lua event exactly once. L is forwarded from CombatField each frame.
+    void updateEvents(lua_State * L);
 
     void setStringValue(const std::string & key, const std::string & value);
     
@@ -72,12 +81,21 @@ public:
 
     int getSide() { return m_side; }
 
-    void playAnimation(const std::string & animationName, int time = -1);
+    // --- animation / movement (event-driven) ---
+
+    void playAnimation(const std::string & animationName, bool loop = true);
+
+    void moveToCell(CSlot * targetSlot, float duration);
+
+    bool isMoving() const { return m_isMoving; }
 
     std::string getMapKey() { return m_characterID + "_" + std::to_string(m_side); }
 private:
 
+    void fireLuaEvent(lua_State * L, const std::string & eventName);
+
     CSlot * m_currentSlot = nullptr;
+    CSlot * m_targetSlot = nullptr;
 
     int m_side = 1;
 
@@ -92,8 +110,19 @@ private:
 
     Feintgine::F_AnimatedObject m_animation;
     dCharacterStats m_stats;
-    // 
 
+    // movement lerp state
+    glm::vec2 m_moveStartPos = glm::vec2(0);
+    glm::vec2 m_moveTargetPos = glm::vec2(0);
+    float m_moveDuration = 0.0f;
+    float m_moveElapsed = 0.0f;
+    bool m_isMoving = false;
+    bool m_moveJustCompleted = false;
+
+    // one-shot animation completion tracking
+    bool m_waitingAnimDone = false;
+    bool m_wasAnimPlayingLastFrame = false;
+    bool m_animJustCompleted = false;
 };
 
 
