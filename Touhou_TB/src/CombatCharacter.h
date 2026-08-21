@@ -89,6 +89,8 @@ public:
 
     bool isMoving() const { return m_isMoving; }
 
+    bool isMouseWithin(const glm::vec2 & mousePos);
+
     std::string getMapKey() { return m_characterID + "_" + std::to_string(m_side); }
 private:
 

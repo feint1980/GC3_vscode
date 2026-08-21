@@ -61,7 +61,6 @@ function CF_ListCharacterStats(character)
     cpp_CombatField_ListCharacterStats(character)
 end
 
-
 ---- Banner
 
 ---@Description wrapper of cpp_getBannerInstance
@@ -89,7 +88,6 @@ function CF_Banner_SetVisible(banner, value)
     cpp_Banner_SetVisible(banner, value)
 end
 
-
 -- General
 function CF_Character_ParseFromString(str)
     return cpp_CFParseCharacterFromJson(str)
@@ -114,4 +112,8 @@ end
 
 function CF_CharacterPlayAnimation(host, characterID, side, animName, loop)
     cpp_CombatField_CharacterPlayAnimation(host, characterID, side, animName, loop)
+end
+
+function CF_SelectCharacterByMouse(host, mousePosX, mousePosY)
+    return cpp_CombatField_SelectCharacterByMouse(host, mousePosX, mousePosY)
 end

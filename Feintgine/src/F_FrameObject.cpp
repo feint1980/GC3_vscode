@@ -213,4 +213,5 @@ bool F_FrameObject::isMouseInside(const glm::vec2& mousePos) const
     );
     return std::abs(rotated.x) < m_size.x * 0.5f && std::abs(rotated.y) < m_size.y * 0.5f;
 }
+
 } // namespace Feintgine

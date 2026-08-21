@@ -45,3 +45,13 @@ end
 function CombatCharacter:waitAnimComplete()
     CC_Event.wait(self.key .. "_animComplete")
 end
+
+---@Description Get the value of a stat.
+---@param statName string
+function CombatCharacter:getStat(statName)
+    
+end
+
+function CombatCharacter:getStatStr(statName)
+
+end

@@ -112,6 +112,9 @@ public:
 
     void characterPlayAnimation(const std::string & characterID, int side, const std::string & animName, bool loop);
 
+    CombatCharacter * getCharacterByMouse(glm::vec2 mousePos);
+
+
 private:
 
     lua_State * m_script = nullptr;

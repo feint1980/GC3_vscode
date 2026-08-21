@@ -37,6 +37,11 @@ enum ControlSignalBit : uint64_t
     SIG_2         = 1ULL << 25,
     SIG_3         = 1ULL << 26,
     SIG_4         = 1ULL << 27,
+    SIG_5         = 1ULL << 28,
+    SIG_6         = 1ULL << 29,
+
+    SIG_SPACE     = 1ULL << 30,
+
 };
 
 class ControlHandler

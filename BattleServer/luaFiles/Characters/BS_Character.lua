@@ -136,7 +136,6 @@ function BS_Character:loadSkills()
     self.skills = {}
 end
 
-
 function BS_Character:setSide(side)
     self.side = side
 end

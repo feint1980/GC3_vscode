@@ -8,3 +8,4 @@ require "renderContext_wrapper"
 function RenderContext_Init(host)
     RenderContext_Host = host
 end
+

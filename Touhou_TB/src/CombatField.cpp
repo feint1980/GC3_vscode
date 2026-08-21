@@ -211,6 +211,7 @@ int lua_CombatField_SetCharacterStatFloat(lua_State * L)
     return 0;
 }
 
+
 int lua_CombatField_SetCharacterStatStr(lua_State * L)
 {
 
@@ -431,6 +432,33 @@ int lua_CombatCharacter_MoveToCell(lua_State * L)
     return 0;
 }
 
+int lua_CombatField_GetCharacterByMouse(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_CombatField_GetCharacterByMouse) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        CombatField * host = (CombatField *)lua_touserdata(L, 1);
+        float mouseX = (float)lua_tonumber(L, 2);
+        float mouseY = (float)lua_tonumber(L, 3);
+
+        CombatCharacter * character = host->getCharacterByMouse(glm::vec2(mouseX, mouseY));
+        if (character)
+        {
+            lua_pushlightuserdata(L, character);
+        }
+        else
+        {
+            lua_pushnil(L);
+        }
+        return 1;
+    }
+    return 0;
+}
+
 
 CombatField::CombatField()
 {
@@ -522,6 +550,8 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     m_guidock = CombatGUIDock();
     m_guidock.init();
 
+    // MARK: LUA C++ section
+
     // m_banner->showMessage("test");
     lua_register(m_script, "cpp_CombatField_AddSlot", lua_CombatField_AddSlot);
     lua_register(m_script, "cpp_CombatField_GetSlot", lua_CombatField_GetSlot);
@@ -531,12 +561,17 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     // Characters stats
     // set
     lua_register(m_script, "cpp_CombatField_SetCharacterStatFloat" , lua_CombatField_SetCharacterStatFloat);
+
     lua_register(m_script, "cpp_CombatField_SetCharacterStatStr", lua_CombatField_SetCharacterStatStr);
 
     lua_register(m_script, "cpp_CombatField_SetCharacterStats", lua_CombatField_SetCharacterStats);
 
     // character 
+
+    lua_register(m_script, "cpp_CombatField_SelectCharacterByMouse", lua_CombatField_SelectCharacterByMouse);
+
     lua_register(m_script, "cpp_CombatCharacter_MoveToCell", lua_CombatCharacter_MoveToCell);
+
 
     // List
     lua_register(m_script, "cpp_CombatField_ListCharacterStats", lua_CombatField_ListCharacterStats);
@@ -544,6 +579,7 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     // get
     lua_register(m_script, "cpp_CombatField_GetCharacterStatFloat", lua_CombatField_GetCharacterStatFloat);
     lua_register(m_script, "cpp_CombatField_GetCharacterStatStr" , lua_CombatField_GetCharacterStatStr);
+
 
     // Banner 
     lua_register(m_script, "cpp_getBannerInstance", lua_getBannerInstance);
@@ -720,6 +756,19 @@ CombatCharacter * CombatField::getCharacter(const std::string & characterID, int
         return m_charactersMap[key].get();
     }
     std::cout << "(CombatField::getCharacter) character not found " << key << "\n";
+    return nullptr;
+}
+
+CombatCharacter * CombatField::getCharacterByMouse(glm::vec2 mousePos)
+{
+    for (int i = 0; i < m_characters.size(); i++)
+    {
+        if (m_characters[i]->isMouseWithin(mousePos))
+        {
+            return m_characters[i].get();
+        }
+    }
+
     return nullptr;
 }
 

@@ -482,3 +482,16 @@ void CombatCharacter::fireLuaEvent(lua_State * L, const std::string & eventName)
         lua_pop(L, 1);
     }
 }
+
+bool CombatCharacter::isMouseWithin(const glm::vec2 & mousePos)
+{
+    glm::vec2 local = mousePos - m_pos;
+    float rad = - m_animation.getAngle(); // rotate the point by -angle instead of rotating the box
+    glm::vec2 rotated(
+        local.x * cos(rad) - local.y * sin(rad),
+        local.x * sin(rad) + local.y * cos(rad)
+    );
+
+    return std::abs(rotated.x) < m_animation.getDim().x * 0.5f && std::abs(rotated.y) < m_animation.getDim().y * 0.5f;
+
+}

@@ -270,6 +270,18 @@ void ControlHandler::handleInput(Feintgine::InputManager & inputManager)
     {
         signal |= ControlSignalBit::SIG_4;
     }
+    if(inputManager.isKeyPressed(SDLK_5))
+    {
+        signal |= ControlSignalBit::SIG_5;
+    }
+    if(inputManager.isKeyPressed(SDLK_6))
+    {
+        signal |= ControlSignalBit::SIG_6;
+    }
+    if(inputManager.isKeyPressed(SDLK_SPACE))
+    {
+        signal |= ControlSignalBit::SIG_SPACE;
+    }
 
     if(signal > 0 )
     {

@@ -2,6 +2,19 @@ package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../
 require "clientGlobal"
 require "clientWrapper"
 
+-- control State | 
+-- it has Level 
+-- 1 . select characters 
+-- 2 . select skill 
+-- 3 . select target 
+
+Combat_Control_StateValue = {
+    SELECT_CHARACTER = 1,
+    SELECT_SKILL = 2,
+    SELECT_TARGET = 3
+}
+
+Combat_Control_State = Combat_Control_StateValue.SELECT_CHARACTER
 
 Combat_HandleNetwork = {}
 
@@ -12,6 +25,7 @@ CombatBattleHandling = {}
 CombatHandling_Fn = {}
 
 TurnOrderHandling_Fn = {}
+
 
 
 for k,v in pairs(PacketChannel) do

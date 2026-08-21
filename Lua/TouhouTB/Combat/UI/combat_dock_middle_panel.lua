@@ -155,6 +155,8 @@ function Combat_dock_middle_panel:addButton(group,key, posX, posY, name, info , 
         -- print("hover enter " .. name)
         btn:getPanel():setFrameColor(100, 255,100, 255)
 
+
+        -- text set
         Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_name",btn.name)
         Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_description",btn.description)
         Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_cost", btn.cost)
@@ -168,7 +170,6 @@ function Combat_dock_middle_panel:addButton(group,key, posX, posY, name, info , 
 
     btn:registerCallback("onClick", function()
         print("clicked " .. btn.name)
-        -- btn:setFrameColor(255, 255, 255, 255)
     end)
 
     self.buttons[group][key] = btn
@@ -190,8 +191,16 @@ function Combat_dock_middle_panel:updateButton(group,key, name, description, cos
     -- setter you actually expose (e.g. cpp_TextObject_setText).
 end
 
-function Combat_dock_middle_panel:hideAllButtons()
+function Combat_dock_middle_panel:hideAllButtons(targetGroup)
 
+    targetGroup = targetGroup or ""
+
+    if targetGroup ~= "" then
+        for key, btn in pairs(self.buttons[targetGroup]) do
+            btn:setVisible(false)
+        end
+        return
+    end
     for group in pairs(self.buttons) do
         for key, btn in pairs(self.buttons[group]) do
             btn:setVisible(false)
@@ -240,7 +249,7 @@ function Combat_dock_middle_panel:setCurrentCharacter(character)
     -- print("set character " .. character.stats.name)
     print("dump here ")
     
-    self:hideAllButtons()
+    self:hideAllButtons("skill")
     
     for k, v in pairs(character) do 
         for k2 ,v2 in pairs(character.skills) do
@@ -248,7 +257,6 @@ function Combat_dock_middle_panel:setCurrentCharacter(character)
             self:updateButton("skill", k2, v2.name,v2.description, v2.costText, (not v2.isPassive))
         end
     end
-
 
 end
 

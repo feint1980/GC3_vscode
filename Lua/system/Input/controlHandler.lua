@@ -29,7 +29,10 @@ Signal = {
     key_2      = 1 << 25,
     key_3      = 1 << 26,
     key_4      = 1 << 27,
-} -- 28 signals, bits 0-27
+    key_5      = 1 << 28,
+    key_6      = 1 << 29,
+    key_space  = 1 << 30
+} -- 31 signals, bits 0-30
 
 ---@type table of Panel
 SignalReceivers = {
