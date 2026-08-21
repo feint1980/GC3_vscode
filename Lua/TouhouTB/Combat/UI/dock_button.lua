@@ -22,7 +22,15 @@ function Dock_button:new()
 
 end
 
-
+---@param renderContextHost pointer instance of RenderContext
+---@param key string key label, e.g. "1", "Q", "E"
+---@param name string skill/item/action name
+---@param posX number x position (in the same -pos coordinate space as the rest of the dock)
+---@param posY number y position
+---@param width number width
+---@param height number height
+---@param description string small info line (cost, count, etc.) -- can be ""
+---@param cost string small info line (cost, count, etc.) -- can be ""
 function Dock_button:init(renderContextHost,key, name,posX, posY, width, height, description, cost)
     self.key = key
     self.name = name
