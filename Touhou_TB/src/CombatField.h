@@ -114,6 +114,7 @@ public:
 
     CombatCharacter * getCharacterByMouse(glm::vec2 mousePos);
 
+    void registerCamera(Feintgine::Camera2D * camera) { m_tCam = camera; }
 
 private:
 
@@ -141,6 +142,8 @@ private:
     Banner * m_banner = nullptr;
 
     CombatGUIDock m_guidock; 
+
+    Feintgine::Camera2D * m_tCam = nullptr; // cam needed for position conversion 
 
     //std::unordered_map<std::string, std::string> m_portraitMap;
 

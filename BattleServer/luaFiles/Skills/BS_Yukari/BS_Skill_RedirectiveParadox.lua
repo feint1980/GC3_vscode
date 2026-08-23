@@ -10,7 +10,7 @@ function BS_Skill_RedirectiveParadox:create(character)
     o.id = "SKILL_REDIRECTIVE_PARADOX"
     o.name = "Redirective Paradox"
     o.isPassive = true
-    o.description = "When targeted, Yukari has" .. TextColor.color_orange .. "17% " .. TextColor.color_close .. " to redirect the attack / projectile to a random character (including allies)."
+    o.description = "When targeted, Yukari has" .. TextColor.color_orange .. "17% " .. TextColor.color_close .. " to redirect\n the spell/projectile to a random character\n (including allies)."
     o.costText = "Passive"
 
     o.availablePosition = BS_Required_Position.ALL

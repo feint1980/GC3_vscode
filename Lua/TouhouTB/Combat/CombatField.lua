@@ -21,6 +21,10 @@ function CombatField:new()
     return o
 end
 
+function CombatField:getCurrentSelectedCharacter()
+    return self.currentSelectedCharacter
+end
+
 function CombatField:init(tHost,col,row)
     self.host = tHost
     for s = 1, 2 do
@@ -122,18 +126,22 @@ function CombatField:setBannerMsg(msg)
     cpp_Banner_SetMsg(self.banner, msg)
 end
 
-function CombatField:SetCharacterStats(characterID, side, characterStats)
+function CombatField:setCharacterStats(characterID, side, characterStats)
     CF_SetCharacterStats(self.host, characterID, side, characterStats)
 end
 
-function CombatField:SelectCharacterByMouse(posX, posY)
+function CombatField:selectCharacterByMouse(posX, posY)
+    print("CombatField:SelectCharacterByMouse - " .. posX .. "," .. posY)
     local charPtr = CF_SelectCharacterByMouse(self.host, posX, posY)
     if not charPtr then
         self.currentSelectedCharacter = nil
+        print(" no selection found")
         return
     end
 
     self.currentSelectedCharacter = self:getCharacterByPointer(charPtr)
+    -- print("CombatField:SelectCharacterByMouse - )
+    print("selected " .. self.currentSelectedCharacter.key)
     if not self.currentSelectedCharacter then
         print("CombatField:SelectCharacterByMouse - pointer returned but not found in cache (character created outside addCharacter?)")
     end

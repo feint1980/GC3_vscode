@@ -169,6 +169,8 @@ void CombatScene::initGUI()
 
         m_combatField->init("../../Lua/TouhouTB/Combat/combatField.lua",m_script);
 
+        m_combatField->registerCamera(&m_camera);
+
         if(!m_turnDisplayer)
         {
             m_turnDisplayer = new TurnDisplayer();

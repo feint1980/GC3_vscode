@@ -7,7 +7,7 @@ function BS_Skill_FateFavor:create(character)
     o.id = "SKILL_FATE_FAVOR"
     o.name = "Fate's Favor"
     o.isPassive = true
-    o.description = "On turn start, Reimu has a " .. TextColor.color_orange .. "10%" .. TextColor.color_close .. " base chance\n plus a bonus equal to her missing HP\n percentage, to gain 1 of these random buffs below:\
+    o.description = "On turn start, Reimu has a " .. TextColor.color_orange .. "10%" .. TextColor.color_close .. " base chance\n plus a bonus equal to her missing HP\n percentage, to gain 1 of these random\n buffs below:\
     > Heal 10% max HP.\
     > Gain 30% crit chance (only 1 hit).\
     > Gain 30% evade chance.\

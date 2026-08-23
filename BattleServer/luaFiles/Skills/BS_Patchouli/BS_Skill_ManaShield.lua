@@ -7,7 +7,7 @@ function BS_Skill_ManaShield:create(character)
     o.id = "SKILL_MANA_SHIELD"
     o.name = "Mana Shield"
     o.isPassive = true
-    o.description = "Absorbs " .. TextColor.color_TB_WIS .. "80% " .. TextColor.color_close .. "of incoming damage, converting it into mana loss instead of \nHP loss. If her mana is depleted, the shield fails and she begins to take full \ndamage."
+    o.description = "Absorbs " .. TextColor.color_TB_WIS .. "80% " .. TextColor.color_close .. "of incoming damage, converting\nit into mana loss instead of HP loss.\nIf her mana is depleted, the shield\nfails and she begins to take full damage."
     o.costText = "Passive"
     
     o.availablePosition = BS_Required_Position.ALL

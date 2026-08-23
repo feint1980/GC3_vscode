@@ -191,7 +191,7 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
         -- (New K2) stats is now the full record (identity + position + stats)
         -- send it whole — SetCharacterStats/setStats() sets everything in one call
         local jsonData = JSON_Encode(v.stats)
-        CombatField_instance:SetCharacterStats(v.stats.characterID, 1, jsonData)
+        CombatField_instance:setCharacterStats(v.stats.characterID, 1, jsonData)
     end
 
     --------------------------------------------------------------------------
@@ -206,7 +206,7 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
         v.stats.rowPos = tonumber(v.stats.rowPos)
 
         local jsonData = JSON_Encode(v.stats)
-        CombatField_instance:SetCharacterStats(v.stats.characterID, 2, jsonData)
+        CombatField_instance:setCharacterStats(v.stats.characterID, 2, jsonData)
     end
 
     -- NOTE: no per-key CF_SetCharacterStatFloat/String pass needed anymore —

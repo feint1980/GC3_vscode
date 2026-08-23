@@ -48,10 +48,10 @@ end
 
 ---@Description Get the value of a stat.
 ---@param statName string
-function CombatCharacter:getStat(statName)
-    
+function CombatCharacter:getStatFloat(statName)
+    return CF_GetCharacterStatFloat(self.host, statName)
 end
 
 function CombatCharacter:getStatStr(statName)
-
+    return CF_GetCharacterStatStr(self.host, statName)
 end

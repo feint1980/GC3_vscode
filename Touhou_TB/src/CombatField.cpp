@@ -232,6 +232,34 @@ int lua_CombatField_SetCharacterStatStr(lua_State * L)
 }
 
 
+int lua_CombatField_SelectCharacterByMouse(lua_State * L)
+{
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_CombatField_SelectCharacterByMouse) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+        int x = lua_tonumber(L, 2);
+        int y = lua_tonumber(L, 3);
+        CombatCharacter * character = host->getCharacterByMouse(glm::vec2(x, y));
+        
+        if(character)
+        {
+            // std::cout << "C++ [lua_CombatField_SelectCharacterByMouse] found " << character->getStringValue("name") << "\n";
+            lua_pushlightuserdata(L, character);
+        }
+        else
+        {
+            // std::cout << "C++ [lua_CombatField_SelectCharacterByMouse] not found \n";
+            lua_pushnil(L);
+        }
+        return 1;
+    }
+    return 0;
+}
+
 int lua_CombatField_ListCharacterStats(lua_State * L)
 {
     if(lua_gettop(L) != 1)
@@ -761,9 +789,15 @@ CombatCharacter * CombatField::getCharacter(const std::string & characterID, int
 
 CombatCharacter * CombatField::getCharacterByMouse(glm::vec2 mousePos)
 {
+    if(!m_tCam)
+    {
+        std::cout << "not camera for converse \n" ;
+        return nullptr;
+    }
+
     for (int i = 0; i < m_characters.size(); i++)
     {
-        if (m_characters[i]->isMouseWithin(mousePos))
+        if (m_characters[i]->isMouseWithin(m_tCam->convertScreenToWorld(mousePos)))
         {
             return m_characters[i].get();
         }

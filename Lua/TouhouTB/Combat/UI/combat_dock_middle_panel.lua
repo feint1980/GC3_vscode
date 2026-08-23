@@ -68,10 +68,10 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     local generalX     = itemsX
     + (self.buttonWidth + self.buttonGap * 2)
 
-    self.basicSkillsHeader = self:createHeader("Basic Skills", basicSkillsX + self.buttonWidth * 2, groupY + 195)
-    self.itemsHeader       = self:createHeader("Items",  itemsX ,       groupY + 205)
+    self.basicSkillsHeader = self:createHeader("Basic Skills", basicSkillsX + self.buttonWidth * 2, groupY + 215)
+    self.itemsHeader       = self:createHeader("Items",  itemsX ,       groupY + 215)
     self.generalHeader     = self:createHeader("Generals",  
-    generalX,    groupY + 205)
+    generalX,    groupY + 215)
 
     local panelWidth = ( 6 * (self.buttonWidth + self.buttonGap ) ) + 10
 
@@ -237,7 +237,7 @@ function Combat_dock_middle_panel:handleInput(key)
         elseif (key & Signal.isCntrled) ~= 0 then
             print("ctrl + left click")
         else
-            print("just left click")
+            -- print("just left click")
             if(self:getHoveredButton() ~= nil) then
                 self:getHoveredButton():fireCallback("onClick")
             end

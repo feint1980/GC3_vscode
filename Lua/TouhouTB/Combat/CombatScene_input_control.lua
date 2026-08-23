@@ -1,6 +1,9 @@
 package.path = package.path .. ';../../Lua/system/Input/?.lua;'
 
+
 require "controlHandler"
+require "clientGlobal"
+require "dock_global"
 
 Dispatch_Recievers = {} -- reset the recievers only 1 scene active
 
@@ -33,6 +36,31 @@ Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal
         print("escape !")
     elseif (signal & Signal.mouseLeft) ~=0  then
         print("mouse left click !")
+        local x,y = ControlHandler_getCursorPos()
+        CombatField_instance:selectCharacterByMouse(x,y)
+
+        if CombatField_instance:getCurrentSelectedCharacter() ~= nil then
+            local tChar = CombatField_instance:getCurrentSelectedCharacter()
+
+            local selfID = InfoHolder_getStrVal("MainInfo.id")
+            print("my id is " .. selfID)
+            
+            local ownerID = tChar:getStatStr("ownerID")
+            print("owner id is " .. ownerID)
+            
+            local characterID = tChar.characterID
+            print("my character id is " .. characterID)
+
+            if selfID == tChar:getStatStr("ownerID") then
+                Combat_Dock_Middle_Instance:setCurrentCharacter(Combat_Formations[selfID][characterID])
+            end
+
+
+            -- Combat_Dock_Middle_Instance:setCurrentCharacter(Combat_Formations[selfID][tData.characterId])
+
+        end
+
+        
     elseif (signal & Signal.mouseRight) ~=0  then
         print("mouse right click !")
     elseif (signal & Signal.key_space) ~=0  then

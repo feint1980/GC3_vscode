@@ -117,3 +117,14 @@ end
 function CF_SelectCharacterByMouse(host, mousePosX, mousePosY)
     return cpp_CombatField_SelectCharacterByMouse(host, mousePosX, mousePosY)
 end
+
+
+function CF_GetCharacterStatFloat(characterPointer, statName)
+    return cpp_CombatField_GetCharacterStatFloat( characterPointer, statName)
+end
+
+function CF_GetCharacterStatStr( characterPointer, statName)
+    print("CF_GetCharacterStatStr called, getting " .. statName)
+    return cpp_CombatField_GetCharacterStatStr( characterPointer, statName)
+
+end
