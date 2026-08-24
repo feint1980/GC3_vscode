@@ -129,7 +129,10 @@ void F_CompositeObject::draw(Feintgine::SpriteBatch & spriteBatch)
     {
         for (auto i = 0; i < m_objectList.size(); i++)
         {
-
+            if(!m_objectList[i].isVisible)
+            {
+                continue; // skip
+            }
             glm::vec4 desRect;
             desRect.x = (m_pos.x + m_objectList[i].posOffset.x ) - ((m_objectList[i].sprite.getDim().x * m_objectList[i].scale.x) / 2.0f); 
             desRect.y = (m_pos.y + m_objectList[i].posOffset.y ) - ((m_objectList[i].sprite.getDim().y * m_objectList[i].scale.y) / 2.0f);

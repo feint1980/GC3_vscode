@@ -465,6 +465,38 @@ int lua_CompositeObjectText_setOffsetPos(lua_State * L)
     return 0;
 }
 
+int lua_CompositeObjectSprite_setSprite(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CompositeObjectSprite_setSprite) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        tObject * obj = static_cast<tObject*>(lua_touserdata(L, 1));
+        std::string spriteName = lua_tostring(L, 2);
+        obj->setSprite(spriteName);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_CompositeObjectSprite_setVisible(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_CompositeObjectSprite_setVisible) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        tObject * obj = static_cast<tObject*>(lua_touserdata(L, 1));
+        bool visible = lua_toboolean(L, 2);
+        obj->setVisible(visible);
+        return 0;
+    }
+    return 0;
+}
+
 
 F_LuaRenderContext::F_LuaRenderContext()
 {
@@ -503,6 +535,8 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
     }
     // dofile here 
 
+
+    // MARK: C++ to LUA
     // LRC (Lua Render Context)
     lua_register(m_script, "cpp_LRC_CreateCompositeObject", lua_CreateCompositeObject);
     lua_register(m_script, "cpp_LRC_RemoveCompositeObject", lua_RemoveCompositeObject);
@@ -534,6 +568,10 @@ void F_LuaRenderContext::init(lua_State * script,int maxCompositeObjects)
     lua_register(m_script, "cpp_CompositeObjectText_setAlignment", lua_CompositeObjectText_setAlignment); 
     lua_register(m_script, "cpp_CompositeObjectText_setOffsetPos", lua_CompositeObjectText_setOffsetPos);
     
+    // composite sprite section 
+
+    lua_register(m_script, "cpp_CompositeObjectSprite_setSprite", lua_CompositeObjectSprite_setSprite);
+    lua_register(m_script, "cpp_CompositeObjectSprite_setVisible", lua_CompositeObjectSprite_setVisible);
 
 }
 void F_LuaRenderContext::initTextRenderer(int fontSize, int charCount, const std::string& fontFilePath)

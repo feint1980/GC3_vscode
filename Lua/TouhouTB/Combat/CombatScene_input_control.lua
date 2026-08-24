@@ -44,10 +44,10 @@ Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal
 
             local selfID = InfoHolder_getStrVal("MainInfo.id")
             print("my id is " .. selfID)
-            
+
             local ownerID = tChar:getStatStr("ownerID")
             print("owner id is " .. ownerID)
-            
+
             local characterID = tChar.characterID
             print("my character id is " .. characterID)
 
@@ -55,8 +55,6 @@ Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal
                 Combat_Dock_Middle_Instance:setCurrentCharacter(Combat_Formations[selfID][characterID])
             end
 
-
-            -- Combat_Dock_Middle_Instance:setCurrentCharacter(Combat_Formations[selfID][tData.characterId])
 
         end
 

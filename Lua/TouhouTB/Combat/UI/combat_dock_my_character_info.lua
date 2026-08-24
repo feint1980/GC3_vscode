@@ -4,30 +4,29 @@ package.path = package.path .. ';../../Lua/system/objects/?.lua;' .. ';../../Lua
 require "compositeObject"
 require "dock_character_avatar"
 
-Combat_dock_my_character_info = {
-    renderContextHost = nil,
-    mainDock = nil,
-    windowWidth = 0,
-    windowHeight = 0,
-    posX = 0,
-    posY = 0,
-    mWidth = 0,
-    mHeight = 0,
-
-    lineDock = nil,
-
-    -- avatar
-    currentCharacterAvatar = nil,
-
-    -- texts
-    characterNameText = nil,
-    characterLevelText = nil,
-
-}
+Combat_dock_my_character_info = {}
 
 function Combat_dock_my_character_info:new()
-    local o = {}
-    setmetatable(o, self)
+    local o = setmetatable({}, self)
+
+    o.renderContextHost = nil
+    o.mainDock = nil
+    o.windowWidth = 0
+    o.windowHeight = 0
+    o.posX = 0
+    o.posY = 0
+    o.mWidth = 0
+    o.mHeight = 0
+
+    o.lineDock = nil
+
+    -- avatar
+    o.currentCharacterAvatar = nil
+
+    -- texts
+    o.characterNameText = nil
+    o.characterLevelText = nil
+
     self.__index = self
     return o
 
@@ -107,3 +106,4 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
 
     print("init end ")
 end
+

@@ -29,11 +29,14 @@ struct tObject
     Feintgine::Color color;
     float angle;
     float depth;
+    bool isVisible = true;
 
     void setSprite(const std::string & spriteName ) 
     { 
         this->sprite = Feintgine::SpriteManager::Instance()->getSprite(spriteName); 
     }
+
+    void setVisible(bool isVisible) { this->isVisible = isVisible; }
 
 };
 

@@ -274,3 +274,4 @@ function L_compositeObject:setFrameColor(colorR,colorG,colorB,colorA )
     end
     CompositeObject_setFrameColor(self.ptr, colorR,colorG,colorB,colorA )
 end
+

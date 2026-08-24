@@ -2,6 +2,14 @@ package.path = package.path .. ';../../Lua/system/objects/?.lua;'
 
 require "compositeObject"
 
+
+Dock_Avatar = {} 
+
+Dock_Avatar["S_Reimu"] = "avatars.xml/Reimu.png"
+Dock_Avatar["S_Patchouli"] = "avatars.xml/Patchouli.png"
+Dock_Avatar["S_Yukari"] = "avatars.xml/Yukari.png"
+Dock_Avatar["S_Meiling"] = "avatars.xml/Meiling.png"
+
 Dock_character_avatar = {
     ---@type pointer? F_LuaRenderContext
     renderContextHost = nil,
@@ -40,9 +48,11 @@ function Dock_character_avatar:init(tRenderContextHost, tPosX, tPosY, tWidth, tH
 
     self.ptr:addText("test text",100, -100,3,1.0, 255,255, 255,255,0 )
 
+    CompositeObjectSprite_setVisible(self.avatarObject, false)
+
 end
 
 function Dock_character_avatar:changeAvatar(tAvatarName)
-
+    CompositeObjectSprite_setSprite(self.avatarObject, tAvatarName)
     -- self.avatarObject:setSprite(tAvatarName)
 end

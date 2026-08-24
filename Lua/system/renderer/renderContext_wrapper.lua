@@ -119,6 +119,15 @@ function CompositeObject_setFrameColor(compositeObject, colorR,colorG,colorB,col
     cpp_CompositeObject_setFrameColor(compositeObject, colorR,colorG,colorB,colorA )
 end
 
+---- Composite sprite section 
+
+function CompositeObjectSprite_setSprite(compositeSprite, spriteName)
+    cpp_CompositeObjectSprite_setSprite(compositeSprite, spriteName)
+end
+
+function CompositeObjectSprite_setVisible(compositeSprite, value)
+    cpp_CompositeObjectSprite_setVisible(compositeSprite, value)
+end
 
 --- Composite text section
 
