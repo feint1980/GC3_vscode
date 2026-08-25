@@ -290,7 +290,7 @@ protected:
 
     Uint32 m_type = TNoObject;
 
-    Uint8 m_maxObject = 10;
+    Uint16 m_maxObject = 10;
 
     bool m_isVisible = true;
 
