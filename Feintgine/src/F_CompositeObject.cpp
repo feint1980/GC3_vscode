@@ -1,7 +1,6 @@
-
-
 #include "F_CompositeObject.h"
 #include "LuaManager.h"
+#include <cmath>
 
 namespace Feintgine
 {
@@ -171,6 +170,16 @@ void F_CompositeObject::update(float deltaTime)
         {
             m_animatedObjectList[i].animatedObject.update(deltaTime);
         }
+    }
+
+    if(m_breathingActive)
+    {
+        m_breathTime += deltaTime;
+        float t = (sinf(m_breathTime * m_breathSpeed) + 1.0f) * 0.5f; // 0..1
+
+        Feintgine::Color c = m_breathColor;
+        c.a = static_cast<decltype(c.a)>(m_breathMinAlpha + (m_breathMaxAlpha - m_breathMinAlpha) * t);
+        setFrameColor(c);
     }
 }
 

@@ -118,7 +118,8 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     self:addButton("general","M", generalX,             groupY + self.buttonHeight + self.buttonGap , "Move",     "AP 0.5", "move")
     self:addButton("general","Space", generalX, groupY , "End Turn", "", "end_turn")
 
-    -- self:hideAllButtons()
+    self:hideAllButtons("skill")
+    -- self:hideAllButtons("item")
 
 end
 

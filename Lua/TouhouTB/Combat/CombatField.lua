@@ -17,12 +17,19 @@ function CombatField:new()
     o.characterWrappers = {}       -- keyed by "characterID_side" string
     o.characterWrappersByPtr = {}  -- keyed by raw cpp pointer
 
+    o.currentInTurnCharacter = nil
+
+
     self.__index = self
     return o
 end
 
 function CombatField:getCurrentSelectedCharacter()
     return self.currentSelectedCharacter
+end
+
+function CombatField:setCurrentCharacterInTurn(ownerID, characterID)
+
 end
 
 function CombatField:init(tHost,col,row)

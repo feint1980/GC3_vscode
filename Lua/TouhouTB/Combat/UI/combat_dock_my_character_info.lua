@@ -88,7 +88,7 @@ function Combat_dock_my_character_info:init(renderHost,tWindowWidth, tWindowHeig
 
     -- dummy text
     -- character text
-    self.mainDock:addText("Hakurei Reimu",linePosX -35, 130,3,.8, 255,255,
+    self.characterNameText =  self.mainDock:addText("Hakurei Reimu",linePosX -35, 130,3,.8, 255,255,
     255,255,0 )
 
     --- internal update

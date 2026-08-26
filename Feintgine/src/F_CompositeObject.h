@@ -286,6 +286,35 @@ public:
     // object (m_luaState == nullptr).
     void fireCallback(const std::string & eventName);
 
+     // ---[ Special Highlight FX: breathing/pulse ]---------------------------
+    // Self-ticking, driven from update(deltaTime) - no external timer/task
+    // needed. Oscillates the frame color's alpha between minAlpha/maxAlpha
+    // via a sine wave at the given speed (radians/sec). Lua side is just an
+    // enable/disable switch (see startBreathingHighlight/stopBreathingHighlight
+    // Lua bindings).
+    //
+    // Only affects the frame panel color (same target as setFrameColor) -
+    // meant for border/frame highlight, not the panel BG or sprite children.
+    void startBreathingHighlight(const Feintgine::Color & color, float speed, float minAlpha, float maxAlpha)
+    {
+        m_breathingActive = true;
+        m_breathTime = 0.0f;
+        m_breathColor = color;
+        m_breathSpeed = speed;
+        m_breathMinAlpha = minAlpha;
+        m_breathMaxAlpha = maxAlpha;
+    }
+
+    // Stops the breathing highlight and immediately snaps the frame color to
+    // restoreColor (pass alpha 0 if you want it to just disappear).
+    void stopBreathingHighlight(const Feintgine::Color & restoreColor)
+    {
+        m_breathingActive = false;
+        setFrameColor(restoreColor);
+    }
+
+    bool isBreathingHighlightActive() const { return m_breathingActive; }
+
 protected:
 
     Uint32 m_type = TNoObject;
@@ -304,6 +333,18 @@ protected:
     
     float m_angle = 0.0;
     float m_depth = 5.0;
+
+    // Breathing/pulse highlight state - ticked in update(deltaTime).
+    // ASSUMPTION: Feintgine::Color has an accessible/assignable `.a` member
+    // in the 0-255 range, matching how colorA is passed elsewhere in this
+    // file (e.g. addObject's default Color(255,255,255,255)). Adjust the
+    // assignment in update() if Color's alpha field differs.
+    bool m_breathingActive = false;
+    float m_breathTime = 0.0f;
+    float m_breathSpeed = 3.0f;
+    float m_breathMinAlpha = 60.0f;
+    float m_breathMaxAlpha = 255.0f;
+    Feintgine::Color m_breathColor = Feintgine::Color(40, 251, 255, 255);
 
     std::vector<tObject> m_objectList;
     std::vector<tAObject> m_animatedObjectList;

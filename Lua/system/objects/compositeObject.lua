@@ -275,3 +275,47 @@ function L_compositeObject:setFrameColor(colorR,colorG,colorB,colorA )
     CompositeObject_setFrameColor(self.ptr, colorR,colorG,colorB,colorA )
 end
 
+
+---[ Special Highlight FX ]---------------------------------------------------
+--- "Breathing" pulse on the frame color's alpha. The actual oscillation loop
+--- lives in F_CompositeObject::update() on the C++ side now (ticked every
+--- frame automatically, same as animated objects) - Lua is just the on/off
+--- switch. No TM_addTask / timer involved.
+-------------------------------------------------------------------------------
+
+---@Description start a breathing/pulse highlight on this object's frame color
+---@param colorR number red (0-255)
+---@param colorG number green (0-255)
+---@param colorB number blue (0-255)
+---@param speed number oscillation speed (radians/sec, try ~2-4 for a slow breathe)
+---@param minA number minimum alpha (0-255)
+---@param maxA number maximum alpha (0-255)
+function L_compositeObject:startBreathingHighlight(colorR, colorG, colorB, speed, minA, maxA)
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_startBreathingHighlight(self.ptr, colorR, colorG, colorB, speed, minA, maxA)
+end
+
+---@Description stop the breathing highlight and snap frame color to a resting value
+---@param colorR number red to restore to
+---@param colorG number green to restore to
+---@param colorB number blue to restore to
+---@param colorA number alpha to restore to (0 to just hide the frame)
+function L_compositeObject:stopBreathingHighlight(colorR, colorG, colorB, colorA)
+    if self.ptr == nil then
+        return
+    end
+    CompositeObject_stopBreathingHighlight(self.ptr, colorR, colorG, colorB, colorA)
+end
+
+---@Description query whether the breathing highlight is currently running
+---@return boolean
+function L_compositeObject:isBreathingHighlightActive()
+    if self.ptr == nil then
+        return false
+    end
+    return CompositeObject_isBreathingHighlightActive(self.ptr)
+end
+
+
