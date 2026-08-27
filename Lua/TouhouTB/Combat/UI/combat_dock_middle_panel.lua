@@ -118,8 +118,7 @@ function Combat_dock_middle_panel:init(renderHost, tPosX,tPosY,tWindowWidth, tWi
     self:addButton("general","M", generalX,             groupY + self.buttonHeight + self.buttonGap , "Move",     "AP 0.5", "move")
     self:addButton("general","Space", generalX, groupY , "End Turn", "", "end_turn")
 
-    self:hideAllButtons("skill")
-    -- self:hideAllButtons("item")
+    self:setAllButtonsVisible("skill",false)
 
 end
 
@@ -192,19 +191,19 @@ function Combat_dock_middle_panel:updateButton(group,key, name, description, cos
     -- setter you actually expose (e.g. cpp_TextObject_setText).
 end
 
-function Combat_dock_middle_panel:hideAllButtons(targetGroup)
+function Combat_dock_middle_panel:setAllButtonsVisible(targetGroup,value)
 
     targetGroup = targetGroup or ""
 
     if targetGroup ~= "" then
         for key, btn in pairs(self.buttons[targetGroup]) do
-            btn:setVisible(false)
+            btn:setVisible(value)
         end
         return
     end
     for group in pairs(self.buttons) do
         for key, btn in pairs(self.buttons[group]) do
-            btn:setVisible(false)
+            btn:setVisible(value)
         end
     -- for key, btn in pairs(self.buttons) do
         -- btn:setVisible(false)
@@ -250,7 +249,7 @@ function Combat_dock_middle_panel:setCurrentCharacter(character)
     -- print("set character " .. character.stats.name)
     print("dump here ")
     
-    self:hideAllButtons("skill")
+    self:setAllButtonsVisible("skill",false)
     
     for k, v in pairs(character) do 
         for k2 ,v2 in pairs(character.skills) do

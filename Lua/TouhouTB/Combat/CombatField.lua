@@ -1,5 +1,6 @@
 package.path = package.path .. ';../../Lua/TouhouTB/Combat/?.lua;' 
 
+require "clientGlobal"
 require "combatCharacter"
 require "combatField_wrapper"
 
@@ -19,6 +20,7 @@ function CombatField:new()
 
     o.currentInTurnCharacter = nil
 
+    o.playerSide = 0 -- 1 or 2 (left or right)
 
     self.__index = self
     return o
@@ -29,11 +31,17 @@ function CombatField:getCurrentSelectedCharacter()
 end
 
 function CombatField:setCurrentCharacterInTurn(ownerID, characterID)
+    self.currentInTurnCharacter = self:getCharacter(characterID, ownerID)
+end
 
+function CombatField:getCurrentCharacterInTurn()
+    return self.currentInTurnCharacter
 end
 
 function CombatField:init(tHost,col,row)
     self.host = tHost
+    self.playerSide = InfoHolder_getNumberVal("Player_Index")
+
     for s = 1, 2 do
         for i = 1, col do
             for j = 1, row do

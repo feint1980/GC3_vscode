@@ -53,8 +53,6 @@ MainInfo = {
 
 Character_Skill_Info = {}
 
-
-
 LobbyScene_isReady = false
 LobbyScene_selectedFormation = 0
 

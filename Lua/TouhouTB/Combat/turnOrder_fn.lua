@@ -41,7 +41,6 @@ TurnOrderHandling_Fn[CombatTurnOrder.Sync] = function(data)
     end
 
     TurnDisplayer_instance:updateOrder()
-    -- Combat_Dock_Middle_Instance:hideAllButtons("skill")
 
 end
 
@@ -120,8 +119,6 @@ TurnOrderHandling_Fn[CombatTurnOrder.PlayerCharacterTurn] = function(data)
     if selfID == tData.playerId then
         print("it is the player turn")
         -- Combat_Dock_Middle_Instance:setCurrentCharacter(Combat_Formations[selfID][tData.characterId])
-
-        
 
     else
         print("it is the opponent turn")
