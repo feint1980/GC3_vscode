@@ -7,7 +7,7 @@ require "dock_global"
 TurnOrderHandling_Fn[CombatTurnOrder.Sync] = function(data)
 
     print("Turn order sync ")
-    print("data " .. data)
+    -- print("data " .. data)
 
     TM_addTask(function()
         CombatField_instance:showBannerMsg("Roll phase")
@@ -21,12 +21,18 @@ TurnOrderHandling_Fn[CombatTurnOrder.Sync] = function(data)
         return
     end
 
+    local selfID = InfoHolder_getStrVal("MainInfo.id")
     for k,v in pairs(orderList) do
         print("k " .. k)
         print("character ID " .. v.characterId)
         print("order " .. v.order)
         print("side " .. v.side)
-        
+        print('ownerId ' .. v.ownerId)
+        CombatField_instance:setPlayerSide(v.ownerId,tonumber(v.side))
+        -- if v.ownerId == selfID then
+        --     CombatField_instance:setPlayerSide(tonumber(v.side))
+        -- end
+        -- if ()
         TurnDisplayer_instance:addIcon(v.characterId,tonumber(v.side),tonumber(v.order))
 
         local tCharacter = TurnDisplayer_instance:getCharacterIcon(v.characterId,v.side)
@@ -34,11 +40,12 @@ TurnOrderHandling_Fn[CombatTurnOrder.Sync] = function(data)
             CTD_SetCharacterSpeed(tCharacter,v.speed)
             CTD_SetCharacterDisplaySpeed(tCharacter,v.speed)
         end
-        -- for k2,v2 in pairs(v) do
-        --     print("     k2 " .. k2 .. " v2 " .. v2)
 
-        -- end
     end
+
+
+
+
 
     TurnDisplayer_instance:updateOrder()
 
@@ -116,9 +123,11 @@ TurnOrderHandling_Fn[CombatTurnOrder.PlayerCharacterTurn] = function(data)
 
     print("compare result")
     print(selfID .. "/" .. tData.playerId)
+    
+    CombatField_instance:setCurrentCharacterInTurn(tData.playerId, tData.characterId)
+
     if selfID == tData.playerId then
         print("it is the player turn")
-        -- Combat_Dock_Middle_Instance:setCurrentCharacter(Combat_Formations[selfID][tData.characterId])
 
     else
         print("it is the opponent turn")

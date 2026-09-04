@@ -21,6 +21,12 @@
                 
 
 
+#interactive meaning the action will be verify by server, and display properly in clients side ( both side )
+
+! interaction stack : 
+    - Move around character ( interactive ) 
+
+
 - Battle Server side 
     - update data from server side 
         - Character

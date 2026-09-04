@@ -200,13 +200,14 @@ function Combat_dock_middle_panel:setAllButtonsVisible(targetGroup,value)
             btn:setVisible(value)
         end
         return
-    end
-    for group in pairs(self.buttons) do
-        for key, btn in pairs(self.buttons[group]) do
-            btn:setVisible(value)
+    else
+        for group in pairs(self.buttons) do
+            for key, btn in pairs(self.buttons[group]) do
+                btn:setVisible(value)
+            end
+        -- for key, btn in pairs(self.buttons) do
+            -- btn:setVisible(false)
         end
-    -- for key, btn in pairs(self.buttons) do
-        -- btn:setVisible(false)
     end
 end
 

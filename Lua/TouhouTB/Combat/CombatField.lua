@@ -1,6 +1,6 @@
 package.path = package.path .. ';../../Lua/TouhouTB/Combat/?.lua;' 
 
--- require "clientGlobal"
+-- require "clientGlobal" ---- this line is dangerous, caused the Lua to act stupid 
 require "combatCharacter"
 require "combatField_wrapper"
 
@@ -19,10 +19,16 @@ function CombatField:new()
 
     o.currentInTurnCharacter = nil
 
-    o.playerSide = 0 -- 1 or 2 (left or right)
+    -- o.playerSide = 
+    o.playerSideTable = {}
 
     self.__index = self
     return o
+end
+
+---@Description Set the player side into table
+function CombatField:setPlayerSide(playerID,side)
+    self.playerSideTable[playerID] = side
 end
 
 function CombatField:getCurrentSelectedCharacter()
@@ -30,7 +36,10 @@ function CombatField:getCurrentSelectedCharacter()
 end
 
 function CombatField:setCurrentCharacterInTurn(ownerID, characterID)
-    self.currentInTurnCharacter = self:getCharacter(characterID, ownerID)
+
+    local side = self.playerSideTable[ownerID]
+    self.currentInTurnCharacter = self:getCharacter(characterID, side)
+
 end
 
 function CombatField:getCurrentCharacterInTurn()
@@ -39,7 +48,7 @@ end
 
 function CombatField:init(tHost,col,row)
     self.host = tHost
-    self.playerSide = InfoHolder_getNumberVal("Player_Index")
+    -- self.playerSide = InfoHolder_getNumberVal("Player_Index")
 
     for s = 1, 2 do
         for i = 1, col do

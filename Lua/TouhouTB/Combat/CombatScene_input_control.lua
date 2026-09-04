@@ -55,10 +55,11 @@ Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal
                 Combat_Dock_Middle_Instance:setCurrentCharacter(Combat_Formations[selfID][characterID])
                 
                 if tChar.host == CombatField_instance:getCurrentCharacterInTurn().host then -- compare pointer
-                
+                    print("Characrer is the one, show general")
                     -- show the general buttons 
                     Combat_Dock_Middle_Instance:setAllButtonsVisible("general",true)
                 else
+                    print("Characrer is not the one, hide general")
                     Combat_Dock_Middle_Instance:setAllButtonsVisible("general",false)
                 end
             end
