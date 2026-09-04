@@ -48,7 +48,7 @@ end
 TurnOrderHandling_Fn[CombatTurnOrder.RollResult] = function(data)
 
     -- print("Roll Result ")
-    
+
     -- print("data " .. data)
 
     local orderList, pos ,err = JSON_Decode(data)

@@ -14,7 +14,7 @@ require "clientGlobal"
 
 -- require "lobbyFormationSelector"
 require "Prompt"
--- require "combatField"
+require "combatField"
 
 require "combat_dock"
 

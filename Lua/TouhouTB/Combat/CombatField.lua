@@ -1,12 +1,11 @@
 package.path = package.path .. ';../../Lua/TouhouTB/Combat/?.lua;' 
 
-require "clientGlobal"
+-- require "clientGlobal"
 require "combatCharacter"
 require "combatField_wrapper"
 
 CombatField = {}
 CombatField.__index = CombatField
-
 
 function CombatField:new()
     local o = setmetatable({}, self)

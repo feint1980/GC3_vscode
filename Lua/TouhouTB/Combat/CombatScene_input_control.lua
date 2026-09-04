@@ -61,13 +61,9 @@ Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal
                 else
                     Combat_Dock_Middle_Instance:setAllButtonsVisible("general",false)
                 end
-
             end
-
-
         end
 
-        
     elseif (signal & Signal.mouseRight) ~=0  then
         print("mouse right click !")
     elseif (signal & Signal.key_space) ~=0  then
