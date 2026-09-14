@@ -229,7 +229,18 @@ function Combat_dock_middle_panel:getHoveredButton()
     return nil
 end
 
+
+function Combat_dock_middle_panel:handleControlState(key)
+
+    if (key & Signal.escape) ~= 0 then
+        print("escape key")
+
+    end
+
+end
+
 function Combat_dock_middle_panel:handleInput(key)
+
     if (key & Signal.mouseLeft) ~= 0 then
         if( key & Signal.isAlted) ~= 0 then
             print("alt + left click")
@@ -237,13 +248,16 @@ function Combat_dock_middle_panel:handleInput(key)
             print("shift + left click")
         elseif (key & Signal.isCntrled) ~= 0 then
             print("ctrl + left click")
-        else
             -- print("just left click")
             if(self:getHoveredButton() ~= nil) then
                 self:getHoveredButton():fireCallback("onClick")
             end
         end
     end
+
+
+    self:handleControlState(key)
+
 end
 
 function Combat_dock_middle_panel:setCurrentCharacter(character)

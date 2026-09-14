@@ -8,13 +8,13 @@ require "clientWrapper"
 -- 2 . select skill 
 -- 3 . select target 
 
-Combat_Control_StateValue = {
+Combat_Control_Selection_StateValue = {
     SELECT_CHARACTER = 1,
     SELECT_SKILL = 2,
     SELECT_TARGET = 3
 }
 
-Combat_Control_State = Combat_Control_StateValue.SELECT_CHARACTER
+Combat_Control_Selection_State = Combat_Control_Selection_StateValue.SELECT_CHARACTER
 
 Combat_HandleNetwork = {}
 
@@ -25,7 +25,6 @@ CombatBattleHandling = {}
 CombatHandling_Fn = {}
 
 TurnOrderHandling_Fn = {}
-
 
 
 for k,v in pairs(PacketChannel) do
