@@ -487,6 +487,79 @@ int lua_CombatField_GetCharacterByMouse(lua_State * L)
     return 0;
 }
 
+int lua_hoverSlots(lua_State * L)
+{
+    std::cout << "lua_hoverSlots called \n";
+    if(lua_gettop(L) != 3)
+    {
+        std::cout << "gettop failed (lua_hoverSlots) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::cout << "lua_hoverSlots called (2) \n";
+        CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+        float mouseX = (float)lua_tonumber(L, 2);
+        float mouseY = (float)lua_tonumber(L, 3);
+        host->updateSlotSelection(glm::vec2(mouseX, mouseY));
+
+        return 0;
+    }
+    return 0;
+}
+
+int lua_setHoverColor(lua_State * L)
+{
+    std::cout << "lua_setHoverColor called \n";
+    if(lua_gettop(L) != 5)
+    {
+        std::cout << "gettop failed (lua_setHoverColor) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    else
+    {
+        std::cout << "lua_setHoverColor called (2) \n";
+        CombatField_Selector * selector = static_cast<CombatField_Selector*>(lua_touserdata(L, 1));
+        float r = (float)lua_tonumber(L, 2);
+        float g = (float)lua_tonumber(L, 3);
+        float b = (float)lua_tonumber(L, 4);
+        float a = (float)lua_tonumber(L, 5);
+        selector->setColor(Feintgine::Color(r, g, b, a));
+        return 0;
+    }
+    return 0;
+}
+
+int lua_getSelector(lua_State * L)
+{
+    if(lua_gettop(L) != 1)
+    {
+        std::cout << "gettop failed (lua_getSelector) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+        lua_pushlightuserdata(L, host->getSelector());
+        return 1;
+    }
+    return 0;
+}
+
+int lua_setHoverVisible(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_setHoverVisible) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField_Selector * host = static_cast<CombatField_Selector*>(lua_touserdata(L, 1));
+        bool visible = lua_toboolean(L, 2);
+        host->setVisible(visible);
+        return 0;
+    }
+    return 0;
+}
 
 CombatField::CombatField()
 {
@@ -555,6 +628,11 @@ void CombatField::listFieldInfoCharacters()
 
 void CombatField::init(const std::string & scriptPath, lua_State * script)
 {
+    // selector : 
+
+    m_selector.init("./Assets/Textures/circle.png", 10.0f);
+
+
     m_script = script;
     if(LuaManager::Instance()->checkLua(m_script, luaL_dofile(m_script, scriptPath.c_str())))
     {
@@ -621,6 +699,16 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
 
     // general
     lua_register(m_script,"cpp_CFParseCharacterFromJson", lua_ParseCharacterStatsFromJson);
+
+    // Input handling 
+
+    lua_register(m_script,"cpp_hoverSlots", lua_hoverSlots);
+    lua_register(m_script, "cpp_getSelector", lua_getSelector);
+    lua_register(m_script,"cpp_setHoverColor", lua_setHoverColor);
+    
+    lua_register(m_script, "cpp_setHoverVisible", lua_setHoverVisible);
+
+
 
     // Field Info
     
@@ -703,6 +791,8 @@ void CombatField::draw(Feintgine::SpriteBatch & spriteBatch)
     {
         m_banner->draw(spriteBatch);
     }
+
+    m_selector.draw(spriteBatch);
     // if(m_guidock)
     // {
     m_guidock.draw(spriteBatch);
@@ -724,6 +814,10 @@ void CombatField::update(float deltaTime)
     {
         m_banner->update(deltaTime);
     }
+
+
+    m_selector.update(deltaTime);
+    
 }
 
 void CombatField::updateEvents()
@@ -862,3 +956,30 @@ void CombatField::characterPlayAnimation(const std::string & characterID, int si
 
     character->playAnimation(animName, loop);
 }
+
+void CombatField::updateSlotSelection(const glm::vec2 & mousePos)
+{   
+    for(int i = 0 ; i < m_characters.size() ; i++)
+    {
+        if(m_characters[i]->isMouseWithin(mousePos))
+        {
+            if(m_characters[i]->getCurrentSlot())
+            {
+                m_selector.setHoverSlot(m_characters[i]->getCurrentSlot());
+                m_selector.setColor(Feintgine::Color(100, 255, 100, 255));
+                return ;
+            }
+        }
+    }
+
+    for(int i = 0 ; i < m_slots.size() ; i++)
+    {
+        if(m_slots[i].isHovered(mousePos))
+        {
+            m_selector.setHoverSlot(&m_slots[i]);
+            m_selector.setColor(Feintgine::Color(255, 120, 120, 255));
+            return ;
+        }
+    }
+}
+

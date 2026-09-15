@@ -92,6 +92,10 @@ public:
     bool isMouseWithin(const glm::vec2 & mousePos);
 
     std::string getMapKey() { return m_characterID + "_" + std::to_string(m_side); }
+
+    CSlot * getCurrentSlot() { return m_currentSlot; }
+
+
 private:
 
     void fireLuaEvent(lua_State * L, const std::string & eventName);

@@ -10,7 +10,11 @@ Dispatch_Recievers = {} -- reset the recievers only 1 scene active
 -- Signals Map :
 
 Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal)
-    -- print("login handle signal " .. signal)
+    
+
+    local x,y = ControlHandler_getCursorPos()
+
+
     if signal < 16 then ---- contain at least left, right, up, down
     -- if (signal & Signal.left) ~= 0 then
         -- print("movement detect " )
@@ -36,7 +40,7 @@ Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal
         print("escape !")
     elseif (signal & Signal.mouseLeft) ~=0  then
         print("mouse left click !")
-        local x,y = ControlHandler_getCursorPos()
+        -- local x,y = ControlHandler_getCursorPos()
         CombatField_instance:selectCharacterByMouse(x,y)
 
         if CombatField_instance:getCurrentSelectedCharacter() ~= nil then
@@ -82,5 +86,11 @@ Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal
     end
     Combat_Dock_Middle_Instance:handleInput(signal)
 
+    -- CombatScene_Hovering_Slots(x,y)
+
 end
 
+-- function CombatScene_Hovering_Slots(x,y)
+--     print("CombatScene_Hovering_Slots called " .. x .. " " .. y)
+--     cpp_hoverSlots(CombatField_instance.host,x,y)
+-- end

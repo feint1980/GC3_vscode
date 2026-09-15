@@ -234,7 +234,7 @@ function Combat_dock_middle_panel:handleControlState(key)
 
     if (key & Signal.escape) ~= 0 then
         print("escape key")
-
+        Combat_Control_SelectionState_Down()
     end
 
 end
@@ -254,7 +254,6 @@ function Combat_dock_middle_panel:handleInput(key)
             end
         end
     end
-
 
     self:handleControlState(key)
 

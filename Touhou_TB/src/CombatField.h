@@ -24,6 +24,9 @@
 #include <nlohmann/json.hpp>
 
 #include "FieldInfo.h"
+
+#include "CombatField_Selector.h"
+
 using json = nlohmann::json;
 
 enum SlotPos
@@ -116,11 +119,16 @@ public:
 
     void registerCamera(Feintgine::Camera2D * camera) { m_tCam = camera; }
 
+    void updateSlotSelection(const glm::vec2 & mousePos);
+
+    CombatField_Selector * getSelector() { return &m_selector; }
+
 private:
 
     lua_State * m_script = nullptr;
 
     std::vector<CSlot> m_slots;
+
 
     // std::unordered_map<glm::ivec3, int> m_slotIndexMap;
 
@@ -144,6 +152,8 @@ private:
     CombatGUIDock m_guidock; 
 
     Feintgine::Camera2D * m_tCam = nullptr; // cam needed for position conversion 
+
+    CombatField_Selector m_selector;
 
     //std::unordered_map<std::string, std::string> m_portraitMap;
 

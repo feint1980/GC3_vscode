@@ -419,6 +419,10 @@ void CombatScene::handleInput(Feintgine::InputManager & inputManager)
 	}
     
     m_luaRenderContext.updateSignals(inputManager);
+
+
+    m_combatField->updateSlotSelection(m_camera.convertScreenToWorld( inputManager.getMouseCoords()));
+
 }
 
 void CombatScene::sendPollSignal(const std::string& signalName,bool value)

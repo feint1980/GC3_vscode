@@ -86,7 +86,6 @@ void TestTBScreen::update(float deltaTime)
 
 void TestTBScreen::checkInput()
 {
-    
 	SDL_Event evnt;
 	while (SDL_PollEvent(&evnt))
 	{

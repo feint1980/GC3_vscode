@@ -41,7 +41,6 @@ SignalReceivers = {
 }
 
 
-
 ---@type table Label/Panel that can be focus switched
 Parentless_Widgets = {
 
@@ -135,7 +134,6 @@ function ControlHandler_DispatchSignal(host,tguiHost,signal)
     --     end
     -- end
 end
-
 
 function ControlHandler_registerPanel(panel)
     print("ControlHandler_registerPanel called ")

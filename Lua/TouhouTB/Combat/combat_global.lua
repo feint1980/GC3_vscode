@@ -16,6 +16,30 @@ Combat_Control_Selection_StateValue = {
 
 Combat_Control_Selection_State = Combat_Control_Selection_StateValue.SELECT_CHARACTER
 
+function Combat_Control_SetSelectionState(state)
+    if state < Combat_Control_Selection_StateValue.SELECT_CHARACTER or state > Combat_Control_Selection_StateValue.SELECT_TARGET then
+        print("invalid selection state " .. state)
+        return
+    end
+    Combat_Control_Selection_State = state
+    print("Combat_Control_SetSelectionState " .. state)
+end
+
+function Combat_Control_SelectionState_Down()
+    print("Combat_Control_SelectionState_Down")
+    local currentState = Combat_Control_Selection_State
+    local resultState = currentState - 1 -- down a level
+    Combat_Control_SetSelectionState(resultState)
+end
+
+function Combat_Control_SelectionState_Up()
+    print("Combat_Control_SelectionState_Up")
+    local currentState = Combat_Control_Selection_State
+    local resultState = currentState + 1 -- up a level
+    Combat_Control_SetSelectionState(resultState)
+end
+
+
 Combat_HandleNetwork = {}
 
 CombatMessageHandling = {}

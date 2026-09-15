@@ -46,3 +46,13 @@ void CSlot::init(const std::string & texturePath, int colum, int row, int side)
 
 }
 
+bool CSlot::isHovered(const glm::vec2 & mousePos)
+{
+    if (mousePos.x > m_actualPos.x - m_circle.getDimentions().x / 2.0f && mousePos.x < m_actualPos.x + m_circle.getDimentions().x / 2.0f &&
+        mousePos.y > m_actualPos.y - m_circle.getDimentions().y / 2.0f && mousePos.y < m_actualPos.y + m_circle.getDimentions().y / 2.0f)
+    {
+        return true;
+    }
+    return false;
+}
+
