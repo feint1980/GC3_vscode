@@ -71,7 +71,7 @@ CombatIngameData =
     MatchStart = 2,
     OnCharacterTurnStart =3,
     Skill_Info_Sync = 4,
-    
+    Send_Combat_Request = 5,
 }
 
 CombatTurnOrder =

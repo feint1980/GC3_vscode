@@ -501,7 +501,7 @@ int lua_hoverSlots(lua_State * L)
         CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
         float mouseX = (float)lua_tonumber(L, 2);
         float mouseY = (float)lua_tonumber(L, 3);
-        host->updateSlotSelection(glm::vec2(mouseX, mouseY));
+        // host->updateSlotSelection(glm::vec2(mouseX, mouseY));
 
         return 0;
     }
@@ -707,8 +707,6 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     lua_register(m_script,"cpp_setHoverColor", lua_setHoverColor);
     
     lua_register(m_script, "cpp_setHoverVisible", lua_setHoverVisible);
-
-
 
     // Field Info
     
@@ -959,6 +957,7 @@ void CombatField::characterPlayAnimation(const std::string & characterID, int si
 
 void CombatField::updateSlotSelection(const glm::vec2 & mousePos)
 {   
+    
     for(int i = 0 ; i < m_characters.size() ; i++)
     {
         if(m_characters[i]->isMouseWithin(mousePos))

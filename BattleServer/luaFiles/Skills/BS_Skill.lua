@@ -46,20 +46,85 @@ BS_Required_Position.CENTER_CENTER = BS_Required_Position.R2C2
 
 BS_Required_Position.ALL = BS_Required_Position.TOP | BS_Required_Position.MIDDLE | BS_Required_Position.BOTTOM
 
-BS_Target_Position = {}
+
+BS_TargetFilter = {
+    SELF_SIDE_ONLY            = 1,    -- restrict to caster's own side
+    OPPONENT_SIDE_ONLY        = 2,    -- restrict to opposing side
+    REQUIRE_TARGET            = 4,    -- cell must be occupied
+    REQUIRE_FREE              = 8,    -- cell must be empty
+    FRONT_ONLY                = 16,   -- C1 only
+    CENTER_ONLY               = 32,   -- C2 only
+    BACK_ONLY                 = 64,   -- C3 only
+    TOP_ROW_ONLY              = 128,  -- R1 only
+    MIDDLE_ROW_ONLY           = 256,  -- R2 only
+    BOTTOM_ROW_ONLY           = 512,  -- R3 only
+    SELF_CHARACTER_ONLY       = 1024,  -- must be caster's own cell
+    OTHER_CHARACTER_ONLY      = 2048,  -- must NOT be caster's own cell
+}
+
+
+BS_Target_Position = {
+    filterFlag = 0, -- default ( no filter )
+    maxDiffRow = 0, -- adjacent row you can target
+    maxDiffCol = 0, -- adjacent col you can target
+}
+
 BS_Target_Position.__index = BS_Target_Position
 
-function BS_Target_Position:new(tPosition, tIsOpposite)
+
+function BS_Target_Position:new(tPosition)
     local o = setmetatable({}, self)
     o.position = tPosition
-    o.isOpposite = tIsOpposite
     self.__index = self
     return o
 end
--- function BS_Target_Position:init(tPosition, tIsOpposite)
---     self.position = tPosition
---     self.isOpposite = tIsOpposite
--- end
+
+local function assertValidFilterMask(mask)
+    local F = BS_TargetFilter
+    assert((mask & (F.SELF_SIDE_ONLY | F.OPPONENT_SIDE_ONLY)) ~= (F.SELF_SIDE_ONLY | F.OPPONENT_SIDE_ONLY),
+        "SELF_SIDE_ONLY + OPPONENT_SIDE_ONLY both set — leave both unset for either side")
+    assert((mask & (F.REQUIRE_TARGET | F.REQUIRE_FREE)) ~= (F.REQUIRE_TARGET | F.REQUIRE_FREE),
+        "REQUIRE_TARGET + REQUIRE_FREE both set — zero cells can ever match")
+    assert((mask & (F.SELF_CHARACTER_ONLY | F.OTHER_CHARACTER_ONLY)) ~= (F.SELF_CHARACTER_ONLY | F.OTHER_CHARACTER_ONLY),
+        "SELF_CHARACTER_ONLY + OTHER_CHARACTER_ONLY both set — zero cells can ever match")
+    assert(not ((mask & F.SELF_CHARACTER_ONLY) ~= 0 and (mask & F.REQUIRE_FREE) ~= 0),
+        "SELF_CHARACTER_ONLY + REQUIRE_FREE — caster's own cell is never empty, zero cells can ever match")
+end
+
+
+function BS_Target_Position:isCellLegal(casterCell, targetCell, occupant)
+    local mask = self.filterMask
+    local isSelfSide = (targetCell.side == casterCell.side)
+
+    if (mask & BS_TargetFilter.SELF_SIDE_ONLY) ~= 0 and not isSelfSide then return false end
+    if (mask & BS_TargetFilter.OPPONENT_SIDE_ONLY) ~= 0 and isSelfSide then return false end
+
+    if (mask & BS_TargetFilter.REQUIRE_TARGET) ~= 0 and occupant == nil then return false end
+    if (mask & BS_TargetFilter.REQUIRE_FREE) ~= 0 and occupant ~= nil then return false end
+
+    local COL_BITS = BS_TargetFilter.FRONT_ONLY | BS_TargetFilter.CENTER_ONLY | BS_TargetFilter.BACK_ONLY
+    if (mask & COL_BITS) ~= 0 then
+        local colOk = (targetCell.col == 1 and (mask & BS_TargetFilter.FRONT_ONLY)  ~= 0)
+                or (targetCell.col == 2 and (mask & BS_TargetFilter.CENTER_ONLY) ~= 0)
+                or (targetCell.col == 3 and (mask & BS_TargetFilter.BACK_ONLY)   ~= 0)
+        if not colOk then return false end
+    end
+
+    local ROW_BITS = BS_TargetFilter.TOP_ROW_ONLY | BS_TargetFilter.MIDDLE_ROW_ONLY | BS_TargetFilter.BOTTOM_ROW_ONLY
+    if (mask & ROW_BITS) ~= 0 then
+        local rowOk = (targetCell.row == 1 and (mask & BS_TargetFilter.TOP_ROW_ONLY)    ~= 0)
+                or (targetCell.row == 2 and (mask & BS_TargetFilter.MIDDLE_ROW_ONLY) ~= 0)
+                or (targetCell.row == 3 and (mask & BS_TargetFilter.BOTTOM_ROW_ONLY) ~= 0)
+        if not rowOk then return false end
+    end
+
+    local isCasterCell = isSelfSide and targetCell.row == casterCell.row and targetCell.col == casterCell.col
+    if (mask & BS_TargetFilter.SELF_CHARACTER_ONLY) ~= 0 and not isCasterCell then return false end
+    if (mask & BS_TargetFilter.OTHER_CHARACTER_ONLY) ~= 0 and isCasterCell then return false end
+
+    return true
+end
+
 
 BS_DMG_Type = {
     PHYSICAL = 0,

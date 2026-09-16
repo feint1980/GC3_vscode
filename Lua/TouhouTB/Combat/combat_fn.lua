@@ -5,113 +5,6 @@ package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../
 require "combat_stage_sequence"
 
 
-
--- CombatHandling_Fn[CombatIngameData.Sync] = function(data)
-
---     local tData , pos, err = JSON_Decode(data)
-
---     print("[CombatIngameData.Sync] data dump" .. data )
---     if err then
---         print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_IngameData]  JSON decode error:", err)
---     end
-
---     print("Combat Sync get ")
-
---     local lobbyID = tData[1]
---     local p1Id = tData[2]
---     local p2Id = tData[3]
---     local p1Formation = tData[4]
---     local p2Formation = tData[5]
-
-
---     local p1FormationInfo, pos, err = JSON_Decode(p1Formation)
---     if err then
---         print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_IngameData]  JSON decode error:", err)
---     end
---     local p2FormationInfo, pos, err = JSON_Decode(p2Formation)
---     if err then
---         print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_IngameData]  JSON decode error:", err)
---     end
-
-
---     --  Reset Combat_Combat_Formations
---     for k in pairs (Combat_Formations) do
---         Combat_Formations[k] = nil
---     end
-
---     Combat_Formations[p1Id] = p1FormationInfo
---     Combat_Formations[p2Id] = p2FormationInfo
-
---     for k,v in pairs(p1FormationInfo) do
---         CombatField_instance:addCharacter(p1FormationInfo[k].stats.colPos, 
---         p1FormationInfo[k].stats.rowPos, 1, p1FormationInfo[k].stats.characterID,"" )
-
---         -- convert to number ( if not c++ parse will error)
---         v.stats.colPos = tonumber(v.stats.colPos)
---         v.stats.rowPos = tonumber(v.stats.rowPos)
---         -- local jsonData = JSON_Encode(v) -> old version 
---         local jsonData = JSON_Encode(v.stats) -- New K2
---         CombatField_instance:SetCharacterStats(p1FormationInfo[k].stats.characterID,1,jsonData)
---     end
---     for k ,v in pairs(p2FormationInfo) do
---         CombatField_instance:addCharacter(p2FormationInfo[k].stats.colPos, 
---         p2FormationInfo[k].stats.rowPos, 2, p2FormationInfo[k].stats.characterID,"" )
-
---         -- convert to number ( if not c++ parse will error)
---         v.stats.colPos = tonumber(v.stats.colPos)
---         v.stats.rowPos = tonumber(v.stats.rowPos)
---         -- local jsonData = JSON_Encode(v) -> old version 
---         local jsonData = JSON_Encode(v.stats) -- New K2
---         CombatField_instance:SetCharacterStats(p2FormationInfo[k].stats.characterID,2,jsonData)
---     end
-
---     for k,v in pairs(p1FormationInfo) do
---         local tCharacter = CombatField_instance:getCharacter(p1FormationInfo[k].stats.characterID,1)
---         print(p1FormationInfo[k].stats.characterID)
---         if tCharacter ~= nil then 
---             print("character " .. p1FormationInfo[k].stats.characterID .. " valid" )
---         end
---         for k2,v2 in pairs(v) do
---             if k2 ~= "colPos" and k2 ~= "rowPos" then
---                 if type(v[k2]) == "number" then
---                     CF_SetCharacterStatFloat(tCharacter, k2, v[k2])
---                 elseif type(v[k2]) == "string" then
---                     CF_SetCharacterStatString(tCharacter, k2, v[k2])
---                 end
---             end
---         end
---     end
-
---     print("p2 check")
---     for k,v in pairs(p2FormationInfo) do
---         print(p2FormationInfo[k].stats.characterID)
---         local tCharacter = CombatField_instance:getCharacter(p2FormationInfo[k].stats.characterID,2)
---         if tCharacter ~= nil then 
---             print("character " .. p2FormationInfo[k].stats.characterID .. " valid" )
---         end
---         for k2,v2 in pairs(v) do
---             if k2 ~= "colPos" and k2 ~= "rowPos" then
---                 if type(v[k2]) == "number" then
---                     CF_SetCharacterStatFloat(tCharacter, k2, v[k2])
---                 elseif type(v[k2]) == "string" then
---                     CF_SetCharacterStatString(tCharacter, k2, v[k2])
---                 end
---             end
---         end
---     end
---     CombatScene_SetSceneReady()
---     EventPipeline.emit("COMBAT_ON_MATCH_START")
-
---     CombatField_instance:FieldInfo_ListAll()
-
-
---     print("Dump Combat_Formations data")
---     for k,v in pairs(Combat_Formations) do
---         print(k .. ">" .. tostring(v))
---     end
--- end
-
-
 local function dumpTable(t, indent)
     indent = indent or "\t"
     for k, v in pairs(t) do
@@ -264,3 +157,12 @@ CombatHandling_Fn[CombatIngameData.OnCharacterTurnStart] = function(data)
     EventPipeline.emit("TURNDISPLAYER_SetSelection" , {characterID = characterID, side = side})
 
 end
+
+---- Send command to battle server 
+
+function SendBattleCommand(characterID, skillID, targetSlotSide, tarGetSlotCol,targetSlotRow )
+
+    SendBattleRequest(BattlePacketChannel.Combat, CombatIngameData.Send_Combat_Request, {characterID, skillID, targetSlotSide, tarGetSlotCol, targetSlotRow},5,0.1,0.15)
+
+end
+

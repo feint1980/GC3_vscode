@@ -123,15 +123,16 @@ CCombatResponse = {
     Combat_TurnOrder =3,
 }
 
-CombatIngameData = 
+CombatIngameData =
 {
-    Sync = 1, 
-    MatchStart = 2, 
+    Sync = 1,
+    MatchStart = 2,
     OnCharacterTurnStart = 3,
     Skill_Info_Sync = 4,
+    Send_Combat_Request = 5,
 }
 
-CombatTurnOrder = 
+CombatTurnOrder =
 {
     Sync = 1,
     RollResult = 2,

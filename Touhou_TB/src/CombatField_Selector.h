@@ -47,7 +47,7 @@ private:
 
     bool m_isVisible = false;
     bool m_isMoving = false; 
-    bool m_visible = false;
+    bool m_visible = true;
 
 };
 

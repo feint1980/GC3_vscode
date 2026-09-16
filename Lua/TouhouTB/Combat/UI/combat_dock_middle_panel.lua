@@ -229,7 +229,6 @@ function Combat_dock_middle_panel:getHoveredButton()
     return nil
 end
 
-
 function Combat_dock_middle_panel:handleControlState(key)
 
     if (key & Signal.escape) ~= 0 then
