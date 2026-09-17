@@ -39,7 +39,13 @@ function BS_Skill_HakureiKick:create(character)
 
     o.requiredPosition =  BS_Required_Position.MIDDLE
 
-    o.targetPosition    = BS_Target_Position:new(BS_Required_Position.FRONT | BS_Required_Position.MIDDLE, true)
+    o.targetPosition    = BS_Target_Position:new(
+        BS_TargetFilter.OPPONENT_SIDE_ONLY | 
+        BS_TargetFilter.REQUIRE_TARGET | 
+        BS_TargetFilter.FRONT_ONLY | 
+        BS_TargetFilter.CENTER_ONLY, 
+        1, 2
+    )
 
     return o
 end

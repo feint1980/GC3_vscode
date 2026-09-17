@@ -127,7 +127,6 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
             dumpTable(character.skills)
         end
     end
-
 end
 
 CombatHandling_Fn[CombatIngameData.OnCharacterTurnStart] = function(data)

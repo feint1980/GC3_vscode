@@ -64,17 +64,17 @@ BS_TargetFilter = {
 
 
 BS_Target_Position = {
-    filterFlag = 0, -- default ( no filter )
-    maxDiffRow = 0, -- adjacent row you can target
-    maxDiffCol = 0, -- adjacent col you can target
+    filterFlag = 0,
+    rowRange = nil, -- nil = unrestricted; inclusive distance from caster's row
+    colRange = nil, -- nil = unrestricted; inclusive distance from caster's column
 }
-
 BS_Target_Position.__index = BS_Target_Position
 
-
-function BS_Target_Position:new(tPosition)
+function BS_Target_Position:new(tFilterFlag, tRowRange, tColRange)
     local o = setmetatable({}, self)
-    o.position = tPosition
+    o.filterFlag = tFilterFlag or 0
+    o.rowRange = tRowRange
+    o.colRange = tColRange
     self.__index = self
     return o
 end
@@ -160,7 +160,7 @@ function BS_Skill:new(o)
     o.costText = o.costText or "TKD"
 
     o.requiredPosition = o.requiredPosition or BS_Required_Position.ALL
-    o.targetPosition = o.targetPosition or BS_Target_Position:new(BS_Required_Position.ALL, false)
+    o.targetPosition = o.targetPosition or BS_Target_Position:new()
 
     o.isPassive = o.isPassive or false
 

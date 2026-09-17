@@ -15,7 +15,7 @@ function BS_Skill_RedirectiveParadox:create(character)
 
     o.availablePosition = BS_Required_Position.ALL
 
-    o.targetPosition = BS_Target_Position:new(BS_Required_Position.ALL, false)
+    o.targetPosition = BS_Target_Position:new()
 
     self.__index = self
     return o
