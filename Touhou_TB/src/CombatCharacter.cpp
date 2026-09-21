@@ -27,6 +27,7 @@ void CombatCharacter::init(CSlot * slot, const std::string & animationPath,const
     m_pos = m_currentSlot->getPos();
     m_scale = scale;
 
+    
     m_animation.init(animationPath, m_scale);
     m_animation.playAnimation("idle");
     m_animation.setPos(m_pos);
@@ -37,7 +38,8 @@ void CombatCharacter::init(CSlot * slot, const std::string & animationPath,const
     }
 
     m_yOffset = m_animation.getDim().y * 0.5f;
-
+    m_currentSlot->setCurrentCharacter(this);
+    
     // std::cout << "chracter init with texture " << animationPath << "\n";
     // std::cout << "curPos" << m_pos.x << " " << m_pos.y << "\n";
 }
@@ -62,7 +64,10 @@ void CombatCharacter::update(float deltaTime)
         {
             m_pos = m_moveTargetPos;
             m_isMoving = false;
+            m_currentSlot->setCurrentCharacter(nullptr);
             m_currentSlot = m_targetSlot;
+            m_currentSlot->setCurrentCharacter(this);
+            
             m_moveJustCompleted = true; // flag only - updateEvents() fires it into Lua
         }
     }

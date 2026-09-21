@@ -53,6 +53,29 @@ enum SlotPos
     RightFrontBot
 };
 
+
+// BS_TargetFilter.h — the ONE place these numbers exist
+enum BS_TargetFilterBits : uint32_t {
+    BS_SELF_SIDE_ONLY       = 1 << 0,
+    BS_OPPONENT_SIDE_ONLY   = 1 << 1,
+    BS_REQUIRE_TARGET       = 1 << 2,
+    BS_REQUIRE_FREE         = 1 << 3,
+    BS_FRONT_ONLY           = 1 << 4,
+    BS_CENTER_ONLY          = 1 << 5,
+    BS_BACK_ONLY            = 1 << 6,
+    BS_TOP_ROW_ONLY         = 1 << 7,
+    BS_MIDDLE_ROW_ONLY      = 1 << 8,
+    BS_BOTTOM_ROW_ONLY      = 1 << 9,
+    BS_SELF_CHARACTER_ONLY  = 1 << 10,
+    BS_OTHER_CHARACTER_ONLY = 1 << 11,
+};
+
+struct TargetFilterData {
+    uint32_t filterFlag = 0;
+    int rowRange = -1;
+    int colRange = -1;
+};
+
 #define FIELD_SIDE_LEFT 1
 #define FIELD_SIDE_RIGHT 2
 
@@ -123,12 +146,22 @@ public:
 
     CombatField_Selector * getSelector() { return &m_selector; }
 
+    void updateTargetFilterFlag(uint32_t flag, int rowRange, int colRange);
+
+    bool isCellLegalForHighlight(const TargetFilterData & params,
+                            const CSlot& casterCell,
+                            const CSlot& targetCell,
+                            const CombatCharacter* occupant);
+
+    void setCaster(CombatCharacter * character) { m_caster = character; }
+
+    void setSelectedCharacter(CombatCharacter * character) { m_selectedCharacter = character; }
+
 private:
 
     lua_State * m_script = nullptr;
 
     std::vector<CSlot> m_slots;
-
 
     // std::unordered_map<glm::ivec3, int> m_slotIndexMap;
 
@@ -154,6 +187,11 @@ private:
     Feintgine::Camera2D * m_tCam = nullptr; // cam needed for position conversion 
 
     CombatField_Selector m_selector;
+
+    TargetFilterData m_targetFilterData;
+
+    CombatCharacter * m_caster = nullptr;
+    CombatCharacter * m_selectedCharacter = nullptr;
 
     //std::unordered_map<std::string, std::string> m_portraitMap;
 

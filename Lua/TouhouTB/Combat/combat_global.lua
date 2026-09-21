@@ -80,4 +80,33 @@ function CombatHandlerBattleResponse(host,chanel,request, data,guid)
     end
 end
 
+
+-- CombatField_Current_TargetFilter
+CombatField_Current_TargetFilter = {
+    filterFlag = 0,
+    rowRange   = nil,
+    colRange   = nil,
+}
+
+-- Call this exactly when a skill becomes the active selection (skill picked,
+-- or skill selection cleared). NOT per-frame, NOT per-hover, NOT per-nav-step.
+function CombatField_SetActiveTargetFilter(skill)
+    if skill == nil then
+        -- no skill selected — reset to "no restriction" so nothing stays
+        -- stuck highlighted from a previous selection
+        CombatField_Current_TargetFilter.filterFlag = 0
+        CombatField_Current_TargetFilter.rowRange   = nil
+        CombatField_Current_TargetFilter.colRange   = nil
+        return
+    end
+
+    local tp = skill.targetPosition -- the skill's BS_Target_Position instance
+    CombatField_Current_TargetFilter.filterFlag = tp.filterFlag
+    CombatField_Current_TargetFilter.rowRange   = tp.rowRange
+    CombatField_Current_TargetFilter.colRange   = tp.colRange
+end
+
+
+
+
 require "combat_network"

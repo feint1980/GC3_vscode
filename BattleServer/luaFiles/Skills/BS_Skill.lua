@@ -163,9 +163,7 @@ function BS_Skill:new(o)
     o.targetPosition = o.targetPosition or BS_Target_Position:new()
 
     o.isPassive = o.isPassive or false
-
     self.__index = self
-
     return o
 end
 

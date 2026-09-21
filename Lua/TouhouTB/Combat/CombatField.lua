@@ -38,7 +38,10 @@ end
 function CombatField:setCurrentCharacterInTurn(ownerID, characterID)
 
     local side = self.playerSideTable[ownerID]
+
     self.currentInTurnCharacter = self:getCharacter(characterID, side)
+
+    cpp_setSelectedCharacter(self.host, self.currentInTurnCharacter.host)
 
 end
 
@@ -165,9 +168,17 @@ function CombatField:selectCharacterByMouse(posX, posY)
     self.currentSelectedCharacter = self:getCharacterByPointer(charPtr)
     -- print("CombatField:SelectCharacterByMouse - )
     print("selected " .. self.currentSelectedCharacter.key)
+
+    -- Set caster in C++
+    cpp_setCaster(self.host, charPtr)
+
+    -- todo : we need to call cpp_updateTargetFilterFlag
+
     if not self.currentSelectedCharacter then
         print("CombatField:SelectCharacterByMouse - pointer returned but not found in cache (character created outside addCharacter?)")
+        return
     end
+
 end
 
 function CombatField:FieldInfo_ListAll()
@@ -255,6 +266,5 @@ function CombatField:testMoveSequence(characterID, side, col, row, duration)
     self:playSequence(steps, function()
         print("testMoveSequence: " .. characterID .. " finished moving to (" .. col .. "," .. row .. ")")
     end)
-
 
 end

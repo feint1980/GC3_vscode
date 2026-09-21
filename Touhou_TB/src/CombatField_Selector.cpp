@@ -68,5 +68,11 @@ void CombatField_Selector::setHoverSlot(CSlot * slot)
             m_targetPos = slot->getPos();
         }
     }
+    else
+    {
+        m_isMoving = false;
+        m_currentSlot = nullptr;
+        m_visible = false;
+    }
     // m_currentSlot
 }

@@ -15,6 +15,10 @@ CSlot::CSlot(const std::string & texturePath, int colum, int row, int side)
     init(texturePath, colum, row, side);
 }
 
+CSlot::CSlot(int side, int row, int colum)
+{
+    init("./Assets/Textures/circle.png", colum, row, side);
+}
 
 void CSlot::draw(Feintgine::SpriteBatch & spriteBatch)
 {

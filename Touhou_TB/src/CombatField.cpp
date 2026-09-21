@@ -561,6 +561,74 @@ int lua_setHoverVisible(lua_State * L)
     return 0;
 }
 
+int lua_updateTargetFilterFlag(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_updateTargetFilterFlag) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+        lua_getglobal(L, "CombatField_Current_TargetFilter");
+        if(!lua_istable(L, -1))
+        {
+            lua_pop(L, 1);
+            return -1;
+        }
+
+        lua_getfield(L, -1, "filterFlag");           // filterFlag is always a number
+        uint32_t filterFlag = (uint32_t)lua_tointeger(L, -1);
+        lua_pop(L, 1);
+
+        lua_getfield(L, -1, "rowRange");             // may be nil
+        int filterFlagrowRange = lua_isnil(L, -1) ? -1 : (int)lua_tointeger(L, -1);
+        lua_pop(L, 1);
+
+        lua_getfield(L, -1, "colRange");             // may be nil
+        int filterFlagcolRange = lua_isnil(L, -1) ? -1 : (int)lua_tointeger(L, -1);
+        lua_pop(L, 1);
+
+        lua_pop(L, 1); // pop the table itself
+
+        host->updateTargetFilterFlag(filterFlag, filterFlagrowRange, filterFlagcolRange);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_setCaster(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_setCaster) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+        CombatCharacter * caster = static_cast<CombatCharacter*>(lua_touserdata(L, 2));
+        host->setCaster(caster);
+        return 0;
+    }
+    return 0;
+}
+
+int lua_setSelectedCharacter(lua_State * L)
+{
+    if(lua_gettop(L) != 2)
+    {
+        std::cout << "gettop failed (lua_setCaster) " << lua_gettop(L) << "\n";
+        return -1;
+    }
+    {
+        CombatField * host = static_cast<CombatField*>(lua_touserdata(L, 1));
+        CombatCharacter * caster = static_cast<CombatCharacter*>(lua_touserdata(L, 2));
+        host->setSelectedCharacter(caster);
+        return 0;
+    }
+    return 0;
+}
+
 CombatField::CombatField()
 {
     // m_slotIndexMap = std::unordered_map<glm::ivec3, int>();
@@ -707,6 +775,14 @@ void CombatField::init(const std::string & scriptPath, lua_State * script)
     lua_register(m_script,"cpp_setHoverColor", lua_setHoverColor);
     
     lua_register(m_script, "cpp_setHoverVisible", lua_setHoverVisible);
+
+    // filter flag
+
+    lua_register(m_script, "cpp_updateTargetFilterFlag", lua_updateTargetFilterFlag);
+
+    // characters 
+    lua_register(m_script, "cpp_setCaster", lua_setCaster);
+    lua_register(m_script, "cpp_setSelectedCharacter", lua_setSelectedCharacter);
 
     // Field Info
     
@@ -923,6 +999,12 @@ void CombatField::drawText(TextRenderer * textRenderer)
     // }
     
 }
+void CombatField::updateTargetFilterFlag(uint32_t flag, int rowRange, int colRange)
+{
+    m_targetFilterData.filterFlag = flag;
+    m_targetFilterData.rowRange = rowRange;
+    m_targetFilterData.colRange = colRange;
+}
 
 void CombatField::characterMoveToCell(const std::string & characterID, int side, int col, int row, float duration)
 {
@@ -943,6 +1025,48 @@ void CombatField::characterMoveToCell(const std::string & characterID, int side,
     character->moveToCell(targetSlot, duration);
 }
 
+bool CombatField::isCellLegalForHighlight(const TargetFilterData & params,
+                            const CSlot& casterCell,
+                            const CSlot& targetCell,
+                            const CombatCharacter* occupant)
+{
+    int32_t f = params.filterFlag;
+    bool isSelfSide = (targetCell.getSide() == casterCell.getSide());
+
+    if ((f & BS_SELF_SIDE_ONLY)  && !isSelfSide) return false;
+    if ((f & BS_OPPONENT_SIDE_ONLY) && isSelfSide) return false;
+
+    if ((f & BS_REQUIRE_TARGET) && occupant == nullptr) return false;
+    if ((f & BS_REQUIRE_FREE)   && occupant != nullptr) return false;
+
+    constexpr uint32_t COL_BITS = BS_FRONT_ONLY | BS_CENTER_ONLY | BS_BACK_ONLY;
+    if (f & COL_BITS) {
+        bool colOk = (targetCell.getIndex()[0] == 1 && (f & BS_FRONT_ONLY)) ||
+                     (targetCell.getIndex()[0] == 2 && (f & BS_CENTER_ONLY)) ||
+                     (targetCell.getIndex()[0] == 3 && (f & BS_BACK_ONLY));
+        if (!colOk) return false;
+    }
+
+    constexpr uint32_t ROW_BITS = BS_TOP_ROW_ONLY | BS_MIDDLE_ROW_ONLY | BS_BOTTOM_ROW_ONLY;
+    if (f & ROW_BITS) {
+        bool rowOk = (targetCell.getIndex()[1] == 1 && (f & BS_TOP_ROW_ONLY)) ||
+                    (targetCell.getIndex()[1] == 2 && (f & BS_MIDDLE_ROW_ONLY)) ||
+                    (targetCell.getIndex()[1] == 3 && (f & BS_BOTTOM_ROW_ONLY));
+        if (!rowOk) return false;
+    }
+
+    bool isCasterCell = isSelfSide && targetCell.getIndex()[0] == casterCell.getIndex()[0] && targetCell.getIndex()[1] == casterCell.getIndex()[1];
+    if ((f & BS_SELF_CHARACTER_ONLY) && !isCasterCell) return false;
+    if ((f & BS_OTHER_CHARACTER_ONLY) && isCasterCell) return false;
+
+    if (params.rowRange >= 0 && std::abs(targetCell.getIndex()[1] - casterCell.getIndex()[1]) > params.rowRange) return false;
+    if (params.colRange >= 0 && std::abs(targetCell.getIndex()[0] - casterCell.getIndex()[0]) > params.colRange) return false;
+
+    return true;
+
+
+}
+
 void CombatField::characterPlayAnimation(const std::string & characterID, int side, const std::string & animName, bool loop)
 {
     CombatCharacter * character = getCharacter(characterID, side);
@@ -957,28 +1081,100 @@ void CombatField::characterPlayAnimation(const std::string & characterID, int si
 
 void CombatField::updateSlotSelection(const glm::vec2 & mousePos)
 {   
-    
-    for(int i = 0 ; i < m_characters.size() ; i++)
+    if(!m_caster)
     {
-        if(m_characters[i]->isMouseWithin(mousePos))
+        std::cout << "m_caster is null \n";
+        return;
+    } 
+    if(!m_caster->getCurrentSlot())
+    {
+        std::cout << "m_caster->getCurrentSlot() is null \n";
+        return;
+    }   
+    if(!m_selectedCharacter)
+    {
+        std::cout << "m_selectedCharacter is null \n";
+        return;
+    }
+    if(!m_selectedCharacter->getCurrentSlot())
+    {
+        std::cout << "m_selectedCharacter->getCurrentSlot() is null \n";
+        return;
+    }
+    if(m_caster != m_selectedCharacter)
+    {
+        std::cout << "m_caster != m_selectedCharacter \n";
+        // m_selector.setVisible(false);
+        return;
+    }
+    // for(int i = 0 ; i < m_characters.size() ; i++)
+    // {
+    //     if(m_characters[i]->isMouseWithin(mousePos))
+    //     {
+    //         if(m_characters[i]->getCurrentSlot())
+    //         {
+    //             m_selector.setHoverSlot(m_characters[i]->getCurrentSlot());
+    //             // m_selector.setColor(Feintgine::Color(100, 255, 100, 255));
+    //             return ;
+    //         }
+    //     }
+    // }
+
+    // for(int i = 0 ; i < m_slots.size() ; i++)
+    // {
+    //     if(m_slots[i].isHovered(mousePos))
+    //     {
+    //         m_selector.setHoverSlot(&m_slots[i]);
+    //         // m_selector.setColor(Feintgine::Color(255, 120, 120, 255));
+    //         return ;
+    //     }
+    // }
+    CSlot* hoveredSlot = nullptr;
+
+    for (int i = 0; i < m_characters.size(); i++)
+    {
+        if (m_characters[i]->isMouseWithin(mousePos))
         {
-            if(m_characters[i]->getCurrentSlot())
+            if (m_characters[i]->getCurrentSlot())
             {
-                m_selector.setHoverSlot(m_characters[i]->getCurrentSlot());
-                m_selector.setColor(Feintgine::Color(100, 255, 100, 255));
-                return ;
+                hoveredSlot = m_characters[i]->getCurrentSlot();
+                break;
             }
         }
     }
 
-    for(int i = 0 ; i < m_slots.size() ; i++)
+    if (!hoveredSlot)
     {
-        if(m_slots[i].isHovered(mousePos))
+        for (int i = 0; i < m_slots.size(); i++)
         {
-            m_selector.setHoverSlot(&m_slots[i]);
-            m_selector.setColor(Feintgine::Color(255, 120, 120, 255));
-            return ;
+            if (m_slots[i].isHovered(mousePos))
+            {
+                hoveredSlot = &m_slots[i];
+                break;
+            }
         }
     }
+
+    m_selector.setHoverSlot(hoveredSlot);
+    if (!hoveredSlot)
+    {
+        return;
+    }
+
+    CSlot targetCell =  CSlot(hoveredSlot->getSide(), hoveredSlot->getIndex()[1], hoveredSlot->getIndex()[0]);
+    CombatCharacter* occupant = hoveredSlot->getCurrentCharacter(); // nullptr if empty
+
+    
+
+    bool legal = isCellLegalForHighlight(m_targetFilterData, *m_caster->getCurrentSlot(), targetCell, occupant);
+
+    Feintgine::Color tColor = Feintgine::Color(100, 255, 100, 255);
+    if(!legal)
+    {
+        tColor = Feintgine::Color(255, 120, 120, 255);
+    }
+
+    m_selector.setColor(tColor);
+
 }
 

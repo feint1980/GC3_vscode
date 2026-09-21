@@ -3,6 +3,8 @@
 #include <ResourceManager.h>
 #include "EmptyObject.h"
 
+class CombatCharacter;
+
 class CSlot 
 {
 public:
@@ -10,6 +12,8 @@ public:
     ~CSlot();
 
     CSlot(const std::string & texturePath, int row, int colum, int side);
+
+    CSlot(int side, int row, int colum);
 
     void draw(Feintgine::SpriteBatch & spriteBatch);
 
@@ -34,11 +38,17 @@ public:
         return m_side;
     }
 
+    CombatCharacter * getCurrentCharacter() { return m_characterInSlot; }
+
+    void setCurrentCharacter(CombatCharacter * character) { m_characterInSlot = character; }
     private:
 
     glm::ivec2 m_index = glm::ivec2(0,0);
     glm::vec2 m_actualPos = glm::vec2(0,0);
     glm::vec2 m_targetPos = glm::vec2(0,0);
+
+    CombatCharacter * m_characterInSlot = nullptr;
+
 
     int m_state = 0;
     int m_side = 1; // 1 | left  2 | right
