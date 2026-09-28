@@ -1,6 +1,6 @@
 package.path = package.path .. ';../../Lua/system/objects/?.lua;'
 
-require "compositeObject"
+require "compositeObject" -- unused in this file; drop if battle server should be pure logic
 
 BS_SkillCost = {}
 BS_SkillCost.__index = BS_SkillCost
@@ -12,8 +12,8 @@ function BS_SkillCost:new(o)
     o.manaCost = o.manaCost or 0
     o.spCost = o.spCost or 0
     o.hpCost = o.hpCost or 0
-    o.manaPercentCost = o.manaPercentCost or 0
-    o.hpPercentCost = o.hpPercentCost or 0
+    o.manaPercentCost = o.manaPercentCost or 0 -- 0..100, percent of MAX mana
+    o.hpPercentCost = o.hpPercentCost or 0     -- 0..100, percent of MAX hp
     self.__index = self
     return o
 end
@@ -46,6 +46,11 @@ BS_Required_Position.CENTER_CENTER = BS_Required_Position.R2C2
 
 BS_Required_Position.ALL = BS_Required_Position.TOP | BS_Required_Position.MIDDLE | BS_Required_Position.BOTTOM
 
+-- NEW: bit for a cell (row 1..3, col 1..3). Matches the R#C# values above.
+function BS_CellBit(row, col)
+    return 1 << ((row - 1) * 3 + (col - 1))
+end
+
 
 BS_TargetFilter = {
     SELF_SIDE_ONLY            = 1,    -- restrict to caster's own side
@@ -62,23 +67,7 @@ BS_TargetFilter = {
     OTHER_CHARACTER_ONLY      = 2048,  -- must NOT be caster's own cell
 }
 
-
-BS_Target_Position = {
-    filterFlag = 0,
-    rowRange = nil, -- nil = unrestricted; inclusive distance from caster's row
-    colRange = nil, -- nil = unrestricted; inclusive distance from caster's column
-}
-BS_Target_Position.__index = BS_Target_Position
-
-function BS_Target_Position:new(tFilterFlag, tRowRange, tColRange)
-    local o = setmetatable({}, self)
-    o.filterFlag = tFilterFlag or 0
-    o.rowRange = tRowRange
-    o.colRange = tColRange
-    self.__index = self
-    return o
-end
-
+-- CHANGED: moved above BS_Target_Position:new so it can be called from there
 local function assertValidFilterMask(mask)
     local F = BS_TargetFilter
     assert((mask & (F.SELF_SIDE_ONLY | F.OPPONENT_SIDE_ONLY)) ~= (F.SELF_SIDE_ONLY | F.OPPONENT_SIDE_ONLY),
@@ -92,8 +81,26 @@ local function assertValidFilterMask(mask)
 end
 
 
+BS_Target_Position = {
+    filterFlag = 0,
+    rowRange = nil, -- nil = unrestricted; inclusive distance from caster's row
+    colRange = nil, -- nil = unrestricted; inclusive distance from caster's column
+}
+BS_Target_Position.__index = BS_Target_Position
+
+function BS_Target_Position:new(tFilterFlag, tRowRange, tColRange)
+    local o = setmetatable({}, self)
+    o.filterFlag = tFilterFlag or 0
+    o.rowRange = tRowRange
+    o.colRange = tColRange
+    assertValidFilterMask(o.filterFlag) -- CHANGED: was defined but never called
+    self.__index = self
+    return o
+end
+
+
 function BS_Target_Position:isCellLegal(casterCell, targetCell, occupant)
-    local mask = self.filterMask
+    local mask = self.filterFlag -- CHANGED: was self.filterMask (nil -> runtime error)
     local isSelfSide = (targetCell.side == casterCell.side)
 
     if (mask & BS_TargetFilter.SELF_SIDE_ONLY) ~= 0 and not isSelfSide then return false end
@@ -121,6 +128,11 @@ function BS_Target_Position:isCellLegal(casterCell, targetCell, occupant)
     local isCasterCell = isSelfSide and targetCell.row == casterCell.row and targetCell.col == casterCell.col
     if (mask & BS_TargetFilter.SELF_CHARACTER_ONLY) ~= 0 and not isCasterCell then return false end
     if (mask & BS_TargetFilter.OTHER_CHARACTER_ONLY) ~= 0 and isCasterCell then return false end
+
+    -- NEW: range checks were stored but never enforced.
+    -- Compared by index, so on the opponent side it's distance from the mirrored cell.
+    if self.rowRange ~= nil and math.abs(targetCell.row - casterCell.row) > self.rowRange then return false end
+    if self.colRange ~= nil and math.abs(targetCell.col - casterCell.col) > self.colRange then return false end
 
     return true
 end
@@ -172,5 +184,104 @@ function BS_Skill:create(Character)
     -- base
 end
 
-return BS_Skill
 
+-- ===================== NEW: shared action pipeline =====================
+-- Built against the real BS_Character:
+--   current resources : cAction / cHp / cMana / cSp  (via getCurrentAP/HP/Mana/SP)
+--   max values        : getMaxHP() / getMaxMana()
+--   position / side   : caster:getPos() -> col,row ; caster.side (set by setSide)
+-- Do NOT write to character.stats: it is the ClientOwnedCharacters entry, shared by
+-- reference. Runtime state lives on the character itself.
+-- STILL ASSUMED (needs BS_BattleSession / battleState):
+--   battleState:getCharacterAt(side, row, col) -> character or nil
+-- The server must build targetCell.side itself from the packet; never trust a
+-- raw side/id from the client.
+
+local function snapshotResources(character)
+    -- same key names as the BS_Character:onTurnStart broadcast
+    return {
+        currentAp   = character:getCurrentAP(),
+        currentHp   = character:getCurrentHP(),
+        currentMana = character:getCurrentMana(),
+        currentSp   = character:getCurrentSP(),
+    }
+end
+
+-- Flat + percent costs resolved into absolute numbers (percent = of MAX)
+function BS_Skill:getResolvedCost(character)
+    local c = self.cost
+    return {
+        ap = c.apCost,
+        mp = c.manaCost + math.floor(character:getMaxMana() * c.manaPercentCost / 100),
+        hp = c.hpCost   + math.floor(character:getMaxHP()   * c.hpPercentCost   / 100),
+        sp = c.spCost,
+    }
+end
+
+function BS_Skill:canAfford(character)
+    local r = self:getResolvedCost(character)
+    if character:getCurrentAP()   < r.ap then return false, "NOT_ENOUGH_AP" end
+    if character:getCurrentMana() < r.mp then return false, "NOT_ENOUGH_MP" end
+    if character:getCurrentSP()   < r.sp then return false, "NOT_ENOUGH_SP" end
+    if character:getCurrentHP() - r.hp < 1 then return false, "NOT_ENOUGH_HP" end -- HP cost can't kill the caster
+    return true
+end
+
+function BS_Skill:pay(character)
+    local r = self:getResolvedCost(character)
+    character:spendAP(r.ap)
+    character.cMana = character.cMana - r.mp
+    character.cSp   = character.cSp   - r.sp
+    character.cHp   = character.cHp   - r.hp
+end
+
+-- Generic checks shared by every skill. Subclasses add their own, then call this.
+-- Turn ownership is the battle session's job, not the skill's.
+function BS_Skill:validate(battleState, caster, targetCell)
+    if self.isPassive then return false, "PASSIVE_SKILL" end
+    if not caster.isAlive then return false, "CASTER_DEAD" end
+
+    -- BS_Character.side defaults to 0 = never set; SELF_SIDE_ONLY would pass for everyone
+    assert(caster.side ~= 0, "caster '" .. tostring(caster.id) .. "' has no side (BS_Character:setSide)")
+
+    if targetCell.row < 1 or targetCell.row > 3 or targetCell.col < 1 or targetCell.col > 3 then
+        return false, "OUT_OF_BOUNDS"
+    end
+
+    local col, row = caster:getPos()
+    local casterCell = { side = caster.side, row = row, col = col }
+
+    if (self.requiredPosition & BS_CellBit(casterCell.row, casterCell.col)) == 0 then
+        return false, "WRONG_CASTER_CELL"
+    end
+
+    local ok, why = self:canAfford(caster)
+    if not ok then return false, why end
+
+    local occupant = battleState:getCharacterAt(targetCell.side, targetCell.row, targetCell.col)
+    if not self.targetPosition:isCellLegal(casterCell, targetCell, occupant) then
+        return false, "ILLEGAL_TARGET"
+    end
+
+    return true
+end
+
+-- Subclasses implement this: mutate battleState, return a result table to broadcast.
+function BS_Skill:execute(battleState, caster, targetCell)
+    error("BS_Skill:execute not implemented for skill '" .. tostring(self.id) .. "'")
+end
+
+-- Single entry point the battle session calls for EVERY action (move, attack, spellcard).
+-- Returns (false, errorCode) or (true, result)
+function BS_Skill:use(battleState, caster, targetCell)
+    local ok, err = self:validate(battleState, caster, targetCell)
+    if not ok then return false, err end
+
+    self:pay(caster)
+    local result = self:execute(battleState, caster, targetCell) or {}
+    result.skillId = self.id
+    result.casterResources = snapshotResources(caster) -- clients snap their bars to this
+    return true, result
+end
+
+return BS_Skill

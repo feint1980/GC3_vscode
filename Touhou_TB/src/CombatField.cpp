@@ -1081,6 +1081,7 @@ void CombatField::characterPlayAnimation(const std::string & characterID, int si
 
 void CombatField::updateSlotSelection(const glm::vec2 & mousePos)
 {   
+    m_selector.setVisible(false);
     if(!m_caster)
     {
         std::cout << "m_caster is null \n";
@@ -1160,11 +1161,10 @@ void CombatField::updateSlotSelection(const glm::vec2 & mousePos)
     {
         return;
     }
+    m_selector.setVisible(true);
 
     CSlot targetCell =  CSlot(hoveredSlot->getSide(), hoveredSlot->getIndex()[1], hoveredSlot->getIndex()[0]);
     CombatCharacter* occupant = hoveredSlot->getCurrentCharacter(); // nullptr if empty
-
-    
 
     bool legal = isCellLegalForHighlight(m_targetFilterData, *m_caster->getCurrentSlot(), targetCell, occupant);
 
@@ -1175,6 +1175,8 @@ void CombatField::updateSlotSelection(const glm::vec2 & mousePos)
     }
 
     m_selector.setColor(tColor);
+    std::cout << " updateSlotSelection reach OK \n";
+
 
 }
 

@@ -3,6 +3,7 @@ package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Characte
 require "battleWrapper"
 require "BS_global"
 require "Characters.BS_StatScale"
+require "BS_Move" -- adjust name/path to where BS_Move.lua lives
 
 --[[
 ================================================================================
@@ -50,10 +51,8 @@ function BS_Character:new()
     o.cAction                 = 0    -- current AP
     o.cDeathdoorSurvivalRate  = 1.0  -- 1.0 * deathDoorSurviveChance
     o.buffs                   = {}
-    o.buffs = setmetatable({}, {__mode = "v"})
 
     o.skills                  = {}
-    o.skills = setmetatable({}, {__mode = "v"})
 
     o.currentStance           = nil
     o.isAlive                 = true
@@ -85,7 +84,7 @@ function BS_Character:clone()
     end
 
     -- buffs should start clean on a copy, not inherit the source's active buffs
-    o.buffs = setmetatable({}, {__mode = "v"})
+    o.buffs = {}
 
     return o
 end
@@ -150,13 +149,13 @@ function BS_Character:initStat()
         print("ERROR: ClientOwnedCharacters[" .. self.userID .. "] is nil")
         return
     end
-    if ClientOwnedCharacters[self.userID][self.tId] == nil then
-        print("ERROR: ClientOwnedCharacters[" .. self.userID .. "][" .. self.tId .. "] is nil")
+    if ClientOwnedCharacters[self.userID][self.id] == nil then
+        print("ERROR: ClientOwnedCharacters[" .. self.userID .. "][" .. self.id .. "] is nil")
         return
     end
 
     print("stat init success")
-    self.stats   = ClientOwnedCharacters[self.userID][self.tId]
+    self.stats   = ClientOwnedCharacters[self.userID][self.id]
     if self.stats == nil then
         print("Ke3 F3i117 exception (MainServerChanel.ClientData][ClientDataResponse.ClientData_Response_OwnedCharacters)  JSON decode error:")
         return
@@ -443,6 +442,17 @@ end
 
 function BS_Character:getSkills()
     return self.skills
+end
+
+--- Resolve a skill by id. Move is implicit for every character (not stored in self.skills).
+---@return BS_Skill|nil
+function BS_Character:getSkill(skillId)
+    if skillId == BS_Move.SKILL_ID then return BS_Move.shared end
+    if self.skills[skillId] then return self.skills[skillId] end
+    for _, skill in pairs(self.skills) do   -- in case skills is stored as an array
+        if skill.id == skillId then return skill end
+    end
+    return nil
 end
 
 function BS_Character:addBuff(buff)

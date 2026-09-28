@@ -42,6 +42,8 @@ function CombatField:setCurrentCharacterInTurn(ownerID, characterID)
     self.currentInTurnCharacter = self:getCharacter(characterID, side)
 
     cpp_setSelectedCharacter(self.host, self.currentInTurnCharacter.host)
+    cpp_setCaster(self.host, self.currentInTurnCharacter.host)
+
 
 end
 

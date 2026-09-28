@@ -193,6 +193,7 @@ private:
     CombatCharacter * m_caster = nullptr;
     CombatCharacter * m_selectedCharacter = nullptr;
 
+
     //std::unordered_map<std::string, std::string> m_portraitMap;
 
    // FieldInfo m_fieldInfo; // may flag as unused 
