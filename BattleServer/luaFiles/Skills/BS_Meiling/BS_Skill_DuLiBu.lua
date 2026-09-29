@@ -12,7 +12,7 @@ function BS_Skill_DuLiBu:create(character)
     o.description = "Switch to Du Li Bu stance"
     o.costText = "0.25 AP"
 
-    o.availablePosition = BS_Required_Position.ALL
+    o.requiredPosition = BS_Required_Position.ALL
 
     o.targetPosition = BS_Target_Position:new()
 

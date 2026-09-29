@@ -253,7 +253,6 @@ function Combat_dock_middle_panel:handleInput(key)
             end
         end
     end
-
     self:handleControlState(key)
 
 end
@@ -261,9 +260,8 @@ end
 function Combat_dock_middle_panel:setCurrentCharacter(character)
     -- print("set character " .. character.stats.name)
     print("dump here ")
-    
     self:setAllButtonsVisible("skill",false)
-    
+
     for k, v in pairs(character) do 
         for k2 ,v2 in pairs(character.skills) do
             -- self.buttons[k2]:update
@@ -272,6 +270,5 @@ function Combat_dock_middle_panel:setCurrentCharacter(character)
     end
 
 end
-
 
 return Combat_dock_middle_panel

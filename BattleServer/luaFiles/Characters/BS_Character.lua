@@ -50,12 +50,13 @@ function BS_Character:new()
     o.cSp                     = 0    -- current SP
     o.cAction                 = 0    -- current AP
     o.cDeathdoorSurvivalRate  = 1.0  -- 1.0 * deathDoorSurviveChance
-    o.buffs                   = {}
 
+    o.buffs                   = {}
     o.skills                  = {}
 
-    o.currentStance           = nil
-    o.isAlive                 = true
+    o.generals                = {}
+    o.items                   = {}
+
     o.side                    = 0
 
     self.__index = self
@@ -133,6 +134,18 @@ end
 
 function BS_Character:loadSkills()
     self.skills = {}
+end
+
+function BS_Character:loadItems()
+    self.items = {}
+end
+
+function BS_Character:loadGenerals()
+    self.generals = {}
+
+    self.generals["M"] = BS_Move:create(self)
+    
+
 end
 
 function BS_Character:setSide(side)

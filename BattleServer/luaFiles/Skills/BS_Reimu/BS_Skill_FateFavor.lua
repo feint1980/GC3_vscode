@@ -15,7 +15,7 @@ function BS_Skill_FateFavor:create(character)
     Lasts 1 turn."
     o.costText = "Passive"
 
-    o.availablePosition = BS_Required_Position.ALL
+    o.requiredPosition = BS_Required_Position.ALL
 
     o.targetPosition = BS_Target_Position:new()
 

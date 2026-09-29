@@ -20,7 +20,7 @@ function BS_Skill_Quintessence:create(character)
  > Earth: Gain 2% physical protection."
     o.costText =  TextColor.color_orange .. "0.25 AP" .. TextColor.color_close
 
-    o.availablePosition = BS_Required_Position.ALL
+    o.requiredPosition = BS_Required_Position.ALL
 
     o.targetPosition = BS_Target_Position:new()
 

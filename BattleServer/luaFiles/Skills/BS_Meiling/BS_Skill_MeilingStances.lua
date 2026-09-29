@@ -20,7 +20,7 @@ function BS_Skill_MeilingStances:create(character)
     -40% physic def"
     o.costText = "Passive"
 
-    o.availablePosition = BS_Required_Position.ALL
+    o.requiredPosition = BS_Required_Position.ALL
 
     o.targetPosition = BS_Target_Position:new()
 

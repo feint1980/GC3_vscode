@@ -186,6 +186,7 @@ function BattleSession:buildFormation(playerID, rawFormation, side)
         -- tChar = rawFormation.characters[i]:clone()
 
         tChar:loadSkills()
+        tChar:loadGenerals()
         -- local tChar = class:new()
         -- tChar:init(playerID, charID, rawFormation.characters[i].stats)
 

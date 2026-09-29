@@ -12,7 +12,7 @@ function BS_Skill_Pubu:create(character)
     o.description = "Switch to Pu Bu stance"
     o.costText = "0.25 AP"
 
-    o.availablePosition = BS_Required_Position.ALL
+    o.requiredPosition = BS_Required_Position.ALL
 
     o.targetPosition = BS_Target_Position:new()
 
