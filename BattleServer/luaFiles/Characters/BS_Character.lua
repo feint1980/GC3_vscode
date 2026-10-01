@@ -1,9 +1,10 @@
-package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Characters/?.lua"
+package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Characters/?.lua" .. ";../luaFiles/Generals/?.lua"
 
 require "battleWrapper"
 require "BS_global"
 require "Characters.BS_StatScale"
 require "BS_Move" -- adjust name/path to where BS_Move.lua lives
+require "BS_EndTurn"
 
 --[[
 ================================================================================
@@ -144,7 +145,7 @@ function BS_Character:loadGenerals()
     self.generals = {}
 
     self.generals["M"] = BS_Move:create(self)
-    
+    self.generals["Space"] = BS_EndTurn:create(self)
 
 end
 
@@ -455,6 +456,14 @@ end
 
 function BS_Character:getSkills()
     return self.skills
+end
+
+function BS_Character:getGenerals()
+    return self.generals
+end
+
+function BS_Character:getItems()
+    return self.items
 end
 
 --- Resolve a skill by id. Move is implicit for every character (not stored in self.skills).

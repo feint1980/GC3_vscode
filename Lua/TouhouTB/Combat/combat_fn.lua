@@ -125,6 +125,10 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
             dumpTable(character.stats)
             print("skills : ")
             dumpTable(character.skills)
+            print("generals")
+            dumpTable(character.generals)
+            print("items")
+            dumpTable(character.items)
         end
     end
 end

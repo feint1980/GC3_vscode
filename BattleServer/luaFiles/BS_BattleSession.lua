@@ -247,6 +247,8 @@ function BattleSession:serializeFormation(formation)
             colPos       = char.colPos,
             },
             skills       = char:getSkills(),
+            generals     = char:getGenerals(),
+            items        = char:getItems()
         }
     end
     return data

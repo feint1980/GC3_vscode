@@ -269,6 +269,13 @@ function Combat_dock_middle_panel:setCurrentCharacter(character)
         end
     end
 
+    for k, v in pairs(character) do 
+        for k2 ,v2 in pairs(character.generals) do
+            -- self.buttons[k2]:update
+            self:updateButton("general", k2, v2.name,v2.description, v2.costText, true)
+        end
+    end
+
 end
 
 return Combat_dock_middle_panel

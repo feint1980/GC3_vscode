@@ -1,12 +1,27 @@
--- BS_EndTurn.lua
--- Not a BS_Skill: no target cell, no resource cost. Forcing it through
--- BS_Skill:use() would mean faking a targetCell just to pass validate()'s
--- bounds check, so this stays a separate, minimal module.
---
--- ASSUMPTIONS (rename to match your real BS_BattleSession):
---   battleState:getActiveCharacter() -> the character whose turn it currently is
---   battleState:advanceTurn()        -> pops turnQueue, moves to next turn/round
+
+require "BS_Skill"
+
 BS_EndTurn = {}
+BS_EndTurn.__index = BS_EndTurn
+
+setmetatable(BS_EndTurn, { __index = BS_Skill })
+
+BS_EndTurn.SKILL_ID = "BS_EndTurn" -- reserved id, never collides with a character's own skill ids
+
+function BS_EndTurn:create(character)
+    local o = BS_Skill.new(self)
+
+    o.id = BS_EndTurn.SKILL_ID
+    o.name = "End Turn"
+    o.description = "End your turn."
+    o.costText = " "
+    o.cost = BS_SkillCost:new({})
+    o.requiredPosition = BS_Required_Position.ALL
+    o.targetPosition = BS_Target_Position:new()
+
+    self.__index = self
+    return o
+end
 
 function BS_EndTurn:validate(battleState, caster, senderUserID)
     if not caster.isAlive then return false, "CASTER_DEAD" end

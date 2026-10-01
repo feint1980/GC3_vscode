@@ -1,10 +1,15 @@
+
+package.path = package.path .. ";../../luaFiles/?.lua" .. ";../luaFiles/Skills/?.lua"
+
+require "BS_Skill"
+
 BS_Move = {}
 BS_Move.__index = BS_Move
 -- Without this, BS_Move.__index = BS_Move is a self-loop and never
 -- reaches BS_Skill, so canAfford/pay/validate/use would be unreachable on instances.
 setmetatable(BS_Move, { __index = BS_Skill })
 
-BS_Move.SKILL_ID = "move" -- reserved id, never collides with a character's own skill ids
+BS_Move.SKILL_ID = "BS_Move" -- reserved id, never collides with a character's own skill ids
 
 function BS_Move:create(character)
     local o = BS_Skill.new(self)
