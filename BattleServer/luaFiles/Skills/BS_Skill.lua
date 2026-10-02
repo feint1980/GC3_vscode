@@ -174,11 +174,12 @@ function BS_Skill:new(o)
     o.requiredPosition = o.requiredPosition or BS_Required_Position.ALL
     o.targetPosition = o.targetPosition or BS_Target_Position:new()
 
-    o.isPassive = o.isPassive or false
+    o.needTarget = true
+    o.isPassive = o.isPassive or false -- decide as if that skill can be active 
+
     self.__index = self
     return o
 end
-
 
 function BS_Skill:create(Character)
     -- base

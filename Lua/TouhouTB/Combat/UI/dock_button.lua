@@ -1,6 +1,8 @@
-package.path = package.path .. ';../../Lua/system/objects/?.lua;' .. ';../../Lua/TouhouTB/Combat/UI/?.lua;'
+package.path = package.path .. ';../../Lua/system/objects/?.lua;' .. ';../../Lua/TouhouTB/Combat/UI/?.lua;' .. ';../../Lua/TouhouTB/Combat/Skills/?.lua;'
 
 require "compositeObject"
+require "Combat_Skill"
+
 
 Dock_button = {}
 Dock_button.__index = Dock_button
@@ -8,12 +10,19 @@ function Dock_button:new()
     local o = setmetatable({}, self)
     o.name = "Button Name"
     o.description = "Button Description"
-    o.cost = "Cost (MP,AP,etc)" -- there are rules for this
+    o.costText = "Cost (MP,AP,etc)" -- there are rules for this
+    o.cost = Combat_Skill_Cost:new()
     o.key = "Unassigned key"
     o.keyInstance = nil  --- tTextObject 
     o.nameInstance = nil
     o.costInstance = nil
+
+    o.needTarget = false
     o.clickable = true
+
+    o.requiredPosition = Combat_Skill_Required_Position.ALL
+    o.targetPosition = Combat_Skill_Target_Position:new()
+
     -- o.
     ---@type L_compositeObject
     o.panel = nil -- compositeObject
@@ -69,7 +78,15 @@ function Dock_button:init(renderContextHost,key, name,posX, posY, width, height,
 
 end
 
-function Dock_button:updateButtonInfo(name, description, cost , clickable)
+function Dock_button:isClickable()
+    return self.clickable
+end
+
+function Dock_button:isNeedTarget()
+    return self.needTarget
+end
+
+function Dock_button:updateButtonInfo(name, description, costText , clickable , needTarget, cost, requiredPosition, targetPosition)
     if clickable == false then
         CompositeObjectText_setText(self.keyInstance, " ")
     else
@@ -78,11 +95,16 @@ function Dock_button:updateButtonInfo(name, description, cost , clickable)
 
     self.name = name
     CompositeObjectText_setText(self.nameInstance, self.name)
-
-
     self.description = description
+
+    self.costText = costText
+
+    CompositeObjectText_setText(self.costInstance, self.costText)
+
+    self.needTarget = needTarget
     self.cost = cost
-    CompositeObjectText_setText(self.costInstance, self.cost)
+    self.requiredPosition = requiredPosition
+    self.targetPosition = targetPosition
 
 end
 

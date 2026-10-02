@@ -10,10 +10,8 @@ Dispatch_Recievers = {} -- reset the recievers only 1 scene active
 -- Signals Map :
 
 Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal)
-    
 
     local x,y = ControlHandler_getCursorPos()
-
 
     if signal < 16 then ---- contain at least left, right, up, down
     -- if (signal & Signal.left) ~= 0 then

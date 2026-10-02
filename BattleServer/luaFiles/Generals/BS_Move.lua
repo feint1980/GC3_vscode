@@ -31,6 +31,9 @@ function BS_Move:create(character)
         BS_TargetFilter.SELF_SIDE_ONLY | BS_TargetFilter.REQUIRE_FREE,
         1, 1)
 
+    o.isPassive = false
+    o.needTarget = true
+
     self.__index = self
     return o
 end

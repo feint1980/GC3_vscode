@@ -1,87 +1,84 @@
 
+Combat_Skill_Cost = {}
+Combat_Skill_Cost.__index = Combat_Skill_Cost
+
+function Combat_Skill_Cost:new(o)
+    o = o or {}
+    setmetatable(o, self)
+    o.apCost = o.apCost or 0
+    o.manaCost = o.manaCost or 0
+    o.spCost = o.spCost or 0
+    o.hpCost = o.hpCost or 0
+    o.manaPercentCost = o.manaPercentCost or 0 -- 0..100, percent of MAX mana
+    o.hpPercentCost = o.hpPercentCost or 0     -- 0..100, percent of MAX hp
+    self.__index = self
+    return o
+end
+
+Combat_Skill_Required_Position = {
+
+    R1C1 = 1,  R1C2 = 2,   R1C3 = 4,
+    R2C1 = 8,  R2C2 = 16,  R2C3 = 32,
+    R3C1 = 64, R3C2 = 128, R3C3 = 256,
+}
 
 
--- Combat_Skill_Cost = {}
--- Combat_Skill_Cost.__index = Combat_Skill_Cost
+Combat_Skill_Required_Position.TOP    = Combat_Skill_Required_Position.R1C1 | Combat_Skill_Required_Position.R1C2 | Combat_Skill_Required_Position.R1C3
+Combat_Skill_Required_Position.MIDDLE = Combat_Skill_Required_Position.R2C1 | Combat_Skill_Required_Position.R2C2 | Combat_Skill_Required_Position.R2C3
+Combat_Skill_Required_Position.BOTTOM = Combat_Skill_Required_Position.R3C1 | Combat_Skill_Required_Position.R3C2 | Combat_Skill_Required_Position.R3C3
 
--- function Combat_Skill_Cost:new(o)
---     o = o or {}
---     setmetatable(o, self)
---     o.apCost = o.apCost or 0
---     o.manaCost = o.manaCost or 0
---     o.spCost = o.spCost or 0
---     o.hpCost = o.hpCost or 0
---     o.manaPercentCost = o.manaPercentCost or 0 -- 0..100, percent of MAX mana
---     o.hpPercentCost = o.hpPercentCost or 0     -- 0..100, percent of MAX hp
---     self.__index = self
---     return o
--- end
+Combat_Skill_Required_Position.FRONT  = Combat_Skill_Required_Position.R1C1 | Combat_Skill_Required_Position.R2C1 | Combat_Skill_Required_Position.R3C1
+Combat_Skill_Required_Position.CENTER = Combat_Skill_Required_Position.R1C2 | Combat_Skill_Required_Position.R2C2 | Combat_Skill_Required_Position.R3C2
+Combat_Skill_Required_Position.BACK   = Combat_Skill_Required_Position.R1C3 | Combat_Skill_Required_Position.R2C3 | Combat_Skill_Required_Position.R3C3
+Combat_Skill_Required_Position.CENTER_CENTER = Combat_Skill_Required_Position.R2C2
 
--- Combat_Skill_Required_Position = {
+Combat_Skill_Required_Position.ALL = Combat_Skill_Required_Position.TOP | Combat_Skill_Required_Position.MIDDLE | Combat_Skill_Required_Position.BOTTOM
 
---     R1C1 = 1,  R1C2 = 2,   R1C3 = 4,
---     R2C1 = 8,  R2C2 = 16,  R2C3 = 32,
---     R3C1 = 64, R3C2 = 128, R3C3 = 256,
--- }
+Combat_Skill_Target_Filter = {
+    SELF_SIDE_ONLY            = 1,    -- restrict to caster's own side
+    OPPONENT_SIDE_ONLY        = 2,    -- restrict to opposing side
+    REQUIRE_TARGET            = 4,    -- cell must be occupied
+    REQUIRE_FREE              = 8,    -- cell must be empty
+    FRONT_ONLY                = 16,   -- C1 only
+    CENTER_ONLY               = 32,   -- C2 only
+    BACK_ONLY                 = 64,   -- C3 only
+    TOP_ROW_ONLY              = 128,  -- R1 only
+    MIDDLE_ROW_ONLY           = 256,  -- R2 only
+    BOTTOM_ROW_ONLY           = 512,  -- R3 only
+    SELF_CHARACTER_ONLY       = 1024,  -- must be caster's own cell
+    OTHER_CHARACTER_ONLY      = 2048,  -- must NOT be caster's own cell
+}
 
-
--- Combat_Skill_Required_Position.TOP    = Combat_Skill_Required_Position.R1C1 | Combat_Skill_Required_Position.R1C2 | Combat_Skill_Required_Position.R1C3
--- Combat_Skill_Required_Position.MIDDLE = Combat_Skill_Required_Position.R2C1 | Combat_Skill_Required_Position.R2C2 | Combat_Skill_Required_Position.R2C3
--- Combat_Skill_Required_Position.BOTTOM = Combat_Skill_Required_Position.R3C1 | Combat_Skill_Required_Position.R3C2 | Combat_Skill_Required_Position.R3C3
-
--- Combat_Skill_Required_Position.FRONT  = Combat_Skill_Required_Position.R1C1 | Combat_Skill_Required_Position.R2C1 | Combat_Skill_Required_Position.R3C1
--- Combat_Skill_Required_Position.CENTER = Combat_Skill_Required_Position.R1C2 | Combat_Skill_Required_Position.R2C2 | Combat_Skill_Required_Position.R3C2
--- Combat_Skill_Required_Position.BACK   = Combat_Skill_Required_Position.R1C3 | Combat_Skill_Required_Position.R2C3 | Combat_Skill_Required_Position.R3C3
--- Combat_Skill_Required_Position.CENTER_CENTER = Combat_Skill_Required_Position.R2C2
-
--- Combat_Skill_Required_Position.ALL = Combat_Skill_Required_Position.TOP | Combat_Skill_Required_Position.MIDDLE | Combat_Skill_Required_Position.BOTTOM
-
--- Combat_Skill_Target_Filter = {
---     SELF_SIDE_ONLY            = 1,    -- restrict to caster's own side
---     OPPONENT_SIDE_ONLY        = 2,    -- restrict to opposing side
---     REQUIRE_TARGET            = 4,    -- cell must be occupied
---     REQUIRE_FREE              = 8,    -- cell must be empty
---     FRONT_ONLY                = 16,   -- C1 only
---     CENTER_ONLY               = 32,   -- C2 only
---     BACK_ONLY                 = 64,   -- C3 only
---     TOP_ROW_ONLY              = 128,  -- R1 only
---     MIDDLE_ROW_ONLY           = 256,  -- R2 only
---     BOTTOM_ROW_ONLY           = 512,  -- R3 only
---     SELF_CHARACTER_ONLY       = 1024,  -- must be caster's own cell
---     OTHER_CHARACTER_ONLY      = 2048,  -- must NOT be caster's own cell
--- }
+-- CHANGED: moved above Combat_Skill_Target_Position:new so it can be called from there
+local function assertValidFilterMask(mask)
+    local F = Combat_Skill_Target_Filter
+    assert((mask & (F.SELF_SIDE_ONLY | F.OPPONENT_SIDE_ONLY)) ~= (F.SELF_SIDE_ONLY | F.OPPONENT_SIDE_ONLY),
+        "SELF_SIDE_ONLY + OPPONENT_SIDE_ONLY both set — leave both unset for either side")
+    assert((mask & (F.REQUIRE_TARGET | F.REQUIRE_FREE)) ~= (F.REQUIRE_TARGET | F.REQUIRE_FREE),
+        "REQUIRE_TARGET + REQUIRE_FREE both set — zero cells can ever match")
+    assert((mask & (F.SELF_CHARACTER_ONLY | F.OTHER_CHARACTER_ONLY)) ~= (F.SELF_CHARACTER_ONLY | F.OTHER_CHARACTER_ONLY),
+        "SELF_CHARACTER_ONLY + OTHER_CHARACTER_ONLY both set — zero cells can ever match")
+    assert(not ((mask & F.SELF_CHARACTER_ONLY) ~= 0 and (mask & F.REQUIRE_FREE) ~= 0),
+        "SELF_CHARACTER_ONLY + REQUIRE_FREE — caster's own cell is never empty, zero cells can ever match")
+end
 
 
--- -- CHANGED: moved above Combat_Skill_Target_Position:new so it can be called from there
--- local function assertValidFilterMask(mask)
---     local F = Combat_Skill_Target_Filter
---     assert((mask & (F.SELF_SIDE_ONLY | F.OPPONENT_SIDE_ONLY)) ~= (F.SELF_SIDE_ONLY | F.OPPONENT_SIDE_ONLY),
---         "SELF_SIDE_ONLY + OPPONENT_SIDE_ONLY both set — leave both unset for either side")
---     assert((mask & (F.REQUIRE_TARGET | F.REQUIRE_FREE)) ~= (F.REQUIRE_TARGET | F.REQUIRE_FREE),
---         "REQUIRE_TARGET + REQUIRE_FREE both set — zero cells can ever match")
---     assert((mask & (F.SELF_CHARACTER_ONLY | F.OTHER_CHARACTER_ONLY)) ~= (F.SELF_CHARACTER_ONLY | F.OTHER_CHARACTER_ONLY),
---         "SELF_CHARACTER_ONLY + OTHER_CHARACTER_ONLY both set — zero cells can ever match")
---     assert(not ((mask & F.SELF_CHARACTER_ONLY) ~= 0 and (mask & F.REQUIRE_FREE) ~= 0),
---         "SELF_CHARACTER_ONLY + REQUIRE_FREE — caster's own cell is never empty, zero cells can ever match")
--- end
+Combat_Skill_Target_Position = {
+    filterFlag = 0,
+    rowRange = nil, -- nil = unrestricted; inclusive distance from caster's row
+    colRange = nil, -- nil = unrestricted; inclusive distance from caster's column
+}
+Combat_Skill_Target_Position.__index = Combat_Skill_Target_Position
 
-
--- Combat_Skill_Target_Position = {
---     filterFlag = 0,
---     rowRange = nil, -- nil = unrestricted; inclusive distance from caster's row
---     colRange = nil, -- nil = unrestricted; inclusive distance from caster's column
--- }
--- Combat_Skill_Target_Position.__index = Combat_Skill_Target_Position
-
--- function Combat_Skill_Target_Position:new(filterFlag, rowRange, colRange)
---     assertValidFilterMask(filterFlag)
---     local o = {}
---     setmetatable(o, Combat_Skill_Target_Position)
---     o.filterFlag = filterFlag
---     o.rowRange = rowRange
---     o.colRange = colRange
---     return o
--- end
+function Combat_Skill_Target_Position:new(filterFlag, rowRange, colRange)
+    assertValidFilterMask(filterFlag)
+    local o = {}
+    setmetatable(o, Combat_Skill_Target_Position)
+    o.filterFlag = filterFlag
+    o.rowRange = rowRange
+    o.colRange = colRange
+    return o
+end
 
 -- function Combat_Skill_Target_Position:isCellLegal(casterCell, targetCell, occupant)
 --     local mask = self.filterFlag -- CHANGED: was self.filterMask (nil -> runtime error)

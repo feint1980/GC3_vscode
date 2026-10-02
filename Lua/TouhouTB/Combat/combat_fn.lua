@@ -5,6 +5,8 @@ package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../
 require "combat_stage_sequence"
 
 
+
+
 local function dumpTable(t, indent)
     indent = indent or "\t"
     for k, v in pairs(t) do
@@ -163,9 +165,19 @@ end
 
 ---- Send command to battle server 
 
-function SendBattleCommand(characterID, skillID, targetSlotSide, tarGetSlotCol,targetSlotRow )
+function SendBattleCommand(characterKey, skillID , data)
 
-    SendBattleRequest(BattlePacketChannel.Combat, CombatIngameData.Send_Combat_Request, {characterID, skillID, targetSlotSide, tarGetSlotCol, targetSlotRow},5,0.1,0.15)
+    if CombatMessage_Has_Sent then
+        print("CombatMessage_Has_Sent !!!!!!!")
+        return
+    end
+
+    SendBattleRequest(BattlePacketChannel.Combat, CombatIngameData.Send_Combat_Request, {characterKey, skillID, data},5,0.1,0.15)
 
 end
 
+
+-- function PendingRequest(characterKey, skillID,data)
+--     print("PendingRequest")
+--     SendBattleRequest(BattlePacketChannel.Combat, CombatIngameData.Send_Combat_Request, {characterKey, skillID, data},5,0.1,0.15)
+-- end

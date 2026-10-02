@@ -19,6 +19,9 @@ function BS_EndTurn:create(character)
     o.requiredPosition = BS_Required_Position.ALL
     o.targetPosition = BS_Target_Position:new()
 
+    o.isPassive = false
+    o.needTarget = false
+
     self.__index = self
     return o
 end

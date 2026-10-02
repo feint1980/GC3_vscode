@@ -8,13 +8,17 @@ function BS_Skill_LiangYiZhuang:create(character)
 
     o.id = "SKILL_LIANG_YI_ZHUANG"
     o.name = "Liang Yi Zhuang"
-    o.isPassive = false
+
+    o.cost = BS_SkillCost:new({ apCost = 0.5 })
+
     o.description = "Switch to Liang Yi Zhuang stance"
-    o.costText = "0.25 AP"
+    o.costText = "0.5 AP"
 
     o.requiredPosition = BS_Required_Position.ALL
-
     o.targetPosition = BS_Target_Position:new()
+
+    o.isPassive = false
+    o.needTarget = false
 
     self.__index = self
     return o

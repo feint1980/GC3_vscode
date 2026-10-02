@@ -108,14 +108,20 @@ TurnOrderHandling_Fn[CombatTurnOrder.PlayerCharacterTurn] = function(data)
 
     print("player " .. tData.playerId .. " on the side " .. tData.characterSide .. " controlling " .. tData.characterId .. " turn ")
 
-    -- EventPipeline.emit("COMBAT_ON_PLAYER_TURN", {data = tData})
-    Poll_AddTask("TurnDisplayReady", function()
-            TM_addTask(function()
+    local currentNow = tData.playerId .. "_" .. tData.characterId
 
-                CombatField_instance:showBannerMsg("Player " .. tData.playerId .. "'s turn")
-            end,30)
-        end)
-    --- handle turn here 
+    if CurrentCharacterInTurnKey ~= currentNow then
+        -- EventPipeline.emit("COMBAT_ON_PLAYER_TURN", {data = tData})
+        CurrentCharacterInTurnKey = currentNow
+        Poll_AddTask("TurnDisplayReady", function()
+                TM_addTask(function()
+
+                    CombatField_instance:showBannerMsg("Player " .. tData.playerId .. "'s turn")
+                end,30)
+            end)
+
+        --- handle turn here 
+    end
 
     -- Handle if it was the player turn. 
     local selfID = InfoHolder_getStrVal("MainInfo.id")
@@ -128,6 +134,7 @@ TurnOrderHandling_Fn[CombatTurnOrder.PlayerCharacterTurn] = function(data)
 
     if selfID == tData.playerId then
         print("it is the player turn")
+        CombatMessage_Has_Sent = false -- reset when in player turn
 
     else
         print("it is the opponent turn")

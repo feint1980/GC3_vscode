@@ -165,11 +165,22 @@ function Combat_dock_middle_panel:addButton(group,key, posX, posY, name, info , 
 
     btn:registerCallback("onHoverLeave", function()
         -- print("hover leave " .. name)
-        btn:getPanel():setFrameColor(255, 255, 255, 255)
+        if btn:isClickable() then
+            btn:getPanel():setFrameColor(255, 255, 255, 255)
+        end
     end)
 
     btn:registerCallback("onClick", function()
-        print("clicked " .. btn.name)
+        -- print("clicked " .. btn.name)
+        if btn:isClickable() then
+            if btn:isNeedTarget() then
+                    print("show pick target with filter")
+            else
+                print("clicked " .. btn.name)
+                -- btn:onClick()
+            end
+        end
+
     end)
 
     self.buttons[group][key] = btn
@@ -177,13 +188,13 @@ function Combat_dock_middle_panel:addButton(group,key, posX, posY, name, info , 
 end
 
 ---@Description update a button's displayed name/info at runtime (e.g. skill swapped, item count changed)
-function Combat_dock_middle_panel:updateButton(group,key, name, description, cost, clickable)
+function Combat_dock_middle_panel:updateButton(group,key, name, description, costText, clickable ,needTarget, cost, requiredPosition, targetPosition)
     local btn = self.buttons[group][key]
     if btn == nil then
         print("Combat_dock_middle_panel: no button registered for key " .. tostring(key))
         return
     end
-    btn:updateButtonInfo(name, description, cost, clickable)
+    btn:updateButtonInfo(name, description, costText, clickable, needTarget, cost, requiredPosition, targetPosition)
     btn:setVisible(true)
     -- NOTE: this assumes addText returns a pointer whose .text field
     -- is writable from Lua (same assumption used in combat_dock_my_character_info.lua).
@@ -265,17 +276,21 @@ function Combat_dock_middle_panel:setCurrentCharacter(character)
     for k, v in pairs(character) do 
         for k2 ,v2 in pairs(character.skills) do
             -- self.buttons[k2]:update
-            self:updateButton("skill", k2, v2.name,v2.description, v2.costText, (not v2.isPassive))
+            self:updateButton("skill", k2, v2.name,v2.description, v2.costText, (not v2.isPassive), self.needTarget, v2.cost, v2.requiredPosition, v2.targetPosition)
         end
     end
 
     for k, v in pairs(character) do 
         for k2 ,v2 in pairs(character.generals) do
             -- self.buttons[k2]:update
-            self:updateButton("general", k2, v2.name,v2.description, v2.costText, true)
+            self:updateButton("general", k2, v2.name,v2.description, v2.costText,( not v2.isPassive), self.needTarget, v2.cost, v2.requiredPosition, v2.targetPosition)
         end
     end
 
 end
+
+
+
+
 
 return Combat_dock_middle_panel

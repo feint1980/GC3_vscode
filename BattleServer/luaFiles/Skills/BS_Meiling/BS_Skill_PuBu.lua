@@ -8,13 +8,19 @@ function BS_Skill_Pubu:create(character)
 
     o.id = "SKILL_PUBU"
     o.name = "Pu Bu"
-    o.isPassive = false
+
+    o.cost = BS_SkillCost:new({ apCost = 0.5 })
+
+    --o.dmg pass ( no dmg )
+
     o.description = "Switch to Pu Bu stance"
-    o.costText = "0.25 AP"
+    o.costText = "0.5 AP"
 
     o.requiredPosition = BS_Required_Position.ALL
-
     o.targetPosition = BS_Target_Position:new()
+
+    o.needTarget = true
+    o.isPassive = false
 
     self.__index = self
     return o

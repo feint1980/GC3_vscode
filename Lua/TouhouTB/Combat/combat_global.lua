@@ -51,6 +51,11 @@ CombatHandling_Fn = {}
 TurnOrderHandling_Fn = {}
 
 
+CombatMessage_Has_Sent = true -- make 1 request at a time
+
+CurrentCharacterInTurnKey = ""
+
+
 for k,v in pairs(PacketChannel) do
     -- print(k,v)
     CombatMessageHandling[v] = {}
