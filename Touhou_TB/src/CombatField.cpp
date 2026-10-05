@@ -1084,27 +1084,27 @@ void CombatField::updateSlotSelection(const glm::vec2 & mousePos)
     m_selector.setVisible(false);
     if(!m_caster)
     {
-        std::cout << "m_caster is null \n";
+        // std::cout << "m_caster is null \n";
         return;
     } 
     if(!m_caster->getCurrentSlot())
     {
-        std::cout << "m_caster->getCurrentSlot() is null \n";
+        // std::cout << "m_caster->getCurrentSlot() is null \n";
         return;
     }   
     if(!m_selectedCharacter)
     {
-        std::cout << "m_selectedCharacter is null \n";
+        // std::cout << "m_selectedCharacter is null \n";
         return;
     }
     if(!m_selectedCharacter->getCurrentSlot())
     {
-        std::cout << "m_selectedCharacter->getCurrentSlot() is null \n";
+        // std::cout << "m_selectedCharacter->getCurrentSlot() is null \n";
         return;
     }
     if(m_caster != m_selectedCharacter)
     {
-        std::cout << "m_caster != m_selectedCharacter \n";
+        // std::cout << "m_caster != m_selectedCharacter \n";
         // m_selector.setVisible(false);
         return;
     }
@@ -1175,7 +1175,7 @@ void CombatField::updateSlotSelection(const glm::vec2 & mousePos)
     }
 
     m_selector.setColor(tColor);
-    std::cout << " updateSlotSelection reach OK \n";
+    // std::cout << " updateSlotSelection reach OK \n";
 
 
 }

@@ -20,7 +20,6 @@
                     x Description box
                 
 
-
 #interactive meaning the action will be verify by server, and display properly in clients side ( both side )
 
 ! interaction stack : 

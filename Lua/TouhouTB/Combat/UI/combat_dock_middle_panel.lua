@@ -1,8 +1,10 @@
-package.path = package.path .. ';../../Lua/system/objects/?.lua;' .. ';../../Lua/TouhouTB/Combat/UI/?.lua;'
+package.path = package.path .. ';../../Lua/system/objects/?.lua;' .. ';../../Lua/TouhouTB/Combat/UI/?.lua;'  .. ';../../Lua/TouhouTB/Combat/?.lua;'
 
 require "compositeObject"
 require "dock_button"
 require "dock_global"
+
+require "combat_fn"
 --[[
     Combat_dock_middle_panel
     
@@ -33,6 +35,8 @@ function Combat_dock_middle_panel:new()
     o.buttonGap = 10
     -- button registries , keyed group and slot name e.g. "1", "Q", "E"
     o.buttons = {}
+
+    o.characterKey = ""
 
     -- setmetatable(o.buttons, self.buttons)
     self.__index = self
@@ -159,7 +163,7 @@ function Combat_dock_middle_panel:addButton(group,key, posX, posY, name, info , 
         -- text set
         Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_name",btn.name)
         Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_description",btn.description)
-        Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_cost", btn.cost)
+        Combat_Dock_Right_Instance:getSide("skill_des"):setText("skill_cost", btn.costText)
 
     end)
 
@@ -171,13 +175,12 @@ function Combat_dock_middle_panel:addButton(group,key, posX, posY, name, info , 
     end)
 
     btn:registerCallback("onClick", function()
-        -- print("clicked " .. btn.name)
+        print("clicked " .. btn.name)
         if btn:isClickable() then
             if btn:isNeedTarget() then
-                    print("show pick target with filter")
+                print("show pick target with filter")
             else
-                print("clicked " .. btn.name)
-                -- btn:onClick()
+                SendBattleCommand(self.characterKey, btn.skillID {extra = "tLs"})
             end
         end
 
@@ -188,18 +191,23 @@ function Combat_dock_middle_panel:addButton(group,key, posX, posY, name, info , 
 end
 
 ---@Description update a button's displayed name/info at runtime (e.g. skill swapped, item count changed)
-function Combat_dock_middle_panel:updateButton(group,key, name, description, costText, clickable ,needTarget, cost, requiredPosition, targetPosition)
+function Combat_dock_middle_panel:updateButton(group,key, name,id, description, costText, clickable ,needTarget, cost, requiredPosition, targetPosition)
     local btn = self.buttons[group][key]
     if btn == nil then
         print("Combat_dock_middle_panel: no button registered for key " .. tostring(key))
         return
     end
-    btn:updateButtonInfo(name, description, costText, clickable, needTarget, cost, requiredPosition, targetPosition)
+    btn:updateButtonInfo(id,name, description, costText, clickable, needTarget, cost, requiredPosition, targetPosition)
     btn:setVisible(true)
     -- NOTE: this assumes addText returns a pointer whose .text field
     -- is writable from Lua (same assumption used in combat_dock_my_character_info.lua).
     -- If that's not how your binding works, this needs to go through whatever
     -- setter you actually expose (e.g. cpp_TextObject_setText).
+end
+
+function Combat_dock_middle_panel:updateCharacterKey(characterID, ownerID)
+
+    self.characterKey = characterID .. "_" .. ownerID
 end
 
 function Combat_dock_middle_panel:setAllButtonsVisible(targetGroup,value)
@@ -251,7 +259,14 @@ end
 
 function Combat_dock_middle_panel:handleInput(key)
 
+    print("Combat_dock_middle_panel:handleInput called key " .. key)
+    
     if (key & Signal.mouseLeft) ~= 0 then
+        -- print()
+        if(self:getHoveredButton() ~= nil) then
+            print("suppose to fire onclick callback")
+            self:getHoveredButton():fireCallback("onClick")
+        end 
         if( key & Signal.isAlted) ~= 0 then
             print("alt + left click")
         elseif (key & Signal.isShifted) ~= 0 then
@@ -259,9 +274,8 @@ function Combat_dock_middle_panel:handleInput(key)
         elseif (key & Signal.isCntrled) ~= 0 then
             print("ctrl + left click")
             -- print("just left click")
-            if(self:getHoveredButton() ~= nil) then
-                self:getHoveredButton():fireCallback("onClick")
-            end
+        else
+
         end
     end
     self:handleControlState(key)
@@ -273,24 +287,23 @@ function Combat_dock_middle_panel:setCurrentCharacter(character)
     print("dump here ")
     self:setAllButtonsVisible("skill",false)
 
+    self:updateCharacterKey(character.stats.characterID , character.stats.ownerID)
+
     for k, v in pairs(character) do 
         for k2 ,v2 in pairs(character.skills) do
             -- self.buttons[k2]:update
-            self:updateButton("skill", k2, v2.name,v2.description, v2.costText, (not v2.isPassive), self.needTarget, v2.cost, v2.requiredPosition, v2.targetPosition)
+            self:updateButton("skill", k2, v2.name, v2.id,v2.description, v2.costText, (not v2.isPassive), self.needTarget, v2.cost, v2.requiredPosition, v2.targetPosition)
         end
     end
 
     for k, v in pairs(character) do 
         for k2 ,v2 in pairs(character.generals) do
             -- self.buttons[k2]:update
-            self:updateButton("general", k2, v2.name,v2.description, v2.costText,( not v2.isPassive), self.needTarget, v2.cost, v2.requiredPosition, v2.targetPosition)
+            self:updateButton("general", k2, v2.name, v2.id,v2.description, v2.costText,( not v2.isPassive), self.needTarget, v2.cost, v2.requiredPosition, v2.targetPosition)
         end
     end
 
 end
-
-
-
 
 
 return Combat_dock_middle_panel

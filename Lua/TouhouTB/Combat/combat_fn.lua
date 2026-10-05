@@ -172,9 +172,19 @@ function SendBattleCommand(characterKey, skillID , data)
         return
     end
 
-    SendBattleRequest(BattlePacketChannel.Combat, CombatIngameData.Send_Combat_Request, {characterKey, skillID, data},5,0.1,0.15)
+    CombatMessage_Has_Sent = true
+
+    local tGUID = InfoHolder_getStrVal("MainInfo.guid")
+    local tID = InfoHolder_getStrVal("MainInfo.id")
+    local tLobbyID = InfoHolder_getStrVal("CurrentLobbyID")
+    local tPlayerIndex = InfoHolder_getNumberVal("Player_Index")
+
+    print("data check " .. tGUID .. " " .. tID .. " " .. tLobbyID .. " " .. tPlayerIndex)
+
+    SendBattleRequest(BattlePacketChannel.Combat, CombatIngameData.Send_Combat_Request, {tGUID, tID, tLobbyID, tPlayerIndex, characterKey, skillID, data},5,0.1,0.15)
 
 end
+
 
 
 -- function PendingRequest(characterKey, skillID,data)

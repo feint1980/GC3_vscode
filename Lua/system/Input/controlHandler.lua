@@ -1,15 +1,15 @@
 Input_host = nil
 
 Signal = {
-    left       = 1 << 0,
-    right      = 1 << 1,
-    up         = 1 << 2,
-    down       = 1 << 3,
-    enter      = 1 << 4,
-    escape     = 1 << 5,
-    mouseLeft  = 1 << 6,
-    mouseRight = 1 << 7,
-    isAlted    = 1 << 8,
+    left       = 1 << 0, -- 1
+    right      = 1 << 1, -- 2
+    up         = 1 << 2, -- 4
+    down       = 1 << 3, -- 8
+    enter      = 1 << 4, -- 16
+    escape     = 1 << 5, -- 32
+    mouseLeft  = 1 << 6, -- 64
+    mouseRight = 1 << 7, -- 128
+    isAlted    = 1 << 8, -- 256
     isCntrled  = 1 << 9,
     isShifted  = 1 << 10,
     key_q      = 1 << 11,

@@ -50,3 +50,18 @@ CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_TurnOrde
     end
     TurnOrderHandling_Fn[tType](data)
 end
+
+
+
+
+
+
+----- Ingame handling
+
+CombatBattleHandling[BattlePacketChannel.Combat][CombatIngameData.Send_Combat_Request] = function(host,data,guid)
+
+    print("Combat request detected from " .. guid)
+
+    print("data is " .. data)
+
+end

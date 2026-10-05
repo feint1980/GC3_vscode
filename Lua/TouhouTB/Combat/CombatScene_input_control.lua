@@ -13,22 +13,19 @@ Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal
 
     local x,y = ControlHandler_getCursorPos()
 
-    if signal < 16 then ---- contain at least left, right, up, down
-    -- if (signal & Signal.left) ~= 0 then
-        -- print("movement detect " )
-        -- ControlHandler_Info()
-        if (signal & Signal.left) ~= 0 then
-            -- tFocusPrev(controlHandlerHost,tguiHost)
-            print("left !")
-        elseif (signal & Signal.right) ~= 0 then
-            print("right !")
-            -- tFocusNext(controlHandlerHost,tguiHost)
-            -- focusNext(controlHandlerHost)
-        elseif (signal & Signal.up) ~= 0 then
-            print("up !")
-        elseif (signal & Signal.down) ~= 0 then
-            print("down !")
-        end
+
+    print("signal is " .. signal)
+    Combat_Dock_Middle_Instance:handleInput(signal)
+
+
+    if (signal & Signal.left) ~= 0 then
+        print("left !")
+    elseif (signal & Signal.right) ~= 0 then
+        print("right !")
+    elseif (signal & Signal.up) ~= 0 then
+        print("up !")
+    elseif (signal & Signal.down) ~= 0 then
+        print("down !")
     elseif (signal & Signal.enter) ~= 0 then
         print("enter !")
         -- local x,y = ControlHandler_getCursorPos()
@@ -82,7 +79,6 @@ Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal
             print("just q")
         end
     end
-    Combat_Dock_Middle_Instance:handleInput(signal)
 
     -- CombatScene_Hovering_Slots(x,y)
 

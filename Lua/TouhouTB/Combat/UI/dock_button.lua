@@ -23,13 +23,16 @@ function Dock_button:new()
     o.requiredPosition = Combat_Skill_Required_Position.ALL
     o.targetPosition = Combat_Skill_Target_Position:new()
 
+    o.skillID = "ID_INVALID"
+
     -- o.
     ---@type L_compositeObject
     o.panel = nil -- compositeObject
 
     return o
-
 end
+
+
 
 ---@param renderContextHost pointer instance of RenderContext
 ---@param key string key label, e.g. "1", "Q", "E"
@@ -86,7 +89,7 @@ function Dock_button:isNeedTarget()
     return self.needTarget
 end
 
-function Dock_button:updateButtonInfo(name, description, costText , clickable , needTarget, cost, requiredPosition, targetPosition)
+function Dock_button:updateButtonInfo(id,name, description, costText , clickable , needTarget, cost, requiredPosition, targetPosition)
     if clickable == false then
         CompositeObjectText_setText(self.keyInstance, " ")
     else
@@ -105,6 +108,8 @@ function Dock_button:updateButtonInfo(name, description, costText , clickable , 
     self.cost = cost
     self.requiredPosition = requiredPosition
     self.targetPosition = targetPosition
+
+    self.skillID = id
 
 end
 

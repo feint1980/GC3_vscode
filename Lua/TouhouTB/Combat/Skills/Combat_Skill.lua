@@ -71,12 +71,14 @@ Combat_Skill_Target_Position = {
 Combat_Skill_Target_Position.__index = Combat_Skill_Target_Position
 
 function Combat_Skill_Target_Position:new(filterFlag, rowRange, colRange)
-    assertValidFilterMask(filterFlag)
+    -- assertValidFilterMask(filterFlag)
     local o = {}
     setmetatable(o, Combat_Skill_Target_Position)
-    o.filterFlag = filterFlag
-    o.rowRange = rowRange
-    o.colRange = colRange
+
+    o.filterFlag = filterFlag or 0
+    o.rowRange = rowRange or nil
+    o.colRange = colRange or nil
+    assertValidFilterMask(o.filterFlag)
     return o
 end
 
