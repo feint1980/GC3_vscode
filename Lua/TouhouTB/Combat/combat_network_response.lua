@@ -6,7 +6,6 @@ require "combat_fn"
 require "turnOrder_fn"
 
 
-
 CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_IngameData] = function(host,data,guid)
 
     print("Combat_IngameData detected from " .. guid)
@@ -31,7 +30,7 @@ CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_IngameDa
 end
 
 
-CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_TurnOrder] = function(host,data,guid)
+CombatBattleHandling[BattlePacketChannel.Combat][CCombatResponse.Combat_Request] = function(host,data,guid)
 
     print("Combat_IngameData detected from " .. guid)
 

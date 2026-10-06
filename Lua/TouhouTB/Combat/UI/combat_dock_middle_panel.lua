@@ -180,7 +180,7 @@ function Combat_dock_middle_panel:addButton(group,key, posX, posY, name, info , 
             if btn:isNeedTarget() then
                 print("show pick target with filter")
             else
-                SendBattleCommand(self.characterKey, btn.skillID {extra = "tLs"})
+                SendBattleCommand(self.characterKey, btn.skillID, {extra = "tLs"})
             end
         end
 
@@ -259,8 +259,7 @@ end
 
 function Combat_dock_middle_panel:handleInput(key)
 
-    print("Combat_dock_middle_panel:handleInput called key " .. key)
-    
+    -- print("Combat_dock_middle_panel:handleInput called key " .. key)
     if (key & Signal.mouseLeft) ~= 0 then
         -- print()
         if(self:getHoveredButton() ~= nil) then

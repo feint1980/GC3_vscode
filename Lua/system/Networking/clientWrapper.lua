@@ -121,6 +121,7 @@ CCombatResponse = {
     Combat_ReadyStatus = 1,
     Combat_IngameData = 2,
     Combat_TurnOrder =3,
+    Combat_Request = 4,
 }
 
 CombatIngameData =
@@ -129,7 +130,7 @@ CombatIngameData =
     MatchStart = 2,
     OnCharacterTurnStart = 3,
     Skill_Info_Sync = 4,
-    Send_Combat_Request = 5,
+
 }
 
 CombatTurnOrder =

@@ -290,7 +290,7 @@ void ControlHandler::handleInput(Feintgine::InputManager & inputManager)
 		{
             lua_pushlightuserdata(m_script, this);
             lua_pushlightuserdata(m_script, m_tgui);
-            std::cout << "send signal value " << signal << "\n";
+            // std::cout << "send signal value " << signal << "\n";
 			lua_pushinteger(m_script, signal); // correct for uint64_t
 
             const int argc = 3;

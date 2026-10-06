@@ -1,10 +1,8 @@
-package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;'
+package.path = package.path .. ';../../Lua/system/Networking/?.lua;' .. ';../../Lua/TouhouTB/?.lua;' .. ';../../Lua/TouhouTB/Lobby/?.lua;' .. ';../../Lua/TouhouTB/Combat/?.lua;'
 
 -- require "clientGlobal"
 -- require "combat_global"
 require "combat_stage_sequence"
-
-
 
 
 local function dumpTable(t, indent)
@@ -18,8 +16,6 @@ local function dumpTable(t, indent)
         end
     end
 end
-
-
 
 --------------------------------------------------------------------------------
 --  COMBAT SYNC HANDLER
@@ -181,7 +177,7 @@ function SendBattleCommand(characterKey, skillID , data)
 
     print("data check " .. tGUID .. " " .. tID .. " " .. tLobbyID .. " " .. tPlayerIndex)
 
-    SendBattleRequest(BattlePacketChannel.Combat, CombatIngameData.Send_Combat_Request, {tGUID, tID, tLobbyID, tPlayerIndex, characterKey, skillID, data},5,0.1,0.15)
+    SendBattleRequest(BattlePacketChannel.Combat, CCombatResponse.Combat_Request, {tGUID, tID, tLobbyID, tPlayerIndex, characterKey, skillID, data},5,0.1,0.15)
 
 end
 

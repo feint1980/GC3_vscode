@@ -135,3 +135,5 @@ end
 
 
 Combat_Formations = {} -- Contain the Lua data from server
+
+CombatHandling_Fn = {}

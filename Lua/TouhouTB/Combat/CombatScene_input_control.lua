@@ -14,7 +14,7 @@ Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal
     local x,y = ControlHandler_getCursorPos()
 
 
-    print("signal is " .. signal)
+    -- print("signal is " .. signal)
     Combat_Dock_Middle_Instance:handleInput(signal)
 
 
