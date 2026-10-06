@@ -47,7 +47,6 @@ CombatMessageHandling = {}
 CombatBattleHandling = {}
 
 
-
 TurnOrderHandling_Fn = {}
 
 

@@ -136,6 +136,7 @@ void CombatScene::onEntry()
 }
 
 
+
 void CombatScene::initGUI()
 {
     if(!isInitialized)
@@ -336,6 +337,7 @@ void CombatScene::draw()
         
         if(m_turnDisplayer)
         {
+            // std::cout << "draw turn displayer \n";
             m_turnDisplayer->draw(m_spriteBatch);
         }
     }

@@ -34,7 +34,7 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
     -- outer packet: [lobbyID, p1Id, p2Id, p1FormationJSON, p2FormationJSON]
     local tData, pos, err = JSON_Decode(data)
 
-    print("[CombatIngameData.Sync] data dump" .. data)
+    -- print("[CombatIngameData.Sync] data dump" .. data)
     if err then
         print("Ke3 F3i117 exception (PacketChannel.Combat][CCombatResponse.Combat_IngameData]  JSON decode error:", err)
     end
@@ -108,10 +108,25 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
     -- Removed here; see chat history if you ever need to resurrect them.
 
     -- tell the scene the battle field is populated and ready
-    CombatScene_SetSceneReady()
+    -- CombatScene_SetSceneReady()
+
+    if CombatScene_SetSceneReady then
+        print("calling CombatScene_SetSceneReady ")
+        CombatScene_SetSceneReady()
+        print("CombatScene_SetSceneReady called")
+    else
+        print("WARN: CombatScene_SetSceneReady missing, state mismatch?")
+
+        print("[Sync dbg]",
+        "CombatSceneInit:", type(CombatSceneInit),
+        "\nCombatSceneHost:", tostring(CombatSceneHost),
+        "\nCombatField_instance:", tostring(CombatField_instance),
+        "\nCB_Combat_Dock:", tostring(CB_Combat_Dock))
+    end
+
     EventPipeline.emit("COMBAT_ON_MATCH_START")
 
-    CombatField_instance:FieldInfo_ListAll()
+    -- CombatField_instance:FieldInfo_ListAll()
 
     print("Dump Combat_Formations data")
 
@@ -119,14 +134,14 @@ CombatHandling_Fn[CombatIngameData.Sync] = function(data)
         print(k)
         for t, character in pairs(v) do
             print("character " .. t)
-            print("stats : ")
-            dumpTable(character.stats)
-            print("skills : ")
-            dumpTable(character.skills)
-            print("generals")
-            dumpTable(character.generals)
-            print("items")
-            dumpTable(character.items)
+            -- print("stats : ")
+            -- dumpTable(character.stats)
+            -- print("skills : ")
+            -- dumpTable(character.skills)
+            -- print("generals")
+            -- dumpTable(character.generals)
+            -- print("items")
+            -- dumpTable(character.items)
         end
     end
 end

@@ -104,7 +104,11 @@ end
 
 function CombatScene_SetSceneReady()
     print("CombatScene_SetSceneReady called")
-    cpp_combat_sceneReady(CombatSceneHost,true)
+    if CombatSceneHost ~= nil then
+        cpp_combat_sceneReady(CombatSceneHost,true)
+    else 
+        print("CombatSceneHost is nil")
+    end
 end
 
 ---- Input control 

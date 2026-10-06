@@ -52,15 +52,12 @@ end
 
 
 
-
-
-
 ----- Ingame handling
 
-CombatBattleHandling[BattlePacketChannel.Combat][CombatIngameData.Send_Combat_Request] = function(host,data,guid)
+-- CombatBattleHandling[BattlePacketChannel.Combat][CombatIngameData.Send_Combat_Request] = function(host,data,guid)
 
-    print("Combat request detected from " .. guid)
+--     print("Combat request detected from " .. guid)
 
-    print("data is " .. data)
+--     -- print("data is " .. data)
 
-end
+-- end

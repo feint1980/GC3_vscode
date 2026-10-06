@@ -907,7 +907,7 @@ void CombatField::updateEvents()
 
 CombatCharacter * CombatField::addCharacter(int collumn, int row, int side, const std::string & characterID, const std::string & portraitPath, const glm::vec2 & scale)
 {
-    std::cout << "CombatField::addCharacter called \n";
+    // std::cout << "CombatField::addCharacter called \n";
 
     // investigate this stga
     std::string key = characterID + "_" + std::to_string(side);
@@ -929,7 +929,7 @@ CombatCharacter * CombatField::addCharacter(int collumn, int row, int side, cons
 
     auto character = std::make_shared<CombatCharacter>();
     
-    std::cout << "about top init \n";
+    // std::cout << "about top init \n";
     character->init(slot, InfoHolder::getInstance()->getCharacterAnimationPath(characterID), portraitPath, scale, side);
 
     // Build the map key

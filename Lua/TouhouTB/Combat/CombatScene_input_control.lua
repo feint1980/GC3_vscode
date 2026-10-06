@@ -17,7 +17,6 @@ Dispatch_Recievers["combatScene"] = function (controlHandlerHost,tguiHost,signal
     -- print("signal is " .. signal)
     Combat_Dock_Middle_Instance:handleInput(signal)
 
-
     if (signal & Signal.left) ~= 0 then
         print("left !")
     elseif (signal & Signal.right) ~= 0 then

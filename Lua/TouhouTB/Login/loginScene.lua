@@ -394,14 +394,15 @@ function LoginSceneInit(host,TGUIScriptingPtr,ClientScriptingPtr,ControlHandlerP
 
     loginDecorateFrame:addEmblem(1,"emblem_pack.xml/corner_a_07_2.png", 15,15, 20,
         -20, 0.5)
-
+        
+    
     loginDecorateFrame:addLine(0, 20, 150, 5)
     loginDecorateFrame:addLine(0, -30, 175, 5)
     loginDecorateFrame:addLine(0, -80, 85, 5)
 
     -- print("Blind 東 Eye team 風谷早苗こんに")
     loginDecorateFrame:addText("東方黄昏結界", 610,-400, 3,1.0, 255,255,255,255,0)
-    loginDecorateFrame:addLine(610, -420, 165, 5)
+    loginDecorateFrame:addLine(610, -427, 165, 5)
 
     loginDecorateFrame:showPanelBG(true)
     loginDecorateFrame:setPanelBGColor(46,46,46,255)
